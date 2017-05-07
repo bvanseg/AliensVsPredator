@@ -1,9 +1,11 @@
 package org.avp;
 
 import org.avp.world.dimension.TeleporterLV;
+import org.avp.world.dimension.acheron.BiomeAcheron;
 import org.avp.world.dimension.acheron.ProviderAcheron;
 import org.avp.world.dimension.varda.ProviderVarda;
 
+import com.arisux.mdxlib.MDX;
 import com.arisux.mdxlib.lib.game.IInitEvent;
 import com.arisux.mdxlib.lib.world.Dimension;
 import com.arisux.mdxlib.lib.world.Pos;
@@ -12,12 +14,14 @@ import com.arisux.mdxlib.lib.world.entity.Entities;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -25,8 +29,21 @@ public class DimensionHandler implements IInitEvent
 {
     public static final DimensionHandler instance = new DimensionHandler();
 
-    public static final Dimension        ACHERON  = new Dimension("Acheron", "_acheron", ProviderAcheron.class, false);
-    public static final Dimension        VARDA    = new Dimension("Varda", "_varda", ProviderVarda.class, false);
+    public final Dimension               ACHERON  = new Dimension("Acheron", "_acheron", ProviderAcheron.class, true)
+                                                  {
+                                                      public Dimension register()
+                                                      {
+                                                          GameRegistry.register(BiomeAcheron.acheron, new ResourceLocation(AliensVsPredator.ID, "acheron"));
+                                                          return super.register();
+                                                      };
+                                                  };
+    public final Dimension               VARDA    = new Dimension("Varda", "_varda", ProviderVarda.class, true)
+                                                  {
+                                                      public Dimension register()
+                                                      {
+                                                          return super.register();
+                                                      };
+                                                  };
 
     public boolean                       initialized;
 
@@ -80,6 +97,7 @@ public class DimensionHandler implements IInitEvent
     public static void teleportPlayerToDimension(EntityPlayerMP player, int dimensionId)
     {
         PlayerList players = player.getServer().getPlayerList();
+        MDX.log().info("Attempting to teleport player to dimension with id " + dimensionId);
 
         if (player.dimension == 0 || player.dimension != dimensionId)
         {

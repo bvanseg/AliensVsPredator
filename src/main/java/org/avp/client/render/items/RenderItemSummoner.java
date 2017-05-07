@@ -12,10 +12,10 @@ import net.minecraft.item.ItemStack;
 
 public class RenderItemSummoner extends ItemRenderer<Model>
 {
-    private float                   scale;
-    private float                   x;
-    private float                   y;
-    private TexturedModel<?>        model;
+    private float            scale;
+    private float            x;
+    private float            y;
+    private TexturedModel<?> model;
 
     @SuppressWarnings("all")
     public RenderItemSummoner(TexturedModel<?> model)
@@ -41,22 +41,17 @@ public class RenderItemSummoner extends ItemRenderer<Model>
         this.scale = scale;
         return this;
     }
-    
+
     public void renderCachedModel()
     {
         OpenGL.pushMatrix();
-        {
-            OpenGL.enableBlend();
-            OpenGL.blendClear();
-            OpenGL.scale(1F, -1F, 1F);
-            OpenGL.translate(0F, -1F, 0F);
-            OpenGL.rotate(180F, 0F, 0F, 1F);
-            OpenGL.rotate(-45F, 0F, 1F, 0F);
-            OpenGL.disableCullFace();
-            this.model.draw();
-            OpenGL.enableCullFace();
-            OpenGL.disableBlend();
-        }
+        OpenGL.scale(1F, -1F, 1F);
+        OpenGL.translate(0F, -1F, 0F);
+        OpenGL.rotate(180F, 0F, 0F, 1F);
+        OpenGL.rotate(-45F, 0F, 1F, 0F);
+        OpenGL.disableCullFace();
+        this.model.draw();
+        OpenGL.enableCullFace();
         OpenGL.popMatrix();
     }
 
@@ -110,13 +105,13 @@ public class RenderItemSummoner extends ItemRenderer<Model>
     public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void renderFirstPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
         // TODO Auto-generated method stub
-        
+
     }
 }

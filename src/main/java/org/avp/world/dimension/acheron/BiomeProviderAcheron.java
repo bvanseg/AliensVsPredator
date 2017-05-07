@@ -21,9 +21,9 @@ public class BiomeProviderAcheron extends BiomeProvider
     }
     
     @Override
-    public Biome getBiome(BlockPos pos)
+    public Biome getBiome(BlockPos pos, Biome defaultBiome)
     {
-        return this.biome;
+        return super.getBiome(pos, defaultBiome);
     }
 
     @Override

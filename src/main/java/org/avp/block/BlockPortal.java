@@ -2,8 +2,7 @@ package org.avp.block;
 
 import java.util.Random;
 
-import org.avp.DimensionHandler;
-
+import com.arisux.mdxlib.lib.world.Dimension;
 import com.arisux.mdxlib.lib.world.entity.Entities;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
@@ -18,19 +17,21 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IUnlistedProperty;
 
 public class BlockPortal extends Block
 {
-    private int dimensionId;
+    private Dimension dimension;
 
-    public BlockPortal(int dimensionId)
+    public BlockPortal(Dimension dimension)
     {
         super(Material.PORTAL);
         setLightOpacity(100);
         setTickRandomly(true);
-        this.dimensionId = dimensionId;
+        this.dimension = dimension;
     }
     
     @Override
@@ -77,20 +78,34 @@ public class BlockPortal extends Block
         {
             EntityPlayerMP player = (EntityPlayerMP) entity;
 
-            if (player.timeUntilPortal > 0)
+            if (player.dimension != this.dimension.getId())
             {
                 player.timeUntilPortal = 10;
-            }
-            else if (player.dimension != this.dimensionId)
-            {
-                player.timeUntilPortal = 10;
-                DimensionHandler.teleportPlayerToDimension(player, this.dimensionId);
+                teleportPlayerToDimension(player, this.dimension.getId());
             }
             else
             {
                 player.timeUntilPortal = 10;
-                DimensionHandler.teleportPlayerToDimension(player, 0);
+                teleportPlayerToDimension(player, 0);
             }
         }
+    }
+    
+    public static void teleportPlayerToDimension(EntityPlayerMP player, int dimension)
+    {
+        player.getServer().getPlayerList().transferPlayerToDimension(player, dimension, new Teleporter(player.getServerWorld())
+        {
+            @Override
+            public void placeInPortal(Entity entityIn, float rotationYaw)
+            {
+                int x = MathHelper.floor_double(entityIn.posX);
+                int y = MathHelper.floor_double(entityIn.posY) - 1;
+                int z = MathHelper.floor_double(entityIn.posZ);
+                entityIn.setLocationAndAngles((double) x, (double) y, (double) z, entityIn.rotationYaw, 0.0F);
+                entityIn.motionX = 0.0D;
+                entityIn.motionY = 0.0D;
+                entityIn.motionZ = 0.0D;
+            }
+        });
     }
 }

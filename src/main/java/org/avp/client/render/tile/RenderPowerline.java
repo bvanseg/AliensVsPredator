@@ -17,7 +17,6 @@ public class RenderPowerline extends TileEntitySpecialRenderer<TileEntityPowerli
     @Override
     public void renderTileEntityAt(TileEntityPowerline tile, double posX, double posY, double posZ, float renderPartialTicks, int destroyStage)
     {
-
         OpenGL.pushMatrix();
         {
             OpenGL.disable(GL_CULL_FACE);
@@ -32,7 +31,7 @@ public class RenderPowerline extends TileEntitySpecialRenderer<TileEntityPowerli
 
             OpenGL.translate(posX + 0.5F, posY + 1.5F, posZ + 0.5F);
 
-            if (Game.minecraft().objectMouseOver != null)
+            if (Game.minecraft().objectMouseOver != null && Game.minecraft().objectMouseOver.getBlockPos() != null)
             {
                 TileEntity tileOver = Game.minecraft().thePlayer.worldObj.getTileEntity(Game.minecraft().objectMouseOver.getBlockPos());
 

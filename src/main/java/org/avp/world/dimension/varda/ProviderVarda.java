@@ -1,7 +1,6 @@
 package org.avp.world.dimension.varda;
 
 import org.avp.AliensVsPredator;
-import org.avp.DimensionHandler;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -163,6 +162,6 @@ public class ProviderVarda extends WorldProvider
     @Override
     public DimensionType getDimensionType()
     {
-        return DimensionHandler.VARDA.getType();
+        return AliensVsPredator.dimensions().VARDA.getType();
     }
 }

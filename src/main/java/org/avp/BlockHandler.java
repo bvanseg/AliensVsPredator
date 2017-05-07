@@ -148,8 +148,8 @@ public class BlockHandler implements IInitEvent
     public Block               blockEngineerShipMaterial0  = (new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(255));
     public Block               blockSacrificialSpawner     = (new BlockTempleSpawner(Material.ROCK, false));
     public Block               blockSpawnerCreative        = (new BlockTempleSpawner(Material.ROCK, true));
-    public Block               blockPortalVarda            = (new BlockPortal(AliensVsPredator.settings().dimensionIdVarda()).setHardness(-1.0F).setLightLevel(2.0F));
-    public Block               blockPortalAcheron          = (new BlockPortal(AliensVsPredator.settings().dimensionIdAcheron()).setHardness(-1.0F).setLightLevel(2.0F));
+    public Block               blockPortalVarda            = (new BlockPortal(AliensVsPredator.dimensions().VARDA).setHardness(-1.0F).setLightLevel(2.0F));
+    public Block               blockPortalAcheron          = (new BlockPortal(AliensVsPredator.dimensions().ACHERON).setHardness(-1.0F).setLightLevel(2.0F));
     public Block               blockAssembler              = (new BlockAssembler(Material.IRON).setHardness(1.5F).setResistance(10.0F));
     public Block               blockFloorGrillStairs       = (new BlockCustomStairs(blockFloorGrill.getDefaultState())).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
     public Block               blockCeilingGrillStairs     = (new BlockCustomStairs(blockCeilingGrill.getDefaultState())).setHardness(5F).setResistance(15.0F).setLightOpacity(4);

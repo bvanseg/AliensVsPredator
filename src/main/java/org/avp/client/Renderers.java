@@ -357,9 +357,9 @@ public class Renderers implements IInitEvent
     {
         com.arisux.mdxlib.lib.game.Renderers.register(item, renderer);
     }
-
+    
     private void registerItemRenderers(ItemHandler items)
-    {
+    {        
         registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().blockSkullEngineer), new RenderItemSkull());
         registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().blockSkullSpaceJockey), new RenderItemSkull());
         registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().blockSkullXenomorph), new RenderItemSkull());

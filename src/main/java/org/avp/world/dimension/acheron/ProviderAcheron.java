@@ -1,11 +1,11 @@
 package org.avp.world.dimension.acheron;
 
 import org.avp.AliensVsPredator;
-import org.avp.DimensionHandler;
 
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
+import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkGenerator;
@@ -33,7 +33,7 @@ public class ProviderAcheron extends WorldProvider
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderAcheron(this.worldObj, worldObj.getSeed());
+        return new ChunkProviderAcheron(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().getGeneratorOptions());
     }
 
     @Override
@@ -141,6 +141,6 @@ public class ProviderAcheron extends WorldProvider
     @Override
     public DimensionType getDimensionType()
     {
-        return DimensionHandler.ACHERON.getType();
+        return AliensVsPredator.dimensions().ACHERON.getType();
     }
 }

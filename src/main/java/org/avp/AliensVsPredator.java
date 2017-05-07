@@ -237,11 +237,11 @@ public class AliensVsPredator implements IMod
         MDX.log().info("[AliensVsPredator] Initialization");
 
         network().init(event);
+        dimensions().init(event);
         materials().init(event);
         items().init(event);
         blocks().init(event);
         ores().init(event);
-        dimensions().init(event);
         world().init(event);
         crafting().init(event);
         interfaces().init(event);
