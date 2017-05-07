@@ -3,6 +3,7 @@ package org.avp;
 import org.avp.world.dimension.TeleporterLV;
 import org.avp.world.dimension.acheron.BiomeAcheron;
 import org.avp.world.dimension.acheron.ProviderAcheron;
+import org.avp.world.dimension.varda.BiomeVarda;
 import org.avp.world.dimension.varda.ProviderVarda;
 
 import com.arisux.mdxlib.MDX;
@@ -41,6 +42,9 @@ public class DimensionHandler implements IInitEvent
                                                   {
                                                       public Dimension register()
                                                       {
+                                                          GameRegistry.register(BiomeVarda.vardaBadlands, new ResourceLocation(AliensVsPredator.ID, "vardabadlands"));
+                                                          GameRegistry.register(BiomeVarda.vardaForest, new ResourceLocation(AliensVsPredator.ID, "vardaforest"));
+                                                          
                                                           return super.register();
                                                       };
                                                   };
