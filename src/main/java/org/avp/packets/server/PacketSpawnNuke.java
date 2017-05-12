@@ -40,9 +40,9 @@ public class PacketSpawnNuke implements IMessage, IMessageHandler<PacketSpawnNuk
         if (player != null && AliensVsPredator.settings().areNukesEnabled())
         {
             MDX.log().info(String.format("Player %s has just initiated a nuclear explosion at %s, %s, %s", player.getName(), player.posX, player.posY, player.posZ));
-            EntityWristbracer nuke = new EntityWristbracer(ctx.getServerHandler().playerEntity.worldObj);
+            EntityWristbracer nuke = new EntityWristbracer(ctx.getServerHandler().playerEntity.world);
             nuke.setLocationAndAngles(ctx.getServerHandler().playerEntity.posX, ctx.getServerHandler().playerEntity.posY, ctx.getServerHandler().playerEntity.posZ, 0F, 0F);
-            ctx.getServerHandler().playerEntity.worldObj.spawnEntityInWorld(nuke);
+            ctx.getServerHandler().playerEntity.world.spawnEntity(nuke);
             Inventories.consumeItem(ctx.getServerHandler().playerEntity, ctx.getServerHandler().playerEntity.getHeldItemMainhand().getItem());
         }
 

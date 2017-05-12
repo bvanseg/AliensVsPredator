@@ -226,7 +226,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
 
         for (EnumFacing direction : EnumFacing.VALUES)
         {
-            TileEntity tile = this.worldObj.getTileEntity(this.getPos().offset(direction));
+            TileEntity tile = this.world.getTileEntity(this.getPos().offset(direction));
 
             if (tile != null && tile instanceof TileEntityElectrical)
             {
@@ -248,7 +248,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
 
         for (EnumFacing direction : EnumFacing.VALUES)
         {
-            TileEntity tile = this.worldObj.getTileEntity(this.getPos().offset(direction));
+            TileEntity tile = this.world.getTileEntity(this.getPos().offset(direction));
 
             if (tile != null && tile instanceof TileEntityElectrical)
             {
@@ -282,7 +282,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
      */
     public double extractVoltage(EnumFacing from, double maxExtract, boolean simulate)
     {
-        TileEntity tile = this.worldObj.getTileEntity(this.getPos().offset(from));
+        TileEntity tile = this.world.getTileEntity(this.getPos().offset(from));
 
         if (tile != null && tile instanceof TileEntityElectrical)
         {

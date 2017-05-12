@@ -152,7 +152,7 @@ public class EntityBullet extends Entity
         double x = targetEntity.posX - srcX;
         double y = targetEntity.getEntityBoundingBox().maxY - this.posY;
         double z = targetEntity.posZ - srcZ;
-        double v = MathHelper.sqrt_double(x * x + z * z);
+        double v = MathHelper.sqrt(x * x + z * z);
 
         if (v >= 1.0E-7D)
         {
@@ -173,7 +173,7 @@ public class EntityBullet extends Entity
 
     public void setThrowableHeading(double posX, double posY, double posZ, float velocity, double damage)
     {
-        float v = MathHelper.sqrt_double(posX * posX + posY * posY + posZ * posZ);
+        float v = MathHelper.sqrt(posX * posX + posY * posY + posZ * posZ);
         posX /= v;
         posY /= v;
         posZ /= v;
@@ -186,7 +186,7 @@ public class EntityBullet extends Entity
         this.motionX = posX;
         this.motionY = posY;
         this.motionZ = posZ;
-        float v2 = MathHelper.sqrt_double(posX * posX + posZ * posZ);
+        float v2 = MathHelper.sqrt(posX * posX + posZ * posZ);
         this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(posX, posZ) * 180.0D / Math.PI);
         this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(posY, v2) * 180.0D / Math.PI);
         this.ticksInGround = 0;
@@ -201,7 +201,7 @@ public class EntityBullet extends Entity
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
         {
-            float velocity = MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ);
+            float velocity = MathHelper.sqrt(motionX * motionX + motionZ * motionZ);
             this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(motionX, motionZ) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(motionY, velocity) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch;
@@ -222,18 +222,18 @@ public class EntityBullet extends Entity
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
         {
-            float velocity = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float velocity = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, velocity) * 180.0D / Math.PI);
         }
 
         BlockPos pos = new BlockPos(this.xTile, this.yTile, this.zTile);
-        IBlockState blockstate = this.worldObj.getBlockState(pos);
+        IBlockState blockstate = this.world.getBlockState(pos);
         Block block = blockstate.getBlock();
 
         if (block != Blocks.AIR)
         {
-            AxisAlignedBB box = blockstate.getCollisionBoundingBox(this.worldObj, pos);
+            AxisAlignedBB box = blockstate.getCollisionBoundingBox(this.world, pos);
 
             if (box != null && box.isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
             {
@@ -255,8 +255,8 @@ public class EntityBullet extends Entity
         {
             if (block == Blocks.GLASS_PANE)
             {
-                this.worldObj.setBlockToAir(pos);
-                GameSounds.fxMinecraftGlassShatter3.playSound(this.worldObj, this.xTile, this.yTile, this.zTile);
+                this.world.setBlockToAir(pos);
+                GameSounds.fxMinecraftGlassShatter3.playSound(this.world, this.xTile, this.yTile, this.zTile);
                 GameSounds.fxMinecraftGlassShatter1.playSound(this.shootingEntity);
             }
 
@@ -289,7 +289,7 @@ public class EntityBullet extends Entity
             ++this.ticksInAir;
             Vec3d vecAt = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d vecNext = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            RayTraceResult result = this.worldObj.rayTraceBlocks(vecAt, vecNext, false, true, false);
+            RayTraceResult result = this.world.rayTraceBlocks(vecAt, vecNext, false, true, false);
             vecAt = new Vec3d(this.posX, this.posY, this.posZ);
             vecNext = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -299,7 +299,7 @@ public class EntityBullet extends Entity
             }
 
             Entity entity = null;
-            List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d = 0.0D;
             float radius;
 
@@ -353,7 +353,7 @@ public class EntityBullet extends Entity
                         return;
                     }
 
-                    velocity = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    velocity = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     int attackDamage = (int) Math.ceil(velocity * damage);
 
                     if (this.arrowCritical)
@@ -376,11 +376,11 @@ public class EntityBullet extends Entity
                     this.xTile = (int) result.hitVec.xCoord;
                     this.yTile = (int) result.hitVec.yCoord;
                     this.zTile = (int) result.hitVec.zCoord;
-                    this.inTile = this.worldObj.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock();
+                    this.inTile = this.world.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock();
                     this.motionX = ((float) (result.hitVec.xCoord - this.posX));
                     this.motionY = ((float) (result.hitVec.yCoord - this.posY));
                     this.motionZ = ((float) (result.hitVec.zCoord - this.posZ));
-                    velocity = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    velocity = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     this.posX -= this.motionX / velocity * 0.05000000074505806D;
                     this.posY -= this.motionY / velocity * 0.05000000074505806D;
                     this.posZ -= this.motionZ / velocity * 0.05000000074505806D;
@@ -393,7 +393,7 @@ public class EntityBullet extends Entity
             this.posX += this.motionX;
             this.posY += this.motionY;
             this.posZ += this.motionZ;
-            velocity = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            velocity = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
             for (this.rotationPitch = (float) (Math.atan2(this.motionY, velocity) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
@@ -425,7 +425,7 @@ public class EntityBullet extends Entity
             {
                 for (int particles = 0; particles < 5; ++particles)
                 {
-                    this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ);
+                    this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ);
                 }
 
                 newVelocity = 0.8F;
@@ -435,7 +435,7 @@ public class EntityBullet extends Entity
             {
                 for (int particles = 0; particles < 5; ++particles)
                 {
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ);
+                    this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX, this.posY, this.posZ, this.motionX, this.motionY, this.motionZ);
                 }
 
                 newVelocity = 0.8F;
@@ -484,7 +484,7 @@ public class EntityBullet extends Entity
     {
         if (!this.doesArrowBelongToPlayer)
         {
-            this.worldObj.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+            this.world.spawnParticle(EnumParticleTypes.FLAME, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
             this.setDead();
         }
     }

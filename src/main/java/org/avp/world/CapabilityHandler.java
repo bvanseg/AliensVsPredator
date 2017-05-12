@@ -61,7 +61,7 @@ public class CapabilityHandler implements IPreInitEvent
     @SubscribeEvent
     public void onEntitySpawnInWorld(EntityJoinWorldEvent event)
     {
-        if (event.getEntity() != null && !event.getEntity().worldObj.isRemote)
+        if (event.getEntity() != null && !event.getEntity().world.isRemote)
         {
             this.syncEntity(event.getEntity());
         }
@@ -75,7 +75,7 @@ public class CapabilityHandler implements IPreInitEvent
 
     public void syncEntity(Entity target)
     {
-        WorldServer worldServer = (WorldServer) target.worldObj;
+        WorldServer worldServer = (WorldServer) target.world;
 
         if (worldServer != null)
         {

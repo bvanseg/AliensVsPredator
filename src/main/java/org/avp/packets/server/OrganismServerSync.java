@@ -46,7 +46,7 @@ public class OrganismServerSync implements IMessage, IMessageHandler<OrganismSer
     public OrganismServerSync onMessage(OrganismServerSync packet, MessageContext ctx)
     {
 //        System.out.println("Sent packet " + this.getClass().getName());
-        Entity entity = ctx.getServerHandler().playerEntity.worldObj.getEntityByID(packet.entityId);
+        Entity entity = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entityId);
 
         if (entity != null)
         {

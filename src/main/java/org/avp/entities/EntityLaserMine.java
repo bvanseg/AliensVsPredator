@@ -52,7 +52,7 @@ public class EntityLaserMine extends Entity
     
     public boolean canStay()
     {
-        List<Entity> entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
+        List<Entity> entities = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
 
         for (Entity entity : entities)
         {
@@ -86,12 +86,12 @@ public class EntityLaserMine extends Entity
     {
         super.onUpdate();
 
-        if (this.worldObj.getWorldTime() % 10 == 0)
+        if (this.world.getWorldTime() % 10 == 0)
         {
             this.laserHit = Entities.rayTraceAll(this, this.getLaserMaxDepth());
         }
 
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             if (this.getLaserHit() != null && this.getLaserHit().entityHit != null)
             {
@@ -142,20 +142,20 @@ public class EntityLaserMine extends Entity
 
     public void drop()
     {
-        this.worldObj.spawnEntityInWorld(new EntityItem(this.worldObj, this.posX, this.posY, this.posZ, new ItemStack(AliensVsPredator.items().itemProximityMine)));
+        this.world.spawnEntity(new EntityItem(this.world, this.posX, this.posY, this.posZ, new ItemStack(AliensVsPredator.items().itemProximityMine)));
         this.setDead();
     }
 
     public void explode(Entity entityHit)
     {
-        Explosion explosion = new Explosion(worldObj, this, this.posX, this.posY, this.posZ, 4F, false, false);
+        Explosion explosion = new Explosion(world, this, this.posX, this.posY, this.posZ, 4F, false, false);
         explosion.doExplosionB(true);
 
         if (entityHit != null)
         {
             entityHit.attackEntityFrom(DamageSources.causeLaserMineDamage(this, entityHit), 15F);
 
-            if (this.worldObj.isRemote)
+            if (this.world.isRemote)
             {
                 AliensVsPredator.network().sendToServer(new PacketDamageEntity(entityHit, this, 15F));
             }
@@ -221,7 +221,7 @@ public class EntityLaserMine extends Entity
     @Override
     public boolean attackEntityFrom(DamageSource damagesource, float damage)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             this.drop();
         }

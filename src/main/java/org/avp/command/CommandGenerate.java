@@ -18,13 +18,13 @@ import net.minecraft.world.WorldServer;
 public class CommandGenerate extends CommandBase
 {
     @Override
-    public String getCommandName()
+    public String getName()
     {
         return "genschematic";
     }
 
     @Override
-    public String getCommandUsage(ICommandSender commandSender)
+    public String getUsage(ICommandSender commandSender)
     {
         return "Generates a schematic that is currently loaded.";
     }
@@ -77,12 +77,12 @@ public class CommandGenerate extends CommandBase
                         @Override
                         public void onProcessingComplete()
                         {
-                            player.addChatMessage(Chat.component("Generation of " + this.getName() + " completed."));
+                            player.sendMessage(Chat.component("Generation of " + this.getName() + " completed."));
                         }
                     };
 
                     StructureGenerationHandler.addStructureToQueue(structure);
-                    sender.addChatMessage(Chat.component("Started generation of " + schematicName));
+                    sender.sendMessage(Chat.component("Started generation of " + schematicName));
                 }
             }
         }

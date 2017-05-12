@@ -15,13 +15,13 @@ import net.minecraftforge.fml.relauncher.Side;
 public class CommandSettings extends CommandBase
 {
     @Override
-    public String getCommandName()
+    public String getName()
     {
         return "avpsettings";
     }
 
     @Override
-    public String getCommandUsage(ICommandSender commandSender)
+    public String getUsage(ICommandSender commandSender)
     {
         return "Opens an interface for adjusting advanced avp graphics settings.";
     }
@@ -38,7 +38,7 @@ public class CommandSettings extends CommandBase
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
             EntityPlayerMP player = (EntityPlayerMP) sender;
-            GuiScreen gui = (GuiScreen) AliensVsPredator.interfaces().getClientGuiElement(AliensVsPredator.interfaces().GUI_GRAPHICSSETTINGS, player, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+            GuiScreen gui = (GuiScreen) AliensVsPredator.interfaces().getClientGuiElement(AliensVsPredator.interfaces().GUI_GRAPHICSSETTINGS, player, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
             FMLCommonHandler.instance().showGuiScreen(gui);
         }
     }

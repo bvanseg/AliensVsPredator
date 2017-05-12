@@ -85,28 +85,28 @@ public class TileEntityHiveResin extends TileEntity implements ITickable
     @Override
     public void update()
     {
-        if (this.worldObj.getWorldTime() % 20 == 0)
+        if (this.world.getWorldTime() % 20 == 0)
         {
             if (variant != null)
             {
-                bottomBlock = this.worldObj.getBlockState(this.getPos().add(0, -1, 0)).getBlock();
-                topBlock = this.worldObj.getBlockState(this.getPos().add(0, 1, 0)).getBlock();
+                bottomBlock = this.world.getBlockState(this.getPos().add(0, -1, 0)).getBlock();
+                topBlock = this.world.getBlockState(this.getPos().add(0, 1, 0)).getBlock();
 
-                northBlock = this.worldObj.getBlockState(this.getPos().add(variant.nX, 0, variant.nZ)).getBlock();
-                northTopBlock = this.worldObj.getBlockState(this.getPos().add(variant.nX, 1, variant.nZ)).getBlock();
-                northBottomBlock = this.worldObj.getBlockState(this.getPos().add(variant.nX, -1, variant.nZ)).getBlock();
+                northBlock = this.world.getBlockState(this.getPos().add(variant.nX, 0, variant.nZ)).getBlock();
+                northTopBlock = this.world.getBlockState(this.getPos().add(variant.nX, 1, variant.nZ)).getBlock();
+                northBottomBlock = this.world.getBlockState(this.getPos().add(variant.nX, -1, variant.nZ)).getBlock();
 
-                southBlock = this.worldObj.getBlockState(this.getPos().add(variant.sX, 0, variant.sZ)).getBlock();
-                southTopBlock = this.worldObj.getBlockState(this.getPos().add(variant.sX, 1, variant.sZ)).getBlock();
-                southBottomBlock = this.worldObj.getBlockState(this.getPos().add(variant.sX, -1, variant.sZ)).getBlock();
+                southBlock = this.world.getBlockState(this.getPos().add(variant.sX, 0, variant.sZ)).getBlock();
+                southTopBlock = this.world.getBlockState(this.getPos().add(variant.sX, 1, variant.sZ)).getBlock();
+                southBottomBlock = this.world.getBlockState(this.getPos().add(variant.sX, -1, variant.sZ)).getBlock();
 
-                eastBlock = this.worldObj.getBlockState(this.getPos().add(variant.eX, 0, variant.eZ)).getBlock();
-                eastTopBlock = this.worldObj.getBlockState(this.getPos().add(variant.eX, 1, variant.eZ)).getBlock();
-                eastBottomBlock = this.worldObj.getBlockState(this.getPos().add(variant.eX, -1, variant.eZ)).getBlock();
+                eastBlock = this.world.getBlockState(this.getPos().add(variant.eX, 0, variant.eZ)).getBlock();
+                eastTopBlock = this.world.getBlockState(this.getPos().add(variant.eX, 1, variant.eZ)).getBlock();
+                eastBottomBlock = this.world.getBlockState(this.getPos().add(variant.eX, -1, variant.eZ)).getBlock();
 
-                westBlock = this.worldObj.getBlockState(this.getPos().add(variant.wX, 0, variant.wZ)).getBlock();
-                westTopBlock = this.worldObj.getBlockState(this.getPos().add(variant.wX, 1, variant.wZ)).getBlock();
-                westBottomBlock = this.worldObj.getBlockState(this.getPos().add(variant.wX, -1, variant.wZ)).getBlock();
+                westBlock = this.world.getBlockState(this.getPos().add(variant.wX, 0, variant.wZ)).getBlock();
+                westTopBlock = this.world.getBlockState(this.getPos().add(variant.wX, 1, variant.wZ)).getBlock();
+                westBottomBlock = this.world.getBlockState(this.getPos().add(variant.wX, -1, variant.wZ)).getBlock();
             }
             else
             {

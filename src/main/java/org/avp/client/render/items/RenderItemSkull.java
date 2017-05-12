@@ -73,7 +73,7 @@ public class RenderItemSkull extends ItemRenderer<Model>
         {
             float glScale = 1F;
             OpenGL.disable(GL11.GL_CULL_FACE);
-            OpenGL.rotate((mc.theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
             OpenGL.scale(glScale, -glScale, glScale);
             this.draw(itemstack.getItem());
         }

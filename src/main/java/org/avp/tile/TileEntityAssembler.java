@@ -144,7 +144,7 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     }
 
     @Override
-    public boolean isUseableByPlayer(EntityPlayer player)
+    public boolean isUsableByPlayer(EntityPlayer player)
     {
         return player.getDistanceSq(this.getPos().getX() + 0.5D, this.getPos().getY(), this.getPos().getZ() + 0.5D) <= 64;
     }
@@ -244,9 +244,9 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     {
         this.player = player;
 
-        if (!player.worldObj.isRemote)
+        if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_ASSEMBLER, player.worldObj, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_ASSEMBLER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
         }
     }
 

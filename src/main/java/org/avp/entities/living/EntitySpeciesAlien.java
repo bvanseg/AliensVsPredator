@@ -85,13 +85,13 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     {
         super.onDeath(damagesource);
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (damagesource != DamageSource.onFire && damagesource != DamageSource.inFire && damagesource != DamageSources.flamethrower)
             {
-                EntityAcidPool entity = new EntityAcidPool(this.worldObj);
+                EntityAcidPool entity = new EntityAcidPool(this.world);
                 entity.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-                this.worldObj.spawnEntityInWorld(entity);
+                this.world.spawnEntity(entity);
             }
 
             int adjustedLevel = this.getJellyLevel() / 4;
@@ -116,11 +116,11 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     public void mature()
     {
         IMaturable maturable = (IMaturable) this;
-        EntitySpeciesAlien alien = (EntitySpeciesAlien) Entities.constructEntity(this.worldObj, maturable.getMatureState());
+        EntitySpeciesAlien alien = (EntitySpeciesAlien) Entities.constructEntity(this.world, maturable.getMatureState());
         NBTTagCompound tag = new NBTTagCompound();
 
         alien.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0F, 0.0F);
-        this.worldObj.spawnEntityInWorld(alien);
+        this.world.spawnEntity(alien);
         this.writeEntityToNBT(tag);
         alien.readEntityFromNBT(tag);
         alien.setJellyLevel(this.getJellyLevel() - maturable.getMaturityLevel());
@@ -131,9 +131,9 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     @SuppressWarnings("unchecked")
     protected void findRoyalJelly()
     {
-        if (!this.worldObj.isRemote && this.worldObj.getWorldTime() % 40 == 0)
+        if (!this.world.isRemote && this.world.getWorldTime() % 40 == 0)
         {
-            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) worldObj.getEntitiesWithinAABB(EntityItem.class, this.getEntityBoundingBox().expand(8, 8, 8));
+            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) world.getEntitiesWithinAABB(EntityItem.class, this.getEntityBoundingBox().expand(8, 8, 8));
 
             for (EntityItem entityItem : entityItemList)
             {
@@ -197,9 +197,9 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
         {
             IMaturable maturable = (IMaturable) this;
 
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
-                if (this.worldObj.getWorldTime() % 20 == 0)
+                if (this.world.getWorldTime() % 20 == 0)
                 {
                     if (maturable.isReadyToMature(this))
                     {
@@ -216,7 +216,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     @Override
     public boolean canProduceJelly()
     {
-        return this.worldObj.getWorldTime() % this.getJellyProductionRate() == 0;
+        return this.world.getWorldTime() % this.getJellyProductionRate() == 0;
     }
 
     @Override
@@ -228,9 +228,9 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     @Override
     public void produceJelly()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            if (this.worldObj.getWorldTime() % 20 == 0)
+            if (this.world.getWorldTime() % 20 == 0)
             {
                 this.setJellyLevel(this.getJellyLevel() + 20);
             }

@@ -165,13 +165,13 @@ public class ModelWorkstation extends Model
                     break;
             }
 
-            if (left != AliensVsPredator.blocks().blockWorkstation && leftUp == Blocks.AIR && left.getCollisionBoundingBox(Game.minecraft().theWorld, posLeft).maxY <= 1.5)
+            if (left != AliensVsPredator.blocks().blockWorkstation && leftUp == Blocks.AIR && left.getCollisionBoundingBox(Game.minecraft().world, posLeft).maxY <= 1.5)
             {
                 // leftArm.render(DEFAULT_SCALE);
                 screenLeft.render(DEFAULT_SCALE);
             }
 
-            if (right != AliensVsPredator.blocks().blockWorkstation && rightUp == Blocks.AIR && right.getCollisionBoundingBox(Game.minecraft().theWorld, posRight).maxY <= 1.5)
+            if (right != AliensVsPredator.blocks().blockWorkstation && rightUp == Blocks.AIR && right.getCollisionBoundingBox(Game.minecraft().world, posRight).maxY <= 1.5)
             {
                 // rightArm.render(DEFAULT_SCALE);
                 screenRight.render(DEFAULT_SCALE);

@@ -57,7 +57,7 @@ public class PacketTurretSync implements IMessage, IMessageHandler<PacketTurretS
     public PacketTurretSync onMessage(PacketTurretSync packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        TileEntityTurret tile = (TileEntityTurret) Game.minecraft().theWorld.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+        TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
         if (tile != null)
         {

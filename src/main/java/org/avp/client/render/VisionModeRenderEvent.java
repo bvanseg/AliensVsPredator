@@ -32,11 +32,11 @@ public class VisionModeRenderEvent
     @SubscribeEvent
     public void renderTickOverlay(Pre event)
     {
-        if (Game.minecraft().thePlayer != null)
+        if (Game.minecraft().player != null)
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR && Game.minecraft().gameSettings.thirdPersonView == 0)
             {
-                if (Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer) != null && Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer).getItem() == AliensVsPredator.items().helmTitanium)
+                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().helmTitanium)
                 {
                     OpenGL.pushMatrix();
                     this.currentVisionMode.render();
@@ -51,7 +51,7 @@ public class VisionModeRenderEvent
     @SubscribeEvent
     public void entityRenderEvent(RenderLivingEvent.Pre event)
     {
-        ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer);
+        ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
 
         if (Game.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().helmTitanium)
         {
@@ -62,7 +62,7 @@ public class VisionModeRenderEvent
     @SubscribeEvent
     public void entityRenderEvent(RenderLivingEvent.Post event)
     {
-        ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer);
+        ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
 
         if (Game.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().helmTitanium)
         {

@@ -111,9 +111,9 @@ public class EntityQueen extends EntityXenomorph implements IMob
 
     private void constructHive()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            if (this.worldObj.getWorldTime() % 20 == 0)
+            if (this.world.getWorldTime() % 20 == 0)
             {
                 this.hive = HiveHandler.instance.getHiveForUUID(this.getUniqueID());
 
@@ -129,16 +129,16 @@ public class EntityQueen extends EntityXenomorph implements IMob
     {
         if (this.reproducing)
         {
-            if (this.worldObj.getWorldTime() % (20 * 120) == 0 && this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD)
+            if (this.world.getWorldTime() % (20 * 120) == 0 && this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD)
             {
                 int ovipositorDist = 10;
                 double rotationYawRadians = Math.toRadians(this.rotationYawHead - 90);
                 double ovamorphX = (this.posX + (ovipositorDist * (Math.cos(rotationYawRadians))));
                 double ovamorphZ = (this.posZ + (ovipositorDist * (Math.sin(rotationYawRadians))));
 
-                //this.worldObj.playSound(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), AliensVsPredator.sounds().SOUND_QUEEN_HURT.event(), SoundCategory.HOSTILE, 1F, this.rand.nextInt(10) / 100, true);
+                //this.world.playSound(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), AliensVsPredator.sounds().SOUND_QUEEN_HURT.event(), SoundCategory.HOSTILE, 1F, this.rand.nextInt(10) / 100, true);
 
-                if (this.worldObj.isRemote)
+                if (this.world.isRemote)
                 {
                     AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ovamorphX, this.posY, ovamorphZ, Entities.getEntityRegistrationId(EntityOvamorph.class)));
                 }
@@ -149,7 +149,7 @@ public class EntityQueen extends EntityXenomorph implements IMob
 
     private void handleOvipositorGrowth()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.hive != null)
             {
@@ -176,7 +176,7 @@ public class EntityQueen extends EntityXenomorph implements IMob
 
     private void jumpBoost()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (isJumping)
             {
@@ -212,7 +212,7 @@ public class EntityQueen extends EntityXenomorph implements IMob
 
                     if (!this.getNavigator().tryMoveToXYZ(closestPoint.x, closestPoint.y, closestPoint.z, 1.55D))
                     {
-                        if (Game.isDevEnvironment() && this.worldObj.getWorldTime() % (20 * 3) == 0)
+                        if (Game.isDevEnvironment() && this.world.getWorldTime() % (20 * 3) == 0)
                         {
                             // System.out.println("Unable to pathfind to closest point, too far: " + this.pathPoints.size() + " Points, " + ((int) closestPoint.distanceFrom(this)) + " Meters, " + closestPoint);
                             // System.out.println(this.pathPoints);
@@ -237,15 +237,15 @@ public class EntityQueen extends EntityXenomorph implements IMob
 
     private void heal()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            if (this.worldObj.getWorldTime() % 20 == 0)
+            if (this.world.getWorldTime() % 20 == 0)
             {
                 if (this.getHealth() > this.getMaxHealth() / 4)
                 {
                     this.heal(6F);
                 }
-                else if (this.worldObj.getWorldTime() % (20 * 2) == 0)
+                else if (this.world.getWorldTime() % (20 * 2) == 0)
                 {
                     this.heal(2F);
                 }
@@ -268,17 +268,17 @@ public class EntityQueen extends EntityXenomorph implements IMob
         // this.getHive().destroy();
         // this.setDead();
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.posY < -32)
             {
                 this.setDead();
             }
 
-            if (this.worldObj.getWorldTime() % 20 == 0)
+            if (this.world.getWorldTime() % 20 == 0)
             {
                 @SuppressWarnings("unchecked")
-                ArrayList<EntitySpeciesAlien> aliens = (ArrayList<EntitySpeciesAlien>) Entities.getEntitiesInCoordsRange(this.worldObj, EntitySpeciesAlien.class, new Pos(this), 16);
+                ArrayList<EntitySpeciesAlien> aliens = (ArrayList<EntitySpeciesAlien>) Entities.getEntitiesInCoordsRange(this.world, EntitySpeciesAlien.class, new Pos(this), 16);
 
                 if (this.getHive() != null)
                 {

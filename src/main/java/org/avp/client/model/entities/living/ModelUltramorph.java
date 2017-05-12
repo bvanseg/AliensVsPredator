@@ -316,7 +316,7 @@ public class ModelUltramorph extends Model
 
         float swingProgress = swingProgress(obj);
         float swingProgressPrev = swingProgressPrev(obj);
-        float tailAngle = MathHelper.cos((Minecraft.getMinecraft().theWorld.getWorldTime() % 360 + Game.partialTicks()) * (base != null && base.motionX + base.motionZ != 0 ? 0.67F : 0.07F));
+        float tailAngle = MathHelper.cos((Minecraft.getMinecraft().world.getWorldTime() % 360 + Game.partialTicks()) * (base != null && base.motionX + base.motionZ != 0 ? 0.67F : 0.07F));
 
         if (xenomorph != null)
         {

@@ -64,7 +64,7 @@ public class EntityDeaconShark extends EntitySpeciesAlien
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
         Entities.setMoveHelper(this, new EntityDeaconShark.DeaconSharkMoveHelper());
-        Entities.setNavigator(this, new PathNavigateSwimmer(this, this.worldObj));
+        Entities.setNavigator(this, new PathNavigateSwimmer(this, this.world));
         Entities.setLookHelper(this, new EntityExtendedLookHelper(this));
     }
 
@@ -109,7 +109,7 @@ public class EntityDeaconShark extends EntitySpeciesAlien
 
     public EntityLivingBase findTarget()
     {
-        List<? extends EntityLivingBase> targets =  worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(24, 32, 24));
+        List<? extends EntityLivingBase> targets =  world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(24, 32, 24));
         Entity attackTarget = null;
     
         for (EntityLivingBase target : targets)
@@ -131,7 +131,7 @@ public class EntityDeaconShark extends EntitySpeciesAlien
     {
         if (this.getAttackTarget() == null || this.getAttackTarget() != null && this.getAttackTarget().isDead || !(this.distanceToTargetLastTick - this.getDistanceToEntity(this.getAttackTarget()) > 0.1))
         {
-            if (this.worldObj.getWorldTime() % 60 == 0)
+            if (this.world.getWorldTime() % 60 == 0)
             {
                 this.setAttackTarget(this.findTarget());
             }
@@ -148,7 +148,7 @@ public class EntityDeaconShark extends EntitySpeciesAlien
             this.getMoveHelper().setMoveTo(this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ, 1F);
         }
 
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             if (this.getAttackTarget() != null)
             {
@@ -194,12 +194,12 @@ public class EntityDeaconShark extends EntitySpeciesAlien
     @Override
     public boolean getCanSpawnHere()
     {
-        if (!(this.posZ > 16 && this.posY <= 64 && this.worldObj.getWorldTime() % 80 == 0))
+        if (!(this.posZ > 16 && this.posY <= 64 && this.world.getWorldTime() % 80 == 0))
         {
             return false;
         }
 
-        return this.worldObj.checkNoEntityCollision(this.getEntityBoundingBox().expand(16, 32, 16));
+        return this.world.checkNoEntityCollision(this.getEntityBoundingBox().expand(16, 32, 16));
     }
 
     @Override
@@ -231,16 +231,16 @@ public class EntityDeaconShark extends EntitySpeciesAlien
     {
         return 180;
     }
-
+    
     @Override
     public void moveEntityWithHeading(float strafe, float forward)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.isInWater())
             {
                 this.moveRelative(strafe, forward, 0.1F);
-                this.moveEntity(this.motionX, this.motionY, this.motionZ);
+                this.move(this.motionX, this.motionY, this.motionZ);
                 this.motionX *= 0.8999999761581421D;
                 this.motionY *= 0.8999999761581421D;
                 this.motionZ *= 0.8999999761581421D;
@@ -293,7 +293,7 @@ public class EntityDeaconShark extends EntitySpeciesAlien
                 double posY = this.posY - this.shark.posY;
                 double posZ = this.posZ - this.shark.posZ;
                 double velocity = posX * posX + posY * posY + posZ * posZ;
-                velocity = (double) MathHelper.sqrt_double(velocity);
+                velocity = (double) MathHelper.sqrt(velocity);
                 posY /= velocity;
                 this.shark.rotationYaw = EntityExtendedLookHelper.updateRotationNew(this.shark.rotationYaw, (float) (Math.atan2(posZ, posX) * 180.0D / Math.PI) - 90.0F, 5.0F);
                 this.shark.renderYawOffset = this.shark.rotationYaw;

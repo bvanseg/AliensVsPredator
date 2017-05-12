@@ -15,13 +15,13 @@ public class InputHandlerFirearm implements IInputHandler
     @Override
     public void handleInput()
     {
-        if (Game.minecraft().thePlayer != null)
+        if (Game.minecraft().player != null)
         {
             this.lastReload++;
 
-            if (Game.minecraft().inGameHasFocus && Game.minecraft().thePlayer.inventory.getCurrentItem() != null && Game.minecraft().thePlayer.inventory.getCurrentItem().getItem() instanceof ItemFirearm)
+            if (Game.minecraft().inGameHasFocus && Game.minecraft().player.inventory.getCurrentItem() != null && Game.minecraft().player.inventory.getCurrentItem().getItem() instanceof ItemFirearm)
             {
-                ItemFirearm fireArm = (ItemFirearm) Game.minecraft().thePlayer.inventory.getCurrentItem().getItem();
+                ItemFirearm fireArm = (ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem();
 
                 if (AliensVsPredator.keybinds().specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
                 {

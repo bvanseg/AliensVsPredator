@@ -42,19 +42,22 @@ import org.avp.block.skulls.BlockSkullSpaceJockey;
 import org.avp.block.skulls.BlockSkullXenomorph;
 import org.avp.block.skulls.BlockSkullXenomorphWarrior;
 import org.avp.block.skulls.BlockSkullYautja;
-import org.avp.block.util.ShapedBlocks;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 
 import com.arisux.mdxlib.lib.game.Game;
 import com.arisux.mdxlib.lib.game.IInitEvent;
 import com.arisux.mdxlib.lib.world.block.BlockMaterial;
+import com.arisux.mdxlib.lib.world.block.util.ShapedBlocks;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockGlass;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
@@ -91,10 +94,11 @@ public class BlockHandler implements IInitEvent
     public Block               blockCeiliingVent           = (new BlockMaterial(Material.IRON)).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
     public Block               blockCeilingGrill           = ((new BlockMaterial(Material.IRON)
                                                            {
-                                                               public boolean isOpaqueCube()
+                                                               @Override
+                                                               public BlockRenderLayer getBlockLayer()
                                                                {
-                                                                   return false;
-                                                               };
+                                                                   return BlockRenderLayer.TRANSLUCENT;
+                                                               }
                                                            }).setHardness(5F).setResistance(15.0F)).setLightOpacity(4);
     public Block               blockSkulls                 = (new BlockMaterial(Material.ROCK));
     public Block               blockFloorGrill             = ((new BlockMaterial(Material.IRON)
@@ -266,7 +270,7 @@ public class BlockHandler implements IInitEvent
     public Block[]             shipDecor4Shapes            = ShapedBlocks.construct(blockShipDecor4).setCreativeTab(AliensVsPredator.tabBlocks()).array();
     public Block[]             shipDecor5Shapes            = ShapedBlocks.construct(blockShipDecor5).setCreativeTab(AliensVsPredator.tabBlocks()).array();
     public Block[]             shipDecor6Shapes            = ShapedBlocks.construct(blockShipDecor6).setCreativeTab(AliensVsPredator.tabBlocks()).array();
-    public Block[]             templeBrickSingleShapes     = ShapedBlocks.construct(blockRelicTile, 0, blockSacrificialSpawner).setCreativeTab(AliensVsPredator.tabBlocks()).array();;
+    public Block[]             templeBrickSingleShapes     = ShapedBlocks.construct(blockRelicTile).setCreativeTab(AliensVsPredator.tabBlocks()).array();;
     public Block[]             templeBrickShapes           = ShapedBlocks.construct(blockTempleBrick).setCreativeTab(AliensVsPredator.tabBlocks()).array();
     public Block[]             templeTileShapes            = ShapedBlocks.construct(blockTempleTile).setCreativeTab(AliensVsPredator.tabBlocks()).array();
     public Block[]             templeWall1Shapes           = ShapedBlocks.construct(blockTempleWall1).setCreativeTab(AliensVsPredator.tabBlocks()).array();

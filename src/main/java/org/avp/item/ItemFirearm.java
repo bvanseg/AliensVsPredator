@@ -319,12 +319,12 @@ public class ItemFirearm extends HookedItem
 
     public void reload(EntityPlayer player)
     {
-        if (!player.worldObj.isRemote)
+        if (!player.world.isRemote)
         {
             consumeAmmunition(this.profile, player);
         }
 
-        if (player.worldObj.isRemote)
+        if (player.world.isRemote)
         {
             AliensVsPredator.network().sendToServer(new PacketReloadFirearm());
         }
@@ -348,9 +348,9 @@ public class ItemFirearm extends HookedItem
     @SideOnly(Side.CLIENT)
     public void renderRecoil()
     {
-        Game.minecraft().thePlayer.renderArmPitch -= this.profile.getRecoil() * 40.0F;
-        Game.minecraft().thePlayer.renderArmYaw += this.profile.getRecoil() * 5.0F;
-        Game.minecraft().thePlayer.rotationPitch -= this.profile.getRecoil() * 1.4F;
+        Game.minecraft().player.renderArmPitch -= this.profile.getRecoil() * 40.0F;
+        Game.minecraft().player.renderArmYaw += this.profile.getRecoil() * 5.0F;
+        Game.minecraft().player.rotationPitch -= this.profile.getRecoil() * 1.4F;
     }
 
     @SideOnly(Side.CLIENT)

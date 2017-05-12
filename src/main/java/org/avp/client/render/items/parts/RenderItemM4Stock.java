@@ -40,7 +40,7 @@ public class RenderItemM4Stock extends ItemRendererGroup<ModelM4>
     {
         OpenGL.pushMatrix();
         {
-            OpenGL.rotate((mc.theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
             OpenGL.disable(GL11.GL_CULL_FACE);
             this.renderPart();
         }

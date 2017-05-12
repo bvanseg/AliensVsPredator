@@ -16,7 +16,7 @@ public class TileEntitySkull extends TileEntity implements IRotatable
     
     public BlockSkull getSkullBlock()
     {
-        return (BlockSkull) this.worldObj.getBlockState(this.getPos()).getBlock();
+        return (BlockSkull) this.world.getBlockState(this.getPos()).getBlock();
     }
 
     @Override

@@ -94,7 +94,7 @@ public class RenderItemWristbracer extends ItemRenderer<ModelWristBlade>
         
         OpenGL.pushMatrix();
         {
-            OpenGL.rotate(((mc.theWorld.getWorldTime() % 360) + Game.partialTicks()) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate(((mc.world.getWorldTime() % 360) + Game.partialTicks()) * 10, 0.0F, 1.0F, 0.0F);
             OpenGL.disable(GL11.GL_CULL_FACE);
             this.getModel().draw();
             Model.draw(this.getModel().getModel().b6);

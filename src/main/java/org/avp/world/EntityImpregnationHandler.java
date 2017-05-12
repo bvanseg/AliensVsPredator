@@ -37,7 +37,7 @@ public class EntityImpregnationHandler
     @SubscribeEvent
     public void clientTick(TickEvent.ClientTickEvent event)
     {
-        this.tick(Game.minecraft().theWorld);
+        this.tick(Game.minecraft().world);
     }
 
     @SubscribeEvent
@@ -207,7 +207,7 @@ public class EntityImpregnationHandler
             glow = true;
         }
         
-        Game.minecraft().effectRenderer.addEffect(new EntityBloodFX(host.worldObj, pX, pY, pZ, particleColor, glow));
+        Game.minecraft().effectRenderer.addEffect(new EntityBloodFX(host.world, pX, pY, pZ, particleColor, glow));
     }
 
     @SubscribeEvent

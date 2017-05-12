@@ -41,7 +41,7 @@ public class PacketPlayerModeUpdate implements IMessage, IMessageHandler<PacketP
     public PacketPlayerModeUpdate onMessage(PacketPlayerModeUpdate packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().thePlayer.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+        SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
         specialPlayer.setPlayerMode(PlayerMode.get(packet.mode));
 
         return null;

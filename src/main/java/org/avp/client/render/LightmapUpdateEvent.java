@@ -25,7 +25,7 @@ public class LightmapUpdateEvent
     public void updateLightmap(float partialTicks)
     {
         Minecraft mc = Game.minecraft();
-        WorldClient worldclient = mc.theWorld;
+        WorldClient worldclient = mc.world;
 
         if (worldclient != null)
         {
@@ -69,9 +69,9 @@ public class LightmapUpdateEvent
 
                 float f12;
 
-                if (mc.thePlayer.isPotionActive(MobEffects.NIGHT_VISION))
+                if (mc.player.isPotionActive(MobEffects.NIGHT_VISION))
                 {
-                    gamma = this.getNightVisionBrightness(mc.thePlayer, partialTicks);
+                    gamma = this.getNightVisionBrightness(mc.player, partialTicks);
                     f12 = 1.0F / f8;
 
                     if (f12 > 1.0F / f9)

@@ -10,9 +10,9 @@ public class EntityTurret extends EntityLiving
 {
     private TileEntityTurret tile;
 
-    public EntityTurret(TileEntityTurret tile, World worldObj)
+    public EntityTurret(TileEntityTurret tile, World world)
     {
-        super(worldObj);
+        super(world);
         this.setSize(1.0F, 1.0F);
         this.tile = tile;
 

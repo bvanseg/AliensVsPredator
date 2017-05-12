@@ -61,7 +61,7 @@ public class EntityBloodFX extends Particle
             this.setParticleTextureIndex(112);
         }
 
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(this.motionX, this.motionY, this.motionZ);
         this.motionX *= 0.9800000190734863D;
         this.motionY *= 0.9800000190734863D;
         this.motionZ *= 0.9800000190734863D;
@@ -78,13 +78,13 @@ public class EntityBloodFX extends Particle
             this.motionZ *= 0.699999988079071D;
         }
 
-        BlockPos pos = new BlockPos(MathHelper.floor_double(this.posX), MathHelper.floor_double(this.posY), MathHelper.floor_double(this.posZ));
-        IBlockState blockstate = this.worldObj.getBlockState(pos);
+        BlockPos pos = new BlockPos(MathHelper.floor(this.posX), MathHelper.floor(this.posY), MathHelper.floor(this.posZ));
+        IBlockState blockstate = this.world.getBlockState(pos);
         Material material = blockstate.getMaterial();
 
         if (material.isLiquid() || material.isSolid())
         {
-            double d0 = (double) ((float) (MathHelper.floor_double(this.posY) + 1) - BlockLiquid.getLiquidHeightPercent(blockstate.getBlock().getMetaFromState(blockstate)));
+            double d0 = (double) ((float) (MathHelper.floor(this.posY) + 1) - BlockLiquid.getLiquidHeightPercent(blockstate.getBlock().getMetaFromState(blockstate)));
 
             if (this.posY < d0)
             {

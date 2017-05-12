@@ -68,7 +68,7 @@ public class RenderItemWorkstation extends ItemRenderer<ModelWorkstation>
         {
             OpenGL.scale(1F, -1F, 1F);
             OpenGL.translate(0F, -1F, 0F);
-            OpenGL.rotate((mc.theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
             OpenGL.disable(GL11.GL_CULL_FACE);
             this.getModel().draw();
         }

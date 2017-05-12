@@ -121,7 +121,7 @@ public class EntitySmartDisc extends EntityProjectile
     @Override
     public void onEntityHit(Entity entity)
     {
-        if (!this.worldObj.isRemote && this.floatStrength >= 0.7F)
+        if (!this.world.isRemote && this.floatStrength >= 0.7F)
         {
             EntityPlayer player;
 
@@ -181,7 +181,7 @@ public class EntitySmartDisc extends EntityProjectile
     public void onGroundHit(RayTraceResult result)
     {
         BlockPos pos = new BlockPos(this.xTile, this.yTile, this.zTile);
-        IBlockState blockstate = worldObj.getBlockState(pos);
+        IBlockState blockstate = world.getBlockState(pos);
         this.xTile = (int) result.hitVec.xCoord;
         this.yTile = (int) result.hitVec.yCoord;
         this.zTile = (int) result.hitVec.zCoord;
@@ -189,7 +189,7 @@ public class EntitySmartDisc extends EntityProjectile
         this.motionX = ((float) (result.hitVec.xCoord - this.posX));
         this.motionY = ((float) (result.hitVec.yCoord - this.posY));
         this.motionZ = ((float) (result.hitVec.zCoord - this.posZ));
-        float f1 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+        float f1 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
         this.posX -= this.motionX / f1 * 0.05D;
         this.posY -= this.motionY / f1 * 0.05D;
         this.posZ -= this.motionZ / f1 * 0.05D;
@@ -256,7 +256,7 @@ public class EntitySmartDisc extends EntityProjectile
     @Override
     public void onCollideWithPlayer(EntityPlayer entityplayer)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.inGround && entityplayer == this.shootingEntity && this.arrowShake <= 0)
             {

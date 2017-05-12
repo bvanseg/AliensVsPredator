@@ -31,20 +31,20 @@ public abstract class ItemFlamethrower extends HookedItem
     }
     
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World worldObj, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
     {
-        if (this.hasAmmo(worldObj, player))
+        if (this.hasAmmo(world, player))
         {
-            if (!worldObj.isRemote)
+            if (!world.isRemote)
             {
-                EntityFlame entity = new EntityFlame(worldObj, player);
+                EntityFlame entity = new EntityFlame(world, player);
                 entity.setLocationAndAngles(entity.posX, entity.posY - 0.35, entity.posZ, entity.rotationYaw, entity.rotationPitch);
-                worldObj.spawnEntityInWorld(entity);
+                world.spawnEntity(entity);
             }
 
             Sounds.SOUND_WEAPON_FLAMETHROWER.playSound(player);
         }
-        return super.onItemRightClick(itemstack, worldObj, player, hand);
+        return super.onItemRightClick(itemstack, world, player, hand);
     }
     
     @Override
@@ -68,7 +68,7 @@ public abstract class ItemFlamethrower extends HookedItem
         return false;
     }
 
-    public boolean hasAmmo(World worldObj, EntityPlayer player)
+    public boolean hasAmmo(World world, EntityPlayer player)
     {
         if (player.capabilities.isCreativeMode)
         {

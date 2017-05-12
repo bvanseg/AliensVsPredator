@@ -223,7 +223,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         {
             this.doorOpen = doorOpen;
 
-            if (this.worldObj != null && !this.worldObj.isRemote && sendPacket)
+            if (this.world != null && !this.world.isRemote && sendPacket)
             {
                 AliensVsPredator.network().sendToAll(new PacketOpenBlastdoor(doorOpen, this.getPos()));
             }
@@ -243,21 +243,21 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
     public boolean setChildTile(BlockPos pos)
     {
-        IBlockState blockstate = this.worldObj.getBlockState(pos);
+        IBlockState blockstate = this.world.getBlockState(pos);
         Block block = blockstate.getBlock();
 
         if (blockstate.getMaterial() != Material.AIR && block != AliensVsPredator.blocks().blockBlastdoor)
         {
-            if (this.worldObj.isRemote)
+            if (this.world.isRemote)
             {
-                Game.minecraft().thePlayer.addChatMessage(new TextComponentString("Unable to place a blastdoor here. Blocks are in the way."));
+                Game.minecraft().player.sendMessage(new TextComponentString("Unable to place a blastdoor here. Blocks are in the way."));
             }
 
             return false;
         }
 
-        worldObj.setBlockState(pos, AliensVsPredator.blocks().blockBlastdoor.getDefaultState());
-        TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) worldObj.getTileEntity(pos);
+        world.setBlockState(pos, AliensVsPredator.blocks().blockBlastdoor.getDefaultState());
+        TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) world.getTileEntity(pos);
 
         if (blastdoor == null)
         {
@@ -278,7 +278,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         for (TileEntityBlastdoor child : this.getChildren())
         {
-            worldObj.setBlockToAir(child.getPos());
+            world.setBlockToAir(child.getPos());
         }
     }
 

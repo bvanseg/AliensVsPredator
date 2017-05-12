@@ -21,7 +21,12 @@ public class ProviderAcheron extends WorldProvider
     public ProviderAcheron()
     {
         this.hasNoSky = false;
-        this.isHellWorld = false;
+    }
+    
+    @Override
+    public boolean isSurfaceWorld()
+    {
+        return true;
     }
     
     @Override
@@ -33,7 +38,7 @@ public class ProviderAcheron extends WorldProvider
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderAcheron(this.worldObj, this.worldObj.getSeed(), this.worldObj.getWorldInfo().getGeneratorOptions());
+        return new ChunkProviderAcheron(this.world, this.world.getSeed(), this.world.getWorldInfo().getGeneratorOptions());
     }
 
     @Override
@@ -113,7 +118,7 @@ public class ProviderAcheron extends WorldProvider
     @Override
     public float getSunBrightness(float angle)
     {
-        float celestialAngle = this.worldObj.getCelestialAngle(angle);
+        float celestialAngle = this.world.getCelestialAngle(angle);
         float brightness = 1.0F - (MathHelper.cos(celestialAngle * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
 
         if (brightness < 0.0F)
@@ -127,8 +132,8 @@ public class ProviderAcheron extends WorldProvider
         }
 
         brightness = 1.0F - brightness;
-        brightness = (float) (brightness * (1.0D - this.worldObj.getRainStrength(angle) * 5.0F / 16.0D));
-        brightness = (float) (brightness * (1.0D - this.worldObj.getThunderStrength(angle) * 5.0F / 16.0D));
+        brightness = (float) (brightness * (1.0D - this.world.getRainStrength(angle) * 5.0F / 16.0D));
+        brightness = (float) (brightness * (1.0D - this.world.getThunderStrength(angle) * 5.0F / 16.0D));
         return brightness * 0.25F;
     }
 

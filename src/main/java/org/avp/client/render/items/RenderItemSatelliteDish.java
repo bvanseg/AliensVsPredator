@@ -57,7 +57,7 @@ public class RenderItemSatelliteDish extends ItemRenderer<ModelSatelliteDish>
         OpenGL.translate(0.3F, 0F, 0F);
         OpenGL.rotate(230F, 1F, 0F, 0F);
         OpenGL.rotate(45F, 0F, 0F, 1F);
-        OpenGL.rotate(90F + Game.minecraft().theWorld.getWorldTime() % 360 + Game.partialTicks(), 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate(90F + Game.minecraft().world.getWorldTime() % 360 + Game.partialTicks(), 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
     }
     
@@ -69,7 +69,7 @@ public class RenderItemSatelliteDish extends ItemRenderer<ModelSatelliteDish>
         {
             OpenGL.scale(1F, -1F, 1F);
             OpenGL.translate(0F, -1F, 0F);
-            OpenGL.rotate((Game.minecraft().theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
             OpenGL.disable(GL11.GL_CULL_FACE);
             this.getModel().draw();
         }

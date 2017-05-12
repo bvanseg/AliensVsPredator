@@ -169,9 +169,9 @@ public abstract class EntityXenomorph extends EntitySpeciesAlien implements IMob
 
     protected void ocassionallyOpenMouth()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            if (this.worldObj.getWorldTime() % ((20 * 4) + (20 * this.rand.nextInt(32))) == 0)
+            if (this.world.getWorldTime() % ((20 * 4) + (20 * this.rand.nextInt(32))) == 0)
             {
                 this.bite();
             }
@@ -180,7 +180,7 @@ public abstract class EntityXenomorph extends EntitySpeciesAlien implements IMob
 
     protected void updateInnerMouth()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             float outerJawProgress = this.getOuterJawProgress();
             float innerJawProgress = this.getInnerJawProgress();
@@ -227,7 +227,7 @@ public abstract class EntityXenomorph extends EntitySpeciesAlien implements IMob
 
     private void shareJelly()
     {
-        if (this.hive != null && !this.worldObj.isRemote)
+        if (this.hive != null && !this.world.isRemote)
         {
             if (this.hive.getQueen() != null && !this.hive.getQueen().isDead && !(this instanceof EntityQueen))
             {

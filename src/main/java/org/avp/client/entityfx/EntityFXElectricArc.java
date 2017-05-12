@@ -75,7 +75,7 @@ public class EntityFXElectricArc extends Particle
 
     private void changeDirection(float x, float y, float z)
     {
-        double variance = MathHelper.sqrt_double(x * x + z * z);
+        double variance = MathHelper.sqrt(x * x + z * z);
         this.rotYaw = ((float) (Math.atan2(x, z) * 180.0D / Math.PI));
         this.rotPitch = ((float) (Math.atan2(y, variance) * 180.0D / Math.PI));
     }
@@ -104,7 +104,7 @@ public class EntityFXElectricArc extends Particle
 
             double vX1 = density * -0.15;
             double vX2 = density * -0.15 * 1.0;
-            double vY2 = MathHelper.sqrt_float(x * x + y * y + z * z);
+            double vY2 = MathHelper.sqrt(x * x + y * y + z * z);
             double vY1 = 0.0D;
 
             int a = (color >> 24 & 255);

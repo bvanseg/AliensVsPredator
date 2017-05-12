@@ -247,7 +247,7 @@ public class ChunkProviderVarda implements IChunkProvider, IChunkGenerator
             {
                 for (int var9 = -2; var9 <= 2; var9++)
                 {
-                    float var10 = 10.0F / MathHelper.sqrt_float(var8 * var8 + var9 * var9 + 0.2F);
+                    float var10 = 10.0F / MathHelper.sqrt(var8 * var8 + var9 * var9 + 0.2F);
                     this.field_35388_l[(var8 + 2 + (var9 + 2) * 5)] = var10;
                 }
             }
@@ -384,7 +384,7 @@ public class ChunkProviderVarda implements IChunkProvider, IChunkGenerator
     }
 
     @Override
-    public boolean unloadQueuedChunks()
+    public boolean tick()
     {
         return false;
     }

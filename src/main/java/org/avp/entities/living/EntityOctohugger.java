@@ -112,25 +112,25 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         super.onUpdate();
         this.fallDistance = 0;
 
-        if (!this.worldObj.isRemote && this.worldObj.getWorldTime() % 60 == 0 && isHangingLocationStale())
+        if (!this.world.isRemote && this.world.getWorldTime() % 60 == 0 && isHangingLocationStale())
         {
             ArrayList<BlockPos> locations = Blocks.getPositionsInRange((int) this.posX, (int) this.posY, (int) this.posZ, 8);
 
             for (int x = 0; x < locations.size(); x++)
             {
                 BlockPos pos = locations.get(this.rand.nextInt(locations.size()));
-                IBlockState state = this.worldObj.getBlockState(pos);
+                IBlockState state = this.world.getBlockState(pos);
 
                 if (state.getBlock() != net.minecraft.init.Blocks.AIR)
                 {
                     ArrayList<IBlockState> check = new ArrayList<IBlockState>();
                     BlockPos locBelow = pos.add(0, -1, 0);
 
-                    check.add(this.worldObj.getBlockState(locBelow));
-                    check.add(this.worldObj.getBlockState(locBelow.add(-1, 0, 0)));
-                    check.add(this.worldObj.getBlockState(locBelow.add(0, 0, -1)));
-                    check.add(this.worldObj.getBlockState(locBelow.add(+1, 0, 0)));
-                    check.add(this.worldObj.getBlockState(locBelow.add(0, 0, +1)));
+                    check.add(this.world.getBlockState(locBelow));
+                    check.add(this.world.getBlockState(locBelow.add(-1, 0, 0)));
+                    check.add(this.world.getBlockState(locBelow.add(0, 0, -1)));
+                    check.add(this.world.getBlockState(locBelow.add(+1, 0, 0)));
+                    check.add(this.world.getBlockState(locBelow.add(0, 0, +1)));
 
                     boolean validPosition = true;
 
@@ -157,7 +157,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
 
         if (this.getEntityBoundingBox() != null)
         {
-            ArrayList<EntityLivingBase> entities = (ArrayList<EntityLivingBase>) worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(0, 16, 0));
+            ArrayList<EntityLivingBase> entities = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(0, 16, 0));
 
             if (entities != null)
             {
@@ -169,7 +169,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
                     }
                 }
 
-                Entity target = entities.size() >= 1 ? (Entity) entities.get(worldObj.rand.nextInt(entities.size())) : null;
+                Entity target = entities.size() >= 1 ? (Entity) entities.get(world.rand.nextInt(entities.size())) : null;
 
                 if (target != null)
                 {
@@ -190,7 +190,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
             this.motionY += (hangingY - this.posY) * (stringStrength * 0.85);
             this.motionZ += (hangingZ - this.posZ) * stringStrength * 1.4;
 
-            this.moveEntity(this.motionX, this.motionY, this.motionZ);
+            this.move(this.motionX, this.motionY, this.motionZ);
 
             double distance = this.getDistance(hangingX, hangingY, hangingZ);
 
@@ -204,7 +204,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
             this.motionZ = 0;
         }
 
-        if (this.getRidingEntity() != null || !this.isFertile() || this.isHanging() && this.getHangingLocation() != null && this.worldObj.getBlockState(this.getHangingLocation()).getBlock() == net.minecraft.init.Blocks.AIR)
+        if (this.getRidingEntity() != null || !this.isFertile() || this.isHanging() && this.getHangingLocation() != null && this.world.getBlockState(this.getHangingLocation()).getBlock() == net.minecraft.init.Blocks.AIR)
         {
             this.setHanging(false);
             this.updateHangingLocation(new BlockPos(0, 0, 0));
@@ -234,7 +234,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     public boolean getCanSpawnHere()
     {
         BlockPos pos = this.getPosition().add(0, -(this.getPosition().getY() - this.getEntityBoundingBox().minY), 0);
-        return super.getCanSpawnHere() && isValidLightLevel() && !this.worldObj.canBlockSeeSky(pos);
+        return super.getCanSpawnHere() && isValidLightLevel() && !this.world.canBlockSeeSky(pos);
     }
 
     @Override
@@ -242,12 +242,12 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     {
         BlockPos pos = this.getPosition().add(0, -(this.getPosition().getY() - this.getEntityBoundingBox().minY), 0);
 
-        if (this.worldObj.getLightFor(EnumSkyBlock.SKY, pos) > this.rand.nextInt(32))
+        if (this.world.getLightFor(EnumSkyBlock.SKY, pos) > this.rand.nextInt(32))
         {
             return false;
         }
         
-        return this.worldObj.getLight(pos) <= this.rand.nextInt(8);
+        return this.world.getLight(pos) <= this.rand.nextInt(8);
     }
 
     @Override

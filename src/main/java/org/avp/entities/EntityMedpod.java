@@ -25,9 +25,9 @@ public class EntityMedpod extends Entity
     private Entity           lastRiddenEntity;
     private UUID             lastRiddenEntityUUID;
 
-    public EntityMedpod(World worldObj)
+    public EntityMedpod(World world)
     {
-        super(worldObj);
+        super(world);
         this.setSize(1.0F, 1.0F);
     }
 
@@ -39,9 +39,9 @@ public class EntityMedpod extends Entity
 
         BlockPos pos = new BlockPos((int) Math.floor(this.posX), ((int) this.posY), ((int) Math.floor(this.posZ)));
 
-        if (this.tile == null && this.worldObj.isRemote)
+        if (this.tile == null && this.world.isRemote)
         {
-            TileEntity tile = this.worldObj.getTileEntity(pos);
+            TileEntity tile = this.world.getTileEntity(pos);
 
             if (tile != null)
             {
@@ -59,9 +59,9 @@ public class EntityMedpod extends Entity
             this.setDead();
         }
 
-        if (!this.worldObj.isRemote && Entities.getEntityRiddenBy(this) == null && this.getTileEntity() != null)
+        if (!this.world.isRemote && Entities.getEntityRiddenBy(this) == null && this.getTileEntity() != null)
         {
-            List<Entity> entities = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ));
+            List<Entity> entities = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ));
 
             if (entities != null && !entities.isEmpty())
             {
@@ -88,7 +88,7 @@ public class EntityMedpod extends Entity
         {
             if (this.lastRiddenEntityUUID != null)
             {
-                this.lastRiddenEntity = Worlds.getEntityByUUID(this.worldObj, this.lastRiddenEntityUUID);
+                this.lastRiddenEntity = Worlds.getEntityByUUID(this.world, this.lastRiddenEntityUUID);
             }
         }
 

@@ -22,8 +22,8 @@ public class ItemStorageDevice extends HookedItem
     }
 
     @Override
-    public void onUpdate(ItemStack itemstack, World worldObj, Entity entity, int par4, boolean par5)
+    public void onUpdate(ItemStack itemstack, World world, Entity entity, int par4, boolean par5)
     {
-        super.onUpdate(itemstack, worldObj, entity, par4, par5);
+        super.onUpdate(itemstack, world, entity, par4, par5);
     }
 }

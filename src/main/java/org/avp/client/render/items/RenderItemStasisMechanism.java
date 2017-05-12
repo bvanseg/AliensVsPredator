@@ -26,7 +26,7 @@ public class RenderItemStasisMechanism extends ItemRenderer<ModelStasisMechanism
         OpenGL.translate(-0.1F, 0.3F, 0F);
         OpenGL.scale(1F, -1F, 1F);
         OpenGL.disable(GL11.GL_CULL_FACE);
-        OpenGL.rotate((mc.theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate((mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
     }
 

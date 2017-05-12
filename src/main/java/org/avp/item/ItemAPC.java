@@ -91,7 +91,7 @@ public class ItemAPC extends HookedItem
                     }
 
                     EntityAPC entityapc = new EntityAPC(worldIn, (double) ((float) hitX + 0.5F), (double) ((float) hitY + 1.0F), (double) ((float) hitZ + 0.5F));
-                    entityapc.rotationYaw = (float) (((MathHelper.floor_double((double) (playerIn.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
+                    entityapc.rotationYaw = (float) (((MathHelper.floor((double) (playerIn.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
 
                     if (!worldIn.getCollisionBoxes(entityapc, entityapc.getEntityBoundingBox().expand(-0.1D, -0.1D, -0.1D)).isEmpty())
                     {
@@ -112,7 +112,7 @@ public class ItemAPC extends HookedItem
 
                     if (!worldIn.isRemote)
                     {
-                        worldIn.spawnEntityInWorld(entityapc);
+                        worldIn.spawnEntity(entityapc);
                     }
 
                     if (!playerIn.capabilities.isCreativeMode)

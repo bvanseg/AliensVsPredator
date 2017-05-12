@@ -74,7 +74,7 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
         if (ctx.getServerHandler().playerEntity.getHeldItemMainhand() != null)
         {
             EntityPlayer player = ctx.getServerHandler().playerEntity;
-            World world = player.worldObj;
+            World world = player.world;
             RayTraceResult.Type hitType = Entities.getMovingObjectType(packet.hitType);
             ItemFirearm itemFirearm = (ItemFirearm) ctx.getServerHandler().playerEntity.getHeldItemMainhand().getItem();
             FirearmProfile firearm = ItemFirearm.getFirearmForGlobalId(packet.firearmId);
@@ -89,7 +89,7 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
             {
                 if (packet.entityId != -1)
                 {
-                    Entity entity = ctx.getServerHandler().playerEntity.worldObj.getEntityByID(packet.entityId);
+                    Entity entity = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entityId);
 
                     if (entity != null)
                     {

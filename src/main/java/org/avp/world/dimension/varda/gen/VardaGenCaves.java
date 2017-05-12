@@ -90,12 +90,12 @@ public class VardaGenCaves extends MapGenBase
 
             if ((startX < chunkCenterX - 16.0D - variation * 2.0D) || (startZ < chunkCenterZ - 16.0D - variation * 2.0D) || (startX > chunkCenterX + 16.0D + variation * 2.0D) || (startZ > chunkCenterZ + 16.0D + variation * 2.0D))
                 continue;
-            int minX = MathHelper.floor_double(startX - variation) - chunkX * 16 - 1;
-            int maxX = MathHelper.floor_double(startX + variation) - chunkX * 16 + 1;
-            int minHeight = MathHelper.floor_double(startY - heightVariation) - 1;
-            int maxHeight = MathHelper.floor_double(startY + heightVariation) + 1;
-            int minZ = MathHelper.floor_double(startZ - variation) - chunkZ * 16 - 1;
-            int maxZ = MathHelper.floor_double(startZ + variation) - chunkZ * 16 + 1;
+            int minX = MathHelper.floor(startX - variation) - chunkX * 16 - 1;
+            int maxX = MathHelper.floor(startX + variation) - chunkX * 16 + 1;
+            int minHeight = MathHelper.floor(startY - heightVariation) - 1;
+            int maxHeight = MathHelper.floor(startY + heightVariation) + 1;
+            int minZ = MathHelper.floor(startZ - variation) - chunkZ * 16 - 1;
+            int maxZ = MathHelper.floor(startZ + variation) - chunkZ * 16 + 1;
 
             if (minX < 0)
             {
@@ -197,7 +197,7 @@ public class VardaGenCaves extends MapGenBase
 
                                     if (atSurface && blocks.getBlockState(somethingX, somethingY - 1, somethingZ) == AliensVsPredator.blocks().terrainUniDirt)
                                     {
-                                        blocks.setBlockState(somethingX, somethingY - 1, somethingZ, this.worldObj.getBiome(new BlockPos(somethingX + chunkX * 16, 0, somethingZ + chunkZ * 16)).topBlock);
+                                        blocks.setBlockState(somethingX, somethingY - 1, somethingZ, this.world.getBiome(new BlockPos(somethingX + chunkX * 16, 0, somethingZ + chunkZ * 16)).topBlock);
                                     }
                                 }
                             }

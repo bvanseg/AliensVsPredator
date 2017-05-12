@@ -83,12 +83,12 @@ public class EntityFlame extends EntityThrowable
     @Override
     public void onUpdate()
     {
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
-        RayTraceResult result = this.worldObj.rayTraceBlocks(new Vec3d(this.posX, this.posY, this.posZ), new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ));
+        this.move(this.motionX, this.motionY, this.motionZ);
+        RayTraceResult result = this.world.rayTraceBlocks(new Vec3d(this.posX, this.posY, this.posZ), new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ));
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            Entity entityHit = Entities.getEntityInCoordsRange(worldObj, EntityLiving.class, new Pos(this), flameSpread, flameSpread);
+            Entity entityHit = Entities.getEntityInCoordsRange(world, EntityLiving.class, new Pos(this), flameSpread, flameSpread);
 
             if (entityHit != null && !entityHit.isImmuneToFire())
             {
@@ -107,7 +107,7 @@ public class EntityFlame extends EntityThrowable
             this.setDead();
         }
 
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             for (int x = flameIntensity; x > 0; --x)
             {
@@ -130,7 +130,7 @@ public class EntityFlame extends EntityThrowable
     @SideOnly(Side.CLIENT)
     public void spawnFlameParticle(double flameX, double flameY, double flameZ, float flameGravity)
     {
-        Game.minecraft().theWorld.spawnParticle(EnumParticleTypes.FLAME, this.posX - (flameX / 2), this.posY - (flameY / 2), this.posZ - (flameZ / 2), this.rand.nextGaussian() * flameTailWidth, -this.motionY * (flameGravity * this.ticksExisted) - this.rand.nextGaussian() * flameTailWidth, this.rand.nextGaussian() * flameTailWidth);
+        Game.minecraft().world.spawnParticle(EnumParticleTypes.FLAME, this.posX - (flameX / 2), this.posY - (flameY / 2), this.posZ - (flameZ / 2), this.rand.nextGaussian() * flameTailWidth, -this.motionY * (flameGravity * this.ticksExisted) - this.rand.nextGaussian() * flameTailWidth, this.rand.nextGaussian() * flameTailWidth);
     }
 
     @Override
@@ -140,7 +140,7 @@ public class EntityFlame extends EntityThrowable
         int posY = (int)result.hitVec.yCoord;
         int posZ = (int)result.hitVec.zCoord;
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             switch (result.sideHit.ordinal())
             {
@@ -171,11 +171,11 @@ public class EntityFlame extends EntityThrowable
 
         if (rand.nextInt(10) == 0)
         {
-            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int)result.hitVec.xCoord, (int)result.hitVec.yCoord, (int)result.hitVec.zCoord, 1, this.worldObj, AliensVsPredator.blocks().blockCryostasisTube);
+            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int)result.hitVec.xCoord, (int)result.hitVec.yCoord, (int)result.hitVec.zCoord, 1, this.world, AliensVsPredator.blocks().blockCryostasisTube);
 
             for (Pos coord : list)
             {
-                TileEntity tile = coord.getTileEntity(this.worldObj);
+                TileEntity tile = coord.getTileEntity(this.world);
 
                 if (tile instanceof TileEntityCryostasisTube)
                 {
@@ -217,11 +217,11 @@ public class EntityFlame extends EntityThrowable
 
     public void setFire(int posX, int posY, int posZ)
     {
-        Block block = this.worldObj.getBlockState(new BlockPos(posX, posY, posZ)).getBlock();
+        Block block = this.world.getBlockState(new BlockPos(posX, posY, posZ)).getBlock();
 
         if (block == net.minecraft.init.Blocks.AIR)
         {
-            this.worldObj.setBlockState(new BlockPos(posX, posY, posZ), net.minecraft.init.Blocks.FIRE.getDefaultState());
+            this.world.setBlockState(new BlockPos(posX, posY, posZ), net.minecraft.init.Blocks.FIRE.getDefaultState());
         }
     }
 }

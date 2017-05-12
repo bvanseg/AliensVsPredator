@@ -47,8 +47,8 @@ public class PacketDamageEntity implements IMessage, IMessageHandler<PacketDamag
         System.out.println("Sent packet " + this.getClass().getName());
         if (packet.entityId != -1)
         {
-            Entity entity = ctx.getServerHandler().playerEntity.worldObj.getEntityByID(packet.entityId);
-            Entity entitySource = ctx.getServerHandler().playerEntity.worldObj.getEntityByID(packet.entitySourceId);
+            Entity entity = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entityId);
+            Entity entitySource = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entitySourceId);
 
             if (entity != null)
             {

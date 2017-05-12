@@ -85,7 +85,7 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
         {
             for (int z = -2; z <= 2; ++z)
             {
-                float f = 10.0F / MathHelper.sqrt_float((float)(x * x + z * z) + 0.2F);
+                float f = 10.0F / MathHelper.sqrt((float)(x * x + z * z) + 0.2F);
                 this.biomeWeights[x + 2 + (z + 2) * 5] = f;
             }
         }
@@ -193,7 +193,7 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
                     double d2 = this.minLimitRegion[i] / (double)this.settings.lowerLimitScale;
                     double d3 = this.maxLimitRegion[i] / (double)this.settings.upperLimitScale;
                     double d4 = (this.mainNoiseRegion[i] / 10.0D + 1.0D) / 2.0D;
-                    double d5 = MathHelper.denormalizeClamp(d2, d3, d4) - d1;
+                    double d5 = MathHelper.clamp(d2, d3, d4) - d1;
 
                     if (l1 > 29)
                     {
@@ -410,7 +410,7 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
 	}
 	
 	@Override
-	public boolean unloadQueuedChunks()
+	public boolean tick()
 	{
 		return false;
 	}

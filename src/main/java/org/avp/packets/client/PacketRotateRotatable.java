@@ -55,7 +55,7 @@ public class PacketRotateRotatable implements IMessage, IMessageHandler<PacketRo
     public PacketRotateRotatable onMessage(PacketRotateRotatable packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        World world = Game.minecraft().thePlayer.worldObj;
+        World world = Game.minecraft().player.world;
 
         if (world != null)
         {

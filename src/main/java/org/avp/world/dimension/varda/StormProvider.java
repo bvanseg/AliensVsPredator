@@ -37,7 +37,7 @@ public class StormProvider implements Predicate<Entity>
                 {
                     Entity entity = (Entity) o;
 
-                    if (entity.worldObj.provider instanceof ProviderVarda)
+                    if (entity.world.provider instanceof ProviderVarda)
                     {
                         if (this.apply(entity) && Worlds.canSeeSky(new Pos(entity), world))
                         {
@@ -73,7 +73,7 @@ public class StormProvider implements Predicate<Entity>
                 {
                     float x = xCoord - 16;
                     float z = zCoord - 16;
-                    float sq = MathHelper.sqrt_float(x * x + z * z);
+                    float sq = MathHelper.sqrt(x * x + z * z);
                     stormX[zCoord << 5 | xCoord] = -z / sq;
                     stormZ[zCoord << 5 | xCoord] = x / sq;
                 }
@@ -81,9 +81,9 @@ public class StormProvider implements Predicate<Entity>
         }
     }
 
-    public boolean isStormActive(World worldObj)
+    public boolean isStormActive(World world)
     {
-        return worldObj.getWorldTime() >= getStormStartTime() && worldObj.getWorldTime() <= getStormEndTime();
+        return world.getWorldTime() >= getStormStartTime() && world.getWorldTime() <= getStormEndTime();
     }
 
     public int getStormStartTime()
@@ -105,14 +105,14 @@ public class StormProvider implements Predicate<Entity>
         }
 
         Entity renderViewEntity = Game.minecraft().getRenderViewEntity();
-        WorldClient worldclient = Game.minecraft().theWorld;
-        int posX = MathHelper.floor_double(renderViewEntity.posX);
-        int posY = MathHelper.floor_double(renderViewEntity.posY);
-        int posZ = MathHelper.floor_double(renderViewEntity.posZ);
+        WorldClient worldclient = Game.minecraft().world;
+        int posX = MathHelper.floor(renderViewEntity.posX);
+        int posY = MathHelper.floor(renderViewEntity.posY);
+        int posZ = MathHelper.floor(renderViewEntity.posZ);
         double renderPartialX = renderViewEntity.lastTickPosX + (renderViewEntity.posX - renderViewEntity.lastTickPosX) * partialTicks;
         double renderPartialY = renderViewEntity.lastTickPosY + (renderViewEntity.posY - renderViewEntity.lastTickPosY) * partialTicks;
         double renderPartialZ = renderViewEntity.lastTickPosZ + (renderViewEntity.posZ - renderViewEntity.lastTickPosZ) * partialTicks;
-        int renderYFloor = MathHelper.floor_double(renderPartialY);
+        int renderYFloor = MathHelper.floor(renderPartialY);
 
         Game.minecraft().entityRenderer.enableLightmap();
         OpenGL.disable(GL11.GL_CULL_FACE);
@@ -159,7 +159,7 @@ public class StormProvider implements Predicate<Entity>
                     {
                         pos = new BlockPos(vX, vY, vZ);
                         float size = 0.5F;
-                        float o = (((Game.minecraft().theWorld.getWorldTime() + (vX * vX) + vX + (vZ * vZ) + vZ) & 31) + partialTicks) / 2;
+                        float o = (((Game.minecraft().world.getWorldTime() + (vX * vX) + vX + (vZ * vZ) + vZ) & 31) + partialTicks) / 2;
 
                         Draw.startQuads();
                         // Tessellator.instance.setBrightness(worldclient.getLightBrightness(pos));

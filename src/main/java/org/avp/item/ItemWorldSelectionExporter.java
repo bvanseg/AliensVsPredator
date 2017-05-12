@@ -28,9 +28,9 @@ public class ItemWorldSelectionExporter extends HookedItem
     @Override
     public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player)
     {
-        if (!player.worldObj.isRemote)
+        if (!player.world.isRemote)
         {
-            this.writeSelectionDataToStack(new Pos(pos).store(new BlockDataStore(player.worldObj.getBlockState(pos).getBlock(), (byte) 0)), null, itemstack);
+            this.writeSelectionDataToStack(new Pos(pos).store(new BlockDataStore(player.world.getBlockState(pos).getBlock(), (byte) 0)), null, itemstack);
         }
         return true;
     }
@@ -38,9 +38,9 @@ public class ItemWorldSelectionExporter extends HookedItem
     @Override
     public EnumActionResult onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand)
     {
-        if (!player.worldObj.isRemote)
+        if (!player.world.isRemote)
         {
-            this.writeSelectionDataToStack(null, new Pos(pos).store(new BlockDataStore(player.worldObj.getBlockState(pos).getBlock(), (byte) 0)), stack);
+            this.writeSelectionDataToStack(null, new Pos(pos).store(new BlockDataStore(player.world.getBlockState(pos).getBlock(), (byte) 0)), stack);
         }
         
         return super.onItemUseFirst(stack, player, world, pos, side, hitX, hitY, hitZ, hand);

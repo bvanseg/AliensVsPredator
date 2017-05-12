@@ -84,18 +84,18 @@ public class EntitySupplyChute extends Entity
     {
         if (this.hurtEntities)
         {
-            int i = MathHelper.ceiling_float_int(distance - 1.0F);
+            int i = MathHelper.ceil(distance - 1.0F);
 
             if (i > 0)
             {
-                ArrayList arraylist = new ArrayList(this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox()));
+                ArrayList arraylist = new ArrayList(this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox()));
                 DamageSource damagesource = DamageSource.fallingBlock;
                 Iterator iterator = arraylist.iterator();
 
                 while (iterator.hasNext())
                 {
                     Entity entity = (Entity) iterator.next();
-                    entity.attackEntityFrom(damagesource, (float) Math.min(MathHelper.floor_float((float) i * this.fallHurtAmount), this.fallHurtMax));
+                    entity.attackEntityFrom(damagesource, (float) Math.min(MathHelper.floor((float) i * this.fallHurtAmount), this.fallHurtMax));
                 }
             }
         }
@@ -153,9 +153,9 @@ public class EntitySupplyChute extends Entity
     }
 
     @SideOnly(Side.CLIENT)
-    public World getWorldObj()
+    public World getworld()
     {
-        return this.worldObj;
+        return this.world;
     }
 
     @SideOnly(Side.CLIENT)
@@ -183,19 +183,19 @@ public class EntitySupplyChute extends Entity
             this.prevPosZ = this.posZ;
             ++this.fallTime;
             this.motionY -= 0.03999999910593033D;
-            this.moveEntity(this.motionX, this.motionY, this.motionZ);
+            this.move(this.motionX, this.motionY, this.motionZ);
             this.motionX *= 0.9800000190734863D;
             this.motionY *= 0.9800000190734863D;
             this.motionZ *= 0.9800000190734863D;
 
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
-                int x = MathHelper.floor_double(this.posX);
-                int y = MathHelper.floor_double(this.posY);
-                int z = MathHelper.floor_double(this.posZ);
+                int x = MathHelper.floor(this.posX);
+                int y = MathHelper.floor(this.posY);
+                int z = MathHelper.floor(this.posZ);
                 BlockPos pos = new BlockPos(x, y, z);
                 BlockPos posBelow = new BlockPos(x, y - 1, z);
-                IBlockState blockstate = this.worldObj.getBlockState(pos);
+                IBlockState blockstate = this.world.getBlockState(pos);
                 Block block = blockstate.getBlock();
 
                 if (this.fallTime == 1)
@@ -206,7 +206,7 @@ public class EntitySupplyChute extends Entity
                         return;
                     }
 
-                    this.worldObj.setBlockToAir(pos);
+                    this.world.setBlockToAir(pos);
                 }
 
                 if (this.onGround)
@@ -219,11 +219,11 @@ public class EntitySupplyChute extends Entity
                     {
                         this.setDead();
 
-                        if (Entities.canPlaceEntityOnSide(this.worldObj, this.getBlock(), pos, true, 1, (Entity) null, (ItemStack) null) && !canFallBelow(this.worldObj, posBelow) && this.worldObj.setBlockState(pos, this.getBlock().getDefaultState()))
+                        if (Entities.canPlaceEntityOnSide(this.world, this.getBlock(), pos, true, 1, (Entity) null, (ItemStack) null) && !canFallBelow(this.world, posBelow) && this.world.setBlockState(pos, this.getBlock().getDefaultState()))
                         {
                             if (this.tileEntityData != null && this.getBlock() instanceof ITileEntityProvider)
                             {
-                                TileEntitySupplyCrate crate = (TileEntitySupplyCrate) this.worldObj.getTileEntity(pos);
+                                TileEntitySupplyCrate crate = (TileEntitySupplyCrate) this.world.getTileEntity(pos);
 
                                 if (crate != null)
                                 {
@@ -255,7 +255,7 @@ public class EntitySupplyChute extends Entity
                         }
                     }
                 }
-                else if (this.fallTime > 100 && !this.worldObj.isRemote && (y < 1 || y > 256) || this.fallTime > 600)
+                else if (this.fallTime > 100 && !this.world.isRemote && (y < 1 || y > 256) || this.fallTime > 600)
                 {
                     if (this.shouldDropItem)
                     {

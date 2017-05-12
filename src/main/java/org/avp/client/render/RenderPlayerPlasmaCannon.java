@@ -106,14 +106,14 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
     public void renderFirstPerson(Event event, float partialTicks)
     {
         RenderHandEvent e = (RenderHandEvent) event;
-        EntityLivingBase entity = Game.minecraft().thePlayer;
+        EntityLivingBase entity = Game.minecraft().player;
         EntityRenderer entityRenderer = Game.minecraft().entityRenderer;
         ItemRenderer ir = Game.minecraft().entityRenderer.itemRenderer;
         float rotationYawHead = MDXMath.interpolateRotation(entity.prevRotationYawHead, entity.rotationYawHead, partialTicks);
         float rotationPitch = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
         float equippedProgress = MDX.access().getEquippedProgressPrev() + (MDX.access().getEquippedProgress() - MDX.access().getEquippedProgressPrev()) * partialTicks;
 
-        if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(Game.minecraft().thePlayer)))
+        if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(Game.minecraft().player)))
         {
             if (Game.minecraft().gameSettings.thirdPersonView == 0)
             {
@@ -142,7 +142,7 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
 
                 OpenGL.pushMatrix();
                 {
-                    int brightness = Worlds.getLightAtCoord(Game.minecraft().theWorld, entity.getPosition());
+                    int brightness = Worlds.getLightAtCoord(Game.minecraft().world, entity.getPosition());
                     int ltu = brightness % 65536;
                     int ltv = brightness / 65536;
                     OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) ltu / 1.0F, (float) ltv / 1.0F);
@@ -187,7 +187,7 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
                         // OpenGL.enableLight();
                         MODEL_FIRST_PERSON.draw();
 
-                        float rotation = (entity.worldObj.getWorldTime() + partialTicks) % 360;
+                        float rotation = (entity.world.getWorldTime() + partialTicks) % 360;
                         double wave = Math.sin(rotation);
 
                         OpenGL.pushMatrix();

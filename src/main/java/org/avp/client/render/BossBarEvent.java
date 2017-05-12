@@ -39,11 +39,11 @@ public class BossBarEvent
     @SubscribeEvent
     public void clientTick(ClientTickEvent event)
     {
-        if (Game.minecraft().thePlayer != null)
+        if (Game.minecraft().player != null)
         {
-            if (Game.minecraft().thePlayer.worldObj.getWorldTime() % 40 == 0)
+            if (Game.minecraft().player.world.getWorldTime() % 40 == 0)
             {
-                for (Object o : Game.minecraft().theWorld.loadedEntityList)
+                for (Object o : Game.minecraft().world.loadedEntityList)
                 {
                     if (o instanceof EntityLivingBase)
                     {

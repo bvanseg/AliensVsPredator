@@ -41,7 +41,7 @@ public class XenomorphHive
 
         if (this.getQueen() != null)
         {
-            this.dimensionId = this.getQueen().worldObj.provider.getDimension();
+            this.dimensionId = this.getQueen().world.provider.getDimension();
         }
     }
 
@@ -138,7 +138,7 @@ public class XenomorphHive
 
         if (this.getQueen() != null)
         {
-            this.dimensionId = this.getQueen().worldObj.provider.getDimension();
+            this.dimensionId = this.getQueen().world.provider.getDimension();
         }
 
         if (world.getWorldTime() % (20 * 5) == 0)

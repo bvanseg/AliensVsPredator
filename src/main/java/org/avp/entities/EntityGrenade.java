@@ -64,7 +64,7 @@ public class EntityGrenade extends EntityThrowable
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         this.motionY -= 0.02999999910593033D;
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(this.motionX, this.motionY, this.motionZ);
         this.motionX *= velocity;
         this.motionY *= velocity;
         this.motionZ *= velocity;
@@ -87,18 +87,18 @@ public class EntityGrenade extends EntityThrowable
         }
         else
         {
-            this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
+            this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
         }
     }
 
     @SuppressWarnings("unchecked")
     public void explode()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            Explosion explosion = Worlds.createExplosion(null, worldObj, new Pos(this), 2F, isFlaming(), true, AliensVsPredator.settings().areExplosionsEnabled());
+            Explosion explosion = Worlds.createExplosion(null, world, new Pos(this), 2F, isFlaming(), true, AliensVsPredator.settings().areExplosionsEnabled());
 
-            List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(4, 4, 4));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(4, 4, 4));
 
             for (int idx = 0; idx < list.size(); ++idx)
             {

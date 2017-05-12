@@ -16,7 +16,7 @@ public class TileEntitySolarPanel extends TileEntityElectrical implements IVolta
     @Override
     public void update()
     {
-        if (this.worldObj.getWorldTime() < 12300 || this.worldObj.getWorldTime() > 23850)
+        if (this.world.getWorldTime() < 12300 || this.world.getWorldTime() > 23850)
         {
             if (this.getWorld().getWorldTime() % (1000 / this.getSourceHertz()) == 0)
             {

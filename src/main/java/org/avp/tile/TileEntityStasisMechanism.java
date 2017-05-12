@@ -32,9 +32,9 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
     @Override
     public void update()
     {
-        if (this.dummyEntity == null && this.worldObj.getWorldTime() % 20 == 0)
+        if (this.dummyEntity == null && this.world.getWorldTime() % 20 == 0)
         {
-            this.dummyEntity = (EntityMechanism) getEntityForUUID(this.worldObj, this.readOnlyDmmyEntityUUID);
+            this.dummyEntity = (EntityMechanism) getEntityForUUID(this.world, this.readOnlyDmmyEntityUUID);
 
             if (this.dummyEntity != null)
             {
@@ -42,19 +42,19 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
             }
         }
 
-        if (this.dummyEntity == null && !this.worldObj.isRemote)
+        if (this.dummyEntity == null && !this.world.isRemote)
         {
-            this.dummyEntity = new EntityMechanism(this.worldObj);
+            this.dummyEntity = new EntityMechanism(this.world);
             this.dummyEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
-            this.worldObj.spawnEntityInWorld(this.dummyEntity);
+            this.world.spawnEntity(this.dummyEntity);
         }
 
-        if (this.dummyEntity != null && this.itemstack != null && this.stasisEntity == null && !this.worldObj.isRemote)
+        if (this.dummyEntity != null && this.itemstack != null && this.stasisEntity == null && !this.world.isRemote)
         {
             ItemEntitySummoner summoner = (ItemEntitySummoner) this.itemstack.getItem();
-            this.stasisEntity = summoner.createNewEntity(this.worldObj);
+            this.stasisEntity = summoner.createNewEntity(this.world);
             this.stasisEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
-            this.worldObj.spawnEntityInWorld(this.stasisEntity);
+            this.world.spawnEntity(this.stasisEntity);
         }
 
         if (this.dummyEntity != null)

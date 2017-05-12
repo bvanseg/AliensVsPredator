@@ -39,14 +39,14 @@ public class RenderLiquidLatexPool extends Render
             Draw.startQuads();
             OpenGL.color(1F, 1F, 1F, 1F);
 
-            for (int blockX = MathHelper.floor_double(renderX - offset); blockX <= MathHelper.floor_double(renderX + offset); ++blockX)
+            for (int blockX = MathHelper.floor(renderX - offset); blockX <= MathHelper.floor(renderX + offset); ++blockX)
             {
-                for (int blockY = MathHelper.floor_double(renderY - offset); blockY <= MathHelper.floor_double(renderY); ++blockY)
+                for (int blockY = MathHelper.floor(renderY - offset); blockY <= MathHelper.floor(renderY); ++blockY)
                 {
-                    for (int blockZ = MathHelper.floor_double(renderZ - offset); blockZ <= MathHelper.floor_double(renderZ + offset); ++blockZ)
+                    for (int blockZ = MathHelper.floor(renderZ - offset); blockZ <= MathHelper.floor(renderZ + offset); ++blockZ)
                     {
                         BlockPos pos = new BlockPos(blockX, blockY - 1, blockZ);
-                        IBlockState blockstate = Game.minecraft().thePlayer.worldObj.getBlockState(pos);
+                        IBlockState blockstate = Game.minecraft().player.world.getBlockState(pos);
 
                         if (blockstate.getBlock() != Blocks.AIR)
                         {
@@ -66,7 +66,7 @@ public class RenderLiquidLatexPool extends Render
     {
         if (state.isNormalCube())
         {
-            AxisAlignedBB boundingbox = state.getCollisionBoundingBox(Game.minecraft().theWorld, pos);
+            AxisAlignedBB boundingbox = state.getCollisionBoundingBox(Game.minecraft().world, pos);
             double x1 = pos.getX() + boundingbox.minX + partialX;
             double x2 = pos.getX() + boundingbox.maxX + partialX;
             double y = pos.getY() + boundingbox.minY + partialY + 0.015625D;

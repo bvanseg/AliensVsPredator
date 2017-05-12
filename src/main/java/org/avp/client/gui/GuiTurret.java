@@ -64,7 +64,7 @@ public class GuiTurret extends GuiContainer
             try
             {
                 Constructor<?> ctor = c.getConstructor(new Class[] { World.class });
-                entity = (Entity) ctor.newInstance(new Object[] { Game.minecraft().theWorld });
+                entity = (Entity) ctor.newInstance(new Object[] { Game.minecraft().world });
             }
             catch (Exception e)
             {
@@ -120,12 +120,12 @@ public class GuiTurret extends GuiContainer
         AliensVsPredator.resources().GUI_TURRET.bind();
         drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
-        int stacksTotal = this.tile.getContainer(this.mc.thePlayer).getAmmoBay().getSizeInventory() * this.tile.getContainer(this.mc.thePlayer).getAmmoBay().getInventoryStackLimit();
+        int stacksTotal = this.tile.getContainer(this.mc.player).getAmmoBay().getSizeInventory() * this.tile.getContainer(this.mc.player).getAmmoBay().getInventoryStackLimit();
         int stacksCurrent = 0;
 
-        for (int i = 0; i < this.tile.getContainer(this.mc.thePlayer).getAmmoBay().getSizeInventory(); i++)
+        for (int i = 0; i < this.tile.getContainer(this.mc.player).getAmmoBay().getSizeInventory(); i++)
         {
-            ItemStack stack = this.tile.getContainer(this.mc.thePlayer).getAmmoBay().getStackInSlot(i);
+            ItemStack stack = this.tile.getContainer(this.mc.player).getAmmoBay().getStackInSlot(i);
 
             if ((stack == null) || (stack.getItem() != this.tile.getItemAmmo()))
                 continue;

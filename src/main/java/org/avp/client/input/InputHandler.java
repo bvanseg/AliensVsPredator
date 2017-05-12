@@ -32,7 +32,7 @@ public class InputHandler
     @SubscribeEvent
     public void clientTick(ClientTickEvent event)
     {
-        if (Game.minecraft().thePlayer != null)
+        if (Game.minecraft().player != null)
         {
             for (IInputHandler ih : this.inputHandlers)
             {

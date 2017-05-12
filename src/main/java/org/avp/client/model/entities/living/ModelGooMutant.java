@@ -125,7 +125,7 @@ public class ModelGooMutant extends Model
         if (this.swingProgress > -9990.0F)
         {
             var8 = this.swingProgress;
-            this.body.rotateAngleY = MathHelper.sin(MathHelper.sqrt_float(var8) * (float) Math.PI * 2.0F) * 0.2F;
+            this.body.rotateAngleY = MathHelper.sin(MathHelper.sqrt(var8) * (float) Math.PI * 2.0F) * 0.2F;
             this.rArm.rotationPointZ = MathHelper.sin(this.body.rotateAngleY) * 5.0F;
             this.rArm.rotationPointX = -MathHelper.cos(this.body.rotateAngleY) * 5.0F;
             this.lArm.rotationPointZ = -MathHelper.sin(this.body.rotateAngleY) * 5.0F;

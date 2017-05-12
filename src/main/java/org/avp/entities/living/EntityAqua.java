@@ -57,9 +57,9 @@ public class EntityAqua extends EntityXenomorph
 
         this.lurkInWater();
 
-        if (this.getAttackTarget() == null && this.worldObj.getWorldTime() % 60 == 0 && this.rand.nextInt(3) == 0)
+        if (this.getAttackTarget() == null && this.world.getWorldTime() % 60 == 0 && this.rand.nextInt(3) == 0)
         {
-            ArrayList<EntityLivingBase> entities = (ArrayList<EntityLivingBase>) Entities.getEntitiesInCoordsRange(worldObj, EntityLivingBase.class, new Pos(this), (int) this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue() / 2);
+            ArrayList<EntityLivingBase> entities = (ArrayList<EntityLivingBase>) Entities.getEntitiesInCoordsRange(world, EntityLivingBase.class, new Pos(this), (int) this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue() / 2);
 
             for (EntityLivingBase entity : entities)
             {
@@ -78,12 +78,12 @@ public class EntityAqua extends EntityXenomorph
     {
         if (this.getAttackTarget() == null)
         {
-            if (this.worldObj.getWorldTime() % 40 == 0 && this.rand.nextInt(4) == 0)
+            if (this.world.getWorldTime() % 40 == 0 && this.rand.nextInt(4) == 0)
             {
-                if (this.worldObj.getBlockState(this.getPosition()).getBlock() != net.minecraft.init.Blocks.WATER)
+                if (this.world.getBlockState(this.getPosition()).getBlock() != net.minecraft.init.Blocks.WATER)
                 {
                     double range = this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue() / 2;
-                    ArrayList<Pos> coordData = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) range, this.worldObj, net.minecraft.init.Blocks.WATER);
+                    ArrayList<Pos> coordData = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) range, this.world, net.minecraft.init.Blocks.WATER);
 
                     if (coordData.size() > 0)
                     {

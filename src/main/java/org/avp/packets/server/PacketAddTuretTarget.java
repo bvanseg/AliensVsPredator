@@ -51,7 +51,7 @@ public class PacketAddTuretTarget implements IMessage, IMessageHandler<PacketAdd
     public PacketAddTuretTarget onMessage(PacketAddTuretTarget packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        TileEntityTurret tile = (TileEntityTurret) ctx.getServerHandler().playerEntity.worldObj.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+        TileEntityTurret tile = (TileEntityTurret) ctx.getServerHandler().playerEntity.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
         if (tile != null)
         {

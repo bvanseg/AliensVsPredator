@@ -106,7 +106,7 @@ public class RenderAPC extends Render
     {
         float scale = 1F;
         double curVelocity = Math.sqrt(apc.motionX * apc.motionX + apc.motionZ * apc.motionZ);
-        float tireRotation = curVelocity > 0.1 ? (-Game.minecraft().thePlayer.worldObj.getWorldTime() % 360 * 8) - partialTicks : 0;
+        float tireRotation = curVelocity > 0.1 ? (-Game.minecraft().player.world.getWorldTime() % 360 * 8) - partialTicks : 0;
         float time = (float) apc.getTimeSinceHit() - partialTicks;
         float damage = apc.getDamageTaken() - partialTicks;
         damage = damage < 0.0F ? 0.0F : damage;

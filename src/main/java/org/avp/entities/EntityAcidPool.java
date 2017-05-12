@@ -104,10 +104,10 @@ public class EntityAcidPool extends EntityLiquidPool implements IMob
     {
         super.onUpdate();
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             double range = 1.2;
-            EntityLivingBase target = (EntityLivingBase) (this.worldObj.findNearestEntityWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(range, 0.1D, range), this));
+            EntityLivingBase target = (EntityLivingBase) (this.world.findNearestEntityWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(range, 0.1D, range), this));
 
             if (target != null && SELECTOR.apply(target))
             {
@@ -116,16 +116,16 @@ public class EntityAcidPool extends EntityLiquidPool implements IMob
             }
         }
 
-        if (worldObj.isRemote && worldObj.getWorldTime() % 4 <= 0)
+        if (world.isRemote && world.getWorldTime() % 4 <= 0)
         {
-            this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX + this.rand.nextDouble(), this.posY + this.rand.nextDouble(), this.posZ + this.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
+            this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX + this.rand.nextDouble(), this.posY + this.rand.nextDouble(), this.posZ + this.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
         }
     }
 
     @Override
     public void onCollideWithPlayer(EntityPlayer player)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (!player.capabilities.isCreativeMode)
             {

@@ -119,7 +119,7 @@ public class BlockStasisMechanism extends Block
             {
                 EntityItem entityitem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), tile.itemstack);
                 entityitem.setPickupDelay(10);
-                world.spawnEntityInWorld(entityitem);
+                world.spawnEntity(entityitem);
             }
         }
     }
@@ -133,7 +133,7 @@ public class BlockStasisMechanism extends Block
 
         if (tile != null)
         {
-            tile.setDirection((byte) (MathHelper.floor_double(((placer.rotationYaw * 4F) / 360F) + 0.5D) & 3));
+            tile.setDirection((byte) (MathHelper.floor(((placer.rotationYaw * 4F) / 360F) + 0.5D) & 3));
             world.markBlockRangeForRenderUpdate(pos, pos);
         }
     }

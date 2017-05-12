@@ -21,7 +21,7 @@ public class InputHandlerWristbracer implements IInputHandler
         {
             if (!(Game.minecraft().currentScreen instanceof GuiWristbracer))
             {
-                if (Game.minecraft().thePlayer.getHeldItemMainhand() != null && Game.minecraft().thePlayer.getHeldItemMainhand().getItem() == AliensVsPredator.items().itemWristbracer)
+                if (Game.minecraft().player.getHeldItemMainhand() != null && Game.minecraft().player.getHeldItemMainhand().getItem() == AliensVsPredator.items().itemWristbracer)
                 {
                     AliensVsPredator.network().sendToServer(new PacketOpenContainer(AliensVsPredator.interfaces().GUI_WRISTBRACER));
                 }

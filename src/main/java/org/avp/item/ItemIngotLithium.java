@@ -21,9 +21,9 @@ public class ItemIngotLithium extends HookedItem
     }
 
     @Override
-    public void onUpdate(ItemStack itemstack, World worldObj, Entity entity, int slot, boolean selected)
+    public void onUpdate(ItemStack itemstack, World world, Entity entity, int slot, boolean selected)
     {
-        super.onUpdate(itemstack, worldObj, entity, slot, selected);
+        super.onUpdate(itemstack, world, entity, slot, selected);
 
         if (itemstack != null && itemstack.getTagCompound() != null)
         {
@@ -35,7 +35,7 @@ public class ItemIngotLithium extends HookedItem
 
             if (currentDepletion >= depletionTicks)
             {
-                Worlds.createExplosion(entity, worldObj, new Pos(entity), 1F, true, true, !worldObj.isRemote);
+                Worlds.createExplosion(entity, world, new Pos(entity), 1F, true, true, !world.isRemote);
                 Inventories.consumeItem((EntityPlayer) entity, this, true);
             }
         }

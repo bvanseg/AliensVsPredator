@@ -107,7 +107,7 @@ public class BlockSupplyCrate extends BlockFalling
     public void spawnParachute(World world, BlockPos pos)
     {
         EntitySupplyChute chute = this.getType().createEntity(world, (double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F));
-        world.spawnEntityInWorld(chute);
+        world.spawnEntity(chute);
     }
     
     public SupplyChuteType getType()
@@ -165,14 +165,14 @@ public class BlockSupplyCrate extends BlockFalling
                 if (stack != null)
                 {
                     EntityItem entityItem = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), stack);
-                    worldIn.spawnEntityInWorld(entityItem);
+                    worldIn.spawnEntity(entityItem);
                 }
             }
         }
     }
     public static EnumFacing getFacing(Entity entity)
     {
-        int dir = MathHelper.floor_double((entity.rotationYaw / 90) + 0.5) & 3;
+        int dir = MathHelper.floor((entity.rotationYaw / 90) + 0.5) & 3;
         return EnumFacing.getFront(dir);
     }
 }

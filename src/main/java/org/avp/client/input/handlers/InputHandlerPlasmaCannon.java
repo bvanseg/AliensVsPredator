@@ -20,7 +20,7 @@ public class InputHandlerPlasmaCannon implements IInputHandler
     @Override
     public void handleInput()
     {
-        if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(Game.minecraft().thePlayer)))
+        if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(Game.minecraft().player)))
         {
             float potentialChargeSize = this.chargeSize >= this.getMaxChargeSize() ? this.getMaxChargeSize() : this.chargeSize;
             float potentialEnergyUsed = this.getMaxStoredEnergy() * potentialChargeSize / this.getMaxChargeSize();
@@ -75,12 +75,12 @@ public class InputHandlerPlasmaCannon implements IInputHandler
 
     private void onNoEnergy()
     {
-        Sounds.SOUND_WEAPON_PLASMACASTER_NOENERGY.playSound(Game.minecraft().thePlayer, 0.6F, 1.0F);
+        Sounds.SOUND_WEAPON_PLASMACASTER_NOENERGY.playSound(Game.minecraft().player, 0.6F, 1.0F);
     }
 
     private void onChargeStart()
     {
-        Sounds.SOUND_WEAPON_PLASMACASTER_CHARGE.playSound(Game.minecraft().thePlayer, 0.6F, 1.0F);
+        Sounds.SOUND_WEAPON_PLASMACASTER_CHARGE.playSound(Game.minecraft().player, 0.6F, 1.0F);
     }
 
     private void onChargeRelease(float chargeSize, float energyUsed)

@@ -92,15 +92,15 @@ public class TileEntityMedpod extends TileEntityElectrical implements IOpenable,
         super.update();
         this.updateEnergyAsReceiver();
 
-        if (this.getEntity() == null && !this.worldObj.isRemote)
+        if (this.getEntity() == null && !this.world.isRemote)
         {
-            this.medpodEntity = new EntityMedpod(worldObj);
+            this.medpodEntity = new EntityMedpod(world);
             this.medpodEntity.setTile(this);
             this.medpodEntity.setLocationAndAngles(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 0F, 0F);
-            this.worldObj.spawnEntityInWorld(this.medpodEntity);
+            this.world.spawnEntity(this.medpodEntity);
         }
 
-        if (this.worldObj != null && this.getEntity() != null)
+        if (this.world != null && this.getEntity() != null)
         {
             float rotation = 0F;
 
@@ -149,7 +149,7 @@ public class TileEntityMedpod extends TileEntityElectrical implements IOpenable,
         {
             this.isOpen = isOpen;
 
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
                 AliensVsPredator.network().sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
             }

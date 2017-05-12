@@ -26,7 +26,7 @@ public class RenderItemNostromoFlamethrower extends ItemRenderer<ModelNostromoFl
     {
         
         OpenGL.translate(0F, 0.5F, 0F);
-        OpenGL.rotate((Game.minecraft().theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         OpenGL.scale(0.5F, -0.5F, 0.5F);
         OpenGL.disable(GL11.GL_CULL_FACE);
         this.getModel().draw();
@@ -91,7 +91,7 @@ public class RenderItemNostromoFlamethrower extends ItemRenderer<ModelNostromoFl
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) mc.thePlayer.inventory.getCurrentItem().getItem()).getAmmoCount();
+        int ammoCount = ((ItemFirearm) mc.player.inventory.getCurrentItem().getItem()).getAmmoCount();
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 

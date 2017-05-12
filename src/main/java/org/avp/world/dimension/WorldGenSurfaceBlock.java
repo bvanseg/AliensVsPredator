@@ -23,7 +23,7 @@ public class WorldGenSurfaceBlock extends WorldGenerator
         {
             BlockPos pos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (worldIn.isAirBlock(pos) && (!worldIn.provider.getHasNoSky() || pos.getY() < 255) && state.getBlock().canPlaceBlockAt(worldIn, pos))
+            if (worldIn.isAirBlock(pos) && (!worldIn.provider.hasNoSky() || pos.getY() < 255) && state.getBlock().canPlaceBlockAt(worldIn, pos))
             {
                 worldIn.setBlockState(pos, this.state, 2);
             }

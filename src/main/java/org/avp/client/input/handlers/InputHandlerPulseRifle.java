@@ -15,7 +15,7 @@ public class InputHandlerPulseRifle implements IInputHandler
     @Override
     public void handleInput()
     {
-        ItemStack current = Game.minecraft().thePlayer.getHeldItemMainhand();
+        ItemStack current = Game.minecraft().player.getHeldItemMainhand();
 
         if (current != null && current.getItem() == AliensVsPredator.items().itemM41A)
         {

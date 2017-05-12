@@ -75,12 +75,12 @@ public class EntitySpitter extends EntityXenomorph implements IRangedAttackMob
             {
                 int attackDamage = 2;
 
-                EntityAcidProjectile entityacid = new EntityAcidProjectile(this.worldObj, this, living, 1.6F, 14 - attackDamage * 4);
+                EntityAcidProjectile entityacid = new EntityAcidProjectile(this.world, this, living, 1.6F, 14 - attackDamage * 4);
                 entityacid.setDamage(damage * 2.0F + this.rand.nextGaussian() * 0.25D + attackDamage * 0.11F);
                 
-                if (this.worldObj.getWorldTime() % 30 == 0)
+                if (this.world.getWorldTime() % 30 == 0)
                 {
-                    this.worldObj.spawnEntityInWorld(entityacid);
+                    this.world.spawnEntity(entityacid);
                 }
             }
         }

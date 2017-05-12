@@ -95,7 +95,7 @@ public class RenderItemSummoner extends ItemRenderer<Model>
     {
         OpenGL.rotate(180F, 0.0F, 0.0F, 1F);
         OpenGL.rotate(90F, 0.0F, 1F, 0F);
-        OpenGL.rotate((mc.theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate((mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         OpenGL.scale(0.25F, 0.25F, 0.25F);
         OpenGL.translate(0F, -2.5F, 0F);
         this.renderCachedModel();

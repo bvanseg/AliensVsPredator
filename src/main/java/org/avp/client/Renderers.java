@@ -2,6 +2,7 @@ package org.avp.client;
 
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 import static net.minecraftforge.fml.client.registry.RenderingRegistry.registerEntityRenderingHandler;
+import static com.arisux.mdxlib.lib.game.Renderers.*;
 
 import org.avp.AliensVsPredator;
 import org.avp.ItemHandler;
@@ -249,6 +250,7 @@ import com.arisux.mdxlib.lib.client.TexturedModel;
 import com.arisux.mdxlib.lib.client.render.ItemRenderer;
 import com.arisux.mdxlib.lib.game.IInitEvent;
 
+import net.minecraft.block.Block;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.Item;
@@ -265,6 +267,7 @@ public class Renderers implements IInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
+        registerBlockModels();
         registerTileEntitySpecialRenderers();
         registerItemRenderers(AliensVsPredator.items());
         registerLivingEntityRenderers();
@@ -273,6 +276,12 @@ public class Renderers implements IInitEvent
         MedpodTransforms.register();
         FaceLocationTransforms.register();
         VanillaFaceLocationTransforms.register();
+    }
+    
+    private void registerBlockModels()
+    {
+//        registerBlockModel(AliensVsPredator.blocks().blockCeilingGrillStairs);
+//        registerBlockModel(AliensVsPredator.blocks().blockFloorGrillStairs);
     }
 
     private void registerLivingEntityRenderers()
@@ -355,7 +364,7 @@ public class Renderers implements IInitEvent
     
     private void registerItemRenderer(Item item, ItemRenderer<?> renderer)
     {
-        com.arisux.mdxlib.lib.game.Renderers.register(item, renderer);
+        com.arisux.mdxlib.lib.game.Renderers.registerLegacyItemRenderer(item, renderer);
     }
     
     private void registerItemRenderers(ItemHandler items)

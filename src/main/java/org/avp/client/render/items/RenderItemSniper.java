@@ -27,7 +27,7 @@ public class RenderItemSniper extends ItemRenderer<ModelSniper>
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
         OpenGL.translate(-0.1F, 0.5F, 0F);
-        OpenGL.rotate((Game.minecraft().theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         OpenGL.scale(1F, -1F, 1F);
         OpenGL.disable(GL11.GL_CULL_FACE);
         this.getModel().draw();
@@ -35,9 +35,9 @@ public class RenderItemSniper extends ItemRenderer<ModelSniper>
 
     public void renderZoom()
     {
-        if (mc.gameSettings.thirdPersonView == 0 && mc.thePlayer.getHeldItemMainhand() != null)
+        if (mc.gameSettings.thirdPersonView == 0 && mc.player.getHeldItemMainhand() != null)
         {
-            if (mc.thePlayer.getHeldItemMainhand().getItem() == AliensVsPredator.items().itemSniper)
+            if (mc.player.getHeldItemMainhand().getItem() == AliensVsPredator.items().itemSniper)
             {
                 if (!mc.inGameHasFocus)
                 {

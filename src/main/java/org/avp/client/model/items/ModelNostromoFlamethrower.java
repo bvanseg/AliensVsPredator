@@ -110,14 +110,14 @@ public class ModelNostromoFlamethrower extends Model
         draw(stockBack);
 
         Minecraft minecraft = Game.minecraft();
-        ItemStack currentItemStack = minecraft.thePlayer.inventory.getCurrentItem();
+        ItemStack currentItemStack = minecraft.player.inventory.getCurrentItem();
 
         if (currentItemStack != null && currentItemStack.getItem() instanceof ItemFlamethrower)
         {
             ItemFlamethrower currentFlamethrower = (ItemFlamethrower) currentItemStack.getItem();
             Item fuel = currentFlamethrower.getAmmo();
 
-            if (Inventories.getAmountOfItemPlayerHas(fuel, minecraft.thePlayer) > 0)
+            if (Inventories.getAmountOfItemPlayerHas(fuel, minecraft.player) > 0)
             {
                 draw(fuelCanister1);
                 draw(fuelCanister2);

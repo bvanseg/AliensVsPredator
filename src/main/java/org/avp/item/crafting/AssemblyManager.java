@@ -155,7 +155,7 @@ public class AssemblyManager
             }
             else
             {
-                new EntityItem(player.worldObj, player.posX, player.posY, player.posZ, schematic.getItemStackAssembled().copy());
+                new EntityItem(player.world, player.posX, player.posY, player.posZ, schematic.getItemStackAssembled().copy());
                 return true;
             }
         }

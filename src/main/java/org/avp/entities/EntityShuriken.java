@@ -78,7 +78,7 @@ public class EntityShuriken extends Entity
 
     public void setArrowHeading(double motionX, double motionY, double motionZ, float velocity, float deviation)
     {
-        float v = MathHelper.sqrt_double(motionX * motionX + motionY * motionY + motionZ * motionZ);
+        float v = MathHelper.sqrt(motionX * motionX + motionY * motionY + motionZ * motionZ);
         motionX /= v;
         motionY /= v;
         motionZ /= v;
@@ -91,7 +91,7 @@ public class EntityShuriken extends Entity
         this.motionX = motionX * 1.1D;
         this.motionY = motionY * 1.1D;
         this.motionZ = motionZ * 1.1D;
-        float f3 = MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ);
+        float f3 = MathHelper.sqrt(motionX * motionX + motionZ * motionZ);
         this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(motionX, motionZ) * 180.0D / Math.PI);
         this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(motionY, f3) * 180.0D / Math.PI);
         this.ticksInGround = 0;
@@ -106,7 +106,7 @@ public class EntityShuriken extends Entity
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
         {
-            float f = MathHelper.sqrt_double(d * d + d2 * d2);
+            float f = MathHelper.sqrt(d * d + d2 * d2);
             this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(d, d2) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(d1, f) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch;
@@ -124,20 +124,20 @@ public class EntityShuriken extends Entity
 
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
         {
-            float i = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float i = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, i) * 180.0D / Math.PI);
         }
 
         BlockPos pos = new BlockPos(this.xTile, this.yTile, this.zTile);
-        IBlockState blockstate = this.worldObj.getBlockState(pos);
+        IBlockState blockstate = this.world.getBlockState(pos);
         Block block = blockstate.getBlock();
 
         if (block != Blocks.AIR)
         {
             if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
             {
-                AxisAlignedBB box = blockstate.getBoundingBox(this.worldObj, pos);
+                AxisAlignedBB box = blockstate.getBoundingBox(this.world, pos);
 
                 if (box != null && box.isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
                 {
@@ -177,7 +177,7 @@ public class EntityShuriken extends Entity
             ++this.ticksInAir;
             Vec3d var17 = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d Vec3dd1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            RayTraceResult result = this.worldObj.rayTraceBlocks(var17, Vec3dd1, false, true, true);
+            RayTraceResult result = this.world.rayTraceBlocks(var17, Vec3dd1, false, true, true);
             var17 = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3dd1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -187,7 +187,7 @@ public class EntityShuriken extends Entity
             }
 
             Entity entity = null;
-            List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d = 0.0D;
             int f3;
             float f6;
@@ -226,7 +226,7 @@ public class EntityShuriken extends Entity
             {
                 if (result.entityHit != null)
                 {
-                    velocity = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    velocity = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     int damage = (int) Math.ceil(velocity * 2.0D);
 
                     if (this.arrowCritical)
@@ -273,7 +273,7 @@ public class EntityShuriken extends Entity
                     this.motionX = ((float) (result.hitVec.xCoord - this.posX));
                     this.motionY = ((float) (result.hitVec.yCoord - this.posY));
                     this.motionZ = ((float) (result.hitVec.zCoord - this.posZ));
-                    velocity = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    velocity = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     this.posX -= this.motionX / velocity * 0.05000000074505806D;
                     this.posY -= this.motionY / velocity * 0.05000000074505806D;
                     this.posZ -= this.motionZ / velocity * 0.05000000074505806D;
@@ -288,14 +288,14 @@ public class EntityShuriken extends Entity
             {
                 for (f3 = 0; f3 < 4; ++f3)
                 {
-                    this.worldObj.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * f3 / 4.0D, this.posY + this.motionY * f3 / 4.0D, this.posZ + this.motionZ * f3 / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
+                    this.world.spawnParticle(EnumParticleTypes.CRIT, this.posX + this.motionX * f3 / 4.0D, this.posY + this.motionY * f3 / 4.0D, this.posZ + this.motionZ * f3 / 4.0D, -this.motionX, -this.motionY + 0.2D, -this.motionZ);
                 }
             }
 
             this.posX += this.motionX;
             this.posY += this.motionY;
             this.posZ += this.motionZ;
-            velocity = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            velocity = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
             for (this.rotationPitch = (float) (Math.atan2(this.motionY, velocity) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
@@ -328,7 +328,7 @@ public class EntityShuriken extends Entity
                 for (int var24 = 0; var24 < 4; ++var24)
                 {
                     float var25 = 0.25F;
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * var25, this.posY - this.motionY * var25, this.posZ - this.motionZ * var25, this.motionX, this.motionY, this.motionZ);
+                    this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * var25, this.posY - this.motionY * var25, this.posZ - this.motionZ * var25, this.motionX, this.motionY, this.motionZ);
                 }
 
                 var22 = 0.8F;
@@ -367,7 +367,7 @@ public class EntityShuriken extends Entity
     @Override
     public void onCollideWithPlayer(EntityPlayer entityplayer)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.inGround && this.doesArrowBelongToPlayer && this.arrowShake <= 0)
             {

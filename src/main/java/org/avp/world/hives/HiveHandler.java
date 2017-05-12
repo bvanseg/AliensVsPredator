@@ -40,7 +40,7 @@ public class HiveHandler implements IWorldSaveHandler
     
     public XenomorphHive createHive(EntityQueen queen)
     {
-        XenomorphHive hive = new XenomorphHive(queen.worldObj, queen.getUniqueID()).setLocation(queen.posX, queen.posY, queen.posZ);
+        XenomorphHive hive = new XenomorphHive(queen.world, queen.getUniqueID()).setLocation(queen.posX, queen.posY, queen.posZ);
         HiveHandler.instance.getHives().add(hive);
         return hive;
     }

@@ -217,7 +217,7 @@ public abstract class EntitySpeciesYautja extends EntityMob implements IHost, Pr
 
     public void setWearingMask(boolean wearingMask)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             this.getDataManager().set(WEARING_MASK, wearingMask);
         }

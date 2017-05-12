@@ -106,7 +106,7 @@ public class BlockMedpod extends Block
 
     public static EnumFacing getFacing(Entity entity)
     {
-        int dir = MathHelper.floor_double((entity.rotationYaw / 90) + 0.5) & 3;
+        int dir = MathHelper.floor((entity.rotationYaw / 90) + 0.5) & 3;
         return EnumFacing.getFront(dir);
     }
 

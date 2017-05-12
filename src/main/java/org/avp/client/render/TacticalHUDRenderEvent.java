@@ -71,21 +71,21 @@ public class TacticalHUDRenderEvent
     {
         if (Game.minecraft().gameSettings.thirdPersonView == 0)
         {
-            if (Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer) != null && Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer).getItem() == AliensVsPredator.items().helmMarine)
+            if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().helmMarine)
             {
-                if (Game.minecraft().theWorld != null && Game.minecraft().theWorld.getWorldTime() % (20 * 3) == 0)
+                if (Game.minecraft().world != null && Game.minecraft().world.getWorldTime() % (20 * 3) == 0)
                 {
                     if (trackedEntities != null)
                     {
                         trackedEntities.clear();
                     }
 
-                    trackedEntities = (ArrayList<EntityLivingBase>) Entities.getEntitiesInCoordsRange(Game.minecraft().thePlayer.worldObj, EntityLivingBase.class, new Pos(Game.minecraft().thePlayer), 30, 30);
+                    trackedEntities = (ArrayList<EntityLivingBase>) Entities.getEntitiesInCoordsRange(Game.minecraft().player.world, EntityLivingBase.class, new Pos(Game.minecraft().player), 30, 30);
                 }
 
                 if (trackedEntities != null)
                 {
-                    Vec3d p = Game.minecraft().thePlayer.getLookVec();
+                    Vec3d p = Game.minecraft().player.getLookVec();
                     float scale = 24.0F;
 
                     OpenGL.pushMatrix();
@@ -93,16 +93,16 @@ public class TacticalHUDRenderEvent
                         OpenGL.translate(p.xCoord, p.yCoord, p.zCoord);
                         OpenGL.scale(scale, scale, scale);
 
-                        if (Game.minecraft().thePlayer != null && specialPlayer != null)
+                        if (Game.minecraft().player != null && specialPlayer != null)
                         {
                             for (EntityLivingBase living : trackedEntities)
                             {
-                                if (living != null && (Entities.canEntityBeSeenBy(living, Game.minecraft().thePlayer) || !specialPlayer.isEntityCullingEnabled()) && living instanceof EntityLivingBase)
+                                if (living != null && (Entities.canEntityBeSeenBy(living, Game.minecraft().player) || !specialPlayer.isEntityCullingEnabled()) && living instanceof EntityLivingBase)
                                 {
                                     Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
 
                                     Vec3d t = new Vec3d(living.posX, living.posY, living.posZ).addVector(0, living.getEyeHeight() / 2, 0);
-                                    t = t.subtract(new Vec3d(Game.minecraft().thePlayer.getPosition().getX(), Game.minecraft().thePlayer.getPosition().getY(), Game.minecraft().thePlayer.getPosition().getZ()));
+                                    t = t.subtract(new Vec3d(Game.minecraft().player.getPosition().getX(), Game.minecraft().player.getPosition().getY(), Game.minecraft().player.getPosition().getZ()));
                                     Vec3d tmp = p.addVector(t.xCoord, t.yCoord, t.zCoord).normalize();
                                     Vec3d res = p.addVector(tmp.xCoord, tmp.yCoord, tmp.zCoord);
 
@@ -117,17 +117,17 @@ public class TacticalHUDRenderEvent
                                         OpenGL.disableLightMapping();
                                         OpenGL.translate(p.xCoord, p.yCoord, p.zCoord);
                                         OpenGL.translate(-res.xCoord, -res.yCoord, -res.zCoord);
-                                        OpenGL.rotate(-Game.minecraft().thePlayer.rotationYaw - 180, 0, 1, 0);
-                                        OpenGL.rotate(-Game.minecraft().thePlayer.rotationPitch, 1, 0, 0);
+                                        OpenGL.rotate(-Game.minecraft().player.rotationYaw - 180, 0, 1, 0);
+                                        OpenGL.rotate(-Game.minecraft().player.rotationPitch, 1, 0, 0);
 
                                         OpenGL.pushMatrix();
                                         {
-                                            OpenGL.rotate(Game.minecraft().thePlayer.rotationYaw - 180, 0, 1, 0);
+                                            OpenGL.rotate(Game.minecraft().player.rotationYaw - 180, 0, 1, 0);
                                             float indicatorScale = 0.05F;
                                             OpenGL.blendClear();
                                             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
                                             OpenGL.scale(indicatorScale, indicatorScale, indicatorScale);
-                                            OpenGL.rotate(-Game.minecraft().thePlayer.rotationYaw, 0, 1, 0);
+                                            OpenGL.rotate(-Game.minecraft().player.rotationYaw, 0, 1, 0);
 
                                             if (organism.hasEmbryo())
                                             {
@@ -143,7 +143,7 @@ public class TacticalHUDRenderEvent
                                             OpenGL.rotate(180F, 0F, 1F, 0F);
                                             OpenGL.scale(textScale, -textScale, textScale);
 
-                                            String dist = ((int) living.getDistanceToEntity(Game.minecraft().thePlayer)) + "";
+                                            String dist = ((int) living.getDistanceToEntity(Game.minecraft().player)) + "";
                                             Draw.drawString(dist, textX - 19 - (Draw.getStringRenderWidth(dist) / 2), (textY += textMultiplier) + 15, color, false);
 
                                             if (organism.hasEmbryo())
@@ -178,13 +178,13 @@ public class TacticalHUDRenderEvent
     @SubscribeEvent
     public void renderTickOverlay(RenderGameOverlayEvent.Pre event)
     {
-        if (Game.minecraft().thePlayer != null)
+        if (Game.minecraft().player != null)
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
             {
-                if (Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer).getItem() == AliensVsPredator.items().helmMarine)
+                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().helmMarine)
                 {
-                    SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().thePlayer.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+                    SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
 
                     this.gammaRestored = false;
                     LightmapUpdateEvent.instance.gammaValue = specialPlayer.isNightvisionEnabled() ? 8F : 0F;
@@ -214,7 +214,7 @@ public class TacticalHUDRenderEvent
     @SubscribeEvent
     public void renderTick(RenderGameOverlayEvent event)
     {
-        if (Game.minecraft().thePlayer != null && event.getType() == ElementType.HOTBAR)
+        if (Game.minecraft().player != null && event.getType() == ElementType.HOTBAR)
         {
             this.renderInventoryElements(event);
         }
@@ -223,13 +223,13 @@ public class TacticalHUDRenderEvent
     @SubscribeEvent
     public void clientTick(TickEvent.ClientTickEvent event)
     {
-        if (Game.minecraft().theWorld != null && event.phase == Phase.START)
+        if (Game.minecraft().world != null && event.phase == Phase.START)
         {
-            this.electrocardiogram.update(Game.minecraft().theWorld);
+            this.electrocardiogram.update(Game.minecraft().world);
             this.wavegraph1.setRate(750);
             this.wavegraph2.setRate(450);
-            this.wavegraph1.update(Game.minecraft().theWorld);
-            this.wavegraph2.update(Game.minecraft().theWorld);
+            this.wavegraph1.update(Game.minecraft().world);
+            this.wavegraph2.update(Game.minecraft().world);
 
             if (buttonMarineHelmConfig.getAction() == null)
             {
@@ -248,7 +248,7 @@ public class TacticalHUDRenderEvent
 
     public void renderInventoryElements(RenderGameOverlayEvent event)
     {
-        if (Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer) != null && Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer).getItem() == AliensVsPredator.items().helmMarine)
+        if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().helmMarine)
         {
             if (Game.minecraft().currentScreen instanceof GuiInventory || Game.minecraft().currentScreen instanceof GuiChat)
             {
@@ -265,12 +265,12 @@ public class TacticalHUDRenderEvent
 
     public SpecialPlayer getSpecialPlayer()
     {
-        return Game.minecraft() != null ? Game.minecraft().thePlayer != null ? this.specialPlayer = (SpecialPlayer) Game.minecraft().thePlayer.getCapability(SpecialPlayer.Provider.CAPABILITY, null) : null : null;
+        return Game.minecraft() != null ? Game.minecraft().player != null ? this.specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null) : null : null;
     }
 
     public Organism getPlayerOrganism()
     {
-        return Game.minecraft() != null ? Game.minecraft().thePlayer != null ? this.playerOrganism = (Organism) Game.minecraft().thePlayer.getCapability(Provider.CAPABILITY, null) : null : null;
+        return Game.minecraft() != null ? Game.minecraft().player != null ? this.playerOrganism = (Organism) Game.minecraft().player.getCapability(Provider.CAPABILITY, null) : null : null;
     }
 
     public void changeChannel(String channel)
@@ -282,13 +282,13 @@ public class TacticalHUDRenderEvent
     {
         int batteryPercent = 100;
 
-        int hourOfMinecraftDay = (int) (Math.floor(Game.minecraft().thePlayer.worldObj.getWorldTime() / 1000 + 8) % 24);
-        int minuteOfMinecraftDay = (int) (60 * Math.floor(Game.minecraft().thePlayer.worldObj.getWorldTime() % 1000) / 1000);
+        int hourOfMinecraftDay = (int) (Math.floor(Game.minecraft().player.world.getWorldTime() / 1000 + 8) % 24);
+        int minuteOfMinecraftDay = (int) (60 * Math.floor(Game.minecraft().player.world.getWorldTime() % 1000) / 1000);
 
         String timeString = String.format("[%02d:%02d]", hourOfMinecraftDay, minuteOfMinecraftDay);
         String fpsString = Game.minecraft().debug.substring(0, Game.minecraft().debug.indexOf(" fps"));
         String barString = String.format("[%sFPS] [%s%%] %s", fpsString, batteryPercent, timeString);
-        String bar2String = String.format("[X %s] [Y %s] [Z %s]", Math.round(Game.minecraft().thePlayer.posX), Math.round(Game.minecraft().thePlayer.posY), Math.round(Game.minecraft().thePlayer.posZ));
+        String bar2String = String.format("[X %s] [Y %s] [Z %s]", Math.round(Game.minecraft().player.posX), Math.round(Game.minecraft().player.posY), Math.round(Game.minecraft().player.posZ));
         String bar3String = String.format("[CHANNEL %s]", this.getSpecialPlayer().getBroadcastChannel());
 
         OpenGL.pushMatrix();
@@ -376,7 +376,7 @@ public class TacticalHUDRenderEvent
                 {
                     float nameScale = 1.5F;
                     OpenGL.scale(nameScale, nameScale, nameScale);
-                    Draw.drawString(Game.minecraft().thePlayer.getName().toUpperCase(), 0, 0, 0xFF00AAFF, false);
+                    Draw.drawString(Game.minecraft().player.getName().toUpperCase(), 0, 0, 0xFF00AAFF, false);
                 }
                 OpenGL.popMatrix();
 
@@ -406,7 +406,7 @@ public class TacticalHUDRenderEvent
 
     public void drawImpregnationIndicator(Organism organism)
     {
-        // if (organism.hasEmbryo() && organism.getEntity().worldObj.getWorldTime() % 20 <= 10)
+        // if (organism.hasEmbryo() && organism.getEntity().world.getWorldTime() % 20 <= 10)
         // {
         // ScaledResolution res = Screen.scaledDisplayResolution();
         //
@@ -426,7 +426,7 @@ public class TacticalHUDRenderEvent
         // Draw.drawStringAlignRight("Foreign Organism Detected", res.getScaledWidth() - iconSize, 45, 0xFFFF0000);
         // Draw.drawStringAlignRight("Xenomorphic Embryo", res.getScaledWidth() - iconSize, 55, 0xFFFF0000);
         //
-        // if (!Game.minecraft().thePlayer.capabilities.isCreativeMode)
+        // if (!Game.minecraft().player.capabilities.isCreativeMode)
         // {
         // Draw.drawStringAlignRight("Time Until Death: " + (lifeTimeSeconds / 60) + "." + lifeTimeSeconds % 60 + "M", res.getScaledWidth() - iconSize, 65, 0xFFFFFFFF);
         // }
@@ -439,7 +439,7 @@ public class TacticalHUDRenderEvent
 
     public void scanForNearbyPlayers()
     {
-        EntityPlayer playerFound = (EntityPlayer) Game.minecraft().thePlayer.worldObj.findNearestEntityWithinAABB(EntityPlayer.class, Game.minecraft().thePlayer.getEntityBoundingBox().expand(this.getSpecialPlayer().getBroadcastRadius(), 128.0D, this.getSpecialPlayer().getBroadcastRadius()), Game.minecraft().thePlayer);
+        EntityPlayer playerFound = (EntityPlayer) Game.minecraft().player.world.findNearestEntityWithinAABB(EntityPlayer.class, Game.minecraft().player.getEntityBoundingBox().expand(this.getSpecialPlayer().getBroadcastRadius(), 128.0D, this.getSpecialPlayer().getBroadcastRadius()), Game.minecraft().player);
 
         if (playerFound != null)
         {
@@ -467,14 +467,14 @@ public class TacticalHUDRenderEvent
             if (x <= viewportThreshold && player != null)
             {
                 int barSpace = 15;
-                int signal = (int) Game.minecraft().thePlayer.getDistanceToEntity(player);
+                int signal = (int) Game.minecraft().player.getDistanceToEntity(player);
                 int maxSignal = specialPlayer.getBroadcastRadius() <= this.specialPlayer.getBroadcastRadius() ? specialPlayer.getBroadcastRadius() : this.specialPlayer.getBroadcastRadius();
                 int pxMultiplier = signal >= maxSignal / 1.3 ? 5 : signal >= maxSignal / 2 ? 4 : signal >= maxSignal / 3 ? 3 : signal >= maxSignal / 4 ? 2 : signal >= maxSignal / 5 ? 1 : signal >= maxSignal / 6 ? 0 : 0;
 
                 Draw.drawRect(Screen.scaledDisplayResolution().getScaledWidth() - 111, 40 + barSpace * x - 5, 120, 2, 0xAA00AAFF);
                 Draw.drawRect(Screen.scaledDisplayResolution().getScaledWidth() - 111, 42 + barSpace * x - 5, 2, 9, 0xAA00AAFF);
 
-                if (Game.minecraft().thePlayer.getDistanceToEntity(player) <= this.specialPlayer.getBroadcastRadius() && signal <= maxSignal / 1.3)
+                if (Game.minecraft().player.getDistanceToEntity(player) <= this.specialPlayer.getBroadcastRadius() && signal <= maxSignal / 1.3)
                 {
                     OpenGL.color(1F, 1F, 1F, 1F);
                     Draw.bindTexture(Gui.ICONS);

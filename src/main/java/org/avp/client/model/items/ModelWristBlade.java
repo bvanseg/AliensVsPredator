@@ -130,7 +130,7 @@ public class ModelWristBlade extends Model
         draw(b10);
         draw(b11);
 
-        if (Inventories.getAmountOfItemPlayerHas(AliensVsPredator.items().swordTitanium, Game.minecraft().thePlayer) > 0)
+        if (Inventories.getAmountOfItemPlayerHas(AliensVsPredator.items().swordTitanium, Game.minecraft().player) > 0)
         {
             draw(b6);
             draw(bladeLeft);

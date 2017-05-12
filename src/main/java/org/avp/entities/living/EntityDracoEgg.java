@@ -48,13 +48,13 @@ public class EntityDracoEgg extends EntityOvamorph
     @Override
     protected void hatch()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            EntityFacehugger facehugger = new EntityFacehugger(this.worldObj);
-            Pos pos = new Pos(this).findSafePosAround(this.worldObj);
+            EntityFacehugger facehugger = new EntityFacehugger(this.world);
+            Pos pos = new Pos(this).findSafePosAround(this.world);
 
             facehugger.setLocationAndAngles(pos.x, pos.y, pos.z, 0F, 0F);
-            worldObj.spawnEntityInWorld(facehugger);
+            world.spawnEntity(facehugger);
             facehugger.motionY = 0.75F;
 
             this.setContainsFacehugger(false);

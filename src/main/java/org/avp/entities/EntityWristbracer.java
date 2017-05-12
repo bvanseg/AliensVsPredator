@@ -41,7 +41,7 @@ public class EntityWristbracer extends EntityThrowable
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         this.motionY -= 0.03999999910593033D;
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(this.motionX, this.motionY, this.motionZ);
         this.motionX *= 0.9800000190734863D;
         this.motionY *= 0.9800000190734863D;
         this.motionZ *= 0.9800000190734863D;
@@ -69,7 +69,7 @@ public class EntityWristbracer extends EntityThrowable
             this.motionY *= -0.5D;
         }
 
-        if (this.worldObj.getWorldTime() % 20 == 0)
+        if (this.world.getWorldTime() % 20 == 0)
         {
             Sounds.fxWristbracerAlarm.playSound(this, 15F, 1F);
         }
@@ -94,12 +94,12 @@ public class EntityWristbracer extends EntityThrowable
                 double sY = this.posY + (this.rand.nextDouble() * iS) - (this.rand.nextDouble() * iS);
                 double sZ = this.posZ + (this.rand.nextDouble() * iS) - (this.rand.nextDouble() * iS);
 
-                if (this.worldObj.isRemote)
+                if (this.world.isRemote)
                 {
-                    Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.worldObj, sX, sY, sZ, pX, pY, pZ, 10, arcFluctuation, arcComplexity, arcDensity, 0xFF4455AA));
+                    Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, sX, sY, sZ, pX, pY, pZ, 10, arcFluctuation, arcComplexity, arcDensity, 0xFF4455AA));
                 }
 
-                this.worldObj.setBlockToAir(new BlockPos((int) Math.round(pX), (int) Math.round(pY), (int) Math.round(pZ)));
+                this.world.setBlockToAir(new BlockPos((int) Math.round(pX), (int) Math.round(pY), (int) Math.round(pZ)));
             }
 
             if (this.getPostInitTicks() >= this.getPostInitTicksMax() * 2)
@@ -110,7 +110,7 @@ public class EntityWristbracer extends EntityThrowable
                     excludedBlocks.add(Blocks.BEDROCK);
                     ArrayList<Material> excludedMaterials = new ArrayList<Material>();
                     excludedMaterials.add(Material.ROCK);
-                    LargeExplosion explosion = new LargeExplosion(worldObj, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1000F, new Random().nextLong(), excludedBlocks, excludedMaterials, 0, 2);
+                    LargeExplosion explosion = new LargeExplosion(world, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1000F, new Random().nextLong(), excludedBlocks, excludedMaterials, 0, 2);
                     explosion.start();
                 }
 

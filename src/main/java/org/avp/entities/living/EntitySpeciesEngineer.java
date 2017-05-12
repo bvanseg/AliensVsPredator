@@ -112,7 +112,7 @@ public abstract class EntitySpeciesEngineer extends EntityMob
     @Override
     public boolean isInWater()
     {
-        return this.worldObj.handleMaterialAcceleration(this.getEntityBoundingBox().expand(0.0D, -0.900000023841858D, 0.0D), Material.WATER, this);
+        return this.world.handleMaterialAcceleration(this.getEntityBoundingBox().expand(0.0D, -0.900000023841858D, 0.0D), Material.WATER, this);
     }
 
     @Override
@@ -160,7 +160,7 @@ public abstract class EntitySpeciesEngineer extends EntityMob
 
     public void setWearingMask(boolean wearingMask)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             this.getDataManager().set(WEARING_MASK, wearingMask);
         }

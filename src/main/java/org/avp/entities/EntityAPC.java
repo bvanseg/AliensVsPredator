@@ -111,7 +111,7 @@ public class EntityAPC extends Entity
         {
             return false;
         }
-        else if (!this.worldObj.isRemote && !this.isDead)
+        else if (!this.world.isRemote && !this.isDead)
         {
             this.setForwardDirection(-this.getForwardDirection());
             this.setTimeSinceHit(10);
@@ -201,9 +201,9 @@ public class EntityAPC extends Entity
     @SideOnly(Side.CLIENT)
     private void handleKeybindAction()
     {
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
-            if (Game.minecraft().thePlayer.isRiding() && Game.minecraft().thePlayer.getRidingEntity() instanceof EntityAPC)
+            if (Game.minecraft().player.isRiding() && Game.minecraft().player.getRidingEntity() instanceof EntityAPC)
             {
                 if (AliensVsPredator.keybinds().specialPrimary.isPressed())
                 {
@@ -218,7 +218,7 @@ public class EntityAPC extends Entity
     {
         super.onUpdate();
 
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             this.handleKeybindAction();
         }
@@ -252,7 +252,7 @@ public class EntityAPC extends Entity
             rotY = Math.sin((double) this.rotationYaw * Math.PI / 180.0D);
         }
 
-        if (this.worldObj.isRemote && this.isVehicleEmpty)
+        if (this.world.isRemote && this.isVehicleEmpty)
         {
             if (this.rotationIncrements > 0)
             {
@@ -334,24 +334,24 @@ public class EntityAPC extends Entity
 
             for (int checkDistance = 0; checkDistance < 4; ++checkDistance)
             {
-                int blockX = MathHelper.floor_double(this.posX + ((double) (checkDistance % 2) - 0.5D) * 0.8D);
-                int blockZ = MathHelper.floor_double(this.posZ + ((double) (checkDistance / 2) - 0.5D) * 0.8D);
+                int blockX = MathHelper.floor(this.posX + ((double) (checkDistance % 2) - 0.5D) * 0.8D);
+                int blockZ = MathHelper.floor(this.posZ + ((double) (checkDistance / 2) - 0.5D) * 0.8D);
 
                 for (int checkHeight = 0; checkHeight < 2; ++checkHeight)
                 {
-                    int blockY = MathHelper.floor_double(this.posY) + checkHeight;
+                    int blockY = MathHelper.floor(this.posY) + checkHeight;
                     BlockPos pos = new BlockPos(blockX, blockY, blockZ);
-                    IBlockState blockstate = this.worldObj.getBlockState(pos);
+                    IBlockState blockstate = this.world.getBlockState(pos);
                     Block block = blockstate.getBlock();
 
                     if (block == Blocks.SNOW_LAYER)
                     {
-                        this.worldObj.setBlockToAir(pos);
+                        this.world.setBlockToAir(pos);
                         this.isCollidedHorizontally = false;
                     }
                     else if (block == Blocks.WATERLILY)
                     {
-                        block.breakBlock(this.worldObj, pos, blockstate);
+                        block.breakBlock(this.world, pos, blockstate);
                         this.isCollidedHorizontally = false;
                     }
                 }
@@ -364,7 +364,7 @@ public class EntityAPC extends Entity
                 this.motionZ = 0;
             }
 
-            this.moveEntity(this.motionX, this.motionY, this.motionZ);
+            this.move(this.motionX, this.motionY, this.motionZ);
             this.motionX *= 0.9900000095367432D;
             this.motionY *= 0.949999988079071D;
             this.motionZ *= 0.9900000095367432D;
@@ -394,9 +394,9 @@ public class EntityAPC extends Entity
             this.rotationYaw = (float) ((double) this.rotationYaw + d7);
             this.setRotation(this.rotationYaw, this.rotationPitch);
 
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
-                List list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+                List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 
                 if (list != null && !list.isEmpty())
                 {
@@ -430,11 +430,11 @@ public class EntityAPC extends Entity
             double oZ = Math.sin((double) this.rotationYaw * Math.PI / 180.0D) * 0.4D;
             Entities.getEntityRiddenBy(this).setPosition(this.posX + oX - 2.5F, this.posY + this.getMountedYOffset() + Entities.getEntityRiddenBy(this).getYOffset(), this.posZ + oZ + 0.25F);
 
-            if (this.worldObj.isRemote && Entities.getEntityRiddenBy(this) instanceof EntityPlayer)
+            if (this.world.isRemote && Entities.getEntityRiddenBy(this) instanceof EntityPlayer)
             {
                 if (Game.minecraft().gameSettings.thirdPersonView == 0)
                 {
-                    if (Game.minecraft().thePlayer == Entities.getEntityRiddenBy(this))
+                    if (Game.minecraft().player == Entities.getEntityRiddenBy(this))
                     {
                         Game.minecraft().gameSettings.thirdPersonView = 1;
                     }
@@ -470,7 +470,7 @@ public class EntityAPC extends Entity
         }
         else
         {
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
                 player.startRiding(this);
             }
@@ -481,9 +481,9 @@ public class EntityAPC extends Entity
     @Override
     protected void updateFallState(double distanceFallenThisTick, boolean onGround, IBlockState state, BlockPos pos)
     {
-        int x = MathHelper.floor_double(this.posX);
-        int y = MathHelper.floor_double(this.posY);
-        int z = MathHelper.floor_double(this.posZ);
+        int x = MathHelper.floor(this.posX);
+        int y = MathHelper.floor(this.posY);
+        int z = MathHelper.floor(this.posZ);
 
         if (onGround)
         {
@@ -491,7 +491,7 @@ public class EntityAPC extends Entity
             {
                 this.fall(this.fallDistance, 1F);
 
-                if (!this.worldObj.isRemote && !this.isDead)
+                if (!this.world.isRemote && !this.isDead)
                 {
                     this.setDead();
                 }
@@ -499,7 +499,7 @@ public class EntityAPC extends Entity
                 this.fallDistance = 0.0F;
             }
         }
-        else if (this.worldObj.getBlockState(new BlockPos(x, y - 1, z)).getMaterial() != Material.WATER && distanceFallenThisTick < 0.0D)
+        else if (this.world.getBlockState(new BlockPos(x, y - 1, z)).getMaterial() != Material.WATER && distanceFallenThisTick < 0.0D)
         {
             this.fallDistance = (float) ((double) this.fallDistance - distanceFallenThisTick);
         }

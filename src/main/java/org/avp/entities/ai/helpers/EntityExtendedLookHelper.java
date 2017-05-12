@@ -67,7 +67,7 @@ public class EntityExtendedLookHelper extends EntityLookHelper
             double d0 = this.posX - this.entity.posX;
             double d1 = this.posY - (this.entity.posY + (double) this.entity.getEyeHeight());
             double d2 = this.posZ - this.entity.posZ;
-            double d3 = (double) MathHelper.sqrt_double(d0 * d0 + d2 * d2);
+            double d3 = (double) MathHelper.sqrt(d0 * d0 + d2 * d2);
             float f = (float) (Math.atan2(d2, d0) * 180.0D / Math.PI) - 90.0F;
             float f1 = (float) (-(Math.atan2(d1, d3) * 180.0D / Math.PI));
             this.entity.rotationPitch = updateRotationNew(this.entity.rotationPitch, f1, this.deltaLookPitch);

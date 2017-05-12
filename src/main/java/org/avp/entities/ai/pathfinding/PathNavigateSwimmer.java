@@ -68,7 +68,7 @@ public class PathNavigateSwimmer extends PathNavigate
     @Override
     protected boolean isDirectPathBetweenPoints(Vec3d pos1, Vec3d pso2, int sizeX, int sizeY, int sizeZ)
     {
-        RayTraceResult result = this.worldObj.rayTraceBlocks(pos1, new Vec3d(pso2.xCoord, pso2.yCoord + (double) this.theEntity.height * 0.5D, pso2.zCoord), false);
+        RayTraceResult result = this.world.rayTraceBlocks(pos1, new Vec3d(pso2.xCoord, pso2.yCoord + (double) this.theEntity.height * 0.5D, pso2.zCoord), false);
         return result == null || result.typeOfHit == Type.MISS;
     }
 }

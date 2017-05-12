@@ -70,7 +70,7 @@ public class TileEntityTransformer extends TileEntityElectrical implements IVolt
 
         if (this.voltage > 0)
         {
-            TileEntity tile = this.worldObj.getTileEntity(this.getPos().offset(direction));
+            TileEntity tile = this.world.getTileEntity(this.getPos().offset(direction));
 
             if (tile != null && tile instanceof TileEntityElectrical)
             {
@@ -112,7 +112,7 @@ public class TileEntityTransformer extends TileEntityElectrical implements IVolt
     @Override
     public double extractVoltage(EnumFacing from, double maxExtract, boolean simulate)
     {
-        TileEntity tile = this.worldObj.getTileEntity(this.getPos().offset(from));
+        TileEntity tile = this.world.getTileEntity(this.getPos().offset(from));
 
         if (tile != null && tile instanceof TileEntityElectrical)
         {

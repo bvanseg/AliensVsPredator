@@ -31,7 +31,7 @@ public class RenderLivingHook
     @SubscribeEvent
     public void update(ClientTickEvent event)
     {
-        renderplasmacannon.update(event, Game.minecraft(), Game.minecraft().theWorld);
+        renderplasmacannon.update(event, Game.minecraft(), Game.minecraft().world);
     }
 
     @SubscribeEvent

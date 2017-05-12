@@ -32,9 +32,9 @@ public class EntityMechanism extends Entity
     {
         super.onUpdate();
 
-        if (this.worldObj.getWorldTime() % 20 == 0)
+        if (this.world.getWorldTime() % 20 == 0)
         {
-            Block block = this.worldObj.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ - 1)).getBlock();
+            Block block = this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ - 1)).getBlock();
 
             if (block != AliensVsPredator.blocks().blockStasisMechanism)
             {

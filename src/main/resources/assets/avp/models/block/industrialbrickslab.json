@@ -1,0 +1,8 @@
+{
+    "parent": "block/half_slab",
+    "textures": {
+        "bottom": "avp:blocks/industrialbricks",
+        "top": "avp:blocks/industrialbricks",
+        "side": "avp:blocks/industrialbricks"
+    }
+}

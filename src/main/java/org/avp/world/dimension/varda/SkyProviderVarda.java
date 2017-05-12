@@ -150,15 +150,15 @@ public class SkyProviderVarda extends IRenderHandler
             float cloudSpan = 18.0F;
             float cloudHeight = 7.0F * cloudPass;
             float cloudSpeed = 10;
-            double time = Game.minecraft().theWorld.getWorldTime() * cloudSpeed + renderPartialTicks;
+            double time = Game.minecraft().world.getWorldTime() * cloudSpeed + renderPartialTicks;
             double viewX = (Game.minecraft().getRenderViewEntity().prevPosX + (Game.minecraft().getRenderViewEntity().posX - Game.minecraft().getRenderViewEntity().prevPosX) * renderPartialTicks + time * 0.029999999329447746D) / cloudSpan;
             double viewZ = (Game.minecraft().getRenderViewEntity().prevPosZ + (Game.minecraft().getRenderViewEntity().posZ - Game.minecraft().getRenderViewEntity().prevPosZ) * renderPartialTicks) / cloudSpan + 0.33000001311302185D;
-            float cloudY = Game.minecraft().theWorld.provider.getCloudHeight() - relativeHeight;
-            viewX -= (MathHelper.floor_double(viewX / 2048.0D)) * 2048;
-            viewZ -= (MathHelper.floor_double(viewZ / 2048.0D)) * 2048;
+            float cloudY = Game.minecraft().world.provider.getCloudHeight() - relativeHeight;
+            viewX -= (MathHelper.floor(viewX / 2048.0D)) * 2048;
+            viewZ -= (MathHelper.floor(viewZ / 2048.0D)) * 2048;
             float scaleUV = 0.00390625F;
-            float offsetU = MathHelper.floor_double(viewX) * scaleUV;
-            float offsetV = MathHelper.floor_double(viewZ) * scaleUV;
+            float offsetU = MathHelper.floor(viewX) * scaleUV;
+            float offsetV = MathHelper.floor(viewZ) * scaleUV;
             byte dist = (byte) (Game.minecraft().gameSettings.renderDistanceChunks);
             byte cloudSections = 2;
 
@@ -185,8 +185,8 @@ public class SkyProviderVarda extends IRenderHandler
                     {
                         float cloudU = x * dist;
                         float cloudV = z * dist;
-                        float cloudX = cloudU - ((float) (viewX - MathHelper.floor_double(viewX)));
-                        float cloudZ = cloudV - ((float) (viewZ - MathHelper.floor_double(viewZ)));
+                        float cloudX = cloudU - ((float) (viewX - MathHelper.floor(viewX)));
+                        float cloudZ = cloudV - ((float) (viewZ - MathHelper.floor(viewZ)));
 
                         Draw.startQuads();
 

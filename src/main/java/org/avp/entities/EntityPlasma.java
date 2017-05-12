@@ -59,15 +59,15 @@ public class EntityPlasma extends EntityThrowable
     @Override
     public void onUpdate()
     {
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(this.motionX, this.motionY, this.motionZ);
 
-        if (!this.worldObj.isRemote && !this.synced)
+        if (!this.world.isRemote && !this.synced)
         {
             this.getDataManager().set(PLASMA_SIZE, this.syncSize);
             this.synced = true;
         }
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.getImpactTimer() == this.getMaxImpactTimer())
             {
@@ -77,13 +77,13 @@ public class EntityPlasma extends EntityThrowable
 
         if (this.getImpactTimer() > 0)
         {
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
                 this.updateImpactTimer(this.getImpactTimer() - 1);
             }
         }
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.getImpactTimer() == -1 && this.ticksExisted >= 20 * 20 || this.getImpactTimer() == 0)
             {
@@ -91,11 +91,11 @@ public class EntityPlasma extends EntityThrowable
             }
         }
 
-        RayTraceResult RayTraceResult = this.worldObj.rayTraceBlocks(new Vec3d(this.posX, this.posY, this.posZ), new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ));
+        RayTraceResult RayTraceResult = this.world.rayTraceBlocks(new Vec3d(this.posX, this.posY, this.posZ), new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ));
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            Entity entityHit = Entities.getEntityInCoordsRange(worldObj, EntityLiving.class, new Pos(this), 1, 1);
+            Entity entityHit = Entities.getEntityInCoordsRange(world, EntityLiving.class, new Pos(this), 1, 1);
 
             if (entityHit != null)
             {
@@ -132,17 +132,17 @@ public class EntityPlasma extends EntityThrowable
     @Override
     public void onImpact(RayTraceResult RayTraceResult)
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (Settings.instance.arePlasmaCannonExplosionsEnabled())
             {
-                Worlds.createExplosion(null, worldObj, new Pos(this), 3F * this.getPlasmaSize(), false, true, AliensVsPredator.settings().areExplosionsEnabled());
+                Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, AliensVsPredator.settings().areExplosionsEnabled());
             }
 
             Sounds.SOUND_WEAPON_PLASMA_EXPLOSION.playSound(this, 7F, 1.0F);
 
             @SuppressWarnings("unchecked")
-            List<Entity> entities = (List<Entity>) Entities.getEntitiesInCoordsRange(worldObj, Entity.class, new Pos(this.posX, this.posY, this.posZ), (int) Math.ceil(this.getPlasmaSize()));
+            List<Entity> entities = (List<Entity>) Entities.getEntitiesInCoordsRange(world, Entity.class, new Pos(this.posX, this.posY, this.posZ), (int) Math.ceil(this.getPlasmaSize()));
 
             for (Entity entity : entities)
             {
@@ -164,7 +164,7 @@ public class EntityPlasma extends EntityThrowable
             this.motionZ = 0;
         }
 
-        if (this.worldObj.isRemote)
+        if (this.world.isRemote)
         {
             this.specialEffect();
         }
@@ -181,7 +181,7 @@ public class EntityPlasma extends EntityThrowable
             double pY = this.posY + (this.rand.nextDouble() * spread) - (this.rand.nextDouble() * spread);
             double pZ = this.posZ + (this.rand.nextDouble() * spread) - (this.rand.nextDouble() * spread);
 
-            Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.worldObj, this.posX, this.posY, this.posZ, pX, pY, pZ, 10, 0xFF66AAFF));
+            Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, this.posX, this.posY, this.posZ, pX, pY, pZ, 10, 0xFF66AAFF));
         }
     }
 

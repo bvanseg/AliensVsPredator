@@ -35,9 +35,9 @@ public class MaterialHandler
     @SubscribeEvent
     public void render(RenderGameOverlayEvent event)
     {
-        if (Game.minecraft().theWorld != null)
+        if (Game.minecraft().world != null)
         {
-            Material materialInside = getMaterialInside(Game.minecraft().thePlayer);
+            Material materialInside = getMaterialInside(Game.minecraft().player);
 
             if (materialInside != null && materialInside instanceof IMaterialPhysics)
             {
@@ -48,7 +48,7 @@ public class MaterialHandler
                 {
                     if (event.getType() == ElementType.HELMET)
                     {
-                        if (Game.minecraft().thePlayer.isInsideOfMaterial(materialInside))
+                        if (Game.minecraft().player.isInsideOfMaterial(materialInside))
                         {
                             renderer.renderMaterialOverlay(materialInside);
                         }
@@ -62,9 +62,9 @@ public class MaterialHandler
     @SubscribeEvent
     public void clientUpdate(ClientTickEvent event)
     {
-        if (Game.minecraft().theWorld != null && !Game.minecraft().isGamePaused())
+        if (Game.minecraft().world != null && !Game.minecraft().isGamePaused())
         {
-            this.update(Game.minecraft().theWorld);
+            this.update(Game.minecraft().world);
         }
     }
 
@@ -72,13 +72,13 @@ public class MaterialHandler
     @SubscribeEvent
     public void fogRenderEvent(RenderFogEvent event)
     {
-        if (Game.minecraft().theWorld != null && !Game.minecraft().isGamePaused())
+        if (Game.minecraft().world != null && !Game.minecraft().isGamePaused())
         {
-            Material material = getMaterialInside(Game.minecraft().thePlayer);
+            Material material = getMaterialInside(Game.minecraft().player);
 
             if (material instanceof IMaterialPhysics)
             {
-                if (Game.minecraft().thePlayer.isInsideOfMaterial(material))
+                if (Game.minecraft().player.isInsideOfMaterial(material))
                 {
                     IMaterialPhysics physics = (IMaterialPhysics) material;
                     IMaterialRenderer renderer = (IMaterialRenderer) physics.getMaterialRenderer();
@@ -96,13 +96,13 @@ public class MaterialHandler
     @SubscribeEvent
     public void fogColorUpdate(FogColors event)
     {
-        if (Game.minecraft().theWorld != null && !Game.minecraft().isGamePaused())
+        if (Game.minecraft().world != null && !Game.minecraft().isGamePaused())
         {
-            Material material = getMaterialInside(Game.minecraft().thePlayer);
+            Material material = getMaterialInside(Game.minecraft().player);
 
             if (material instanceof IMaterialPhysics)
             {
-                if (Game.minecraft().thePlayer.isInsideOfMaterial(material))
+                if (Game.minecraft().player.isInsideOfMaterial(material))
                 {
                     IMaterialPhysics physics = (IMaterialPhysics) material;
                     IMaterialRenderer renderer = (IMaterialRenderer) physics.getMaterialRenderer();
@@ -170,14 +170,14 @@ public class MaterialHandler
     public static Material getMaterialInside(Entity entity)
     {
         AxisAlignedBB box = entity.getEntityBoundingBox();
-        int minX = MathHelper.floor_double(box.minX);
-        int maxX = MathHelper.floor_double(box.maxX + 1.0D);
-        int minY = MathHelper.floor_double(box.minY);
-        int maxY = MathHelper.floor_double(box.maxY + 1.0D);
-        int minZ = MathHelper.floor_double(box.minZ);
-        int maxZ = MathHelper.floor_double(box.maxZ + 1.0D);
+        int minX = MathHelper.floor(box.minX);
+        int maxX = MathHelper.floor(box.maxX + 1.0D);
+        int minY = MathHelper.floor(box.minY);
+        int maxY = MathHelper.floor(box.maxY + 1.0D);
+        int minZ = MathHelper.floor(box.minZ);
+        int maxZ = MathHelper.floor(box.maxZ + 1.0D);
 
-        if (!entity.worldObj.isBlockLoaded(entity.getPosition()))
+        if (!entity.world.isBlockLoaded(entity.getPosition()))
         {
             return null;
         }
@@ -189,7 +189,7 @@ public class MaterialHandler
                 {
                     for (int z = minZ; z < maxZ; ++z)
                     {
-                        IBlockState block = entity.worldObj.getBlockState(new BlockPos(x, y, z));
+                        IBlockState block = entity.world.getBlockState(new BlockPos(x, y, z));
 
                         if (block != null)
                         {
@@ -207,14 +207,14 @@ public class MaterialHandler
     {
         AxisAlignedBB box = entity.getEntityBoundingBox().expand(0.0D, -0.4D, 0.0D).contract(0.001D);
 
-        int minX = MathHelper.floor_double(box.minX);
-        int maxX = MathHelper.floor_double(box.maxX + 1.0D);
-        int minY = MathHelper.floor_double(box.minY);
-        int maxY = MathHelper.floor_double(box.maxY + 1.0D);
-        int minZ = MathHelper.floor_double(box.minZ);
-        int maxZ = MathHelper.floor_double(box.maxZ + 1.0D);
+        int minX = MathHelper.floor(box.minX);
+        int maxX = MathHelper.floor(box.maxX + 1.0D);
+        int minY = MathHelper.floor(box.minY);
+        int maxY = MathHelper.floor(box.maxY + 1.0D);
+        int minZ = MathHelper.floor(box.minZ);
+        int maxZ = MathHelper.floor(box.maxZ + 1.0D);
 
-        if (!entity.worldObj.isBlockLoaded(entity.getPosition()))
+        if (!entity.world.isBlockLoaded(entity.getPosition()))
         {
             return null;
         }
@@ -229,7 +229,7 @@ public class MaterialHandler
                     for (int z = minZ; z < maxZ; ++z)
                     {
                         BlockPos pos = new BlockPos(x, y, z);
-                        IBlockState block = entity.worldObj.getBlockState(pos);
+                        IBlockState block = entity.world.getBlockState(pos);
 
                         if (block.getMaterial() == material)
                         {
@@ -237,7 +237,7 @@ public class MaterialHandler
 
                             if ((double) maxY >= lhp)
                             {
-                                block.getBlock().modifyAcceleration(entity.worldObj, pos, entity, motion = new Vec3d(0.0D, 0.0D, 0.0D));
+                                block.getBlock().modifyAcceleration(entity.world, pos, entity, motion = new Vec3d(0.0D, 0.0D, 0.0D));
                             }
                         }
                     }

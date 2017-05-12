@@ -25,22 +25,22 @@ public class BlockTempleSpawner extends Block
     {
         if (access instanceof World)
         {
-            World worldObj = (World) access;
+            World world = (World) access;
             int range = 25;
 
-            boolean isQueenNear = worldObj.getEntitiesWithinAABB(EntityQueen.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1).expand(range * 2, 50.0D, range * 2)).size() >= 1;
+            boolean isQueenNear = world.getEntitiesWithinAABB(EntityQueen.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1).expand(range * 2, 50.0D, range * 2)).size() >= 1;
 
-            if (!worldObj.isRemote)
+            if (!world.isRemote)
             {
-                if (!(worldObj.isBlockIndirectlyGettingPowered(pos) > 0))
+                if (!(world.isBlockIndirectlyGettingPowered(pos) > 0))
                 {
-                    worldObj.scheduleBlockUpdate(pos, this, 4, 1);
+                    world.scheduleBlockUpdate(pos, this, 4, 1);
                 }
-                else if (worldObj.isBlockIndirectlyGettingPowered(pos) > 0 && isQueenNear || worldObj.isBlockIndirectlyGettingPowered(pos) > 0 && creativeOnly)
+                else if (world.isBlockIndirectlyGettingPowered(pos) > 0 && isQueenNear || world.isBlockIndirectlyGettingPowered(pos) > 0 && creativeOnly)
                 {
-                    EntityOvamorph entityEgg = new EntityOvamorph(worldObj);
+                    EntityOvamorph entityEgg = new EntityOvamorph(world);
                     entityEgg.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0F, 0.0F);
-                    worldObj.spawnEntityInWorld(entityEgg);
+                    world.spawnEntity(entityEgg);
                 }
             }
         }

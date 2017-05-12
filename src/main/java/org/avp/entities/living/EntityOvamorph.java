@@ -104,7 +104,7 @@ public class EntityOvamorph extends EntitySpeciesAlien implements IMob
     {
         super.onUpdate();
 
-        if (!this.worldObj.isRemote && this.ticksExisted >= 20 && this.sendUpdates)
+        if (!this.world.isRemote && this.ticksExisted >= 20 && this.sendUpdates)
         {
             AliensVsPredator.network().sendToAll(new PacketOvamorphContainsFacehugger(this.containsFacehugger, this.getEntityId()));
             this.sendUpdates = false;
@@ -122,10 +122,10 @@ public class EntityOvamorph extends EntitySpeciesAlien implements IMob
 
         if (this.containsFacehugger)
         {
-            if (this.worldObj.getBlockState(this.getPosition()).getMaterial() != AliensVsPredator.materials().mist || this.acceleratedHatching)
+            if (this.world.getBlockState(this.getPosition()).getMaterial() != AliensVsPredator.materials().mist || this.acceleratedHatching)
             {
                 int hatchAcceleration = this.acceleratedHatching ? 20 : 1;
-                List<EntityLivingBase> potentialHosts = Entities.getEntitiesInCoordsRange(this.worldObj, EntityLivingBase.class, new Pos(this), 8);
+                List<EntityLivingBase> potentialHosts = Entities.getEntitiesInCoordsRange(this.world, EntityLivingBase.class, new Pos(this), 8);
 
                 for (EntityLivingBase living : new ArrayList<EntityLivingBase>(potentialHosts))
                 {
@@ -170,13 +170,13 @@ public class EntityOvamorph extends EntitySpeciesAlien implements IMob
 
     protected void hatch()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            EntityFacehugger facehugger = new EntityFacehugger(this.worldObj);
-            Pos pos = new Pos(this).findSafePosAround(this.worldObj);
+            EntityFacehugger facehugger = new EntityFacehugger(this.world);
+            Pos pos = new Pos(this).findSafePosAround(this.world);
 
             facehugger.setLocationAndAngles(pos.x, pos.y, pos.z, 0F, 0F);
-            worldObj.spawnEntityInWorld(facehugger);
+            world.spawnEntity(facehugger);
             facehugger.motionY = 0.75F;
 
             this.setContainsFacehugger(false);

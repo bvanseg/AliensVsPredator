@@ -106,14 +106,14 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
 
     public void tickRepurposingAI()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            if (this.worldObj.getWorldTime() % 20 == 0)
+            if (this.world.getWorldTime() % 20 == 0)
             {
                 if (this.rand.nextInt(3) == 0)
                 {
                     @SuppressWarnings("unchecked")
-                    ArrayList<EntityOvamorph> ovamorphs = (ArrayList<EntityOvamorph>) Entities.getEntitiesInCoordsRange(this.worldObj, EntityOvamorph.class, new Pos(this), 16);
+                    ArrayList<EntityOvamorph> ovamorphs = (ArrayList<EntityOvamorph>) Entities.getEntitiesInCoordsRange(this.world, EntityOvamorph.class, new Pos(this), 16);
 
                     if (this.getHive() != null)
                     {
@@ -145,11 +145,11 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
 
     public void tickHiveBuildingAI()
     {
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.targetOvamorph == null)
             {
-                if (this.getHive() != null && this.worldObj.getWorldTime() % 10 == 0 && rand.nextInt(3) == 0)
+                if (this.getHive() != null && this.world.getWorldTime() % 10 == 0 && rand.nextInt(3) == 0)
                 {
                     if (this.getJellyLevel() >= 16)
                     {
@@ -157,7 +157,7 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
 
                         if (pos != null)
                         {
-                            IBlockState state = this.worldObj.getBlockState(pos);
+                            IBlockState state = this.world.getBlockState(pos);
                             Block block = state.getBlock();
 
                             if (block != null)
@@ -170,9 +170,9 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
                                 }
 
                                 this.getNavigator().setPath(path, 0.8D);
-                                this.worldObj.setBlockState(pos, AliensVsPredator.blocks().terrainHiveResin.getDefaultState());
+                                this.world.setBlockState(pos, AliensVsPredator.blocks().terrainHiveResin.getDefaultState());
 
-                                TileEntity tileEntity = this.worldObj.getTileEntity(pos);
+                                TileEntity tileEntity = this.world.getTileEntity(pos);
 
                                 if (tileEntity != null && tileEntity instanceof TileEntityHiveResin)
                                 {
@@ -202,14 +202,14 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
                 for (int z = (int) (posZ - range); z < posZ + range; z++)
                 {
                     BlockPos location = new BlockPos(x, y, z);
-                    IBlockState blockstate = this.worldObj.getBlockState(location);
+                    IBlockState blockstate = this.world.getBlockState(location);
                     Block block = blockstate.getBlock();
 
                     if (this.canReplaceWithResin(blockstate))
                     {
                         Vec3d start = new Vec3d(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ);
                         Vec3d end = new Vec3d(x, y, z);
-                        RayTraceResult hit = this.worldObj.rayTraceBlocks(start, end);
+                        RayTraceResult hit = this.world.rayTraceBlocks(start, end);
 
                         if (hit != null && hit.typeOfHit == RayTraceResult.Type.BLOCK || hit == null)
                         {
@@ -220,7 +220,7 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
                                 canSeeCoord = hit.hitVec.xCoord == x && hit.hitVec.yCoord == y && hit.hitVec.zCoord == z;
                             }
 
-                            if (Pos.isAnySurfaceEmpty(location, this.worldObj) && canSeeCoord)
+                            if (Pos.isAnySurfaceEmpty(location, this.world) && canSeeCoord)
                             {
                                 data.add(location);
                             }

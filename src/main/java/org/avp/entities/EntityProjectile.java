@@ -75,7 +75,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
     @Override
     public void setThrowableHeading(double posX, double posY, double posZ, float velocity, float deviation)
     {
-        float sq = MathHelper.sqrt_double(posX * posX + posY * posY + posZ * posZ);
+        float sq = MathHelper.sqrt(posX * posX + posY * posY + posZ * posZ);
         posX /= sq;
         posY /= sq;
         posZ /= sq;
@@ -88,7 +88,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         this.motionX = posX;
         this.motionY = posY;
         this.motionZ = posZ;
-        float f3 = MathHelper.sqrt_double(posX * posX + posZ * posZ);
+        float f3 = MathHelper.sqrt(posX * posX + posZ * posZ);
         this.prevRotationYaw = rotationYaw = (float) ((Math.atan2(posX, posZ) * 180D) / Math.PI);
         this.prevRotationPitch = rotationPitch = (float) ((Math.atan2(posY, f3) * 180D) / Math.PI);
         this.ticksInGround = 0;
@@ -104,7 +104,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         if (aimRotation() && prevRotationPitch == 0.0F && prevRotationYaw == 0.0F)
         {
             this.prevRotationYaw = rotationYaw = (float) ((Math.atan2(motionX, motionZ) * 180D) / Math.PI);
-            this.prevRotationPitch = rotationPitch = (float) ((Math.atan2(motionY, MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ)) * 180D) / Math.PI);
+            this.prevRotationPitch = rotationPitch = (float) ((Math.atan2(motionY, MathHelper.sqrt(motionX * motionX + motionZ * motionZ)) * 180D) / Math.PI);
             this.setLocationAndAngles(posX, posY, posZ, rotationYaw, rotationPitch);
             this.ticksInGround = 0;
         }
@@ -124,16 +124,16 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         if (aimRotation())
         {
             prevRotationYaw = rotationYaw = (float) ((Math.atan2(motionX, motionZ) * 180D) / Math.PI);
-            prevRotationPitch = rotationPitch = (float) ((Math.atan2(motionY, MathHelper.sqrt_double(motionX * motionX + motionZ * motionZ)) * 180D) / Math.PI);
+            prevRotationPitch = rotationPitch = (float) ((Math.atan2(motionY, MathHelper.sqrt(motionX * motionX + motionZ * motionZ)) * 180D) / Math.PI);
         }
 
         BlockPos pos = new BlockPos(this.xTile, this.yTile, this.zTile);    
-        IBlockState blockstate = this.worldObj.getBlockState(pos);
+        IBlockState blockstate = this.world.getBlockState(pos);
         Block block = blockstate.getBlock();
 
         if (block != null)
         {
-            AxisAlignedBB box = blockstate.getBoundingBox(this.worldObj, pos);
+            AxisAlignedBB box = blockstate.getBoundingBox(this.world, pos);
 
             if (box != null && box.isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
             {
@@ -175,7 +175,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
 
         Vec3d vecPos = new Vec3d(this.posX, this.posY, this.posZ);
         Vec3d vecPosNext = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-        RayTraceResult hit = worldObj.rayTraceBlocks(vecPos, vecPosNext, false, true, false);
+        RayTraceResult hit = world.rayTraceBlocks(vecPos, vecPosNext, false, true, false);
 
         if (hit != null)
         {
@@ -184,7 +184,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
 
         Entity target = null;
         @SuppressWarnings("unchecked")
-        List<Entity> possibleTargets = worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(motionX, motionY, motionZ).expand(1.0D, 1.0D, 1.0D));
+        List<Entity> possibleTargets = world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(motionX, motionY, motionZ).expand(1.0D, 1.0D, 1.0D));
         double distanceTo = 0.0D;
 
         for (int x = 0; x < possibleTargets.size(); x++)
@@ -233,7 +233,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         {
             for (int x = 0; x < 2; x++)
             {
-                this.worldObj.spawnParticle(EnumParticleTypes.CRIT, posX + (motionX * x) / 4D, posY + (motionY * x) / 4D, posZ + (motionZ * x) / 4D, -motionX, -motionY + 0.2D, -motionZ);
+                this.world.spawnParticle(EnumParticleTypes.CRIT, posX + (motionX * x) / 4D, posY + (motionY * x) / 4D, posZ + (motionZ * x) / 4D, -motionX, -motionY + 0.2D, -motionZ);
             }
         }
 
@@ -245,7 +245,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         {
             this.rotationYaw = (float) ((Math.atan2(this.motionX, this.motionZ) * 180D) / Math.PI);
 
-            for (this.rotationPitch = (float) ((Math.atan2(this.motionY, MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ)) * 180D) / Math.PI); this.rotationPitch - this.prevRotationPitch < -180F; this.prevRotationPitch -= 360F)
+            for (this.rotationPitch = (float) ((Math.atan2(this.motionY, MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ)) * 180D) / Math.PI); this.rotationPitch - this.prevRotationPitch < -180F; this.prevRotationPitch -= 360F)
             {
                 ;
             }
@@ -276,7 +276,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
             for (int x = 0; x < 4; x++)
             {
                 float radius = 0.25F;
-                this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * radius, this.posY - this.motionY * radius, this.posZ - this.motionZ * radius, this.motionX, this.motionY, this.motionZ);
+                this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * radius, this.posY - this.motionY * radius, this.posZ - this.motionZ * radius, this.motionX, this.motionY, this.motionZ);
             }
 
             resistance *= 0.80808080F;
@@ -309,7 +309,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
 
             if (this.knockback > 0)
             {
-                float sq = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+                float sq = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
                 if (sq > 0.0F)
                 {
@@ -333,7 +333,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
     public void onGroundHit(RayTraceResult movingObjPos)
     {
         BlockPos pos = new BlockPos(this.xTile, this.yTile, this.zTile);
-        IBlockState blockstate = worldObj.getBlockState(pos);
+        IBlockState blockstate = world.getBlockState(pos);
         this.xTile = (int) movingObjPos.hitVec.xCoord;
         this.yTile = (int) movingObjPos.hitVec.yCoord;
         this.zTile = (int) movingObjPos.hitVec.zCoord;
@@ -341,7 +341,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         this.motionX = movingObjPos.hitVec.xCoord - this.posX;
         this.motionY = movingObjPos.hitVec.yCoord - this.posY;
         this.motionZ = movingObjPos.hitVec.zCoord - this.posZ;
-        float sq = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+        float sq = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
         this.posX -= this.motionX / sq * 0.05D;
         this.posY -= this.motionY / sq * 0.05D;
         this.posZ -= this.motionZ / sq * 0.05D;
@@ -353,7 +353,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
 
         if (this.inTile != null)
         {
-            this.inTile.onEntityCollidedWithBlock(this.worldObj, pos, blockstate, this);
+            this.inTile.onEntityCollidedWithBlock(this.world, pos, blockstate, this);
         }
     }
 
@@ -435,7 +435,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         {
             if (this.canPickup(entityplayer))
             {
-                if (!this.worldObj.isRemote)
+                if (!this.world.isRemote)
                 {
                     ItemStack item = new ItemStack(this.getItemstack().getItem(), 1, this.getItemstack().getItemDamage() + 1);
 

@@ -35,7 +35,7 @@ public class EntityBubbleFX extends Particle
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         this.motionY += 0.002D;
-        this.moveEntity(this.motionX, this.motionY, this.motionZ);
+        this.move(this.motionX, this.motionY, this.motionZ);
         this.motionX *= 0.8500000238418579D;
         this.motionY *= 0.8500000238418579D;
         this.motionZ *= 0.8500000238418579D;

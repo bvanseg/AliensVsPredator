@@ -341,7 +341,7 @@ public class ModelProtomorph extends Model
 
         OpenGL.pushMatrix();
         {
-            OpenGL.rotate(Game.minecraft().theWorld.getWorldTime() % 10, 1, 0, 0);
+            OpenGL.rotate(Game.minecraft().world.getWorldTime() % 10, 1, 0, 0);
             exteriorJaw.render(DEFAULT_SCALE);
         }
         OpenGL.popMatrix();

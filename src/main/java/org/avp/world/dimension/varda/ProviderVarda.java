@@ -24,13 +24,18 @@ public class ProviderVarda extends WorldProvider
     public ProviderVarda()
     {
         this.hasNoSky = false;
-        this.isHellWorld = false;
+    }
+    
+    @Override
+    public boolean isSurfaceWorld()
+    {
+        return true;
     }
     
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderVarda(this.worldObj);
+        return new ChunkProviderVarda(this.world);
     }
 
     @Override
@@ -74,7 +79,7 @@ public class ProviderVarda extends WorldProvider
     public void updateWeather()
     {
         super.updateWeather();
-        this.stormProvider.update(this.worldObj);
+        this.stormProvider.update(this.world);
     }
     
     @Override
@@ -123,7 +128,7 @@ public class ProviderVarda extends WorldProvider
     @Override
     public float getSunBrightness(float angle)
     {
-        float celestialAngle = this.worldObj.getCelestialAngle(angle);
+        float celestialAngle = this.world.getCelestialAngle(angle);
         float brightness = 1.0F - (MathHelper.cos(celestialAngle * (float) Math.PI * 2.0F) * 2.0F + 0.2F);
 
         if (brightness < 0.0F)
@@ -137,8 +142,8 @@ public class ProviderVarda extends WorldProvider
         }
 
         brightness = 1.0F - brightness;
-        brightness = (float) (brightness * (1.0D - this.worldObj.getRainStrength(angle) * 5.0F / 16.0D));
-        brightness = (float) (brightness * (1.0D - this.worldObj.getThunderStrength(angle) * 5.0F / 16.0D));
+        brightness = (float) (brightness * (1.0D - this.world.getRainStrength(angle) * 5.0F / 16.0D));
+        brightness = (float) (brightness * (1.0D - this.world.getThunderStrength(angle) * 5.0F / 16.0D));
         return brightness * 0.45F;
     }
 

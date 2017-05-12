@@ -97,16 +97,16 @@ public class EntityChestburster extends EntitySpeciesAlien implements IMob, INas
             this.setJellyLevel(this.getJellyLevel() - this.getMaturityLevel());
         }
 
-        EntitySpeciesAlien matureState = (EntitySpeciesAlien) Entities.constructEntity(this.worldObj, this.getMatureState());
+        EntitySpeciesAlien matureState = (EntitySpeciesAlien) Entities.constructEntity(this.world, this.getMatureState());
 
         if (matureState != null)
         {
             matureState.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0F, 0.0F);
-            this.worldObj.spawnEntityInWorld(matureState);
+            this.world.spawnEntity(matureState);
 
             for (int particleCount = 0; particleCount < 8; ++particleCount)
             {
-                this.worldObj.spawnParticle(EnumParticleTypes.SNOWBALL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
+                this.world.spawnParticle(EnumParticleTypes.SNOWBALL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
             }
 
         }
@@ -124,7 +124,7 @@ public class EntityChestburster extends EntitySpeciesAlien implements IMob, INas
 
         if (brightness < 0.5F)
         {
-            return this.worldObj.getClosestPlayerToEntity(this, 32D);
+            return this.world.getClosestPlayerToEntity(this, 32D);
         }
         else
         {
@@ -222,7 +222,7 @@ public class EntityChestburster extends EntitySpeciesAlien implements IMob, INas
         }
         
         this.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
-        host.worldObj.spawnEntityInWorld(this);
+        host.world.spawnEntity(this);
         organism.removeEmbryo();
         host.getActivePotionEffects().clear();
         host.attackEntityFrom(DamageSources.causeChestbursterDamage(this, host), 100000F);

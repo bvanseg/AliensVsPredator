@@ -31,7 +31,7 @@ public class TileEntityPowercell extends TileEntityElectrical implements IVoltag
 
         for (EnumFacing direction : EnumFacing.VALUES)
         {
-            TileEntity tile = this.worldObj.getTileEntity(this.getPos().offset(direction));
+            TileEntity tile = this.world.getTileEntity(this.getPos().offset(direction));
 
             if (tile != null && tile instanceof TileEntityElectrical)
             {

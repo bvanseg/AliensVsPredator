@@ -7,9 +7,9 @@ import org.avp.packets.client.OrganismClientSync;
 import org.avp.packets.server.OrganismServerSync;
 import org.avp.world.Embryo;
 
+import com.arisux.mdxlib.lib.game.Game;
 import com.arisux.mdxlib.lib.world.entity.Entities;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -19,9 +19,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import net.minecraftforge.common.capabilities.Capability.IStorage;
 
 public interface IOrganism
 {
@@ -75,7 +75,7 @@ public interface IOrganism
     {
         living.setHealth(living.getMaxHealth());
 
-        if (!living.worldObj.isRemote)
+        if (!living.world.isRemote)
         {
             living.curePotionEffects(new ItemStack(Items.MILK_BUCKET, 1));
             living.getActivePotionEffects().clear();
@@ -91,7 +91,7 @@ public interface IOrganism
             Entities.getEntityRiddenBy(living).setDead();
         }
 
-        if (living instanceof EntityPlayer && living.worldObj.isRemote)
+        if (living instanceof EntityPlayer && living.world.isRemote)
         {
             EntityPlayer player = (EntityPlayer) living;
             player.getFoodStats().setFoodLevel(20);
@@ -161,14 +161,14 @@ public interface IOrganism
         {
             if (in != null)
             {
-                this.getEmbryo().createNasenticOrganism(in.worldObj);
+                this.getEmbryo().createNasenticOrganism(in.world);
                 this.getEmbryo().grow(in, this);
             }
         }
 
         public void onTick(EntityLivingBase living, IOrganism organism)
         {
-            World world = living.worldObj;
+            World world = living.world;
 
             if (!world.isRemote && world.getWorldTime() % 60 == 0)
             {
@@ -211,7 +211,7 @@ public interface IOrganism
 
             if (world.isRemote)
             {
-                if (living == Minecraft.getMinecraft().thePlayer)
+                if (living == Game.minecraft().player)
                 {
                     TacticalHUDRenderEvent.instance.getElectrocardiogram().setRate(organism.getHeartRate());
                 }

@@ -51,7 +51,7 @@ public class PacketRemoveTurretTarget implements IMessage, IMessageHandler<Packe
     public PacketRemoveTurretTarget onMessage(PacketRemoveTurretTarget packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        TileEntityTurret tile = (TileEntityTurret) ctx.getServerHandler().playerEntity.worldObj.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+        TileEntityTurret tile = (TileEntityTurret) ctx.getServerHandler().playerEntity.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
         if (tile != null)
         {

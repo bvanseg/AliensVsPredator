@@ -156,11 +156,11 @@ public class EntityParasitoid extends EntitySpeciesAlien implements IMob, IParas
     {
         super.onUpdate();
 
-        if (this.worldObj.getWorldTime() % 20 == 0)
+        if (this.world.getWorldTime() % 20 == 0)
         {
             if (isFertile())
             {
-                ArrayList<EntityLivingBase> targetHosts = (ArrayList<EntityLivingBase>) worldObj.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1.0D, 16.0D, 1.0D), parasiteSelector);
+                ArrayList<EntityLivingBase> targetHosts = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1.0D, 16.0D, 1.0D), parasiteSelector);
 
                 if (targetHosts != null && targetHosts.size() > 0)
                 {
@@ -205,7 +205,7 @@ public class EntityParasitoid extends EntitySpeciesAlien implements IMob, IParas
     @Override
     public boolean canProduceJelly()
     {
-        return this.worldObj.getWorldTime() % this.getJellyProductionRate() == 0 && this.isFertile() && this.getJellyLevel() <= 256;
+        return this.world.getWorldTime() % this.getJellyProductionRate() == 0 && this.isFertile() && this.getJellyLevel() <= 256;
     }
 
     @Override
@@ -243,7 +243,7 @@ public class EntityParasitoid extends EntitySpeciesAlien implements IMob, IParas
     @Override
     protected void collideWithNearbyEntities()
     {
-        List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
+        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
 
         if (list != null && !list.isEmpty())
         {

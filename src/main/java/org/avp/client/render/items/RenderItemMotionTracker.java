@@ -82,7 +82,7 @@ public class RenderItemMotionTracker extends ItemRenderer<ModelMotionTracker>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.rotate((Game.minecraft().theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         OpenGL.disable(GL11.GL_CULL_FACE);
         this.getModel().draw();
     }

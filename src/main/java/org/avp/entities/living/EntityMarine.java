@@ -111,7 +111,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     @Override
     public float getBlockPathWeight(BlockPos pos)
     {
-        return 0.5F - this.worldObj.getLightBrightness(pos);
+        return 0.5F - this.world.getLightBrightness(pos);
     }
 
     @Override
@@ -155,7 +155,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     {
         super.onUpdate();
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             this.getDataManager().set(FIRING, !(System.currentTimeMillis() - getLastShotFired() >= 1000 * 3));
         }
@@ -174,10 +174,10 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         if (this.getAttackTarget() != null)
         {
             this.lastShotFired = System.currentTimeMillis();
-            EntityBullet entityBullet = new EntityBullet(this.worldObj, this, targetEntity, 10F, 0.0000001F);
-            this.worldObj.spawnEntityInWorld(entityBullet);
+            EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.0000001F);
+            this.world.spawnEntity(entityBullet);
             this.playSound(getMarineType().getGunfireSound(), 0.7F, 1F);
-            this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + this.getEyeHeight(), this.posZ, 1, 1, 1);
+            this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + this.getEyeHeight(), this.posZ, 1, 1, 1);
         }
     }
     

@@ -40,9 +40,9 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
 
         if (this.stasisEntity != null && !this.isOperational())
         {
-            if (this.worldObj.getWorldTime() % 100 == 0)
+            if (this.world.getWorldTime() % 100 == 0)
             {
-                if (this.worldObj.rand.nextInt(8) == 0)
+                if (this.world.rand.nextInt(8) == 0)
                 {
                     if (this.isCracked())
                     {
@@ -57,16 +57,16 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         if (this.stasisItemstack != null)
         {
             ItemEntitySummoner item = (ItemEntitySummoner) this.stasisItemstack.getItem();
-            Entity entity = item.createNewEntity(worldObj);
+            Entity entity = item.createNewEntity(world);
 
             if (entity != null)
             {
                 if (this.isShattered())
                 {
-                    if (!this.worldObj.isRemote)
+                    if (!this.world.isRemote)
                     {
                         entity.setLocationAndAngles(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 0F, 0F);
-                        this.worldObj.spawnEntityInWorld(entity);
+                        this.world.spawnEntity(entity);
                     }
 
                     this.stasisItemstack = null;
@@ -75,11 +75,11 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
             }
             else
             {
-                this.stasisEntity = ((ItemEntitySummoner) this.stasisItemstack.getItem()).createNewEntity(this.worldObj);
+                this.stasisEntity = ((ItemEntitySummoner) this.stasisItemstack.getItem()).createNewEntity(this.world);
             }
         }
 
-        if (stasisEntity != null && worldObj.isRemote)
+        if (stasisEntity != null && world.isRemote)
         {
             stasisEntity.onUpdate();
         }
@@ -148,7 +148,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
 
         if (this.stasisEntity == null && this.stasisItemstack != null)
         {
-            this.stasisEntity = ((ItemEntitySummoner) this.stasisItemstack.getItem()).createNewEntity(this.worldObj);
+            this.stasisEntity = ((ItemEntitySummoner) this.stasisItemstack.getItem()).createNewEntity(this.world);
         }
     }
 

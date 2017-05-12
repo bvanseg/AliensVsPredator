@@ -1,14 +1,11 @@
 package org.avp.client.render.block;
 
-import org.avp.block.BlockShape;
-import org.avp.block.BlockShape.ShapeTypes;
-
 import com.arisux.mdxlib.lib.client.render.Draw;
 import com.arisux.mdxlib.lib.client.render.Matrix3;
 import com.arisux.mdxlib.lib.client.render.Vertex;
+import com.arisux.mdxlib.lib.world.block.BlockShape.Shape;
 
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 
@@ -358,29 +355,29 @@ public class RenderShape
         Draw.buffer().color(bm * r, bm * g, bm * b, 1F);
     }
 
-    public boolean hasNeighbour(int dx, int dy, int dz, ShapeTypes[] ridgeshapes)
+    public boolean hasNeighbour(int dx, int dy, int dz, Shape[] ridgeshapes)
     {
         return false;
     }
 
     public boolean ridgeAt(int dx, int dy, int dz)
     {
-        return hasNeighbour(dx, dy, dz, ShapeTypes.ridges);
+        return hasNeighbour(dx, dy, dz, Shape.ridges);
     }
 
     public boolean ridgeOrSlopeAt(int dx, int dy, int dz)
     {
-        return hasNeighbour(dx, dy, dz, ShapeTypes.ridgesOrSlopes);
+        return hasNeighbour(dx, dy, dz, Shape.ridgesOrSlopes);
     }
 
     public boolean valleyAt(int dx, int dy, int dz)
     {
-        return hasNeighbour(dx, dy, dz, ShapeTypes.invertedRidges);
+        return hasNeighbour(dx, dy, dz, Shape.invertedRidges);
     }
 
     public boolean valleyOrSlopeAt(int dx, int dy, int dz)
     {
-        return hasNeighbour(dx, dy, dz, ShapeTypes.invertedRidgesOrSlopes);
+        return hasNeighbour(dx, dy, dz, Shape.invertedRidgesOrSlopes);
     }
 
     /** ------------------------------------------------------------------------------ **/

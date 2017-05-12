@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "half=bottom": { "model": "avp:industrialglassslab" },
+        "half=top": { "model": "avp:industrialglassslab_upper" }
+    }
+}

@@ -27,17 +27,17 @@ public class ItemGrenade extends HookedItem
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World worldObj, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
     {
-        if (!worldObj.isRemote)
+        if (!world.isRemote)
         {
-            EntityGrenade grenade = new EntityGrenade(worldObj, player);
+            EntityGrenade grenade = new EntityGrenade(world, player);
             grenade.setFlaming(this.isFlaming);
-            worldObj.spawnEntityInWorld(grenade);
+            world.spawnEntity(grenade);
             Inventories.consumeItem(player, this);
         }
         
-        return super.onItemRightClick(itemstack, worldObj, player, hand);
+        return super.onItemRightClick(itemstack, world, player, hand);
     }
     
     @Override

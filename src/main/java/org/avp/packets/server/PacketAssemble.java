@@ -67,11 +67,11 @@ public class PacketAssemble implements IMessage, IMessageHandler<PacketAssemble,
 
             if (amount > 0)
             {
-                player.addChatMessage(new TextComponentString(String.format("Assembled %sx %s", amount, schematic.getItemStackAssembled().getDisplayName())));
+                player.sendMessage(new TextComponentString(String.format("Assembled %sx %s", amount, schematic.getItemStackAssembled().getDisplayName())));
             }
             else if (amount == 0)
             {
-                player.addChatMessage(new TextComponentString(String.format("Not enough materials to assemble %sx %s", packet.count, schematic.getItemStackAssembled().getDisplayName())));
+                player.sendMessage(new TextComponentString(String.format("Not enough materials to assemble %sx %s", packet.count, schematic.getItemStackAssembled().getDisplayName())));
             }
         }
 

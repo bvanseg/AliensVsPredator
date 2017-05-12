@@ -40,9 +40,9 @@ public class TeleporterLV extends Teleporter
         }
         else
         {
-            int x = MathHelper.floor_double(entity.posX);
-            int y = MathHelper.floor_double(entity.posY) - 1;
-            int z = MathHelper.floor_double(entity.posZ);
+            int x = MathHelper.floor(entity.posX);
+            int y = MathHelper.floor(entity.posY) - 1;
+            int z = MathHelper.floor(entity.posZ);
             byte b0 = 1;
             byte b1 = 0;
 
@@ -70,9 +70,9 @@ public class TeleporterLV extends Teleporter
     {
         byte b0 = 16;
         double d0 = -1.0D;
-        int i = MathHelper.floor_double(entity.posX);
-        int j = MathHelper.floor_double(entity.posY);
-        int k = MathHelper.floor_double(entity.posZ);
+        int i = MathHelper.floor(entity.posX);
+        int j = MathHelper.floor(entity.posY);
+        int k = MathHelper.floor(entity.posZ);
         int l = i;
         int i1 = j;
         int j1 = k;

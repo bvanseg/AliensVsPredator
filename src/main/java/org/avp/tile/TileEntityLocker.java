@@ -138,9 +138,9 @@ public class TileEntityLocker extends TileEntity implements IOpenable, IRotatabl
 
     public void openGui(EntityPlayer player)
     {
-        if (!player.worldObj.isRemote)
+        if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_LOCKER, player.worldObj, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_LOCKER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
         }
     }
     
@@ -161,7 +161,7 @@ public class TileEntityLocker extends TileEntity implements IOpenable, IRotatabl
     {
         this.isOpen = isOpen;
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             AliensVsPredator.network().sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
         }

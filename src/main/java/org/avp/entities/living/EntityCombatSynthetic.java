@@ -101,7 +101,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     {
         super.onUpdate();
 
-        if (this.getAttackTarget() != null && this.worldObj.getWorldTime() % 20 == 0 && this.aiRangedAttack.shouldExecute() && this.canEntityBeSeen(this.getAttackTarget()))
+        if (this.getAttackTarget() != null && this.world.getWorldTime() % 20 == 0 && this.aiRangedAttack.shouldExecute() && this.canEntityBeSeen(this.getAttackTarget()))
         {
         }
     }
@@ -109,7 +109,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     @Override
     public float getBlockPathWeight(BlockPos pos)
     {
-        return 0.5F - this.worldObj.getLightBrightness(pos);
+        return 0.5F - this.world.getLightBrightness(pos);
     }
 
     @Override
@@ -118,10 +118,10 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
         if (this.getAttackTarget() != null)
         {
             Sounds.SOUND_WEAPON_PULSERIFLE.playSound(this);
-            EntityBullet entityBullet = new EntityBullet(this.worldObj, this, targetEntity, 10F, 0.5F);
+            EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.5F);
             entityBullet.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-            this.worldObj.spawnEntityInWorld(entityBullet);
-            this.worldObj.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY + this.getEyeHeight(), this.posZ, 1, 1, 1);
+            this.world.spawnEntity(entityBullet);
+            this.world.spawnParticle(EnumParticleTypes.SMOKE_LARGE, this.posX, this.posY + this.getEyeHeight(), this.posZ, 1, 1, 1);
         }
     }
 
@@ -132,11 +132,11 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
         
         EntityItemDrops.AMMUNITION.tryDrop(this);
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
-            EntityLiquidLatexPool pool = new EntityLiquidLatexPool(this.worldObj);
+            EntityLiquidLatexPool pool = new EntityLiquidLatexPool(this.world);
             pool.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-            this.worldObj.spawnEntityInWorld(pool);
+            this.world.spawnEntity(pool);
         }
     }
 

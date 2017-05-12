@@ -19,13 +19,13 @@ import net.minecraft.util.text.TextComponentString;
 public class CommandPlayerMode extends CommandBase
 {
     @Override
-    public String getCommandName()
+    public String getName()
     {
         return "playermode";
     }
 
     @Override
-    public String getCommandUsage(ICommandSender commandSender)
+    public String getUsage(ICommandSender commandSender)
     {
         return "Change the current player mode.";
     }
@@ -39,6 +39,6 @@ public class CommandPlayerMode extends CommandBase
 
         specialPlayer.setPlayerMode(playerMode);
         AliensVsPredator.network().sendTo(new PacketPlayerModeUpdate(playerMode.id), (EntityPlayerMP) Players.getPlayerForCommandSender(sender));
-        sender.addChatMessage(new TextComponentString("You have changed to the " + playerMode.toString().toLowerCase() + " player mode."));
+        sender.sendMessage(new TextComponentString("You have changed to the " + playerMode.toString().toLowerCase() + " player mode."));
     }
 }

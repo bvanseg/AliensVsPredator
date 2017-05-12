@@ -37,7 +37,7 @@ public class ItemShuriken extends HookedItem
 
                     if (!world.isRemote)
                     {
-                        world.spawnEntityInWorld(new EntityShuriken(world, player, velocity * 1.5F));
+                        world.spawnEntity(new EntityShuriken(world, player, velocity * 1.5F));
                     }
 
                     GameSounds.fxBow.playSound(player, 0.6F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.0F));

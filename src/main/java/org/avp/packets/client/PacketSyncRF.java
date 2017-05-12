@@ -54,7 +54,7 @@ public class PacketSyncRF implements IMessage, IMessageHandler<PacketSyncRF, Pac
     public PacketSyncRF onMessage(PacketSyncRF packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        World world = Game.minecraft().thePlayer.worldObj;
+        World world = Game.minecraft().player.world;
 
         if (world != null)
         {

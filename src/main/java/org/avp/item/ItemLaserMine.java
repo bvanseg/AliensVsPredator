@@ -27,7 +27,7 @@ public class ItemLaserMine extends Item
         if (!world.isRemote && entity.canStay())
         {
             --itemstack.stackSize;
-            world.spawnEntityInWorld(entity);
+            world.spawnEntity(entity);
             return EnumActionResult.SUCCESS;
         }
         

@@ -63,7 +63,7 @@ public class ItemArmorTitanium extends ItemArmor
     {
         if (Game.minecraft().inGameHasFocus)
         {
-            ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().thePlayer);
+            ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
 
             if (helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().helmTitanium && AliensVsPredator.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
             {

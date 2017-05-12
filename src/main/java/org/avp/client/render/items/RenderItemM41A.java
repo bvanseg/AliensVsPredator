@@ -31,7 +31,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.rotate((Game.minecraft().theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         OpenGL.translate(0.3F, 1F, 0F);
         OpenGL.scale(1F, -1F, 1F);
         OpenGL.disable(GL11.GL_CULL_FACE);
@@ -79,7 +79,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
             new Texture(Remote.downloadResource(String.format(URLs.SKIN_M41A, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
             this.getModel().getModel().render();
 
-            if (mc.thePlayer.getHeldItemMainhand() != null && mc.thePlayer.getHeldItemMainhand().getItem() instanceof ItemFirearm)
+            if (mc.player.getHeldItemMainhand() != null && mc.player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
             {
                 OpenGL.disable(GL11.GL_LIGHTING);
                 OpenGL.translate(-0.3439F, 0.6F, 0.04F);
@@ -119,7 +119,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) mc.thePlayer.inventory.getCurrentItem().getItem()).getAmmoCount();
+        int ammoCount = ((ItemFirearm) mc.player.inventory.getCurrentItem().getItem()).getAmmoCount();
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 

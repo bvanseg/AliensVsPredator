@@ -44,8 +44,8 @@ public class PacketOpenGui implements IMessage, IMessageHandler<PacketOpenGui, P
     public PacketOpenGui onMessage(PacketOpenGui packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        EntityPlayer player = Game.minecraft().thePlayer;
-        FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), packet.guiIdentifier, player.worldObj, (int) player.posX, (int) player.posY, (int) player.posZ);
+        EntityPlayer player = Game.minecraft().player;
+        FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), packet.guiIdentifier, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
         return null;
     }
 }

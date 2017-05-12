@@ -47,8 +47,8 @@ public class ItemEntitySummoner extends HookedItem
         return c;
     }
 
-    public Entity createNewEntity(World worldObj)
+    public Entity createNewEntity(World world)
     {
-        return Entities.constructEntity(worldObj, c);
+        return Entities.constructEntity(world, c);
     }
 }

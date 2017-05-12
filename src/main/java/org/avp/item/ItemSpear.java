@@ -48,7 +48,7 @@ public class ItemSpear extends ItemSword
                     EntitySpear entityspear = new EntitySpear(world, player, itemstack);
                     entityspear.setThrowableHeading(entityspear.motionX, entityspear.motionY, entityspear.motionZ, 0.9F * charge, 0.1F);
                     GameSounds.fxPop.playSound(player, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
-                    world.spawnEntityInWorld(entityspear);
+                    world.spawnEntity(entityspear);
 
                     if (!player.capabilities.isCreativeMode)
                     {

@@ -74,7 +74,7 @@ public class RenderGunLocker extends TileEntitySpecialRenderer<TileEntityGunLock
                             OpenGL.pushMatrix();
                             {
                                 OpenGL.translate(8F, 0F, 0F);
-                                renderer.renderInInventory(stack, Game.minecraft().thePlayer, TransformType.GUI);
+                                renderer.renderInInventory(stack, Game.minecraft().player, TransformType.GUI);
                                 OpenGL.enableLight();
                             }
                             OpenGL.popMatrix();

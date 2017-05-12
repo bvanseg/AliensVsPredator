@@ -62,7 +62,7 @@ public class BlockGunLocker extends BlockLocker
                 if (stack != null)
                 {
                     EntityItem entityItem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
-                    world.spawnEntityInWorld(entityItem);
+                    world.spawnEntity(entityItem);
                 }
             }
         }

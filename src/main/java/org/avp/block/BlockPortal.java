@@ -98,9 +98,9 @@ public class BlockPortal extends Block
             @Override
             public void placeInPortal(Entity entityIn, float rotationYaw)
             {
-                int x = MathHelper.floor_double(entityIn.posX);
-                int y = MathHelper.floor_double(entityIn.posY) - 1;
-                int z = MathHelper.floor_double(entityIn.posZ);
+                int x = MathHelper.floor(entityIn.posX);
+                int y = MathHelper.floor(entityIn.posY) - 1;
+                int z = MathHelper.floor(entityIn.posZ);
                 entityIn.setLocationAndAngles((double) x, (double) y, (double) z, entityIn.rotationYaw, 0.0F);
                 entityIn.motionX = 0.0D;
                 entityIn.motionY = 0.0D;

@@ -18,15 +18,15 @@ public class ChestbursterOverlayEvent
     @SubscribeEvent
     public void renderTickOverlay(Pre event)
     {
-        if (Game.minecraft().thePlayer != null)
+        if (Game.minecraft().player != null)
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
             {
-                Organism organism = (Organism) Game.minecraft().thePlayer.getCapability(Provider.CAPABILITY, null);
+                Organism organism = (Organism) Game.minecraft().player.getCapability(Provider.CAPABILITY, null);
 
                 if (organism.hasEmbryo())
                 {
-                    if (organism.hasEmbryo() && Game.minecraft().thePlayer.isDead && organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod() - 80)
+                    if (organism.hasEmbryo() && Game.minecraft().player.isDead && organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod() - 80)
                     {
                         Draw.drawOverlay(AliensVsPredator.resources().BLUR_CHESTBURSTER_EMERGE, 1F, 0F, 0F, 1F);
                     }

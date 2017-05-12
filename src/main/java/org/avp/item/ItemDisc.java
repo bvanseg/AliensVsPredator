@@ -41,7 +41,7 @@ public class ItemDisc extends HookedItem
                     {
                         EntitySmartDisc entity = new EntitySmartDisc(world, living, itemstack, charge);
                         entity.setIsCritical(crit);
-                        world.spawnEntityInWorld(entity);
+                        world.spawnEntity(entity);
                     }
 
                     GameSounds.fxBow.playSound(living, 0.6F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.0F));

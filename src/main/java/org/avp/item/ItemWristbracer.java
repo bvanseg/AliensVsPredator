@@ -77,13 +77,13 @@ public class ItemWristbracer extends HookedItem
             Sounds.SOUND_WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F );
             entity.attackEntityFrom(DamageSources.causeWristbracerDamage(player), getDamageToApply());
 
-            if (!player.worldObj.isRemote && !player.capabilities.isCreativeMode)
+            if (!player.world.isRemote && !player.capabilities.isCreativeMode)
             {
                 ItemStack bladesStack = getBlades(player.getHeldItemMainhand());
                 NBTTagCompound nbt = player.getHeldItemMainhand().getTagCompound();
                 NBTTagList wristbracerContents = nbt.getTagList(TAG_WRISTBRACER_ITEMS, Constants.NBT.TAG_COMPOUND);
 
-                if (bladesStack != null && !player.worldObj.isRemote)
+                if (bladesStack != null && !player.world.isRemote)
                 {
                     for (int s = 0; s < wristbracerContents.tagCount(); s++)
                     {

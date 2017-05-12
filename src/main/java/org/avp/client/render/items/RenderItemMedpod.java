@@ -80,7 +80,7 @@ public class RenderItemMedpod extends ItemRenderer<ModelMedpod>
         {
             OpenGL.scale(1F, -1F, 1F);
             OpenGL.translate(0F, -1.5F, 0F);
-            OpenGL.rotate((Game.minecraft().theWorld.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
             OpenGL.disable(GL11.GL_CULL_FACE);
             this.getModel().draw();
         }

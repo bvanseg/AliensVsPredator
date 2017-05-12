@@ -46,7 +46,7 @@ public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPl
 
         if (player != null)
         {
-            EntityPlasma plasma = new EntityPlasma(player.worldObj, player, packet.size);
+            EntityPlasma plasma = new EntityPlasma(player.world, player, packet.size);
 
             if (plasma != null)
             {
@@ -62,7 +62,7 @@ public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPl
                 plasma.motionX = -MathHelper.sin(plasma.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(plasma.rotationPitch / 180.0F * (float) Math.PI) * speed;
                 plasma.motionZ = MathHelper.cos(plasma.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(plasma.rotationPitch / 180.0F * (float) Math.PI) * speed;
                 plasma.motionY = -MathHelper.sin((plasma.rotationPitch) / 180.0F * (float) Math.PI) * speed;
-                player.worldObj.spawnEntityInWorld(plasma);
+                player.world.spawnEntity(plasma);
                 Sounds.SOUND_WEAPON_PLASMACASTER.playSound(plasma, 0.1F, 1.0F);
             }
         }

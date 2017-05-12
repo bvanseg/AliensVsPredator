@@ -38,7 +38,7 @@ public class EntityLiquidLatexPool extends EntityLiquidPool
         this.motionX = 0;
         this.motionZ = 0;
         
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (this.ticksExisted > this.lifetime)
             {

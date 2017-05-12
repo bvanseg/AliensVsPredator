@@ -23,7 +23,7 @@ public abstract class EntityAIYOffsetBlockInteract extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        this.block = this.theEntity.worldObj.getBlockState(new BlockPos((int) this.theEntity.posX, (int) this.theEntity.posY + yOffset, (int) this.theEntity.posZ)).getBlock();
+        this.block = this.theEntity.world.getBlockState(new BlockPos((int) this.theEntity.posX, (int) this.theEntity.posY + yOffset, (int) this.theEntity.posZ)).getBlock();
         return this.block != null;
     }
 
@@ -49,7 +49,7 @@ public abstract class EntityAIYOffsetBlockInteract extends EntityAIBase
     {
         if (this.block == Blocks.AIR)
         {
-            this.block = this.theEntity.worldObj.getBlockState(new BlockPos((int) this.theEntity.posX, (int) this.theEntity.posY + yOffset, (int) this.theEntity.posZ)).getBlock();
+            this.block = this.theEntity.world.getBlockState(new BlockPos((int) this.theEntity.posX, (int) this.theEntity.posY + yOffset, (int) this.theEntity.posZ)).getBlock();
         }
     }
 }

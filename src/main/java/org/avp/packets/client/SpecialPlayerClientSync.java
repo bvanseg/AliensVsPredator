@@ -49,7 +49,7 @@ public class SpecialPlayerClientSync implements IMessage, IMessageHandler<Specia
     public SpecialPlayerClientSync onMessage(SpecialPlayerClientSync packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        Entity entity = Game.minecraft().thePlayer.worldObj.getEntityByID(packet.entityId);
+        Entity entity = Game.minecraft().player.world.getEntityByID(packet.entityId);
 
         if (entity != null)
         {

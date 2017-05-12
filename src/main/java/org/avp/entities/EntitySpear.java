@@ -60,20 +60,20 @@ public class EntitySpear extends EntityItemStackProjectile
     {
         if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
         {
-            float i = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            float i = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
             this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(this.motionY, i) * 180.0D / Math.PI);
         }
 
         BlockPos pos = new BlockPos(this.xTile, this.yTile, this.zTile);
-        IBlockState blockstate = this.worldObj.getBlockState(pos);
+        IBlockState blockstate = this.world.getBlockState(pos);
         Block block = blockstate.getBlock();
 
         if (block != Blocks.AIR)
         {
             if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
             {
-                AxisAlignedBB box = blockstate.getBoundingBox(this.worldObj, pos);
+                AxisAlignedBB box = blockstate.getBoundingBox(this.world, pos);
 
                 if (box != null && box.isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
                 {
@@ -108,7 +108,7 @@ public class EntitySpear extends EntityItemStackProjectile
             ++this.ticksInAir;
             Vec3d var17 = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3d Vec3dd1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
-            RayTraceResult result = this.worldObj.rayTraceBlocks(var17, Vec3dd1, false, true, true);
+            RayTraceResult result = this.world.rayTraceBlocks(var17, Vec3dd1, false, true, true);
             var17 = new Vec3d(this.posX, this.posY, this.posZ);
             Vec3dd1 = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
 
@@ -120,7 +120,7 @@ public class EntitySpear extends EntityItemStackProjectile
             Entity entity = null;
 
             @SuppressWarnings("unchecked")
-            List<Entity> list = this.worldObj.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
 
             double d = 0.0D;
             int f3;
@@ -160,7 +160,7 @@ public class EntitySpear extends EntityItemStackProjectile
             {
                 if (result.entityHit != null)
                 {
-                    var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    var20 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     int var23 = (int) Math.ceil(var20 * 2.0D);
 
                     DamageSource damagesource = null;
@@ -198,11 +198,11 @@ public class EntitySpear extends EntityItemStackProjectile
                     this.xTile = (int) result.hitVec.xCoord;
                     this.yTile = (int) result.hitVec.yCoord;
                     this.zTile = (int) result.hitVec.zCoord;
-                    this.inTile = this.worldObj.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock();
+                    this.inTile = this.world.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock();
                     this.motionX = ((float) (result.hitVec.xCoord - this.posX));
                     this.motionY = ((float) (result.hitVec.yCoord - this.posY));
                     this.motionZ = ((float) (result.hitVec.zCoord - this.posZ));
-                    var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
+                    var20 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     this.posX -= this.motionX / var20 * 0.05000000074505806D;
                     this.posY -= this.motionY / var20 * 0.05000000074505806D;
                     this.posZ -= this.motionZ / var20 * 0.05000000074505806D;
@@ -215,7 +215,7 @@ public class EntitySpear extends EntityItemStackProjectile
             this.posX += this.motionX;
             this.posY += this.motionY;
             this.posZ += this.motionZ;
-            var20 = MathHelper.sqrt_double(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            var20 = MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
             this.rotationYaw = (float) (Math.atan2(this.motionX, this.motionZ) * 180.0D / Math.PI);
 
             for (this.rotationPitch = (float) (Math.atan2(this.motionY, var20) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
@@ -247,7 +247,7 @@ public class EntitySpear extends EntityItemStackProjectile
                 for (int var24 = 0; var24 < 4; ++var24)
                 {
                     float r = 0.25F;
-                    this.worldObj.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * r, this.posY - this.motionY * r, this.posZ - this.motionZ * r, this.motionX, this.motionY, this.motionZ);
+                    this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * r, this.posY - this.motionY * r, this.posZ - this.motionZ * r, this.motionX, this.motionY, this.motionZ);
                 }
 
                 v = 0.8F;
@@ -264,7 +264,7 @@ public class EntitySpear extends EntityItemStackProjectile
     @Override
     public void onEntityHit(Entity entity)
     {
-        if (!worldObj.isRemote)
+        if (!world.isRemote)
         {
             DamageSource damagesource = null;
 

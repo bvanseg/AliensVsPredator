@@ -180,7 +180,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     @SideOnly(Side.CLIENT)
     public void onReceiveTargetUpdatePacket(PacketTurretTargetUpdate packet, MessageContext ctx)
     {
-        Entity entity = Game.minecraft().theWorld.getEntityByID(packet.id);
+        Entity entity = Game.minecraft().world.getEntityByID(packet.id);
         this.setTargetEntity(entity);
         this.foc = packet.foc;
         this.focrot = packet.focrot;
@@ -219,14 +219,14 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     // public Entity findTarget()
     // {
-    // Entity newTarget = Entities.getRandomEntityInCoordsRange(this.worldObj, EntityLiving.class, this.pos, range, range);
+    // Entity newTarget = Entities.getRandomEntityInCoordsRange(this.world, EntityLiving.class, this.pos, range, range);
     //
     // if (this.canTarget(newTarget) && canSee(newTarget))
     // {
     // System.out.println(newTarget);
     // this.targetEntity = newTarget;
     //
-    // if (this.worldObj.isRemote)
+    // if (this.world.isRemote)
     // {
     // AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
     // }
@@ -257,9 +257,9 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         Pos topPos = new Pos(e.posX, e.getEntityBoundingBox().maxY - (halfHeight + halfHeight), e.posZ);
         Pos botPos = new Pos(e.posX, e.getEntityBoundingBox().maxY - (halfHeight - halfHeight), e.posZ);
         Pos newPos = this.pos.add(0.5, 1, 0.5);
-        RayTraceResult middle = Entities.rayTraceBlocks(this.worldObj, middlePos, newPos, false, true, false);
-        RayTraceResult top = Entities.rayTraceBlocks(this.worldObj, topPos, newPos, false, true, false);
-        RayTraceResult bot = Entities.rayTraceBlocks(this.worldObj, botPos, newPos, false, true, false);
+        RayTraceResult middle = Entities.rayTraceBlocks(this.world, middlePos, newPos, false, true, false);
+        RayTraceResult top = Entities.rayTraceBlocks(this.world, topPos, newPos, false, true, false);
+        RayTraceResult bot = Entities.rayTraceBlocks(this.world, botPos, newPos, false, true, false);
 
         if (middle == null || top == null || bot == null)
         {
@@ -293,13 +293,13 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             }
         }
 
-        if (!this.worldObj.isRemote && this.worldObj.getWorldTime() % 10 == 0)
+        if (!this.world.isRemote && this.world.getWorldTime() % 10 == 0)
         {
             if (this.getTargetEntity() == null || this.getTargetEntity() != null && !this.canTarget(targetEntity))
             {
                 for (Class<? extends Entity> type : this.targetTypes)
                 {
-                    Entity newTarget = Entities.getRandomEntityInCoordsRange(this.worldObj, type, this.pos, range, range);
+                    Entity newTarget = Entities.getRandomEntityInCoordsRange(this.world, type, this.pos, range, range);
 
                     if (this.canTarget(newTarget) && canSee(newTarget))
                     {
@@ -317,11 +317,11 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             this.updatePosition(targetEntity.posX, targetEntity.posY, targetEntity.posZ);
             this.focrot = turnTurretToPoint(this.foc, this.focrot, 360F, 90F);
 
-            if (!this.worldObj.isRemote)
+            if (!this.world.isRemote)
             {
                 AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
 
-                if (worldObj.getWorldInfo().getWorldTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw)
+                if (world.getWorldInfo().getWorldTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw)
                 {
                     if (curAmmo-- > 0)
                     {
@@ -381,7 +381,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     public void updateAmmunitionCount()
     {
-        if (worldObj.getWorldInfo().getWorldTime() % 8L == 0L)
+        if (world.getWorldInfo().getWorldTime() % 8L == 0L)
         {
             this.roundsMax = (9 * 64);
             this.rounds = 0;
@@ -404,9 +404,9 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     @SuppressWarnings("unchecked")
     public void pickUpAmmunition()
     {
-        if (this.worldObj != null && this.inventoryAmmo != null)
+        if (this.world != null && this.inventoryAmmo != null)
         {
-            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) Entities.getEntitiesInCoordsRange(worldObj, EntityItem.class, new Pos(this), 1);
+            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) Entities.getEntitiesInCoordsRange(world, EntityItem.class, new Pos(this), 1);
 
             for (EntityItem entityItem : entityItemList)
             {
@@ -462,8 +462,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.timeout = this.timeoutMax;
         this.targetEntity.attackEntityFrom(DamageSources.bullet, 1F);
         this.targetEntity.hurtResistantTime = 0;
-        // this.worldObj.spawnParticle("largesmoke", xCoord, yCoord, zCoord, 1, 1, 1);
-        Sounds.SOUND_WEAPON_M56SG.playSound(this.worldObj, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+        // this.world.spawnParticle("largesmoke", xCoord, yCoord, zCoord, 1, 1, 1);
+        Sounds.SOUND_WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
     }
 
     public Rotation turnTurretToPoint(Pos pos, Rotation rotation, float deltaYaw, float deltaPitch)
@@ -471,7 +471,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         double x = pos.x - this.pos.x;
         double y = pos.y - this.pos.y;
         double z = pos.z - this.pos.z;
-        double sq = MathHelper.sqrt_double(x * x + z * z);
+        double sq = MathHelper.sqrt(x * x + z * z);
 
         float newYaw = (float) (Math.atan2(z, x) * 180.0D / Math.PI) - 90.0F;
         float f1 = (float) (-(Math.atan2(y, sq) * 180.0D / Math.PI));
@@ -642,7 +642,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     public ContainerTurret getNewContainer(EntityPlayer player)
     {
-        return (container = new ContainerTurret(player, this, worldObj, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
+        return (container = new ContainerTurret(player, this, world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
     }
 
     public ContainerTurret getContainer(EntityPlayer player)

@@ -39,7 +39,7 @@ public class PacketAmmoUpdate implements IMessage, IMessageHandler<PacketAmmoUpd
     public PacketAmmoUpdate onMessage(PacketAmmoUpdate packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        ((ItemFirearm) Game.minecraft().thePlayer.inventory.getCurrentItem().getItem()).setAmmoCount(packet.ammo);
+        ((ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem()).setAmmoCount(packet.ammo);
         return null;
     }
 }

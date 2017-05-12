@@ -15,7 +15,7 @@ public class RenderPlayerHotbarAPCEvent
     @SubscribeEvent
     public void onRenderGameOverlayEvent(RenderGameOverlayEvent.Pre event)
     {
-        if (Game.minecraft().thePlayer.isRiding() && Game.minecraft().thePlayer.getRidingEntity()instanceof EntityAPC)
+        if (Game.minecraft().player.isRiding() && Game.minecraft().player.getRidingEntity()instanceof EntityAPC)
         {
             if (event.getType() == ElementType.HOTBAR)
             {

@@ -110,7 +110,7 @@ public class EntityDracomorph extends EntitySpeciesAlien implements IMob, IHost
 
         this.fallDistance = 0F;
 
-        if (!this.worldObj.isRemote)
+        if (!this.world.isRemote)
         {
             if (isFlying())
             {
@@ -126,7 +126,7 @@ public class EntityDracomorph extends EntitySpeciesAlien implements IMob, IHost
                 this.getDataManager().set(FLYING, 1);
             }
 
-            if (this.flyToPosition != null && (!this.worldObj.isAirBlock(this.flyToPosition) || this.flyToPosition.getY() < 1))
+            if (this.flyToPosition != null && (!this.world.isAirBlock(this.flyToPosition) || this.flyToPosition.getY() < 1))
             {
                 this.flyToPosition = null;
             }

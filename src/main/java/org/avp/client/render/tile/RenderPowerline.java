@@ -33,7 +33,7 @@ public class RenderPowerline extends TileEntitySpecialRenderer<TileEntityPowerli
 
             if (Game.minecraft().objectMouseOver != null && Game.minecraft().objectMouseOver.getBlockPos() != null)
             {
-                TileEntity tileOver = Game.minecraft().thePlayer.worldObj.getTileEntity(Game.minecraft().objectMouseOver.getBlockPos());
+                TileEntity tileOver = Game.minecraft().player.world.getTileEntity(Game.minecraft().objectMouseOver.getBlockPos());
 
                 if (tileOver != null && tileOver == tile)
                 {
@@ -43,11 +43,11 @@ public class RenderPowerline extends TileEntitySpecialRenderer<TileEntityPowerli
 
                     OpenGL.pushMatrix();
                     {
-                        OpenGL.rotate(Game.minecraft().thePlayer.rotationYaw + 180, 0F, -1F, 0F);
+                        OpenGL.rotate(Game.minecraft().player.rotationYaw + 180, 0F, -1F, 0F);
 
                         OpenGL.pushMatrix();
                         {
-                            OpenGL.rotate(Game.minecraft().thePlayer.rotationPitch + 180, -1F, 0F, 0F);
+                            OpenGL.rotate(Game.minecraft().player.rotationPitch + 180, -1F, 0F, 0F);
                             Draw.drawString(((float) tile.getVoltage()) + "V", -20, 30, tile.getVoltage() <= 0 ? 0xFFFF0000 : 0xFF00FF00);
                             scale = 0.5F;
                             OpenGL.scale(scale, scale, scale);
