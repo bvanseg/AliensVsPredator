@@ -8,10 +8,10 @@ import org.avp.Settings;
 import org.avp.client.Sounds;
 import org.avp.client.entityfx.EntityFXElectricArc;
 
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.Worlds;
-import com.arisux.mdxlib.lib.world.entity.Entities;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.Worlds;
+import com.arisux.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

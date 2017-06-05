@@ -4,10 +4,10 @@ import org.avp.AliensVsPredator;
 import org.avp.entities.living.EntityCombatSynthetic;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdxlib.lib.client.Model;
-import com.arisux.mdxlib.lib.client.RenderLivingWrapper;
-import com.arisux.mdxlib.lib.client.SpecialModelBiped;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.SpecialModelBiped;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynthetic, SpecialModelBiped>
 {

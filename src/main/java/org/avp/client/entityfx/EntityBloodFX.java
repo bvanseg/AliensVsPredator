@@ -1,7 +1,7 @@
 package org.avp.client.entityfx;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;

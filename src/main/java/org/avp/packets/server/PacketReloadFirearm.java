@@ -31,12 +31,19 @@ public class PacketReloadFirearm implements IMessage, IMessageHandler<PacketRelo
     public PacketReloadFirearm onMessage(PacketReloadFirearm message, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
-
-        if (player != null && player.inventory != null && player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemFirearm)
+        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
         {
-            ((ItemFirearm) player.inventory.getCurrentItem().getItem()).reload(ctx.getServerHandler().playerEntity);
-        }
+            @Override
+            public void run()
+            {
+                EntityPlayer player = ctx.getServerHandler().playerEntity;
+
+                if (player != null && player.inventory != null && player.inventory.getCurrentItem() != null && player.inventory.getCurrentItem().getItem() instanceof ItemFirearm)
+                {
+                    ((ItemFirearm) player.inventory.getCurrentItem().getItem()).reload(ctx.getServerHandler().playerEntity);
+                }
+            }
+        });
 
         return null;
     }

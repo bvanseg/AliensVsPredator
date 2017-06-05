@@ -6,8 +6,8 @@ import org.avp.api.power.IVoltageReceiver;
 import org.avp.entities.EntityMedpod;
 import org.avp.packets.client.PacketOpenable;
 
-import com.arisux.mdxlib.lib.world.entity.Entities;
-import com.arisux.mdxlib.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.entity.Entities;
+import com.arisux.mdx.lib.world.tile.IRotatable;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;

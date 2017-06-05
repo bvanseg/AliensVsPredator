@@ -2,9 +2,9 @@ package org.avp.client.model.items;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdxlib.lib.client.Model;
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.entity.player.inventory.Inventories;
+import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.client.model.ModelRenderer;
 

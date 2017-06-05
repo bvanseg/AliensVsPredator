@@ -13,7 +13,7 @@ import org.avp.tile.TileEntityLocker;
 import org.avp.tile.TileEntitySupplyCrate;
 import org.avp.tile.TileEntityTurret;
 
-import com.arisux.mdxlib.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

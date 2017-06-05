@@ -4,9 +4,9 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelDracoburster;
 import org.avp.entities.living.EntityDracoburster;
 
-import com.arisux.mdxlib.lib.client.RenderLivingWrapper;
-import com.arisux.mdxlib.lib.client.TexturedModel;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 public class RenderDracoburster extends RenderLivingWrapper<EntityDracoburster, ModelDracoburster>
 {

@@ -1,6 +1,6 @@
 package org.avp.entities.living;
 
-import com.arisux.mdxlib.lib.world.Pos;
+import com.arisux.mdx.lib.world.Pos;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;

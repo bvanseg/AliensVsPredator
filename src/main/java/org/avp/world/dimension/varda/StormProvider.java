@@ -4,11 +4,11 @@ import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.Worlds;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.Worlds;
 import com.google.common.base.Predicate;
 
 import net.minecraft.client.multiplayer.WorldClient;

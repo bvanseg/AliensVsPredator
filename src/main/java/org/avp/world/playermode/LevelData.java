@@ -1,7 +1,7 @@
 package org.avp.world.playermode;
 
-import com.arisux.mdxlib.lib.client.Model;
-import com.arisux.mdxlib.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.TexturedModel;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.stats.Achievement;

@@ -17,10 +17,10 @@ import org.avp.entities.living.EntityXenomorph;
 import org.avp.tile.TileEntityCryostasisTube;
 import org.lwjgl.opengl.GL12;
 
-import com.arisux.mdxlib.lib.client.TexturedModel;
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.entity.Entity;
 

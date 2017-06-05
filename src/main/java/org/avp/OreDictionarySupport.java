@@ -1,6 +1,6 @@
 package org.avp;
 
-import com.arisux.mdxlib.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

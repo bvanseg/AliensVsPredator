@@ -6,7 +6,7 @@ import org.avp.AliensVsPredator;
 import org.avp.world.dimension.BiomeGenLV;
 import org.avp.world.dimension.WorldGenSurfaceBlock;
 
-import com.arisux.mdxlib.lib.world.Worlds;
+import com.arisux.mdx.lib.world.Worlds;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

@@ -5,9 +5,9 @@ import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityPowerline;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;

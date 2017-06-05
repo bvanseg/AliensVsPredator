@@ -9,11 +9,11 @@ import org.avp.inventory.ContainerWristbracer;
 import org.avp.item.ItemWristbracer;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdxlib.lib.client.gui.GuiCustomButton;
-import com.arisux.mdxlib.lib.client.gui.IAction;
-import com.arisux.mdxlib.lib.client.gui.IGuiElement;
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.gui.GuiCustomButton;
+import com.arisux.mdx.lib.client.gui.IAction;
+import com.arisux.mdx.lib.client.gui.IGuiElement;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;

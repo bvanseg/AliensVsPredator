@@ -2,9 +2,9 @@ package org.avp.item;
 
 import java.util.List;
 
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.Pos.BlockDataStore;
-import com.arisux.mdxlib.lib.world.item.HookedItem;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.Pos.BlockDataStore;
+import com.arisux.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

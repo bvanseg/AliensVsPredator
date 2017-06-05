@@ -2,8 +2,8 @@ package org.avp.block;
 
 import java.util.Random;
 
-import com.arisux.mdxlib.lib.world.Dimension;
-import com.arisux.mdxlib.lib.world.entity.Entities;
+import com.arisux.mdx.lib.world.Dimension;
+import com.arisux.mdx.lib.world.entity.Entities;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 

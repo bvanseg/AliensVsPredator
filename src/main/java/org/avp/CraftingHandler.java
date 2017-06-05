@@ -3,8 +3,8 @@ package org.avp;
 import org.avp.item.crafting.AssemblyManager;
 import org.avp.item.crafting.Schematic;
 
-import com.arisux.mdxlib.lib.game.IInitEvent;
-import com.arisux.mdxlib.lib.world.entity.player.inventory.Inventories;
+import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

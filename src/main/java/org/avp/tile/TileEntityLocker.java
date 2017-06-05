@@ -6,7 +6,7 @@ import org.avp.inventory.ContainerLocker;
 import org.avp.item.ItemFirearm;
 import org.avp.packets.client.PacketOpenable;
 
-import com.arisux.mdxlib.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatable;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

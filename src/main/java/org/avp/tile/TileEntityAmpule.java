@@ -1,6 +1,6 @@
 package org.avp.tile;
 
-import com.arisux.mdxlib.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatable;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;

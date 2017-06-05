@@ -2,8 +2,8 @@ package org.avp.client.model.entities.living;
 
 import org.avp.entities.living.EntityOctohugger;
 
-import com.arisux.mdxlib.lib.client.Model;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;

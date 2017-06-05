@@ -5,8 +5,8 @@ import java.util.List;
 import org.avp.AliensVsPredator;
 import org.avp.entities.living.EntityXenomorph;
 
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.Worlds;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.Worlds;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

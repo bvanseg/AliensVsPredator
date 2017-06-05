@@ -2,7 +2,7 @@ package org.avp.item;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.Draw;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

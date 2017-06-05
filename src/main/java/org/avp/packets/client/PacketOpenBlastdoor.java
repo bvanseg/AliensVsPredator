@@ -2,7 +2,7 @@ package org.avp.packets.client;
 
 import org.avp.tile.TileEntityBlastdoor;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
@@ -15,9 +15,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class PacketOpenBlastdoor implements IMessage, IMessageHandler<PacketOpenBlastdoor, PacketOpenBlastdoor>
 {
     private boolean open;
-    private int x;
-    private int y;
-    private int z;
+    private int     x;
+    private int     y;
+    private int     z;
 
     public PacketOpenBlastdoor()
     {
@@ -54,18 +54,25 @@ public class PacketOpenBlastdoor implements IMessage, IMessageHandler<PacketOpen
     public PacketOpenBlastdoor onMessage(PacketOpenBlastdoor packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        World world = Game.minecraft().player.world;
-        TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
-
-        if (world != null && tile != null && tile instanceof TileEntityBlastdoor)
+        Game.minecraft().addScheduledTask(new Runnable()
         {
-            TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
-
-            if (blastdoor != null)
+            @Override
+            public void run()
             {
-                blastdoor.setOpen(packet.open, false);
+                World world = Game.minecraft().player.world;
+                TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+                if (world != null && tile != null && tile instanceof TileEntityBlastdoor)
+                {
+                    TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
+
+                    if (blastdoor != null)
+                    {
+                        blastdoor.setOpen(packet.open, false);
+                    }
+                }
             }
-        }
+        });
 
         return null;
     }

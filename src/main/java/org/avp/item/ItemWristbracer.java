@@ -9,8 +9,8 @@ import org.avp.client.Sounds;
 import org.avp.inventory.ContainerWristbracer;
 import org.avp.packets.server.PacketSpawnNuke;
 
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.item.HookedItem;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

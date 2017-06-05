@@ -3,6 +3,7 @@ package org.avp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.avp.BlockHandler.BlockNewShape.TileEntityReflective;
 import org.avp.entities.EntityAPC;
 import org.avp.entities.EntityAcidPool;
 import org.avp.entities.EntityAcidProjectile;
@@ -95,9 +96,9 @@ import org.avp.world.dimension.BiomeGenLV;
 import org.avp.world.dimension.acheron.BiomeAcheron;
 import org.avp.world.dimension.varda.BiomeVarda;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.game.IInitEvent;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
@@ -149,6 +150,7 @@ public class EntityHandler implements IInitEvent
         GameRegistry.registerTileEntity(TileEntitySolarPanel.class, "tile.avp.solarpanel");
         GameRegistry.registerTileEntity(TileEntitySkull.class, "tile.avp.skull");
         GameRegistry.registerTileEntity(TileEntityRedstoneFluxGenerator.class, "tile.avp.redstonefluxgenerator");
+        GameRegistry.registerTileEntity(TileEntityReflective.class, "tile.avp.reflective");
     }
 
     private void registerRemappedEntities()

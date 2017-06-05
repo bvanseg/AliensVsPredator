@@ -2,9 +2,9 @@ package org.avp.client.render.entities;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.entity.Render;

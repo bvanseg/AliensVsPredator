@@ -2,7 +2,7 @@ package org.avp.client.render;
 
 import org.avp.entities.EntityAPC;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;

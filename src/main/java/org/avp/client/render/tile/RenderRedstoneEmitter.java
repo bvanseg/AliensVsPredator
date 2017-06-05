@@ -3,8 +3,8 @@ package org.avp.client.render.tile;
 import org.avp.tile.TileEntityRedstoneEmitter;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 

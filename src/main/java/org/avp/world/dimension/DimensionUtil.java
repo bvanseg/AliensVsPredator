@@ -2,7 +2,7 @@ package org.avp.world.dimension;
 
 import java.util.Random;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.Draw;
 
 public class DimensionUtil
 {

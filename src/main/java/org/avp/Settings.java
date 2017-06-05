@@ -3,13 +3,13 @@ package org.avp;
 import java.io.File;
 import java.util.ArrayList;
 
-import com.arisux.mdxlib.config.ConfigSetting;
-import com.arisux.mdxlib.config.ConfigSettingBoolean;
-import com.arisux.mdxlib.config.ConfigSettingGraphics;
-import com.arisux.mdxlib.config.ConfigSettingInteger;
-import com.arisux.mdxlib.config.GraphicsSetting;
-import com.arisux.mdxlib.config.IFlexibleConfiguration;
-import com.arisux.mdxlib.lib.game.IPreInitEvent;
+import com.arisux.mdx.config.ConfigSetting;
+import com.arisux.mdx.config.ConfigSettingBoolean;
+import com.arisux.mdx.config.ConfigSettingGraphics;
+import com.arisux.mdx.config.ConfigSettingInteger;
+import com.arisux.mdx.config.GraphicsSetting;
+import com.arisux.mdx.config.IFlexibleConfiguration;
+import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;

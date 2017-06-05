@@ -5,9 +5,9 @@ import org.avp.Settings.ClientSettings;
 import org.avp.client.model.tile.ModelHiveResin;
 import org.avp.tile.TileEntityHiveResin;
 
-import com.arisux.mdxlib.config.GraphicsSetting;
-import com.arisux.mdxlib.lib.client.Model;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.config.GraphicsSetting;
+import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;

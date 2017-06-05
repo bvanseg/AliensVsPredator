@@ -11,9 +11,9 @@ import org.avp.AliensVsPredator;
 import org.avp.entities.living.EntitySpeciesAlien;
 import org.avp.entities.living.EntityXenomorph;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
-import com.arisux.mdxlib.lib.client.render.Screen;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.Screen;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;

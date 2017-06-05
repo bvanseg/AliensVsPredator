@@ -3,7 +3,7 @@ package org.avp.entities;
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 
-import com.arisux.mdxlib.lib.game.GameSounds;
+import com.arisux.mdx.lib.game.GameSounds;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

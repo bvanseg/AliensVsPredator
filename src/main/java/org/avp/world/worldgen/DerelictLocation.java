@@ -2,8 +2,8 @@ package org.avp.world.worldgen;
 
 import java.util.Random;
 
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.StructureGenerationHandler;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.StructureGenerationHandler;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;

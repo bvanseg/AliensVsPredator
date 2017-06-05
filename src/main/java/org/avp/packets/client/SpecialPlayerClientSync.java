@@ -1,10 +1,8 @@
 package org.avp.packets.client;
 
-
-
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
@@ -17,7 +15,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class SpecialPlayerClientSync implements IMessage, IMessageHandler<SpecialPlayerClientSync, SpecialPlayerClientSync>
 {
     public NBTTagCompound tag;
-    private int entityId;
+    private int           entityId;
 
     public SpecialPlayerClientSync()
     {
@@ -49,17 +47,24 @@ public class SpecialPlayerClientSync implements IMessage, IMessageHandler<Specia
     public SpecialPlayerClientSync onMessage(SpecialPlayerClientSync packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        Entity entity = Game.minecraft().player.world.getEntityByID(packet.entityId);
-
-        if (entity != null)
+        Game.minecraft().addScheduledTask(new Runnable()
         {
-            SpecialPlayer specialPlayer = (SpecialPlayer) entity.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
-
-            if (specialPlayer != null)
+            @Override
+            public void run()
             {
-                specialPlayer.readNBT(SpecialPlayer.Provider.CAPABILITY, specialPlayer, null, packet.tag);
+                Entity entity = Game.minecraft().player.world.getEntityByID(packet.entityId);
+
+                if (entity != null)
+                {
+                    SpecialPlayer specialPlayer = (SpecialPlayer) entity.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+
+                    if (specialPlayer != null)
+                    {
+                        specialPlayer.readNBT(SpecialPlayer.Provider.CAPABILITY, specialPlayer, null, packet.tag);
+                    }
+                }
             }
-        }
+        });
 
         return null;
     }

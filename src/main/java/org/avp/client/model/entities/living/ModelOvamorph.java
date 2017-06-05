@@ -2,7 +2,7 @@ package org.avp.client.model.entities.living;
 
 import org.avp.entities.living.EntityOvamorph;
 
-import com.arisux.mdxlib.lib.client.Model;
+import com.arisux.mdx.lib.client.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;

@@ -2,7 +2,7 @@ package org.avp.packets.client;
 
 import org.avp.tile.TileEntityRedstoneFluxGenerator;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
@@ -54,18 +54,25 @@ public class PacketSyncRF implements IMessage, IMessageHandler<PacketSyncRF, Pac
     public PacketSyncRF onMessage(PacketSyncRF packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        World world = Game.minecraft().player.world;
-
-        if (world != null)
+        Game.minecraft().addScheduledTask(new Runnable()
         {
-            TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
-
-            if (tile != null && tile instanceof TileEntityRedstoneFluxGenerator)
+            @Override
+            public void run()
             {
-                TileEntityRedstoneFluxGenerator receiver = (TileEntityRedstoneFluxGenerator) tile;
-                receiver.setRfEnergy(packet.rf);
+                World world = Game.minecraft().player.world;
+
+                if (world != null)
+                {
+                    TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+                    if (tile != null && tile instanceof TileEntityRedstoneFluxGenerator)
+                    {
+                        TileEntityRedstoneFluxGenerator receiver = (TileEntityRedstoneFluxGenerator) tile;
+                        receiver.setRfEnergy(packet.rf);
+                    }
+                }
             }
-        }
+        });
 
         return null;
     }

@@ -3,8 +3,8 @@ package org.avp.block;
 import org.avp.tile.TileEntityHiveResin;
 import org.avp.world.hives.HiveHandler;
 
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.Pos.BlockDataStore;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.Pos.BlockDataStore;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 

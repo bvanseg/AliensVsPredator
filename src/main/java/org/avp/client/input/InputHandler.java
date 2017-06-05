@@ -7,7 +7,7 @@ import org.avp.client.input.handlers.InputHandlerPlasmaCannon;
 import org.avp.client.input.handlers.InputHandlerPulseRifle;
 import org.avp.client.input.handlers.InputHandlerWristbracer;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;

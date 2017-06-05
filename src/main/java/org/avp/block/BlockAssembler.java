@@ -2,7 +2,7 @@ package org.avp.block;
 
 import org.avp.tile.TileEntityAssembler;
 
-import com.arisux.mdxlib.lib.world.entity.player.inventory.Inventories;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

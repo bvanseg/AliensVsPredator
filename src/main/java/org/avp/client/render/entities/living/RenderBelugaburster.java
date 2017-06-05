@@ -4,8 +4,8 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelBelugaburster;
 import org.avp.entities.living.EntityBelugaburster;
 
-import com.arisux.mdxlib.lib.client.RenderLivingWrapper;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 public class RenderBelugaburster extends RenderLivingWrapper<EntityBelugaburster, ModelBelugaburster>
 {

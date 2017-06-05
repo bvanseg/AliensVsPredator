@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.client.input.IInputHandler;
 import org.avp.packets.server.PacketLaunchGrenade;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.item.ItemStack;
 

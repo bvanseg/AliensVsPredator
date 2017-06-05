@@ -5,7 +5,7 @@ import org.avp.client.gui.GuiWristbracer;
 import org.avp.client.input.IInputHandler;
 import org.avp.packets.server.PacketOpenContainer;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;

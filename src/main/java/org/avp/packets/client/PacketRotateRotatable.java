@@ -1,7 +1,7 @@
 package org.avp.packets.client;
 
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.tile.IRotatable;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
@@ -11,7 +11,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-
 
 public class PacketRotateRotatable implements IMessage, IMessageHandler<PacketRotateRotatable, PacketRotateRotatable>
 {
@@ -55,18 +54,25 @@ public class PacketRotateRotatable implements IMessage, IMessageHandler<PacketRo
     public PacketRotateRotatable onMessage(PacketRotateRotatable packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        World world = Game.minecraft().player.world;
-
-        if (world != null)
+        Game.minecraft().addScheduledTask(new Runnable()
         {
-            TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
-
-            if (tile != null && tile instanceof IRotatable)
+            @Override
+            public void run()
             {
-                IRotatable rotatable = (IRotatable) tile;
-                rotatable.setDirection(EnumFacing.getFront(packet.direction));
+                World world = Game.minecraft().player.world;
+
+                if (world != null)
+                {
+                    TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+                    if (tile != null && tile instanceof IRotatable)
+                    {
+                        IRotatable rotatable = (IRotatable) tile;
+                        rotatable.setDirection(EnumFacing.getFront(packet.direction));
+                    }
+                }
             }
-        }
+        });
 
         return null;
     }

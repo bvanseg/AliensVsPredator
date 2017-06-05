@@ -9,9 +9,9 @@ import org.avp.api.machines.IOpenable;
 import org.avp.api.power.IVoltageReceiver;
 import org.avp.packets.client.PacketOpenBlastdoor;
 
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.block.IMultiBlock;
-import com.arisux.mdxlib.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.block.IMultiBlock;
+import com.arisux.mdx.lib.world.tile.IRotatable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

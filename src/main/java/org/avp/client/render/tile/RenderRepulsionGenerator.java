@@ -10,7 +10,7 @@ import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityRepulsionGenerator;
 import org.lwjgl.opengl.GL12;
 
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 

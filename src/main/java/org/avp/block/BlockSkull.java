@@ -2,8 +2,8 @@ package org.avp.block;
 
 import org.avp.tile.TileEntitySkull;
 
-import com.arisux.mdxlib.lib.client.render.OpenGL;
-import com.arisux.mdxlib.lib.client.render.Texture;
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.Texture;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 

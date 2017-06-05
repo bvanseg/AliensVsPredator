@@ -7,8 +7,8 @@ import org.avp.AliensVsPredator;
 import org.avp.client.Sounds;
 import org.avp.client.entityfx.EntityFXElectricArc;
 
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.LargeExplosion;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.LargeExplosion;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

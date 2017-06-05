@@ -3,7 +3,7 @@ package org.avp.block;
 import org.avp.item.ItemEntitySummoner;
 import org.avp.tile.TileEntityCryostasisTube;
 
-import com.arisux.mdxlib.lib.world.entity.player.inventory.Inventories;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 

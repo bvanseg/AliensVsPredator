@@ -3,8 +3,8 @@ package org.avp.packets.server;
 import org.avp.AliensVsPredator;
 import org.avp.entities.EntityWristbracer;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.lib.world.entity.player.inventory.Inventories;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,16 +35,23 @@ public class PacketSpawnNuke implements IMessage, IMessageHandler<PacketSpawnNuk
     public PacketSpawnNuke onMessage(PacketSpawnNuke packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
-
-        if (player != null && AliensVsPredator.settings().areNukesEnabled())
+        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
         {
-            MDX.log().info(String.format("Player %s has just initiated a nuclear explosion at %s, %s, %s", player.getName(), player.posX, player.posY, player.posZ));
-            EntityWristbracer nuke = new EntityWristbracer(ctx.getServerHandler().playerEntity.world);
-            nuke.setLocationAndAngles(ctx.getServerHandler().playerEntity.posX, ctx.getServerHandler().playerEntity.posY, ctx.getServerHandler().playerEntity.posZ, 0F, 0F);
-            ctx.getServerHandler().playerEntity.world.spawnEntity(nuke);
-            Inventories.consumeItem(ctx.getServerHandler().playerEntity, ctx.getServerHandler().playerEntity.getHeldItemMainhand().getItem());
-        }
+            @Override
+            public void run()
+            {
+                EntityPlayer player = ctx.getServerHandler().playerEntity;
+
+                if (player != null && AliensVsPredator.settings().areNukesEnabled())
+                {
+                    MDX.log().info(String.format("Player %s has just initiated a nuclear explosion at %s, %s, %s", player.getName(), player.posX, player.posY, player.posZ));
+                    EntityWristbracer nuke = new EntityWristbracer(ctx.getServerHandler().playerEntity.world);
+                    nuke.setLocationAndAngles(ctx.getServerHandler().playerEntity.posX, ctx.getServerHandler().playerEntity.posY, ctx.getServerHandler().playerEntity.posZ, 0F, 0F);
+                    ctx.getServerHandler().playerEntity.world.spawnEntity(nuke);
+                    Inventories.consumeItem(ctx.getServerHandler().playerEntity, ctx.getServerHandler().playerEntity.getHeldItemMainhand().getItem());
+                }
+            }
+        });
 
         return null;
     }

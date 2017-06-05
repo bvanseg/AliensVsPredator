@@ -1,10 +1,9 @@
 package org.avp.packets.client;
 
-
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.PlayerMode;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -41,8 +40,15 @@ public class PacketPlayerModeUpdate implements IMessage, IMessageHandler<PacketP
     public PacketPlayerModeUpdate onMessage(PacketPlayerModeUpdate packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
-        specialPlayer.setPlayerMode(PlayerMode.get(packet.mode));
+        Game.minecraft().addScheduledTask(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+                specialPlayer.setPlayerMode(PlayerMode.get(packet.mode));
+            }
+        });
 
         return null;
     }

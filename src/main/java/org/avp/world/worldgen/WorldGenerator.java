@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdxlib.lib.world.Worlds;
+import com.arisux.mdx.lib.world.Worlds;
 
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;

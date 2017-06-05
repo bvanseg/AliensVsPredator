@@ -6,9 +6,9 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import org.avp.AliensVsPredator;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
-import com.arisux.mdxlib.lib.client.render.Screen;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.Screen;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.Vec3d;

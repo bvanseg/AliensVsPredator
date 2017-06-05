@@ -9,10 +9,10 @@ import org.avp.item.ItemM240IncineratorUnit;
 import org.avp.item.ItemNostromoFlamethrower;
 import org.avp.tile.TileEntityCryostasisTube;
 
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.block.Blocks;
-import com.arisux.mdxlib.lib.world.entity.Entities;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.block.Blocks;
+import com.arisux.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;

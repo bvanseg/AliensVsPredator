@@ -40,12 +40,12 @@ import org.avp.inventory.ContainerTurret;
 import org.avp.packets.client.PacketTurretSync;
 import org.avp.packets.server.PacketTurretTargetUpdate;
 
-import com.arisux.mdxlib.lib.client.render.Rotation;
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.util.MDXMath;
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.entity.Entities;
-import com.arisux.mdxlib.lib.world.storage.NBTStorage;
+import com.arisux.mdx.lib.client.render.Rotation;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.util.MDXMath;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.entity.Entities;
+import com.arisux.mdx.lib.world.storage.NBTStorage;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;

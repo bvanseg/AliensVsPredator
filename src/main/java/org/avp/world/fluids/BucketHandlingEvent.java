@@ -38,13 +38,16 @@ public class BucketHandlingEvent
 
     private ItemStack fillCustomBucket(World world, RayTraceResult result)
     {
-        Block block = world.getBlockState(result.getBlockPos()).getBlock();
-        Item bucket = buckets.get(block);
-
-        if (bucket != null)
+        if (result != null && result.getBlockPos() != null && world != null)
         {
-            world.setBlockToAir(result.getBlockPos());
-            return new ItemStack(bucket);
+            Block block = world.getBlockState(result.getBlockPos()).getBlock();
+            Item bucket = buckets.get(block);
+
+            if (bucket != null)
+            {
+                world.setBlockToAir(result.getBlockPos());
+                return new ItemStack(bucket);
+            }
         }
 
         return null;

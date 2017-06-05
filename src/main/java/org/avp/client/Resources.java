@@ -78,11 +78,11 @@ import org.avp.client.model.tile.ModelTransformer;
 import org.avp.client.model.tile.ModelTurret;
 import org.avp.client.model.tile.ModelWorkstation;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.lib.client.SpecialModelBiped;
-import com.arisux.mdxlib.lib.client.TexturedModel;
-import com.arisux.mdxlib.lib.client.render.Texture;
-import com.arisux.mdxlib.lib.client.render.wavefront.TriangulatedWavefrontModel;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.lib.client.SpecialModelBiped;
+import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.Texture;
+import com.arisux.mdx.lib.client.render.wavefront.TriangulatedWavefrontModel;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

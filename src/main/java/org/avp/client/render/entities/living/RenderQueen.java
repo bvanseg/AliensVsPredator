@@ -4,8 +4,8 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelQueen;
 import org.avp.entities.living.EntityQueen;
 
-import com.arisux.mdxlib.lib.client.RenderLivingWrapper;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 public class RenderQueen extends RenderLivingWrapper<EntityQueen, ModelQueen>
 {

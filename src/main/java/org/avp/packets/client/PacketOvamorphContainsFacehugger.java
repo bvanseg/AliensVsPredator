@@ -2,7 +2,7 @@ package org.avp.packets.client;
 
 import org.avp.entities.living.EntityOvamorph;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class PacketOvamorphContainsFacehugger implements IMessage, IMessageHandler<PacketOvamorphContainsFacehugger, PacketOvamorphContainsFacehugger>
 {
     private boolean containsFacehugger;
-    private int entityId;
+    private int     entityId;
 
     public PacketOvamorphContainsFacehugger()
     {
@@ -44,15 +44,22 @@ public class PacketOvamorphContainsFacehugger implements IMessage, IMessageHandl
     @Override
     public PacketOvamorphContainsFacehugger onMessage(PacketOvamorphContainsFacehugger packet, MessageContext ctx)
     {
-//        System.out.println("Sent packet " + this.getClass().getName());
-        World world = Game.minecraft().player.world;
-        Entity entity = world.getEntityByID(packet.entityId);
-
-        if (world != null && entity != null && entity instanceof EntityOvamorph)
+        // System.out.println("Sent packet " + this.getClass().getName());
+        Game.minecraft().addScheduledTask(new Runnable()
         {
-            EntityOvamorph ovamorph = (EntityOvamorph) entity;
-            ovamorph.setContainsFacehugger(packet.containsFacehugger);
-        }
+            @Override
+            public void run()
+            {
+                World world = Game.minecraft().player.world;
+                Entity entity = world.getEntityByID(packet.entityId);
+
+                if (world != null && entity != null && entity instanceof EntityOvamorph)
+                {
+                    EntityOvamorph ovamorph = (EntityOvamorph) entity;
+                    ovamorph.setContainsFacehugger(packet.containsFacehugger);
+                }
+            }
+        });
 
         return null;
     }

@@ -2,9 +2,9 @@ package org.avp.packets.server;
 
 import org.avp.tile.TileEntityTurret;
 
-import com.arisux.mdxlib.lib.client.render.Rotation;
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.Pos;
+import com.arisux.mdx.lib.client.render.Rotation;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.Pos;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;
@@ -60,12 +60,19 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
     public PacketTurretTargetUpdate onMessage(PacketTurretTargetUpdate packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
-
-        if (tile != null)
+        Game.minecraft().addScheduledTask(new Runnable()
         {
-            tile.onReceiveTargetUpdatePacket(packet, ctx);
-        }
+            @Override
+            public void run()
+            {
+                TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+                if (tile != null)
+                {
+                    tile.onReceiveTargetUpdatePacket(packet, ctx);
+                }
+            }
+        });
 
         return null;
     }

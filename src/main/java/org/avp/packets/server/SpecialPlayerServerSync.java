@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class SpecialPlayerServerSync implements IMessage, IMessageHandler<SpecialPlayerServerSync, SpecialPlayerServerSync>
 {
     public NBTTagCompound tag;
-    private int entityId;
+    private int           entityId;
 
     public SpecialPlayerServerSync()
     {
@@ -46,18 +46,25 @@ public class SpecialPlayerServerSync implements IMessage, IMessageHandler<Specia
     public SpecialPlayerServerSync onMessage(SpecialPlayerServerSync packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        Entity entity = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entityId);
-
-        if (entity != null)
+        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
         {
-            SpecialPlayer specialPlayer = (SpecialPlayer) entity.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
-
-            if (specialPlayer != null)
+            @Override
+            public void run()
             {
-                specialPlayer.readNBT(SpecialPlayer.Provider.CAPABILITY, specialPlayer, null, packet.tag);
-                AliensVsPredator.network().sendToAll(new SpecialPlayerClientSync(entity.getEntityId(), (NBTTagCompound) specialPlayer.writeNBT(SpecialPlayer.Provider.CAPABILITY, specialPlayer, null)));
+                Entity entity = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entityId);
+
+                if (entity != null)
+                {
+                    SpecialPlayer specialPlayer = (SpecialPlayer) entity.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+
+                    if (specialPlayer != null)
+                    {
+                        specialPlayer.readNBT(SpecialPlayer.Provider.CAPABILITY, specialPlayer, null, packet.tag);
+                        AliensVsPredator.network().sendToAll(new SpecialPlayerClientSync(entity.getEntityId(), (NBTTagCompound) specialPlayer.writeNBT(SpecialPlayer.Provider.CAPABILITY, specialPlayer, null)));
+                    }
+                }
             }
-        }
+        });
 
         return null;
     }

@@ -8,6 +8,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 
 public class BlockCustomSlab extends BlockSlab
 {
@@ -85,14 +88,18 @@ public class BlockCustomSlab extends BlockSlab
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {
-        // TODO Auto-generated method stub
         return false;
     }
     
     @Override
     public boolean isFullCube(IBlockState state)
     {
-        // TODO Auto-generated method stub
+        return false;
+    }
+    
+    @Override
+    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face)
+    {
         return false;
     }
 }

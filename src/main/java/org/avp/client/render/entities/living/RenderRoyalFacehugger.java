@@ -5,7 +5,7 @@ import org.avp.client.model.entities.living.ModelRoyalFacehugger;
 import org.avp.entities.living.EntityFacehugger;
 import org.avp.entities.living.EntityRoyalFacehugger;
 
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 public class RenderRoyalFacehugger extends RenderFacehugger<EntityRoyalFacehugger, ModelRoyalFacehugger>
 {

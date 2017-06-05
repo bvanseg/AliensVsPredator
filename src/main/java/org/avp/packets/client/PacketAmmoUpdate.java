@@ -2,7 +2,7 @@ package org.avp.packets.client;
 
 import org.avp.item.ItemFirearm;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -38,8 +38,15 @@ public class PacketAmmoUpdate implements IMessage, IMessageHandler<PacketAmmoUpd
     @Override
     public PacketAmmoUpdate onMessage(PacketAmmoUpdate packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
-        ((ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem()).setAmmoCount(packet.ammo);
+        Game.minecraft().addScheduledTask(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                System.out.println("Sent packet " + this.getClass().getName());
+                ((ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem()).setAmmoCount(packet.ammo);
+            }
+        });
         return null;
     }
 }

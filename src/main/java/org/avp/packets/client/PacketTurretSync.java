@@ -2,9 +2,9 @@ package org.avp.packets.client;
 
 import org.avp.tile.TileEntityTurret;
 
-import com.arisux.mdxlib.lib.client.render.Rotation;
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.storage.NBTStorage;
+import com.arisux.mdx.lib.client.render.Rotation;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.storage.NBTStorage;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagList;
@@ -57,12 +57,19 @@ public class PacketTurretSync implements IMessage, IMessageHandler<PacketTurretS
     public PacketTurretSync onMessage(PacketTurretSync packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
-
-        if (tile != null)
+        Game.minecraft().addScheduledTask(new Runnable()
         {
-            tile.onReceiveInitPacket(packet, ctx);
-        }
+            @Override
+            public void run()
+            {
+                TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+                if (tile != null)
+                {
+                    tile.onReceiveInitPacket(packet, ctx);
+                }
+            }
+        });
         return null;
     }
 }

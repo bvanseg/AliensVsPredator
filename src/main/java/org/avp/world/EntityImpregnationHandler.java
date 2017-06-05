@@ -6,7 +6,7 @@ import org.avp.entities.living.EntitySpeciesYautja;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

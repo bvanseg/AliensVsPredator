@@ -6,11 +6,11 @@ import org.avp.AliensVsPredator;
 import org.avp.world.dimension.DimensionUtil;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdxlib.lib.client.render.Color;
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.game.GameResources;
+import com.arisux.mdx.lib.client.render.Color;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.game.GameResources;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;

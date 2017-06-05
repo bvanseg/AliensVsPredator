@@ -5,15 +5,18 @@ import org.avp.client.KeybindHandler;
 import org.avp.client.Renderers;
 import org.avp.client.Resources;
 import org.avp.client.Sounds;
+import org.avp.client.render.block.ShapedModelLoader;
 import org.avp.world.CapabilityHandler;
 import org.avp.world.hives.HiveHandler;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.MDXModule;
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.game.IMod;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.MDXModule;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.client.model.ModelLoaderRegistry;
+import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -220,6 +223,8 @@ public class AliensVsPredator implements IMod
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
+            OBJLoader.INSTANCE.addDomain(AliensVsPredator.ID);
+            ModelLoaderRegistry.registerLoader(new ShapedModelLoader());
             sounds().pre(event);
 //            renderTypes().pre(event);
         }

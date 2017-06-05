@@ -4,8 +4,8 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelDrone;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;

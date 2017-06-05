@@ -12,7 +12,7 @@ import org.avp.world.dimension.varda.gen.VardaTree2Generator;
 import org.avp.world.dimension.varda.gen.VardaTree3Generator;
 import org.avp.world.dimension.varda.gen.VardaTreeGenerator;
 
-import com.arisux.mdxlib.lib.world.Worlds;
+import com.arisux.mdx.lib.world.Worlds;
 import com.google.common.base.Predicate;
 
 import net.minecraft.block.state.IBlockState;

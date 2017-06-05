@@ -4,7 +4,7 @@ import org.avp.command.CommandGenerate;
 import org.avp.command.CommandPlayerMode;
 import org.avp.command.CommandSettings;
 
-import com.arisux.mdxlib.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;

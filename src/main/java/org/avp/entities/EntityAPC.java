@@ -5,8 +5,8 @@ import java.util.List;
 import org.avp.AliensVsPredator;
 import org.avp.packets.server.PacketFireAPC;
 
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.entity.Entities;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

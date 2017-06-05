@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityPowercell;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 

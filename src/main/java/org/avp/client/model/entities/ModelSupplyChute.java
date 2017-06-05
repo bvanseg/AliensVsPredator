@@ -1,6 +1,6 @@
 package org.avp.client.model.entities;
 
-import com.arisux.mdxlib.lib.client.Model;
+import com.arisux.mdx.lib.client.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 

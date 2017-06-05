@@ -7,9 +7,9 @@ import org.avp.entities.living.EntityQueen;
 import org.avp.entities.living.EntitySpeciesAlien;
 import org.avp.tile.TileEntityHiveResin;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.Worlds;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.Worlds;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;

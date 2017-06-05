@@ -2,7 +2,7 @@ package org.avp.client.model.tile;
 
 import org.avp.tile.TileEntityElectrical;
 
-import com.arisux.mdxlib.lib.client.Model;
+import com.arisux.mdx.lib.client.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.tileentity.TileEntity;

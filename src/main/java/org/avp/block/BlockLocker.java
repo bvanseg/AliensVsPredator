@@ -2,7 +2,7 @@ package org.avp.block;
 
 import org.avp.tile.TileEntityLocker;
 
-import com.arisux.mdxlib.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatable;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 

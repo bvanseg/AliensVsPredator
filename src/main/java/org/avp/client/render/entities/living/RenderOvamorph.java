@@ -2,8 +2,8 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdxlib.lib.client.RenderLivingWrapper;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.entity.EntityLivingBase;
 

@@ -11,12 +11,12 @@ import org.avp.tile.TileEntityAssembler;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import com.arisux.mdxlib.lib.client.gui.GuiCustomButton;
-import com.arisux.mdxlib.lib.client.gui.IAction;
-import com.arisux.mdxlib.lib.client.gui.IGuiElement;
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.client.gui.GuiCustomButton;
+import com.arisux.mdx.lib.client.gui.IAction;
+import com.arisux.mdx.lib.client.gui.IGuiElement;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;

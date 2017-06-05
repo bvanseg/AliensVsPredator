@@ -3,10 +3,10 @@ package org.avp.client.render.items;
 import org.avp.block.BlockSkull;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdxlib.lib.client.Model;
-import com.arisux.mdxlib.lib.client.render.ItemRenderer;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.render.ItemRenderer;
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelRenderer;

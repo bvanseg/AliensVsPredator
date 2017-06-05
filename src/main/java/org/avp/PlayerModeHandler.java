@@ -5,11 +5,11 @@ import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.LevelData;
 import org.avp.world.playermode.PlayerMode;
 
-import com.arisux.mdxlib.lib.client.Model;
-import com.arisux.mdxlib.lib.client.TexturedModel;
-import com.arisux.mdxlib.lib.client.render.Texture;
-import com.arisux.mdxlib.lib.game.IInitEvent;
-import com.arisux.mdxlib.lib.world.entity.player.Players;
+import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.Texture;
+import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.world.entity.player.Players;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;

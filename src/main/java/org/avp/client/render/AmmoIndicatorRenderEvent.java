@@ -2,9 +2,9 @@ package org.avp.client.render;
 
 import org.avp.item.ItemFirearm;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.Screen;
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.Screen;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

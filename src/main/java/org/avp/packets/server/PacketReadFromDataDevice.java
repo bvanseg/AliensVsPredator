@@ -51,12 +51,19 @@ public class PacketReadFromDataDevice implements IMessage, IMessageHandler<Packe
     public PacketReadFromDataDevice onMessage(PacketReadFromDataDevice packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        IDataDevice device = (TileEntityTurret) ctx.getServerHandler().playerEntity.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
-
-        if (device != null)
+        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
         {
-            device.readFromOtherDevice(packet.id);
-        }
+            @Override
+            public void run()
+            {
+                IDataDevice device = (TileEntityTurret) ctx.getServerHandler().playerEntity.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+                if (device != null)
+                {
+                    device.readFromOtherDevice(packet.id);
+                }
+            }
+        });
 
         return null;
     }

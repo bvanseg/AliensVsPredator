@@ -8,8 +8,8 @@ import org.avp.block.BlockHiveResin;
 import org.avp.client.Sounds;
 import org.avp.tile.TileEntityHiveResin;
 
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.entity.Entities;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

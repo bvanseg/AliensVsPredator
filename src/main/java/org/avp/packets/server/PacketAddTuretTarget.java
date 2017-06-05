@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketAddTuretTarget implements IMessage, IMessageHandler<PacketAddTuretTarget, PacketAddTuretTarget>
 {
-    public int x, y, z;
+    public int    x, y, z;
     public String entityIdentifier;
 
     public PacketAddTuretTarget()
@@ -51,12 +51,19 @@ public class PacketAddTuretTarget implements IMessage, IMessageHandler<PacketAdd
     public PacketAddTuretTarget onMessage(PacketAddTuretTarget packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        TileEntityTurret tile = (TileEntityTurret) ctx.getServerHandler().playerEntity.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
-
-        if (tile != null)
+        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
         {
-            tile.addTargetType((Class<? extends Entity>) EntityList.NAME_TO_CLASS.get(packet.entityIdentifier));
-        }
+            @Override
+            public void run()
+            {
+                TileEntityTurret tile = (TileEntityTurret) ctx.getServerHandler().playerEntity.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+                if (tile != null)
+                {
+                    tile.addTargetType((Class<? extends Entity>) EntityList.NAME_TO_CLASS.get(packet.entityIdentifier));
+                }
+            }
+        });
 
         return null;
     }

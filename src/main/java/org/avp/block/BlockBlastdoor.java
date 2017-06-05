@@ -3,9 +3,9 @@ package org.avp.block;
 import org.avp.item.ItemMaintenanceJack;
 import org.avp.tile.TileEntityBlastdoor;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.lib.client.Notification;
-import com.arisux.mdxlib.lib.client.Notification.DynamicNotification;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.lib.client.Notification;
+import com.arisux.mdx.lib.client.Notification.DynamicNotification;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 

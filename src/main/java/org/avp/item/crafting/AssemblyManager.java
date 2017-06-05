@@ -2,8 +2,8 @@ package org.avp.item.crafting;
 
 import java.util.ArrayList;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.lib.world.entity.player.inventory.Inventories;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;

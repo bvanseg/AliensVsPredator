@@ -2,8 +2,8 @@ package org.avp.entities;
 
 import java.util.List;
 
-import com.arisux.mdxlib.lib.game.GameSounds;
-import com.arisux.mdxlib.lib.world.entity.Entities;
+import com.arisux.mdx.lib.game.GameSounds;
+import com.arisux.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

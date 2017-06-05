@@ -2,10 +2,10 @@ package org.avp.client.render.entities.living;
 
 import org.avp.entities.living.EntityXenomorph;
 
-import com.arisux.mdxlib.lib.client.Model;
-import com.arisux.mdxlib.lib.client.RenderLivingWrapper;
-import com.arisux.mdxlib.lib.client.TexturedModel;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.util.ResourceLocation;
 

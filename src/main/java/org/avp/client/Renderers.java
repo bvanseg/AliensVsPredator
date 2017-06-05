@@ -1,8 +1,8 @@
 package org.avp.client;
 
+import static com.arisux.mdx.lib.game.Renderers.*;
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 import static net.minecraftforge.fml.client.registry.RenderingRegistry.registerEntityRenderingHandler;
-import static com.arisux.mdxlib.lib.game.Renderers.*;
 
 import org.avp.AliensVsPredator;
 import org.avp.ItemHandler;
@@ -246,9 +246,9 @@ import org.avp.tile.TileEntityTransformer;
 import org.avp.tile.TileEntityTurret;
 import org.avp.tile.TileEntityWorkstation;
 
-import com.arisux.mdxlib.lib.client.TexturedModel;
-import com.arisux.mdxlib.lib.client.render.ItemRenderer;
-import com.arisux.mdxlib.lib.game.IInitEvent;
+import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.ItemRenderer;
+import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.entity.Render;
@@ -364,7 +364,7 @@ public class Renderers implements IInitEvent
     
     private void registerItemRenderer(Item item, ItemRenderer<?> renderer)
     {
-        com.arisux.mdxlib.lib.game.Renderers.registerLegacyItemRenderer(item, renderer);
+        com.arisux.mdx.lib.game.Renderers.registerLegacyItemRenderer(item, renderer);
     }
     
     private void registerItemRenderers(ItemHandler items)

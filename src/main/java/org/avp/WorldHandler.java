@@ -4,7 +4,7 @@ import org.avp.world.dimension.acheron.WorldGeneratorAcheron;
 import org.avp.world.worldgen.WorldGenerator;
 import org.avp.world.worldgen.WorldGeneratorDerelict;
 
-import com.arisux.mdxlib.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

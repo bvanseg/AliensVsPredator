@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.avp.entities.EntityGrenade;
 
-import com.arisux.mdxlib.lib.world.entity.player.inventory.Inventories;
-import com.arisux.mdxlib.lib.world.item.HookedItem;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.arisux.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

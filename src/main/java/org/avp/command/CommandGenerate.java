@@ -1,12 +1,12 @@
 package org.avp.command;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.lib.game.Chat;
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.Structure;
-import com.arisux.mdxlib.lib.world.StructureGenerationHandler;
-import com.arisux.mdxlib.lib.world.entity.player.Players;
-import com.arisux.mdxlib.lib.world.storage.Schematic;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.lib.game.Chat;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.Structure;
+import com.arisux.mdx.lib.world.StructureGenerationHandler;
+import com.arisux.mdx.lib.world.entity.player.Players;
+import com.arisux.mdx.lib.world.storage.Schematic;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;

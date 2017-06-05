@@ -3,7 +3,7 @@ package org.avp;
 import org.avp.block.materials.MaterialBlackGoo;
 import org.avp.block.materials.MaterialMist;
 
-import com.arisux.mdxlib.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item.ToolMaterial;

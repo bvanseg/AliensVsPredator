@@ -45,35 +45,42 @@ public class PacketAssemble implements IMessage, IMessageHandler<PacketAssemble,
     public PacketAssemble onMessage(PacketAssemble packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
-
-        if (player != null)
+        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
         {
-            Schematic schematic = AssemblyManager.instance.getSchematic(packet.id);
-
-            int amount = 0;
-
-            for (int i = 0; i < packet.count; i++)
+            @Override
+            public void run()
             {
-                if (AssemblyManager.handleAssembly(schematic, player))
+                EntityPlayer player = ctx.getServerHandler().playerEntity;
+
+                if (player != null)
                 {
-                    amount++;
-                }
-                else
-                {
-                    break;
-                }
-            }
+                    Schematic schematic = AssemblyManager.instance.getSchematic(packet.id);
 
-            if (amount > 0)
-            {
-                player.sendMessage(new TextComponentString(String.format("Assembled %sx %s", amount, schematic.getItemStackAssembled().getDisplayName())));
+                    int amount = 0;
+
+                    for (int i = 0; i < packet.count; i++)
+                    {
+                        if (AssemblyManager.handleAssembly(schematic, player))
+                        {
+                            amount++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                    if (amount > 0)
+                    {
+                        player.sendMessage(new TextComponentString(String.format("Assembled %sx %s", amount, schematic.getItemStackAssembled().getDisplayName())));
+                    }
+                    else if (amount == 0)
+                    {
+                        player.sendMessage(new TextComponentString(String.format("Not enough materials to assemble %sx %s", packet.count, schematic.getItemStackAssembled().getDisplayName())));
+                    }
+                }
             }
-            else if (amount == 0)
-            {
-                player.sendMessage(new TextComponentString(String.format("Not enough materials to assemble %sx %s", packet.count, schematic.getItemStackAssembled().getDisplayName())));
-            }
-        }
+        });
 
         return null;
     }

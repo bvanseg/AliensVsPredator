@@ -3,7 +3,7 @@ package org.avp.tile;
 import org.avp.api.power.IVoltageReceiver;
 import org.avp.item.ItemEntitySummoner;
 
-import com.arisux.mdxlib.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatable;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;

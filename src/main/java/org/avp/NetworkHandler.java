@@ -29,7 +29,7 @@ import org.avp.packets.server.PacketTurretTargetUpdate;
 import org.avp.packets.server.PacketWriteToDataDevice;
 import org.avp.packets.server.SpecialPlayerServerSync;
 
-import com.arisux.mdxlib.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -64,8 +64,10 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.SERVER, PacketPlasmaDischarge.class);
         this.registerMessage(Side.SERVER, PacketAddTuretTarget.class);
         this.registerMessage(Side.SERVER, PacketReadFromDataDevice.class);
-        this.registerMessage(Side.CLIENT, PacketTurretTargetUpdate.class);
         this.registerMessage(Side.SERVER, PacketWriteToDataDevice.class);
+        this.registerMessage(Side.SERVER, OrganismServerSync.class);
+        this.registerMessage(Side.SERVER, SpecialPlayerServerSync.class);
+        this.registerMessage(Side.CLIENT, PacketTurretTargetUpdate.class);
         this.registerMessage(Side.CLIENT, PacketOvamorphContainsFacehugger.class);
         this.registerMessage(Side.CLIENT, PacketAmmoUpdate.class);
         this.registerMessage(Side.CLIENT, PacketOpenBlastdoor.class);
@@ -74,8 +76,6 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.CLIENT, PacketTurretSync.class);
         this.registerMessage(Side.CLIENT, OrganismClientSync.class);
         this.registerMessage(Side.CLIENT, SpecialPlayerClientSync.class);
-        this.registerMessage(Side.SERVER, OrganismServerSync.class);
-        this.registerMessage(Side.SERVER, SpecialPlayerServerSync.class);
         this.registerMessage(Side.CLIENT, PacketRotateRotatable.class);
         this.registerMessage(Side.CLIENT, PacketSyncRF.class);
         this.registerMessage(Side.CLIENT, PacketOpenGui.class);

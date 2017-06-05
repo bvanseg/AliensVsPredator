@@ -4,9 +4,9 @@ import java.lang.reflect.Field;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.lib.client.Sound;
-import com.arisux.mdxlib.lib.game.IPreInitEvent;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.lib.client.Sound;
+import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -94,7 +94,7 @@ public class Sounds implements IPreInitEvent
                 {
                     field.setAccessible(true);
                     Sound sound = (Sound) field.get(this);
-                    GameRegistry.register(sound.event());
+                    sound.register(sound.getLocation().getResourcePath());
                 }
                 catch (Exception e1)
                 {

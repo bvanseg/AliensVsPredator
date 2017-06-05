@@ -5,8 +5,8 @@ import org.avp.client.model.entities.living.ModelSpitter;
 import org.avp.entities.living.EntitySpitter;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdxlib.lib.client.RenderLivingWrapper;
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.OpenGlHelper;
 

@@ -7,7 +7,7 @@ import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.helpers.EntityExtendedLookHelper;
 import org.avp.entities.ai.pathfinding.PathNavigateSwimmer;
 
-import com.arisux.mdxlib.lib.world.entity.Entities;
+import com.arisux.mdx.lib.world.entity.Entities;
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.Entity;

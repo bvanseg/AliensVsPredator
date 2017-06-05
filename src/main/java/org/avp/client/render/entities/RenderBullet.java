@@ -3,7 +3,7 @@ package org.avp.client.render.entities;
 import org.avp.client.model.entities.ModelBullet;
 import org.avp.entities.EntityBullet;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.util.ResourceLocation;

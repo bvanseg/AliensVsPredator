@@ -3,7 +3,7 @@ package org.avp.client.render.transforms;
 import org.avp.client.render.entities.living.RenderFacehugger;
 import org.avp.client.render.util.EntityRenderTransforms;
 
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;

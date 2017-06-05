@@ -7,11 +7,11 @@ import org.avp.AliensVsPredator;
 import org.avp.packets.server.PacketFirearmSync;
 import org.avp.packets.server.PacketReloadFirearm;
 
-import com.arisux.mdxlib.lib.client.Sound;
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.world.entity.Entities;
-import com.arisux.mdxlib.lib.world.entity.player.inventory.Inventories;
-import com.arisux.mdxlib.lib.world.item.HookedItem;
+import com.arisux.mdx.lib.client.Sound;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.entity.Entities;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.arisux.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

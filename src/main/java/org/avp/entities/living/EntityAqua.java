@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityAcidPool;
 
-import com.arisux.mdxlib.lib.world.Pos;
-import com.arisux.mdxlib.lib.world.block.Blocks;
-import com.arisux.mdxlib.lib.world.entity.Entities;
+import com.arisux.mdx.lib.world.Pos;
+import com.arisux.mdx.lib.world.block.Blocks;
+import com.arisux.mdx.lib.world.entity.Entities;
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.EntityLivingBase;

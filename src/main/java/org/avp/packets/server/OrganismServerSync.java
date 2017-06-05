@@ -1,6 +1,5 @@
 package org.avp.packets.server;
 
-
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
@@ -15,7 +14,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class OrganismServerSync implements IMessage, IMessageHandler<OrganismServerSync, OrganismServerSync>
 {
     public NBTTagCompound tag;
-    private int entityId;
+    private int           entityId;
 
     public OrganismServerSync()
     {
@@ -45,18 +44,25 @@ public class OrganismServerSync implements IMessage, IMessageHandler<OrganismSer
     @Override
     public OrganismServerSync onMessage(OrganismServerSync packet, MessageContext ctx)
     {
-//        System.out.println("Sent packet " + this.getClass().getName());
-        Entity entity = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entityId);
-
-        if (entity != null)
+        // System.out.println("Sent packet " + this.getClass().getName());
+        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
         {
-            Organism organism = (Organism) entity.getCapability(Provider.CAPABILITY, null);
-
-            if (organism != null)
+            @Override
+            public void run()
             {
-                Provider.CAPABILITY.getStorage().readNBT(Provider.CAPABILITY, organism, null, packet.tag);
+                Entity entity = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entityId);
+
+                if (entity != null)
+                {
+                    Organism organism = (Organism) entity.getCapability(Provider.CAPABILITY, null);
+
+                    if (organism != null)
+                    {
+                        Provider.CAPABILITY.getStorage().readNBT(Provider.CAPABILITY, organism, null, packet.tag);
+                    }
+                }
             }
-        }
+        });
 
         return null;
     }

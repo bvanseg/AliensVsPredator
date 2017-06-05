@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.packets.server.PacketAddTuretTarget;
 import org.avp.tile.TileEntityTurret;
 
-import com.arisux.mdxlib.lib.world.entity.Entities;
+import com.arisux.mdx.lib.world.entity.Entities;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 

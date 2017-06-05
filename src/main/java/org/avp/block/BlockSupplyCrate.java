@@ -6,7 +6,7 @@ import org.avp.entities.EntitySupplyChute;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 import org.avp.tile.TileEntitySupplyCrate;
 
-import com.arisux.mdxlib.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatable;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.avp.api.power.IVoltageProvider;
 
-import com.arisux.mdxlib.lib.world.Pos;
+import com.arisux.mdx.lib.world.Pos;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

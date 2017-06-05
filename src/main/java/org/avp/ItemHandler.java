@@ -70,15 +70,16 @@ import org.avp.item.ItemSpear;
 import org.avp.item.ItemStorageDevice;
 import org.avp.item.ItemSupplyChute;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
-import org.avp.item.ItemWristbracer;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.game.IInitEvent;
-import com.arisux.mdxlib.lib.game.IPreInitEvent;
-import com.arisux.mdxlib.lib.world.item.HookedItem;
-import com.arisux.mdxlib.lib.world.item.ItemToolMaterialAxe;
-import com.arisux.mdxlib.lib.world.item.ItemToolMaterialPickaxe;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IPreInitEvent;
+import com.arisux.mdx.lib.world.item.HookedItem;
+import com.arisux.mdx.lib.world.item.ItemToolMaterialAxe;
+import com.arisux.mdx.lib.world.item.ItemToolMaterialPickaxe;
+
+import org.avp.item.ItemWristbracer;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;

@@ -2,7 +2,7 @@ package org.avp.client.model.entities.living;
 
 import org.avp.entities.living.EntityFacehugger;
 
-import com.arisux.mdxlib.lib.client.Model;
+import com.arisux.mdx.lib.client.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;

@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.avp.DamageSources;
 
-import com.arisux.mdxlib.lib.world.Pos;
+import com.arisux.mdx.lib.world.Pos;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

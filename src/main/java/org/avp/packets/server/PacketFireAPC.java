@@ -30,13 +30,20 @@ public class PacketFireAPC implements IMessage, IMessageHandler<PacketFireAPC, P
     public PacketFireAPC onMessage(PacketFireAPC packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        if (ctx.getServerHandler().playerEntity != null && ctx.getServerHandler().playerEntity.world != null)
+        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
         {
-            EntityGrenade grenade = new EntityGrenade(ctx.getServerHandler().playerEntity.world, ctx.getServerHandler().playerEntity);
-            grenade.explodeOnImpact = true;
-            grenade.velocity = 1D;
-            ctx.getServerHandler().playerEntity.world.spawnEntity(grenade);
-        }
+            @Override
+            public void run()
+            {
+                if (ctx.getServerHandler().playerEntity != null && ctx.getServerHandler().playerEntity.world != null)
+                {
+                    EntityGrenade grenade = new EntityGrenade(ctx.getServerHandler().playerEntity.world, ctx.getServerHandler().playerEntity);
+                    grenade.explodeOnImpact = true;
+                    grenade.velocity = 1D;
+                    ctx.getServerHandler().playerEntity.world.spawnEntity(grenade);
+                }
+            }
+        });
         return null;
     }
 }

@@ -23,8 +23,8 @@ import org.avp.world.hives.HiveHandler;
 import org.avp.world.hooks.FarmlandRegistry;
 import org.avp.world.hooks.MaterialHandler;
 
-import com.arisux.mdxlib.lib.game.Game;
-import com.arisux.mdxlib.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

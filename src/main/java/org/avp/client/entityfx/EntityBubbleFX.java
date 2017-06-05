@@ -1,6 +1,6 @@
 package org.avp.client.entityfx;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.Draw;
 
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.Tessellator;

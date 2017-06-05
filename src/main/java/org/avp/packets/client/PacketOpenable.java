@@ -2,7 +2,7 @@ package org.avp.packets.client;
 
 import org.avp.api.machines.IOpenable;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
@@ -15,9 +15,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class PacketOpenable implements IMessage, IMessageHandler<PacketOpenable, PacketOpenable>
 {
     private boolean open;
-    private int x;
-    private int y;
-    private int z;
+    private int     x;
+    private int     y;
+    private int     z;
 
     public PacketOpenable()
     {
@@ -54,18 +54,25 @@ public class PacketOpenable implements IMessage, IMessageHandler<PacketOpenable,
     public PacketOpenable onMessage(PacketOpenable packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        World world = Game.minecraft().player.world;
-        TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
-
-        if (world != null && tile != null && tile instanceof IOpenable)
+        Game.minecraft().addScheduledTask(new Runnable()
         {
-            IOpenable openable = (IOpenable) tile;
-
-            if (openable != null)
+            @Override
+            public void run()
             {
-                openable.setOpen(packet.open);
+                World world = Game.minecraft().player.world;
+                TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+                if (world != null && tile != null && tile instanceof IOpenable)
+                {
+                    IOpenable openable = (IOpenable) tile;
+
+                    if (openable != null)
+                    {
+                        openable.setOpen(packet.open);
+                    }
+                }
             }
-        }
+        });
 
         return null;
     }

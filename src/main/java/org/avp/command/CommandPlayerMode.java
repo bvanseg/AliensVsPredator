@@ -6,7 +6,7 @@ import org.avp.packets.client.PacketPlayerModeUpdate;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.PlayerMode;
 
-import com.arisux.mdxlib.lib.world.entity.player.Players;
+import com.arisux.mdx.lib.world.entity.player.Players;
 
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;

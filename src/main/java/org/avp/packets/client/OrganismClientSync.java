@@ -3,7 +3,7 @@ package org.avp.packets.client;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.lib.game.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
@@ -46,21 +46,28 @@ public class OrganismClientSync implements IMessage, IMessageHandler<OrganismCli
     @Override
     public OrganismClientSync onMessage(OrganismClientSync packet, MessageContext ctx)
     {
-//        System.out.println("Sent packet " + this.getClass().getName());
-        if (Game.minecraft().player != null && Game.minecraft().player.world != null)
+        // System.out.println("Sent packet " + this.getClass().getName());
+        Game.minecraft().addScheduledTask(new Runnable()
         {
-            Entity entity = Game.minecraft().player.world.getEntityByID(packet.entityId);
-
-            if (entity != null)
+            @Override
+            public void run()
             {
-                Organism organism = (Organism) entity.getCapability(Provider.CAPABILITY, null);
-
-                if (organism != null)
+                if (Game.minecraft().player != null && Game.minecraft().player.world != null)
                 {
-                    Provider.CAPABILITY.getStorage().readNBT(Provider.CAPABILITY, organism, null, packet.tag);
+                    Entity entity = Game.minecraft().player.world.getEntityByID(packet.entityId);
+
+                    if (entity != null)
+                    {
+                        Organism organism = (Organism) entity.getCapability(Provider.CAPABILITY, null);
+
+                        if (organism != null)
+                        {
+                            Provider.CAPABILITY.getStorage().readNBT(Provider.CAPABILITY, organism, null, packet.tag);
+                        }
+                    }
                 }
             }
-        }
+        });
 
         return null;
     }

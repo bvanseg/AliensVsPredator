@@ -3,8 +3,8 @@ package org.avp.world.hooks;
 import org.avp.api.blocks.material.IMaterialPhysics;
 import org.avp.api.blocks.material.IMaterialRenderer;
 
-import com.arisux.mdxlib.MDX;
-import com.arisux.mdxlib.lib.game.Game;
+import com.arisux.mdx.MDX;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;

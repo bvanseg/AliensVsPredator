@@ -1,9 +1,9 @@
 package org.avp.client.render.block;
 
-import com.arisux.mdxlib.lib.client.render.Draw;
-import com.arisux.mdxlib.lib.client.render.Matrix3;
-import com.arisux.mdxlib.lib.client.render.Vertex;
-import com.arisux.mdxlib.lib.world.block.BlockShape.Shape;
+import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.Matrix3;
+import com.arisux.mdx.lib.client.render.Vertex;
+import com.arisux.mdx.lib.world.block.BlockShape.Shape;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;

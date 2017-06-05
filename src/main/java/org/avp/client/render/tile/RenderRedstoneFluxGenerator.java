@@ -3,7 +3,7 @@ package org.avp.client.render.tile;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityRedstoneFluxGenerator;
 
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 

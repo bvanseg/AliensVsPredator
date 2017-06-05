@@ -5,7 +5,7 @@ import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityBlastdoor;
 
-import com.arisux.mdxlib.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
