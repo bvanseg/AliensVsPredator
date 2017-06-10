@@ -180,12 +180,12 @@ public class VardaGenCaves extends MapGenBase
                         {
                             Block ceilBlock = blocks.getBlockState(somethingX, somethingY, somethingZ).getBlock();
 
-                            if (ceilBlock == AliensVsPredator.blocks().terrainUniDirt)
+                            if (ceilBlock == AliensVsPredator.blocks().unidirt)
                             {
                                 atSurface = true;
                             }
 
-                            if ((ceilBlock != AliensVsPredator.blocks().terrainUniStone) || (ceilBlock != AliensVsPredator.blocks().terrainUniDirt) || (ceilBlock != AliensVsPredator.blocks().terrainUniDirt))
+                            if ((ceilBlock != AliensVsPredator.blocks().unistone) || (ceilBlock != AliensVsPredator.blocks().unidirt) || (ceilBlock != AliensVsPredator.blocks().unidirt))
                             {
                                 if (somethingY < 10)
                                 {
@@ -195,7 +195,7 @@ public class VardaGenCaves extends MapGenBase
                                 {
                                     blocks.setBlockState(somethingX, somethingY, somethingZ, Blocks.AIR.getDefaultState());
 
-                                    if (atSurface && blocks.getBlockState(somethingX, somethingY - 1, somethingZ) == AliensVsPredator.blocks().terrainUniDirt)
+                                    if (atSurface && blocks.getBlockState(somethingX, somethingY - 1, somethingZ) == AliensVsPredator.blocks().unidirt)
                                     {
                                         blocks.setBlockState(somethingX, somethingY - 1, somethingZ, this.world.getBiome(new BlockPos(somethingX + chunkX * 16, 0, somethingZ + chunkZ * 16)).topBlock);
                                     }

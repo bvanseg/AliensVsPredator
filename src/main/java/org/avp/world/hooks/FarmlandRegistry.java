@@ -22,7 +22,7 @@ public class FarmlandRegistry
     {
         this.farmlandRegistry.add(Blocks.DIRT);
         this.farmlandRegistry.add(Blocks.GRASS);
-        this.farmlandRegistry.add(AliensVsPredator.blocks().terrainUniDirt);
+        this.farmlandRegistry.add(AliensVsPredator.blocks().unidirt);
     }
 
     @SubscribeEvent

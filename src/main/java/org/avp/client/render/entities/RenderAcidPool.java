@@ -1,60 +1,71 @@
 package org.avp.client.render.entities;
 
 import org.avp.AliensVsPredator;
+import org.avp.entities.EntityAcidPool;
 import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.Quad;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
-public class RenderAcidPool extends Render
+public class RenderAcidPool extends Render<EntityAcidPool>
 {
-    public RenderAcidPool()
+    public RenderAcidPool(RenderManager manager)
     {
-        super(Game.renderManager());
+        super(manager);
     }
 
     @Override
-    public void doRender(Entity entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
+    public void doRender(EntityAcidPool entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {
         OpenGL.pushMatrix();
         {
-            float offset = 1.4F;
+            float scale = 1F;
+            float cover = 0.5F;
             double renderX = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * renderPartialTicks;
             double renderY = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * renderPartialTicks + entity.getCollisionBorderSize();
             double renderZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * renderPartialTicks;
             double partialX = posX - renderX;
-            double partialY = posY - renderY;
+            double partialY = posY - renderY + 1;
             double partialZ = posZ - renderZ;
 
+            GlStateManager.disableLight(0);
+            GlStateManager.disableLight(1);
+//            OpenGL.enableLightMapping();
             OpenGL.enableBlend();
             OpenGL.blendClear();
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_ALPHA);
+//            OpenGL.enableLighting();
+//            OpenGL.enableLight();
+//            OpenGL.enableLightMapping();
+            this.bindTexture(AliensVsPredator.resources().LIQUID_POOL);
             AliensVsPredator.resources().LIQUID_POOL.bind();
             Draw.startQuads();
-            OpenGL.color(1F, 1F, 1F, 1F);
+            OpenGL.color(1F, 1F, 0F, 1F);
 
-            for (int blockX = MathHelper.floor(renderX - offset); blockX <= MathHelper.floor(renderX + offset); ++blockX)
+            for (int blockX = MathHelper.floor(renderX - cover); blockX <= MathHelper.floor(renderX + cover); ++blockX)
             {
-                for (int blockY = MathHelper.floor(renderY - offset); blockY <= MathHelper.floor(renderY); ++blockY)
+                for (int blockY = MathHelper.floor(renderY - cover); blockY <= MathHelper.floor(renderY); ++blockY)
                 {
-                    for (int blockZ = MathHelper.floor(renderZ - offset); blockZ <= MathHelper.floor(renderZ + offset); ++blockZ)
+                    for (int blockZ = MathHelper.floor(renderZ - cover); blockZ <= MathHelper.floor(renderZ + cover); ++blockZ)
                     {
                         BlockPos pos = new BlockPos(blockX, blockY - 1, blockZ);
                         IBlockState blockstate = Game.minecraft().player.world.getBlockState(pos);
 
-                        if (blockstate.getBlock() != Blocks.AIR)
+                        if (pos != null && blockstate != null && blockstate.getBlock() != Blocks.AIR)
                         {
-                            this.drawOnBlock(blockstate, posX, posY + entity.getCollisionBorderSize(), posZ, pos, yaw, offset, partialX, partialY + entity.getCollisionBorderSize(), partialZ, entity.ticksExisted);
+                            this.drawOnBlock(blockstate, posX, posY + entity.getCollisionBorderSize(), posZ, pos, yaw, scale, partialX, partialY + entity.getCollisionBorderSize(), partialZ, entity.ticksExisted);
                         }
                     }
                 }
@@ -63,28 +74,30 @@ public class RenderAcidPool extends Render
             Draw.tessellate();
             OpenGL.color(1F, 1F, 1F, 1F);
             OpenGL.blendClear();
+            GlStateManager.enableLight(0);
+            GlStateManager.enableLight(1);
         }
         OpenGL.popMatrix();
     }
 
-    private void drawOnBlock(IBlockState state, double posX, double posY, double posZ, BlockPos pos, float yaw, float offset, double partialX, double partialY, double partialZ, float opacity)
+    private void drawOnBlock(IBlockState state, double posX, double posY, double posZ, BlockPos pos, float yaw, float scale, double partialX, double partialY, double partialZ, float opacity)
     {
-        if (state.isNormalCube())
+        AxisAlignedBB boundingbox = state.getCollisionBoundingBox(Game.minecraft().world, pos);
+
+        if (boundingbox != null)
         {
-            AxisAlignedBB boundingbox = state.getCollisionBoundingBox(Game.minecraft().world, pos);
             double x1 = pos.getX() + boundingbox.minX + partialX;
             double x2 = pos.getX() + boundingbox.maxX + partialX;
             double y = pos.getY() + boundingbox.minY + partialY + 0.015625D;
             double z1 = pos.getZ() + boundingbox.minZ + partialZ;
             double z2 = pos.getZ() + boundingbox.maxZ + partialZ;
-            float u1 = (float) ((posX - x1) / 2.0D / offset + 0.5D);
-            float u2 = (float) ((posX - x2) / 2.0D / offset + 0.5D);
-            float v1 = (float) ((posZ - z1) / 2.0D / offset + 0.5D);
-            float v2 = (float) ((posZ - z2) / 2.0D / offset + 0.5D);
+            float u1 = (float) ((posX - x1) / 2.0D / scale + 0.5D);
+            float u2 = (float) ((posX - x2) / 2.0D / scale + 0.5D);
+            float v1 = (float) ((posZ - z1) / 2.0D / scale + 0.5D);
+            float v2 = (float) ((posZ - z2) / 2.0D / scale + 0.5D);
 
             OpenGL.pushMatrix();
             {
-                OpenGL.rotate(yaw, 0F, 1F, 0F);
                 Draw.vertex(x1, y, z1, u1, v1).endVertex();
                 Draw.vertex(x1, y, z2, u1, v2).endVertex();
                 Draw.vertex(x2, y, z2, u2, v2).endVertex();
@@ -95,7 +108,7 @@ public class RenderAcidPool extends Render
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(Entity entity)
+    protected ResourceLocation getEntityTexture(EntityAcidPool entity)
     {
         return null;
     }

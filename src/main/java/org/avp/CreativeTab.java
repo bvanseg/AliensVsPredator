@@ -25,7 +25,7 @@ public class CreativeTab
                                                   @Override
                                                   public Item getTabIconItem()
                                                   {
-                                                      return Game.getItem(AliensVsPredator.blocks().blockEngineerShipColumn1);
+                                                      return Game.getItem(AliensVsPredator.blocks().engineercolumn1);
                                                   }
 
                                                   public String getTranslatedTabLabel()

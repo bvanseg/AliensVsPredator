@@ -2,4 +2,4 @@
 # Material Count: 1
 
 newmtl texture
-map_Kd avp:blocks/industrialwall
+map_Kd avp:blocks/reflection

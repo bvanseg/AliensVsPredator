@@ -67,7 +67,7 @@ public class BlockStalagmite extends Block
 
     protected boolean canThisPlantGrowOn(IBlockState state)
     {
-        return state.getBlock() == AliensVsPredator.blocks().terrainUniDirt || state.getBlock() == AliensVsPredator.blocks().terrainUniStone || state.getMaterial() == Material.GROUND || state.getMaterial() == Material.ROCK;
+        return state.getBlock() == AliensVsPredator.blocks().unidirt || state.getBlock() == AliensVsPredator.blocks().unistone || state.getMaterial() == Material.GROUND || state.getMaterial() == Material.ROCK;
     }
 
     @Override

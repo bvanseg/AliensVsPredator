@@ -55,6 +55,6 @@ public class BiomeDecoratorAcheron extends BiomeDecorator
     @Override
     protected void generateOres(World world, Random random)
     {
-        Worlds.generateInChunk(world, new WorldGenMinable(AliensVsPredator.blocks().terrainUniDirt.getDefaultState(), 32), random, 20, 0, 128, chunkPos);
+        Worlds.generateInChunk(world, new WorldGenMinable(AliensVsPredator.blocks().unidirt.getDefaultState(), 32), random, 20, 0, 128, chunkPos);
     }
 }

@@ -1,6 +1,5 @@
 package org.avp.client;
 
-import static com.arisux.mdx.lib.game.Renderers.*;
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 import static net.minecraftforge.fml.client.registry.RenderingRegistry.registerEntityRenderingHandler;
 
@@ -249,20 +248,28 @@ import org.avp.tile.TileEntityWorkstation;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IPreInitEvent;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class Renderers implements IInitEvent
+public class Renderers implements IInitEvent, IPreInitEvent
 {
     public static Renderers instance = new Renderers();
+
+    @Override
+    public void pre(FMLPreInitializationEvent event)
+    {
+        registerStandardEntityRenderers();
+    }
 
     @Override
     public void init(FMLInitializationEvent event)
@@ -271,17 +278,16 @@ public class Renderers implements IInitEvent
         registerTileEntitySpecialRenderers();
         registerItemRenderers(AliensVsPredator.items());
         registerLivingEntityRenderers();
-        registerStandardEntityRenderers();
         CryostasisTubeRenderers.register();
         MedpodTransforms.register();
         FaceLocationTransforms.register();
         VanillaFaceLocationTransforms.register();
     }
-    
+
     private void registerBlockModels()
     {
-//        registerBlockModel(AliensVsPredator.blocks().blockCeilingGrillStairs);
-//        registerBlockModel(AliensVsPredator.blocks().blockFloorGrillStairs);
+        // registerBlockModel(AliensVsPredator.blocks().blockCeilingGrillStairs);
+        // registerBlockModel(AliensVsPredator.blocks().blockFloorGrillStairs);
     }
 
     private void registerLivingEntityRenderers()
@@ -346,7 +352,14 @@ public class Renderers implements IInitEvent
         registerEntityRenderingHandler(EntityLaserMine.class, new RenderLaserMine());
         registerEntityRenderingHandler(EntityGrenade.class, new RenderGrenade());
         registerEntityRenderingHandler(EntityFlame.class, new RenderFlame());
-        registerEntityRenderingHandler(EntityAcidPool.class, new RenderAcidPool());
+        registerEntityRenderingHandler(EntityAcidPool.class, new IRenderFactory<EntityAcidPool>()
+        {
+            @Override
+            public Render<EntityAcidPool> createRenderFor(RenderManager manager)
+            {
+                return new RenderAcidPool(manager);
+            }
+        });
         registerEntityRenderingHandler(EntityLiquidLatexPool.class, new RenderLiquidLatexPool());
         registerEntityRenderingHandler(EntityPlasma.class, new RenderPlasmaBlast());
         registerEntityRenderingHandler(EntityAcidProjectile.class, new RenderAcidSpit());
@@ -361,14 +374,14 @@ public class Renderers implements IInitEvent
         registerEntityRenderingHandler(EntitySupplyChuteMarines.class, new RenderSupplyChute());
         registerEntityRenderingHandler(EntitySupplyChuteSeegson.class, new RenderSupplyChute());
     }
-    
+
     private void registerItemRenderer(Item item, ItemRenderer<?> renderer)
     {
-        com.arisux.mdx.lib.game.Renderers.registerLegacyItemRenderer(item, renderer);
+        com.arisux.mdx.lib.game.Renderers.registerItemRenderer(item, renderer);
     }
-    
+
     private void registerItemRenderers(ItemHandler items)
-    {        
+    {
         registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().blockSkullEngineer), new RenderItemSkull());
         registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().blockSkullSpaceJockey), new RenderItemSkull());
         registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().blockSkullXenomorph), new RenderItemSkull());

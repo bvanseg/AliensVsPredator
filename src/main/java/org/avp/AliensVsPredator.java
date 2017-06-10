@@ -106,11 +106,6 @@ public class AliensVsPredator implements IMod
         return EntityHandler.instance;
     }
 
-//    public static RenderTypes renderTypes()
-//    {
-//        return RenderTypes.instance;
-//    }
-
     @SideOnly(Side.CLIENT)
     public static Renderers renderers()
     {
@@ -220,13 +215,15 @@ public class AliensVsPredator implements IMod
         fluids().pre(event);
         items().pre(event);
         capabilities().pre(event);
+        entities().pre(event);
+        blocks().pre(event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
             OBJLoader.INSTANCE.addDomain(AliensVsPredator.ID);
             ModelLoaderRegistry.registerLoader(new ShapedModelLoader());
             sounds().pre(event);
-//            renderTypes().pre(event);
+            renderers().pre(event);
         }
     }
 
@@ -244,8 +241,6 @@ public class AliensVsPredator implements IMod
         network().init(event);
         dimensions().init(event);
         materials().init(event);
-        items().init(event);
-        blocks().init(event);
         ores().init(event);
         world().init(event);
         crafting().init(event);

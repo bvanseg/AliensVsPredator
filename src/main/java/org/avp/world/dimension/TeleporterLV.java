@@ -55,7 +55,7 @@ public class TeleporterLV extends Teleporter
                         int bX = x + i1 * b0 + l * b1;
                         int bY = y + j1;
                         int bZ = z + i1 * b1 - l * b0;
-                        this.worldServer.setBlockState(new BlockPos(bX, bY, bZ), AliensVsPredator.blocks().blockEngineerShipFloor.getDefaultState());
+                        this.worldServer.setBlockState(new BlockPos(bX, bY, bZ), AliensVsPredator.blocks().engineerfloor.getDefaultState());
                     }
                 }
             }
@@ -256,7 +256,7 @@ public class TeleporterLV extends Teleporter
                         i4 = j2 + k3;
                         j4 = z + (j3 - 1) * l2 - y * l5;
                         flag = k3 < 0;
-                        this.worldServer.setBlockState(new BlockPos(l3, i4, j4), flag ? AliensVsPredator.blocks().blockEngineerShipFloor.getDefaultState() : Blocks.AIR.getDefaultState());
+                        this.worldServer.setBlockState(new BlockPos(l3, i4, j4), flag ? AliensVsPredator.blocks().engineerfloor.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
@@ -272,7 +272,7 @@ public class TeleporterLV extends Teleporter
                     i4 = j2 + k3;
                     j4 = z + (j3 - 1) * l2;
                     flag = j3 == 0 || j3 == 3 || k3 == -1 || k3 == 3;
-                    this.worldServer.setBlockState(new BlockPos(l3, i4, j4), (flag ? AliensVsPredator.blocks().blockEngineerShipFloor.getDefaultState() : portal.getDefaultState()));
+                    this.worldServer.setBlockState(new BlockPos(l3, i4, j4), (flag ? AliensVsPredator.blocks().engineerfloor.getDefaultState() : portal.getDefaultState()));
                 }
             }
 

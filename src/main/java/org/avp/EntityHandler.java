@@ -3,7 +3,6 @@ package org.avp;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.avp.BlockHandler.BlockNewShape.TileEntityReflective;
 import org.avp.entities.EntityAPC;
 import org.avp.entities.EntityAcidPool;
 import org.avp.entities.EntityAcidProjectile;
@@ -82,6 +81,7 @@ import org.avp.tile.TileEntityPowerline;
 import org.avp.tile.TileEntityRedstoneEmitter;
 import org.avp.tile.TileEntityRedstoneFluxGenerator;
 import org.avp.tile.TileEntityRedstoneSensor;
+import org.avp.tile.TileEntityReflective;
 import org.avp.tile.TileEntityRepulsionGenerator;
 import org.avp.tile.TileEntitySatelliteDish;
 import org.avp.tile.TileEntitySatelliteModem;
@@ -99,25 +99,32 @@ import org.avp.world.dimension.varda.BiomeVarda;
 import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-public class EntityHandler implements IInitEvent
+public class EntityHandler implements IInitEvent, IPreInitEvent
 {
     public static final EntityHandler instance = new EntityHandler();
     private static int                entityId = 0;
 
     @Override
+    public void pre(FMLPreInitializationEvent event)
+    {
+        this.registerEntities();
+    }
+
+    @Override
     public void init(FMLInitializationEvent event)
     {
         this.registerTileEntities();
-        this.registerEntities();
         this.registerLivingEntities();
         this.registerRemappedEntities();
         this.registerSpawns();

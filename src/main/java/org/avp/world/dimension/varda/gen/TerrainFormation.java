@@ -13,8 +13,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class TerrainFormation extends WorldGenerator
 {
-    private static final IBlockState block       = AliensVsPredator.blocks().terrainUniDirt.getDefaultState();
-    Block[]                          validBlocks = new Block[] { AliensVsPredator.blocks().terrainUniDirt
+    private static final IBlockState block       = AliensVsPredator.blocks().unidirt.getDefaultState();
+    Block[]                          validBlocks = new Block[] { AliensVsPredator.blocks().unidirt
     };
 
     public boolean isLocationValid(World world, BlockPos pos)

@@ -33,7 +33,7 @@ public class BiomeDecoratorVarda extends BiomeDecorator
                                                                       @Override
                                                                       public boolean apply(IBlockState state)
                                                                       {
-                                                                          if (state.getBlock() == AliensVsPredator.blocks().terrainUniStone)
+                                                                          if (state.getBlock() == AliensVsPredator.blocks().unistone)
                                                                           {
                                                                               return true;
                                                                           }
@@ -50,8 +50,8 @@ public class BiomeDecoratorVarda extends BiomeDecorator
     private final WorldGenerator                tree2             = new VardaTree2Generator(true);
     private final WorldGenerator                tree3             = new VardaTree3Generator(true);
     private final WorldGenerator                treeTall          = new VardaTallTreeGenerator(true);
-    private final WorldGenerator                genDirt           = new WorldGenMinable(AliensVsPredator.blocks().terrainUniDirt.getDefaultState(), 32, predicate);
-    private final WorldGenerator                genSand           = new WorldGenMinable(AliensVsPredator.blocks().terrainUniSand.getDefaultState(), 32, predicate);
+    private final WorldGenerator                genDirt           = new WorldGenMinable(AliensVsPredator.blocks().unidirt.getDefaultState(), 32, predicate);
+    private final WorldGenerator                genSand           = new WorldGenMinable(AliensVsPredator.blocks().unisand.getDefaultState(), 32, predicate);
     private final WorldGenerator                oreBauxite        = new WorldGenMinable(AliensVsPredator.blocks().oreBauxite.getDefaultState(), 4, predicate);
     private final WorldGenerator                oreCopper         = new WorldGenMinable(AliensVsPredator.blocks().oreCopper.getDefaultState(), 4, predicate);
     private final WorldGenerator                oreSilicon        = new WorldGenMinable(AliensVsPredator.blocks().oreSilicon.getDefaultState(), 4, predicate);

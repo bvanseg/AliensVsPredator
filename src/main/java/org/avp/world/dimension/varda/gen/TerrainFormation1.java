@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 public class TerrainFormation1 extends TerrainFormation
 {
-    private static final IBlockState block = AliensVsPredator.blocks().terrainUniDirt.getDefaultState();
+    private static final IBlockState block = AliensVsPredator.blocks().unidirt.getDefaultState();
     
     @Override
     public boolean generate(World world, Random rand, BlockPos pos)

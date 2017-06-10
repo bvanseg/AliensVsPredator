@@ -15,8 +15,8 @@ public class BiomeVarda extends BiomeGenLV
     public BiomeVarda(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = AliensVsPredator.blocks().terrainUniDirt.getDefaultState();
-        this.fillerBlock = AliensVsPredator.blocks().terrainUniStone.getDefaultState();
+        this.topBlock = AliensVsPredator.blocks().unidirt.getDefaultState();
+        this.fillerBlock = AliensVsPredator.blocks().unistone.getDefaultState();
         this.spawnableCaveCreatureList.clear();
         this.spawnableCreatureList.clear();
         this.spawnableMonsterList.clear();

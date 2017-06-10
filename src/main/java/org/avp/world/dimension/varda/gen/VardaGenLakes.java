@@ -128,7 +128,7 @@ public class VardaGenLakes extends WorldGenerator
                     if ((var6[((rX * 16 + rZ) * 8 + rY)] == false) || (world.getBlockState(rPosBelow) != Blocks.DIRT.getDefaultState()) || (world.getLightFor(EnumSkyBlock.SKY, rPos) <= 0))
                         continue;
                     
-                    world.setBlockState(rPosBelow, AliensVsPredator.blocks().terrainUniDirt.getDefaultState());
+                    world.setBlockState(rPosBelow, AliensVsPredator.blocks().unidirt.getDefaultState());
                 }
             }
 
@@ -147,7 +147,7 @@ public class VardaGenLakes extends WorldGenerator
 
                         if ((!flag) || ((rY >= 4) && (rand.nextInt(2) == 0)) || (!world.getBlockState(rPos).getMaterial().isSolid()))
                             continue;
-                        world.setBlockState(rPos, AliensVsPredator.blocks().terrainUniStone.getDefaultState());
+                        world.setBlockState(rPos, AliensVsPredator.blocks().unistone.getDefaultState());
                     }
                 }
             }

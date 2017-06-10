@@ -16,8 +16,8 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class TerrainFormation2 extends WorldGenerator implements IWorldGenerator
 {
-    private static IBlockState block = AliensVsPredator.blocks().blockEngineerShipRock0.getDefaultState();
-    Block[] validBlocks = new Block[] { AliensVsPredator.blocks().terrainUniDirt
+    private static IBlockState block = AliensVsPredator.blocks().engineerrock0.getDefaultState();
+    Block[] validBlocks = new Block[] { AliensVsPredator.blocks().unidirt
     };
 
     public boolean locationIsValidSpawn(World world, BlockPos pos)

@@ -20,8 +20,8 @@ public class BiomeAcheron extends BiomeGenLV
     public BiomeAcheron(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = AliensVsPredator.blocks().terrainUniDirt.getDefaultState();
-        this.fillerBlock = AliensVsPredator.blocks().terrainUniStone.getDefaultState();
+        this.topBlock = AliensVsPredator.blocks().unidirt.getDefaultState();
+        this.fillerBlock = AliensVsPredator.blocks().unistone.getDefaultState();
         this.theBiomeDecorator = new BiomeDecoratorAcheron(this);
     }
     

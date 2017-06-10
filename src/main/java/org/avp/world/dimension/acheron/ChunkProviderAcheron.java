@@ -262,7 +262,7 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
                             {
                                 if ((lvt_45_1_ += d16) > 0.0D)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, AliensVsPredator.blocks().terrainUniStone.getDefaultState());
+                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, AliensVsPredator.blocks().unistone.getDefaultState());
                                 }
                                 else if (i2 * 8 + j2 < 60)
                                 {
@@ -330,7 +330,7 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
                                 if (var12 <= 0)
                                 {
                                     top = Blocks.AIR;
-                                    filler = AliensVsPredator.blocks().terrainUniStone;
+                                    filler = AliensVsPredator.blocks().unistone;
                                 }
                                 else if ((blockY >= var5 - 4) && (blockY <= var5 + 1))
                                 {

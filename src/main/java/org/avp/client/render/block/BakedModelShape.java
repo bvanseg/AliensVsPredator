@@ -2,7 +2,7 @@ package org.avp.client.render.block;
 
 import java.util.List;
 
-import org.avp.BlockHandler.BlockNewShape;
+import org.avp.block.BlockReflectiveShape;
 
 import com.arisux.mdx.lib.game.Game;
 import com.google.common.base.Function;
@@ -45,7 +45,7 @@ public class BakedModelShape implements IBakedModel
 
     private static TRSRTransformation rotation(IBlockState state)
     {
-        switch (((IExtendedBlockState) state).getValue(BlockNewShape.PLACEMENT).getOpposite())
+        switch (((IExtendedBlockState) state).getValue(BlockReflectiveShape.PLACEMENT).getOpposite())
         {
             case NORTH:
                 return NORTH;
@@ -64,27 +64,45 @@ public class BakedModelShape implements IBakedModel
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand)
     {
         IModel quadModel = model;
-        TRSRTransformation transformations = rotation(state);
-        VertexFormat vertexFormat = DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL;
         Function<ResourceLocation, TextureAtlasSprite> textureGetter = ModelLoader.defaultTextureGetter();
-        
+        TRSRTransformation transformations = NORTH;
+        VertexFormat vertexFormat = DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL;
+
+        if (state != null)
+        {
+            transformations = rotation(state);
+        }
+
         if (model instanceof IRetexturableModel)
         {
+            String key = "#texture";
+            String iconName = "avp:blocks/reflection";
             IRetexturableModel retexturable = (IRetexturableModel) model;
-            ImmutableMap<String, String> defaultTextures = ImmutableMap.of("#texture", ModelSlope.TEXTURE.toString());
-            model = retexturable.retexture(defaultTextures);
+            ImmutableMap<String, String> defaultTextures = ImmutableMap.of(key, iconName);
+            quadModel = retexturable.retexture(defaultTextures);
 
             if (state instanceof IExtendedBlockState)
             {
                 IExtendedBlockState extendedState = (IExtendedBlockState) state;
-                IBlockState reflection = extendedState.getValue(BlockNewShape.REFLECTION);
+                IBlockState reflectiveState = extendedState.getValue(BlockReflectiveShape.REFLECTION);
 
-                BlockModelShapes shapes = Game.minecraft().getBlockRendererDispatcher().getBlockModelShapes();
-                IBakedModel reflectionModel = shapes.getModelForState(reflection);
-                this.sprite = reflectionModel.getParticleTexture();
-                ImmutableMap<String, String> textures = ImmutableMap.of("#texture", sprite.getIconName());
-                quadModel = retexturable.retexture(textures);
-                
+                if (reflectiveState != null)
+                {
+                    BlockModelShapes shapes = Game.minecraft().getBlockRendererDispatcher().getBlockModelShapes();
+                    IBakedModel reflectedModel = shapes.getModelForState(reflectiveState);
+
+                    this.sprite = reflectedModel.getParticleTexture();
+
+                    if (this.sprite != Game.minecraft().textureMapBlocks.getMissingSprite())
+                    {
+                        ImmutableMap<String, String> textures = ImmutableMap.of(key, sprite.getIconName());
+                        quadModel = retexturable.retexture(textures);
+                    }
+                    else
+                    {
+                        this.sprite = Game.minecraft().textureMapBlocks.getAtlasSprite(iconName);
+                    }
+                }
             }
         }
 

@@ -98,7 +98,7 @@ public class ChunkProviderVarda implements IChunkProvider, IChunkGenerator
                             {
                                 if ((var49 += var47) > 0.0D)
                                 {
-                                    primer.setBlockState(sX * 4 + eX, sY * 8 + eY, sZ * 4 + eZ, AliensVsPredator.blocks().terrainUniStone.getDefaultState());
+                                    primer.setBlockState(sX * 4 + eX, sY * 8 + eY, sZ * 4 + eZ, AliensVsPredator.blocks().unistone.getDefaultState());
                                 }
                                 else if (sY * 8 + eY < var6)
                                 {
@@ -166,7 +166,7 @@ public class ChunkProviderVarda implements IChunkProvider, IChunkGenerator
                                 if (var12 <= 0)
                                 {
                                     top = Blocks.AIR;
-                                    fill = AliensVsPredator.blocks().terrainUniStone;
+                                    fill = AliensVsPredator.blocks().unistone;
                                 }
                                 else if ((y >= var5 - 4) && (y <= var5 + 1))
                                 {
