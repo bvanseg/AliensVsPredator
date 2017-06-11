@@ -387,7 +387,7 @@ public class BlockHandler implements IPreInitEvent
 
     public Block register(String modid, String identifier, Block block)
     {
-//        resourceGenerator.generate(ResourceType.BLOCKSTATE_FORGE_CUBE, identifier);
+        // resourceGenerator.generate(ResourceType.BLOCKSTATE_FORGE_CUBE, identifier);
         block.setUnlocalizedName(String.format("%s:%s", modid, identifier));
         block.setCreativeTab(AliensVsPredator.tabBlocks());
 
@@ -420,14 +420,14 @@ public class BlockHandler implements IPreInitEvent
 
         return block;
     }
-    
-//    private JsonResourceGenerator resourceGenerator;
+
+    // private JsonResourceGenerator resourceGenerator;
 
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
-//        resourceGenerator = new JsonResourceGenerator(AliensVsPredator.ID);
-//        resourceGenerator.pre(event);
+        // resourceGenerator = new JsonResourceGenerator(AliensVsPredator.ID);
+        // resourceGenerator.pre(event);
 
         this.register();
     }

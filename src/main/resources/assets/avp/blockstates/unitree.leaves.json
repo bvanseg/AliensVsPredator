@@ -6,11 +6,10 @@
         }
     },
     "variants": {
-        "normal": [{
-            "model": "cube_all"
-        }],
-        "inventory": [{
-            "model": "cube_all"
-        }]
+        "inventory": { "model": "cube_all" },
+        "check_decay=false,decayable=false": { "model": "cube_all" },
+        "check_decay=true,decayable=false": { "model": "cube_all" },
+        "check_decay=false,decayable=true": { "model": "cube_all" },
+        "check_decay=true,decayable=true": { "model": "cube_all" }
     }
 }

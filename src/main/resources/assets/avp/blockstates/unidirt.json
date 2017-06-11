@@ -11,6 +11,9 @@
         }],
         "inventory": [{
             "model": "cube_all"
+        }],
+        "snowy=false,variant=dirt": [{ 
+            "model": "cube_all" 
         }]
     }
 }

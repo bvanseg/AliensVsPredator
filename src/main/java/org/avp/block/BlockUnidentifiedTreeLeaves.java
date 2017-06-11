@@ -16,6 +16,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -27,18 +28,17 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
     {
         super();
     }
-    
+
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[0])
+        return new BlockStateContainer(this, new IProperty[] { DECAYABLE, CHECK_DECAY })
         {
             @Override
             protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
             {
                 return new StateImplementation(block, properties)
                 {
-
                     @Override
                     public boolean isOpaqueCube()
                     {
@@ -48,7 +48,19 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
             }
         };
     }
-    
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        return state.getValue(DECAYABLE) ? 2 : 1;
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return this.getDefaultState().withProperty(DECAYABLE, meta == 2);
+    }
+
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
@@ -58,7 +70,10 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
     @Override
     public void beginLeavesDecay(IBlockState state, World world, BlockPos pos)
     {
-        ;
+        if (!(Boolean) state.getValue(CHECK_DECAY))
+        {
+            world.setBlockState(pos, state.withProperty(CHECK_DECAY, true), 4);
+        }
     }
 
     @Override
@@ -70,6 +85,12 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
     @Override
     public EnumType getWoodType(int meta)
     {
-        return null;
+        return EnumType.OAK;
+    }
+    
+    @Override
+    public BlockRenderLayer getBlockLayer()
+    {
+        return BlockRenderLayer.TRANSLUCENT;
     }
 }
