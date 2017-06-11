@@ -5,10 +5,6 @@ import java.util.Random;
 
 import org.avp.AliensVsPredator;
 
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
-
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.properties.IProperty;
@@ -20,7 +16,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IUnlistedProperty;
 
 public class BlockUnidentifiedTreeLeaves extends BlockLeaves
 {
@@ -32,21 +27,7 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer(this, new IProperty[] { DECAYABLE, CHECK_DECAY })
-        {
-            @Override
-            protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
-            {
-                return new StateImplementation(block, properties)
-                {
-                    @Override
-                    public boolean isOpaqueCube()
-                    {
-                        return false;
-                    }
-                };
-            }
-        };
+        return new BlockStateContainer(this, new IProperty[] { DECAYABLE, CHECK_DECAY });
     }
 
     @Override
@@ -86,6 +67,12 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
     public EnumType getWoodType(int meta)
     {
         return EnumType.OAK;
+    }
+    
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
     }
     
     @Override

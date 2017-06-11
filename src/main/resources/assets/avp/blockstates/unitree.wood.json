@@ -1,16 +1,15 @@
 {
     "forge_marker": 1,
-    "defaults": {
-        "textures": {
-            "all": "avp:blocks/unitree.wood"
-        }
-    },
     "variants": {
         "normal": [{
             "model": "cube_all"
         }],
         "inventory": [{
             "model": "cube_all"
-        }]
+        }],
+        "axis=y":    [{ "model": "avp:unitree.log" }],
+        "axis=z":     [{ "model": "avp:unitree.log", "x": 90 }],
+        "axis=x":     [{ "model": "avp:unitree.log", "x": 90, "y": 90 }],
+        "axis=none":   [{ "model": "avp:unitree.log" }]
     }
 }
