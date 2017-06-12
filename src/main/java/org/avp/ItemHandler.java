@@ -216,7 +216,7 @@ public class ItemHandler implements IPreInitEvent
         public ItemEntitySummoner itemSummonerYautja                = (new ItemEntitySummoner(EntityYautja.class));
         public ItemEntitySummoner itemSummonerPredalien             = (new ItemEntitySummoner(EntityPredalien.class));
         public ItemEntitySummoner itemSummonerCombatSynthetic       = (new ItemEntitySummoner(EntityCombatSynthetic.class));
-        public ItemEntitySummoner itemSummonerProtomorph            = (new ItemEntitySummoner(EntityDeacon.class));
+        public ItemEntitySummoner itemSummonerDeacon                = (new ItemEntitySummoner(EntityDeacon.class));
         public ItemEntitySummoner itemSummonerHammerpede            = (new ItemEntitySummoner(EntityHammerpede.class));
         public ItemEntitySummoner itemSummonerTrilobite             = (new ItemEntitySummoner(EntityTrilobite.class));
         public ItemEntitySummoner itemSummonerYautjaBerserker       = (new ItemEntitySummoner(EntityYautjaBerserker.class));
@@ -253,7 +253,7 @@ public class ItemHandler implements IPreInitEvent
     public void pre(FMLPreInitializationEvent event)
     {
         MDX.registerMappingInfo("summon.protomorph", "summon.deacon", AliensVsPredator.ID);
-        
+
         Game.register(AliensVsPredator.ID, "summon.drone", summoners.itemSummonerDrone).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.warrior", summoners.itemSummonerWarrior).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.runner.drone", summoners.itemSummonerRunnerDrone).setCreativeTab(AliensVsPredator.tabEntities());
@@ -263,7 +263,7 @@ public class ItemHandler implements IPreInitEvent
         Game.register(AliensVsPredator.ID, "summon.praetorian", summoners.itemSummonerPraetorian).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.queen", summoners.itemSummonerQueen).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.predalien", summoners.itemSummonerPredalien).setCreativeTab(AliensVsPredator.tabEntities());
-        Game.register(AliensVsPredator.ID, "summon.deacon", summoners.itemSummonerProtomorph).setCreativeTab(AliensVsPredator.tabEntities());
+        Game.register(AliensVsPredator.ID, "summon.deacon", summoners.itemSummonerDeacon).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.deaconshark", summoners.itemSummonerDeaconShark).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.hammerpede", summoners.itemSummonerHammerpede).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.trilobite", summoners.itemSummonerTrilobite).setCreativeTab(AliensVsPredator.tabEntities());

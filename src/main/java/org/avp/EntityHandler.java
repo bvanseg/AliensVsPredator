@@ -180,7 +180,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         MDX.registerRemappedEntity(EntityAqua.class, "AquaAlien");
         MDX.registerRemappedEntity(EntityPredalien.class, "Predalien");
         MDX.registerRemappedEntity(EntityCombatSynthetic.class, "CombatSynthetic");
-        MDX.registerRemappedEntity(EntityDeacon.class, "Protomorph");
+        MDX.registerRemappedEntity(EntityDeacon.class, "Deacon");
         MDX.registerRemappedEntity(EntityHammerpede.class, "Hammerpede");
         MDX.registerRemappedEntity(EntityTrilobite.class, "Trilobite");
         MDX.registerRemappedEntity(EntitySpaceJockey.class, "SpaceJockey");
@@ -190,6 +190,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
 
         // Mod Entity Identity Remapping
         MDX.registerRemappedEntity(EntityDeacon.class, "avp.Protomorph");
+        MDX.registerRemappedEntity(EntityDeacon.class, "Protomorph");
     }
 
     private void registerEntities()

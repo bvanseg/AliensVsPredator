@@ -9,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelProtomorph extends Model
+public class ModelDeacon extends Model
 {
     ModelRenderer torso;
     ModelRenderer abdomen;
@@ -50,7 +50,7 @@ public class ModelProtomorph extends Model
     ModelRenderer rClaw4;
     ModelRenderer rClaw5;
 
-    public ModelProtomorph()
+    public ModelDeacon()
     {
         textureWidth = 128;
         textureHeight = 64;

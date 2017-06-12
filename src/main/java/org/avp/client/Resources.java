@@ -35,7 +35,7 @@ import org.avp.client.model.entities.living.ModelPantheramorph;
 import org.avp.client.model.entities.living.ModelPraetorian;
 import org.avp.client.model.entities.living.ModelPredalien;
 import org.avp.client.model.entities.living.ModelPredatorHound;
-import org.avp.client.model.entities.living.ModelProtomorph;
+import org.avp.client.model.entities.living.ModelDeacon;
 import org.avp.client.model.entities.living.ModelMatriarch;
 import org.avp.client.model.entities.living.ModelRoyalFacehugger;
 import org.avp.client.model.entities.living.ModelRunnerDrone;
@@ -164,7 +164,7 @@ public class Resources
         public final TexturedModel<ModelHammerpede>            HAMMERPEDE                     = new TexturedModel(new ModelHammerpede(), new Texture(AliensVsPredator.ID, "textures/mob/hammerpede.png"));
         public final TexturedModel<ModelTrilobite>             TRILOBITE                      = new TexturedModel(new ModelTrilobite(), new Texture(AliensVsPredator.ID, "textures/mob/trilobite.png"));
         public final TexturedModel<ModelDeaconShark>           DEACON_SHARK                   = new TexturedModel(new ModelDeaconShark(), new Texture(AliensVsPredator.ID, "textures/mob/deacon_shark.png"));
-        public final TexturedModel<ModelProtomorph>            PROTOMORPH                     = new TexturedModel(new ModelProtomorph(), new Texture(AliensVsPredator.ID, "textures/mob/deacon.png"));
+        public final TexturedModel<ModelDeacon>                DEACON                         = new TexturedModel(new ModelDeacon(), new Texture(AliensVsPredator.ID, "textures/mob/deacon.png"));
         public final TexturedModel<ModelAqua>                  AQUA_XENOMORPH                 = new TexturedModel(new ModelAqua(), new Texture(AliensVsPredator.ID, "textures/mob/aqua.png"));
         public final TexturedModel<ModelAqua>                  AQUA_XENOMORPH_MASK            = new TexturedModel(new ModelAqua(), new Texture(AliensVsPredator.ID, "textures/mob/aqua_glow.png"));
         public final TexturedModel<ModelMatriarch>             MATRIARCH                      = new TexturedModel(new ModelMatriarch(), new Texture(AliensVsPredator.ID, "textures/mob/matriarch.png"));

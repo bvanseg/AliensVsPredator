@@ -412,7 +412,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Summoners summoners = items.summoners;
 
         registerItemRenderer(summoners.itemSummonerDrone, (new RenderItemSummoner(AliensVsPredator.resources().models().DRONE_ADVANCED)).setScale(7.5F).setY(6F));
-        registerItemRenderer(summoners.itemSummonerProtomorph, (new RenderItemSummoner(AliensVsPredator.resources().models().PROTOMORPH)).setScale(14F).setY(-4F));
+        registerItemRenderer(summoners.itemSummonerDeacon, (new RenderItemSummoner(AliensVsPredator.resources().models().DEACON)).setScale(14F).setY(-4F));
         registerItemRenderer(summoners.itemSummonerWarrior, (new RenderItemSummoner(AliensVsPredator.resources().models().WARRIOR)).setScale(7.5F).setY(9F));
         registerItemRenderer(summoners.itemSummonerRunnerDrone, (new RenderItemSummoner(AliensVsPredator.resources().models().RUNNER_DRONE)).setScale(7.5F).setY(6F));
         registerItemRenderer(summoners.itemSummonerRunnerWarrior, (new RenderItemSummoner(AliensVsPredator.resources().models().RUNNER_WARRIOR)).setScale(7.5F).setY(9F));
