@@ -6,7 +6,6 @@ import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.Quad;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.block.state.IBlockState;
@@ -42,13 +41,13 @@ public class RenderAcidPool extends Render<EntityAcidPool>
 
             GlStateManager.disableLight(0);
             GlStateManager.disableLight(1);
-//            OpenGL.enableLightMapping();
+            // OpenGL.enableLightMapping();
             OpenGL.enableBlend();
             OpenGL.blendClear();
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_ALPHA);
-//            OpenGL.enableLighting();
-//            OpenGL.enableLight();
-//            OpenGL.enableLightMapping();
+            // OpenGL.enableLighting();
+            // OpenGL.enableLight();
+            // OpenGL.enableLightMapping();
             this.bindTexture(AliensVsPredator.resources().LIQUID_POOL);
             AliensVsPredator.resources().LIQUID_POOL.bind();
             Draw.startQuads();

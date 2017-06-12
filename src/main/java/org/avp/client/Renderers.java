@@ -245,6 +245,7 @@ import org.avp.tile.TileEntityTransformer;
 import org.avp.tile.TileEntityTurret;
 import org.avp.tile.TileEntityWorkstation;
 
+import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.game.IInitEvent;
@@ -252,9 +253,9 @@ import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -346,33 +347,49 @@ public class Renderers implements IInitEvent, IPreInitEvent
         registerEntityRenderingHandler(EntityYautjaMutant.class, new RenderYautjaMutant());
     }
 
-    private void registerStandardEntityRenderers()
+    @SuppressWarnings("unchecked")
+    private static void registerRenderer(Class<? extends Entity> entityClass, Class<? extends Render> renderer)
     {
-        registerEntityRenderingHandler(EntitySpear.class, new RenderSpear());
-        registerEntityRenderingHandler(EntityLaserMine.class, new RenderLaserMine());
-        registerEntityRenderingHandler(EntityGrenade.class, new RenderGrenade());
-        registerEntityRenderingHandler(EntityFlame.class, new RenderFlame());
-        registerEntityRenderingHandler(EntityAcidPool.class, new IRenderFactory<EntityAcidPool>()
+        registerEntityRenderingHandler(entityClass, new IRenderFactory()
         {
             @Override
-            public Render<EntityAcidPool> createRenderFor(RenderManager manager)
+            public Render<?> createRenderFor(RenderManager m)
             {
-                return new RenderAcidPool(manager);
+                try
+                {
+                    return (renderer.getConstructor(RenderManager.class)).newInstance(new Object[] { m });
+                }
+                catch (Exception e)
+                {
+                    MDX.log().warn("Failed to construct renderer: " + (renderer != null ? renderer.getName() : renderer));
+                    e.printStackTrace();
+                }
+
+                return null;
             }
         });
-        registerEntityRenderingHandler(EntityLiquidLatexPool.class, new RenderLiquidLatexPool());
-        registerEntityRenderingHandler(EntityPlasma.class, new RenderPlasmaBlast());
-        registerEntityRenderingHandler(EntityAcidProjectile.class, new RenderAcidSpit());
-        registerEntityRenderingHandler(EntitySmartDisc.class, new RenderDisc());
-        registerEntityRenderingHandler(EntityShuriken.class, new RenderShuriken());
-        registerEntityRenderingHandler(EntityBullet.class, new RenderBullet());
-        registerEntityRenderingHandler(EntityWristbracer.class, new RenderWristbracer());
-        registerEntityRenderingHandler(EntityAPC.class, new RenderAPC());
-        registerEntityRenderingHandler(EntityMechanism.class, new RenderMechanism());
-        registerEntityRenderingHandler(EntityMedpod.class, new RenderMedpodEntity());
-        registerEntityRenderingHandler(EntitySupplyChute.class, new RenderSupplyChute());
-        registerEntityRenderingHandler(EntitySupplyChuteMarines.class, new RenderSupplyChute());
-        registerEntityRenderingHandler(EntitySupplyChuteSeegson.class, new RenderSupplyChute());
+    }
+
+    private void registerStandardEntityRenderers()
+    {
+        registerRenderer(EntityAcidPool.class, RenderAcidPool.class);
+        registerRenderer(EntitySpear.class, RenderSpear.class);
+        registerRenderer(EntityLaserMine.class, RenderLaserMine.class);
+        registerRenderer(EntityGrenade.class, RenderGrenade.class);
+        registerRenderer(EntityFlame.class, RenderFlame.class);
+        registerRenderer(EntityLiquidLatexPool.class, RenderLiquidLatexPool.class);
+        registerRenderer(EntityPlasma.class, RenderPlasmaBlast.class);
+        registerRenderer(EntityAcidProjectile.class, RenderAcidSpit.class);
+        registerRenderer(EntitySmartDisc.class, RenderDisc.class);
+        registerRenderer(EntityShuriken.class, RenderShuriken.class);
+        registerRenderer(EntityBullet.class, RenderBullet.class);
+        registerRenderer(EntityWristbracer.class, RenderWristbracer.class);
+        registerRenderer(EntityAPC.class, RenderAPC.class);
+        registerRenderer(EntityMechanism.class, RenderMechanism.class);
+        registerRenderer(EntityMedpod.class, RenderMedpodEntity.class);
+        registerRenderer(EntitySupplyChute.class, RenderSupplyChute.class);
+        registerRenderer(EntitySupplyChuteMarines.class, RenderSupplyChute.class);
+        registerRenderer(EntitySupplyChuteSeegson.class, RenderSupplyChute.class);
     }
 
     private void registerItemRenderer(Item item, ItemRenderer<?> renderer)
