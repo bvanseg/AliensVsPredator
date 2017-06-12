@@ -3,8 +3,10 @@ package org.avp.world.dimension.varda.gen;
 import java.util.Random;
 
 import org.avp.AliensVsPredator;
+import org.avp.block.BlockUnidentifiedLog;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLog.EnumAxis;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +19,7 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerator
 {
     public static final IBlockState TREE_TENDONS = AliensVsPredator.blocks().terrainUniTreeTendon.getDefaultState();
-    public static final IBlockState TREE_LOGS = AliensVsPredator.blocks().terrainUniTreeLog.getDefaultState();
+    public static final IBlockState TREE_LOGS = AliensVsPredator.blocks().terrainUniTreeLog.getDefaultState().withProperty(BlockUnidentifiedLog.LOG_AXIS, EnumAxis.Y);
     public static final IBlockState TREE_LEAVES = AliensVsPredator.blocks().terrainUniTreeLeaves.getDefaultState();
     
     public VardaTreeGenerator(boolean doBlockNotify)

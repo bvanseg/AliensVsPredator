@@ -7,10 +7,16 @@
     },
     "variants": {
         "normal": [{
-            "model": "cube_all"
+            "model": "avp:unitree.sapling"
         }],
         "inventory": [{
-            "model": "cube_all"
+            "model": "avp:unitree.sapling"
+        }],
+        "stage=0": [{ 
+            "model": "avp:unitree.sapling" 
+        }],
+        "stage=1": [{ 
+            "model": "avp:unitree.sapling" 
         }]
     }
 }

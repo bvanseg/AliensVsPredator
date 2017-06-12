@@ -8,49 +8,43 @@ import org.avp.world.dimension.varda.gen.VardaTree2Generator;
 import org.avp.world.dimension.varda.gen.VardaTree3Generator;
 import org.avp.world.dimension.varda.gen.VardaTreeGenerator;
 
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.property.IUnlistedProperty;
+import net.minecraftforge.common.IPlantable;
 
 public class BlockUnidentifiedTreeSapling extends BlockBush implements IGrowable
 {
+    public static final PropertyInteger STAGE = PropertyInteger.create("stage", 0, 1);
+
     public BlockUnidentifiedTreeSapling()
     {
         this.setCreativeTab(CreativeTabs.DECORATIONS);
     }
-
+    
     @Override
-    protected BlockStateContainer createBlockState()
+    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable)
     {
-        return new BlockStateContainer(this, new IProperty[0])
-        {
-            @Override
-            protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
-            {
-                return new StateImplementation(block, properties)
-                {
-                    @Override
-                    public boolean isOpaqueCube()
-                    {
-                        return false;
-                    }
-                };
-            }
-        };
+        return true;
+    }
+    
+    @Override
+    protected boolean canSustainBush(IBlockState state)
+    {
+        return true;
     }
 
     @SuppressWarnings("unchecked")
@@ -152,6 +146,33 @@ public class BlockUnidentifiedTreeSapling extends BlockBush implements IGrowable
     @Override
     public void grow(World worldIn, Random rand, BlockPos pos, IBlockState state)
     {
-        this.generateTree(worldIn, pos, state, rand);
+        if (((Integer) state.getValue(STAGE)).intValue() == 0)
+        {
+            worldIn.setBlockState(pos, state.cycleProperty(STAGE), 4);
+        }
+        else
+        {
+            this.generateTree(worldIn, pos, state, rand);
+        }
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta)
+    {
+        return this.getDefaultState().withProperty(STAGE, Integer.valueOf((meta & 8) >> 3));
+    }
+
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        int meta = 0;
+        meta = meta | ((Integer) state.getValue(STAGE)).intValue() << 3;
+        return meta;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer(this, new IProperty[] { STAGE });
     }
 }
