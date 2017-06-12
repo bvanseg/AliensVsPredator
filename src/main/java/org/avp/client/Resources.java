@@ -169,7 +169,7 @@ public class Resources
         public final TexturedModel<ModelAqua>                  AQUA_XENOMORPH_MASK            = new TexturedModel(new ModelAqua(), new Texture(AliensVsPredator.ID, "textures/mob/aqua_glow.png"));
         public final TexturedModel<ModelMatriarch>             MATRIARCH                      = new TexturedModel(new ModelMatriarch(), new Texture(AliensVsPredator.ID, "textures/mob/matriarch.png"));
         public final TexturedModel<ModelMatriarch>             MATRIARCH_MASK                 = new TexturedModel(new ModelMatriarch(), new Texture(AliensVsPredator.ID, "textures/mob/matriarch_mask.png"));
-        public final TexturedModel<ModelYautja>                YAUTJA                         = new TexturedModel(new ModelYautja(), new Texture(AliensVsPredator.ID, "textures/mob/yautja.png"));
+        public final TexturedModel<ModelYautja>                YAUTJA_WARRIOR                 = new TexturedModel(new ModelYautja(), new Texture(AliensVsPredator.ID, "textures/mob/yautja.png"));
         public final TexturedModel<ModelYautja>                YAUTJA_BERSERKER               = new TexturedModel(new ModelYautja(), new Texture(AliensVsPredator.ID, "textures/mob/yautja_berserker.png"));
         public final TexturedModel<ModelSpitter>               SPITTER                        = new TexturedModel(new ModelSpitter(), new Texture(AliensVsPredator.ID, "textures/mob/spitter.png"));
         public final TexturedModel<ModelSpitter>               SPITTER_MASK                   = new TexturedModel(new ModelSpitter(), new Texture(AliensVsPredator.ID, "textures/mob/spitter_glow.png"));

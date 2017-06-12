@@ -43,7 +43,7 @@ import org.avp.entities.living.EntityTrilobite;
 import org.avp.entities.living.EntityUltramorph;
 import org.avp.entities.living.EntityUrsuidae;
 import org.avp.entities.living.EntityWarrior;
-import org.avp.entities.living.EntityYautja;
+import org.avp.entities.living.EntityYautjaWarrior;
 import org.avp.entities.living.EntityYautjaBerserker;
 import org.avp.entities.living.EntityYautjaMutant;
 import org.avp.item.ItemAPC;
@@ -213,7 +213,7 @@ public class ItemHandler implements IPreInitEvent
         public ItemEntitySummoner itemSummonerMarine                = (new ItemEntitySummoner(EntityMarine.class));
         public ItemEntitySummoner itemSummonerOvamorph              = (new ItemEntitySummoner(EntityOvamorph.class));
         public ItemEntitySummoner itemSummonerRoyalFacehugger       = (new ItemEntitySummoner(EntityRoyalFacehugger.class));
-        public ItemEntitySummoner itemSummonerYautja                = (new ItemEntitySummoner(EntityYautja.class));
+        public ItemEntitySummoner itemSummonerYautjaWarrior                = (new ItemEntitySummoner(EntityYautjaWarrior.class));
         public ItemEntitySummoner itemSummonerPredalien             = (new ItemEntitySummoner(EntityPredalien.class));
         public ItemEntitySummoner itemSummonerCombatSynthetic       = (new ItemEntitySummoner(EntityCombatSynthetic.class));
         public ItemEntitySummoner itemSummonerDeacon                = (new ItemEntitySummoner(EntityDeacon.class));
@@ -253,6 +253,7 @@ public class ItemHandler implements IPreInitEvent
     public void pre(FMLPreInitializationEvent event)
     {
         MDX.registerMappingInfo("summon.protomorph", "summon.deacon", AliensVsPredator.ID);
+        MDX.registerMappingInfo("summon.yautja", "summon.yautja.warrior", AliensVsPredator.ID);
 
         Game.register(AliensVsPredator.ID, "summon.drone", summoners.itemSummonerDrone).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.warrior", summoners.itemSummonerWarrior).setCreativeTab(AliensVsPredator.tabEntities());
@@ -273,7 +274,7 @@ public class ItemHandler implements IPreInitEvent
         Game.register(AliensVsPredator.ID, "summon.facehugger", summoners.itemSummonerFacehugger).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.royalfacehugger", summoners.itemSummonerRoyalFacehugger).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.chestburster", summoners.itemSummonerChestburster).setCreativeTab(AliensVsPredator.tabEntities());
-        Game.register(AliensVsPredator.ID, "summon.yautja", summoners.itemSummonerYautja).setCreativeTab(AliensVsPredator.tabEntities());
+        Game.register(AliensVsPredator.ID, "summon.yautja.warrior", summoners.itemSummonerYautjaWarrior).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.yautja.berserker", summoners.itemSummonerYautjaBerserker).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.marine", summoners.itemSummonerMarine).setCreativeTab(AliensVsPredator.tabEntities());
         Game.register(AliensVsPredator.ID, "summon.synthetic.combat", summoners.itemSummonerCombatSynthetic).setCreativeTab(AliensVsPredator.tabEntities());

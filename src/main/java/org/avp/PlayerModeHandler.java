@@ -45,7 +45,7 @@ public class PlayerModeHandler implements IInitEvent
 
         PlayerMode.NORMAL.getLevelMappingForLevel(0).setModelTexMap(AliensVsPredator.resources().models().BIPED);
         PlayerMode.MARINE.getLevelMappingForLevel(0).setModelTexMap(AliensVsPredator.resources().models().MARINE);
-        PlayerMode.PREDATOR.getLevelMappingForLevel(0).setModelTexMap(AliensVsPredator.resources().models().YAUTJA);
+        PlayerMode.PREDATOR.getLevelMappingForLevel(0).setModelTexMap(AliensVsPredator.resources().models().YAUTJA_WARRIOR);
         PlayerMode.XENOMORPH.getLevelMappingForLevel(0).setModelTexMap(AliensVsPredator.resources().models().OVAMORPH);
         PlayerMode.XENOMORPH.getLevelMappingForLevel(1).setModelTexMap(AliensVsPredator.resources().models().FACEHUGGER);
         PlayerMode.XENOMORPH.getLevelMappingForLevel(10).setModelTexMap(AliensVsPredator.resources().models().CHESTBUSTER);

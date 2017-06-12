@@ -76,7 +76,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         if (entity instanceof EntityMob)
             return true;
 
-        if (entity instanceof EntityYautja)
+        if (entity instanceof EntityYautjaWarrior)
             return true;
 
         if (entity instanceof EntityGolem)

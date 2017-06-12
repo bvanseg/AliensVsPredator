@@ -24,7 +24,7 @@ import org.avp.entities.living.EntityRunnerDrone;
 import org.avp.entities.living.EntitySpaceJockey;
 import org.avp.entities.living.EntitySpitter;
 import org.avp.entities.living.EntityUltramorph;
-import org.avp.entities.living.EntityYautja;
+import org.avp.entities.living.EntityYautjaWarrior;
 import org.avp.entities.living.EntityYautjaBerserker;
 import org.avp.world.capabilities.IOrganism.Organism;
 
@@ -64,7 +64,7 @@ public class Embryo implements Cloneable
         new Embryo(EntityChestburster.class, EntityPantheramorph.class, EntityOcelot.class).register();
         new Embryo(EntityChestburster.class, EntityBatXeno.class, EntityBat.class).register();
         new Embryo(EntityChestburster.class, EntityAqua.class, EntitySquid.class).register();
-        new Embryo(EntityPredalienChestburster.class, EntityPredalien.class, EntityYautja.class, EntityYautjaBerserker.class).register();
+        new Embryo(EntityPredalienChestburster.class, EntityPredalien.class, EntityYautjaWarrior.class, EntityYautjaBerserker.class).register();
         new Embryo(EntityRunnerChestburster.class, EntityRunnerDrone.class, EntityCow.class, EntityHorse.class, EntityWolf.class).register();
         new Embryo(EntityChestburster.class, EntityUltramorph.class, EntityEngineer.class, EntitySpaceJockey.class).register();
     }

@@ -42,6 +42,7 @@ import org.avp.entities.living.EntityFacehugger;
 import org.avp.entities.living.EntityGooMutant;
 import org.avp.entities.living.EntityHammerpede;
 import org.avp.entities.living.EntityMarine;
+import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityMyceliomorph;
 import org.avp.entities.living.EntityOctohugger;
 import org.avp.entities.living.EntityOvamorph;
@@ -50,7 +51,6 @@ import org.avp.entities.living.EntityPraetorian;
 import org.avp.entities.living.EntityPredalien;
 import org.avp.entities.living.EntityPredalienChestburster;
 import org.avp.entities.living.EntityPredatorHound;
-import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityQueenChestburster;
 import org.avp.entities.living.EntityRoyalFacehugger;
 import org.avp.entities.living.EntityRunnerChestburster;
@@ -63,9 +63,9 @@ import org.avp.entities.living.EntityTrilobite;
 import org.avp.entities.living.EntityUltramorph;
 import org.avp.entities.living.EntityUrsuidae;
 import org.avp.entities.living.EntityWarrior;
-import org.avp.entities.living.EntityYautja;
 import org.avp.entities.living.EntityYautjaBerserker;
 import org.avp.entities.living.EntityYautjaMutant;
+import org.avp.entities.living.EntityYautjaWarrior;
 import org.avp.tile.TileEntityAmpule;
 import org.avp.tile.TileEntityAssembler;
 import org.avp.tile.TileEntityBlastdoor;
@@ -171,7 +171,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         MDX.registerRemappedEntity(EntityCrusher.class, "Crusher");
         MDX.registerRemappedEntity(EntityPraetorian.class, "Praetorian");
         MDX.registerRemappedEntity(EntityMarine.class, "Marine");
-        MDX.registerRemappedEntity(EntityYautja.class, "Yautja");
+        MDX.registerRemappedEntity(EntityYautjaWarrior.class, "YautjaWarrior");
         MDX.registerRemappedEntity(EntityMatriarch.class, "Queen");
         MDX.registerRemappedEntity(EntityFacehugger.class, "Facehugger");
         MDX.registerRemappedEntity(EntityChestburster.class, "Chestbuster");
@@ -191,6 +191,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         // Mod Entity Identity Remapping
         MDX.registerRemappedEntity(EntityDeacon.class, "avp.Protomorph");
         MDX.registerRemappedEntity(EntityDeacon.class, "Protomorph");
+        MDX.registerRemappedEntity(EntityYautjaWarrior.class, "Yautja");
     }
 
     private void registerEntities()
@@ -225,7 +226,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         Game.register(EntityCrusher.class, "Crusher", entityId++, AliensVsPredator.instance(), 250, 1, true);
         Game.register(EntityPraetorian.class, "Praetorian", entityId++, AliensVsPredator.instance(), 250, 1, true);
         Game.register(EntityMarine.class, "Marine", entityId++, AliensVsPredator.instance(), 250, 1, true);
-        Game.register(EntityYautja.class, "Yautja", entityId++, AliensVsPredator.instance(), 250, 1, true);
+        Game.register(EntityYautjaWarrior.class, "Yautja", entityId++, AliensVsPredator.instance(), 250, 1, true);
         Game.register(EntityMatriarch.class, "Queen", entityId++, AliensVsPredator.instance(), 250, 1, true);
         Game.register(EntityFacehugger.class, "Facehugger", entityId++, AliensVsPredator.instance(), 250, 1, true);
         Game.register(EntityChestburster.class, "Chestbuster", entityId++, AliensVsPredator.instance(), 250, 1, true);
@@ -293,7 +294,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
                 EntityRegistry.addSpawn(EntityFacehugger.class, 30, 1, 2, EnumCreatureType.MONSTER, xenomorphBiomes);
             }
 
-            EntityRegistry.addSpawn(EntityYautja.class, 1, 0, 1, EnumCreatureType.MONSTER, predatorBiomes);
+            EntityRegistry.addSpawn(EntityYautjaWarrior.class, 1, 0, 1, EnumCreatureType.MONSTER, predatorBiomes);
             EntityRegistry.addSpawn(EntityYautjaBerserker.class, 1, 0, 1, EnumCreatureType.MONSTER, predatorBiomes);
             EntityRegistry.addSpawn(EntityMarine.class, 2, 1, 1, EnumCreatureType.CREATURE, new Biome[] { Biomes.SWAMPLAND, Biomes.FOREST, Biomes.FOREST_HILLS, Biomes.TAIGA, Biomes.TAIGA_HILLS, Biomes.PLAINS
             });

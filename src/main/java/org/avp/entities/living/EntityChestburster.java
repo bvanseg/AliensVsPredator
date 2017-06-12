@@ -43,7 +43,7 @@ public class EntityChestburster extends EntitySpeciesAlien implements IMob, INas
         this.experienceValue = 16;
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityPlayer.class, 16.0F, 0.23F, 0.4F));
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityYautja.class, 16.0F, 0.23F, 0.4F));
+        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityYautjaWarrior.class, 16.0F, 0.23F, 0.4F));
         this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityEngineer.class, 16.0F, 0.23F, 0.4F));
         this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityMarine.class, 16.0F, 0.23F, 0.4F));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));

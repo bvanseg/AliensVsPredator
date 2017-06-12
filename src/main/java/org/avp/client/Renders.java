@@ -219,7 +219,7 @@ import org.avp.entities.living.EntityTrilobite;
 import org.avp.entities.living.EntityUltramorph;
 import org.avp.entities.living.EntityUrsuidae;
 import org.avp.entities.living.EntityWarrior;
-import org.avp.entities.living.EntityYautja;
+import org.avp.entities.living.EntityYautjaWarrior;
 import org.avp.entities.living.EntityYautjaBerserker;
 import org.avp.entities.living.EntityYautjaMutant;
 import org.avp.tile.TileEntityAmpule;
@@ -302,7 +302,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerRenderer(EntitySpitter.class, RenderSpitter.class);
         Renderers.registerRenderer(EntityMarine.class, RenderMarine.class);
         Renderers.registerRenderer(EntityCombatSynthetic.class, RenderCombatSynthetic.class);
-        Renderers.registerRenderer(EntityYautja.class, RenderYautjaWarrior.class);
+        Renderers.registerRenderer(EntityYautjaWarrior.class, RenderYautjaWarrior.class);
         Renderers.registerRenderer(EntityMatriarch.class, RenderMatriarch.class);
         Renderers.registerRenderer(EntityFacehugger.class, RenderFacehugger.class);
         Renderers.registerRenderer(EntityRoyalFacehugger.class, RenderRoyalFacehugger.class);
@@ -425,7 +425,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         registerItemRenderer(summoners.itemSummonerFacehugger, (new RenderItemSummoner(AliensVsPredator.resources().models().FACEHUGGER)).setScale(15F).setY(-8F));
         registerItemRenderer(summoners.itemSummonerRoyalFacehugger, (new RenderItemSummoner(AliensVsPredator.resources().models().ROYALFACEHUGGER)).setScale(15F).setY(-8F));
         registerItemRenderer(summoners.itemSummonerMarine, (new RenderItemSummoner(AliensVsPredator.resources().models().MARINE)).setScale(10F).setY(3F));
-        registerItemRenderer(summoners.itemSummonerYautja, (new RenderItemSummoner(AliensVsPredator.resources().models().YAUTJA)).setScale(7.5F).setY(8F));
+        registerItemRenderer(summoners.itemSummonerYautjaWarrior, (new RenderItemSummoner(AliensVsPredator.resources().models().YAUTJA_WARRIOR)).setScale(7.5F).setY(8F));
         registerItemRenderer(summoners.itemSummonerPredalien, (new RenderItemSummoner(AliensVsPredator.resources().models().PREDALIEN)).setScale(8F).setY(6F));
         registerItemRenderer(summoners.itemSummonerAqua, (new RenderItemSummoner(AliensVsPredator.resources().models().AQUA_XENOMORPH)).setScale(7.5F).setY(8F));
         registerItemRenderer(summoners.itemSummonerCombatSynthetic, (new RenderItemSummoner(AliensVsPredator.resources().models().COMBAT_SYNTHETIC)).setScale(16F).setY(-12F));
