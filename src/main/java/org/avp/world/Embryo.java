@@ -17,7 +17,7 @@ import org.avp.entities.living.EntityMyceliomorph;
 import org.avp.entities.living.EntityPantheramorph;
 import org.avp.entities.living.EntityPredalien;
 import org.avp.entities.living.EntityPredalienChestburster;
-import org.avp.entities.living.EntityQueen;
+import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityQueenChestburster;
 import org.avp.entities.living.EntityRunnerChestburster;
 import org.avp.entities.living.EntityRunnerDrone;
@@ -52,7 +52,7 @@ public class Embryo implements Cloneable
     private static int                    nextAvailableId = 1;
 
     public static final Embryo            STANDARD        = new Embryo(EntityChestburster.class, EntityDrone.class, EntityLiving.class).register();
-    public static final Embryo            QUEEN           = new Embryo(EntityQueenChestburster.class, EntityQueen.class, EntityLiving.class).setGestationPeriod(10 * 60 * 20).register();
+    public static final Embryo            QUEEN           = new Embryo(EntityQueenChestburster.class, EntityMatriarch.class, EntityLiving.class).setGestationPeriod(10 * 60 * 20).register();
     public static final Embryo            BELUGA          = new Embryo(EntityBelugaburster.class, EntityBelugamorph.class, EntityLiving.class).register();
 
     static

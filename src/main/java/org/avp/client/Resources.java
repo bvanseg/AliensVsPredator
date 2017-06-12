@@ -36,7 +36,7 @@ import org.avp.client.model.entities.living.ModelPraetorian;
 import org.avp.client.model.entities.living.ModelPredalien;
 import org.avp.client.model.entities.living.ModelPredatorHound;
 import org.avp.client.model.entities.living.ModelProtomorph;
-import org.avp.client.model.entities.living.ModelQueen;
+import org.avp.client.model.entities.living.ModelMatriarch;
 import org.avp.client.model.entities.living.ModelRoyalFacehugger;
 import org.avp.client.model.entities.living.ModelRunnerDrone;
 import org.avp.client.model.entities.living.ModelRunnerWarrior;
@@ -167,8 +167,8 @@ public class Resources
         public final TexturedModel<ModelProtomorph>            PROTOMORPH                     = new TexturedModel(new ModelProtomorph(), new Texture(AliensVsPredator.ID, "textures/mob/deacon.png"));
         public final TexturedModel<ModelAqua>                  AQUA_XENOMORPH                 = new TexturedModel(new ModelAqua(), new Texture(AliensVsPredator.ID, "textures/mob/aqua.png"));
         public final TexturedModel<ModelAqua>                  AQUA_XENOMORPH_MASK            = new TexturedModel(new ModelAqua(), new Texture(AliensVsPredator.ID, "textures/mob/aqua_glow.png"));
-        public final TexturedModel<ModelQueen>                 XENOQUEEN                      = new TexturedModel(new ModelQueen(), new Texture(AliensVsPredator.ID, "textures/mob/queen.png"));
-        public final TexturedModel<ModelQueen>                 XENOQUEEN_MASK                 = new TexturedModel(new ModelQueen(), new Texture(AliensVsPredator.ID, "textures/mob/queen_mask.png"));
+        public final TexturedModel<ModelMatriarch>             MATRIARCH                      = new TexturedModel(new ModelMatriarch(), new Texture(AliensVsPredator.ID, "textures/mob/matriarch.png"));
+        public final TexturedModel<ModelMatriarch>             MATRIARCH_MASK                 = new TexturedModel(new ModelMatriarch(), new Texture(AliensVsPredator.ID, "textures/mob/matriarch_mask.png"));
         public final TexturedModel<ModelYautja>                YAUTJA                         = new TexturedModel(new ModelYautja(), new Texture(AliensVsPredator.ID, "textures/mob/yautja.png"));
         public final TexturedModel<ModelYautja>                YAUTJA_BERSERKER               = new TexturedModel(new ModelYautja(), new Texture(AliensVsPredator.ID, "textures/mob/yautja_berserker.png"));
         public final TexturedModel<ModelSpitter>               SPITTER                        = new TexturedModel(new ModelSpitter(), new Texture(AliensVsPredator.ID, "textures/mob/spitter.png"));
@@ -186,7 +186,7 @@ public class Resources
         public final TexturedModel<ModelWarrior>               DRONE_SKULL                    = new TexturedModel(new ModelWarrior(), new Texture(AliensVsPredator.ID, "textures/mob/xenomorphskullgiger.png"));
         public final TexturedModel<ModelWarrior>               WARRIOR_SKULL                  = new TexturedModel(new ModelWarrior(), new Texture(AliensVsPredator.ID, "textures/mob/xenomorphskullwarrior.png"));
         public final TexturedModel<ModelYautja>                YAUTJA_SKULL                   = new TexturedModel(new ModelYautja(), new Texture(AliensVsPredator.ID, "textures/mob/yautjaskull.png"));
-        public final TexturedModel<ModelQueen>                 QUEEN_SKULL                    = new TexturedModel(new ModelQueen(), new Texture(AliensVsPredator.ID, "textures/mob/queenskull.png"));
+        public final TexturedModel<ModelMatriarch>             QUEEN_SKULL                    = new TexturedModel(new ModelMatriarch(), new Texture(AliensVsPredator.ID, "textures/mob/queenskull.png"));
         public final TexturedModel<ModelOctohugger>            OCTOHUGGER                     = new TexturedModel(new ModelOctohugger(), new Texture(AliensVsPredator.ID, "textures/mob/octohugger.png"));
         public final TexturedModel<ModelBelugaburster>         BELUGABURSTER                  = new TexturedModel(new ModelBelugaburster(), new Texture(AliensVsPredator.ID, "textures/mob/belugaburster.png"));
         public final TexturedModel<ModelBelugamorph>           BELUGAMORPH                    = new TexturedModel(new ModelBelugamorph(), new Texture(AliensVsPredator.ID, "textures/mob/belugamorph.png"));

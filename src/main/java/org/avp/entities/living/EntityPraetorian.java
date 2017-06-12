@@ -60,7 +60,7 @@ public class EntityPraetorian extends EntityXenomorph implements IMaturable
     @Override
     public Class<? extends Entity> getMatureState()
     {
-        return EntityQueen.class;
+        return EntityMatriarch.class;
     }
 
     @Override

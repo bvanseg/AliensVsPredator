@@ -6,7 +6,7 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.living.EntityQueen;
+import org.avp.entities.living.EntityMatriarch;
 import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.Draw;
@@ -54,7 +54,7 @@ public class BossBarEvent
                             break;
                         }
 
-                        if (living instanceof EntityQueen)
+                        if (living instanceof EntityMatriarch)
                         {
                             bosses.add(living);
                         }

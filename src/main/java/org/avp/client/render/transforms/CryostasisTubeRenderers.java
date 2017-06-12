@@ -12,7 +12,7 @@ import org.avp.entities.living.EntityDrone;
 import org.avp.entities.living.EntityFacehugger;
 import org.avp.entities.living.EntityOvamorph;
 import org.avp.entities.living.EntityPraetorian;
-import org.avp.entities.living.EntityQueen;
+import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityXenomorph;
 import org.avp.tile.TileEntityCryostasisTube;
 import org.lwjgl.opengl.GL12;
@@ -126,7 +126,7 @@ public class CryostasisTubeRenderers
             @Override
             public void renderEntity(RenderCryostasisTube renderer, TileEntityCryostasisTube tile, double posX, double posY, double posZ)
             {
-                if (tile.stasisEntity != null && !(tile.stasisEntity instanceof EntityQueen))
+                if (tile.stasisEntity != null && !(tile.stasisEntity instanceof EntityMatriarch))
                 {
                     double depth = tile.stasisEntity instanceof EntityPraetorian ? -1.95 : tile.stasisEntity instanceof EntityDrone ? -1.0 : -1.5F;
 
@@ -138,7 +138,7 @@ public class CryostasisTubeRenderers
                     Game.renderManager().renderEntityStatic(tile.stasisEntity, Game.partialTicks(), false);
                     OpenGL.popMatrix();
                 }
-                else if (tile.stasisEntity instanceof EntityQueen)
+                else if (tile.stasisEntity instanceof EntityMatriarch)
                 {
                     OpenGL.pushMatrix();
                     OpenGL.disableLight();

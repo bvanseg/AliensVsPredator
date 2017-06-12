@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import org.avp.api.storage.IWorldSaveHandler;
-import org.avp.entities.living.EntityQueen;
+import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntitySpeciesAlien;
 import org.avp.tile.TileEntityHiveResin;
 
@@ -38,7 +38,7 @@ public class HiveHandler implements IWorldSaveHandler
         this.burntResin = new ArrayList<Pos>();
     }
     
-    public XenomorphHive createHive(EntityQueen queen)
+    public XenomorphHive createHive(EntityMatriarch queen)
     {
         XenomorphHive hive = new XenomorphHive(queen.world, queen.getUniqueID()).setLocation(queen.posX, queen.posY, queen.posZ);
         HiveHandler.instance.getHives().add(hive);

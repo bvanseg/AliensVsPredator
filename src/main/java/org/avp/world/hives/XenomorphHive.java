@@ -3,7 +3,7 @@ package org.avp.world.hives;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import org.avp.entities.living.EntityQueen;
+import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntitySpeciesAlien;
 import org.avp.tile.TileEntityHiveResin;
 
@@ -25,7 +25,7 @@ public class XenomorphHive
     private ArrayList<EntitySpeciesAlien>  aliens;
     private ArrayList<TileEntityHiveResin> resinInHive;
     private UUID                           uuid;
-    private EntityQueen                    queen;
+    private EntityMatriarch                    queen;
     public World                           world;
     private int                            dimensionId;
     private int                            xCoord;
@@ -35,7 +35,7 @@ public class XenomorphHive
     public XenomorphHive(World world, UUID uuid)
     {
         this.uuid = uuid;
-        this.queen = (EntityQueen) Worlds.getEntityByUUID(world, this.uuid);
+        this.queen = (EntityMatriarch) Worlds.getEntityByUUID(world, this.uuid);
         this.aliens = new ArrayList<EntitySpeciesAlien>();
         this.resinInHive = new ArrayList<TileEntityHiveResin>();
 
@@ -102,9 +102,9 @@ public class XenomorphHive
         return uuid;
     }
 
-    public EntityQueen getQueen()
+    public EntityMatriarch getQueen()
     {
-        return this.queen == null && world != null ? this.queen = (EntityQueen) Worlds.getEntityByUUID(world, this.uuid) : this.queen;
+        return this.queen == null && world != null ? this.queen = (EntityMatriarch) Worlds.getEntityByUUID(world, this.uuid) : this.queen;
     }
 
     public int getDimensionId()
@@ -178,7 +178,7 @@ public class XenomorphHive
 
     public void load(World world, UUID uniqueIdentifier, NBTTagCompound nbt)
     {
-        this.queen = (EntityQueen) Worlds.getEntityByUUID(world, this.uuid);
+        this.queen = (EntityMatriarch) Worlds.getEntityByUUID(world, this.uuid);
         this.dimensionId = nbt.getInteger("DimID");
         this.xCoord = nbt.getInteger("X");
         this.yCoord = nbt.getInteger("Y");

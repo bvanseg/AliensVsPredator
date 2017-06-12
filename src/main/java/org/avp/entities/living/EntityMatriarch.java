@@ -31,7 +31,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityQueen extends EntityXenomorph implements IMob
+public class EntityMatriarch extends EntityXenomorph implements IMob
 {
     public static final float OVIPOSITOR_THRESHOLD_SIZE          = 1.3F;
     public static final float OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE = 0.00225F;
@@ -39,14 +39,14 @@ public class EntityQueen extends EntityXenomorph implements IMob
     public static final int   OVIPOSITOR_JELLYLEVEL_THRESHOLD    = 1000;
     public static final int   OVIPOSITOR_JELLYLEVEL_GROWTH_USE   = 1;
 
-    private static final DataParameter<Float> OVIPOSITOR_SIZE = EntityDataManager.createKey(EntityQueen.class, DataSerializers.FLOAT);
+    private static final DataParameter<Float> OVIPOSITOR_SIZE = EntityDataManager.createKey(EntityMatriarch.class, DataSerializers.FLOAT);
     
     public boolean            growingOvipositor;
     public boolean            reproducing;
 
     private ArrayList<Pos>    pathPoints                         = new ArrayList<Pos>();
 
-    public EntityQueen(World world)
+    public EntityMatriarch(World world)
     {
         super(world);
         this.setSize(2.0F, 5.0F);

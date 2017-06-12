@@ -229,11 +229,11 @@ public abstract class EntityXenomorph extends EntitySpeciesAlien implements IMob
     {
         if (this.hive != null && !this.world.isRemote)
         {
-            if (this.hive.getQueen() != null && !this.hive.getQueen().isDead && !(this instanceof EntityQueen))
+            if (this.hive.getQueen() != null && !this.hive.getQueen().isDead && !(this instanceof EntityMatriarch))
             {
-                if (this.hive.getQueen().getOvipositorSize() < EntityQueen.OVIPOSITOR_THRESHOLD_SIZE || this.hive.getQueen().reproducing)
+                if (this.hive.getQueen().getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || this.hive.getQueen().reproducing)
                 {
-                    if (this.hive.getQueen().getJellyLevel() < EntityQueen.OVIPOSITOR_JELLYLEVEL_THRESHOLD * 2 && this.getJellyLevel() >= 80)
+                    if (this.hive.getQueen().getJellyLevel() < EntityMatriarch.OVIPOSITOR_JELLYLEVEL_THRESHOLD * 2 && this.getJellyLevel() >= 80)
                     {
                         this.hive.getQueen().setJellyLevel(this.hive.getQueen().getJellyLevel() + this.getJellyLevel());
                         this.setJellyLevel(0);

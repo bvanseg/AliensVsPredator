@@ -50,7 +50,7 @@ import org.avp.entities.living.EntityPraetorian;
 import org.avp.entities.living.EntityPredalien;
 import org.avp.entities.living.EntityPredalienChestburster;
 import org.avp.entities.living.EntityPredatorHound;
-import org.avp.entities.living.EntityQueen;
+import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityQueenChestburster;
 import org.avp.entities.living.EntityRoyalFacehugger;
 import org.avp.entities.living.EntityRunnerChestburster;
@@ -172,7 +172,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         MDX.registerRemappedEntity(EntityPraetorian.class, "Praetorian");
         MDX.registerRemappedEntity(EntityMarine.class, "Marine");
         MDX.registerRemappedEntity(EntityYautja.class, "Yautja");
-        MDX.registerRemappedEntity(EntityQueen.class, "Queen");
+        MDX.registerRemappedEntity(EntityMatriarch.class, "Queen");
         MDX.registerRemappedEntity(EntityFacehugger.class, "Facehugger");
         MDX.registerRemappedEntity(EntityChestburster.class, "Chestbuster");
         MDX.registerRemappedEntity(EntityOvamorph.class, "Ovamorph");
@@ -225,7 +225,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         Game.register(EntityPraetorian.class, "Praetorian", entityId++, AliensVsPredator.instance(), 250, 1, true);
         Game.register(EntityMarine.class, "Marine", entityId++, AliensVsPredator.instance(), 250, 1, true);
         Game.register(EntityYautja.class, "Yautja", entityId++, AliensVsPredator.instance(), 250, 1, true);
-        Game.register(EntityQueen.class, "Queen", entityId++, AliensVsPredator.instance(), 250, 1, true);
+        Game.register(EntityMatriarch.class, "Queen", entityId++, AliensVsPredator.instance(), 250, 1, true);
         Game.register(EntityFacehugger.class, "Facehugger", entityId++, AliensVsPredator.instance(), 250, 1, true);
         Game.register(EntityChestburster.class, "Chestbuster", entityId++, AliensVsPredator.instance(), 250, 1, true);
         Game.register(EntityOvamorph.class, "Ovamorph", entityId++, AliensVsPredator.instance(), 250, 1, true);

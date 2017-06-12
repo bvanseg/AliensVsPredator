@@ -244,7 +244,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
 
     public void identifyHive()
     {
-        if (!(this instanceof EntityQueen))
+        if (!(this instanceof EntityMatriarch))
         {
             if (this.signature != null)
             {

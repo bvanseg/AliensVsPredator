@@ -40,7 +40,7 @@ public class EntityDracomorph extends EntitySpeciesAlien implements IMob, IHost
                                                       @Override
                                                       public boolean apply(EntityLivingBase target)
                                                       {
-                                                          if (target instanceof EntityQueen)
+                                                          if (target instanceof EntityMatriarch)
                                                           {
                                                               return true;
                                                           }

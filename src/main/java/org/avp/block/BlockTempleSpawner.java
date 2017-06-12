@@ -1,7 +1,7 @@
 package org.avp.block;
 
 import org.avp.entities.living.EntityOvamorph;
-import org.avp.entities.living.EntityQueen;
+import org.avp.entities.living.EntityMatriarch;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -28,7 +28,7 @@ public class BlockTempleSpawner extends Block
             World world = (World) access;
             int range = 25;
 
-            boolean isQueenNear = world.getEntitiesWithinAABB(EntityQueen.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1).expand(range * 2, 50.0D, range * 2)).size() >= 1;
+            boolean isQueenNear = world.getEntitiesWithinAABB(EntityMatriarch.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1).expand(range * 2, 50.0D, range * 2)).size() >= 1;
 
             if (!world.isRemote)
             {

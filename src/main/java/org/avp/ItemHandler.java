@@ -30,7 +30,7 @@ import org.avp.entities.living.EntityPraetorian;
 import org.avp.entities.living.EntityPredalien;
 import org.avp.entities.living.EntityPredalienChestburster;
 import org.avp.entities.living.EntityPredatorHound;
-import org.avp.entities.living.EntityQueen;
+import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityQueenChestburster;
 import org.avp.entities.living.EntityRoyalFacehugger;
 import org.avp.entities.living.EntityRunnerChestburster;
@@ -207,7 +207,7 @@ public class ItemHandler implements IPreInitEvent
         public ItemEntitySummoner itemSummonerCrusher               = (new ItemEntitySummoner(EntityCrusher.class));
         public ItemEntitySummoner itemSummonerSpitter               = (new ItemEntitySummoner(EntitySpitter.class));
         public ItemEntitySummoner itemSummonerPraetorian            = (new ItemEntitySummoner(EntityPraetorian.class));
-        public ItemEntitySummoner itemSummonerQueen                 = (new ItemEntitySummoner(EntityQueen.class));
+        public ItemEntitySummoner itemSummonerQueen                 = (new ItemEntitySummoner(EntityMatriarch.class));
         public ItemEntitySummoner itemSummonerChestburster          = (new ItemEntitySummoner(EntityChestburster.class));
         public ItemEntitySummoner itemSummonerFacehugger            = (new ItemEntitySummoner(EntityFacehugger.class));
         public ItemEntitySummoner itemSummonerMarine                = (new ItemEntitySummoner(EntityMarine.class));

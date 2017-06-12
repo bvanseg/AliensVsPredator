@@ -1,7 +1,7 @@
 package org.avp.client.model.entities.living;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.living.EntityQueen;
+import org.avp.entities.living.EntityMatriarch;
 import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.Model;
@@ -12,11 +12,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelQueen extends Model
+public class ModelMatriarch extends Model
 {
     public ModelRenderer torso0, torso1, rThigh, lThigh, lShin0, lShin1, lFoot, rShin0, rShin1, rFoot, lArm0, lArm1, lHand, lClaw, rArm0, rArm1, rHand, rClaw, tail0, tail1, tail2, tail3, tail4, tailStabber, bStabber0, bStabber1, bStabber2, bStabber3, bStabber4, bStabber5, bSpines0, bSpines1, bSpines2, bSpines3, bSpines4, bSpines5, bSpines6, lArmMini0, lArmMini1, rArmMini0, rArmMini1, lHandMini, rHandMini, lClawMini, rClawMini, neck, Jaw1, head0, head1, headBase0, headFinL0, headFinL1, headFinL2, headFinR0, headFinR1, headFinR2, headWebL, headSpinesL, headSpinesM, headSpinesR, headWebR, rHip, lHip, lShinSpike, rShinSpike, sack0, sack7, sack1, sack2, sack3, sack4, sack5, sack6;
 
-    public ModelQueen()
+    public ModelMatriarch()
     {
         textureWidth = 256;
         textureHeight = 128;
@@ -584,9 +584,9 @@ public class ModelQueen extends Model
         draw(rShinSpike);
 
 
-        if (base != null && base instanceof EntityQueen)
+        if (base != null && base instanceof EntityMatriarch)
         {
-            EntityQueen queen = (EntityQueen) base;
+            EntityMatriarch queen = (EntityMatriarch) base;
 
             if (queen.getOvipositorSize() > 0F)
             {
@@ -598,7 +598,7 @@ public class ModelQueen extends Model
                     OpenGL.blendClear();
                     OpenGL.disableCullFace();
                     OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_COLOR);
-                    AliensVsPredator.resources().models().XENOQUEEN_MASK.getTexture().bind();
+                    AliensVsPredator.resources().models().MATRIARCH_MASK.getTexture().bind();
                     draw(sack0);
                     draw(sack1);
                     draw(sack2);

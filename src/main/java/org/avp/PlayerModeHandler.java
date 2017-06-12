@@ -52,7 +52,7 @@ public class PlayerModeHandler implements IInitEvent
         PlayerMode.XENOMORPH.getLevelMappingForLevel(20).setModelTexMap(AliensVsPredator.resources().models().DRONE_ADVANCED_BLOOD);
         PlayerMode.XENOMORPH.getLevelMappingForLevel(45).setModelTexMap(AliensVsPredator.resources().models().WARRIOR_BLOOD);
         PlayerMode.XENOMORPH.getLevelMappingForLevel(65).setModelTexMap(AliensVsPredator.resources().models().PRAETORIAN);
-        PlayerMode.XENOMORPH.getLevelMappingForLevel(90).setModelTexMap(AliensVsPredator.resources().models().XENOQUEEN);
+        PlayerMode.XENOMORPH.getLevelMappingForLevel(90).setModelTexMap(AliensVsPredator.resources().models().MATRIARCH);
     }
 
     @SubscribeEvent

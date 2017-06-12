@@ -25,7 +25,7 @@ import org.avp.entities.living.EntityOvamorph;
 import org.avp.entities.living.EntityPraetorian;
 import org.avp.entities.living.EntityPredalien;
 import org.avp.entities.living.EntityPredalienChestburster;
-import org.avp.entities.living.EntityQueen;
+import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityQueenChestburster;
 import org.avp.entities.living.EntityRoyalFacehugger;
 import org.avp.entities.living.EntityRunnerChestburster;
@@ -517,7 +517,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.addTargetType(EntityDrone.class);
         this.addTargetType(EntityWarrior.class);
         this.addTargetType(EntityPraetorian.class);
-        this.addTargetType(EntityQueen.class);
+        this.addTargetType(EntityMatriarch.class);
         this.addTargetType(EntityCrusher.class);
         this.addTargetType(EntitySpitter.class);
         this.addTargetType(EntityAqua.class);
