@@ -7,11 +7,13 @@ import org.avp.entities.living.EntityBelugaburster;
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.entity.RenderManager;
+
 public class RenderBelugaburster extends RenderLivingWrapper<EntityBelugaburster, ModelBelugaburster>
 {
-    public RenderBelugaburster()
+    public RenderBelugaburster(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().BELUGABURSTER);
+        super(m, AliensVsPredator.resources().models().BELUGABURSTER);
     }
 
     @Override

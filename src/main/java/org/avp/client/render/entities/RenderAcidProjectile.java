@@ -1,27 +1,27 @@
 package org.avp.client.render.entities;
 
 import org.avp.client.model.entities.ModelPlasma;
+import org.avp.entities.EntityAcidProjectile;
 
 import com.arisux.mdx.lib.client.render.Color;
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderAcidSpit extends Render
+public class RenderAcidProjectile extends Render<EntityAcidProjectile>
 {
     private ModelPlasma model = new ModelPlasma();
 
-    public RenderAcidSpit()
+    public RenderAcidProjectile(RenderManager m)
     {
-        super(Game.renderManager());
+        super(m);
         this.model.setColor(new Color(0.2F, 1.0F, 0.0F, 0.7F));
     }
 
     @Override
-    public void doRender(Entity entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
+    public void doRender(EntityAcidProjectile entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {
         float rotation = 20;
         model.drawInternalVertices = false;
@@ -76,7 +76,7 @@ public class RenderAcidSpit extends Render
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(Entity entity)
+    protected ResourceLocation getEntityTexture(EntityAcidProjectile entity)
     {
         return null;
     }

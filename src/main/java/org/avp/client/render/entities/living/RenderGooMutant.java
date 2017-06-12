@@ -5,20 +5,16 @@ import org.avp.client.model.entities.living.ModelGooMutant;
 import org.avp.entities.living.EntityGooMutant;
 
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
+
+import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderGooMutant extends RenderLivingWrapper<EntityGooMutant, ModelGooMutant>
 {
-    public RenderGooMutant()
+    public RenderGooMutant(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().GOO_MUTANT);
+        super(m, AliensVsPredator.resources().models().GOO_MUTANT);
     }
     
-    public RenderGooMutant(TexturedModel<ModelGooMutant> model)
-    {
-        super(model);
-    }
-
     @Override
     public void doRender(EntityGooMutant entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {

@@ -7,11 +7,13 @@ import org.avp.entities.living.EntityChestburster;
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.entity.RenderManager;
+
 public class RenderChestburster extends RenderLivingWrapper<EntityChestburster, ModelChestburster>
 {
-    public RenderChestburster()
+    public RenderChestburster(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().CHESTBUSTER);
+        super(m, AliensVsPredator.resources().models().CHESTBUSTER);
     }
 
     @Override

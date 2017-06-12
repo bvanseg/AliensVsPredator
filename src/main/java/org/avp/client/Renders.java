@@ -1,18 +1,10 @@
 package org.avp.client;
 
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
-import static net.minecraftforge.fml.client.registry.RenderingRegistry.registerEntityRenderingHandler;
 
 import org.avp.AliensVsPredator;
 import org.avp.ItemHandler;
 import org.avp.ItemHandler.Summoners;
-import org.avp.client.model.entities.living.ModelCrusher;
-import org.avp.client.model.entities.living.ModelDrone;
-import org.avp.client.model.entities.living.ModelPraetorian;
-import org.avp.client.model.entities.living.ModelProtomorph;
-import org.avp.client.model.entities.living.ModelRunnerDrone;
-import org.avp.client.model.entities.living.ModelRunnerWarrior;
-import org.avp.client.model.entities.living.ModelWarrior;
 import org.avp.client.model.items.Model88MOD4;
 import org.avp.client.model.items.ModelAK47;
 import org.avp.client.model.items.ModelM4;
@@ -21,7 +13,7 @@ import org.avp.client.model.items.ModelM56SG;
 import org.avp.client.model.items.ModelSniper;
 import org.avp.client.render.entities.RenderAPC;
 import org.avp.client.render.entities.RenderAcidPool;
-import org.avp.client.render.entities.RenderAcidSpit;
+import org.avp.client.render.entities.RenderAcidProjectile;
 import org.avp.client.render.entities.RenderBullet;
 import org.avp.client.render.entities.RenderDisc;
 import org.avp.client.render.entities.RenderFlame;
@@ -38,14 +30,19 @@ import org.avp.client.render.entities.RenderWristbracer;
 import org.avp.client.render.entities.living.RenderAethon;
 import org.avp.client.render.entities.living.RenderAqua;
 import org.avp.client.render.entities.living.RenderBabyhead;
+import org.avp.client.render.entities.living.RenderBatXenomorph;
 import org.avp.client.render.entities.living.RenderBelugaburster;
+import org.avp.client.render.entities.living.RenderBelugamorph;
 import org.avp.client.render.entities.living.RenderBoiler;
 import org.avp.client.render.entities.living.RenderChestburster;
 import org.avp.client.render.entities.living.RenderCombatSynthetic;
+import org.avp.client.render.entities.living.RenderCrusher;
+import org.avp.client.render.entities.living.RenderDeacon;
 import org.avp.client.render.entities.living.RenderDeaconShark;
 import org.avp.client.render.entities.living.RenderDracoEgg;
 import org.avp.client.render.entities.living.RenderDracoburster;
 import org.avp.client.render.entities.living.RenderDracomorph;
+import org.avp.client.render.entities.living.RenderDrone;
 import org.avp.client.render.entities.living.RenderEngineer;
 import org.avp.client.render.entities.living.RenderFacehugger;
 import org.avp.client.render.entities.living.RenderGooMutant;
@@ -54,6 +51,8 @@ import org.avp.client.render.entities.living.RenderMarine;
 import org.avp.client.render.entities.living.RenderMyceliomorph;
 import org.avp.client.render.entities.living.RenderOctohugger;
 import org.avp.client.render.entities.living.RenderOvamorph;
+import org.avp.client.render.entities.living.RenderPantheramorph;
+import org.avp.client.render.entities.living.RenderPraetorian;
 import org.avp.client.render.entities.living.RenderPredalien;
 import org.avp.client.render.entities.living.RenderPredalienChestburster;
 import org.avp.client.render.entities.living.RenderPredatorHound;
@@ -61,14 +60,18 @@ import org.avp.client.render.entities.living.RenderQueen;
 import org.avp.client.render.entities.living.RenderQueenChestburster;
 import org.avp.client.render.entities.living.RenderRoyalFacehugger;
 import org.avp.client.render.entities.living.RenderRunnerChestburster;
+import org.avp.client.render.entities.living.RenderRunnerDrone;
+import org.avp.client.render.entities.living.RenderRunnerWarrior;
+import org.avp.client.render.entities.living.RenderScelemur;
+import org.avp.client.render.entities.living.RenderSpaceJockey;
 import org.avp.client.render.entities.living.RenderSpitter;
 import org.avp.client.render.entities.living.RenderTrilobite;
+import org.avp.client.render.entities.living.RenderUltramorph;
 import org.avp.client.render.entities.living.RenderUrsuidae;
-import org.avp.client.render.entities.living.RenderVardaMonkey;
-import org.avp.client.render.entities.living.RenderXenomorph;
-import org.avp.client.render.entities.living.RenderYautja;
+import org.avp.client.render.entities.living.RenderWarrior;
 import org.avp.client.render.entities.living.RenderYautjaBerserker;
 import org.avp.client.render.entities.living.RenderYautjaMutant;
+import org.avp.client.render.entities.living.RenderYautjaWarrior;
 import org.avp.client.render.items.RenderItem88MOD4;
 import org.avp.client.render.items.RenderItemAK47;
 import org.avp.client.render.items.RenderItemAPC;
@@ -245,151 +248,110 @@ import org.avp.tile.TileEntityTransformer;
 import org.avp.tile.TileEntityTurret;
 import org.avp.tile.TileEntityWorkstation;
 
-import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.game.IInitEvent;
 import com.arisux.mdx.lib.game.IPreInitEvent;
+import com.arisux.mdx.lib.game.Renderers;
 
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.Entity;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class Renderers implements IInitEvent, IPreInitEvent
+public class Renders implements IInitEvent, IPreInitEvent
 {
-    public static Renderers instance = new Renderers();
+    public static Renders instance = new Renders();
 
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
         registerStandardEntityRenderers();
+        registerLivingEntityRenderers();
     }
 
     @Override
     public void init(FMLInitializationEvent event)
     {
-        registerBlockModels();
         registerTileEntitySpecialRenderers();
         registerItemRenderers(AliensVsPredator.items());
-        registerLivingEntityRenderers();
         CryostasisTubeRenderers.register();
         MedpodTransforms.register();
         FaceLocationTransforms.register();
         VanillaFaceLocationTransforms.register();
     }
 
-    private void registerBlockModels()
-    {
-        // registerBlockModel(AliensVsPredator.blocks().blockCeilingGrillStairs);
-        // registerBlockModel(AliensVsPredator.blocks().blockFloorGrillStairs);
-    }
-
     private void registerLivingEntityRenderers()
     {
-        registerEntityRenderingHandler(EntityEngineer.class, new IRenderFactory<EntityEngineer>()
-        {
-            @Override
-            public Render<? super EntityEngineer> createRenderFor(RenderManager manager)
-            {
-                return new RenderEngineer();
-            }
-        });
-        registerEntityRenderingHandler(EntitySpaceJockey.class, new RenderEngineer(AliensVsPredator.resources().models().SPACE_JOCKEY));
-        registerEntityRenderingHandler(EntityYautjaBerserker.class, new RenderYautjaBerserker());
-        registerEntityRenderingHandler(EntityTrilobite.class, new RenderTrilobite());
-        registerEntityRenderingHandler(EntityHammerpede.class, new RenderHammerpede());
-        registerEntityRenderingHandler(EntityDeacon.class, new RenderXenomorph<ModelProtomorph>(AliensVsPredator.resources().models().PROTOMORPH, 1.4F));
-        registerEntityRenderingHandler(EntityDrone.class, new RenderXenomorph<ModelDrone>(AliensVsPredator.resources().models().DRONE_ADVANCED, 0.9F));
-        registerEntityRenderingHandler(EntityWarrior.class, new RenderXenomorph<ModelWarrior>(AliensVsPredator.resources().models().WARRIOR, 1F));
-        registerEntityRenderingHandler(EntityPraetorian.class, new RenderXenomorph<ModelPraetorian>(AliensVsPredator.resources().models().PRAETORIAN, 1.4F));
-        registerEntityRenderingHandler(EntityRunnerDrone.class, new RenderXenomorph<ModelRunnerDrone>(AliensVsPredator.resources().models().RUNNER_DRONE, 0.9F));
-        registerEntityRenderingHandler(EntityRunnerWarrior.class, new RenderXenomorph<ModelRunnerWarrior>(AliensVsPredator.resources().models().RUNNER_WARRIOR, 1F));
-        registerEntityRenderingHandler(EntityCrusher.class, new RenderXenomorph<ModelCrusher>(AliensVsPredator.resources().models().CRUSHER, 1F));
-        registerEntityRenderingHandler(EntityAqua.class, new RenderAqua());
-        registerEntityRenderingHandler(EntityPredalien.class, new RenderPredalien());
-        registerEntityRenderingHandler(EntitySpitter.class, new RenderSpitter());
-        registerEntityRenderingHandler(EntityMarine.class, new RenderMarine());
-        registerEntityRenderingHandler(EntityCombatSynthetic.class, new RenderCombatSynthetic());
-        registerEntityRenderingHandler(EntityYautja.class, new RenderYautja());
-        registerEntityRenderingHandler(EntityQueen.class, new RenderQueen());
-        registerEntityRenderingHandler(EntityFacehugger.class, new RenderFacehugger(AliensVsPredator.resources().models().FACEHUGGER));
-        registerEntityRenderingHandler(EntityRoyalFacehugger.class, new RenderRoyalFacehugger());
-        registerEntityRenderingHandler(EntityChestburster.class, new RenderChestburster());
-        registerEntityRenderingHandler(EntityOvamorph.class, new RenderOvamorph());
-        registerEntityRenderingHandler(EntityDeaconShark.class, new RenderDeaconShark());
-        registerEntityRenderingHandler(EntityUltramorph.class, new RenderXenomorph(AliensVsPredator.resources().models().ULTRAMORPH, 1.5F));
-        registerEntityRenderingHandler(EntityGooMutant.class, new RenderGooMutant());
-        registerEntityRenderingHandler(EntityAethon.class, new RenderAethon());
-        registerEntityRenderingHandler(EntityOctohugger.class, new RenderOctohugger());
-        registerEntityRenderingHandler(EntityBelugaburster.class, new RenderBelugaburster());
-        registerEntityRenderingHandler(EntityBelugamorph.class, new RenderXenomorph(AliensVsPredator.resources().models().BELUGAMORPH, 1F));
-        registerEntityRenderingHandler(EntityPredalienChestburster.class, new RenderPredalienChestburster());
-        registerEntityRenderingHandler(EntityQueenChestburster.class, new RenderQueenChestburster());
-        registerEntityRenderingHandler(EntityRunnerChestburster.class, new RenderRunnerChestburster());
-        registerEntityRenderingHandler(EntityBabyhead.class, new RenderBabyhead());
-        registerEntityRenderingHandler(EntityBatXeno.class, new RenderXenomorph(AliensVsPredator.resources().models().BAT_XENO, 0.75F));
-        registerEntityRenderingHandler(EntityBoiler.class, new RenderBoiler());
-        registerEntityRenderingHandler(EntityDracoburster.class, new RenderDracoburster());
-        registerEntityRenderingHandler(EntityDracoEgg.class, new RenderDracoEgg());
-        registerEntityRenderingHandler(EntityDracomorph.class, new RenderDracomorph());
-        registerEntityRenderingHandler(EntityMyceliomorph.class, new RenderMyceliomorph());
-        registerEntityRenderingHandler(EntityPantheramorph.class, new RenderXenomorph(AliensVsPredator.resources().models().PANTHERAMORPH, 0.75F));
-        registerEntityRenderingHandler(EntityPredatorHound.class, new RenderPredatorHound());
-        registerEntityRenderingHandler(EntityUrsuidae.class, new RenderUrsuidae());
-        registerEntityRenderingHandler(EntityScelemur.class, new RenderVardaMonkey());
-        registerEntityRenderingHandler(EntityYautjaMutant.class, new RenderYautjaMutant());
-    }
-
-    @SuppressWarnings("unchecked")
-    private static void registerRenderer(Class<? extends Entity> entityClass, Class<? extends Render> renderer)
-    {
-        registerEntityRenderingHandler(entityClass, new IRenderFactory()
-        {
-            @Override
-            public Render<?> createRenderFor(RenderManager m)
-            {
-                try
-                {
-                    return (renderer.getConstructor(RenderManager.class)).newInstance(new Object[] { m });
-                }
-                catch (Exception e)
-                {
-                    MDX.log().warn("Failed to construct renderer: " + (renderer != null ? renderer.getName() : renderer));
-                    e.printStackTrace();
-                }
-
-                return null;
-            }
-        });
+        Renderers.registerRenderer(EntityEngineer.class, RenderEngineer.class);
+        Renderers.registerRenderer(EntitySpaceJockey.class, RenderSpaceJockey.class);
+        Renderers.registerRenderer(EntityYautjaBerserker.class, RenderYautjaBerserker.class);
+        Renderers.registerRenderer(EntityTrilobite.class, RenderTrilobite.class);
+        Renderers.registerRenderer(EntityHammerpede.class, RenderHammerpede.class);
+        Renderers.registerRenderer(EntityDeacon.class, RenderDeacon.class);
+        Renderers.registerRenderer(EntityDrone.class, RenderDrone.class);
+        Renderers.registerRenderer(EntityWarrior.class, RenderWarrior.class);
+        Renderers.registerRenderer(EntityPraetorian.class, RenderPraetorian.class);
+        Renderers.registerRenderer(EntityRunnerDrone.class, RenderRunnerDrone.class);
+        Renderers.registerRenderer(EntityRunnerWarrior.class, RenderRunnerWarrior.class);
+        Renderers.registerRenderer(EntityCrusher.class, RenderCrusher.class);
+        Renderers.registerRenderer(EntityAqua.class, RenderAqua.class);
+        Renderers.registerRenderer(EntityPredalien.class, RenderPredalien.class);
+        Renderers.registerRenderer(EntitySpitter.class, RenderSpitter.class);
+        Renderers.registerRenderer(EntityMarine.class, RenderMarine.class);
+        Renderers.registerRenderer(EntityCombatSynthetic.class, RenderCombatSynthetic.class);
+        Renderers.registerRenderer(EntityYautja.class, RenderYautjaWarrior.class);
+        Renderers.registerRenderer(EntityQueen.class, RenderQueen.class);
+        Renderers.registerRenderer(EntityFacehugger.class, RenderFacehugger.class);
+        Renderers.registerRenderer(EntityRoyalFacehugger.class, RenderRoyalFacehugger.class);
+        Renderers.registerRenderer(EntityChestburster.class, RenderChestburster.class);
+        Renderers.registerRenderer(EntityOvamorph.class, RenderOvamorph.class);
+        Renderers.registerRenderer(EntityDeaconShark.class, RenderDeaconShark.class);
+        Renderers.registerRenderer(EntityUltramorph.class, RenderUltramorph.class);
+        Renderers.registerRenderer(EntityGooMutant.class, RenderGooMutant.class);
+        Renderers.registerRenderer(EntityAethon.class, RenderAethon.class);
+        Renderers.registerRenderer(EntityOctohugger.class, RenderOctohugger.class);
+        Renderers.registerRenderer(EntityBelugaburster.class, RenderBelugaburster.class);
+        Renderers.registerRenderer(EntityBelugamorph.class, RenderBelugamorph.class);
+        Renderers.registerRenderer(EntityPredalienChestburster.class, RenderPredalienChestburster.class);
+        Renderers.registerRenderer(EntityQueenChestburster.class, RenderQueenChestburster.class);
+        Renderers.registerRenderer(EntityRunnerChestburster.class, RenderRunnerChestburster.class);
+        Renderers.registerRenderer(EntityBabyhead.class, RenderBabyhead.class);
+        Renderers.registerRenderer(EntityBatXeno.class, RenderBatXenomorph.class);
+        Renderers.registerRenderer(EntityBoiler.class, RenderBoiler.class);
+        Renderers.registerRenderer(EntityDracoburster.class, RenderDracoburster.class);
+        Renderers.registerRenderer(EntityDracoEgg.class, RenderDracoEgg.class);
+        Renderers.registerRenderer(EntityDracomorph.class, RenderDracomorph.class);
+        Renderers.registerRenderer(EntityMyceliomorph.class, RenderMyceliomorph.class);
+        Renderers.registerRenderer(EntityPantheramorph.class, RenderPantheramorph.class);
+        Renderers.registerRenderer(EntityPredatorHound.class, RenderPredatorHound.class);
+        Renderers.registerRenderer(EntityUrsuidae.class, RenderUrsuidae.class);
+        Renderers.registerRenderer(EntityScelemur.class, RenderScelemur.class);
+        Renderers.registerRenderer(EntityYautjaMutant.class, RenderYautjaMutant.class);
     }
 
     private void registerStandardEntityRenderers()
     {
-        registerRenderer(EntityAcidPool.class, RenderAcidPool.class);
-        registerRenderer(EntitySpear.class, RenderSpear.class);
-        registerRenderer(EntityLaserMine.class, RenderLaserMine.class);
-        registerRenderer(EntityGrenade.class, RenderGrenade.class);
-        registerRenderer(EntityFlame.class, RenderFlame.class);
-        registerRenderer(EntityLiquidLatexPool.class, RenderLiquidLatexPool.class);
-        registerRenderer(EntityPlasma.class, RenderPlasmaBlast.class);
-        registerRenderer(EntityAcidProjectile.class, RenderAcidSpit.class);
-        registerRenderer(EntitySmartDisc.class, RenderDisc.class);
-        registerRenderer(EntityShuriken.class, RenderShuriken.class);
-        registerRenderer(EntityBullet.class, RenderBullet.class);
-        registerRenderer(EntityWristbracer.class, RenderWristbracer.class);
-        registerRenderer(EntityAPC.class, RenderAPC.class);
-        registerRenderer(EntityMechanism.class, RenderMechanism.class);
-        registerRenderer(EntityMedpod.class, RenderMedpodEntity.class);
-        registerRenderer(EntitySupplyChute.class, RenderSupplyChute.class);
-        registerRenderer(EntitySupplyChuteMarines.class, RenderSupplyChute.class);
-        registerRenderer(EntitySupplyChuteSeegson.class, RenderSupplyChute.class);
+        Renderers.registerRenderer(EntityAcidPool.class, RenderAcidPool.class);
+        Renderers.registerRenderer(EntitySpear.class, RenderSpear.class);
+        Renderers.registerRenderer(EntityLaserMine.class, RenderLaserMine.class);
+        Renderers.registerRenderer(EntityGrenade.class, RenderGrenade.class);
+        Renderers.registerRenderer(EntityFlame.class, RenderFlame.class);
+        Renderers.registerRenderer(EntityLiquidLatexPool.class, RenderLiquidLatexPool.class);
+        Renderers.registerRenderer(EntityPlasma.class, RenderPlasmaBlast.class);
+        Renderers.registerRenderer(EntityAcidProjectile.class, RenderAcidProjectile.class);
+        Renderers.registerRenderer(EntitySmartDisc.class, RenderDisc.class);
+        Renderers.registerRenderer(EntityShuriken.class, RenderShuriken.class);
+        Renderers.registerRenderer(EntityBullet.class, RenderBullet.class);
+        Renderers.registerRenderer(EntityWristbracer.class, RenderWristbracer.class);
+        Renderers.registerRenderer(EntityAPC.class, RenderAPC.class);
+        Renderers.registerRenderer(EntityMechanism.class, RenderMechanism.class);
+        Renderers.registerRenderer(EntityMedpod.class, RenderMedpodEntity.class);
+        Renderers.registerRenderer(EntitySupplyChute.class, RenderSupplyChute.class);
+        Renderers.registerRenderer(EntitySupplyChuteMarines.class, RenderSupplyChute.class);
+        Renderers.registerRenderer(EntitySupplyChuteSeegson.class, RenderSupplyChute.class);
     }
 
     private void registerItemRenderer(Item item, ItemRenderer<?> renderer)

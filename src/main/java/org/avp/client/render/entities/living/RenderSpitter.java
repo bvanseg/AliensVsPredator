@@ -9,12 +9,13 @@ import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderSpitter extends RenderLivingWrapper<EntitySpitter, ModelSpitter>
 {
-    public RenderSpitter()
+    public RenderSpitter(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().SPITTER);
+        super(m, AliensVsPredator.resources().models().SPITTER);
 //        this.setRenderPassModel(this.getModel().getModel());
     }
 

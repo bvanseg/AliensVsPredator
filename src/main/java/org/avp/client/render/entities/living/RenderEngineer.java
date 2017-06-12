@@ -8,16 +8,19 @@ import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.entity.RenderManager;
+
 public class RenderEngineer extends RenderLivingWrapper<EntitySpeciesEngineer, ModelEngineer>
 {
-    public RenderEngineer()
+    public RenderEngineer(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().ENGINEER);
+        super(m, AliensVsPredator.resources().models().ENGINEER);
+        System.out.println("constructed engineer renderer");
     }
     
-    public RenderEngineer(TexturedModel<ModelEngineer> model)
+    public RenderEngineer(RenderManager m, TexturedModel<ModelEngineer> model)
     {
-        super(model);
+        super(m, model);
     }
 
     @Override

@@ -5,21 +5,17 @@ import org.avp.client.model.entities.living.ModelDracoburster;
 import org.avp.entities.living.EntityDracoburster;
 
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+
+import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderDracoburster extends RenderLivingWrapper<EntityDracoburster, ModelDracoburster>
 {
-    public RenderDracoburster()
+    public RenderDracoburster(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().DRACOBURSTER);
+        super(m, AliensVsPredator.resources().models().DRACOBURSTER);
     }
     
-    public RenderDracoburster(TexturedModel<ModelDracoburster> model)
-    {
-        super(model);
-    }
-
     @Override
     public void doRender(EntityDracoburster entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {

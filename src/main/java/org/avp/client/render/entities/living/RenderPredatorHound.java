@@ -5,21 +5,17 @@ import org.avp.client.model.entities.living.ModelPredatorHound;
 import org.avp.entities.living.EntityPredatorHound;
 
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+
+import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderPredatorHound extends RenderLivingWrapper<EntityPredatorHound, ModelPredatorHound>
 {
-    public RenderPredatorHound()
+    public RenderPredatorHound(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().PREDATOR_HOUND);
+        super(m, AliensVsPredator.resources().models().PREDATOR_HOUND);
     }
     
-    public RenderPredatorHound(TexturedModel<ModelPredatorHound> model)
-    {
-        super(model);
-    }
-
     @Override
     public void doRender(EntityPredatorHound entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {

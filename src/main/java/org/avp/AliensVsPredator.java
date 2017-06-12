@@ -2,7 +2,7 @@
 package org.avp;
 
 import org.avp.client.KeybindHandler;
-import org.avp.client.Renderers;
+import org.avp.client.Renders;
 import org.avp.client.Resources;
 import org.avp.client.Sounds;
 import org.avp.client.render.block.ShapedModelLoader;
@@ -107,9 +107,9 @@ public class AliensVsPredator implements IMod
     }
 
     @SideOnly(Side.CLIENT)
-    public static Renderers renderers()
+    public static Renders renderers()
     {
-        return Renderers.instance;
+        return Renders.instance;
     }
 
     @SideOnly(Side.CLIENT)

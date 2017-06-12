@@ -7,11 +7,13 @@ import org.avp.entities.living.EntityQueen;
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.entity.RenderManager;
+
 public class RenderQueen extends RenderLivingWrapper<EntityQueen, ModelQueen>
 {
-    public RenderQueen()
+    public RenderQueen(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().XENOQUEEN);
+        super(m, AliensVsPredator.resources().models().XENOQUEEN);
     }
 
     @Override

@@ -7,11 +7,13 @@ import org.avp.entities.living.EntityRoyalFacehugger;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
 
-public class RenderRoyalFacehugger extends RenderFacehugger<EntityRoyalFacehugger, ModelRoyalFacehugger>
+import net.minecraft.client.renderer.entity.RenderManager;
+
+public class RenderRoyalFacehugger extends RenderFacehuggers<EntityRoyalFacehugger, ModelRoyalFacehugger>
 {
-    public RenderRoyalFacehugger()
+    public RenderRoyalFacehugger(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().ROYALFACEHUGGER);
+        super(m, AliensVsPredator.resources().models().ROYALFACEHUGGER);
     }
 
     @Override

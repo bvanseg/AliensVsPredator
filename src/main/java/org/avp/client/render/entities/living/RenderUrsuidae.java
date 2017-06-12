@@ -5,21 +5,17 @@ import org.avp.client.model.entities.living.ModelUrsuidae;
 import org.avp.entities.living.EntityUrsuidae;
 
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+
+import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderUrsuidae extends RenderLivingWrapper<EntityUrsuidae, ModelUrsuidae>
 {
-    public RenderUrsuidae()
+    public RenderUrsuidae(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().URSUIDAE);
+        super(m, AliensVsPredator.resources().models().URSUIDAE);
     }
     
-    public RenderUrsuidae(TexturedModel<ModelUrsuidae> model)
-    {
-        super(model);
-    }
-
     @Override
     public void doRender(EntityUrsuidae entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {

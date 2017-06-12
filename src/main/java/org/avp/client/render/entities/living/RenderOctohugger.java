@@ -11,9 +11,9 @@ import org.avp.entities.living.EntityOctohugger;
 import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,14 +22,9 @@ public class RenderOctohugger extends RenderLivingWrapper<EntityOctohugger, Mode
 {
     public static ArrayList<EntityRenderTransforms> transforms = new ArrayList<EntityRenderTransforms>();
 
-    public RenderOctohugger(TexturedModel<ModelOctohugger> model)
+    public RenderOctohugger(RenderManager m)
     {
-        super(model);
-    }
-
-    public RenderOctohugger()
-    {
-        this(AliensVsPredator.resources().models().OCTOHUGGER);
+        super(m, AliensVsPredator.resources().models().OCTOHUGGER);
     }
 
     @Override
@@ -76,7 +71,7 @@ public class RenderOctohugger extends RenderLivingWrapper<EntityOctohugger, Mode
             OpenGL.translate(0F, -1.5F, 0F);
             OpenGL.translate(0F, 0F, 1.25F);
 
-            for (EntityRenderTransforms transform : RenderFacehugger.transforms)
+            for (EntityRenderTransforms transform : RenderFacehuggers.transforms)
             {
                 if (transform.isApplicable(octohugger.getRidingEntity()))
                 {

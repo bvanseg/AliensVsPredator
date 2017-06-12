@@ -9,11 +9,13 @@ import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.SpecialModelBiped;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.entity.RenderManager;
+
 public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynthetic, SpecialModelBiped>
 {
-    public RenderCombatSynthetic()
+    public RenderCombatSynthetic(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().COMBAT_SYNTHETIC);
+        super(m, AliensVsPredator.resources().models().COMBAT_SYNTHETIC);
     }
 
     @Override

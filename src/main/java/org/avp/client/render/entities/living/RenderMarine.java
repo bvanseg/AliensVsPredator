@@ -10,11 +10,13 @@ import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.entity.RenderManager;
+
 public class RenderMarine extends RenderLivingWrapper<EntityMarine, ModelMarine>
 {
-    public RenderMarine()
+    public RenderMarine(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().MARINE);
+        super(m, AliensVsPredator.resources().models().MARINE);
     }
 
     @Override

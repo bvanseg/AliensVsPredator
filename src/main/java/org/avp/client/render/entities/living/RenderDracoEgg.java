@@ -7,11 +7,13 @@ import org.avp.entities.living.EntityDracoEgg;
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.entity.RenderManager;
+
 public class RenderDracoEgg extends RenderLivingWrapper<EntityDracoEgg, ModelDracoOvamorph>
 {
-    public RenderDracoEgg()
+    public RenderDracoEgg(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().DRACO_OVAMORPH);
+        super(m, AliensVsPredator.resources().models().DRACO_OVAMORPH);
     }
 
     @Override

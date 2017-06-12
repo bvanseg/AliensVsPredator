@@ -5,21 +5,17 @@ import org.avp.client.model.entities.living.ModelVardaMonkey;
 import org.avp.entities.living.EntityScelemur;
 
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
-public class RenderVardaMonkey extends RenderLivingWrapper<EntityScelemur, ModelVardaMonkey>
+import net.minecraft.client.renderer.entity.RenderManager;
+
+public class RenderScelemur extends RenderLivingWrapper<EntityScelemur, ModelVardaMonkey>
 {
-    public RenderVardaMonkey()
+    public RenderScelemur(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().VARDA_MONKEY);
+        super(m, AliensVsPredator.resources().models().VARDA_MONKEY);
     }
     
-    public RenderVardaMonkey(TexturedModel<ModelVardaMonkey> model)
-    {
-        super(model);
-    }
-
     @Override
     public void doRender(EntityScelemur entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {

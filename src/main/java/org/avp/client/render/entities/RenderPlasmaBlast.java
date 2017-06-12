@@ -5,27 +5,25 @@ import org.avp.entities.EntityPlasma;
 
 import com.arisux.mdx.lib.client.render.Color;
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderPlasmaBlast extends Render
+public class RenderPlasmaBlast extends Render<EntityPlasma>
 {
     private static final ModelPlasma model    = new ModelPlasma();
     private static final Color       color    = new Color(0.4F, 0.7F, 1F, 0.7F);
 
-    public RenderPlasmaBlast()
+    public RenderPlasmaBlast(RenderManager m)
     {
-        super(Game.renderManager());
+        super(m);
         model.setColor(color);
     }
 
     @Override
-    public void doRender(Entity entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
+    public void doRender(EntityPlasma plasma, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {
-        EntityPlasma plasma = (EntityPlasma) entity;
         float rotation = (plasma.ticksExisted + renderPartialTicks) % 360;
         double wave = Math.sin(rotation);
         float additionalScale = 4F;
@@ -34,8 +32,8 @@ public class RenderPlasmaBlast extends Render
         {
             OpenGL.enableBlend();
             OpenGL.translate(posX, posY + 0.125F, posZ);
-            OpenGL.rotate(entity.rotationYaw - 90.0F, 0.0F, 1.0F, 0.0F);
-            OpenGL.rotate(entity.rotationPitch - 90.0F, 0.0F, 0.0F, 1.0F);
+            OpenGL.rotate(plasma.rotationYaw - 90.0F, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate(plasma.rotationPitch - 90.0F, 0.0F, 0.0F, 1.0F);
             OpenGL.scale(plasma.getPlasmaSize() * additionalScale, plasma.getPlasmaSize() * additionalScale, plasma.getPlasmaSize() * additionalScale);
 
             boolean drawInnerPlasma = true;
@@ -108,7 +106,7 @@ public class RenderPlasmaBlast extends Render
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(Entity entity)
+    protected ResourceLocation getEntityTexture(EntityPlasma entity)
     {
         return null;
     }

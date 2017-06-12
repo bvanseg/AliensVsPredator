@@ -1,6 +1,7 @@
 package org.avp.client.render.entities;
 
 import org.avp.AliensVsPredator;
+import org.avp.entities.EntityLiquidLatexPool;
 
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
@@ -8,22 +9,22 @@ import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 
-public class RenderLiquidLatexPool extends Render
+public class RenderLiquidLatexPool extends Render<EntityLiquidLatexPool>
 {
-    public RenderLiquidLatexPool()
+    public RenderLiquidLatexPool(RenderManager m)
     {
-        super(Game.renderManager());
+        super(m);
     }
 
     @Override
-    public void doRender(Entity entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
+    public void doRender(EntityLiquidLatexPool entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {
         OpenGL.pushMatrix();
         {
@@ -90,7 +91,7 @@ public class RenderLiquidLatexPool extends Render
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(Entity entity)
+    protected ResourceLocation getEntityTexture(EntityLiquidLatexPool entity)
     {
         return null;
     }

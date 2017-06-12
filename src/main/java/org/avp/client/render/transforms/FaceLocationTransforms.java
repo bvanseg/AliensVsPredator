@@ -1,6 +1,6 @@
 package org.avp.client.render.transforms;
 
-import org.avp.client.render.entities.living.RenderFacehugger;
+import org.avp.client.render.entities.living.RenderFacehuggers;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.entities.living.EntityCombatSynthetic;
 import org.avp.entities.living.EntityEngineer;
@@ -15,7 +15,7 @@ public class FaceLocationTransforms
 {
     public static void register()
     {
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityCombatSynthetic.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityCombatSynthetic.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -33,7 +33,7 @@ public class FaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityEngineer.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityEngineer.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -51,7 +51,7 @@ public class FaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityMarine.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityMarine.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -69,7 +69,7 @@ public class FaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntitySpeciesYautja.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntitySpeciesYautja.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)

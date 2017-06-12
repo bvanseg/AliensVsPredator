@@ -9,12 +9,13 @@ import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderMyceliomorph extends RenderLivingWrapper<EntityMyceliomorph, ModelMyceliomorph>
 {
-    public RenderMyceliomorph()
+    public RenderMyceliomorph(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().MYCELIOMORPH);
+        super(m, AliensVsPredator.resources().models().MYCELIOMORPH);
 //        this.setRenderPassModel(this.getModel().getModel());
     }
 

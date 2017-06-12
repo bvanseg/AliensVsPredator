@@ -5,21 +5,17 @@ import org.avp.client.model.entities.living.ModelDracomorph;
 import org.avp.entities.living.EntityDracomorph;
 
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+
+import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderDracomorph extends RenderLivingWrapper<EntityDracomorph, ModelDracomorph>
 {
-    public RenderDracomorph()
+    public RenderDracomorph(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().DRACOMORPH);
+        super(m, AliensVsPredator.resources().models().DRACOMORPH);
     }
     
-    public RenderDracomorph(TexturedModel<ModelDracomorph> model)
-    {
-        super(model);
-    }
-
     @Override
     public void doRender(EntityDracomorph entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {

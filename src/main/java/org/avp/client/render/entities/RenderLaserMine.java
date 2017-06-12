@@ -6,24 +6,21 @@ import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderLaserMine extends Render
+public class RenderLaserMine extends Render<EntityLaserMine>
 {
-    public RenderLaserMine()
+    public RenderLaserMine(RenderManager m)
     {
-        super(Game.renderManager());
+        super(m);
     }
 
     @Override
-    public void doRender(Entity entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
+    public void doRender(EntityLaserMine laserMine, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {
-        EntityLaserMine laserMine = (EntityLaserMine) entity;
-
         OpenGL.pushMatrix();
         {
             OpenGL.translate((float) posX, (float) posY, (float) posZ);
@@ -44,7 +41,7 @@ public class RenderLaserMine extends Render
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(Entity entity)
+    protected ResourceLocation getEntityTexture(EntityLaserMine entity)
     {
         return null;
     }

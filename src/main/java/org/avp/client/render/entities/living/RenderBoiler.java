@@ -9,12 +9,13 @@ import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderBoiler extends RenderLivingWrapper<EntityBoiler, ModelBoiler>
 {
-    public RenderBoiler()
+    public RenderBoiler(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().BOILER);
+        super(m, AliensVsPredator.resources().models().BOILER);
     }
 
     @Override

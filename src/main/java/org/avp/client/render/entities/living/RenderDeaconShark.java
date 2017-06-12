@@ -7,11 +7,13 @@ import org.avp.entities.living.EntityDeaconShark;
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.entity.RenderManager;
+
 public class RenderDeaconShark extends RenderLivingWrapper<EntityDeaconShark, ModelDeaconShark>
 {
-    public RenderDeaconShark()
+    public RenderDeaconShark(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().DEACON_SHARK);
+        super(m, AliensVsPredator.resources().models().DEACON_SHARK);
     }
 
     @Override

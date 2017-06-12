@@ -5,27 +5,25 @@ import org.avp.entities.EntityGrenade;
 import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderGrenade extends Render
+public class RenderGrenade extends Render<EntityGrenade>
 {
-    public RenderGrenade()
+    public RenderGrenade(RenderManager m)
     {
-        super(Game.renderManager());
+        super(m);
     }
 
     @Override
-    public void doRender(Entity entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
+    public void doRender(EntityGrenade grenade, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {
-        EntityGrenade grenade = (EntityGrenade) entity;
         OpenGL.pushMatrix();
         OpenGL.translate((float) posX, (float) posY + 0.75F, (float) posZ);
-        OpenGL.rotate(entity.rotationYaw, 0.0F, 1.0F, 0.0F);
-        OpenGL.rotate(entity.rotationPitch, 0.0F, 0.0F, 1.0F);
+        OpenGL.rotate(grenade.rotationYaw, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate(grenade.rotationPitch, 0.0F, 0.0F, 1.0F);
         OpenGL.rotate(180.0F, 1.0F, 0.0F, 0.0F);
         OpenGL.translate(0.25F, 0.5F, 0.0F);
         OpenGL.scale(0.75F, 0.75F, 0.75F);
@@ -44,7 +42,7 @@ public class RenderGrenade extends Render
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(Entity entity)
+    protected ResourceLocation getEntityTexture(EntityGrenade entity)
     {
         return null;
     }

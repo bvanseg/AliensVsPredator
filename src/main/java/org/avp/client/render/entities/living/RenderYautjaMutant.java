@@ -5,19 +5,15 @@ import org.avp.client.model.entities.living.ModelMutantYautja;
 import org.avp.entities.living.EntityYautjaMutant;
 
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+
+import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderYautjaMutant extends RenderLivingWrapper<EntityYautjaMutant, ModelMutantYautja>
 {
-    public RenderYautjaMutant()
+    public RenderYautjaMutant(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().MUTANT_YAUTJA);
-    }
-    
-    public RenderYautjaMutant(TexturedModel<ModelMutantYautja> model)
-    {
-        super(model);
+        super(m, AliensVsPredator.resources().models().MUTANT_YAUTJA);
     }
 
     @Override

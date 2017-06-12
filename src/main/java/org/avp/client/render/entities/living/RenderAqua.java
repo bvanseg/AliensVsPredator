@@ -9,12 +9,13 @@ import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderAqua extends RenderLivingWrapper<EntityAqua, ModelAqua>
 {
-    public RenderAqua()
+    public RenderAqua(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().AQUA_XENOMORPH);
+        super(m, AliensVsPredator.resources().models().AQUA_XENOMORPH);
     }
 
     @Override

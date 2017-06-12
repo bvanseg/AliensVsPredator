@@ -3,16 +3,15 @@ package org.avp.client.render.entities;
 import org.avp.client.model.entities.ModelBullet;
 import org.avp.entities.EntityBullet;
 
-import com.arisux.mdx.lib.game.Game;
-
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderBullet extends Render<EntityBullet>
 {
-    public RenderBullet()
+    public RenderBullet(RenderManager m)
     {
-        super(Game.renderManager());
+        super(m);
     }
 
     public static ModelBullet model = new ModelBullet();

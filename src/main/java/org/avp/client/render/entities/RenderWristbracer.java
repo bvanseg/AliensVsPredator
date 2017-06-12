@@ -8,13 +8,12 @@ import org.avp.entities.EntityWristbracer;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.Color;
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderWristbracer extends Render
+public class RenderWristbracer extends Render<EntityWristbracer>
 {
     private final TexturedModel<ModelWristBlade> wristbracer = AliensVsPredator.resources().models().WRISTBLADES.clone();
     private final ModelPlasma                    model       = new ModelPlasma();
@@ -23,14 +22,14 @@ public class RenderWristbracer extends Render
     private float                                scale;
     private float                                scalePrev;
 
-    public RenderWristbracer()
+    public RenderWristbracer(RenderManager m)
     {
-        super(Game.renderManager());
+        super(m);
         this.model.setColor(new Color(0.5F, 0.6F, 1F, 0.4F));
     }
 
     @Override
-    public void doRender(Entity entity, double posX, double posY, double posZ, float yaw, float partialTicks)
+    public void doRender(EntityWristbracer entity, double posX, double posY, double posZ, float yaw, float partialTicks)
     {
         EntityWristbracer nuke = (EntityWristbracer) entity;
 
@@ -89,7 +88,7 @@ public class RenderWristbracer extends Render
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(Entity entity)
+    protected ResourceLocation getEntityTexture(EntityWristbracer entity)
     {
         return null;
     }

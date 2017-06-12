@@ -1,21 +1,23 @@
 package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
+import org.avp.client.model.entities.living.ModelPredalien;
+import org.avp.entities.living.EntityPredalien;
 
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.client.renderer.entity.RenderManager;
 
-public class RenderPredalien extends RenderLivingWrapper
+public class RenderPredalien extends RenderLivingWrapper<EntityPredalien, ModelPredalien>
 {
-    public RenderPredalien()
+    public RenderPredalien(RenderManager m)
     {
-        super(AliensVsPredator.resources().models().PREDALIEN);
+        super(m, AliensVsPredator.resources().models().PREDALIEN);
     }
 
     @Override
-    protected void preRenderCallback(EntityLivingBase living, float renderPartialTicks)
+    protected void preRenderCallback(EntityPredalien living, float renderPartialTicks)
     {
         OpenGL.scale(0.75F, 0.75F, 0.75F);
     }

@@ -5,16 +5,16 @@ import org.avp.entities.EntitySpear;
 import org.lwjgl.opengl.GL12;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderSpear extends Render<EntitySpear>
 {
-    public RenderSpear()
+    public RenderSpear(RenderManager m)
     {
-        super(Game.renderManager());
+        super(m);
     }
 
     @Override

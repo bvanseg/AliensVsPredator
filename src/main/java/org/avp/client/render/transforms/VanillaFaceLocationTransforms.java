@@ -1,6 +1,6 @@
 package org.avp.client.render.transforms;
 
-import org.avp.client.render.entities.living.RenderFacehugger;
+import org.avp.client.render.entities.living.RenderFacehuggers;
 import org.avp.client.render.util.EntityRenderTransforms;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
@@ -37,7 +37,7 @@ public class VanillaFaceLocationTransforms
 {
     public static void register()
     {
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityVillager.class, EntityWitch.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityVillager.class, EntityWitch.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -55,7 +55,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityPlayer.class, EntityPigZombie.class, EntityZombie.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityPlayer.class, EntityPigZombie.class, EntityZombie.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -83,7 +83,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityPlayerSP.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityPlayerSP.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -104,7 +104,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityCow.class, EntityMooshroom.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityCow.class, EntityMooshroom.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -122,7 +122,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityPig.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityPig.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -140,7 +140,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityHorse.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityHorse.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -157,7 +157,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityCreeper.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityCreeper.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -175,7 +175,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntitySkeleton.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntitySkeleton.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -193,7 +193,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntitySpider.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntitySpider.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -211,7 +211,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntitySlime.class, EntityMagmaCube.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntitySlime.class, EntityMagmaCube.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -230,7 +230,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityGhast.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityGhast.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -247,7 +247,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityEnderman.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityEnderman.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -265,7 +265,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityCaveSpider.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityCaveSpider.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -283,7 +283,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntitySilverfish.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntitySilverfish.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -302,7 +302,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityBlaze.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityBlaze.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -320,7 +320,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityBat.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityBat.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -338,7 +338,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntitySheep.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntitySheep.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -356,7 +356,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityChicken.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityChicken.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -374,7 +374,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntitySquid.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntitySquid.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -392,7 +392,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityWolf.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityWolf.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)
@@ -410,7 +410,7 @@ public class VanillaFaceLocationTransforms
             }
         });
 
-        RenderFacehugger.transforms.add(new EntityRenderTransforms(EntityOcelot.class)
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityOcelot.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)

@@ -6,16 +6,16 @@ import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderShuriken extends Render<EntityShuriken>
 {
-    public RenderShuriken()
+    public RenderShuriken(RenderManager m)
     {
-        super(Game.renderManager());
+        super(m);
     }
 
     @Override
