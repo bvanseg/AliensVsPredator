@@ -6,11 +6,11 @@ import org.avp.AliensVsPredator;
 
 import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.client.Sound;
+import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class Sounds implements IPreInitEvent
 {
@@ -84,7 +84,7 @@ public class Sounds implements IPreInitEvent
     public static final Sound  SOUND_BLASTDOOR_OPEN               = new Sound(new ResourceLocation(AliensVsPredator.properties().DOMAIN + "blocks.blastdoor.open"));
 
     @Override
-    public void pre(FMLPreInitializationEvent event)
+    public void pre(IMod mod, FMLPreInitializationEvent event)
     {
         for (Field field : this.getClass().getDeclaredFields())
         {

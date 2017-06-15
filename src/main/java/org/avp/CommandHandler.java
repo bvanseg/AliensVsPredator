@@ -5,6 +5,7 @@ import org.avp.command.CommandPlayerMode;
 import org.avp.command.CommandSettings;
 
 import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -19,7 +20,7 @@ public class CommandHandler implements IInitEvent
     public CommandSettings commandSettings;
 
     @Override
-    public void init(FMLInitializationEvent event)
+    public void init(IMod mod, FMLInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(this);
     }

@@ -16,8 +16,8 @@ import org.avp.client.render.RenderPlayerHotbarAPCEvent;
 import org.avp.client.render.TacticalHUDRenderEvent;
 import org.avp.client.render.VisionModeRenderEvent;
 import org.avp.client.render.items.RenderMotionTrackerScreen;
-import org.avp.world.EntityImpregnationHandler;
 import org.avp.world.CapabilityHandler;
+import org.avp.world.EntityImpregnationHandler;
 import org.avp.world.fluids.BucketHandlingEvent;
 import org.avp.world.hives.HiveHandler;
 import org.avp.world.hooks.FarmlandRegistry;
@@ -25,6 +25,7 @@ import org.avp.world.hooks.MaterialHandler;
 
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -37,7 +38,7 @@ public class EventHandlers implements IInitEvent
     public ArrayList<Object>          events   = new ArrayList<Object>();
 
     @Override
-    public void init(FMLInitializationEvent event)
+    public void init(IMod mod, FMLInitializationEvent event)
     {
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {

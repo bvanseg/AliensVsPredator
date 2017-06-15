@@ -45,6 +45,7 @@ import org.avp.block.skulls.BlockSkullXenomorphWarrior;
 import org.avp.block.skulls.BlockSkullYautja;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 
+import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 import com.arisux.mdx.lib.world.block.BlockMaterial;
 import com.google.common.base.Optional;
@@ -424,7 +425,7 @@ public class BlockHandler implements IPreInitEvent
     // private JsonResourceGenerator resourceGenerator;
 
     @Override
-    public void pre(FMLPreInitializationEvent event)
+    public void pre(IMod mod, FMLPreInitializationEvent event)
     {
         // resourceGenerator = new JsonResourceGenerator(AliensVsPredator.ID);
         // resourceGenerator.pre(event);

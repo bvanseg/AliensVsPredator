@@ -4,6 +4,7 @@ import org.avp.item.crafting.AssemblyManager;
 import org.avp.item.crafting.Schematic;
 
 import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.init.Blocks;
@@ -24,7 +25,7 @@ public class CraftingHandler implements IInitEvent
     }
 
     @Override
-    public void init(FMLInitializationEvent event)
+    public void init(IMod mod, FMLInitializationEvent event)
     {
         this.addRecipes();
         this.addSmelting();

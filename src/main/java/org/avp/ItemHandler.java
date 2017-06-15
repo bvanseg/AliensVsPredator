@@ -22,6 +22,7 @@ import org.avp.entities.living.EntityFacehugger;
 import org.avp.entities.living.EntityGooMutant;
 import org.avp.entities.living.EntityHammerpede;
 import org.avp.entities.living.EntityMarine;
+import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityMyceliomorph;
 import org.avp.entities.living.EntityOctohugger;
 import org.avp.entities.living.EntityOvamorph;
@@ -30,7 +31,6 @@ import org.avp.entities.living.EntityPraetorian;
 import org.avp.entities.living.EntityPredalien;
 import org.avp.entities.living.EntityPredalienChestburster;
 import org.avp.entities.living.EntityPredatorHound;
-import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityQueenChestburster;
 import org.avp.entities.living.EntityRoyalFacehugger;
 import org.avp.entities.living.EntityRunnerChestburster;
@@ -43,9 +43,9 @@ import org.avp.entities.living.EntityTrilobite;
 import org.avp.entities.living.EntityUltramorph;
 import org.avp.entities.living.EntityUrsuidae;
 import org.avp.entities.living.EntityWarrior;
-import org.avp.entities.living.EntityYautjaWarrior;
 import org.avp.entities.living.EntityYautjaBerserker;
 import org.avp.entities.living.EntityYautjaMutant;
+import org.avp.entities.living.EntityYautjaWarrior;
 import org.avp.item.ItemAPC;
 import org.avp.item.ItemArmorMK50;
 import org.avp.item.ItemArmorMarine;
@@ -74,6 +74,7 @@ import org.avp.item.ItemWristbracer;
 
 import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 import com.arisux.mdx.lib.world.item.HookedItem;
 import com.arisux.mdx.lib.world.item.ItemToolMaterialAxe;
@@ -250,7 +251,7 @@ public class ItemHandler implements IPreInitEvent
     }
 
     @Override
-    public void pre(FMLPreInitializationEvent event)
+    public void pre(IMod mod, FMLPreInitializationEvent event)
     {
         MDX.registerMappingInfo("summon.protomorph", "summon.deacon", AliensVsPredator.ID);
         MDX.registerMappingInfo("summon.yautja", "summon.yautja.warrior", AliensVsPredator.ID);

@@ -1,6 +1,7 @@
 package org.avp;
 
 import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -10,7 +11,7 @@ public class OreDictionarySupport implements IInitEvent
 {
     public static OreDictionarySupport instance = new OreDictionarySupport();
 
-    public void init(FMLInitializationEvent event)
+    public void init(IMod mod, FMLInitializationEvent event)
     {
         OreDictionary.registerOre("copper", AliensVsPredator.items().itemIngotCopper);
         OreDictionary.registerOre("ingotCopper", AliensVsPredator.items().itemIngotCopper);

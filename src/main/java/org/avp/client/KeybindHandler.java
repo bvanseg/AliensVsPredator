@@ -3,6 +3,7 @@ package org.avp.client;
 import org.lwjgl.input.Keyboard;
 
 import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.game.IPostInitEvent;
 
 import net.minecraft.client.settings.KeyBinding;
@@ -18,7 +19,7 @@ public class KeybindHandler implements IPostInitEvent
     public KeyBinding                  genericSpecial;
 
     @Override
-    public void post(FMLPostInitializationEvent event)
+    public void post(IMod mod, FMLPostInitializationEvent event)
     {
         specialSecondary = Game.registerKeybinding("item.special.secondary", Keyboard.KEY_R, KEYBIND_GROUP);
         specialPrimary = Game.registerKeybinding("item.special.primary", Keyboard.KEY_F, KEYBIND_GROUP);

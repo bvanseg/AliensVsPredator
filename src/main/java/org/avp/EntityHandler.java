@@ -99,6 +99,7 @@ import org.avp.world.dimension.varda.BiomeVarda;
 import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraft.block.material.Material;
@@ -116,13 +117,13 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
     private static int                entityId = 0;
 
     @Override
-    public void pre(FMLPreInitializationEvent event)
+    public void pre(IMod mod, FMLPreInitializationEvent event)
     {
         this.registerEntities();
     }
 
     @Override
-    public void init(FMLInitializationEvent event)
+    public void init(IMod mod, FMLInitializationEvent event)
     {
         this.registerTileEntities();
         this.registerLivingEntities();

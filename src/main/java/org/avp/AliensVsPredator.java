@@ -1,4 +1,4 @@
-/** AliensVsPredator Minecraft Mod - Copyright (C) 2012-2017 Arisux Technology Group **/
+/** AliensVsPredator Minecraft Mod - Copyright (C) 2012-2017 ASX **/
 package org.avp;
 
 import org.avp.client.KeybindHandler;
@@ -199,7 +199,6 @@ public class AliensVsPredator implements IMod
         return CreativeTab.tabRecipeItems;
     }
     
-    @Override
     @Mod.EventHandler
     public void pre(FMLPreInitializationEvent event)
     {
@@ -211,23 +210,22 @@ public class AliensVsPredator implements IMod
         MDX.log().info("[AliensVsPredator] Copyright(C) 2012-2017 ASX");
         MDX.log().info("[AliensVsPredator] Pre-Initialization");
 
-        settings().pre(event);
-        fluids().pre(event);
-        items().pre(event);
-        capabilities().pre(event);
-        entities().pre(event);
-        blocks().pre(event);
+        settings().pre(this, event);
+        fluids().pre(this, event);
+        items().pre(this, event);
+        capabilities().pre(this, event);
+        entities().pre(this, event);
+        blocks().pre(this, event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
             OBJLoader.INSTANCE.addDomain(AliensVsPredator.ID);
             ModelLoaderRegistry.registerLoader(new ShapedModelLoader());
-            sounds().pre(event);
-            renderers().pre(event);
+            sounds().pre(this, event);
+            renderers().pre(this, event);
         }
     }
 
-    @Override
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
@@ -238,26 +236,25 @@ public class AliensVsPredator implements IMod
 
         MDX.log().info("[AliensVsPredator] Initialization");
 
-        network().init(event);
-        dimensions().init(event);
-        materials().init(event);
-        ores().init(event);
-        world().init(event);
-        crafting().init(event);
-        interfaces().init(event);
-        events().init(event);
-        commands().init(event);
-        playermodehandler().init(event);
-        schematics().init(event);
-        entities().init(event);
+        network().init(this, event);
+        dimensions().init(this, event);
+        materials().init(this, event);
+        ores().init(this, event);
+        world().init(this, event);
+        crafting().init(this, event);
+        interfaces().init(this, event);
+        events().init(this, event);
+        commands().init(this, event);
+        playermodehandler().init(this, event);
+        schematics().init(this, event);
+        entities().init(this, event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
-            renderers().init(event);
+            renderers().init(this, event);
         }
     }
 
-    @Override
     @Mod.EventHandler
     public void post(FMLPostInitializationEvent event)
     {
@@ -270,7 +267,7 @@ public class AliensVsPredator implements IMod
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
-            keybinds().post(event);
+            keybinds().post(this, event);
         }
     }
 

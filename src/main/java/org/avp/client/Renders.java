@@ -48,6 +48,7 @@ import org.avp.client.render.entities.living.RenderFacehugger;
 import org.avp.client.render.entities.living.RenderGooMutant;
 import org.avp.client.render.entities.living.RenderHammerpede;
 import org.avp.client.render.entities.living.RenderMarine;
+import org.avp.client.render.entities.living.RenderMatriarch;
 import org.avp.client.render.entities.living.RenderMyceliomorph;
 import org.avp.client.render.entities.living.RenderOctohugger;
 import org.avp.client.render.entities.living.RenderOvamorph;
@@ -56,7 +57,6 @@ import org.avp.client.render.entities.living.RenderPraetorian;
 import org.avp.client.render.entities.living.RenderPredalien;
 import org.avp.client.render.entities.living.RenderPredalienChestburster;
 import org.avp.client.render.entities.living.RenderPredatorHound;
-import org.avp.client.render.entities.living.RenderMatriarch;
 import org.avp.client.render.entities.living.RenderQueenChestburster;
 import org.avp.client.render.entities.living.RenderRoyalFacehugger;
 import org.avp.client.render.entities.living.RenderRunnerChestburster;
@@ -198,6 +198,7 @@ import org.avp.entities.living.EntityFacehugger;
 import org.avp.entities.living.EntityGooMutant;
 import org.avp.entities.living.EntityHammerpede;
 import org.avp.entities.living.EntityMarine;
+import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityMyceliomorph;
 import org.avp.entities.living.EntityOctohugger;
 import org.avp.entities.living.EntityOvamorph;
@@ -206,7 +207,6 @@ import org.avp.entities.living.EntityPraetorian;
 import org.avp.entities.living.EntityPredalien;
 import org.avp.entities.living.EntityPredalienChestburster;
 import org.avp.entities.living.EntityPredatorHound;
-import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityQueenChestburster;
 import org.avp.entities.living.EntityRoyalFacehugger;
 import org.avp.entities.living.EntityRunnerChestburster;
@@ -219,9 +219,9 @@ import org.avp.entities.living.EntityTrilobite;
 import org.avp.entities.living.EntityUltramorph;
 import org.avp.entities.living.EntityUrsuidae;
 import org.avp.entities.living.EntityWarrior;
-import org.avp.entities.living.EntityYautjaWarrior;
 import org.avp.entities.living.EntityYautjaBerserker;
 import org.avp.entities.living.EntityYautjaMutant;
+import org.avp.entities.living.EntityYautjaWarrior;
 import org.avp.tile.TileEntityAmpule;
 import org.avp.tile.TileEntityAssembler;
 import org.avp.tile.TileEntityBlastdoor;
@@ -251,6 +251,7 @@ import org.avp.tile.TileEntityWorkstation;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 import com.arisux.mdx.lib.game.Renderers;
 
@@ -266,14 +267,14 @@ public class Renders implements IInitEvent, IPreInitEvent
     public static Renders instance = new Renders();
 
     @Override
-    public void pre(FMLPreInitializationEvent event)
+    public void pre(IMod mod, FMLPreInitializationEvent event)
     {
         registerStandardEntityRenderers();
         registerLivingEntityRenderers();
     }
 
     @Override
-    public void init(FMLInitializationEvent event)
+    public void init(IMod mod, FMLInitializationEvent event)
     {
         registerTileEntitySpecialRenderers();
         registerItemRenderers(AliensVsPredator.items());

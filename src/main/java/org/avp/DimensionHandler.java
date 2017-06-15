@@ -8,6 +8,7 @@ import org.avp.world.dimension.varda.ProviderVarda;
 
 import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.world.Dimension;
 import com.arisux.mdx.lib.world.Pos;
 import com.arisux.mdx.lib.world.entity.Entities;
@@ -52,7 +53,7 @@ public class DimensionHandler implements IInitEvent
     public boolean                       initialized;
 
     @Override
-    public void init(FMLInitializationEvent event)
+    public void init(IMod mod, FMLInitializationEvent event)
     {
         ACHERON.register();
         VARDA.register();

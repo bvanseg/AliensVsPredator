@@ -4,6 +4,7 @@ import java.io.File;
 
 import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.world.storage.Schematic;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -19,7 +20,7 @@ public class Schematics implements IInitEvent
     public Schematic derelictOld;
 
     @Override
-    public void init(FMLInitializationEvent event)
+    public void init(IMod mod, FMLInitializationEvent event)
     {
         if (!baseSchematicDir.exists())
         {
