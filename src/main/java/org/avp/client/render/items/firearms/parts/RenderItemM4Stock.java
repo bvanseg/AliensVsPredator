@@ -1,6 +1,6 @@
-package org.avp.client.render.items.parts;
+package org.avp.client.render.items.firearms.parts;
 
-import org.avp.client.model.items.Model88MOD4;
+import org.avp.client.model.items.ModelM4;
 import org.avp.client.render.items.ItemRendererGroup;
 import org.lwjgl.opengl.GL11;
 
@@ -14,9 +14,9 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItem88Mod4Barrel extends ItemRendererGroup<Model88MOD4>
+public class RenderItemM4Stock extends ItemRendererGroup<ModelM4>
 {
-    public RenderItem88Mod4Barrel(TexturedModel<Model88MOD4> model, ModelRenderer... modelRenderers)
+    public RenderItemM4Stock(TexturedModel<ModelM4> model, ModelRenderer... modelRenderers)
     {
         super(model, modelRenderers);
     }
@@ -26,10 +26,10 @@ public class RenderItem88Mod4Barrel extends ItemRendererGroup<Model88MOD4>
     {
         OpenGL.pushMatrix();
         {
-            float glScale = 24F * Model.DEFAULT_SCALE;
+            float glScale = 32F * Model.DEFAULT_SCALE;
             OpenGL.scale(glScale, -glScale, glScale);
             OpenGL.rotate(45F, -1F, 1F, 0F);
-            OpenGL.translate(0.0F, 0.0F, -0.2F);
+            OpenGL.translate(0.25F, -0.65F, 0.3F);
             this.renderPart();
         }
         OpenGL.popMatrix();
@@ -40,7 +40,7 @@ public class RenderItem88Mod4Barrel extends ItemRendererGroup<Model88MOD4>
     {
         OpenGL.pushMatrix();
         {
-            OpenGL.rotate((this.mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
             OpenGL.disable(GL11.GL_CULL_FACE);
             this.renderPart();
         }

@@ -1,4 +1,4 @@
-package org.avp.client.render.items.parts;
+package org.avp.client.render.items.firearms.parts;
 
 import org.avp.client.model.items.ModelM56SG;
 import org.avp.client.render.items.ItemRendererGroup;
@@ -14,9 +14,9 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemM56SGAction extends ItemRendererGroup<ModelM56SG>
+public class RenderItemM56SGStock extends ItemRendererGroup<ModelM56SG>
 {
-    public RenderItemM56SGAction(TexturedModel<ModelM56SG> model, ModelRenderer... modelRenderers)
+    public RenderItemM56SGStock(TexturedModel<ModelM56SG> model, ModelRenderer... modelRenderers)
     {
         super(model, modelRenderers);
     }
@@ -29,7 +29,7 @@ public class RenderItemM56SGAction extends ItemRendererGroup<ModelM56SG>
             float glScale = 32F * Model.DEFAULT_SCALE;
             OpenGL.scale(glScale, -glScale, glScale);
             OpenGL.rotate(45F, -1F, 1F, 0F);
-            OpenGL.translate(-0.1F, -0.1F, -0.3F);
+            OpenGL.translate(-0.1F, -0.075F, 0.2F);
             this.renderPart();
         }
         OpenGL.popMatrix();

@@ -4,7 +4,6 @@ import org.avp.world.fluids.BucketHandlingEvent;
 import org.avp.world.fluids.FluidBlackGoo;
 import org.avp.world.fluids.FluidMist;
 
-import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraft.init.Items;
@@ -22,7 +21,7 @@ public class FluidHandler implements IPreInitEvent
     public Fluid fluidMist = new FluidMist().setUnlocalizedName("mist");
 
     @Override
-    public void pre(IMod mod, FMLPreInitializationEvent event)
+    public void pre(FMLPreInitializationEvent event)
     {
         this.registerFluids(event);
         this.registerFluidContainers(event);

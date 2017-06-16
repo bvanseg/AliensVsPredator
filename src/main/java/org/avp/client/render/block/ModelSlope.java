@@ -18,8 +18,8 @@ import net.minecraftforge.common.model.TRSRTransformation;
 
 public class ModelSlope implements IModel
 {
-    public static final ResourceLocation MODEL_LOCATION = new ResourceLocation(AliensVsPredator.ID, "block/slope.obj");
-    public static final ResourceLocation TEXTURE        = new ResourceLocation(AliensVsPredator.ID, "blocks/reflection");
+    public static final ResourceLocation MODEL_LOCATION = new ResourceLocation(AliensVsPredator.Properties.ID, "block/slope.obj");
+    public static final ResourceLocation TEXTURE        = new ResourceLocation(AliensVsPredator.Properties.ID, "blocks/reflection");
     
     @Override
     public Collection<ResourceLocation> getDependencies()

@@ -1,6 +1,6 @@
-package org.avp.client.render.items.parts;
+package org.avp.client.render.items.firearms.parts;
 
-import org.avp.client.model.items.Model88MOD4;
+import org.avp.client.model.items.ModelM41A;
 import org.avp.client.render.items.ItemRendererGroup;
 import org.lwjgl.opengl.GL11;
 
@@ -14,9 +14,9 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItem88Mod4Stock extends ItemRendererGroup<Model88MOD4>
+public class RenderItemM41AAction extends ItemRendererGroup<ModelM41A>
 {
-    public RenderItem88Mod4Stock(TexturedModel<Model88MOD4> model, ModelRenderer... modelRenderers)
+    public RenderItemM41AAction(TexturedModel<ModelM41A> model, ModelRenderer... modelRenderers)
     {
         super(model, modelRenderers);
     }
@@ -26,10 +26,10 @@ public class RenderItem88Mod4Stock extends ItemRendererGroup<Model88MOD4>
     {
         OpenGL.pushMatrix();
         {
-            float glScale = 32F * Model.DEFAULT_SCALE;
+            float glScale = 22F * Model.DEFAULT_SCALE;
             OpenGL.scale(glScale, -glScale, glScale);
             OpenGL.rotate(45F, -1F, 1F, 0F);
-            OpenGL.translate(-0.05F, -0.1F, -0.35F);
+            OpenGL.translate(0.25F, -0.6F, -0.2F);
             this.renderPart();
         }
         OpenGL.popMatrix();

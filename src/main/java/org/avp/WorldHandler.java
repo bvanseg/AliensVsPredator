@@ -5,7 +5,6 @@ import org.avp.world.worldgen.WorldGenerator;
 import org.avp.world.worldgen.WorldGeneratorDerelict;
 
 import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -24,7 +23,7 @@ public class WorldHandler implements IInitEvent
     }
 
     @Override
-    public void init(IMod mod, FMLInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         GameRegistry.registerWorldGenerator(new WorldGenerator(), 1);
         GameRegistry.registerWorldGenerator(this.setWorldGeneratorAcheron(new WorldGeneratorAcheron()), 1);

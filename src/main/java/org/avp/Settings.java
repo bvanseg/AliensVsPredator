@@ -9,7 +9,6 @@ import com.arisux.mdx.config.ConfigSettingGraphics;
 import com.arisux.mdx.config.ConfigSettingInteger;
 import com.arisux.mdx.config.GraphicsSetting;
 import com.arisux.mdx.config.IFlexibleConfiguration;
-import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraftforge.common.config.Configuration;
@@ -99,7 +98,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     }
 
     @EventHandler
-    public void pre(IMod mod, FMLPreInitializationEvent evt)
+    public void pre(FMLPreInitializationEvent evt)
     {
         configuration = new Configuration(new File(evt.getModConfigurationDirectory(), "aliensvspredator.config"));
         try

@@ -1,6 +1,6 @@
-package org.avp.client.render.items.parts;
+package org.avp.client.render.items.firearms.parts;
 
-import org.avp.client.model.items.ModelM41A;
+import org.avp.client.model.items.ModelSniper;
 import org.avp.client.render.items.ItemRendererGroup;
 import org.lwjgl.opengl.GL11;
 
@@ -14,9 +14,9 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemM41ABarrel extends ItemRendererGroup<ModelM41A>
+public class RenderItemSniperBarrel extends ItemRendererGroup<ModelSniper>
 {
-    public RenderItemM41ABarrel(TexturedModel<ModelM41A> model, ModelRenderer... modelRenderers)
+    public RenderItemSniperBarrel(TexturedModel<ModelSniper> model, ModelRenderer... modelRenderers)
     {
         super(model, modelRenderers);
     }
@@ -27,9 +27,10 @@ public class RenderItemM41ABarrel extends ItemRendererGroup<ModelM41A>
         OpenGL.pushMatrix();
         {
             float glScale = 32F * Model.DEFAULT_SCALE;
+            OpenGL.rotate(45, 1F, 0F, 0F);
             OpenGL.scale(glScale, -glScale, glScale);
             OpenGL.rotate(45F, -1F, 1F, 0F);
-            OpenGL.translate(0.25F, -0.65F, -0.6F);
+            OpenGL.translate(0F, -0.075F, -0.3F);
             this.renderPart();
         }
         OpenGL.popMatrix();
@@ -40,7 +41,7 @@ public class RenderItemM41ABarrel extends ItemRendererGroup<ModelM41A>
     {
         OpenGL.pushMatrix();
         {
-            OpenGL.rotate((this.mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
             OpenGL.disable(GL11.GL_CULL_FACE);
             this.renderPart();
         }

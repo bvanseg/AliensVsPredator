@@ -9,7 +9,6 @@ import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.Texture;
 import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.world.entity.player.Players;
 
 import net.minecraft.client.model.ModelBiped;
@@ -28,7 +27,7 @@ public class PlayerModeHandler implements IInitEvent
     public static final PlayerModeHandler instance = new PlayerModeHandler();
 
     @Override
-    public void init(IMod mod, FMLInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         MinecraftForge.EVENT_BUS.register(this);
 

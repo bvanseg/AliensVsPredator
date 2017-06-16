@@ -14,7 +14,6 @@ import org.avp.tile.TileEntitySupplyCrate;
 import org.avp.tile.TileEntityTurret;
 
 import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,7 +35,7 @@ public class GuiHandler implements IGuiHandler, IInitEvent
     public final int               GUI_GRAPHICSSETTINGS = 5;
 
     @Override
-    public void init(IMod mod, FMLInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         NetworkRegistry.INSTANCE.registerGuiHandler(AliensVsPredator.instance(), this);
     }

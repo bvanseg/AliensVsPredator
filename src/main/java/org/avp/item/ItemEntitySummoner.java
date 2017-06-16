@@ -24,7 +24,7 @@ public class ItemEntitySummoner extends HookedItem
         super();
         this.c = c;
         this.setDescription("Summoner for " + c.getSimpleName().replace("Entity", ""));
-        this.setUnlocalizedName(AliensVsPredator.properties().DOMAIN + "summon." + c.getSimpleName());
+        this.setUnlocalizedName(AliensVsPredator.Properties.DOMAIN + "summon." + c.getSimpleName());
     }
     
     @Override

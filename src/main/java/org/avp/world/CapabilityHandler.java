@@ -7,7 +7,6 @@ import org.avp.world.capabilities.IOrganism.Provider;
 import org.avp.world.capabilities.ISpecialPlayer;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
-import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraft.entity.Entity;
@@ -28,11 +27,11 @@ public class CapabilityHandler implements IPreInitEvent
 {
     public static final CapabilityHandler instance = new CapabilityHandler();
 
-    public static final ResourceLocation ORGANISM = new ResourceLocation(AliensVsPredator.ID, "organism");
-    public static final ResourceLocation SPECIAL_PLAYER = new ResourceLocation(AliensVsPredator.ID, "special_player");
+    public static final ResourceLocation ORGANISM = new ResourceLocation(AliensVsPredator.Properties.ID, "organism");
+    public static final ResourceLocation SPECIAL_PLAYER = new ResourceLocation(AliensVsPredator.Properties.ID, "special_player");
 
     @Override
-    public void pre(IMod mod, FMLPreInitializationEvent event)
+    public void pre(FMLPreInitializationEvent event)
     {
         CapabilityManager.INSTANCE.register(IOrganism.class, new Organism(), Organism.class);
         CapabilityManager.INSTANCE.register(ISpecialPlayer.class, new SpecialPlayer(), SpecialPlayer.class);

@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 
 public class ItemRendererGroup<MODEL extends Model> extends ItemRenderer<MODEL>
 {
-    private ModelRenderer[] modelRenderers;
+    protected ModelRenderer[] modelRenderers;
 
     public ItemRendererGroup(TexturedModel<MODEL> model, ModelRenderer... modelRenderers)
     {

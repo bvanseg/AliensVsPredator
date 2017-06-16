@@ -198,7 +198,7 @@ public class GuiAssembler extends GuiContainer
             {
                 Schematic selectedSchematic = schematics.get(getScroll());
                 AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getId(), 1));
+                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 1));
             }
         });
 
@@ -215,7 +215,7 @@ public class GuiAssembler extends GuiContainer
             {
                 Schematic selectedSchematic = schematics.get(getScroll());
                 AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getId(), 4));
+                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 4));
             }
         });
 
@@ -232,7 +232,7 @@ public class GuiAssembler extends GuiContainer
             {
                 Schematic selectedSchematic = schematics.get(getScroll());
                 AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getId(), 8));
+                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 8));
             }
         });
 
@@ -249,7 +249,7 @@ public class GuiAssembler extends GuiContainer
             {
                 Schematic selectedSchematic = schematics.get(getScroll());
                 AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getId(), 16));
+                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 16));
             }
         });
 
@@ -266,7 +266,7 @@ public class GuiAssembler extends GuiContainer
             {
                 Schematic selectedSchematic = schematics.get(getScroll());
                 AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getId(), 32));
+                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 32));
             }
         });
 
@@ -283,7 +283,7 @@ public class GuiAssembler extends GuiContainer
             {
                 Schematic selectedSchematic = schematics.get(getScroll());
                 AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getId(), 64));
+                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 64));
             }
         });
 

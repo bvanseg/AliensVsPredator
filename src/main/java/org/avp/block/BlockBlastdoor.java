@@ -3,9 +3,9 @@ package org.avp.block;
 import org.avp.item.ItemMaintenanceJack;
 import org.avp.tile.TileEntityBlastdoor;
 
-import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.client.Notification;
 import com.arisux.mdx.lib.client.Notification.DynamicNotification;
+import com.arisux.mdx.lib.client.Notifications;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 
@@ -80,7 +80,7 @@ public class BlockBlastdoor extends Block
             {
                 this.notification.setDisplayTimeout(3);
                 this.notification.setMessage("\u00A77 The blast door is \u00A7a" + percentOpen + "% open.");
-                MDX.sendNotification(this.notification);
+                Notifications.sendNotification(this.notification);
             }
         }
         else
@@ -90,7 +90,7 @@ public class BlockBlastdoor extends Block
             if (world.isRemote)
             {
                 final String value = (blastdoor.isOpen() ? "opened" : "closed");
-                MDX.sendNotification(new Notification()
+                Notifications.sendNotification(new Notification()
                 {
                     @Override
                     public String getMessage()

@@ -1,6 +1,6 @@
-package org.avp.client.render.items.parts;
+package org.avp.client.render.items.firearms.parts;
 
-import org.avp.client.model.items.ModelM4;
+import org.avp.client.model.items.ModelSniper;
 import org.avp.client.render.items.ItemRendererGroup;
 import org.lwjgl.opengl.GL11;
 
@@ -14,9 +14,9 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemM4Stock extends ItemRendererGroup<ModelM4>
+public class RenderItemSniperStock extends ItemRendererGroup<ModelSniper>
 {
-    public RenderItemM4Stock(TexturedModel<ModelM4> model, ModelRenderer... modelRenderers)
+    public RenderItemSniperStock(TexturedModel<ModelSniper> model, ModelRenderer... modelRenderers)
     {
         super(model, modelRenderers);
     }
@@ -29,7 +29,7 @@ public class RenderItemM4Stock extends ItemRendererGroup<ModelM4>
             float glScale = 32F * Model.DEFAULT_SCALE;
             OpenGL.scale(glScale, -glScale, glScale);
             OpenGL.rotate(45F, -1F, 1F, 0F);
-            OpenGL.translate(0.25F, -0.65F, 0.3F);
+            OpenGL.translate(-0.05F, -0.1F, 0.52F);
             this.renderPart();
         }
         OpenGL.popMatrix();

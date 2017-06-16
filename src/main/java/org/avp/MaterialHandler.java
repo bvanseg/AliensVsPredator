@@ -4,7 +4,6 @@ import org.avp.block.materials.MaterialBlackGoo;
 import org.avp.block.materials.MaterialMist;
 
 import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item.ToolMaterial;
@@ -48,7 +47,7 @@ public class MaterialHandler implements IInitEvent
     }
 
     @Override
-    public void init(IMod mod, FMLInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         ;
     }

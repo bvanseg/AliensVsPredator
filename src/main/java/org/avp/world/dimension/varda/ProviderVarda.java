@@ -60,19 +60,19 @@ public class ProviderVarda extends WorldProvider
     @Override
     public String getSaveFolder()
     {
-        return AliensVsPredator.properties().DIMENSION_ID_VARDA;
+        return AliensVsPredator.dimensions().DIMENSION_ID_VARDA;
     }
 
     @Override
     public String getWelcomeMessage()
     {
-        return "Enterring " + AliensVsPredator.properties().DIMENSION_NAME_VARDA;
+        return "Enterring " + AliensVsPredator.dimensions().DIMENSION_NAME_VARDA;
     }
 
     @Override
     public String getDepartMessage()
     {
-        return "Leaving " + AliensVsPredator.properties().DIMENSION_NAME_VARDA;
+        return "Leaving " + AliensVsPredator.dimensions().DIMENSION_NAME_VARDA;
     }
     
     @Override

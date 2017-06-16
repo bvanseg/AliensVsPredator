@@ -9,8 +9,8 @@ import net.minecraft.world.biome.BiomeDecorator;
 
 public class BiomeVarda extends BiomeGenLV
 {
-    public static BiomeVarda vardaBadlands = new BiomeVarda(new BiomeProperties(AliensVsPredator.properties().BIOME_NAME_VARDA_BADLANDS).setBaseHeight(1.0F).setHeightVariation(2.0F).setRainDisabled().setWaterColor(0xFFFF66));
-    public static BiomeVarda vardaForest   = new BiomeVarda(new BiomeProperties(AliensVsPredator.properties().BIOME_NAME_VARDA_FOREST).setBaseHeight(1.0F).setHeightVariation(8.0F).setTemperature(0.7F).setRainfall(0.1F).setWaterColor(0xFFFF66));
+    public static BiomeVarda vardaBadlands = new BiomeVarda(new BiomeProperties(AliensVsPredator.dimensions().BIOME_NAME_VARDA_BADLANDS).setBaseHeight(1.0F).setHeightVariation(2.0F).setRainDisabled().setWaterColor(0xFFFF66));
+    public static BiomeVarda vardaForest   = new BiomeVarda(new BiomeProperties(AliensVsPredator.dimensions().BIOME_NAME_VARDA_FOREST).setBaseHeight(1.0F).setHeightVariation(8.0F).setTemperature(0.7F).setRainfall(0.1F).setWaterColor(0xFFFF66));
     
     public BiomeVarda(BiomeProperties properties)
     {

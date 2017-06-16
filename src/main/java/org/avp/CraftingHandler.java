@@ -4,8 +4,6 @@ import org.avp.item.crafting.AssemblyManager;
 import org.avp.item.crafting.Schematic;
 
 import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IMod;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -16,8 +14,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class CraftingHandler implements IInitEvent
 {
-    public static final CraftingHandler instance   = new CraftingHandler();
-    private ItemStack                   charcoal   = new ItemStack(Items.COAL, 1);
+    public static final CraftingHandler instance = new CraftingHandler();
+    private ItemStack                   charcoal = new ItemStack(Items.COAL, 1);
 
     public CraftingHandler()
     {
@@ -25,7 +23,7 @@ public class CraftingHandler implements IInitEvent
     }
 
     @Override
-    public void init(IMod mod, FMLInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         this.addRecipes();
         this.addSmelting();
@@ -115,61 +113,665 @@ public class CraftingHandler implements IInitEvent
         ItemHandler items = AliensVsPredator.items();
         BlockHandler blocks = AliensVsPredator.blocks();
 
-        AssemblyManager.instance.add(new Schematic("turret", Inventories.newStack(blocks.blockTurret, 1), Inventories.newStack(items.itemM41A, 1), Inventories.newStack(items.itemPolycarbonate, 4), Inventories.newStack(items.itemIngotAluminum, 4), Inventories.newStack(items.itemIngotCopper, 4), Inventories.newStack(items.itemLedDisplay, 1)));
-        AssemblyManager.instance.add(new Schematic("redstonefluxGenerator", Inventories.newStack(blocks.redstoneFluxGenerator, 1), Inventories.newStack(blocks.blockTransformer, 4), Inventories.newStack(blocks.blockNegativeTransformer, 4), Inventories.newStack(items.itemPolycarbonate, 4), Inventories.newStack(items.itemIngotAluminum, 4), Inventories.newStack(Items.DIAMOND, 4)));
-        AssemblyManager.instance.add(new Schematic("cryostasisTube", Inventories.newStack(blocks.blockCryostasisTube, 1), Inventories.newStack(items.itemPolycarbonate, 4), Inventories.newStack(items.itemIngotAluminum, 4), Inventories.newStack(blocks.industrialglass, 4), Inventories.newStack(blocks.blockLightPanel, 1)));
-        AssemblyManager.instance.add(new Schematic("lightPanel", Inventories.newStack(blocks.blockLightPanel, 1), Inventories.newStack(items.itemPolycarbonate, 2), Inventories.newStack(items.itemIngotAluminum, 2), Inventories.newStack(blocks.industrialglass, 2), Inventories.newStack(Items.GLOWSTONE_DUST, 2)));
-        AssemblyManager.instance.add(new Schematic("pulserifle", Inventories.newStack(items.itemM41A, 1), Inventories.newStack(items.itemPolycarbonate, 8), Inventories.newStack(Items.IRON_INGOT, 8), Inventories.newStack(items.itemIngotAluminum, 6), Inventories.newStack(items.itemIngotCopper, 6), Inventories.newStack(Items.GOLD_INGOT, 4), Inventories.newStack(items.itemIntegratedCircuit, 2), Inventories.newStack(items.itemLedDisplay, 1)));
-        AssemblyManager.instance.add(new Schematic("grenade", Inventories.newStack(items.itemGrenade, 2), Inventories.newStack(Items.IRON_INGOT, 2), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(Items.GUNPOWDER, 1), Inventories.newStack(items.itemIngotCopper, 1)));
-        AssemblyManager.instance.add(new Schematic("fire_grenade", Inventories.newStack(items.itemIncendiaryGrenade, 2), Inventories.newStack(Items.IRON_INGOT, 2), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(Items.BLAZE_POWDER, 1), Inventories.newStack(items.itemIngotCopper, 1)));
-        AssemblyManager.instance.add(new Schematic("marineHelm", Inventories.newStack(items.helmMarine, 1), Inventories.newStack(Blocks.WOOL, 3), Inventories.newStack(items.itemIngotAluminum, 2), Inventories.newStack(items.itemLedDisplay, 2), Inventories.newStack(items.itemPolycarbonate, 2), Inventories.newStack(items.itemProcessor, 1)));
-        AssemblyManager.instance.add(new Schematic("marinePlate", Inventories.newStack(items.plateMarine, 1), Inventories.newStack(Blocks.WOOL, 3), Inventories.newStack(items.itemIngotAluminum, 2)));
-        AssemblyManager.instance.add(new Schematic("marineLeggings", Inventories.newStack(items.legsMarine, 1), Inventories.newStack(Blocks.WOOL, 3), Inventories.newStack(items.itemIngotAluminum, 2)));
-        AssemblyManager.instance.add(new Schematic("marineBoots", Inventories.newStack(items.bootsMarine, 1), Inventories.newStack(Blocks.WOOL, 1), Inventories.newStack(items.itemIngotAluminum, 1)));
-        AssemblyManager.instance.add(new Schematic("sniperMagazine", Inventories.newStack(items.itemAmmoSniper, 1), Inventories.newStack(items.itemIngotAluminum, 5), Inventories.newStack(Items.GUNPOWDER, 1)));
-        AssemblyManager.instance.add(new Schematic("pistolMagazine", Inventories.newStack(items.itemAmmoPistol, 3), Inventories.newStack(items.itemIngotAluminum, 4), Inventories.newStack(Items.GUNPOWDER, 2), Inventories.newStack(items.itemIngotCopper, 1)));
-        AssemblyManager.instance.add(new Schematic("ARAmmo", Inventories.newStack(items.itemAmmoAR, 1), Inventories.newStack(items.itemIngotAluminum, 5), Inventories.newStack(Items.IRON_INGOT, 1), Inventories.newStack(Items.GUNPOWDER, 1)));
-        AssemblyManager.instance.add(new Schematic("SMGAmmo", Inventories.newStack(items.itemAmmoSMG, 1), Inventories.newStack(items.itemIngotAluminum, 4), Inventories.newStack(Items.IRON_INGOT, 4), Inventories.newStack(Items.GUNPOWDER, 1)));
-        AssemblyManager.instance.add(new Schematic("m56sg", Inventories.newStack(items.itemM56SG, 1), Inventories.newStack(items.itemM56SGAimingModule, 1), Inventories.newStack(items.itemM56SGStock, 1), Inventories.newStack(items.itemM56SGBarrel, 1), Inventories.newStack(items.itemM56SGSupportFrame, 1)));
-        AssemblyManager.instance.add(new Schematic("sniper", Inventories.newStack(items.itemSniper, 1), Inventories.newStack(items.itemSniperScope, 1), Inventories.newStack(items.itemSniperAction, 1), Inventories.newStack(items.itemSniperPeripherals, 1), Inventories.newStack(items.itemSniperBarrel, 1), Inventories.newStack(items.itemSniperStock, 1)));
-        AssemblyManager.instance.add(new Schematic("pistol", Inventories.newStack(items.itemPistol, 1), Inventories.newStack(items.itemPistolStock, 1), Inventories.newStack(items.itemPistolBarrel, 1), Inventories.newStack(items.itemPistolAction, 1)));
-        AssemblyManager.instance.add(new Schematic("m4", Inventories.newStack(items.itemM4, 1), Inventories.newStack(items.itemM4Stock, 1), Inventories.newStack(items.itemM4Barrel, 1), Inventories.newStack(items.itemM4Action, 1)));
-        AssemblyManager.instance.add(new Schematic("ak47", Inventories.newStack(items.itemAK47, 1), Inventories.newStack(items.itemAK47Action, 1), Inventories.newStack(items.itemAK47Barrel, 1), Inventories.newStack(items.itemAK47Stock, 1)));
-        AssemblyManager.instance.add(new Schematic("doritos", Inventories.newStack(items.itemDoritos, 4), Inventories.newStack(Items.WHEAT, 4), Inventories.newStack(Items.BAKED_POTATO, 4)));
-        AssemblyManager.instance.add(new Schematic("doritosCoolRanch", Inventories.newStack(items.itemDoritosCoolRanch, 4), Inventories.newStack(items.itemDoritos, 4), Inventories.newStack(Items.WHEAT, 3)));
-        AssemblyManager.instance.add(new Schematic("motionTracker", Inventories.newStack(items.itemMotionTracker, 1), Inventories.newStack(items.itemPolycarbonate, 6), Inventories.newStack(items.itemIngotAluminum, 8), Inventories.newStack(items.itemIngotCopper, 6), Inventories.newStack(items.itemLedDisplay, 2), Inventories.newStack(items.itemProcessor, 2), Inventories.newStack(Items.DIAMOND, 1), Inventories.newStack(Items.IRON_INGOT, 8)));
-        AssemblyManager.instance.add(new Schematic("flamethrower", Inventories.newStack(items.itemM240ICU, 1), Inventories.newStack(items.itemPolycarbonate, 4), Inventories.newStack(items.itemIngotAluminum, 4), Inventories.newStack(items.itemIngotCopper, 3), Inventories.newStack(Items.BLAZE_ROD, 1), Inventories.newStack(Items.IRON_INGOT, 6)));
-        AssemblyManager.instance.add(new Schematic("nbtDrive", Inventories.newStack(items.itemFlashDrive, 1), Inventories.newStack(items.itemPolycarbonate, 1), Inventories.newStack(items.itemRAM, 4), Inventories.newStack(items.itemIngotLithium, 1)));
-        AssemblyManager.instance.add(new Schematic("celticBiomask", Inventories.newStack(items.helmTitanium, 1), Inventories.newStack(items.itemArtifactTech, 2), Inventories.newStack(Items.DIAMOND_HELMET, 1), Inventories.newStack(items.itemIngotAluminum, 2), Inventories.newStack(items.itemLedDisplay, 2), Inventories.newStack(items.itemPolycarbonate, 2), Inventories.newStack(items.itemProcessor, 1)));
-        AssemblyManager.instance.add(new Schematic("celticPlate", Inventories.newStack(items.plateTitanium, 1), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(Items.DIAMOND_CHESTPLATE, 1), Inventories.newStack(items.itemIngotAluminum, 3), Inventories.newStack(items.itemPolycarbonate, 3)));
-        AssemblyManager.instance.add(new Schematic("celticLegs", Inventories.newStack(items.legsTitanium, 1), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(Items.DIAMOND_LEGGINGS, 1), Inventories.newStack(items.itemIngotAluminum, 2), Inventories.newStack(items.itemPolycarbonate, 2)));
-        AssemblyManager.instance.add(new Schematic("celticBoots", Inventories.newStack(items.bootsTitanium, 1), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(Items.DIAMOND_BOOTS, 1), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(items.itemPolycarbonate, 1)));
-        AssemblyManager.instance.add(new Schematic("celticAxe", Inventories.newStack(items.axeTitanium, 1), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(Items.DIAMOND_AXE, 1), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(items.itemPolycarbonate, 1)));
-        AssemblyManager.instance.add(new Schematic("celticPickaxe", Inventories.newStack(items.pickaxeTitanium, 1), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(Items.DIAMOND_PICKAXE, 1), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(items.itemPolycarbonate, 1)));
-        AssemblyManager.instance.add(new Schematic("celticHoe", Inventories.newStack(items.hoeTitanium, 1), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(Items.DIAMOND_HOE, 1), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(items.itemPolycarbonate, 1)));
-        AssemblyManager.instance.add(new Schematic("celticShovel", Inventories.newStack(items.shovelTitanium, 1), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(Items.DIAMOND_SHOVEL, 1), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(items.itemPolycarbonate, 1)));
-        AssemblyManager.instance.add(new Schematic("celticSword", Inventories.newStack(items.swordTitanium, 1), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(Items.DIAMOND_SWORD, 1), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(items.itemPolycarbonate, 1)));
-        AssemblyManager.instance.add(new Schematic("wristBlade", Inventories.newStack(items.itemWristbracer, 1), Inventories.newStack(items.itemArtifactTech, 2), Inventories.newStack(Items.DIAMOND, 4), Inventories.newStack(items.itemLedDisplay, 2), Inventories.newStack(items.itemIngotAluminum, 2), Inventories.newStack(items.itemPolycarbonate, 2)));
-        AssemblyManager.instance.add(new Schematic("wristbracerBlades", Inventories.newStack(items.itemWristbracerBlades, 1), Inventories.newStack(items.itemArtifactTech, 2), Inventories.newStack(Items.SHEARS, 1), Inventories.newStack(Items.DIAMOND, 2), Inventories.newStack(items.itemIngotAluminum, 2), Inventories.newStack(items.itemPolycarbonate, 2)));
-        AssemblyManager.instance.add(new Schematic("proximityMine", Inventories.newStack(items.itemProximityMine, 3), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(Blocks.TNT, 2), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(items.itemPolycarbonate, 1)));
-        AssemblyManager.instance.add(new Schematic("celticDisc", Inventories.newStack(items.itemDisc, 1), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(Items.DIAMOND, 1), Inventories.newStack(items.itemPolycarbonate, 2)));
-        AssemblyManager.instance.add(new Schematic("celticShuriken", Inventories.newStack(items.itemShuriken, 2), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(items.itemIngotAluminum, 2), Inventories.newStack(items.itemPolycarbonate, 2)));
-        AssemblyManager.instance.add(new Schematic("celticSpear", Inventories.newStack(items.itemSpear, 1), Inventories.newStack(items.itemArtifactTech, 1), Inventories.newStack(items.itemIngotAluminum, 1), Inventories.newStack(items.itemPolycarbonate, 2), Inventories.newStack(Items.DIAMOND, 1)));
-        AssemblyManager.instance.add(new Schematic("polycarbonate", Inventories.newStack(items.itemPolycarbonate, 4), Inventories.newStack(items.itemCarbon, 6), Inventories.newStack(items.itemSilicon, 3)));
-        AssemblyManager.instance.add(new Schematic("carbon", Inventories.newStack(items.itemCarbon, 3), Inventories.newStack(Items.COAL, 4)));
-        AssemblyManager.instance.add(new Schematic("resistor", Inventories.newStack(items.itemResistor, 2), Inventories.newStack(items.itemIngotCopper, 2), Inventories.newStack(items.itemCarbon, 1)));
-        AssemblyManager.instance.add(new Schematic("capacitor", Inventories.newStack(items.itemCapacitor, 2), Inventories.newStack(items.itemIngotCopper, 2), Inventories.newStack(items.itemIngotLithium, 1)));
-        AssemblyManager.instance.add(new Schematic("diode", Inventories.newStack(items.itemDiode, 2), Inventories.newStack(items.itemIngotCopper, 1), Inventories.newStack(items.itemCarbon, 1), Inventories.newStack(items.itemSilicon, 1)));
-        AssemblyManager.instance.add(new Schematic("led", Inventories.newStack(items.itemLed, 2), Inventories.newStack(items.itemPolycarbonate, 1), Inventories.newStack(items.itemDiode, 1), Inventories.newStack(Items.REDSTONE, 1)));
-        AssemblyManager.instance.add(new Schematic("regulator", Inventories.newStack(items.itemVoltageRegulator, 2), Inventories.newStack(items.itemDiode, 1), Inventories.newStack(items.itemIngotCopper, 1), Inventories.newStack(items.itemResistor, 1)));
-        AssemblyManager.instance.add(new Schematic("transistor", Inventories.newStack(items.itemTransistor, 2), Inventories.newStack(items.itemIngotAluminum, 2), Inventories.newStack(items.itemSilicon, 1), Inventories.newStack(Item.getItemFromBlock(Blocks.LEVER), 1)));
-        AssemblyManager.instance.add(new Schematic("ic", Inventories.newStack(items.itemIntegratedCircuit, 2), Inventories.newStack(items.itemPolycarbonate, 1), Inventories.newStack(items.itemIngotAluminum, 2), Inventories.newStack(items.itemIngotCopper, 2), Inventories.newStack(items.itemSilicon, 1), Inventories.newStack(items.itemTransistor, 1), Inventories.newStack(items.itemResistor, 1), Inventories.newStack(items.itemVoltageRegulator, 1), Inventories.newStack(items.itemDiode, 1)));
-        AssemblyManager.instance.add(new Schematic("processor", Inventories.newStack(items.itemProcessor, 1), Inventories.newStack(items.itemPolycarbonate, 1), Inventories.newStack(items.itemIntegratedCircuit, 5), Inventories.newStack(items.itemIngotLithium, 1)));
-        AssemblyManager.instance.add(new Schematic("motherboard", Inventories.newStack(items.itemMotherboard, 1), Inventories.newStack(items.itemPolycarbonate, 1), Inventories.newStack(items.itemIntegratedCircuit, 1), Inventories.newStack(items.itemSilicon, 1), Inventories.newStack(items.itemTransistor, 1), Inventories.newStack(items.itemVoltageRegulator, 1), Inventories.newStack(items.itemDiode, 1)));
-        AssemblyManager.instance.add(new Schematic("powerline", Inventories.newStack(blocks.blockPowerline, 4), Inventories.newStack(items.itemPolycarbonate, 4), Inventories.newStack(items.itemIngotCopper, 1)));
-        AssemblyManager.instance.add(new Schematic("powersupply", Inventories.newStack(items.itemPowerSupply, 1), Inventories.newStack(items.itemDiode, 1), Inventories.newStack(items.itemVoltageRegulator, 1), Inventories.newStack(items.itemIngotAluminum, 2), Inventories.newStack(blocks.blockTransformer, 1)));
-        AssemblyManager.instance.add(new Schematic("ledDisplay", Inventories.newStack(items.itemLedDisplay, 2), Inventories.newStack(items.itemPolycarbonate, 1), Inventories.newStack(items.itemLed, 6), Inventories.newStack(items.itemIntegratedCircuit, 1), Inventories.newStack(items.itemIngotLithium, 1)));
-        AssemblyManager.instance.add(new Schematic("ram", Inventories.newStack(items.itemRAM, 2), Inventories.newStack(items.itemIntegratedCircuit, 3), Inventories.newStack(items.itemVoltageRegulator, 1), Inventories.newStack(items.itemIngotCopper, 2), Inventories.newStack(items.itemSilicon, 2), Inventories.newStack(items.itemPolycarbonate, 1)));
-        AssemblyManager.instance.add(new Schematic("solidstatedrive", Inventories.newStack(items.itemSolidStateDrive, 1), Inventories.newStack(items.itemRAM, 2), Inventories.newStack(items.itemVoltageRegulator, 1), Inventories.newStack(items.itemIntegratedCircuit, 1), Inventories.newStack(items.itemIngotLithium, 1), Inventories.newStack(items.itemPolycarbonate, 1)));
+        AssemblyManager.register(new Schematic("turret", new ItemStack(blocks.blockTurret, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemM41A, 1),
+                    new ItemStack(items.itemPolycarbonate, 4),
+                    new ItemStack(items.itemIngotAluminum, 4),
+                    new ItemStack(items.itemIngotCopper, 4),
+                    new ItemStack(items.itemLedDisplay, 1)
+                };
+            }
+        });
+        AssemblyManager.register(new Schematic("redstonefluxGenerator", new ItemStack(blocks.redstoneFluxGenerator, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(blocks.blockTransformer, 4),
+                    new ItemStack(blocks.blockNegativeTransformer, 4),
+                    new ItemStack(items.itemPolycarbonate, 4),
+                    new ItemStack(items.itemIngotAluminum, 4),
+                    new ItemStack(Items.DIAMOND, 4) };
+            }
+        });
+        AssemblyManager.register(new Schematic("cryostasisTube", new ItemStack(blocks.blockCryostasisTube, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 4),
+                    new ItemStack(items.itemIngotAluminum, 4),
+                    new ItemStack(blocks.industrialglass, 4),
+                    new ItemStack(blocks.blockLightPanel, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("lightPanel", new ItemStack(blocks.blockLightPanel, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 2),
+                    new ItemStack(items.itemIngotAluminum, 2),
+                    new ItemStack(blocks.industrialglass, 2),
+                    new ItemStack(Items.GLOWSTONE_DUST, 2) };
+            }
+        });
+        AssemblyManager.register(new Schematic("pulserifle", new ItemStack(items.itemM41A, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 8),
+                    new ItemStack(Items.IRON_INGOT, 8),
+                    new ItemStack(items.itemIngotAluminum, 6),
+                    new ItemStack(items.itemIngotCopper, 6),
+                    new ItemStack(Items.GOLD_INGOT, 4),
+                    new ItemStack(items.itemIntegratedCircuit, 2),
+                    new ItemStack(items.itemLedDisplay, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("grenade", new ItemStack(items.itemGrenade, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(Items.IRON_INGOT, 2),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(Items.GUNPOWDER, 1),
+                    new ItemStack(items.itemIngotCopper, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("fire_grenade", new ItemStack(items.itemIncendiaryGrenade, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(Items.IRON_INGOT, 2),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(Items.BLAZE_POWDER, 1),
+                    new ItemStack(items.itemIngotCopper, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("marineHelm", new ItemStack(items.helmMarine, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(Blocks.WOOL, 3),
+                    new ItemStack(items.itemIngotAluminum, 2),
+                    new ItemStack(items.itemLedDisplay, 2),
+                    new ItemStack(items.itemPolycarbonate, 2),
+                    new ItemStack(items.itemProcessor, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("marinePlate", new ItemStack(items.plateMarine, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(Blocks.WOOL, 3),
+                    new ItemStack(items.itemIngotAluminum, 2) };
+            }
+        });
+        AssemblyManager.register(new Schematic("marineLeggings", new ItemStack(items.legsMarine, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(Blocks.WOOL, 3),
+                    new ItemStack(items.itemIngotAluminum, 2) };
+            }
+        });
+        AssemblyManager.register(new Schematic("marineBoots", new ItemStack(items.bootsMarine, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(Blocks.WOOL, 1),
+                    new ItemStack(items.itemIngotAluminum, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("sniperMagazine", new ItemStack(items.itemAmmoSniper, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemIngotAluminum, 5),
+                    new ItemStack(Items.GUNPOWDER, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("pistolMagazine", new ItemStack(items.itemAmmoPistol, 3))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemIngotAluminum, 4),
+                    new ItemStack(Items.GUNPOWDER, 2),
+                    new ItemStack(items.itemIngotCopper, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("ARAmmo", new ItemStack(items.itemAmmoAR, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemIngotAluminum, 5),
+                    new ItemStack(Items.IRON_INGOT, 1),
+                    new ItemStack(Items.GUNPOWDER, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("SMGAmmo", new ItemStack(items.itemAmmoSMG, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemIngotAluminum, 4),
+                    new ItemStack(Items.IRON_INGOT, 4),
+                    new ItemStack(Items.GUNPOWDER, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("m56sg", new ItemStack(items.itemM56SG, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemM56SGAimingModule, 1),
+                    new ItemStack(items.itemM56SGStock, 1),
+                    new ItemStack(items.itemM56SGBarrel, 1),
+                    new ItemStack(items.itemM56SGSupportFrame, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("sniper", new ItemStack(items.itemSniper, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemSniperScope, 1),
+                    new ItemStack(items.itemSniperAction, 1),
+                    new ItemStack(items.itemSniperPeripherals, 1),
+                    new ItemStack(items.itemSniperBarrel, 1),
+                    new ItemStack(items.itemSniperStock, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("pistol", new ItemStack(items.itemPistol, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPistolStock, 1),
+                    new ItemStack(items.itemPistolBarrel, 1),
+                    new ItemStack(items.itemPistolAction, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("m4", new ItemStack(items.itemM4, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemM4Stock, 1),
+                    new ItemStack(items.itemM4Barrel, 1),
+                    new ItemStack(items.itemM4Action, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("ak47", new ItemStack(items.itemAK47, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemAK47Action, 1),
+                    new ItemStack(items.itemAK47Barrel, 1),
+                    new ItemStack(items.itemAK47Stock, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("doritos", new ItemStack(items.itemDoritos, 4))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(Items.WHEAT, 4),
+                    new ItemStack(Items.BAKED_POTATO, 4) };
+            }
+        });
+        AssemblyManager.register(new Schematic("doritosCoolRanch", new ItemStack(items.itemDoritosCoolRanch, 4))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemDoritos, 4),
+                    new ItemStack(Items.WHEAT, 3) };
+            }
+        });
+        AssemblyManager.register(new Schematic("motionTracker", new ItemStack(items.itemMotionTracker, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 6),
+                    new ItemStack(items.itemIngotAluminum, 8),
+                    new ItemStack(items.itemIngotCopper, 6),
+                    new ItemStack(items.itemLedDisplay, 2),
+                    new ItemStack(items.itemProcessor, 2),
+                    new ItemStack(Items.DIAMOND, 1),
+                    new ItemStack(Items.IRON_INGOT, 8) };
+            }
+        });
+        AssemblyManager.register(new Schematic("flamethrower", new ItemStack(items.itemM240ICU, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 4),
+                    new ItemStack(items.itemIngotAluminum, 4),
+                    new ItemStack(items.itemIngotCopper, 3),
+                    new ItemStack(Items.BLAZE_ROD, 1),
+                    new ItemStack(Items.IRON_INGOT, 6) };
+            }
+        });
+        AssemblyManager.register(new Schematic("nbtDrive", new ItemStack(items.itemFlashDrive, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 1),
+                    new ItemStack(items.itemRAM, 4),
+                    new ItemStack(items.itemIngotLithium, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticBiomask", new ItemStack(items.helmTitanium, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 2),
+                    new ItemStack(Items.DIAMOND_HELMET, 1),
+                    new ItemStack(items.itemIngotAluminum, 2),
+                    new ItemStack(items.itemLedDisplay, 2),
+                    new ItemStack(items.itemPolycarbonate, 2),
+                    new ItemStack(items.itemProcessor, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticPlate", new ItemStack(items.plateTitanium, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(Items.DIAMOND_CHESTPLATE, 1),
+                    new ItemStack(items.itemIngotAluminum, 3),
+                    new ItemStack(items.itemPolycarbonate, 3) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticLegs", new ItemStack(items.legsTitanium, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(Items.DIAMOND_LEGGINGS, 1),
+                    new ItemStack(items.itemIngotAluminum, 2),
+                    new ItemStack(items.itemPolycarbonate, 2) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticBoots", new ItemStack(items.bootsTitanium, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(Items.DIAMOND_BOOTS, 1),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(items.itemPolycarbonate, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticAxe", new ItemStack(items.axeTitanium, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(Items.DIAMOND_AXE, 1),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(items.itemPolycarbonate, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticPickaxe", new ItemStack(items.pickaxeTitanium, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(Items.DIAMOND_PICKAXE, 1),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(items.itemPolycarbonate, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticHoe", new ItemStack(items.hoeTitanium, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(Items.DIAMOND_HOE, 1),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(items.itemPolycarbonate, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticShovel", new ItemStack(items.shovelTitanium, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(Items.DIAMOND_SHOVEL, 1),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(items.itemPolycarbonate, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticSword", new ItemStack(items.swordTitanium, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(Items.DIAMOND_SWORD, 1),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(items.itemPolycarbonate, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("wristBlade", new ItemStack(items.itemWristbracer, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 2),
+                    new ItemStack(Items.DIAMOND, 4),
+                    new ItemStack(items.itemLedDisplay, 2),
+                    new ItemStack(items.itemIngotAluminum, 2),
+                    new ItemStack(items.itemPolycarbonate, 2) };
+            }
+        });
+        AssemblyManager.register(new Schematic("wristbracerBlades", new ItemStack(items.itemWristbracerBlades, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 2),
+                    new ItemStack(Items.SHEARS, 1),
+                    new ItemStack(Items.DIAMOND, 2),
+                    new ItemStack(items.itemIngotAluminum, 2),
+                    new ItemStack(items.itemPolycarbonate, 2) };
+            }
+        });
+        AssemblyManager.register(new Schematic("proximityMine", new ItemStack(items.itemProximityMine, 3))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(Blocks.TNT, 2),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(items.itemPolycarbonate, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticDisc", new ItemStack(items.itemDisc, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(Items.DIAMOND, 1),
+                    new ItemStack(items.itemPolycarbonate, 2) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticShuriken", new ItemStack(items.itemShuriken, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(items.itemIngotAluminum, 2),
+                    new ItemStack(items.itemPolycarbonate, 2) };
+            }
+        });
+        AssemblyManager.register(new Schematic("celticSpear", new ItemStack(items.itemSpear, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemArtifactTech, 1),
+                    new ItemStack(items.itemIngotAluminum, 1),
+                    new ItemStack(items.itemPolycarbonate, 2),
+                    new ItemStack(Items.DIAMOND, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("polycarbonate", new ItemStack(items.itemPolycarbonate, 4))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemCarbon, 6),
+                    new ItemStack(items.itemSilicon, 3) };
+            }
+        });
+        AssemblyManager.register(new Schematic("carbon", new ItemStack(items.itemCarbon, 3))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(Items.COAL, 4) };
+            }
+        });
+        AssemblyManager.register(new Schematic("resistor", new ItemStack(items.itemResistor, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemIngotCopper, 2),
+                    new ItemStack(items.itemCarbon, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("capacitor", new ItemStack(items.itemCapacitor, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemIngotCopper, 2),
+                    new ItemStack(items.itemIngotLithium, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("diode", new ItemStack(items.itemDiode, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemIngotCopper, 1),
+                    new ItemStack(items.itemCarbon, 1),
+                    new ItemStack(items.itemSilicon, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("led", new ItemStack(items.itemLed, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 1),
+                    new ItemStack(items.itemDiode, 1),
+                    new ItemStack(Items.REDSTONE, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("regulator", new ItemStack(items.itemVoltageRegulator, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemDiode, 1),
+                    new ItemStack(items.itemIngotCopper, 1),
+                    new ItemStack(items.itemResistor, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("transistor", new ItemStack(items.itemTransistor, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemIngotAluminum, 2),
+                    new ItemStack(items.itemSilicon, 1),
+                    new ItemStack(Item.getItemFromBlock(Blocks.LEVER), 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("ic", new ItemStack(items.itemIntegratedCircuit, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 1),
+                    new ItemStack(items.itemIngotAluminum, 2),
+                    new ItemStack(items.itemIngotCopper, 2),
+                    new ItemStack(items.itemSilicon, 1),
+                    new ItemStack(items.itemTransistor, 1),
+                    new ItemStack(items.itemResistor, 1),
+                    new ItemStack(items.itemVoltageRegulator, 1),
+                    new ItemStack(items.itemDiode, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("processor", new ItemStack(items.itemProcessor, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 1),
+                    new ItemStack(items.itemIntegratedCircuit, 5),
+                    new ItemStack(items.itemIngotLithium, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("motherboard", new ItemStack(items.itemMotherboard, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 1),
+                    new ItemStack(items.itemIntegratedCircuit, 1),
+                    new ItemStack(items.itemSilicon, 1),
+                    new ItemStack(items.itemTransistor, 1),
+                    new ItemStack(items.itemVoltageRegulator, 1),
+                    new ItemStack(items.itemDiode, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("powerline", new ItemStack(blocks.blockPowerline, 4))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 4),
+                    new ItemStack(items.itemIngotCopper, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("powersupply", new ItemStack(items.itemPowerSupply, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemDiode, 1),
+                    new ItemStack(items.itemVoltageRegulator, 1),
+                    new ItemStack(items.itemIngotAluminum, 2),
+                    new ItemStack(blocks.blockTransformer, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("ledDisplay", new ItemStack(items.itemLedDisplay, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemPolycarbonate, 1),
+                    new ItemStack(items.itemLed, 6),
+                    new ItemStack(items.itemIntegratedCircuit, 1),
+                    new ItemStack(items.itemIngotLithium, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("ram", new ItemStack(items.itemRAM, 2))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemIntegratedCircuit, 3),
+                    new ItemStack(items.itemVoltageRegulator, 1),
+                    new ItemStack(items.itemIngotCopper, 2),
+                    new ItemStack(items.itemSilicon, 2),
+                    new ItemStack(items.itemPolycarbonate, 1) };
+            }
+        });
+        AssemblyManager.register(new Schematic("solidstatedrive", new ItemStack(items.itemSolidStateDrive, 1))
+        {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                    new ItemStack(items.itemRAM, 2),
+                    new ItemStack(items.itemVoltageRegulator, 1),
+                    new ItemStack(items.itemIntegratedCircuit, 1),
+                    new ItemStack(items.itemIngotLithium, 1),
+                    new ItemStack(items.itemPolycarbonate, 1) };
+            }
+        });
     }
 }

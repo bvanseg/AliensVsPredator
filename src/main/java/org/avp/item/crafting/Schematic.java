@@ -3,7 +3,7 @@ package org.avp.item.crafting;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class Schematic
+public class Schematic implements ISchematic
 {
     private String      id;
     private ItemStack   item;
@@ -16,7 +16,7 @@ public class Schematic
         this.items = items;
     }
 
-    public String getId()
+    public String getName()
     {
         return id;
     }
@@ -31,12 +31,12 @@ public class Schematic
         return items;
     }
 
-    public boolean isComplete(EntityPlayer player)
+    public static boolean isComplete(Schematic schematic, EntityPlayer player)
     {
         int progress = 0;
         int maxProgress = 0;
 
-        for (ItemStack stack : this.getItemsRequired())
+        for (ItemStack stack : schematic.getItemsRequired())
         {
             int amountOfStack = AssemblyManager.amountForMatchingStack(player, stack);
             maxProgress += stack.stackSize;

@@ -30,7 +30,6 @@ import org.avp.packets.server.PacketWriteToDataDevice;
 import org.avp.packets.server.SpecialPlayerServerSync;
 
 import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -46,11 +45,11 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
 
     public NetworkHandler()
     {
-        super(AliensVsPredator.ID.toUpperCase());
+        super(AliensVsPredator.Properties.ID.toUpperCase());
     }
 
     @Override
-    public void init(IMod mod, FMLInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         this.registerMessage(Side.SERVER, PacketAssemble.class);
         this.registerMessage(Side.SERVER, PacketOpenContainer.class);

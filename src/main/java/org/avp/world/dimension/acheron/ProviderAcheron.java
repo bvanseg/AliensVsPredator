@@ -57,19 +57,19 @@ public class ProviderAcheron extends WorldProvider
     @Override
     public String getSaveFolder()
     {
-        return AliensVsPredator.properties().DIMENSION_ID_ACHERON;
+        return AliensVsPredator.dimensions().DIMENSION_ID_ACHERON;
     }
 
     @Override
     public String getWelcomeMessage()
     {
-        return "Enterring " + AliensVsPredator.properties().DIMENSION_NAME_ACHERON;
+        return "Enterring " + AliensVsPredator.dimensions().DIMENSION_NAME_ACHERON;
     }
 
     @Override
     public String getDepartMessage()
     {
-        return "Leaving" + AliensVsPredator.properties().DIMENSION_NAME_ACHERON;
+        return "Leaving" + AliensVsPredator.dimensions().DIMENSION_NAME_ACHERON;
     }
     
     @Override

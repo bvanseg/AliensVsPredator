@@ -34,7 +34,7 @@ public class ShapedModelLoader implements ICustomModelLoader
     @Override
     public boolean accepts(ResourceLocation modelLocation)
     {
-        if (modelLocation.getResourceDomain().equals(AliensVsPredator.ID))
+        if (modelLocation.getResourceDomain().equals(AliensVsPredator.Properties.ID))
         {
             if (REGISTRY.containsKey(modelLocation.getResourcePath()))
             {

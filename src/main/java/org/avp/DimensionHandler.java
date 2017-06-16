@@ -8,7 +8,6 @@ import org.avp.world.dimension.varda.ProviderVarda;
 
 import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.world.Dimension;
 import com.arisux.mdx.lib.world.Pos;
 import com.arisux.mdx.lib.world.entity.Entities;
@@ -35,7 +34,7 @@ public class DimensionHandler implements IInitEvent
                                                   {
                                                       public Dimension register()
                                                       {
-                                                          GameRegistry.register(BiomeAcheron.acheron, new ResourceLocation(AliensVsPredator.ID, "acheron"));
+                                                          GameRegistry.register(BiomeAcheron.acheron, new ResourceLocation(AliensVsPredator.Properties.ID, "acheron"));
                                                           return super.register();
                                                       };
                                                   };
@@ -43,8 +42,8 @@ public class DimensionHandler implements IInitEvent
                                                   {
                                                       public Dimension register()
                                                       {
-                                                          GameRegistry.register(BiomeVarda.vardaBadlands, new ResourceLocation(AliensVsPredator.ID, "vardabadlands"));
-                                                          GameRegistry.register(BiomeVarda.vardaForest, new ResourceLocation(AliensVsPredator.ID, "vardaforest"));
+                                                          GameRegistry.register(BiomeVarda.vardaBadlands, new ResourceLocation(AliensVsPredator.Properties.ID, "vardabadlands"));
+                                                          GameRegistry.register(BiomeVarda.vardaForest, new ResourceLocation(AliensVsPredator.Properties.ID, "vardaforest"));
                                                           
                                                           return super.register();
                                                       };
@@ -52,8 +51,20 @@ public class DimensionHandler implements IInitEvent
 
     public boolean                       initialized;
 
+    public final String            DIMENSION_NAME_ACHERON    = "LV-426 (Acheron)";
+
+    public final String            DIMENSION_ID_ACHERON      = "DIM_LV426";
+
+    public final String            DIMENSION_NAME_VARDA      = "LV-223 (Varda)";
+
+    public final String            DIMENSION_ID_VARDA        = "DIM_LV223";
+
+    public final String            BIOME_NAME_VARDA_BADLANDS = "LV-223.B.1 (Varda Badlands)";
+
+    public final String            BIOME_NAME_VARDA_FOREST   = "LV-223.B.2 (Anomalistic Forest)";
+
     @Override
-    public void init(IMod mod, FMLInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         ACHERON.register();
         VARDA.register();

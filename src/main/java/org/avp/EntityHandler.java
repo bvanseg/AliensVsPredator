@@ -96,11 +96,10 @@ import org.avp.world.dimension.BiomeGenLV;
 import org.avp.world.dimension.acheron.BiomeAcheron;
 import org.avp.world.dimension.varda.BiomeVarda;
 
-import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IMod;
 import com.arisux.mdx.lib.game.IPreInitEvent;
+import com.arisux.mdx.lib.game.IdentityRemapModule;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureType;
@@ -117,13 +116,13 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
     private static int                entityId = 0;
 
     @Override
-    public void pre(IMod mod, FMLPreInitializationEvent event)
+    public void pre(FMLPreInitializationEvent event)
     {
         this.registerEntities();
     }
 
     @Override
-    public void init(IMod mod, FMLInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         this.registerTileEntities();
         this.registerLivingEntities();
@@ -164,35 +163,35 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
     private void registerRemappedEntities()
     {
         // Global Entity Identity Remapping
-        MDX.registerRemappedEntity(EntityRunnerDrone.class, "RunnerDrone");
-        MDX.registerRemappedEntity(EntityRunnerWarrior.class, "RunnerWarrior");
-        MDX.registerRemappedEntity(EntityDrone.class, "Drone");
-        MDX.registerRemappedEntity(EntityWarrior.class, "Warrior");
-        MDX.registerRemappedEntity(EntitySpitter.class, "Spitter");
-        MDX.registerRemappedEntity(EntityCrusher.class, "Crusher");
-        MDX.registerRemappedEntity(EntityPraetorian.class, "Praetorian");
-        MDX.registerRemappedEntity(EntityMarine.class, "Marine");
-        MDX.registerRemappedEntity(EntityYautjaWarrior.class, "YautjaWarrior");
-        MDX.registerRemappedEntity(EntityMatriarch.class, "Queen");
-        MDX.registerRemappedEntity(EntityFacehugger.class, "Facehugger");
-        MDX.registerRemappedEntity(EntityChestburster.class, "Chestbuster");
-        MDX.registerRemappedEntity(EntityOvamorph.class, "Ovamorph");
-        MDX.registerRemappedEntity(EntityRoyalFacehugger.class, "RoyalFacehugger");
-        MDX.registerRemappedEntity(EntityAqua.class, "AquaAlien");
-        MDX.registerRemappedEntity(EntityPredalien.class, "Predalien");
-        MDX.registerRemappedEntity(EntityCombatSynthetic.class, "CombatSynthetic");
-        MDX.registerRemappedEntity(EntityDeacon.class, "Deacon");
-        MDX.registerRemappedEntity(EntityHammerpede.class, "Hammerpede");
-        MDX.registerRemappedEntity(EntityTrilobite.class, "Trilobite");
-        MDX.registerRemappedEntity(EntitySpaceJockey.class, "SpaceJockey");
-        MDX.registerRemappedEntity(EntityEngineer.class, "Engineer");
-        MDX.registerRemappedEntity(EntityYautjaBerserker.class, "YautjaBerserker");
-        MDX.registerRemappedEntity(EntityDeaconShark.class, "DeaconShark");
+        IdentityRemapModule.registerRemappedEntity(EntityRunnerDrone.class, "RunnerDrone");
+        IdentityRemapModule.registerRemappedEntity(EntityRunnerWarrior.class, "RunnerWarrior");
+        IdentityRemapModule.registerRemappedEntity(EntityDrone.class, "Drone");
+        IdentityRemapModule.registerRemappedEntity(EntityWarrior.class, "Warrior");
+        IdentityRemapModule.registerRemappedEntity(EntitySpitter.class, "Spitter");
+        IdentityRemapModule.registerRemappedEntity(EntityCrusher.class, "Crusher");
+        IdentityRemapModule.registerRemappedEntity(EntityPraetorian.class, "Praetorian");
+        IdentityRemapModule.registerRemappedEntity(EntityMarine.class, "Marine");
+        IdentityRemapModule.registerRemappedEntity(EntityYautjaWarrior.class, "YautjaWarrior");
+        IdentityRemapModule.registerRemappedEntity(EntityMatriarch.class, "Queen");
+        IdentityRemapModule.registerRemappedEntity(EntityFacehugger.class, "Facehugger");
+        IdentityRemapModule.registerRemappedEntity(EntityChestburster.class, "Chestbuster");
+        IdentityRemapModule.registerRemappedEntity(EntityOvamorph.class, "Ovamorph");
+        IdentityRemapModule.registerRemappedEntity(EntityRoyalFacehugger.class, "RoyalFacehugger");
+        IdentityRemapModule.registerRemappedEntity(EntityAqua.class, "AquaAlien");
+        IdentityRemapModule.registerRemappedEntity(EntityPredalien.class, "Predalien");
+        IdentityRemapModule.registerRemappedEntity(EntityCombatSynthetic.class, "CombatSynthetic");
+        IdentityRemapModule.registerRemappedEntity(EntityDeacon.class, "Deacon");
+        IdentityRemapModule.registerRemappedEntity(EntityHammerpede.class, "Hammerpede");
+        IdentityRemapModule.registerRemappedEntity(EntityTrilobite.class, "Trilobite");
+        IdentityRemapModule.registerRemappedEntity(EntitySpaceJockey.class, "SpaceJockey");
+        IdentityRemapModule.registerRemappedEntity(EntityEngineer.class, "Engineer");
+        IdentityRemapModule.registerRemappedEntity(EntityYautjaBerserker.class, "YautjaBerserker");
+        IdentityRemapModule.registerRemappedEntity(EntityDeaconShark.class, "DeaconShark");
 
         // Mod Entity Identity Remapping
-        MDX.registerRemappedEntity(EntityDeacon.class, "avp.Protomorph");
-        MDX.registerRemappedEntity(EntityDeacon.class, "Protomorph");
-        MDX.registerRemappedEntity(EntityYautjaWarrior.class, "Yautja");
+        IdentityRemapModule.registerRemappedEntity(EntityDeacon.class, "avp.Protomorph");
+        IdentityRemapModule.registerRemappedEntity(EntityDeacon.class, "Protomorph");
+        IdentityRemapModule.registerRemappedEntity(EntityYautjaWarrior.class, "Yautja");
     }
 
     private void registerEntities()
@@ -266,8 +265,8 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         Game.register(EntityYautjaMutant.class, "YautjaMutant", entityId++, AliensVsPredator.instance(), 250, 1, true);
     }
 
-    private static final Class<?>[][]    PARAM_TYPES   = new Class[][] { { EnumCreatureType.class, Class.class, int.class, Material.class, boolean.class, boolean.class } };
-//    public static final EnumCreatureType WATER_MONSTER = EnumHelper.addEnum(PARAM_TYPES, EnumCreatureType.class, "water_monster", IMob.class, 20, Material.WATER, false, false);
+    private static final Class<?>[][] PARAM_TYPES = new Class[][] { { EnumCreatureType.class, Class.class, int.class, Material.class, boolean.class, boolean.class } };
+    // public static final EnumCreatureType WATER_MONSTER = EnumHelper.addEnum(PARAM_TYPES, EnumCreatureType.class, "water_monster", IMob.class, 20, Material.WATER, false, false);
 
     private void registerSpawns()
     {

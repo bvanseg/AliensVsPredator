@@ -1,23 +1,19 @@
 /** AliensVsPredator Minecraft Mod - Copyright (C) 2012-2017 ASX **/
 package org.avp;
 
+import org.apache.logging.log4j.Logger;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
 import org.avp.client.Resources;
 import org.avp.client.Sounds;
-import org.avp.client.render.block.ShapedModelLoader;
 import org.avp.world.CapabilityHandler;
 import org.avp.world.hives.HiveHandler;
 
-import com.arisux.mdx.MDX;
 import com.arisux.mdx.MDXModule;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.ModContainer;
@@ -29,31 +25,144 @@ import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@Mod(name = "AliensVsPredator", modid = AliensVsPredator.ID, dependencies = "required-after:mdxlib")
+@Mod(name = AliensVsPredator.Properties.NAME, modid = AliensVsPredator.Properties.ID, dependencies = AliensVsPredator.Properties.DEPENDENCIES)
 public class AliensVsPredator implements IMod
 {
-    public static final String      ID = "avp";
+    public static class Properties
+    {
+        public static final String NAME         = "AliensVsPredator";
+        public static final String ID           = "avp";
+        public static final String DEPENDENCIES = "required-after:mdxlib";
+        public static final String DOMAIN       = ID + ":";
+    }
 
-    @Mod.Instance(AliensVsPredator.ID)
+    @Mod.Instance(AliensVsPredator.Properties.ID)
     private static AliensVsPredator instance;
-
-    private ModContainer            container;
 
     @Override
     public ModContainer container()
     {
-        return this.container == null ? this.container = Game.getModContainer(AliensVsPredator.ID) : this.container;
+        return Game.getModContainer(AliensVsPredator.Properties.ID);
     }
 
-    @Override
-    public String domain()
+    @Mod.EventHandler
+    public void pre(FMLPreInitializationEvent event)
     {
-        return container().getModId() + ":";
+        if (!MDXModule.enabled())
+        {
+            return;
+        }
+
+        console().pre(event);
+        settings().pre(event);
+        fluids().pre(event);
+        items().pre(event);
+        capabilities().pre(event);
+        entities().pre(event);
+        blocks().pre(event);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Mod.EventHandler
+    public void preClient(FMLPreInitializationEvent event)
+    {
+        if (!MDXModule.enabled())
+        {
+            return;
+        }
+
+        sounds().pre(event);
+        renderers().pre(event);
+    }
+
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        if (!MDXModule.enabled())
+        {
+            return;
+        }
+
+        console().init(event);
+        network().init(event);
+        dimensions().init(event);
+        materials().init(event);
+        ores().init(event);
+        world().init(event);
+        crafting().init(event);
+        interfaces().init(event);
+        events().init(event);
+        commands().init(event);
+        playermodehandler().init(event);
+        schematics().init(event);
+        entities().init(event);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Mod.EventHandler
+    public void initClient(FMLInitializationEvent event)
+    {
+        if (!MDXModule.enabled())
+        {
+            return;
+        }
+
+        renderers().init(event);
+    }
+
+    @Mod.EventHandler
+    public void post(FMLPostInitializationEvent event)
+    {
+        if (!MDXModule.enabled())
+        {
+            return;
+        }
+
+        console().post(event);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Mod.EventHandler
+    public void postClient(FMLPostInitializationEvent event)
+    {
+        if (!MDXModule.enabled())
+        {
+            return;
+        }
+
+        keybinds().post(event);
+    }
+
+    @EventHandler
+    public void onServerStarting(FMLServerStartingEvent event)
+    {
+        if (!MDXModule.enabled())
+        {
+            return;
+        }
+
+        commands().onServerStarting(event);
+    }
+
+    @EventHandler
+    public void onServerStopped(FMLServerStoppedEvent event)
+    {
+        HiveHandler.instance.clearCaches();
     }
 
     public static AliensVsPredator instance()
     {
         return AliensVsPredator.instance;
+    }
+
+    public static Console console()
+    {
+        return Console.instance;
+    }
+
+    public static Logger log()
+    {
+        return Console.logger;
     }
 
     public static ItemHandler items()
@@ -134,16 +243,11 @@ public class AliensVsPredator implements IMod
         return GuiHandler.instance;
     }
 
-    public static Properties properties()
-    {
-        return Properties.instance;
-    }
-
     public static CraftingHandler crafting()
     {
         return CraftingHandler.instance;
     }
-    
+
     public static CapabilityHandler capabilities()
     {
         return CapabilityHandler.instance;
@@ -197,99 +301,5 @@ public class AliensVsPredator implements IMod
     public static CreativeTabs tabRecipeItems()
     {
         return CreativeTab.tabRecipeItems;
-    }
-    
-    @Mod.EventHandler
-    public void pre(FMLPreInitializationEvent event)
-    {
-        if (!MDXModule.enable)
-        {
-            return;
-        }
-
-        MDX.log().info("[AliensVsPredator] Copyright(C) 2012-2017 ASX");
-        MDX.log().info("[AliensVsPredator] Pre-Initialization");
-
-        settings().pre(this, event);
-        fluids().pre(this, event);
-        items().pre(this, event);
-        capabilities().pre(this, event);
-        entities().pre(this, event);
-        blocks().pre(this, event);
-
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-        {
-            OBJLoader.INSTANCE.addDomain(AliensVsPredator.ID);
-            ModelLoaderRegistry.registerLoader(new ShapedModelLoader());
-            sounds().pre(this, event);
-            renderers().pre(this, event);
-        }
-    }
-
-    @Mod.EventHandler
-    public void init(FMLInitializationEvent event)
-    {
-        if (!MDXModule.enable)
-        {
-            return;
-        }
-
-        MDX.log().info("[AliensVsPredator] Initialization");
-
-        network().init(this, event);
-        dimensions().init(this, event);
-        materials().init(this, event);
-        ores().init(this, event);
-        world().init(this, event);
-        crafting().init(this, event);
-        interfaces().init(this, event);
-        events().init(this, event);
-        commands().init(this, event);
-        playermodehandler().init(this, event);
-        schematics().init(this, event);
-        entities().init(this, event);
-
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-        {
-            renderers().init(this, event);
-        }
-    }
-
-    @Mod.EventHandler
-    public void post(FMLPostInitializationEvent event)
-    {
-        if (!MDXModule.enable)
-        {
-            return;
-        }
-
-        MDX.log().info("[AliensVsPredator] Post-Initialization");
-
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-        {
-            keybinds().post(this, event);
-        }
-    }
-
-    @EventHandler
-    public void onServerStarting(FMLServerStartingEvent event)
-    {
-        if (!MDXModule.enable)
-        {
-            return;
-        }
-
-        commands().onServerStarting(event);
-    }
-
-    @EventHandler
-    public void onServerStopped(FMLServerStoppedEvent event)
-    {
-        HiveHandler.instance.clearCaches();
-    }
-
-    public boolean isDevCopy()
-    {
-        return true;
     }
 }

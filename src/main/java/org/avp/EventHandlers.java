@@ -25,7 +25,6 @@ import org.avp.world.hooks.MaterialHandler;
 
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -38,7 +37,7 @@ public class EventHandlers implements IInitEvent
     public ArrayList<Object>          events   = new ArrayList<Object>();
 
     @Override
-    public void init(IMod mod, FMLInitializationEvent event)
+    public void init(FMLInitializationEvent event)
     {
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {

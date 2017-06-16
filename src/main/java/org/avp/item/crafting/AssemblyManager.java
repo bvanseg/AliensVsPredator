@@ -20,6 +20,11 @@ public class AssemblyManager
     {
         return this.schematics;
     }
+    
+    public static void register(Schematic schematic)
+    {
+        AssemblyManager.instance.add(schematic);
+    }
 
     public ArrayList<Schematic> getSchematics(Item item)
     {
@@ -40,7 +45,7 @@ public class AssemblyManager
     {
         for (Schematic schematic : this.schematics())
         {
-            if (schematic.getId().equalsIgnoreCase(id))
+            if (schematic.getName().equalsIgnoreCase(id))
             {
                 return schematic;
             }
@@ -53,7 +58,7 @@ public class AssemblyManager
     {
         for (Schematic sch : this.schematics)
         {
-            if (schematic == null || sch != null && schematic != null && sch.getId().equalsIgnoreCase(schematic.getId()))
+            if (schematic == null || sch != null && schematic != null && sch.getName().equalsIgnoreCase(schematic.getName()))
             {
                 return false;
             }
@@ -70,7 +75,7 @@ public class AssemblyManager
         }
         else
         {
-            MDX.log().warn(String.format("[AVP/API/Assembler] Schematic for id '%s' is already registered.", schematic.getId()));
+            MDX.log().warn(String.format("[AVP/API/Assembler] Schematic for id '%s' is already registered.", schematic.getName()));
         }
     }
     
@@ -103,7 +108,7 @@ public class AssemblyManager
 
     public static boolean handleAssembly(Schematic schematic, EntityPlayer player)
     {
-        if (schematic != null && schematic.isComplete(player))
+        if (schematic != null && Schematic.isComplete(schematic, player))
         {
             for (ItemStack requirement : schematic.getItemsRequired())
             {
