@@ -87,7 +87,6 @@ public class AliensVsPredator implements IMod
         network().init(event);
         dimensions().init(event);
         materials().init(event);
-        ores().init(event);
         world().init(event);
         crafting().init(event);
         interfaces().init(event);
@@ -173,11 +172,6 @@ public class AliensVsPredator implements IMod
     public static BlockHandler blocks()
     {
         return BlockHandler.instance;
-    }
-
-    public static OreDictionarySupport ores()
-    {
-        return OreDictionarySupport.instance;
     }
 
     public static FluidHandler fluids()
