@@ -11,6 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class CraftingHandler implements IInitEvent
 {
@@ -25,12 +26,38 @@ public class CraftingHandler implements IInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
+        this.addOreDictionarySupport();
         this.addRecipes();
         this.addSmelting();
         this.addSchematics();
     }
 
-    public void addRecipes()
+    private void addOreDictionarySupport()
+    {
+        OreDictionary.registerOre("copper", AliensVsPredator.items().itemIngotCopper);
+        OreDictionary.registerOre("ingotCopper", AliensVsPredator.items().itemIngotCopper);
+        OreDictionary.registerOre("lithium", AliensVsPredator.items().itemIngotLithium);
+        OreDictionary.registerOre("itemLithium", AliensVsPredator.items().itemIngotLithium);
+        OreDictionary.registerOre("aluminum", AliensVsPredator.items().itemIngotAluminum);
+        OreDictionary.registerOre("ingotAluminum", AliensVsPredator.items().itemIngotAluminum);
+        OreDictionary.registerOre("aluminium", AliensVsPredator.items().itemIngotAluminum);
+        OreDictionary.registerOre("ingotAluminium", AliensVsPredator.items().itemIngotAluminum);
+        OreDictionary.registerOre("oreCopper", AliensVsPredator.blocks().oreCopper);
+        OreDictionary.registerOre("oreLithium", AliensVsPredator.blocks().oreLithium);
+        OreDictionary.registerOre("oreAluminum", AliensVsPredator.blocks().oreBauxite);
+        OreDictionary.registerOre("oreAluminium", AliensVsPredator.blocks().oreBauxite);
+        OreDictionary.registerOre("oreSilicon", AliensVsPredator.blocks().oreSilicon);
+        OreDictionary.registerOre("silicon", AliensVsPredator.items().itemSilicon);
+        OreDictionary.registerOre("itemSilicon", AliensVsPredator.items().itemSilicon);
+        OreDictionary.registerOre("polycarbonate", AliensVsPredator.items().itemPolycarbonate);
+        OreDictionary.registerOre("itemPolycarbonate", AliensVsPredator.items().itemPolycarbonate);
+        OreDictionary.registerOre("plastic", AliensVsPredator.items().itemPolycarbonate);
+        OreDictionary.registerOre("itemPlastic", AliensVsPredator.items().itemPolycarbonate);
+        OreDictionary.registerOre("logWood", AliensVsPredator.blocks().terrainUniTreeLog);
+        OreDictionary.registerOre("log", AliensVsPredator.blocks().terrainUniTreeLog);
+    }
+
+    private void addRecipes()
     {
         GameRegistry.addRecipe(new ItemStack(AliensVsPredator.items().itemCarbon, 2), "aa", "aa", 'a', Items.COAL);
         GameRegistry.addRecipe(new ItemStack(AliensVsPredator.items().itemCarbon, 2), "aa", "aa", 'a', new ItemStack(Items.COAL, 1, 1));
@@ -99,7 +126,7 @@ public class CraftingHandler implements IInitEvent
         GameRegistry.addRecipe(new ItemStack(AliensVsPredator.blocks().mainframePanelFlicker, 1), "bab", "aca", "bab", 'a', Items.GLOWSTONE_DUST, 'b', Items.REDSTONE, 'c', AliensVsPredator.items().itemSilicon);
     }
 
-    public void addSmelting()
+    private void addSmelting()
     {
         GameRegistry.addSmelting(AliensVsPredator.blocks().oreCopper, new ItemStack(AliensVsPredator.items().itemIngotCopper), 1.0F);
         GameRegistry.addSmelting(AliensVsPredator.blocks().oreLithium, new ItemStack(AliensVsPredator.items().itemIngotLithium), 1.0F);
@@ -108,7 +135,7 @@ public class CraftingHandler implements IInitEvent
         GameRegistry.addSmelting(AliensVsPredator.blocks().terrainUniTreeLog, charcoal, 1.0F);
     }
 
-    public void addSchematics()
+    private void addSchematics()
     {
         ItemHandler items = AliensVsPredator.items();
         BlockHandler blocks = AliensVsPredator.blocks();
