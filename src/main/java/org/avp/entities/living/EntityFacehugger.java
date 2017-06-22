@@ -4,7 +4,7 @@ import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -26,7 +26,6 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
         this.experienceValue = 10;
         this.jumpMovementFactor = 0.3F;
         
-        
         this.addTasks();
     }
 
@@ -37,7 +36,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.55D, true));
         this.tasks.addTask(8, new EntityAIWander(this, 0.55D));
         this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.8F));
-//        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, Entity.class, 0, false, false, this.getEntitySelector()));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getEntitySelector()));
     }
 
     @Override

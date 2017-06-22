@@ -10,12 +10,13 @@ import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
 import com.arisux.mdx.lib.world.block.Blocks;
-import com.arisux.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.IMob;
@@ -25,6 +26,8 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 
@@ -52,8 +55,8 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAICustomAttackOnCollide(this, 0.55D, true));
         this.tasks.addTask(2, new EntityAIWander(this, 0.55D));
-        // this.targetTasks.addTask(0, new EntityAILeapAtTarget(this, 0.8F));
-        // this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, Entity.class, 0, false, false, this.getEntitySelector()));
+        this.targetTasks.addTask(0, new EntityAILeapAtTarget(this, 0.8F));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getEntitySelector()));
     }
 
     @Override
@@ -94,7 +97,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     {
         if (location != null)
         {
-
             this.getDataManager().set(HANGING_POSITION, location);
         }
 
@@ -136,14 +138,17 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
 
                     for (IBlockState blockstate : check)
                     {
-                        if (blockstate != net.minecraft.init.Blocks.AIR)
+                        if (blockstate.getBlock() != net.minecraft.init.Blocks.AIR)
                         {
                             validPosition = false;
                             break;
                         }
                     }
 
-                    if (validPosition && Entities.canEntityBeSeenBy(this, pos))
+                    RayTraceResult trace = this.world.rayTraceBlocks(new Vec3d(this.posX, this.posY + (double)this.getEyeHeight(), this.posZ), new Vec3d(pos.getX(), pos.getY(), pos.getZ()), false, true, false);
+                    boolean canSeeLocation = trace == null;
+
+                    if (validPosition && canSeeLocation)
                     {
                         this.updateHangingLocation(pos.add(0.5D + (this.rand.nextDouble() / 2) - (this.rand.nextDouble() / 2), 0, 0.5D + (this.rand.nextDouble() / 2) - (this.rand.nextDouble() / 2)));
                         break;
@@ -246,7 +251,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         {
             return false;
         }
-        
+
         return this.world.getLight(pos) <= this.rand.nextInt(8);
     }
 
