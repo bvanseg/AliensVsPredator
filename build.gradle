@@ -38,7 +38,17 @@ repositories {
     }
 }
 
-version = "${project.version_major}.${project.version_minor}.${project.version_micro}.${System.env.BUILD_NUMBER}"
+def version_major=5
+def version_minor=0
+def version_micro=0
+def version_minecraft="1.10.2"
+def version_forge="12.18.3.2221"
+def version_mappings="stable_29"
+def mdxversion="2.0.0"
+def curseforge_id="221641"
+def curseforge_release_type="beta"
+
+version = "${version_major}.${version_minor}.${version_micro}.${System.env.BUILD_NUMBER}"
 group = "org.avp"
 archivesBaseName = "aliensvspredator"
 
@@ -49,36 +59,36 @@ tasks.withType(JavaCompile) {
 }
 
 minecraft {
-    version = "${project.version_minecraft}-${project.version_forge}"
+    version = "${version_minecraft}-${version_forge}"
     runDir = "run"
-    mappings = project.version_mappings
+    mappings = version_mappings
     
-    replace "required-after:mdxlib", "required-after:mdxlib@[${project.mdxversion},)" 
+    replace "required-after:mdxlib", "required-after:mdxlib@[${mdxversion},)" 
     replaceIn 'AliensVsPredator.java'
 }
 
-println "Minecraft ${project.version_minecraft}"
-println "Minecraft Forge ${project.version_minecraft} with mappings ${project.version_mappings}"
-println "Minecraft Development Library X ${project.mdxversion}"
+println "Minecraft ${version_minecraft}"
+println "Minecraft Forge ${version_minecraft} with mappings ${version_mappings}"
+println "Minecraft Development Library X ${mdxversion}"
 
 dependencies {
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
-    compile "com.arisux:mdxlib:${project.mdxversion}:deobf"
+    compile "com.arisux:mdxlib:${mdxversion}:deobf"
 }
 
 jar {
-	archiveName = "[${project.version_minecraft}][${project.version}] ${project.archivesBaseName}.jar"
+	archiveName = "[${version_minecraft}][${version}] ${archivesBaseName}.jar"
 }
 
 task srcJar(type: Jar) {
     from sourceSets.main.output
-	archiveName = "[${project.version_minecraft}][${project.version}] ${project.archivesBaseName}-sources.jar"
+	archiveName = "[${version_minecraft}][${version}] ${archivesBaseName}-sources.jar"
     classifier = 'sources'
 }
 
 task deobfJar(type: Jar) {
     from sourceSets.main.output
-	archiveName = "[${project.version_minecraft}][${project.version}] ${project.archivesBaseName}-deobf.jar"
+	archiveName = "[${version_minecraft}][${version}] ${archivesBaseName}-deobf.jar"
     classifier = 'deobf'
 }
 
@@ -87,12 +97,12 @@ artifacts {
 }
 
 curseforge {
-        apiKey = project.curseforge_api_key
+        apiKey = curseforge_api_key
 
         project {
-            id = project.curseforge_id
+            id = curseforge_id
             changelog = ''
-            releaseType = project.hasProperty('curseforge_release_type') ? project.curseforge_release_type : 'release'
+            releaseType = hasProperty('curseforge_release_type') ? curseforge_release_type : 'release'
 
             mainArtifact jar
             addArtifact sourceJar
@@ -105,12 +115,12 @@ curseforge {
 }
 
 processResources {
-    inputs.property "version", project.version
-    inputs.property "mcversion", project.minecraft.version
+    inputs.property "version", version
+    inputs.property "mcversion", minecraft.version
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version':version, 'mcversion':minecraft.version
     }
         
     from(sourceSets.main.resources.srcDirs) {
@@ -131,12 +141,12 @@ task("publishToMaven", dependsOn:"build") {
         repositories.mavenDeployer {
             configuration = configurations.deployerJars
             repository(url: "ftp://maven.aliensvspredator.org/") {
-                authentication(userName: project.mavenUsername, password: project.mavenPassword)
+                authentication(userName: mavenUsername, password: mavenPassword)
             }
             
             pom.project {
         		properties {
-            		forgeVersion = project.version_minecraft
+            		forgeVersion = version_minecraft
 	            	mcVersion = minecraft.version
             	}
             }
