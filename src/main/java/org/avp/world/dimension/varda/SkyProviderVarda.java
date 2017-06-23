@@ -169,7 +169,7 @@ public class SkyProviderVarda extends IRenderHandler
             }
             OpenGL.popMatrix();
 
-            OpenGL.disable(GL11.GL_BLEND);
+            OpenGL.blendClear();
             OpenGL.enable(GL11.GL_ALPHA_TEST);
             OpenGL.enable(GL11.GL_TEXTURE_2D);
             GL11.glDepthMask(true);
