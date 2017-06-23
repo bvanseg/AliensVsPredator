@@ -226,7 +226,7 @@ public class XenomorphHive
 
         for (TileEntityHiveResin resin : this.resinInHive)
         {
-            list.appendTag(new NBTTagString(String.format("%s", resin.getPos())));
+            list.appendTag(new NBTTagString(String.format("%s, %s, %s", resin.getPos().getX(), resin.getPos().getY(), resin.getPos().getZ())));
         }
 
         nbt.setTag("Resin", list);
