@@ -35,7 +35,7 @@ public class ProviderVarda extends WorldProvider
     @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderVarda(this.world);
+        return new ChunkProviderVarda(this.world, this.world.getSeed(), this.world.getWorldInfo().getGeneratorOptions());
     }
 
     @Override
