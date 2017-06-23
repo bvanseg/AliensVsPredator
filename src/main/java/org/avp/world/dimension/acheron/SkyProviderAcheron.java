@@ -21,12 +21,7 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.DimensionType;
-import net.minecraft.world.WorldProviderSurface;
 import net.minecraftforge.client.IRenderHandler;
-import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class SkyProviderAcheron extends IRenderHandler
 {
@@ -34,7 +29,6 @@ public class SkyProviderAcheron extends IRenderHandler
     protected Color cloudColor     = new com.arisux.mdx.lib.client.render.Color(0.03F, 0.03F, 0.05F, 0.8F);
     protected Color starColor      = new com.arisux.mdx.lib.client.render.Color(0.0F, 0.5F, 1.0F, 0.15F);
     private int     starGLCallList = GLAllocation.generateDisplayLists(3);
-    // private int glSkyList;
 
     public SkyProviderAcheron()
     {
@@ -96,10 +90,8 @@ public class SkyProviderAcheron extends IRenderHandler
 
                 for (int j = 0; j < 4; ++j)
                 {
-                    double d17 = 0.0D;
                     double d18 = (double) ((j & 2) - 1) * d3;
                     double d19 = (double) ((j + 1 & 2) - 1) * d3;
-                    double d20 = 0.0D;
                     double d21 = d18 * d16 - d19 * d15;
                     double d22 = d19 * d16 + d18 * d15;
                     double d23 = d21 * d12 + 0.0D * d13;
@@ -121,7 +113,6 @@ public class SkyProviderAcheron extends IRenderHandler
         GL11.glDepthMask(false);
         OpenGL.enable(GL11.GL_FOG);
         GL11.glColor3f(skyColor.r, skyColor.g, skyColor.b);
-        //GL11.glCallList(this.glSkyList);
         OpenGL.disable(GL11.GL_FOG);
         OpenGL.disable(GL11.GL_ALPHA_TEST);
         OpenGL.enable(GL11.GL_BLEND);
@@ -259,25 +250,17 @@ public class SkyProviderAcheron extends IRenderHandler
                         if (cloudY > -cloudHeight - 1.0F)
                         {
                             Draw.vertex(cloudX + 0.0F, cloudY + 0.0F, cloudZ + dist, (cloudU + 0.0F) * scaleUV + offsetU, (cloudV + dist) * scaleUV + offsetV).color(cloudColor.r * 0.7F, cloudColor.g * 0.7F, cloudColor.b * 0.7F, cloudColor.a + 0.1F).normal(0.0F, -1.0F, 0.0F).endVertex();
-                            ;
                             Draw.vertex(cloudX + dist, cloudY + 0.0F, cloudZ + dist, (cloudU + dist) * scaleUV + offsetU, (cloudV + dist) * scaleUV + offsetV).color(cloudColor.r * 0.7F, cloudColor.g * 0.7F, cloudColor.b * 0.7F, cloudColor.a + 0.1F).normal(0.0F, -1.0F, 0.0F).endVertex();
-                            ;
                             Draw.vertex(cloudX + dist, cloudY + 0.0F, cloudZ + 0.0F, (cloudU + dist) * scaleUV + offsetU, (cloudV + 0.0F) * scaleUV + offsetV).color(cloudColor.r * 0.7F, cloudColor.g * 0.7F, cloudColor.b * 0.7F, cloudColor.a + 0.1F).normal(0.0F, -1.0F, 0.0F).endVertex();
-                            ;
                             Draw.vertex(cloudX + 0.0F, cloudY + 0.0F, cloudZ + 0.0F, (cloudU + 0.0F) * scaleUV + offsetU, (cloudV + 0.0F) * scaleUV + offsetV).color(cloudColor.r * 0.7F, cloudColor.g * 0.7F, cloudColor.b * 0.7F, cloudColor.a + 0.1F).normal(0.0F, -1.0F, 0.0F).endVertex();
-                            ;
                         }
 
                         if (cloudY <= cloudHeight + 1.0F)
                         {
                             Draw.vertex(cloudX + 0.0F, cloudY + cloudHeight, cloudZ + dist, (cloudU + 0.0F) * scaleUV + offsetU, (cloudV + dist) * scaleUV + offsetV).normal(0.0F, 1.0F, 0.0F).color(cloudColor.r, cloudColor.g, cloudColor.b, cloudColor.a + 0.15F).endVertex();
-                            ;
                             Draw.vertex(cloudX + dist, cloudY + cloudHeight, cloudZ + dist, (cloudU + dist) * scaleUV + offsetU, (cloudV + dist) * scaleUV + offsetV).normal(0.0F, 1.0F, 0.0F).color(cloudColor.r, cloudColor.g, cloudColor.b, cloudColor.a + 0.15F).endVertex();
-                            ;
                             Draw.vertex(cloudX + dist, cloudY + cloudHeight, cloudZ + 0.0F, (cloudU + dist) * scaleUV + offsetU, (cloudV + 0.0F) * scaleUV + offsetV).normal(0.0F, 1.0F, 0.0F).color(cloudColor.r, cloudColor.g, cloudColor.b, cloudColor.a + 0.15F).endVertex();
-                            ;
                             Draw.vertex(cloudX + 0.0F, cloudY + cloudHeight, cloudZ + 0.0F, (cloudU + 0.0F) * scaleUV + offsetU, (cloudV + 0.0F) * scaleUV + offsetV).normal(0.0F, 1.0F, 0.0F).color(cloudColor.r, cloudColor.g, cloudColor.b, cloudColor.a + 0.15F).endVertex();
-                            ;
                         }
 
                         if (x > -1)

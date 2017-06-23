@@ -15,44 +15,93 @@ import com.arisux.mdx.lib.game.GameResources;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.GLAllocation;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.VertexBuffer;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.IRenderHandler;
 
 public class SkyProviderVarda extends IRenderHandler
 {
-    private Color       skyColor       = new Color(0.11F, 0.225F, 0.265F, 1F);
-    protected Color     cloudColor     = new Color(0.075F, 0.1F, 0.15F, 0.75F);
-    public int          starGLCallList = GLAllocation.generateDisplayLists(3);
-    public int          glSkyList;
+    private Color   skyColor       = new Color(0.11F, 0.225F, 0.265F, 1F);
+    protected Color cloudColor     = new Color(0.075F, 0.1F, 0.15F, 0.75F);
+    public int      starGLCallList = GLAllocation.generateDisplayLists(3);
 
     public SkyProviderVarda()
     {
-        GL11.glNewList(this.starGLCallList, GL11.GL_COMPILE);
-        DimensionUtil.renderStars(new Random(10842L), 6000, 100);
-        GL11.glEndList();
+        this.generateStars();
+    }
 
-        this.glSkyList = (this.starGLCallList + 1);
-        GL11.glNewList(this.glSkyList, GL11.GL_COMPILE);
+    private void generateStars()
+    {
+        Tessellator tessellator = Tessellator.getInstance();
+        VertexBuffer vertexbuffer = tessellator.getBuffer();
+
+        if (this.starGLCallList >= 0)
         {
-            int levels = 64;
-            int size = 256 / levels + 2;
-            float skylineHeight = 60.0F;
+            GLAllocation.deleteDisplayLists(this.starGLCallList);
+            this.starGLCallList = -1;
+        }
 
-            for (int x = -levels * size; x <= levels * size; x += levels)
+        this.starGLCallList = GLAllocation.generateDisplayLists(1);
+        GlStateManager.pushMatrix();
+        GlStateManager.glNewList(this.starGLCallList, 4864);
+        this.renderStars(vertexbuffer);
+        GlStateManager.glEndList();
+        GlStateManager.popMatrix();
+
+        this.starGLCallList += 1;
+    }
+
+    private void renderStars(VertexBuffer buffer)
+    {
+        Random random = new Random(10842L);
+        buffer.begin(7, DefaultVertexFormats.POSITION);
+
+        for (int i = 0; i < 1500; ++i)
+        {
+            double d0 = (double) (random.nextFloat() * 2.0F - 1.0F);
+            double d1 = (double) (random.nextFloat() * 2.0F - 1.0F);
+            double d2 = (double) (random.nextFloat() * 2.0F - 1.0F);
+            double d3 = (double) (0.15F + random.nextFloat() * 0.1F);
+            double d4 = d0 * d0 + d1 * d1 + d2 * d2;
+
+            if (d4 < 1.0D && d4 > 0.01D)
             {
-                for (int z = -levels * size; z <= levels * size; z += levels)
+                d4 = 1.0D / Math.sqrt(d4);
+                d0 = d0 * d4;
+                d1 = d1 * d4;
+                d2 = d2 * d4;
+                double d5 = d0 * 100.0D;
+                double d6 = d1 * 100.0D;
+                double d7 = d2 * 100.0D;
+                double d8 = Math.atan2(d0, d2);
+                double d9 = Math.sin(d8);
+                double d10 = Math.cos(d8);
+                double d11 = Math.atan2(Math.sqrt(d0 * d0 + d2 * d2), d1);
+                double d12 = Math.sin(d11);
+                double d13 = Math.cos(d11);
+                double d14 = random.nextDouble() * Math.PI * 2.0D;
+                double d15 = Math.sin(d14);
+                double d16 = Math.cos(d14);
+
+                for (int j = 0; j < 4; ++j)
                 {
-                    Draw.startQuads();
-                    Draw.vertex(x + 0.000F, skylineHeight, z + 0.000F).endVertex();
-                    Draw.vertex(x + levels, skylineHeight, z + 0.000F).endVertex();
-                    Draw.vertex(x + levels, skylineHeight, z + levels).endVertex();
-                    Draw.vertex(x + 0.000F, skylineHeight, z + levels).endVertex();
-                    Draw.tessellate();
+                    double d18 = (double) ((j & 2) - 1) * d3;
+                    double d19 = (double) ((j + 1 & 2) - 1) * d3;
+                    double d21 = d18 * d16 - d19 * d15;
+                    double d22 = d19 * d16 + d18 * d15;
+                    double d23 = d21 * d12 + 0.0D * d13;
+                    double d24 = 0.0D * d12 - d21 * d13;
+                    double d25 = d24 * d9 - d22 * d10;
+                    double d26 = d22 * d9 + d24 * d10;
+                    buffer.pos(d5 + d25, d6 + d23, d7 + d26).endVertex();
                 }
             }
         }
-        GL11.glEndList();
+        Tessellator.getInstance().draw();
     }
 
     @Override
@@ -74,7 +123,6 @@ public class SkyProviderVarda extends IRenderHandler
             GL11.glColor3f(skyColor.r, skyColor.g, skyColor.b);
 
             /** Render Sky **/
-            GL11.glCallList(this.glSkyList);
             OpenGL.disable(GL11.GL_FOG);
             OpenGL.disable(GL11.GL_ALPHA_TEST);
             OpenGL.enable(GL11.GL_BLEND);
@@ -82,7 +130,8 @@ public class SkyProviderVarda extends IRenderHandler
             OpenGL.color(1.0F, 1.0F, 1.0F, provider.getStarBrightness(partialTicks) * 2);
 
             /** Render Stars **/
-            GL11.glCallList(this.starGLCallList);
+            this.renderStars(Tessellator.getInstance().getBuffer());
+
             OpenGL.enable(GL11.GL_TEXTURE_2D);
             OpenGL.blendFunc(GL11.GL_SRC_ALPHA, 1);
 
