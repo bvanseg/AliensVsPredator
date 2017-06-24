@@ -4,318 +4,159 @@ import java.util.List;
 import java.util.Random;
 
 import org.avp.AliensVsPredator;
+import org.avp.world.dimension.varda.gen.VardaGenCaves;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldEntitySpawner;
-import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.ChunkProviderSettings;
+import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 
 public class ChunkProviderVarda implements IChunkProvider, IChunkGenerator
 {
-//	private NoiseGeneratorOctaves[] noiseGenOctaves = new NoiseGeneratorOctaves[6];
-	
-	private Random randomSeed;
-	private World world;
-    private ChunkProviderSettings settings;
-	private double[] heightMap;
-//	private double[] stoneNoise = new double[256];
+    private Random                randomSeed;
+    private World                 world;
+    private double[]              noiseArray;
+    private double[]              depthBuffer   = new double[256];
 
-	private Biome[] biomesForGeneration;
-//	private double[] noise3;
-//	private double[] noise1;
-//	private double[] noise2;
-//	private double[] noise5;
-//	private double[] noise6;
-//	private float[] field_35388_l;
-	
-    private final WorldType terrainType;
+    private MapGenBase            caveGenerator = new VardaGenCaves();
+    private Biome[]               biomesForGeneration;
+    private float[]               parabolicField;
 
+    private NoiseGeneratorOctaves surfaceNoise;
     private NoiseGeneratorOctaves minLimitPerlinNoise;
     private NoiseGeneratorOctaves maxLimitPerlinNoise;
     private NoiseGeneratorOctaves mainPerlinNoise;
-    private NoiseGeneratorOctaves surfaceNoise;
-    public NoiseGeneratorOctaves scaleNoise;
-    public NoiseGeneratorOctaves depthNoise;
-	
-	private IBlockState oceanBlock;
-    double[] mainNoiseRegion;
-    double[] minLimitRegion;
-    double[] maxLimitRegion;
-    double[] depthRegion;
-    private final float[] biomeWeights;
-    private double[] depthBuffer = new double[256];
+    private NoiseGeneratorOctaves scaleNoise;
+    private NoiseGeneratorOctaves depthNoise;
 
-	public ChunkProviderVarda(World world, long seed, String generatorSettings)
-	{
-		this.world = world;
-		this.randomSeed = new Random(seed);
-        this.terrainType = world.getWorldInfo().getTerrainType();
+    private double[]              main;
+    private double[]              min;
+    private double[]              max;
+    private double[]              scale;
+    private double[]              depth;
+
+    public ChunkProviderVarda(World world)
+    {
+        this.world = world;
+        this.randomSeed = new Random(world.getSeed());
+        this.surfaceNoise = new NoiseGeneratorOctaves(this.randomSeed, 4);
         this.minLimitPerlinNoise = new NoiseGeneratorOctaves(this.randomSeed, 16);
         this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.randomSeed, 16);
         this.mainPerlinNoise = new NoiseGeneratorOctaves(this.randomSeed, 8);
-        this.surfaceNoise = new NoiseGeneratorOctaves(this.randomSeed, 4);
         this.scaleNoise = new NoiseGeneratorOctaves(this.randomSeed, 10);
         this.depthNoise = new NoiseGeneratorOctaves(this.randomSeed, 16);
-
-        if (generatorSettings != null)
-        {
-            this.settings = ChunkProviderSettings.Factory.jsonToFactory(generatorSettings).build();
-            this.oceanBlock = this.settings.useLavaOceans ? Blocks.LAVA.getDefaultState() : Blocks.WATER.getDefaultState();
-            world.setSeaLevel(this.settings.seaLevel);
-        }
-        
-        this.heightMap = new double[825];
-        this.biomeWeights = new float[25];
-
-        for (int x = -2; x <= 2; ++x)
-        {
-            for (int z = -2; z <= 2; ++z)
-            {
-                float f = 10.0F / MathHelper.sqrt((float)(x * x + z * z) + 0.2F);
-                this.biomeWeights[x + 2 + (z + 2) * 5] = f;
-            }
-        }
-	}
-
-    private void generateHeightmap(int p_185978_1_, int p_185978_2_, int p_185978_3_)
-    {
-        this.depthRegion = this.depthNoise.generateNoiseOctaves(this.depthRegion, p_185978_1_, p_185978_3_, 5, 5, (double)this.settings.depthNoiseScaleX, (double)this.settings.depthNoiseScaleZ, (double)this.settings.depthNoiseScaleExponent);
-        float f = this.settings.coordinateScale;
-        float f1 = this.settings.heightScale;
-        this.mainNoiseRegion = this.mainPerlinNoise.generateNoiseOctaves(this.mainNoiseRegion, p_185978_1_, p_185978_2_, p_185978_3_, 5, 33, 5, (double)(f / this.settings.mainNoiseScaleX), (double)(f1 / this.settings.mainNoiseScaleY), (double)(f / this.settings.mainNoiseScaleZ));
-        this.minLimitRegion = this.minLimitPerlinNoise.generateNoiseOctaves(this.minLimitRegion, p_185978_1_, p_185978_2_, p_185978_3_, 5, 33, 5, (double)f, (double)f1, (double)f);
-        this.maxLimitRegion = this.maxLimitPerlinNoise.generateNoiseOctaves(this.maxLimitRegion, p_185978_1_, p_185978_2_, p_185978_3_, 5, 33, 5, (double)f, (double)f1, (double)f);
-        int i = 0;
-        int j = 0;
-
-        for (int k = 0; k < 5; ++k)
-        {
-            for (int l = 0; l < 5; ++l)
-            {
-                float f2 = 0.0F;
-                float f3 = 0.0F;
-                float f4 = 0.0F;
-                int i1 = 2;
-                Biome biome = this.biomesForGeneration[k + 2 + (l + 2) * 10];
-
-                for (int j1 = -2; j1 <= 2; ++j1)
-                {
-                    for (int k1 = -2; k1 <= 2; ++k1)
-                    {
-                        Biome biome1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
-                        float f5 = this.settings.biomeDepthOffSet + biome1.getBaseHeight() * this.settings.biomeDepthWeight;
-                        float f6 = this.settings.biomeScaleOffset + biome1.getHeightVariation() * this.settings.biomeScaleWeight;
-
-                        if (this.terrainType == WorldType.AMPLIFIED && f5 > 0.0F)
-                        {
-                            f5 = 1.0F + f5 * 2.0F;
-                            f6 = 1.0F + f6 * 4.0F;
-                        }
-
-                        float f7 = this.biomeWeights[j1 + 2 + (k1 + 2) * 5] / (f5 + 2.0F);
-
-                        if (biome1.getBaseHeight() > biome.getBaseHeight())
-                        {
-                            f7 /= 2.0F;
-                        }
-
-                        f2 += f6 * f7;
-                        f3 += f5 * f7;
-                        f4 += f7;
-                    }
-                }
-
-                f2 = f2 / f4;
-                f3 = f3 / f4;
-                f2 = f2 * 0.9F + 0.1F;
-                f3 = (f3 * 4.0F - 1.0F) / 8.0F;
-                double d7 = this.depthRegion[j] / 8000.0D;
-
-                if (d7 < 0.0D)
-                {
-                    d7 = -d7 * 0.3D;
-                }
-
-                d7 = d7 * 3.0D - 2.0D;
-
-                if (d7 < 0.0D)
-                {
-                    d7 = d7 / 2.0D;
-
-                    if (d7 < -1.0D)
-                    {
-                        d7 = -1.0D;
-                    }
-
-                    d7 = d7 / 1.4D;
-                    d7 = d7 / 2.0D;
-                }
-                else
-                {
-                    if (d7 > 1.0D)
-                    {
-                        d7 = 1.0D;
-                    }
-
-                    d7 = d7 / 8.0D;
-                }
-
-                ++j;
-                double d8 = (double)f3;
-                double d9 = (double)f2;
-                d8 = d8 + d7 * 0.2D;
-                d8 = d8 * (double)this.settings.baseSize / 8.0D;
-                double d0 = (double)this.settings.baseSize + d8 * 4.0D;
-
-                for (int l1 = 0; l1 < 33; ++l1)
-                {
-                    double d1 = ((double)l1 - d0) * (double)this.settings.stretchY * 128.0D / 256.0D / d9;
-
-                    if (d1 < 0.0D)
-                    {
-                        d1 *= 4.0D;
-                    }
-
-                    double d2 = this.minLimitRegion[i] / (double)this.settings.lowerLimitScale;
-                    double d3 = this.maxLimitRegion[i] / (double)this.settings.upperLimitScale;
-                    double d4 = (this.mainNoiseRegion[i] / 10.0D + 1.0D) / 2.0D;
-                    double d5 = MathHelper.clamp(d2, d3, d4) - d1;
-
-                    if (l1 > 29)
-                    {
-                        double d6 = (double)((float)(l1 - 29) / 3.0F);
-                        d5 = d5 * (1.0D - d6) + -10.0D * d6;
-                    }
-
-                    this.heightMap[i] = d5;
-                    ++i;
-                }
-            }
-        }
+        new NoiseGeneratorOctaves(this.randomSeed, 8);
     }
 
-    public void setBlocksInChunk(int x, int z, ChunkPrimer primer)
+    public void setBlocksInChunk(int chunkX, int chunkZ, ChunkPrimer primer)
     {
-        this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
-        this.generateHeightmap(x * 4, 0, z * 4);
+        byte chunkSizeXZ = 4;
+        byte chunkSizeY = 16;
+        byte midHeight = 63;
+        int kSize = chunkSizeXZ + 1;
+        byte hSize = 17;
+        int lSize = chunkSizeXZ + 1;
+        this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 4 - 2, chunkZ * 4 - 2, kSize + 5, lSize + 5);
+        this.noiseArray = initializeNoiseField(this.noiseArray, chunkX * chunkSizeXZ, 0, chunkZ * chunkSizeXZ, kSize, hSize, lSize);
 
-//        byte var4 = 4;
-//        int var7 = var4 + 1;
-//        byte var8 = 17;
-//        int var9 = var4 + 1;
-//        this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
-//        this.heightMap = this.generateHeightmap(this.heightMap, x * var4, 0, z * var4, var7, var8, var9);
-
-        for (int i = 0; i < 4; ++i)
+        for (int cX = 0; cX < chunkSizeXZ; cX++)
         {
-            int j = i * 5;
-            int k = (i + 1) * 5;
-
-            for (int l = 0; l < 4; ++l)
+            for (int cZ = 0; cZ < chunkSizeXZ; cZ++)
             {
-                int i1 = (j + l) * 33;
-                int j1 = (j + l + 1) * 33;
-                int k1 = (k + l) * 33;
-                int l1 = (k + l + 1) * 33;
-
-                for (int i2 = 0; i2 < 32; ++i2)
+                for (int cY = 0; cY < chunkSizeY; cY++)
                 {
-                    double d0 = 0.125D;
-                    double d1 = this.heightMap[i1 + i2];
-                    double d2 = this.heightMap[j1 + i2];
-                    double d3 = this.heightMap[k1 + i2];
-                    double d4 = this.heightMap[l1 + i2];
-                    double d5 = (this.heightMap[i1 + i2 + 1] - d1) * 0.125D;
-                    double d6 = (this.heightMap[j1 + i2 + 1] - d2) * 0.125D;
-                    double d7 = (this.heightMap[k1 + i2 + 1] - d3) * 0.125D;
-                    double d8 = (this.heightMap[l1 + i2 + 1] - d4) * 0.125D;
+                    double var13 = 0.125D;
+                    double var15 = this.noiseArray[(((cX + 0) * lSize + cZ + 0) * hSize + cY + 0)];
+                    double var17 = this.noiseArray[(((cX + 0) * lSize + cZ + 1) * hSize + cY + 0)];
+                    double var19 = this.noiseArray[(((cX + 1) * lSize + cZ + 0) * hSize + cY + 0)];
+                    double var21 = this.noiseArray[(((cX + 1) * lSize + cZ + 1) * hSize + cY + 0)];
+                    double var23 = (this.noiseArray[(((cX + 0) * lSize + cZ + 0) * hSize + cY + 1)] - var15) * var13;
+                    double var25 = (this.noiseArray[(((cX + 0) * lSize + cZ + 1) * hSize + cY + 1)] - var17) * var13;
+                    double var27 = (this.noiseArray[(((cX + 1) * lSize + cZ + 0) * hSize + cY + 1)] - var19) * var13;
+                    double var29 = (this.noiseArray[(((cX + 1) * lSize + cZ + 1) * hSize + cY + 1)] - var21) * var13;
 
-                    for (int j2 = 0; j2 < 8; ++j2)
+                    for (int eY = 0; eY < 8; eY++)
                     {
-                        double d9 = 0.25D;
-                        double d10 = d1;
-                        double d11 = d2;
-                        double d12 = (d3 - d1) * 0.25D;
-                        double d13 = (d4 - d2) * 0.25D;
+                        double var32 = 0.25D;
+                        double var34 = var15;
+                        double var36 = var17;
+                        double var38 = (var19 - var15) * var32;
 
-                        for (int k2 = 0; k2 < 4; ++k2)
+                        for (int eX = 0; eX < 4; eX++)
                         {
-                            double d14 = 0.25D;
-                            double d16 = (d11 - d10) * 0.25D;
-                            double lvt_45_1_ = d10 - d16;
+                            double var45 = 0.25D;
+                            double var47 = (var36 - var34) * var45;
+                            double var49 = var34 - var47;
 
-                            for (int l2 = 0; l2 < 4; ++l2)
+                            for (int eZ = 0; eZ < 4; eZ++)
                             {
-                                if ((lvt_45_1_ += d16) > 0.0D)
+                                if ((var49 += var47) > 0.0D)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, AliensVsPredator.blocks().unistone.getDefaultState());
+                                    primer.setBlockState(cX * 4 + eX, cY * 8 + eY, cZ * 4 + eZ, AliensVsPredator.blocks().unistone.getDefaultState());
                                 }
-                                else if (i2 * 8 + j2 < 60)
+                                else if (cY * 8 + eY < midHeight)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, this.oceanBlock);
+                                    primer.setBlockState(cX * 4 + eX, cY * 8 + eY, cZ * 4 + eZ, Blocks.WATER.getDefaultState());
+                                }
+                                else
+                                {
+                                    primer.setBlockState(cX * 4 + eX, cY * 8 + eY, cZ * 4 + eZ, Blocks.AIR.getDefaultState());
                                 }
                             }
 
-                            d10 += d12;
-                            d11 += d13;
+                            var34 += var38;
                         }
 
-                        d1 += d5;
-                        d2 += d6;
-                        d3 += d7;
-                        d4 += d8;
+                        var15 += var23;
+                        var17 += var25;
+                        var19 += var27;
+                        var21 += var29;
                     }
                 }
             }
         }
     }
 
-//	public void replaceBlocksForBiome(int x, int z, ChunkPrimer primer, Biome[] biomesIn)
-//	{
-//	}
-
-	//TODO: Expirimental coords on setBlockState()
-    public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn)
+    public void replaceBiomeBlocks(int chunkX, int chunkZ, ChunkPrimer primer, Biome[] biomes)
     {
         byte var5 = 63;
         double var6 = 0.03125D;
-        this.depthBuffer = this.surfaceNoise.generateNoiseOctaves(this.depthBuffer, x * 16, z * 16, 0, 16, 16, 1, var6 * 2.0D, var6 * 2.0D, var6 * 2.0D);
+        this.depthBuffer = this.surfaceNoise.generateNoiseOctaves(this.depthBuffer, chunkX * 16, chunkZ * 16, 0, 16, 16, 1, var6 * 2.0D, var6 * 2.0D, var6 * 2.0D);
 
-        for (int blockX = 0; blockX < 16; blockX++)
+        for (int x = 0; x < 16; x++)
         {
-            for (int blockZ = 0; blockZ < 16; blockZ++)
+            for (int z = 0; z < 16; z++)
             {
-                Biome biome = biomesIn[(blockZ + blockX * 16)];
-                int var12 = (int) (this.depthBuffer[(blockX + blockZ * 16)] / 3.0D + 3.0D + this.randomSeed.nextDouble() * 0.25D);
+                Biome biome = biomes[(z + x * 16)];
+                int var12 = (int) (this.depthBuffer[(x + z * 16)] / 3.0D + 3.0D + this.randomSeed.nextDouble() * 0.25D);
                 int var13 = -1;
                 Block top = biome.topBlock.getBlock();
-                Block filler = biome.fillerBlock.getBlock();
+                Block fill = biome.fillerBlock.getBlock();
 
-                for (int blockY = 127; blockY >= 0; blockY--)
+                for (int y = 127; y >= 0; y--)
                 {
-                    int idx = (blockZ * 16 + blockX) * 128 + blockY;
+                    int blockX = x;
+                    int blockZ = z;
 
-                    if (blockY <= 0 + this.randomSeed.nextInt(5))
+                    if (y <= 0 + this.randomSeed.nextInt(5))
                     {
-                        primer.setBlockState(blockX, blockY, blockZ, Blocks.BEDROCK.getDefaultState());
+                        primer.setBlockState(blockX, y, blockZ, Blocks.BEDROCK.getDefaultState());
                     }
                     else
                     {
-                        Block block = primer.getBlockState(blockX, blockY, blockZ).getBlock();
+                        Block block = primer.getBlockState(blockX, y, blockZ).getBlock();
 
                         if (block == Blocks.AIR)
                         {
@@ -330,90 +171,219 @@ public class ChunkProviderVarda implements IChunkProvider, IChunkGenerator
                                 if (var12 <= 0)
                                 {
                                     top = Blocks.AIR;
-                                    filler = AliensVsPredator.blocks().unistone;
+                                    fill = AliensVsPredator.blocks().unistone;
                                 }
-                                else if ((blockY >= var5 - 4) && (blockY <= var5 + 1))
+                                else if ((y >= var5 - 4) && (y <= var5 + 1))
                                 {
                                     top = biome.topBlock.getBlock();
-                                    filler = biome.fillerBlock.getBlock();
+                                    fill = biome.fillerBlock.getBlock();
                                 }
 
-                                if ((blockY < var5) && (top == Blocks.AIR))
+                                if ((y < var5) && (top == Blocks.AIR))
                                 {
                                     top = Blocks.WATER;
                                 }
 
                                 var13 = var12;
 
-                                if (blockY >= var5 - 1)
+                                if (y >= var5 - 1)
                                 {
-                                    primer.setBlockState(blockX, blockY, blockZ, top.getDefaultState());
+                                    primer.setBlockState(blockX, y, blockZ, top.getDefaultState());
                                 }
                                 else
                                 {
-                                    primer.setBlockState(blockX, blockY, blockZ, filler.getDefaultState());
+                                    primer.setBlockState(blockX, y, blockZ, fill.getDefaultState());
                                 }
-                            }
-                            else
-                            {
-                                if (var13 <= 0)
-                                    continue;
-                                var13--;
-                                primer.setBlockState(blockX, blockY, blockZ, filler.getDefaultState());
-
-                                if ((var13 != 0) || (filler != Blocks.SAND))
-                                    continue;
-                                var13 = this.randomSeed.nextInt(4);
-                                filler = Blocks.SANDSTONE;
                             }
                         }
                     }
                 }
             }
         }
-//        this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, (double)(x * 16), (double)(z * 16), 16, 16, 0.0625D, 0.0625D, 1.0D);
-//
-//        for (int i = 0; i < 16; ++i)
-//        {
-//            for (int j = 0; j < 16; ++j)
-//            {
-//                Biome biome = biomesIn[j + i * 16];
-//                biome.genTerrainBlocks(this.world, this.randomSeed, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
-//            }
-//        }
     }
 
-	@Override
-	public Chunk getLoadedChunk(int chunkX, int chunkZ)
-	{
-		return provideChunk(chunkX, chunkZ);
-	}
-
-	@Override
-	public Chunk provideChunk(int chunkX, int chunkZ)
-	{
-		this.randomSeed.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
+    @Override
+    public Chunk provideChunk(int chunkX, int chunkZ)
+    {
+        this.randomSeed.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
         ChunkPrimer chunkprimer = new ChunkPrimer();
-		this.setBlocksInChunk(chunkX, chunkZ, chunkprimer);
-		this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
-		this.replaceBiomeBlocks(chunkX, chunkZ, chunkprimer, this.biomesForGeneration);
+        this.setBlocksInChunk(chunkX, chunkZ, chunkprimer);
+        this.biomesForGeneration = this.world.getBiomeProvider().getBiomes(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
+        this.replaceBiomeBlocks(chunkX, chunkZ, chunkprimer, this.biomesForGeneration);
+        this.caveGenerator.generate(this.world, chunkX, chunkZ, chunkprimer);
 
-		Chunk chunk = new Chunk(this.world, chunkprimer, chunkX, chunkZ);
-		chunk.generateSkylightMap();
-		return chunk;
-	}
+        Chunk chunk = new Chunk(this.world, chunkprimer, chunkX, chunkZ);
+        byte[] biomes = chunk.getBiomeArray();
 
-	@Override
-	public String makeString()
-	{
-		return "RandomLevelSource";
-	}
-	
-	@Override
-	public boolean tick()
-	{
-		return false;
-	}
+        for (int x = 0; x < biomes.length; x++)
+        {
+            biomes[x] = (byte) Biome.getIdForBiome(this.biomesForGeneration[x]);
+        }
+
+        chunk.generateSkylightMap();
+        return chunk;
+    }
+
+    private double[] initializeNoiseField(double[] noiseArr, int offsetX, int offsetY, int offsetZ, int xSize, int ySize, int zSize)
+    {
+        if (noiseArr == null)
+        {
+            noiseArr = new double[xSize * ySize * zSize];
+        }
+
+        if (this.parabolicField == null)
+        {
+            this.parabolicField = new float[25];
+
+            for (int x = -2; x <= 2; x++)
+            {
+                for (int z = -2; z <= 2; z++)
+                {
+                    this.parabolicField[(x + 2 + (z + 2) * 5)] = 10.0F / MathHelper.sqrt(x * x + z * z + 0.2F);
+                }
+            }
+        }
+
+        double widthScale = 684.41200000000003D;
+        double heightScale = 684.41200000000003D;
+        this.scale = this.scaleNoise.generateNoiseOctaves(this.scale, offsetX, offsetZ, xSize, zSize, 1.121D, 1.121D, 0.5D);
+        this.depth = this.depthNoise.generateNoiseOctaves(this.depth, offsetX, offsetZ, xSize, zSize, 200.0D, 200.0D, 0.5D);
+        this.main = this.mainPerlinNoise.generateNoiseOctaves(this.main, offsetX, offsetY, offsetZ, xSize, ySize, zSize, widthScale / 80.0D, heightScale / 160.0D, widthScale / 80.0D);
+        this.min = this.minLimitPerlinNoise.generateNoiseOctaves(this.min, offsetX, offsetY, offsetZ, xSize, ySize, zSize, widthScale, heightScale, widthScale);
+        this.max = this.maxLimitPerlinNoise.generateNoiseOctaves(this.max, offsetX, offsetY, offsetZ, xSize, ySize, zSize, widthScale, heightScale, widthScale);
+        int index = 0;
+        int var15 = 0;
+
+        for (int biomeX = 0; biomeX < xSize; biomeX++)
+        {
+            for (int biomeZ = 0; biomeZ < zSize; biomeZ++)
+            {
+                float heightVariation = 0.0F;
+                float baseHeight = 0.0F;
+                float multiplier = 0.0F;
+                byte var21 = 2;
+                Biome biomeForGen = this.biomesForGeneration[(biomeX + 2 + (biomeZ + 2) * (xSize + 5))];
+
+                for (int subBiomeX = -var21; subBiomeX <= var21; subBiomeX++)
+                {
+                    for (int subBiomeZ = -var21; subBiomeZ <= var21; subBiomeZ++)
+                    {
+                        Biome subBiomeForGen = this.biomesForGeneration[(biomeX + subBiomeX + 2 + (biomeZ + subBiomeZ + 2) * (xSize + 5))];
+                        float mult = this.parabolicField[(subBiomeX + 2 + (subBiomeZ + 2) * 5)] / (subBiomeForGen.getBaseHeight() + 2.0F);
+
+                        if (subBiomeForGen.getBaseHeight() > biomeForGen.getBaseHeight())
+                        {
+                            mult /= 2.0F;
+                        }
+
+                        heightVariation += subBiomeForGen.getHeightVariation() * mult;
+                        baseHeight += subBiomeForGen.getBaseHeight() * mult;
+                        multiplier += mult;
+                    }
+                }
+
+                heightVariation /= multiplier;
+                baseHeight /= multiplier;
+                heightVariation = heightVariation * 0.9F + 0.1F;
+                baseHeight = (baseHeight * 4.0F - 1.0F) / 8.0F;
+                double depth = this.depth[var15] / 8000.0D;
+
+                if (depth < 0.0D)
+                {
+                    depth = -depth * 0.3D;
+                }
+
+                depth = depth * 3.0D - 2.0D;
+
+                if (depth < 0.0D)
+                {
+                    depth /= 2.0D;
+
+                    if (depth < -1.0D)
+                    {
+                        depth = -1.0D;
+                    }
+
+                    depth /= 1.4D;
+                    depth /= 2.0D;
+                }
+                else
+                {
+                    if (depth > 1.0D)
+                    {
+                        depth = 1.0D;
+                    }
+
+                    depth /= 8.0D;
+                }
+
+                var15++;
+
+                for (int var46 = 0; var46 < ySize; var46++)
+                {
+                    double height = baseHeight;
+                    height += depth * 0.2D;
+                    height = height * ySize / 16.0D;
+                    double var30 = ySize / 2.0D + height * 4.0D;
+                    double noiseLevel = 0.0D;
+                    double var34 = (var46 - var30) * 12.0D * 128.0D / 128.0D / heightVariation;
+
+                    if (var34 < 0.0D)
+                    {
+                        var34 *= 4.0D;
+                    }
+
+                    double var36 = this.min[index] / 512.0D;
+                    double var38 = this.max[index] / 512.0D;
+                    double var40 = (this.main[index] / 10.0D + 1.0D) / 2.0D;
+
+                    if (var40 < 0.0D)
+                    {
+                        noiseLevel = var36;
+                    }
+                    else if (var40 > 1.0D)
+                    {
+                        noiseLevel = var38;
+                    }
+                    else
+                    {
+                        noiseLevel = var36 + (var38 - var36) * var40;
+                    }
+
+                    noiseLevel -= var34;
+
+                    if (var46 > ySize - 4)
+                    {
+                        double var42 = (var46 - (ySize - 4)) / 3.0F;
+                        noiseLevel = noiseLevel * (1.0D - var42) + -10.0D * var42;
+                    }
+
+                    noiseArr[index] = noiseLevel;
+                    index++;
+                }
+            }
+        }
+
+        return noiseArr;
+    }
+
+    @Override
+    public String makeString()
+    {
+        return "RandomLevelSource";
+    }
+
+    @Override
+    public boolean tick()
+    {
+        return false;
+    }
+
+    @Override
+    public Chunk getLoadedChunk(int chunkX, int chunkZ)
+    {
+        return provideChunk(chunkX, chunkZ);
+    }
 
     @Override
     public void populate(int chunkX, int chunkZ)
@@ -425,10 +395,17 @@ public class ChunkProviderVarda implements IChunkProvider, IChunkGenerator
         this.randomSeed.setSeed(this.world.getSeed());
         this.randomSeed.setSeed(chunkX * (this.randomSeed.nextLong() / 2L * 2L + 1L) + chunkZ * (this.randomSeed.nextLong() / 2L * 2L + 1L) ^ this.world.getSeed());
 
-        biome.decorate(this.world, this.randomSeed, new BlockPos(chunkX, 0, chunkZ));
+        biome.decorate(this.world, this.randomSeed, new BlockPos(posX, 0, posZ));
         WorldEntitySpawner.performWorldGenSpawning(this.world, biome, posX + 8, posZ + 8, 16, 16, this.randomSeed);
-        
+
         BlockSand.fallInstantly = false;
+    }
+
+    @Override
+    public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
+    {
+        Biome biome = this.world.getBiome(pos);
+        return biome == null ? null : biome.getSpawnableList(creatureType);
     }
 
     @Override
@@ -436,13 +413,6 @@ public class ChunkProviderVarda implements IChunkProvider, IChunkGenerator
     {
         // TODO Auto-generated method stub
         return false;
-    }
-
-    @Override
-    public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
-    {
-        // TODO Auto-generated method stub
-        return null;
     }
 
     @Override
@@ -456,6 +426,6 @@ public class ChunkProviderVarda implements IChunkProvider, IChunkGenerator
     public void recreateStructures(Chunk chunkIn, int x, int z)
     {
         // TODO Auto-generated method stub
-        
+
     }
 }

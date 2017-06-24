@@ -64,10 +64,10 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
 		this.world = world;
 		this.randomSeed = new Random(seed);
         this.terrainType = world.getWorldInfo().getTerrainType();
+        this.surfaceNoise = new NoiseGeneratorOctaves(this.randomSeed, 4);
         this.minLimitPerlinNoise = new NoiseGeneratorOctaves(this.randomSeed, 16);
         this.maxLimitPerlinNoise = new NoiseGeneratorOctaves(this.randomSeed, 16);
         this.mainPerlinNoise = new NoiseGeneratorOctaves(this.randomSeed, 8);
-        this.surfaceNoise = new NoiseGeneratorOctaves(this.randomSeed, 4);
         this.scaleNoise = new NoiseGeneratorOctaves(this.randomSeed, 10);
         this.depthNoise = new NoiseGeneratorOctaves(this.randomSeed, 16);
 
@@ -425,7 +425,7 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
         this.randomSeed.setSeed(this.world.getSeed());
         this.randomSeed.setSeed(chunkX * (this.randomSeed.nextLong() / 2L * 2L + 1L) + chunkZ * (this.randomSeed.nextLong() / 2L * 2L + 1L) ^ this.world.getSeed());
 
-        biome.decorate(this.world, this.randomSeed, new BlockPos(chunkX, 0, chunkZ));
+        biome.decorate(this.world, this.randomSeed, new BlockPos(posX, 0, posZ));
         WorldEntitySpawner.performWorldGenSpawning(this.world, biome, posX + 8, posZ + 8, 16, 16, this.randomSeed);
         
         BlockSand.fallInstantly = false;

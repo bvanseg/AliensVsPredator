@@ -4,13 +4,14 @@ import java.util.Random;
 
 import org.avp.AliensVsPredator;
 import org.avp.world.dimension.BiomeGenLV;
+import org.avp.world.dimension.WorldGenSurfaceBlock;
 import org.avp.world.dimension.varda.gen.TerrainFormation;
 import org.avp.world.dimension.varda.gen.TerrainFormation1;
-import org.avp.world.dimension.varda.gen.VardaGenStalagtites;
 import org.avp.world.dimension.varda.gen.VardaTallTreeGenerator;
 import org.avp.world.dimension.varda.gen.VardaTree2Generator;
 import org.avp.world.dimension.varda.gen.VardaTree3Generator;
 import org.avp.world.dimension.varda.gen.VardaTreeGenerator;
+import org.avp.world.dimension.varda.gen.WorldGenSustainableOnDirt;
 
 import com.arisux.mdx.lib.world.Worlds;
 import com.google.common.base.Predicate;
@@ -28,37 +29,38 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeDecoratorVarda extends BiomeDecorator
 {
-    private static final Predicate<IBlockState> predicate         = new Predicate<IBlockState>()
+    private static final Predicate<IBlockState> predicate = new Predicate<IBlockState>()
+                                                          {
+                                                              @Override
+                                                              public boolean apply(IBlockState state)
+                                                              {
+                                                                  if (state.getBlock() == AliensVsPredator.blocks().unistone)
                                                                   {
-                                                                      @Override
-                                                                      public boolean apply(IBlockState state)
-                                                                      {
-                                                                          if (state.getBlock() == AliensVsPredator.blocks().unistone)
-                                                                          {
-                                                                              return true;
-                                                                          }
+                                                                      return true;
+                                                                  }
 
-                                                                          return false;
-                                                                      }
-                                                                  };
-    private final WorldGenerator                stalagmiteGen     = new VardaGenStalagtites(AliensVsPredator.blocks().terrainStalagmite.getDefaultState());
-    private final WorldGenerator                saplingGeneration = new VardaGenStalagtites(AliensVsPredator.blocks().terrainUniTreeSapling.getDefaultState());
-    private final WorldGenerator                lakeGeneration    = new WorldGenLakes(AliensVsPredator.blocks().blockBlackGoo);
-    private final WorldGenerator                terrainFormation1 = new TerrainFormation();
-    private final WorldGenerator                terrainFormation2 = new TerrainFormation1();
-    private final WorldGenerator                tree1             = new VardaTreeGenerator(true);
-    private final WorldGenerator                tree2             = new VardaTree2Generator(true);
-    private final WorldGenerator                tree3             = new VardaTree3Generator(true);
-    private final WorldGenerator                treeTall          = new VardaTallTreeGenerator(true);
-    private final WorldGenerator                genDirt           = new WorldGenMinable(AliensVsPredator.blocks().unidirt.getDefaultState(), 32, predicate);
-    private final WorldGenerator                genSand           = new WorldGenMinable(AliensVsPredator.blocks().unisand.getDefaultState(), 32, predicate);
-    private final WorldGenerator                oreBauxite        = new WorldGenMinable(AliensVsPredator.blocks().oreBauxite.getDefaultState(), 4, predicate);
-    private final WorldGenerator                oreCopper         = new WorldGenMinable(AliensVsPredator.blocks().oreCopper.getDefaultState(), 4, predicate);
-    private final WorldGenerator                oreSilicon        = new WorldGenMinable(AliensVsPredator.blocks().oreSilicon.getDefaultState(), 4, predicate);
-    private final WorldGenerator                oreLithium        = new WorldGenMinable(AliensVsPredator.blocks().oreLithium.getDefaultState(), 3, predicate);
-    private final WorldGenerator                oreCoal           = new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), 16, predicate);
-    private final WorldGenerator                oreIron           = new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), 8, predicate);
-    private final WorldGenerator                oreDiamond        = new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), 3, predicate);
+                                                                  return false;
+                                                              }
+                                                          };
+
+    private WorldGenerator                      stalagmiteGen;
+    private WorldGenerator                      saplingGen;
+    private WorldGenerator                      lakeGeneration;
+    private WorldGenerator                      terrainFormation1;
+    private WorldGenerator                      terrainFormation2;
+    private WorldGenerator                      tree1;
+    private WorldGenerator                      tree2;
+    private WorldGenerator                      tree3;
+    private WorldGenerator                      treeTall;
+    private WorldGenerator                      genDirt;
+    private WorldGenerator                      genSand;
+    private WorldGenerator                      oreBauxite;
+    private WorldGenerator                      oreCopper;
+    private WorldGenerator                      oreSilicon;
+    private WorldGenerator                      oreLithium;
+    private WorldGenerator                      oreCoal;
+    private WorldGenerator                      oreIron;
+    private WorldGenerator                      oreDiamond;
 
     public BiomeDecoratorVarda(BiomeGenLV biome)
     {
@@ -76,6 +78,26 @@ public class BiomeDecoratorVarda extends BiomeDecorator
         {
             this.chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
             this.chunkPos = pos;
+
+            this.stalagmiteGen = new WorldGenSurfaceBlock(AliensVsPredator.blocks().terrainStalagmite.getDefaultState());
+            this.saplingGen = new WorldGenSustainableOnDirt(AliensVsPredator.blocks().terrainUniTreeSapling.getDefaultState());
+            this.lakeGeneration = new WorldGenLakes(AliensVsPredator.blocks().blockBlackGoo);
+            this.terrainFormation1 = new TerrainFormation();
+            this.terrainFormation2 = new TerrainFormation1();
+            this.tree1 = new VardaTreeGenerator(true);
+            this.tree2 = new VardaTree2Generator(true);
+            this.tree3 = new VardaTree3Generator(true);
+            this.treeTall = new VardaTallTreeGenerator(true);
+            this.genDirt = new WorldGenMinable(AliensVsPredator.blocks().unidirt.getDefaultState(), 32, predicate);
+            this.genSand = new WorldGenMinable(AliensVsPredator.blocks().unisand.getDefaultState(), 32, predicate);
+            this.oreBauxite = new WorldGenMinable(AliensVsPredator.blocks().oreBauxite.getDefaultState(), 4, predicate);
+            this.oreCopper = new WorldGenMinable(AliensVsPredator.blocks().oreCopper.getDefaultState(), 4, predicate);
+            this.oreSilicon = new WorldGenMinable(AliensVsPredator.blocks().oreSilicon.getDefaultState(), 4, predicate);
+            this.oreLithium = new WorldGenMinable(AliensVsPredator.blocks().oreLithium.getDefaultState(), 3, predicate);
+            this.oreCoal = new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), 16, predicate);
+            this.oreIron = new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), 8, predicate);
+            this.oreDiamond = new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), 3, predicate);
+
             this.genDecorations(biome, world, seed);
             this.decorating = false;
         }
@@ -91,7 +113,10 @@ public class BiomeDecoratorVarda extends BiomeDecorator
             this.generateForestDecorations(biome, world, seed);
         }
 
-        Worlds.generateInChunk(world, this.stalagmiteGen, seed, 10, this.chunkPos);
+        for (int idx = 0; idx < 64; idx++)
+        {
+            this.stalagmiteGen.generate(world, seed, new BlockPos(this.chunkPos.getX() + seed.nextInt(16), seed.nextInt(128), this.chunkPos.getZ() + seed.nextInt(16)));
+        }
 
         for (int i = 0; i < 128; i++)
         {
@@ -107,8 +132,7 @@ public class BiomeDecoratorVarda extends BiomeDecorator
                     break;
             }
 
-            BlockPos pos = new BlockPos(this.chunkPos.getX() + seed.nextInt(16), seed.nextInt(128), this.chunkPos.getZ() + seed.nextInt(16));
-            landform.generate(world, seed, pos);
+            landform.generate(world, seed, new BlockPos(this.chunkPos.getX() + seed.nextInt(16), seed.nextInt(128), this.chunkPos.getZ() + seed.nextInt(16)));
         }
     }
 
@@ -130,7 +154,7 @@ public class BiomeDecoratorVarda extends BiomeDecorator
     {
         for (int i = 0; i < 2; i++)
         {
-            this.lakeGeneration.generate(world, seed, this.chunkPos.add(seed.nextInt(16), seed.nextInt(128), seed.nextInt(16)));
+            this.lakeGeneration.generate(world, seed, new BlockPos(this.chunkPos.getX() + seed.nextInt(16), seed.nextInt(128), this.chunkPos.getZ() + seed.nextInt(16)));
         }
 
         for (int idx = 0; idx < 256; idx++)
@@ -155,13 +179,13 @@ public class BiomeDecoratorVarda extends BiomeDecorator
 
             if (tree != null)
             {
-                tree.generate(world, seed, this.chunkPos.add(seed.nextInt(16), seed.nextInt(84), seed.nextInt(16)));
+                tree.generate(world, seed, new BlockPos(this.chunkPos.getX() + seed.nextInt(16), seed.nextInt(128), this.chunkPos.getZ() + seed.nextInt(16)));
             }
         }
 
-        for (int idx = 0; idx < 3; idx++)
+        for (int idx = 0; idx < 64; idx++)
         {
-            saplingGeneration.generate(world, seed, this.chunkPos.add(seed.nextInt(16), seed.nextInt(96), seed.nextInt(16)));
+            saplingGen.generate(world, seed, new BlockPos(this.chunkPos.getX() + seed.nextInt(16), seed.nextInt(128), this.chunkPos.getZ() + seed.nextInt(16)));
         }
     }
 }
