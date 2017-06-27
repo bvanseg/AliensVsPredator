@@ -41,7 +41,7 @@ public class ProviderVarda extends WorldProvider
     @Override
     protected void createBiomeProvider()
     {
-        this.biomeProvider = new ChunkManagerVarda(this.getSeed(), WorldType.DEFAULT);
+        this.biomeProvider = new BiomeProviderVarda(this.getSeed(), WorldType.DEFAULT);
     }
     
     @Override

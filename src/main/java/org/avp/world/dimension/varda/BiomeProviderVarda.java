@@ -21,7 +21,7 @@ import net.minecraft.world.gen.layer.IntCache;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ChunkManagerVarda extends BiomeProvider
+public class BiomeProviderVarda extends BiomeProvider
 {
     public static ArrayList<BiomeVarda> allowedBiomes = new ArrayList<BiomeVarda>(Arrays.asList(BiomeVarda.vardaBadlands, BiomeVarda.vardaForest));
     private GenLayer                    genBiomes;
@@ -29,14 +29,14 @@ public class ChunkManagerVarda extends BiomeProvider
     private BiomeCache                  biomeCache;
     private List<BiomeVarda>            biomesToSpawnIn;
 
-    protected ChunkManagerVarda()
+    protected BiomeProviderVarda()
     {
         this.biomeCache = new BiomeCache(this);
         this.biomesToSpawnIn = new ArrayList<BiomeVarda>();
         this.biomesToSpawnIn.addAll(allowedBiomes);
     }
 
-    public ChunkManagerVarda(long seed, WorldType worldType)
+    public BiomeProviderVarda(long seed, WorldType worldType)
     {
         this();
         GenLayer[] biomeLayer = GenLayerVarda.generate(seed);
@@ -44,7 +44,7 @@ public class ChunkManagerVarda extends BiomeProvider
         this.biomeIndexLayer = biomeLayer[1];
     }
 
-    public ChunkManagerVarda(World world)
+    public BiomeProviderVarda(World world)
     {
         this(world.getSeed(), world.getWorldInfo().getTerrainType());
     }
