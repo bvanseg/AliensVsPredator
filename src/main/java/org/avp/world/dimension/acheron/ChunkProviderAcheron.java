@@ -20,28 +20,16 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.chunk.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.ChunkProviderSettings;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 
-public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
+public class ChunkProviderAcheron implements IChunkGenerator
 {
-//	private NoiseGeneratorOctaves[] noiseGenOctaves = new NoiseGeneratorOctaves[6];
-	
 	private Random randomSeed;
 	private World world;
     private ChunkProviderSettings settings;
 	private double[] heightMap;
-//	private double[] stoneNoise = new double[256];
-
 	private Biome[] biomesForGeneration;
-//	private double[] noise3;
-//	private double[] noise1;
-//	private double[] noise2;
-//	private double[] noise5;
-//	private double[] noise6;
-//	private float[] field_35388_l;
-	
     private final WorldType terrainType;
 
     private NoiseGeneratorOctaves minLimitPerlinNoise;
@@ -109,7 +97,6 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
                 float f2 = 0.0F;
                 float f3 = 0.0F;
                 float f4 = 0.0F;
-                int i1 = 2;
                 Biome biome = this.biomesForGeneration[k + 2 + (l + 2) * 10];
 
                 for (int j1 = -2; j1 <= 2; ++j1)
@@ -213,13 +200,6 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
         this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
         this.generateHeightmap(x * 4, 0, z * 4);
 
-//        byte var4 = 4;
-//        int var7 = var4 + 1;
-//        byte var8 = 17;
-//        int var9 = var4 + 1;
-//        this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
-//        this.heightMap = this.generateHeightmap(this.heightMap, x * var4, 0, z * var4, var7, var8, var9);
-
         for (int i = 0; i < 4; ++i)
         {
             int j = i * 5;
@@ -234,7 +214,6 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
 
                 for (int i2 = 0; i2 < 32; ++i2)
                 {
-                    double d0 = 0.125D;
                     double d1 = this.heightMap[i1 + i2];
                     double d2 = this.heightMap[j1 + i2];
                     double d3 = this.heightMap[k1 + i2];
@@ -246,7 +225,6 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
 
                     for (int j2 = 0; j2 < 8; ++j2)
                     {
-                        double d9 = 0.25D;
                         double d10 = d1;
                         double d11 = d2;
                         double d12 = (d3 - d1) * 0.25D;
@@ -254,7 +232,6 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
 
                         for (int k2 = 0; k2 < 4; ++k2)
                         {
-                            double d14 = 0.25D;
                             double d16 = (d11 - d10) * 0.25D;
                             double lvt_45_1_ = d10 - d16;
 
@@ -284,11 +261,6 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
         }
     }
 
-//	public void replaceBlocksForBiome(int x, int z, ChunkPrimer primer, Biome[] biomesIn)
-//	{
-//	}
-
-	//TODO: Expirimental coords on setBlockState()
     public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn)
     {
         byte var5 = 63;
@@ -307,8 +279,6 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
 
                 for (int blockY = 127; blockY >= 0; blockY--)
                 {
-                    int idx = (blockZ * 16 + blockX) * 128 + blockY;
-
                     if (blockY <= 0 + this.randomSeed.nextInt(5))
                     {
                         primer.setBlockState(blockX, blockY, blockZ, Blocks.BEDROCK.getDefaultState());
@@ -371,49 +341,7 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
                 }
             }
         }
-//        this.depthBuffer = this.surfaceNoise.getRegion(this.depthBuffer, (double)(x * 16), (double)(z * 16), 16, 16, 0.0625D, 0.0625D, 1.0D);
-//
-//        for (int i = 0; i < 16; ++i)
-//        {
-//            for (int j = 0; j < 16; ++j)
-//            {
-//                Biome biome = biomesIn[j + i * 16];
-//                biome.genTerrainBlocks(this.world, this.randomSeed, primer, x * 16 + i, z * 16 + j, this.depthBuffer[j + i * 16]);
-//            }
-//        }
     }
-
-	@Override
-	public Chunk getLoadedChunk(int chunkX, int chunkZ)
-	{
-		return provideChunk(chunkX, chunkZ);
-	}
-
-	@Override
-	public Chunk provideChunk(int chunkX, int chunkZ)
-	{
-		this.randomSeed.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
-        ChunkPrimer chunkprimer = new ChunkPrimer();
-		this.setBlocksInChunk(chunkX, chunkZ, chunkprimer);
-		this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
-		this.replaceBiomeBlocks(chunkX, chunkZ, chunkprimer, this.biomesForGeneration);
-
-		Chunk chunk = new Chunk(this.world, chunkprimer, chunkX, chunkZ);
-		chunk.generateSkylightMap();
-		return chunk;
-	}
-
-	@Override
-	public String makeString()
-	{
-		return "RandomLevelSource";
-	}
-	
-	@Override
-	public boolean tick()
-	{
-		return false;
-	}
 
     @Override
     public void populate(int chunkX, int chunkZ)
@@ -425,37 +353,47 @@ public class ChunkProviderAcheron implements IChunkProvider, IChunkGenerator
         this.randomSeed.setSeed(this.world.getSeed());
         this.randomSeed.setSeed(chunkX * (this.randomSeed.nextLong() / 2L * 2L + 1L) + chunkZ * (this.randomSeed.nextLong() / 2L * 2L + 1L) ^ this.world.getSeed());
 
-        biome.decorate(this.world, this.randomSeed, new BlockPos(posX, 0, posZ));
+        biome.decorate(this.world, this.randomSeed, new BlockPos(chunkX, 0, chunkZ));
         WorldEntitySpawner.performWorldGenSpawning(this.world, biome, posX + 8, posZ + 8, 16, 16, this.randomSeed);
         
         BlockSand.fallInstantly = false;
+    }
+    
+    @Override
+    public Chunk provideChunk(int chunkX, int chunkZ)
+    {
+        this.randomSeed.setSeed(chunkX * 341873128712L + chunkZ * 132897987541L);
+        ChunkPrimer chunkprimer = new ChunkPrimer();
+        this.setBlocksInChunk(chunkX, chunkZ, chunkprimer);
+        this.biomesForGeneration = this.world.getBiomeProvider().getBiomesForGeneration(this.biomesForGeneration, chunkX * 16, chunkZ * 16, 16, 16);
+        this.replaceBiomeBlocks(chunkX, chunkZ, chunkprimer, this.biomesForGeneration);
+
+        Chunk chunk = new Chunk(this.world, chunkprimer, chunkX, chunkZ);
+        chunk.generateSkylightMap();
+        return chunk;
     }
 
     @Override
     public boolean generateStructures(Chunk chunkIn, int x, int z)
     {
-        // TODO Auto-generated method stub
         return false;
     }
 
     @Override
     public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
     {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public BlockPos getStrongholdGen(World worldIn, String structureName, BlockPos position)
     {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public void recreateStructures(Chunk chunkIn, int x, int z)
     {
-        // TODO Auto-generated method stub
-        
+        return;
     }
 }

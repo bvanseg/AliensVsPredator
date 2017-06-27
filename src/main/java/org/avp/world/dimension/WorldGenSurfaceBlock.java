@@ -15,18 +15,13 @@ public class WorldGenSurfaceBlock extends WorldGenerator
     {
         this.state = state;
     }
-    
+
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
-        for (int i = 0; i < 64; ++i)
+        if (worldIn.isAirBlock(position) && (!worldIn.provider.hasNoSky() || position.getY() < 255) && state.getBlock().canPlaceBlockAt(worldIn, position))
         {
-            BlockPos pos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
-
-            if (worldIn.isAirBlock(pos) && (!worldIn.provider.hasNoSky() || pos.getY() < 255) && state.getBlock().canPlaceBlockAt(worldIn, pos))
-            {
-                worldIn.setBlockState(pos, this.state, 2);
-            }
+            worldIn.setBlockState(position, this.state, 2);
         }
 
         return true;
