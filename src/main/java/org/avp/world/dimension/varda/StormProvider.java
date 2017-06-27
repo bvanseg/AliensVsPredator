@@ -37,7 +37,7 @@ public class StormProvider implements Predicate<Entity>
                 {
                     Entity entity = (Entity) o;
 
-                    if (entity.world.provider instanceof ProviderVarda)
+                    if (entity.world.provider instanceof WorldProviderVarda)
                     {
                         if (this.apply(entity) && Worlds.canSeeSky(new Pos(entity), world))
                         {

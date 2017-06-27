@@ -2,9 +2,9 @@ package org.avp;
 
 import org.avp.world.dimension.TeleporterLV;
 import org.avp.world.dimension.acheron.BiomeAcheron;
-import org.avp.world.dimension.acheron.ProviderAcheron;
+import org.avp.world.dimension.acheron.WorldProviderAcheron;
 import org.avp.world.dimension.varda.BiomeVarda;
-import org.avp.world.dimension.varda.ProviderVarda;
+import org.avp.world.dimension.varda.WorldProviderVarda;
 
 import com.arisux.mdx.MDX;
 import com.arisux.mdx.lib.game.IInitEvent;
@@ -30,7 +30,7 @@ public class DimensionHandler implements IInitEvent
 {
     public static final DimensionHandler instance = new DimensionHandler();
 
-    public final Dimension               ACHERON  = new Dimension("Acheron", "_acheron", ProviderAcheron.class, true)
+    public final Dimension               ACHERON  = new Dimension("Acheron", "_acheron", WorldProviderAcheron.class, true)
                                                   {
                                                       public Dimension register()
                                                       {
@@ -38,7 +38,7 @@ public class DimensionHandler implements IInitEvent
                                                           return super.register();
                                                       };
                                                   };
-    public final Dimension               VARDA    = new Dimension("Varda", "_varda", ProviderVarda.class, true)
+    public final Dimension               VARDA    = new Dimension("Varda", "_varda", WorldProviderVarda.class, true)
                                                   {
                                                       public Dimension register()
                                                       {

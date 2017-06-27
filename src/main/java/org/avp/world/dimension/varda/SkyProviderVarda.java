@@ -107,9 +107,9 @@ public class SkyProviderVarda extends IRenderHandler
     @Override
     public void render(float partialTicks, WorldClient world, Minecraft mc)
     {
-        if (world.provider instanceof ProviderVarda)
+        if (world.provider instanceof WorldProviderVarda)
         {
-            ProviderVarda provider = (ProviderVarda) world.provider;
+            WorldProviderVarda provider = (WorldProviderVarda) world.provider;
 
             if (provider.getStormProvider().isStormActive(world))
             {

@@ -1,23 +1,27 @@
-package org.avp.world.dimension.acheron;
+package org.avp.world.dimension.varda;
 
 import org.avp.AliensVsPredator;
 
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
+import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ProviderAcheron extends WorldProvider
+public class WorldProviderVarda extends WorldProvider
 {
+    public StormProvider stormProvider = new StormProvider();
+    
     @SideOnly(Side.CLIENT)
     private IRenderHandler skyProvider;
 
-    public ProviderAcheron()
+    public WorldProviderVarda()
     {
         this.hasNoSky = false;
     }
@@ -29,64 +33,71 @@ public class ProviderAcheron extends WorldProvider
     }
     
     @Override
-    protected void createBiomeProvider()
-    {
-        this.biomeProvider = new BiomeProviderAcheron(BiomeAcheron.acheron);
-    }
-    
-    @Override
     public IChunkGenerator createChunkGenerator()
     {
-        return new ChunkProviderAcheron(this.world);
+        return new ChunkProviderVarda(this.world);
     }
 
+    @Override
+    protected void createBiomeProvider()
+    {
+        this.biomeProvider = new BiomeProviderVarda(this.getSeed(), WorldType.DEFAULT);
+    }
+    
     @Override
     @SideOnly(Side.CLIENT)
     public IRenderHandler getSkyRenderer()
     {
-        return skyProvider == null ? skyProvider = new SkyProviderAcheron() : skyProvider;
+        return skyProvider == null ? skyProvider = new SkyProviderVarda() : skyProvider;
     }
 
     @Override
     public IRenderHandler getCloudRenderer()
     {
-        return skyProvider == null ? skyProvider = new SkyProviderAcheron() : skyProvider;
+        return skyProvider == null ? skyProvider = new SkyProviderVarda() : skyProvider;
     }
 
     @Override
     public String getSaveFolder()
     {
-        return AliensVsPredator.dimensions().DIMENSION_ID_ACHERON;
+        return AliensVsPredator.dimensions().DIMENSION_ID_VARDA;
     }
 
     @Override
     public String getWelcomeMessage()
     {
-        return "Enterring " + AliensVsPredator.dimensions().DIMENSION_NAME_ACHERON;
+        return "Enterring " + AliensVsPredator.dimensions().DIMENSION_NAME_VARDA;
     }
 
     @Override
     public String getDepartMessage()
     {
-        return "Leaving" + AliensVsPredator.dimensions().DIMENSION_NAME_ACHERON;
+        return "Leaving " + AliensVsPredator.dimensions().DIMENSION_NAME_VARDA;
+    }
+    
+    @Override
+    public void updateWeather()
+    {
+        super.updateWeather();
+        this.stormProvider.update(this.world);
     }
     
     @Override
     public int getAverageGroundLevel()
     {
-        return 16;
+        return 110;
     }
-
+    
     @Override
     public boolean canRespawnHere()
     {
-        return true;
+        return false;
     }
 
     @Override
     public float getCloudHeight()
     {
-        return 110.0F;
+        return 140.0F;
     }
 
     @Override
@@ -100,18 +111,18 @@ public class ProviderAcheron extends WorldProvider
     {
         return 0.2F;
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public Vec3d getFogColor(float var1, float var2)
     {
-        return new Vec3d(0.0F, 0.0F, 0.0F);
+        return new Vec3d(0.0F, 0.0F, 0.01F);
     }
-
+    
     @Override
     public Vec3d getCloudColor(float partialTicks)
     {
-        return new Vec3d(0F, 0F, 0F);
+        return new Vec3d(0.0F, 0.0F, 0.0F);
     }
 
     @Override
@@ -133,7 +144,18 @@ public class ProviderAcheron extends WorldProvider
         brightness = 1.0F - brightness;
         brightness = (float) (brightness * (1.0D - this.world.getRainStrength(angle) * 5.0F / 16.0D));
         brightness = (float) (brightness * (1.0D - this.world.getThunderStrength(angle) * 5.0F / 16.0D));
-        return brightness * 0.25F;
+        return brightness * 0.45F;
+    }
+
+    public StormProvider getStormProvider()
+    {
+        return this.stormProvider;
+    }
+    
+    @Override
+    public boolean canSnowAt(BlockPos pos, boolean checkLight)
+    {
+        return false;
     }
 
     @Override
@@ -145,6 +167,6 @@ public class ProviderAcheron extends WorldProvider
     @Override
     public DimensionType getDimensionType()
     {
-        return AliensVsPredator.dimensions().ACHERON.getType();
+        return AliensVsPredator.dimensions().VARDA.getType();
     }
 }

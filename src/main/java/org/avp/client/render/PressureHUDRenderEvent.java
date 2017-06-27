@@ -16,7 +16,7 @@ import org.avp.tile.TileEntityStasisMechanism;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
-import org.avp.world.dimension.varda.ProviderVarda;
+import org.avp.world.dimension.varda.WorldProviderVarda;
 
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
@@ -156,9 +156,9 @@ public class PressureHUDRenderEvent
             /** Silica storm detection indicator **/
             WorldProvider provider = Game.minecraft().world.provider;
 
-            if (provider instanceof ProviderVarda)
+            if (provider instanceof WorldProviderVarda)
             {
-                ProviderVarda providerVarda = (ProviderVarda) provider;
+                WorldProviderVarda providerVarda = (WorldProviderVarda) provider;
                 long stormStartTime = providerVarda.getStormProvider().getStormStartTime() * 1000L;
                 long stormEndTime = providerVarda.getStormProvider().getStormEndTime() * 1000L;
                 long worldTime = providerVarda.getWorldTime();
