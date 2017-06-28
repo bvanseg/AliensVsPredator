@@ -15,9 +15,9 @@ import net.minecraft.world.World;
 
 public class ItemArmorMarine extends ItemArmor
 {
-    public ItemArmorMarine(ArmorMaterial material, int renderIndex, EntityEquipmentSlot slot)
+    public ItemArmorMarine(int renderIndex, EntityEquipmentSlot slot)
     {
-        super(material, renderIndex, slot);
+        super(AliensVsPredator.materials().armors().kevlar, renderIndex, slot);
     }
     
     @Override

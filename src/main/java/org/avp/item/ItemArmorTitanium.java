@@ -20,9 +20,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemArmorTitanium extends ItemArmor
 {
-    public ItemArmorTitanium(ArmorMaterial material, int renderIndex, EntityEquipmentSlot armorType)
+    public ItemArmorTitanium(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(material, renderIndex, armorType);
+        super(AliensVsPredator.materials().armors().celtic, renderIndex, armorType);
     }
     
     @Override

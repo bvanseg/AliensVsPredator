@@ -12,9 +12,9 @@ import net.minecraft.world.World;
 
 public class ItemArmorMK50 extends ItemAntiVacuumArmor
 {
-    public ItemArmorMK50(ArmorMaterial material, int renderIndex, EntityEquipmentSlot armorType)
+    public ItemArmorMK50(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(material, renderIndex, armorType);
+        super(AliensVsPredator.materials().armors().mk50, renderIndex, armorType);
     }
 
     @Override

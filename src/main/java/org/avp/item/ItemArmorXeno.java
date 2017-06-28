@@ -23,9 +23,9 @@ public class ItemArmorXeno extends ItemArmor
     @SideOnly(Side.CLIENT)
     public ModelDrone mainModel;
 
-    public ItemArmorXeno(ArmorMaterial material, int renderIndex, EntityEquipmentSlot armorType)
+    public ItemArmorXeno(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(material, renderIndex, armorType);
+        super(AliensVsPredator.materials().armors().chitin, renderIndex, armorType);
     }
 
     @Override

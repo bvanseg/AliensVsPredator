@@ -14,9 +14,9 @@ import net.minecraft.world.World;
 
 public class ItemArmorPressureSuit extends ItemAntiVacuumArmor
 {
-    public ItemArmorPressureSuit(ArmorMaterial material, int renderIndex, EntityEquipmentSlot armorType)
+    public ItemArmorPressureSuit(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(material, renderIndex, armorType);
+        super(AliensVsPredator.materials().armors().pressuresuit, renderIndex, armorType);
     }
     
     @Override
