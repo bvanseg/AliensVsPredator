@@ -22,6 +22,7 @@ import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -30,9 +31,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityFlame extends EntityThrowable
 {
-    protected int flameLife;
-    protected int flameIntensity;
-    protected int flameSpread;
+    protected int    flameLife;
+    protected int    flameIntensity;
+    protected int    flameSpread;
     protected double flameTailWidth;
 
     public EntityFlame(World world, EntityLivingBase entityLivingBase)
@@ -42,6 +43,7 @@ public class EntityFlame extends EntityThrowable
         this.flameSpread = 1;
         this.flameIntensity = 60;
         this.flameTailWidth = 0.02;
+        this.setAim(entityLivingBase, entityLivingBase.rotationPitch, entityLivingBase.rotationYaw, 0.0F, 3.0F, 0F);
     }
 
     public EntityFlame(World world)
@@ -51,6 +53,21 @@ public class EntityFlame extends EntityThrowable
         this.flameSpread = 1;
         this.flameIntensity = 60;
         this.flameTailWidth = 0.02;
+    }
+
+    public void setAim(Entity shooter, float pitch, float yaw, float p_184547_4_, float velocity, float inaccuracy)
+    {
+        float f = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+        float f1 = -MathHelper.sin(pitch * 0.017453292F);
+        float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+        this.setThrowableHeading((double) f, (double) f1, (double) f2, velocity, inaccuracy);
+        this.motionX += shooter.motionX;
+        this.motionZ += shooter.motionZ;
+
+        if (!shooter.onGround)
+        {
+            this.motionY += shooter.motionY;
+        }
     }
 
     @Override
@@ -84,7 +101,7 @@ public class EntityFlame extends EntityThrowable
     public void onUpdate()
     {
         this.move(this.motionX, this.motionY, this.motionZ);
-        RayTraceResult result = this.world.rayTraceBlocks(new Vec3d(this.posX, this.posY, this.posZ), new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ));
+        RayTraceResult result = this.world.rayTraceBlocks(new Vec3d(this.posX - 1, this.posY, this.posZ - 1), new Vec3d(this.posX - 1 + this.motionX, this.posY + this.motionY, this.posZ - 1 + this.motionZ));
 
         if (!this.world.isRemote)
         {
@@ -136,42 +153,41 @@ public class EntityFlame extends EntityThrowable
     @Override
     protected void onImpact(RayTraceResult result)
     {
-        int posX = (int)result.hitVec.xCoord;
-        int posY = (int)result.hitVec.yCoord;
-        int posZ = (int)result.hitVec.zCoord;
+        int posX = (int) result.hitVec.xCoord;
+        int posY = (int) result.hitVec.yCoord;
+        int posZ = (int) result.hitVec.zCoord;
 
         if (!this.world.isRemote)
         {
-            switch (result.sideHit.ordinal())
-            {
-                case 0:
-                    --posY;
-                    break;
-
-                case 1:
-                    ++posY;
-                    break;
-
-                case 2:
-                    --posZ;
-                    break;
-
-                case 3:
-                    ++posZ;
-                    break;
-
-                case 4:
-                    --posX;
-                    break;
-
-                case 5:
-                    ++posX;
-            }
+             switch (result.sideHit)
+             {
+             case DOWN:
+             --posY;
+             break;
+            
+             case UP:
+             break;
+            
+             case NORTH:
+             --posZ;
+             break;
+            
+             case SOUTH:
+             ++posZ;
+             break;
+            
+             case WEST:
+             --posX;
+             break;
+            
+             case EAST:
+             ++posX;
+             }
         }
 
         if (rand.nextInt(10) == 0)
         {
-            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int)result.hitVec.xCoord, (int)result.hitVec.yCoord, (int)result.hitVec.zCoord, 1, this.world, AliensVsPredator.blocks().cryoTube);
+            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int) result.hitVec.xCoord, (int) result.hitVec.yCoord, (int) result.hitVec.zCoord, 1, this.world, AliensVsPredator.blocks().cryoTube);
 
             for (Pos coord : list)
             {
@@ -192,22 +208,25 @@ public class EntityFlame extends EntityThrowable
 
         if (this.getThrower() != null && this.getThrower().getHeldItemMainhand() != null)
         {
-            if (this.getThrower().getHeldItemMainhand().getItem() == AliensVsPredator.items().itemM240ICU || this.getThrower().getHeldItemMainhand().getItem() == AliensVsPredator.items().itemNostromoFlamethrower)
+            if (this.getThrower().getHeldItemMainhand() != null)
             {
                 ItemFlamethrower flamethrower = (ItemFlamethrower) this.getThrower().getHeldItemMainhand().getItem();
 
-                if (flamethrower instanceof ItemM240IncineratorUnit)
-                {
-                    this.setFire(posX, posY, posZ);
-                }
+                this.setFire(posX, posY, posZ);
 
                 if (flamethrower instanceof ItemNostromoFlamethrower)
                 {
-                    this.setFire(posX, posY, posZ);
-                    this.setFire(posX + 1, posY, posZ);
-                    this.setFire(posX - 1, posY, posZ);
-                    this.setFire(posX, posY, posZ + 1);
-                    this.setFire(posX, posY, posZ - 1);
+                    ArrayList<Pos> coords = Blocks.getCoordDataInRange(posX, posY, posZ, 1);
+
+                    for (Pos pos : coords)
+                    {
+                        this.setFire((int) pos.x, (int) pos.y, (int) pos.z);
+                    }
+
+                     this.setFire(posX + 1, posY, posZ);
+                     this.setFire(posX - 1, posY, posZ);
+                     this.setFire(posX, posY, posZ + 1);
+                     this.setFire(posX, posY, posZ - 1);
                 }
             }
         }
