@@ -18,9 +18,9 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerator
 {
-    public static final IBlockState TREE_TENDONS = AliensVsPredator.blocks().terrainUniTreeTendon.getDefaultState();
-    public static final IBlockState TREE_LOGS = AliensVsPredator.blocks().terrainUniTreeLog.getDefaultState().withProperty(BlockUnidentifiedLog.LOG_AXIS, EnumAxis.Y);
-    public static final IBlockState TREE_LEAVES = AliensVsPredator.blocks().terrainUniTreeLeaves.getDefaultState();
+    public static final IBlockState TREE_TENDONS = AliensVsPredator.blocks().gigerTendons.getDefaultState();
+    public static final IBlockState TREE_LOGS = AliensVsPredator.blocks().gigerLog.getDefaultState().withProperty(BlockUnidentifiedLog.LOG_AXIS, EnumAxis.Y);
+    public static final IBlockState TREE_LEAVES = AliensVsPredator.blocks().gigerLeaves.getDefaultState();
     
     public VardaTreeGenerator(boolean doBlockNotify)
     {
@@ -29,7 +29,7 @@ public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerato
     
     protected Block[] getValidTargetBlocks()
     {
-        return new Block[] { AliensVsPredator.blocks().unidirt, AliensVsPredator.blocks().terrainUniTreeSapling };
+        return new Block[] { AliensVsPredator.blocks().unidirt, AliensVsPredator.blocks().gigerSapling };
     }
     
     public boolean isLocationValid(World world, BlockPos pos)

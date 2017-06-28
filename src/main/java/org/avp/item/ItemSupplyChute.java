@@ -112,10 +112,10 @@ public class ItemSupplyChute extends HookedItem
             switch (type)
             {
                 case MARINES:
-                    return AliensVsPredator.blocks().supplyCrateMarines;
+                    return AliensVsPredator.blocks().crateMarines;
 
                 case SEEGSON:
-                    return AliensVsPredator.blocks().supplyCrateSeegson;
+                    return AliensVsPredator.blocks().crateSeegson;
 
                 default:
                     return AliensVsPredator.blocks().supplyCrate;

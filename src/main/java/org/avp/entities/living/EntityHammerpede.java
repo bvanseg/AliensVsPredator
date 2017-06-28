@@ -90,9 +90,9 @@ public class EntityHammerpede extends EntitySpeciesAlien implements IMob
         {
             if (this.world.getWorldTime() % 40 == 0 && this.rand.nextInt(4) == 0)
             {
-                if (this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)).getBlock() != AliensVsPredator.blocks().blockBlackGoo)
+                if (this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)).getBlock() != AliensVsPredator.blocks().blackgoo)
                 {
-                    ArrayList<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) 10, this.world, AliensVsPredator.blocks().blockBlackGoo);
+                    ArrayList<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) 10, this.world, AliensVsPredator.blocks().blackgoo);
 
                     if (locations.size() > 0)
                     {

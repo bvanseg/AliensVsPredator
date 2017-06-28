@@ -170,7 +170,7 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
                                 }
 
                                 this.getNavigator().setPath(path, 0.8D);
-                                this.world.setBlockState(pos, AliensVsPredator.blocks().terrainHiveResin.getDefaultState());
+                                this.world.setBlockState(pos, AliensVsPredator.blocks().naturalResin.getDefaultState());
 
                                 TileEntity tileEntity = this.world.getTileEntity(pos);
 

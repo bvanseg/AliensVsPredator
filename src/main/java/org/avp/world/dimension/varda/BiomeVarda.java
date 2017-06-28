@@ -68,7 +68,7 @@ public class BiomeVarda extends BiomeGenLV
         @Override
         protected void genDecorations(Biome biome, World world, Random seed)
         {
-            WorldGenerator stalagmites = new WorldGenSurfaceBlock(AliensVsPredator.blocks().terrainStalagmite.getDefaultState());
+            WorldGenerator stalagmites = new WorldGenSurfaceBlock(AliensVsPredator.blocks().stalagmite.getDefaultState());
             WorldGenerator formation1 = new TerrainFormation();
             WorldGenerator formation2 = new TerrainFormation1();
             
@@ -116,12 +116,12 @@ public class BiomeVarda extends BiomeGenLV
 
         private void generateForest(Biome biome, World world, Random seed)
         {
-            WorldGenerator saplings = new WorldGenSustainableOnDirt(AliensVsPredator.blocks().terrainUniTreeSapling.getDefaultState());
+            WorldGenerator saplings = new WorldGenSustainableOnDirt(AliensVsPredator.blocks().gigerSapling.getDefaultState());
             WorldGenerator tree1 = new VardaTreeGenerator(true);
             WorldGenerator tree2 = new VardaTree2Generator(true);
             WorldGenerator tree3 = new VardaTree3Generator(true);
             WorldGenerator treeTall = new VardaTallTreeGenerator(true);
-            WorldGenerator gooPools = new WorldGenLakes(AliensVsPredator.blocks().blockBlackGoo);
+            WorldGenerator gooPools = new WorldGenLakes(AliensVsPredator.blocks().blackgoo);
             
             for (int i = 0; i < 2; i++)
             {

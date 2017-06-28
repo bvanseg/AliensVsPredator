@@ -28,7 +28,7 @@ public class TeleporterLV extends Teleporter
     @Override
     public void placeInPortal(Entity entity, float yaw)
     {
-        portal = this.worldServer.provider.getDimension() == AliensVsPredator.settings().dimensionIdVarda() ? AliensVsPredator.blocks().blockPortalVarda : AliensVsPredator.blocks().blockPortalAcheron;
+        portal = this.worldServer.provider.getDimension() == AliensVsPredator.settings().dimensionIdVarda() ? AliensVsPredator.blocks().portalVarda : AliensVsPredator.blocks().portalAcheron;
 
         if (this.worldServer.provider.getDimension() != 1)
         {

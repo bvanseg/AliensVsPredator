@@ -42,7 +42,7 @@ public class FluidHandler implements IPreInitEvent
 
     private void registerBucketEvents(FMLPreInitializationEvent event)
     {
-        BucketHandlingEvent.instance.buckets.put(AliensVsPredator.blocks().blockBlackGoo, AliensVsPredator.items().blackGooBucket);
-        BucketHandlingEvent.instance.buckets.put(AliensVsPredator.blocks().blockMist, AliensVsPredator.items().mistBucket);
+        BucketHandlingEvent.instance.buckets.put(AliensVsPredator.blocks().blackgoo, AliensVsPredator.items().blackGooBucket);
+        BucketHandlingEvent.instance.buckets.put(AliensVsPredator.blocks().mist, AliensVsPredator.items().mistBucket);
     }
 }

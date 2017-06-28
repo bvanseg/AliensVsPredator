@@ -39,6 +39,9 @@ public class AliensVsPredator implements IMod
     @Mod.Instance(AliensVsPredator.Properties.ID)
     private static AliensVsPredator instance;
 
+    private static BlockHandler     blocks;
+    private static ItemHandler      items;
+
     @Override
     public ModContainer container()
     {
@@ -166,12 +169,12 @@ public class AliensVsPredator implements IMod
 
     public static ItemHandler items()
     {
-        return ItemHandler.instance;
+        return items == null ? items = new ItemHandler() : items;
     }
 
     public static BlockHandler blocks()
     {
-        return BlockHandler.instance;
+        return blocks == null ? blocks = new BlockHandler() : blocks;
     }
 
     public static FluidHandler fluids()

@@ -51,8 +51,8 @@ public class CraftingHandler implements IInitEvent
         OreDictionary.registerOre("itemPolycarbonate", items.itemPolycarbonate);
         OreDictionary.registerOre("plastic", items.itemPolycarbonate);
         OreDictionary.registerOre("itemPlastic", items.itemPolycarbonate);
-        OreDictionary.registerOre("logWood", blocks.terrainUniTreeLog);
-        OreDictionary.registerOre("log", blocks.terrainUniTreeLog);
+        OreDictionary.registerOre("logWood", blocks.gigerLog);
+        OreDictionary.registerOre("log", blocks.gigerLog);
     }
 
     private void addRecipes(ItemHandler items, BlockHandler blocks)
@@ -70,14 +70,14 @@ public class CraftingHandler implements IInitEvent
         GameRegistry.addRecipe(new ItemStack(items.itemProcessor, 1), "aaa", "aba", "aca", 'a', items.itemIntegratedCircuit, 'b', items.itemPolycarbonate, 'c', items.itemIngotLithium);
         GameRegistry.addRecipe(new ItemStack(items.itemRAM, 1), "aaa", "cec", "dbd", 'a', items.itemIntegratedCircuit, 'b', items.itemPolycarbonate, 'c', items.itemSilicon, 'd', items.itemIngotCopper, 'e', items.itemVoltageRegulator);
         GameRegistry.addRecipe(new ItemStack(items.itemMotherboard, 1), "aef", "gbc", "dbh", 'a', items.itemIntegratedCircuit, 'b', items.itemPolycarbonate, 'c', items.itemTransistor, 'd', items.itemCapacitor, 'e', items.itemVoltageRegulator, 'f', items.itemDiode, 'g', items.itemResistor, 'h', items.itemLed);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockPowerline, 2), " a ", "aba", " a ", 'a', items.itemPolycarbonate, 'b', items.itemIngotCopper);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockTransformer, 1), "aaa", "bca", "aaa", 'a', items.itemIngotCopper, 'b', items.itemVoltageRegulator, 'c', Blocks.IRON_BLOCK);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockNegativeTransformer, 1), "aaa", "acb", "aaa", 'a', items.itemIngotCopper, 'b', items.itemVoltageRegulator, 'c', Blocks.IRON_BLOCK);
-        GameRegistry.addRecipe(new ItemStack(items.itemPowerSupply, 1), "abc", "dec", "abc", 'a', items.itemDiode, 'b', items.itemVoltageRegulator, 'c', items.itemIngotAluminum, 'd', items.itemCapacitor, 'e', blocks.blockTransformer);
+        GameRegistry.addRecipe(new ItemStack(blocks.powerline, 2), " a ", "aba", " a ", 'a', items.itemPolycarbonate, 'b', items.itemIngotCopper);
+        GameRegistry.addRecipe(new ItemStack(blocks.transformer, 1), "aaa", "bca", "aaa", 'a', items.itemIngotCopper, 'b', items.itemVoltageRegulator, 'c', Blocks.IRON_BLOCK);
+        GameRegistry.addRecipe(new ItemStack(blocks.stepdownTransformer, 1), "aaa", "acb", "aaa", 'a', items.itemIngotCopper, 'b', items.itemVoltageRegulator, 'c', Blocks.IRON_BLOCK);
+        GameRegistry.addRecipe(new ItemStack(items.itemPowerSupply, 1), "abc", "dec", "abc", 'a', items.itemDiode, 'b', items.itemVoltageRegulator, 'c', items.itemIngotAluminum, 'd', items.itemCapacitor, 'e', blocks.transformer);
         GameRegistry.addRecipe(new ItemStack(items.itemSolidStateDrive, 1), "aaa", "dcb", "fgh", 'a', items.itemRAM, 'b', items.itemVoltageRegulator, 'c', items.itemIntegratedCircuit, 'd', items.itemIngotLithium, 'e', items.itemVoltageRegulator, 'f', items.itemTransistor, 'g', items.itemPolycarbonate, 'h', items.itemCapacitor);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockAssembler, 1), "aba", "dfh", "ceg", 'a', items.itemRAM, 'b', items.itemProcessor, 'c', items.itemPowerSupply, 'd', items.itemPolycarbonate, 'e', items.itemSolidStateDrive, 'f', items.itemLedDisplay, 'g', items.itemMotherboard, 'h', items.itemTransistor);
+        GameRegistry.addRecipe(new ItemStack(blocks.assembler, 1), "aba", "dfh", "ceg", 'a', items.itemRAM, 'b', items.itemProcessor, 'c', items.itemPowerSupply, 'd', items.itemPolycarbonate, 'e', items.itemSolidStateDrive, 'f', items.itemLedDisplay, 'g', items.itemMotherboard, 'h', items.itemTransistor);
         GameRegistry.addRecipe(new ItemStack(items.itemLedDisplay, 1), "bdb", "bcb", "bab", 'a', items.itemIntegratedCircuit, 'b', items.itemLed, 'c', items.itemPolycarbonate, 'd', items.itemIngotLithium);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockSolarPanel, 1), "aaa", "bbb", "dcd", 'a', items.itemPolycarbonate, 'b', items.itemSilicon, 'c', items.itemIngotCopper, 'd', items.itemIngotLithium);
+        GameRegistry.addRecipe(new ItemStack(blocks.solarPanel, 1), "aaa", "bbb", "dcd", 'a', items.itemPolycarbonate, 'b', items.itemSilicon, 'c', items.itemIngotCopper, 'd', items.itemIngotLithium);
         GameRegistry.addRecipe(new ItemStack(items.plateMarine, 1), "b b", "aba", "bab", 'a', items.itemIngotAluminum, 'b', Blocks.WOOL);
         GameRegistry.addRecipe(new ItemStack(items.legsMarine, 1), "bab", "b b", "a a", 'a', items.itemIngotAluminum, 'b', Blocks.WOOL);
         GameRegistry.addRecipe(new ItemStack(items.bootsMarine, 1), "b b", "a a", 'a', items.itemIngotAluminum, 'b', Blocks.WOOL);
@@ -109,19 +109,19 @@ public class CraftingHandler implements IInitEvent
         GameRegistry.addRecipe(new ItemStack(items.itemFuelTank, 1), "dad", "bcb", "bbb", 'a', Items.SLIME_BALL, 'b', items.itemIngotAluminum, 'c', Items.BLAZE_POWDER, 'd', items.itemPolycarbonate);
         GameRegistry.addRecipe(new ItemStack(blocks.industrialwall, 16), "bbb", "aaa", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.COBBLESTONE);
         GameRegistry.addRecipe(new ItemStack(blocks.industrialwallstriped, 16), "bbb", "aaa", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.STONE);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockWallStairs, 12), "b  ", "aa ", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.COBBLESTONE);
+        GameRegistry.addRecipe(new ItemStack(blocks.wallStairs, 12), "b  ", "aa ", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.COBBLESTONE);
         GameRegistry.addRecipe(new ItemStack(blocks.industrialglass, 16), "bbb", "aaa", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.GLASS);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockIndustrialGlassStairs, 12), "b  ", "aa ", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.GLASS);
+        GameRegistry.addRecipe(new ItemStack(blocks.industrialGlassStairs, 12), "b  ", "aa ", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.GLASS);
         GameRegistry.addRecipe(new ItemStack(blocks.industrialbricks, 16), "bbb", "aaa", "bbb", 'a', Items.IRON_INGOT, 'b', Items.BRICK);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockIronBricksStairs, 12), "b  ", "aa ", "bbb", 'a', Items.IRON_INGOT, 'b', Items.BRICK);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockBlastdoor, 1), "aba", "cdc", "aba", 'a', items.itemPolycarbonate, 'b', Blocks.OBSIDIAN, 'c', Items.IRON_DOOR, 'd', Blocks.STICKY_PISTON);
+        GameRegistry.addRecipe(new ItemStack(blocks.ironBricksStairs, 12), "b  ", "aa ", "bbb", 'a', Items.IRON_INGOT, 'b', Items.BRICK);
+        GameRegistry.addRecipe(new ItemStack(blocks.blastDoor, 1), "aba", "cdc", "aba", 'a', items.itemPolycarbonate, 'b', Blocks.OBSIDIAN, 'c', Items.IRON_DOOR, 'd', Blocks.STICKY_PISTON);
         GameRegistry.addRecipe(new ItemStack(items.itemMaintenanceJack, 1), "a  ", " a ", "aab", 'a', items.itemIngotAluminum, 'b', items.itemPolycarbonate);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockLocker, 1), "aaa", "aba", "aaa", 'a', items.itemIngotAluminum, 'b', Items.OAK_DOOR);
-        GameRegistry.addRecipe(new ItemStack(blocks.blockGunLocker, 1), "aaa", "aba", "aaa", 'a', items.itemIngotAluminum, 'b', Items.IRON_DOOR);
+        GameRegistry.addRecipe(new ItemStack(blocks.locker, 1), "aaa", "aba", "aaa", 'a', items.itemIngotAluminum, 'b', Items.OAK_DOOR);
+        GameRegistry.addRecipe(new ItemStack(blocks.gunLocker, 1), "aaa", "aba", "aaa", 'a', items.itemIngotAluminum, 'b', Items.IRON_DOOR);
         GameRegistry.addRecipe(new ItemStack(items.itemDoritos, 3), "aaa", "a b", "bbb", 'a', Items.WHEAT, 'b', Items.BAKED_POTATO);
         GameRegistry.addRecipe(new ItemStack(items.itemDoritosCoolRanch, 1), "ab", "b ", 'a', items.itemDoritos, 'b', Items.WHEAT);
-        GameRegistry.addRecipe(new ItemStack(blocks.mainframePanelShimmer, 1), "aba", "bcb", "aba", 'a', Items.GLOWSTONE_DUST, 'b', Items.REDSTONE, 'c', items.itemSilicon);
-        GameRegistry.addRecipe(new ItemStack(blocks.mainframePanelFlicker, 1), "bab", "aca", "bab", 'a', Items.GLOWSTONE_DUST, 'b', Items.REDSTONE, 'c', items.itemSilicon);
+        GameRegistry.addRecipe(new ItemStack(blocks.muthurPanel1, 1), "aba", "bcb", "aba", 'a', Items.GLOWSTONE_DUST, 'b', Items.REDSTONE, 'c', items.itemSilicon);
+        GameRegistry.addRecipe(new ItemStack(blocks.muthurPanel2, 1), "bab", "aca", "bab", 'a', Items.GLOWSTONE_DUST, 'b', Items.REDSTONE, 'c', items.itemSilicon);
     }
 
     private void addSmelting(ItemHandler items, BlockHandler blocks)
@@ -130,12 +130,12 @@ public class CraftingHandler implements IInitEvent
         GameRegistry.addSmelting(blocks.oreLithium, new ItemStack(items.itemIngotLithium), 1.0F);
         GameRegistry.addSmelting(blocks.oreBauxite, new ItemStack(items.itemIngotAluminum), 1.0F);
         GameRegistry.addSmelting(blocks.oreSilicon, new ItemStack(items.itemSilicon), 1.0F);
-        GameRegistry.addSmelting(blocks.terrainUniTreeLog, CHARCOAL, 1.0F);
+        GameRegistry.addSmelting(blocks.gigerLog, CHARCOAL, 1.0F);
     }
 
     private void addSchematics(ItemHandler items, BlockHandler blocks)
     {
-        AssemblyManager.register(new Schematic("turret", new ItemStack(blocks.blockTurret, 1))
+        AssemblyManager.register(new Schematic("turret", new ItemStack(blocks.turret, 1))
         {
             @Override
             public ItemStack[] getItemsRequired()
@@ -149,20 +149,20 @@ public class CraftingHandler implements IInitEvent
                 };
             }
         });
-        AssemblyManager.register(new Schematic("redstonefluxGenerator", new ItemStack(blocks.redstoneFluxGenerator, 1))
+        AssemblyManager.register(new Schematic("redstonefluxGenerator", new ItemStack(blocks.universalGenerator, 1))
         {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                    new ItemStack(blocks.blockTransformer, 4),
-                    new ItemStack(blocks.blockNegativeTransformer, 4),
+                    new ItemStack(blocks.transformer, 4),
+                    new ItemStack(blocks.stepdownTransformer, 4),
                     new ItemStack(items.itemPolycarbonate, 4),
                     new ItemStack(items.itemIngotAluminum, 4),
                     new ItemStack(Items.DIAMOND, 4) };
             }
         });
-        AssemblyManager.register(new Schematic("cryostasisTube", new ItemStack(blocks.blockCryostasisTube, 1))
+        AssemblyManager.register(new Schematic("cryostasisTube", new ItemStack(blocks.cryoTube, 1))
         {
             @Override
             public ItemStack[] getItemsRequired()
@@ -171,10 +171,10 @@ public class CraftingHandler implements IInitEvent
                     new ItemStack(items.itemPolycarbonate, 4),
                     new ItemStack(items.itemIngotAluminum, 4),
                     new ItemStack(blocks.industrialglass, 4),
-                    new ItemStack(blocks.blockLightPanel, 1) };
+                    new ItemStack(blocks.lightPanel, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("lightPanel", new ItemStack(blocks.blockLightPanel, 1))
+        AssemblyManager.register(new Schematic("lightPanel", new ItemStack(blocks.lightPanel, 1))
         {
             @Override
             public ItemStack[] getItemsRequired()
@@ -735,7 +735,7 @@ public class CraftingHandler implements IInitEvent
                     new ItemStack(items.itemDiode, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("powerline", new ItemStack(blocks.blockPowerline, 4))
+        AssemblyManager.register(new Schematic("powerline", new ItemStack(blocks.powerline, 4))
         {
             @Override
             public ItemStack[] getItemsRequired()
@@ -754,7 +754,7 @@ public class CraftingHandler implements IInitEvent
                     new ItemStack(items.itemDiode, 1),
                     new ItemStack(items.itemVoltageRegulator, 1),
                     new ItemStack(items.itemIngotAluminum, 2),
-                    new ItemStack(blocks.blockTransformer, 1) };
+                    new ItemStack(blocks.transformer, 1) };
             }
         });
         AssemblyManager.register(new Schematic("ledDisplay", new ItemStack(items.itemLedDisplay, 2))

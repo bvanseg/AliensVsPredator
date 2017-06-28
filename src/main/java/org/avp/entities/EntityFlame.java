@@ -171,7 +171,7 @@ public class EntityFlame extends EntityThrowable
 
         if (rand.nextInt(10) == 0)
         {
-            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int)result.hitVec.xCoord, (int)result.hitVec.yCoord, (int)result.hitVec.zCoord, 1, this.world, AliensVsPredator.blocks().blockCryostasisTube);
+            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int)result.hitVec.xCoord, (int)result.hitVec.yCoord, (int)result.hitVec.zCoord, 1, this.world, AliensVsPredator.blocks().cryoTube);
 
             for (Pos coord : list)
             {

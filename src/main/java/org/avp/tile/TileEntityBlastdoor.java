@@ -246,7 +246,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         IBlockState blockstate = this.world.getBlockState(pos);
         Block block = blockstate.getBlock();
 
-        if (blockstate.getMaterial() != Material.AIR && block != AliensVsPredator.blocks().blockBlastdoor)
+        if (blockstate.getMaterial() != Material.AIR && block != AliensVsPredator.blocks().blastDoor)
         {
             if (this.world.isRemote)
             {
@@ -256,7 +256,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
             return false;
         }
 
-        world.setBlockState(pos, AliensVsPredator.blocks().blockBlastdoor.getDefaultState());
+        world.setBlockState(pos, AliensVsPredator.blocks().blastDoor.getDefaultState());
         TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) world.getTileEntity(pos);
 
         if (blastdoor == null)

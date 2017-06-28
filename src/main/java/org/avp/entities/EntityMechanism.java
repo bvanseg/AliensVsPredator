@@ -36,7 +36,7 @@ public class EntityMechanism extends Entity
         {
             Block block = this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ - 1)).getBlock();
 
-            if (block != AliensVsPredator.blocks().blockStasisMechanism)
+            if (block != AliensVsPredator.blocks().stasisMechanism)
             {
                 this.setDead();
             }

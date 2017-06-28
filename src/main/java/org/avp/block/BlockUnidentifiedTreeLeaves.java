@@ -45,7 +45,7 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(AliensVsPredator.blocks().terrainUniTreeSapling);
+        return Item.getItemFromBlock(AliensVsPredator.blocks().gigerSapling);
     }
 
     @Override

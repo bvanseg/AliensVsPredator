@@ -35,8 +35,8 @@ public class EntityAIMeltBlock extends EntityAIYOffsetBlockInteract
         blacklist(Blocks.BEDROCK);
         blacklist(Blocks.END_PORTAL_FRAME);
         blacklist(AliensVsPredator.blocks().industrialglass);
-        blacklist(AliensVsPredator.blocks().blockIndustrialGlassSlab);
-        blacklist(AliensVsPredator.blocks().blockIndustrialGlassStairs);
+        blacklist(AliensVsPredator.blocks().industrialGlassSlab);
+        blacklist(AliensVsPredator.blocks().industrialGlassStairs);
         blacklist(AliensVsPredator.blocks().plastic);
         blacklist(AliensVsPredator.blocks().plasticcircle);
         blacklist(AliensVsPredator.blocks().plastictile);
@@ -94,7 +94,7 @@ public class EntityAIMeltBlock extends EntityAIYOffsetBlockInteract
     @Override
     public boolean continueExecuting()
     {
-        return (this.theEntity.world.getDifficulty() == EnumDifficulty.NORMAL || this.theEntity.world.getDifficulty() == EnumDifficulty.HARD) && this.theEntity.getDistanceSq((int) this.theEntity.posX, (int) this.theEntity.posY + yOffset, (int) this.theEntity.posZ) < 4.0D && block != Blocks.AIR && block != AliensVsPredator.blocks().terrainHiveResin && block != Blocks.BEDROCK;
+        return (this.theEntity.world.getDifficulty() == EnumDifficulty.NORMAL || this.theEntity.world.getDifficulty() == EnumDifficulty.HARD) && this.theEntity.getDistanceSq((int) this.theEntity.posX, (int) this.theEntity.posY + yOffset, (int) this.theEntity.posZ) < 4.0D && block != Blocks.AIR && block != AliensVsPredator.blocks().naturalResin && block != Blocks.BEDROCK;
     }
 
     @Override
