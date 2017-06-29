@@ -1,5 +1,6 @@
 package org.avp.packets.server;
 
+import org.avp.DamageSources;
 import org.avp.block.BlockHiveResin;
 import org.avp.item.ItemFirearm;
 import org.avp.item.ItemFirearm.FirearmProfile;
@@ -12,6 +13,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -84,7 +86,7 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
 
                     if (itemFirearm != null && itemFirearm.canSoundPlay())
                     {
-                        // world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), firearm.getSound().event(), SoundCategory.PLAYERS, 0.5F, 1F, true);
+                        world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), firearm.getSound().event(), SoundCategory.PLAYERS, 0.5F, 1F, true);
                         itemFirearm.setLastSoundPlayed(System.currentTimeMillis());
                     }
 
@@ -97,8 +99,7 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
                             if (entity != null)
                             {
                                 entity.hurtResistantTime = 0;
-                                // TODO: Thread context
-                                // entity.attackEntityFrom(DamageSources.causeBulletDamage(ctx.getServerHandler().playerEntity), firearm.getClassification().getBaseDamage());
+                                entity.attackEntityFrom(DamageSources.causeBulletDamage(ctx.getServerHandler().playerEntity), firearm.getClassification().getBaseDamage());
                             }
                         }
                     }

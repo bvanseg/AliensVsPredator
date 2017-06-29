@@ -98,6 +98,7 @@ public class ItemFirearm extends HookedItem
             this.ammoConsumptionRate = 1;
             this.soundLength = 0;
             this.sound = AliensVsPredator.sounds().fxPistolHeavy;
+            this.register();
         }
 
         public FirearmProfile register()
