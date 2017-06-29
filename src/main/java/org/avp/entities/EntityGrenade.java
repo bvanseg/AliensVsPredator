@@ -33,6 +33,7 @@ public class EntityGrenade extends EntityThrowable
     public EntityGrenade(World world, EntityLivingBase shooter)
     {
         super(world, shooter);
+        this.setAim(shooter, shooter.rotationPitch, shooter.rotationYaw, 0.0F, 1.2F, 0F);
     }
 
     public EntityGrenade(World world)
