@@ -17,6 +17,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
@@ -29,11 +30,31 @@ public class EntityGrenade extends EntityThrowable
     public boolean                              explodeOnImpact;
     private int                                 fuse;
 
+    public EntityGrenade(World world, EntityLivingBase shooter)
+    {
+        super(world, shooter);
+    }
+
     public EntityGrenade(World world)
     {
         super(world);
         this.setSize(0.5F, 0.5F);
         this.fuse = 0;
+    }
+
+    public void setAim(Entity shooter, float pitch, float yaw, float p_184547_4_, float velocity, float inaccuracy)
+    {
+        float f = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+        float f1 = -MathHelper.sin(pitch * 0.017453292F);
+        float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+        this.setThrowableHeading((double) f, (double) f1, (double) f2, velocity, inaccuracy);
+        this.motionX += shooter.motionX;
+        this.motionZ += shooter.motionZ;
+
+        if (!shooter.onGround)
+        {
+            this.motionY += shooter.motionY;
+        }
     }
 
     @Override
@@ -50,11 +71,6 @@ public class EntityGrenade extends EntityThrowable
     public boolean isFlaming()
     {
         return this.getDataManager().get(FLAMING) == 1 ? true : false;
-    }
-
-    public EntityGrenade(World world, EntityLivingBase shooter)
-    {
-        super(world, shooter);
     }
 
     @Override
