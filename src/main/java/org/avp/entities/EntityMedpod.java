@@ -110,12 +110,6 @@ public class EntityMedpod extends Entity
         return super.getCollisionBox(entity);
     }
 
-    @Override
-    public AxisAlignedBB getEntityBoundingBox()
-    {
-        return null;
-    }
-
     public EntityMedpod setTile(TileEntityMedpod tile)
     {
         this.tile = tile;
