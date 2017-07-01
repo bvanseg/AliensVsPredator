@@ -60,20 +60,29 @@ public class EntityShuriken extends Entity
         this.doesArrowBelongToPlayer = entityliving instanceof EntityPlayer;
         this.setSize(0.5F, 0.5F);
         this.setLocationAndAngles(entityliving.posX, entityliving.posY + entityliving.getEyeHeight(), entityliving.posZ, entityliving.rotationYaw, entityliving.rotationPitch);
-        this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
-        this.posY -= 0.10000000149011612D;
-        this.posZ -= MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
         this.setPosition(this.posX, this.posY, this.posZ);
-        this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
-        this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
-        this.motionY = (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
-        this.setArrowHeading(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
+        this.setAim(shootingEntity, shootingEntity.rotationPitch, shootingEntity.rotationYaw, velocity, 1.0F);
     }
 
     @Override
     protected void entityInit()
     {
         ;
+    }
+
+    public void setAim(Entity shooter, float pitch, float yaw, float velocity, float inaccuracy)
+    {
+        float motionX = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+        float motionY = -MathHelper.sin(pitch * 0.017453292F);
+        float motionZ = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+        this.setArrowHeading((double) motionX, (double) motionY, (double) motionZ, velocity, inaccuracy);
+        this.motionX += shooter.motionX;
+        this.motionZ += shooter.motionZ;
+
+        if (!shooter.onGround)
+        {
+            this.motionY += shooter.motionY;
+        }
     }
 
     public void setArrowHeading(double motionX, double motionY, double motionZ, float velocity, float deviation)

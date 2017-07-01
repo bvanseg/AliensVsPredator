@@ -66,6 +66,21 @@ public class EntitySmartDisc extends EntityProjectile
         this.getDataManager().register(FLOAT_STRENGTH, 0F);
     }
 
+    public void setAim(Entity shooter, float pitch, float yaw, float velocity, float inaccuracy)
+    {
+        float motionX = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+        float motionY = -MathHelper.sin(pitch * 0.017453292F);
+        float motionZ = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
+        this.setThrowableHeading((double) motionX, (double) motionY, (double) motionZ, velocity, inaccuracy);
+        this.motionX += shooter.motionX;
+        this.motionZ += shooter.motionZ;
+
+        if (!shooter.onGround)
+        {
+            this.motionY += shooter.motionY;
+        }
+    }
+
     @Override
     public void onUpdate()
     {
