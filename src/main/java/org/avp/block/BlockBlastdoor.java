@@ -223,4 +223,10 @@ public class BlockBlastdoor extends Block
     {
         return true;
     }
+    
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
 }
