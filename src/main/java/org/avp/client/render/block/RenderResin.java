@@ -1,15 +1,5 @@
 package org.avp.client.render.block;
 
-import org.avp.AliensVsPredator;
-import org.avp.Settings.ClientSettings;
-import org.avp.tile.TileEntityHiveResin;
-
-import com.arisux.mdx.config.GraphicsSetting;
-
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
-
 //implements ISimpleBlockRenderingHandler
 public class RenderResin
 {

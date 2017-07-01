@@ -1,7 +1,7 @@
 package org.avp.block;
 
-import org.avp.entities.living.EntityOvamorph;
 import org.avp.entities.living.EntityMatriarch;
+import org.avp.entities.living.EntityOvamorph;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

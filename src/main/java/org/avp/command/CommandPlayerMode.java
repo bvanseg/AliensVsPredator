@@ -1,7 +1,6 @@
 package org.avp.command;
 
 import org.avp.AliensVsPredator;
-
 import org.avp.packets.client.PacketPlayerModeUpdate;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.PlayerMode;

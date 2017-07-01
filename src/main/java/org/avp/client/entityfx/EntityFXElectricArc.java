@@ -5,16 +5,10 @@ import java.util.Random;
 import org.avp.AliensVsPredator;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.render.Color;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.particle.ParticleDragonBreath;
-import net.minecraft.client.particle.ParticleDrip;
-import net.minecraft.client.particle.ParticleEndRod;
-import net.minecraft.client.particle.ParticleSpell;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;

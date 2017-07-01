@@ -1,7 +1,6 @@
 package org.avp.client.render;
 
 import org.avp.PlayerModeHandler;
-
 import org.avp.item.ItemFirearm;
 import org.avp.item.ItemFlamethrower;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;

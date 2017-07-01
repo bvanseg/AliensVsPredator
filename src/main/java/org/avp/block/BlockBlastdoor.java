@@ -1,7 +1,5 @@
 package org.avp.block;
 
-import javax.annotation.Nullable;
-
 import org.avp.item.ItemMaintenanceJack;
 import org.avp.tile.TileEntityBlastdoor;
 
