@@ -96,7 +96,7 @@ public class EntityWristbracer extends EntityThrowable
 
                 if (this.world.isRemote)
                 {
-                    Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, sX, sY, sZ, pX, pY, pZ, 10, arcFluctuation, arcComplexity, arcDensity, 0xFF4455AA));
+                    Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, sX, sY, sZ, pX, pY, pZ, 1, arcFluctuation, arcComplexity, arcDensity, 0xFF00CCFF));
                 }
 
                 this.world.setBlockToAir(new BlockPos((int) Math.round(pX), (int) Math.round(pY), (int) Math.round(pZ)));

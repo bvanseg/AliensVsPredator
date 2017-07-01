@@ -42,7 +42,7 @@ public class RenderWristbracer extends Render<EntityWristbracer>
 
         OpenGL.pushMatrix();
         {
-            OpenGL.translate(posX, posY, posZ);
+            OpenGL.translate(posX - 0.125F, posY + 0.15F, posZ + 0.05F);
             OpenGL.rotate(180F, 1F, 0F, 0F);
             wristbracer.draw();
             OpenGL.rotate(entity.rotationYaw - 90.0F, 0.0F, 1.0F, 0.0F);

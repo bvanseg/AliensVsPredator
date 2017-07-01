@@ -41,7 +41,7 @@ public class ModelPlasma extends Model
         OpenGL.pushMatrix();
         {
             OpenGL.scale(scale, scale, scale);
-            OpenGL.disableTexture2d();
+            GL11.glDisable(GL11.GL_TEXTURE_2D);
             OpenGL.disableLightMapping();
             OpenGL.disableLight();
             OpenGL.enableBlend();
@@ -79,7 +79,7 @@ public class ModelPlasma extends Model
             }
             OpenGL.enableLight();
             OpenGL.enableLightMapping();
-            OpenGL.enableTexture2d();
+            GL11.glEnable(GL11.GL_TEXTURE_2D);
             OpenGL.disableBlend();
         }
         OpenGL.popMatrix();
