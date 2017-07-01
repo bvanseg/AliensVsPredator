@@ -1,18 +1,16 @@
 package org.avp.block;
 
+import javax.annotation.Nullable;
+
 import org.avp.item.ItemMaintenanceJack;
 import org.avp.tile.TileEntityBlastdoor;
 
 import com.arisux.mdx.lib.client.Notification;
 import com.arisux.mdx.lib.client.Notification.DynamicNotification;
 import com.arisux.mdx.lib.client.Notifications;
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,8 +23,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IUnlistedProperty;
 
 public class BlockBlastdoor extends Block
 {
@@ -165,52 +163,11 @@ public class BlockBlastdoor extends Block
     }
 
     @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[0])
-        {
-            @Override
-            protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
-            {
-                return new StateImplementation(block, properties)
-                {
-                    @Override
-                    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos)
-                    {
-                        TileEntity tileEntity = world.getTileEntity(pos);
-
-                        if (tileEntity != null && tileEntity instanceof TileEntityBlastdoor)
-                        {
-                            TileEntityBlastdoor tile = (TileEntityBlastdoor) tileEntity;
-
-                            if (tile.isOpen())
-                            {
-                                return null;
-                            }
-                            else
-                            {
-                                return super.getCollisionBoundingBox(world, pos);
-                            }
-                        }
-                        return super.getCollisionBoundingBox(world, pos);
-                    }
-                    
-                    @Override
-                    public EnumBlockRenderType getRenderType()
-                    {
-                        return EnumBlockRenderType.INVISIBLE;
-                    }
-                };
-            }
-        };
-    }
-    
-    @Override
     public TileEntity createTileEntity(World world, IBlockState state)
     {
         return new TileEntityBlastdoor();
     }
-    
+
     @Override
     public boolean hasTileEntity(IBlockState state)
     {
@@ -221,5 +178,51 @@ public class BlockBlastdoor extends Block
     {
         int dir = MathHelper.floor((entity.rotationYaw / 90) + 0.5) & 3;
         return EnumFacing.getFront(dir);
+    }
+    
+    @Override
+    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    {
+        return true;
+    }
+
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    {
+        TileEntity tileEntity = worldIn.getTileEntity(pos);
+
+        if (tileEntity != null && tileEntity instanceof TileEntityBlastdoor)
+        {
+            TileEntityBlastdoor tile = (TileEntityBlastdoor) tileEntity;
+
+            if (tile.isOpen())
+            {
+                return null;
+            }
+            else
+            {
+                return blockState.getBoundingBox(worldIn, pos);
+            }
+        }
+
+        return blockState.getBoundingBox(worldIn, pos);
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state)
+    {
+        return EnumBlockRenderType.INVISIBLE;
+    }
+
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+    
+    @Override
+    public boolean isFullBlock(IBlockState state)
+    {
+        return true;
     }
 }
