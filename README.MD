@@ -23,11 +23,10 @@ Open your command line, and execute the following commands:
 __Note:__ If [Gradle] is not installed on your system, you may use ./gradlew on Unix based platforms or ./gradlew.bat
 on Windows platforms.
 
-1. Please complete the steps listed under the Gradle Properties section before moving on.
-2. Run `gradle setupDecompWorkspace` and wait for it to complete.
-3. Once completed, copy `mdxlib_at.cfg` from the mdxlib jar located in your .gradle cache directory with the following structure `.gradle\caches\modules-2\files-2.1\com.arisux\mdxlib\X.X.X.X\0000000000000000000000000000000000000000\mdxlib-X.X.X.X-deobf.jar`.
-4. Paste `mdxlib_at.cfg` into this repo's `src\main\resources\` directory.
-5. Run `gradle setupDecompWorkspace` once more. This time, it should detect an Access Transformer. If it does not, then you have copied it to the wrong location.
+1. Run `gradle setupDecompWorkspace` and wait for it to complete.
+2. Once completed, copy `mdxlib_at.cfg` from the mdxlib jar located in your .gradle cache directory with the following structure `.gradle\caches\modules-2\files-2.1\com.arisux\mdxlib\X.X.X.X\0000000000000000000000000000000000000000\mdxlib-X.X.X.X-deobf.jar`.
+3. Paste `mdxlib_at.cfg` into this repo's `src\main\resources\` directory.
+4. Run `gradle setupDecompWorkspace` once more. This time, it should detect an Access Transformer. If it does not, then you have copied it to the wrong location.
 
 ## 3) Setup your IDE ##
 
@@ -53,17 +52,8 @@ If you experience any new errors, it may be due to a dependency change. Please r
 
 ## Building The Project ##
 
-1. Please complete the steps listed under the Gradle Properties section before building the project.
-2. To initiate the build process, run `gradle build`.
-3. You can find the compiled project artifacts in `./build/libs`.
-
-## Gradle Properties ##
-
-Before you can initiate the build process, you must create a new text document with the name `gradle.properties` in the 
-root directory of the repository. Then add the following entries to the gradle properties file you just created on their own respective lines:
-`curseForgeApiKey=00000-00000-00000-00000-00000`
-`mavenUsername=null`
-`mavenPassword=null`
+1. To initiate the build process, run `gradle build`.
+2. You can find the compiled project artifacts in `./build/libs`.
 
 __Note:__ If the above entry is not added, the build process and setup process will fail.
 
