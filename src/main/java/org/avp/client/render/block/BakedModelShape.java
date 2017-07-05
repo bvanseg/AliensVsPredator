@@ -8,6 +8,7 @@ import com.arisux.mdx.lib.game.Game;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 
+import net.minecraft.block.BlockStairs.EnumHalf;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.BlockModelShapes;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -28,11 +29,6 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 
 public class BakedModelShape implements IBakedModel
 {
-    private static final TRSRTransformation NORTH = new TRSRTransformation(ModelRotation.getModelRotation(0, 0));
-    private static final TRSRTransformation EAST  = new TRSRTransformation(ModelRotation.getModelRotation(0, 90));
-    private static final TRSRTransformation SOUTH = new TRSRTransformation(ModelRotation.getModelRotation(0, 180));
-    private static final TRSRTransformation WEST  = new TRSRTransformation(ModelRotation.getModelRotation(0, 270));
-
     private IModel                          model;
     private TextureAtlasSprite              sprite;
 
@@ -45,19 +41,54 @@ public class BakedModelShape implements IBakedModel
 
     private static TRSRTransformation rotation(IBlockState state)
     {
-        switch (((IExtendedBlockState) state).getValue(BlockReflectiveShape.PLACEMENT).getOpposite())
-        {
-            case NORTH:
-                return NORTH;
-            case EAST:
-                return EAST;
-            case SOUTH:
-                return SOUTH;
-            case WEST:
-                return WEST;
-            default:
-                return NORTH;
-        }
+    	int x = 0;
+    	int y = 0;
+    	
+    	if (state != null)
+    	{
+    		EnumHalf half = state.getValue(BlockReflectiveShape.HALF);
+    		
+	        switch (half)
+	        {
+		        case BOTTOM:
+		        	x = 0;
+		        	break;
+		        case TOP:
+		        	x = 180;
+		        	break;
+		        default:
+		        	x = 0;
+		        	break;
+	        }
+	        
+	        EnumFacing facing = state.getValue(BlockReflectiveShape.PLACEMENT).getOpposite();
+	        
+	        if (half == EnumHalf.TOP)
+	        {
+	        	facing = facing.getOpposite();
+	        }
+	        
+	        switch (facing)
+	        {
+	            case NORTH:
+	            	y = 0;
+		        	break;
+	            case EAST:
+	            	y = 90;
+		        	break;
+	            case SOUTH:
+	            	y = 180;
+		        	break;
+	            case WEST:
+	            	y = 270;
+		        	break;
+	            default:
+	            	y = 0;
+		        	break;
+	        }
+    	}
+        
+        return new TRSRTransformation(ModelRotation.getModelRotation(x, y));
     }
 
     @Override
@@ -65,13 +96,8 @@ public class BakedModelShape implements IBakedModel
     {
         IModel quadModel = model;
         Function<ResourceLocation, TextureAtlasSprite> textureGetter = ModelLoader.defaultTextureGetter();
-        TRSRTransformation transformations = NORTH;
+        TRSRTransformation transformations = rotation(state);
         VertexFormat vertexFormat = DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL;
-
-        if (state != null)
-        {
-            transformations = rotation(state);
-        }
 
         if (model instanceof IRetexturableModel)
         {
