@@ -13,6 +13,8 @@ public class ShapedModelLoader implements ICustomModelLoader
 {
     public static final ShapedModelLoader INSTANCE = new ShapedModelLoader();
     private final HashMap<String, IModel> REGISTRY = new HashMap<String, IModel>();
+    
+    public static final ResourceLocation REFLECTION        = new ResourceLocation(AliensVsPredator.Properties.ID, "blocks/reflection");
 
     public ShapedModelLoader()
     {
@@ -21,7 +23,13 @@ public class ShapedModelLoader implements ICustomModelLoader
     
     public void register()
     {
-        REGISTRY.put("slope", new ModelSlope());
+        REGISTRY.put("slope", new ModelShapeNew(new ResourceLocation(AliensVsPredator.Properties.ID, "block/slope.obj"), REFLECTION));
+        REGISTRY.put("corner", new ModelShapeNew(new ResourceLocation(AliensVsPredator.Properties.ID, "block/corner.obj"), REFLECTION));
+        REGISTRY.put("ridge", new ModelShapeNew(new ResourceLocation(AliensVsPredator.Properties.ID, "block/ridge.obj"), REFLECTION));
+        REGISTRY.put("pyramid", new ModelShapeNew(new ResourceLocation(AliensVsPredator.Properties.ID, "block/pyramid.obj"), REFLECTION));
+        REGISTRY.put("invertedcorner", new ModelShapeNew(new ResourceLocation(AliensVsPredator.Properties.ID, "block/invertedcorner.obj"), REFLECTION));
+        REGISTRY.put("invertedridge", new ModelShapeNew(new ResourceLocation(AliensVsPredator.Properties.ID, "block/invertedridge.obj"), REFLECTION));
+        REGISTRY.put("invertedpyramid", new ModelShapeNew(new ResourceLocation(AliensVsPredator.Properties.ID, "block/invertedpyramid.obj"), REFLECTION));
     }
 
     @Override

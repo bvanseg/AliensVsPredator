@@ -131,8 +131,13 @@ public class BakedModelShape implements IBakedModel
                 }
             }
         }
-
-        return quadModel.bake(transformations, vertexFormat, textureGetter).getQuads(state, side, rand);
+        
+        if (quadModel != null)
+        {
+        	return quadModel.bake(transformations, vertexFormat, textureGetter).getQuads(state, side, rand);
+        }
+        
+        return model.bake(transformations, vertexFormat, textureGetter).getQuads(state, side, rand);
     }
 
     @Override

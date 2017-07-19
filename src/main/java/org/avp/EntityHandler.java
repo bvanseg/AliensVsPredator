@@ -162,32 +162,6 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
 
     private void registerRemappedEntities()
     {
-        // Global Entity Identity Remapping
-        IdentityRemapModule.registerRemappedEntity(EntityRunnerDrone.class, "RunnerDrone");
-        IdentityRemapModule.registerRemappedEntity(EntityRunnerWarrior.class, "RunnerWarrior");
-        IdentityRemapModule.registerRemappedEntity(EntityDrone.class, "Drone");
-        IdentityRemapModule.registerRemappedEntity(EntityWarrior.class, "Warrior");
-        IdentityRemapModule.registerRemappedEntity(EntitySpitter.class, "Spitter");
-        IdentityRemapModule.registerRemappedEntity(EntityCrusher.class, "Crusher");
-        IdentityRemapModule.registerRemappedEntity(EntityPraetorian.class, "Praetorian");
-        IdentityRemapModule.registerRemappedEntity(EntityMarine.class, "Marine");
-        IdentityRemapModule.registerRemappedEntity(EntityYautjaWarrior.class, "YautjaWarrior");
-        IdentityRemapModule.registerRemappedEntity(EntityMatriarch.class, "Queen");
-        IdentityRemapModule.registerRemappedEntity(EntityFacehugger.class, "Facehugger");
-        IdentityRemapModule.registerRemappedEntity(EntityChestburster.class, "Chestbuster");
-        IdentityRemapModule.registerRemappedEntity(EntityOvamorph.class, "Ovamorph");
-        IdentityRemapModule.registerRemappedEntity(EntityRoyalFacehugger.class, "RoyalFacehugger");
-        IdentityRemapModule.registerRemappedEntity(EntityAqua.class, "AquaAlien");
-        IdentityRemapModule.registerRemappedEntity(EntityPredalien.class, "Predalien");
-        IdentityRemapModule.registerRemappedEntity(EntityCombatSynthetic.class, "CombatSynthetic");
-        IdentityRemapModule.registerRemappedEntity(EntityDeacon.class, "Deacon");
-        IdentityRemapModule.registerRemappedEntity(EntityHammerpede.class, "Hammerpede");
-        IdentityRemapModule.registerRemappedEntity(EntityTrilobite.class, "Trilobite");
-        IdentityRemapModule.registerRemappedEntity(EntitySpaceJockey.class, "SpaceJockey");
-        IdentityRemapModule.registerRemappedEntity(EntityEngineer.class, "Engineer");
-        IdentityRemapModule.registerRemappedEntity(EntityYautjaBerserker.class, "YautjaBerserker");
-        IdentityRemapModule.registerRemappedEntity(EntityDeaconShark.class, "DeaconShark");
-
         // Mod Entity Identity Remapping
         IdentityRemapModule.registerRemappedEntity(EntityDeacon.class, "avp.Protomorph");
         IdentityRemapModule.registerRemappedEntity(EntityDeacon.class, "Protomorph");

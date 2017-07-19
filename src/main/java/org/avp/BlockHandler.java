@@ -178,9 +178,9 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public Block corner                = new BlockReflectiveShape(Material.CIRCUITS);
     public Block invertedCorner        = new BlockReflectiveShape(Material.CIRCUITS);
     public Block ridge                 = new BlockReflectiveShape(Material.CIRCUITS);
-    public Block smartRidge            = new BlockReflectiveShape(Material.CIRCUITS);
+    public Block pyramid            = new BlockReflectiveShape(Material.CIRCUITS);
     public Block invertedRidge         = new BlockReflectiveShape(Material.CIRCUITS);
-    public Block smartInvertedRidge    = new BlockReflectiveShape(Material.CIRCUITS);
+    public Block invertedPyramid    = new BlockReflectiveShape(Material.CIRCUITS);
 
     public BlockHandler()
     {
@@ -246,11 +246,11 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
         /** Shaped **/
         register("slope", slope);
         register("corner", corner);
-        register("invertedcorner", invertedCorner);
         register("ridge", ridge);
-        register("smartridge", smartRidge);
+        register("pyramid", pyramid);//smartridge
+        register("invertedcorner", invertedCorner);
         register("invertedridge", invertedRidge);
-        register("smartinvertedridge", smartInvertedRidge);
+        register("invertedpyramid", invertedPyramid);//smartinvertedridge
 
         /** Stairs **/
         register("ceilinggrillstairs", ceilingGrillStairs);
