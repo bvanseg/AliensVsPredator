@@ -1,10 +1,10 @@
 package org.avp.block;
 
 
+import org.avp.tile.TileEntityReflective;
+
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockStairs;
 import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.block.BlockStairs.EnumHalf;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
@@ -16,7 +16,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -25,13 +30,12 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.tile.TileEntityReflective;
 
 public class BlockReflectiveShape extends Block implements ITileEntityProvider
 {
     //EnumFacing.Plane.VERTICAL
     public static final PropertyDirection                  PLACEMENT  = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    public static final PropertyEnum<BlockStairs.EnumHalf> HALF       = PropertyEnum.<BlockStairs.EnumHalf>create("half", BlockStairs.EnumHalf.class);
+    public static final PropertyEnum<EnumAlignment>        ALIGNMENT  = PropertyEnum.<EnumAlignment>create("alignment", EnumAlignment.class);
     public static final IUnlistedProperty<IBlockState>     REFLECTION = new IUnlistedProperty<IBlockState>()
                                                                   {
                                                                       @Override
@@ -62,7 +66,7 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
     public BlockReflectiveShape(Material materialIn)
     {
         super(materialIn);
-        this.setDefaultState(this.blockState.getBaseState().withProperty(PLACEMENT, EnumFacing.NORTH).withProperty(HALF, BlockStairs.EnumHalf.BOTTOM));
+        this.setDefaultState(this.blockState.getBaseState().withProperty(PLACEMENT, EnumFacing.NORTH).withProperty(ALIGNMENT, EnumAlignment.BOTTOM));
     }
 
     /**
@@ -184,31 +188,111 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        worldIn.setBlockState(pos, state.withProperty(PLACEMENT, placer.getHorizontalFacing().getOpposite()).withProperty(HALF, (placer.rotationPitch < 0 ? EnumHalf.TOP : EnumHalf.BOTTOM)), 2);
+    	EnumFacing facing = EnumFacing.NORTH;
+    	EnumAlignment alignment = EnumAlignment.BOTTOM;
+    	
+    	if (placer.isSneaking())
+    	{
+    		alignment = EnumAlignment.SIDE;
+    	}
+    	else
+    	{
+    		if (placer.rotationPitch < 0)
+    		{
+    			alignment = EnumAlignment.TOP;
+    		}
+    		else
+    		{
+    			alignment = EnumAlignment.BOTTOM;
+    		}
+    	}
+    	
+    	if (!placer.isSneaking() && placer.rotationPitch < 0)
+    	{
+    		facing = placer.getHorizontalFacing();
+    	}
+    	else
+    	{
+    		facing = placer.getHorizontalFacing().getOpposite();
+    	}
+    	
+        worldIn.setBlockState(pos, state.withProperty(PLACEMENT, facing).withProperty(ALIGNMENT, alignment), 2);
     }
 
     @Override
     public IBlockState getStateFromMeta(int meta)
     {
-        IBlockState iblockstate = this.getDefaultState().withProperty(HALF, (meta & 4) > 0 ? BlockStairs.EnumHalf.TOP : BlockStairs.EnumHalf.BOTTOM);
-        iblockstate = iblockstate.withProperty(PLACEMENT, EnumFacing.getFront(5 - (meta & 3)));
-        return iblockstate;
+    	EnumAlignment alignment = EnumAlignment.BOTTOM;
+    	
+    	if (meta <= 3)
+    		alignment = EnumAlignment.BOTTOM;
+    	
+    	if (meta > 3 && meta <= 7)
+    		alignment = EnumAlignment.TOP;
+    	
+    	if (meta > 7)
+    		alignment = EnumAlignment.SIDE;
+    	
+    	EnumFacing facing = EnumFacing.NORTH;
+    	
+        switch (meta % 4)
+        {
+        	case 0:
+				facing = EnumFacing.NORTH;
+			break;
+        	case 1:
+				facing = EnumFacing.SOUTH;
+			break;
+        	case 2:
+				facing = EnumFacing.EAST;
+			break;
+        	case 3:
+				facing = EnumFacing.WEST;
+			break;
+			default:
+				facing = EnumFacing.NORTH;
+			break;
+        }
+    	
+        return this.getDefaultState().withProperty(ALIGNMENT, alignment).withProperty(PLACEMENT, facing);
     }
 
     @Override
     public int getMetaFromState(IBlockState state)
     {
-        int i = 0;
+        int meta = 0;
 
-        if (state.getValue(HALF) == BlockStairs.EnumHalf.TOP)
+        if (state.getValue(ALIGNMENT) == EnumAlignment.TOP)
         {
-            i |= 4;
+            meta = meta + 4;
         }
-
-        i = i | 5 - ((EnumFacing)state.getValue(PLACEMENT)).getIndex();
-        return i;
+        else if (state.getValue(ALIGNMENT) == EnumAlignment.SIDE)
+        {
+            meta = meta + 8;
+        }
+        
+        switch ((EnumFacing)state.getValue(PLACEMENT))
+        {
+        	case NORTH:
+				meta = meta + 0;
+			break;
+        	case SOUTH:
+				meta = meta + 1;
+			break;
+        	case EAST:
+				meta = meta + 2;
+			break;
+        	case WEST:
+				meta = meta + 3;
+			break;
+			default:
+				meta = meta + 0;
+			break;
+        }
+        
+        return meta;
     }
-
+    
     @Override
     public IBlockState withRotation(IBlockState state, Rotation rot)
     {
@@ -224,7 +308,7 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
     @Override
     protected BlockStateContainer createBlockState()
     {
-        return new BlockStateContainer.Builder(this).add(PLACEMENT).add(HALF).add(REFLECTION).build();
+        return new BlockStateContainer.Builder(this).add(PLACEMENT).add(ALIGNMENT).add(REFLECTION).build();
     }
 
     @Override
@@ -252,5 +336,29 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
         return new TileEntityReflective();
+    }
+    
+    public static enum EnumAlignment implements IStringSerializable
+    {
+        TOP("top"),
+        BOTTOM("bottom"),
+        SIDE("side");
+
+        private final String name;
+
+        private EnumAlignment(String name)
+        {
+            this.name = name;
+        }
+
+        public String toString()
+        {
+            return this.name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
     }
 }

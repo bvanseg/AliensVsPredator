@@ -15,7 +15,7 @@ public class TileEntityReflective extends TileEntity
     {
         super();
     }
-
+    
     public Block getReflection()
     {
         return reflection;
