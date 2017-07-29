@@ -1,6 +1,5 @@
 package org.avp;
 
-import org.avp.command.CommandGenerate;
 import org.avp.command.CommandPlayerMode;
 import org.avp.command.CommandSettings;
 
@@ -15,7 +14,6 @@ public class CommandHandler implements IInitEvent
 {
     public static final CommandHandler instance = new CommandHandler();
     public CommandPlayerMode commandPlayerMode;
-    public CommandGenerate commandGenerate;
     public CommandSettings commandSettings;
 
     @Override
@@ -28,7 +26,6 @@ public class CommandHandler implements IInitEvent
     public void onServerStarting(FMLServerStartingEvent event)
     {
         event.registerServerCommand(this.commandPlayerMode = new CommandPlayerMode());
-        event.registerServerCommand(this.commandGenerate = new CommandGenerate());
         event.registerServerCommand(this.commandSettings = new CommandSettings());
     }
 }
