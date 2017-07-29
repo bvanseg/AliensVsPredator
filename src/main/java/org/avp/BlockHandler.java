@@ -350,6 +350,8 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
             super.register(shapeId, new BlockReflectiveShape(Material.BARRIER, true));
             System.out.println("Registerring compat shape " + shapeId);
     	}
+    	
+    	block.setCreativeTab(AliensVsPredator.tabBlocks());
         super.register(identifier, block);
     }
 }
