@@ -44,7 +44,7 @@ def version_micro=0
 def version_minecraft="1.10.2"
 def version_forge="12.18.3.2221"
 def version_mappings="stable_29"
-def mdxversion="2.0.0.7"
+def mdxversion="2.0.0.9"
 def curseforge_id="221641"
 def curseforge_release_type="beta"
 def curseforge_api_key=project.ext.properties.curseforge_api_key == null ? "00000-00000-00000-00000-00000" : project.ext.properties.curseforge_api_key
