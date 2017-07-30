@@ -470,7 +470,7 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
                 name = "smartinvertedridge";
             }
 
-            if (type != null)
+            if (type != null && world != null)
             {
                 String blockName = AliensVsPredator.Properties.DOMAIN + unlocalizedName.replace("." + name, "").split(":")[1];
                 Block parentBlockType = Block.getBlockFromName(blockName);
