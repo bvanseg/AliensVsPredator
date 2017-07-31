@@ -2,8 +2,8 @@ package org.avp.client.render.block.model.cached;
 
 import java.util.List;
 
-import org.avp.block.BlockReflectiveShape;
-import org.avp.block.BlockReflectiveShape.EnumAlignment;
+import org.avp.block.BlockReflective;
+import org.avp.block.util.EnumAlignment;
 
 import com.arisux.mdx.lib.client.render.model.block.ModelRotationXYZ;
 import com.arisux.mdx.lib.game.Game;
@@ -48,7 +48,7 @@ public class CachedModelReflectiveShape implements IBakedModel
     	
     	if (state != null)
     	{
-    		EnumAlignment alignment = state.getValue(BlockReflectiveShape.ALIGNMENT);
+    		EnumAlignment alignment = state.getValue(BlockReflective.ALIGNMENT);
     		
 	        switch (alignment)
 	        {
@@ -66,7 +66,7 @@ public class CachedModelReflectiveShape implements IBakedModel
 		        	break;
 	        }
 	        
-	        EnumFacing placement = state.getValue(BlockReflectiveShape.PLACEMENT);
+	        EnumFacing placement = state.getValue(BlockReflective.FACING);
 	        EnumFacing facing = placement.getOpposite();
 	        
 	        if (alignment == EnumAlignment.TOP)
@@ -114,7 +114,7 @@ public class CachedModelReflectiveShape implements IBakedModel
             if (state instanceof IExtendedBlockState)
             {
                 IExtendedBlockState extendedState = (IExtendedBlockState) state;
-                IBlockState blockstate = extendedState.getValue(BlockReflectiveShape.REFLECTION);
+                IBlockState blockstate = extendedState.getValue(BlockReflective.REFLECTION);
 
                 if (blockstate != null)
                 {

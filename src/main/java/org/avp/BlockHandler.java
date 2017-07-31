@@ -21,7 +21,7 @@ import org.avp.block.BlockPowerline;
 import org.avp.block.BlockRedstoneEmitter;
 import org.avp.block.BlockRedstoneFluxGenerator;
 import org.avp.block.BlockRedstoneSensor;
-import org.avp.block.BlockReflectiveShape;
+import org.avp.block.BlockReflective;
 import org.avp.block.BlockSatelliteDish;
 import org.avp.block.BlockSatelliteModem;
 import org.avp.block.BlockSolarPanel;
@@ -174,13 +174,13 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public Block skullXeno             = new BlockSkullXenomorph();
     public Block skullXenoWarrior      = new BlockSkullXenomorphWarrior();
     public Block skullYautja           = new BlockSkullYautja();
-    public Block slope                 = new BlockReflectiveShape(Material.CIRCUITS);
-    public Block corner                = new BlockReflectiveShape(Material.CIRCUITS);
-    public Block invertedCorner        = new BlockReflectiveShape(Material.CIRCUITS);
-    public Block ridge                 = new BlockReflectiveShape(Material.CIRCUITS);
-    public Block pyramid               = new BlockReflectiveShape(Material.CIRCUITS);
-    public Block invertedRidge         = new BlockReflectiveShape(Material.CIRCUITS);
-    public Block invertedPyramid       = new BlockReflectiveShape(Material.CIRCUITS);
+    public Block slope                 = new BlockReflective(Material.CIRCUITS);
+    public Block corner                = new BlockReflective(Material.CIRCUITS);
+    public Block invertedCorner        = new BlockReflective(Material.CIRCUITS);
+    public Block ridge                 = new BlockReflective(Material.CIRCUITS);
+    public Block pyramid               = new BlockReflective(Material.CIRCUITS);
+    public Block invertedRidge         = new BlockReflective(Material.CIRCUITS);
+    public Block invertedPyramid       = new BlockReflective(Material.CIRCUITS);
 
     public BlockHandler()
     {
@@ -269,68 +269,68 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
         /** Building **/
         register("hiveresin", naturalResin);
         
-        registerShapeCompatBlocks("hiveresin.standard", resin);
-        registerShapeCompatBlocks("unidirt", unidirt);
-        registerShapeCompatBlocks("unistone", unistone);
-        registerShapeCompatBlocks("unisand", unisand);
-        registerShapeCompatBlocks("unigravel", unigravel);
-        registerShapeCompatBlocks("ceilingpanel", ceiling);
-        registerShapeCompatBlocks("ceilingfan", ceilingfan);
-        registerShapeCompatBlocks("ceilingvent", ceilingvent);
-        registerShapeCompatBlocks("ceilinggrill", ceilinggrill);
-        registerShapeCompatBlocks("floorgrill", floorgrill);
-        registerShapeCompatBlocks("industrialwall", industrialwall);
-        registerShapeCompatBlocks("industrialwall2", industrialwallstriped);
-        registerShapeCompatBlocks("industrialvent", vent0);
-        registerShapeCompatBlocks("vent.wall", vent1);
-        registerShapeCompatBlocks("vent.ceiling", vent2);
-        registerShapeCompatBlocks("industrialbricks", industrialbricks);
-        registerShapeCompatBlocks("industrialglass", industrialglass);
-        registerShapeCompatBlocks("metalpanel1", metalpanel);
-        registerShapeCompatBlocks("metalpanel2", metalcolumn0);
-        registerShapeCompatBlocks("metalpanel3", metalcolumn1);
-        registerShapeCompatBlocks("shippanel", metal1);
-        registerShapeCompatBlocks("shippannelyautja", metal2);
-        registerShapeCompatBlocks("tileovamorphdesign", relicovamorph);
-        registerShapeCompatBlocks("tilefacehuggerdesign", relicfacehugger);
-        registerShapeCompatBlocks("tilealiendesign", relicalien);
-        registerShapeCompatBlocks("shipwallbase", ship1);
-        registerShapeCompatBlocks("shipsupportpillar", ship2);
-        registerShapeCompatBlocks("shipdecor1", ship3);
-        registerShapeCompatBlocks("shipdecor2", ship5);
-        registerShapeCompatBlocks("shipdecor3", ship6);
-        registerShapeCompatBlocks("shipbrick", ship4);
-        registerShapeCompatBlocks("templebricksingle", templetilesingle);
-        registerShapeCompatBlocks("templebrick", templebrick);
-        registerShapeCompatBlocks("templetile", templetile);
-        registerShapeCompatBlocks("templewallbase", templewall1);
-        registerShapeCompatBlocks("templefloor", templewall2);
-        registerShapeCompatBlocks("skulls", skulls);
-        registerShapeCompatBlocks("plasticblock", plastic);
-        registerShapeCompatBlocks("paddingpanel", paddingpanel);
-        registerShapeCompatBlocks("plastictile", plastictile);
-        registerShapeCompatBlocks("plastictiletri", plastictri);
-        registerShapeCompatBlocks("plastictilecircle", plasticcircle);
-        registerShapeCompatBlocks("engineershipfloor", engineerfloor);
-        registerShapeCompatBlocks("engineershipbrick", engineerbrick0);
-        registerShapeCompatBlocks("engineershipbrick1", engineerbrick1);
-        registerShapeCompatBlocks("engineershipbrick2", engineerbrick2);
-        registerShapeCompatBlocks("engineershipbrick3", engineerbrick3);
-        registerShapeCompatBlocks("engineershipgravel", engineergravel);
-        registerShapeCompatBlocks("engineershipwall", engineerwall0);
-        registerShapeCompatBlocks("engineershipwall1", engineerwall1);
-        registerShapeCompatBlocks("engineershipwall2", engineerwall2);
-        registerShapeCompatBlocks("engineershipwall3", engineerwall3);
-        registerShapeCompatBlocks("engineershipwall4", engineerwall4);
-        registerShapeCompatBlocks("engineershiprock", engineerrock0);
-        registerShapeCompatBlocks("engineershiprock1", engineerrock1);
-        registerShapeCompatBlocks("engineershiprock2", engineerrock2);
-        registerShapeCompatBlocks("engineershiprock3", engineerrock3);
-        registerShapeCompatBlocks("engineershipcolumn1", engineercolumn1);
-        registerShapeCompatBlocks("engineershipcolumn2", engineercolumn2);
-        registerShapeCompatBlocks("engineershipmaterial0", engineermaterial0);
-        registerShapeCompatBlocks("engineershipmaterial1", engineermaterial1);
-        registerShapeCompatBlocks("engineershipmaterial2", engineermaterial2);
+        BlockReflective.registerCompatBlocks("hiveresin.standard", resin);
+        BlockReflective.registerCompatBlocks("unidirt", unidirt);
+        BlockReflective.registerCompatBlocks("unistone", unistone);
+        BlockReflective.registerCompatBlocks("unisand", unisand);
+        BlockReflective.registerCompatBlocks("unigravel", unigravel);
+        BlockReflective.registerCompatBlocks("ceilingpanel", ceiling);
+        BlockReflective.registerCompatBlocks("ceilingfan", ceilingfan);
+        BlockReflective.registerCompatBlocks("ceilingvent", ceilingvent);
+        BlockReflective.registerCompatBlocks("ceilinggrill", ceilinggrill);
+        BlockReflective.registerCompatBlocks("floorgrill", floorgrill);
+        BlockReflective.registerCompatBlocks("industrialwall", industrialwall);
+        BlockReflective.registerCompatBlocks("industrialwall2", industrialwallstriped);
+        BlockReflective.registerCompatBlocks("industrialvent", vent0);
+        BlockReflective.registerCompatBlocks("vent.wall", vent1);
+        BlockReflective.registerCompatBlocks("vent.ceiling", vent2);
+        BlockReflective.registerCompatBlocks("industrialbricks", industrialbricks);
+        BlockReflective.registerCompatBlocks("industrialglass", industrialglass);
+        BlockReflective.registerCompatBlocks("metalpanel1", metalpanel);
+        BlockReflective.registerCompatBlocks("metalpanel2", metalcolumn0);
+        BlockReflective.registerCompatBlocks("metalpanel3", metalcolumn1);
+        BlockReflective.registerCompatBlocks("shippanel", metal1);
+        BlockReflective.registerCompatBlocks("shippannelyautja", metal2);
+        BlockReflective.registerCompatBlocks("tileovamorphdesign", relicovamorph);
+        BlockReflective.registerCompatBlocks("tilefacehuggerdesign", relicfacehugger);
+        BlockReflective.registerCompatBlocks("tilealiendesign", relicalien);
+        BlockReflective.registerCompatBlocks("shipwallbase", ship1);
+        BlockReflective.registerCompatBlocks("shipsupportpillar", ship2);
+        BlockReflective.registerCompatBlocks("shipdecor1", ship3);
+        BlockReflective.registerCompatBlocks("shipdecor2", ship5);
+        BlockReflective.registerCompatBlocks("shipdecor3", ship6);
+        BlockReflective.registerCompatBlocks("shipbrick", ship4);
+        BlockReflective.registerCompatBlocks("templebricksingle", templetilesingle);
+        BlockReflective.registerCompatBlocks("templebrick", templebrick);
+        BlockReflective.registerCompatBlocks("templetile", templetile);
+        BlockReflective.registerCompatBlocks("templewallbase", templewall1);
+        BlockReflective.registerCompatBlocks("templefloor", templewall2);
+        BlockReflective.registerCompatBlocks("skulls", skulls);
+        BlockReflective.registerCompatBlocks("plasticblock", plastic);
+        BlockReflective.registerCompatBlocks("paddingpanel", paddingpanel);
+        BlockReflective.registerCompatBlocks("plastictile", plastictile);
+        BlockReflective.registerCompatBlocks("plastictiletri", plastictri);
+        BlockReflective.registerCompatBlocks("plastictilecircle", plasticcircle);
+        BlockReflective.registerCompatBlocks("engineershipfloor", engineerfloor);
+        BlockReflective.registerCompatBlocks("engineershipbrick", engineerbrick0);
+        BlockReflective.registerCompatBlocks("engineershipbrick1", engineerbrick1);
+        BlockReflective.registerCompatBlocks("engineershipbrick2", engineerbrick2);
+        BlockReflective.registerCompatBlocks("engineershipbrick3", engineerbrick3);
+        BlockReflective.registerCompatBlocks("engineershipgravel", engineergravel);
+        BlockReflective.registerCompatBlocks("engineershipwall", engineerwall0);
+        BlockReflective.registerCompatBlocks("engineershipwall1", engineerwall1);
+        BlockReflective.registerCompatBlocks("engineershipwall2", engineerwall2);
+        BlockReflective.registerCompatBlocks("engineershipwall3", engineerwall3);
+        BlockReflective.registerCompatBlocks("engineershipwall4", engineerwall4);
+        BlockReflective.registerCompatBlocks("engineershiprock", engineerrock0);
+        BlockReflective.registerCompatBlocks("engineershiprock1", engineerrock1);
+        BlockReflective.registerCompatBlocks("engineershiprock2", engineerrock2);
+        BlockReflective.registerCompatBlocks("engineershiprock3", engineerrock3);
+        BlockReflective.registerCompatBlocks("engineershipcolumn1", engineercolumn1);
+        BlockReflective.registerCompatBlocks("engineershipcolumn2", engineercolumn2);
+        BlockReflective.registerCompatBlocks("engineershipmaterial0", engineermaterial0);
+        BlockReflective.registerCompatBlocks("engineershipmaterial1", engineermaterial1);
+        BlockReflective.registerCompatBlocks("engineershipmaterial2", engineermaterial2);
     }
 
     @Override
@@ -338,20 +338,5 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     {
         block.setCreativeTab(AliensVsPredator.tabBlocks());
         return super.register(identifier, block);
-    }
-    
-    private static final String[] SHAPE_COMPAT_TYPES = new String[] { "slope", "corner", "invertedcorner", "ridge", "invertedridge", "smartinvertedridge", "smartridge" };
-
-    public void registerShapeCompatBlocks(String identifier, Block block)
-    {
-    	for (final String type : SHAPE_COMPAT_TYPES)
-    	{
-    		String shapeId = String.format("%s.%s", identifier, type);
-            super.register(shapeId, new BlockReflectiveShape(Material.BARRIER, true));
-            System.out.println("Registerring compat shape " + shapeId);
-    	}
-    	
-    	block.setCreativeTab(AliensVsPredator.tabBlocks());
-        super.register(identifier, block);
     }
 }

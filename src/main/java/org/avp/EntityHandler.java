@@ -162,7 +162,6 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
 
     private void registerRemappedEntities()
     {
-        // Mod Entity Identity Remapping
         IdentityRemapModule.registerRemappedEntity(EntityDeacon.class, "avp.Protomorph");
         IdentityRemapModule.registerRemappedEntity(EntityDeacon.class, "Protomorph");
         IdentityRemapModule.registerRemappedEntity(EntityYautjaWarrior.class, "Yautja");
