@@ -339,4 +339,9 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
         block.setCreativeTab(AliensVsPredator.tabBlocks());
         return super.register(identifier, block);
     }
+
+    public Block registerOnly(String identifier, Block block)
+    {
+        return super.register(identifier, block);
+    }
 }

@@ -410,7 +410,7 @@ public class BlockReflective extends Block implements ITileEntityProvider
         for (final String type : SHAPE_COMPAT_TYPES)
         {
             String shapeId = String.format("%s.%s", identifier, type);
-            AliensVsPredator.blocks().register(shapeId, new BlockReflective(Material.BARRIER, true));
+            AliensVsPredator.blocks().registerOnly(shapeId, new BlockReflective(Material.BARRIER, true));
             System.out.println("Registerring compat shape " + shapeId);
         }
         
