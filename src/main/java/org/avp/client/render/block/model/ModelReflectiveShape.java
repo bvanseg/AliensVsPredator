@@ -1,6 +1,8 @@
-package org.avp.client.render.block;
+package org.avp.client.render.block.model;
 
 import java.util.Collection;
+
+import org.avp.client.render.block.model.cached.CachedModelReflectiveShape;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableSet;
@@ -14,12 +16,12 @@ import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
 
-public class ModelShapeNew implements IModel
+public class ModelReflectiveShape implements IModel
 {
     private ResourceLocation modelResource;
     private ResourceLocation textureResource;
     
-    public ModelShapeNew(ResourceLocation modelResource, ResourceLocation textureResource)
+    public ModelReflectiveShape(ResourceLocation modelResource, ResourceLocation textureResource)
     {
     	this.modelResource = modelResource;
     	this.textureResource = textureResource;
@@ -51,7 +53,7 @@ public class ModelShapeNew implements IModel
             e.printStackTrace();
         }
         
-        return new BakedModelShape(bakedTextureGetter.apply(textureResource), model);
+        return new CachedModelReflectiveShape(bakedTextureGetter.apply(textureResource), model);
     }
 
     @Override

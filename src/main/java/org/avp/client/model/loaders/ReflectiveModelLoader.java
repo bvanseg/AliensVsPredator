@@ -1,0 +1,62 @@
+package org.avp.client.model.loaders;
+
+import java.util.HashMap;
+
+import org.avp.AliensVsPredator;
+import org.avp.client.render.block.model.ModelReflectiveShape;
+
+import net.minecraft.client.resources.IResourceManager;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ICustomModelLoader;
+import net.minecraftforge.client.model.IModel;
+
+public class ReflectiveModelLoader implements ICustomModelLoader
+{
+    public static final ReflectiveModelLoader INSTANCE = new ReflectiveModelLoader();
+    private HashMap<String, IModel> models = new HashMap<String, IModel>();
+    
+    public static final ResourceLocation REFLECTION        = new ResourceLocation(AliensVsPredator.Properties.ID, "blocks/reflection");
+
+    public ReflectiveModelLoader()
+    {
+        this.register();
+    }
+    
+    public void register()
+    {
+        models.put("slope", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/slope.obj"), REFLECTION));
+        models.put("corner", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/corner.obj"), REFLECTION));
+        models.put("ridge", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/ridge.obj"), REFLECTION));
+        models.put("pyramid", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/pyramid.obj"), REFLECTION));
+        models.put("invertedcorner", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/invertedcorner.obj"), REFLECTION));
+        models.put("invertedridge", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/invertedridge.obj"), REFLECTION));
+        models.put("invertedpyramid", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/invertedpyramid.obj"), REFLECTION));
+    }
+
+    @Override
+    public void onResourceManagerReload(IResourceManager resourceManager)
+    {
+        models.clear();
+        this.register();
+    }
+
+    @Override
+    public boolean accepts(ResourceLocation modelLocation)
+    {
+        if (modelLocation.getResourceDomain().equals(AliensVsPredator.Properties.ID))
+        {
+            if (models.containsKey(modelLocation.getResourcePath()))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public IModel loadModel(ResourceLocation modelLocation) throws Exception
+    {
+        return models.get(modelLocation.getResourcePath());
+    }
+}

@@ -1,5 +1,8 @@
 {
     "parent": "avp:block/pyramid.obj",
+    "textures": {
+        "layer0": "avp:blocks/reflection"
+    },
     "display": {
         "gui": {
             "rotation": [ 30, 225, 0 ],

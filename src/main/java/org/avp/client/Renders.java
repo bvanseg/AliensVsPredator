@@ -10,7 +10,7 @@ import org.avp.client.model.items.ModelM4;
 import org.avp.client.model.items.ModelM41A;
 import org.avp.client.model.items.ModelM56SG;
 import org.avp.client.model.items.ModelSniper;
-import org.avp.client.render.block.ShapedModelLoader;
+import org.avp.client.model.loaders.ReflectiveModelLoader;
 import org.avp.client.render.entities.RenderAPC;
 import org.avp.client.render.entities.RenderAcidPool;
 import org.avp.client.render.entities.RenderAcidProjectile;
@@ -269,7 +269,7 @@ public class Renders implements IInitEvent, IPreInitEvent
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
-        registerModelLoaders();
+        registerModelLoaders(event);
         registerStandardEntityRenderers();
         registerLivingEntityRenderers();
     }
@@ -285,10 +285,10 @@ public class Renders implements IInitEvent, IPreInitEvent
         VanillaFaceLocationTransforms.register();
     }
     
-    private void registerModelLoaders()
+    private void registerModelLoaders(FMLPreInitializationEvent event)
     {
         OBJLoader.INSTANCE.addDomain(AliensVsPredator.Properties.ID);
-        ModelLoaderRegistry.registerLoader(new ShapedModelLoader());
+        ModelLoaderRegistry.registerLoader(ReflectiveModelLoader.INSTANCE);
     }
 
     private void registerLivingEntityRenderers()

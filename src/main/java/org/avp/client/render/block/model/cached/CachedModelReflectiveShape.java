@@ -1,4 +1,4 @@
-package org.avp.client.render.block;
+package org.avp.client.render.block.model.cached;
 
 import java.util.List;
 
@@ -26,14 +26,14 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
-public class BakedModelShape implements IBakedModel
+public class CachedModelReflectiveShape implements IBakedModel
 {
     private IModel                          model;
     private TextureAtlasSprite              sprite;
     private static final String 			key 		= "#texture";
     private static final String 			texture 	= "avp:blocks/reflection";
 
-    public BakedModelShape(TextureAtlasSprite sprite, IModel model)
+    public CachedModelReflectiveShape(TextureAtlasSprite sprite, IModel model)
     {
         super();
         this.sprite = sprite;
@@ -66,11 +66,12 @@ public class BakedModelShape implements IBakedModel
 		        	break;
 	        }
 	        
-	        EnumFacing facing = state.getValue(BlockReflectiveShape.PLACEMENT).getOpposite();
+	        EnumFacing placement = state.getValue(BlockReflectiveShape.PLACEMENT);
+	        EnumFacing facing = placement.getOpposite();
 	        
 	        if (alignment == EnumAlignment.TOP)
 	        {
-	        	facing = facing.getOpposite();
+	        	facing = placement;
 	        }
 	        
 	        switch (facing)
@@ -153,7 +154,7 @@ public class BakedModelShape implements IBakedModel
     @Override
     public boolean isGui3d()
     {
-        return false;
+        return true;
     }
 
     @Override

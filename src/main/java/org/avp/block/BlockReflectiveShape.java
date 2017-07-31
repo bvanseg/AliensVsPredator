@@ -30,6 +30,7 @@ import net.minecraft.util.Mirror;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
@@ -249,7 +250,7 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
         if (meta > 3 && meta <= 7)
             alignment = EnumAlignment.TOP;
 
-        if (meta > 7)
+        if (meta > 7 && meta <= 11)
             alignment = EnumAlignment.SIDE;
 
         EnumFacing facing = EnumFacing.NORTH;
@@ -295,11 +296,11 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
         case NORTH:
             meta = meta + 0;
             break;
-        case SOUTH:
-            meta = meta + 2;
-            break;
         case EAST:
             meta = meta + 1;
+            break;
+        case SOUTH:
+            meta = meta + 2;
             break;
         case WEST:
             meta = meta + 3;
@@ -383,19 +384,58 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
         super.updateTick(worldIn, pos, state, rand);
-        this.convert(worldIn, pos);
+//        this.convert(worldIn, pos);
     }
 
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
     {
-        this.convert(worldIn, pos);
+//        this.convert(worldIn, pos);
     }
 
     @Override
     public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
         super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+        
+        int meta = state.getBlock().getMetaFromState(state);
+        
+        EnumAlignment alignment = EnumAlignment.BOTTOM;
+
+        if (meta <= 3)
+            alignment = EnumAlignment.BOTTOM;
+
+        if (meta > 3 && meta <= 7)
+            alignment = EnumAlignment.TOP;
+
+        if (meta > 7 && meta <= 11)
+            alignment = EnumAlignment.SIDE;
+
+        EnumFacing facing = EnumFacing.NORTH;
+
+        switch (meta % 4)
+        {
+        case 0:
+            facing = EnumFacing.NORTH;
+            break;
+        case 1:
+            facing = EnumFacing.EAST;
+            break;
+        case 2:
+            facing = EnumFacing.SOUTH;
+            break;
+        case 3:
+            facing = EnumFacing.WEST;
+            break;
+        default:
+            facing = EnumFacing.NORTH;
+            break;
+        }
+        
+
+//        entityIn.sendMessage(new TextComponentString("M->" + meta + ", F->" + facing + "//" + state.getValue(PLACEMENT)  + ", A->" + alignment + "//" + state.getValue(ALIGNMENT)));
+//        entityIn.sendMessage(new TextComponentString(AliensVsPredator.blocks().slope.getDefaultState().withProperty(ALIGNMENT, alignment).withProperty(PLACEMENT, facing) + ""));
+        
         this.convert(worldIn, pos);
     }
 
@@ -403,25 +443,25 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
     public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
     {
         super.onBlockClicked(worldIn, pos, playerIn);
-        this.convert(worldIn, pos);
+//        this.convert(worldIn, pos);
     }
 
     @Override
     public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
     {
         super.onEntityWalk(worldIn, pos, entityIn);
-        this.convert(worldIn, pos);
+//        this.convert(worldIn, pos);
     }
 
     @Override
     public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, Entity entityIn)
     {
-        this.convert(worldIn, pos);
+//        this.convert(worldIn, pos);
     }
 
     private void convert(World world, BlockPos pos)
     {
-        if (this.convert)
+        if (this.convert && !world.isRemote)
         {
             String unlocalizedName = this.getUnlocalizedName();
             IBlockState state = world.getBlockState(pos);
@@ -474,7 +514,22 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
             {
                 String blockName = AliensVsPredator.Properties.DOMAIN + unlocalizedName.replace("." + name, "").split(":")[1];
                 Block parentBlockType = Block.getBlockFromName(blockName);
-                world.setBlockState(pos, type.getDefaultState().withProperty(ALIGNMENT, state.getValue(ALIGNMENT)).withProperty(PLACEMENT, state.getValue(PLACEMENT)));
+
+                EnumAlignment alignment = state.getValue(ALIGNMENT);
+                EnumFacing facing = state.getValue(PLACEMENT);
+
+                if (alignment == EnumAlignment.TOP)
+                {
+                    facing = facing.getOpposite();
+                }
+
+                IBlockState newState = type.getDefaultState().withProperty(PLACEMENT, facing).withProperty(ALIGNMENT, alignment);
+
+                System.out.println("B->" + newState + " " + world.isRemote);
+                
+                world.setBlockState(pos, newState);
+                
+                System.out.println("A->" + world.getBlockState(pos));
 
                 TileEntity tile = world.getTileEntity(pos);
 
@@ -484,8 +539,8 @@ public class BlockReflectiveShape extends Block implements ITileEntityProvider
 
                     reflective.setReflection(parentBlockType, 0);
                 }
-                
-                CommandBlockUpdate.triggerBlockUpdates(world, 4, pos.getX(), pos.getY(), pos.getZ());
+
+//                CommandBlockUpdate.triggerBlockUpdates(world, 4, pos.getX(), pos.getY(), pos.getZ());
             }
         }
     }
