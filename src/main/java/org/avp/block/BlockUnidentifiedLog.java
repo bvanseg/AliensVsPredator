@@ -4,6 +4,8 @@ import net.minecraft.block.BlockLog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 
 public class BlockUnidentifiedLog extends BlockLog
 {
@@ -60,5 +62,11 @@ public class BlockUnidentifiedLog extends BlockLog
         }
 
         return i;
+    }
+    
+    @Override
+    public boolean canSustainLeaves(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        return true;
     }
 }
