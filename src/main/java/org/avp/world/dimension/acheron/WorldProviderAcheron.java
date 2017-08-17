@@ -105,7 +105,7 @@ public class WorldProviderAcheron extends WorldProvider
     @SideOnly(Side.CLIENT)
     public Vec3d getFogColor(float var1, float var2)
     {
-        return new Vec3d(-0.095F, -0.095F, -0.145F);
+        return new Vec3d(-0.105F, -0.115F, -0.145F);
     }
 
     @Override

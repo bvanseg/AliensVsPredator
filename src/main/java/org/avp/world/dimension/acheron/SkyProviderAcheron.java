@@ -41,7 +41,11 @@ public class SkyProviderAcheron extends IRenderHandler
         this.generateStars();
     }
     
-    private float fogIntensity;
+    private static final float fogIntensityMin = 0.02F;
+    private static final float fogIntensityMax = 0.075F;
+    private static final float fogMult = 0.00005F;
+    
+    private float fogIntensity = fogIntensityMin;
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -49,12 +53,6 @@ public class SkyProviderAcheron extends IRenderHandler
     {
         if (Game.minecraft().player.world.provider instanceof WorldProviderAcheron)
         {
-            float fogIntensityMin = 0.02F;
-            float fogIntensityMax = 0.075F;
-            float fogMult = 0.00005F;
-            
-            GlStateManager.setFog(GlStateManager.FogMode.EXP);
-
             if (Game.minecraft().player.world.canSeeSky(Game.minecraft().player.getPosition()))
             {
                 if (fogIntensity < fogIntensityMax)
@@ -69,6 +67,8 @@ public class SkyProviderAcheron extends IRenderHandler
                     fogIntensity -= fogMult;
                 }
             }
+            
+            GlStateManager.setFog(GlStateManager.FogMode.EXP);
             GlStateManager.setFogDensity(fogIntensity);
         }
     }
@@ -153,7 +153,7 @@ public class SkyProviderAcheron extends IRenderHandler
         GL11.glColor3f(skyColor.r, skyColor.g, skyColor.b);
         GlStateManager.disableFog();
         OpenGL.disable(GL11.GL_ALPHA_TEST);
-        OpenGL.enable(GL11.GL_BLEND);
+        OpenGL.enableBlend();
         OpenGL.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         OpenGL.color(starColor.r, starColor.g, starColor.b, starColor.a);
 
@@ -196,7 +196,7 @@ public class SkyProviderAcheron extends IRenderHandler
             Draw.tessellate();
         }
         OpenGL.popMatrix();
-
+        
         OpenGL.pushMatrix();
         {
             float scale = 450.0F;
@@ -212,7 +212,6 @@ public class SkyProviderAcheron extends IRenderHandler
             Draw.vertex(scale, 150.0D, scale, 1.0D, 1.0D).endVertex();
             Draw.vertex(-scale, 150.0D, scale, 0.0D, 1.0D).endVertex();
             Draw.tessellate();
-            ;
         }
         OpenGL.popMatrix();
 
