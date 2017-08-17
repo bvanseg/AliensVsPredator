@@ -6,8 +6,8 @@ import net.minecraftforge.fluids.Fluid;
 public class FluidBlackGoo extends Fluid
 {
     //TODO: Flowing, Still texture locations
-    public static final ResourceLocation flowing = new ResourceLocation("avp:blackgooflowing");
-    public static final ResourceLocation still = new ResourceLocation("avp:blackgoostill");
+    public static final ResourceLocation flowing = new ResourceLocation("avp:blocks/blackgoo.flowing");
+    public static final ResourceLocation still = new ResourceLocation("avp:blocks/blackgoo.still");
     
     public FluidBlackGoo()
     {

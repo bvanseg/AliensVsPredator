@@ -1,17 +1,21 @@
 package org.avp.block;
 
 import org.avp.AliensVsPredator;
+import org.avp.world.fluids.FluidMist;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.Fluid;
 
 public class BlockMist extends BlockFluidClassic
 {
+    public static final Fluid fluid = new FluidMist();
+    
     public BlockMist()
     {
-        super(AliensVsPredator.fluids().fluidMist, AliensVsPredator.materials().mist);
+        super(fluid, AliensVsPredator.materials().mist);
     }
     
     @Override

@@ -1,8 +1,8 @@
 package org.avp;
 
+import org.avp.AliensVsPredator.Properties;
 import org.avp.block.BlockAmpule;
 import org.avp.block.BlockAssembler;
-import org.avp.block.BlockBlackGoo;
 import org.avp.block.BlockBlastdoor;
 import org.avp.block.BlockCryostasisTube;
 import org.avp.block.BlockCustomSlab;
@@ -13,7 +13,6 @@ import org.avp.block.BlockHiveResin;
 import org.avp.block.BlockLightPanel;
 import org.avp.block.BlockLocker;
 import org.avp.block.BlockMedpod;
-import org.avp.block.BlockMist;
 import org.avp.block.BlockNegativeTransformer;
 import org.avp.block.BlockPortal;
 import org.avp.block.BlockPowercell;
@@ -50,9 +49,18 @@ import com.arisux.mdx.lib.world.block.BlockMaterial;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
+@GameRegistry.ObjectHolder(Properties.ID)
+@Mod.EventBusSubscriber
 public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
 {
     public Block naturalResin          = new BlockHiveResin(Material.WOOD).setLightOpacity(255);
@@ -148,8 +156,11 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public Block redstoneSensor        = new BlockRedstoneSensor(Material.IRON).setHardness(3.2F).setResistance(2.6F);
     public Block redstoneEmitter       = new BlockRedstoneEmitter(Material.IRON).setHardness(3.2F).setResistance(2.6F);
     public Block universalGenerator    = new BlockRedstoneFluxGenerator(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block blackgoo              = new BlockBlackGoo();
-    public Block mist                  = new BlockMist();
+    
+//    @GameRegistry.ObjectHolder("blackgoo")
+    public static final BlockFluidClassic blackgoo = null;
+    public static final BlockFluidClassic mist = null;
+    
     public Block transformer           = new BlockTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F);
     public Block stepdownTransformer   = new BlockNegativeTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F);
     public Block supplyCrate           = new BlockSupplyCrate(SupplyChuteType.UNBRANDED);
@@ -190,6 +201,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
+        MinecraftForge.EVENT_BUS.register(this);
         this.register();
     }
 
@@ -232,8 +244,8 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
         register("supplychuteblock", supplyCrate).setCreativeTab(AliensVsPredator.tabMain());
         register("supplychuteblock.marines", crateMarines).setCreativeTab(AliensVsPredator.tabMain());
         register("supplychuteblock.seegson", crateSeegson).setCreativeTab(AliensVsPredator.tabMain());
-        register("blackgoo", blackgoo).setCreativeTab(AliensVsPredator.tabMain());
-        register("mist", mist).setCreativeTab(AliensVsPredator.tabMain());
+//        register("blackgoo", blackgoo).setCreativeTab(AliensVsPredator.tabMain());
+//        register("mist", mist).setCreativeTab(AliensVsPredator.tabMain());
         register("cryostasistube", cryoTube).setCreativeTab(AliensVsPredator.tabMain());
         register("lightpanel", lightPanel).setCreativeTab(AliensVsPredator.tabMain());
         register("mainframepanel.shimmer", muthurPanel1).setCreativeTab(AliensVsPredator.tabMain());
@@ -269,68 +281,68 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
         /** Building **/
         register("hiveresin", naturalResin);
         
-        BlockReflective.registerCompatBlocks("hiveresin.standard", resin);
-        BlockReflective.registerCompatBlocks("unidirt", unidirt);
-        BlockReflective.registerCompatBlocks("unistone", unistone);
-        BlockReflective.registerCompatBlocks("unisand", unisand);
-        BlockReflective.registerCompatBlocks("unigravel", unigravel);
-        BlockReflective.registerCompatBlocks("ceilingpanel", ceiling);
-        BlockReflective.registerCompatBlocks("ceilingfan", ceilingfan);
-        BlockReflective.registerCompatBlocks("ceilingvent", ceilingvent);
-        BlockReflective.registerCompatBlocks("ceilinggrill", ceilinggrill);
-        BlockReflective.registerCompatBlocks("floorgrill", floorgrill);
-        BlockReflective.registerCompatBlocks("industrialwall", industrialwall);
-        BlockReflective.registerCompatBlocks("industrialwall2", industrialwallstriped);
-        BlockReflective.registerCompatBlocks("industrialvent", vent0);
-        BlockReflective.registerCompatBlocks("vent.wall", vent1);
-        BlockReflective.registerCompatBlocks("vent.ceiling", vent2);
-        BlockReflective.registerCompatBlocks("industrialbricks", industrialbricks);
-        BlockReflective.registerCompatBlocks("industrialglass", industrialglass);
-        BlockReflective.registerCompatBlocks("metalpanel1", metalpanel);
-        BlockReflective.registerCompatBlocks("metalpanel2", metalcolumn0);
-        BlockReflective.registerCompatBlocks("metalpanel3", metalcolumn1);
-        BlockReflective.registerCompatBlocks("shippanel", metal1);
-        BlockReflective.registerCompatBlocks("shippannelyautja", metal2);
-        BlockReflective.registerCompatBlocks("tileovamorphdesign", relicovamorph);
-        BlockReflective.registerCompatBlocks("tilefacehuggerdesign", relicfacehugger);
-        BlockReflective.registerCompatBlocks("tilealiendesign", relicalien);
-        BlockReflective.registerCompatBlocks("shipwallbase", ship1);
-        BlockReflective.registerCompatBlocks("shipsupportpillar", ship2);
-        BlockReflective.registerCompatBlocks("shipdecor1", ship3);
-        BlockReflective.registerCompatBlocks("shipdecor2", ship5);
-        BlockReflective.registerCompatBlocks("shipdecor3", ship6);
-        BlockReflective.registerCompatBlocks("shipbrick", ship4);
-        BlockReflective.registerCompatBlocks("templebricksingle", templetilesingle);
-        BlockReflective.registerCompatBlocks("templebrick", templebrick);
-        BlockReflective.registerCompatBlocks("templetile", templetile);
-        BlockReflective.registerCompatBlocks("templewallbase", templewall1);
-        BlockReflective.registerCompatBlocks("templefloor", templewall2);
-        BlockReflective.registerCompatBlocks("skulls", skulls);
-        BlockReflective.registerCompatBlocks("plasticblock", plastic);
-        BlockReflective.registerCompatBlocks("paddingpanel", paddingpanel);
-        BlockReflective.registerCompatBlocks("plastictile", plastictile);
-        BlockReflective.registerCompatBlocks("plastictiletri", plastictri);
-        BlockReflective.registerCompatBlocks("plastictilecircle", plasticcircle);
-        BlockReflective.registerCompatBlocks("engineershipfloor", engineerfloor);
-        BlockReflective.registerCompatBlocks("engineershipbrick", engineerbrick0);
-        BlockReflective.registerCompatBlocks("engineershipbrick1", engineerbrick1);
-        BlockReflective.registerCompatBlocks("engineershipbrick2", engineerbrick2);
-        BlockReflective.registerCompatBlocks("engineershipbrick3", engineerbrick3);
-        BlockReflective.registerCompatBlocks("engineershipgravel", engineergravel);
-        BlockReflective.registerCompatBlocks("engineershipwall", engineerwall0);
-        BlockReflective.registerCompatBlocks("engineershipwall1", engineerwall1);
-        BlockReflective.registerCompatBlocks("engineershipwall2", engineerwall2);
-        BlockReflective.registerCompatBlocks("engineershipwall3", engineerwall3);
-        BlockReflective.registerCompatBlocks("engineershipwall4", engineerwall4);
-        BlockReflective.registerCompatBlocks("engineershiprock", engineerrock0);
-        BlockReflective.registerCompatBlocks("engineershiprock1", engineerrock1);
-        BlockReflective.registerCompatBlocks("engineershiprock2", engineerrock2);
-        BlockReflective.registerCompatBlocks("engineershiprock3", engineerrock3);
-        BlockReflective.registerCompatBlocks("engineershipcolumn1", engineercolumn1);
-        BlockReflective.registerCompatBlocks("engineershipcolumn2", engineercolumn2);
-        BlockReflective.registerCompatBlocks("engineershipmaterial0", engineermaterial0);
-        BlockReflective.registerCompatBlocks("engineershipmaterial1", engineermaterial1);
-        BlockReflective.registerCompatBlocks("engineershipmaterial2", engineermaterial2);
+//        BlockReflective.registerCompatBlocks("hiveresin.standard", resin);
+//        BlockReflective.registerCompatBlocks("unidirt", unidirt);
+//        BlockReflective.registerCompatBlocks("unistone", unistone);
+//        BlockReflective.registerCompatBlocks("unisand", unisand);
+//        BlockReflective.registerCompatBlocks("unigravel", unigravel);
+//        BlockReflective.registerCompatBlocks("ceilingpanel", ceiling);
+//        BlockReflective.registerCompatBlocks("ceilingfan", ceilingfan);
+//        BlockReflective.registerCompatBlocks("ceilingvent", ceilingvent);
+//        BlockReflective.registerCompatBlocks("ceilinggrill", ceilinggrill);
+//        BlockReflective.registerCompatBlocks("floorgrill", floorgrill);
+//        BlockReflective.registerCompatBlocks("industrialwall", industrialwall);
+//        BlockReflective.registerCompatBlocks("industrialwall2", industrialwallstriped);
+//        BlockReflective.registerCompatBlocks("industrialvent", vent0);
+//        BlockReflective.registerCompatBlocks("vent.wall", vent1);
+//        BlockReflective.registerCompatBlocks("vent.ceiling", vent2);
+//        BlockReflective.registerCompatBlocks("industrialbricks", industrialbricks);
+//        BlockReflective.registerCompatBlocks("industrialglass", industrialglass);
+//        BlockReflective.registerCompatBlocks("metalpanel1", metalpanel);
+//        BlockReflective.registerCompatBlocks("metalpanel2", metalcolumn0);
+//        BlockReflective.registerCompatBlocks("metalpanel3", metalcolumn1);
+//        BlockReflective.registerCompatBlocks("shippanel", metal1);
+//        BlockReflective.registerCompatBlocks("shippannelyautja", metal2);
+//        BlockReflective.registerCompatBlocks("tileovamorphdesign", relicovamorph);
+//        BlockReflective.registerCompatBlocks("tilefacehuggerdesign", relicfacehugger);
+//        BlockReflective.registerCompatBlocks("tilealiendesign", relicalien);
+//        BlockReflective.registerCompatBlocks("shipwallbase", ship1);
+//        BlockReflective.registerCompatBlocks("shipsupportpillar", ship2);
+//        BlockReflective.registerCompatBlocks("shipdecor1", ship3);
+//        BlockReflective.registerCompatBlocks("shipdecor2", ship5);
+//        BlockReflective.registerCompatBlocks("shipdecor3", ship6);
+//        BlockReflective.registerCompatBlocks("shipbrick", ship4);
+//        BlockReflective.registerCompatBlocks("templebricksingle", templetilesingle);
+//        BlockReflective.registerCompatBlocks("templebrick", templebrick);
+//        BlockReflective.registerCompatBlocks("templetile", templetile);
+//        BlockReflective.registerCompatBlocks("templewallbase", templewall1);
+//        BlockReflective.registerCompatBlocks("templefloor", templewall2);
+//        BlockReflective.registerCompatBlocks("skulls", skulls);
+//        BlockReflective.registerCompatBlocks("plasticblock", plastic);
+//        BlockReflective.registerCompatBlocks("paddingpanel", paddingpanel);
+//        BlockReflective.registerCompatBlocks("plastictile", plastictile);
+//        BlockReflective.registerCompatBlocks("plastictiletri", plastictri);
+//        BlockReflective.registerCompatBlocks("plastictilecircle", plasticcircle);
+//        BlockReflective.registerCompatBlocks("engineershipfloor", engineerfloor);
+//        BlockReflective.registerCompatBlocks("engineershipbrick", engineerbrick0);
+//        BlockReflective.registerCompatBlocks("engineershipbrick1", engineerbrick1);
+//        BlockReflective.registerCompatBlocks("engineershipbrick2", engineerbrick2);
+//        BlockReflective.registerCompatBlocks("engineershipbrick3", engineerbrick3);
+//        BlockReflective.registerCompatBlocks("engineershipgravel", engineergravel);
+//        BlockReflective.registerCompatBlocks("engineershipwall", engineerwall0);
+//        BlockReflective.registerCompatBlocks("engineershipwall1", engineerwall1);
+//        BlockReflective.registerCompatBlocks("engineershipwall2", engineerwall2);
+//        BlockReflective.registerCompatBlocks("engineershipwall3", engineerwall3);
+//        BlockReflective.registerCompatBlocks("engineershipwall4", engineerwall4);
+//        BlockReflective.registerCompatBlocks("engineershiprock", engineerrock0);
+//        BlockReflective.registerCompatBlocks("engineershiprock1", engineerrock1);
+//        BlockReflective.registerCompatBlocks("engineershiprock2", engineerrock2);
+//        BlockReflective.registerCompatBlocks("engineershiprock3", engineerrock3);
+//        BlockReflective.registerCompatBlocks("engineershipcolumn1", engineercolumn1);
+//        BlockReflective.registerCompatBlocks("engineershipcolumn2", engineercolumn2);
+//        BlockReflective.registerCompatBlocks("engineershipmaterial0", engineermaterial0);
+//        BlockReflective.registerCompatBlocks("engineershipmaterial1", engineermaterial1);
+//        BlockReflective.registerCompatBlocks("engineershipmaterial2", engineermaterial2);
     }
 
     @Override
@@ -343,5 +355,17 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public Block registerOnly(String identifier, Block block)
     {
         return super.register(identifier, block);
+    }
+
+    @SubscribeEvent
+    public static void registerBlocks(RegistryEvent.Register<Block> event)
+    {
+        AliensVsPredator.fluids().registerBlocks(event);
+    }
+    
+    @SubscribeEvent
+    public static void registerItemBlocks(RegistryEvent.Register<Item> event)
+    {
+        AliensVsPredator.fluids().registerItems(event);
     }
 }

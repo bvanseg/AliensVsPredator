@@ -1,16 +1,19 @@
 {
     "forge_marker": 1,
-    "defaults": {
-        "textures": {
-            "all": "avp:blocks/mist"
-        }
-    },
-    "variants": {
-        "normal": [{
-            "model": "cube_all"
-        }],
-        "inventory": [{
-            "model": "cube_all"
-        }]
-    }
+	"variants": {
+		"fluid": [{
+			"custom": {
+				"fluid": "mist"
+			},
+			"model": "forge:fluid"
+		}],
+		"inventory": [{
+			"model": "forge:forgebucket",
+			"textures": {
+				"base": "forge:items/bucket_base",
+				"fluid": "forge:items/bucket_fluid",
+				"cover": "forge:items/bucket_cover"
+			}
+		}]
+	}
 }

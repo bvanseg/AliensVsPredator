@@ -3,6 +3,7 @@ package org.avp.client;
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 
 import org.avp.AliensVsPredator;
+import org.avp.FluidHandler.FluidRegistration;
 import org.avp.ItemHandler;
 import org.avp.client.model.items.Model88MOD4;
 import org.avp.client.model.items.ModelAK47;
@@ -253,15 +254,26 @@ import com.arisux.mdx.lib.game.IInitEvent;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 import com.arisux.mdx.lib.game.Renderers;
 
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
+@Mod.EventBusSubscriber(Side.CLIENT)
 public class Renders implements IInitEvent, IPreInitEvent
 {
     public static Renders instance = new Renders();
@@ -284,7 +296,42 @@ public class Renders implements IInitEvent, IPreInitEvent
         FaceLocationTransforms.register();
         VanillaFaceLocationTransforms.register();
     }
-    
+
+    @SubscribeEvent
+    public static void registerAllModels(ModelRegistryEvent event)
+    {
+        registerFluidModels();
+    }
+
+    private static void registerFluidModels()
+    {
+        for (FluidRegistration registration : AliensVsPredator.fluids().getFluidRegistrations())
+        {
+            BlockFluidBase block = registration.getBlockFluid();
+
+            final Item item = Item.getItemFromBlock(block);
+            assert item != null;
+
+            final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(AliensVsPredator.Properties.DOMAIN + block.getFluid().getName(), "fluid");
+
+            ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition() {
+                @Override
+                public ModelResourceLocation getModelLocation(ItemStack stack)
+                {
+                    return modelResourceLocation;
+                }
+            });
+
+            ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
+                @Override
+                protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+                {
+                    return modelResourceLocation;
+                }
+            });
+        }
+    }
+
     private void registerModelLoaders(FMLPreInitializationEvent event)
     {
         OBJLoader.INSTANCE.addDomain(AliensVsPredator.Properties.ID);

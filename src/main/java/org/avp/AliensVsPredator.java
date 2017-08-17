@@ -58,7 +58,6 @@ public class AliensVsPredator implements IMod
 
         console().pre(event);
         settings().pre(event);
-        fluids().pre(event);
         items().pre(event);
         capabilities().pre(event);
         entities().pre(event);
