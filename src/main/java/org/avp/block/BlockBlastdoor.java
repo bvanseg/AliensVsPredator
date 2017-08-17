@@ -6,11 +6,11 @@ import org.avp.tile.TileEntityBlastdoor;
 import com.arisux.mdx.lib.client.Notification;
 import com.arisux.mdx.lib.client.Notification.DynamicNotification;
 import com.arisux.mdx.lib.client.Notifications;
+import com.arisux.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -20,7 +20,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -123,7 +122,9 @@ public class BlockBlastdoor extends Block
         {
             TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
 
-            blastdoor.setDirection(getFacing(placer));
+            blastdoor.setDirection(Entities.getDirectionFacing(placer));
+            
+            System.out.println("placing at " + pos);
 
             if (!blastdoor.setup(true))
             {
@@ -172,12 +173,6 @@ public class BlockBlastdoor extends Block
         return true;
     }
 
-    public static EnumFacing getFacing(Entity entity)
-    {
-        int dir = MathHelper.floor((entity.rotationYaw / 90) + 0.5) & 3;
-        return EnumFacing.getFront(dir);
-    }
-    
     @Override
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
     {

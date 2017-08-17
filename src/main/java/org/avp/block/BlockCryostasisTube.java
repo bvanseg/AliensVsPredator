@@ -3,6 +3,7 @@ package org.avp.block;
 import org.avp.item.ItemEntitySummoner;
 import org.avp.tile.TileEntityCryostasisTube;
 
+import com.arisux.mdx.lib.world.entity.Entities;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
@@ -12,7 +13,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -21,7 +21,6 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IUnlistedProperty;
 
@@ -110,14 +109,8 @@ public class BlockCryostasisTube extends Block
 
         if (tile != null)
         {
-            tile.setDirection(getFacing(placer));
+            tile.setDirection(Entities.getDirectionFacing(placer));
             world.markBlockRangeForRenderUpdate(pos, pos);
         }
-    }
-
-    public static EnumFacing getFacing(Entity entity)
-    {
-        int dir = MathHelper.floor((entity.rotationYaw / 90) + 0.5) & 3;
-        return EnumFacing.getFront(dir);
     }
 }

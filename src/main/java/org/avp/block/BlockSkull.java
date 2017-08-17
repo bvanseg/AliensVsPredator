@@ -4,6 +4,7 @@ import org.avp.tile.TileEntitySkull;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.Texture;
+import com.arisux.mdx.lib.world.entity.Entities;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
 
@@ -13,14 +14,11 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
@@ -94,7 +92,7 @@ public abstract class BlockSkull extends Block
         if (tile != null && tile instanceof TileEntitySkull && placer != null)
         {
             TileEntitySkull skull = (TileEntitySkull) tile;
-            skull.setDirection(getFacing(placer));
+            skull.setDirection(Entities.getDirectionFacing(placer));
         }
     }
 
@@ -102,11 +100,5 @@ public abstract class BlockSkull extends Block
     public boolean hasTileEntity(IBlockState state)
     {
         return true;
-    }
-
-    public static EnumFacing getFacing(Entity entity)
-    {
-        int dir = MathHelper.floor((entity.rotationYaw / 90) + 0.5) & 3;
-        return EnumFacing.getFront(dir);
     }
 }

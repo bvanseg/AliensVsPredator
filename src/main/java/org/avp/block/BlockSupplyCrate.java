@@ -6,6 +6,7 @@ import org.avp.entities.EntitySupplyChute;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 import org.avp.tile.TileEntitySupplyCrate;
 
+import com.arisux.mdx.lib.world.entity.Entities;
 import com.arisux.mdx.lib.world.tile.IRotatable;
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableMap;
@@ -16,7 +17,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,7 +26,6 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IUnlistedProperty;
 
@@ -145,7 +144,7 @@ public class BlockSupplyCrate extends BlockFalling
         if (tile != null && tile instanceof IRotatable && placer != null)
         {
             IRotatable rotatable = (IRotatable) tile;
-            rotatable.setDirection(getFacing(placer));
+            rotatable.setDirection(Entities.getDirectionFacing(placer));
         }
     }
     
@@ -169,10 +168,5 @@ public class BlockSupplyCrate extends BlockFalling
                 }
             }
         }
-    }
-    public static EnumFacing getFacing(Entity entity)
-    {
-        int dir = MathHelper.floor((entity.rotationYaw / 90) + 0.5) & 3;
-        return EnumFacing.getFront(dir);
     }
 }
