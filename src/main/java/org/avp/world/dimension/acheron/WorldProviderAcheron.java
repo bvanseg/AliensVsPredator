@@ -44,13 +44,13 @@ public class WorldProviderAcheron extends WorldProvider
     @SideOnly(Side.CLIENT)
     public IRenderHandler getSkyRenderer()
     {
-        return skyProvider == null ? skyProvider = new SkyProviderAcheron() : skyProvider;
+        return skyProvider == null ? skyProvider = SkyProviderAcheron.instance : skyProvider;
     }
 
     @Override
     public IRenderHandler getCloudRenderer()
     {
-        return skyProvider == null ? skyProvider = new SkyProviderAcheron() : skyProvider;
+        return skyProvider == null ? skyProvider = SkyProviderAcheron.instance : skyProvider;
     }
 
     @Override
@@ -105,7 +105,7 @@ public class WorldProviderAcheron extends WorldProvider
     @SideOnly(Side.CLIENT)
     public Vec3d getFogColor(float var1, float var2)
     {
-        return new Vec3d(0.0F, 0.0F, 0.0F);
+        return new Vec3d(-0.095F, -0.095F, -0.145F);
     }
 
     @Override

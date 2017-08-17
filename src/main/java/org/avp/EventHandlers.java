@@ -18,6 +18,7 @@ import org.avp.client.render.VisionModeRenderEvent;
 import org.avp.client.render.items.RenderMotionTrackerScreen;
 import org.avp.world.CapabilityHandler;
 import org.avp.world.EntityImpregnationHandler;
+import org.avp.world.dimension.acheron.SkyProviderAcheron;
 import org.avp.world.fluids.BucketHandlingEvent;
 import org.avp.world.hives.HiveHandler;
 import org.avp.world.hooks.FarmlandRegistry;
@@ -55,6 +56,7 @@ public class EventHandlers implements IInitEvent
             this.registerEvent(RenderPlayerAPCEvent.instance);
             this.registerEvent(BossBarEvent.instance);
             this.registerEvent(RenderLivingHook.instance);
+            this.registerEvent(SkyProviderAcheron.instance);
         }
 
         if (FMLCommonHandler.instance().getSide() == Side.SERVER)

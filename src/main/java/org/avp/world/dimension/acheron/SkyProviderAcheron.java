@@ -22,9 +22,15 @@ import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SkyProviderAcheron extends IRenderHandler
 {
+    public static final SkyProviderAcheron instance = new SkyProviderAcheron();
+    
     protected Color skyColor       = new com.arisux.mdx.lib.client.render.Color(0.0F, 0.0F, 0.0F, 1F);
     protected Color cloudColor     = new com.arisux.mdx.lib.client.render.Color(0.03F, 0.03F, 0.05F, 0.8F);
     protected Color starColor      = new com.arisux.mdx.lib.client.render.Color(0.0F, 0.5F, 1.0F, 0.15F);
@@ -33,6 +39,38 @@ public class SkyProviderAcheron extends IRenderHandler
     public SkyProviderAcheron()
     {
         this.generateStars();
+    }
+    
+    private float fogIntensity;
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void fogRenderEvent(RenderFogEvent event)
+    {
+        if (Game.minecraft().player.world.provider instanceof WorldProviderAcheron)
+        {
+            float fogIntensityMin = 0.02F;
+            float fogIntensityMax = 0.075F;
+            float fogMult = 0.00005F;
+            
+            GlStateManager.setFog(GlStateManager.FogMode.EXP);
+
+            if (Game.minecraft().player.world.canSeeSky(Game.minecraft().player.getPosition()))
+            {
+                if (fogIntensity < fogIntensityMax)
+                {
+                    fogIntensity += fogMult;
+                }
+            }
+            else
+            {
+                if (fogIntensity > fogIntensityMin)
+                {
+                    fogIntensity -= fogMult;
+                }
+            }
+            GlStateManager.setFogDensity(fogIntensity);
+        }
     }
 
     private void generateStars()
@@ -111,9 +149,9 @@ public class SkyProviderAcheron extends IRenderHandler
         OpenGL.disable(GL11.GL_TEXTURE_2D);
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         GL11.glDepthMask(false);
-        OpenGL.enable(GL11.GL_FOG);
+        GlStateManager.enableFog();
         GL11.glColor3f(skyColor.r, skyColor.g, skyColor.b);
-        OpenGL.disable(GL11.GL_FOG);
+        GlStateManager.disableFog();
         OpenGL.disable(GL11.GL_ALPHA_TEST);
         OpenGL.enable(GL11.GL_BLEND);
         OpenGL.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
