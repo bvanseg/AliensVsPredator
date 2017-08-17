@@ -50,6 +50,7 @@ import com.arisux.mdx.lib.world.block.BlockMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -160,6 +161,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     // @GameRegistry.ObjectHolder("blackgoo")
     public static final BlockFluidClassic blackgoo = null;
     public static final BlockFluidClassic mist = null;
+    public static final Block lv426rock = null;
 
     public Block transformer = new BlockTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F);
     public Block stepdownTransformer = new BlockNegativeTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F);
@@ -361,11 +363,15 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
         AliensVsPredator.fluids().registerBlocks(event);
+        
+        event.getRegistry().register(new BlockMaterial(Material.ROCK).setRegistryName("lv426rock").setHardness(1.3F).setResistance(2.0F));
     }
 
     @SubscribeEvent
     public static void registerItemBlocks(RegistryEvent.Register<Item> event)
     {
         AliensVsPredator.fluids().registerItems(event);
+        
+        event.getRegistry().register(new ItemBlock(lv426rock).setRegistryName("lv426rock"));
     }
 }
