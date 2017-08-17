@@ -241,12 +241,11 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         return this.doorProgress;
     }
 
-    public boolean setChildTile(BlockPos pos)
+    public boolean setChildTile(BlockPos position)
     {
-        IBlockState blockstate = this.world.getBlockState(pos);
-        Block block = blockstate.getBlock();
+        IBlockState blockstate = this.world.getBlockState(position);
 
-        if (blockstate.getMaterial() != Material.AIR && block != AliensVsPredator.blocks().blastDoor)
+        if (blockstate.getMaterial() != Material.AIR)
         {
             if (this.world.isRemote)
             {
@@ -256,12 +255,12 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
             return false;
         }
 
-        world.setBlockState(pos, AliensVsPredator.blocks().blastDoor.getDefaultState());
-        TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) world.getTileEntity(pos);
-
+        world.setBlockState(position, AliensVsPredator.blocks().blastDoor.getDefaultState());
+        TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) world.getTileEntity(position);
+        
         if (blastdoor == null)
         {
-            System.out.println("Blastdoor was null");
+            Game.minecraft().player.sendMessage(new TextComponentString("Internal Error: TileEntityBlastDoor.setChildTile()/blastdoor = null"));
             return false;
         }
 
@@ -309,9 +308,13 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         
         if (this.direction != null)
         {
-            for (BlockPos pos : this.setFor(this.direction))
+            BlockPos[] set = this.setFor(this.direction);
+            
+            for (BlockPos offset : set)
             {
-                if (!this.setChildTile(pos))
+                BlockPos position = this.getPos().add(offset);
+                
+                if (!this.setChildTile(position))
                 {
                     return false;
                 }
@@ -384,17 +387,19 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     public BlockPos[] defaultSet()
     {
         List<BlockPos> set = new ArrayList<BlockPos>();
-        set.add(this.getPos().add(1, 0, 0));
-        set.add(this.getPos().add(2, 0, 0));
-        set.add(this.getPos().add(3, 0, 0));
-        set.add(this.getPos().add(0, 1, 0));
-        set.add(this.getPos().add(0, 2, 0));
-        set.add(this.getPos().add(1, 2, 0));
-        set.add(this.getPos().add(1, 1, 0));
-        set.add(this.getPos().add(2, 2, 0));
-        set.add(this.getPos().add(2, 1, 0));
-        set.add(this.getPos().add(3, 2, 0));
-        set.add(this.getPos().add(3, 1, 0));
+        BlockPos pos = new BlockPos(0, 0, 0);
+        
+        set.add(pos.add(1, 0, 0));
+        set.add(pos.add(2, 0, 0));
+        set.add(pos.add(3, 0, 0));
+        set.add(pos.add(0, 1, 0));
+        set.add(pos.add(0, 2, 0));
+        set.add(pos.add(1, 2, 0));
+        set.add(pos.add(1, 1, 0));
+        set.add(pos.add(2, 2, 0));
+        set.add(pos.add(2, 1, 0));
+        set.add(pos.add(3, 2, 0));
+        set.add(pos.add(3, 1, 0));
 
         return set.toArray(new BlockPos[set.size()]);
     }
