@@ -9,6 +9,7 @@ import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.Screen;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
 
 
@@ -43,7 +44,7 @@ public class RenderMaterialBlackGoo implements IMaterialRenderer
     @Override
     public void renderFog(Material material)
     {
-        GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
-        GL11.glFogf(GL11.GL_FOG_DENSITY, 1.5F);
+        GlStateManager.setFog(GlStateManager.FogMode.EXP2);
+        GlStateManager.setFogDensity(1.5F);
     }
 }

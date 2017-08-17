@@ -4,13 +4,13 @@ import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 import org.avp.AliensVsPredator;
-import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.Screen;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
 
 
@@ -42,7 +42,7 @@ public interface IMaterialRenderer
     
     public default void renderFog(Material material)
     {
-        GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
-        GL11.glFogf(GL11.GL_FOG_DENSITY, 0.25F);
+        GlStateManager.setFog(GlStateManager.FogMode.EXP);
+        GlStateManager.setFogDensity(0.25F);
     }
 }

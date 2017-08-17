@@ -76,17 +76,14 @@ public class MaterialHandler
         {
             Material material = getMaterialInside(Game.minecraft().player);
 
-            if (material instanceof IMaterialPhysics)
+            if (material instanceof IMaterialPhysics && Game.minecraft().player.isInsideOfMaterial(material))
             {
-                if (Game.minecraft().player.isInsideOfMaterial(material))
-                {
-                    IMaterialPhysics physics = (IMaterialPhysics) material;
-                    IMaterialRenderer renderer = (IMaterialRenderer) physics.getMaterialRenderer();
+                IMaterialPhysics physics = (IMaterialPhysics) material;
+                IMaterialRenderer renderer = (IMaterialRenderer) physics.getMaterialRenderer();
 
-                    if (renderer != null)
-                    {
-                        renderer.renderFog(material);
-                    }
+                if (renderer != null)
+                {
+                    renderer.renderFog(material);
                 }
             }
         }
