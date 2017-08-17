@@ -4,6 +4,7 @@ import org.avp.api.blocks.material.IMaterialRenderer;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
 
 
@@ -24,7 +25,7 @@ public class RenderMaterialMist implements IMaterialRenderer
     @Override
     public void renderFog(Material material)
     {
-        GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP);
+        GlStateManager.setFog(GlStateManager.FogMode.EXP);
         GL11.glFogf(GL11.GL_FOG_DENSITY, 0.2F);
     }
 }
