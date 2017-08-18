@@ -124,8 +124,6 @@ public class BlockBlastdoor extends Block
 
             blastdoor.setDirection(Entities.getDirectionFacing(placer));
             
-            System.out.println("placing at " + pos);
-
             if (!blastdoor.setup(true))
             {
                 world.setBlockToAir(pos);
