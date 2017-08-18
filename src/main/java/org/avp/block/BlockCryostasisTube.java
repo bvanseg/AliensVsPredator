@@ -5,13 +5,9 @@ import org.avp.tile.TileEntityCryostasisTube;
 
 import com.arisux.mdx.lib.world.entity.Entities;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,7 +18,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IUnlistedProperty;
 
 public class BlockCryostasisTube extends Block
 {
@@ -32,32 +27,6 @@ public class BlockCryostasisTube extends Block
         this.setTickRandomly(true);
     }
 
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[0])
-        {
-            @Override
-            protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
-            {
-                return new StateImplementation(block, properties)
-                {
-                    @Override
-                    public boolean isOpaqueCube()
-                    {
-                        return false;
-                    }
-                    
-                    @Override
-                    public EnumBlockRenderType getRenderType()
-                    {
-                        return EnumBlockRenderType.INVISIBLE;
-                    }
-                };
-            }
-        };
-    }
-    
     @Override
     public TileEntity createTileEntity(World world, IBlockState state)
     {
@@ -112,5 +81,17 @@ public class BlockCryostasisTube extends Block
             tile.setDirection(Entities.getDirectionFacing(placer));
             world.markBlockRangeForRenderUpdate(pos, pos);
         }
+    }
+    
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state)
+    {
+        return EnumBlockRenderType.INVISIBLE;
+    }
+    
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
     }
 }

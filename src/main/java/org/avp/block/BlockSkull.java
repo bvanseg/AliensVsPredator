@@ -5,13 +5,9 @@ import org.avp.tile.TileEntitySkull;
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.Texture;
 import com.arisux.mdx.lib.world.entity.Entities;
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,7 +16,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -33,29 +28,15 @@ public abstract class BlockSkull extends Block
     }
 
     @Override
-    protected BlockStateContainer createBlockState()
+    public boolean isOpaqueCube(IBlockState state)
     {
-        return new BlockStateContainer(this, new IProperty[0])
-        {
-            @Override
-            protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
-            {
-                return new StateImplementation(block, properties)
-                {
-                    @Override
-                    public boolean isOpaqueCube()
-                    {
-                        return false;
-                    }
-                    
-                    @Override
-                    public EnumBlockRenderType getRenderType()
-                    {
-                        return EnumBlockRenderType.INVISIBLE;
-                    }
-                };
-            }
-        };
+        return false;
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state)
+    {
+        return EnumBlockRenderType.INVISIBLE;
     }
 
     @SideOnly(Side.CLIENT)
@@ -83,7 +64,7 @@ public abstract class BlockSkull extends Block
     {
         return new TileEntitySkull();
     }
-    
+
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {

@@ -5,13 +5,9 @@ import org.avp.world.hives.HiveHandler;
 
 import com.arisux.mdx.lib.world.Pos;
 import com.arisux.mdx.lib.world.Pos.BlockDataStore;
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -21,7 +17,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IUnlistedProperty;
 
 public class BlockHiveResin extends Block
 {
@@ -32,30 +27,15 @@ public class BlockHiveResin extends Block
     }
 
     @Override
-    protected BlockStateContainer createBlockState()
+    public boolean isOpaqueCube(IBlockState state)
     {
-        return new BlockStateContainer(this, new IProperty[0])
-        {
-            @Override
-            protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
-            {
-                return new StateImplementation(block, properties)
-                {
-                    @Override
-                    public boolean isOpaqueCube()
-                    {
-                        return false;
-                    }
-
-                    @Override
-                    public EnumBlockRenderType getRenderType()
-                    {
-                        // AliensVsPredator.renderTypes().RENDER_TYPE_RESIN
-                        return EnumBlockRenderType.MODEL;
-                    }
-                };
-            }
-        };
+        return false;
+    }
+    
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state)
+    {
+        return EnumBlockRenderType.MODEL;
     }
 
     @Override

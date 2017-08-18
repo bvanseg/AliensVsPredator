@@ -14,6 +14,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -35,29 +36,15 @@ public class BlockPortal extends Block
     }
     
     @Override
-    protected BlockStateContainer createBlockState()
+    public boolean isOpaqueCube(IBlockState state)
     {
-        return new BlockStateContainer(this, new IProperty[0])
-        {
-            @Override
-            protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
-            {
-                return new StateImplementation(block, properties)
-                {
-                    @Override
-                    public boolean isOpaqueCube()
-                    {
-                        return false;
-                    }
-                    
-                    @Override
-                    public AxisAlignedBB getCollisionBoundingBox(World worldIn, BlockPos pos)
-                    {
-                        return null;
-                    }
-                };
-            }
-        };
+        return false;
+    }
+    
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    {
+        return null;
     }
     
     @Override

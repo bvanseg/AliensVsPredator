@@ -4,13 +4,9 @@ import org.avp.tile.TileEntityLocker;
 
 import com.arisux.mdx.lib.world.entity.Entities;
 import com.arisux.mdx.lib.world.tile.IRotatable;
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -22,8 +18,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.property.IUnlistedProperty;
 
 public class BlockLocker extends Block
 {
@@ -32,44 +28,49 @@ public class BlockLocker extends Block
         super(material);
         setTickRandomly(true);
     }
+    
     @Override
-    protected BlockStateContainer createBlockState()
+    public boolean isOpaqueCube(IBlockState state)
     {
-        return new BlockStateContainer(this, new IProperty[0])
+        return false;
+    }
+    
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state)
+    {
+        return EnumBlockRenderType.INVISIBLE;
+    }
+    
+    @Override
+    public boolean isFullBlock(IBlockState state)
+    {
+        return true;
+    }
+    
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
+    }
+
+    @Override
+    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    {
+        return true;
+    }
+    
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    {
+        TileEntity tile = worldIn.getTileEntity(pos);
+
+        if (tile != null && tile instanceof TileEntityLocker)
         {
-            @Override
-            protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
-            {
-                return new StateImplementation(block, properties)
-                {
-                    @Override
-                    public boolean isOpaqueCube()
-                    {
-                        return false;
-                    }
-                    
-                    @Override
-                    public EnumBlockRenderType getRenderType()
-                    {
-                        return EnumBlockRenderType.INVISIBLE;
-                    }
-                    
-                    @Override
-                    public AxisAlignedBB getCollisionBoundingBox(World world, BlockPos pos)
-                    {
-                        TileEntity tile = world.getTileEntity(pos);
+            TileEntityLocker locker = (TileEntityLocker) tile;
+            return locker.isOpen() ? null : blockState.getBoundingBox(worldIn, pos);
+        }
 
-                        if (tile != null && tile instanceof TileEntityLocker)
-                        {
-                            TileEntityLocker locker = (TileEntityLocker) tile;
-                            return locker.isOpen() ? null : super.getCollisionBoundingBox(world, pos);
-                        }
-
-                        return super.getCollisionBoundingBox(world, pos);
-                    }
-                };
-            }
-        };
+        return blockState.getBoundingBox(worldIn, pos);
     }
     
     @Override

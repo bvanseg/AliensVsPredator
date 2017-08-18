@@ -22,31 +22,6 @@ public class BlockGenerator extends Block
         super(material);
         this.setTickRandomly(true);
     }
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[0])
-        {
-            @Override
-            protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
-            {
-                return new StateImplementation(block, properties)
-                {
-                    @Override
-                    public boolean isOpaqueCube()
-                    {
-                        return false;
-                    }
-                    
-                    @Override
-                    public EnumBlockRenderType getRenderType()
-                    {
-                        return EnumBlockRenderType.INVISIBLE;
-                    }
-                };
-            }
-        };
-    }
 
     @Override
     public TileEntity createTileEntity(World world, IBlockState state)
@@ -58,5 +33,17 @@ public class BlockGenerator extends Block
     public boolean hasTileEntity(IBlockState state)
     {
         return true;
+    }
+    
+    @Override
+    public boolean isOpaqueCube(IBlockState state)
+    {
+        return false;
+    }
+    
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state)
+    {
+        return EnumBlockRenderType.INVISIBLE;
     }
 }

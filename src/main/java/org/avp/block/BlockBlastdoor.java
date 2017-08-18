@@ -170,13 +170,7 @@ public class BlockBlastdoor extends Block
     {
         return true;
     }
-
-    @Override
-    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-    {
-        return true;
-    }
-
+    
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
     {
@@ -221,5 +215,11 @@ public class BlockBlastdoor extends Block
     public boolean isFullCube(IBlockState state)
     {
         return false;
+    }
+
+    @Override
+    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    {
+        return true;
     }
 }

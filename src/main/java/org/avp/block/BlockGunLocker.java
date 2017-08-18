@@ -25,20 +25,6 @@ public class BlockGunLocker extends BlockLocker
         super(material);
         setTickRandomly(true);
     }
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[0])
-        {
-            @Override
-            protected StateImplementation createState(Block block, ImmutableMap<IProperty<?>, Comparable<?>> properties, ImmutableMap<IUnlistedProperty<?>, Optional<?>> unlistedProperties)
-            {
-                return new StateImplementation(block, properties)
-                {
-                };
-            }
-        };
-    }
 
     @Override
     public TileEntity createTileEntity(World world, IBlockState state)
