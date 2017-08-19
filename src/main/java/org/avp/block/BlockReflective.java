@@ -5,6 +5,7 @@ import java.util.Random;
 import org.avp.AliensVsPredator;
 import org.avp.block.properties.UnlistedPropertyBlockstate;
 import org.avp.block.util.EnumAlignment;
+import org.avp.client.model.loaders.ReflectiveModelLoader;
 import org.avp.tile.TileEntityReflective;
 
 import com.arisux.mdx.commands.CommandBlockUpdate;
@@ -24,9 +25,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -34,6 +37,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -288,7 +293,13 @@ public class BlockReflective extends Block implements ITileEntityProvider
         this.convert = convert;
         this.setTickRandomly(convert);
     }
-
+    
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state)
+    {
+        return convert ? EnumBlockRenderType.INVISIBLE : EnumBlockRenderType.MODEL;
+    }
+    
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
@@ -410,11 +421,23 @@ public class BlockReflective extends Block implements ITileEntityProvider
         for (final String type : SHAPE_COMPAT_TYPES)
         {
             String shapeId = String.format("%s.%s", identifier, type);
-            AliensVsPredator.blocks().registerOnly(shapeId, new BlockReflective(Material.BARRIER, true));
-            System.out.println("Registerring compat shape " + shapeId);
+            registerBlockOnly(shapeId, new BlockReflective(Material.BARRIER, true));
+            
+            if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+            {
+                ReflectiveModelLoader.INSTANCE.registerDummy(shapeId);
+            }
         }
         
         block.setCreativeTab(AliensVsPredator.tabBlocks());
         AliensVsPredator.blocks().register(identifier, block);
+    }
+
+    public static Block registerBlockOnly(String identifier, Block block)
+    {
+        block.setUnlocalizedName(String.format("%s:%s", AliensVsPredator.Properties.ID, identifier));
+        GameRegistry.register(block, new ResourceLocation(AliensVsPredator.Properties.ID, identifier));
+
+        return block;
     }
 }

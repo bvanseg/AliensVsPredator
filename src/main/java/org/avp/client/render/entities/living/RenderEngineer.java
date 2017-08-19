@@ -15,7 +15,6 @@ public class RenderEngineer extends RenderLivingWrapper<EntitySpeciesEngineer, M
     public RenderEngineer(RenderManager m)
     {
         super(m, AliensVsPredator.resources().models().ENGINEER);
-        System.out.println("constructed engineer renderer");
     }
     
     public RenderEngineer(RenderManager m, TexturedModel<ModelEngineer> model)

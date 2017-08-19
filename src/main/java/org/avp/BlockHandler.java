@@ -158,7 +158,6 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public Block redstoneEmitter = new BlockRedstoneEmitter(Material.IRON).setHardness(3.2F).setResistance(2.6F);
     public Block universalGenerator = new BlockRedstoneFluxGenerator(Material.IRON).setHardness(3.2F).setResistance(2.6F);
 
-    // @GameRegistry.ObjectHolder("blackgoo")
     public static final BlockFluidClassic blackgoo = null;
     public static final BlockFluidClassic mist = null;
     public static final Block lv426rock = null;
@@ -351,11 +350,6 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public Block register(String identifier, Block block)
     {
         block.setCreativeTab(AliensVsPredator.tabBlocks());
-        return super.register(identifier, block);
-    }
-
-    public Block registerOnly(String identifier, Block block)
-    {
         return super.register(identifier, block);
     }
 
