@@ -55,14 +55,14 @@ public class SkyProviderAcheron extends IRenderHandler
         {
             if (Game.minecraft().player.world.canSeeSky(Game.minecraft().player.getPosition()))
             {
-                if (fogIntensity < fogIntensityMax)
+                if (fogIntensity < 0.03F)
                 {
                     fogIntensity += fogMult;
                 }
             }
             else
             {
-                if (fogIntensity > fogIntensityMin)
+                if (fogIntensity > 0.01F)
                 {
                     fogIntensity -= fogMult;
                 }

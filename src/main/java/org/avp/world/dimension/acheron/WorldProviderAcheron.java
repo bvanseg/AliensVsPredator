@@ -105,7 +105,7 @@ public class WorldProviderAcheron extends WorldProvider
     @SideOnly(Side.CLIENT)
     public Vec3d getFogColor(float var1, float var2)
     {
-        return new Vec3d(-0.105F, -0.115F, -0.145F);
+        return new Vec3d(0F, 0.015F, 0.035F);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class WorldProviderAcheron extends WorldProvider
         brightness = 1.0F - brightness;
         brightness = (float) (brightness * (1.0D - this.world.getRainStrength(angle) * 5.0F / 16.0D));
         brightness = (float) (brightness * (1.0D - this.world.getThunderStrength(angle) * 5.0F / 16.0D));
-        return brightness * 0.25F;
+        return brightness * 0.05F;
     }
 
     @Override
