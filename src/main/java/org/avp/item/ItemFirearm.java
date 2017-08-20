@@ -97,7 +97,7 @@ public class ItemFirearm extends HookedItem
             this.reloadTime = 6 * 20;
             this.ammoConsumptionRate = 1;
             this.soundLength = 0;
-            this.sound = AliensVsPredator.sounds().fxPistolHeavy;
+            this.sound = AliensVsPredator.sounds().fxWeaponPistol;
             this.register();
         }
 

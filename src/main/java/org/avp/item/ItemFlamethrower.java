@@ -42,7 +42,7 @@ public abstract class ItemFlamethrower extends HookedItem
                 world.spawnEntity(entity);
             }
 
-            Sounds.SOUND_WEAPON_FLAMETHROWER.playSound(player);
+            Sounds.WEAPON_FLAMETHROWER.playSound(player);
         }
         return super.onItemRightClick(itemstack, world, player, hand);
     }

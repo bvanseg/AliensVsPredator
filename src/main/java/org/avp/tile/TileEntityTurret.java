@@ -463,7 +463,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.targetEntity.attackEntityFrom(DamageSources.bullet, 1F);
         this.targetEntity.hurtResistantTime = 0;
         // this.world.spawnParticle("largesmoke", xCoord, yCoord, zCoord, 1, 1, 1);
-        Sounds.SOUND_WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+        Sounds.WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
     }
 
     public Rotation turnTurretToPoint(Pos pos, Rotation rotation, float deltaYaw, float deltaPitch)

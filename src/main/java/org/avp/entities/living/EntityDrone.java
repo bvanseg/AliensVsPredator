@@ -55,19 +55,19 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_ALIEN_HURT.event();
+        return Sounds.ALIEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.SOUND_ALIEN_LIVING.event();
+        return Sounds.ALIEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_ALIEN_DEATH.event();
+        return Sounds.ALIEN_DEATH.event();
     }
 
     @Override

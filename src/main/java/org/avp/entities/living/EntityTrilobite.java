@@ -62,19 +62,19 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_FACEHUGGER_HURT.event();
+        return Sounds.FACEHUGGER_HURT.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_CHESTBURSTER_BURST.event();
+        return Sounds.CHESTBURSTER_BURST.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.SOUND_FACEHUGGER_LIVING.event();
+        return Sounds.FACEHUGGER_LIVING.event();
     }
 
     @Override

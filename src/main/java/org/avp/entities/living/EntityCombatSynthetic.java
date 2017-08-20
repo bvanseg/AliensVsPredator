@@ -69,13 +69,13 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_MARINE_HURT.event();
+        return Sounds.MARINE_HURT.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_MARINE_DEATH.event();
+        return Sounds.MARINE_DEATH.event();
     }
 
     @Override
@@ -117,7 +117,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     {
         if (this.getAttackTarget() != null)
         {
-            Sounds.SOUND_WEAPON_PULSERIFLE.playSound(this);
+            Sounds.WEAPON_PULSERIFLE.playSound(this);
             EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.5F);
             entityBullet.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
             this.world.spawnEntity(entityBullet);

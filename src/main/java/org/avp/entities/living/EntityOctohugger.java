@@ -264,7 +264,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_FACEHUGGER_DEATH.event();
+        return Sounds.FACEHUGGER_DEATH.event();
     }
 
     @Override

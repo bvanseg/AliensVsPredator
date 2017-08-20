@@ -32,19 +32,19 @@ public class EntityBoiler extends EntityXenomorph
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_SPITTER_HURT.event();
+        return Sounds.ALIEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.SOUND_SPITTER_LIVING.event();
+        return Sounds.ALIEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_SPITTER_DEATH.event();
+        return Sounds.ALIEN_DEATH.event();
     }
 
     @Override

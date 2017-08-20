@@ -68,7 +68,7 @@ public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPl
                         plasma.motionZ = MathHelper.cos(plasma.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(plasma.rotationPitch / 180.0F * (float) Math.PI) * speed;
                         plasma.motionY = -MathHelper.sin((plasma.rotationPitch) / 180.0F * (float) Math.PI) * speed;
                         player.world.spawnEntity(plasma);
-                        Sounds.SOUND_WEAPON_PLASMACASTER.playSound(plasma, 0.1F, 1.0F);
+                        Sounds.WEAPON_PLASMACASTER.playSound(plasma, 0.1F, 1.0F);
                     }
                 }
             }

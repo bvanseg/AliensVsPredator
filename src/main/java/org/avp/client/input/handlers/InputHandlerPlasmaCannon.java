@@ -75,12 +75,12 @@ public class InputHandlerPlasmaCannon implements IInputHandler
 
     private void onNoEnergy()
     {
-        Sounds.SOUND_WEAPON_PLASMACASTER_NOENERGY.playSound(Game.minecraft().player, 0.6F, 1.0F);
+        Sounds.WEAPON_PLASMACASTER_NOENERGY.playSound(Game.minecraft().player, 0.6F, 1.0F);
     }
 
     private void onChargeStart()
     {
-        Sounds.SOUND_WEAPON_PLASMACASTER_CHARGE.playSound(Game.minecraft().player, 0.6F, 1.0F);
+        Sounds.WEAPON_PLASMACASTER_CHARGE.playSound(Game.minecraft().player, 0.6F, 1.0F);
     }
 
     private void onChargeRelease(float chargeSize, float energyUsed)

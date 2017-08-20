@@ -155,19 +155,19 @@ public abstract class EntitySpeciesYautja extends EntityMob implements IHost, Pr
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.SOUND_YAUTJA_LIVING.event();
+        return Sounds.YAUTJA_LIVING.event();
     }
 
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_YAUTJA_HURT.event();
+        return Sounds.YAUTJA_HURT.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_YAUTJA_DEATH.event();
+        return Sounds.YAUTJA_DEATH.event();
     }
 
     @Override

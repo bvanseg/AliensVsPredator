@@ -45,19 +45,19 @@ public class EntityPredalien extends EntityXenomorph implements IMob
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_PRAETORIAN_HURT.event();
+        return Sounds.ALIEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.SOUND_PRAETORIAN_LIVING.event();
+        return Sounds.ALIEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_PRAETORIAN_DEATH.event();
+        return Sounds.ALIEN_DEATH.event();
     }
 
     @Override

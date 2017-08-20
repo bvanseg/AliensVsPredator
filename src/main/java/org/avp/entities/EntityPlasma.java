@@ -139,7 +139,7 @@ public class EntityPlasma extends EntityThrowable
                 Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, AliensVsPredator.settings().areExplosionsEnabled());
             }
 
-            Sounds.SOUND_WEAPON_PLASMA_EXPLOSION.playSound(this, 7F, 1.0F);
+            Sounds.WEAPON_PLASMA_EXPLOSION.playSound(this, 7F, 1.0F);
 
             @SuppressWarnings("unchecked")
             List<Entity> entities = (List<Entity>) Entities.getEntitiesInCoordsRange(world, Entity.class, new Pos(this.posX, this.posY, this.posZ), (int) Math.ceil(this.getPlasmaSize()));

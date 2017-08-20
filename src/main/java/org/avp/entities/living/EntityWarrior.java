@@ -17,8 +17,6 @@ public class EntityWarrior extends EntityXenomorph implements IMob, IMaturable
         super(world);
         this.experienceValue = 175;
         this.setSize(1.0F, 2.5F);
-        
-        
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.addStandardXenomorphAISet();
     }
@@ -35,19 +33,19 @@ public class EntityWarrior extends EntityXenomorph implements IMob, IMaturable
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_WARRIOR_HURT.event();
+        return Sounds.ALIEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.SOUND_WARRIOR_LIVING.event();
+        return Sounds.ALIEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_WARRIOR_DEATH.event();
+        return Sounds.ALIEN_DEATH.event();
     }
 
     @Override

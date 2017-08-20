@@ -58,13 +58,13 @@ public class EntityBelugaburster extends EntityChestburster implements IMob, INa
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_CHESTBURSTER_DEATH.event();
+        return Sounds.CHESTBURSTER_DEATH.event();
     }
 
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_CHESTBURSTER_HURT.event();
+        return Sounds.CHESTBURSTER_HURT.event();
     }
 
     @Override

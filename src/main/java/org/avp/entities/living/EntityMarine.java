@@ -123,13 +123,13 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_MARINE_HURT.event();
+        return Sounds.MARINE_HURT.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_MARINE_DEATH.event();
+        return Sounds.MARINE_DEATH.event();
     }
 
     @Override

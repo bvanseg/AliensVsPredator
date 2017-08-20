@@ -157,7 +157,7 @@ public class RenderMotionTrackerScreen
         else if (this.shouldPing)
         {
             this.shouldPing = false;
-            Sounds.SOUND_MOTIONTRACKER_PING.playSound(Game.minecraft().player);
+            Sounds.MOTIONTRACKER_PING.playSound(Game.minecraft().player);
         }
 
         if (pingTime != 0)
@@ -197,7 +197,7 @@ public class RenderMotionTrackerScreen
 
             if (this.pingCount > 0)
             {
-                Sounds.SOUND_MOTIONTRACKER_PONG.setPitch(this.pitch[this.minDistance]).playSound(Game.minecraft().player);
+                Sounds.MOTIONTRACKER_PONG.setPitch(this.pitch[this.minDistance]).playSound(Game.minecraft().player);
             }
         }
     }

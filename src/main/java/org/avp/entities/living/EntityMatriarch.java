@@ -335,19 +335,19 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_QUEEN_HURT.event();
+        return Sounds.QUEEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return this.getHealth() > this.getMaxHealth() / 4 ? Sounds.SOUND_QUEEN_LIVING_CONSTANT.event() : Sounds.SOUND_QUEEN_LIVING.event();
+        return this.getHealth() > this.getMaxHealth() / 4 ? Sounds.QUEEN_LIVING_CONSTANT.event() : Sounds.QUEEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_QUEEN_DEATH.event();
+        return Sounds.QUEEN_DEATH.event();
     }
 
     @Override

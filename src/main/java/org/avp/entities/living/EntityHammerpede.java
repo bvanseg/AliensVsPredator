@@ -107,13 +107,13 @@ public class EntityHammerpede extends EntitySpeciesAlien implements IMob
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.SOUND_CHESTBURSTER_ATTACK.event();
+        return Sounds.CHESTBURSTER_ATTACK.event();
     }
 
     @Override
     protected SoundEvent getHurtSound()
     {
-        return Sounds.SOUND_CHESTBURSTER_HURT.event();
+        return Sounds.CHESTBURSTER_HURT.event();
     }
 
     @Override

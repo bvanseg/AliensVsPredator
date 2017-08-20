@@ -78,7 +78,7 @@ public class ItemWristbracer extends HookedItem
     {
         if (equippedHasBlades(player))
         {
-            Sounds.SOUND_WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F );
+            Sounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F );
             entity.attackEntityFrom(DamageSources.causeWristbracerDamage(player), getDamageToApply());
 
             if (!player.world.isRemote && !player.capabilities.isCreativeMode)
