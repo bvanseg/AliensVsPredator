@@ -43,6 +43,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     private ConfigSetting                  biomeVardaForest;
     private ConfigSetting                  biomeAcheron;
     private ConfigSetting                  globalSoundVolume;
+    private ConfigSetting                  compatibilityMode;
 
     @Override
     public ArrayList<ConfigSetting> allSettings()
@@ -126,6 +127,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
             updaterEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "updater", true, "Toggle the mod's update checking capabilities. Will not check for new updates if disabled.")).setRequiresRestart();
             debugToolsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "debug_tools", false, "Toggle the built in debugging tools. Used primarily in development environments."));
             globalSoundVolume = new ConfigSettingInteger(this, configuration.get(CATEGORY_OTHER, "global_volume", 75, "Change the default volume of this mod's sounds. EXAMPLE: 100 = 100% Volume, 50 = 50% Volume, 150 = 150% Volume")).setRequiresRestart();
+            compatibilityMode = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "compatibility_mode", true, "Toggle's the mod's built-in cross-version compatibility features. Can be disabled to improve startup speed if cross-version compatibility is not needed. Enabled by default. Note: Not backwards-compatible.")).setRequiresRestart();
         }
         finally
         {
@@ -136,6 +138,11 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     public Configuration getConfig()
     {
         return configuration;
+    }
+    
+    public boolean isCompatibilityModeEnabled()
+    {
+        return (Boolean) compatibilityMode.value();
     }
 
     public boolean areOverworldSpawnsEnabled()

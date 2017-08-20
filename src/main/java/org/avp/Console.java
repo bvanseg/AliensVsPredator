@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class Console implements IPreInitEvent, IInitEvent, IPostInitEvent
 {
     public static final Console instance = new Console();
-    public static final Logger  logger   = LogManager.getLogger("AVP");
+    public static final Logger logger = LogManager.getLogger("AVP");
 
     @Override
     public void pre(FMLPreInitializationEvent event)
@@ -27,6 +27,11 @@ public class Console implements IPreInitEvent, IInitEvent, IPostInitEvent
     {
         logger.info("AliensVsPredator Minecraft Mod Copyright \u00A9 2012-2017 ASX");
         logger.info("Initializing...");
+
+        if (AliensVsPredator.settings().isCompatibilityModeEnabled())
+        {
+            logger.info("Compatibility mode is enabled. Startup speed may be significantly reduced. Please disable if cross-version compatability features are not required.");
+        }
     }
 
     @Override

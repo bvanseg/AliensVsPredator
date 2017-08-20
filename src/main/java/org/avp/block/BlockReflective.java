@@ -282,7 +282,7 @@ public class BlockReflective extends Block implements ITileEntityProvider
     {
         return new TileEntityReflective();
     }
-    
+
     /** 1.7.10 -> 1.10.2 Shaped Block Compatability **/
 
     public boolean convert;
@@ -293,13 +293,13 @@ public class BlockReflective extends Block implements ITileEntityProvider
         this.convert = convert;
         this.setTickRandomly(convert);
     }
-    
+
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return convert ? EnumBlockRenderType.INVISIBLE : EnumBlockRenderType.MODEL;
     }
-    
+
     @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
@@ -400,7 +400,7 @@ public class BlockReflective extends Block implements ITileEntityProvider
 
                 IBlockState newState = type.getDefaultState().withProperty(FACING, facing).withProperty(ALIGNMENT, alignment);
                 world.setBlockState(pos, newState);
-                
+
                 TileEntity tile = world.getTileEntity(pos);
 
                 if (tile instanceof TileEntityReflective)
@@ -413,22 +413,25 @@ public class BlockReflective extends Block implements ITileEntityProvider
             }
         }
     }
-    
+
     public static final String[] SHAPE_COMPAT_TYPES = new String[] { "slope", "corner", "invertedcorner", "ridge", "invertedridge", "smartinvertedridge", "smartridge" };
 
     public static void registerCompatBlocks(String identifier, Block block)
     {
-        for (final String type : SHAPE_COMPAT_TYPES)
+        if (AliensVsPredator.settings().isCompatibilityModeEnabled())
         {
-            String shapeId = String.format("%s.%s", identifier, type);
-            registerBlockOnly(shapeId, new BlockReflective(Material.BARRIER, true));
-            
-            if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+            for (final String type : SHAPE_COMPAT_TYPES)
             {
-                ReflectiveModelLoader.INSTANCE.registerDummy(shapeId);
+                String shapeId = String.format("%s.%s", identifier, type);
+                registerBlockOnly(shapeId, new BlockReflective(Material.BARRIER, true));
+
+                if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                {
+                    ReflectiveModelLoader.INSTANCE.registerDummy(shapeId);
+                }
             }
         }
-        
+
         block.setCreativeTab(AliensVsPredator.tabBlocks());
         AliensVsPredator.blocks().register(identifier, block);
     }
