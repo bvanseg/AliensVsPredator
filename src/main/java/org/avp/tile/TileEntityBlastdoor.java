@@ -26,18 +26,18 @@ import net.minecraft.util.text.TextComponentString;
 
 public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltageReceiver, IRotatable, IOpenable, IMultiBlock
 {
-    private EnumFacing                     direction;
-    private float                          doorProgress;
-    private float                          doorProgressPrev;
-    private boolean                        doorOpen;
-    private boolean                        isParent;
-    private boolean                        placedByPlayer;
-    private TileEntityBlastdoor            parent;
+    private EnumFacing direction;
+    private float doorProgress;
+    private float doorProgressPrev;
+    private boolean doorOpen;
+    private boolean isParent;
+    private boolean placedByPlayer;
+    private TileEntityBlastdoor parent;
     private ArrayList<TileEntityBlastdoor> children;
-    private int                            ticksExisted;
-    private String                         identifier;
-    private String                         password;
-    private long                           timeOfLastPry;
+    private int ticksExisted;
+    private String identifier;
+    private String password;
+    private long timeOfLastPry;
 
     public TileEntityBlastdoor()
     {
@@ -100,7 +100,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
         if (!password.isEmpty())
             nbt.setString("Password", this.password);
-        
+
         return nbt;
     }
 
@@ -244,12 +244,28 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     public boolean setChildTile(BlockPos position)
     {
         IBlockState blockstate = this.world.getBlockState(position);
+        Block block = blockstate.getBlock();
 
-        if (blockstate.getMaterial() != Material.AIR)
+        boolean validBlastDoor = true;
+
+        if (block == AliensVsPredator.blocks().blastDoor)
+        {
+            TileEntityBlastdoor b = (TileEntityBlastdoor) this.world.getTileEntity(position);
+            validBlastDoor = b.getParent() != null ? false : true;
+        }
+
+        if (blockstate.getMaterial() != Material.AIR && block != AliensVsPredator.blocks().blastDoor || !validBlastDoor)
         {
             if (this.world.isRemote)
             {
-                Game.minecraft().player.sendMessage(new TextComponentString("Unable to place a blastdoor here. Blocks are in the way."));
+                if (validBlastDoor == false)
+                {
+                    Game.minecraft().player.sendMessage(new TextComponentString("Can't place a blast door on top of another blast door."));
+                }
+                else
+                {
+                    Game.minecraft().player.sendMessage(new TextComponentString("Unable to place a blast door here. Blocks are in the way."));
+                }
             }
 
             return false;
@@ -257,7 +273,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
         world.setBlockState(position, AliensVsPredator.blocks().blastDoor.getDefaultState());
         TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) world.getTileEntity(position);
-        
+
         if (blastdoor == null)
         {
             Game.minecraft().player.sendMessage(new TextComponentString("Internal Error: TileEntityBlastDoor.setChildTile()/blastdoor = null"));
@@ -305,24 +321,24 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         this.isParent = true;
         this.placedByPlayer = true;
-        
+
         if (this.direction != null)
         {
             BlockPos[] set = this.setFor(this.direction);
-            
+
             for (BlockPos offset : set)
             {
                 BlockPos position = this.getPos().add(offset);
-                
+
                 if (!this.setChildTile(position))
                 {
                     return false;
                 }
             }
-            
+
             return true;
         }
-        
+
         return false;
     }
 
@@ -388,7 +404,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         List<BlockPos> set = new ArrayList<BlockPos>();
         BlockPos pos = new BlockPos(0, 0, 0);
-        
+
         set.add(pos.add(1, 0, 0));
         set.add(pos.add(2, 0, 0));
         set.add(pos.add(3, 0, 0));
