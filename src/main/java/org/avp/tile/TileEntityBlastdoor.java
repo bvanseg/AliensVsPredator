@@ -160,6 +160,14 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
                 this.setOpen(true);
             }
         }
+
+        if (this.isChild())
+        {
+            if (this.getVoltage() > this.getParent().getVoltage())
+            {
+                this.getParent().setVoltage(this.getVoltage());
+            }
+        }
     }
 
     public boolean isBeingPryedOpen()
