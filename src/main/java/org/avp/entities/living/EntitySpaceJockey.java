@@ -66,9 +66,9 @@ public class EntitySpaceJockey extends EntitySpeciesEngineer
     }
     
     @Override
-    public boolean canDespawn()
+    protected void despawnEntity()
     {
-        return false;
+        ;
     }
 
     @Override

@@ -230,12 +230,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     }
 
     @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
-    @Override
     public boolean getCanSpawnHere()
     {
         BlockPos pos = this.getPosition().add(0, -(this.getPosition().getY() - this.getEntityBoundingBox().minY), 0);

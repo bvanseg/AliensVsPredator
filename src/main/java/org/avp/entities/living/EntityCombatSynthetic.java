@@ -61,9 +61,9 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     }
     
     @Override
-    protected boolean canDespawn()
+    protected void despawnEntity()
     {
-        return false;
+        ;
     }
 
     @Override

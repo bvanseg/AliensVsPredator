@@ -123,12 +123,6 @@ public class EntityHammerpede extends EntitySpeciesAlien implements IMob
     }
 
     @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
-    @Override
     public boolean isOnLadder()
     {
         return this.isCollidedHorizontally;

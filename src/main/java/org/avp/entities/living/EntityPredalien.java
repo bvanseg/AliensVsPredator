@@ -18,11 +18,6 @@ public class EntityPredalien extends EntityXenomorph implements IMob
         this.experienceValue = 225;
         this.setSize(1.0F, 2.5F);
         this.ignoreFrustumCheck = true;
-        
-        
-        
-        
-        
         this.addStandardXenomorphAISet();
     }
 
@@ -34,12 +29,6 @@ public class EntityPredalien extends EntityXenomorph implements IMob
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.45D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
-    }
-
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
     }
 
     @Override

@@ -202,9 +202,12 @@ public class EntityDeaconShark extends EntitySpeciesAlien
     }
 
     @Override
-    protected boolean canDespawn()
+    protected void despawnEntity()
     {
-        return !this.hasCustomName();
+        if (!this.hasCustomName())
+        {
+            super.despawnEntity();
+        }
     }
 
     @Override

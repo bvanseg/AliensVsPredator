@@ -67,11 +67,11 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     {
         return false;
     }
-
+    
     @Override
-    protected boolean canDespawn()
+    protected void despawnEntity()
     {
-        return false;
+        ;
     }
 
     @Override

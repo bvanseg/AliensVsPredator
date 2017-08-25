@@ -96,11 +96,11 @@ public class EntityBabyhead extends EntityMob implements IMob, IHost
     {
         return null;
     }
-
+    
     @Override
-    public boolean canDespawn()
+    protected void despawnEntity()
     {
-        return true;
+        ;
     }
 
     @Override

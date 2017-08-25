@@ -377,12 +377,6 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
     }
 
     @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
-    @Override
     protected int getJellyLevelStart()
     {
         return 1000;

@@ -189,11 +189,11 @@ public abstract class EntitySpeciesYautja extends EntityMob implements IHost, Pr
             EntityItemDrops.SKULL_PREDATOR.tryDrop(this);
         }
     }
-
+    
     @Override
-    public boolean canDespawn()
+    protected void despawnEntity()
     {
-        return false;
+        ;
     }
 
     @Override

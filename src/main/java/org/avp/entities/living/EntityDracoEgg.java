@@ -34,9 +34,9 @@ public class EntityDracoEgg extends EntityOvamorph
     }
     
     @Override
-    protected boolean canDespawn()
+    protected void despawnEntity()
     {
-        return false;
+        ;
     }
 
     @Override

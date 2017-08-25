@@ -132,11 +132,11 @@ public abstract class EntitySpeciesEngineer extends EntityMob
     {
         return null;
     }
-
+    
     @Override
-    public boolean canDespawn()
+    protected void despawnEntity()
     {
-        return false;
+        ;
     }
 
     @Override

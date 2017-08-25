@@ -45,12 +45,6 @@ public class EntityRoyalFacehugger extends EntityFacehugger
     {
         return false;
     }
-
-    @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
     
     @Override
     public boolean attackEntityAsMob(Entity entity)

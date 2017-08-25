@@ -151,12 +151,6 @@ public class EntityChestburster extends EntitySpeciesAlien implements IMob, INas
     }
 
     @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
-    @Override
     public boolean isOnLadder()
     {
         return this.isCollidedHorizontally;

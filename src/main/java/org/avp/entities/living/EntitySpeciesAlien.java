@@ -285,4 +285,10 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     {
         return 0;
     }
+    
+    @Override
+    protected void despawnEntity()
+    {
+        ;
+    }
 }

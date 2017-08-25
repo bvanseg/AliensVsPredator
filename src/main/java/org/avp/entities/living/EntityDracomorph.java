@@ -187,11 +187,11 @@ public class EntityDracomorph extends EntitySpeciesAlien implements IMob, IHost
     {
         return null;
     }
-
+    
     @Override
-    public boolean canDespawn()
+    protected void despawnEntity()
     {
-        return false;
+        ;
     }
 
     @Override

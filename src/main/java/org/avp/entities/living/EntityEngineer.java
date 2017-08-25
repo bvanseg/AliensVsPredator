@@ -64,10 +64,10 @@ public class EntityEngineer extends EntitySpeciesEngineer
     {
         return null;
     }
-
+    
     @Override
-    public boolean canDespawn()
+    protected void despawnEntity()
     {
-        return false;
+        ;
     }
 }

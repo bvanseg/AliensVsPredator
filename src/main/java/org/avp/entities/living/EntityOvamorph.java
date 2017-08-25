@@ -94,12 +94,6 @@ public class EntityOvamorph extends EntitySpeciesAlien implements IMob
     }
 
     @Override
-    protected boolean canDespawn()
-    {
-        return false;
-    }
-
-    @Override
     public void onUpdate()
     {
         super.onUpdate();
