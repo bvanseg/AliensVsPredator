@@ -22,12 +22,15 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityGolem;
+import net.minecraft.entity.monster.EntityMagmaCube;
 import net.minecraft.entity.monster.EntityPigZombie;
 import net.minecraft.entity.monster.EntityShulker;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.EntitySkeleton;
+import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
@@ -121,6 +124,15 @@ public class EntityParasitoid extends EntitySpeciesAlien implements IMob, IParas
                                                                              return false;
 
                                                                          if (potentialTarget instanceof EntityGhast)
+                                                                             return false;
+
+                                                                         if (potentialTarget instanceof EntityBlaze)
+                                                                             return false;
+
+                                                                         if (potentialTarget instanceof EntitySlime)
+                                                                             return false;
+
+                                                                         if (potentialTarget instanceof EntityMagmaCube)
                                                                              return false;
 
                                                                          if (potentialTarget instanceof EntityWither)
