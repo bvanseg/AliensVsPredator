@@ -26,18 +26,18 @@ import net.minecraft.util.text.TextComponentString;
 
 public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltageReceiver, IRotatable, IOpenable, IMultiBlock
 {
-    private EnumFacing direction;
-    private float doorProgress;
-    private float doorProgressPrev;
-    private boolean doorOpen;
-    private boolean isParent;
-    private boolean placedByPlayer;
-    private TileEntityBlastdoor parent;
+    private EnumFacing                     direction;
+    private float                          doorProgress;
+    private float                          doorProgressPrev;
+    private boolean                        doorOpen;
+    private boolean                        isParent;
+    private boolean                        placedByPlayer;
+    private TileEntityBlastdoor            parent;
     private ArrayList<TileEntityBlastdoor> children;
-    private int ticksExisted;
-    private String identifier;
-    private String password;
-    private long timeOfLastPry;
+    private int                            ticksExisted;
+    private String                         identifier;
+    private String                         password;
+    private long                           timeOfLastPry;
 
     public TileEntityBlastdoor()
     {
@@ -127,7 +127,12 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         super.update();
         this.doorProgressPrev = this.doorProgress;
-        this.updateEnergyAsReceiver();
+
+        if (!this.isParent())
+        {
+            this.updateEnergyAsReceiver();
+        }
+
         this.ticksExisted++;
 
         if (this.isParent && this.ticksExisted > 1 && !placedByPlayer)
@@ -135,9 +140,35 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
             this.setup(false);
         }
 
+        if (this.isChild())
+        {
+            if (this.getParent() != null && this.getVoltage() > this.getParent().getVoltage())
+            {
+                this.getParent().setVoltage(this.getVoltage());
+            }
+        }
+        
+        if (this.isParent)
+        {
+            double childrenVoltage = 0.0D;
+
+            for (TileEntityBlastdoor child : this.getChildren())
+            {
+                if (child.getVoltage() > 0.0D && child.getVoltage() > childrenVoltage)
+                {
+                    childrenVoltage = child.getVoltage();
+                }
+            }
+
+            if (childrenVoltage <= 0)
+            {
+                this.updateEnergyAsReceiver();
+            }
+        }
+
         if (this.isParent())
         {
-            if (this.isOpen())
+            if (this.isOpen() && this.isOperational())
             {
                 this.doorProgress = this.doorProgress < getMaxDoorProgress() ? this.doorProgress + 0.02F : this.doorProgress;
             }
@@ -158,14 +189,6 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
             {
                 this.timeOfLastPry = 0;
                 this.setOpen(true);
-            }
-        }
-
-        if (this.isChild())
-        {
-            if (this.getParent() != null && this.getVoltage() > this.getParent().getVoltage())
-            {
-                this.getParent().setVoltage(this.getVoltage());
             }
         }
     }
@@ -268,7 +291,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
             {
                 if (validBlastDoor == false)
                 {
-                    Game.minecraft().player.sendMessage(new TextComponentString("Can't place a blast door on top of another blast door."));
+                    Game.minecraft().player.sendMessage(new TextComponentString("Can't place a blast door inside of another blast door."));
                 }
                 else
                 {
