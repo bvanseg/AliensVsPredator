@@ -21,15 +21,19 @@ import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityPigZombie;
+import net.minecraft.entity.monster.EntityShulker;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.EntitySkeleton;
 import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.HorseType;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
@@ -118,6 +122,22 @@ public class EntityParasitoid extends EntitySpeciesAlien implements IMob, IParas
 
                                                                          if (potentialTarget instanceof EntityGhast)
                                                                              return false;
+
+                                                                         if (potentialTarget instanceof EntityWither)
+                                                                             return false;
+
+                                                                         if (potentialTarget instanceof EntityShulker)
+                                                                             return false;
+
+                                                                         if (potentialTarget instanceof EntityHorse)
+                                                                         {
+                                                                             EntityHorse horse = (EntityHorse) potentialTarget;
+                                                                             
+                                                                             if (horse.getType() == HorseType.SKELETON || horse.getType() == HorseType.ZOMBIE)
+                                                                             {
+                                                                                 return false;
+                                                                             }
+                                                                         }
 
                                                                          return true;
                                                                      }
