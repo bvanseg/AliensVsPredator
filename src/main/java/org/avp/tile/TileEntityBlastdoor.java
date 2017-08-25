@@ -163,7 +163,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
         if (this.isChild())
         {
-            if (this.getVoltage() > this.getParent().getVoltage())
+            if (this.getParent() != null && this.getVoltage() > this.getParent().getVoltage())
             {
                 this.getParent().setVoltage(this.getVoltage());
             }
