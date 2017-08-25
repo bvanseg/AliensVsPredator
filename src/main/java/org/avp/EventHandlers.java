@@ -4,8 +4,10 @@ import java.util.ArrayList;
 
 import org.avp.client.input.InputHandler;
 import org.avp.client.render.AmmoIndicatorRenderEvent;
+import org.avp.client.render.BlastDoorPlacementBoxRenderer;
 import org.avp.client.render.BossBarEvent;
 import org.avp.client.render.ChestbursterOverlayEvent;
+import org.avp.client.render.DebugToolsRenderer;
 import org.avp.client.render.FacehuggerRenderEvent;
 import org.avp.client.render.LightmapUpdateEvent;
 import org.avp.client.render.PlayerModeRenderEvent;
@@ -57,6 +59,8 @@ public class EventHandlers implements IInitEvent
             this.registerEvent(BossBarEvent.instance);
             this.registerEvent(RenderLivingHook.instance);
             this.registerEvent(SkyProviderAcheron.instance);
+            this.registerEvent(BlastDoorPlacementBoxRenderer.instance);
+            this.registerEvent(DebugToolsRenderer.instance);
         }
 
         if (FMLCommonHandler.instance().getSide() == Side.SERVER)
