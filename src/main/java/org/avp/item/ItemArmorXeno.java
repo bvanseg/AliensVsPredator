@@ -36,9 +36,9 @@ public class ItemArmorXeno extends ItemArmor
             case FEET:
                 return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
             case LEGS:
-                return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
-            case CHEST:
                 return Draw.getResourcePath(AliensVsPredator.resources().XENO2);
+            case CHEST:
+                return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
             default:
                 return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
         }

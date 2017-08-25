@@ -27,9 +27,9 @@ public class ItemArmorPressureSuit extends ItemAntiVacuumArmor
             case FEET:
                 return Draw.getResourcePath(AliensVsPredator.resources().PRESSURESUIT1);
             case LEGS:
-                return Draw.getResourcePath(AliensVsPredator.resources().PRESSURESUIT1);
-            case CHEST:
                 return Draw.getResourcePath(AliensVsPredator.resources().PRESSURESUIT2);
+            case CHEST:
+                return Draw.getResourcePath(AliensVsPredator.resources().PRESSURESUIT1);
             case HEAD:
                 return Draw.getResourcePath(AliensVsPredator.resources().PRESSURESUIT1);
             default:

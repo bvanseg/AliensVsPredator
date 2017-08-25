@@ -26,11 +26,11 @@ public class ItemArmorMarine extends ItemArmor
         switch (slot)
         {
             case FEET:
-                return Draw.getResourcePath(AliensVsPredator.resources().MARINE1);
-            case LEGS:
-                return Draw.getResourcePath(AliensVsPredator.resources().MARINE1);
-            case CHEST:
                 return Draw.getResourcePath(AliensVsPredator.resources().MARINE2);
+            case LEGS:
+                return Draw.getResourcePath(AliensVsPredator.resources().MARINE2);
+            case CHEST:
+                return Draw.getResourcePath(AliensVsPredator.resources().MARINE1);
             case HEAD:
                 return Draw.getResourcePath(AliensVsPredator.resources().MARINE1);
             default:

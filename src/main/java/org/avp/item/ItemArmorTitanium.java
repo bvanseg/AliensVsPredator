@@ -33,9 +33,9 @@ public class ItemArmorTitanium extends ItemArmor
             case FEET:
                 return Draw.getResourcePath(AliensVsPredator.resources().TITANIUM1);
             case LEGS:
-                return Draw.getResourcePath(AliensVsPredator.resources().TITANIUM1);
-            case CHEST:
                 return Draw.getResourcePath(AliensVsPredator.resources().TITANIUM2);
+            case CHEST:
+                return Draw.getResourcePath(AliensVsPredator.resources().TITANIUM1);
             case HEAD:
                 return Draw.getResourcePath(AliensVsPredator.resources().TITANIUM1);
             default:
