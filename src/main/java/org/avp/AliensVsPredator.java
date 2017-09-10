@@ -51,13 +51,14 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void pre(FMLPreInitializationEvent event)
     {
-        if (!MDXModule.enabled())
+        if (!MDXModule.prefetchComplete())
         {
             return;
         }
 
         console().pre(event);
         settings().pre(event);
+        creativeTabs().pre(event);
         items().pre(event);
         capabilities().pre(event);
         entities().pre(event);
@@ -68,7 +69,7 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void preClient(FMLPreInitializationEvent event)
     {
-        if (!MDXModule.enabled())
+        if (!MDXModule.prefetchComplete())
         {
             return;
         }
@@ -80,7 +81,7 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        if (!MDXModule.enabled())
+        if (!MDXModule.prefetchComplete())
         {
             return;
         }
@@ -103,7 +104,7 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void initClient(FMLInitializationEvent event)
     {
-        if (!MDXModule.enabled())
+        if (!MDXModule.prefetchComplete())
         {
             return;
         }
@@ -114,7 +115,7 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void post(FMLPostInitializationEvent event)
     {
-        if (!MDXModule.enabled())
+        if (!MDXModule.prefetchComplete())
         {
             return;
         }
@@ -126,7 +127,7 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void postClient(FMLPostInitializationEvent event)
     {
-        if (!MDXModule.enabled())
+        if (!MDXModule.prefetchComplete())
         {
             return;
         }
@@ -137,7 +138,7 @@ public class AliensVsPredator implements IMod
     @EventHandler
     public void onServerStarting(FMLServerStartingEvent event)
     {
-        if (!MDXModule.enabled())
+        if (!MDXModule.prefetchComplete())
         {
             return;
         }
@@ -164,6 +165,11 @@ public class AliensVsPredator implements IMod
     public static Logger log()
     {
         return Console.logger;
+    }
+    
+    public static CreativeTab creativeTabs()
+    {
+        return CreativeTab.instance;
     }
 
     public static ItemHandler items()
@@ -271,31 +277,31 @@ public class AliensVsPredator implements IMod
 
     public static CreativeTabs tabMain()
     {
-        return CreativeTab.tabMain;
+        return CreativeTab.instance.tabMain;
     }
 
     public static CreativeTabs tabBlocks()
     {
-        return CreativeTab.tabBlocks;
+        return CreativeTab.instance.tabBlocks;
     }
 
     public static CreativeTabs tabEntitiesIncomplete()
     {
-        return CreativeTab.tabEntitiesIncomplete;
+        return CreativeTab.instance.tabEntitiesIncomplete;
     }
 
     public static CreativeTabs tabEntities()
     {
-        return CreativeTab.tabEntities;
+        return CreativeTab.instance.tabEntities;
     }
 
     public static CreativeTabs tabGunComponents()
     {
-        return CreativeTab.tabGunParts;
+        return CreativeTab.instance.tabGunParts;
     }
 
     public static CreativeTabs tabRecipeItems()
     {
-        return CreativeTab.tabRecipeItems;
+        return CreativeTab.instance.tabRecipeItems;
     }
 }
