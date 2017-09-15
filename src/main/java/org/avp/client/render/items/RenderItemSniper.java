@@ -59,14 +59,10 @@ public class RenderItemSniper extends ItemRenderer<ModelSniper>
     @Override
     public void renderThirdPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.translate(0.2F, 0.3F, -0.17F);
-        OpenGL.rotate(180.0F, 1.0F, 0.0F, 0.0F);
-        OpenGL.rotate(90.0F, 0.0F, 1.0F, 0.0F);
-        OpenGL.rotate(40.0F, 1.0F, 0.0F, 0.0F);
+        OpenGL.translate(-0.05F, 0.2F, -0.25F);
         OpenGL.disable(GL11.GL_CULL_FACE);
-        OpenGL.translate(0.1F, -0.0F, 0.8F);
         float glScale = 1.2F;
-        OpenGL.scale(glScale, glScale, glScale);
+        OpenGL.scale(glScale, -glScale, -glScale);
         this.getModel().draw();
     }
 
@@ -75,25 +71,21 @@ public class RenderItemSniper extends ItemRenderer<ModelSniper>
     {
         if (firstPersonRenderCheck(entity))
         {
+            float glScale = 1.5F;
+            OpenGL.translate(0F, 0.35F, -0.3F);
+
             if (Mouse.isButtonDown(0) && mc.inGameHasFocus)
             {
                 this.getModel().getModel().setFirstPerson(true);
-                OpenGL.translate(1.26F, 1.985F, -0.375F);
-                OpenGL.rotate(102.4F, 1.0F, 0.0F, 0.0F);
-                OpenGL.rotate(115F, 0.0F, 1.0F, 0.0F);
-                OpenGL.rotate(78.0F, 0.0F, 0.0F, 1.0F);
-                OpenGL.translate(-0.495F, 0.60F, -1.835F);
+                OpenGL.translate(-0.5125F, 0.095F, 0.62F);
             }
             else
             {
                 this.getModel().getModel().setFirstPerson(false);
-                OpenGL.translate(1.5F, 0.95F, 0.35F);
-                OpenGL.rotate(95.0F, 1.0F, 0.0F, 0.0F);
-                OpenGL.rotate(120.0F, 0.0F, 1.0F, 0.0F);
-                OpenGL.rotate(80.0F, 0.0F, 0.0F, 1.0F);
-                OpenGL.scale(2.2F, 2.2F, 2.2F);
             }
+
             OpenGL.disable(GL11.GL_CULL_FACE);
+            OpenGL.scale(-glScale, -glScale, -glScale);
             this.getModel().draw();
         }
         this.renderZoom();

@@ -34,12 +34,11 @@ public class RenderItemM56SG extends ItemRenderer<ModelM56SG>
     {
         if (firstPersonRenderCheck(entity))
         {
-            OpenGL.translate(0.1F, 0.15F, 0.2F);
-            OpenGL.rotate(95.0F, 1.0F, 0.0F, 0.0F);
-            OpenGL.rotate(120.0F, 0.0F, 1.0F, 0.0F);
-            OpenGL.rotate(80.0F, 0.0F, 0.0F, 1.0F);
+            OpenGL.translate(0.1F, -0.15F, 0.4F);
+            OpenGL.rotate(15.0F, 1.0F, 0.0F, 0.0F);
+            OpenGL.rotate(10.0F, 0.0F, 1.0F, 0.0F);
             OpenGL.disable(GL11.GL_CULL_FACE);
-            OpenGL.scale(2.0F, 2.0F, 2.0F);
+            OpenGL.scale(2.0F, -2.0F, -2.0F);
             this.getModel().draw();
         }
     }
@@ -47,11 +46,9 @@ public class RenderItemM56SG extends ItemRenderer<ModelM56SG>
     @Override
     public void renderThirdPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.translate(0.25F, -0.3F, -0.1F);
-        OpenGL.rotate(280.0F, 1.0F, 0.0F, 0.0F);
-        OpenGL.rotate(45.0F, 0.0F, 1.0F, 0.0F);
-        OpenGL.rotate(-93.0F, 0.0F, 0.0F, 1.0F);
-        OpenGL.scale(1.3F, 1.3F, 1.3F);
+        OpenGL.translate(-0.035F, -0.8F, 0.3F);
+        OpenGL.rotate(70.0F, 1.0F, 0.0F, 0.0F);
+        OpenGL.scale(-1.3F, -1.3F, -1.3F);
         this.getModel().draw();
     }
 

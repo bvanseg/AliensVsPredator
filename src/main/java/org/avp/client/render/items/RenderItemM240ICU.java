@@ -25,7 +25,6 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        
         OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         OpenGL.translate(0F, 0.5F, 0F);
         OpenGL.scale(1F, -1F, 1F);
@@ -36,12 +35,9 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
     @Override
     public void renderThirdPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.rotate(15.0F, 1.0F, 0.0F, 0.0F);
-        OpenGL.rotate(15.0F, 0.0F, 1.0F, 0.0F);
-        OpenGL.rotate(190.0F, 0.0F, 0.0F, 1.0F);
-        OpenGL.translate(-0.35F, -0.27F, 0.7F);
-        float glScale = 1.9F;
-        OpenGL.scale(glScale, glScale, glScale);
+        OpenGL.translate(0F, 0.15F, -0.3F);
+        float glScale = 0.75F;
+        OpenGL.scale(glScale, -glScale, -glScale);
         this.getModel().draw();
     }
 
@@ -53,27 +49,15 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
 
         if (firstPersonRenderCheck(entity))
         {
-            OpenGL.rotate(10.0F, 1.0F, 0.0F, 0.0F);
+            OpenGL.translate(0F, 0.15F, -0.4F);
 
             if (Mouse.isButtonDown(0) && mc.inGameHasFocus)
             {
-                OpenGL.translate(0.8F, 0.7F, -0.7F);
-                OpenGL.rotate(91.0F, 1.0F, 0.0F, 0.0F);
-                OpenGL.rotate(117.0F, 0.0F, 1.0F, 0.0F);
-                OpenGL.rotate(80.0F, 0.0F, 0.0F, 1.0F);
-                OpenGL.translate(-0.26F, 0F, 0F);
-            }
-            else
-            {
-                OpenGL.translate(0.8F, 0.85F, -0.5F);
-                OpenGL.rotate(70.0F, 1.0F, 0.0F, 0.0F);
-                OpenGL.rotate(120.0F, 0.0F, 1.0F, 0.0F);
-                OpenGL.rotate(100.0F, 0.0F, 0.0F, 1.0F);
-                OpenGL.translate(0.2F, 0F, 0F);
+                OpenGL.translate(-0.6495F, 0F, 0F);
             }
 
             OpenGL.disable(GL11.GL_CULL_FACE);
-            OpenGL.scale(glScale, glScale, glScale);
+            OpenGL.scale(-glScale, -glScale, -glScale);
             this.getModel().draw();
 
             if (mc.player.getHeldItemMainhand() != null && mc.player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
@@ -114,13 +98,13 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
     public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
         // TODO Auto-generated method stub
-        
+
     }
 
     @Override
     public void renderFirstPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
         // TODO Auto-generated method stub
-        
+
     }
 }

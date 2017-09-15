@@ -23,12 +23,9 @@ public class RenderItem88MOD4 extends ItemRenderer<Model88MOD4>
     @Override
     public void renderThirdPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.translate(0.37F, 0.25F, 0.25F);
-        OpenGL.rotate(20, 1F, 0F, 0F);
-        OpenGL.rotate(10, 0F, 0F, 1F);
-        OpenGL.rotate(15, 0F, 1F, 0F);
+        OpenGL.translate(0F, 0.1F, -0.2F);
         OpenGL.disable(GL11.GL_CULL_FACE);
-        OpenGL.scale(1.2F, -1.2F, -1.2F);
+        OpenGL.scale(0.8F, -0.8F, 0.8F);
         this.getModel().draw();
     }
 
@@ -37,24 +34,16 @@ public class RenderItem88MOD4 extends ItemRenderer<Model88MOD4>
     {
         if (firstPersonRenderCheck(entity))
         {
+            float glScale = 1F;
+            OpenGL.translate(0.25F, 0.16F, -0.5F);
+
             if (Mouse.isButtonDown(0) && mc.inGameHasFocus)
             {
-                OpenGL.translate(1.7F, 1.5F, -0.885F);
-                OpenGL.rotate(100.0F, 1.0F, 0.0F, 0.0F);
-                OpenGL.rotate(122.0F, 0.0F, 1.0F, 0.0F);
-                OpenGL.rotate(81.0F, 0.0F, 0.0F, 1.0F);
-                OpenGL.translate(0F, 0F, -0.45F);
-            }
-            else
-            {
-                OpenGL.translate(2F, 0.95F, 0.9F);
-                OpenGL.rotate(95.0F, 1.0F, 0.0F, 0.0F);
-                OpenGL.rotate(120.0F, 0.0F, 1.0F, 0.0F);
-                OpenGL.rotate(80.0F, 0.0F, 0.0F, 1.0F);
+                OpenGL.translate(-0.77F, 0.25F, 0.35F);
             }
 
             OpenGL.disable(GL11.GL_CULL_FACE);
-            OpenGL.scale(2.0F, 2.0F, -2.0F);
+            OpenGL.scale(-glScale, -glScale, glScale);
             this.getModel().draw();
         }
     }

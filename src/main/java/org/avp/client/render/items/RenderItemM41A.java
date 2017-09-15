@@ -41,12 +41,9 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
     @Override
     public void renderThirdPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 1.3F;
-        OpenGL.rotate(95.0F, 1.0F, 0.0F, 0.0F);
-        OpenGL.rotate(130.0F, 0.0F, 1.0F, 0.0F);
-        OpenGL.rotate(90.0F, 0.0F, 0.0F, 1.0F);
-        OpenGL.translate(0.28F, -0.77F, 0.85F);
-        OpenGL.scale(glScale, glScale, glScale);
+        float glScale = 1F;
+        OpenGL.translate(0.28F, 0.75F, -0.05F);
+        OpenGL.scale(glScale, -glScale, -glScale);
         this.getModel().draw();
     }
 
@@ -58,24 +55,15 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
 
         if (firstPersonRenderCheck(entity))
         {
+            OpenGL.translate(1F, 1.25F, -0.3F);
+
             if (Mouse.isButtonDown(0) && mc.inGameHasFocus)
             {
-                OpenGL.translate(-0.1F, 1.44F, -0.595F);
-                OpenGL.rotate(102F, 1.0F, 0.0F, 0.0F);
-                OpenGL.rotate(115.0F, 0.0F, 1.0F, 0.0F);
-                OpenGL.rotate(79F, 0.0F, 0.0F, 1.0F);
-                OpenGL.translate(0.027F, 0F, 0F);
-            }
-            else
-            {
-                OpenGL.translate(0.1F, 1.55F, 0.2F);
-                OpenGL.rotate(95.0F, 1.0F, 0.0F, 0.0F);
-                OpenGL.rotate(120.0F, 0.0F, 1.0F, 0.0F);
-                OpenGL.rotate(79.0F, 0.0F, 0.0F, 1.0F);
+                OpenGL.translate(-1.16F, -0.095F, 0.52F);
             }
 
             OpenGL.disable(GL11.GL_CULL_FACE);
-            OpenGL.scale(glScale, glScale, glScale);
+            OpenGL.scale(glScale, -glScale, -glScale);
             new Texture(Remote.downloadResource(String.format(URLs.SKIN_M41A, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
             this.getModel().getModel().render();
 
