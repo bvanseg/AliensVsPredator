@@ -15,6 +15,7 @@ import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.util.Remote;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -31,10 +32,9 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         OpenGL.translate(0.3F, 1F, 0F);
         OpenGL.scale(1F, -1F, 1F);
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         this.getModel().draw();
     }
 
@@ -62,7 +62,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
                 OpenGL.translate(-1.16F, -0.095F, 0.52F);
             }
 
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
             OpenGL.scale(glScale, -glScale, -glScale);
             new Texture(Remote.downloadResource(String.format(URLs.SKIN_M41A, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
             this.getModel().getModel().render();
@@ -100,7 +100,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
         OpenGL.rotate(-45F, 0F, 0F, 1F);
         OpenGL.translate(0F, -0.65F, 0F);
         OpenGL.rotate(90F, 0.0F, 1.0F, 0.0F);
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         new Texture(Remote.downloadResource(String.format(URLs.SKIN_M41A, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
         this.getModel().getModel().render();
     }
@@ -109,18 +109,5 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
     {
         int ammoCount = ((ItemFirearm) mc.player.inventory.getCurrentItem().getItem()).getAmmoCount();
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
-    }
-
-    @Override
-    public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
-    }
-
-    @Override
-    public void renderFirstPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        // TODO Auto-generated method stub
-        
     }
 }

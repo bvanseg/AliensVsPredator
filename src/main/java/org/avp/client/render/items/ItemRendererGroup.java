@@ -10,6 +10,7 @@ import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -33,7 +34,7 @@ public class ItemRendererGroup<MODEL extends Model> extends ItemRenderer<MODEL>
     {
         OpenGL.blendClear();
         OpenGL.enable(GL11.GL_BLEND);
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         this.getModel().bindTexture();
         Model.draw(this.modelRenderers);
     }

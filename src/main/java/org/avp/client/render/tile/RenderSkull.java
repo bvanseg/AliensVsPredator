@@ -7,6 +7,7 @@ import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class RenderSkull extends TileEntitySpecialRenderer<TileEntitySkull>
@@ -17,7 +18,7 @@ public class RenderSkull extends TileEntitySpecialRenderer<TileEntitySkull>
         OpenGL.pushMatrix();
         {
             float scale = 0.64F;
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
             OpenGL.translate(posX + 0.5F, posY, posZ + 0.5F);
             OpenGL.scale(scale, -scale, scale);
             OpenGL.enable(GL11.GL_ALPHA_TEST);

@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
@@ -16,7 +17,7 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
     {
         OpenGL.pushMatrix();
         {
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
             OpenGL.translate(x + 0.5F, y + 1.5F, z + 0.25F);
 //            OpenGL.rotate(tile.getDirection() * (-90F), 0F, 1F, 0F);
 

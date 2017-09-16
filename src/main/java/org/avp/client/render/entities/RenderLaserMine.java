@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL11;
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -29,7 +30,7 @@ public class RenderLaserMine extends Render<EntityLaserMine>
             OpenGL.rotate(180.0F, 0.0F, 0.0F, 1.0F);
             GL11.glScaled(0.5F, 0.5F, 0.5F);
             AliensVsPredator.resources().models().LASER_MINE.draw();
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
             OpenGL.scale(2F, -2F, 2F);
             OpenGL.translate(0.004F, -0.74F, 0.06F);
 

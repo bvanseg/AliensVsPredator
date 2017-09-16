@@ -2,7 +2,6 @@ package org.avp.client.render.entities;
 
 import org.avp.AliensVsPredator;
 import org.avp.entities.EntityAPC;
-import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.wavefront.Part;
@@ -10,6 +9,7 @@ import com.arisux.mdx.lib.client.render.wavefront.TriangulatedWavefrontModel;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.entity.Entities;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
@@ -150,7 +150,7 @@ public class RenderAPC extends Render<EntityAPC>
         damage = damage < 0.0F ? 0.0F : damage;
 
         OpenGL.pushMatrix();
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         OpenGL.translate((float) posX - 2.2F, (float) posY - 2.02F, (float) posZ + 0.1F);
         OpenGL.rotate(-apc.rotationYaw + 180, 0, 1, 0);
 

@@ -2,7 +2,6 @@ package org.avp.client.render.items.firearms.parts;
 
 import org.avp.client.model.items.ModelSniper;
 import org.avp.client.render.items.ItemRendererGroup;
-import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.TexturedModel;
@@ -10,6 +9,7 @@ import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -42,7 +42,7 @@ public class RenderItemSniperScope extends ItemRendererGroup<ModelSniper>
         OpenGL.pushMatrix();
         {
             OpenGL.rotate((this.mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
             this.renderPart();
         }
         OpenGL.popMatrix();

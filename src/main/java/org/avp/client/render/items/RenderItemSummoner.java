@@ -4,7 +4,6 @@ import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
@@ -70,11 +69,9 @@ public class RenderItemSummoner extends ItemRenderer<Model>
     @Override
     public void renderFirstPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.rotate(195F, 1.0F, 0.0F, 0.0F);
-        OpenGL.rotate(180F, 0.0F, 1.0F, 0.0F);
-        OpenGL.rotate(30F, 0.0F, 0.0F, 1.0F);
-        OpenGL.translate(-25F, 0F + y, 20.85F);
-        OpenGL.scale(scale, scale, scale);
+        OpenGL.scale(scale, -scale, scale);
+        OpenGL.translate(1.75F, -1.3F, -2F);
+        OpenGL.rotate(60F, 0, 1, 0);
         this.renderCachedModel();
     }
 
@@ -95,22 +92,8 @@ public class RenderItemSummoner extends ItemRenderer<Model>
     {
         OpenGL.rotate(180F, 0.0F, 0.0F, 1F);
         OpenGL.rotate(90F, 0.0F, 1F, 0F);
-        OpenGL.rotate((mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         OpenGL.scale(0.25F, 0.25F, 0.25F);
         OpenGL.translate(0F, -2.5F, 0F);
         this.renderCachedModel();
-    }
-
-    @Override
-    public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
-    }
-
-    @Override
-    public void renderFirstPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        // TODO Auto-generated method stub
-
     }
 }

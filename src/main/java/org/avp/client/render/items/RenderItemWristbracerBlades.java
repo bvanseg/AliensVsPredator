@@ -2,13 +2,12 @@ package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.items.ModelWristBlade;
-import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -32,7 +31,7 @@ public class RenderItemWristbracerBlades extends ItemRenderer<ModelWristBlade>
         this.getModel().getModel().b6.render(Model.DEFAULT_SCALE);
         this.getModel().getModel().bladeLeft.render(Model.DEFAULT_SCALE);
     }
-    
+
     @Override
     public void renderFirstPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
@@ -46,7 +45,7 @@ public class RenderItemWristbracerBlades extends ItemRenderer<ModelWristBlade>
             OpenGL.rotate(340.0F, 1.0F, 0.0F, 0.0F);
             OpenGL.rotate(-30.0F, 0.0F, 1.0F, 0.0F);
             OpenGL.rotate(-70.0F, 0.0F, 0.0F, 1.0F);
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
         }
         else
         {
@@ -58,7 +57,7 @@ public class RenderItemWristbracerBlades extends ItemRenderer<ModelWristBlade>
         this.getModel().getModel().b6.render(Model.DEFAULT_SCALE);
         this.getModel().getModel().bladeLeft.render(Model.DEFAULT_SCALE);
     }
-    
+
     @Override
     public void renderInInventory(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
@@ -67,36 +66,18 @@ public class RenderItemWristbracerBlades extends ItemRenderer<ModelWristBlade>
         OpenGL.translate(-0.375F, -0.25F, 0F);
         OpenGL.rotate(220F, 1F, 0F, 0F);
         OpenGL.rotate(-45F, 0F, 0F, 1F);
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         this.getModel().getTexture().bind();
         this.getModel().getModel().b6.render(Model.DEFAULT_SCALE);
         this.getModel().getModel().bladeLeft.render(Model.DEFAULT_SCALE);
     }
-    
+
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.pushMatrix();
-        {
-            OpenGL.rotate((mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
-            OpenGL.disable(GL11.GL_CULL_FACE);
-            this.getModel().getTexture().bind();
-            Model.draw(this.getModel().getModel().b6);
-            Model.draw(this.getModel().getModel().bladeLeft);
-        }
-        OpenGL.popMatrix();
-    }
-
-    @Override
-    public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
-    }
-
-    @Override
-    public void renderFirstPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        // TODO Auto-generated method stub
-        
+        GlStateManager.disableCull();
+        this.getModel().getTexture().bind();
+        Model.draw(this.getModel().getModel().b6);
+        Model.draw(this.getModel().getModel().bladeLeft);
     }
 }

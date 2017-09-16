@@ -7,6 +7,7 @@ import org.lwjgl.opengl.GL12;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class RenderAmpule extends TileEntitySpecialRenderer<TileEntityAmpule>
@@ -17,7 +18,7 @@ public class RenderAmpule extends TileEntitySpecialRenderer<TileEntityAmpule>
         OpenGL.pushMatrix();
         {
             float scale = 0.64F;
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
             OpenGL.translate(x + 0.5F, y + 0.955F, z + 0.5F);
             OpenGL.enable(GL12.GL_RESCALE_NORMAL);
             OpenGL.scale(scale, -scale, scale);

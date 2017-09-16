@@ -3,13 +3,13 @@ package org.avp.client.render.entities.living;
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelMarine;
 import org.avp.entities.living.EntityMarine;
-import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderMarine extends RenderLivingWrapper<EntityMarine, ModelMarine>
@@ -48,7 +48,7 @@ public class RenderMarine extends RenderLivingWrapper<EntityMarine, ModelMarine>
             OpenGL.rotate(0.0F, 0.0F, 1.0F, 0.0F);
             OpenGL.rotate(180.0F, 0.0F, 0.0F, 1.0F);
             OpenGL.scale(1.2F, 1.2F, 1.2F);
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
 
             switch (marine.getMarineType())
             {

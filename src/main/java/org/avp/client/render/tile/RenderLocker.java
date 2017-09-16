@@ -11,6 +11,7 @@ import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.Renderers;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
@@ -23,7 +24,7 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
         OpenGL.pushMatrix();
         {
             float scale = 0.95F;
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
             OpenGL.translate(x + 0.5F, y + 1.41F, z + 0.5F);
             OpenGL.scale(scale, -scale, scale);
             OpenGL.enable(GL11.GL_ALPHA_TEST);

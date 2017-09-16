@@ -2,10 +2,10 @@ package org.avp.client.render.tile;
 
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityTransformer;
-import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 
@@ -21,7 +21,7 @@ public class RenderTransformer extends TileEntitySpecialRenderer<TileEntityTrans
 
             OpenGL.pushMatrix();
             {
-                OpenGL.disable(GL11.GL_CULL_FACE);
+                GlStateManager.disableCull();
                 OpenGL.translate(x, y, z);
                 OpenGL.scale(1F, -1F, 1F);
                 OpenGL.translate(0.5F, -1.5F, 0.5F);

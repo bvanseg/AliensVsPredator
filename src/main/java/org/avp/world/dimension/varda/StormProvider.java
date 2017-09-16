@@ -12,6 +12,7 @@ import com.arisux.mdx.lib.world.Worlds;
 import com.google.common.base.Predicate;
 
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -115,7 +116,7 @@ public class StormProvider implements Predicate<Entity>
         int renderYFloor = MathHelper.floor(renderPartialY);
 
         Game.minecraft().entityRenderer.enableLightmap();
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         GL11.glNormal3f(0.0F, 1.0F, 0.0F);
         OpenGL.enable(GL11.GL_BLEND);
         OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);

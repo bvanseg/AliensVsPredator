@@ -5,12 +5,12 @@ import org.avp.item.ItemFirearm;
 import org.avp.item.ItemFlamethrower;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.PlayerMode;
-import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelBiped;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,7 +38,7 @@ public class PlayerModeRenderEvent
             {
                 OpenGL.rotate(-yaw, 0F, 1F, 0F);
                 OpenGL.rotate(180F, 1F, 0F, 0F);
-                OpenGL.disable(GL11.GL_CULL_FACE);
+                GlStateManager.disableCull();
 
                 PlayerModeHandler.instance().getTextureForPlayer((EntityPlayer) entityLiving).bind();
                 PlayerModeHandler.instance().getModelForPlayer((EntityPlayer) entityLiving).render(entityLiving);

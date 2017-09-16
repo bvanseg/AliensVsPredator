@@ -9,8 +9,8 @@ import org.lwjgl.opengl.GL11;
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -25,10 +25,9 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         OpenGL.translate(0F, 0.5F, 0F);
         OpenGL.scale(1F, -1F, 1F);
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         this.getModel().draw();
     }
 
@@ -56,7 +55,7 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
                 OpenGL.translate(-0.6495F, 0F, 0F);
             }
 
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
             OpenGL.scale(-glScale, -glScale, -glScale);
             this.getModel().draw();
 
@@ -84,7 +83,7 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
         OpenGL.rotate(180F, 1F, 0F, 0F);
         OpenGL.rotate(-45F, 0F, 0F, 1F);
         OpenGL.rotate(90F, 0.0F, 1.0F, 0.0F);
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         this.getModel().draw();
     }
 
@@ -92,18 +91,5 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
     {
         int ammoCount = ((ItemFirearm) mc.player.inventory.getCurrentItem().getItem()).getAmmoCount();
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
-    }
-
-    @Override
-    public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        renderThirdPersonRight(itemstack, entity, cameraTransformType);
-    }
-
-    @Override
-    public void renderFirstPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        // TODO Auto-generated method stub
-
     }
 }

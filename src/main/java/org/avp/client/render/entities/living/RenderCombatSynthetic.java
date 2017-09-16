@@ -2,13 +2,13 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.entities.living.EntityCombatSynthetic;
-import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.SpecialModelBiped;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynthetic, SpecialModelBiped>
@@ -43,7 +43,7 @@ public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynth
                 OpenGL.rotate(270.0F, 1.0F, 0.0F, 0.0F);
                 OpenGL.rotate(0.0F, 0.0F, 1.0F, 0.0F);
                 OpenGL.rotate(180.0F, 0.0F, 0.0F, 1.0F);
-                OpenGL.disable(GL11.GL_CULL_FACE);
+                GlStateManager.disableCull();
                 OpenGL.scale(glScale, glScale, glScale);
                 AliensVsPredator.resources().models().M41A.draw();
             }

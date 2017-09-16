@@ -1,7 +1,6 @@
 package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
-import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
@@ -9,6 +8,7 @@ import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.wavefront.Part;
 import com.arisux.mdx.lib.game.Game;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -26,10 +26,9 @@ public class RenderItemAPC extends ItemRenderer<Model>
         OpenGL.pushMatrix();
         {
             float scale = 0.25F;
+            OpenGL.rotate(90, 0F, 1F, 0F);
             OpenGL.scale(scale, scale, scale);
-            OpenGL.translate(6.5F, 1.5F, 0F);
-            OpenGL.rotate(15F, 0F, 1F, 1F);
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
 
             for (Part p : AliensVsPredator.resources().models().M577_APC.parts.values())
             {
@@ -44,12 +43,12 @@ public class RenderItemAPC extends ItemRenderer<Model>
     {
         OpenGL.pushMatrix();
         {
-            float scale = 0.75F;
-            OpenGL.scale(scale, scale, scale);
+            float scale = 0.5F;
+            OpenGL.scale(-scale, scale, scale);
             OpenGL.translate(-0.5F, 4.0F, 0F);
             OpenGL.rotate(110F, 0F, 0F, 1F);
             OpenGL.rotate(16F, 1F, 0F, 0F);
-            OpenGL.disable(GL11.GL_CULL_FACE);
+            GlStateManager.disableCull();
 
             for (Part p : AliensVsPredator.resources().models().M577_APC.parts.values())
             {
@@ -94,18 +93,5 @@ public class RenderItemAPC extends ItemRenderer<Model>
             }
         }
         OpenGL.popMatrix();
-    }
-
-    @Override
-    public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
-    }
-
-    @Override
-    public void renderFirstPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        // TODO Auto-generated method stub
-        
     }
 }

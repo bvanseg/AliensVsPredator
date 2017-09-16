@@ -4,7 +4,6 @@ import org.avp.AliensVsPredator;
 import org.avp.URLs;
 import org.avp.client.model.items.ModelAK47;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
@@ -12,6 +11,7 @@ import com.arisux.mdx.lib.client.render.Texture;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.util.Remote;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -26,10 +26,9 @@ public class RenderItemAK47 extends ItemRenderer<ModelAK47>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         OpenGL.translate(-0.1F, 0.5F, -0.5F);
         OpenGL.scale(1F, -1F, 1F);
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         this.getModel().draw();
     }
 
@@ -37,7 +36,7 @@ public class RenderItemAK47 extends ItemRenderer<ModelAK47>
     public void renderThirdPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
         OpenGL.translate(0.1F, 0.2F, 0.4F);
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         OpenGL.scale(-1.1F, -1.1F, -1.1F);
         this.getModel().draw();
     }
@@ -67,20 +66,8 @@ public class RenderItemAK47 extends ItemRenderer<ModelAK47>
         OpenGL.rotate(180F, 1F, 0F, 0F);
         OpenGL.rotate(-45F, 0F, 0F, 1F);
         OpenGL.rotate(90F, 0.0F, 1.0F, 0.0F);
-        OpenGL.disable(GL11.GL_CULL_FACE);
+        GlStateManager.disableCull();
         new Texture(Remote.downloadResource(String.format(URLs.SKIN_AK47, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
         this.getModel().getModel().render();
-    }
-
-    @Override
-    public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
-    }
-
-    @Override
-    public void renderFirstPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-
     }
 }

@@ -8,6 +8,7 @@ import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -22,13 +23,11 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
     @Override
     public void renderThirdPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 1.6F;
+        float glScale = 0.75F;
 
-        OpenGL.rotate(10F, 0F, 0F, 1F);
-        OpenGL.rotate(12F, 0F, 1F, 0F);
-        OpenGL.translate(0.4F, -0.1F, 0F);
-        OpenGL.disable(GL11.GL_CULL_FACE);
-        OpenGL.scale(glScale, -glScale, glScale);
+        OpenGL.translate(0F, -0.3F, -0.35F);
+        GlStateManager.disableCull();
+        OpenGL.scale(glScale, -glScale, -glScale);
         this.getModel().draw();
 
         OpenGL.pushMatrix();
@@ -41,24 +40,18 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
     @Override
     public void renderFirstPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 0.8F;
+        float glScale = 0.5F;
 
-        if (firstPersonRenderCheck(entity))
+        OpenGL.translate(0.1F, 0.4F, -0.1F);
+        GlStateManager.disableCull();
+        OpenGL.scale(glScale, -glScale, glScale);
+        this.getModel().draw();
+
+        OpenGL.pushMatrix();
         {
-            OpenGL.translate(0.1F, 1.0F, 0.2F);
-            OpenGL.rotate(95.0F, 1.0F, 0.0F, 0.0F);
-            OpenGL.rotate(120.0F, 0.0F, 1.0F, 0.0F);
-            OpenGL.rotate(79.0F, 0.0F, 0.0F, 1.0F);
-            OpenGL.disable(GL11.GL_CULL_FACE);
-            OpenGL.scale(glScale, glScale, glScale);
-            this.getModel().draw();
-
-            OpenGL.pushMatrix();
-            {
-                AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK.draw();
-            }
-            OpenGL.popMatrix();
+            AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK.draw();
         }
+        OpenGL.popMatrix();
     }
 
     @Override
@@ -77,35 +70,16 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
+        OpenGL.scale(0.5F, -0.5F, 0.5F);
+        OpenGL.translate(0F, -1.5F, 0F);
+        GlStateManager.disableCull();
+        this.getModel().draw();
 
         OpenGL.pushMatrix();
         {
-            OpenGL.scale(0.5F, -0.5F, 0.5F);
-            OpenGL.translate(0F, -1.5F, 0F);
-            OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
-            OpenGL.disable(GL11.GL_CULL_FACE);
-            this.getModel().draw();
-
-            OpenGL.pushMatrix();
-            {
-                OpenGL.enable(GL11.GL_BLEND);
-                AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK.draw();
-            }
-            OpenGL.popMatrix();
+            OpenGL.enable(GL11.GL_BLEND);
+            AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK.draw();
         }
         OpenGL.popMatrix();
-    }
-
-    @Override
-    public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
-    }
-
-    @Override
-    public void renderFirstPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
-    {
-        // TODO Auto-generated method stub
-
     }
 }
