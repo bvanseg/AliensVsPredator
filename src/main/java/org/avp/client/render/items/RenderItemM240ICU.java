@@ -97,8 +97,7 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
     @Override
     public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        // TODO Auto-generated method stub
-
+        renderThirdPersonRight(itemstack, entity, cameraTransformType);
     }
 
     @Override

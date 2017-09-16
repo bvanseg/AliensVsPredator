@@ -99,8 +99,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
     @Override
     public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        // TODO Auto-generated method stub
-        
+        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
     }
 
     @Override

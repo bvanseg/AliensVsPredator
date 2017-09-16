@@ -75,7 +75,7 @@ public class RenderItemAK47 extends ItemRenderer<ModelAK47>
     @Override
     public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-
+        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
     }
 
     @Override

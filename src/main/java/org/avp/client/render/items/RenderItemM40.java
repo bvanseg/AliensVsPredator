@@ -22,11 +22,8 @@ public class RenderItemM40 extends ItemRenderer<ModelM40>
     @Override
     public void renderThirdPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 1F;
-
-        OpenGL.rotate(10F, 0F, 0F, 1F);
-        OpenGL.rotate(12F, 0F, 1F, 0F);
-        OpenGL.translate(0.4F, 0.1F, 0.2F);
+        float glScale = 0.4F;
+        OpenGL.translate(0F, 0F, -0.05F);
         OpenGL.disable(GL11.GL_CULL_FACE);
         OpenGL.scale(glScale, -glScale, glScale);
         this.getModel().draw();
@@ -35,16 +32,13 @@ public class RenderItemM40 extends ItemRenderer<ModelM40>
     @Override
     public void renderFirstPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 1F;
+        float glScale = 0.3F;
 
         if (firstPersonRenderCheck(entity))
         {
-            OpenGL.translate(0.4F, 0.6F, 0.2F);
-            OpenGL.rotate(95.0F, 1.0F, 0.0F, 0.0F);
-            OpenGL.rotate(120.0F, 0.0F, 1.0F, 0.0F);
-            OpenGL.rotate(79.0F, 0.0F, 0.0F, 1.0F);
+            OpenGL.translate(0F, 0.2F, 0.1F);
             OpenGL.disable(GL11.GL_CULL_FACE);
-            OpenGL.scale(glScale, glScale, glScale);
+            OpenGL.scale(glScale, -glScale, glScale);
             this.getModel().draw();
         }
     }
@@ -74,8 +68,7 @@ public class RenderItemM40 extends ItemRenderer<ModelM40>
     @Override
     public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        // TODO Auto-generated method stub
-        
+        renderThirdPersonRight(itemstack, entity, cameraTransformType);
     }
 
     @Override

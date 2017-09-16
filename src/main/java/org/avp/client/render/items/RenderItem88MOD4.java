@@ -73,7 +73,7 @@ public class RenderItem88MOD4 extends ItemRenderer<Model88MOD4>
     @Override
     public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-
+        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
     }
 
     @Override

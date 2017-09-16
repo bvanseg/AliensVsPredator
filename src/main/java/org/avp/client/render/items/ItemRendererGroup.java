@@ -53,7 +53,7 @@ public class ItemRendererGroup<MODEL extends Model> extends ItemRenderer<MODEL>
     @Override
     public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        this.renderPart();
+        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
     }
 
     @Override

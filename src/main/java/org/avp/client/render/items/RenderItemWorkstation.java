@@ -78,8 +78,7 @@ public class RenderItemWorkstation extends ItemRenderer<ModelWorkstation>
     @Override
     public void renderThirdPersonLeft(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        // TODO Auto-generated method stub
-
+        super.renderThirdPersonLeft(itemstack, entity, cameraTransformType);
     }
 
     @Override
