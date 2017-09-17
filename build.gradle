@@ -143,7 +143,7 @@ task("publishToMaven", dependsOn:"build") {
     uploadArchives {
         repositories.mavenDeployer {
             configuration = configurations.deployerJars
-            repository(url: "ftp://maven.aliensvspredator.org/") {
+            repository(url: "ftp://localhost") {
                 authentication(userName: mavenUsername, password: mavenPassword)
             }
             
