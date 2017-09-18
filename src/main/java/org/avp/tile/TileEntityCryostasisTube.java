@@ -37,7 +37,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         this.ticksExisted++;
         super.update();
         this.updateEnergyAsReceiver();
-
+        
         if (this.stasisEntity != null && !this.isOperational())
         {
             if (this.world.getWorldTime() % 100 == 0)

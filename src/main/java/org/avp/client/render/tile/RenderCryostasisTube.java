@@ -16,6 +16,7 @@ import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -100,15 +101,12 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
         {
             if (tile.stasisEntity != null)
             {
-                OpenGL.pushMatrix();
-
                 if (tile.getVoltage() > 0)
                 {
                     OpenGL.disableLight();
                 }
 
-                Game.renderManager().renderEntityStatic(tile.stasisEntity, Game.partialTicks(), false);
-                OpenGL.popMatrix();
+                Game.renderManager().doRenderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
             }
         }
     }
@@ -140,7 +138,11 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
             if (cachedRenderer != null)
             {
                 cachedRenderer.renderChassis(this, tile, posX, posY, posZ);
+                OpenGL.pushMatrix();
+                OpenGL.disableCullFace();
                 cachedRenderer.renderEntity(this, tile, posX, posY, posZ);
+                OpenGL.enableCullFace();
+                OpenGL.popMatrix();
                 cachedRenderer.renderTube(this, tile, posX, posY, posZ);
             }
 

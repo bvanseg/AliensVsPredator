@@ -28,8 +28,7 @@ public class CryostasisTubeRenderers
 {
     public static void register()
     {
-        RenderCryostasisTube.renderers.add(new CryostasisEntityRenderer(EntityChestburster.class)
-        {
+        RenderCryostasisTube.renderers.add(new CryostasisEntityRenderer(EntityChestburster.class) {
             @Override
             public boolean isApplicable(Entity entity)
             {
@@ -41,19 +40,16 @@ public class CryostasisTubeRenderers
             {
                 if (tile.stasisEntity != null)
                 {
-                    OpenGL.pushMatrix();
                     if (tile.getVoltage() > 0)
                         OpenGL.disableLight();
                     OpenGL.translate(0F, -0.5F, 0F);
                     OpenGL.rotate(90F, 1F, 0F, 0F);
-                    Game.renderManager().renderEntityStatic(tile.stasisEntity, Game.partialTicks(), false);
-                    OpenGL.popMatrix();
+                    Game.renderManager().doRenderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
                 }
             }
         });
 
-        RenderCryostasisTube.renderers.add(new CryostasisEntityRenderer(EntityFacehugger.class)
-        {
+        RenderCryostasisTube.renderers.add(new CryostasisEntityRenderer(EntityFacehugger.class) {
             @Override
             public boolean isApplicable(Entity entity)
             {
@@ -65,39 +61,33 @@ public class CryostasisTubeRenderers
             {
                 if (tile.stasisEntity != null)
                 {
-                    OpenGL.pushMatrix();
                     if (tile.getVoltage() > 0)
                         OpenGL.disableLight();
                     OpenGL.translate(0F, -0.5F, 0F);
                     OpenGL.rotate(90F, 1F, 0F, 0F);
-                    Game.renderManager().renderEntityStatic(tile.stasisEntity, Game.partialTicks(), false);
-                    OpenGL.popMatrix();
+                    Game.renderManager().doRenderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
                 }
             }
         });
 
-        RenderCryostasisTube.renderers.add(new CryostasisEntityRenderer(EntityOvamorph.class)
-        {
+        RenderCryostasisTube.renderers.add(new CryostasisEntityRenderer(EntityOvamorph.class) {
             @Override
             public void renderEntity(RenderCryostasisTube renderer, TileEntityCryostasisTube tile, double posX, double posY, double posZ)
             {
                 if (tile.stasisEntity != null)
                 {
-                    OpenGL.pushMatrix();
                     OpenGL.scale(0.875F, 0.875F, 0.875F);
                     if (tile.getVoltage() > 0)
                         OpenGL.disableLight();
                     OpenGL.translate(0F, 0.75F, 0F);
                     OpenGL.rotate(180F, 1F, 0F, 0F);
                     OpenGL.rotate(23.5F, 0F, 1F, 0F);
-                    Game.renderManager().renderEntityStatic(tile.stasisEntity, Game.partialTicks(), false);
-                    OpenGL.popMatrix();
+                    Game.renderManager().doRenderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
                 }
             }
         });
 
-        RenderCryostasisTube.renderers.add(new CryostasisEntityRenderer(EntityXenomorph.class)
-        {
+        RenderCryostasisTube.renderers.add(new CryostasisEntityRenderer(EntityXenomorph.class) {
             @Override
             public boolean isApplicable(Entity entity)
             {
@@ -115,11 +105,9 @@ public class CryostasisTubeRenderers
                 OpenGL.enable(GL12.GL_RESCALE_NORMAL);
                 OpenGL.scale(0.75F, -0.75F, 0.75F);
                 OpenGL.enable(GL_ALPHA_TEST);
-                OpenGL.pushMatrix();
                 OpenGL.scale(4, 3, 4);
                 OpenGL.translate(0F, -0.75F, 0F);
                 AliensVsPredator.resources().models().CRYOSTASIS_TUBE.draw();
-                OpenGL.popMatrix();
                 OpenGL.enableCullFace();
             }
 
@@ -130,23 +118,20 @@ public class CryostasisTubeRenderers
                 {
                     double depth = tile.stasisEntity instanceof EntityPraetorian ? -1.95 : tile.stasisEntity instanceof EntityDrone ? -1.0 : -1.5F;
 
-                    OpenGL.pushMatrix();
                     if (tile.getVoltage() > 0)
                         OpenGL.disableLight();
                     OpenGL.translate(0F, -2.75F, depth);
                     OpenGL.rotate(90F, 1F, 0F, 0F);
-                    Game.renderManager().renderEntityStatic(tile.stasisEntity, Game.partialTicks(), false);
-                    OpenGL.popMatrix();
+                    Game.renderManager().doRenderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+
                 }
                 else if (tile.stasisEntity instanceof EntityMatriarch)
                 {
-                    OpenGL.pushMatrix();
                     OpenGL.disableLight();
                     OpenGL.scale(0.25, 0.25, 0.25);
                     OpenGL.translate(-3.25, -16, 0);
                     Draw.drawString("\u26A0", 0, 0, 0xFFFF0000, false);
                     OpenGL.enableLight();
-                    OpenGL.popMatrix();
                 }
             }
 

@@ -63,6 +63,8 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     protected void entityInit()
     {
         super.entityInit();
+        FIRING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
+        TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
         this.getDataManager().register(FIRING, false);
         this.getDataManager().register(TYPE, new Random(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())).nextInt(MarineTypes.values().length));
     }
@@ -183,7 +185,12 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     
     public MarineTypes getMarineType()
     {
-        return MarineTypes.getTypeForId(this.getDataManager().get(TYPE));
+        if (this.TYPE != null)
+        {
+            return MarineTypes.getTypeForId(this.getDataManager().get(TYPE));
+        }
+        
+        return MarineTypes.M41A;
     }
 
     public boolean isFiring()
