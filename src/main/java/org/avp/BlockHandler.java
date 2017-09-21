@@ -49,16 +49,20 @@ import com.arisux.mdx.lib.world.block.BlockMaterial;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 
 @GameRegistry.ObjectHolder(Properties.ID)
 @Mod.EventBusSubscriber
@@ -357,8 +361,13 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
         AliensVsPredator.fluids().registerBlocks(event);
-        
-        event.getRegistry().register(new BlockMaterial(Material.ROCK).setRegistryName("lv426rock").setHardness(1.3F).setResistance(2.0F));
+
+        Block block = new BlockMaterial(Material.ROCK);
+        block.setRegistryName("lv426rock");
+        block.setUnlocalizedName(block.getRegistryName().toString());
+        block.setHardness(1.3F);
+        block.setResistance(2.0F);
+        event.getRegistry().register(block);
     }
 
     @SubscribeEvent
@@ -366,6 +375,16 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     {
         AliensVsPredator.fluids().registerItems(event);
         
-        event.getRegistry().register(new ItemBlock(lv426rock).setRegistryName("lv426rock"));
+        ItemBlock itemblock = new ItemBlock(lv426rock);
+        itemblock.setRegistryName("lv426rock");
+        itemblock.setUnlocalizedName(itemblock.getRegistryName().toString());
+        itemblock.setCreativeTab(AliensVsPredator.tabBlocks());
+        event.getRegistry().register(itemblock);
+
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+        {
+            ModelResourceLocation modelResource = new ModelResourceLocation(itemblock.getRegistryName(), "inventory");
+            ModelLoader.setCustomModelResourceLocation(itemblock, 0, modelResource);
+        }
     }
 }

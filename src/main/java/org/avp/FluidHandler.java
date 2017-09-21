@@ -76,8 +76,9 @@ public class FluidHandler
         for (FluidRegistration registration : this.fluids)
         {
             BlockFluidBase block = constructFluidBlock(registration.getBlockClass());
-            block.setCreativeTab(AliensVsPredator.tabBlocks());
             block.setRegistryName(registration.getId());
+            block.setUnlocalizedName(block.getRegistryName().toString());
+            block.setCreativeTab(AliensVsPredator.tabBlocks());
             event.getRegistry().register(block);
             registration.setBlockFluid(block);
         }
@@ -89,6 +90,7 @@ public class FluidHandler
         {
             ItemBlock itemblock = new ItemBlock(registration.getBlockFluid());
             itemblock.setRegistryName(registration.getId());
+            itemblock.setUnlocalizedName(itemblock.getRegistryName().toString());
             event.getRegistry().register(itemblock);
         }        
     }
