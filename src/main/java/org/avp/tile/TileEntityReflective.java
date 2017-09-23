@@ -20,6 +20,11 @@ public class TileEntityReflective extends TileEntity
     {
         return reflection;
     }
+    
+    public int getReflectionMetadata()
+    {
+        return reflectionMetadata;
+    }
 
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()

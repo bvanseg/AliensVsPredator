@@ -118,8 +118,8 @@ public class CachedModelReflectiveShape implements IBakedModel
 
                 if (blockstate != null)
                 {
-                    this.sprite = dispatcher.getBlockModelShapes().getModelForState(blockstate).getParticleTexture();
-
+                    this.sprite = dispatcher.getBlockModelShapes().getTexture(blockstate);
+                    
                     if (this.sprite != textureMap.getMissingSprite())
                     {
                         retextured = retexture(retexturable, key, sprite.getIconName());
