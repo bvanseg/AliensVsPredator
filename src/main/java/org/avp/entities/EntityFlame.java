@@ -6,7 +6,7 @@ import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 import org.avp.item.ItemFlamethrower;
 import org.avp.item.ItemM240IncineratorUnit;
-import org.avp.item.ItemNostromoFlamethrower;
+import org.avp.item.ItemSevastopolFlamethrower;
 import org.avp.tile.TileEntityCryostasisTube;
 
 import com.arisux.mdx.lib.game.Game;
@@ -77,7 +77,7 @@ public class EntityFlame extends EntityThrowable
 
         if (this.getThrower() != null && this.getThrower().getHeldItemMainhand() != null)
         {
-            if (this.getThrower().getHeldItemMainhand().getItem() == AliensVsPredator.items().itemM240ICU || this.getThrower().getHeldItemMainhand().getItem() == AliensVsPredator.items().itemNostromoFlamethrower)
+            if (this.getThrower().getHeldItemMainhand().getItem() == AliensVsPredator.items().itemM240ICU || this.getThrower().getHeldItemMainhand().getItem() == AliensVsPredator.items().itemSevastopolFlamethrower)
             {
                 ItemFlamethrower flamethrower = (ItemFlamethrower) this.getThrower().getHeldItemMainhand().getItem();
 
@@ -87,7 +87,7 @@ public class EntityFlame extends EntityThrowable
                     this.flameSpread = 1;
                 }
 
-                if (flamethrower instanceof ItemNostromoFlamethrower)
+                if (flamethrower instanceof ItemSevastopolFlamethrower)
                 {
                     this.flameLife = 12;
                     this.flameSpread = 2;
@@ -214,7 +214,7 @@ public class EntityFlame extends EntityThrowable
 
                 this.setFire(posX, posY, posZ);
 
-                if (flamethrower instanceof ItemNostromoFlamethrower)
+                if (flamethrower instanceof ItemSevastopolFlamethrower)
                 {
                     ArrayList<Pos> coords = Blocks.getCoordDataInRange(posX, posY, posZ, 1);
 

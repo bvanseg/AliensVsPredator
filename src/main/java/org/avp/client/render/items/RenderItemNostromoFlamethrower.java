@@ -1,7 +1,7 @@
 package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
-import org.avp.client.model.items.ModelNostromoFlamethrower;
+import org.avp.client.model.items.ModelSevastopolFlamethrower;
 import org.avp.item.ItemFirearm;
 import org.lwjgl.input.Mouse;
 
@@ -13,11 +13,11 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemNostromoFlamethrower extends ItemRenderer<ModelNostromoFlamethrower>
+public class RenderItemNostromoFlamethrower extends ItemRenderer<ModelSevastopolFlamethrower>
 {
     public RenderItemNostromoFlamethrower()
     {
-        super(AliensVsPredator.resources().models().FLAMETHROWER_NOSTROMO);
+        super(AliensVsPredator.resources().models().SEVASTOPOL_FLAMETHROWER);
     }
 
     @Override

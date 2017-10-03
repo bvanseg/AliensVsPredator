@@ -105,8 +105,8 @@ public class CraftingHandler implements IInitEvent
         GameRegistry.addRecipe(new ItemStack(items.itemAmmoAR, 1), " a ", "bcb", "bdb", 'a', Items.IRON_INGOT, 'b', items.itemIngotAluminum, 'c', Items.GUNPOWDER, 'd', items.itemIngotCopper);
         GameRegistry.addRecipe(new ItemStack(items.itemGrenade, 1), " d ", "aca", " b ", 'a', Items.IRON_INGOT, 'b', items.itemIngotAluminum, 'c', Items.GUNPOWDER, 'd', items.itemIngotCopper);
         GameRegistry.addRecipe(new ItemStack(items.itemIncendiaryGrenade, 1), " d ", "aca", " b ", 'a', Items.IRON_INGOT, 'b', items.itemIngotAluminum, 'c', Items.BLAZE_POWDER, 'd', items.itemIngotCopper);
-        GameRegistry.addRecipe(new ItemStack(items.itemNostromoFlamethrower, 1), "e f", "ada", "bbc", 'a', items.itemPolycarbonate, 'b', items.itemIngotAluminum, 'c', Blocks.LEVER, 'd', items.itemSilicon, 'e', Items.IRON_INGOT, 'f', Items.FLINT_AND_STEEL);
-        GameRegistry.addRecipe(new ItemStack(items.itemFuelTank, 1), "dad", "bcb", "bbb", 'a', Items.SLIME_BALL, 'b', items.itemIngotAluminum, 'c', Items.BLAZE_POWDER, 'd', items.itemPolycarbonate);
+        GameRegistry.addRecipe(new ItemStack(items.itemSevastopolFlamethrower, 1), "e f", "ada", "bbc", 'a', items.itemPolycarbonate, 'b', items.itemIngotAluminum, 'c', Blocks.LEVER, 'd', items.itemSilicon, 'e', Items.IRON_INGOT, 'f', Items.FLINT_AND_STEEL);
+        GameRegistry.addRecipe(new ItemStack(items.itemPropaneTank, 1), "dad", "bcb", "bbb", 'a', Items.SLIME_BALL, 'b', items.itemIngotAluminum, 'c', Items.BLAZE_POWDER, 'd', items.itemPolycarbonate);
         GameRegistry.addRecipe(new ItemStack(blocks.industrialwall, 16), "bbb", "aaa", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.COBBLESTONE);
         GameRegistry.addRecipe(new ItemStack(blocks.industrialwallstriped, 16), "bbb", "aaa", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.STONE);
         GameRegistry.addRecipe(new ItemStack(blocks.wallStairs, 12), "b  ", "aa ", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.COBBLESTONE);

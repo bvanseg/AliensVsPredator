@@ -221,7 +221,7 @@ item.avp:gun.m56sg.name=M56 SmartGun
 item.avp:gun.ak47.name=AK47 Assault Rifle
 item.avp:gun.m240icu.name=M240 Incinerator Unit
 item.avp:gun.flamethrower.nostromo.name=Incinerator Unit
-item.avp:gun.flamethrower.nostromo.desc=The Nostromo variant incinerator unit
+item.avp:gun.flamethrower.nostromo.desc=The Sevastopol variant incinerator unit
 
 #BLOCKS-DECORATIVE
 tile.avp:unidirt.name=Unidentified dirt

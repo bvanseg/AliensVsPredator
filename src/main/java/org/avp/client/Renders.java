@@ -440,7 +440,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(items.itemPlasmaCannon, new RenderItemPlasmaCannon());
         Renderers.registerItemRenderer(items.itemSpear, new RenderItemSpear());
         Renderers.registerItemRenderer(items.itemM240ICU, new RenderItemM240ICU());
-        Renderers.registerItemRenderer(items.itemNostromoFlamethrower, new RenderItemNostromoFlamethrower());
+        Renderers.registerItemRenderer(items.itemSevastopolFlamethrower, new RenderItemNostromoFlamethrower());
         Renderers.registerItemRenderer(items.itemM41A, new RenderItemM41A());
         Renderers.registerItemRenderer(items.itemM56SG, new RenderItemM56SG());
         Renderers.registerItemRenderer(items.itemAK47, new RenderItemAK47());

@@ -55,7 +55,7 @@ import org.avp.client.model.items.ModelM40;
 import org.avp.client.model.items.ModelM41A;
 import org.avp.client.model.items.ModelM56SG;
 import org.avp.client.model.items.ModelMotionTracker;
-import org.avp.client.model.items.ModelNostromoFlamethrower;
+import org.avp.client.model.items.ModelSevastopolFlamethrower;
 import org.avp.client.model.items.ModelPlasmaCannon;
 import org.avp.client.model.items.ModelSniper;
 import org.avp.client.model.items.ModelWristBlade;
@@ -106,7 +106,7 @@ public class Resources
         public final TexturedModel<ModelRunnerDrone>           RUNNER_DRONE                   = new TexturedModel(new ModelRunnerDrone(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/runner_drone.png"));
         public final TexturedModel<ModelRunnerWarrior>         RUNNER_WARRIOR                 = new TexturedModel(new ModelRunnerWarrior(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/runner_warrior.png"));
         public final TexturedModel<Model88MOD4>                _88MOD4                        = new TexturedModel(new Model88MOD4(), new Texture(AliensVsPredator.Properties.ID, "textures/items/models/88mod4.png"));
-        public final TexturedModel<ModelNostromoFlamethrower>  FLAMETHROWER_NOSTROMO          = new TexturedModel(new ModelNostromoFlamethrower(), new Texture(AliensVsPredator.Properties.ID, "textures/items/models/flamethrower.nostromo.png"));
+        public final TexturedModel<ModelSevastopolFlamethrower>SEVASTOPOL_FLAMETHROWER        = new TexturedModel(new ModelSevastopolFlamethrower(), new Texture(AliensVsPredator.Properties.ID, "textures/items/models/flamethrower.sevastopol.png"));
         public final TexturedModel<ModelEngineer>              ENGINEER                       = new TexturedModel(new ModelEngineer(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/engineer_bio.png"));
         public final TexturedModel<ModelLocker>                LOCKER                         = new TexturedModel(new ModelLocker(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/locker.png"));
         public final TexturedModel<ModelLocker>                GUN_LOCKER                     = new TexturedModel(new ModelLocker(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/gunlocker.png"));
