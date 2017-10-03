@@ -1,5 +1,7 @@
 package org.avp;
 
+import java.util.ArrayList;
+
 import org.avp.AliensVsPredator.Properties;
 import org.avp.block.BlockAmpule;
 import org.avp.block.BlockAssembler;
@@ -43,26 +45,23 @@ import org.avp.block.skulls.BlockSkullXenomorph;
 import org.avp.block.skulls.BlockSkullXenomorphWarrior;
 import org.avp.block.skulls.BlockSkullYautja;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
+import org.avp.registry.BlockRegistrationAVP;
 
 import com.arisux.mdx.lib.game.BlockRegistrationHandler;
+import com.arisux.mdx.lib.game.registry.BlockRegistration;
 import com.arisux.mdx.lib.world.block.BlockMaterial;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.relauncher.Side;
 
 @GameRegistry.ObjectHolder(Properties.ID)
 @Mod.EventBusSubscriber
@@ -161,11 +160,6 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public Block redstoneSensor = new BlockRedstoneSensor(Material.IRON).setHardness(3.2F).setResistance(2.6F);
     public Block redstoneEmitter = new BlockRedstoneEmitter(Material.IRON).setHardness(3.2F).setResistance(2.6F);
     public Block universalGenerator = new BlockRedstoneFluxGenerator(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-
-    public static final BlockFluidClassic blackgoo = null;
-    public static final BlockFluidClassic mist = null;
-    public static final Block lv426rock = null;
-
     public Block transformer = new BlockTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F);
     public Block stepdownTransformer = new BlockNegativeTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F);
     public Block supplyCrate = new BlockSupplyCrate(SupplyChuteType.UNBRANDED);
@@ -249,8 +243,6 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
         register("supplychuteblock", supplyCrate).setCreativeTab(AliensVsPredator.tabMain());
         register("supplychuteblock.marines", crateMarines).setCreativeTab(AliensVsPredator.tabMain());
         register("supplychuteblock.seegson", crateSeegson).setCreativeTab(AliensVsPredator.tabMain());
-        // register("blackgoo", blackgoo).setCreativeTab(AliensVsPredator.tabMain());
-        // register("mist", mist).setCreativeTab(AliensVsPredator.tabMain());
         register("cryostasistube", cryoTube).setCreativeTab(AliensVsPredator.tabMain());
         register("lightpanel", lightPanel).setCreativeTab(AliensVsPredator.tabMain());
         register("mainframepanel.shimmer", muthurPanel1).setCreativeTab(AliensVsPredator.tabMain());
@@ -357,34 +349,119 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
         return super.register(identifier, block);
     }
 
+    /** Preparation for Minecraft 1.12. Not stable enough for full conversion in 1.10.2 **/
+    private static final ArrayList<BlockRegistration> registrations = new ArrayList<BlockRegistration>();
+
+    public static final BlockFluidClassic blackgoo = null;
+    public static final BlockFluidClassic mist = null;
+    public static final Block lv426rock = null;
+    
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
+        registrations.add(new BlockRegistrationAVP("paddingpanel_orange", new BlockMaterial(Material.CLOTH)) {
+            @Override
+            public Block applyModifiers(Block block)
+            {
+                block.setHardness(10F);
+                block.setResistance(15.0F);
+                block.setLightOpacity(0);
+                return super.applyModifiers(block);
+            }
+        });
+        
+        registrations.add(new BlockRegistrationAVP("padding_pipes_orange", new BlockMaterial(Material.CLOTH)) {
+            @Override
+            public Block applyModifiers(Block block)
+            {
+                block.setHardness(10F);
+                block.setResistance(15.0F);
+                block.setLightOpacity(0);
+                return super.applyModifiers(block);
+            }
+        });
+        
+        registrations.add(new BlockRegistrationAVP("padding_pipes_white", new BlockMaterial(Material.CLOTH)) {
+            @Override
+            public Block applyModifiers(Block block)
+            {
+                block.setHardness(10F);
+                block.setResistance(15.0F);
+                block.setLightOpacity(0);
+                return super.applyModifiers(block);
+            }
+        });
+        
+        registrations.add(new BlockRegistrationAVP("padding_square_orange", new BlockMaterial(Material.CLOTH)) {
+            @Override
+            public Block applyModifiers(Block block)
+            {
+                block.setHardness(10F);
+                block.setResistance(15.0F);
+                block.setLightOpacity(0);
+                return super.applyModifiers(block);
+            }
+        });
+        
+        registrations.add(new BlockRegistrationAVP("padding_square_white", new BlockMaterial(Material.CLOTH)) {
+            @Override
+            public Block applyModifiers(Block block)
+            {
+                block.setHardness(10F);
+                block.setResistance(15.0F);
+                block.setLightOpacity(0);
+                return super.applyModifiers(block);
+            }
+        });
+        
+        registrations.add(new BlockRegistrationAVP("padding_tiles_orange", new BlockMaterial(Material.CLOTH)) {
+            @Override
+            public Block applyModifiers(Block block)
+            {
+                block.setHardness(10F);
+                block.setResistance(15.0F);
+                block.setLightOpacity(0);
+                return super.applyModifiers(block);
+            }
+        });
+        
+        registrations.add(new BlockRegistrationAVP("padding_tiles_white", new BlockMaterial(Material.CLOTH)) {
+            @Override
+            public Block applyModifiers(Block block)
+            {
+                block.setHardness(10F);
+                block.setResistance(15.0F);
+                block.setLightOpacity(0);
+                return super.applyModifiers(block);
+            }
+        });
+
+        registrations.add(new BlockRegistrationAVP("lv426rock", new BlockMaterial(Material.ROCK)) {
+            @Override
+            public Block applyModifiers(Block block)
+            {
+                block.setHardness(1.3F);
+                block.setResistance(2.0F);
+                return super.applyModifiers(block);
+            }
+        });
+
         AliensVsPredator.fluids().registerBlocks(event);
 
-        Block block = new BlockMaterial(Material.ROCK);
-        block.setRegistryName("lv426rock");
-        block.setUnlocalizedName(block.getRegistryName().toString());
-        block.setHardness(1.3F);
-        block.setResistance(2.0F);
-        event.getRegistry().register(block);
+        for (BlockRegistration registration : registrations)
+        {
+            registration.registerBlock(event);
+        }
     }
 
     @SubscribeEvent
     public static void registerItemBlocks(RegistryEvent.Register<Item> event)
     {
         AliensVsPredator.fluids().registerItems(event);
-        
-        ItemBlock itemblock = new ItemBlock(lv426rock);
-        itemblock.setRegistryName("lv426rock");
-        itemblock.setUnlocalizedName(itemblock.getRegistryName().toString());
-        itemblock.setCreativeTab(AliensVsPredator.tabBlocks());
-        event.getRegistry().register(itemblock);
 
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+        for (BlockRegistration registration : registrations)
         {
-            ModelResourceLocation modelResource = new ModelResourceLocation(itemblock.getRegistryName(), "inventory");
-            ModelLoader.setCustomModelResourceLocation(itemblock, 0, modelResource);
+            registration.registerItemBlock(event).setCreativeTab(AliensVsPredator.tabBlocks());
         }
     }
 }
