@@ -76,8 +76,8 @@ public class DimensionHandler implements IInitEvent
     {
         if (FMLCommonHandler.instance() != null && FMLCommonHandler.instance().getMinecraftServerInstance() != null && !this.initialized)
         {
-            tryLoadDimension(AliensVsPredator.settings().dimensionIdAcheron());
-            tryLoadDimension(AliensVsPredator.settings().dimensionIdVarda());
+            tryLoadDimension(VARDA.getId());
+            tryLoadDimension(ACHERON.getId());
 
             this.initialized = true;
         }

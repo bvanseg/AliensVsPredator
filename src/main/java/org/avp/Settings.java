@@ -26,7 +26,6 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     private final ArrayList<ConfigSetting> allSettings     = new ArrayList<ConfigSetting>();
 
     private final String                   CATEGORY_OTHER  = "general";
-    private final String                   CATEGORY_DIM    = "dimensions";
     private final String                   CATEGORY_BIOMES = "biomes";
 
     private ConfigSetting                  explosionsEnabled;
@@ -37,8 +36,6 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     private ConfigSetting                  overworldSpawnsEnabled;
     private ConfigSetting                  autoSpawnsEnabled;
     private ConfigSetting                  evolvedXenomorphSpawns;
-    private ConfigSetting                  dimVarda;
-    private ConfigSetting                  dimAcheron;
     private ConfigSetting                  biomeVarda;
     private ConfigSetting                  biomeVardaForest;
     private ConfigSetting                  biomeAcheron;
@@ -111,9 +108,6 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
                 ClientSettings.instance.load(configuration);
             }
 
-            dimVarda = new ConfigSettingInteger(this, configuration.get(CATEGORY_DIM, "varda", 223, "Change the internal ID of this dimension. WARNING: Changing a dimension ID will prevent existing worlds from loading.")).setRequiresRestart();
-            dimAcheron = new ConfigSettingInteger(this, configuration.get(CATEGORY_DIM, "acheron", 426, "Change the internal ID of this dimension. WARNING: Changing a dimension ID will prevent existing worlds from loading.")).setRequiresRestart();
-
             biomeVarda = new ConfigSettingInteger(this, configuration.get(CATEGORY_BIOMES, "varda_badlands", 223, "Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.")).setRequiresRestart();
             biomeAcheron = new ConfigSettingInteger(this, configuration.get(CATEGORY_BIOMES, "acheron", 224, "Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.")).setRequiresRestart();
             biomeVardaForest = new ConfigSettingInteger(this, configuration.get(CATEGORY_BIOMES, "varda_forest", 229, "Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.")).setRequiresRestart();
@@ -183,16 +177,6 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     public boolean areNukesEnabled()
     {
         return (Boolean) this.nukesEnabled.value();
-    }
-
-    public int dimensionIdVarda()
-    {
-        return (Integer) this.dimVarda.value();
-    }
-
-    public int dimensionIdAcheron()
-    {
-        return (Integer) this.dimAcheron.value();
     }
 
     public int biomeIdVardaBadlands()
