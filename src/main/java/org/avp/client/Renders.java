@@ -3,7 +3,7 @@ package org.avp.client;
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 
 import org.avp.AliensVsPredator;
-import org.avp.FluidHandler.FluidRegistration;
+import org.avp.BlockHandler;
 import org.avp.ItemHandler;
 import org.avp.client.model.items.Model88MOD4;
 import org.avp.client.model.items.ModelAK47;
@@ -223,6 +223,7 @@ import org.avp.entities.living.EntityWarrior;
 import org.avp.entities.living.EntityYautjaBerserker;
 import org.avp.entities.living.EntityYautjaMutant;
 import org.avp.entities.living.EntityYautjaWarrior;
+import org.avp.registry.BlockFluidRegistration;
 import org.avp.tile.TileEntityAmpule;
 import org.avp.tile.TileEntityAssembler;
 import org.avp.tile.TileEntityBlastdoor;
@@ -253,6 +254,7 @@ import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.game.IInitEvent;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 import com.arisux.mdx.lib.game.Renderers;
+import com.arisux.mdx.lib.game.registry.BlockRegistration;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
@@ -305,30 +307,31 @@ public class Renders implements IInitEvent, IPreInitEvent
 
     private static void registerFluidModels()
     {
-        for (FluidRegistration registration : AliensVsPredator.fluids().getFluidRegistrations())
+        for (BlockRegistration registration : BlockHandler.getRegistrations())
         {
-            BlockFluidBase block = registration.getBlockFluid();
+            if (registration instanceof BlockFluidRegistration)
+            {
+                BlockFluidRegistration fluidRegistration = (BlockFluidRegistration) registration;
+                BlockFluidBase block = fluidRegistration.getBlock();
+                final Item item = Item.getItemFromBlock(block);
+                final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(AliensVsPredator.Properties.DOMAIN + block.getFluid().getName(), "fluid");
 
-            final Item item = Item.getItemFromBlock(block);
-            assert item != null;
+                ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition() {
+                    @Override
+                    public ModelResourceLocation getModelLocation(ItemStack stack)
+                    {
+                        return modelResourceLocation;
+                    }
+                });
 
-            final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(AliensVsPredator.Properties.DOMAIN + block.getFluid().getName(), "fluid");
-
-            ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition() {
-                @Override
-                public ModelResourceLocation getModelLocation(ItemStack stack)
-                {
-                    return modelResourceLocation;
-                }
-            });
-
-            ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
-                @Override
-                protected ModelResourceLocation getModelResourceLocation(IBlockState state)
-                {
-                    return modelResourceLocation;
-                }
-            });
+                ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
+                    @Override
+                    protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+                    {
+                        return modelResourceLocation;
+                    }
+                });
+            }
         }
     }
 

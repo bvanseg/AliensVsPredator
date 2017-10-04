@@ -176,11 +176,6 @@ public class AliensVsPredator implements IMod
         return blocks == null ? blocks = new BlockHandler() : blocks;
     }
 
-    public static FluidHandler fluids()
-    {
-        return FluidHandler.instance;
-    }
-
     public static MaterialHandler materials()
     {
         return MaterialHandler.instance;

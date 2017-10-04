@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.avp.AliensVsPredator.Properties;
 import org.avp.block.BlockAmpule;
 import org.avp.block.BlockAssembler;
+import org.avp.block.BlockBlackGoo;
 import org.avp.block.BlockBlastdoor;
 import org.avp.block.BlockCryostasisTube;
 import org.avp.block.BlockCustomSlab;
@@ -15,6 +16,7 @@ import org.avp.block.BlockHiveResin;
 import org.avp.block.BlockLightPanel;
 import org.avp.block.BlockLocker;
 import org.avp.block.BlockMedpod;
+import org.avp.block.BlockMist;
 import org.avp.block.BlockNegativeTransformer;
 import org.avp.block.BlockPortal;
 import org.avp.block.BlockPowercell;
@@ -45,6 +47,7 @@ import org.avp.block.skulls.BlockSkullXenomorph;
 import org.avp.block.skulls.BlockSkullXenomorphWarrior;
 import org.avp.block.skulls.BlockSkullYautja;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
+import org.avp.registry.BlockFluidRegistration;
 import org.avp.registry.BlockRegistrationAVP;
 
 import com.arisux.mdx.lib.game.BlockRegistrationHandler;
@@ -67,130 +70,130 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 @Mod.EventBusSubscriber
 public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
 {
-    public Block naturalResin = new BlockHiveResin(Material.WOOD).setLightOpacity(255);
-    public Block resin = new BlockMaterial(Material.WOOD).setHardness(5F).setResistance(10.0F);
-    public Block relicovamorph = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
-    public Block metal1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block metal2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block relicfacehugger = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
-    public Block relicalien = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
-    public Block ship1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block ship2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block ship3 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block ship4 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block ship5 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block ship6 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block templebrick = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
-    public Block templetile = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
-    public Block templewall1 = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
-    public Block templewall2 = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
-    public Block industrialwall = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block ceiling = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
-    public Block ceilingfan = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F);
-    public Block ceilingvent = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
-    public Block ceilinggrill = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
-    public Block skulls = new BlockMaterial(Material.ROCK);
-    public Block floorgrill = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
-    public Block industrialbricks = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block metalpanel = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block metalcolumn0 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block metalcolumn1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public Block plasticcircle = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
-    public Block plastic = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
-    public Block paddingpanel = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
-    public Block plastictri = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
-    public Block plastictile = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
-    public Block oreSilicon = new BlockMaterial(Material.ROCK).setHardness(2.2F).setResistance(1.4F);
-    public Block oreLithium = new BlockMaterial(Material.IRON).setHardness(4.2F).setResistance(5.4F);
-    public Block oreCopper = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block oreBauxite = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block muthurPanel1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(1F).setLightLevel(0.5F);
-    public Block muthurPanel2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(10F).setLightLevel(0.5F);
-    public Block vent0 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
-    public Block vent1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
-    public Block vent2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
-    public Block engineerfloor = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerbrick0 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerbrick1 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerbrick2 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerbrick3 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineergravel = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerwall0 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerwall1 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerwall2 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerwall3 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerwall4 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerrock0 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerrock1 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerrock2 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineerrock3 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineercolumn1 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineercolumn2 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineermaterial1 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block engineermaterial2 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block unistone = new BlockMaterial(Material.ROCK).setHardness(1.3F).setResistance(2.0F);
-    public Block unisand = new BlockMaterial(Material.SAND).setHardness(3.5F).setResistance(2.0F);
-    public Block unigravel = new BlockMaterial(Material.SAND).setHardness(3.0F).setLightOpacity(255);
-    public Block satelliteDish = new BlockSatelliteDish().setHardness(3.2F).setResistance(2.6F);
-    public Block engineermaterial0 = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
-    public Block eggReceptacle = new BlockTempleSpawner(Material.ROCK, false);
-    public Block portalVarda = new BlockPortal(AliensVsPredator.dimensions().VARDA).setHardness(-1.0F).setLightLevel(2.0F);
-    public Block portalAcheron = new BlockPortal(AliensVsPredator.dimensions().ACHERON).setHardness(-1.0F).setLightLevel(2.0F);
-    public Block assembler = new BlockAssembler(Material.IRON).setHardness(1.5F).setResistance(10.0F);
-    public Block floorGrillStairs = new BlockCustomStairs(floorgrill.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
-    public Block ceilingGrillStairs = new BlockCustomStairs(ceilinggrill.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
-    public Block ironBricksStairs = new BlockCustomStairs(industrialbricks.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
-    public Block wallStairs = new BlockCustomStairs(industrialwall.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
-    public Block unidirt = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255);
-    public Block stalagmite = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0);
-    public Block gigerLog = new BlockUnidentifiedLog().setHardness(0.0F).setLightOpacity(0);
-    public Block gigerTendons = new BlockUnidentifiedTreeTendon().setHardness(0.0F).setLightOpacity(0);
-    public Block gigerLeaves = new BlockUnidentifiedTreeLeaves().setHardness(0.0F).setLightOpacity(0);
-    public Block gigerSapling = new BlockUnidentifiedTreeSapling().setHardness(0.0F).setLightOpacity(0);
-    public Block turret = new BlockTurret(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block terminal = new BlockWorkstation(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block stasisMechanism = new BlockStasisMechanism(Material.IRON).setHardness(5.0F).setResistance(10.0F);
-    public Block repulsionGenerator = new BlockGenerator(Material.IRON).setHardness(5.0F).setResistance(10.0F);
-    public Block powerline = new BlockPowerline(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block blastDoor = new BlockBlastdoor(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
-    public Block cryoTube = new BlockCryostasisTube(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(4);
-    public Block lightPanel = new BlockLightPanel(Material.IRON).setHardness(1.5F).setResistance(2.0F);
-    public Block satelliteModem = new BlockSatelliteModem(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block powercell = new BlockPowercell(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block redstoneSensor = new BlockRedstoneSensor(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block redstoneEmitter = new BlockRedstoneEmitter(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block universalGenerator = new BlockRedstoneFluxGenerator(Material.IRON).setHardness(3.2F).setResistance(2.6F);
-    public Block transformer = new BlockTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F);
-    public Block stepdownTransformer = new BlockNegativeTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F);
-    public Block supplyCrate = new BlockSupplyCrate(SupplyChuteType.UNBRANDED);
-    public Block crateMarines = new BlockSupplyCrate(SupplyChuteType.MARINES);
-    public Block crateSeegson = new BlockSupplyCrate(SupplyChuteType.SEEGSON);
-    public Block solarPanel = new BlockSolarPanel(Material.IRON).setHardness(5.0F).setResistance(10.0F);
-    public Block locker = new BlockLocker(Material.IRON).setHardness(1.5F).setResistance(10.0F);
-    public Block medpod = new BlockMedpod(Material.IRON).setHardness(1.5F).setResistance(10.0F);
-    public Block gunLocker = new BlockGunLocker(Material.IRON).setHardness(1.5F).setResistance(10.0F);
-    public Block ampule = new BlockAmpule().setHardness(5.0F).setResistance(10.0F);
+    public Block naturalResin          = new BlockHiveResin(Material.WOOD).setLightOpacity(255);
+    public Block resin                 = new BlockMaterial(Material.WOOD).setHardness(5F).setResistance(10.0F);
+    public Block relicovamorph         = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
+    public Block metal1                = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block metal2                = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block relicfacehugger       = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
+    public Block relicalien            = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
+    public Block ship1                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block ship2                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block ship3                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block ship4                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block ship5                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block ship6                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block templebrick           = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
+    public Block templetile            = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
+    public Block templewall1           = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
+    public Block templewall2           = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F);
+    public Block industrialwall        = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block ceiling               = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
+    public Block ceilingfan            = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F);
+    public Block ceilingvent           = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
+    public Block ceilinggrill          = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
+    public Block skulls                = new BlockMaterial(Material.ROCK);
+    public Block floorgrill            = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
+    public Block industrialbricks      = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block metalpanel            = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block metalcolumn0          = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block metalcolumn1          = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F);
+    public Block plasticcircle         = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+    public Block plastic               = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+    public Block paddingpanel          = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+    public Block plastictri            = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+    public Block plastictile           = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+    public Block oreSilicon            = new BlockMaterial(Material.ROCK).setHardness(2.2F).setResistance(1.4F);
+    public Block oreLithium            = new BlockMaterial(Material.IRON).setHardness(4.2F).setResistance(5.4F);
+    public Block oreCopper             = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F);
+    public Block oreBauxite            = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F);
+    public Block muthurPanel1          = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(1F).setLightLevel(0.5F);
+    public Block muthurPanel2          = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(10F).setLightLevel(0.5F);
+    public Block vent0                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
+    public Block vent1                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
+    public Block vent2                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
+    public Block engineerfloor         = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerbrick0        = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerbrick1        = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerbrick2        = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerbrick3        = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineergravel        = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerwall0         = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerwall1         = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerwall2         = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerwall3         = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerwall4         = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerrock0         = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerrock1         = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerrock2         = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineerrock3         = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineercolumn1       = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineercolumn2       = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineermaterial1     = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block engineermaterial2     = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block unistone              = new BlockMaterial(Material.ROCK).setHardness(1.3F).setResistance(2.0F);
+    public Block unisand               = new BlockMaterial(Material.SAND).setHardness(3.5F).setResistance(2.0F);
+    public Block unigravel             = new BlockMaterial(Material.SAND).setHardness(3.0F).setLightOpacity(255);
+    public Block satelliteDish         = new BlockSatelliteDish().setHardness(3.2F).setResistance(2.6F);
+    public Block engineermaterial0     = new BlockMaterial(Material.IRON).setHardness(10F).setResistance(15.0F);
+    public Block eggReceptacle         = new BlockTempleSpawner(Material.ROCK, false);
+    public Block portalVarda           = new BlockPortal(AliensVsPredator.dimensions().VARDA).setHardness(-1.0F).setLightLevel(2.0F);
+    public Block portalAcheron         = new BlockPortal(AliensVsPredator.dimensions().ACHERON).setHardness(-1.0F).setLightLevel(2.0F);
+    public Block assembler             = new BlockAssembler(Material.IRON).setHardness(1.5F).setResistance(10.0F);
+    public Block floorGrillStairs      = new BlockCustomStairs(floorgrill.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
+    public Block ceilingGrillStairs    = new BlockCustomStairs(ceilinggrill.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
+    public Block ironBricksStairs      = new BlockCustomStairs(industrialbricks.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
+    public Block wallStairs            = new BlockCustomStairs(industrialwall.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
+    public Block unidirt               = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255);
+    public Block stalagmite            = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0);
+    public Block gigerLog              = new BlockUnidentifiedLog().setHardness(0.0F).setLightOpacity(0);
+    public Block gigerTendons          = new BlockUnidentifiedTreeTendon().setHardness(0.0F).setLightOpacity(0);
+    public Block gigerLeaves           = new BlockUnidentifiedTreeLeaves().setHardness(0.0F).setLightOpacity(0);
+    public Block gigerSapling          = new BlockUnidentifiedTreeSapling().setHardness(0.0F).setLightOpacity(0);
+    public Block turret                = new BlockTurret(Material.IRON).setHardness(3.2F).setResistance(2.6F);
+    public Block terminal              = new BlockWorkstation(Material.IRON).setHardness(3.2F).setResistance(2.6F);
+    public Block stasisMechanism       = new BlockStasisMechanism(Material.IRON).setHardness(5.0F).setResistance(10.0F);
+    public Block repulsionGenerator    = new BlockGenerator(Material.IRON).setHardness(5.0F).setResistance(10.0F);
+    public Block powerline             = new BlockPowerline(Material.IRON).setHardness(3.2F).setResistance(2.6F);
+    public Block blastDoor             = new BlockBlastdoor(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+    public Block cryoTube              = new BlockCryostasisTube(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(4);
+    public Block lightPanel            = new BlockLightPanel(Material.IRON).setHardness(1.5F).setResistance(2.0F);
+    public Block satelliteModem        = new BlockSatelliteModem(Material.IRON).setHardness(3.2F).setResistance(2.6F);
+    public Block powercell             = new BlockPowercell(Material.IRON).setHardness(3.2F).setResistance(2.6F);
+    public Block redstoneSensor        = new BlockRedstoneSensor(Material.IRON).setHardness(3.2F).setResistance(2.6F);
+    public Block redstoneEmitter       = new BlockRedstoneEmitter(Material.IRON).setHardness(3.2F).setResistance(2.6F);
+    public Block universalGenerator    = new BlockRedstoneFluxGenerator(Material.IRON).setHardness(3.2F).setResistance(2.6F);
+    public Block transformer           = new BlockTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F);
+    public Block stepdownTransformer   = new BlockNegativeTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F);
+    public Block supplyCrate           = new BlockSupplyCrate(SupplyChuteType.UNBRANDED);
+    public Block crateMarines          = new BlockSupplyCrate(SupplyChuteType.MARINES);
+    public Block crateSeegson          = new BlockSupplyCrate(SupplyChuteType.SEEGSON);
+    public Block solarPanel            = new BlockSolarPanel(Material.IRON).setHardness(5.0F).setResistance(10.0F);
+    public Block locker                = new BlockLocker(Material.IRON).setHardness(1.5F).setResistance(10.0F);
+    public Block medpod                = new BlockMedpod(Material.IRON).setHardness(1.5F).setResistance(10.0F);
+    public Block gunLocker             = new BlockGunLocker(Material.IRON).setHardness(1.5F).setResistance(10.0F);
+    public Block ampule                = new BlockAmpule().setHardness(5.0F).setResistance(10.0F);
     public Block industrialwallstriped = new BlockWall(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
-    public Block templetilesingle = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
-    public Block industrialglass = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
-    public Block floorGrillSlab = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
-    public Block ceilingGrillSlab = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
-    public Block wallSlab = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
-    public Block ironBricksSlab = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
-    public Block industrialGlassSlab = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
+    public Block templetilesingle      = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
+    public Block industrialglass       = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
+    public Block floorGrillSlab        = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
+    public Block ceilingGrillSlab      = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
+    public Block wallSlab              = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
+    public Block ironBricksSlab        = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
+    public Block industrialGlassSlab   = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
     public Block industrialGlassStairs = new BlockCustomStairs(industrialglass.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
-    public Block skullEngineer = new BlockSkullEngineer();
-    public Block skullJockey = new BlockSkullSpaceJockey();
-    public Block skullXeno = new BlockSkullXenomorph();
-    public Block skullXenoWarrior = new BlockSkullXenomorphWarrior();
-    public Block skullYautja = new BlockSkullYautja();
-    public Block slope = new BlockReflective(Material.CIRCUITS);
-    public Block corner = new BlockReflective(Material.CIRCUITS);
-    public Block invertedCorner = new BlockReflective(Material.CIRCUITS);
-    public Block ridge = new BlockReflective(Material.CIRCUITS);
-    public Block pyramid = new BlockReflective(Material.CIRCUITS);
-    public Block invertedRidge = new BlockReflective(Material.CIRCUITS);
-    public Block invertedPyramid = new BlockReflective(Material.CIRCUITS);
+    public Block skullEngineer         = new BlockSkullEngineer();
+    public Block skullJockey           = new BlockSkullSpaceJockey();
+    public Block skullXeno             = new BlockSkullXenomorph();
+    public Block skullXenoWarrior      = new BlockSkullXenomorphWarrior();
+    public Block skullYautja           = new BlockSkullYautja();
+    public Block slope                 = new BlockReflective(Material.CIRCUITS);
+    public Block corner                = new BlockReflective(Material.CIRCUITS);
+    public Block invertedCorner        = new BlockReflective(Material.CIRCUITS);
+    public Block ridge                 = new BlockReflective(Material.CIRCUITS);
+    public Block pyramid               = new BlockReflective(Material.CIRCUITS);
+    public Block invertedRidge         = new BlockReflective(Material.CIRCUITS);
+    public Block invertedPyramid       = new BlockReflective(Material.CIRCUITS);
 
     public BlockHandler()
     {
@@ -349,16 +352,27 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
         return super.register(identifier, block);
     }
 
-    /** Preparation for Minecraft 1.12. Not stable enough for full conversion in 1.10.2 **/
+    /**
+     * Preparation for Minecraft 1.12. Not stable enough for full conversion in
+     * 1.10.2
+     **/
     private static final ArrayList<BlockRegistration> registrations = new ArrayList<BlockRegistration>();
 
-    public static final BlockFluidClassic blackgoo = null;
-    public static final BlockFluidClassic mist = null;
-    public static final Block lv426rock = null;
+    public static final BlockFluidClassic             blackgoo      = null;
+    public static final BlockFluidClassic             mist          = null;
+    public static final Block                         lv426rock     = null;
     
+    public static ArrayList<BlockRegistration> getRegistrations()
+    {
+        return registrations;
+    }
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
+        registrations.add(new BlockFluidRegistration("blackgoo", BlockBlackGoo.class, BlockBlackGoo.fluid));
+        registrations.add(new BlockFluidRegistration("mist", BlockMist.class, BlockMist.fluid));
+        
         registrations.add(new BlockRegistrationAVP("paddingpanel_orange", new BlockMaterial(Material.CLOTH)) {
             @Override
             public Block applyModifiers(Block block)
@@ -369,7 +383,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
                 return super.applyModifiers(block);
             }
         });
-        
+
         registrations.add(new BlockRegistrationAVP("padding_pipes_orange", new BlockMaterial(Material.CLOTH)) {
             @Override
             public Block applyModifiers(Block block)
@@ -380,7 +394,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
                 return super.applyModifiers(block);
             }
         });
-        
+
         registrations.add(new BlockRegistrationAVP("padding_pipes_white", new BlockMaterial(Material.CLOTH)) {
             @Override
             public Block applyModifiers(Block block)
@@ -391,7 +405,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
                 return super.applyModifiers(block);
             }
         });
-        
+
         registrations.add(new BlockRegistrationAVP("padding_square_orange", new BlockMaterial(Material.CLOTH)) {
             @Override
             public Block applyModifiers(Block block)
@@ -402,7 +416,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
                 return super.applyModifiers(block);
             }
         });
-        
+
         registrations.add(new BlockRegistrationAVP("padding_square_white", new BlockMaterial(Material.CLOTH)) {
             @Override
             public Block applyModifiers(Block block)
@@ -413,7 +427,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
                 return super.applyModifiers(block);
             }
         });
-        
+
         registrations.add(new BlockRegistrationAVP("padding_tiles_orange", new BlockMaterial(Material.CLOTH)) {
             @Override
             public Block applyModifiers(Block block)
@@ -424,7 +438,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
                 return super.applyModifiers(block);
             }
         });
-        
+
         registrations.add(new BlockRegistrationAVP("padding_tiles_white", new BlockMaterial(Material.CLOTH)) {
             @Override
             public Block applyModifiers(Block block)
@@ -446,8 +460,6 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
             }
         });
 
-        AliensVsPredator.fluids().registerBlocks(event);
-
         for (BlockRegistration registration : registrations)
         {
             registration.registerBlock(event);
@@ -457,8 +469,6 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     @SubscribeEvent
     public static void registerItemBlocks(RegistryEvent.Register<Item> event)
     {
-        AliensVsPredator.fluids().registerItems(event);
-
         for (BlockRegistration registration : registrations)
         {
             registration.registerItemBlock(event).setCreativeTab(AliensVsPredator.tabBlocks());
