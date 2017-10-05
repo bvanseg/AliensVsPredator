@@ -299,7 +299,7 @@ public class ItemFirearm extends HookedItem
     {
         for (ItemStack itemstack : player.inventory.mainInventory)
         {
-            if (itemstack.getItem() instanceof ItemAmmunition)
+            if (itemstack != null && itemstack.getItem() instanceof ItemAmmunition)
             {
                 ItemAmmunition ammunition = (ItemAmmunition) itemstack.getItem();
 
