@@ -3,6 +3,7 @@ package org.avp.item;
 import org.avp.AliensVsPredator;
 
 import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,8 +42,10 @@ public class ItemArmorMarine extends ItemArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        // if you are wearing the set, you will receive resistance and damageBoost
-        if (player.inventory.armorItemInSlot(3) != null && player.inventory.armorItemInSlot(3).getItem() == AliensVsPredator.items().helmMarine && player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == AliensVsPredator.items().plateMarine && player.inventory.armorItemInSlot(1) != null && player.inventory.armorItemInSlot(1).getItem() == AliensVsPredator.items().legsMarine && player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem() == AliensVsPredator.items().bootsMarine)
+        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AliensVsPredator.items().helmMarine &&
+                Inventories.getChestSlotItemStack(player) != null && Inventories.getChestSlotItemStack(player).getItem() == AliensVsPredator.items().plateMarine &&
+                Inventories.getLegsSlotItemStack(player) != null && Inventories.getLegsSlotItemStack(player).getItem() == AliensVsPredator.items().legsMarine &&
+                Inventories.getBootSlotItemStack(player) != null && Inventories.getBootSlotItemStack(player).getItem() == AliensVsPredator.items().bootsMarine)
         {
             player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 1, 1));
             player.addPotionEffect(new PotionEffect(MobEffects.INSTANT_DAMAGE, 1, 1));

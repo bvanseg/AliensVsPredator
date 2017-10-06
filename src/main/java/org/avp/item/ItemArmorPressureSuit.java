@@ -3,6 +3,7 @@ package org.avp.item;
 import org.avp.AliensVsPredator;
 
 import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,7 +41,10 @@ public class ItemArmorPressureSuit extends ItemAntiVacuumArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if (player.inventory.armorItemInSlot(3) != null && player.inventory.armorItemInSlot(3).getItem() == AliensVsPredator.items().pressureMask && player.inventory.armorItemInSlot(2) != null && player.inventory.armorItemInSlot(2).getItem() == AliensVsPredator.items().pressureChest && player.inventory.armorItemInSlot(1) != null && player.inventory.armorItemInSlot(1).getItem() == AliensVsPredator.items().pressurePants && player.inventory.armorItemInSlot(0) != null && player.inventory.armorItemInSlot(0).getItem() == AliensVsPredator.items().pressureBoots)
+        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AliensVsPredator.items().pressureMask && 
+                Inventories.getChestSlotItemStack(player) != null && Inventories.getChestSlotItemStack(player).getItem() == AliensVsPredator.items().pressureChest && 
+                    Inventories.getLegsSlotItemStack(player) != null && Inventories.getLegsSlotItemStack(player).getItem() == AliensVsPredator.items().pressurePants && 
+                        Inventories.getBootSlotItemStack(player) != null && Inventories.getBootSlotItemStack(player).getItem() == AliensVsPredator.items().pressureBoots)
         {
             player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 1, 0));
             player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 1, 0));

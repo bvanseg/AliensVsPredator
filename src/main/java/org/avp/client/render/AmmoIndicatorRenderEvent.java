@@ -5,6 +5,7 @@ import org.avp.item.ItemFirearm;
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.Screen;
 import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
@@ -20,10 +21,10 @@ public class AmmoIndicatorRenderEvent
     {
         if (Game.minecraft().player != null && event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
         {
-            helmSlot = Game.minecraft().player.inventory.armorItemInSlot(3);
-            chestplateSlot = Game.minecraft().player.inventory.armorItemInSlot(2);
-            leggingsSlot = Game.minecraft().player.inventory.armorItemInSlot(1);
-            bootsSlot = Game.minecraft().player.inventory.armorItemInSlot(0);
+            helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
+            chestplateSlot = Inventories.getChestSlotItemStack(Game.minecraft().player);
+            leggingsSlot = Inventories.getLegsSlotItemStack(Game.minecraft().player);
+            bootsSlot = Inventories.getBootSlotItemStack(Game.minecraft().player);
 
             if (Game.minecraft().player.getHeldItemMainhand() != null && Game.minecraft().player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
             {

@@ -6,6 +6,7 @@ import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
@@ -33,29 +34,32 @@ public class ItemArmorXeno extends ItemArmor
     {
         switch (slot)
         {
-            case FEET:
-                return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
-            case LEGS:
-                return Draw.getResourcePath(AliensVsPredator.resources().XENO2);
-            case CHEST:
-                return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
-            default:
-                return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
+        case FEET:
+            return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
+        case LEGS:
+            return Draw.getResourcePath(AliensVsPredator.resources().XENO2);
+        case CHEST:
+            return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
+        default:
+            return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
         }
     }
-    
+
     @Override
     @SideOnly(Side.CLIENT)
     public ModelBiped getArmorModel(EntityLivingBase entityLiving, ItemStack itemStack, EntityEquipmentSlot armorSlot, ModelBiped _default)
     {
         return null;
     }
-    
+
     public static boolean isPlayerWearingXenoArmorSet(EntityPlayer player)
     {
         if (player != null)
         {
-            ItemStack helm = player.inventory.armorItemInSlot(3), chest = player.inventory.armorItemInSlot(2), legs = player.inventory.armorItemInSlot(1), boots = player.inventory.armorItemInSlot(0);
+            ItemStack helm = Inventories.getHelmSlotItemStack(player);
+            ItemStack chest = Inventories.getChestSlotItemStack(player);
+            ItemStack legs = Inventories.getLegsSlotItemStack(player);
+            ItemStack boots = Inventories.getBootSlotItemStack(player);
             return (helm != null && chest != null && legs != null && boots != null && (helm.getItem() == AliensVsPredator.items().helmXeno && chest.getItem() == AliensVsPredator.items().plateXeno && legs.getItem() == AliensVsPredator.items().legsXeno && boots.getItem() == AliensVsPredator.items().bootsXeno));
         }
 
