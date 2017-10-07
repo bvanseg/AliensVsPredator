@@ -1,23 +1,18 @@
 # ITEMS-AMMO
 item.avp:ammo.pistol.name=Pistol Rounds
-item.avp:ammo.pistol.desc=A magazine classified for use with pistols.
 item.avp:ammo.ar.name=Assault Rifle Rounds
-item.avp:ammo.ar.desc=A magazine classified for use with assault rifles.
 item.avp:ammo.ac.name=Assault Carbine Rounds
 item.avp:ammo.smg.name=Sub Machine-Gun Rounds
-item.avp:ammo.smg.desc=A magazine classified for use with SMGs.
 item.avp:ammo.sniper.name=Sniper Rounds
-item.avp:ammo.sniper.desc=A magazine classified for use with standard rifles.
 item.avp:ammo.flamethrower.name=Flamethrower Fuel
-item.avp:ammo.flamethrower.desc=Pressurized tank of a gasoline/kerosene based fuel
 item.avp:grenade.m40.name=M40 Grenade
 item.avp:grenade.incindiary.name=M40 Incendiary Grenade
 item.avp:tool.celtic.spear.name=Celtic Spear
 item.avp:smartdisc.name=Smart Disc
 item.avp:shuriken.name=Shuriken
 item.avp:artifact.tech.name=Yautja Artifact
-item.avp:artifact.tech.desc=An unknown piece of technology acquired from the Yautja species.
 item.avp:plasmacannon.name=Plasma Caster
+
 
 # ITEMS-ARMOUR
 item.avp:helm.pressure.name=Advanced SE Helmet
@@ -41,6 +36,7 @@ item.avp:body.mk50.name=MK50 Chest Guard
 item.avp:legwear.mk50.name=MK50 Jumpsuit
 item.avp:boots.mk50.name=MK50 Boots
 
+
 # ITEMS-TOOLS AND WEAPONS
 item.avp:tool.celtic.shovel.name=Celtic Shovel
 item.avp:tool.celtic.sword.name=Celtic Sword
@@ -48,167 +44,140 @@ item.avp:tool.celtic.hoe.name=Celtic Hoe
 item.avp:tool.celtic.axe.name=Celtic Axe
 item.avp:tool.celtic.pick.name=Celtic Pickaxe
 item.avp:tool.maintenancejack.name=Maintenance Jack
-item.avp:tool.maintenancejack.desc=Used to manually pry open blast doors.
+
 
 # ITEMS-FIREARM COMPONENTS
 item.avp:part.pistol.stock.name=88Mod4 Stock
-item.avp:part.pistol.stock.desc=A stock used in the assembly of pistols.
 item.avp:part.pistol.barrel.name=88Mod4 Barrel
-item.avp:part.pistol.barrel.desc=A barrel used in the assembly of pistols.
-item.avp:part.pistol.barrel.name=88Mod4 Barrel
-item.avp:part.pistol.barrel.desc=An action used in the assembly of pistols.
+item.avp:part.pistol.action.name=88Mod4 Action
 item.avp:part.sniper.stock.name=Sniper Stock
-item.avp:part.sniper.stock.desc=A stock used in assembly of snipers.
 item.avp:part.sniper.barrel.name=Sniper Barrel
-item.avp:part.sniper.barrel.desc=A barrel used in assembly of snipers.
 item.avp:part.sniper.action.name=Sniper Action
-item.avp:part.sniper.action.desc=An action used in assembly of snipers.
 item.avp:part.sniper.scope.name=Sniper Scope
-item.avp:part.sniper.scope.desc=A scope used in assembly of snipers.
 item.avp:part.sniper.peripherals.name=Sniper Peripherals
-item.avp:part.sniper.peripherals.desc=Peripherals for use in the assembly of snipers.
+item.avp:part.sniper.scope.name=Sniper Peripherals
 item.avp:part.m41a.stock.name=M41A Stock
-item.avp:part.m41a.stock.desc=The stock used in assembly of the M41A Pulse Rifle.
 item.avp:part.m41a.barrel.name=M41A Barrel
-item.avp:part.m41a.barrel.desc=The barrel used in assembly of the M41A Pulse Rifle.
 item.avp:part.m41a.action.name=M41A Action
-item.avp:part.m41a.action.desc=The action used in assembly of the M41A Pulse Rifle.
 item.avp:part.m41a.scope.name=M41A Scope
-item.avp:part.m41a.scope.desc=The scope used in assembly of the M41A Pulse Rifle.
 item.avp:part.m41a.peripherals.name=M41A Peripherals
-item.avp:part.m41a.peripherals.desc=The peripherals used in assembly of the M41A Pulse Rifle.
 item.avp:part.ak47.stock.name=AK-47 Stock
-item.avp:part.ak47.stock.desc=The stock used in assembly of the AK-47.
 item.avp:part.ak47.barrel.name=AK-47 Barrel
-item.avp:part.ak47.barrel.desc=The barrel used in assembly of the AK-47.
 item.avp:part.ak47.action.name=AK-47 Action
-item.avp:part.ak47.action.desc=The action used in assembly of the AK-47.
 item.avp:part.m4.stock.name=M4 Stock
-item.avp:part.m4.stock.desc=A stock used in assembly of the M4 carbine.
 item.avp:part.m4.barrel.name=M4 Barrel
-item.avp:part.m4.barrel.desc=A barrel used in assembly of the M4 carbine.
 item.avp:part.m4.action.name=M4 Action
-item.avp:part.m4.action.desc=An action used in assembly of the M4 carbine.
 item.avp:part.m56sg.stock.name=M56SG Stock
-item.avp:part.m56sg.stock.desc=The stock used in assembly of the M56 SmartGun.
 item.avp:part.m56sg.action.name=M56SG Action
-item.avp:part.m56sg.action.desc=The action used in assembly of the M56 SmartGun.
 item.avp:part.m56sg.barrel.name=M56SG Barrel
-item.avp:part.m56sg.barrel.desc=The barrel used in assembly of the M56 SmartGun.
 item.avp:part.m56sg.supportframe.name=M56SG Support Frame
-item.avp:part.m56sg.supportframe.desc=The support frame used in assembly of the M56 SmartGun.
 item.avp:part.m56sg.aimingmodule.name=M56SG Aiming Module
-item.avp:part.m56sg.aimingmodule.desc=The aiming module used in assembly of the M56 SmartGun.
+
 
 # ITEMS-MISC
 item.avp:silicon.name=Silicon
-item.avp:silicon.desc=An element useful in the creation of semiconductors.
 item.avp:polycarbonate.name=Polycarbonate
-item.avp:polycarbonate.desc=A durable, high impact-resistance material.
 item.avp:ingot.aluminum.name=Aluminum Ingot
-item.avp:ingot.aluminum.desc=An ingot of aluminum melted down from bauxite ore.
 item.avp:ingot.titanium.name=Titanium Ingot
 item.avp:ingot.copper.name=Copper Ingot
-item.avp:ingot.copper.desc=An ingot of copper melted down from copper ore.
 item.avp:part.ic.name=Integrated Circuit
 item.avp:part.processor.name=Microprocessor
-item.avp:part.processor.desc=A semiconductor made up of lots of transistors in a configuration/nthat provides logic based functionality.
 tile.avp:transformernegative.name=Step-Down Transformer
 tile.avp:transformer.name=Step-Up Transformer
 item.avp:part.led.name=Light Emitting Diode (LED)
 item.avp:part.led.display.name=7 Segment LED Display
 item.avp:part.capacitor.name=Capacitor
-item.avp:part.capacitor.desc=An electrical component used to store energy temporarily.
 item.avp:part.transistor.name=Transistor
-item.avp:part.transistor.desc=A semiconductor used to amplify or switch signals and power.
 item.avp:part.resistor.name=Resistor
-item.avp:part.resistor.desc=An electrical component that reduces current flow.
 item.avp:part.ram.name=Random Access Memory
 item.avp:part.powersupply.name=Power Supply
 item.avp:part.diode.name=Diode
-item.avp:part.diode.desc=An electrical component that allows current to flow in only one direction.
 item.avp:part.motherboard.name=Motherboard
 item.avp:part.liquidstatedrive.name=Liquid State Drive
-item.avp:part.voltageregulator.name=Voltage Regulator
-item.avp:part.voltageregulator.desc=An electrical component that maintains constant voltage.
 item.avp:part.carbon.name=Carbon
-item.avp:part.carbon.desc=An element useful in the creation of plastics and electronics.
-item.avp:part.poeinputconvertor.name=POE Input Convertor
-item.avp:part.poeoutputconvertor.name=POE Output Convertor
 item.avp:part.solidstatedrive.name=Solid State Drive
 item.avp:part.regulator.name=Regulator
-item.avp:ingot.lithium.name=Lithium
-item.avp:ingot.lithium.desc=An element with high energy density commonly used in devices that store power./nDepletes quickly after processing.
+item.avp:ingot.lithium.name=Lithium Ingot
 item.avp:carbon.name=Carbon
-item.avp:wristbracer.blades.name=Wristbracer Blades
-item.avp:wristbracer.blades.desc=Place in a wristbracer to equip.
 item.avp:royaljelly.name=Royal Jelly
-item.avp:royaljelly.desc=A potent, transformative substance produced by a xenomorph. /nCommonly produced by royal xenomorphs.
 item.avp:blackgoo.item.name=Black Goo
-item.avp:blackgoo.item.desc=Chemical A0-3959X.91 - 15
-item.avp:phial.goo.name=Phial of Goo
-item.avp:phial.goo.desc=A phial full of Chemical A0-3959X.91 - 15
-item.avp:phial.empty.name=Phial
-item.avp:phial.empty.desc=An empty glass phial
+item.avp:phial.goo.name=Ampule of Goo
+item.avp:phial.empty.name=Ampule
 item.avp:device.nbtdrive.name=NBT Drive
-item.avp:device.nbtdrive.desc=Technology that data can be written to and read from.
 item.avp:apc.name=APC
 item.avp:blackGooBucket.name=Bucket of Black Goo
 item.avp:food.doritos.name=Doritos
 item.avp:food.doritos.coolranch.name=Doritos (Cool Ranch)
 
+
 #ITEMS-SUMMONERS
-item.avp:summon.deacon.name=Deacon
-item.avp:summon.deaconshark.name=Deacon Shark
-item.avp:summon.hammerpede.name=Hammerpede
-item.avp:summon.trilobite.name=Trilobite
-item.avp:summon.engineer.name=Engineer
-item.avp:summon.spacejockey.name=Space Jockey
-item.avp:summon.yautja.berserker.name=Yautja Berserker
+Immature Xenomorphs
+item.avp:summon.ovamorph.name=Ovamorph (Egg)
+item.avp:summon.facehugger.name=Facehugger
+item.avp:summon.chestburster.name=Chestburster
+item.avp:summon.royalfacehugger.name=Royal Facehugger
+item.avp:summon.chestburster.runner.name=Runner Chestburster
+item.avp:summon.chestburster.predalien.name=Predalien Chestburster
+item.avp:summon.chestburster.queen.name=Queen Chestburster
+item.avp:summon.dracoegg.name=Dracovamorph
+item.avp:summon.dracoburster.name=Dracoburster
+
+Default Evolving Xenomorphs
 item.avp:summon.drone.name=Xenomorph Drone
 item.avp:summon.warrior.name=Xenomorph Warrior
+item.avp:summon.praetorian.name=Xenomorph Praetorian
+item.avp:summon.queen.name=Xenomorph Queen
+
+Animal Evolving Xenomorphs
 item.avp:summon.runner.drone.name=Xenomorph Runner
 item.avp:summon.runner.warrior.name=Xenomorph Runner Warrior
 item.avp:summon.crusher.name=Xenomorph Crusher
-item.avp:summon.praetorian.name=Xenomorph Praetorian
-item.avp:summon.queen.name=Xenomorph Matriarch
+
+Other Xenomorphs
 item.avp:summon.spitter.name=Xenomorph Spitter
-item.avp:summon.chestburster.name=Chestburster
-item.avp:summon.facehugger.name=Facehugger
-item.avp:summon.ovamorph.name=Ovamorph (Egg)
-item.avp:summon.royalfacehugger.name=Royal Facehugger
-item.avp:summon.yautja.warrior.name=Yautja Warrior
-item.avp:summon.marine.name=Marine
-item.avp:summon.synthetic.combat.name=Combat Synthetic
+item.avp:summon.boiler.name=Boiler
 item.avp:summon.predalien.name=Predalien
 item.avp:summon.aqua.name=Nauticomorph
+item.avp:summon.myceliomorph.name=Myceliomorph
+item.avp:summon.pantheramorph.name=Pantheramorph
+item.avp:summon.dracomorph.name=Dracomorph
+item.avp:summon.batxeno.name=Chiropteramorph
 item.avp:summon.ultramorph.name=Ultramorph
-item.avp:summon.goomutant.name=Goo Mutant
-item.avp:summon.aethon.name=Aethon
+
+Xenomorph-Like Organisms
+item.avp:summon.trilobite.name=Trilobite
+item.avp:summon.deacon.name=Deacon
 item.avp:summon.octohugger.name=Octohugger
 item.avp:summon.belugaburster.name=Belugaburster
 item.avp:summon.belugamorph.name=Belugamorph
-item.avp:summon.chestburster.runner.name=Runner Chestburster
-item.avp:summon.chestburster.predalien.name=Predalien Chestburster
-item.avp:summon.chestburster.queen.name=Matriarch Chestburster
-item.avp:summon.myceliomorph.name=Myceliomorph
-item.avp:summon.predatorhound.name=Hellhound
-item.avp:summon.dracoegg.name=Dracovamorph
+
+Goo-based Creatures and Mutants
+item.avp:summon.hammerpede.name=Hammerpede
+item.avp:summon.deaconshark.name=Deacon Shark
+item.avp:summon.goomutant.name=Goo Mutant
+item.avp:summon.aethon.name=Aethon
 item.avp:summon.babyhead.name=Babyhead
 item.avp:summon.vardamonkey.name=Scelemur
 item.avp:summon.ursuidae.name=Ursuidae
-item.avp:summon.pantheramorph.name=Pantheramorph
-item.avp:summon.dracoburster.name=Dracoburster
-item.avp:summon.dracomorph.name=Dracomorph
-item.avp:summon.batxeno.name=Chiropteramorph
 item.avp:summon.yautjamutant.name=Mutant Yautja
-item.avp:summon.boiler.name=Boiler
+
+Predators
+item.avp:summon.yautja.name=Yautja (Predator)
+item.avp:summon.yautja.berserker.name=Berserker Yautja
+item.avp:summon.predatorhound.name=Hellhound
+
+Engineers
+item.avp:summon.engineer.name=Engineer
+item.avp:summon.spacejockey.name=SpaceJockey
+
+Humans and Synthetics
+item.avp:summon.marine.name=Marine
+item.avp:summon.synthetic.combat.name=Combat Synthetic
+
 
 #ITEMS-TOOLS AND WEAPONS 2
 item.avp:motiontracker.name=F.E.M.S 5.547.60 Motion Tracker
-item.avp:motiontracker.desc=Tracks movement by detecting changes in air density.
 item.avp:wristblade.name=Wristbracer
-item.avp:wristblade.desc=Applies %s damage while blades are inserted./nDamage applied bypasses armor protection.
 item.avp:plasmacaster.name=Plasma Caster
 item.avp:mine.laser.name=Laser Mine
 item.avp:bucket.blackgoo.name=Bucket of Black Goo
@@ -220,8 +189,9 @@ item.avp:gun.m41a.name=M41A Pulse Rifle
 item.avp:gun.m56sg.name=M56 SmartGun
 item.avp:gun.ak47.name=AK47 Assault Rifle
 item.avp:gun.m240icu.name=M240 Incinerator Unit
-item.avp:gun.flamethrower.nostromo.name=Incinerator Unit
-item.avp:gun.flamethrower.nostromo.desc=The Sevastopol variant incinerator unit
+item.avp:gun.flamethrower.nostromo.name=Incenerator Unit
+item.avp:wristbracer.blades.name=Wristbracer Blades
+
 
 #BLOCKS-DECORATIVE
 tile.avp:unidirt.name=Unidentified dirt
@@ -236,6 +206,8 @@ tile.avp:ceilingpanel.name=Ceiling Panel
 tile.avp:ceilingfan.name=Ceiling Fan
 tile.avp:ceilingvent.name=Ceiling Vent
 tile.avp:ceilinggrill.name=Ceiling Grill
+tile.avp:ceilinggrillstairs.name=Ceiling Grill Stairs
+tile.avp:ceilinggrillslab.name=Ceiling Grill Slab
 tile.avp:floorgrill.name=Floor Grill
 tile.avp:floorgrillstairs.name=Floor Grill Stairs
 tile.avp:floorgrillslab.name=Floor Grill Slab
@@ -248,6 +220,7 @@ tile.avp:vent.wall.name=Vent Wall
 tile.avp:vent.ceiling.name=Vent Ceiling
 tile.avp:industrialbricks.name=Industrial Bricks
 tile.avp:industrialbrickslab.name=Industrial Brick Slab
+tile.avp:industrialbrickstairs.name=Industrial Brick Stairs
 tile.avp:industrialglass.name=Industrial Glass
 tile.avp:industrialglassstairs.name=Industrial Glass Stairs
 tile.avp:industrialglassslab.name=Industrial Glass Slab
@@ -260,7 +233,7 @@ tile.avp:metalpanel2slab.name=Metal Panel Slab
 tile.avp:metalpanel3.name=Metal Panel
 tile.avp:metalpanel3stairs.name=Metal Panel Stairs
 tile.avp:metalpanel3slab.name=Metal Panel Slab
-tile.avp:hiveresin.standard.name=Hive Resin
+tile.avp:hiveresin.name=Hive Resin
 tile.avp:shippanel.name=Ship Panel
 tile.avp:shippanelstairs.name=Ship Panel Stairs
 tile.avp:shippanelslab.name=Ship Panel Slab
@@ -273,6 +246,7 @@ tile.avp:shipdecor1.name=Ship Decor
 tile.avp:shipdecor2.name=Ship Decor
 tile.avp:shipdecor3.name=Ship Decor
 tile.avp:shipbrick.name=Ship Brick
+tile.avp:shippannelyautja.name=Yautja Ship Hieroglyphics
 tile.avp:templebricksingle.name=Temple Brick Single
 tile.avp:templebrick.name=Temple Brick 
 tile.avp:templetile.name=Temple Tile 
@@ -287,20 +261,32 @@ tile.avp:engineershipfloor.name=Engineer Ship Floor
 tile.avp:engineershipbrick.name=Engineer Ship Brick 
 tile.avp:engineershipbrick1.name=Engineer Ship Brick 
 tile.avp:engineershipbrick2.name=Engineer Hieroglyphics Panel
-tile.avp:engineershipbrick3.name=Engineer Ship Brick 
+tile.avp:engineershipbrick3.name=Engineer Ship Brick
 tile.avp:engineershipgravel.name=Engineer Ship Gravel 
 tile.avp:engineershipwall.name=Engineer Ship Wall 
 tile.avp:engineershipwall1.name=Engineer Ship Wall 
 tile.avp:engineershipwall2.name=Engineer Ship Wall 
 tile.avp:engineershipwall3.name=Engineer Hieroglyphics Wall Banner
+tile.avp:engineershipwall4.name=Engineer Hieroglyphics Wall
+tile.avp:engineershiprock.name=Engineer Ship Rock
 tile.avp:engineershiprock1.name=Engineer Ship Rock 
 tile.avp:engineershiprock2.name=Engineer Ship Rock 
 tile.avp:engineershiprock3.name=Engineer Ship Rock 
 tile.avp:engineershipcolumn1.name=Engineer Ship Biomechanical Column
+tile.avp:engineershipcolumn2.name=Engineer Ship Ribbing
 tile.avp:engineershipmaterial0.name=Engineer Ship Material 
 tile.avp:engineershipmaterial1.name=Engineer Ship Material 
 tile.avp:engineershipmaterial2.name=Engineer Ship Material 
-tile.avp:paddingpanel.name=Geometric Padding Panel
+tile.avp:paddingpanel.name=White Geometric Padding Panel
+tile.avp:paddingpanel_white.name=White Geometric Padding Panel
+tile.avp:paddingpanel_orange.name=Orange Geometric Padding Panel
+tile.avp:padding_pipes_white.name=White Padded Pipes
+tile.avp:padding_pipes_orange.name=Orange Padded Pipes
+tile.avp:padding_square_white.name=White Square Padding
+tile.avp:padding_square_orange.name=Orange Square Padding
+tile.avp:padding_tiles_white.name=White Padding Tiles
+tile.avp:padding_tiles_orange.name=Orange Padding Tiles
+tile.avp:lv426rock.name=Lv-426 Rock
 
 #BLOCKS-SPECIAL
 tile.avp:mainframepanel.shimmer.name=Mainframe Panel Shimmer
@@ -318,7 +304,8 @@ tile.avp:blockBlackGoo.name=Black Goo
 tile.avp:blackgoo.name=Black Goo
 tile.avp:mist.name=Reactive Mist
 
-#BLOCKS-ELECTRONICS
+
+#BLOCKS-MACHINES
 tile.avp:turret.name=UA 571-E Sentry Turret
 tile.avp:stasismechanism.name=Stasis Mechanism
 tile.avp:blastdoor.name=Blast Door
@@ -338,15 +325,18 @@ tile.avp:lightpanel.name=Light Panel
 tile.avp:redstonefluxgenerator.name=Redstone Flux Generator
 tile.avp:redstonesensor.name=Redstone Sensor
 tile.avp:redstoneemitter.name=Redstone Emitter
+tile.avp:universalgenerator.name=Universal Power Converter
+
 
 #BLOCKS-SHAPED
 tile.avp:slope.name=Reflective Slope
 tile.avp:corner.name=Reflective Corner
-tile.avp:invertedcorner.name=Reflective Corner
+tile.avp:invertedcorner.name=Reflective Inverted Corner
 tile.avp:ridge.name=Reflective Ridge
 tile.avp:invertedridge.name=Reflective Inverted Ridge
 tile.avp:smartridge.name=Reflective Smart Ridge
 tile.avp:smartinvertedridge.name=Reflective Inverted Smart Ridge
+
 
 #BLOCKS-MISC
 item.avp:device.supplychute.name=Weyland-Yutani Supply Chute
@@ -362,57 +352,77 @@ tile.avp:skull.engineer.name=Engineer Helmet
 tile.avp:skull.spacejockey.name=Space Jockey Skull
 tile.avp:engineership.ampule.name=Ampule
 
+
 #MOBS
+Immature Xenomorphs
+entity.avp.Ovamorph.name=Ovamorph (Egg)
+entity.avp.Facehugger.name=Facehugger
+entity.avp.RoyalFacehugger.name=Royal Facehugger
+entity.avp.Chestbuster.name=Chestburster
+entity.avp.RunnerChestburster.name=Runner Chestburster
+entity.avp.PredalienChestburster.name=Predalien Chestburster
+entity.avp.QueenChestburster.name=Queen Chestburster
+entity.avp.DracoOvamorph.name=Dracovamorph
+entity.avp.DracoBurster.name=Dracoburster
+
+Default Evolving Xenomorphs
+entity.avp.Drone.name=Xenomorph Drone
+entity.avp.Warrior.name=Xenomorph Warrior
+entity.avp.Praetorian.name=Xenomorph Praetorian
+entity.avp.Queen.name=Xenomorph Queen
+
+Animal Evolving Xenomorphs
 entity.avp.RunnerDrone.name=Xenomorph Runner
 entity.avp.RunnerWarrior.name=Xenomorph Runner Warrior
-entity.avp.DeaconShark.name=Deacon Shark
-entity.avp.Drone.name=Xenomorph Drone
-entity.avp.Trilobite.name=Trilobite
-entity.avp.Warrior.name=Xenomorph Warrior
-entity.avp.Spitter.name=Xenomorph Spitter
 entity.avp.Crusher.name=Xenomorph Crusher
-entity.avp.Praetorian.name=Xenomorph Praetorian
-entity.avp.Marine.name=Marine
-entity.avp.YautjaWarrior.name=Yautja Warrior
-entity.avp.YautjaBerserker.name=Berserker Yautja
-entity.avp.Queen.name=Xenomorph Matriarch
-entity.avp.Facehugger.name=Facehugger
-entity.avp.Chestbuster.name=Chestburster
-entity.avp.Hammerpede.name=Hammerpede
-entity.avp.Ovamorph.name=Ovamorph (Egg)
-entity.avp.RoyalFacehugger.name=Royal Facehugger
+
+Other Xenomorphs
+entity.avp.Spitter.name=Xenomorph Spitter
+entity.avp.Boiler.name=Boiler
+entity.avp.Dracomorph.name=Dracomorph
+entity.avp.BatXeno.name=Chiroptermorph
 entity.avp.Predalien.name=Predalien
 entity.avp.Aqua Xenomorph.name=Nauticomorph
-entity.avp.CombatSynthetic.name=Combat Synthetic
-entity.avp.Deacon.name=Deacon
-entity.avp.SpaceJockey.name=Space Jockey
-entity.avp.Engineer.name=Engineer
+entity.avp.Pantheramorph.name=Pantheramorph
+entity.avp.Myceliomorph.name=Myceliomorph
 entity.avp.Ultramorph.name=Ultramorph
-entity.avp.GooMutant.name=Goo Mutant
-entity.avp.Aethon.name=Aethon
+
+Xenomorph-like Organsims
+entity.avp.Trilobite.name=Trilobite
+entity.avp.Deacon.name=Deacon
 entity.avp.Octohugger.name=Octohugger
 entity.avp.Belugaburster.name=Belugaburster
 entity.avp.Belugamorph.name=Belugamorph
-entity.avp.RunnerChestburster.name=Runner Chestburster
-entity.avp.PredalienChestburster.name=Predalien Chestburster
-entity.avp.QueenChestburster.name=Matriarch Chestburster
-entity.avp.Myceliomorph.name=Myceliomorph
-entity.avp.HellHound.name=Hellhound
-entity.avp.DracoOvamorph.name=Dracovamorph
+
+Goo-based Creatures and Mutants
+entity.avp.Hammerpede.name=Hammerpede
+entity.avp.DeaconShark.name=Deacon Shark
+entity.avp.GooMutant.name=Goo Mutant
 entity.avp.Babyhead.name=Babyhead
+entity.avp.Aethon.name=Aethon
 entity.avp.VardaMonkey.name=Scelemur
 entity.avp.Ursuidae.name=Ursuidae
-entity.avp.Pantheramorph.name=Pantheramorph
-entity.avp.DracoBurster.name=Dracoburster
-entity.avp.Dracomorph.name=Dracomorph
-entity.avp.BatXeno.name=Chiroptermorph
 entity.avp.YautjaMutant.name=Mutant Yautja
-entity.avp.Boiler.name=Boiler
+
+Predators
+entity.avp.Yautja.name=Yautja (Predator)
+entity.avp.YautjaBerserker.name=Berserker Yautja
+entity.avp.HellHound.name=Hellhound
+
+Engineers
+entity.avp.SpaceJockey.name=Space Jockey
+entity.avp.Engineer.name=Engineer
+
+Humans and Synthetics
+entity.avp.Marine.name=Marine
+entity.avp.CombatSynthetic.name=Combat Synthetic
+
 
 #MOBS-MISC
 entity.avp.EntityFXAcid.name=Acid
 entity.avp.EntityTurret.name=Turret
 entity.avp.APC.name=APC
+
 
 #TEXT-DEATH MESSAGES
 death.attack.bullet=%1$s was shot by %2$s.
@@ -427,6 +437,7 @@ death.attack.smartdisc=%1$s was sliced in half by a smart disc.
 death.attack.laserMine=%1$s was blown to bits by a laser mine.
 death.attack.flamethrower=%1$s was incinerated.
 death.attack.bullet=%1$s was shot by %2$s.
+
 
 #TEXT-MISC
 gui.avp.beta.feedback.info.submit.title=Submit Feedback
