@@ -47,14 +47,12 @@ public class EntityAcidProjectile extends Entity implements IProjectile
     public EntityAcidProjectile(World world)
     {
         super(world);
-        setRenderDistanceWeight(10D);
         this.setSize(0.5F, 0.5F);
     }
 
     public EntityAcidProjectile(World world, double posX, double posY, double posZ)
     {
         super(world);
-        setRenderDistanceWeight(10D);
         this.setSize(0.5F, 0.5F);
         this.setPosition(posX, posY, posZ);
     }
@@ -62,7 +60,6 @@ public class EntityAcidProjectile extends Entity implements IProjectile
     public EntityAcidProjectile(World world, EntityLivingBase shooter, EntityLivingBase target, float velocity, float deviation)
     {
         super(world);
-        setRenderDistanceWeight(10D);
         this.shootingEntity = shooter;
 
         if (shooter instanceof EntityPlayer)
