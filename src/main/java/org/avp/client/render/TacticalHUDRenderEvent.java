@@ -30,6 +30,7 @@ import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.inventory.GuiInventory;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -99,12 +100,14 @@ public class TacticalHUDRenderEvent
                                 if (living != null && (Entities.canEntityBeSeenBy(living, Game.minecraft().player) || !specialPlayer.isEntityCullingEnabled()) && living instanceof EntityLivingBase)
                                 {
                                     Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+                                    Entity rve = Game.minecraft().renderViewEntity;
 
-                                    Vec3d t = new Vec3d(living.posX, living.posY, living.posZ).addVector(0, living.getEyeHeight() / 2, 0);
-                                    t = t.subtract(new Vec3d(Game.minecraft().player.getPosition().getX(), Game.minecraft().player.getPosition().getY(), Game.minecraft().player.getPosition().getZ()));
-                                    Vec3d tmp = p.addVector(t.xCoord, t.yCoord, t.zCoord).normalize();
-                                    Vec3d res = p.addVector(tmp.xCoord, tmp.yCoord, tmp.zCoord);
+                                    Vec3d lPos = new Vec3d(living.posX, living.posY, living.posZ).addVector(0, living.getEyeHeight() / 2, 0);
+                                    lPos = lPos.subtract(new Vec3d(rve.posX + (rve.posX - rve.prevPosX) * event.getPartialTicks(), rve.posY + (rve.posY - rve.prevPosY) * event.getPartialTicks(), rve.posZ + (rve.posZ - rve.prevPosZ) * event.getPartialTicks()));
 
+                                    Vec3d nPos = p.addVector(lPos.xCoord, lPos.yCoord, lPos.zCoord).normalize();
+                                    Vec3d rPos = p.addVector(-nPos.xCoord, -nPos.yCoord, -nPos.zCoord);
+                                    
                                     OpenGL.pushMatrix();
                                     {
                                         OpenGL.disable(GL11.GL_ALPHA_TEST);
@@ -115,7 +118,7 @@ public class TacticalHUDRenderEvent
                                         OpenGL.disableLight();
                                         OpenGL.disableLightMapping();
                                         OpenGL.translate(p.xCoord, p.yCoord, p.zCoord);
-                                        OpenGL.translate(-res.xCoord, -res.yCoord, -res.zCoord);
+                                        OpenGL.translate(-rPos.xCoord, -(rPos.yCoord), -rPos.zCoord);
                                         OpenGL.rotate(-Game.minecraft().player.rotationYaw - 180, 0, 1, 0);
                                         OpenGL.rotate(-Game.minecraft().player.rotationPitch, 1, 0, 0);
 
