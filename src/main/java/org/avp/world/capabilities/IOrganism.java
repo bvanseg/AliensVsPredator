@@ -220,11 +220,13 @@ public interface IOrganism
 
         public void syncWithServer(EntityLivingBase living)
         {
+            if (living != null)
             AliensVsPredator.network().sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         public void syncWithClients(EntityLivingBase living)
         {
+            if (living != null)
             AliensVsPredator.network().sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
