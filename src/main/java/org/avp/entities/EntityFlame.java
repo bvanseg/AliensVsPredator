@@ -208,7 +208,7 @@ public class EntityFlame extends EntityThrowable
 
         if (this.getThrower() != null && this.getThrower().getHeldItemMainhand() != null)
         {
-            if (this.getThrower().getHeldItemMainhand() != null)
+            if (this.getThrower().getHeldItemMainhand() != null && this.getThrower().getHeldItemMainhand().getItem() instanceof ItemFlamethrower)
             {
                 ItemFlamethrower flamethrower = (ItemFlamethrower) this.getThrower().getHeldItemMainhand().getItem();
 
