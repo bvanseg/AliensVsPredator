@@ -119,7 +119,7 @@ public abstract class EntityXenomorph extends EntitySpeciesAlien implements IMob
 
     public float getInnerJawProgress()
     {
-        return this.getDataManager().get(JAW_PROGRESS);
+        return this.getDataManager().get(MOUTH_PROGRESS);
     }
 
     protected void decreaseOuterJawProgress()
