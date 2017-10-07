@@ -17,6 +17,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityWristbracer extends EntityThrowable
 {
@@ -80,43 +82,57 @@ public class EntityWristbracer extends EntityThrowable
             float explosionHeightMax = explosionWidthMax / 2;
             float explosionWidth = (float) (this.getInitTicks() * explosionWidthMax / this.getInitTicksMax());
 
-            float iS = 1F;
-            double arcFluctuation = 1 + (this.getInitTicks() * 40 / this.getInitTicksMax());
-            double arcComplexity = (explosionWidth * 0.5 / explosionWidthMax);
-            float arcDensity = (float) (0.01F) + (explosionWidth * 1F / explosionWidthMax);
+            double pX = this.posX + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
+            double pY = this.posY + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
+            double pZ = this.posZ + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
 
+            if (this.world.isRemote)
             {
-                double pX = this.posX + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
-                double pY = this.posY + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
-                double pZ = this.posZ + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
+                this.spawnElectricArc(explosionWidthMax, explosionHeightMax, explosionWidth);
+            }
 
-                double sX = this.posX + (this.rand.nextDouble() * iS) - (this.rand.nextDouble() * iS);
-                double sY = this.posY + (this.rand.nextDouble() * iS) - (this.rand.nextDouble() * iS);
-                double sZ = this.posZ + (this.rand.nextDouble() * iS) - (this.rand.nextDouble() * iS);
-
-                if (this.world.isRemote)
-                {
-                    Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, sX, sY, sZ, pX, pY, pZ, 1, arcFluctuation, arcComplexity, arcDensity, 0xFF00CCFF));
-                }
-
+            if (!this.world.isRemote)
+            {
                 this.world.setBlockToAir(new BlockPos((int) Math.round(pX), (int) Math.round(pY), (int) Math.round(pZ)));
             }
 
-            if (this.getPostInitTicks() >= this.getPostInitTicksMax() * 2)
+            if (!this.world.isRemote)
             {
-                if (AliensVsPredator.settings().areExplosionsEnabled())
+                if (this.getPostInitTicks() >= this.getPostInitTicksMax() * 2)
                 {
-                    ArrayList<Block> excludedBlocks = new ArrayList<Block>();
-                    excludedBlocks.add(Blocks.BEDROCK);
-                    ArrayList<Material> excludedMaterials = new ArrayList<Material>();
-                    excludedMaterials.add(Material.ROCK);
-                    LargeExplosion explosion = new LargeExplosion(world, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1000F, new Random().nextLong(), excludedBlocks, excludedMaterials, 0, 2);
-                    explosion.start();
-                }
+                    if (AliensVsPredator.settings().areExplosionsEnabled())
+                    {
+                        ArrayList<Block> excludedBlocks = new ArrayList<Block>();
+                        excludedBlocks.add(Blocks.BEDROCK);
+                        ArrayList<Material> excludedMaterials = new ArrayList<Material>();
+                        excludedMaterials.add(Material.ROCK);
+                        LargeExplosion explosion = new LargeExplosion(world, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1000F, new Random().nextLong(), excludedBlocks, excludedMaterials, 0, 2);
+                        explosion.start();
+                    }
 
-                this.setDead();
+                    this.setDead();
+                }
             }
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void spawnElectricArc(float explosionWidthMax, float explosionHeightMax, float explosionWidth2)
+    {
+        float explosionWidth = 10F;
+
+        float iS = 1F;
+        double sX = this.posX + (this.rand.nextDouble() * iS) - (this.rand.nextDouble() * iS);
+        double sY = this.posY + (this.rand.nextDouble() * iS) - (this.rand.nextDouble() * iS);
+        double sZ = this.posZ + (this.rand.nextDouble() * iS) - (this.rand.nextDouble() * iS);
+        double pX = this.posX + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
+        double pY = this.posY + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
+        double pZ = this.posZ + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
+        double arcFluctuation = 1 + (this.getInitTicks() * 40 / this.getInitTicksMax());
+        double arcComplexity = (explosionWidth * 0.5 / explosionWidth);
+        float arcDensity = (float) (0.01F) + (explosionWidth * 1F / explosionWidth);
+
+        Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, sX, sY, sZ, pX, pY, pZ, 1, arcFluctuation, arcComplexity, arcDensity, 0xFF00CCFF));
     }
 
     public int getInitTicksMax()
