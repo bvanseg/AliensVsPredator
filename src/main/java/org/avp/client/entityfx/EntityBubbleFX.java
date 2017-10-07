@@ -85,6 +85,6 @@ public class EntityBubbleFX extends Particle
     @Override
     public int getFXLayer()
     {
-        return 0;
+        return 3;
     }
 }

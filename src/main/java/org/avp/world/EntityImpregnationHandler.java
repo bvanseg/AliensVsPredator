@@ -16,6 +16,7 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.passive.EntityMooshroom;
+import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -116,7 +117,7 @@ public class EntityImpregnationHandler
 
                                 if (world.isRemote && timeLeft <= 3)
                                 {
-                                    for (int i = 1024; i > 0; i--)
+                                    for (int i = 256; i > 0; i--)
                                     {
                                         this.bleed(host, 0.5F);
                                     }
@@ -128,7 +129,7 @@ public class EntityImpregnationHandler
                                     
                                     if (host.getRNG().nextInt(100) == 0)
                                     {
-                                        for (int i = 64; i > 0; i--)
+                                        for (int i = 32; i > 0; i--)
                                         {
                                             this.bleed(host, 0.5F);
                                         }
