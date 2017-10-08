@@ -116,7 +116,6 @@ public class ItemAPC extends HookedItem
 
                     if (!worldIn.isRemote)
                     {
-                        System.out.println("test");
                         worldIn.spawnEntity(entityapc);
                     }
 
