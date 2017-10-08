@@ -15,6 +15,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.tileentity.TileEntity;
@@ -235,7 +236,7 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
 
     protected boolean canReplaceWithResin(IBlockState blockstate)
     {
-        return !(blockstate.getBlock() == net.minecraft.init.Blocks.AIR) && !(blockstate.getBlock() instanceof BlockHiveResin) && blockstate.isOpaqueCube();
+        return !(blockstate.getBlock() == net.minecraft.init.Blocks.AIR) && !(blockstate.getBlock() instanceof BlockHiveResin) && blockstate != Blocks.BEDROCK.getDefaultState() && blockstate.isOpaqueCube();
     }
 
     @Override
