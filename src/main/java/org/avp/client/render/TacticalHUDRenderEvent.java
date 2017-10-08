@@ -27,7 +27,6 @@ import com.arisux.mdx.lib.world.Pos;
 import com.arisux.mdx.lib.world.entity.Entities;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
-import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.inventory.GuiInventory;
