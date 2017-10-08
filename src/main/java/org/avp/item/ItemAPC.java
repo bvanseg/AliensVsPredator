@@ -12,6 +12,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -26,8 +29,9 @@ public class ItemAPC extends HookedItem
         this.maxStackSize = 1;
         this.setCreativeTab(CreativeTabs.TRANSPORTATION);
     }
-
-    public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn)
+    
+    @Override
+    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         float partialTicks = 1.0F;
         float pitch = playerIn.prevRotationPitch + (playerIn.rotationPitch - playerIn.prevRotationPitch) * partialTicks;
@@ -48,7 +52,7 @@ public class ItemAPC extends HookedItem
 
         if (result == null)
         {
-            return itemStackIn;
+            return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
         }
         else
         {
@@ -75,7 +79,7 @@ public class ItemAPC extends HookedItem
 
             if (flag)
             {
-                return itemStackIn;
+                return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
             }
             else
             {
@@ -112,6 +116,7 @@ public class ItemAPC extends HookedItem
 
                     if (!worldIn.isRemote)
                     {
+                        System.out.println("test");
                         worldIn.spawnEntity(entityapc);
                     }
 
@@ -120,8 +125,8 @@ public class ItemAPC extends HookedItem
                         --itemStackIn.stackSize;
                     }
                 }
-
-                return itemStackIn;
+                
+                return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
             }
         }
     }
