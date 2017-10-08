@@ -18,16 +18,15 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class VisionModeRenderEvent
 {
-    public static final VisionModeRenderEvent instance = new VisionModeRenderEvent();
-    public VisionMode currentVisionMode = VisionMode.NORMAL;
-    private IAction switchVisionMode = new IAction()
-    {
-        @Override
-        public void perform(IGuiElement element)
-        {
-            currentVisionMode = currentVisionMode.id < VisionMode.values().length - 1 ? VisionMode.get(currentVisionMode.id + 1) : VisionMode.get(0);            
-        }
-    };
+    public static final VisionModeRenderEvent instance          = new VisionModeRenderEvent();
+    public VisionMode                         currentVisionMode = VisionMode.NORMAL;
+    private IAction                           switchVisionMode  = new IAction() {
+                                                                    @Override
+                                                                    public void perform(IGuiElement element)
+                                                                    {
+                                                                        currentVisionMode = currentVisionMode.id < VisionMode.values().length - 1 ? VisionMode.get(currentVisionMode.id + 1) : VisionMode.get(0);
+                                                                    }
+                                                                };
 
     @SubscribeEvent
     public void renderTickOverlay(Pre event)
@@ -55,7 +54,10 @@ public class VisionModeRenderEvent
 
         if (Game.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().helmTitanium)
         {
-            this.currentVisionMode.renderEntityPre(event);
+            if (event.getEntity() != Game.minecraft().player)
+            {
+                this.currentVisionMode.renderEntityPre(event);
+            }
         }
     }
 
@@ -66,10 +68,13 @@ public class VisionModeRenderEvent
 
         if (Game.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().helmTitanium)
         {
-            this.currentVisionMode.renderEntityPost(event);
+            if (event.getEntity() != Game.minecraft().player)
+            {
+                this.currentVisionMode.renderEntityPost(event);
+            }
         }
     }
-    
+
     public void switchMode()
     {
         this.switchVisionMode.perform(null);

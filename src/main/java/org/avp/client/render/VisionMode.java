@@ -150,6 +150,7 @@ public enum VisionMode
             {
                 OpenGL.enableLight();
                 OpenGL.enableLightMapping();
+                OpenGL.blendClear();
             }
         }
     };
