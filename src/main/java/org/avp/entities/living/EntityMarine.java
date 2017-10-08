@@ -108,6 +108,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6499999761581421D);
+        this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(10.0D);
     }
 
     @Override
@@ -115,13 +116,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     {
         return 0.5F - this.world.getLightBrightness(pos);
     }
-
-    @Override
-    public int getTotalArmorValue()
-    {
-        return 10;
-    }
-
+    
     @Override
     protected SoundEvent getHurtSound()
     {
