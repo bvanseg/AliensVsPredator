@@ -203,7 +203,7 @@ public class RenderAPC extends Render<EntityAPC>
                 }
             }
 
-            if (((this.isPartOfTurret(p) && apc.getPassengers().get(0) == null)))
+            if (((this.isPartOfTurret(p) && apc.getPassengers().size() > 0 && apc.getPassengers().get(0) == null)))
             {
                 p.draw();
             }
