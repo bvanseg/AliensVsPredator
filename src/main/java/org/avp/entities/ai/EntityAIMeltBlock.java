@@ -1,6 +1,7 @@
 package org.avp.entities.ai;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.avp.AliensVsPredator;
 import org.avp.api.blocks.IAcidResistant;
@@ -67,6 +68,16 @@ public class EntityAIMeltBlock extends EntityAIYOffsetBlockInteract
         blockBlacklist.add(block);
         return block;
     }
+    
+    public static Block[] blacklist(Block[] blocks)
+        {
+            for (Block block : new ArrayList<Block>(Arrays.asList(blocks)))
+            {
+                blockBlacklist.add(block);
+    
+            }
+            return blocks;
+        }
     
     @Override
     public boolean shouldExecute()
