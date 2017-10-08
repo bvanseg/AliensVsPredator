@@ -27,6 +27,7 @@ import com.arisux.mdx.lib.world.Pos;
 import com.arisux.mdx.lib.world.entity.Entities;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
+import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.inventory.GuiInventory;
@@ -47,7 +48,7 @@ public class TacticalHUDRenderEvent
     public static final TacticalHUDRenderEvent instance          = new TacticalHUDRenderEvent();
     private GuiTacticalHUDSettings             guiSettings;
     private ArrayList<EntityPlayer>            playersInHUD      = new ArrayList<EntityPlayer>();
-    private SpecialPlayer                       specialPlayer;
+    private SpecialPlayer                      specialPlayer;
     private Organism                           playerOrganism;
     private GuiCustomButton                    buttonMarineHelmConfig;
     private boolean                            gammaRestored     = true;
@@ -97,76 +98,80 @@ public class TacticalHUDRenderEvent
                         {
                             for (EntityLivingBase living : trackedEntities)
                             {
-                                if (living != null && (Entities.canEntityBeSeenBy(living, Game.minecraft().player) || !specialPlayer.isEntityCullingEnabled()) && living instanceof EntityLivingBase)
+                                if (living != null && living != Game.minecraft().player)
                                 {
-                                    Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
-                                    Entity rve = Game.minecraft().renderViewEntity;
-
-                                    Vec3d lPos = new Vec3d(living.posX, living.posY, living.posZ).addVector(0, living.getEyeHeight() / 2, 0);
-                                    lPos = lPos.subtract(new Vec3d(rve.posX + (rve.posX - rve.prevPosX) * event.getPartialTicks(), rve.posY + (rve.posY - rve.prevPosY) * event.getPartialTicks(), rve.posZ + (rve.posZ - rve.prevPosZ) * event.getPartialTicks()));
-
-                                    Vec3d nPos = p.addVector(lPos.xCoord, lPos.yCoord, lPos.zCoord).normalize();
-                                    Vec3d rPos = p.addVector(-nPos.xCoord, -nPos.yCoord, -nPos.zCoord);
-                                    
-                                    OpenGL.pushMatrix();
+                                    if (living != null && (Entities.canEntityBeSeenBy(living, Game.minecraft().player) || !specialPlayer.isEntityCullingEnabled()) && living instanceof EntityLivingBase)
                                     {
-                                        OpenGL.disable(GL11.GL_ALPHA_TEST);
-                                        OpenGL.enable(GL_DEPTH_TEST);
-                                        GL11.glDepthFunc(GL11.GL_ALWAYS);
-                                        OpenGL.blendClear();
-                                        OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
-                                        OpenGL.disableLight();
-                                        OpenGL.disableLightMapping();
-                                        OpenGL.translate(p.xCoord, p.yCoord, p.zCoord);
-                                        OpenGL.translate(-rPos.xCoord, -(rPos.yCoord), -rPos.zCoord);
-                                        OpenGL.rotate(-Game.minecraft().player.rotationYaw - 180, 0, 1, 0);
-                                        OpenGL.rotate(-Game.minecraft().player.rotationPitch, 1, 0, 0);
+                                        Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+                                        Entity rve = Game.minecraft().renderViewEntity;
+
+                                        Vec3d lPos = new Vec3d(living.posX, living.posY, living.posZ).addVector(0, living.getEyeHeight() / 2, 0);
+                                        lPos = lPos.subtract(new Vec3d(rve.posX + (rve.posX - rve.prevPosX) * event.getPartialTicks(), rve.posY + (rve.posY - rve.prevPosY) * event.getPartialTicks(), rve.posZ + (rve.posZ - rve.prevPosZ) * event.getPartialTicks()));
+
+                                        Vec3d nPos = p.addVector(lPos.xCoord, lPos.yCoord, lPos.zCoord).normalize();
+                                        Vec3d rPos = p.addVector(-nPos.xCoord, -nPos.yCoord, -nPos.zCoord);
 
                                         OpenGL.pushMatrix();
                                         {
-                                            OpenGL.rotate(Game.minecraft().player.rotationYaw - 180, 0, 1, 0);
-                                            float indicatorScale = 0.05F;
+                                            OpenGL.disable(GL11.GL_ALPHA_TEST);
+                                            OpenGL.enable(GL_DEPTH_TEST);
+                                            GL11.glDepthFunc(GL11.GL_ALWAYS);
                                             OpenGL.blendClear();
                                             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
-                                            OpenGL.scale(indicatorScale, indicatorScale, indicatorScale);
-                                            OpenGL.rotate(-Game.minecraft().player.rotationYaw, 0, 1, 0);
+                                            OpenGL.disableLight();
+                                            OpenGL.disableLightMapping();
+                                            OpenGL.translate(p.xCoord, p.yCoord, p.zCoord);
+                                            OpenGL.translate(-rPos.xCoord, -(rPos.yCoord), -rPos.zCoord);
+                                            OpenGL.rotate(-Game.minecraft().player.rotationYaw - 180, 0, 1, 0);
+                                            OpenGL.rotate(-Game.minecraft().player.rotationPitch, 1, 0, 0);
 
-                                            if (organism.hasEmbryo())
+                                            OpenGL.pushMatrix();
                                             {
-                                                OpenGL.color4i(0xFFFF0000);
-                                                Draw.drawResourceCentered(AliensVsPredator.resources().INFECTION_INDICATOR, 2, -1, 2, 2, 255, 0, 0, 255);
+                                                OpenGL.rotate(Game.minecraft().player.rotationYaw - 180, 0, 1, 0);
+                                                float indicatorScale = 0.05F;
+                                                OpenGL.blendClear();
+                                                OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
+                                                OpenGL.scale(indicatorScale, indicatorScale, indicatorScale);
+                                                OpenGL.rotate(-Game.minecraft().player.rotationYaw, 0, 1, 0);
+
+                                                if (organism.hasEmbryo())
+                                                {
+                                                    OpenGL.color4i(0xFFFF0000);
+                                                    Draw.drawResourceCentered(AliensVsPredator.resources().INFECTION_INDICATOR, 2, -1, 2, 2, 255, 0, 0, 255);
+                                                }
+
+                                                int color = organism.hasEmbryo() || living instanceof IMob ? 0xFFFF0000 : 0xFF00AAFF;
+                                                int textMultiplier = 10;
+                                                int textX = 20;
+                                                int textY = -38 + textMultiplier;
+                                                float textScale = 0.0625F;
+                                                OpenGL.rotate(180F, 0F, 1F, 0F);
+                                                OpenGL.scale(textScale, -textScale, textScale);
+
+                                                String dist = ((int) living.getDistanceToEntity(Game.minecraft().player)) + "";
+                                                Draw.drawString(dist, textX - 19 - (Draw.getStringRenderWidth(dist) / 2), (textY += textMultiplier) + 15, color, false);
+
+                                                if (organism.hasEmbryo())
+                                                {
+                                                    int lifeTimeTicks = organism.getEmbryo().getGestationPeriod() - organism.getEmbryo().getAge();
+                                                    int lifeTimeSeconds = lifeTimeTicks / 20;
+                                                    Draw.drawString("FOREIGN ORGANISM", textX, textY += textMultiplier, 0xFFFF0000, false);
+                                                    Draw.drawString("VITAL.TIME: " + lifeTimeSeconds / 60 + "." + lifeTimeSeconds % 60 + "M", textX, textY += textMultiplier, 0xFFFF0000, false);
+                                                }
+                                                Draw.drawCenteredRectWithOutline(0, 0, 16, 16, 1, 0x00000000, color);
                                             }
+                                            OpenGL.popMatrix();
 
-                                            int color = organism.hasEmbryo() || living instanceof IMob ? 0xFFFF0000 : 0xFF00AAFF;
-                                            int textMultiplier = 10;
-                                            int textX = 20;
-                                            int textY = -38 + textMultiplier;
-                                            float textScale = 0.0625F;
-                                            OpenGL.rotate(180F, 0F, 1F, 0F);
-                                            OpenGL.scale(textScale, -textScale, textScale);
-
-                                            String dist = ((int) living.getDistanceToEntity(Game.minecraft().player)) + "";
-                                            Draw.drawString(dist, textX - 19 - (Draw.getStringRenderWidth(dist) / 2), (textY += textMultiplier) + 15, color, false);
-
-                                            if (organism.hasEmbryo())
-                                            {
-                                                int lifeTimeTicks = organism.getEmbryo().getGestationPeriod() - organism.getEmbryo().getAge();
-                                                int lifeTimeSeconds = lifeTimeTicks / 20;
-                                                Draw.drawString("FOREIGN ORGANISM", textX, textY += textMultiplier, 0xFFFF0000, false);
-                                                Draw.drawString("VITAL.TIME: " + lifeTimeSeconds / 60 + "." + lifeTimeSeconds % 60 + "M", textX, textY += textMultiplier, 0xFFFF0000, false);
-                                            }
-                                            Draw.drawCenteredRectWithOutline(0, 0, 16, 16, 1, 0x00000000, color);
+                                            OpenGL.enableLightMapping();
+                                            OpenGL.enableLight();
+                                            OpenGL.enable(GL11.GL_DEPTH_TEST);
+                                            GL11.glDepthFunc(GL11.GL_LEQUAL);
+                                            OpenGL.enable(GL11.GL_ALPHA_TEST);
+                                            GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
+                                            OpenGL.blendClear();
                                         }
                                         OpenGL.popMatrix();
-
-                                        OpenGL.enableLightMapping();
-                                        OpenGL.enableLight();
-                                        OpenGL.enable(GL11.GL_DEPTH_TEST);
-                                        GL11.glDepthFunc(GL11.GL_LEQUAL);
-                                        OpenGL.enable(GL11.GL_ALPHA_TEST);
-                                        GL11.glAlphaFunc(GL11.GL_GREATER, 0.1F);
                                     }
-                                    OpenGL.popMatrix();
                                 }
                             }
                         }
@@ -182,7 +187,7 @@ public class TacticalHUDRenderEvent
     {
         if (Game.minecraft().player != null)
         {
-            if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
+            if (event.getType() == RenderGameOverlayEvent.ElementType.CROSSHAIRS)
             {
                 if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().helmMarine)
                 {
@@ -236,8 +241,7 @@ public class TacticalHUDRenderEvent
             if (buttonMarineHelmConfig.getAction() == null)
             {
                 guiSettings = new GuiTacticalHUDSettings(Game.minecraft().currentScreen);
-                buttonMarineHelmConfig.setAction(new IAction()
-                {
+                buttonMarineHelmConfig.setAction(new IAction() {
                     @Override
                     public void perform(IGuiElement element)
                     {
@@ -408,11 +412,13 @@ public class TacticalHUDRenderEvent
 
     public void drawImpregnationIndicator(Organism organism)
     {
-        // if (organism.hasEmbryo() && organism.getEntity().world.getWorldTime() % 20 <= 10)
+        // if (organism.hasEmbryo() && organism.getEntity().world.getWorldTime() % 20 <=
+        // 10)
         // {
         // ScaledResolution res = Screen.scaledDisplayResolution();
         //
-        // int lifeTimeTicks = organism.getEmbryo().getGestationPeriod() - organism.getEmbryo().getAge();
+        // int lifeTimeTicks = organism.getEmbryo().getGestationPeriod() -
+        // organism.getEmbryo().getAge();
         // int lifeTimeSeconds = lifeTimeTicks / 20;
         // int iconSize = 80;
         //
@@ -422,15 +428,20 @@ public class TacticalHUDRenderEvent
         // {
         // float scale = 1.5F;
         // OpenGL.scale(scale, scale, scale);
-        // Draw.drawStringAlignRight("Analysis Complete:", (int) ((res.getScaledWidth() / scale) - (iconSize / scale)), (int) (30 / scale), 0xFFFF0000);
+        // Draw.drawStringAlignRight("Analysis Complete:", (int) ((res.getScaledWidth()
+        // / scale) - (iconSize / scale)), (int) (30 / scale), 0xFFFF0000);
         // }
         // OpenGL.popMatrix();
-        // Draw.drawStringAlignRight("Foreign Organism Detected", res.getScaledWidth() - iconSize, 45, 0xFFFF0000);
-        // Draw.drawStringAlignRight("Xenomorphic Embryo", res.getScaledWidth() - iconSize, 55, 0xFFFF0000);
+        // Draw.drawStringAlignRight("Foreign Organism Detected", res.getScaledWidth() -
+        // iconSize, 45, 0xFFFF0000);
+        // Draw.drawStringAlignRight("Xenomorphic Embryo", res.getScaledWidth() -
+        // iconSize, 55, 0xFFFF0000);
         //
         // if (!Game.minecraft().player.capabilities.isCreativeMode)
         // {
-        // Draw.drawStringAlignRight("Time Until Death: " + (lifeTimeSeconds / 60) + "." + lifeTimeSeconds % 60 + "M", res.getScaledWidth() - iconSize, 65, 0xFFFFFFFF);
+        // Draw.drawStringAlignRight("Time Until Death: " + (lifeTimeSeconds / 60) + "."
+        // + lifeTimeSeconds % 60 + "M", res.getScaledWidth() - iconSize, 65,
+        // 0xFFFFFFFF);
         // }
         //
         // OpenGL.color4i(0xFFFF0000);
