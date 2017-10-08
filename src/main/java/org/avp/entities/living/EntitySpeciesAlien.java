@@ -41,6 +41,22 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
         this.jumpMovementFactor = 0.2F;
         this.jellyLimitOverride = false;
     }
+    
+    private boolean isHiveMinder() 
+    {
+    	if(this instanceof EntityBelugamorph || 
+    			this instanceof EntityBelugaburster ||
+    				this instanceof EntityHammerpede ||
+    					this instanceof EntityDeacon ||
+    						this instanceof EntityDeaconShark ||
+    							this instanceof EntityTrilobite ||
+    								this instanceof EntityUltramorph ||
+    									this instanceof EntityOctohugger) 
+    	{
+    		return false;
+    	}
+    	return true;
+    }
 
     @Override
     protected void entityInit()
@@ -102,7 +118,9 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
             }
 
             ItemDrop dynamicJelly = new ItemDrop(100, new ItemStack(AliensVsPredator.items().itemRoyalJelly, adjustedLevel));
-            dynamicJelly.tryDrop(this);
+            if(this.isHiveMinder()) {
+            	dynamicJelly.tryDrop(this);
+            }
         }
     }
 
