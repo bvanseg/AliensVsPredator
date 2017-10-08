@@ -80,12 +80,6 @@ public class EntityBelugaburster extends EntityChestburster implements IMob, INa
     }
     
     @Override
-    protected void findRoyalJelly()
-    {
-        ;
-    }
-    
-    @Override
     public void identifyHive()
     {
         ;

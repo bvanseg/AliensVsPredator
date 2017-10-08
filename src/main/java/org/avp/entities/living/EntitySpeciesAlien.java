@@ -161,7 +161,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
 
                     if (stack.getItem() == AliensVsPredator.items().itemRoyalJelly)
                     {
-                        if (this.canMoveToJelly())
+                        if (this.canMoveToJelly() && this.isHiveMinder())
                         {
                             this.getNavigator().setPath(this.getNavigator().getPathToEntityLiving(entityItem), 1);
                         }

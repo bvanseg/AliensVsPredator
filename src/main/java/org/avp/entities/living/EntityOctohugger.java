@@ -294,12 +294,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     }
 
     @Override
-    protected void findRoyalJelly()
-    {
-        ;
-    }
-
-    @Override
     public void identifyHive()
     {
         ;

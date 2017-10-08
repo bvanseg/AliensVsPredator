@@ -110,5 +110,5 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
-    }
+    }  
 }

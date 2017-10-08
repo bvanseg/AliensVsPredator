@@ -69,12 +69,6 @@ public class EntityBelugamorph extends EntityXenomorph implements IMob
     }
     
     @Override
-    protected void findRoyalJelly()
-    {
-        ;
-    }
-    
-    @Override
     public void identifyHive()
     {
         ;

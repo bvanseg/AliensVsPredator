@@ -72,12 +72,6 @@ public class EntityDeacon extends EntityXenomorph
     }
     
     @Override
-    protected void findRoyalJelly()
-    {
-        ;
-    }
-    
-    @Override
     public void identifyHive()
     {
         ;
