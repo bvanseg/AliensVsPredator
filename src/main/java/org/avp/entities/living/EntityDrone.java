@@ -28,9 +28,10 @@ import net.minecraft.world.World;
 
 public class EntityDrone extends EntityXenomorph implements IMaturable
 {
-    public int             mobType;
-    private EntityOvamorph targetOvamorph;
-
+    public int             					mobType;
+    private EntityOvamorph 					targetOvamorph;
+    private static final ArrayList<Block> 	blockBlacklist = new ArrayList<Block>();
+    
     public EntityDrone(World world)
     {
         super(world);
@@ -38,7 +39,10 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
         this.experienceValue = 100;
         this.setSize(0.8F, 1.8F);
         this.mobType = this.rand.nextInt(2);
-        
+        blockBlacklist.add(Blocks.BEDROCK);
+        blockBlacklist.add(Blocks.AIR);
+        blockBlacklist.add(AliensVsPredator.blocks().resin);
+        blockBlacklist.add(AliensVsPredator.blocks().naturalResin);
         
 
         this.addStandardXenomorphAISet();
@@ -236,7 +240,7 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
 
     protected boolean canReplaceWithResin(IBlockState blockstate)
     {
-        return !(blockstate.getBlock() == net.minecraft.init.Blocks.AIR) && !(blockstate.getBlock() instanceof BlockHiveResin) && blockstate != Blocks.BEDROCK.getDefaultState() && blockstate.isOpaqueCube();
+    	return (!blockBlacklist.contains(blockstate.getBlock()) && blockstate.isOpaqueCube());
     }
 
     @Override
