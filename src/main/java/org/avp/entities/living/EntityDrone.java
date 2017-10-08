@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
 import org.avp.api.parasitoidic.IMaturable;
-import org.avp.block.BlockHiveResin;
 import org.avp.client.Sounds;
 import org.avp.tile.TileEntityHiveResin;
 

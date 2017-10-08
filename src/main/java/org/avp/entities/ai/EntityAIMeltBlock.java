@@ -1,7 +1,6 @@
 package org.avp.entities.ai;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import org.avp.AliensVsPredator;
 import org.avp.api.blocks.IAcidResistant;
