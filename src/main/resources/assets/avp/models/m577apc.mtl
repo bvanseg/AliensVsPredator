@@ -109,7 +109,7 @@ Ks 0.165000 0.165000 0.165000
 Ni 1.000000
 d 1.000000
 illum 2
-map_Kd m577apc/APCScreen01.jpg
+map_Kd m577apc/APCScreen01.png
 
 newmtl APCWheel01
 Ns 96.078431
