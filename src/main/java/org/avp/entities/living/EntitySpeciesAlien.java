@@ -34,6 +34,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     protected XenomorphHive hive;
     private UUID            signature;
     protected boolean       jellyLimitOverride;
+    protected boolean 		isDependant = false;
 
     public EntitySpeciesAlien(World world)
     {
@@ -41,21 +42,10 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
         this.jumpMovementFactor = 0.2F;
         this.jellyLimitOverride = false;
     }
-    
-    private boolean isHiveMinder() 
+
+    public boolean isDependantOnHive()
     {
-    	if(this instanceof EntityBelugamorph || 
-    			this instanceof EntityBelugaburster ||
-    				this instanceof EntityHammerpede ||
-    					this instanceof EntityDeacon ||
-    						this instanceof EntityDeaconShark ||
-    							this instanceof EntityTrilobite ||
-    								this instanceof EntityUltramorph ||
-    									this instanceof EntityOctohugger) 
-    	{
-    		return false;
-    	}
-    	return true;
+        return this.isDependant;
     }
 
     @Override
@@ -118,7 +108,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
             }
 
             ItemDrop dynamicJelly = new ItemDrop(100, new ItemStack(AliensVsPredator.items().itemRoyalJelly, adjustedLevel));
-            if(this.isHiveMinder()) {
+            if(this.isDependant) {
             	dynamicJelly.tryDrop(this);
             }
         }
@@ -161,7 +151,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
 
                     if (stack.getItem() == AliensVsPredator.items().itemRoyalJelly)
                     {
-                        if (this.canMoveToJelly() && this.isHiveMinder())
+                        if (this.canMoveToJelly() && this.isDependant)
                         {
                             this.getNavigator().setPath(this.getNavigator().getPathToEntityLiving(entityItem), 1);
                         }
