@@ -3,6 +3,7 @@ package org.avp.entities;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
+import org.avp.client.render.entities.RenderAPC;
 import org.avp.packets.server.PacketFireAPC;
 
 import com.arisux.mdx.lib.game.Game;
@@ -31,9 +32,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityAPC extends Entity
 {
-    private static final DataParameter<Integer> TIME_SINCE_HIT    = EntityDataManager.<Integer> createKey(EntityAPC.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.<Integer> createKey(EntityAPC.class, DataSerializers.VARINT);
-    private static final DataParameter<Float>   DAMAGE_TAKEN      = EntityDataManager.<Float> createKey(EntityAPC.class, DataSerializers.FLOAT);
+    private static final DataParameter<Integer> TIME_SINCE_HIT    = EntityDataManager.<Integer>createKey(EntityAPC.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.<Integer>createKey(EntityAPC.class, DataSerializers.VARINT);
+    private static final DataParameter<Float>   DAMAGE_TAKEN      = EntityDataManager.<Float>createKey(EntityAPC.class, DataSerializers.FLOAT);
     private boolean                             isVehicleEmpty;
     private double                              speedMultiplier;
     private int                                 rotationIncrements;
@@ -48,12 +49,13 @@ public class EntityAPC extends Entity
     private double                              velocityY;
     @SideOnly(Side.CLIENT)
     private double                              velocityZ;
+    private float                               tireRotation;
 
     public EntityAPC(World worldIn)
     {
         super(worldIn);
         this.isVehicleEmpty = true;
-        this.speedMultiplier = 1.37D;
+        this.speedMultiplier = 0D;
         this.preventEntitySpawning = true;
         this.setSize(3.75F, 2F);
         this.ignoreFrustumCheck = true;
@@ -101,7 +103,20 @@ public class EntityAPC extends Entity
     @Override
     public double getMountedYOffset()
     {
-        return (double) this.height * 0.0D + 0.25;
+        return super.getMountedYOffset() + 0.5F;
+    }
+
+    @Override
+    public void updatePassenger(Entity passenger)
+    {
+        if (this.isPassenger(passenger))
+        {
+            double distance = 2.85;
+            double rotationYawRadians = Math.toRadians(this.rotationYaw);
+            double driverX = (this.posX + (distance * (Math.cos(rotationYawRadians))));
+            double driverZ = (this.posZ + (distance * (Math.sin(rotationYawRadians))));
+            passenger.setPosition(driverX, this.posY + this.getMountedYOffset() + passenger.getYOffset(), driverZ);
+        }
     }
 
     @Override
@@ -217,13 +232,12 @@ public class EntityAPC extends Entity
     public void onUpdate()
     {
         super.onUpdate();
-
+        
         if (this.world.isRemote)
         {
             this.handleKeybindAction();
         }
 
-        this.speedMultiplier = 1.95D;
         this.fallDistance = 0;
 
         if (this.getTimeSinceHit() > 0)
@@ -236,194 +250,248 @@ public class EntityAPC extends Entity
             this.setDamageTaken(this.getDamageTaken() - 1.0F);
         }
 
-        this.prevPosX = this.posX;
-        this.prevPosY = this.posY;
-        this.prevPosZ = this.posZ;
-        double mass = 0.2D;
-        double curVelocity = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-        double rotX;
-        double rotY;
-        double rotZ;
-        double vehicleYaw;
-
-        if (curVelocity > 0.26249999999999996D)
+        if (Entities.getEntityRiddenBy(this) != null && Entities.getEntityRiddenBy(this) instanceof EntityLivingBase)
         {
-            rotX = Math.cos((double) this.rotationYaw * Math.PI / 180.0D);
-            rotY = Math.sin((double) this.rotationYaw * Math.PI / 180.0D);
-        }
+            EntityLivingBase driver = (EntityLivingBase) Entities.getEntityRiddenBy(this);
+            this.prevPosX = this.posX;
+            this.prevPosY = this.posY;
+            this.prevPosZ = this.posZ;
+            double mass = -0.3D;
+            double curVelocity = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            double velocity1;
+            double addedRotation;
+            double prevPosX;
+            double prevPosZ;
+            this.tireRotation += curVelocity * -100;
 
-        if (this.world.isRemote && this.isVehicleEmpty)
-        {
-            if (this.rotationIncrements > 0)
+            if (curVelocity > 0.26249999999999996D)
             {
-                rotX = this.posX + (this.vehicleX - this.posX) / (double) this.rotationIncrements;
-                rotY = this.posY + (this.vehicleY - this.posY) / (double) this.rotationIncrements;
-                rotZ = this.posZ + (this.vehicleZ - this.posZ) / (double) this.rotationIncrements;
-                vehicleYaw = MathHelper.wrapDegrees(this.vehicleYaw - (double) this.rotationYaw);
-                this.rotationYaw = (float) ((double) this.rotationYaw + vehicleYaw / (double) this.rotationIncrements);
-                this.rotationPitch = (float) ((double) this.rotationPitch + (this.vehiclePitch - (double) this.rotationPitch) / (double) this.rotationIncrements);
-                --this.rotationIncrements;
-                this.setPosition(rotX, rotY, rotZ);
+                velocity1 = Math.cos((double) this.rotationYaw * Math.PI / 180.0D);
+                addedRotation = Math.sin((double) this.rotationYaw * Math.PI / 180.0D);
+            }
+
+            // if (this.world.isRemote && this.isVehicleEmpty)
+            // {
+            // if (this.rotationIncrements > 0)
+            // {
+            // rotX = this.posX + (this.vehicleX - this.posX) / (double)
+            // this.rotationIncrements;
+            // rotY = this.posY + (this.vehicleY - this.posY) / (double)
+            // this.rotationIncrements;
+            // rotZ = this.posZ + (this.vehicleZ - this.posZ) / (double)
+            // this.rotationIncrements;
+            // vehicleYaw = MathHelper.wrapDegrees(this.vehicleYaw - (double)
+            // this.rotationYaw);
+            // this.rotationYaw = (float) ((double) this.rotationYaw + vehicleYaw / (double)
+            // this.rotationIncrements);
+            // this.rotationPitch = (float) ((double) this.rotationPitch +
+            // (this.vehiclePitch - (double) this.rotationPitch) / (double)
+            // this.rotationIncrements);
+            // --this.rotationIncrements;
+            // this.setPosition(rotX, rotY, rotZ);
+            // this.setRotation(this.rotationYaw, this.rotationPitch);
+            // }
+            // else
+            // {
+            // rotX = this.posX + this.motionX;
+            // rotY = this.posY + this.motionY;
+            // rotZ = this.posZ + this.motionZ;
+            // this.setPosition(rotX, rotY, rotZ);
+            //
+            // this.motionX *= 0.9900000095367432D;
+            // this.motionY *= 0.949999988079071D;
+            // this.motionZ *= 0.9900000095367432D;
+            // }
+            // }
+            // else
+            {
+                if (mass < 1.0D)
+                {
+                    velocity1 = mass * 2.0D - 1.0D;
+                    this.motionY += 0.03999999910593033D * velocity1;
+                }
+                else
+                {
+                    if (this.motionY < 0.0D)
+                    {
+                        this.motionY /= 2.0D;
+                    }
+
+                    this.motionY += 0.007000000216066837D;
+                }
+
+                // speedMultiplier = 0.2;
+
+                boolean accellerating = driver.moveForward > 0.1;
+                boolean reverse = driver.moveForward < -0.1;
+
+                double maxAcceleration = 0.1D;
+                double decelerationRate = 0.001D;
+                double accelerationRate = 0.001D;
+
+                if (accellerating)
+                {
+                    if (this.speedMultiplier < maxAcceleration)
+                    {
+                        this.speedMultiplier += accelerationRate;
+                    }
+                }
+                else if (reverse)
+                {
+                    if (this.speedMultiplier > -maxAcceleration)
+                    {
+                        this.speedMultiplier -= decelerationRate;
+                    }
+                }
+                else if (speedMultiplier > 0)
+                {
+                    speedMultiplier -= 0.003D;
+                }
+                else if (speedMultiplier < 0)
+                {
+                    speedMultiplier = 0F;
+                }
+
+                // System.out.println(speedMultiplier);
+
+                float mov = Entities.getEntityRiddenBy(this).rotationYaw + -driver.moveStrafing * 90.0F;
+                this.motionX += -Math.sin((double) (mov * (float) Math.PI / 180.0F)) * this.speedMultiplier;
+                this.motionZ += Math.cos((double) (mov * (float) Math.PI / 180.0F)) * this.speedMultiplier;
+
+                velocity1 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+                // if (rotX > 0.35D)
+                // {
+                // rotY = 0.35D / rotX;
+                //// this.motionX *= rotY;
+                //// this.motionZ *= rotY;
+                // rotX = 0.35D;
+                // }
+
+                // if (rotX > curVelocity && this.speedMultiplier < 0.35D)
+                // {
+                // this.speedMultiplier += (0.35D - this.speedMultiplier) / 35.0D;
+                //
+                // if (this.speedMultiplier > 0.35D)
+                // {
+                // this.speedMultiplier = 0.35D;
+                // }
+                // }
+                // else
+                // {
+                // this.speedMultiplier -= (this.speedMultiplier - 0.07D) / 35.0D;
+                //
+                // if (this.speedMultiplier < 0.07D)
+                // {
+                // this.speedMultiplier = 0.07D;
+                // }
+                // }
+
+                // for (int checkDistance = 0; checkDistance < 4; ++checkDistance)
+                // {
+                // int blockX = MathHelper.floor(this.posX + ((double) (checkDistance % 2) -
+                // 0.5D) * 0.8D);
+                // int blockZ = MathHelper.floor(this.posZ + ((double) (checkDistance / 2) -
+                // 0.5D) * 0.8D);
+                //
+                // for (int checkHeight = 0; checkHeight < 2; ++checkHeight)
+                // {
+                // int blockY = MathHelper.floor(this.posY) + checkHeight;
+                // BlockPos pos = new BlockPos(blockX, blockY, blockZ);
+                // IBlockState blockstate = this.world.getBlockState(pos);
+                // Block block = blockstate.getBlock();
+                //
+                // if (block == Blocks.SNOW_LAYER)
+                // {
+                // this.world.setBlockToAir(pos);
+                // this.isCollidedHorizontally = false;
+                // }
+                // else if (block == Blocks.WATERLILY)
+                // {
+                // block.breakBlock(this.world, pos, blockstate);
+                // this.isCollidedHorizontally = false;
+                // }
+                // }
+                // }
+
+                if (Entities.getEntityRiddenBy(this) == null)
+                {
+                    this.motionX = 0;
+                    this.motionY = 0;
+                    this.motionZ = 0;
+                }
+
+                this.move(this.motionX, this.motionY, this.motionZ);
+                this.motionX *= 0.96D;
+                this.motionY *= 0.94D;
+                this.motionZ *= 0.96D;
+
+                // System.out.println((curVelocity));
+
+                this.rotationPitch = 0.0F;
+                addedRotation = (double) this.rotationYaw;
+                prevPosX = this.prevPosX - this.posX;
+                prevPosZ = this.prevPosZ - this.posZ;
+
+                if (prevPosX * prevPosX + prevPosZ * prevPosZ > 0.001D)
+                {
+                    addedRotation = (double) ((float) (Math.atan2(prevPosZ, prevPosX) * 180.0D / Math.PI));
+                }
+
+                double rotation = MathHelper.wrapDegrees(addedRotation - (double) this.rotationYaw);
+                double rotIncr = 15.0D * Math.sqrt(motionX * motionX + motionZ * motionZ);
+
+                if (rotation > rotIncr)
+                {
+                    rotation = rotIncr;
+                }
+
+                if (rotation < -rotIncr)
+                {
+                    rotation = -rotIncr;
+                }
+
+                this.rotationYaw = (float) ((double) this.rotationYaw + rotation);
                 this.setRotation(this.rotationYaw, this.rotationPitch);
-            }
-            else
-            {
-                rotX = this.posX + this.motionX;
-                rotY = this.posY + this.motionY;
-                rotZ = this.posZ + this.motionZ;
-                this.setPosition(rotX, rotY, rotZ);
 
-                this.motionX *= 0.9900000095367432D;
-                this.motionY *= 0.949999988079071D;
-                this.motionZ *= 0.9900000095367432D;
-            }
-        }
-        else
-        {
-            if (mass < 1.0D)
-            {
-                rotX = mass * 2.0D - 1.0D;
-                this.motionY += 0.03999999910593033D * rotX;
-            }
-            else
-            {
-                if (this.motionY < 0.0D)
+                if (!this.world.isRemote)
                 {
-                    this.motionY /= 2.0D;
-                }
+                    List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(1D, 0.0D, 1D));
 
-                this.motionY += 0.007000000216066837D;
-            }
-
-            if (Entities.getEntityRiddenBy(this) != null && Entities.getEntityRiddenBy(this) instanceof EntityLivingBase)
-            {
-                EntityLivingBase entitylivingbase = (EntityLivingBase) Entities.getEntityRiddenBy(this);
-                float f = Entities.getEntityRiddenBy(this).rotationYaw + -entitylivingbase.moveStrafing * 90.0F;
-                this.motionX += -Math.sin((double) (f * (float) Math.PI / 180.0F)) * this.speedMultiplier * (double) entitylivingbase.moveForward * 0.05000000074505806D;
-                this.motionZ += Math.cos((double) (f * (float) Math.PI / 180.0F)) * this.speedMultiplier * (double) entitylivingbase.moveForward * 0.05000000074505806D;
-            }
-
-            rotX = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
-
-            if (rotX > 0.35D)
-            {
-                rotY = 0.35D / rotX;
-                this.motionX *= rotY;
-                this.motionZ *= rotY;
-                rotX = 0.35D;
-            }
-
-            if (rotX > curVelocity && this.speedMultiplier < 0.35D)
-            {
-                this.speedMultiplier += (0.35D - this.speedMultiplier) / 35.0D;
-
-                if (this.speedMultiplier > 0.35D)
-                {
-                    // this.speedMultiplier = 0.35D;
-                }
-            }
-            else
-            {
-                this.speedMultiplier -= (this.speedMultiplier - 0.07D) / 35.0D;
-
-                if (this.speedMultiplier < 0.07D)
-                {
-                    this.speedMultiplier = 0.07D;
-                }
-            }
-
-            for (int checkDistance = 0; checkDistance < 4; ++checkDistance)
-            {
-                int blockX = MathHelper.floor(this.posX + ((double) (checkDistance % 2) - 0.5D) * 0.8D);
-                int blockZ = MathHelper.floor(this.posZ + ((double) (checkDistance / 2) - 0.5D) * 0.8D);
-
-                for (int checkHeight = 0; checkHeight < 2; ++checkHeight)
-                {
-                    int blockY = MathHelper.floor(this.posY) + checkHeight;
-                    BlockPos pos = new BlockPos(blockX, blockY, blockZ);
-                    IBlockState blockstate = this.world.getBlockState(pos);
-                    Block block = blockstate.getBlock();
-
-                    if (block == Blocks.SNOW_LAYER)
+                    if (list != null && !list.isEmpty())
                     {
-                        this.world.setBlockToAir(pos);
-                        this.isCollidedHorizontally = false;
-                    }
-                    else if (block == Blocks.WATERLILY)
-                    {
-                        block.breakBlock(this.world, pos, blockstate);
-                        this.isCollidedHorizontally = false;
-                    }
-                }
-            }
-
-            if (Entities.getEntityRiddenBy(this) == null)
-            {
-                this.motionX = 0;
-                this.motionY = 0;
-                this.motionZ = 0;
-            }
-
-            this.move(this.motionX, this.motionY, this.motionZ);
-            this.motionX *= 0.9900000095367432D;
-            this.motionY *= 0.949999988079071D;
-            this.motionZ *= 0.9900000095367432D;
-
-            this.rotationPitch = 0.0F;
-            rotY = (double) this.rotationYaw;
-            rotZ = this.prevPosX - this.posX;
-            vehicleYaw = this.prevPosZ - this.posZ;
-
-            if (rotZ * rotZ + vehicleYaw * vehicleYaw > 0.001D)
-            {
-                rotY = (double) ((float) (Math.atan2(vehicleYaw, rotZ) * 180.0D / Math.PI));
-            }
-
-            double d7 = MathHelper.wrapDegrees(rotY - (double) this.rotationYaw);
-
-            if (d7 > 20.0D)
-            {
-                d7 = 20.0D;
-            }
-
-            if (d7 < -20.0D)
-            {
-                d7 = -20.0D;
-            }
-
-            this.rotationYaw = (float) ((double) this.rotationYaw + d7);
-            this.setRotation(this.rotationYaw, this.rotationPitch);
-
-            if (!this.world.isRemote)
-            {
-                List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(0.20000000298023224D, 0.0D, 0.20000000298023224D));
-
-                if (list != null && !list.isEmpty())
-                {
-                    for (int k1 = 0; k1 < list.size(); ++k1)
-                    {
-                        Entity entity = (Entity) list.get(k1);
-
-                        if (entity != Entities.getEntityRiddenBy(this) && entity.canBePushed() && entity instanceof EntityAPC)
+                        for (int k1 = 0; k1 < list.size(); ++k1)
                         {
-                            entity.applyEntityCollision(this);
+                            Entity entity = (Entity) list.get(k1);
+
+                            if (entity != driver)
+                            {
+                                float hitDamage = (float) (40F * curVelocity);
+                                entity.attackEntityFrom(DamageSource.generic, hitDamage);
+                                System.out.println(hitDamage);
+                            }
+
+                            if (entity != Entities.getEntityRiddenBy(this) && entity.canBePushed() && entity instanceof EntityAPC)
+                            {
+                                entity.applyEntityCollision(this);
+                            }
                         }
                     }
-                }
 
-                if (Entities.getEntityRiddenBy(this) != null && Entities.getEntityRiddenBy(this).isDead)
-                {
-//                    this.riddenByEntity = null;
+                    if (Entities.getEntityRiddenBy(this) != null && Entities.getEntityRiddenBy(this).isDead)
+                    {
+                        // this.riddenByEntity = null;
+                    }
                 }
             }
         }
     }
-    
+
     @Override
     public void updateRidden()
     {
         super.updateRidden();
-        
+
         if (Entities.getEntityRiddenBy(this) != null)
         {
             double oX = Math.cos((double) this.rotationYaw * Math.PI / 180.0D) * 0.4D;
@@ -454,13 +522,13 @@ public class EntityAPC extends Entity
     {
         ;
     }
-    
+
     @Override
     public float getCollisionBorderSize()
     {
         return 10F;
     }
-    
+
     @Override
     public boolean processInitialInteract(EntityPlayer player, ItemStack stack, EnumHand hand)
     {
@@ -477,7 +545,7 @@ public class EntityAPC extends Entity
             return true;
         }
     }
-    
+
     @Override
     protected void updateFallState(double distanceFallenThisTick, boolean onGround, IBlockState state, BlockPos pos)
     {
@@ -538,5 +606,15 @@ public class EntityAPC extends Entity
     public void setEmpty(boolean isEmpty)
     {
         this.isVehicleEmpty = isEmpty;
+    }
+
+    public double getSpeedMultiplier()
+    {
+        return speedMultiplier;
+    }
+
+    public float getTireRotation()
+    {
+        return this.tireRotation;
     }
 }

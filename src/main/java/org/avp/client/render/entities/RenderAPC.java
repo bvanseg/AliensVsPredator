@@ -143,17 +143,19 @@ public class RenderAPC extends Render<EntityAPC>
     public void doRender(EntityAPC apc, double posX, double posY, double posZ, float yaw, float partialTicks)
     {
         float scale = 1F;
-        double curVelocity = Math.sqrt(apc.motionX * apc.motionX + apc.motionZ * apc.motionZ);
-        float tireRotation = curVelocity > 0.1 ? (-Game.minecraft().player.world.getWorldTime() % 360 * 8) - partialTicks : 0;
+        float curVelocity = (float) Math.sqrt(apc.motionX * apc.motionX + apc.motionZ * apc.motionZ);
+        float tireRotation = apc.getTireRotation();
         float time = (float) apc.getTimeSinceHit() - partialTicks;
         float damage = apc.getDamageTaken() - partialTicks;
         damage = damage < 0.0F ? 0.0F : damage;
 
         OpenGL.pushMatrix();
         GlStateManager.disableCull();
-        OpenGL.translate((float) posX - 2.2F, (float) posY - 2.02F, (float) posZ + 0.1F);
+        GlStateManager.enableBlend();
+        OpenGL.blendClear();
+        OpenGL.translate((float) posX, (float) posY, (float) posZ);
         OpenGL.rotate(-apc.rotationYaw + 180, 0, 1, 0);
-
+        
         if (time > 0.0F)
         {
             OpenGL.rotate(MathHelper.sin(time) * time * damage / 10.0F * (float) apc.getForwardDirection(), 1.0F, 0.0F, 0.0F);
@@ -161,10 +163,41 @@ public class RenderAPC extends Render<EntityAPC>
 
         OpenGL.scale(-scale, -scale, scale);
         OpenGL.rotate(-180f, 0f, 0f, 1f);
-
+        int i = 0;
         for (Part p : model.parts.values())
         {
-            if (isPartATire(p))
+            i++;
+            if (model.getPart("Mesh22_APCDDoor1_Group6_Model") == p)
+            {
+                OpenGL.pushMatrix();
+                OpenGL.translate(2.675, 0, -1.5);
+                OpenGL.rotate(0, 0, 1, 0);
+                OpenGL.translate(-2.675, 0, 1.5);
+                p.draw();
+                OpenGL.popMatrix();
+            }
+            else if (model.getPart("Mesh114_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh124_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh125_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh127_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh117_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh119_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh121_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh120_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh118_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh122_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh123_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh126_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh116_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh115_APCSdDr1_Model") == p 
+                    || model.getPart("Mesh221_APCHndPt1_Model") == p)
+            {
+                OpenGL.pushMatrix();
+                float doorProgress = (float) (-1.25 * Game.minecraft().world.getWorldTime() % 315 / 100);
+                OpenGL.translate(Math.sin(doorProgress), 0, 0);
+                p.draw();
+                OpenGL.popMatrix();
+            } else if (isPartATire(p))
             {
                 OpenGL.pushMatrix();
                 
@@ -184,9 +217,7 @@ public class RenderAPC extends Render<EntityAPC>
 
                 p.draw();
                 OpenGL.popMatrix();
-            }
-
-            if (this.isPartOfTurret(p))
+            } else if (this.isPartOfTurret(p))
             {
                 if (Entities.isRiding(apc, EntityPlayer.class))
                 {
@@ -202,8 +233,7 @@ public class RenderAPC extends Render<EntityAPC>
                     OpenGL.popMatrix();
                 }
             }
-
-            if (((this.isPartOfTurret(p) && apc.getPassengers().size() > 0 && apc.getPassengers().get(0) == null)))
+            else if (((this.isPartOfTurret(p) && apc.getPassengers().size() > 0 && apc.getPassengers().get(0) == null)))
             {
                 p.draw();
             }
