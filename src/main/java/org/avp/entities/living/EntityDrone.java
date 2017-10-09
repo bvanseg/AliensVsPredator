@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
 import org.avp.api.parasitoidic.IMaturable;
-import org.avp.block.BlockHiveResin;
 import org.avp.client.Sounds;
 import org.avp.tile.TileEntityHiveResin;
 
@@ -15,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.tileentity.TileEntity;
@@ -27,9 +27,10 @@ import net.minecraft.world.World;
 
 public class EntityDrone extends EntityXenomorph implements IMaturable
 {
-    public int             mobType;
-    private EntityOvamorph targetOvamorph;
-
+    public int             					mobType;
+    private EntityOvamorph 					targetOvamorph;
+    private static final ArrayList<Block> 	blockBlacklist = new ArrayList<Block>();
+    
     public EntityDrone(World world)
     {
         super(world);
@@ -37,7 +38,10 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
         this.experienceValue = 100;
         this.setSize(0.8F, 1.8F);
         this.mobType = this.rand.nextInt(2);
-        
+        blockBlacklist.add(Blocks.BEDROCK);
+        blockBlacklist.add(Blocks.AIR);
+        blockBlacklist.add(AliensVsPredator.blocks().resin);
+        blockBlacklist.add(AliensVsPredator.blocks().naturalResin);
         
 
         this.addStandardXenomorphAISet();
@@ -235,7 +239,7 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
 
     protected boolean canReplaceWithResin(IBlockState blockstate)
     {
-        return !(blockstate.getBlock() == net.minecraft.init.Blocks.AIR) && !(blockstate.getBlock() instanceof BlockHiveResin) && blockstate.isOpaqueCube();
+    	return (!blockBlacklist.contains(blockstate.getBlock()) && blockstate.isOpaqueCube());
     }
 
     @Override

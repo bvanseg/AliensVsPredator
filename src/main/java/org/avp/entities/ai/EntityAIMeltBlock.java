@@ -68,17 +68,17 @@ public class EntityAIMeltBlock extends EntityAIYOffsetBlockInteract
         blockBlacklist.add(block);
         return block;
     }
-
+    
     public static Block[] blacklist(Block[] blocks)
-    {
-        for (Block block : new ArrayList<Block>(Arrays.asList(blocks)))
         {
-            blockBlacklist.add(block);
-
+            for (Block block : new ArrayList<Block>(Arrays.asList(blocks)))
+            {
+                blockBlacklist.add(block);
+    
+            }
+            return blocks;
         }
-        return blocks;
-    }
-
+    
     @Override
     public boolean shouldExecute()
     {
