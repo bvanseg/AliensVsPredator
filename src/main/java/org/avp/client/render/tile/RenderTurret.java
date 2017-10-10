@@ -18,10 +18,10 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
         OpenGL.pushMatrix();
         {
             GlStateManager.disableCull();
-            OpenGL.translate(x + 0.5F, y + 2.25F, z + 0.25F);
+            OpenGL.translate(x + 0.5F, y + 1.5F, z + 0.25F);
 //            OpenGL.rotate(tile.getDirection() * (-90F), 0F, 1F, 0F);
 
-            OpenGL.scale(1.5F, -1.5F, 1.5F);
+            OpenGL.scale(1F, -1F, 1F);
             AliensVsPredator.resources().models().TURRET.draw(tile);
 
             if (tile.getVoltage() > 0)
