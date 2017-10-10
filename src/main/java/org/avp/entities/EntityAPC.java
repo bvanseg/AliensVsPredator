@@ -108,7 +108,7 @@ public class EntityAPC extends Entity
     {
         if (this.isPassenger(passenger))
         {
-            double distance = 2.85;
+            double distance = 0;
             double rotationYawRadians = Math.toRadians(this.rotationYaw);
             double driverX = (this.posX + (distance * (Math.cos(rotationYawRadians))));
             double driverZ = (this.posZ + (distance * (Math.sin(rotationYawRadians))));
@@ -263,8 +263,8 @@ public class EntityAPC extends Entity
 
             if (curVelocity > 0.26249999999999996D)
             {
-                velocity1 = Math.cos((double) this.rotationYaw * Math.PI / 180.0D);
-                addedRotation = Math.sin((double) this.rotationYaw * Math.PI / 180.0D);
+//                velocity1 = Math.cos((double) this.rotationYaw * Math.PI / 180.0D);
+//                addedRotation = Math.sin((double) this.rotationYaw * Math.PI / 180.0D);
             }
 
             // if (this.world.isRemote && this.isVehicleEmpty)
@@ -322,9 +322,9 @@ public class EntityAPC extends Entity
                 boolean accellerating = driver.moveForward > 0.1;
                 boolean reverse = driver.moveForward < -0.1;
 
-                double maxAcceleration = 0.1D;
-                double decelerationRate = 0.001D;
-                double accelerationRate = 0.001D;
+                double maxAcceleration = 0.3D;
+                double decelerationRate = 0.003D;
+                double accelerationRate = 0.003D;
 
                 if (accellerating)
                 {
@@ -343,17 +343,37 @@ public class EntityAPC extends Entity
                 else if (speedMultiplier > 0)
                 {
                     speedMultiplier -= 0.003D;
+                    System.out.println("deccelleration");
                 }
                 else if (speedMultiplier < 0)
                 {
                     speedMultiplier = 0F;
                 }
 
-                // System.out.println(speedMultiplier);
-
-                float mov = Entities.getEntityRiddenBy(this).rotationYaw + -driver.moveStrafing * 90.0F;
+                //Entities.getEntityRiddenBy(this).rotationYaw + 
+                float mov =  this.rotationYaw + 90;
+                
                 this.motionX += -Math.sin((double) (mov * (float) Math.PI / 180.0F)) * this.speedMultiplier;
                 this.motionZ += Math.cos((double) (mov * (float) Math.PI / 180.0F)) * this.speedMultiplier;
+                
+                float baseTurnAcc = 6F;
+                float turnAcceleration = curVelocity < 0.25 ? baseTurnAcc : baseTurnAcc / 1.5F;
+                float turnSpeed = (float) (curVelocity * turnAcceleration);
+                
+//                System.out.println(curVelocity);
+                
+                if (driver.moveStrafing > 0)
+                {
+                    //left rotation
+                    System.out.println("left");
+                    this.rotationYaw = this.rotationYaw + (reverse ? +turnSpeed : -turnSpeed);
+                }
+                else if (driver.moveStrafing < 0)
+                {
+                    //right rotation
+                    System.out.println("right");
+                    this.rotationYaw = this.rotationYaw + (reverse ? -turnSpeed : +turnSpeed);
+                }
 
                 velocity1 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
@@ -419,9 +439,9 @@ public class EntityAPC extends Entity
                 }
 
                 this.move(this.motionX, this.motionY, this.motionZ);
-                this.motionX *= 0.96D;
+                this.motionX *= 0.65D;
                 this.motionY *= 0.94D;
-                this.motionZ *= 0.96D;
+                this.motionZ *= 0.65D;
 
                 // System.out.println((curVelocity));
 
@@ -448,7 +468,7 @@ public class EntityAPC extends Entity
                     rotation = -rotIncr;
                 }
 
-                this.rotationYaw = (float) ((double) this.rotationYaw + rotation);
+//                this.rotationYaw = (float) ((double) this.rotationYaw + rotation);
                 this.setRotation(this.rotationYaw, this.rotationPitch);
 
                 if (!this.world.isRemote)

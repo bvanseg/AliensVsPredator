@@ -155,6 +155,7 @@ public class RenderAPC extends Render<EntityAPC>
         OpenGL.blendClear();
         OpenGL.translate((float) posX, (float) posY, (float) posZ);
         OpenGL.rotate(-apc.rotationYaw + 180, 0, 1, 0);
+        OpenGL.translate(3, 0, 0);
         
         if (time > 0.0F)
         {
