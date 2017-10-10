@@ -21,14 +21,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Explosion;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 
 public class BlockTurret extends Block
 {
-	protected static final AxisAlignedBB TURRET_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.60D, 1.0D);
-
     public BlockTurret(Material material)
     {
         super(material);
@@ -39,11 +36,6 @@ public class BlockTurret extends Block
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
-    }
-    
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-    	return TURRET_AABB;
     }
     
     @Override
