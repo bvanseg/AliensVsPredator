@@ -3,19 +3,16 @@ package org.avp.entities;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
-import org.avp.client.render.entities.RenderAPC;
 import org.avp.packets.server.PacketFireAPC;
 
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.entity.Entities;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
