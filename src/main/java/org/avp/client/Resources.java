@@ -256,7 +256,6 @@ public class Resources
     public final Texture MOTIONTRACKER_S5         = new Texture(AliensVsPredator.Properties.ID, "textures/misc/motiontracker/sweep5.png");
     public final Texture MOTIONTRACKER_S6         = new Texture(AliensVsPredator.Properties.ID, "textures/misc/motiontracker/sweep6.png");
     public final Texture QUEEN_BOSS_BAR           = new Texture(AliensVsPredator.Properties.ID, "textures/misc/queenbossbar.png");
-    public final Texture BLANK                    = new Texture(AliensVsPredator.Properties.ID, "textures/misc/blank.png");
     public final Texture MIST                     = new Texture(AliensVsPredator.Properties.ID, "textures/blocks/mist.still.png");
     public final Texture BLACKGOO                 = new Texture(AliensVsPredator.Properties.ID, "textures/blocks/blackgoo.png");
     public final Texture RES_UNDERWATER_OVERLAY   = new Texture("textures/misc/underwater.png");
