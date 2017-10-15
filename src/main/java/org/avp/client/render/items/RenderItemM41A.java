@@ -81,7 +81,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
                 OpenGL.color(1F, 1F, 1F, 1F);
             }
             
-            if (Inventories.getAmountOfItemPlayerHas(AliensVsPredator.items().itemMotionTracker, entity) > 0)
+            if (Inventories.getAmountOfItemEntityHas(AliensVsPredator.items().itemMotionTracker, entity) > 0)
             {
                 OpenGL.translate(-50F, -20F, -50F);
                 OpenGL.rotate(-90F, 0F, 1F, 0F);
