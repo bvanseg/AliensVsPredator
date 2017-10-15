@@ -1,11 +1,11 @@
 package org.avp.world;
 
 import org.avp.Settings.ClientSettings;
-import org.avp.client.entityfx.EntityBloodFX;
 import org.avp.entities.living.EntitySpeciesYautja;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
+import com.arisux.mdx.lib.client.entityfx.EntityBloodFX;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.entity.Entity;

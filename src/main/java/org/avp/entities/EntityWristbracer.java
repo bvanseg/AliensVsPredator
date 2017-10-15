@@ -5,8 +5,8 @@ import java.util.Random;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.Sounds;
-import org.avp.client.entityfx.EntityFXElectricArc;
 
+import com.arisux.mdx.lib.client.entityfx.EntityFXElectricArc;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.LargeExplosion;
 

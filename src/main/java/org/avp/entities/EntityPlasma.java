@@ -6,8 +6,8 @@ import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 import org.avp.Settings;
 import org.avp.client.Sounds;
-import org.avp.client.entityfx.EntityFXElectricArc;
 
+import com.arisux.mdx.lib.client.entityfx.EntityFXElectricArc;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.Pos;
 import com.arisux.mdx.lib.world.Worlds;
