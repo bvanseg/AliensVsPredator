@@ -34,12 +34,18 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     protected XenomorphHive hive;
     private UUID            signature;
     protected boolean       jellyLimitOverride;
+    protected boolean 		isDependant = false;
 
     public EntitySpeciesAlien(World world)
     {
         super(world);
         this.jumpMovementFactor = 0.2F;
         this.jellyLimitOverride = false;
+    }
+
+    public boolean isDependantOnHive()
+    {
+        return this.isDependant;
     }
 
     @Override
@@ -102,7 +108,9 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
             }
 
             ItemDrop dynamicJelly = new ItemDrop(100, new ItemStack(AliensVsPredator.items().itemRoyalJelly, adjustedLevel));
-            dynamicJelly.tryDrop(this);
+            if(this.isDependant) {
+            	dynamicJelly.tryDrop(this);
+            }
         }
     }
 
@@ -143,7 +151,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
 
                     if (stack.getItem() == AliensVsPredator.items().itemRoyalJelly)
                     {
-                        if (this.canMoveToJelly())
+                        if (this.canMoveToJelly() && this.isDependant)
                         {
                             this.getNavigator().setPath(this.getNavigator().getPathToEntityLiving(entityItem), 1);
                         }

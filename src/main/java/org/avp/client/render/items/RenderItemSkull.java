@@ -57,7 +57,7 @@ public class RenderItemSkull extends ItemRenderer<Model>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 1F;
+        float glScale = 0.53F;
         GlStateManager.disableCull();
         OpenGL.scale(glScale, -glScale, glScale);
         this.draw(itemstack.getItem());

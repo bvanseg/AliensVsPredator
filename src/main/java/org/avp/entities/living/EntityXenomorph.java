@@ -38,7 +38,6 @@ public abstract class EntityXenomorph extends EntitySpeciesAlien implements IMob
     private boolean                             startBite           = false;
     private boolean                             retractMouth        = false;
     protected boolean                           ableToClimb;
-    protected boolean                           isDependant;
 
     public EntityXenomorph(World world)
     {
@@ -272,11 +271,6 @@ public abstract class EntityXenomorph extends EntitySpeciesAlien implements IMob
     {
         this.bite();
         return super.attackEntityAsMob(entity);
-    }
-
-    public boolean isDependantOnHive()
-    {
-        return this.isDependant;
     }
 
     public boolean isAbleToClimb()

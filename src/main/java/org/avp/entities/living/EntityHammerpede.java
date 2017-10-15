@@ -158,12 +158,6 @@ public class EntityHammerpede extends EntitySpeciesAlien implements IMob
     }
     
     @Override
-    protected void findRoyalJelly()
-    {
-        ;
-    }
-    
-    @Override
     public void identifyHive()
     {
         ;
