@@ -58,6 +58,7 @@ import org.avp.client.model.items.ModelMotionTracker;
 import org.avp.client.model.items.ModelPlasmaCannon;
 import org.avp.client.model.items.ModelSevastopolFlamethrower;
 import org.avp.client.model.items.ModelSniper;
+import org.avp.client.model.items.ModelStunBaton;
 import org.avp.client.model.items.ModelWristBlade;
 import org.avp.client.model.tile.ModelAmpule;
 import org.avp.client.model.tile.ModelBlastdoor;
@@ -122,6 +123,7 @@ public class Resources
         public final TexturedModel<ModelBullet>                BULLET                         = new TexturedModel(new ModelBullet(), new Texture(AliensVsPredator.Properties.ID, "textures/misc/renderbullet.png"));
         public final TexturedModel<ModelSpear>                 SPEAR                          = new TexturedModel(new ModelSpear(), new Texture(AliensVsPredator.Properties.ID, "textures/misc/renderspear.png"));
         public final TexturedModel<ModelWristBlade>            WRISTBLADES                    = new TexturedModel(new ModelWristBlade(), new Texture(AliensVsPredator.Properties.ID, "textures/items/models/wristblade.png"));
+        public final TexturedModel<ModelStunBaton>			   STUNBATON					  = new TexturedModel(new ModelStunBaton(), new Texture(AliensVsPredator.Properties.ID, "textures/items/models/stunbaton.png"));
         public final TexturedModel<ModelPlasmaCannon>          PLASMACANNON                   = new TexturedModel(new ModelPlasmaCannon(), new Texture(AliensVsPredator.Properties.ID, "textures/items/models/plasmacannon.png"));
         public final TexturedModel<ModelM240ICU>               M240ICU                        = new TexturedModel(new ModelM240ICU(), new Texture(AliensVsPredator.Properties.ID, "textures/items/models/m240icu.png"));
         public final TexturedModel<ModelM41A>                  M41A                           = new TexturedModel(new ModelM41A(), new Texture(AliensVsPredator.Properties.ID, "textures/items/models/pulserifle.png"));

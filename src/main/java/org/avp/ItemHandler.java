@@ -66,6 +66,7 @@ import org.avp.item.ItemSevastopolFlamethrower;
 import org.avp.item.ItemShuriken;
 import org.avp.item.ItemSpear;
 import org.avp.item.ItemStorageDevice;
+import org.avp.item.ItemStunBaton;
 import org.avp.item.ItemSupplyChute;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 import org.avp.item.ItemWristbracer;
@@ -84,6 +85,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSword;
+import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
@@ -116,6 +118,7 @@ public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
     public Item itemSpear                = new ItemSpear(AliensVsPredator.materials().tools().celtic);
     public Item itemWristbracer          = new ItemWristbracer().setMaxStackSize(1);
     public Item itemWristbracerBlades    = new HookedItem().setMaxStackSize(1).setMaxDamage(AliensVsPredator.materials().tools().celtic.getMaxUses());
+    public Item itemStunBaton			 = new ItemStunBaton(ToolMaterial.DIAMOND);
     public Item itemPlasmaCannon         = new ItemPlasmaCannon().setFull3D();
     public Item itemProximityMine        = new ItemLaserMine();
     public Item itemDisc                 = new ItemDisc();
@@ -398,6 +401,7 @@ public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
         register("apc", itemAPC).setCreativeTab(AliensVsPredator.tabMain());
         register("motiontracker", itemMotionTracker).setCreativeTab(AliensVsPredator.tabMain());
         register("wristbracer.blades", itemWristbracerBlades).setCreativeTab(AliensVsPredator.tabMain());
+        register("stun.baton", itemStunBaton).setCreativeTab(AliensVsPredator.tabMain());
         register("polycarbonate", itemPolycarbonate).setCreativeTab(AliensVsPredator.tabRecipeItems());
         register("royaljelly", itemRoyalJelly).setCreativeTab(AliensVsPredator.tabMain());
         register("blackgoo.item", itemBlackGoo).setCreativeTab(AliensVsPredator.tabMain());
