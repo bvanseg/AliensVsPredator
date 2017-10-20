@@ -8,9 +8,9 @@ import net.minecraft.entity.Entity;
 
 /**
  * stunBaton - cybercat5555
- * Created using Tabula 5.1.0
  */
-public class ModelStunBaton extends Model {
+public class ModelStunBaton extends Model
+{
     public ModelRenderer centralRod;
     public ModelRenderer grip;
     public ModelRenderer rodTip;
@@ -39,8 +39,10 @@ public class ModelStunBaton extends Model {
     public ModelRenderer lateralRod02B;
     public ModelRenderer lateralRod02C;
 
-    //TODO: Something appears to be goin wrong with the renderin of this model, duplicates one of the handles
-    public ModelStunBaton() {
+    // TODO: Something appears to be goin wrong with the renderin of this model,
+    // duplicates one of the handles
+    public ModelStunBaton()
+    {
         this.textureWidth = 64;
         this.textureHeight = 32;
         this.coil06 = new ModelRenderer(this, 25, 5);
@@ -152,13 +154,93 @@ public class ModelStunBaton extends Model {
     @Override
     public void render(Object obj)
     {
-    	draw(rodTip);
-        draw(handGuardU);
-        draw(lateralRod010);
-        draw(lateralRod020);
-        draw(lateralRod01A);
-        draw(lateralRod01B);
-        draw(lateralRod02A);
-        draw(lateralRod02B);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.grip.offsetX, this.grip.offsetY, this.grip.offsetZ);
+        GlStateManager.translate(this.grip.rotationPointX * DEFAULT_SCALE, this.grip.rotationPointY * DEFAULT_SCALE, this.grip.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(0.8D, 1.0D, 0.8D);
+        GlStateManager.translate(-this.grip.offsetX, -this.grip.offsetY, -this.grip.offsetZ);
+        GlStateManager.translate(-this.grip.rotationPointX * DEFAULT_SCALE, -this.grip.rotationPointY * DEFAULT_SCALE, -this.grip.rotationPointZ * DEFAULT_SCALE);
+        this.grip.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.rodCone02.offsetX, this.rodCone02.offsetY, this.rodCone02.offsetZ);
+        GlStateManager.translate(this.rodCone02.rotationPointX * DEFAULT_SCALE, this.rodCone02.rotationPointY * DEFAULT_SCALE, this.rodCone02.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(0.6D, 0.2D, 0.6D);
+        GlStateManager.translate(-this.rodCone02.offsetX, -this.rodCone02.offsetY, -this.rodCone02.offsetZ);
+        GlStateManager.translate(-this.rodCone02.rotationPointX * DEFAULT_SCALE, -this.rodCone02.rotationPointY * DEFAULT_SCALE, -this.rodCone02.rotationPointZ * DEFAULT_SCALE);
+        this.rodCone02.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.rodCone01.offsetX, this.rodCone01.offsetY, this.rodCone01.offsetZ);
+        GlStateManager.translate(this.rodCone01.rotationPointX * DEFAULT_SCALE, this.rodCone01.rotationPointY * DEFAULT_SCALE, this.rodCone01.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(0.8D, 0.2D, 0.8D);
+        GlStateManager.translate(-this.rodCone01.offsetX, -this.rodCone01.offsetY, -this.rodCone01.offsetZ);
+        GlStateManager.translate(-this.rodCone01.rotationPointX * DEFAULT_SCALE, -this.rodCone01.rotationPointY * DEFAULT_SCALE, -this.rodCone01.rotationPointZ * DEFAULT_SCALE);
+        this.rodCone01.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.lateralRod020.offsetX, this.lateralRod020.offsetY, this.lateralRod020.offsetZ);
+        GlStateManager.translate(this.lateralRod020.rotationPointX * DEFAULT_SCALE, this.lateralRod020.rotationPointY * DEFAULT_SCALE, this.lateralRod020.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(0.4D, 0.4D, 0.4D);
+        GlStateManager.translate(-this.lateralRod020.offsetX, -this.lateralRod020.offsetY, -this.lateralRod020.offsetZ);
+        GlStateManager.translate(-this.lateralRod020.rotationPointX * DEFAULT_SCALE, -this.lateralRod020.rotationPointY * DEFAULT_SCALE, -this.lateralRod020.rotationPointZ * DEFAULT_SCALE);
+        this.lateralRod020.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.centralRod.offsetX, this.centralRod.offsetY, this.centralRod.offsetZ);
+        GlStateManager.translate(this.centralRod.rotationPointX * DEFAULT_SCALE, this.centralRod.rotationPointY * DEFAULT_SCALE, this.centralRod.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(0.6D, 1.0D, 0.6D);
+        GlStateManager.translate(-this.centralRod.offsetX, -this.centralRod.offsetY, -this.centralRod.offsetZ);
+        GlStateManager.translate(-this.centralRod.rotationPointX * DEFAULT_SCALE, -this.centralRod.rotationPointY * DEFAULT_SCALE, -this.centralRod.rotationPointZ * DEFAULT_SCALE);
+        this.centralRod.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.lateralRod010.offsetX, this.lateralRod010.offsetY, this.lateralRod010.offsetZ);
+        GlStateManager.translate(this.lateralRod010.rotationPointX * DEFAULT_SCALE, this.lateralRod010.rotationPointY * DEFAULT_SCALE, this.lateralRod010.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(0.4D, 0.4D, 0.4D);
+        GlStateManager.translate(-this.lateralRod010.offsetX, -this.lateralRod010.offsetY, -this.lateralRod010.offsetZ);
+        GlStateManager.translate(-this.lateralRod010.rotationPointX * DEFAULT_SCALE, -this.lateralRod010.rotationPointY * DEFAULT_SCALE, -this.lateralRod010.rotationPointZ * DEFAULT_SCALE);
+        this.lateralRod010.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.handGuard.offsetX, this.handGuard.offsetY, this.handGuard.offsetZ);
+        GlStateManager.translate(this.handGuard.rotationPointX * DEFAULT_SCALE, this.handGuard.rotationPointY * DEFAULT_SCALE, this.handGuard.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(1.1D, 0.5D, 1.1D);
+        GlStateManager.translate(-this.handGuard.offsetX, -this.handGuard.offsetY, -this.handGuard.offsetZ);
+        GlStateManager.translate(-this.handGuard.rotationPointX * DEFAULT_SCALE, -this.handGuard.rotationPointY * DEFAULT_SCALE, -this.handGuard.rotationPointZ * DEFAULT_SCALE);
+        this.handGuard.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.handGuardU.offsetX, this.handGuardU.offsetY, this.handGuardU.offsetZ);
+        GlStateManager.translate(this.handGuardU.rotationPointX * DEFAULT_SCALE, this.handGuardU.rotationPointY * DEFAULT_SCALE, this.handGuardU.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(1.0D, 0.4D, 1.0D);
+        GlStateManager.translate(-this.handGuardU.offsetX, -this.handGuardU.offsetY, -this.handGuardU.offsetZ);
+        GlStateManager.translate(-this.handGuardU.rotationPointX * DEFAULT_SCALE, -this.handGuardU.rotationPointY * DEFAULT_SCALE, -this.handGuardU.rotationPointZ * DEFAULT_SCALE);
+        this.handGuardU.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.coilBase.offsetX, this.coilBase.offsetY, this.coilBase.offsetZ);
+        GlStateManager.translate(this.coilBase.rotationPointX * DEFAULT_SCALE, this.coilBase.rotationPointY * DEFAULT_SCALE, this.coilBase.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(0.8D, 0.2D, 0.8D);
+        GlStateManager.translate(-this.coilBase.offsetX, -this.coilBase.offsetY, -this.coilBase.offsetZ);
+        GlStateManager.translate(-this.coilBase.rotationPointX * DEFAULT_SCALE, -this.coilBase.rotationPointY * DEFAULT_SCALE, -this.coilBase.rotationPointZ * DEFAULT_SCALE);
+        this.coilBase.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.rodTip.offsetX, this.rodTip.offsetY, this.rodTip.offsetZ);
+        GlStateManager.translate(this.rodTip.rotationPointX * DEFAULT_SCALE, this.rodTip.rotationPointY * DEFAULT_SCALE, this.rodTip.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(0.3D, 1.0D, 0.3D);
+        GlStateManager.translate(-this.rodTip.offsetX, -this.rodTip.offsetY, -this.rodTip.offsetZ);
+        GlStateManager.translate(-this.rodTip.rotationPointX * DEFAULT_SCALE, -this.rodTip.rotationPointY * DEFAULT_SCALE, -this.rodTip.rotationPointZ * DEFAULT_SCALE);
+        this.rodTip.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(this.rodCone03.offsetX, this.rodCone03.offsetY, this.rodCone03.offsetZ);
+        GlStateManager.translate(this.rodCone03.rotationPointX * DEFAULT_SCALE, this.rodCone03.rotationPointY * DEFAULT_SCALE, this.rodCone03.rotationPointZ * DEFAULT_SCALE);
+        GlStateManager.scale(0.5D, 0.2D, 0.5D);
+        GlStateManager.translate(-this.rodCone03.offsetX, -this.rodCone03.offsetY, -this.rodCone03.offsetZ);
+        GlStateManager.translate(-this.rodCone03.rotationPointX * DEFAULT_SCALE, -this.rodCone03.rotationPointY * DEFAULT_SCALE, -this.rodCone03.rotationPointZ * DEFAULT_SCALE);
+        this.rodCone03.render(DEFAULT_SCALE);
+        GlStateManager.popMatrix();
     }
 }

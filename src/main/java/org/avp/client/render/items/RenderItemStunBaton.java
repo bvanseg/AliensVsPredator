@@ -1,16 +1,10 @@
 package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
-import org.avp.URLs;
 import org.avp.client.model.items.ModelStunBaton;
-import org.lwjgl.input.Mouse;
 
-import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.Texture;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.util.Remote;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -24,14 +18,14 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
         super(AliensVsPredator.resources().models().STUNBATON);
     }
 
-    //TODO: Once the stun baton model part duplication issue is fixed, adjusted these
     @Override
     public void renderThirdPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 0.75F;
+        float glScale = 1.1F;
         OpenGL.scale(glScale, glScale, glScale);
-        OpenGL.translate(0F, 0.3F, 0.2F);
-        OpenGL.rotate(-180.0F, 1.0F, 0.0F, 1.0F);
+        OpenGL.translate(0F, 0.1F, 0.1F);
+        OpenGL.rotate(180.0F, 1.0F, 0.0F, 1.0F);
+        OpenGL.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
         AliensVsPredator.resources().models().STUNBATON.draw();
     }
@@ -39,10 +33,12 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
     @Override
     public void renderFirstPersonRight(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 0.5F;
+        float glScale = 0.75F;
         OpenGL.scale(glScale, glScale, glScale);
-        OpenGL.translate(0F, 0.3F, 0.2F);
-        OpenGL.rotate(-180.0F, 1.0F, 0.3F, -0.2F);
+        OpenGL.translate(0F, 0.25F, 0.2F);
+        OpenGL.rotate(180.0F, 1.0F, 0F, 0F);
+        OpenGL.rotate(-15.0F, 0.0F, 1F, 0F);
+        OpenGL.rotate(-25.0F, 1.0F, 0F, 0F);
         GlStateManager.disableCull();
         this.getModel().draw();
         AliensVsPredator.resources().models().STUNBATON.draw();
