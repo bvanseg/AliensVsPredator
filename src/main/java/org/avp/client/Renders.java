@@ -101,6 +101,7 @@ import org.avp.client.render.items.RenderItemSniper;
 import org.avp.client.render.items.RenderItemSolarPanel;
 import org.avp.client.render.items.RenderItemSpear;
 import org.avp.client.render.items.RenderItemStasisMechanism;
+import org.avp.client.render.items.RenderItemStunBaton;
 import org.avp.client.render.items.RenderItemSummoner;
 import org.avp.client.render.items.RenderItemSupplyChute;
 import org.avp.client.render.items.RenderItemSupplyCrate;
@@ -439,6 +440,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().medpod), new RenderItemMedpod());
         Renderers.registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().satelliteDish), new RenderItemSatelliteDish());
         Renderers.registerItemRenderer(items.itemWristbracer, new RenderItemWristbracer());
+        Renderers.registerItemRenderer(items.itemStunBaton, new RenderItemStunBaton());
         Renderers.registerItemRenderer(items.itemWristbracerBlades, new RenderItemWristbracerBlades());
         Renderers.registerItemRenderer(items.itemPlasmaCannon, new RenderItemPlasmaCannon());
         Renderers.registerItemRenderer(items.itemSpear, new RenderItemSpear());
