@@ -114,7 +114,6 @@ public class BlockReflective extends Block implements ITileEntityProvider
 
                 if (blockHeld != null)
                 {
-                    System.out.println(metadata);
                     reflective.setReflection(blockHeld, metadata);
                     worldIn.notifyBlockUpdate(pos, state, state, 3);
                     return true;
