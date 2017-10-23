@@ -108,8 +108,6 @@ curseforge {
             releaseType = hasProperty('curseforge_release_type') ? curseforge_release_type : 'release'
 
             mainArtifact jar
-            addArtifact sourceJar
-            addArtifact deobfJar
 
             relations {
                 requiredLibrary 'mdxlib'
