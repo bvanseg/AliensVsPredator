@@ -22,19 +22,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemStunBaton extends ItemSword
 {
-    // TODO: Fix this, the ToolMaterial passed into this constructor is DIAMOND,
-    // didnt know what custom material to put, n dont wanna make a new one that
-    // might not be what u guys want
-    public ItemStunBaton(ToolMaterial material)
+    public ItemStunBaton()
     {
-        super(material);
-        // TODO: Find out if this is a proper max damage. Remove this if a damage is
-        // specified later by a custom material
+        super(ToolMaterial.IRON);
         this.maxStackSize = 1;
     }
+    
+    @Override
+    public float getDamageVsEntity()
+    {
+        return 6.0F;
+    }
 
-    // TODO: adjust these particles once MDX 2.0.0.25 is added to the dev
-    // environment
     @Override
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
     {
