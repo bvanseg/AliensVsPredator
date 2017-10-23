@@ -13,19 +13,26 @@ import org.avp.world.MarineTypes;
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIAttackRanged;
+import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIMoveIndoors;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
+import net.minecraft.entity.ai.EntityAIOpenDoor;
+import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.EntityAIWatchClosest2;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -40,31 +47,37 @@ import net.minecraft.world.World;
 
 public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Predicate<EntityLivingBase>
 {
-    private DataParameter<Boolean> FIRING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
-    private DataParameter<Integer> TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
-    private EntityAIBase           rangedAttackAI;
-    private long                   lastShotFired;
+    private static final DataParameter<Boolean> FIRING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private EntityAIBase                        rangedAttackAI;
+    private long                                lastShotFired;
 
     public EntityMarine(World world)
     {
         super(world);
-        this.rangedAttackAI = new EntityAIAttackRanged(this, 0.4D, (int) getMarineType().getFirearmItem().getProfile().getShotsPerTick(), 24);
         this.experienceValue = 5;
+        this.rangedAttackAI = new EntityAIAttackRanged(this, 0.4D, (int) getMarineType().getFirearmItem().getProfile().getShotsPerTick(), 24);
+        this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, this.rangedAttackAI);
-        this.tasks.addTask(2, new EntityAIWander(this, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
-        this.tasks.addTask(3, new EntityAISwimming(this));
-        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        this.tasks.addTask(5, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this));
+        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+        this.tasks.addTask(2, new EntityAIMoveIndoors(this));
+        this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
+        this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
+        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
+        this.tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
+        this.tasks.addTask(9, new EntityAIWander(this, 0.6D));
+        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
+        this.targetTasks.addTask(1, new EntityAIMoveIndoors(this));
+        this.targetTasks.addTask(2, new EntityAIOpenDoor(this, true));
+        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, true, false, this));
+        
     }
 
     @Override
     protected void entityInit()
     {
         super.entityInit();
-        FIRING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
-        TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
         this.getDataManager().register(FIRING, false);
         this.getDataManager().register(TYPE, new Random(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())).nextInt(MarineTypes.values().length));
     }
@@ -116,7 +129,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     {
         return 0.5F - this.world.getLightBrightness(pos);
     }
-    
+
     @Override
     protected SoundEvent getHurtSound()
     {
@@ -132,7 +145,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     @Override
     public ItemStack getHeldItemMainhand()
     {
-        return new ItemStack(AliensVsPredator.items().itemM41A);
+        return new ItemStack(getMarineType().getFirearmItem());
     }
 
     @Override
@@ -177,14 +190,14 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
             this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + this.getEyeHeight(), this.posZ, 1, 1, 1);
         }
     }
-    
+
     public MarineTypes getMarineType()
     {
         if (this.TYPE != null)
         {
             return MarineTypes.getTypeForId(this.getDataManager().get(TYPE));
         }
-        
+
         return MarineTypes.M41A;
     }
 
