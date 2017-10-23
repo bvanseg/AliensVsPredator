@@ -45,6 +45,7 @@ public class Sounds implements IPreInitEvent
     public static final Sound WEAPON_WRISTBLADES = sound("weapon.blades");
     public static final Sound WEAPON_SNIPER = sound("weapon.sniper");
     public static final Sound WEAPON_PULSERIFLE = sound("weapon.pulserifle");
+    public static final Sound WEAPON_STUNBATON = sound("weapon.stunbaton");
     public static final Sound WEAPON_M56SG = sound("weapon.m56sg");
     public static final Sound MOTIONTRACKER_PING = sound("motiontracker.ping");
     public static final Sound MOTIONTRACKER_PONG = sound("motiontracker.pong");

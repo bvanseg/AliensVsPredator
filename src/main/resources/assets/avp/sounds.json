@@ -33,6 +33,7 @@
   "weapon.plasmacaster.noenergy": 	{ "sounds": [ "avp:items/weapons/plasmacaster/plasma_caster_no_energy_01" ] },
   "weapon.plasmacaster.explosion": 	{ "sounds": [ "avp:items/weapons/plasmacaster/plasma_bolt_explosion_01", "avp:items/weapons/plasmacaster/plasma_bolt_explosion_02", "avp:items/weapons/plasmacaster/plasma_bolt_explosion_03", "avp:items/weapons/plasmacaster/plasma_bolt_explosion_04", "avp:items/weapons/plasmacaster/plasma_bolt_explosion_05" ] },
   "weapon.flamethrower": 			{ "sounds": [ "avp:items/weapons/flamethrower/shoot0" ] },
+  "weapon.stunbaton": 				{ "sounds": [ "avp:items/weapons/stunbaton/hit0", "avp:items/weapons/stunbaton/hit1", "avp:items/weapons/stunbaton/hit2", "avp:items/weapons/stunbaton/hit3" ] },
   "weapon.cooldown": 				{ "sounds": [ "avp:items/weapons/cooldown" ] },
   "weapon.gunshot": 				{ "sounds": [ "avp:items/weapons/gunshot-manual" ] },
   "weapon.gunshot.auto":			{ "sounds": [ "avp:items/weapons/gunshot-auto" ] },

@@ -193,6 +193,7 @@ public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
     public Item itemBlackGoo             = new HookedItem();
     public Item itemPhial                = new HookedItem();
     public Item itemPhialEmpty           = new HookedItem();
+    public Item itemChargePack           = new HookedItem().setMaxDamage(64).setMaxStackSize(1);
     public Item itemMaintenanceJack      = new ItemMaintenanceJack();
     public Item blackGooBucket           = new ItemBucket(AliensVsPredator.blocks().blackgoo);
     public Item mistBucket               = new ItemBucket(AliensVsPredator.blocks().mist);
@@ -407,6 +408,7 @@ public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
         register("blackgoo.item", itemBlackGoo).setCreativeTab(AliensVsPredator.tabMain());
         register("phial.goo", itemPhial).setCreativeTab(AliensVsPredator.tabMain());
         register("phial.empty", itemPhialEmpty).setCreativeTab(AliensVsPredator.tabMain());
+        register("chargepack", itemChargePack).setCreativeTab(AliensVsPredator.tabMain());
         register("tool.maintenancejack", itemMaintenanceJack).setCreativeTab(AliensVsPredator.tabMain());
     }
 }
