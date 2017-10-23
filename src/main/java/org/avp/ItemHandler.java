@@ -118,7 +118,7 @@ public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
     public Item itemSpear                = new ItemSpear(AliensVsPredator.materials().tools().celtic);
     public Item itemWristbracer          = new ItemWristbracer().setMaxStackSize(1);
     public Item itemWristbracerBlades    = new HookedItem().setMaxStackSize(1).setMaxDamage(AliensVsPredator.materials().tools().celtic.getMaxUses());
-    public Item itemStunBaton			 = new ItemStunBaton(ToolMaterial.DIAMOND);
+    public Item itemStunBaton			 = new ItemStunBaton();
     public Item itemPlasmaCannon         = new ItemPlasmaCannon().setFull3D();
     public Item itemProximityMine        = new ItemLaserMine();
     public Item itemDisc                 = new ItemDisc();
