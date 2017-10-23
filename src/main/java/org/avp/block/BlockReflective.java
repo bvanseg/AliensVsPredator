@@ -76,7 +76,7 @@ public class BlockReflective extends Block implements ITileEntityProvider
     @Override
     public BlockRenderLayer getBlockLayer()
     {
-        return BlockRenderLayer.TRANSLUCENT;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override

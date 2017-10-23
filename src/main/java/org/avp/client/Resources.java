@@ -260,5 +260,6 @@ public class Resources
     public final Texture QUEEN_BOSS_BAR           = new Texture(AliensVsPredator.Properties.ID, "textures/misc/queenbossbar.png");
     public final Texture MIST                     = new Texture(AliensVsPredator.Properties.ID, "textures/blocks/mist.still.png");
     public final Texture BLACKGOO                 = new Texture(AliensVsPredator.Properties.ID, "textures/blocks/blackgoo.png");
+    public final Texture REFLECTION               = new Texture(AliensVsPredator.Properties.ID, "textures/blocks/reflection.png");
     public final Texture RES_UNDERWATER_OVERLAY   = new Texture("textures/misc/underwater.png");
 }
