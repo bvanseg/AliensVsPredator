@@ -85,6 +85,7 @@ import org.avp.tile.TileEntityReflective;
 import org.avp.tile.TileEntityRepulsionGenerator;
 import org.avp.tile.TileEntitySatelliteDish;
 import org.avp.tile.TileEntitySatelliteModem;
+import org.avp.tile.TileEntitySevastopolBlastDoor;
 import org.avp.tile.TileEntitySkull;
 import org.avp.tile.TileEntitySolarPanel;
 import org.avp.tile.TileEntityStasisMechanism;
@@ -140,6 +141,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         GameRegistry.registerTileEntity(TileEntityRepulsionGenerator.class, "tileEntityGenerator");
         GameRegistry.registerTileEntity(TileEntityPowerline.class, "tileEntityPowerline");
         GameRegistry.registerTileEntity(TileEntityBlastdoor.class, "tileEntityBlastdoor");
+        GameRegistry.registerTileEntity(TileEntitySevastopolBlastDoor.class, "tileEntitySevastopolBlastdoor");
         GameRegistry.registerTileEntity(TileEntityCryostasisTube.class, "tileEntityCryostasisTube");
         GameRegistry.registerTileEntity(TileEntityLightPanel.class, "tileEntityLightPanel");
         GameRegistry.registerTileEntity(TileEntitySatelliteModem.class, "tileEntitySatelliteModem");

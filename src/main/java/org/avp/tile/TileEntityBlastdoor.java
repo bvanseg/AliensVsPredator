@@ -23,6 +23,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.World;
 
 public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltageReceiver, IRotatable, IOpenable, IMultiBlock
 {
@@ -35,8 +36,8 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     private TileEntityBlastdoor            parent;
     private ArrayList<TileEntityBlastdoor> children;
     private int                            ticksExisted;
-    private String                         identifier;
-    private String                         password;
+    protected String                       identifier;
+    protected String                       password;
     private long                           timeOfLastPry;
 
     public TileEntityBlastdoor()
@@ -147,7 +148,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
                 this.getParent().setVoltage(this.getVoltage());
             }
         }
-        
+
         if (this.isParent)
         {
             double childrenVoltage = 0.0D;
@@ -170,12 +171,12 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         {
             if (this.isOpen() && this.isOperational())
             {
-                this.doorProgress = this.doorProgress < getMaxDoorProgress() ? this.doorProgress + 0.02F : this.doorProgress;
+                this.doorProgress = this.doorProgress < getMaxDoorProgress() ? this.doorProgress + getDoorSpeed() : this.doorProgress;
             }
 
             if (!this.isOpen() && !isBeingPryedOpen())
             {
-                this.doorProgress = this.doorProgress > 0.0F ? this.doorProgress - 0.02F : this.doorProgress;
+                this.doorProgress = this.doorProgress > 0.0F ? this.doorProgress - getDoorSpeed() : this.doorProgress;
             }
 
             long timeSinceLastPry = (System.currentTimeMillis() - this.getTimeOfLastPry());
@@ -424,6 +425,11 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         return 600;
     }
+    
+    public float getDoorSpeed()
+    {
+        return 0.03F;
+    }
 
     public float getDoorProgressPrev()
     {
@@ -449,5 +455,10 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         set.add(pos.add(3, 1, 0));
 
         return set.toArray(new BlockPos[set.size()]);
+    }
+
+    public void playDoorOpenSound()
+    {
+        AliensVsPredator.sounds().BLASTDOOR_OPEN.playSound(world, pos, 1F, 1F);
     }
 }

@@ -1,5 +1,6 @@
 package org.avp.block;
 
+import org.avp.AliensVsPredator;
 import org.avp.item.ItemMaintenanceJack;
 import org.avp.tile.TileEntityBlastdoor;
 
@@ -80,6 +81,7 @@ public class BlockBlastdoor extends Block
         }
         else
         {
+            blastdoor.playDoorOpenSound();
             blastdoor.setOpen(!blastdoor.isOpen());
 
             if (world.isRemote)

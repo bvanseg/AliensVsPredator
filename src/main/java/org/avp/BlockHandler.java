@@ -27,6 +27,7 @@ import org.avp.block.BlockRedstoneSensor;
 import org.avp.block.BlockReflective;
 import org.avp.block.BlockSatelliteDish;
 import org.avp.block.BlockSatelliteModem;
+import org.avp.block.BlockSevastopolBlastDoor;
 import org.avp.block.BlockSolarPanel;
 import org.avp.block.BlockStalagmite;
 import org.avp.block.BlockStasisMechanism;
@@ -156,6 +157,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public Block repulsionGenerator    = new BlockGenerator(Material.IRON).setHardness(5.0F).setResistance(10.0F);
     public Block powerline             = new BlockPowerline(Material.IRON).setHardness(3.2F).setResistance(2.6F);
     public Block blastDoor             = new BlockBlastdoor(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+    public Block sevastopolBlastDoor   = new BlockSevastopolBlastDoor().setHardness(10F).setResistance(15.0F).setLightOpacity(0);
     public Block cryoTube              = new BlockCryostasisTube(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(4);
     public Block lightPanel            = new BlockLightPanel(Material.IRON).setHardness(1.5F).setResistance(2.0F);
     public Block satelliteModem        = new BlockSatelliteModem(Material.IRON).setHardness(3.2F).setResistance(2.6F);
@@ -243,6 +245,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
         register("generator", repulsionGenerator).setCreativeTab(AliensVsPredator.tabMain());
         register("powerline", powerline).setCreativeTab(AliensVsPredator.tabMain());
         register("blastdoor", blastDoor).setCreativeTab(AliensVsPredator.tabMain());
+        register("blastdoor.sevastopol", sevastopolBlastDoor).setCreativeTab(AliensVsPredator.tabMain());
         register("supplychuteblock", supplyCrate).setCreativeTab(AliensVsPredator.tabMain());
         register("supplychuteblock.marines", crateMarines).setCreativeTab(AliensVsPredator.tabMain());
         register("supplychuteblock.seegson", crateSeegson).setCreativeTab(AliensVsPredator.tabMain());
