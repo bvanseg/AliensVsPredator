@@ -155,7 +155,7 @@ public class ModelSevastopolBlastdoor extends Model
             float doorProgressPrev = tile.getDoorProgressPrev() * 2;
             doorProgress = doorProgressPrev + (doorProgress - doorProgressPrev) * Game.partialTicks();
             
-            float doorRight = -doorProgress - 0.05F;
+            float doorRight = -doorProgress;
 
             doorMain.offsetY = doorRight;
             doorMain.offsetY = doorRight;
