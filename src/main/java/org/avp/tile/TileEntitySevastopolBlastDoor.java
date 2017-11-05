@@ -38,7 +38,7 @@ public class TileEntitySevastopolBlastDoor extends TileEntityBlastdoor
     }
     
     @Override
-    public void playDoorOpenSound()
+    public void playOpenSound()
     {
         AliensVsPredator.sounds().BLASTDOOR_OPEN.playSound(world, pos, 1F, 2F);
     }

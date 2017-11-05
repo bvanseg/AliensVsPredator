@@ -47,6 +47,8 @@
   "motiontracker.pong": 			{ "sounds": [ "avp:items/motiontracker/pong" ] },
   "blocks.turret.shoot": 			{ "sounds": [ "avp:blocks/turret/shoot" ] },
   "blocks.blastdoor.open": 			{ "sounds": [ "avp:blocks/blastdoor/open" ] },
+  "blocks.blastdoor.lock": 			{ "sounds": [ "avp:blocks/blastdoor/lock" ] },
+  "blocks.blastdoor.unlock": 		{ "sounds": [ "avp:blocks/blastdoor/unlock" ] },
   "blocks.hive.step": 				{ "sounds": [ "avp:blocks/hive/step0", "avp:blocks/hive/step1", "avp:blocks/hive/step2", "avp:blocks/hive/step3" ] },
   "blocks.newglass.step": 			{ "sounds": [ "avp:blocks/newglass/step0", "avp:blocks/newglass/step1", "avp:blocks/newglass/step2", "avp:blocks/newglass/step3" ] },
   "blocks.alarm.access": 			{ "sounds": [ "avp:blocks/alarm/access" ] },

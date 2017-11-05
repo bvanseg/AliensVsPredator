@@ -25,6 +25,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockBlastdoor extends Block
 {
@@ -61,7 +63,8 @@ public class BlockBlastdoor extends Block
                 {
                     if (blastdoor.playerHoldingRequiredSecurityTuner(player))
                     {
-                        FMLCommonHandler.instance().showGuiScreen(new GuiBlastdoor(blastdoor, false));
+                        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                        showAdministrationGUI(blastdoor);
                     }
                 }
                 else if (canOpen(blastdoor, player))
@@ -70,12 +73,25 @@ public class BlockBlastdoor extends Block
                 }
                 else if (blastdoor.isLocked())
                 {
-                    FMLCommonHandler.instance().showGuiScreen(new GuiBlastdoor(blastdoor));
+                    if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                    showUnlockGUI(blastdoor);
                 }
             }
         }
 
         return true;
+    }
+    
+    @SideOnly(Side.CLIENT)
+    public static void showUnlockGUI(TileEntityBlastdoor blastdoor)
+    {
+        FMLCommonHandler.instance().showGuiScreen(new GuiBlastdoor(blastdoor));
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static void showAdministrationGUI(TileEntityBlastdoor blastdoor)
+    {
+        FMLCommonHandler.instance().showGuiScreen(new GuiBlastdoor(blastdoor, false));
     }
 
     private void onOpen(TileEntityBlastdoor blastdoor, World world, EntityPlayer player)

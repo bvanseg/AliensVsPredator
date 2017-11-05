@@ -250,12 +250,14 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         this.locked = false;
         this.lockTimer = this.getDoorAutolockTime();
+        this.playUnlockSound();
     }
 
     public void lock()
     {
         this.locked = true;
         this.setOpen(false);
+        this.playLockSound();
         IBlockState state = world.getBlockState(this.getPos());
         world.notifyBlockUpdate(this.getPos(), state, state, 3);
     }
@@ -326,7 +328,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         {
             if (this.doorOpen != doorOpen)
             {
-                this.playDoorOpenSound();
+                this.playOpenSound();
             }
             this.doorOpen = doorOpen;
 
@@ -558,9 +560,19 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         return set.toArray(new BlockPos[set.size()]);
     }
 
-    public void playDoorOpenSound()
+    public void playOpenSound()
     {
         AliensVsPredator.sounds().BLASTDOOR_OPEN.playSound(world, pos, 1F, 1F);
+    }
+    
+    public void playUnlockSound()
+    {
+        AliensVsPredator.sounds().BLASTDOOR_UNLOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 50F, 1F, false);
+    }
+    
+    public void playLockSound()
+    {
+        AliensVsPredator.sounds().BLASTDOOR_LOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
 
     public boolean authenticate(String key)

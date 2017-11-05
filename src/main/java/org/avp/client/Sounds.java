@@ -50,6 +50,8 @@ public class Sounds implements IPreInitEvent
     public static final Sound MOTIONTRACKER_PING = sound("motiontracker.ping");
     public static final Sound MOTIONTRACKER_PONG = sound("motiontracker.pong");
     public static final Sound BLASTDOOR_OPEN = sound("blocks.blastdoor.open");
+    public static final Sound BLASTDOOR_UNLOCK = sound("blocks.blastdoor.unlock");
+    public static final Sound BLASTDOOR_LOCK = sound("blocks.blastdoor.lock");
 
     @Override
     public void pre(FMLPreInitializationEvent event)
