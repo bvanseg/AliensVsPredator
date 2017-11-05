@@ -52,6 +52,9 @@ public class Sounds implements IPreInitEvent
     public static final Sound BLASTDOOR_OPEN = sound("blocks.blastdoor.open");
     public static final Sound BLASTDOOR_UNLOCK = sound("blocks.blastdoor.unlock");
     public static final Sound BLASTDOOR_LOCK = sound("blocks.blastdoor.lock");
+    public static final Sound ALARM_ACCESS = sound("blocks.alarm.access");
+    public static final Sound ALARM_BUZZER = sound("blocks.alarm.buzzer");
+    public static final Sound ALARM_EMERGENCY = sound("blocks.alarm.emergency");
 
     @Override
     public void pre(FMLPreInitializationEvent event)
