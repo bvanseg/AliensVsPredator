@@ -7,6 +7,7 @@ import org.avp.block.BlockAmpule;
 import org.avp.block.BlockAssembler;
 import org.avp.block.BlockBlackGoo;
 import org.avp.block.BlockBlastdoor;
+import org.avp.block.BlockCCFLTube;
 import org.avp.block.BlockCryostasisTube;
 import org.avp.block.BlockCustomSlab;
 import org.avp.block.BlockCustomStairs;
@@ -160,6 +161,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public Block sevastopolBlastDoor   = new BlockSevastopolBlastDoor().setHardness(10F).setResistance(15.0F).setLightOpacity(0);
     public Block cryoTube              = new BlockCryostasisTube(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(4);
     public Block lightPanel            = new BlockLightPanel(Material.IRON).setHardness(1.5F).setResistance(2.0F);
+    public Block ccflTube              = new BlockCCFLTube(Material.IRON).setHardness(0.5F).setResistance(1.0F);
     public Block satelliteModem        = new BlockSatelliteModem(Material.IRON).setHardness(3.2F).setResistance(2.6F);
     public Block powercell             = new BlockPowercell(Material.IRON).setHardness(3.2F).setResistance(2.6F);
     public Block redstoneSensor        = new BlockRedstoneSensor(Material.IRON).setHardness(3.2F).setResistance(2.6F);
@@ -251,6 +253,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
         register("supplychuteblock.seegson", crateSeegson).setCreativeTab(AliensVsPredator.tabMain());
         register("cryostasistube", cryoTube).setCreativeTab(AliensVsPredator.tabMain());
         register("lightpanel", lightPanel).setCreativeTab(AliensVsPredator.tabMain());
+        register("ccfltube", ccflTube).setCreativeTab(AliensVsPredator.tabMain());
         register("mainframepanel.shimmer", muthurPanel1).setCreativeTab(AliensVsPredator.tabMain());
         register("mainframepanel.flicker", muthurPanel2).setCreativeTab(AliensVsPredator.tabMain());
         register("engineership.ampule", ampule).setCreativeTab(AliensVsPredator.tabMain());
@@ -364,7 +367,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     public static final BlockFluidClassic             blackgoo      = null;
     public static final BlockFluidClassic             mist          = null;
     public static final Block                         lv426rock     = null;
-    
+
     public static ArrayList<BlockRegistration> getRegistrations()
     {
         return registrations;
@@ -375,7 +378,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     {
         registrations.add(new BlockFluidRegistration("blackgoo", BlockBlackGoo.class, BlockBlackGoo.fluid));
         registrations.add(new BlockFluidRegistration("mist", BlockMist.class, BlockMist.fluid));
-        
+
         registrations.add(new BlockRegistrationAVP("paddingpanel_orange", new BlockMaterial(Material.CLOTH)) {
             @Override
             public Block applyModifiers(Block block)
