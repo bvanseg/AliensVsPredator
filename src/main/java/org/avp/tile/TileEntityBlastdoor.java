@@ -3,6 +3,7 @@ package org.avp.tile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 
 import org.avp.AliensVsPredator;
 import org.avp.api.machines.IOpenable;
@@ -11,19 +12,22 @@ import org.avp.packets.client.PacketOpenBlastdoor;
 
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.block.IMultiBlock;
+import com.arisux.mdx.lib.world.entity.Entities;
 import com.arisux.mdx.lib.world.tile.IRotatable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.world.World;
 
 public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltageReceiver, IRotatable, IOpenable, IMultiBlock
 {
@@ -38,6 +42,10 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     private int                            ticksExisted;
     protected String                       identifier;
     protected String                       password;
+    protected String                       bindKey;
+    protected boolean                      locked;
+    protected boolean                      autolockEnabled;
+    protected int                          lockTimer;
     private long                           timeOfLastPry;
 
     public TileEntityBlastdoor()
@@ -46,6 +54,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         this.children = new ArrayList<TileEntityBlastdoor>();
         this.identifier = "BD" + (1000 + new Random().nextInt(8999));
         this.password = "";
+        this.bindKey = "";
     }
 
     public void addToParent(TileEntityBlastdoor parent)
@@ -95,12 +104,17 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         nbt.setBoolean("DoorOpen", this.isOpen());
         nbt.setLong("TimeOfLastPry", this.getTimeOfLastPry());
         nbt.setBoolean("Parent", this.isParent);
+        nbt.setBoolean("Locked", this.locked);
+        nbt.setBoolean("AutoLock", this.autolockEnabled);
 
         if (!identifier.isEmpty())
             nbt.setString("Identifier", this.identifier);
 
         if (!password.isEmpty())
             nbt.setString("Password", this.password);
+
+        if (!bindKey.isEmpty())
+            nbt.setString("BindKey", this.bindKey);
 
         return nbt;
     }
@@ -117,10 +131,13 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
         this.doorProgress = nbt.getFloat("DoorProgress");
         this.isParent = nbt.getBoolean("Parent");
+        this.locked = nbt.getBoolean("Locked");
+        this.autolockEnabled = nbt.getBoolean("AutoLock");
         this.setOpen(nbt.getBoolean("DoorOpen"));
         this.timeOfLastPry = nbt.getLong("TimeOfLastPry");
         this.identifier = nbt.getString("Identifier");
         this.password = nbt.getString("Password");
+        this.bindKey = nbt.getString("BindKey");
     }
 
     @Override
@@ -169,6 +186,42 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
         if (this.isParent())
         {
+            if (this.isLocked() && !this.isOpen() && this.getWorld().getWorldTime() % 10 == 0)
+            {
+                int scanRange = 1;
+                List<EntityPlayer> players = world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1).expand(scanRange * 2, 5, scanRange * 2));
+                
+                for (EntityPlayer player : players)
+                {
+                    if (this.playerHoldingRequiredSecurityTuner(player))
+                    {
+                        this.unlock();
+                        this.setOpen(true, true);
+                        break;
+                    }
+                }
+            }
+
+            if (this.isOperational())
+            {
+                if (!this.isLocked() && this.isAutolockEnabled())
+                {
+                    if (this.lockTimer > 0)
+                    {
+                        this.lockTimer--;
+                    }
+
+                    if (this.lockTimer <= 0)
+                    {
+                        this.lock();
+                    }
+                }
+                else if (this.isLocked() && this.isOpen())
+                {
+                    this.lock();
+                }
+            }
+
             if (this.isOpen() && this.isOperational())
             {
                 this.doorProgress = this.doorProgress < getMaxDoorProgress() ? this.doorProgress + getDoorSpeed() : this.doorProgress;
@@ -192,6 +245,25 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
                 this.setOpen(true);
             }
         }
+    }
+
+    public void unlock()
+    {
+        this.locked = false;
+        this.lockTimer = this.getDoorAutolockTime();
+    }
+
+    public void lock()
+    {
+        this.locked = true;
+        this.setOpen(false);
+        IBlockState state = world.getBlockState(this.getPos());
+        world.notifyBlockUpdate(this.getPos(), state, state, 3);
+    }
+
+    public boolean isLocked()
+    {
+        return locked;
     }
 
     public boolean isBeingPryedOpen()
@@ -253,6 +325,10 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         }
         else if (this.isParent())
         {
+            if (this.doorOpen != doorOpen)
+            {
+                this.playDoorOpenSound();
+            }
             this.doorOpen = doorOpen;
 
             if (this.world != null && !this.world.isRemote && sendPacket)
@@ -396,6 +472,11 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         this.identifier = identifier;
     }
 
+    public boolean hasPassword()
+    {
+        return !this.getPassword().isEmpty();
+    }
+
     public String getPassword()
     {
         return password;
@@ -404,6 +485,12 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     public void setPassword(String password)
     {
         this.password = password;
+
+        if (this.password.isEmpty() && this.isLocked())
+        {
+            this.unlock();
+            this.setAutolock(false);
+        }
     }
 
     public void setDoorProgress(float doorProgress)
@@ -425,10 +512,25 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         return 600;
     }
-    
+
     public float getDoorSpeed()
     {
         return 0.03F;
+    }
+
+    public int getDoorAutolockTime()
+    {
+        return 20 * 10;
+    }
+
+    public boolean isAutolockEnabled()
+    {
+        return autolockEnabled;
+    }
+
+    public void setAutolock(boolean autolockEnabled)
+    {
+        this.autolockEnabled = autolockEnabled;
     }
 
     public float getDoorProgressPrev()
@@ -460,5 +562,58 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     public void playDoorOpenSound()
     {
         AliensVsPredator.sounds().BLASTDOOR_OPEN.playSound(world, pos, 1F, 1F);
+    }
+
+    public boolean authenticate(String key)
+    {
+        if (key.equals(this.password))
+        {
+            this.unlock();
+            this.setOpen(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    public void bindToSecurityTuner(EntityPlayer playerEntity, ItemStack itemstack)
+    {
+        if (itemstack.getItem() == AliensVsPredator.items().securityTuner)
+        {
+            NBTTagCompound tag = itemstack.getTagCompound() != null ? itemstack.getTagCompound() : new NBTTagCompound();
+            String tunerBindKey = tag.getString("BindKey");
+
+            if (!this.world.isRemote)
+            {
+                if (tunerBindKey.isEmpty())
+                {
+                    tunerBindKey = UUID.randomUUID().toString();
+                    tag.setString("BindKey", tunerBindKey);
+                    itemstack.setTagCompound(tag);
+                    itemstack.setStackDisplayName(tunerBindKey);
+                    System.out.println("created key: " + tunerBindKey);
+                }
+            }
+
+            this.bindKey = tunerBindKey;
+        }
+    }
+
+    public boolean playerHoldingRequiredSecurityTuner(EntityPlayer player)
+    {
+        ItemStack itemstack = player.getHeldItemMainhand();
+
+        if (itemstack.getItem() == AliensVsPredator.items().securityTuner)
+        {
+            NBTTagCompound tag = itemstack.getTagCompound() != null ? itemstack.getTagCompound() : new NBTTagCompound();
+            return tag.getString("BindKey").equals(this.bindKey) || this.bindKey.isEmpty();
+        }
+
+        return false;
+    }
+
+    public String getBindKey()
+    {
+        return this.bindKey;
     }
 }

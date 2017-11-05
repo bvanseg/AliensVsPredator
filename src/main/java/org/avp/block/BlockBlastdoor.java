@@ -1,6 +1,7 @@
 package org.avp.block;
 
 import org.avp.AliensVsPredator;
+import org.avp.client.gui.GuiBlastdoor;
 import org.avp.item.ItemMaintenanceJack;
 import org.avp.tile.TileEntityBlastdoor;
 
@@ -23,6 +24,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class BlockBlastdoor extends Block
 {
@@ -41,15 +43,35 @@ public class BlockBlastdoor extends Block
 
         if (tile != null && tile instanceof TileEntityBlastdoor)
         {
-            TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
+            TileEntityBlastdoor doorSubBlock = (TileEntityBlastdoor) tile;
+            TileEntityBlastdoor blastdoor = null;
 
-            if (blastdoor.isChild() && blastdoor.getParent() != null && canOpen(blastdoor.getParent(), player))
+            if (doorSubBlock.isChild() && doorSubBlock.getParent() != null)
             {
-                this.onOpen(blastdoor.getParent(), world, player);
+                blastdoor = doorSubBlock.getParent();
             }
-            else if (blastdoor.isParent() && canOpen(blastdoor, player))
+            else if (doorSubBlock.isParent())
             {
-                this.onOpen(blastdoor, world, player);
+                blastdoor = doorSubBlock;
+            }
+
+            if (blastdoor != null && blastdoor.isOperational())
+            {
+                if (heldItem != null && heldItem.getItem() == AliensVsPredator.items().securityTuner)
+                {
+                    if (blastdoor.playerHoldingRequiredSecurityTuner(player))
+                    {
+                        FMLCommonHandler.instance().showGuiScreen(new GuiBlastdoor(blastdoor, false));
+                    }
+                }
+                else if (canOpen(blastdoor, player))
+                {
+                    this.onOpen(blastdoor, world, player);
+                }
+                else if (blastdoor.isLocked())
+                {
+                    FMLCommonHandler.instance().showGuiScreen(new GuiBlastdoor(blastdoor));
+                }
             }
         }
 
@@ -81,26 +103,27 @@ public class BlockBlastdoor extends Block
         }
         else
         {
-            blastdoor.playDoorOpenSound();
-            blastdoor.setOpen(!blastdoor.isOpen());
-
-            if (world.isRemote)
+            if (blastdoor != null)
             {
-                final String value = (blastdoor.isOpen() ? "opened" : "closed");
-                Notifications.sendNotification(new Notification()
-                {
-                    @Override
-                    public String getMessage()
-                    {
-                        return "\u00A77 Blast door \u00A7a" + value + ".";
-                    }
+                blastdoor.setOpen(!blastdoor.isOpen());
 
-                    @Override
-                    public int displayTimeout()
-                    {
-                        return 20;
-                    }
-                });
+                if (world.isRemote)
+                {
+                    final String value = (blastdoor.isOpen() ? "opened" : "closed");
+                    Notifications.sendNotification(new Notification() {
+                        @Override
+                        public String getMessage()
+                        {
+                            return "\u00A77 Blast door \u00A7a" + value + ".";
+                        }
+
+                        @Override
+                        public int displayTimeout()
+                        {
+                            return 20;
+                        }
+                    });
+                }
             }
         }
     }
@@ -112,7 +135,7 @@ public class BlockBlastdoor extends Block
 
     private boolean canOpen(TileEntityBlastdoor blastdoor, EntityPlayer player)
     {
-        return blastdoor.isOperational() || isOpenedByJack(blastdoor, player);
+        return blastdoor.isOperational() && !blastdoor.isLocked() || isOpenedByJack(blastdoor, player);
     }
 
     @Override
@@ -125,7 +148,7 @@ public class BlockBlastdoor extends Block
             TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
 
             blastdoor.setDirection(Entities.getDirectionFacing(placer));
-            
+
             if (!blastdoor.setup(true))
             {
                 world.setBlockToAir(pos);
@@ -172,7 +195,7 @@ public class BlockBlastdoor extends Block
     {
         return true;
     }
-    
+
     @Override
     public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
     {
@@ -206,13 +229,13 @@ public class BlockBlastdoor extends Block
     {
         return false;
     }
-    
+
     @Override
     public boolean isFullBlock(IBlockState state)
     {
         return true;
     }
-    
+
     @Override
     public boolean isFullCube(IBlockState state)
     {

@@ -1,6 +1,7 @@
 package org.avp;
 
 import org.avp.client.gui.GuiAssembler;
+import org.avp.client.gui.GuiBlastdoor;
 import org.avp.client.gui.GuiLocker;
 import org.avp.client.gui.GuiModSettings;
 import org.avp.client.gui.GuiSupplyCrate;
@@ -9,6 +10,7 @@ import org.avp.client.gui.GuiWristbracer;
 import org.avp.inventory.ContainerWristbracer;
 import org.avp.item.ItemWristbracer;
 import org.avp.tile.TileEntityAssembler;
+import org.avp.tile.TileEntityBlastdoor;
 import org.avp.tile.TileEntityLocker;
 import org.avp.tile.TileEntitySupplyCrate;
 import org.avp.tile.TileEntityTurret;
@@ -33,6 +35,7 @@ public class GuiHandler implements IGuiHandler, IInitEvent
     public final int               GUI_LOCKER           = 3;
     public final int               GUI_SUPPLYCRATE      = 4;
     public final int               GUI_GRAPHICSSETTINGS = 5;
+    public final int               GUI_BLASTDOOR_PSWD   = 6;
 
     @Override
     public void init(FMLInitializationEvent event)
@@ -44,7 +47,7 @@ public class GuiHandler implements IGuiHandler, IInitEvent
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
         BlockPos blockpos = new BlockPos(x, y, z);
-        
+
         if (id == GUI_ASSEMBLER)
             return ((TileEntityAssembler) world.getTileEntity(blockpos)).getNewContainer(player);
 
@@ -80,7 +83,7 @@ public class GuiHandler implements IGuiHandler, IInitEvent
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z)
     {
         BlockPos blockpos = new BlockPos(x, y, z);
-        
+
         if (id == GUI_ASSEMBLER)
         {
             return new GuiAssembler(player.inventory, (TileEntityAssembler) world.getTileEntity(blockpos), world, x, y, z);
@@ -114,6 +117,11 @@ public class GuiHandler implements IGuiHandler, IInitEvent
         if (id == GUI_GRAPHICSSETTINGS)
         {
             return new GuiModSettings(Minecraft.getMinecraft().currentScreen);
+        }
+
+        if (id == GUI_BLASTDOOR_PSWD)
+        {
+            return new GuiBlastdoor((TileEntityBlastdoor) world.getTileEntity(blockpos));
         }
 
         return null;

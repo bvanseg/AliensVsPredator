@@ -53,7 +53,6 @@ public class PacketOpenBlastdoor implements IMessage, IMessageHandler<PacketOpen
     @Override
     public PacketOpenBlastdoor onMessage(PacketOpenBlastdoor packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         Game.minecraft().addScheduledTask(new Runnable()
         {
             @Override

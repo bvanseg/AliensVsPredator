@@ -96,6 +96,7 @@ import org.avp.client.render.items.RenderItemPowerline;
 import org.avp.client.render.items.RenderItemRedstoneFluxGenerator;
 import org.avp.client.render.items.RenderItemRepulsionGenerator;
 import org.avp.client.render.items.RenderItemSatelliteDish;
+import org.avp.client.render.items.RenderItemSevastopolBlastdoor;
 import org.avp.client.render.items.RenderItemSkull;
 import org.avp.client.render.items.RenderItemSniper;
 import org.avp.client.render.items.RenderItemSolarPanel;
@@ -441,6 +442,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().gunLocker), new RenderItemGunLocker());
         Renderers.registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().medpod), new RenderItemMedpod());
         Renderers.registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().satelliteDish), new RenderItemSatelliteDish());
+        Renderers.registerItemRenderer(Item.getItemFromBlock(AliensVsPredator.blocks().sevastopolBlastDoor), new RenderItemSevastopolBlastdoor());
         Renderers.registerItemRenderer(items.itemWristbracer, new RenderItemWristbracer());
         Renderers.registerItemRenderer(items.itemStunBaton, new RenderItemStunBaton());
         Renderers.registerItemRenderer(items.itemWristbracerBlades, new RenderItemWristbracerBlades());

@@ -13,6 +13,8 @@ import org.avp.packets.client.SpecialPlayerClientSync;
 import org.avp.packets.server.OrganismServerSync;
 import org.avp.packets.server.PacketAddTuretTarget;
 import org.avp.packets.server.PacketAssemble;
+import org.avp.packets.server.PacketBlastdoorCommon;
+import org.avp.packets.server.PacketBlastdoorCommon.PacketBlastdoorClient;
 import org.avp.packets.server.PacketDamageEntity;
 import org.avp.packets.server.PacketFireAPC;
 import org.avp.packets.server.PacketFirearmSync;
@@ -67,6 +69,7 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.SERVER, PacketWriteToDataDevice.class);
         this.registerMessage(Side.SERVER, OrganismServerSync.class);
         this.registerMessage(Side.SERVER, SpecialPlayerServerSync.class);
+        this.registerMessage(Side.SERVER, PacketBlastdoorCommon.class);
         this.registerMessage(Side.CLIENT, PacketTurretTargetUpdate.class);
         this.registerMessage(Side.CLIENT, PacketOvamorphContainsFacehugger.class);
         this.registerMessage(Side.CLIENT, PacketAmmoUpdate.class);
@@ -79,6 +82,7 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.CLIENT, PacketRotateRotatable.class);
         this.registerMessage(Side.CLIENT, PacketSyncRF.class);
         this.registerMessage(Side.CLIENT, PacketOpenGui.class);
+        this.registerMessage(Side.CLIENT, PacketBlastdoorClient.class);
     }
 
     @SuppressWarnings("unchecked")

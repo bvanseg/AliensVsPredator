@@ -28,7 +28,15 @@ public class RenderSevastopolBlastdoor extends TileEntitySpecialRenderer<TileEnt
                 {
                     OpenGL.disableLight();
                     AliensVsPredator.resources().models().BLASTDOOR_SEVASTOPOL_ENABLED.draw(tile);
-                    AliensVsPredator.resources().models().BLASTDOOR_SEVASTOPOL_UNLOCKED.draw(tile);
+
+                    if (!tile.isLocked())
+                    {
+                        AliensVsPredator.resources().models().BLASTDOOR_SEVASTOPOL_UNLOCKED.draw(tile);
+                    }
+                    else
+                    {
+                        AliensVsPredator.resources().models().BLASTDOOR_SEVASTOPOL_LOCKED.draw(tile);
+                    }
                     OpenGL.enableLight();
                 }
                 else

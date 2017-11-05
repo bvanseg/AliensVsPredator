@@ -85,7 +85,6 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemSword;
-import net.minecraft.item.Item.ToolMaterial;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
@@ -197,6 +196,7 @@ public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
     public Item itemMaintenanceJack      = new ItemMaintenanceJack();
     public Item blackGooBucket           = new ItemBucket(AliensVsPredator.blocks().blackgoo);
     public Item mistBucket               = new ItemBucket(AliensVsPredator.blocks().mist);
+    public Item securityTuner            = new HookedItem().setMaxStackSize(1);
 
     public Item summonerDrone            = new ItemEntitySummoner(EntityDrone.class);
     public Item summonerAqua             = new ItemEntitySummoner(EntityAqua.class);
@@ -410,5 +410,6 @@ public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
         register("phial.empty", itemPhialEmpty).setCreativeTab(AliensVsPredator.tabMain());
         register("chargepack", itemChargePack).setCreativeTab(AliensVsPredator.tabMain());
         register("tool.maintenancejack", itemMaintenanceJack).setCreativeTab(AliensVsPredator.tabMain());
+        register("tool.securitytuner", securityTuner).setCreativeTab(AliensVsPredator.tabMain());
     }
 }
