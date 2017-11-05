@@ -200,7 +200,6 @@ public class CachedModelReflectiveShape implements IPerspectiveAwareModel
             if (retextured != null)
             {
                 List<BakedQuad> quads = retextured.bake(transformation, VERTEX_FORMAT, TEXTURE_GETTER).getQuads(state, side, rand);
-                System.out.println(quads);
                 return quads;
             }
 
