@@ -52,5 +52,6 @@
   "blocks.hive.step": 				{ "sounds": [ "avp:blocks/hive/step0", "avp:blocks/hive/step1", "avp:blocks/hive/step2", "avp:blocks/hive/step3" ] },
   "blocks.newglass.step": 			{ "sounds": [ "avp:blocks/newglass/step0", "avp:blocks/newglass/step1", "avp:blocks/newglass/step2", "avp:blocks/newglass/step3" ] },
   "blocks.alarm.access": 			{ "sounds": [ "avp:blocks/alarm/access" ] },
+  "blocks.alarm.buzzer": 			{ "sounds": [ "avp:blocks/alarm/buzzer" ] },
   "blocks.alarm.emergency":			{ "sounds": [ "avp:blocks/alarm/emergency" ] }
 }

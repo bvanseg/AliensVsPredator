@@ -567,12 +567,17 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     
     public void playUnlockSound()
     {
-        AliensVsPredator.sounds().BLASTDOOR_UNLOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 50F, 1F, false);
+        AliensVsPredator.sounds().BLASTDOOR_UNLOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
     
     public void playLockSound()
     {
         AliensVsPredator.sounds().BLASTDOOR_LOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
+    }
+    
+    public void playIncorrectPasswordSound()
+    {
+        AliensVsPredator.sounds().ALARM_BUZZER.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
 
     public boolean authenticate(String key)
@@ -582,6 +587,10 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
             this.unlock();
             this.setOpen(true);
             return true;
+        }
+        else
+        {
+            this.playIncorrectPasswordSound();
         }
 
         return false;
