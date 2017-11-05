@@ -12,7 +12,7 @@ import org.avp.packets.client.PacketOpenBlastdoor;
 
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.block.IMultiBlock;
-import com.arisux.mdx.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -28,7 +28,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 
-public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltageReceiver, IRotatable, IOpenable, IMultiBlock
+public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltageReceiver, IRotatableYAxis, IOpenable, IMultiBlock
 {
     private EnumFacing                     direction;
     private float                          doorProgress;
@@ -189,7 +189,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
             {
                 int scanRange = 1;
                 List<EntityPlayer> players = world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1).expand(scanRange * 2, 5, scanRange * 2));
-                
+
                 for (EntityPlayer player : players)
                 {
                     if (this.playerHoldingRequiredSecurityTuner(player))
@@ -328,7 +328,14 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         {
             if (this.doorOpen != doorOpen)
             {
-                this.playOpenSound();
+                if (doorOpen)
+                {
+                    this.playOpenSound();
+                }
+                else
+                {
+                    this.playCloseSound();
+                }
             }
             this.doorOpen = doorOpen;
 
@@ -452,13 +459,13 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     }
 
     @Override
-    public EnumFacing getDirection()
+    public EnumFacing getRotationYAxis()
     {
         return direction;
     }
 
     @Override
-    public void setDirection(EnumFacing direction)
+    public void setRotationYAxis(EnumFacing direction)
     {
         this.direction = direction;
     }
@@ -564,20 +571,25 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         AliensVsPredator.sounds().BLASTDOOR_OPEN.playSound(world, pos, 1F, 1F);
     }
-    
+
+    public void playCloseSound()
+    {
+        AliensVsPredator.sounds().BLASTDOOR_CLOSE.playSound(world, pos, 1F, 1F);
+    }
+
     public void playUnlockSound()
     {
         AliensVsPredator.sounds().BLASTDOOR_UNLOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
-    
+
     public void playLockSound()
     {
         AliensVsPredator.sounds().BLASTDOOR_LOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
-    
+
     public void playIncorrectPasswordSound()
     {
-        AliensVsPredator.sounds().ALARM_BUZZER.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
+        AliensVsPredator.sounds().BLASTDOOR_PASSWORD_DENIED.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
 
     public boolean authenticate(String key)

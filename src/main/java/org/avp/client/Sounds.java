@@ -49,9 +49,13 @@ public class Sounds implements IPreInitEvent
     public static final Sound WEAPON_M56SG = sound("weapon.m56sg");
     public static final Sound MOTIONTRACKER_PING = sound("motiontracker.ping");
     public static final Sound MOTIONTRACKER_PONG = sound("motiontracker.pong");
+    public static final Sound BLASTDOOR_SEVASTOPOL_OPEN = sound("blocks.blastdoor.open");
+    public static final Sound BLASTDOOR_SEVASTOPOL_CLOSE = sound("blocks.blastdoor.close");
     public static final Sound BLASTDOOR_OPEN = sound("blocks.blastdoor.open");
+    public static final Sound BLASTDOOR_CLOSE = sound("blocks.blastdoor.close");
     public static final Sound BLASTDOOR_UNLOCK = sound("blocks.blastdoor.unlock");
     public static final Sound BLASTDOOR_LOCK = sound("blocks.blastdoor.lock");
+    public static final Sound BLASTDOOR_PASSWORD_DENIED = sound("blocks.blastdoor.pass_deny");
     public static final Sound ALARM_ACCESS = sound("blocks.alarm.access");
     public static final Sound ALARM_BUZZER = sound("blocks.alarm.buzzer");
     public static final Sound ALARM_EMERGENCY = sound("blocks.alarm.emergency");
