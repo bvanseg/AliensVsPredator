@@ -602,7 +602,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         ItemStack itemstack = player.getHeldItemMainhand();
 
-        if (itemstack.getItem() == AliensVsPredator.items().securityTuner)
+        if (itemstack != null && itemstack.getItem() == AliensVsPredator.items().securityTuner)
         {
             NBTTagCompound tag = itemstack.getTagCompound() != null ? itemstack.getTagCompound() : new NBTTagCompound();
             return tag.getString("BindKey").equals(this.bindKey) || this.bindKey.isEmpty();
