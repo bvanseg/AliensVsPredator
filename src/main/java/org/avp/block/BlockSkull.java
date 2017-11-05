@@ -73,7 +73,7 @@ public abstract class BlockSkull extends Block
         if (tile != null && tile instanceof TileEntitySkull && placer != null)
         {
             TileEntitySkull skull = (TileEntitySkull) tile;
-            skull.setDirection(Entities.getDirectionFacing(placer));
+            skull.setRotationYAxis(Entities.getEntityFacingRotY(placer));
         }
     }
 

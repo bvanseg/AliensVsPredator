@@ -163,7 +163,7 @@ public class BlockBlastdoor extends Block
         {
             TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
 
-            blastdoor.setDirection(Entities.getDirectionFacing(placer));
+            blastdoor.setRotationYAxis(Entities.getEntityFacingRotY(placer));
 
             if (!blastdoor.setup(true))
             {

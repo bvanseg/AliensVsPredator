@@ -1,6 +1,6 @@
 package org.avp.tile;
 
-import com.arisux.mdx.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -8,7 +8,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityAmpule extends TileEntity implements IRotatable
+public class TileEntityAmpule extends TileEntity implements IRotatableYAxis
 {
     private EnumFacing direction;
 
@@ -55,13 +55,13 @@ public class TileEntityAmpule extends TileEntity implements IRotatable
     }
 
     @Override
-    public EnumFacing getDirection()
+    public EnumFacing getRotationYAxis()
     {
         return direction;
     }
 
     @Override
-    public void setDirection(EnumFacing direction)
+    public void setRotationYAxis(EnumFacing direction)
     {
         this.direction = direction;
     }

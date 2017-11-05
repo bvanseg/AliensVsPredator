@@ -69,6 +69,7 @@ import org.avp.entities.living.EntityYautjaWarrior;
 import org.avp.tile.TileEntityAmpule;
 import org.avp.tile.TileEntityAssembler;
 import org.avp.tile.TileEntityBlastdoor;
+import org.avp.tile.TileEntityCCFLTube;
 import org.avp.tile.TileEntityCryostasisTube;
 import org.avp.tile.TileEntityGunLocker;
 import org.avp.tile.TileEntityHiveResin;
@@ -144,6 +145,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         GameRegistry.registerTileEntity(TileEntitySevastopolBlastDoor.class, "tileEntitySevastopolBlastdoor");
         GameRegistry.registerTileEntity(TileEntityCryostasisTube.class, "tileEntityCryostasisTube");
         GameRegistry.registerTileEntity(TileEntityLightPanel.class, "tileEntityLightPanel");
+        GameRegistry.registerTileEntity(TileEntityCCFLTube.class, "tileEntityCCFLTube");
         GameRegistry.registerTileEntity(TileEntitySatelliteModem.class, "tileEntitySatelliteModem");
         GameRegistry.registerTileEntity(TileEntitySatelliteDish.class, "tileEntitySatelliteDish");
         GameRegistry.registerTileEntity(TileEntityTransformer.class, "tileEntityTransformer");

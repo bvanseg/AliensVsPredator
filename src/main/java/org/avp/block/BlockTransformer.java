@@ -77,9 +77,9 @@ public class BlockTransformer extends Block
                 }
             }
 
-            if (transformer.getDirection() != null)
+            if (transformer.getRotationYAxis() != null)
             {
-                int index = EnumFacings.indexOf(transformer.getDirection());
+                int index = EnumFacings.indexOf(transformer.getRotationYAxis());
 
                 if (index + 1 >= EnumFacings.size())
                 {
@@ -88,12 +88,12 @@ public class BlockTransformer extends Block
 
                 if (EnumFacings.get(index + 1) != null)
                 {
-                    transformer.setDirection(EnumFacings.get(index + 1));
+                    transformer.setRotationYAxis(EnumFacings.get(index + 1));
                 }
 
                 if (!world.isRemote)
                 {
-                    AliensVsPredator.network().sendToAll(new PacketRotateRotatable(transformer.getDirection().ordinal(), transformer.getPos().getX(), transformer.getPos().getY(), transformer.getPos().getZ()));
+                    AliensVsPredator.network().sendToAll(new PacketRotateRotatable(transformer.getRotationYAxis().ordinal(), transformer.getPos().getX(), transformer.getPos().getY(), transformer.getPos().getZ()));
                 }
             }
 

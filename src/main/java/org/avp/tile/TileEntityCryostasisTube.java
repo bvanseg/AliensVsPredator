@@ -3,7 +3,7 @@ package org.avp.tile;
 import org.avp.api.power.IVoltageReceiver;
 import org.avp.item.ItemEntitySummoner;
 
-import com.arisux.mdx.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -16,7 +16,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 
 
-public class TileEntityCryostasisTube extends TileEntityElectrical implements IVoltageReceiver, IRotatable, ITickable
+public class TileEntityCryostasisTube extends TileEntityElectrical implements IVoltageReceiver, IRotatableYAxis, ITickable
 {
     private EnumFacing direction;
     public Entity stasisEntity;
@@ -196,13 +196,13 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
     }
 
     @Override
-    public EnumFacing getDirection()
+    public EnumFacing getRotationYAxis()
     {
         return this.direction;
     }
 
     @Override
-    public void setDirection(EnumFacing facing)
+    public void setRotationYAxis(EnumFacing facing)
     {
         this.direction = facing;
     }

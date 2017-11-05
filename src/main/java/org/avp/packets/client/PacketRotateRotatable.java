@@ -1,7 +1,7 @@
 package org.avp.packets.client;
 
 import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
@@ -65,10 +65,10 @@ public class PacketRotateRotatable implements IMessage, IMessageHandler<PacketRo
                 {
                     TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
-                    if (tile != null && tile instanceof IRotatable)
+                    if (tile != null && tile instanceof IRotatableYAxis)
                     {
-                        IRotatable rotatable = (IRotatable) tile;
-                        rotatable.setDirection(EnumFacing.getFront(packet.direction));
+                        IRotatableYAxis rotatable = (IRotatableYAxis) tile;
+                        rotatable.setRotationYAxis(EnumFacing.getFront(packet.direction));
                     }
                 }
             }

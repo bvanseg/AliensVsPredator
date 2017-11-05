@@ -32,7 +32,7 @@ public class BlockAmpule extends Block implements ITileEntityProvider
         if (tile != null && tile instanceof TileEntityAmpule && placer != null)
         {
             TileEntityAmpule ampule = (TileEntityAmpule) tile;
-            ampule.setDirection(Entities.getDirectionFacing(placer));
+            ampule.setRotationYAxis(Entities.getEntityFacingRotY(placer));
         }
     }
 

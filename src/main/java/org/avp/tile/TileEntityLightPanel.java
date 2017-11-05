@@ -2,7 +2,6 @@ package org.avp.tile;
 
 import org.avp.api.power.IVoltageReceiver;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.EnumSkyBlock;
 

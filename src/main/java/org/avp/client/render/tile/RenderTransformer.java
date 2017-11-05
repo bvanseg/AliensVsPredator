@@ -26,22 +26,22 @@ public class RenderTransformer extends TileEntitySpecialRenderer<TileEntityTrans
                 OpenGL.scale(1F, -1F, 1F);
                 OpenGL.translate(0.5F, -1.5F, 0.5F);
 
-                if (transformer.getDirection() == EnumFacing.EAST)
+                if (transformer.getRotationYAxis() == EnumFacing.EAST)
                 {
                     OpenGL.rotate(90F, 0F, 1F, 0F);
                 }
 
-                if (transformer.getDirection() == EnumFacing.WEST)
+                if (transformer.getRotationYAxis() == EnumFacing.WEST)
                 {
                     OpenGL.rotate(-90F, 0F, 1F, 0F);
                 }
 
-                if (transformer.getDirection() == EnumFacing.NORTH)
+                if (transformer.getRotationYAxis() == EnumFacing.NORTH)
                 {
                     OpenGL.rotate(180F, 0F, 1F, 0F);
                 }
 
-                if (transformer.getDirection() == EnumFacing.SOUTH)
+                if (transformer.getRotationYAxis() == EnumFacing.SOUTH)
                 {
                     OpenGL.rotate(0F, 0F, 1F, 0F);
                 }

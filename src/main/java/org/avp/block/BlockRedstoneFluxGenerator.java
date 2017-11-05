@@ -58,9 +58,9 @@ public class BlockRedstoneFluxGenerator extends Block
                 }
             }
 
-            if (generator.getDirection() != null)
+            if (generator.getRotationYAxis() != null)
             {
-                int index = EnumFacings.indexOf(generator.getDirection());
+                int index = EnumFacings.indexOf(generator.getRotationYAxis());
 
                 if (index + 1 >= EnumFacings.size())
                 {
@@ -69,12 +69,12 @@ public class BlockRedstoneFluxGenerator extends Block
 
                 if (EnumFacings.get(index + 1) != null)
                 {
-                    generator.setDirection(EnumFacings.get(index + 1));
+                    generator.setRotationYAxis(EnumFacings.get(index + 1));
                 }
 
                 if (!world.isRemote)
                 {
-                    AliensVsPredator.network().sendToAll(new PacketRotateRotatable(generator.getDirection().ordinal(), generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ()));
+                    AliensVsPredator.network().sendToAll(new PacketRotateRotatable(generator.getRotationYAxis().ordinal(), generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ()));
                 }
             }
 

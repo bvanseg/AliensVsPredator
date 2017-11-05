@@ -7,7 +7,7 @@ import org.avp.item.ItemSupplyChute.SupplyChuteType;
 import org.avp.tile.TileEntitySupplyCrate;
 
 import com.arisux.mdx.lib.world.entity.Entities;
-import com.arisux.mdx.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -121,10 +121,10 @@ public class BlockSupplyCrate extends BlockFalling
     {
         TileEntity tile = world.getTileEntity(pos);
 
-        if (tile != null && tile instanceof IRotatable && placer != null)
+        if (tile != null && tile instanceof IRotatableYAxis && placer != null)
         {
-            IRotatable rotatable = (IRotatable) tile;
-            rotatable.setDirection(Entities.getDirectionFacing(placer));
+            IRotatableYAxis rotatable = (IRotatableYAxis) tile;
+            rotatable.setRotationYAxis(Entities.getEntityFacingRotY(placer));
         }
     }
     

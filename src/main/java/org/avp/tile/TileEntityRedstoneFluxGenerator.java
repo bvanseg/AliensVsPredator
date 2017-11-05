@@ -2,7 +2,7 @@ package org.avp.tile;
 
 import org.avp.api.power.IVoltageProvider;
 
-import com.arisux.mdx.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -10,7 +10,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 
 //TODO: Re-implement IEnergyReceiver from the COFH API
-public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implements IVoltageProvider, IRotatable
+public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implements IVoltageProvider, IRotatableYAxis
 {
     private EnumFacing direction;
     protected int rfEnergy;
@@ -153,13 +153,13 @@ public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implem
     }
 
     @Override
-    public EnumFacing getDirection()
+    public EnumFacing getRotationYAxis()
     {
         return direction;
     }
 
     @Override
-    public void setDirection(EnumFacing direction)
+    public void setRotationYAxis(EnumFacing direction)
     {
         this.direction = direction;
     }

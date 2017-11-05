@@ -6,7 +6,7 @@ import org.avp.inventory.ContainerLocker;
 import org.avp.item.ItemFirearm;
 import org.avp.packets.client.PacketOpenable;
 
-import com.arisux.mdx.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -23,7 +23,7 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 
 
-public class TileEntityLocker extends TileEntity implements IOpenable, IRotatable
+public class TileEntityLocker extends TileEntity implements IOpenable, IRotatableYAxis
 {
     public IInventory inventory;
     private EnumFacing direction;
@@ -145,13 +145,13 @@ public class TileEntityLocker extends TileEntity implements IOpenable, IRotatabl
     }
     
     @Override
-    public EnumFacing getDirection()
+    public EnumFacing getRotationYAxis()
     {
         return direction;
     }
 
     @Override
-    public void setDirection(EnumFacing direction)
+    public void setRotationYAxis(EnumFacing direction)
     {
         this.direction = direction;
     }

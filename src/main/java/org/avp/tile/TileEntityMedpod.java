@@ -7,7 +7,7 @@ import org.avp.entities.EntityMedpod;
 import org.avp.packets.client.PacketOpenable;
 
 import com.arisux.mdx.lib.world.entity.Entities;
-import com.arisux.mdx.lib.world.tile.IRotatable;
+import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,7 +16,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 
 
-public class TileEntityMedpod extends TileEntityElectrical implements IOpenable, IVoltageReceiver, IRotatable
+public class TileEntityMedpod extends TileEntityElectrical implements IOpenable, IVoltageReceiver, IRotatableYAxis
 {
     private EnumFacing direction;
     private boolean        isOpen;
@@ -104,16 +104,16 @@ public class TileEntityMedpod extends TileEntityElectrical implements IOpenable,
         {
             float rotation = 0F;
 
-            if (this.getDirection() == EnumFacing.NORTH)
+            if (this.getRotationYAxis() == EnumFacing.NORTH)
                 rotation = 0F;
 
-            if (this.getDirection() == EnumFacing.SOUTH)
+            if (this.getRotationYAxis() == EnumFacing.SOUTH)
                 rotation = 180F;
 
-            if (this.getDirection() == EnumFacing.EAST)
+            if (this.getRotationYAxis() == EnumFacing.EAST)
                 rotation = 90F;
 
-            if (this.getDirection() == EnumFacing.WEST)
+            if (this.getRotationYAxis() == EnumFacing.WEST)
                 rotation = -90F;
 
             this.getEntity().setLocationAndAngles(this.getPos().getX() + getEntity().width / 2, this.getPos().getY(), this.getPos().getZ() + getEntity().width / 2, rotation, 0F);
@@ -131,13 +131,13 @@ public class TileEntityMedpod extends TileEntityElectrical implements IOpenable,
     }
 
     @Override
-    public EnumFacing getDirection()
+    public EnumFacing getRotationYAxis()
     {
         return direction;
     }
 
     @Override
-    public void setDirection(EnumFacing direction)
+    public void setRotationYAxis(EnumFacing direction)
     {
         this.direction = direction;
     }
