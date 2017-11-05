@@ -38,23 +38,6 @@ public class ModelCCFL extends Model
     @Override
     public void render(Object obj)
     {
-//        this.middleRod = new ModelRenderer(this, 0, 0);
-//        this.middleRod.setRotationPoint(0.0F, 9.0F, 0.0F);
-//        this.middleRod.addBox(-7.5F, -0.5F, -0.5F, 15, 1, 1, 0.0F);
-//        this.lightTube = new ModelRenderer(this, 0, 5);
-//        this.lightTube.setRotationPoint(0.0F, 9.0F, 0.0F);
-//        this.lightTube.addBox(-6.0F, -0.5F, -0.5F, 12, 1, 1, 0.0F);
-//        this.lCap = new ModelRenderer(this, 0, 9);
-//        this.lCap.setRotationPoint(-7.3F, 9.0F, 0.0F);
-//        this.lCap.addBox(-1.0F, -1.0F, -1.0F, 1, 2, 2, 0.0F);
-//        this.lightAura = new ModelRenderer(this, 0, 18);
-//        this.lightAura.setRotationPoint(0.0F, 9.0F, 0.0F);
-//        this.lightAura.addBox(-5.5F, -0.5F, -0.5F, 11, 1, 1, 0.0F);
-//        this.rCap = new ModelRenderer(this, 0, 9);
-//        this.rCap.mirror = true;
-//        this.rCap.setRotationPoint(7.3F, 9.0F, 0.0F);
-//        this.rCap.addBox(0.0F, -1.0F, -1.0F, 1, 2, 2, 0.0F);
-        
         this.middleRod.render(DEFAULT_SCALE);
         GlStateManager.pushMatrix();
         GlStateManager.translate(this.lightTube.offsetX, this.lightTube.offsetY, this.lightTube.offsetZ);

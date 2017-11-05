@@ -304,13 +304,22 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
      */
     public double receiveVoltage(EnumFacing from, double maxReceive, boolean simulate)
     {
-        double result = this.getVoltage() + maxReceive;
-
-        if (!simulate)
+        if (this.canReceiveVoltageFromSide(from))
         {
-            this.setVoltage(result);
-        }
+            double result = this.getVoltage() + maxReceive;
 
-        return result;
+            if (!simulate)
+            {
+                this.setVoltage(result);
+            }
+
+            return result;
+        }
+        return this.voltage;
+    }
+    
+    public boolean canReceiveVoltageFromSide(EnumFacing from)
+    {
+        return true;
     }
 }

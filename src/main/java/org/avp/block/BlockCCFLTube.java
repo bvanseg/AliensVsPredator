@@ -4,7 +4,6 @@ import org.avp.tile.TileEntityCCFLTube;
 import org.avp.tile.TileEntityElectrical;
 
 import com.arisux.mdx.lib.world.entity.Entities;
-import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -81,7 +80,6 @@ public class BlockCCFLTube extends Block
         {
             ccfl.setRotationYAxis(Entities.getEntityFacingRotY(placer));
             ccfl.setRotationXAxis(Entities.getEntityFacingRotX(placer));
-            System.out.println(ccfl.getRotationXAxis());
             world.markBlockRangeForRenderUpdate(pos, pos);
         }
     }

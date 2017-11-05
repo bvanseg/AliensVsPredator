@@ -1,12 +1,15 @@
 package org.avp.tile;
 
 import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
+
+import org.avp.api.power.IVoltageProvider;
+
 import com.arisux.mdx.lib.world.tile.IRotatableXAxis;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
-public class TileEntityCCFLTube extends TileEntityLightPanel implements IRotatableYAxis, IRotatableXAxis
+public class TileEntityCCFLTube extends TileEntityLightPanel implements IVoltageProvider, IRotatableYAxis, IRotatableXAxis
 {
     private EnumFacing rotationX;
     private EnumFacing rotationY;
@@ -33,6 +36,34 @@ public class TileEntityCCFLTube extends TileEntityLightPanel implements IRotatab
             nbt.setInteger("RotationY", this.rotationY.ordinal());
         
         return super.writeToNBT(nbt);
+    }
+    
+    @Override
+    public boolean canConnectPower(EnumFacing from)
+    {
+        return canProvideEnergyToReceiver(from);
+    }
+    
+    @Override
+    public boolean canProvideEnergyToReceiver(EnumFacing side)
+    {
+        if (side == EnumFacing.UP || side == EnumFacing.DOWN)
+        {
+            return false;
+        }
+        
+        if (side == this.getRotationYAxis() || side == this.getRotationYAxis().getOpposite())
+        {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    @Override
+    public boolean canReceiveVoltageFromSide(EnumFacing from)
+    {
+        return canProvideEnergyToReceiver(from);
     }
     
     @Override
