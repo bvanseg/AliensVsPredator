@@ -17,13 +17,15 @@ public class TileEntityLightPanel extends TileEntityElectrical implements IVolta
     public void update()
     {
         super.update();
+
+        boolean previouslyOperational = this.isOperational();
+
         this.updateEnergyAsReceiver();
 
-        IBlockState state = world.getBlockState(this.getPos());
-
-        this.world.checkLightFor(EnumSkyBlock.BLOCK, pos);
-        this.world.notifyBlockUpdate(pos, state, state, 3);
-        this.world.notifyNeighborsOfStateChange(pos, blockType);
+        if (previouslyOperational != this.isOperational())
+        {
+            this.world.checkLightFor(EnumSkyBlock.BLOCK, pos);
+        }
     }
 
     @Override
