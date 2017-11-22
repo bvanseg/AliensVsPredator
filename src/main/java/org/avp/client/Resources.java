@@ -80,7 +80,17 @@ import org.avp.client.model.tile.ModelStasisMechanism;
 import org.avp.client.model.tile.ModelTransformer;
 import org.avp.client.model.tile.ModelTurret;
 import org.avp.client.model.tile.ModelWorkstation;
+import org.avp.client.model.tile.rackmodules.ModelNetworkModuleRack;
+import org.avp.client.model.tile.rackmodules.ModelRackModule1;
+import org.avp.client.model.tile.rackmodules.ModelRackModule2;
+import org.avp.client.model.tile.rackmodules.ModelRackModule3;
+import org.avp.client.model.tile.rackmodules.ModelRackModule4;
+import org.avp.client.model.tile.rackmodules.ModelRackModule5;
+import org.avp.client.model.tile.rackmodules.ModelRackModule6;
+import org.avp.client.model.tile.rackmodules.ModelRackModule7;
+import org.avp.client.model.tile.rackmodules.ModelRackModule8;
 
+import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.SpecialModelBiped;
 import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.WavefrontModelLoader;
@@ -223,6 +233,42 @@ public class Resources
 
         /** Wavefront models **/
         public final TriangulatedWavefrontModel                 M577_APC                       = WavefrontModelLoader.load(AliensVsPredator.class, AliensVsPredator.Properties.ID, "m577apc", "/assets/avp/models/m577apc");
+
+        public final TexturedModel<ModelNetworkModuleRack>      NETWORKMODULERACK              = new TexturedModel(new ModelNetworkModuleRack(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/networkmodulerack.png"));
+        public final TexturedModel<ModelNetworkModuleRack>      NETWORKMODULERACK_ON           = new TexturedModel(new ModelNetworkModuleRack(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/networkmodulerack_on.png"));
+        public final TexturedModel<ModelNetworkModuleRack>      NETWORKMODULERACK_OFF          = new TexturedModel(new ModelNetworkModuleRack(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/networkmodulerack_off.png"));
+
+        public final TexturedModel<Model>                       RACKMODULE1                    = new TexturedModel(new ModelRackModule1(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent01.png"));
+        public final TexturedModel<Model>                       RACKMODULE1_ON                 = new TexturedModel(new ModelRackModule1(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent01_on.png"));
+        public final TexturedModel<Model>                       RACKMODULE1_OFF                = new TexturedModel(new ModelRackModule1(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent01_off.png"));
+
+        public final TexturedModel<Model>                       RACKMODULE2                    = new TexturedModel(new ModelRackModule2(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent02.png"));
+        public final TexturedModel<Model>                       RACKMODULE2_ON                 = new TexturedModel(new ModelRackModule2(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent02_on.png"));
+        public final TexturedModel<Model>                       RACKMODULE2_OFF                = new TexturedModel(new ModelRackModule2(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent02_off.png"));
+
+        public final TexturedModel<Model>                       RACKMODULE3                    = new TexturedModel(new ModelRackModule3(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent03.png"));
+        public final TexturedModel<Model>                       RACKMODULE3_ON                 = new TexturedModel(new ModelRackModule3(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent03_on.png"));
+        public final TexturedModel<Model>                       RACKMODULE3_OFF                = new TexturedModel(new ModelRackModule3(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent03_off.png"));
+
+        public final TexturedModel<Model>                       RACKMODULE4                    = new TexturedModel(new ModelRackModule4(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent04.png"));
+        public final TexturedModel<Model>                       RACKMODULE4_ON                 = new TexturedModel(new ModelRackModule4(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent04_on.png"));
+        public final TexturedModel<Model>                       RACKMODULE4_OFF                = new TexturedModel(new ModelRackModule4(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent04_off.png"));
+
+        public final TexturedModel<Model>                       RACKMODULE5                    = new TexturedModel(new ModelRackModule5(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent05.png"));
+        public final TexturedModel<Model>                       RACKMODULE5_ON                 = new TexturedModel(new ModelRackModule5(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent05_on.png"));
+        public final TexturedModel<Model>                       RACKMODULE5_OFF                = new TexturedModel(new ModelRackModule5(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent05_off.png"));
+
+        public final TexturedModel<Model>                       RACKMODULE6                    = new TexturedModel(new ModelRackModule6(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent06.png"));
+        public final TexturedModel<Model>                       RACKMODULE6_ON                 = new TexturedModel(new ModelRackModule6(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent06_on.png"));
+        public final TexturedModel<Model>                       RACKMODULE6_OFF                = new TexturedModel(new ModelRackModule6(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent06_off.png"));
+
+        public final TexturedModel<Model>                       RACKMODULE7                    = new TexturedModel(new ModelRackModule7(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent07.png"));
+        public final TexturedModel<Model>                       RACKMODULE7_ON                 = new TexturedModel(new ModelRackModule7(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent07_on.png"));
+        public final TexturedModel<Model>                       RACKMODULE7_OFF                = new TexturedModel(new ModelRackModule7(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent07_off.png"));
+
+        public final TexturedModel<Model>                       RACKMODULE8                    = new TexturedModel(new ModelRackModule8(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent08.png"));
+        public final TexturedModel<Model>                       RACKMODULE8_ON                 = new TexturedModel(new ModelRackModule8(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent08_on.png"));
+        public final TexturedModel<Model>                       RACKMODULE8_OFF                = new TexturedModel(new ModelRackModule8(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent08_off.png"));
     }
 
     public final Texture SKY_VARDA_CLOUDS         = new Texture(AliensVsPredator.Properties.ID, "textures/misc/varda-clouds.png");
