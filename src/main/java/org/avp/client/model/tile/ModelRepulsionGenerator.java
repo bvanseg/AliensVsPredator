@@ -1,127 +1,152 @@
 package org.avp.client.model.tile;
 
 import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.tileentity.TileEntity;
 
 public class ModelRepulsionGenerator extends Model
 {
-    ModelRenderer base;
-    ModelRenderer motor;
-    ModelRenderer topSupport2;
-    ModelRenderer topSupport3;
-    ModelRenderer topSupport4;
-    ModelRenderer topSupport1;
-    ModelRenderer support4;
-    ModelRenderer support1;
-    ModelRenderer support2;
-    ModelRenderer support3;
-    ModelRenderer dualMagnet;
+    public ModelRenderer side1;
+    public ModelRenderer side3;
+    public ModelRenderer side5;
+    public ModelRenderer side7;
+    public ModelRenderer side6;
+    public ModelRenderer side8;
+    public ModelRenderer side2;
+    public ModelRenderer side3_1;
+    public ModelRenderer rotor;
+    public ModelRenderer magnetbase;
+    public ModelRenderer wireframe3;
+    public ModelRenderer wireframe2;
+    public ModelRenderer wireframe1;
+    public ModelRenderer top;
+    public ModelRenderer base;
+    public ModelRenderer magnet1;
+    public ModelRenderer magnet2;
+    public ModelRenderer magnet3;
+    public ModelRenderer magnet4;
+    public ModelRenderer magnet5;
+    public ModelRenderer magnet6;
+    public ModelRenderer magnet7;
+    public ModelRenderer magnet8;
 
     public ModelRepulsionGenerator()
     {
-        textureWidth = 128;
-        textureHeight = 64;
-
-        base = new ModelRenderer(this, 0, 0);
-        base.addBox(-7F, 20F, -7F, 14, 4, 14);
-        base.setRotationPoint(0F, 0F, 0F);
-        base.setTextureSize(128, 64);
-        base.mirror = true;
-        setRotation(base, 0F, 0F, 0F);
-        motor = new ModelRenderer(this, 57, 0);
-        motor.addBox(-2.5F, 4F, -2.5F, 5, 4, 5);
-        motor.setRotationPoint(0F, 0F, 0F);
-        motor.setTextureSize(128, 64);
-        motor.mirror = true;
-        setRotation(motor, 0F, 0F, 0F);
-        topSupport2 = new ModelRenderer(this, 0, 19);
-        topSupport2.addBox(-0.5F, 4F, 0.5F, 1, 4, 9);
-        topSupport2.setRotationPoint(0F, 0F, 0F);
-        topSupport2.setTextureSize(128, 64);
-        topSupport2.mirror = true;
-        setRotation(topSupport2, 0F, 2.356194F, 0F);
-        topSupport3 = new ModelRenderer(this, 21, 19);
-        topSupport3.addBox(-0.5F, 4F, 0.5F, 1, 4, 9);
-        topSupport3.setRotationPoint(0F, 0F, 0F);
-        topSupport3.setTextureSize(128, 64);
-        topSupport3.mirror = true;
-        setRotation(topSupport3, 0F, -2.356194F, 0F);
-        topSupport4 = new ModelRenderer(this, 42, 19);
-        topSupport4.addBox(-0.5F, 4F, 0.5F, 1, 4, 9);
-        topSupport4.setRotationPoint(0F, 0F, 0F);
-        topSupport4.setTextureSize(128, 64);
-        topSupport4.mirror = true;
-        setRotation(topSupport4, 0F, -0.7853982F, 0F);
-        topSupport1 = new ModelRenderer(this, 63, 19);
-        topSupport1.addBox(-0.5F, 4F, 0.5F, 1, 4, 9);
-        topSupport1.setRotationPoint(0F, 0F, 0F);
-        topSupport1.setTextureSize(128, 64);
-        topSupport1.mirror = true;
-        setRotation(topSupport1, 0F, 0.7853982F, 0F);
-        support4 = new ModelRenderer(this, 0, 33);
-        support4.addBox(-0.5F, 8F, 4.5F, 1, 12, 5);
-        support4.setRotationPoint(0F, 0F, 0F);
-        support4.setTextureSize(128, 64);
-        support4.mirror = true;
-        setRotation(support4, 0F, -0.7853982F, 0F);
-        support1 = new ModelRenderer(this, 13, 33);
-        support1.addBox(-0.5F, 8F, 4.5F, 1, 12, 5);
-        support1.setRotationPoint(0F, 0F, 0F);
-        support1.setTextureSize(128, 64);
-        support1.mirror = true;
-        setRotation(support1, 0F, 0.7853982F, 0F);
-        support2 = new ModelRenderer(this, 26, 33);
-        support2.addBox(-0.5F, 8F, 4.5F, 1, 12, 5);
-        support2.setRotationPoint(0F, 0F, 0F);
-        support2.setTextureSize(128, 64);
-        support2.mirror = true;
-        setRotation(support2, 0F, 2.356194F, 0F);
-        support3 = new ModelRenderer(this, 39, 33);
-        support3.addBox(-0.5F, 8F, 4.5F, 1, 12, 5);
-        support3.setRotationPoint(0F, 0F, 0F);
-        support3.setTextureSize(128, 64);
-        support3.mirror = true;
-        setRotation(support3, 0F, -2.356194F, 0F);
-        dualMagnet = new ModelRenderer(this, 52, 33);
-        dualMagnet.addBox(-2.5F, 8F, -2.5F, 5, 12, 5);
-        dualMagnet.setRotationPoint(0F, 0F, 0F);
-        dualMagnet.setTextureSize(128, 64);
-        dualMagnet.mirror = true;
-        setRotation(dualMagnet, 0F, 0F, 0F);
+        this.textureWidth = 128;
+        this.textureHeight = 64;
+        this.wireframe2 = new ModelRenderer(this, 27, 17);
+        this.wireframe2.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.wireframe2.addBox(-9.0F, 16.5F, -9.0F, 18, 0, 18, 0.0F);
+        this.setRotation(wireframe2, 0.0F, -0.7853981633974483F, 0.0F);
+        this.magnet8 = new ModelRenderer(this, 0, 29);
+        this.magnet8.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.magnet8.addBox(-1.5F, 12.5F, -3.5F, 3, 3, 1, 0.0F);
+        this.setRotation(magnet8, 0.0F, -1.5707963267948966F, 0.0F);
+        this.side7 = new ModelRenderer(this, 42, 0);
+        this.side7.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.side7.addBox(-1.5F, 9.0F, 4.0F, 3, 12, 4, 0.0F);
+        this.base = new ModelRenderer(this, 64, 45);
+        this.base.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.base.addBox(-8.0F, 21.0F, -8.0F, 16, 3, 16, 0.0F);
+        this.magnet7 = new ModelRenderer(this, 0, 29);
+        this.magnet7.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.magnet7.addBox(-1.5F, 16.5F, -3.5F, 3, 3, 1, 0.0F);
+        this.setRotation(magnet7, 0.0F, -1.5707963267948966F, 0.0F);
+        this.side6 = new ModelRenderer(this, 56, 0);
+        this.side6.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.side6.addBox(-1.5F, 12.0F, 4.0F, 3, 9, 5, 0.0F);
+        this.setRotation(side6, 0.0F, -0.7853981633974483F, 0.0F);
+        this.magnet4 = new ModelRenderer(this, 0, 29);
+        this.magnet4.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.magnet4.addBox(-1.5F, 12.5F, -3.5F, 3, 3, 1, 0.0F);
+        this.setRotation(magnet4, 0.0F, 1.5707963267948966F, 0.0F);
+        this.magnet1 = new ModelRenderer(this, 0, 29);
+        this.magnet1.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.magnet1.addBox(-1.5F, 12.5F, -3.5F, 3, 3, 1, 0.0F);
+        this.wireframe3 = new ModelRenderer(this, 27, 17);
+        this.wireframe3.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.wireframe3.addBox(-9.0F, 13.0F, -9.0F, 18, 0, 18, 0.0F);
+        this.setRotation(wireframe3, 0.0F, -0.7853981633974483F, 0.0F);
+        this.magnet3 = new ModelRenderer(this, 0, 29);
+        this.magnet3.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.magnet3.addBox(-1.5F, 16.5F, -3.5F, 3, 3, 1, 0.0F);
+        this.setRotation(magnet3, 0.0F, 1.5707963267948966F, 0.0F);
+        this.top = new ModelRenderer(this, 0, 47);
+        this.top.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.top.addBox(-8.0F, 8.0F, -8.0F, 16, 1, 16, 0.0F);
+        this.side5 = new ModelRenderer(this, 28, 0);
+        this.side5.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.side5.addBox(-1.5F, 9.0F, 4.0F, 3, 12, 4, 0.0F);
+        this.setRotation(side5, 0.0F, -1.5707963267948966F, 0.0F);
+        this.wireframe1 = new ModelRenderer(this, 27, 17);
+        this.wireframe1.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.wireframe1.addBox(-9.0F, 20.0F, -9.0F, 18, 0, 18, 0.0F);
+        this.setRotation(wireframe1, 0.0F, -0.7853981633974483F, 0.0F);
+        this.side8 = new ModelRenderer(this, 72, 0);
+        this.side8.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.side8.addBox(-1.5F, 12.0F, 4.0F, 3, 9, 5, 0.0F);
+        this.setRotation(side8, 0.0F, 0.7853981633974483F, 0.0F);
+        this.rotor = new ModelRenderer(this, 4, 29);
+        this.rotor.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.rotor.addBox(-2.5F, 12.0F, -2.5F, 5, 8, 5, 0.0F);
+        this.side1 = new ModelRenderer(this, 0, 0);
+        this.side1.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.side1.addBox(-1.5F, 9.0F, 4.0F, 3, 12, 4, 0.0F);
+        this.setRotation(side1, 3.141592653589793F, 1.5707963267948966F, 3.141592653589793F);
+        this.side3_1 = new ModelRenderer(this, 104, 0);
+        this.side3_1.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.side3_1.addBox(-1.5F, 12.0F, 4.0F, 3, 9, 5, 0.0F);
+        this.setRotation(side3_1, 3.141592653589793F, -0.7853981633974483F, 3.141592653589793F);
+        this.side2 = new ModelRenderer(this, 88, 0);
+        this.side2.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.side2.addBox(-1.5F, 12.0F, 4.0F, 3, 9, 5, 0.0F);
+        this.setRotation(side2, 3.141592653589793F, 0.7853981633974483F, 3.141592653589793F);
+        this.magnetbase = new ModelRenderer(this, 0, 16);
+        this.magnetbase.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.magnetbase.addBox(-5.5F, 20.0F, -5.5F, 11, 1, 11, 0.0F);
+        this.setRotation(magnetbase, 0.0F, -0.7853981633974483F, 0.0F);
+        this.side3 = new ModelRenderer(this, 14, 0);
+        this.side3.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.side3.addBox(-1.5F, 9.0F, 4.0F, 3, 12, 4, 0.0F);
+        this.setRotation(side3, 3.141592653589793F, 0.0F, 3.141592653589793F);
+        this.magnet5 = new ModelRenderer(this, 0, 29);
+        this.magnet5.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.magnet5.addBox(-1.5F, 16.5F, -3.5F, 3, 3, 1, 0.0F);
+        this.setRotation(magnet5, 0.0F, 3.141592653589793F, 0.0F);
+        this.magnet6 = new ModelRenderer(this, 0, 29);
+        this.magnet6.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.magnet6.addBox(-1.5F, 12.5F, -3.5F, 3, 3, 1, 0.0F);
+        this.setRotation(magnet6, 0.0F, 3.141592653589793F, 0.0F);
+        this.magnet2 = new ModelRenderer(this, 0, 29);
+        this.magnet2.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.magnet2.addBox(-1.5F, 16.5F, -3.5F, 3, 3, 1, 0.0F);
+        this.rotor.addChild(this.magnet8);
+        this.rotor.addChild(this.magnet7);
+        this.rotor.addChild(this.magnet4);
+        this.rotor.addChild(this.magnet1);
+        this.rotor.addChild(this.magnet3);
+        this.rotor.addChild(this.magnet5);
+        this.rotor.addChild(this.magnet6);
+        this.rotor.addChild(this.magnet2);
     }
-
+    
     @Override
     public void render(Object obj)
     {
-        TileEntity tile = (TileEntity) obj;
-        
-        base.render(DEFAULT_SCALE);
-        motor.render(DEFAULT_SCALE);
-        topSupport2.render(DEFAULT_SCALE);
-        topSupport3.render(DEFAULT_SCALE);
-        topSupport4.render(DEFAULT_SCALE);
-        topSupport1.render(DEFAULT_SCALE);
-        support4.render(DEFAULT_SCALE);
-        support1.render(DEFAULT_SCALE);
-        support2.render(DEFAULT_SCALE);
-        support3.render(DEFAULT_SCALE);
-
-        if (tile != null)
-        {
-            OpenGL.pushMatrix();
-            {
-                OpenGL.rotate(tile.getWorld().getWorldTime() % 360 * 48 * Game.partialTicks(), 0F, 1F, 0F);
-                dualMagnet.render(DEFAULT_SCALE);
-            }
-            OpenGL.popMatrix();
-        }
-        else
-        {
-            dualMagnet.render(DEFAULT_SCALE);
-        }
+        this.wireframe2.render(DEFAULT_SCALE);
+        this.side7.render(DEFAULT_SCALE);
+        this.base.render(DEFAULT_SCALE);
+        this.side6.render(DEFAULT_SCALE);
+        this.wireframe3.render(DEFAULT_SCALE);
+        this.top.render(DEFAULT_SCALE);
+        this.side5.render(DEFAULT_SCALE);
+        this.wireframe1.render(DEFAULT_SCALE);
+        this.side8.render(DEFAULT_SCALE);
+        this.rotor.render(DEFAULT_SCALE);
+        this.side1.render(DEFAULT_SCALE);
+        this.side3_1.render(DEFAULT_SCALE);
+        this.side2.render(DEFAULT_SCALE);
+        this.magnetbase.render(DEFAULT_SCALE);
+        this.side3.render(DEFAULT_SCALE);
     }
 }
