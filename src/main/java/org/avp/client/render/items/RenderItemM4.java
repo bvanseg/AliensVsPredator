@@ -6,6 +6,7 @@ import org.lwjgl.input.Mouse;
 
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -45,7 +46,7 @@ public class RenderItemM4 extends ItemRenderer<ModelM4>
             float glScale = 1.0F;
             OpenGL.translate(0F, 0.85F, 0F);
 
-            if (Mouse.isButtonDown(0) && mc.inGameHasFocus)
+            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
             {
                 OpenGL.translate(-0.8095F, 0.165F, 0.4F);
             }

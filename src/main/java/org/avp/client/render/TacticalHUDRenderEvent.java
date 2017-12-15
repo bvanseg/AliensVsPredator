@@ -102,7 +102,7 @@ public class TacticalHUDRenderEvent
                                     if (living != null && (Entities.canEntityBeSeenBy(living, Game.minecraft().player) || !specialPlayer.isEntityCullingEnabled()) && living instanceof EntityLivingBase)
                                     {
                                         Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
-                                        Entity rve = Game.minecraft().renderViewEntity;
+                                        Entity rve = Game.minecraft().getRenderViewEntity();
 
                                         Vec3d lPos = new Vec3d(living.posX, living.posY, living.posZ).addVector(0, living.getEyeHeight() / 2, 0);
                                         lPos = lPos.subtract(new Vec3d(rve.posX + (rve.posX - rve.prevPosX) * event.getPartialTicks(), rve.posY + (rve.posY - rve.prevPosY) * event.getPartialTicks(), rve.posZ + (rve.posZ - rve.prevPosZ) * event.getPartialTicks()));

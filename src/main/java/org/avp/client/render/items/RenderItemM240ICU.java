@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -50,7 +51,7 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
         {
             OpenGL.translate(0F, 0.15F, -0.4F);
 
-            if (Mouse.isButtonDown(0) && mc.inGameHasFocus)
+            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
             {
                 OpenGL.translate(-0.6495F, 0F, 0F);
             }
@@ -59,7 +60,7 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
             OpenGL.scale(-glScale, -glScale, -glScale);
             this.getModel().draw();
 
-            if (mc.player.getHeldItemMainhand() != null && mc.player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
+            if (Game.minecraft().player.getHeldItemMainhand() != null && Game.minecraft().player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
             {
                 OpenGL.disable(GL11.GL_LIGHTING);
                 OpenGL.translate(-0.3439F, 0.6F, 0.04F);
@@ -89,7 +90,7 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) mc.player.inventory.getCurrentItem().getItem()).getAmmoCount();
+        int ammoCount = ((ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 }

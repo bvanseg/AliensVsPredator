@@ -197,7 +197,7 @@ public class RenderMotionTrackerScreen
 
             if (this.pingCount > 0)
             {
-                Sounds.MOTIONTRACKER_PONG.setPitch(this.pitch[this.minDistance]).playSound(Game.minecraft().player);
+                Sounds.MOTIONTRACKER_PONG.playSound(Game.minecraft().player, 1F, this.pitch[this.minDistance]);
             }
         }
     }
