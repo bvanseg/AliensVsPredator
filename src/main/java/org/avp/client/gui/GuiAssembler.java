@@ -90,7 +90,7 @@ public class GuiAssembler extends GuiContainer
                     Draw.drawRect(2, stackY - 2, this.xSize - 4, 12, 0x22FFFFFF);
                     Draw.drawString(curStackSize + "/" + stack.stackSize, 220, stackY, curStackSize >= stack.stackSize ? 0xFF00AAFF : curStackSize < stack.stackSize && curStackSize > 0 ? 0xFFFFAA00 : 0xFF888888);
                     Draw.drawString(stack.getDisplayName(), 20, stackY, 0xFF888888);
-                    Draw.drawItemIcon(stack.getItem(), 5, stackY, 8, 8);
+                    Draw.drawItem(stack, 5, stackY, 8, 8);
 
                     maxProgress += stack.stackSize;
 
@@ -136,7 +136,7 @@ public class GuiAssembler extends GuiContainer
                             OpenGL.enableBlend();
                             OpenGL.disableBlend();
                             Draw.drawString((curItem + 1) + " " + I18n.translateToLocal(item.getUnlocalizedName() + ".name"), entryX + 13, entryY + 2, curItem == this.scroll ? 0xFF00AAFF : 0xFF555555, false);
-                            Draw.drawItemIcon(item, entryX + 2, entryY + 2, 8, 8);
+                            Draw.drawItem(schematic.getItemStackAssembled(), entryX + 2, entryY + 2, 8, 8);
                         }
                     }
                 }
