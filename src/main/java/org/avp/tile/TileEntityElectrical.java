@@ -18,7 +18,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
     protected double thresholdVoltage;
     protected double resistance;
     protected double boost;
-    protected int srcHertz;
+    protected int updateFrequency;
     protected boolean isSrc;
 
     public TileEntityElectrical(boolean isSource)
@@ -26,7 +26,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
         this.isSrc = isSource;
         this.thresholdVoltage = 110;
         this.srcVoltage = 120;
-        this.srcHertz = 50;
+        this.updateFrequency = 50;
         /** 1000 / 50Hz = 20 Ticks **/
         this.resistance = 0.1;
         this.boost = 0;
@@ -158,17 +158,17 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
     /**
      * @return The rate at which this source component will update its voltage.
      */
-    public int getSourceHertz()
+    public int getUpdateFrequency()
     {
-        return srcHertz;
+        return updateFrequency;
     }
 
     /**
-     * @param hertz - The rate at which this source component should update its voltage.
+     * @param freq - The rate at which this source component should update its voltage.
      */
-    public void setSourceHertz(int hertz)
+    public void setUpdateFrequency(int freq)
     {
-        this.srcHertz = hertz;
+        this.updateFrequency = freq;
     }
 
     /**

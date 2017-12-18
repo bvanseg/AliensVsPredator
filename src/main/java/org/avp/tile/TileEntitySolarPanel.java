@@ -18,7 +18,7 @@ public class TileEntitySolarPanel extends TileEntityElectrical implements IVolta
     {
         if (this.world.getWorldTime() < 12300 || this.world.getWorldTime() > 23850)
         {
-            if (this.getWorld().getWorldTime() % (1000 / this.getSourceHertz()) == 0)
+            if (this.getWorld().getWorldTime() % (1000 / this.getUpdateFrequency()) == 0)
             {
                 this.setVoltage(120);
             }
