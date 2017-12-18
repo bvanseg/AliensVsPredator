@@ -1,7 +1,11 @@
 package org.avp.client.model.tile;
 
-import com.arisux.mdx.lib.client.Model;
+import org.avp.tile.TileEntityRepulsionGenerator;
 
+import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.game.Game;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelRepulsionGenerator extends Model
@@ -129,10 +133,16 @@ public class ModelRepulsionGenerator extends Model
         this.rotor.addChild(this.magnet6);
         this.rotor.addChild(this.magnet2);
     }
-    
+
     @Override
     public void render(Object obj)
     {
+        if (obj instanceof TileEntityRepulsionGenerator)
+        {
+            TileEntityRepulsionGenerator generator = (TileEntityRepulsionGenerator) obj;
+            this.rotor.rotateAngleY = ((Minecraft.getMinecraft().player.world.getWorldTime() % 360) + Game.partialTicks()) * (generator.getRotationSpeed());
+        }
+
         this.wireframe2.render(DEFAULT_SCALE);
         this.side7.render(DEFAULT_SCALE);
         this.base.render(DEFAULT_SCALE);

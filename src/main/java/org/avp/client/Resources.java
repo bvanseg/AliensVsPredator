@@ -303,6 +303,7 @@ public class Resources
     public final Texture GUI_LOCKER               = new Texture(AliensVsPredator.Properties.ID, "textures/gui/locker.png");
     public final Texture GUI_ASSEMBLER            = new Texture(AliensVsPredator.Properties.ID, "textures/gui/assembler.png");
     public final Texture GUI_SUPPLYCRATE          = new Texture(AliensVsPredator.Properties.ID, "textures/gui/supplycrate.png");
+    public final Texture GUI_REPULSION_GENERATOR  = new Texture(AliensVsPredator.Properties.ID, "textures/gui/repulsion_generator.png");
     public final Texture ICON_AMMO                = new Texture(AliensVsPredator.Properties.ID, "textures/misc/icon-ammo.png");
     public final Texture MOTIONTRACKER_BG         = new Texture(AliensVsPredator.Properties.ID, "textures/misc/motiontracker/background.png");
     public final Texture MOTIONTRACKER_FG         = new Texture(AliensVsPredator.Properties.ID, "textures/misc/motiontracker/foreground.png");

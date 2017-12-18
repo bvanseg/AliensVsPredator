@@ -4,6 +4,8 @@ import org.avp.client.gui.GuiAssembler;
 import org.avp.client.gui.GuiBlastdoor;
 import org.avp.client.gui.GuiLocker;
 import org.avp.client.gui.GuiModSettings;
+import org.avp.client.gui.GuiNetworkRack;
+import org.avp.client.gui.GuiRepulsionGenerator;
 import org.avp.client.gui.GuiSupplyCrate;
 import org.avp.client.gui.GuiTurret;
 import org.avp.client.gui.GuiWristbracer;
@@ -12,6 +14,8 @@ import org.avp.item.ItemWristbracer;
 import org.avp.tile.TileEntityAssembler;
 import org.avp.tile.TileEntityBlastdoor;
 import org.avp.tile.TileEntityLocker;
+import org.avp.tile.TileEntityNetworkRack;
+import org.avp.tile.TileEntityRepulsionGenerator;
 import org.avp.tile.TileEntitySupplyCrate;
 import org.avp.tile.TileEntityTurret;
 
@@ -28,14 +32,16 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 public class GuiHandler implements IGuiHandler, IInitEvent
 {
-    public static final GuiHandler instance             = new GuiHandler();
-    public final int               GUI_ASSEMBLER        = 0;
-    public final int               GUI_TURRET           = 1;
-    public final int               GUI_WRISTBRACER      = 2;
-    public final int               GUI_LOCKER           = 3;
-    public final int               GUI_SUPPLYCRATE      = 4;
-    public final int               GUI_GRAPHICSSETTINGS = 5;
-    public final int               GUI_BLASTDOOR_PSWD   = 6;
+    public static final GuiHandler instance                = new GuiHandler();
+    public final int               GUI_ASSEMBLER           = 0;
+    public final int               GUI_TURRET              = 1;
+    public final int               GUI_WRISTBRACER         = 2;
+    public final int               GUI_LOCKER              = 3;
+    public final int               GUI_SUPPLYCRATE         = 4;
+    public final int               GUI_GRAPHICSSETTINGS    = 5;
+    public final int               GUI_BLASTDOOR_PSWD      = 6;
+    public final int               GUI_NETWORK_RACK        = 7;
+    public final int               GUI_REPULSION_GENERATOR = 8;
 
     @Override
     public void init(FMLInitializationEvent event)
@@ -74,6 +80,18 @@ public class GuiHandler implements IGuiHandler, IInitEvent
         {
             TileEntitySupplyCrate supplyCrate = (TileEntitySupplyCrate) (world.getTileEntity(blockpos));
             return supplyCrate.getNewContainer(player);
+        }
+
+        if (id == GUI_NETWORK_RACK)
+        {
+            TileEntityNetworkRack networkRack = (TileEntityNetworkRack) (world.getTileEntity(blockpos));
+            return networkRack.getNewContainer(player);
+        }
+
+        if (id == GUI_REPULSION_GENERATOR)
+        {
+            TileEntityRepulsionGenerator generator = (TileEntityRepulsionGenerator) (world.getTileEntity(blockpos));
+            return generator.getNewContainer(player);
         }
 
         return null;
@@ -122,6 +140,16 @@ public class GuiHandler implements IGuiHandler, IInitEvent
         if (id == GUI_BLASTDOOR_PSWD)
         {
             return new GuiBlastdoor((TileEntityBlastdoor) world.getTileEntity(blockpos));
+        }
+
+        if (id == GUI_NETWORK_RACK)
+        {
+            return new GuiNetworkRack(player, (TileEntityNetworkRack) world.getTileEntity(blockpos));
+        }
+        
+        if (id == GUI_REPULSION_GENERATOR)
+        {
+            return new GuiRepulsionGenerator(player, (TileEntityRepulsionGenerator) world.getTileEntity(blockpos));
         }
 
         return null;

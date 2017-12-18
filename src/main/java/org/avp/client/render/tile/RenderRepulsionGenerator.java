@@ -21,8 +21,6 @@ public class RenderRepulsionGenerator extends TileEntitySpecialRenderer<TileEnti
         OpenGL.enable(GL_BLEND);
         OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         OpenGL.translate(posX + 0.5F, posY + 1.5F, posZ + 0.5F);
-        OpenGL.rotate(tile.rotation * (-90F), 0F, 1F, 0F);
-        OpenGL.scale(1.0F, 1.0F, 1.0F);
         OpenGL.rotate(180F, 1F, 0F, 0F);
         AliensVsPredator.resources().models().REPULSION_GENERATOR.draw(tile);
         OpenGL.popMatrix();
