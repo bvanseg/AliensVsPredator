@@ -165,7 +165,7 @@ public class BlockBlastdoor extends Block
 
             blastdoor.setRotationYAxis(Entities.getEntityFacingRotY(placer));
 
-            if (!blastdoor.setup(true))
+            if (!blastdoor.setup(world, true))
             {
                 world.setBlockToAir(pos);
             }
@@ -186,12 +186,12 @@ public class BlockBlastdoor extends Block
                 if (blastdoor.getParent() != null)
                 {
                     world.setBlockToAir(blastdoor.getParent().getPos());
-                    blastdoor.getParent().breakChildren();
+                    blastdoor.getParent().breakChildren(world);
                 }
             }
             else
             {
-                blastdoor.breakChildren();
+                blastdoor.breakChildren(world);
             }
         }
 

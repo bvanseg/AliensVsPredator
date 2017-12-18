@@ -57,17 +57,17 @@ public class BlastDoorPlacementBoxRenderer
                         TileEntityBlastdoor bd = (TileEntityBlastdoor) t;
                         List<BlockPos> blocks = new ArrayList<BlockPos>(Arrays.asList(bd.setFor(Entities.getEntityFacingRotY(p))));
                         blocks.add(new BlockPos(0, 0, 0));
-                        
+
                         Vec3d hitVec = Game.minecraft().objectMouseOver.hitVec;
 
                         double x = p.lastTickPosX + (p.posX - p.lastTickPosX) * (double) event.getPartialTicks();
                         double y = p.lastTickPosY + (p.posY - p.lastTickPosY) * (double) event.getPartialTicks();
                         double z = p.lastTickPosZ + (p.posZ - p.lastTickPosZ) * (double) event.getPartialTicks();
-                        
+
                         double locationX = Math.floor(hitVec.xCoord);
                         double locationY = Math.floor(hitVec.yCoord);
                         double locationZ = Math.floor(hitVec.zCoord);
-                        
+
                         double placeX = locationX - x;
                         double placeY = locationY - y;
                         double placeZ = locationZ - z;
@@ -76,7 +76,7 @@ public class BlastDoorPlacementBoxRenderer
                         float g = 0.0F;
                         float b = 0.2F;
                         float a = 0.6F;
-                        
+
                         boolean validPlacementPosition = true;
 
                         for (BlockPos pos : blocks)
@@ -86,7 +86,7 @@ public class BlastDoorPlacementBoxRenderer
                                 validPlacementPosition = false;
                             }
                         }
-                        
+
                         if (validPlacementPosition)
                         {
                             r = 0.4F;
@@ -104,17 +104,17 @@ public class BlastDoorPlacementBoxRenderer
                             double cubeX = placeX + pos.getX();
                             double cubeY = placeY + pos.getY();
                             double cubeZ = placeZ + pos.getZ();
-                            
+
                             buff.begin(3, DefaultVertexFormats.POSITION_COLOR);
                             buff.pos(cubeX, cubeY + 0.0D, cubeZ).color(r, g, b, a).endVertex();
                             buff.pos(cubeX, cubeY + 1.0D, cubeZ).color(r, g, b, a).endVertex();
                             tess.draw();
-                            
+
                             buff.begin(3, DefaultVertexFormats.POSITION_COLOR);
                             buff.pos(cubeX + 1.0D, cubeY + 0.0D, cubeZ).color(r, g, b, a).endVertex();
                             buff.pos(cubeX + 1.0D, cubeY + 1.0D, cubeZ).color(r, g, b, a).endVertex();
                             tess.draw();
-                            
+
                             buff.begin(3, DefaultVertexFormats.POSITION_COLOR);
                             buff.pos(cubeX + 1.0D, cubeY + 0.0D, cubeZ + 1.0D).color(r, g, b, a).endVertex();
                             buff.pos(cubeX + 1.0D, cubeY + 1.0D, cubeZ + 1.0D).color(r, g, b, a).endVertex();
