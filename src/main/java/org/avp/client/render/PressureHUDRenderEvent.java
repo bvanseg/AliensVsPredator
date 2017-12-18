@@ -23,8 +23,6 @@ import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.ScaledResolution;
 import com.arisux.mdx.lib.client.render.Screen;
 import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.Pos;
-import com.arisux.mdx.lib.world.Worlds;
 import com.arisux.mdx.lib.world.block.Blocks;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 
@@ -35,6 +33,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -151,7 +151,7 @@ public class PressureHUDRenderEvent
             OpenGL.popMatrix();
             OpenGL.color4i(0xFFFFFFFF);
 
-            Draw.drawPlayerFace(Game.minecraft().player.getName(), 0, 0, 32, 32);
+            Draw.drawPlayerFace(Game.minecraft().player, 0, 0, 32, 32);
 
             /** Silica storm detection indicator **/
             WorldProvider provider = Game.minecraft().world.provider;
@@ -159,49 +159,49 @@ public class PressureHUDRenderEvent
             if (provider instanceof WorldProviderVarda)
             {
                 WorldProviderVarda providerVarda = (WorldProviderVarda) provider;
-                long stormStartTime = providerVarda.getStormProvider().getStormStartTime() * 1000L;
-                long stormEndTime = providerVarda.getStormProvider().getStormEndTime() * 1000L;
-                long worldTime = providerVarda.getWorldTime();
-                int warningTime = 1000;
-                int timeUntilStorm = (int) (stormStartTime - provider.getWorldTime());
+//                long stormStartTime = providerVarda.getStormProvider().getStormStartTime() * 1000L;
+//                long stormEndTime = providerVarda.getStormProvider().getStormEndTime() * 1000L;
+//                long worldTime = providerVarda.getWorldTime();
+//                int warningTime = 1000;
+//                int timeUntilStorm = (int) (stormStartTime - provider.getWorldTime());
 
-                if ((timeUntilStorm < warningTime && worldTime < stormStartTime || worldTime > stormStartTime && worldTime % 20 <= 10) && worldTime <= stormEndTime + 1000)
-                {
-                    OpenGL.enableBlend();
-                    OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
-                    int indicatorWidth = 300;
-                    int indicatorHeight = 30;
-                    int indicatorX = (Screen.scaledDisplayResolution().getScaledWidth() / 2) - (indicatorWidth / 2);
-                    int indicatorY = 0;
-                    Draw.drawRect(indicatorX, indicatorY, indicatorWidth, indicatorHeight, 0x66333333);
-                    OpenGL.pushMatrix();
-                    {
-                        float nameScale = 1.5F;
-                        OpenGL.scale(nameScale, nameScale, nameScale);
-
-                        int actualX = (int) ((indicatorX) / nameScale);
-                        int actualY = (int) ((indicatorY) / nameScale);
-                        int actualWidth = (int) (indicatorWidth / nameScale);
-                        int actualHeight = (int) (indicatorHeight / nameScale);
-                        fontrenderer.drawString("Storm Indicator for " + provider.getDimensionType().getName(), actualX + 7, actualY + 7, 0xFFAA00);
-
-                        if (Worlds.canSeeSky(new Pos(Game.minecraft().player), Game.minecraft().world))
-                        {
-                            Draw.drawStringAlignCenter("You are outdoors, take cover immediately!", (int) ((Screen.scaledDisplayResolution().getScaledWidth() / 2) / nameScale), actualY + 35, 0xFF0000);
-                        }
-
-                        if (worldTime > stormStartTime)
-                        {
-                            Draw.drawProgressBar("Storm Inbound", (int) stormStartTime, 0, actualX, actualY + 20, actualWidth, 4, 2, 0xFFFFAA00, false);
-                        }
-                        else
-                        {
-                            Draw.drawProgressBar("Time Until Storm (" + (timeUntilStorm / 20) + " seconds)", (int) stormStartTime, ((int) stormStartTime - (int) worldTime), actualX, actualY + 20, actualWidth, 4, 2, (timeUntilStorm / 20) < 15 ? 0xFFFF0000 : 0xFFFFAA00, false);
-                        }
-                    }
-                    OpenGL.popMatrix();
-                    OpenGL.color4i(0xFFFFFFFF);
-                }
+//                if ((timeUntilStorm < warningTime && worldTime < stormStartTime || worldTime > stormStartTime && worldTime % 20 <= 10) && worldTime <= stormEndTime + 1000)
+//                {
+//                    OpenGL.enableBlend();
+//                    OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
+//                    int indicatorWidth = 300;
+//                    int indicatorHeight = 30;
+//                    int indicatorX = (Screen.scaledDisplayResolution().getScaledWidth() / 2) - (indicatorWidth / 2);
+//                    int indicatorY = 0;
+//                    Draw.drawRect(indicatorX, indicatorY, indicatorWidth, indicatorHeight, 0x66333333);
+//                    OpenGL.pushMatrix();
+//                    {
+//                        float nameScale = 1.5F;
+//                        OpenGL.scale(nameScale, nameScale, nameScale);
+//
+//                        int actualX = (int) ((indicatorX) / nameScale);
+//                        int actualY = (int) ((indicatorY) / nameScale);
+//                        int actualWidth = (int) (indicatorWidth / nameScale);
+//                        int actualHeight = (int) (indicatorHeight / nameScale);
+//                        fontrenderer.drawString("Storm Indicator for " + provider.getDimensionType().getName(), actualX + 7, actualY + 7, 0xFFAA00);
+//
+//                        if (Worlds.canSeeSky(new Pos(Game.minecraft().player), Game.minecraft().world))
+//                        {
+//                            Draw.drawStringAlignCenter("You are outdoors, take cover immediately!", (int) ((Screen.scaledDisplayResolution().getScaledWidth() / 2) / nameScale), actualY + 35, 0xFF0000);
+//                        }
+//
+//                        if (worldTime > stormStartTime)
+//                        {
+//                            Draw.drawProgressBar("Storm Inbound", (int) stormStartTime, 0, actualX, actualY + 20, actualWidth, 4, 2, 0xFFFFAA00, false);
+//                        }
+//                        else
+//                        {
+//                            Draw.drawProgressBar("Time Until Storm (" + (timeUntilStorm / 20) + " seconds)", (int) stormStartTime, ((int) stormStartTime - (int) worldTime), actualX, actualY + 20, actualWidth, 4, 2, (timeUntilStorm / 20) < 15 ? 0xFFFF0000 : 0xFFFFAA00, false);
+//                        }
+//                    }
+//                    OpenGL.popMatrix();
+//                    OpenGL.color4i(0xFFFFFFFF);
+//                }
             }
 
             if (Game.minecraft().player != null)
@@ -325,7 +325,7 @@ public class PressureHUDRenderEvent
                         Block block = blockstate.getBlock();
                         TileEntity tile = Game.minecraft().player.world.getTileEntity(blockpos);
 
-                        Draw.drawBlockSide(block, Game.minecraft().objectMouseOver.sideHit.ordinal(), subMenuX + subMenuPadding - 56, 0, 48, 48);
+                        Draw.drawItem(new ItemStack(Item.getItemFromBlock(block), 1), subMenuX + subMenuPadding - 56, 0, 48, 48);
 
                         OpenGL.pushMatrix();
                         {

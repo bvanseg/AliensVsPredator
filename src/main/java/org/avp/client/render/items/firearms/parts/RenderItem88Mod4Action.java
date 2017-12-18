@@ -40,7 +40,7 @@ public class RenderItem88Mod4Action extends ItemRendererGroup<Model88MOD4>
     {
         OpenGL.pushMatrix();
         {
-            OpenGL.rotate((this.mc.world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
             GlStateManager.disableCull();
             this.renderPart();
         }

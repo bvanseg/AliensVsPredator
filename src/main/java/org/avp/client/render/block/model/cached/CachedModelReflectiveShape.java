@@ -166,7 +166,7 @@ public class CachedModelReflectiveShape implements IPerspectiveAwareModel
 
         if (side == null && transformType == null)
         {
-            TextureMap textureMap = Game.minecraft().textureMapBlocks;
+            TextureMap textureMap = Game.minecraft().getTextureMapBlocks();
             BlockRendererDispatcher dispatcher = Game.minecraft().getBlockRendererDispatcher();
             IModel retextured = model;
             TRSRTransformation transformation = rotation(state);

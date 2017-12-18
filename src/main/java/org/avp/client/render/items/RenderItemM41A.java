@@ -18,6 +18,7 @@ import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class RenderItemM41A extends ItemRenderer<ModelM41A>
@@ -57,7 +58,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
         {
             OpenGL.translate(1F, 1.25F, -0.3F);
 
-            if (Mouse.isButtonDown(0) && mc.inGameHasFocus)
+            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
             {
                 OpenGL.translate(-1.16F, -0.095F, 0.52F);
             }
@@ -67,7 +68,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
             new Texture(Remote.downloadResource(String.format(URLs.SKIN_M41A, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
             this.getModel().getModel().render();
 
-            if (mc.player.getHeldItemMainhand() != null && mc.player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
+            if (Game.minecraft().player.getHeldItemMainhand() != null && Game.minecraft().player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
             {
                 OpenGL.disable(GL11.GL_LIGHTING);
                 OpenGL.translate(-0.3439F, 0.6F, 0.04F);
@@ -81,7 +82,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
                 OpenGL.color(1F, 1F, 1F, 1F);
             }
             
-            if (Inventories.getAmountOfItemEntityHas(AliensVsPredator.items().itemMotionTracker, entity) > 0)
+            if (Inventories.getAmountOfItemPlayerHas(AliensVsPredator.items().itemMotionTracker, (EntityPlayer) entity) > 0)
             {
                 OpenGL.translate(-50F, -20F, -50F);
                 OpenGL.rotate(-90F, 0F, 1F, 0F);
@@ -107,7 +108,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) mc.player.inventory.getCurrentItem().getItem()).getAmmoCount();
+        int ammoCount = ((ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 }

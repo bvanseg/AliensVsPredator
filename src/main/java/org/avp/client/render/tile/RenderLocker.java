@@ -73,7 +73,7 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
                                     OpenGL.pushMatrix();
                                     {
                                         OpenGL.rotate(-45, 1F, 0F, 0F);
-                                        Draw.drawItemIcon(stack.getItem(), 0, 0, 32, 32);
+                                        Draw.drawItem(stack, 0, 0, 32, 32);
                                     }
                                     OpenGL.popMatrix();
                                 }

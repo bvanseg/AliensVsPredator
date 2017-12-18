@@ -16,10 +16,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class WorldProviderVarda extends WorldProvider
 {
-    public StormProvider stormProvider = new StormProvider();
+    @SideOnly(Side.CLIENT)
+    public ClimateProviderVarda climateProvider = new ClimateProviderVarda();
     
     @SideOnly(Side.CLIENT)
-    private IRenderHandler skyProvider;
+    private SkyProviderVarda skyProvider;
 
     public WorldProviderVarda()
     {
@@ -52,9 +53,17 @@ public class WorldProviderVarda extends WorldProvider
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public IRenderHandler getCloudRenderer()
     {
-        return skyProvider == null ? skyProvider = new SkyProviderVarda() : skyProvider;
+        return climateProvider;
+    }
+    
+    @Override
+    @SideOnly(Side.CLIENT)
+    public IRenderHandler getWeatherRenderer()
+    {
+        return null;
     }
 
     @Override
@@ -79,7 +88,6 @@ public class WorldProviderVarda extends WorldProvider
     public void updateWeather()
     {
         super.updateWeather();
-        this.stormProvider.update(this.world);
     }
     
     @Override
@@ -122,7 +130,7 @@ public class WorldProviderVarda extends WorldProvider
     @Override
     public Vec3d getCloudColor(float partialTicks)
     {
-        return new Vec3d(0.0F, 0.0F, 0.0F);
+        return new Vec3d(0.075F, 0.1F, 0.15F);
     }
 
     @Override
@@ -147,11 +155,6 @@ public class WorldProviderVarda extends WorldProvider
         return brightness * 0.45F;
     }
 
-    public StormProvider getStormProvider()
-    {
-        return this.stormProvider;
-    }
-    
     @Override
     public boolean canSnowAt(BlockPos pos, boolean checkLight)
     {

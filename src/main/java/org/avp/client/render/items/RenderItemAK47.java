@@ -48,7 +48,7 @@ public class RenderItemAK47 extends ItemRenderer<ModelAK47>
         {
             OpenGL.translate(1F, 0.2F, 0.2F);
 
-            if (Mouse.isButtonDown(0) && mc.inGameHasFocus)
+            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
             {
                 OpenGL.translate(-1.735F, 0.24F, 0.8F);
             }

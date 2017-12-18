@@ -7,6 +7,7 @@ import org.lwjgl.input.Mouse;
 
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -47,7 +48,7 @@ public class RenderItemNostromoFlamethrower extends ItemRenderer<ModelSevastopol
         {
             OpenGL.translate(0F, 0.35F, -0.9F);
 
-            if (Mouse.isButtonDown(0) && mc.inGameHasFocus)
+            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
             {
                 OpenGL.translate(-0.5595F, 0F, 0F);
             }
@@ -73,7 +74,7 @@ public class RenderItemNostromoFlamethrower extends ItemRenderer<ModelSevastopol
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) mc.player.inventory.getCurrentItem().getItem()).getAmmoCount();
+        int ammoCount = ((ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 }

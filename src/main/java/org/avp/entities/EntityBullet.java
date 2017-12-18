@@ -256,7 +256,7 @@ public class EntityBullet extends Entity
             if (block == Blocks.GLASS_PANE)
             {
                 this.world.setBlockToAir(pos);
-                GameSounds.fxMinecraftGlassShatter3.playSound(this.world, this.xTile, this.yTile, this.zTile);
+                GameSounds.fxMinecraftGlassShatter3.playSound(this.world, this.xTile, this.yTile, this.zTile, 1F, 1F);
                 GameSounds.fxMinecraftGlassShatter1.playSound(this.shootingEntity);
             }
 
