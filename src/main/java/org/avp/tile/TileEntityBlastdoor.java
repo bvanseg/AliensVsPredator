@@ -10,12 +10,10 @@ import org.avp.api.machines.IOpenable;
 import org.avp.api.power.IVoltageReceiver;
 import org.avp.packets.client.PacketOpenBlastdoor;
 
-import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.block.IMultiBlock;
 import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -23,54 +21,39 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 
 public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltageReceiver, IRotatableYAxis, IOpenable, IMultiBlock
 {
-    private EnumFacing                     direction;
-    private float                          doorProgress;
-    private float                          doorProgressPrev;
-    private boolean                        doorOpen;
-    private boolean                        isParent;
-    private boolean                        placedByPlayer;
-    private TileEntityBlastdoor            parent;
-    private ArrayList<TileEntityBlastdoor> children;
-    private int                            ticksExisted;
-    protected String                       identifier;
-    protected String                       password;
-    protected String                       bindKey;
-    protected boolean                      locked;
-    protected boolean                      autolockEnabled;
-    protected int                          lockTimer;
-    private long                           timeOfLastPry;
+    private boolean               isParent;
+    private boolean               placedByPlayer;
+    private TileEntity            parent;
+    private ArrayList<TileEntity> children;
+    private int                   ticksExisted;
+    private EnumFacing            direction;
+    private float                 doorProgress;
+    private float                 doorProgressPrev;
+    private boolean               doorOpen;
+    protected String              identifier;
+    protected String              password;
+    protected String              bindKey;
+    protected boolean             locked;
+    protected boolean             autolockEnabled;
+    protected int                 lockTimer;
+    private long                  timeOfLastPry;
 
     public TileEntityBlastdoor()
     {
         super(false);
-        this.children = new ArrayList<TileEntityBlastdoor>();
+        this.children = new ArrayList<TileEntity>();
         this.identifier = "BD" + (1000 + new Random().nextInt(8999));
         this.password = "";
         this.bindKey = "";
     }
-
-    public void addToParent(TileEntityBlastdoor parent)
-    {
-        if (!parent.getChildren().contains(this))
-        {
-            parent.getChildren().add(this);
-        }
-
-        this.setParent(parent);
-    }
-
-    public ArrayList<TileEntityBlastdoor> getChildren()
-    {
-        return this.children;
-    }
-
+    
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()
     {
@@ -143,45 +126,10 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     public void update()
     {
         super.update();
+        this.updateMultiblock(this.world);
+        this.updateMultiblockPower();
+
         this.doorProgressPrev = this.doorProgress;
-
-        if (!this.isParent())
-        {
-            this.updateEnergyAsReceiver();
-        }
-
-        this.ticksExisted++;
-
-        if (this.isParent && this.ticksExisted > 1 && !placedByPlayer)
-        {
-            this.setup(false);
-        }
-
-        if (this.isChild())
-        {
-            if (this.getParent() != null && this.getVoltage() > this.getParent().getVoltage())
-            {
-                this.getParent().setVoltage(this.getVoltage());
-            }
-        }
-
-        if (this.isParent)
-        {
-            double childrenVoltage = 0.0D;
-
-            for (TileEntityBlastdoor child : this.getChildren())
-            {
-                if (child.getVoltage() > 0.0D && child.getVoltage() > childrenVoltage)
-                {
-                    childrenVoltage = child.getVoltage();
-                }
-            }
-
-            if (childrenVoltage <= 0)
-            {
-                this.updateEnergyAsReceiver();
-            }
-        }
 
         if (this.isParent())
         {
@@ -244,6 +192,156 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
                 this.setOpen(true);
             }
         }
+    }
+    
+    private void updateMultiblockPower()
+    {
+        if (!this.isParent())
+        {
+            this.updateEnergyAsReceiver();
+        }
+
+        if (this.isChild())
+        {
+            if (this.getParent() != null && this.getVoltage() > this.getParent().getVoltage())
+            {
+                this.getParent().setVoltage(this.getVoltage());
+            }
+        }
+
+        if (this.isParent)
+        {
+            double childrenVoltage = 0.0D;
+
+            for (TileEntity c : this.getChildren())
+            {
+                if (c instanceof TileEntityElectrical)
+                {
+                    TileEntityElectrical child = (TileEntityElectrical) c;
+                    
+                    if (child.getVoltage() > 0.0D && child.getVoltage() > childrenVoltage)
+                    {
+                        childrenVoltage = child.getVoltage();
+                    }
+                }
+            }
+
+            if (childrenVoltage <= 0)
+            {
+                this.updateEnergyAsReceiver();
+            }
+        }
+    }
+
+    @Override
+    public BlockPos[] defaultSet()
+    {
+        List<BlockPos> set = new ArrayList<BlockPos>();
+        BlockPos pos = new BlockPos(0, 0, 0);
+
+        set.add(pos.add(1, 0, 0));
+        set.add(pos.add(2, 0, 0));
+        set.add(pos.add(3, 0, 0));
+        set.add(pos.add(0, 1, 0));
+        set.add(pos.add(0, 2, 0));
+        set.add(pos.add(1, 2, 0));
+        set.add(pos.add(1, 1, 0));
+        set.add(pos.add(2, 2, 0));
+        set.add(pos.add(2, 1, 0));
+        set.add(pos.add(3, 2, 0));
+        set.add(pos.add(3, 1, 0));
+
+        return set.toArray(new BlockPos[set.size()]);
+    }
+
+    @Override
+    public ArrayList<TileEntity> getChildren()
+    {
+        return this.children;
+    }
+
+    @Override
+    public boolean isChild()
+    {
+        return !this.isParent();
+    }
+
+    @Override
+    public boolean isParent()
+    {
+        return this.isParent;
+    }
+
+    @Override
+    public TileEntityBlastdoor getParent()
+    {
+        return (TileEntityBlastdoor) parent;
+    }
+
+    @Override
+    public void setParent(TileEntity parent)
+    {
+        this.parent = parent;
+    }
+
+    @Override
+    public void setPlacedByPlayer()
+    {
+        this.placedByPlayer = true;
+    }
+
+    @Override
+    public boolean isPlacedByPlayer()
+    {
+        return this.placedByPlayer;
+    }
+
+    @Override
+    public void setTileParent()
+    {
+        this.isParent = true;
+    }
+
+    @Override
+    public void setTileChild()
+    {
+        this.isParent = false;
+    }
+
+    @Override
+    public String getMultiblockName()
+    {
+        return "Blast Door";
+    }
+
+    @Override
+    public Block getMultiBlockType()
+    {
+        return AliensVsPredator.blocks().blastDoor;
+    }
+    
+    @Override
+    public void tick()
+    {
+        this.ticksExisted++;
+    }
+    
+    @Override
+    public int getTicksExisted()
+    {
+        return this.ticksExisted;
+    }
+
+    @Override
+    public EnumFacing getRotationYAxis()
+    {
+        return direction;
+    }
+
+    @Override
+    public void setRotationYAxis(EnumFacing direction)
+    {
+        this.direction = direction;
     }
 
     public void unlock()
@@ -357,119 +455,6 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
         return this.doorProgress;
     }
 
-    public boolean setChildTile(BlockPos position)
-    {
-        IBlockState blockstate = this.world.getBlockState(position);
-        Block block = blockstate.getBlock();
-
-        boolean validBlastDoor = true;
-
-        if (block == AliensVsPredator.blocks().blastDoor)
-        {
-            TileEntityBlastdoor b = (TileEntityBlastdoor) this.world.getTileEntity(position);
-            validBlastDoor = b.getParent() != null ? false : true;
-        }
-
-        if (blockstate.getMaterial() != Material.AIR && block != AliensVsPredator.blocks().blastDoor || !validBlastDoor)
-        {
-            if (this.world.isRemote)
-            {
-                if (validBlastDoor == false)
-                {
-                    Game.minecraft().player.sendMessage(new TextComponentString("Can't place a blast door inside of another blast door."));
-                }
-                else
-                {
-                    Game.minecraft().player.sendMessage(new TextComponentString("Unable to place a blast door here. Blocks are in the way."));
-                }
-            }
-
-            return false;
-        }
-
-        world.setBlockState(position, AliensVsPredator.blocks().blastDoor.getDefaultState());
-        TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) world.getTileEntity(position);
-
-        if (blastdoor == null)
-        {
-            Game.minecraft().player.sendMessage(new TextComponentString("Internal Error: TileEntityBlastDoor.setChildTile()/blastdoor = null"));
-            return false;
-        }
-
-        if (blastdoor != null)
-        {
-            blastdoor.addToParent(this);
-            blastdoor.setParent(this);
-        }
-
-        return true;
-    }
-
-    public void breakChildren()
-    {
-        for (TileEntityBlastdoor child : this.getChildren())
-        {
-            world.setBlockToAir(child.getPos());
-        }
-    }
-
-    public boolean isChild()
-    {
-        return !this.isParent();
-    }
-
-    public boolean isParent()
-    {
-        return this.isParent;
-    }
-
-    public TileEntityBlastdoor getParent()
-    {
-        return parent;
-    }
-
-    public void setParent(TileEntityBlastdoor parent)
-    {
-        this.parent = parent;
-    }
-
-    public boolean setup(boolean placedByPlayer)
-    {
-        this.isParent = true;
-        this.placedByPlayer = true;
-
-        if (this.direction != null)
-        {
-            BlockPos[] set = this.setFor(this.direction);
-
-            for (BlockPos offset : set)
-            {
-                BlockPos position = this.getPos().add(offset);
-
-                if (!this.setChildTile(position))
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        return false;
-    }
-
-    @Override
-    public EnumFacing getRotationYAxis()
-    {
-        return direction;
-    }
-
-    @Override
-    public void setRotationYAxis(EnumFacing direction)
-    {
-        this.direction = direction;
-    }
-
     public String getIdentifier()
     {
         return identifier;
@@ -544,27 +529,6 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     public float getDoorProgressPrev()
     {
         return this.doorProgressPrev;
-    }
-
-    @Override
-    public BlockPos[] defaultSet()
-    {
-        List<BlockPos> set = new ArrayList<BlockPos>();
-        BlockPos pos = new BlockPos(0, 0, 0);
-
-        set.add(pos.add(1, 0, 0));
-        set.add(pos.add(2, 0, 0));
-        set.add(pos.add(3, 0, 0));
-        set.add(pos.add(0, 1, 0));
-        set.add(pos.add(0, 2, 0));
-        set.add(pos.add(1, 2, 0));
-        set.add(pos.add(1, 1, 0));
-        set.add(pos.add(2, 2, 0));
-        set.add(pos.add(2, 1, 0));
-        set.add(pos.add(3, 2, 0));
-        set.add(pos.add(3, 1, 0));
-
-        return set.toArray(new BlockPos[set.size()]);
     }
 
     public void playOpenSound()

@@ -85,7 +85,7 @@ import org.avp.tile.TileEntityRedstoneSensor;
 import org.avp.tile.TileEntityReflective;
 import org.avp.tile.TileEntityRepulsionGenerator;
 import org.avp.tile.TileEntitySatelliteDish;
-import org.avp.tile.TileEntitySatelliteModem;
+import org.avp.tile.TileEntityNetworkRack;
 import org.avp.tile.TileEntitySevastopolBlastDoor;
 import org.avp.tile.TileEntitySkull;
 import org.avp.tile.TileEntitySolarPanel;
@@ -146,7 +146,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         GameRegistry.registerTileEntity(TileEntityCryostasisTube.class, "tileEntityCryostasisTube");
         GameRegistry.registerTileEntity(TileEntityLightPanel.class, "tileEntityLightPanel");
         GameRegistry.registerTileEntity(TileEntityCCFLTube.class, "tileEntityCCFLTube");
-        GameRegistry.registerTileEntity(TileEntitySatelliteModem.class, "tileEntitySatelliteModem");
+        GameRegistry.registerTileEntity(TileEntityNetworkRack.class, "tileEntitySatelliteModem");
         GameRegistry.registerTileEntity(TileEntitySatelliteDish.class, "tileEntitySatelliteDish");
         GameRegistry.registerTileEntity(TileEntityTransformer.class, "tileEntityTransformer");
         GameRegistry.registerTileEntity(TileEntityNegativeTransformer.class, "tileEntityNegativeTransformer");
