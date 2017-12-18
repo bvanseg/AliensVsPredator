@@ -3,6 +3,7 @@ package org.avp.world.hives;
 import java.util.ArrayList;
 import java.util.UUID;
 
+import org.avp.AliensVsPredator;
 import org.avp.api.storage.IWorldSaveHandler;
 import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntitySpeciesAlien;

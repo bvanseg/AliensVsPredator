@@ -6,6 +6,8 @@ import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
 import org.avp.client.Resources;
 import org.avp.client.Sounds;
+import org.avp.client.render.DebugToolsRenderer;
+import org.avp.client.render.DebugToolsRenderer.BlockScanner;
 import org.avp.world.CapabilityHandler;
 import org.avp.world.hives.HiveHandler;
 
@@ -14,6 +16,7 @@ import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.IMod;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.ModContainer;
@@ -289,7 +292,7 @@ public class AliensVsPredator implements IMod
         return CreativeTab.tabGunParts;
     }
 
-    public static CreativeTabs tabRecipeItems()
+    public static CreativeTabs tabSurvivalResources()
     {
         return CreativeTab.tabRecipeItems;
     }
