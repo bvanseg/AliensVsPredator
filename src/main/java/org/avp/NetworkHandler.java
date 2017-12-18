@@ -85,6 +85,10 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.CLIENT, PacketBlastdoorClient.class);
     }
 
+    /**
+     * @param side - The side this packet will be sent to.
+     * @param packet - The packet being registered.
+     */
     @SuppressWarnings("unchecked")
     private <REQ extends IMessage, REPLY extends IMessage> void registerMessage(Side side, Class<?> packet)
     {
