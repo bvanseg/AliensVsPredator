@@ -299,6 +299,7 @@ public class Resources
     public final Texture BLUR_GUNSCOPE            = new Texture(AliensVsPredator.Properties.ID, "textures/misc/scope.png");
     public final Texture GUI_BASIC                = new Texture(AliensVsPredator.Properties.ID, "textures/gui/background.png");
     public final Texture GUI_TURRET               = new Texture(AliensVsPredator.Properties.ID, "textures/gui/turret.png");
+    public final Texture GUI_NETWORK_RACK         = new Texture(AliensVsPredator.Properties.ID, "textures/gui/networkrack.png");
     public final Texture GUI_WRISTBRACER          = new Texture(AliensVsPredator.Properties.ID, "textures/gui/wristbracer.png");
     public final Texture GUI_LOCKER               = new Texture(AliensVsPredator.Properties.ID, "textures/gui/locker.png");
     public final Texture GUI_ASSEMBLER            = new Texture(AliensVsPredator.Properties.ID, "textures/gui/assembler.png");

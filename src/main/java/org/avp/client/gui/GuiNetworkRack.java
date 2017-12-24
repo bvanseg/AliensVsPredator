@@ -1,8 +1,10 @@
 package org.avp.client.gui;
 
+import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityNetworkRack;
 
 import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,8 +25,7 @@ public class GuiNetworkRack extends GuiContainer
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
-        drawRect(this.guiLeft, this.guiTop, this.guiLeft + this.xSize, this.guiTop + this.ySize, 0xCC000000);
-        Draw.drawString(this.rack.inventory.getName(), this.guiLeft + 5, this.guiTop + 5, 0xFFFFFFFF);
+        Draw.drawResource(AliensVsPredator.resources().GUI_NETWORK_RACK, this.guiLeft, this.guiTop, 256, 256);
 
         for (int idx = 3; idx >= 0; idx--)
         {
@@ -32,15 +33,19 @@ public class GuiNetworkRack extends GuiContainer
 
             int sW = 16;
             int sH = 16;
-            int sP = 2;
-            int sX = this.guiLeft + 5;
-            int sY = this.guiTop + 26 + (sH * idx) + (sP * idx);
-
-            drawRect(sX, sY, sX + sW, sY + sH, 0x1AFFFFFF);
+            int sP = 6;
+            int sPH = 4;
+            int sX = this.guiLeft + 26;
+            int sY = this.guiTop + 19 + (sH * idx) + (sP * idx);
 
             if (stack != null)
             {
-                Draw.drawString(stack.getDisplayName(), sX + sW + (sP * 2), sY + (sH / 4), 0xFFFFFFFF);
+                float s = 0.5F;
+                
+                OpenGL.pushMatrix();
+                OpenGL.scale(s, s, s);
+                Draw.drawString(stack.getDisplayName(), (sX + sW + (sPH * 2)) * 2, (sY + (sH / 4) + 2) * 2, 0xFFFFFFFF);
+                OpenGL.popMatrix();
             }
         }
     }
