@@ -7,11 +7,7 @@ item.avp:ammo.sniper.name=Sniper Rounds
 item.avp:ammo.flamethrower.name=Flamethrower Fuel
 item.avp:grenade.m40.name=M40 Grenade
 item.avp:grenade.incindiary.name=M40 Incendiary Grenade
-item.avp:tool.celtic.spear.name=Celtic Spear
-item.avp:smartdisc.name=Smart Disc
-item.avp:shuriken.name=Shuriken
-item.avp:artifact.tech.name=Yautja Artifact
-item.avp:plasmacannon.name=Plasma Caster
+item.avp:chargepack.name=Charge Pack
 
 
 # ITEMS-ARMOUR
@@ -43,7 +39,14 @@ item.avp:tool.celtic.sword.name=Celtic Sword
 item.avp:tool.celtic.hoe.name=Celtic Hoe
 item.avp:tool.celtic.axe.name=Celtic Axe
 item.avp:tool.celtic.pick.name=Celtic Pickaxe
+item.avp:tool.celtic.spear.name=Celtic Spear
+item.avp:smartdisc.name=Smart Disc
+item.avp:shuriken.name=Shuriken
+item.avp:artifact.tech.name=Yautja Artifact
+item.avp:plasmacannon.name=Plasma Caster
 item.avp:tool.maintenancejack.name=Maintenance Jack
+item.avp:tool.securityaccessruner.name=Security Access Tuner
+item.avp:stun.baton.name=Stun Baton
 
 
 # ITEMS-FIREARM COMPONENTS
@@ -309,6 +312,7 @@ tile.avp:mist.name=Reactive Mist
 tile.avp:turret.name=UA 571-E Sentry Turret
 tile.avp:stasismechanism.name=Stasis Mechanism
 tile.avp:blastdoor.name=Blast Door
+tile.avp:blastdoor.sevastopol.name=Blast Door (Sevastopol)
 tile.avp:generator.name=Repulsion Generator
 tile.avp:powerline.name=Power Cable
 tile.avp:terminal.name=Terminal
@@ -317,7 +321,6 @@ tile.avp:powercell.name=Powercell
 tile.avp:locker.name=Locker
 tile.avp:gunlocker.name=Gun Locker
 tile.avp:medpod.name=Medpod
-tile.avp:satellitemodem.name=Satellite Modem
 tile.avp:satellitedish.name=Satellite Dish
 tile.avp:assembler.name=Assembler
 tile.avp:cryostasistube.name=Cryostasis Tube
@@ -326,16 +329,17 @@ tile.avp:redstonefluxgenerator.name=Redstone Flux Generator
 tile.avp:redstonesensor.name=Redstone Sensor
 tile.avp:redstoneemitter.name=Redstone Emitter
 tile.avp:universalgenerator.name=Universal Power Converter
+tile.avp:ccfltube.name=Fluorescent Light
 
 
 #BLOCKS-SHAPED
 tile.avp:slope.name=Reflective Slope
 tile.avp:corner.name=Reflective Corner
-tile.avp:invertedcorner.name=Reflective Inverted Corner
 tile.avp:ridge.name=Reflective Ridge
+tile.avp:pyramid.name=Reflective Pyramid
+tile.avp:invertedcorner.name=Reflective Inverted Corner
 tile.avp:invertedridge.name=Reflective Inverted Ridge
-tile.avp:smartridge.name=Reflective Smart Ridge
-tile.avp:smartinvertedridge.name=Reflective Inverted Smart Ridge
+tile.avp:invertedpyramid.name=Relfective Inverted Pyramid
 
 
 #BLOCKS-MISC
