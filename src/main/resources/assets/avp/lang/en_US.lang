@@ -1,3 +1,13 @@
+# ITEMS-NETWORK RACK MODULES
+item.avp:rackmodule1.name=Recorder
+item.avp:rackmodule2.name=Management Console
+item.avp:rackmodule3.name=Network Transmitter
+item.avp:rackmodule4.name=Function Generator
+item.avp:rackmodule5.name=Network Receiver
+item.avp:rackmodule6.name=Logic Analyzer
+item.avp:rackmodule7.name=Network Attached Storage
+item.avp:rackmodule8.name=Oscilloscope
+
 # ITEMS-AMMO
 item.avp:ammo.pistol.name=Pistol Rounds
 item.avp:ammo.ar.name=Assault Rifle Rounds
@@ -78,6 +88,9 @@ item.avp:part.m56sg.aimingmodule.name=M56SG Aiming Module
 
 
 # ITEMS-MISC
+item.avp:neodymium.magnet.name=Neodymium Magnet
+item.avp:cobalt.name=Cobalt
+item.avp:neodymium.name=Neodymium
 item.avp:silicon.name=Silicon
 item.avp:polycarbonate.name=Polycarbonate
 item.avp:ingot.aluminum.name=Aluminum Ingot
@@ -303,6 +316,8 @@ tile.avp:orecopper.name=Copper Ore
 tile.avp:orebauxite.name=Bauxite Ore
 tile.avp:oresilicon.name=Silicon Ore
 tile.avp:orelithium.name=Lithium Ore
+tile.avp:orecobalt.name=Cobalt Ore
+tile.avp:oremonazite.name=Monazite Ore
 tile.avp:blockBlackGoo.name=Black Goo
 tile.avp:blackgoo.name=Black Goo
 tile.avp:mist.name=Reactive Mist
