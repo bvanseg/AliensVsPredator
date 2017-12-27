@@ -73,6 +73,7 @@ public class SkyProviderAcheron extends IRenderHandler
         }
     }
 
+    @SideOnly(Side.CLIENT)
     private void generateStars()
     {
         Tessellator tessellator = Tessellator.getInstance();
@@ -94,6 +95,7 @@ public class SkyProviderAcheron extends IRenderHandler
         this.starGLCallList += 1;
     }
 
+    @SideOnly(Side.CLIENT)
     private void renderStars(VertexBuffer buffer)
     {
         Random random = new Random(10842L);
@@ -143,6 +145,7 @@ public class SkyProviderAcheron extends IRenderHandler
         Tessellator.getInstance().draw();
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void render(float renderPartialTicks, WorldClient world, Minecraft mc)
     {
@@ -236,6 +239,7 @@ public class SkyProviderAcheron extends IRenderHandler
         }
     }
 
+    @SideOnly(Side.CLIENT)
     public void renderClouds(float renderPartialTicks)
     {
         for (int cloudPass = 1; cloudPass > 0; cloudPass--)
