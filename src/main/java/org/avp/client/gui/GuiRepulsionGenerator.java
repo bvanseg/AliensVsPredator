@@ -24,7 +24,7 @@ public class GuiRepulsionGenerator extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
         Draw.drawResource(AliensVsPredator.resources().GUI_REPULSION_GENERATOR, this.guiLeft, this.guiTop, 256, 256, 255F, 255F, 255F, 255F, 1F, 1F);
-        Draw.drawString(this.generator.getProposedSpeed() + "", this.guiLeft, this.guiTop + this.ySize + 10, 0xFFFF0000);
-        Draw.drawString(this.generator.getRotationSpeed() + "", this.guiLeft, this.guiTop + this.ySize + 20, 0xFFFF0000);
+        Draw.drawString(Math.round(this.generator.getVoltage()) + "V", this.guiLeft + 50, this.guiTop + this.ySize - 40, 0xFFCC44, false);
+        Draw.drawString(Math.round(this.generator.getRotationSpeed() * 1000) + " RPM", this.guiLeft + 125, this.guiTop + this.ySize - 40, 0xFFCC44, false);
     }
 }

@@ -19,6 +19,8 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.client.IRenderHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SkyProviderVarda extends IRenderHandler
 {
@@ -100,6 +102,7 @@ public class SkyProviderVarda extends IRenderHandler
         Tessellator.getInstance().draw();
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public void render(float partialTicks, WorldClient world, Minecraft mc)
     {

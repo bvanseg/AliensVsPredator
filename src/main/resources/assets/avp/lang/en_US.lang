@@ -1,3 +1,13 @@
+# ITEMS-NETWORK RACK MODULES
+item.avp:rackmodule1.name=Recorder
+item.avp:rackmodule2.name=Management Console
+item.avp:rackmodule3.name=Network Transmitter
+item.avp:rackmodule4.name=Function Generator
+item.avp:rackmodule5.name=Network Receiver
+item.avp:rackmodule6.name=Logic Analyzer
+item.avp:rackmodule7.name=Network Attached Storage
+item.avp:rackmodule8.name=Oscilloscope
+
 # ITEMS-AMMO
 item.avp:ammo.pistol.name=Pistol Rounds
 item.avp:ammo.ar.name=Assault Rifle Rounds
@@ -7,11 +17,7 @@ item.avp:ammo.sniper.name=Sniper Rounds
 item.avp:ammo.flamethrower.name=Flamethrower Fuel
 item.avp:grenade.m40.name=M40 Grenade
 item.avp:grenade.incindiary.name=M40 Incendiary Grenade
-item.avp:tool.celtic.spear.name=Celtic Spear
-item.avp:smartdisc.name=Smart Disc
-item.avp:shuriken.name=Shuriken
-item.avp:artifact.tech.name=Yautja Artifact
-item.avp:plasmacannon.name=Plasma Caster
+item.avp:chargepack.name=Charge Pack
 
 
 # ITEMS-ARMOUR
@@ -43,7 +49,14 @@ item.avp:tool.celtic.sword.name=Celtic Sword
 item.avp:tool.celtic.hoe.name=Celtic Hoe
 item.avp:tool.celtic.axe.name=Celtic Axe
 item.avp:tool.celtic.pick.name=Celtic Pickaxe
+item.avp:tool.celtic.spear.name=Celtic Spear
+item.avp:smartdisc.name=Smart Disc
+item.avp:shuriken.name=Shuriken
+item.avp:artifact.tech.name=Yautja Artifact
+item.avp:plasmacannon.name=Plasma Caster
 item.avp:tool.maintenancejack.name=Maintenance Jack
+item.avp:tool.securityaccessruner.name=Security Access Tuner
+item.avp:stun.baton.name=Stun Baton
 
 
 # ITEMS-FIREARM COMPONENTS
@@ -75,6 +88,9 @@ item.avp:part.m56sg.aimingmodule.name=M56SG Aiming Module
 
 
 # ITEMS-MISC
+item.avp:neodymium.magnet.name=Neodymium Magnet
+item.avp:cobalt.name=Cobalt
+item.avp:neodymium.name=Neodymium
 item.avp:silicon.name=Silicon
 item.avp:polycarbonate.name=Polycarbonate
 item.avp:ingot.aluminum.name=Aluminum Ingot
@@ -300,6 +316,8 @@ tile.avp:orecopper.name=Copper Ore
 tile.avp:orebauxite.name=Bauxite Ore
 tile.avp:oresilicon.name=Silicon Ore
 tile.avp:orelithium.name=Lithium Ore
+tile.avp:orecobalt.name=Cobalt Ore
+tile.avp:oremonazite.name=Monazite Ore
 tile.avp:blockBlackGoo.name=Black Goo
 tile.avp:blackgoo.name=Black Goo
 tile.avp:mist.name=Reactive Mist
@@ -309,6 +327,7 @@ tile.avp:mist.name=Reactive Mist
 tile.avp:turret.name=UA 571-E Sentry Turret
 tile.avp:stasismechanism.name=Stasis Mechanism
 tile.avp:blastdoor.name=Blast Door
+tile.avp:blastdoor.sevastopol.name=Blast Door (Sevastopol)
 tile.avp:generator.name=Repulsion Generator
 tile.avp:powerline.name=Power Cable
 tile.avp:terminal.name=Terminal
@@ -317,7 +336,6 @@ tile.avp:powercell.name=Powercell
 tile.avp:locker.name=Locker
 tile.avp:gunlocker.name=Gun Locker
 tile.avp:medpod.name=Medpod
-tile.avp:satellitemodem.name=Satellite Modem
 tile.avp:satellitedish.name=Satellite Dish
 tile.avp:assembler.name=Assembler
 tile.avp:cryostasistube.name=Cryostasis Tube
@@ -326,16 +344,17 @@ tile.avp:redstonefluxgenerator.name=Redstone Flux Generator
 tile.avp:redstonesensor.name=Redstone Sensor
 tile.avp:redstoneemitter.name=Redstone Emitter
 tile.avp:universalgenerator.name=Universal Power Converter
+tile.avp:ccfltube.name=Fluorescent Light
 
 
 #BLOCKS-SHAPED
 tile.avp:slope.name=Reflective Slope
 tile.avp:corner.name=Reflective Corner
-tile.avp:invertedcorner.name=Reflective Inverted Corner
 tile.avp:ridge.name=Reflective Ridge
+tile.avp:pyramid.name=Reflective Pyramid
+tile.avp:invertedcorner.name=Reflective Inverted Corner
 tile.avp:invertedridge.name=Reflective Inverted Ridge
-tile.avp:smartridge.name=Reflective Smart Ridge
-tile.avp:smartinvertedridge.name=Reflective Inverted Smart Ridge
+tile.avp:invertedpyramid.name=Relfective Inverted Pyramid
 
 
 #BLOCKS-MISC

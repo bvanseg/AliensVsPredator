@@ -2,6 +2,10 @@ package org.avp.world.dimension.varda;
 
 import org.avp.AliensVsPredator;
 
+import com.arisux.mdx.lib.client.render.world.IClimateProvider;
+import com.arisux.mdx.lib.client.render.world.ICloudProvider;
+import com.arisux.mdx.lib.client.render.world.IStormProvider;
+
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -14,13 +18,24 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class WorldProviderVarda extends WorldProvider
+public class WorldProviderVarda extends WorldProvider implements IClimateProvider
 {
-    @SideOnly(Side.CLIENT)
-    public ClimateProviderVarda climateProvider = new ClimateProviderVarda();
+    private StormProviderVarda storm = new StormProviderVarda();
+    private CloudProviderVarda clouds = new CloudProviderVarda();
+    private SkyProviderVarda sky;
     
-    @SideOnly(Side.CLIENT)
-    private SkyProviderVarda skyProvider;
+    @Override
+    public IStormProvider getStormProvider()
+    {
+        return storm;
+    }
+    
+    @Override
+    public ICloudProvider getCloudProvider()
+    {
+        return clouds;
+    }
+    
 
     public WorldProviderVarda()
     {
@@ -45,18 +60,19 @@ public class WorldProviderVarda extends WorldProvider
         this.biomeProvider = new BiomeProviderVarda(this.getSeed(), WorldType.DEFAULT);
     }
     
+    
     @Override
     @SideOnly(Side.CLIENT)
     public IRenderHandler getSkyRenderer()
     {
-        return skyProvider == null ? skyProvider = new SkyProviderVarda() : skyProvider;
+        return sky == null ? sky = new SkyProviderVarda() : sky;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public IRenderHandler getCloudRenderer()
     {
-        return climateProvider;
+        return (CloudProviderVarda) getCloudProvider();
     }
     
     @Override

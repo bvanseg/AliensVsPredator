@@ -24,12 +24,12 @@ public class ContainerNetworkRack extends Container
     {
         for (byte slot = 0; slot < this.rack.inventory.getSizeInventory(); slot++)
         {
-            addSlotToContainer(new Slot(this.rack.inventory, slot, 5, 26 + (18 * slot)));
+            addSlotToContainer(new Slot(this.rack.inventory, slot, 26, 19 + (22 * slot)));
         }
         
         for (byte slot = 0; slot < 9; slot++)
         {
-            addSlotToContainer(new Slot(player.inventory, slot, 5 + (18 * slot), 182));
+            addSlotToContainer(new Slot(player.inventory, slot, 8 + (18 * slot), 109));
         }
     }
 

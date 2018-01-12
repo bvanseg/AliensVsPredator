@@ -53,6 +53,10 @@ public class CraftingHandler implements IInitEvent
         OreDictionary.registerOre("itemPlastic", items.itemPolycarbonate);
         OreDictionary.registerOre("logWood", blocks.gigerLog);
         OreDictionary.registerOre("log", blocks.gigerLog);
+        OreDictionary.registerOre("neodymium", items.neodymium);
+        OreDictionary.registerOre("oreMonazite", blocks.oreMonazite);
+        OreDictionary.registerOre("cobalt", items.cobalt);
+        OreDictionary.registerOre("oreCobalt", blocks.oreCobalt);
     }
 
     private void addRecipes(ItemHandler items, BlockHandler blocks)
@@ -122,6 +126,7 @@ public class CraftingHandler implements IInitEvent
         GameRegistry.addRecipe(new ItemStack(items.itemDoritosCoolRanch, 1), "ab", "b ", 'a', items.itemDoritos, 'b', Items.WHEAT);
         GameRegistry.addRecipe(new ItemStack(blocks.muthurPanel1, 1), "aba", "bcb", "aba", 'a', Items.GLOWSTONE_DUST, 'b', Items.REDSTONE, 'c', items.itemSilicon);
         GameRegistry.addRecipe(new ItemStack(blocks.muthurPanel2, 1), "bab", "aca", "bab", 'a', Items.GLOWSTONE_DUST, 'b', Items.REDSTONE, 'c', items.itemSilicon);
+        GameRegistry.addShapelessRecipe(new ItemStack(items.neodymiumMagnet), new Object[] { items.neodymium, items.cobalt, items.cobalt });
     }
 
     private void addSmelting(ItemHandler items, BlockHandler blocks)

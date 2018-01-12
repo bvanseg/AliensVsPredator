@@ -9,6 +9,8 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class StormProviderVarda extends StormProvider
 {
@@ -54,6 +56,7 @@ public class StormProviderVarda extends StormProvider
         return true;
     }
 
+    @SideOnly(Side.CLIENT)
     @Override
     public Texture getStormTexture(World world, Biome biome)
     {
