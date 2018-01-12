@@ -4,8 +4,8 @@ import org.avp.AliensVsPredator;
 import org.avp.entities.living.EntityMatriarch;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;

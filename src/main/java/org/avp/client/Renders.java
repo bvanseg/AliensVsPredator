@@ -39,6 +39,7 @@ import org.avp.client.render.entities.living.RenderChestburster;
 import org.avp.client.render.entities.living.RenderCombatSynthetic;
 import org.avp.client.render.entities.living.RenderCrusher;
 import org.avp.client.render.entities.living.RenderDeacon;
+import org.avp.client.render.entities.living.RenderDeaconAdult;
 import org.avp.client.render.entities.living.RenderDeaconShark;
 import org.avp.client.render.entities.living.RenderDracoEgg;
 import org.avp.client.render.entities.living.RenderDracoburster;
@@ -196,6 +197,7 @@ import org.avp.entities.living.EntityChestburster;
 import org.avp.entities.living.EntityCombatSynthetic;
 import org.avp.entities.living.EntityCrusher;
 import org.avp.entities.living.EntityDeacon;
+import org.avp.entities.living.EntityDeaconAdult;
 import org.avp.entities.living.EntityDeaconShark;
 import org.avp.entities.living.EntityDracoEgg;
 import org.avp.entities.living.EntityDracoburster;
@@ -259,7 +261,7 @@ import org.avp.tile.TileEntityTransformer;
 import org.avp.tile.TileEntityTurret;
 import org.avp.tile.TileEntityWorkstation;
 
-import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.game.IInitEvent;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 import com.arisux.mdx.lib.game.Renderers;
@@ -358,6 +360,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerRenderer(EntityTrilobite.class, RenderTrilobite.class);
         Renderers.registerRenderer(EntityHammerpede.class, RenderHammerpede.class);
         Renderers.registerRenderer(EntityDeacon.class, RenderDeacon.class);
+        Renderers.registerRenderer(EntityDeaconAdult.class, RenderDeaconAdult.class);
         Renderers.registerRenderer(EntityDrone.class, RenderDrone.class);
         Renderers.registerRenderer(EntityWarrior.class, RenderWarrior.class);
         Renderers.registerRenderer(EntityPraetorian.class, RenderPraetorian.class);
@@ -484,7 +487,8 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(items.rackModule8, new RenderItemNetworkRackModule());
 
         Renderers.registerItemRenderer(items.summonerDrone, (new RenderItemSummoner(AliensVsPredator.resources().models().DRONE_ADVANCED)).setScale(7.5F).setY(6F));
-        Renderers.registerItemRenderer(items.summonerDeacon, (new RenderItemSummoner(AliensVsPredator.resources().models().DEACON)).setScale(14F).setY(-4F));
+        Renderers.registerItemRenderer(items.summonerDeacon, (new RenderItemSummoner(AliensVsPredator.resources().models().DEACON)).setScale(7F).setY(4F));
+        Renderers.registerItemRenderer(items.summonerDeaconAdult, (new RenderItemSummoner(AliensVsPredator.resources().models().DEACON_ADULT)).setScale(7F).setY(4F));
         Renderers.registerItemRenderer(items.summonerWarrior, (new RenderItemSummoner(AliensVsPredator.resources().models().WARRIOR)).setScale(7.5F).setY(9F));
         Renderers.registerItemRenderer(items.summonerRunnerDrone, (new RenderItemSummoner(AliensVsPredator.resources().models().RUNNER_DRONE)).setScale(7.5F).setY(6F));
         Renderers.registerItemRenderer(items.summonerRunnerWarrior, (new RenderItemSummoner(AliensVsPredator.resources().models().RUNNER_WARRIOR)).setScale(7.5F).setY(9F));
@@ -529,35 +533,35 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(items.summonerVardaMonkey, (new RenderItemSummoner(AliensVsPredator.resources().models().VARDA_MONKEY)).setScale(16F).setY(-14F));
         Renderers.registerItemRenderer(items.summonerYautjaMutant, (new RenderItemSummoner(AliensVsPredator.resources().models().MUTANT_YAUTJA)).setScale(9F).setY(6F));
 
-        TexturedModel<Model88MOD4> _88MOD4 = AliensVsPredator.resources().models()._88MOD4;
+        MapModelTexture<Model88MOD4> _88MOD4 = AliensVsPredator.resources().models()._88MOD4;
         Renderers.registerItemRenderer(items.itemPistolBarrel, new RenderItem88Mod4Barrel(_88MOD4, _88MOD4.getModel().getBarrel()));
         Renderers.registerItemRenderer(items.itemPistolAction, new RenderItem88Mod4Action(_88MOD4, _88MOD4.getModel().getAction()));
         Renderers.registerItemRenderer(items.itemPistolStock, new RenderItem88Mod4Stock(_88MOD4, _88MOD4.getModel().getStock()));
 
-        TexturedModel<ModelAK47> AK47 = AliensVsPredator.resources().models().AK47;
+        MapModelTexture<ModelAK47> AK47 = AliensVsPredator.resources().models().AK47;
         Renderers.registerItemRenderer(items.itemAK47Barrel, new RenderItemAK47Barrel(AK47, AK47.getModel().getBarrel()));
         Renderers.registerItemRenderer(items.itemAK47Action, new RenderItemAK47Action(AK47, AK47.getModel().getAction()));
         Renderers.registerItemRenderer(items.itemAK47Stock, new RenderItemAK47Stock(AK47, AK47.getModel().getStock()));
 
-        TexturedModel<ModelM4> M4 = AliensVsPredator.resources().models().M4;
+        MapModelTexture<ModelM4> M4 = AliensVsPredator.resources().models().M4;
         Renderers.registerItemRenderer(items.itemM4Barrel, new RenderItemM4Barrel(M4, M4.getModel().getBarrel()));
         Renderers.registerItemRenderer(items.itemM4Action, new RenderItemM4Action(M4, M4.getModel().getAction()));
         Renderers.registerItemRenderer(items.itemM4Stock, new RenderItemM4Stock(M4, M4.getModel().getStock()));
 
-        TexturedModel<ModelM56SG> M56SG = AliensVsPredator.resources().models().M56SG;
+        MapModelTexture<ModelM56SG> M56SG = AliensVsPredator.resources().models().M56SG;
         Renderers.registerItemRenderer(items.itemM56SGAction, new RenderItemM56SGAction(M56SG, M56SG.getModel().getAction()));
         Renderers.registerItemRenderer(items.itemM56SGAimingModule, new RenderItemM56SGAimingModule(M56SG, M56SG.getModel().getAccessories()));
         Renderers.registerItemRenderer(items.itemM56SGBarrel, new RenderItemM56SGBarrel(M56SG, M56SG.getModel().getBarrel()));
         Renderers.registerItemRenderer(items.itemM56SGStock, new RenderItemM56SGStock(M56SG, M56SG.getModel().getStock()));
         Renderers.registerItemRenderer(items.itemM56SGSupportFrame, new RenderItemM56SGSupportFrame(M56SG, M56SG.getModel().getPeripherals()));
 
-        TexturedModel<ModelM41A> M41A = AliensVsPredator.resources().models().M41A;
+        MapModelTexture<ModelM41A> M41A = AliensVsPredator.resources().models().M41A;
         Renderers.registerItemRenderer(items.itemM41AAction, new RenderItemM41AAction(M41A, M41A.getModel().getAction()));
         Renderers.registerItemRenderer(items.itemM41ABarrel, new RenderItemM41ABarrel(M41A, M41A.getModel().getBarrel()));
         Renderers.registerItemRenderer(items.itemM41AStock, new RenderItemM41AStock(M41A, M41A.getModel().getStock()));
         Renderers.registerItemRenderer(items.itemM41APeripherals, new RenderItemM41APeripherals(M41A, M41A.getModel().getPeripherals()));
 
-        TexturedModel<ModelSniper> SNIPER = AliensVsPredator.resources().models().SNIPER;
+        MapModelTexture<ModelSniper> SNIPER = AliensVsPredator.resources().models().SNIPER;
         Renderers.registerItemRenderer(items.itemSniperBarrel, new RenderItemSniperBarrel(SNIPER, SNIPER.getModel().getBarrel()));
         Renderers.registerItemRenderer(items.itemSniperAction, new RenderItemSniperAction(SNIPER, SNIPER.getModel().getAction()));
         Renderers.registerItemRenderer(items.itemSniperScope, new RenderItemSniperScope(SNIPER, SNIPER.getModel().getScope()));

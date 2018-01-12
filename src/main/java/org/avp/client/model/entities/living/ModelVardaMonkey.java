@@ -1,7 +1,7 @@
 package org.avp.client.model.entities.living;
 
-import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 

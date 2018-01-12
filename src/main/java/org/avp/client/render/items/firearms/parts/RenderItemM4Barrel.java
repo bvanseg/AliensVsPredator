@@ -3,9 +3,9 @@ package org.avp.client.render.items.firearms.parts;
 import org.avp.client.model.items.ModelM4;
 import org.avp.client.render.items.ItemRendererGroup;
 
-import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 
 public class RenderItemM4Barrel extends ItemRendererGroup<ModelM4>
 {
-    public RenderItemM4Barrel(TexturedModel<ModelM4> model, ModelRenderer... modelRenderers)
+    public RenderItemM4Barrel(MapModelTexture<ModelM4> model, ModelRenderer... modelRenderers)
     {
         super(model, modelRenderers);
     }

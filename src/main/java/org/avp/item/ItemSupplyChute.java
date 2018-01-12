@@ -6,7 +6,7 @@ import org.avp.entities.EntitySupplyChute;
 import org.avp.entities.EntitySupplyChuteMarines;
 import org.avp.entities.EntitySupplyChuteSeegson;
 
-import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 import com.arisux.mdx.lib.world.item.HookedItem;
 
@@ -80,13 +80,13 @@ public class ItemSupplyChute extends HookedItem
         }
 
         @SideOnly(Side.CLIENT)
-        public TexturedModel<ModelSupplyChute> getModel()
+        public MapModelTexture<ModelSupplyChute> getModel()
         {
             return SupplyChuteType.getModel(this);
         }
 
         @SideOnly(Side.CLIENT)
-        public static TexturedModel<ModelSupplyChute> getModel(SupplyChuteType type)
+        public static MapModelTexture<ModelSupplyChute> getModel(SupplyChuteType type)
         {
             switch (type)
             {

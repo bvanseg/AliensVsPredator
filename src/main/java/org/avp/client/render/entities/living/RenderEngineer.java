@@ -4,9 +4,9 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelEngineer;
 import org.avp.entities.living.EntitySpeciesEngineer;
 
-import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 
@@ -17,7 +17,7 @@ public class RenderEngineer extends RenderLivingWrapper<EntitySpeciesEngineer, M
         super(m, AliensVsPredator.resources().models().ENGINEER);
     }
     
-    public RenderEngineer(RenderManager m, TexturedModel<ModelEngineer> model)
+    public RenderEngineer(RenderManager m, MapModelTexture<ModelEngineer> model)
     {
         super(m, model);
     }

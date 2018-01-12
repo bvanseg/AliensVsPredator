@@ -2,9 +2,9 @@ package org.avp.client.render.items;
 
 import org.avp.client.model.items.ModelM40;
 
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 
 public class RenderItemM40 extends ItemRenderer<ModelM40>
 {
-    public RenderItemM40(TexturedModel<ModelM40> model)
+    public RenderItemM40(MapModelTexture<ModelM40> model)
     {
         super(model);
     }

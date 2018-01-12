@@ -10,7 +10,7 @@ import org.avp.block.BlockReflective;
 import org.avp.block.util.EnumAlignment;
 import org.avp.client.Resources;
 
-import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.client.render.model.block.ModelRotationXYZ;
 import com.arisux.mdx.lib.game.Game;
 import com.google.common.base.Function;

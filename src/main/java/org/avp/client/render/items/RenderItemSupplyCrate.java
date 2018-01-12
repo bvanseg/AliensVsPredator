@@ -3,9 +3,9 @@ package org.avp.client.render.items;
 import org.avp.client.model.entities.ModelSupplyChute;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;
@@ -27,7 +27,7 @@ public class RenderItemSupplyCrate extends ItemRenderer<ModelSupplyChute>
         OpenGL.translate(0F, -1F, -0.2F);
         GlStateManager.disableCull();
 
-        TexturedModel<ModelSupplyChute> texturedModel = SupplyChuteType.get(Block.getBlockFromItem(itemstack.getItem())).getModel();
+        MapModelTexture<ModelSupplyChute> texturedModel = SupplyChuteType.get(Block.getBlockFromItem(itemstack.getItem())).getModel();
         texturedModel.bindTexture();
         texturedModel.getModel().drawCrate();
     }
@@ -40,7 +40,7 @@ public class RenderItemSupplyCrate extends ItemRenderer<ModelSupplyChute>
         OpenGL.translate(0, -1.75F, 0.1F);
         GlStateManager.disableCull();
 
-        TexturedModel<ModelSupplyChute> texturedModel = SupplyChuteType.get(Block.getBlockFromItem(itemstack.getItem())).getModel();
+        MapModelTexture<ModelSupplyChute> texturedModel = SupplyChuteType.get(Block.getBlockFromItem(itemstack.getItem())).getModel();
         texturedModel.bindTexture();
         texturedModel.getModel().drawCrate();
     }
@@ -54,7 +54,7 @@ public class RenderItemSupplyCrate extends ItemRenderer<ModelSupplyChute>
         OpenGL.rotate(230F, 1F, 0F, 0F);
         OpenGL.rotate(45F, 0.0F, 1.0F, 0.0F);
 
-        TexturedModel<ModelSupplyChute> texturedModel = SupplyChuteType.get(Block.getBlockFromItem(itemstack.getItem())).getModel();
+        MapModelTexture<ModelSupplyChute> texturedModel = SupplyChuteType.get(Block.getBlockFromItem(itemstack.getItem())).getModel();
         texturedModel.bindTexture();
         texturedModel.getModel().drawCrate();
     }
@@ -66,7 +66,7 @@ public class RenderItemSupplyCrate extends ItemRenderer<ModelSupplyChute>
         OpenGL.translate(0F, -1.5F, 0F);
         GlStateManager.disableCull();
 
-        TexturedModel<ModelSupplyChute> texturedModel = SupplyChuteType.get(Block.getBlockFromItem(itemstack.getItem())).getModel();
+        MapModelTexture<ModelSupplyChute> texturedModel = SupplyChuteType.get(Block.getBlockFromItem(itemstack.getItem())).getModel();
         texturedModel.bindTexture();
         texturedModel.getModel().drawCrate();
     }

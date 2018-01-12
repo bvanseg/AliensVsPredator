@@ -3,7 +3,7 @@ package org.avp.client.model.entities.living;
 import org.avp.client.render.XenomorphJawState;
 import org.avp.entities.living.EntityXenomorph;
 
-import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;

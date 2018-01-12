@@ -2,11 +2,11 @@ package org.avp.client.render.items;
 
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -19,13 +19,13 @@ public class ItemRendererGroup<MODEL extends Model> extends ItemRenderer<MODEL>
 {
     protected ModelRenderer[] modelRenderers;
 
-    public ItemRendererGroup(TexturedModel<MODEL> model, ModelRenderer... modelRenderers)
+    public ItemRendererGroup(MapModelTexture<MODEL> model, ModelRenderer... modelRenderers)
     {
         super(model);
         this.modelRenderers = modelRenderers;
     }
     
-    private ItemRendererGroup(TexturedModel<MODEL> model)
+    private ItemRendererGroup(MapModelTexture<MODEL> model)
     {
         super(model);
     }

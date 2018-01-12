@@ -11,6 +11,7 @@ import org.avp.entities.living.EntityChestburster;
 import org.avp.entities.living.EntityCombatSynthetic;
 import org.avp.entities.living.EntityCrusher;
 import org.avp.entities.living.EntityDeacon;
+import org.avp.entities.living.EntityDeaconAdult;
 import org.avp.entities.living.EntityDeaconShark;
 import org.avp.entities.living.EntityDracoEgg;
 import org.avp.entities.living.EntityDracoburster;
@@ -234,6 +235,7 @@ public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
     public Item summonerPredalien          = new ItemEntitySummoner(EntityPredalien.class);
     public Item summonerCombatSynthetic    = new ItemEntitySummoner(EntityCombatSynthetic.class);
     public Item summonerDeacon             = new ItemEntitySummoner(EntityDeacon.class);
+    public Item summonerDeaconAdult        = new ItemEntitySummoner(EntityDeaconAdult.class);
     public Item summonerHammerpede         = new ItemEntitySummoner(EntityHammerpede.class);
     public Item summonerTrilobite          = new ItemEntitySummoner(EntityTrilobite.class);
     public Item summonerYautjaBerserker    = new ItemEntitySummoner(EntityYautjaBerserker.class);
@@ -285,6 +287,7 @@ public class ItemHandler extends ItemRegistrationHandler<AliensVsPredator>
         register("summon.queen", summonerQueen).setCreativeTab(AliensVsPredator.tabEntities());
         register("summon.predalien", summonerPredalien).setCreativeTab(AliensVsPredator.tabEntities());
         register("summon.deacon", summonerDeacon).setCreativeTab(AliensVsPredator.tabEntities());
+        register("summon.deacon.adult", summonerDeaconAdult).setCreativeTab(AliensVsPredator.tabEntities());
         register("summon.deaconshark", summonerDeaconShark).setCreativeTab(AliensVsPredator.tabEntities());
         register("summon.hammerpede", summonerHammerpede).setCreativeTab(AliensVsPredator.tabEntities());
         register("summon.trilobite", summonerTrilobite).setCreativeTab(AliensVsPredator.tabEntities());

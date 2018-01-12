@@ -1,6 +1,8 @@
 package org.avp.client.model.entities.living;
 
-import com.arisux.mdx.lib.client.Model;
+import org.avp.entities.living.EntityMarine;
+
+import com.arisux.mdx.lib.client.render.model.Model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
@@ -11,7 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelMarine extends Model
+public class ModelMarine extends Model<EntityMarine>
 {
     public ModelRenderer      bipedHead;
     public ModelRenderer      bipedHeadwear;
@@ -63,50 +65,6 @@ public class ModelMarine extends Model
         this.bipedLeftLeg.mirror = true;
         this.bipedLeftLeg.addBox(-2.0F, 0.0F, -2.0F, 4, 12, 4, modelSize);
         this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F + p_i1149_2_, 0.0F);
-    }
-
-    /**
-     * Sets the models various rotation angles then renders the model.
-     */
-    public void render(Entity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale)
-    {
-        this.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale, entityIn);
-        GlStateManager.pushMatrix();
-
-        if (this.isChild)
-        {
-            float f = 2.0F;
-            GlStateManager.scale(0.75F, 0.75F, 0.75F);
-            GlStateManager.translate(0.0F, 16.0F * scale, 0.0F);
-            this.bipedHead.render(scale);
-            GlStateManager.popMatrix();
-            GlStateManager.pushMatrix();
-            GlStateManager.scale(0.5F, 0.5F, 0.5F);
-            GlStateManager.translate(0.0F, 24.0F * scale, 0.0F);
-            this.bipedBody.render(scale);
-            this.bipedRightArm.render(scale);
-            this.bipedLeftArm.render(scale);
-            this.bipedRightLeg.render(scale);
-            this.bipedLeftLeg.render(scale);
-            this.bipedHeadwear.render(scale);
-        }
-        else
-        {
-            if (entityIn.isSneaking())
-            {
-                GlStateManager.translate(0.0F, 0.2F, 0.0F);
-            }
-
-            this.bipedHead.render(scale);
-            this.bipedBody.render(scale);
-            this.bipedRightArm.render(scale);
-            this.bipedLeftArm.render(scale);
-            this.bipedRightLeg.render(scale);
-            this.bipedLeftLeg.render(scale);
-            this.bipedHeadwear.render(scale);
-        }
-
-        GlStateManager.popMatrix();
     }
 
     @SuppressWarnings("incomplete-switch")
@@ -308,5 +266,47 @@ public class ModelMarine extends Model
     protected EnumHandSide getMainHand(Entity entityIn)
     {
         return entityIn instanceof EntityLivingBase ? ((EntityLivingBase) entityIn).getPrimaryHand() : EnumHandSide.RIGHT;
+    }
+
+    @Override
+    public void render(EntityMarine marine)
+    {
+        this.setRotationAngles(swingProgress(marine), swingProgressPrev(marine), idleProgress(marine), headYaw(marine), headPitch(marine), DEFAULT_SCALE, marine);
+        GlStateManager.pushMatrix();
+
+        if (this.isChild)
+        {
+            float f = 2.0F;
+            GlStateManager.scale(0.75F, 0.75F, 0.75F);
+            GlStateManager.translate(0.0F, 16.0F * DEFAULT_SCALE, 0.0F);
+            this.bipedHead.render(DEFAULT_SCALE);
+            GlStateManager.popMatrix();
+            GlStateManager.pushMatrix();
+            GlStateManager.scale(0.5F, 0.5F, 0.5F);
+            GlStateManager.translate(0.0F, 24.0F * DEFAULT_SCALE, 0.0F);
+            this.bipedBody.render(DEFAULT_SCALE);
+            this.bipedRightArm.render(DEFAULT_SCALE);
+            this.bipedLeftArm.render(DEFAULT_SCALE);
+            this.bipedRightLeg.render(DEFAULT_SCALE);
+            this.bipedLeftLeg.render(DEFAULT_SCALE);
+            this.bipedHeadwear.render(DEFAULT_SCALE);
+        }
+        else
+        {
+            if (marine.isSneaking())
+            {
+                GlStateManager.translate(0.0F, 0.2F, 0.0F);
+            }
+
+            this.bipedHead.render(DEFAULT_SCALE);
+            this.bipedBody.render(DEFAULT_SCALE);
+            this.bipedRightArm.render(DEFAULT_SCALE);
+            this.bipedLeftArm.render(DEFAULT_SCALE);
+            this.bipedRightLeg.render(DEFAULT_SCALE);
+            this.bipedLeftLeg.render(DEFAULT_SCALE);
+            this.bipedHeadwear.render(DEFAULT_SCALE);
+        }
+
+        GlStateManager.popMatrix();
     }
 }

@@ -3,8 +3,8 @@ package org.avp.world;
 import org.avp.AliensVsPredator;
 import org.avp.item.ItemFirearm;
 
-import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -52,7 +52,7 @@ public enum MarineTypes
     }
 
     @SideOnly(Side.CLIENT)
-    public TexturedModel<? extends Model> getFirearmModelTexMap()
+    public MapModelTexture<? extends Model> getFirearmModelTexMap()
     {
         switch (this)
         {

@@ -10,6 +10,6 @@ public class RenderDeacon extends RenderXenomorph<EntityDeacon, ModelDeacon>
 {
     public RenderDeacon(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().DEACON, 1.4F);
+        super(m, AliensVsPredator.resources().models().DEACON, 0.75F);
     }
 }

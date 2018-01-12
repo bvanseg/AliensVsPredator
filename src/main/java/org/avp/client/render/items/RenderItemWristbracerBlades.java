@@ -3,9 +3,9 @@ package org.avp.client.render.items;
 import org.avp.AliensVsPredator;
 import org.avp.client.model.items.ModelWristBlade;
 
-import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.Model;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;

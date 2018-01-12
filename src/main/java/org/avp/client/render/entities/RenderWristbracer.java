@@ -5,9 +5,9 @@ import org.avp.client.model.entities.ModelPlasma;
 import org.avp.client.model.items.ModelWristBlade;
 import org.avp.entities.EntityWristbracer;
 
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.Color;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderWristbracer extends Render<EntityWristbracer>
 {
-    private final TexturedModel<ModelWristBlade> wristbracer = AliensVsPredator.resources().models().WRISTBLADES.clone();
+    private final MapModelTexture<ModelWristBlade> wristbracer = AliensVsPredator.resources().models().WRISTBLADES.clone();
     private final ModelPlasma                    model       = new ModelPlasma();
     private float                                rotation;
     private float                                rotationPrev;

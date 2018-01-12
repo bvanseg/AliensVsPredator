@@ -14,9 +14,9 @@ import org.lwjgl.opengl.GL12;
 import org.lwjgl.util.glu.Project;
 
 import com.arisux.mdx.MDX;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.Color;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.util.MDXMath;
 import com.arisux.mdx.lib.world.Worlds;
@@ -37,8 +37,8 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
 public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRenderer
 {
-    private static final TexturedModel<ModelPlasmaCannon> MODEL              = AliensVsPredator.resources().models().PLASMACANNON.clone();
-    private static final TexturedModel<ModelPlasmaCannon> MODEL_FIRST_PERSON = MODEL.clone();
+    private static final MapModelTexture<ModelPlasmaCannon> MODEL              = AliensVsPredator.resources().models().PLASMACANNON.clone();
+    private static final MapModelTexture<ModelPlasmaCannon> MODEL_FIRST_PERSON = MODEL.clone();
     private static final ModelPlasma                      MODEL_PLASMA       = new ModelPlasma().setColor(new Color(0.3F, 0.6F, 1F, 0.7F));
 
     @Override

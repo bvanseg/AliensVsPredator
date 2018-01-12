@@ -2,9 +2,9 @@ package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.client.render.wavefront.Part;
 import com.arisux.mdx.lib.game.Game;
 

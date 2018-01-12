@@ -12,8 +12,8 @@ import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.tile.TileEntityCryostasisTube;
 import org.lwjgl.opengl.GL12;
 
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -68,7 +68,7 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
 
         public void renderTube(RenderCryostasisTube renderer, TileEntityCryostasisTube tile, double posX, double posY, double posZ)
         {
-            TexturedModel<?> mask = null;
+            MapModelTexture<?> mask = null;
 
             if (tile.isShattered())
             {

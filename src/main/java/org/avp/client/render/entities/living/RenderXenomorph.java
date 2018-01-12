@@ -2,10 +2,10 @@ package org.avp.client.render.entities.living;
 
 import org.avp.entities.living.EntityXenomorph;
 
-import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
@@ -14,12 +14,12 @@ public class RenderXenomorph<XENO extends EntityXenomorph, MODEL extends Model> 
 {
     private float scale;
 
-    public RenderXenomorph(RenderManager m, TexturedModel<MODEL> modelTexMap)
+    public RenderXenomorph(RenderManager m, MapModelTexture<MODEL> modelTexMap)
     {
         this(m, modelTexMap, 1F);
     }
 
-    public RenderXenomorph(RenderManager m, TexturedModel<MODEL> modelTexMap, float scale)
+    public RenderXenomorph(RenderManager m, MapModelTexture<MODEL> modelTexMap, float scale)
     {
         super(m, modelTexMap);
         this.scale = scale;

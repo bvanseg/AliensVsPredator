@@ -4,8 +4,8 @@ import org.avp.AliensVsPredator;
 import org.avp.block.BlockSkull;
 import org.avp.client.model.entities.living.ModelEngineer;
 
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.Texture;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,7 +16,7 @@ public class BlockSkullEngineer extends BlockSkull
     @SideOnly(Side.CLIENT)
     private static class Resources
     {
-        private static final TexturedModel<ModelEngineer> model = AliensVsPredator.resources().models().ENGINEER;
+        private static final MapModelTexture<ModelEngineer> model = AliensVsPredator.resources().models().ENGINEER;
     }
 
     @Override

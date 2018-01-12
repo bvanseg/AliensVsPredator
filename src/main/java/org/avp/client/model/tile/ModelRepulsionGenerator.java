@@ -2,7 +2,7 @@ package org.avp.client.model.tile;
 
 import org.avp.tile.TileEntityRepulsionGenerator;
 
-import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.Minecraft;

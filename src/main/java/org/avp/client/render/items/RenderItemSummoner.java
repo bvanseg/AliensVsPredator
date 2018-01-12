@@ -1,9 +1,9 @@
 package org.avp.client.render.items;
 
-import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
@@ -14,10 +14,10 @@ public class RenderItemSummoner extends ItemRenderer<Model>
     private float            scale;
     private float            x;
     private float            y;
-    private TexturedModel<?> model;
+    private MapModelTexture<?> model;
 
     @SuppressWarnings("all")
-    public RenderItemSummoner(TexturedModel<?> model)
+    public RenderItemSummoner(MapModelTexture<?> model)
     {
         super(null);
         this.model = model.clone();

@@ -8,9 +8,9 @@ import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.entities.EntityMedpod;
 import org.avp.entities.living.EntityFacehugger;
 
-import com.arisux.mdx.lib.client.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
@@ -20,7 +20,7 @@ public class RenderFacehuggers<FACEHUGGER extends EntityFacehugger, MODEL extend
 {
     public static ArrayList<EntityRenderTransforms> transforms = new ArrayList<EntityRenderTransforms>();
 
-    public RenderFacehuggers(RenderManager m, TexturedModel<MODEL> model)
+    public RenderFacehuggers(RenderManager m, MapModelTexture<MODEL> model)
     {
         super(m, model);
     }

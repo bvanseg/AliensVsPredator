@@ -2,9 +2,9 @@ package org.avp.client.render.items;
 
 import org.avp.block.BlockSkull;
 
-import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.Model;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.model.ModelRenderer;

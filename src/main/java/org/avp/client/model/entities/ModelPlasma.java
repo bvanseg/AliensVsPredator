@@ -2,11 +2,11 @@ package org.avp.client.model.entities;
 
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.Model;
 import com.arisux.mdx.lib.client.render.Color;
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.Vertex;
+import com.arisux.mdx.lib.client.render.model.Model;
 
 public class ModelPlasma extends Model
 {

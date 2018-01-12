@@ -5,9 +5,9 @@ import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.LevelData;
 import org.avp.world.playermode.PlayerMode;
 
-import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.Texture;
+import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.game.IInitEvent;
 import com.arisux.mdx.lib.world.entity.player.Players;
 
@@ -129,7 +129,7 @@ public class PlayerModeHandler implements IInitEvent
     }
 
     @SideOnly(Side.CLIENT)
-    public TexturedModel<? extends Model> getModelTexMapForPlayer(EntityPlayer player)
+    public MapModelTexture<? extends Model> getModelTexMapForPlayer(EntityPlayer player)
     {
         return getLevelMappingForPlayer(player).getModelTexMap();
     }

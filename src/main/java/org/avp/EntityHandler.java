@@ -32,6 +32,7 @@ import org.avp.entities.living.EntityChestburster;
 import org.avp.entities.living.EntityCombatSynthetic;
 import org.avp.entities.living.EntityCrusher;
 import org.avp.entities.living.EntityDeacon;
+import org.avp.entities.living.EntityDeaconAdult;
 import org.avp.entities.living.EntityDeaconShark;
 import org.avp.entities.living.EntityDracoEgg;
 import org.avp.entities.living.EntityDracoburster;
@@ -77,6 +78,7 @@ import org.avp.tile.TileEntityLightPanel;
 import org.avp.tile.TileEntityLocker;
 import org.avp.tile.TileEntityMedpod;
 import org.avp.tile.TileEntityNegativeTransformer;
+import org.avp.tile.TileEntityNetworkRack;
 import org.avp.tile.TileEntityPowercell;
 import org.avp.tile.TileEntityPowerline;
 import org.avp.tile.TileEntityRedstoneEmitter;
@@ -85,7 +87,6 @@ import org.avp.tile.TileEntityRedstoneSensor;
 import org.avp.tile.TileEntityReflective;
 import org.avp.tile.TileEntityRepulsionGenerator;
 import org.avp.tile.TileEntitySatelliteDish;
-import org.avp.tile.TileEntityNetworkRack;
 import org.avp.tile.TileEntitySevastopolBlastDoor;
 import org.avp.tile.TileEntitySkull;
 import org.avp.tile.TileEntitySolarPanel;
@@ -240,6 +241,7 @@ public class EntityHandler implements IInitEvent, IPreInitEvent
         Game.register(EntityUrsuidae.class, "Ursuidae", entityId++, AliensVsPredator.instance(), 250, 1, true, 0x222222, 0x00AAFF);
         Game.register(EntityScelemur.class, "VardaMonkey", entityId++, AliensVsPredator.instance(), 250, 1, true, 0x222222, 0x00AAFF);
         Game.register(EntityYautjaMutant.class, "YautjaMutant", entityId++, AliensVsPredator.instance(), 250, 1, true, 0x222222, 0x00AAFF);
+        Game.register(EntityDeaconAdult.class, "DeaconAdult", entityId++, AliensVsPredator.instance(), 250, 1, true, 0x222222, 0x00AAFF);
     }
 
     private static final Class<?>[][] PARAM_TYPES = new Class[][] { { EnumCreatureType.class, Class.class, int.class, Material.class, boolean.class, boolean.class } };

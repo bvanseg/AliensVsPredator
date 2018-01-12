@@ -1,7 +1,7 @@
 package org.avp.world.playermode;
 
-import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.stats.Achievement;
@@ -14,7 +14,7 @@ public class LevelData
     private Achievement achievement;
 
     @SideOnly(Side.CLIENT)
-    private TexturedModel<? extends Model> modelTexMap;
+    private MapModelTexture<? extends Model> modelTexMap;
 
     public LevelData(int level)
     {
@@ -42,7 +42,7 @@ public class LevelData
         return level;
     }
 
-    public TexturedModel<? extends Model> getModelTexMap()
+    public MapModelTexture<? extends Model> getModelTexMap()
     {
         return modelTexMap;
     }
@@ -53,7 +53,7 @@ public class LevelData
     }
 
     @SideOnly(Side.CLIENT)
-    public LevelData setModelTexMap(TexturedModel<? extends Model> modelTexMap)
+    public LevelData setModelTexMap(MapModelTexture<? extends Model> modelTexMap)
     {
         this.modelTexMap = modelTexMap;
         return this;

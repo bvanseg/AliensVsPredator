@@ -2,7 +2,7 @@ package org.avp.client.model.tile;
 
 import org.avp.tile.TileEntityTurret;
 
-import com.arisux.mdx.lib.client.Model;
+import com.arisux.mdx.lib.client.render.model.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 

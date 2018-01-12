@@ -3,9 +3,9 @@ package org.avp.client.render.items.firearms.parts;
 import org.avp.client.model.items.ModelM56SG;
 import org.avp.client.render.items.ItemRendererGroup;
 
-import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 
 public class RenderItemM56SGStock extends ItemRendererGroup<ModelM56SG>
 {
-    public RenderItemM56SGStock(TexturedModel<ModelM56SG> model, ModelRenderer... modelRenderers)
+    public RenderItemM56SGStock(MapModelTexture<ModelM56SG> model, ModelRenderer... modelRenderers)
     {
         super(model, modelRenderers);
     }

@@ -5,8 +5,8 @@ import org.avp.client.model.entities.living.ModelMyceliomorph;
 import org.avp.entities.living.EntityMyceliomorph;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.RenderLivingWrapper;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.RenderLivingWrapper;
 
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;

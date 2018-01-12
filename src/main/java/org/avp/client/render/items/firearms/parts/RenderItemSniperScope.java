@@ -3,9 +3,9 @@ package org.avp.client.render.items.firearms.parts;
 import org.avp.client.model.items.ModelSniper;
 import org.avp.client.render.items.ItemRendererGroup;
 
-import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -16,7 +16,7 @@ import net.minecraft.item.ItemStack;
 
 public class RenderItemSniperScope extends ItemRendererGroup<ModelSniper>
 {
-    public RenderItemSniperScope(TexturedModel<ModelSniper> model, ModelRenderer... modelRenderers)
+    public RenderItemSniperScope(MapModelTexture<ModelSniper> model, ModelRenderer... modelRenderers)
     {
         super(model, modelRenderers);
     }

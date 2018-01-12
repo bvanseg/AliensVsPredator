@@ -1,7 +1,7 @@
 package org.avp.item;
 
-import com.arisux.mdx.lib.client.Model;
-import com.arisux.mdx.lib.client.TexturedModel;
+import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.entity.Entity;
@@ -45,11 +45,11 @@ public abstract class ItemNetworkRackModule extends HookedItem
     }
 
     @SideOnly(Side.CLIENT)
-    public abstract TexturedModel<Model> getModel();
+    public abstract MapModelTexture<Model> getModel();
 
     @SideOnly(Side.CLIENT)
-    public abstract TexturedModel<Model> getModelOn();
+    public abstract MapModelTexture<Model> getModelOn();
 
     @SideOnly(Side.CLIENT)
-    public abstract TexturedModel<Model> getModelOff();
+    public abstract MapModelTexture<Model> getModelOff();
 }

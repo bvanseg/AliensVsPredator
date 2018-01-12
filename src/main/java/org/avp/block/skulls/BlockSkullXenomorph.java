@@ -4,9 +4,9 @@ import org.avp.AliensVsPredator;
 import org.avp.block.BlockSkull;
 import org.avp.client.model.entities.living.ModelWarrior;
 
-import com.arisux.mdx.lib.client.TexturedModel;
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.Texture;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,7 +17,7 @@ public class BlockSkullXenomorph extends BlockSkull
     @SideOnly(Side.CLIENT)
     private static class Resources
     {
-        private static final TexturedModel<ModelWarrior> model = AliensVsPredator.resources().models().DRONE_SKULL;
+        private static final MapModelTexture<ModelWarrior> model = AliensVsPredator.resources().models().DRONE_SKULL;
     }
 
     @Override
