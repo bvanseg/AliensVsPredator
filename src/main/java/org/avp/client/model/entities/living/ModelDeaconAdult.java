@@ -464,15 +464,15 @@ public class ModelDeaconAdult extends Model<EntityDeaconAdult>
         oscillate(tailBlade01, 2F * speed, 0.2F * 0.8F, false, -0.5F, 0.1F, swingProgress(deacon), swingProgressPrev(deacon));
 
         flap(lShoulder, 2F * speed, 0.05F * 0.8F, false, -0.5F, 0F, swingProgress(deacon), swingProgressPrev(deacon));
-        swing(lShoulder, 1F * speed, 0.1F * 0.8F, true, 0F, -0.3F, swingProgress(deacon), swingProgressPrev(deacon));
+        swing(lShoulder, 1F * speed, 0.1F * 0.8F, true, 0F, 0.3F, swingProgress(deacon), swingProgressPrev(deacon));
         flap(lUpperArm, 2F * speed, 0.05F * 0.8F, true, -1F, 0F, swingProgress(deacon), swingProgressPrev(deacon));
-        flap(lHand, 2F * speed, 0.2F, false, 0F, -0.85F, swingProgress(deacon), swingProgressPrev(deacon));
+        flap(lHand, 2F * speed, 0.2F, false, 0F, 0.5F, swingProgress(deacon), swingProgressPrev(deacon));
         oscillate(lLowerArm, 2F * speed, 0.1F * mult, true, 0F, 1.25F, swingProgress(deacon), swingProgressPrev(deacon));
 
         flap(rShoulder, 2F * speed, 0.05F * 0.8F, false, -0.5F, 0F, swingProgress(deacon), swingProgressPrev(deacon));
         swing(rShoulder, 1F * speed, 0.1F * 0.8F, true, 0F, -0.3F, swingProgress(deacon), swingProgressPrev(deacon));
         flap(rUpperArm, 2F * speed, 0.05F * 0.8F, true, -1F, 0F, swingProgress(deacon), swingProgressPrev(deacon));
-        flap(rHand, 2F * speed, 0.2F, false, 0F, -0.85F, swingProgress(deacon), swingProgressPrev(deacon));
+        flap(rHand, 2F * speed, 0.2F, false, 0F, -0.5F, swingProgress(deacon), swingProgressPrev(deacon));
         oscillate(rLowerArm, 2F * speed, 0.1F * mult, true, 0F, 1.25F, swingProgress(deacon), swingProgressPrev(deacon));
         
         draw(chest01);
