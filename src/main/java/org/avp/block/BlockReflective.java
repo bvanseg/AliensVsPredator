@@ -432,7 +432,7 @@ public class BlockReflective extends Block implements ITileEntityProvider
             }
         }
 
-        block.setCreativeTab(AliensVsPredator.tabBlocks());
+        block.setCreativeTab(AliensVsPredator.tabs().blocks);
         AliensVsPredator.blocks().register(identifier, block);
     }
 

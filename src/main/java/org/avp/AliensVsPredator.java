@@ -52,6 +52,7 @@ public class AliensVsPredator implements IMod
     {
         console().pre(event);
         settings().pre(event);
+        tabs().pre(event);
         items().pre(event);
         capabilities().pre(event);
         entities().pre(event);
@@ -75,7 +76,6 @@ public class AliensVsPredator implements IMod
         materials().init(event);
         world().init(event);
         crafting().init(event);
-        tabs().init(event);
         interfaces().init(event);
         events().init(event);
         commands().init(event);
@@ -232,35 +232,5 @@ public class AliensVsPredator implements IMod
     public static CreativeTab tabs()
     {
         return CreativeTab.instance;
-    }
-    
-    public static CreativeTabs tabMain()
-    {
-        return tabs().tabMain;
-    }
-
-    public static CreativeTabs tabBlocks()
-    {
-        return tabs().tabBlocks;
-    }
-
-    public static CreativeTabs tabEntitiesIncomplete()
-    {
-        return tabs().tabEntitiesIncomplete;
-    }
-
-    public static CreativeTabs tabEntities()
-    {
-        return tabs().tabEntities;
-    }
-
-    public static CreativeTabs tabGunComponents()
-    {
-        return tabs().tabGunParts;
-    }
-
-    public static CreativeTabs tabSurvivalResources()
-    {
-        return tabs().tabRecipeItems;
     }
 }

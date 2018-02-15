@@ -218,54 +218,54 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     private void register()
     {
         /** Special **/
-        register("skull.engineer", skullEngineer).setCreativeTab(AliensVsPredator.tabMain());
-        register("skull.spacejockey", skullJockey).setCreativeTab(AliensVsPredator.tabMain());
-        register("skull.xenomorph", skullXeno).setCreativeTab(AliensVsPredator.tabMain());
-        register("skull.xenomorph.warrior", skullXenoWarrior).setCreativeTab(AliensVsPredator.tabMain());
-        register("skull.yautja", skullYautja).setCreativeTab(AliensVsPredator.tabMain());
-        register("unitree.wood", gigerLog).setCreativeTab(AliensVsPredator.tabMain());
-        register("unitree.tendons", gigerTendons).setCreativeTab(AliensVsPredator.tabMain());
-        register("unitree.leaves", gigerLeaves).setCreativeTab(AliensVsPredator.tabMain());
-        register("unitree.sapling", gigerSapling).setCreativeTab(AliensVsPredator.tabMain());
-        register("stalagmite", stalagmite).setCreativeTab(AliensVsPredator.tabMain());
-        register("oresilicon", oreSilicon).setCreativeTab(AliensVsPredator.tabSurvivalResources());
-        register("orecopper", oreCopper).setCreativeTab(AliensVsPredator.tabSurvivalResources());
-        register("orelithium", oreLithium).setCreativeTab(AliensVsPredator.tabSurvivalResources());
-        register("orebauxite", oreBauxite).setCreativeTab(AliensVsPredator.tabSurvivalResources());
-        register("oremonazite", oreMonazite).setCreativeTab(AliensVsPredator.tabSurvivalResources());
-        register("orecobalt", oreCobalt).setCreativeTab(AliensVsPredator.tabSurvivalResources());
-        register("solarpanel", solarPanel).setCreativeTab(AliensVsPredator.tabMain());
-        register("networkrack", networkRack).setCreativeTab(AliensVsPredator.tabMain());
-        register("satellitedish", satelliteDish).setCreativeTab(AliensVsPredator.tabMain());
-        register("powercell", powercell).setCreativeTab(AliensVsPredator.tabMain());
-        register("transformer", transformer).setCreativeTab(AliensVsPredator.tabMain());
-        register("transformernegative", stepdownTransformer).setCreativeTab(AliensVsPredator.tabMain());
-        register("redstonesensor", redstoneSensor).setCreativeTab(AliensVsPredator.tabMain());
-        register("redstoneemitter", redstoneEmitter).setCreativeTab(AliensVsPredator.tabMain());
-        register("universalgenerator", universalGenerator).setCreativeTab(AliensVsPredator.tabMain());
-        register("spawner", eggReceptacle).setCreativeTab(AliensVsPredator.tabMain());
-        register("portal.varda", portalVarda).setCreativeTab(AliensVsPredator.tabMain());
-        register("portal.acheron", portalAcheron).setCreativeTab(AliensVsPredator.tabMain());
-        register("assembler", assembler).setCreativeTab(AliensVsPredator.tabMain());
-        register("turret", turret).setCreativeTab(AliensVsPredator.tabMain());
-        register("terminal", terminal).setCreativeTab(AliensVsPredator.tabMain());
-        register("stasismechanism", stasisMechanism).setCreativeTab(AliensVsPredator.tabMain());
-        register("generator", repulsionGenerator).setCreativeTab(AliensVsPredator.tabMain());
-        register("powerline", powerline).setCreativeTab(AliensVsPredator.tabMain());
-        register("blastdoor", blastDoor).setCreativeTab(AliensVsPredator.tabMain());
-        register("blastdoor.sevastopol", sevastopolBlastDoor).setCreativeTab(AliensVsPredator.tabMain());
-        register("supplychuteblock", supplyCrate).setCreativeTab(AliensVsPredator.tabMain());
-        register("supplychuteblock.marines", crateMarines).setCreativeTab(AliensVsPredator.tabMain());
-        register("supplychuteblock.seegson", crateSeegson).setCreativeTab(AliensVsPredator.tabMain());
-        register("cryostasistube", cryoTube).setCreativeTab(AliensVsPredator.tabMain());
-        register("lightpanel", lightPanel).setCreativeTab(AliensVsPredator.tabMain());
-        register("ccfltube", ccflTube).setCreativeTab(AliensVsPredator.tabMain());
-        register("mainframepanel.shimmer", muthurPanel1).setCreativeTab(AliensVsPredator.tabMain());
-        register("mainframepanel.flicker", muthurPanel2).setCreativeTab(AliensVsPredator.tabMain());
-        register("engineership.ampule", ampule).setCreativeTab(AliensVsPredator.tabMain());
-        register("locker", locker).setCreativeTab(AliensVsPredator.tabMain());
-        register("gunlocker", gunLocker).setCreativeTab(AliensVsPredator.tabMain());
-        register("medpod", medpod).setCreativeTab(AliensVsPredator.tabMain());
+        register("skull.engineer", skullEngineer).setCreativeTab(AliensVsPredator.tabs().main);
+        register("skull.spacejockey", skullJockey).setCreativeTab(AliensVsPredator.tabs().main);
+        register("skull.xenomorph", skullXeno).setCreativeTab(AliensVsPredator.tabs().main);
+        register("skull.xenomorph.warrior", skullXenoWarrior).setCreativeTab(AliensVsPredator.tabs().main);
+        register("skull.yautja", skullYautja).setCreativeTab(AliensVsPredator.tabs().main);
+        register("unitree.wood", gigerLog).setCreativeTab(AliensVsPredator.tabs().main);
+        register("unitree.tendons", gigerTendons).setCreativeTab(AliensVsPredator.tabs().main);
+        register("unitree.leaves", gigerLeaves).setCreativeTab(AliensVsPredator.tabs().main);
+        register("unitree.sapling", gigerSapling).setCreativeTab(AliensVsPredator.tabs().main);
+        register("stalagmite", stalagmite).setCreativeTab(AliensVsPredator.tabs().main);
+        register("oresilicon", oreSilicon).setCreativeTab(AliensVsPredator.tabs().recipeItems);
+        register("orecopper", oreCopper).setCreativeTab(AliensVsPredator.tabs().recipeItems);
+        register("orelithium", oreLithium).setCreativeTab(AliensVsPredator.tabs().recipeItems);
+        register("orebauxite", oreBauxite).setCreativeTab(AliensVsPredator.tabs().recipeItems);
+        register("oremonazite", oreMonazite).setCreativeTab(AliensVsPredator.tabs().recipeItems);
+        register("orecobalt", oreCobalt).setCreativeTab(AliensVsPredator.tabs().recipeItems);
+        register("solarpanel", solarPanel).setCreativeTab(AliensVsPredator.tabs().main);
+        register("networkrack", networkRack).setCreativeTab(AliensVsPredator.tabs().main);
+        register("satellitedish", satelliteDish).setCreativeTab(AliensVsPredator.tabs().main);
+        register("powercell", powercell).setCreativeTab(AliensVsPredator.tabs().main);
+        register("transformer", transformer).setCreativeTab(AliensVsPredator.tabs().main);
+        register("transformernegative", stepdownTransformer).setCreativeTab(AliensVsPredator.tabs().main);
+        register("redstonesensor", redstoneSensor).setCreativeTab(AliensVsPredator.tabs().main);
+        register("redstoneemitter", redstoneEmitter).setCreativeTab(AliensVsPredator.tabs().main);
+        register("universalgenerator", universalGenerator).setCreativeTab(AliensVsPredator.tabs().main);
+        register("spawner", eggReceptacle).setCreativeTab(AliensVsPredator.tabs().main);
+        register("portal.varda", portalVarda).setCreativeTab(AliensVsPredator.tabs().main);
+        register("portal.acheron", portalAcheron).setCreativeTab(AliensVsPredator.tabs().main);
+        register("assembler", assembler).setCreativeTab(AliensVsPredator.tabs().main);
+        register("turret", turret).setCreativeTab(AliensVsPredator.tabs().main);
+        register("terminal", terminal).setCreativeTab(AliensVsPredator.tabs().main);
+        register("stasismechanism", stasisMechanism).setCreativeTab(AliensVsPredator.tabs().main);
+        register("generator", repulsionGenerator).setCreativeTab(AliensVsPredator.tabs().main);
+        register("powerline", powerline).setCreativeTab(AliensVsPredator.tabs().main);
+        register("blastdoor", blastDoor).setCreativeTab(AliensVsPredator.tabs().main);
+        register("blastdoor.sevastopol", sevastopolBlastDoor).setCreativeTab(AliensVsPredator.tabs().main);
+        register("supplychuteblock", supplyCrate).setCreativeTab(AliensVsPredator.tabs().main);
+        register("supplychuteblock.marines", crateMarines).setCreativeTab(AliensVsPredator.tabs().main);
+        register("supplychuteblock.seegson", crateSeegson).setCreativeTab(AliensVsPredator.tabs().main);
+        register("cryostasistube", cryoTube).setCreativeTab(AliensVsPredator.tabs().main);
+        register("lightpanel", lightPanel).setCreativeTab(AliensVsPredator.tabs().main);
+        register("ccfltube", ccflTube).setCreativeTab(AliensVsPredator.tabs().main);
+        register("mainframepanel.shimmer", muthurPanel1).setCreativeTab(AliensVsPredator.tabs().main);
+        register("mainframepanel.flicker", muthurPanel2).setCreativeTab(AliensVsPredator.tabs().main);
+        register("engineership.ampule", ampule).setCreativeTab(AliensVsPredator.tabs().main);
+        register("locker", locker).setCreativeTab(AliensVsPredator.tabs().main);
+        register("gunlocker", gunLocker).setCreativeTab(AliensVsPredator.tabs().main);
+        register("medpod", medpod).setCreativeTab(AliensVsPredator.tabs().main);
 
         /** Shaped **/
         register("slope", slope);
@@ -360,7 +360,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     @Override
     public Block register(String identifier, Block block)
     {
-        block.setCreativeTab(AliensVsPredator.tabBlocks());
+        block.setCreativeTab(AliensVsPredator.tabs().blocks);
         return super.register(identifier, block);
     }
 
@@ -483,7 +483,7 @@ public class BlockHandler extends BlockRegistrationHandler<AliensVsPredator>
     {
         for (BlockRegistration registration : registrations)
         {
-            registration.registerItemBlock(event).setCreativeTab(AliensVsPredator.tabBlocks());
+            registration.registerItemBlock(event).setCreativeTab(AliensVsPredator.tabs().blocks);
         }
     }
 }

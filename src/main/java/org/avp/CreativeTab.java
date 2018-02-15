@@ -1,27 +1,27 @@
 package org.avp;
 
 import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.game.IInitEvent;
+import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public class CreativeTab implements IInitEvent
+public class CreativeTab implements IPreInitEvent
 {
     public static final CreativeTab instance = new CreativeTab();
 
-    public CreativeTabs             tabMain;
-    public CreativeTabs             tabBlocks;
-    public CreativeTabs             tabEntities;
-    public CreativeTabs             tabEntitiesIncomplete;
-    public CreativeTabs             tabGunParts;
-    public CreativeTabs             tabRecipeItems;
+    public CreativeTabs             main;
+    public CreativeTabs             blocks;
+    public CreativeTabs             entities;
+    public CreativeTabs             entitiesIncomplete;
+    public CreativeTabs             gunComponents;
+    public CreativeTabs             recipeItems;
 
     @Override
-    public void init(FMLInitializationEvent event)
+    public void pre(FMLPreInitializationEvent event)
     {
-        tabMain = new CreativeTabs("main") {
+        main = new CreativeTabs("main") {
             @Override
             public Item getTabIconItem()
             {
@@ -33,7 +33,7 @@ public class CreativeTab implements IInitEvent
                 return "Main";
             }
         };
-        tabBlocks = new CreativeTabs("blocks") {
+        blocks = new CreativeTabs("blocks") {
             @Override
             public Item getTabIconItem()
             {
@@ -45,7 +45,7 @@ public class CreativeTab implements IInitEvent
                 return "Blocks";
             }
         };
-        tabEntities = new CreativeTabs("summoners") {
+        entities = new CreativeTabs("summoners") {
             @Override
             public Item getTabIconItem()
             {
@@ -57,7 +57,7 @@ public class CreativeTab implements IInitEvent
                 return "Mobs";
             }
         };
-        tabEntitiesIncomplete = new CreativeTabs("summoners_wip") {
+        entitiesIncomplete = new CreativeTabs("summoners_wip") {
             @Override
             public Item getTabIconItem()
             {
@@ -69,7 +69,7 @@ public class CreativeTab implements IInitEvent
                 return "Mobs (Incomplete)";
             }
         };
-        tabGunParts = new CreativeTabs("gunparts") {
+        gunComponents = new CreativeTabs("gunparts") {
             @Override
             public Item getTabIconItem()
             {
@@ -81,7 +81,7 @@ public class CreativeTab implements IInitEvent
                 return "Gun Components";
             }
         };
-        tabRecipeItems = new CreativeTabs("recipeitems") {
+        recipeItems = new CreativeTabs("recipeitems") {
             @Override
             public Item getTabIconItem()
             {

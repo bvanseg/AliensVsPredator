@@ -16,7 +16,7 @@ public class BlockRegistrationAVP extends BlockRegistration
     @Override
     public Block applyModifiers(Block block)
     {
-        block.setCreativeTab(AliensVsPredator.tabs().tabBlocks);
+        block.setCreativeTab(AliensVsPredator.tabs().blocks);
         return super.applyModifiers(block);
     }
 }
