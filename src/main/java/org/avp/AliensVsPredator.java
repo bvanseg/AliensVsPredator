@@ -9,7 +9,6 @@ import org.avp.client.Sounds;
 import org.avp.world.CapabilityHandler;
 import org.avp.world.hives.HiveHandler;
 
-import com.arisux.mdx.MDXModule;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.IMod;
 
@@ -51,11 +50,6 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void pre(FMLPreInitializationEvent event)
     {
-        if (!MDXModule.prefetchComplete())
-        {
-            return;
-        }
-
         console().pre(event);
         settings().pre(event);
         items().pre(event);
@@ -68,11 +62,6 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void preClient(FMLPreInitializationEvent event)
     {
-        if (!MDXModule.prefetchComplete())
-        {
-            return;
-        }
-
         sounds().pre(event);
         renderers().pre(event);
     }
@@ -80,17 +69,13 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        if (!MDXModule.prefetchComplete())
-        {
-            return;
-        }
-
         console().init(event);
         network().init(event);
         dimensions().init(event);
         materials().init(event);
         world().init(event);
         crafting().init(event);
+        tabs().init(event);
         interfaces().init(event);
         events().init(event);
         commands().init(event);
@@ -103,22 +88,12 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void initClient(FMLInitializationEvent event)
     {
-        if (!MDXModule.prefetchComplete())
-        {
-            return;
-        }
-
         renderers().init(event);
     }
 
     @Mod.EventHandler
     public void post(FMLPostInitializationEvent event)
     {
-        if (!MDXModule.prefetchComplete())
-        {
-            return;
-        }
-
         console().post(event);
     }
 
@@ -126,22 +101,12 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void postClient(FMLPostInitializationEvent event)
     {
-        if (!MDXModule.prefetchComplete())
-        {
-            return;
-        }
-
         keybinds().post(event);
     }
 
     @EventHandler
     public void onServerStarting(FMLServerStartingEvent event)
     {
-        if (!MDXModule.prefetchComplete())
-        {
-            return;
-        }
-
         commands().onServerStarting(event);
     }
 
@@ -264,33 +229,38 @@ public class AliensVsPredator implements IMod
         return Settings.instance;
     }
 
+    public static CreativeTab tabs()
+    {
+        return CreativeTab.instance;
+    }
+    
     public static CreativeTabs tabMain()
     {
-        return CreativeTab.tabMain;
+        return tabs().tabMain;
     }
 
     public static CreativeTabs tabBlocks()
     {
-        return CreativeTab.tabBlocks;
+        return tabs().tabBlocks;
     }
 
     public static CreativeTabs tabEntitiesIncomplete()
     {
-        return CreativeTab.tabEntitiesIncomplete;
+        return tabs().tabEntitiesIncomplete;
     }
 
     public static CreativeTabs tabEntities()
     {
-        return CreativeTab.tabEntities;
+        return tabs().tabEntities;
     }
 
     public static CreativeTabs tabGunComponents()
     {
-        return CreativeTab.tabGunParts;
+        return tabs().tabGunParts;
     }
 
     public static CreativeTabs tabSurvivalResources()
     {
-        return CreativeTab.tabRecipeItems;
+        return tabs().tabRecipeItems;
     }
 }

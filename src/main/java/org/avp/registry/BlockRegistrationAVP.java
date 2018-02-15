@@ -1,6 +1,6 @@
 package org.avp.registry;
 
-import org.avp.CreativeTab;
+import org.avp.AliensVsPredator;
 
 import com.arisux.mdx.lib.game.registry.BlockRegistration;
 
@@ -16,7 +16,7 @@ public class BlockRegistrationAVP extends BlockRegistration
     @Override
     public Block applyModifiers(Block block)
     {
-        block.setCreativeTab(CreativeTab.tabBlocks);
+        block.setCreativeTab(AliensVsPredator.tabs().tabBlocks);
         return super.applyModifiers(block);
     }
 }
