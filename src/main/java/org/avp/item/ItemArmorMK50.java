@@ -23,15 +23,15 @@ public class ItemArmorMK50 extends ItemAntiVacuumArmor
         switch (slot)
         {
             case FEET:
-                return Draw.getResourcePath(AliensVsPredator.resources().MK501);
+                return Draw.getPath(AliensVsPredator.resources().MK501);
             case LEGS:
-                return Draw.getResourcePath(AliensVsPredator.resources().MK501);
+                return Draw.getPath(AliensVsPredator.resources().MK501);
             case CHEST:
-                return Draw.getResourcePath(AliensVsPredator.resources().MK502);
+                return Draw.getPath(AliensVsPredator.resources().MK502);
             case HEAD:
-                return Draw.getResourcePath(AliensVsPredator.resources().MK501);
+                return Draw.getPath(AliensVsPredator.resources().MK501);
             default:
-                return Draw.getResourcePath(AliensVsPredator.resources().MK502);
+                return Draw.getPath(AliensVsPredator.resources().MK502);
         }
     }
     

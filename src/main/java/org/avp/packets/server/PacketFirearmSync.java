@@ -71,17 +71,17 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
     public PacketFirearmSync onMessage(PacketFirearmSync packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                if (ctx.getServerHandler().playerEntity.getHeldItemMainhand() != null)
+                if (ctx.getServerHandler().player.getHeldItemMainhand() != null)
                 {
-                    EntityPlayer player = ctx.getServerHandler().playerEntity;
+                    EntityPlayer player = ctx.getServerHandler().player;
                     World world = player.world;
                     RayTraceResult.Type hitType = Entities.getMovingObjectType(packet.hitType);
-                    ItemFirearm itemFirearm = (ItemFirearm) ctx.getServerHandler().playerEntity.getHeldItemMainhand().getItem();
+                    ItemFirearm itemFirearm = (ItemFirearm) ctx.getServerHandler().player.getHeldItemMainhand().getItem();
                     FirearmProfile firearm = ItemFirearm.getFirearmForGlobalId(packet.firearmId);
 
                     if (itemFirearm != null && itemFirearm.canSoundPlay())
@@ -94,12 +94,12 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
                     {
                         if (packet.entityId != -1)
                         {
-                            Entity entity = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entityId);
+                            Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
 
                             if (entity != null)
                             {
                                 entity.hurtResistantTime = 0;
-                                entity.attackEntityFrom(DamageSources.causeBulletDamage(ctx.getServerHandler().playerEntity), firearm.getClassification().getBaseDamage());
+                                entity.attackEntityFrom(DamageSources.causeBulletDamage(ctx.getServerHandler().player), firearm.getClassification().getBaseDamage());
                             }
                         }
                     }

@@ -12,8 +12,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -128,8 +128,8 @@ public class EntityAPC extends Entity
             this.setForwardDirection(-this.getForwardDirection());
             this.setTimeSinceHit(10);
             this.setDamageTaken(this.getDamageTaken() + f * 10.0F);
-            this.setBeenAttacked();
-            boolean flag = dmgSource.getEntity() instanceof EntityPlayer && ((EntityPlayer) dmgSource.getEntity()).capabilities.isCreativeMode;
+            this.markVelocityChanged();
+            boolean flag = dmgSource.getTrueSource() instanceof EntityPlayer && ((EntityPlayer) dmgSource.getTrueSource()).capabilities.isCreativeMode;
 
             if (flag || this.getDamageTaken() > 200.0F)
             {
@@ -425,12 +425,12 @@ public class EntityAPC extends Entity
                 // if (block == Blocks.SNOW_LAYER)
                 // {
                 // this.world.setBlockToAir(pos);
-                // this.isCollidedHorizontally = false;
+                // this.collidedHorizontally = false;
                 // }
                 // else if (block == Blocks.WATERLILY)
                 // {
                 // block.breakBlock(this.world, pos, blockstate);
-                // this.isCollidedHorizontally = false;
+                // this.collidedHorizontally = false;
                 // }
                 // }
                 // }
@@ -442,7 +442,7 @@ public class EntityAPC extends Entity
                     this.motionZ = 0;
                 }
 
-                this.move(this.motionX, this.motionY, this.motionZ);
+                this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
                 this.motionX *= 0.65D;
                 this.motionY *= 0.94D;
                 this.motionZ *= 0.65D;
@@ -488,7 +488,7 @@ public class EntityAPC extends Entity
                             if (entity != driver)
                             {
                                 float hitDamage = (float) (40F * curVelocity);
-                                entity.attackEntityFrom(DamageSource.generic, hitDamage);
+                                entity.attackEntityFrom(DamageSource.GENERIC, hitDamage);
                                 System.out.println(hitDamage);
                             }
 
@@ -551,7 +551,7 @@ public class EntityAPC extends Entity
     }
 
     @Override
-    public boolean processInitialInteract(EntityPlayer player, ItemStack stack, EnumHand hand)
+    public boolean processInitialInteract(EntityPlayer player, EnumHand hand)
     {
         if (Entities.getEntityRiddenBy(this) != null && Entities.getEntityRiddenBy(this) instanceof EntityPlayer && Entities.getEntityRiddenBy(this) != player)
         {

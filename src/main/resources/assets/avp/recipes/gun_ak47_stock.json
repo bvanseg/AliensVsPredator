@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ccc",
+        "ab "
+    ],
+    "key": {
+        "c": [
+            {
+                "item": "items.itemIngotAluminum",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemSilicon",
+                "data": 0
+            }
+        ],
+        "a": [
+            {
+                "item": "items.itemCarbon",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:parts.ak47.stock",
+        "count": 1,
+        "data": 0
+    }
+}

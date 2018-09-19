@@ -90,7 +90,7 @@ public class TacticalHUDRenderEvent
 
                     OpenGL.pushMatrix();
                     {
-                        OpenGL.translate(p.xCoord, p.yCoord, p.zCoord);
+                        OpenGL.translate(p.x, p.y, p.z);
                         OpenGL.scale(scale, scale, scale);
 
                         if (Game.minecraft().player != null && specialPlayer != null)
@@ -104,11 +104,11 @@ public class TacticalHUDRenderEvent
                                         Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
                                         Entity rve = Game.minecraft().getRenderViewEntity();
 
-                                        Vec3d lPos = new Vec3d(living.posX, living.posY, living.posZ).addVector(0, living.getEyeHeight() / 2, 0);
+                                        Vec3d lPos = new Vec3d(living.posX, living.posY, living.posZ).add(0, living.getEyeHeight() / 2, 0);
                                         lPos = lPos.subtract(new Vec3d(rve.posX + (rve.posX - rve.prevPosX) * event.getPartialTicks(), rve.posY + (rve.posY - rve.prevPosY) * event.getPartialTicks(), rve.posZ + (rve.posZ - rve.prevPosZ) * event.getPartialTicks()));
 
-                                        Vec3d nPos = p.addVector(lPos.xCoord, lPos.yCoord, lPos.zCoord).normalize();
-                                        Vec3d rPos = p.addVector(-nPos.xCoord, -nPos.yCoord, -nPos.zCoord);
+                                        Vec3d nPos = p.add(lPos.x, lPos.y, lPos.z).normalize();
+                                        Vec3d rPos = p.add(-nPos.x, -nPos.y, -nPos.z);
 
                                         OpenGL.pushMatrix();
                                         {
@@ -119,8 +119,8 @@ public class TacticalHUDRenderEvent
                                             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
                                             OpenGL.disableLight();
                                             OpenGL.disableLightMapping();
-                                            OpenGL.translate(p.xCoord, p.yCoord, p.zCoord);
-                                            OpenGL.translate(-rPos.xCoord, -(rPos.yCoord), -rPos.zCoord);
+                                            OpenGL.translate(p.x, p.y, p.z);
+                                            OpenGL.translate(-rPos.x, -(rPos.y), -rPos.z);
                                             OpenGL.rotate(-Game.minecraft().player.rotationYaw - 180, 0, 1, 0);
                                             OpenGL.rotate(-Game.minecraft().player.rotationPitch, 1, 0, 0);
 
@@ -147,7 +147,7 @@ public class TacticalHUDRenderEvent
                                                 OpenGL.rotate(180F, 0F, 1F, 0F);
                                                 OpenGL.scale(textScale, -textScale, textScale);
 
-                                                String dist = ((int) living.getDistanceToEntity(Game.minecraft().player)) + "";
+                                                String dist = ((int) living.getDistanceSq(Game.minecraft().player)) + "";
                                                 Draw.drawString(dist, textX - 19 - (Draw.getStringRenderWidth(dist) / 2), (textY += textMultiplier) + 15, color, false);
 
                                                 if (organism.hasEmbryo())
@@ -261,8 +261,8 @@ public class TacticalHUDRenderEvent
                 buttonMarineHelmConfig.tooltip = "Click to configure the Tactical HUD.";
                 buttonMarineHelmConfig.width = 70;
                 buttonMarineHelmConfig.baseColor = 0x44000000;
-                buttonMarineHelmConfig.xPosition = Screen.scaledDisplayResolution().getScaledWidth() - buttonMarineHelmConfig.width;
-                buttonMarineHelmConfig.yPosition = 0;
+                buttonMarineHelmConfig.x = Screen.scaledDisplayResolution().getScaledWidth() - buttonMarineHelmConfig.width;
+                buttonMarineHelmConfig.y = 0;
                 buttonMarineHelmConfig.drawButton();
             }
         }
@@ -479,14 +479,14 @@ public class TacticalHUDRenderEvent
             if (x <= viewportThreshold && player != null)
             {
                 int barSpace = 15;
-                int signal = (int) Game.minecraft().player.getDistanceToEntity(player);
+                int signal = (int) Game.minecraft().player.getDistanceSq(player);
                 int maxSignal = specialPlayer.getBroadcastRadius() <= this.specialPlayer.getBroadcastRadius() ? specialPlayer.getBroadcastRadius() : this.specialPlayer.getBroadcastRadius();
                 int pxMultiplier = signal >= maxSignal / 1.3 ? 5 : signal >= maxSignal / 2 ? 4 : signal >= maxSignal / 3 ? 3 : signal >= maxSignal / 4 ? 2 : signal >= maxSignal / 5 ? 1 : signal >= maxSignal / 6 ? 0 : 0;
 
                 Draw.drawRect(Screen.scaledDisplayResolution().getScaledWidth() - 111, 40 + barSpace * x - 5, 120, 2, 0xAA00AAFF);
                 Draw.drawRect(Screen.scaledDisplayResolution().getScaledWidth() - 111, 42 + barSpace * x - 5, 2, 9, 0xAA00AAFF);
 
-                if (Game.minecraft().player.getDistanceToEntity(player) <= this.specialPlayer.getBroadcastRadius() && signal <= maxSignal / 1.3)
+                if (Game.minecraft().player.getDistanceSq(player) <= this.specialPlayer.getBroadcastRadius() && signal <= maxSignal / 1.3)
                 {
                     OpenGL.color(1F, 1F, 1F, 1F);
                     Draw.bindTexture(Gui.ICONS);

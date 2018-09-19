@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "aba",
+        "aaa"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemIngotAluminum",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "Items.OAK_DOOR",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:locker",
+        "count": 1,
+        "data": 0
+    }
+}

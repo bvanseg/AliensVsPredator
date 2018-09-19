@@ -59,7 +59,7 @@ public class TileEntityTransformer extends TileEntityElectrical implements IVolt
     {
         super.readFromNBT(nbt);
 
-        this.direction = EnumFacing.getFront(nbt.getInteger("Direction"));
+        this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
     }
 
     @Override

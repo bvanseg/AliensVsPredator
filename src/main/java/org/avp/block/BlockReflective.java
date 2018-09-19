@@ -29,7 +29,6 @@ import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -38,14 +37,14 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class BlockReflective extends Block implements ITileEntityProvider
 {
-    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
-    public static final PropertyEnum<EnumAlignment> ALIGNMENT = PropertyEnum.<EnumAlignment>create("alignment", EnumAlignment.class);
+    public static final PropertyDirection              FACING     = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+    public static final PropertyEnum<EnumAlignment>    ALIGNMENT  = PropertyEnum.<EnumAlignment>create("alignment", EnumAlignment.class);
     public static final IUnlistedProperty<IBlockState> REFLECTION = new UnlistedPropertyBlockstate();
 
     public BlockReflective(Material materialIn)
@@ -74,7 +73,7 @@ public class BlockReflective extends Block implements ITileEntityProvider
     }
 
     @Override
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
@@ -98,7 +97,7 @@ public class BlockReflective extends Block implements ITileEntityProvider
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileEntity tile = worldIn.getTileEntity(pos);
 
@@ -121,7 +120,7 @@ public class BlockReflective extends Block implements ITileEntityProvider
             }
         }
 
-        return super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ);
+        return super.onBlockActivated(worldIn, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
     }
 
     @Override
@@ -182,21 +181,21 @@ public class BlockReflective extends Block implements ITileEntityProvider
 
         switch (meta % 4)
         {
-        case 0:
-            facing = EnumFacing.NORTH;
-            break;
-        case 1:
-            facing = EnumFacing.EAST;
-            break;
-        case 2:
-            facing = EnumFacing.SOUTH;
-            break;
-        case 3:
-            facing = EnumFacing.WEST;
-            break;
-        default:
-            facing = EnumFacing.NORTH;
-            break;
+            case 0:
+                facing = EnumFacing.NORTH;
+                break;
+            case 1:
+                facing = EnumFacing.EAST;
+                break;
+            case 2:
+                facing = EnumFacing.SOUTH;
+                break;
+            case 3:
+                facing = EnumFacing.WEST;
+                break;
+            default:
+                facing = EnumFacing.NORTH;
+                break;
         }
 
         return this.getDefaultState().withProperty(ALIGNMENT, alignment).withProperty(FACING, facing);
@@ -218,21 +217,21 @@ public class BlockReflective extends Block implements ITileEntityProvider
 
         switch ((EnumFacing) state.getValue(FACING))
         {
-        case NORTH:
-            meta = meta + 0;
-            break;
-        case EAST:
-            meta = meta + 1;
-            break;
-        case SOUTH:
-            meta = meta + 2;
-            break;
-        case WEST:
-            meta = meta + 3;
-            break;
-        default:
-            meta = meta + 0;
-            break;
+            case NORTH:
+                meta = meta + 0;
+                break;
+            case EAST:
+                meta = meta + 1;
+                break;
+            case SOUTH:
+                meta = meta + 2;
+                break;
+            case WEST:
+                meta = meta + 3;
+                break;
+            default:
+                meta = meta + 0;
+                break;
         }
 
         return meta;
@@ -308,15 +307,15 @@ public class BlockReflective extends Block implements ITileEntityProvider
     }
 
     @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn)
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
     {
         this.convert(worldIn, pos);
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
     {
-        super.onEntityCollidedWithBlock(worldIn, pos, state, entityIn);
+        super.onEntityCollision(worldIn, pos, state, entityIn);
         this.convert(worldIn, pos);
     }
 
@@ -338,48 +337,48 @@ public class BlockReflective extends Block implements ITileEntityProvider
     {
         if (this.convert && !world.isRemote)
         {
-            String unlocalizedName = this.getUnlocalizedName();
+            String unlocalizedName = this.getTranslationKey();
             IBlockState state = world.getBlockState(pos);
             Block type = null;
             String name = "";
 
-            if (this.getUnlocalizedName().contains("slope"))
+            if (this.getTranslationKey().contains("slope"))
             {
                 type = AliensVsPredator.blocks().slope;
                 name = "slope";
             }
 
-            if (this.getUnlocalizedName().contains("corner"))
+            if (this.getTranslationKey().contains("corner"))
             {
                 type = AliensVsPredator.blocks().corner;
                 name = "corner";
             }
 
-            if (this.getUnlocalizedName().contains("invertedcorner"))
+            if (this.getTranslationKey().contains("invertedcorner"))
             {
                 type = AliensVsPredator.blocks().invertedCorner;
                 name = "invertedcorner";
             }
 
-            if (this.getUnlocalizedName().contains("ridge"))
+            if (this.getTranslationKey().contains("ridge"))
             {
                 type = AliensVsPredator.blocks().ridge;
                 name = "ridge";
             }
 
-            if (this.getUnlocalizedName().contains("invertedridge"))
+            if (this.getTranslationKey().contains("invertedridge"))
             {
                 type = AliensVsPredator.blocks().invertedRidge;
                 name = "invertedridge";
             }
 
-            if (this.getUnlocalizedName().contains("smartridge"))
+            if (this.getTranslationKey().contains("smartridge"))
             {
                 type = AliensVsPredator.blocks().pyramid;
                 name = "smartridge";
             }
 
-            if (this.getUnlocalizedName().contains("smartinvertedridge"))
+            if (this.getTranslationKey().contains("smartinvertedridge"))
             {
                 type = AliensVsPredator.blocks().invertedPyramid;
                 name = "smartinvertedridge";
@@ -412,35 +411,5 @@ public class BlockReflective extends Block implements ITileEntityProvider
                 CommandBlockUpdate.triggerBlockUpdates(world, 4, pos.getX(), pos.getY(), pos.getZ());
             }
         }
-    }
-
-    public static final String[] SHAPE_COMPAT_TYPES = new String[] { "slope", "corner", "invertedcorner", "ridge", "invertedridge", "smartinvertedridge", "smartridge" };
-
-    public static void registerCompatBlocks(String identifier, Block block)
-    {
-        if (AliensVsPredator.settings().isCompatibilityModeEnabled())
-        {
-            for (final String type : SHAPE_COMPAT_TYPES)
-            {
-                String shapeId = String.format("%s.%s", identifier, type);
-                registerBlockOnly(shapeId, new BlockReflective(Material.BARRIER, true));
-
-                if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-                {
-                    ReflectiveModelLoader.INSTANCE.registerDummy(shapeId);
-                }
-            }
-        }
-
-        block.setCreativeTab(AliensVsPredator.tabs().blocks);
-        AliensVsPredator.blocks().register(identifier, block);
-    }
-
-    public static Block registerBlockOnly(String identifier, Block block)
-    {
-        block.setUnlocalizedName(String.format("%s:%s", AliensVsPredator.Properties.ID, identifier));
-        GameRegistry.register(block, new ResourceLocation(AliensVsPredator.Properties.ID, identifier));
-
-        return block;
     }
 }

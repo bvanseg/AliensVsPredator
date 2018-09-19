@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "ABA",
+    "AAA"
+  ],
+  "key": {
+    "A": [
+      {
+        "item": "avp:part.ic",
+        "data": 0
+      }
+    ],
+    "B": [
+      {
+        "item": "avp:polycarbonate",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "avp:part.processor",
+    "data": 0
+  }
+}

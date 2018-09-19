@@ -13,7 +13,7 @@ import net.minecraft.item.ItemStack;
 public class RenderNetworkRack extends TileEntitySpecialRenderer<TileEntityNetworkRack>
 {
     @Override
-    public void renderTileEntityAt(TileEntityNetworkRack rack, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityNetworkRack rack, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         if (rack != null && rack.isParent())
         {

@@ -15,7 +15,7 @@ public class RenderMedpod extends TileEntitySpecialRenderer<TileEntityMedpod>
     public static ArrayList<EntityRenderTransforms> transforms = new ArrayList<EntityRenderTransforms>();
 
     @Override
-    public void renderTileEntityAt(TileEntityMedpod tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityMedpod tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

@@ -13,7 +13,7 @@ import net.minecraft.util.EnumFacing;
 public class RenderTransformer extends TileEntitySpecialRenderer<TileEntityTransformer>
 {
     @Override
-    public void renderTileEntityAt(TileEntityTransformer tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityTransformer tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         if (tile != null && tile instanceof TileEntityTransformer)
         {

@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import org.avp.client.render.block.model.cached.CachedModelReflectiveShape;
 
-import com.google.common.base.Function;
 import com.google.common.collect.ImmutableSet;
 
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -38,9 +37,9 @@ public class ModelReflectiveShape implements IModel
     {
         return ImmutableSet.of(textureResource);
     }
-
+    
     @Override
-    public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
+    public IBakedModel bake(IModelState state, VertexFormat format, java.util.function.Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
     {
         IModel model = null;
         
@@ -55,7 +54,7 @@ public class ModelReflectiveShape implements IModel
         
         return new CachedModelReflectiveShape(bakedTextureGetter.apply(textureResource), model);
     }
-
+    
     @Override
     public IModelState getDefaultState()
     {

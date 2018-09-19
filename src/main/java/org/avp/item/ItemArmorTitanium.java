@@ -31,15 +31,15 @@ public class ItemArmorTitanium extends ItemArmor
         switch (slot)
         {
             case FEET:
-                return Draw.getResourcePath(AliensVsPredator.resources().TITANIUM1);
+                return Draw.getPath(AliensVsPredator.resources().TITANIUM1);
             case LEGS:
-                return Draw.getResourcePath(AliensVsPredator.resources().TITANIUM2);
+                return Draw.getPath(AliensVsPredator.resources().TITANIUM2);
             case CHEST:
-                return Draw.getResourcePath(AliensVsPredator.resources().TITANIUM1);
+                return Draw.getPath(AliensVsPredator.resources().TITANIUM1);
             case HEAD:
-                return Draw.getResourcePath(AliensVsPredator.resources().TITANIUM1);
+                return Draw.getPath(AliensVsPredator.resources().TITANIUM1);
             default:
-                return Draw.getResourcePath(AliensVsPredator.resources().TITANIUM1);
+                return Draw.getPath(AliensVsPredator.resources().TITANIUM1);
         }
     }
 

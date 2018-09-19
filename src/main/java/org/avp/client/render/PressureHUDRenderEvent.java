@@ -137,7 +137,7 @@ public class PressureHUDRenderEvent
 
         OpenGL.pushMatrix();
         {
-            FontRenderer fontrenderer = Game.minecraft().fontRendererObj;
+            FontRenderer fontrenderer = Game.minecraft().fontRenderer;
             OpenGL.scale(scale, scale, scale);
             OpenGL.enable(GL_BLEND);
             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
@@ -253,14 +253,14 @@ public class PressureHUDRenderEvent
                                 if (((EntityLiving) entity).getAttackTarget() != null)
                                 {
                                     fontrenderer.drawString("AttackTarget: " + ((EntityLiving) entity).getAttackTarget().getName(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
-                                    fontrenderer.drawString("Distance to Target: " + (((EntityLiving) entity).getAttackTarget() != null ? entity.getDistanceToEntity(((EntityLiving) entity).getAttackTarget()) : 0), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
+                                    fontrenderer.drawString("Distance to Target: " + (((EntityLiving) entity).getAttackTarget() != null ? entity.getDistanceSq(((EntityLiving) entity).getAttackTarget()) : 0), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
                                 }
 
-                                fontrenderer.drawString("LastAttacked: " + ((EntityLiving) entity).getLastAttackerTime(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
+                                fontrenderer.drawString("LastAttacked: " + ((EntityLiving) entity).getLastAttackedEntityTime(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
 
-                                if (((EntityLiving) entity).getLastAttacker() != null)
+                                if (((EntityLiving) entity).getLastAttackedEntity() != null)
                                 {
-                                    fontrenderer.drawString("LastAttacker: " + ((EntityLiving) entity).getLastAttacker().getName(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
+                                    fontrenderer.drawString("LastAttacker: " + ((EntityLiving) entity).getLastAttackedEntity().getName(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
                                 }
 
                                 fontrenderer.drawString("Armor: " + ((EntityLiving) entity).getTotalArmorValue(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
@@ -272,7 +272,7 @@ public class PressureHUDRenderEvent
                                 EntityLivingBase entityLiving = (EntityLivingBase) entity;
 //                                Organism extendedLiving = (Organism) entityLiving.getExtendedProperties(Organism.IDENTIFIER);
 
-                                fontrenderer.drawString("Age: " + entityLiving.getAge(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
+                                fontrenderer.drawString("Age: " + entityLiving.getIdleTime(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
 
 //                                if (!(entity instanceof EntitySpeciesAlien) && extendedLiving.getEmbryo() != null)
 //                                    fontrenderer.drawString("Parasite Type: " + extendedLiving.getEmbryo().getResult().getSimpleName(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);

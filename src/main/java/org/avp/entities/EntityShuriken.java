@@ -148,7 +148,7 @@ public class EntityShuriken extends Entity
             {
                 AxisAlignedBB box = blockstate.getBoundingBox(this.world, pos);
 
-                if (box != null && box.isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
+                if (box != null && box.contains(new Vec3d(this.posX, this.posY, this.posZ)))
                 {
                     this.inGround = true;
                 }
@@ -192,11 +192,11 @@ public class EntityShuriken extends Entity
 
             if (result != null)
             {
-                Vec3dd1 = new Vec3d(result.hitVec.xCoord, result.hitVec.yCoord, result.hitVec.zCoord);
+                Vec3dd1 = new Vec3d(result.hitVec.x, result.hitVec.y, result.hitVec.z);
             }
 
             Entity entity = null;
-            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d = 0.0D;
             int f3;
             float f6;
@@ -261,7 +261,7 @@ public class EntityShuriken extends Entity
                             ++((EntityLivingBase) result.entityHit).arrowHitTimer;
                         }
 
-                        GameSounds.fxBowHit.playSound(this, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+                        GameSounds.fxBowHit.playSound(this, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));;
                     }
                     else
                     {
@@ -275,18 +275,18 @@ public class EntityShuriken extends Entity
                 }
                 else
                 {
-                    this.xTile = (int) result.hitVec.xCoord;
-                    this.yTile = (int) result.hitVec.yCoord;
-                    this.zTile = (int) result.hitVec.zCoord;
+                    this.xTile = (int) result.hitVec.x;
+                    this.yTile = (int) result.hitVec.y;
+                    this.zTile = (int) result.hitVec.z;
                     this.inTile = block;
-                    this.motionX = ((float) (result.hitVec.xCoord - this.posX));
-                    this.motionY = ((float) (result.hitVec.yCoord - this.posY));
-                    this.motionZ = ((float) (result.hitVec.zCoord - this.posZ));
+                    this.motionX = ((float) (result.hitVec.x - this.posX));
+                    this.motionY = ((float) (result.hitVec.y - this.posY));
+                    this.motionZ = ((float) (result.hitVec.z - this.posZ));
                     velocity = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     this.posX -= this.motionX / velocity * 0.05000000074505806D;
                     this.posY -= this.motionY / velocity * 0.05000000074505806D;
                     this.posZ -= this.motionZ / velocity * 0.05000000074505806D;
-                    GameSounds.fxBowHit.playSound(this, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));
+                    GameSounds.fxBowHit.playSound(this, 1.0F, 1.2F / (this.rand.nextFloat() * 0.2F + 0.9F));;
                     this.inGround = true;
                     this.arrowShake = 7;
                     this.arrowCritical = false;
@@ -382,7 +382,7 @@ public class EntityShuriken extends Entity
             {
                 if (entityplayer.inventory.addItemStackToInventory(new ItemStack(AliensVsPredator.items().itemShuriken, 1)))
                 {
-                    GameSounds.fxPop.playSound(this, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                    GameSounds.fxPop.playSound(this, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);;
                     entityplayer.onItemPickup(this, 1);
                     this.setDead();
                 }

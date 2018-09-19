@@ -79,7 +79,7 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
     }
     
     @Override
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

@@ -117,30 +117,30 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
         channel.drawTextBox();
 
         txPower.label = "TX Power";
-        txPower.xPosition = interfaceStartX + 10;
-        txPower.yPosition = elementStart += elementSpacing;
+        txPower.x = interfaceStartX + 10;
+        txPower.y = elementStart += elementSpacing;
         txPower.width = 120;
         txPower.height = 15;
         txPower.sliderMaxValue = 1024;
         txPower.sliderButtonColor = 0xCC00DDFF;
         txPower.tooltip = "The distance this tactical HUD will connect to other tactical HUDs.";
-        Draw.drawString("Transmit Power", txPower.xPosition + txPower.width + 10, txPower.yPosition + 3, 0xFFCCCCCC);
+        Draw.drawString("Transmit Power", txPower.x + txPower.width + 10, txPower.y + 3, 0xFFCCCCCC);
         txPower.drawButton();
 
         viewportThreshold.label = "Threshold";
-        viewportThreshold.xPosition = interfaceStartX + 10;
-        viewportThreshold.yPosition = elementStart += elementSpacing;
+        viewportThreshold.x = interfaceStartX + 10;
+        viewportThreshold.y = elementStart += elementSpacing;
         viewportThreshold.width = 120;
         viewportThreshold.height = 15;
         viewportThreshold.sliderMaxValue = 32;
         viewportThreshold.sliderButtonColor = 0xCC00DDFF;
         viewportThreshold.tooltip = "The amount of users with tactical HUDs to display in the viewport.";
-        Draw.drawString("Viewport Threshold", viewportThreshold.xPosition + viewportThreshold.width + 10, viewportThreshold.yPosition + 3, 0xFFCCCCCC);
+        Draw.drawString("Viewport Threshold", viewportThreshold.x + viewportThreshold.width + 10, viewportThreshold.y + 3, 0xFFCCCCCC);
         viewportThreshold.drawButton();
 
         nightvision.displayString = player.isNightvisionEnabled() ? "Disable Nightvision" : "Enable Nightvision";
-        nightvision.xPosition = interfaceStartX + 10;
-        nightvision.yPosition = elementStart += elementSpacing;
+        nightvision.x = interfaceStartX + 10;
+        nightvision.y = elementStart += elementSpacing;
         nightvision.width = 120;
         nightvision.height = 18;
         nightvision.baseColor = 0xCC00DDFF;
@@ -148,8 +148,8 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
         nightvision.tooltip = "Toggle nightvision on or off.";
 
         entityCulling.displayString = player.isEntityCullingEnabled() ? "Disable Entity Culling" : "Enable Entity Culling";
-        entityCulling.xPosition = interfaceStartX + 10;
-        entityCulling.yPosition = elementStart += elementSpacing;
+        entityCulling.x = interfaceStartX + 10;
+        entityCulling.y = elementStart += elementSpacing;
         entityCulling.width = 120;
         entityCulling.height = 18;
         entityCulling.baseColor = 0xCC00DDFF;
@@ -157,8 +157,8 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
         entityCulling.tooltip = "";
 
         save.displayString = "Save";
-        save.xPosition = interfaceStartX + 10;
-        save.yPosition = Screen.scaledDisplayResolution().getScaledHeight() - save.height - 10;
+        save.x = interfaceStartX + 10;
+        save.y = Screen.scaledDisplayResolution().getScaledHeight() - save.height - 10;
         save.width = 50;
         save.height = 20;
         save.baseColor = 0xCC00DDFF;

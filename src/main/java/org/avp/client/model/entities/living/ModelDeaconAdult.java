@@ -1,6 +1,9 @@
 package org.avp.client.model.entities.living;
 
-import static com.arisux.mdx.lib.client.render.model.AnimationHelper.*;
+import static com.arisux.mdx.lib.client.render.model.AnimationHelper.bob;
+import static com.arisux.mdx.lib.client.render.model.AnimationHelper.flap;
+import static com.arisux.mdx.lib.client.render.model.AnimationHelper.oscillate;
+import static com.arisux.mdx.lib.client.render.model.AnimationHelper.swing;
 
 import org.avp.entities.living.EntityDeaconAdult;
 

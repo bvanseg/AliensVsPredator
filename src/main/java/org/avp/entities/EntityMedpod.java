@@ -61,7 +61,7 @@ public class EntityMedpod extends Entity
 
         if (!this.world.isRemote && Entities.getEntityRiddenBy(this) == null && this.getTileEntity() != null)
         {
-            List<Entity> entities = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ));
+            List<Entity> entities = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ));
 
             if (entities != null && !entities.isEmpty())
             {

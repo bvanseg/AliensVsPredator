@@ -1,7 +1,7 @@
 package org.avp.item;
 
-import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.client.render.model.MapModelTexture;
+import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.entity.Entity;
@@ -28,9 +28,9 @@ public abstract class ItemNetworkRackModule extends HookedItem
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
+        return super.onItemRightClick(worldIn, playerIn, hand);
     }
 
     public NBTTagCompound writeToNBT()

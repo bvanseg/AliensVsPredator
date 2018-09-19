@@ -283,7 +283,7 @@ public class TeleporterLV extends Teleporter
                     l3 = k5 + (j3 - 1) * l5;
                     i4 = j2 + k3;
                     j4 = z + (j3 - 1) * l2;
-                    this.worldServer.notifyBlockOfStateChange(new BlockPos(l3, i4, j4), this.worldServer.getBlockState(new BlockPos(l3, i4, j4)).getBlock());
+                    this.worldServer.notifyNeighborsOfStateChange(new BlockPos(l3, i4, j4), this.worldServer.getBlockState(new BlockPos(l3, i4, j4)).getBlock(), true);
                 }
             }
         }

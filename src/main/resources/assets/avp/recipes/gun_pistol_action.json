@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ca",
+        "ab"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemIngotAluminum",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "Blocks.LEVER",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemSilicon",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:parts.pistol.action",
+        "count": 1,
+        "data": 0
+    }
+}

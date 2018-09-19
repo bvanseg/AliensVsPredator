@@ -32,11 +32,11 @@ public class BlockTempleSpawner extends Block
 
             if (!world.isRemote)
             {
-                if (!(world.isBlockIndirectlyGettingPowered(pos) > 0))
+                if (!(world.getRedstonePowerFromNeighbors(pos) > 0))
                 {
                     world.scheduleBlockUpdate(pos, this, 4, 1);
                 }
-                else if (world.isBlockIndirectlyGettingPowered(pos) > 0 && isQueenNear || world.isBlockIndirectlyGettingPowered(pos) > 0 && creativeOnly)
+                else if (world.getRedstonePowerFromNeighbors(pos) > 0 && isQueenNear || world.getRedstonePowerFromNeighbors(pos) > 0 && creativeOnly)
                 {
                     EntityOvamorph entityEgg = new EntityOvamorph(world);
                     entityEgg.setLocationAndAngles(pos.getX() + 0.5D, pos.getY() + 1.0D, pos.getZ() + 0.5D, 0.0F, 0.0F);

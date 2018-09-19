@@ -44,7 +44,7 @@ public class CryostasisTubeRenderers
                         OpenGL.disableLight();
                     OpenGL.translate(0F, -0.5F, 0F);
                     OpenGL.rotate(90F, 1F, 0F, 0F);
-                    Game.renderManager().doRenderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+                    Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
                 }
             }
         });
@@ -65,7 +65,7 @@ public class CryostasisTubeRenderers
                         OpenGL.disableLight();
                     OpenGL.translate(0F, -0.5F, 0F);
                     OpenGL.rotate(90F, 1F, 0F, 0F);
-                    Game.renderManager().doRenderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+                    Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
                 }
             }
         });
@@ -82,7 +82,7 @@ public class CryostasisTubeRenderers
                     OpenGL.translate(0F, 0.75F, 0F);
                     OpenGL.rotate(180F, 1F, 0F, 0F);
                     OpenGL.rotate(23.5F, 0F, 1F, 0F);
-                    Game.renderManager().doRenderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+                    Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
                 }
             }
         });
@@ -122,7 +122,7 @@ public class CryostasisTubeRenderers
                         OpenGL.disableLight();
                     OpenGL.translate(0F, -2.75F, depth);
                     OpenGL.rotate(90F, 1F, 0F, 0F);
-                    Game.renderManager().doRenderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+                    Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
 
                 }
                 else if (tile.stasisEntity instanceof EntityMatriarch)

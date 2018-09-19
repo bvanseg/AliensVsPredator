@@ -25,7 +25,6 @@ public class CraftingHandler implements IInitEvent
         BlockHandler blocks = AliensVsPredator.blocks();
 
         this.addOreDictionarySupport(items, blocks);
-        this.addRecipes(items, blocks);
         this.addSmelting(items, blocks);
         this.addSchematics(items, blocks);
     }
@@ -57,76 +56,6 @@ public class CraftingHandler implements IInitEvent
         OreDictionary.registerOre("oreMonazite", blocks.oreMonazite);
         OreDictionary.registerOre("cobalt", items.cobalt);
         OreDictionary.registerOre("oreCobalt", blocks.oreCobalt);
-    }
-
-    private void addRecipes(ItemHandler items, BlockHandler blocks)
-    {
-        GameRegistry.addRecipe(new ItemStack(items.itemCarbon, 2), "aa", "aa", 'a', Items.COAL);
-        GameRegistry.addRecipe(new ItemStack(items.itemCarbon, 2), "aa", "aa", 'a', new ItemStack(Items.COAL, 1, 1));
-        GameRegistry.addRecipe(new ItemStack(items.itemPolycarbonate, 2), "aaa", "bbb", "bbb", 'a', items.itemSilicon, 'b', items.itemCarbon);
-        GameRegistry.addRecipe(new ItemStack(items.itemResistor, 1), " a ", " b ", " a ", 'a', items.itemIngotCopper, 'b', items.itemCarbon);
-        GameRegistry.addRecipe(new ItemStack(items.itemDiode, 1), " a ", " b ", " c ", 'a', items.itemIngotCopper, 'b', items.itemCarbon, 'c', items.itemSilicon);
-        GameRegistry.addRecipe(new ItemStack(items.itemLed, 1), " b ", " c ", " a ", 'a', items.itemDiode, 'b', items.itemPolycarbonate, 'c', Items.REDSTONE);
-        GameRegistry.addRecipe(new ItemStack(items.itemCapacitor, 1), " a ", " b ", " a ", 'a', items.itemIngotCopper, 'b', items.itemIngotLithium);
-        GameRegistry.addRecipe(new ItemStack(items.itemVoltageRegulator, 1), " a ", " b ", " c ", 'a', items.itemDiode, 'b', items.itemIngotCopper, 'c', items.itemResistor);
-        GameRegistry.addRecipe(new ItemStack(items.itemTransistor, 1), "  a", "bc ", "  a", 'a', items.itemIngotAluminum, 'b', items.itemSilicon, 'c', Blocks.LEVER);
-        GameRegistry.addRecipe(new ItemStack(items.itemIntegratedCircuit, 1), "dbe", "cac", "fbg", 'a', items.itemPolycarbonate, 'b', items.itemIngotAluminum, 'c', items.itemIngotCopper, 'd', items.itemTransistor, 'e', items.itemResistor, 'f', items.itemVoltageRegulator, 'g', items.itemDiode);
-        GameRegistry.addRecipe(new ItemStack(items.itemProcessor, 1), "aaa", "aba", "aca", 'a', items.itemIntegratedCircuit, 'b', items.itemPolycarbonate, 'c', items.itemIngotLithium);
-        GameRegistry.addRecipe(new ItemStack(items.itemRAM, 1), "aaa", "cec", "dbd", 'a', items.itemIntegratedCircuit, 'b', items.itemPolycarbonate, 'c', items.itemSilicon, 'd', items.itemIngotCopper, 'e', items.itemVoltageRegulator);
-        GameRegistry.addRecipe(new ItemStack(items.itemMotherboard, 1), "aef", "gbc", "dbh", 'a', items.itemIntegratedCircuit, 'b', items.itemPolycarbonate, 'c', items.itemTransistor, 'd', items.itemCapacitor, 'e', items.itemVoltageRegulator, 'f', items.itemDiode, 'g', items.itemResistor, 'h', items.itemLed);
-        GameRegistry.addRecipe(new ItemStack(blocks.powerline, 2), " a ", "aba", " a ", 'a', items.itemPolycarbonate, 'b', items.itemIngotCopper);
-        GameRegistry.addRecipe(new ItemStack(blocks.transformer, 1), "aaa", "bca", "aaa", 'a', items.itemIngotCopper, 'b', items.itemVoltageRegulator, 'c', Blocks.IRON_BLOCK);
-        GameRegistry.addRecipe(new ItemStack(blocks.stepdownTransformer, 1), "aaa", "acb", "aaa", 'a', items.itemIngotCopper, 'b', items.itemVoltageRegulator, 'c', Blocks.IRON_BLOCK);
-        GameRegistry.addRecipe(new ItemStack(items.itemPowerSupply, 1), "abc", "dec", "abc", 'a', items.itemDiode, 'b', items.itemVoltageRegulator, 'c', items.itemIngotAluminum, 'd', items.itemCapacitor, 'e', blocks.transformer);
-        GameRegistry.addRecipe(new ItemStack(items.itemSolidStateDrive, 1), "aaa", "dcb", "fgh", 'a', items.itemRAM, 'b', items.itemVoltageRegulator, 'c', items.itemIntegratedCircuit, 'd', items.itemIngotLithium, 'e', items.itemVoltageRegulator, 'f', items.itemTransistor, 'g', items.itemPolycarbonate, 'h', items.itemCapacitor);
-        GameRegistry.addRecipe(new ItemStack(blocks.assembler, 1), "aba", "dfh", "ceg", 'a', items.itemRAM, 'b', items.itemProcessor, 'c', items.itemPowerSupply, 'd', items.itemPolycarbonate, 'e', items.itemSolidStateDrive, 'f', items.itemLedDisplay, 'g', items.itemMotherboard, 'h', items.itemTransistor);
-        GameRegistry.addRecipe(new ItemStack(items.itemLedDisplay, 1), "bdb", "bcb", "bab", 'a', items.itemIntegratedCircuit, 'b', items.itemLed, 'c', items.itemPolycarbonate, 'd', items.itemIngotLithium);
-        GameRegistry.addRecipe(new ItemStack(blocks.solarPanel, 1), "aaa", "bbb", "dcd", 'a', items.itemPolycarbonate, 'b', items.itemSilicon, 'c', items.itemIngotCopper, 'd', items.itemIngotLithium);
-        GameRegistry.addRecipe(new ItemStack(items.plateMarine, 1), "b b", "aba", "bab", 'a', items.itemIngotAluminum, 'b', Blocks.WOOL);
-        GameRegistry.addRecipe(new ItemStack(items.legsMarine, 1), "bab", "b b", "a a", 'a', items.itemIngotAluminum, 'b', Blocks.WOOL);
-        GameRegistry.addRecipe(new ItemStack(items.bootsMarine, 1), "b b", "a a", 'a', items.itemIngotAluminum, 'b', Blocks.WOOL);
-        GameRegistry.addRecipe(new ItemStack(items.pressureMask, 1), "aaa", "b b", "dcd", 'a', items.itemIngotAluminum, 'b', blocks.industrialglass, 'c', items.itemCarbon, 'd', items.itemSilicon);
-        GameRegistry.addRecipe(new ItemStack(items.pressureChest, 1), "b b", "aba", "bab", 'a', items.itemIngotAluminum, 'b', blocks.industrialglass);
-        GameRegistry.addRecipe(new ItemStack(items.pressurePants, 1), "bab", "b b", "a a", 'a', items.itemIngotAluminum, 'b', blocks.industrialglass);
-        GameRegistry.addRecipe(new ItemStack(items.pressureBoots, 1), "b b", "a a", 'a', items.itemIngotAluminum, 'b', blocks.industrialglass);
-        GameRegistry.addRecipe(new ItemStack(items.mk50helmet, 1), "aaa", "b b", "dcd", 'a', items.itemIngotCopper, 'b', blocks.industrialglass, 'c', items.itemCarbon, 'd', items.itemSilicon);
-        GameRegistry.addRecipe(new ItemStack(items.mk50body, 1), "b b", "aba", "bab", 'a', items.itemIngotCopper, 'b', blocks.industrialglass);
-        GameRegistry.addRecipe(new ItemStack(items.mk50pants, 1), "bab", "b b", "a a", 'a', items.itemIngotCopper, 'b', blocks.industrialglass);
-        GameRegistry.addRecipe(new ItemStack(items.mk50boots, 1), "b b", "a a", 'a', items.itemIngotCopper, 'b', blocks.industrialglass);
-        GameRegistry.addRecipe(new ItemStack(items.itemPistol, 1), "bc", "a ", 'a', items.itemPistolStock, 'b', items.itemPistolAction, 'c', items.itemPistolBarrel);
-        GameRegistry.addRecipe(new ItemStack(items.itemPistolStock, 1), "ccc", "ab ", 'a', items.itemIngotAluminum, 'b', items.itemSilicon, 'c', Blocks.PLANKS);
-        GameRegistry.addRecipe(new ItemStack(items.itemPistolAction, 1), "ca", "ab", 'a', items.itemIngotAluminum, 'b', Blocks.LEVER, 'c', items.itemSilicon);
-        GameRegistry.addRecipe(new ItemStack(items.itemPistolBarrel, 1), "aaa", "b  ", 'a', Items.IRON_INGOT, 'b', items.itemSilicon);
-        GameRegistry.addRecipe(new ItemStack(items.itemAmmoPistol, 2), " a ", "bcb", "bcb", 'a', items.itemIngotCopper, 'b', items.itemIngotAluminum, 'c', Items.GUNPOWDER);
-        GameRegistry.addRecipe(new ItemStack(items.itemM4, 1), "bc", "a ", 'a', items.itemM4Stock, 'b', items.itemM4Action, 'c', items.itemM4Barrel);
-        GameRegistry.addRecipe(new ItemStack(items.itemM4Stock, 1), "ccc", "ab ", 'c', items.itemIngotAluminum, 'a', items.itemSilicon, 'b', items.itemCarbon);
-        GameRegistry.addRecipe(new ItemStack(items.itemM4Action, 1), "caa", "ab ", 'a', items.itemIngotAluminum, 'b', Blocks.LEVER, 'c', items.itemSilicon);
-        GameRegistry.addRecipe(new ItemStack(items.itemM4Barrel, 1), "aaa", "bc ", 'a', Items.IRON_INGOT, 'b', items.itemSilicon, 'c', items.itemCarbon);
-        GameRegistry.addRecipe(new ItemStack(items.itemAK47, 1), "bc", "a ", 'a', items.itemAK47Stock, 'b', items.itemAK47Action, 'c', items.itemAK47Barrel);
-        GameRegistry.addRecipe(new ItemStack(items.itemAK47Stock, 1), "ccc", "ab ", 'c', items.itemIngotAluminum, 'b', items.itemSilicon, 'a', items.itemCarbon);
-        GameRegistry.addRecipe(new ItemStack(items.itemAK47Action, 1), "caa", "db ", 'a', items.itemIngotAluminum, 'b', Blocks.LEVER, 'c', items.itemSilicon, 'd', Items.IRON_INGOT);
-        GameRegistry.addRecipe(new ItemStack(items.itemAK47Barrel, 1), "aaa", "cb ", 'a', Items.IRON_INGOT, 'b', items.itemSilicon, 'c', items.itemCarbon);
-        GameRegistry.addRecipe(new ItemStack(items.itemAmmoAR, 1), " a ", "bcb", "bdb", 'a', Items.IRON_INGOT, 'b', items.itemIngotAluminum, 'c', Items.GUNPOWDER, 'd', items.itemIngotCopper);
-        GameRegistry.addRecipe(new ItemStack(items.itemGrenade, 1), " d ", "aca", " b ", 'a', Items.IRON_INGOT, 'b', items.itemIngotAluminum, 'c', Items.GUNPOWDER, 'd', items.itemIngotCopper);
-        GameRegistry.addRecipe(new ItemStack(items.itemIncendiaryGrenade, 1), " d ", "aca", " b ", 'a', Items.IRON_INGOT, 'b', items.itemIngotAluminum, 'c', Items.BLAZE_POWDER, 'd', items.itemIngotCopper);
-        GameRegistry.addRecipe(new ItemStack(items.itemSevastopolFlamethrower, 1), "e f", "ada", "bbc", 'a', items.itemPolycarbonate, 'b', items.itemIngotAluminum, 'c', Blocks.LEVER, 'd', items.itemSilicon, 'e', Items.IRON_INGOT, 'f', Items.FLINT_AND_STEEL);
-        GameRegistry.addRecipe(new ItemStack(items.itemPropaneTank, 1), "dad", "bcb", "bbb", 'a', Items.SLIME_BALL, 'b', items.itemIngotAluminum, 'c', Items.BLAZE_POWDER, 'd', items.itemPolycarbonate);
-        GameRegistry.addRecipe(new ItemStack(blocks.industrialwall, 16), "bbb", "aaa", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.COBBLESTONE);
-        GameRegistry.addRecipe(new ItemStack(blocks.industrialwallstriped, 16), "bbb", "aaa", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.STONE);
-        GameRegistry.addRecipe(new ItemStack(blocks.wallStairs, 12), "b  ", "aa ", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.COBBLESTONE);
-        GameRegistry.addRecipe(new ItemStack(blocks.industrialglass, 16), "bbb", "aaa", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.GLASS);
-        GameRegistry.addRecipe(new ItemStack(blocks.industrialGlassStairs, 12), "b  ", "aa ", "bbb", 'a', items.itemPolycarbonate, 'b', Blocks.GLASS);
-        GameRegistry.addRecipe(new ItemStack(blocks.industrialbricks, 16), "bbb", "aaa", "bbb", 'a', Items.IRON_INGOT, 'b', Items.BRICK);
-        GameRegistry.addRecipe(new ItemStack(blocks.ironBricksStairs, 12), "b  ", "aa ", "bbb", 'a', Items.IRON_INGOT, 'b', Items.BRICK);
-        GameRegistry.addRecipe(new ItemStack(blocks.blastDoor, 1), "aba", "cdc", "aba", 'a', items.itemPolycarbonate, 'b', Blocks.OBSIDIAN, 'c', Items.IRON_DOOR, 'd', Blocks.STICKY_PISTON);
-        GameRegistry.addRecipe(new ItemStack(items.itemMaintenanceJack, 1), "a  ", " a ", "aab", 'a', items.itemIngotAluminum, 'b', items.itemPolycarbonate);
-        GameRegistry.addRecipe(new ItemStack(blocks.locker, 1), "aaa", "aba", "aaa", 'a', items.itemIngotAluminum, 'b', Items.OAK_DOOR);
-        GameRegistry.addRecipe(new ItemStack(blocks.gunLocker, 1), "aaa", "aba", "aaa", 'a', items.itemIngotAluminum, 'b', Items.IRON_DOOR);
-        GameRegistry.addRecipe(new ItemStack(items.itemDoritos, 3), "aaa", "a b", "bbb", 'a', Items.WHEAT, 'b', Items.BAKED_POTATO);
-        GameRegistry.addRecipe(new ItemStack(items.itemDoritosCoolRanch, 1), "ab", "b ", 'a', items.itemDoritos, 'b', Items.WHEAT);
-        GameRegistry.addRecipe(new ItemStack(blocks.muthurPanel1, 1), "aba", "bcb", "aba", 'a', Items.GLOWSTONE_DUST, 'b', Items.REDSTONE, 'c', items.itemSilicon);
-        GameRegistry.addRecipe(new ItemStack(blocks.muthurPanel2, 1), "bab", "aca", "bab", 'a', Items.GLOWSTONE_DUST, 'b', Items.REDSTONE, 'c', items.itemSilicon);
-        GameRegistry.addShapelessRecipe(new ItemStack(items.neodymiumMagnet), new Object[] { items.neodymium, items.cobalt, items.cobalt });
     }
 
     private void addSmelting(ItemHandler items, BlockHandler blocks)

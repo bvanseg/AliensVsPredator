@@ -4,7 +4,7 @@ import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public class CreativeTab implements IPreInitEvent
@@ -23,9 +23,9 @@ public class CreativeTab implements IPreInitEvent
     {
         main = new CreativeTabs("main") {
             @Override
-            public Item getTabIconItem()
+            public ItemStack createIcon()
             {
-                return AliensVsPredator.items().helmTitanium;
+                return new ItemStack(AliensVsPredator.items().helmTitanium);
             }
 
             public String getTranslatedTabLabel()
@@ -35,9 +35,9 @@ public class CreativeTab implements IPreInitEvent
         };
         blocks = new CreativeTabs("blocks") {
             @Override
-            public Item getTabIconItem()
+            public ItemStack createIcon()
             {
-                return Game.getItem(AliensVsPredator.blocks().ship5);
+                return new ItemStack(Game.getItem(AliensVsPredator.blocks().ship5));
             }
 
             public String getTranslatedTabLabel()
@@ -47,9 +47,9 @@ public class CreativeTab implements IPreInitEvent
         };
         entities = new CreativeTabs("summoners") {
             @Override
-            public Item getTabIconItem()
+            public ItemStack createIcon()
             {
-                return AliensVsPredator.items().summonerFacehugger;
+                return new ItemStack(AliensVsPredator.items().summonerFacehugger);
             }
 
             public String getTranslatedTabLabel()
@@ -59,9 +59,9 @@ public class CreativeTab implements IPreInitEvent
         };
         entitiesIncomplete = new CreativeTabs("summoners_wip") {
             @Override
-            public Item getTabIconItem()
+            public ItemStack createIcon()
             {
-                return AliensVsPredator.items().summonerBabyhead;
+                return new ItemStack(AliensVsPredator.items().summonerBabyhead);
             }
 
             public String getTranslatedTabLabel()
@@ -71,9 +71,9 @@ public class CreativeTab implements IPreInitEvent
         };
         gunComponents = new CreativeTabs("gunparts") {
             @Override
-            public Item getTabIconItem()
+            public ItemStack createIcon()
             {
-                return AliensVsPredator.items().itemM56SGStock;
+                return new ItemStack(AliensVsPredator.items().itemM56SGStock);
             }
 
             public String getTranslatedTabLabel()
@@ -83,9 +83,9 @@ public class CreativeTab implements IPreInitEvent
         };
         recipeItems = new CreativeTabs("recipeitems") {
             @Override
-            public Item getTabIconItem()
+            public ItemStack createIcon()
             {
-                return AliensVsPredator.items().itemLedDisplay;
+                return new ItemStack(AliensVsPredator.items().itemLedDisplay);
             }
 
             public String getTranslatedTabLabel()

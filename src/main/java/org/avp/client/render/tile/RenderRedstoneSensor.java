@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderRedstoneSensor extends TileEntitySpecialRenderer<TileEntityRedstoneSensor>
 {
     @Override
-    public void renderTileEntityAt(TileEntityRedstoneSensor tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityRedstoneSensor tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

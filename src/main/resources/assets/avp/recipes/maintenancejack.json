@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "a  ",
+        " a ",
+        "aab"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemIngotAluminum",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemPolycarbonate",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:tool.maintenancejack",
+        "count": 1,
+        "data": 0
+    }
+}

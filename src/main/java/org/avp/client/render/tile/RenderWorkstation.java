@@ -23,7 +23,7 @@ public class RenderWorkstation extends TileEntitySpecialRenderer<TileEntityWorks
     private String[] displayText = new String[lines];
 
     @Override
-    public void renderTileEntityAt(TileEntityWorkstation tile, double posX, double posY, double posZ, float partialTicks, int destroyStage)
+    public void render(TileEntityWorkstation tile, double posX, double posY, double posZ, float partialTicks, int destroyStage, float alpha)
     {
 
         OpenGL.pushMatrix();

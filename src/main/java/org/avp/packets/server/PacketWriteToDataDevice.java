@@ -50,12 +50,12 @@ public class PacketWriteToDataDevice implements IMessage, IMessageHandler<Packet
     public PacketWriteToDataDevice onMessage(PacketWriteToDataDevice packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                IDataDevice device = (IDataDevice) ctx.getServerHandler().playerEntity.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+                IDataDevice device = (IDataDevice) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
                 if (device != null)
                 {

@@ -15,7 +15,7 @@ import net.minecraft.init.Blocks;
 public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveResin>
 {
     @Override
-    public void renderTileEntityAt(TileEntityHiveResin tile, double posX, double posY, double posZ, float partialTicks, int destroyStage)
+    public void render(TileEntityHiveResin tile, double posX, double posY, double posZ, float partialTicks, int destroyStage, float alpha)
     {
         GraphicsSetting hiveTessellation = ClientSettings.instance.hiveTessellation().value();
 

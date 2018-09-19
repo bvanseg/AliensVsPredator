@@ -73,7 +73,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
     }
 
     @Override
-    public void setThrowableHeading(double posX, double posY, double posZ, float velocity, float deviation)
+    public void shoot(double posX, double posY, double posZ, float velocity, float deviation)
     {
         float sq = MathHelper.sqrt(posX * posX + posY * posY + posZ * posZ);
         posX /= sq;
@@ -135,7 +135,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         {
             AxisAlignedBB box = blockstate.getBoundingBox(this.world, pos);
 
-            if (box != null && box.isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
+            if (box != null && box.contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
                 this.inGround = true;
             }
@@ -179,12 +179,12 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
 
         if (hit != null)
         {
-            vecPosNext = new Vec3d(hit.hitVec.xCoord, hit.hitVec.yCoord, hit.hitVec.zCoord);
+            vecPosNext = new Vec3d(hit.hitVec.x, hit.hitVec.y, hit.hitVec.z);
         }
 
         Entity target = null;
         @SuppressWarnings("unchecked")
-        List<Entity> possibleTargets = world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(motionX, motionY, motionZ).expand(1.0D, 1.0D, 1.0D));
+        List<Entity> possibleTargets = world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(motionX, motionY, motionZ).expand(1.0D, 1.0D, 1.0D));
         double distanceTo = 0.0D;
 
         for (int x = 0; x < possibleTargets.size(); x++)
@@ -334,13 +334,13 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
     {
         BlockPos pos = new BlockPos(this.xTile, this.yTile, this.zTile);
         IBlockState blockstate = world.getBlockState(pos);
-        this.xTile = (int) movingObjPos.hitVec.xCoord;
-        this.yTile = (int) movingObjPos.hitVec.yCoord;
-        this.zTile = (int) movingObjPos.hitVec.zCoord;
+        this.xTile = (int) movingObjPos.hitVec.x;
+        this.yTile = (int) movingObjPos.hitVec.y;
+        this.zTile = (int) movingObjPos.hitVec.z;
         this.inTile = blockstate.getBlock();
-        this.motionX = movingObjPos.hitVec.xCoord - this.posX;
-        this.motionY = movingObjPos.hitVec.yCoord - this.posY;
-        this.motionZ = movingObjPos.hitVec.zCoord - this.posZ;
+        this.motionX = movingObjPos.hitVec.x - this.posX;
+        this.motionY = movingObjPos.hitVec.y - this.posY;
+        this.motionZ = movingObjPos.hitVec.z - this.posZ;
         float sq = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
         this.posX -= this.motionX / sq * 0.05D;
         this.posY -= this.motionY / sq * 0.05D;
@@ -353,7 +353,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
 
         if (this.inTile != null)
         {
-            this.inTile.onEntityCollidedWithBlock(this.world, pos, blockstate, this);
+            this.inTile.onEntityCollision(this.world, pos, blockstate, this);
         }
     }
 
@@ -441,7 +441,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
 
                     if (item != null && entityplayer.inventory.addItemStackToInventory(item))
                     {
-                        GameSounds.fxPop.playSound(this, 0.2F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                        GameSounds.fxPop.playSound(this, 0.2F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);;
                         this.onItemPickup(entityplayer);
                         this.setDead();
                     }

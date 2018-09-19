@@ -24,12 +24,13 @@ import com.arisux.mdx.lib.world.entity.Entities;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -48,14 +49,17 @@ public class GuiTurret extends GuiContainer
     private ArrayList<Class<? extends Entity>> entityList;
     private ArrayList<EntityLiving> entityLivingList;
 
-    @SuppressWarnings("unchecked")
     public GuiTurret(EntityPlayer player, TileEntityTurret turret, World world, int x, int y, int z)
     {
         super(turret.getContainer(player));
         this.xSize = 225;
         this.ySize = 200;
         this.tile = turret;
-        this.entityList = new ArrayList<Class<? extends Entity>>(EntityList.NAME_TO_CLASS.values());
+        this.entityList = new ArrayList<Class<? extends Entity>>();
+        for (EntityEntry e : ForgeRegistries.ENTITIES.getValuesCollection())
+        {
+            this.entityList.add(e.getEntityClass());
+        }
         this.entityLivingList = new ArrayList<EntityLiving>();
 
         for (Class<?> c : this.entityList)
@@ -129,7 +133,7 @@ public class GuiTurret extends GuiContainer
 
             if ((stack == null) || (stack.getItem() != this.tile.getItemAmmo()))
                 continue;
-            stacksCurrent += stack.stackSize;
+            stacksCurrent += stack.getCount();
         }
 
         Draw.drawProgressBar("Magazine " + (this.tile.getCurAmmo() <= 0 ? 0 : this.tile.getCurAmmo()) + "/" + this.tile.getMaxAmmo(), this.tile.getMaxAmmo(), this.tile.getCurAmmo() < 0 ? 1 : this.tile.getCurAmmo(), this.guiLeft + 7, this.guiTop + 20, this.xSize - 100, 3, 1, this.tile.getCurAmmo() < this.tile.getMaxAmmo() / 2 ? -22016 : this.tile.getCurAmmo() < this.tile.getMaxAmmo() / 6 ? -65536 : -16733441, false);
@@ -168,34 +172,34 @@ public class GuiTurret extends GuiContainer
     {
         super.drawScreen(mouseX, mouseY, p_73863_3_);
 
-        this.sliderColorA.yPosition = guiTop + 170 + 0;
-        this.sliderColorA.xPosition = guiLeft + 3;
+        this.sliderColorA.y = guiTop + 170 + 0;
+        this.sliderColorA.x = guiLeft + 3;
         this.sliderColorA.width = 219;
         this.sliderColorA.sliderButtonColor = 0xFFFFFFFF;
         this.sliderColorA.drawButton();
 
-        this.sliderColorR.yPosition = guiTop + 170 + 25;
+        this.sliderColorR.y = guiTop + 170 + 25;
         this.sliderColorR.sliderButtonColor = 0xFFFF0000;
-        this.sliderColorR.xPosition = guiLeft + 3;
+        this.sliderColorR.x = guiLeft + 3;
         this.sliderColorR.width = 219;
         this.sliderColorR.drawButton();
 
-        this.sliderColorG.yPosition = guiTop + 170 + 50;
+        this.sliderColorG.y = guiTop + 170 + 50;
         this.sliderColorG.sliderButtonColor = 0xFF00FF00;
-        this.sliderColorG.xPosition = guiLeft + 3;
+        this.sliderColorG.x = guiLeft + 3;
         this.sliderColorG.width = 219;
         this.sliderColorG.drawButton();
 
-        this.sliderColorB.yPosition = guiTop + 170 + 75;
+        this.sliderColorB.y = guiTop + 170 + 75;
         this.sliderColorB.sliderButtonColor = 0xFF0000FF;
-        this.sliderColorB.xPosition = guiLeft + 3;
+        this.sliderColorB.x = guiLeft + 3;
         this.sliderColorB.width = 219;
         this.sliderColorB.drawButton();
 
         this.tile.beamColor = Color.createHexadecimal((int) (sliderColorA.sliderValue * sliderColorA.sliderMaxValue), (int) (sliderColorR.sliderValue * sliderColorR.sliderMaxValue), (int) (sliderColorG.sliderValue * sliderColorG.sliderMaxValue), (int) (sliderColorB.sliderValue * sliderColorB.sliderMaxValue));
 
-        this.buttonScrollUp.xPosition = this.guiLeft + xSize + 5;
-        this.buttonScrollUp.yPosition = this.guiTop + 42;
+        this.buttonScrollUp.x = this.guiLeft + xSize + 5;
+        this.buttonScrollUp.y = this.guiTop + 42;
         this.buttonScrollUp.displayString = "\u21e7";
         this.buttonScrollUp.baseColor = this.getScroll() == 0 ? 0x22000000 : 0xAA000000;
         this.buttonScrollUp.drawButton();
@@ -208,8 +212,8 @@ public class GuiTurret extends GuiContainer
             }
         });
 
-        this.buttonScrollDown.xPosition = this.guiLeft + this.xSize + 5;
-        this.buttonScrollDown.yPosition = this.guiTop + 88;
+        this.buttonScrollDown.x = this.guiLeft + this.xSize + 5;
+        this.buttonScrollDown.y = this.guiTop + 88;
         this.buttonScrollDown.displayString = "\u21e9";
         this.buttonScrollDown.baseColor = this.getScroll() >= this.entityLivingList.size() - 1 ? 0x22000000 : 0xAA000000;
         this.buttonScrollDown.drawButton();
@@ -222,8 +226,8 @@ public class GuiTurret extends GuiContainer
             }
         });
 
-        this.buttonAddAsTarget.xPosition = (this.guiLeft + this.xSize + 5);
-        this.buttonAddAsTarget.yPosition = this.guiTop + 65;
+        this.buttonAddAsTarget.x = (this.guiLeft + this.xSize + 5);
+        this.buttonAddAsTarget.y = this.guiTop + 65;
         this.buttonAddAsTarget.width = 20;
         this.buttonAddAsTarget.drawButton();
         this.buttonAddAsTarget.setAction(new IAction()
@@ -247,8 +251,8 @@ public class GuiTurret extends GuiContainer
             }
         });
 
-        this.buttonSave.xPosition = (this.guiLeft + this.xSize - 38);
-        this.buttonSave.yPosition = (this.guiTop + 19);
+        this.buttonSave.x = (this.guiLeft + this.xSize - 38);
+        this.buttonSave.y = (this.guiTop + 19);
         this.buttonSave.displayString = "S";
         this.buttonSave.width = 14;
         this.buttonSave.drawButton();
@@ -262,8 +266,8 @@ public class GuiTurret extends GuiContainer
             }
         });
 
-        this.buttonLoad.xPosition = (this.guiLeft + this.xSize - 21);
-        this.buttonLoad.yPosition = (this.guiTop + 19);
+        this.buttonLoad.x = (this.guiLeft + this.xSize - 21);
+        this.buttonLoad.y = (this.guiTop + 19);
         this.buttonLoad.displayString = "L";
         this.buttonLoad.width = 14;
         this.buttonLoad.drawButton();

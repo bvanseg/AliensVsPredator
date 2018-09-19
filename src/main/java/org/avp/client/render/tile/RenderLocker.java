@@ -19,7 +19,7 @@ import net.minecraft.item.ItemStack;
 public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
 {
     @Override
-    public void renderTileEntityAt(TileEntityLocker tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityLocker tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

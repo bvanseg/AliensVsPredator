@@ -7,7 +7,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -19,7 +19,7 @@ public class WorldProviderAcheron extends WorldProvider
 
     public WorldProviderAcheron()
     {
-        this.hasNoSky = false;
+        this.nether = false;
     }
     
     @Override
@@ -29,7 +29,7 @@ public class WorldProviderAcheron extends WorldProvider
     }
     
     @Override
-    protected void createBiomeProvider()
+    protected void init()
     {
         this.biomeProvider = new BiomeProviderAcheron(BiomeAcheron.acheron);
     }
@@ -59,18 +59,6 @@ public class WorldProviderAcheron extends WorldProvider
         return AliensVsPredator.dimensions().DIMENSION_ID_ACHERON;
     }
 
-    @Override
-    public String getWelcomeMessage()
-    {
-        return "Enterring " + AliensVsPredator.dimensions().DIMENSION_NAME_ACHERON;
-    }
-
-    @Override
-    public String getDepartMessage()
-    {
-        return "Leaving" + AliensVsPredator.dimensions().DIMENSION_NAME_ACHERON;
-    }
-    
     @Override
     public int getAverageGroundLevel()
     {

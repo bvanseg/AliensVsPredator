@@ -1,0 +1,63 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "dcb",
+        "fgh"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemRAM",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemVoltageRegulator",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemIntegratedCircuit",
+                "data": 0
+            }
+        ],
+        "d": [
+            {
+                "item": "items.itemIngotLithium",
+                "data": 0
+            }
+        ],
+        "e": [
+            {
+                "item": "items.itemVoltageRegulator",
+                "data": 0
+            }
+        ],
+        "f": [
+            {
+                "item": "items.itemTransistor",
+                "data": 0
+            }
+        ],
+        "g": [
+            {
+                "item": "items.itemPolycarbonate",
+                "data": 0
+            }
+        ],
+        "h": [
+            {
+                "item": "items.itemCapacitor",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:part.solidstatedrive",
+        "count": 1,
+        "data": 0
+    }
+}

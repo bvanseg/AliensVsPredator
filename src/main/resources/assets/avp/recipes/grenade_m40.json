@@ -1,0 +1,39 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " d ",
+        "aca",
+        " b "
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "minecraft:iron_ingot",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "avp:ingot.aluminum",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "minecraft:gunpowder",
+                "data": 0
+            }
+        ],
+        "d": [
+            {
+                "item": "avp:ingot.copper",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:grenade.m40",
+        "count": 1,
+        "data": 0
+    }
+}

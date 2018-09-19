@@ -46,12 +46,12 @@ public class SpecialPlayerServerSync implements IMessage, IMessageHandler<Specia
     public SpecialPlayerServerSync onMessage(SpecialPlayerServerSync packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                Entity entity = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entityId);
+                Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
 
                 if (entity != null)
                 {

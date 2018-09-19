@@ -85,7 +85,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     {
         super.onPickupJelly(entityItem);
 
-        refertilizationJelly += entityItem.getEntityItem().stackSize;
+        refertilizationJelly += entityItem.getItem().getCount();
 
         if (refertilizationJelly >= (5 + this.rand.nextInt(5)))
         {

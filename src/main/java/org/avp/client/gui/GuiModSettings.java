@@ -295,11 +295,11 @@ public class GuiModSettings extends GuiCustomScreen
             if (element instanceof GuiCustomButton)
             {
                 GuiCustomButton button = (GuiCustomButton) element;
-                int elementX = (button.xPosition + button.width + 10);
-                int elementY = (button.yPosition + (button.height / 2));
+                int elementX = (button.x + button.width + 10);
+                int elementY = (button.y + (button.height / 2));
 
                 OpenGL.enableBlend();
-                Draw.drawRect(button.xPosition, button.yPosition, resolution.getScaledWidth() - 10, button.height, !button.getTooltip().isEmpty() ? 0x44000000 : 0x88000000);
+                Draw.drawRect(button.x, button.y, resolution.getScaledWidth() - 10, button.height, !button.getTooltip().isEmpty() ? 0x44000000 : 0x88000000);
                 button.drawButton();
                 OpenGL.enableBlend();
 
@@ -314,7 +314,7 @@ public class GuiModSettings extends GuiCustomScreen
                 }
                 else
                 {
-                    Draw.drawString(button.getTooltip(), Math.round((button.xPosition + button.width + 10)), Math.round((button.yPosition + (button.height / 2) - 4)), 0xFF888888, false);
+                    Draw.drawString(button.getTooltip(), Math.round((button.x + button.width + 10)), Math.round((button.y + (button.height / 2) - 4)), 0xFF888888, false);
                 }
             }
 
@@ -422,8 +422,8 @@ public class GuiModSettings extends GuiCustomScreen
             {
                 GuiCustomButton button = (GuiCustomButton) element;
 
-                button.xPosition = hPadding;
-                button.yPosition = yStart + ((idx * (controlHeight + vPadding)) - controlHeight * scroll);
+                button.x = hPadding;
+                button.y = yStart + ((idx * (controlHeight + vPadding)) - controlHeight * scroll);
                 button.width = controlWidth;
                 button.height = controlHeight;
 

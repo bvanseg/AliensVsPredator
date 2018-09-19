@@ -31,7 +31,7 @@ public class ItemAPC extends HookedItem
     }
     
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         float partialTicks = 1.0F;
         float pitch = playerIn.prevRotationPitch + (playerIn.rotationPitch - playerIn.prevRotationPitch) * partialTicks;
@@ -47,19 +47,19 @@ public class ItemAPC extends HookedItem
         float z = rC * mult;
         double range = 5.0D;
         Vec3d vec1 = new Vec3d(dX, dY, dZ);
-        Vec3d vec2 = vec1.addVector((double) x * range, (double) y * range, (double) z * range);
+        Vec3d vec2 = vec1.add((double) x * range, (double) y * range, (double) z * range);
         RayTraceResult result = worldIn.rayTraceBlocks(vec1, vec2, true);
 
         if (result == null)
         {
-            return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+            return new ActionResult<ItemStack>(EnumActionResult.FAIL, playerIn.getActiveItemStack());
         }
         else
         {
             Vec3d look = playerIn.getLook(partialTicks);
             boolean flag = false;
             float f9 = 1.0F;
-            List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity(playerIn, playerIn.getEntityBoundingBox().addCoord(look.xCoord * range, look.yCoord * range, look.zCoord * range).expand((double) f9, (double) f9, (double) f9));
+            List<Entity> list = worldIn.getEntitiesWithinAABBExcludingEntity(playerIn, playerIn.getEntityBoundingBox().expand(look.x * range, look.y * range, look.z * range).expand((double) f9, (double) f9, (double) f9));
 
             for (int idx = 0; idx < list.size(); ++idx)
             {
@@ -70,7 +70,7 @@ public class ItemAPC extends HookedItem
                     float f10 = entity.getCollisionBorderSize();
                     AxisAlignedBB axisalignedbb = entity.getEntityBoundingBox().expand((double) f10, (double) f10, (double) f10);
 
-                    if (axisalignedbb.isVecInside(vec1))
+                    if (axisalignedbb.contains(vec1))
                     {
                         flag = true;
                     }
@@ -79,15 +79,15 @@ public class ItemAPC extends HookedItem
 
             if (flag)
             {
-                return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemStackIn);
+                return new ActionResult<ItemStack>(EnumActionResult.FAIL, playerIn.getActiveItemStack());
             }
             else
             {
                 if (result.typeOfHit == RayTraceResult.Type.BLOCK)
                 {
-                    int hitX = (int) result.hitVec.xCoord;
-                    int hitY = (int) result.hitVec.yCoord;
-                    int hitZ = (int) result.hitVec.zCoord;
+                    int hitX = (int) result.hitVec.x;
+                    int hitY = (int) result.hitVec.y;
+                    int hitZ = (int) result.hitVec.z;
 
                     if (worldIn.getBlockState(new BlockPos(hitX, hitY, hitZ)).getBlock() == Blocks.SNOW_LAYER)
                     {
@@ -121,11 +121,11 @@ public class ItemAPC extends HookedItem
 
                     if (!playerIn.capabilities.isCreativeMode)
                     {
-                        --itemStackIn.stackSize;
+                        playerIn.getActiveItemStack().shrink(1);
                     }
                 }
                 
-                return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+                return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getActiveItemStack());
             }
         }
     }

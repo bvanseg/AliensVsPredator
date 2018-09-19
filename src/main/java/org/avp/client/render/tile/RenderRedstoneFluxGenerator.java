@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderRedstoneFluxGenerator extends TileEntitySpecialRenderer<TileEntityRedstoneFluxGenerator>
 {
     @Override
-    public void renderTileEntityAt(TileEntityRedstoneFluxGenerator tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityRedstoneFluxGenerator tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         OpenGL.disableCullFace();

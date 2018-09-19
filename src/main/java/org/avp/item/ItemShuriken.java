@@ -60,13 +60,13 @@ public class ItemShuriken extends HookedItem
     }
     
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         if (player.inventory.hasItemStack(new ItemStack(AliensVsPredator.items().itemShuriken)))
         {
             player.setActiveHand(hand);
         }
         
-        return super.onItemRightClick(itemstack, world, player, hand);
+        return super.onItemRightClick(world, player, hand);
     }
 }

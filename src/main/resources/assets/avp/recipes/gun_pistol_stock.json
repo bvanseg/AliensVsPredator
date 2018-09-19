@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "ccc",
+        "ab "
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemIngotAluminum",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemSilicon",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "Blocks.PLANKS",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:parts.pistol.stock",
+        "count": 1,
+        "data": 0
+    }
+}

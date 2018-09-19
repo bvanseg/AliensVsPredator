@@ -54,7 +54,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
             }
         }
 
-        if (this.stasisItemstack != null)
+        if (this.stasisItemstack != null && this.stasisItemstack.getItem() instanceof ItemEntitySummoner)
         {
             ItemEntitySummoner item = (ItemEntitySummoner) this.stasisItemstack.getItem();
             Entity entity = item.createNewEntity(world);
@@ -138,13 +138,13 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         this.cracked = nbt.getBoolean("Cracked");
         this.shattered = nbt.getBoolean("Shattered");
 
-        if (EnumFacing.getFront(nbt.getInteger("Direction")) != null)
+        if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
         {
-            this.direction = EnumFacing.getFront(nbt.getInteger("Direction"));
+            this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
         }
 
         NBTTagCompound nbtStack = nbt.getCompoundTag("StasisItemstack");
-        this.stasisItemstack = ItemStack.loadItemStackFromNBT(nbtStack);
+        this.stasisItemstack = new ItemStack(nbtStack);
 
         if (this.stasisEntity == null && this.stasisItemstack != null)
         {

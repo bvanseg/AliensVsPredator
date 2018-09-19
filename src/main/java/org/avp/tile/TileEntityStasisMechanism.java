@@ -17,12 +17,12 @@ import net.minecraft.world.World;
 
 public class TileEntityStasisMechanism extends TileEntity implements ITickable
 {
-    private int direction;
+    private int            direction;
     public EntityMechanism dummyEntity;
-    private Entity stasisEntity;
-    public ItemStack itemstack;
-    private String readOnlyDmmyEntityUUID;
-    private int readOnlyStasisEntityID;
+    private Entity         stasisEntity;
+    public ItemStack       itemstack;
+    private String         readOnlyDmmyEntityUUID;
+    private int            readOnlyStasisEntityID;
 
     public TileEntityStasisMechanism()
     {
@@ -51,10 +51,13 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
 
         if (this.dummyEntity != null && this.itemstack != null && this.stasisEntity == null && !this.world.isRemote)
         {
-            ItemEntitySummoner summoner = (ItemEntitySummoner) this.itemstack.getItem();
-            this.stasisEntity = summoner.createNewEntity(this.world);
-            this.stasisEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
-            this.world.spawnEntity(this.stasisEntity);
+            if (this.itemstack.getItem() instanceof ItemEntitySummoner)
+            {
+                ItemEntitySummoner summoner = (ItemEntitySummoner) this.itemstack.getItem();
+                this.stasisEntity = summoner.createNewEntity(this.world);
+                this.stasisEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
+                this.world.spawnEntity(this.stasisEntity);
+            }
         }
 
         if (this.dummyEntity != null)
@@ -62,7 +65,7 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
             this.dummyEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
 
             Entity riddenBy = Entities.getEntityRiddenBy(this.dummyEntity);
-            
+
             if (riddenBy == null)
             {
                 this.itemstack = null;
@@ -119,7 +122,7 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
             nbt.setString("DummyEntity", this.dummyEntity.getUniqueID().toString());
 
             Entity riddenBy = Entities.getEntityRiddenBy(this.dummyEntity);
-            
+
             if (riddenBy != null)
             {
                 nbt.setInteger("StasisEntity", riddenBy.getEntityId());
@@ -132,7 +135,7 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
             this.itemstack.writeToNBT(nbtStack);
             nbt.setTag("StasisItemstack", nbtStack);
         }
-        
+
         return nbt;
     }
 
@@ -143,7 +146,7 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
         this.direction = nbt.getInteger("Direction");
         this.readOnlyDmmyEntityUUID = nbt.getString("DummyEntity");
         this.readOnlyStasisEntityID = nbt.getInteger("StasisEntity");
-        this.itemstack = ItemStack.loadItemStackFromNBT(nbt.getCompoundTag("StasisItemstack"));
+        this.itemstack = new ItemStack(nbt.getCompoundTag("StasisItemstack"));
     }
 
     public static Entity getEntityForUUID(World world, String uuid)

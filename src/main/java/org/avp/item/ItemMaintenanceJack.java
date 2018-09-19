@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.arisux.mdx.lib.world.item.HookedItem;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -27,12 +29,12 @@ public class ItemMaintenanceJack extends HookedItem
     {
         ;
     }
-
+    
     @Override
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("all")
-    public void addInformation(ItemStack itemstack, EntityPlayer player, List list, boolean par4)
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-        list.add("Use this to forcefully open blast doors.");
+        tooltip.add("Use this to forcefully open blast doors.");
     }
 }

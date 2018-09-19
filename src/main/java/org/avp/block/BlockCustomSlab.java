@@ -62,9 +62,9 @@ public class BlockCustomSlab extends BlockSlab
     }
 
     @Override
-    public String getUnlocalizedName(int meta)
+    public String getTranslationKey(int meta)
     {
-        return this.getUnlocalizedName();
+        return this.getTranslationKey();
     }
 
     @Override
@@ -80,7 +80,7 @@ public class BlockCustomSlab extends BlockSlab
     }
     
     @Override
-    public BlockRenderLayer getBlockLayer()
+    public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.TRANSLUCENT;
     }

@@ -14,6 +14,7 @@ import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
@@ -21,6 +22,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -78,7 +80,7 @@ public class ItemWristbracer extends HookedItem
     {
         if (equippedHasBlades(player))
         {
-            Sounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F );
+            Sounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F);
             entity.attackEntityFrom(DamageSources.causeWristbracerDamage(player), getDamageToApply());
 
             if (!player.world.isRemote && !player.capabilities.isCreativeMode)
@@ -92,7 +94,7 @@ public class ItemWristbracer extends HookedItem
                     for (int s = 0; s < wristbracerContents.tagCount(); s++)
                     {
                         NBTTagCompound slot = wristbracerContents.getCompoundTagAt(s);
-                        ItemStack slotstack = ItemStack.loadItemStackFromNBT(slot);
+                        ItemStack slotstack = new ItemStack(slot);
 
                         if (slotstack != null && slotstack.getItem() == AliensVsPredator.items().itemWristbracerBlades)
                         {
@@ -122,7 +124,7 @@ public class ItemWristbracer extends HookedItem
 
     public static float getDamageToApply()
     {
-        return AliensVsPredator.materials().tools().celtic.getDamageVsEntity() * 1.5F;
+        return AliensVsPredator.materials().tools().celtic.getAttackDamage() * 1.5F;
     }
 
     public static ItemStack getBlades(ItemStack wristbracer)
@@ -146,7 +148,7 @@ public class ItemWristbracer extends HookedItem
                 for (byte x = 0; x < contents.tagCount(); x++)
                 {
                     NBTTagCompound itemTag = contents.getCompoundTagAt(x);
-                    ItemStack stack = ItemStack.loadItemStackFromNBT(itemTag);
+                    ItemStack stack = new ItemStack(itemTag);
 
                     if (stack != null && stack.getItem() == item)
                     {
@@ -213,12 +215,11 @@ public class ItemWristbracer extends HookedItem
         return wristbracers;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4)
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-        String descriptionKey = String.format("%s.desc", this.getUnlocalizedName());
+        String descriptionKey = String.format("%s.desc", this.getTranslationKey());
         
         if (descriptionKey != null)
         {
@@ -227,7 +228,7 @@ public class ItemWristbracer extends HookedItem
 
             for (String line : lines)
             {
-                list.add(line);
+                tooltip.add(line);
             }
         }
     }

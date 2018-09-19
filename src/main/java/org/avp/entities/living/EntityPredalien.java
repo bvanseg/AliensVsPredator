@@ -32,7 +32,7 @@ public class EntityPredalien extends EntityXenomorph implements IMob
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.ALIEN_HURT.event();
     }

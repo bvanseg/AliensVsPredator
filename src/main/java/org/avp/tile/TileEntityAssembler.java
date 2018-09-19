@@ -89,7 +89,7 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
 
         if (stack != null)
         {
-            if (stack.stackSize <= count)
+            if (stack.getCount() <= count)
             {
                 setInventorySlotContents(i, null);
             }
@@ -117,9 +117,9 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     {
         items[i] = stack;
 
-        if (stack != null && stack.stackSize > getInventoryStackLimit())
+        if (stack != null && stack.getCount() > getInventoryStackLimit())
         {
-            stack.stackSize = getInventoryStackLimit();
+            stack.setCount(getInventoryStackLimit());
         }
 
         super.markDirty();
@@ -224,7 +224,7 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
 
             if (slot >= 0 && slot <= this.getSizeInventory())
             {
-                setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+                setInventorySlotContents(slot, new ItemStack(item));
             }
         }
     }
@@ -284,6 +284,12 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     @Override
     public void clear()
     {
-        
+        ;
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        return this.items.length <= 0;
     }
 }

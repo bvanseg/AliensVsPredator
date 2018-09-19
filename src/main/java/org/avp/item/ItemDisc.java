@@ -63,13 +63,13 @@ public class ItemDisc extends HookedItem
     }
     
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         if (playerIn.inventory.hasItemStack(new ItemStack(AliensVsPredator.items().itemDisc)))
         {
             playerIn.setActiveHand(hand);
         }
         
-        return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
+        return super.onItemRightClick(worldIn, playerIn, hand);
     }
 }

@@ -4,8 +4,8 @@ import org.avp.entities.living.EntityXenomorph;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.client.render.model.MapModelTexture;
+import com.arisux.mdx.lib.client.render.model.Model;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;

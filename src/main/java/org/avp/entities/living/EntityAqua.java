@@ -14,6 +14,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
@@ -63,7 +64,7 @@ public class EntityAqua extends EntityXenomorph
 
             for (EntityLivingBase entity : entities)
             {
-                if (entitySelector.apply(entity) && Entities.canEntityBeSeenBy(entity, this) && (!entitySelector.apply(entity.getLastAttacker()) && (entity.ticksExisted - entity.getLastAttackerTime() > 150)))
+                if (entitySelector.apply(entity) && Entities.canEntityBeSeenBy(entity, this) && (!entitySelector.apply(entity.getLastAttackedEntity()) && (entity.ticksExisted - entity.getLastAttackedEntityTime() > 150)))
                 {
                     if (entity instanceof EntityPlayer && !((EntityPlayer) entity).capabilities.isCreativeMode)
                     {
@@ -105,7 +106,7 @@ public class EntityAqua extends EntityXenomorph
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.ALIEN_HURT.event();
     }

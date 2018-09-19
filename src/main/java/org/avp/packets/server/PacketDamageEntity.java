@@ -44,15 +44,15 @@ public class PacketDamageEntity implements IMessage, IMessageHandler<PacketDamag
     @Override
     public PacketDamageEntity onMessage(PacketDamageEntity packet, MessageContext ctx)
     {
-        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
                 if (packet.entityId != -1)
                 {
-                    Entity entity = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entityId);
-                    Entity entitySource = ctx.getServerHandler().playerEntity.world.getEntityByID(packet.entitySourceId);
+                    Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
+                    Entity entitySource = ctx.getServerHandler().player.world.getEntityByID(packet.entitySourceId);
 
                     if (entity != null)
                     {

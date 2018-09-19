@@ -105,13 +105,13 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
                     OpenGL.disableLight();
                 }
 
-                Game.renderManager().doRenderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+                Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
             }
         }
     }
 
     @Override
-    public void renderTileEntityAt(TileEntityCryostasisTube tile, double posX, double posY, double posZ, float partialTicks, int destroyStage)
+    public void render(TileEntityCryostasisTube tile, double posX, double posY, double posZ, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

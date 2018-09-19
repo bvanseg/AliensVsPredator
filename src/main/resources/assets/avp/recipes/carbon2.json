@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA",
+    "AA",
+    ""
+  ],
+  "key": {
+    "A": [
+      {
+        "item": "minecraft:coal",
+        "data": 1
+      }
+    ]
+  },
+  "result": {
+    "item": "avp:carbon",
+    "count": 2,
+    "data": 0
+  }
+}

@@ -1,0 +1,63 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "dfh",
+        "ceg"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemRAM",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemProcessor",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemPowerSupply",
+                "data": 0
+            }
+        ],
+        "d": [
+            {
+                "item": "items.itemPolycarbonate",
+                "data": 0
+            }
+        ],
+        "e": [
+            {
+                "item": "items.itemSolidStateDrive",
+                "data": 0
+            }
+        ],
+        "f": [
+            {
+                "item": "items.itemLedDisplay",
+                "data": 0
+            }
+        ],
+        "g": [
+            {
+                "item": "items.itemMotherboard",
+                "data": 0
+            }
+        ],
+        "h": [
+            {
+                "item": "items.itemTransistor",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:assembler",
+        "count": 1,
+        "data": 0
+    }
+}

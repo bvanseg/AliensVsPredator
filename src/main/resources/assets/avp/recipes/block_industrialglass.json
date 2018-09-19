@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bbb",
+        "aaa",
+        "bbb"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemPolycarbonate",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "Blocks.GLASS",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:industrialglass",
+        "count": 16,
+        "data": 0
+    }
+}

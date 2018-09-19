@@ -78,9 +78,9 @@ public class TileEntityMedpod extends TileEntityElectrical implements IOpenable,
     {
         super.readFromNBT(nbt);
 
-        if (EnumFacing.getFront(nbt.getInteger("Direction")) != null)
+        if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
         {
-            this.direction = EnumFacing.getFront(nbt.getInteger("Direction"));
+            this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
         }
         this.doorProgress = nbt.getFloat("DoorProgress");
         this.isOpen = nbt.getBoolean("Open");

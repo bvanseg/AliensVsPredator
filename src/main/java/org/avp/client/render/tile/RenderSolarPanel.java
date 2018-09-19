@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderSolarPanel extends TileEntitySpecialRenderer<TileEntitySolarPanel>
 {
     @Override
-    public void renderTileEntityAt(TileEntitySolarPanel tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntitySolarPanel tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

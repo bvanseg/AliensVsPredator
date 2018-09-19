@@ -15,6 +15,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 //TODO: Redo this
@@ -169,7 +170,7 @@ public class TileEntityHiveResin extends TileEntity implements ITickable
         if (blockString != null && blockString.contains(":"))
         {
             String[] identifier = blockString.split(":");
-            this.blockCovering = GameRegistry.findBlock(identifier[0], identifier[1]).getDefaultState();
+            this.blockCovering = GameRegistry.findRegistry(Block.class).getValue(new ResourceLocation(identifier[0], identifier[1])).getDefaultState();
         }
 
         this.signature = Worlds.uuidFromNBT(compound, "HiveSignature");

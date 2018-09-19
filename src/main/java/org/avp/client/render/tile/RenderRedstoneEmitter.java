@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderRedstoneEmitter extends TileEntitySpecialRenderer<TileEntityRedstoneEmitter>
 {
     @Override
-    public void renderTileEntityAt(TileEntityRedstoneEmitter tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityRedstoneEmitter tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

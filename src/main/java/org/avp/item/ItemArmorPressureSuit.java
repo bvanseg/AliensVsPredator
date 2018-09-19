@@ -26,15 +26,15 @@ public class ItemArmorPressureSuit extends ItemAntiVacuumArmor
         switch (slot)
         {
             case FEET:
-                return Draw.getResourcePath(AliensVsPredator.resources().PRESSURESUIT1);
+                return Draw.getPath(AliensVsPredator.resources().PRESSURESUIT1);
             case LEGS:
-                return Draw.getResourcePath(AliensVsPredator.resources().PRESSURESUIT2);
+                return Draw.getPath(AliensVsPredator.resources().PRESSURESUIT2);
             case CHEST:
-                return Draw.getResourcePath(AliensVsPredator.resources().PRESSURESUIT1);
+                return Draw.getPath(AliensVsPredator.resources().PRESSURESUIT1);
             case HEAD:
-                return Draw.getResourcePath(AliensVsPredator.resources().PRESSURESUIT1);
+                return Draw.getPath(AliensVsPredator.resources().PRESSURESUIT1);
             default:
-                return Draw.getResourcePath(AliensVsPredator.resources().PRESSURESUIT2);
+                return Draw.getPath(AliensVsPredator.resources().PRESSURESUIT2);
         }
     }
 

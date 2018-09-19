@@ -1,0 +1,39 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "dad",
+        "bcb",
+        "bbb"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "Items.SLIME_BALL",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemIngotAluminum",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "Items.BLAZE_POWDER",
+                "data": 0
+            }
+        ],
+        "d": [
+            {
+                "item": "items.itemPolycarbonate",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:ammo.flamethrower",
+        "count": 1,
+        "data": 0
+    }
+}

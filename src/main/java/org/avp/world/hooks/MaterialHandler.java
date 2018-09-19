@@ -108,9 +108,9 @@ public class MaterialHandler
                     {
                         Vec3d fogColor = renderer.getFogColor();
 
-                        event.setRed((float) fogColor.xCoord);
-                        event.setGreen((float) fogColor.yCoord);
-                        event.setBlue((float) fogColor.zCoord);
+                        event.setRed((float) fogColor.x);
+                        event.setGreen((float) fogColor.y);
+                        event.setBlue((float) fogColor.z);
                     }
                 }
             }
@@ -202,7 +202,7 @@ public class MaterialHandler
 
     public Vec3d handleMaterialAcceleration(Entity entity, Material material, IMaterialPhysics physics)
     {
-        AxisAlignedBB box = entity.getEntityBoundingBox().expand(0.0D, -0.4D, 0.0D).contract(0.001D);
+        AxisAlignedBB box = entity.getEntityBoundingBox().expand(0.0D, -0.4D, 0.0D).contract(0.001D, 0.001D, 0.001D);
 
         int minX = MathHelper.floor(box.minX);
         int maxX = MathHelper.floor(box.maxX + 1.0D);

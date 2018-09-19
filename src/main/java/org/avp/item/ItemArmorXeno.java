@@ -35,13 +35,13 @@ public class ItemArmorXeno extends ItemArmor
         switch (slot)
         {
         case FEET:
-            return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
+            return Draw.getPath(AliensVsPredator.resources().XENO1);
         case LEGS:
-            return Draw.getResourcePath(AliensVsPredator.resources().XENO2);
+            return Draw.getPath(AliensVsPredator.resources().XENO2);
         case CHEST:
-            return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
+            return Draw.getPath(AliensVsPredator.resources().XENO1);
         default:
-            return Draw.getResourcePath(AliensVsPredator.resources().XENO1);
+            return Draw.getPath(AliensVsPredator.resources().XENO1);
         }
     }
 
@@ -80,7 +80,7 @@ public class ItemArmorXeno extends ItemArmor
 
             player.fallDistance = 0.0F;
 
-            if (specialPlayer.canClimb() && player.isCollidedHorizontally)
+            if (specialPlayer.canClimb() && player.collidedHorizontally)
             {
                 player.motionY += 0.03F;
             }

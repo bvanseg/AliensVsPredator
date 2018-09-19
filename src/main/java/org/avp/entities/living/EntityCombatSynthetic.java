@@ -67,7 +67,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.MARINE_HURT.event();
     }
@@ -183,5 +183,11 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     public boolean canHostParasite()
     {
         return false;
+    }
+
+    @Override
+    public void setSwingingArms(boolean swingingArms)
+    {
+        ;
     }
 }

@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "bcb",
+        "aba"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "Items.GLOWSTONE_DUST",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "Items.REDSTONE",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemSilicon",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:mainframepanel.shimmer",
+        "count": 1,
+        "data": 0
+    }
+}

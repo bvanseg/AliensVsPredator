@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderLightPanel extends TileEntitySpecialRenderer<TileEntityLightPanel>
 {
     @Override
-    public void renderTileEntityAt(TileEntityLightPanel tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityLightPanel tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

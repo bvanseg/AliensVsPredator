@@ -16,6 +16,7 @@ import com.arisux.mdx.lib.world.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -59,7 +60,7 @@ public class EntityPlasma extends EntityThrowable
     @Override
     public void onUpdate()
     {
-        this.move(this.motionX, this.motionY, this.motionZ);
+        this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 
         if (!this.world.isRemote && !this.synced)
         {
@@ -103,7 +104,7 @@ public class EntityPlasma extends EntityThrowable
             }
         }
 
-        if (RayTraceResult != null || this.isCollidedHorizontally)
+        if (RayTraceResult != null || this.collidedHorizontally)
         {
             this.onImpact(RayTraceResult);
         }

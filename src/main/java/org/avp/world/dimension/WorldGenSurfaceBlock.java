@@ -19,7 +19,7 @@ public class WorldGenSurfaceBlock extends WorldGenerator
     @Override
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
-        if (worldIn.isAirBlock(position) && (!worldIn.provider.hasNoSky() || position.getY() < 255) && state.getBlock().canPlaceBlockAt(worldIn, position))
+        if (worldIn.isAirBlock(position) && (!worldIn.provider.isNether() || position.getY() < 255) && state.getBlock().canPlaceBlockAt(worldIn, position))
         {
             worldIn.setBlockState(position, this.state, 2);
         }

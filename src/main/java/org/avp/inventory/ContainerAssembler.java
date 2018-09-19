@@ -65,7 +65,7 @@ public class ContainerAssembler extends Container
                 return null;
             }
 
-            if (stack.stackSize == 0)
+            if (stack.getCount() == 0)
             {
                 slot.putStack(null);
             }
@@ -74,7 +74,7 @@ public class ContainerAssembler extends Container
                 slot.onSlotChanged();
             }
 
-            slot.onPickupFromSlot(null, stack);
+            slot.onTake(null, stack);
 
             return result;
         }

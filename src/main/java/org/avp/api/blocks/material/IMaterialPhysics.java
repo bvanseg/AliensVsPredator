@@ -23,9 +23,9 @@ public interface IMaterialPhysics
             return;
         }
         
-        entity.motionX += motion.xCoord * this.getForceVelocity();
-        entity.motionY += motion.yCoord * this.getForceVelocity();
-        entity.motionZ += motion.zCoord * this.getForceVelocity();
+        entity.motionX += motion.x * this.getForceVelocity();
+        entity.motionY += motion.y * this.getForceVelocity();
+        entity.motionZ += motion.z * this.getForceVelocity();
     }
 
     public default void handleMovement(Entity entity)
@@ -39,7 +39,7 @@ public interface IMaterialPhysics
         entity.motionY *= this.getVelocity() * this.getSinkMultiplier();
         entity.motionZ *= this.getVelocity();
 
-        if (entity.isCollidedHorizontally && entity.isOffsetPositionInLiquid(entity.motionX, entity.motionY + (this.getJumpOffset() * 2) - entity.posY + entity.posY, entity.motionZ))
+        if (entity.collidedHorizontally && entity.isOffsetPositionInLiquid(entity.motionX, entity.motionY + (this.getJumpOffset() * 2) - entity.posY + entity.posY, entity.motionZ))
         {
             entity.motionY = this.getJumpOffset();
         }

@@ -1,0 +1,39 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "b b",
+        "dcd"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemIngotCopper",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "blocks.industrialglass",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemCarbon",
+                "data": 0
+            }
+        ],
+        "d": [
+            {
+                "item": "items.itemSilicon",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:helm.mk50",
+        "count": 1,
+        "data": 0
+    }
+}

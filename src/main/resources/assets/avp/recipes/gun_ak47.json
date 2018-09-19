@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bc",
+        "a "
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemAK47Stock",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemAK47Action",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemAK47Barrel",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:gun.ak47",
+        "count": 1,
+        "data": 0
+    }
+}

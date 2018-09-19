@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bc",
+        "a "
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemM4Stock",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemM4Action",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemM4Barrel",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:gun.m4",
+        "count": 1,
+        "data": 0
+    }
+}

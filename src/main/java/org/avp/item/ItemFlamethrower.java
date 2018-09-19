@@ -8,6 +8,7 @@ import org.avp.entities.EntityFlame;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 import com.arisux.mdx.lib.world.item.HookedItem;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -31,7 +32,7 @@ public abstract class ItemFlamethrower extends HookedItem
     }
     
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         if (this.hasAmmo(world, player))
         {
@@ -44,18 +45,17 @@ public abstract class ItemFlamethrower extends HookedItem
 
             Sounds.WEAPON_FLAMETHROWER.playSound(player);
         }
-        return super.onItemRightClick(itemstack, world, player, hand);
-    }
-    
-    @Override
-    @SideOnly(Side.CLIENT)
-    @SuppressWarnings("all")
-    public void addInformation(ItemStack itemstack, EntityPlayer entityPlayer, List tooltipList, boolean par4)
-    {
-        super.addInformation(itemstack, entityPlayer, tooltipList, par4);
-        tooltipList.add("Left click to aim. Right click to use.");
+        return super.onItemRightClick(world, player, hand);
     }
 
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        super.addInformation(stack, worldIn, tooltip, flagIn);
+        tooltip.add("Left click to aim. Right click to use.");
+    }
+    
     @Override
     public boolean onEntitySwing(EntityLivingBase entityLiving, ItemStack stack)
     {

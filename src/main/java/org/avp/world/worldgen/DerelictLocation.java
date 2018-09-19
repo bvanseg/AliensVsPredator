@@ -97,7 +97,7 @@ public class DerelictLocation
 
     public void generate(World world, int addX, int addY, int addZ)
     {
-        StructureGenerationHandler.addStructureToQueue(new StructureDerelict(world.getMinecraftServer().worldServerForDimension(0), this.getCoord().add(addX, addY, addZ)));
+        StructureGenerationHandler.addStructureToQueue(new StructureDerelict(world.getMinecraftServer().getWorld(0), this.getCoord().add(addX, addY, addZ)));
         this.setGenerated(true);
     }
 }

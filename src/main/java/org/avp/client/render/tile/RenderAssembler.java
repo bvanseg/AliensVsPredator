@@ -11,14 +11,13 @@ import org.lwjgl.opengl.GL11;
 import com.arisux.mdx.lib.client.render.Draw;
 import com.arisux.mdx.lib.client.render.OpenGL;
 
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 
 public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityAssembler>
 {
     @Override
-    public void renderTileEntityAt(TileEntityAssembler tile, double posX, double posY, double posZ, float renderPartialTicks, int destroy)
+    public void render(TileEntityAssembler tile, double posX, double posY, double posZ, float renderPartialTicks, int destroy, float alpha)
     {
         OpenGL.pushMatrix();
         {

@@ -13,6 +13,7 @@ import com.arisux.mdx.lib.world.entity.Entities;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 import com.arisux.mdx.lib.world.item.HookedItem;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -245,7 +246,7 @@ public class ItemFirearm extends HookedItem
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         if (world.isRemote)
         {
@@ -258,7 +259,7 @@ public class ItemFirearm extends HookedItem
 
                 if (trace != null && trace.typeOfHit == Type.BLOCK)
                 {
-                    AliensVsPredator.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.xCoord, (int) trace.hitVec.yCoord, (int) trace.hitVec.zCoord, this.profile));
+                    AliensVsPredator.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.x, (int) trace.hitVec.y, (int) trace.hitVec.z, this.profile));
                 }
 
                 if (trace != null && trace.typeOfHit == Type.ENTITY)
@@ -277,7 +278,7 @@ public class ItemFirearm extends HookedItem
             }
         }
 
-        return super.onItemRightClick(itemstack, world, player, hand);
+        return super.onItemRightClick(world, player, hand);
     }
 
     public boolean canFire(EntityPlayer player)
@@ -378,13 +379,12 @@ public class ItemFirearm extends HookedItem
     {
         return EnumAction.BOW;
     }
-
+    
     @Override
-    @SuppressWarnings("all")
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List list, boolean par4)
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-        list.add("Left click to aim, Right click to fire");
-        list.add("Press R to reload");
+        tooltip.add("Left click to aim, Right click to fire");
+        tooltip.add("Press R to reload");
     }
 
     public int getReload()

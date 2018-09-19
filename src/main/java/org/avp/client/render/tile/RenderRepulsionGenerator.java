@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderRepulsionGenerator extends TileEntitySpecialRenderer<TileEntityRepulsionGenerator>
 {
     @Override
-    public void renderTileEntityAt(TileEntityRepulsionGenerator tile, double posX, double posY, double posZ, float partialTicks, int destroyStage)
+    public void render(TileEntityRepulsionGenerator tile, double posX, double posY, double posZ, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         OpenGL.enableCullFace();

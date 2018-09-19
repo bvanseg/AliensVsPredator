@@ -36,32 +36,30 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.IPerspectiveAwareModel;
-import net.minecraftforge.client.model.IRetexturableModel;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
-public class CachedModelReflectiveShape implements IPerspectiveAwareModel
+public class CachedModelReflectiveShape implements IBakedModel
 {
-    private static final String                                         TEXTURE_KEY            = "#texture";
-    private static final String                                         TEXTURE_LOCATION       = "avp:blocks/reflection";
-    private static final VertexFormat                                   VERTEX_FORMAT          = DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL;
-    private static final Function<ResourceLocation, TextureAtlasSprite> TEXTURE_GETTER         = ModelLoader.defaultTextureGetter();
-    private static final Function<ResourceLocation, TextureAtlasSprite> DEFAULT_TEXTURE_GETTER = new Function<ResourceLocation, TextureAtlasSprite>() {
-                                                                                                   public TextureAtlasSprite apply(ResourceLocation location)
-                                                                                                   {
-                                                                                                       return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Resources.instance.REFLECTION.toString());
-                                                                                                   }
-                                                                                               };
+    private static final String                                                            TEXTURE_KEY            = "#texture";
+    private static final String                                                            TEXTURE_LOCATION       = "avp:blocks/reflection";
+    private static final VertexFormat                                                      VERTEX_FORMAT          = DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL;
+    private static final java.util.function.Function<ResourceLocation, TextureAtlasSprite> TEXTURE_GETTER         = ModelLoader.defaultTextureGetter();
+    private static final Function<ResourceLocation, TextureAtlasSprite>                    DEFAULT_TEXTURE_GETTER = new Function<ResourceLocation, TextureAtlasSprite>() {
+                                                                                                                      public TextureAtlasSprite apply(ResourceLocation location)
+                                                                                                                      {
+                                                                                                                          return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Resources.instance.REFLECTION.toString());
+                                                                                                                      }
+                                                                                                                  };
 
-    private IModel                                                      model;
-    private TextureAtlasSprite                                          sprite;
-    private ShapeRenderList                                             overrides;
-    private final Pair<? extends IBakedModel, Matrix4f>                 selfPair;
-    protected ItemStack                                                 stack;
-    protected EntityLivingBase                                          entity;
-    private TransformType                                               transformType;
+    private IModel                                                                         model;
+    private TextureAtlasSprite                                                             sprite;
+    private ShapeRenderList                                                                overrides;
+    private final Pair<? extends IBakedModel, Matrix4f>                                    selfPair;
+    protected ItemStack                                                                    stack;
+    protected EntityLivingBase                                                             entity;
+    private TransformType                                                                  transformType;
 
     public static class ShapeRenderList<M extends Model> extends ItemOverrideList
     {
@@ -168,31 +166,27 @@ public class CachedModelReflectiveShape implements IPerspectiveAwareModel
         {
             TextureMap textureMap = Game.minecraft().getTextureMapBlocks();
             BlockRendererDispatcher dispatcher = Game.minecraft().getBlockRendererDispatcher();
-            IModel retextured = model;
             TRSRTransformation transformation = rotation(state);
+            IModel retextured = model;
+            IModel retexturable = model;
+            retextured = retexture(model, TEXTURE_KEY, TEXTURE_LOCATION);
 
-            if (model instanceof IRetexturableModel)
+            if (state instanceof IExtendedBlockState)
             {
-                IRetexturableModel retexturable = (IRetexturableModel) model;
-                retextured = retexture(retexturable, TEXTURE_KEY, TEXTURE_LOCATION);
+                IExtendedBlockState extendedState = (IExtendedBlockState) state;
+                IBlockState reflectedState = extendedState.getValue(BlockReflective.REFLECTION);
 
-                if (state instanceof IExtendedBlockState)
+                if (reflectedState != null)
                 {
-                    IExtendedBlockState extendedState = (IExtendedBlockState) state;
-                    IBlockState reflectedState = extendedState.getValue(BlockReflective.REFLECTION);
+                    this.sprite = dispatcher.getBlockModelShapes().getTexture(reflectedState);
 
-                    if (reflectedState != null)
+                    if (this.sprite != textureMap.getMissingSprite() && sprite != null)
                     {
-                        this.sprite = dispatcher.getBlockModelShapes().getTexture(reflectedState);
-
-                        if (this.sprite != textureMap.getMissingSprite() && sprite != null)
-                        {
-                            retextured = retexture(retexturable, TEXTURE_KEY, sprite.getIconName());
-                        }
-                        else
-                        {
-                            this.sprite = textureMap.getAtlasSprite(TEXTURE_LOCATION);
-                        }
+                        retextured = retexture(retexturable, TEXTURE_KEY, sprite.getIconName());
+                    }
+                    else
+                    {
+                        this.sprite = textureMap.getAtlasSprite(TEXTURE_LOCATION);
                     }
                 }
             }
@@ -216,7 +210,7 @@ public class CachedModelReflectiveShape implements IPerspectiveAwareModel
         return Collections.emptyList();
     }
 
-    private static IModel retexture(IRetexturableModel model, String key, String location)
+    private static IModel retexture(IModel model, String key, String location)
     {
         return model.retexture(ImmutableMap.of(key, location));
     }

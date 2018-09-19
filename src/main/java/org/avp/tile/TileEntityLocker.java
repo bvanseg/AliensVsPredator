@@ -111,9 +111,9 @@ public class TileEntityLocker extends TileEntity implements IOpenable, IRotatabl
     {
         super.readFromNBT(nbt);
 
-        if (EnumFacing.getFront(nbt.getInteger("Direction")) != null)
+        if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
         {
-            this.direction = EnumFacing.getFront(nbt.getInteger("Direction"));
+            this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
         }
 
         this.readInventoryFromNBT(nbt, this.inventory);
@@ -131,7 +131,7 @@ public class TileEntityLocker extends TileEntity implements IOpenable, IRotatabl
 
             if (slot >= 0 && slot <= inventory.getSizeInventory())
             {
-                inventory.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+                inventory.setInventorySlotContents(slot, new ItemStack(item));
             }
         }
     }

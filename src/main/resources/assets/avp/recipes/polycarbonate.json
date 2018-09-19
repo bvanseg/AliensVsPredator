@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BBB",
+    "BBB"
+  ],
+  "key": {
+    "A": [
+      {
+        "item": "avp:silicon",
+        "data": 0
+      }
+    ],
+    "B": [
+      {
+        "item": "avp:carbon",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "avp:polycarbonate",
+    "count": 2,
+    "data": 0
+  }
+}

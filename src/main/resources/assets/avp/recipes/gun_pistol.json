@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bc",
+        "a "
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemPistolStock",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemPistolAction",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemPistolBarrel",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:gun.pistol",
+        "count": 1,
+        "data": 0
+    }
+}

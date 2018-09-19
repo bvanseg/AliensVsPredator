@@ -57,9 +57,9 @@ public class ReflectiveModelLoader implements ICustomModelLoader
     @Override
     public boolean accepts(ResourceLocation modelLocation)
     {
-        if (modelLocation.getResourceDomain().equals(AliensVsPredator.Properties.ID))
+        if (modelLocation.getNamespace().equals(AliensVsPredator.Properties.ID))
         {
-            if (models.containsKey(modelLocation.getResourcePath()))
+            if (models.containsKey(modelLocation.getPath()))
             {
                 return true;
             }
@@ -71,9 +71,9 @@ public class ReflectiveModelLoader implements ICustomModelLoader
     @Override
     public IModel loadModel(ResourceLocation modelLocation) throws Exception
     {
-        if (models.containsKey(modelLocation.getResourcePath()))
+        if (models.containsKey(modelLocation.getPath()))
         {
-            return models.get(modelLocation.getResourcePath());
+            return models.get(modelLocation.getPath());
         }
 
         return null;

@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "BCA",
+    "AAA"
+  ],
+  "key": {
+    "A": [
+      {
+        "item": "avp:ingot.copper",
+        "data": 0
+      }
+    ],
+    "B": [
+      {
+        "item": "avp:part.voltageregulator",
+        "data": 0
+      }
+    ],
+    "C": [
+      {
+        "item": "minecraft:iron_block",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "avp:transformer",
+    "data": 0
+  }
+}

@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "b  ",
+        "aa ",
+        "bbb"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemPolycarbonate",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "Blocks.COBBLESTONE",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:industrialwallstairs",
+        "count": 12,
+        "data": 0
+    }
+}

@@ -15,14 +15,15 @@ import com.arisux.mdx.lib.world.entity.Entities;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -30,38 +31,34 @@ public class DimensionHandler implements IInitEvent
 {
     public static final DimensionHandler instance = new DimensionHandler();
 
-    public final Dimension               ACHERON  = new Dimension("Acheron", "_acheron", WorldProviderAcheron.class, true)
-                                                  {
-                                                      public Dimension register()
-                                                      {
-                                                          GameRegistry.register(BiomeAcheron.acheron, new ResourceLocation(AliensVsPredator.Properties.ID, "acheron"));
-                                                          return super.register();
-                                                      };
-                                                  };
-    public final Dimension               VARDA    = new Dimension("Varda", "_varda", WorldProviderVarda.class, true)
-                                                  {
-                                                      public Dimension register()
-                                                      {
-                                                          GameRegistry.register(BiomeVarda.vardaBadlands, new ResourceLocation(AliensVsPredator.Properties.ID, "vardabadlands"));
-                                                          GameRegistry.register(BiomeVarda.vardaForest, new ResourceLocation(AliensVsPredator.Properties.ID, "vardaforest"));
-                                                          
-                                                          return super.register();
-                                                      };
-                                                  };
+    @Mod.EventBusSubscriber(modid = AliensVsPredator.Properties.ID)
+    public static class RegistrationHandler
+    {
+        @SubscribeEvent
+        public static void registerBiomes(final RegistryEvent.Register<Biome> event)
+        {
+            event.getRegistry().register(BiomeAcheron.acheron.setRegistryName(AliensVsPredator.Properties.ID, "acheron"));
+            event.getRegistry().register(BiomeVarda.vardaBadlands.setRegistryName(AliensVsPredator.Properties.ID, "vardabadlands"));
+            event.getRegistry().register(BiomeVarda.vardaForest.setRegistryName(AliensVsPredator.Properties.ID, "vardaforest"));
+        }
+    }
 
-    public boolean                       initialized;
+    public final Dimension ACHERON                   = new Dimension("Acheron", "_acheron", WorldProviderAcheron.class, true);
+    public final Dimension VARDA                     = new Dimension("Varda", "_varda", WorldProviderVarda.class, true);
 
-    public final String            DIMENSION_NAME_ACHERON    = "LV-426 (Acheron)";
+    public boolean         initialized;
 
-    public final String            DIMENSION_ID_ACHERON      = "DIM_LV426";
+    public final String    DIMENSION_NAME_ACHERON    = "LV-426 (Acheron)";
 
-    public final String            DIMENSION_NAME_VARDA      = "LV-223 (Varda)";
+    public final String    DIMENSION_ID_ACHERON      = "DIM_LV426";
 
-    public final String            DIMENSION_ID_VARDA        = "DIM_LV223";
+    public final String    DIMENSION_NAME_VARDA      = "LV-223 (Varda)";
 
-    public final String            BIOME_NAME_VARDA_BADLANDS = "LV-223.B.1 (Varda Badlands)";
+    public final String    DIMENSION_ID_VARDA        = "DIM_LV223";
 
-    public final String            BIOME_NAME_VARDA_FOREST   = "LV-223.B.2 (Anomalistic Forest)";
+    public final String    BIOME_NAME_VARDA_BADLANDS = "LV-223.B.1 (Varda Badlands)";
+
+    public final String    BIOME_NAME_VARDA_FOREST   = "LV-223.B.2 (Anomalistic Forest)";
 
     @Override
     public void init(FMLInitializationEvent event)
@@ -117,7 +114,7 @@ public class DimensionHandler implements IInitEvent
 
         if (player.dimension == 0 || player.dimension != dimensionId)
         {
-            WorldServer worldServer = player.getServer().worldServerForDimension(dimensionId);
+            WorldServer worldServer = player.getServer().getWorld(dimensionId);
             Teleporter teleporter = new TeleporterLV(worldServer);
             players.transferPlayerToDimension(player, dimensionId, teleporter);
 
@@ -134,7 +131,7 @@ public class DimensionHandler implements IInitEvent
         }
         else if (player.dimension == dimensionId)
         {
-            WorldServer worldServer = player.getServer().worldServerForDimension(0);
+            WorldServer worldServer = player.getServer().getWorld(0);
             Teleporter teleporter = new TeleporterLV(worldServer);
             players.transferPlayerToDimension(player, 0, teleporter);
 
@@ -151,8 +148,8 @@ public class DimensionHandler implements IInitEvent
         }
         else
         {
-            WorldServer worldServer = player.getServer().worldServerForDimension(dimensionId);
-            Teleporter teleporter = new TeleporterLV(player.getServer().worldServerForDimension(dimensionId));
+            WorldServer worldServer = player.getServer().getWorld(dimensionId);
+            Teleporter teleporter = new TeleporterLV(player.getServer().getWorld(dimensionId));
             players.transferPlayerToDimension(player, dimensionId, teleporter);
 
             Pos safePos = Entities.getSafePositionAboveBelow(new Pos(player.posX, player.posY, player.posZ), worldServer);
@@ -171,7 +168,7 @@ public class DimensionHandler implements IInitEvent
     public void tryLoadDimension(int dimensionId)
     {
         MinecraftServer server = FMLCommonHandler.instance().getMinecraftServerInstance();
-        WorldServer worldServer = server.worldServerForDimension(dimensionId);
+        WorldServer worldServer = server.getWorld(dimensionId);
 
         if (worldServer != null && worldServer instanceof WorldServer)
         {

@@ -120,7 +120,7 @@ public class EntityChestburster extends EntitySpeciesAlien implements IMob, INas
 
     protected Entity findPlayerToAttack(EntityPlayer entityplayer)
     {
-        float brightness = this.getBrightness(1.0F);
+        float brightness = this.getBrightness();
 
         if (brightness < 0.5F)
         {
@@ -139,7 +139,7 @@ public class EntityChestburster extends EntitySpeciesAlien implements IMob, INas
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.CHESTBURSTER_HURT.event();
     }
@@ -153,7 +153,7 @@ public class EntityChestburster extends EntitySpeciesAlien implements IMob, INas
     @Override
     public boolean isOnLadder()
     {
-        return this.isCollidedHorizontally;
+        return this.collidedHorizontally;
     }
 
     public boolean isClimbing()

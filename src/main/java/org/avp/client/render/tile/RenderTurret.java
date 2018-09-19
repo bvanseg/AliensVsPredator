@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
 {
     @Override
-    public void renderTileEntityAt(TileEntityTurret tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityTurret tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

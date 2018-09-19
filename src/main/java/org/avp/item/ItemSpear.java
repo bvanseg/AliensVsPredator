@@ -46,7 +46,7 @@ public class ItemSpear extends ItemSword
                 if (!world.isRemote)
                 {
                     EntitySpear entityspear = new EntitySpear(world, player, itemstack);
-                    entityspear.setThrowableHeading(entityspear.motionX, entityspear.motionY, entityspear.motionZ, 0.9F * charge, 0.1F);
+                    entityspear.shoot(entityspear.motionX, entityspear.motionY, entityspear.motionZ, 0.9F * charge, 0.1F);
                     GameSounds.fxPop.playSound(player, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
                     world.spawnEntity(entityspear);
 
@@ -72,13 +72,13 @@ public class ItemSpear extends ItemSword
     }
     
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         if (Inventories.playerHas(AliensVsPredator.items().itemSpear, player))
         {
             player.setActiveHand(hand);
         }
         
-        return super.onItemRightClick(itemstack, world, player, hand);
+        return super.onItemRightClick(world, player, hand);
     }
 }

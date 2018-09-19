@@ -1,0 +1,26 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "b  "
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "Items.IRON_INGOT",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemSilicon",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:parts.pistol.barrel",
+        "count": 1,
+        "data": 0
+    }
+}

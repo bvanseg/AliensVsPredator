@@ -7,6 +7,7 @@ import org.avp.entities.EntityGrenade;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 import com.arisux.mdx.lib.world.item.HookedItem;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -27,7 +28,7 @@ public class ItemGrenade extends HookedItem
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         if (!world.isRemote)
         {
@@ -37,14 +38,13 @@ public class ItemGrenade extends HookedItem
             Inventories.consumeItem(player, this);
         }
         
-        return super.onItemRightClick(itemstack, world, player, hand);
+        return super.onItemRightClick(world, player, hand);
     }
     
     @Override
     @SideOnly(Side.CLIENT)
-    @SuppressWarnings("all")
-    public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4)
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-        par3List.add("Right click to throw (explodes)");
+        tooltip.add("Right click to throw (explodes)");
     }
 }

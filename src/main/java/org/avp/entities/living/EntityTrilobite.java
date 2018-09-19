@@ -15,6 +15,7 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
@@ -51,7 +52,7 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
     {
         super.onUpdate();
 
-        if (this.isCollidedHorizontally)
+        if (this.collidedHorizontally)
         {
             this.motionY += 0.25F;
         }
@@ -60,7 +61,7 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.FACEHUGGER_HURT.event();
     }
@@ -86,7 +87,7 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
     @Override
     public boolean isOnLadder()
     {
-        return this.isCollidedHorizontally;
+        return this.collidedHorizontally;
     }
 
     public boolean isClimbing()

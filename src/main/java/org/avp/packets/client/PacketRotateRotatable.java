@@ -68,7 +68,7 @@ public class PacketRotateRotatable implements IMessage, IMessageHandler<PacketRo
                     if (tile != null && tile instanceof IRotatableYAxis)
                     {
                         IRotatableYAxis rotatable = (IRotatableYAxis) tile;
-                        rotatable.setRotationYAxis(EnumFacing.getFront(packet.direction));
+                        rotatable.setRotationYAxis(EnumFacing.byIndex(packet.direction));
                     }
                 }
             }

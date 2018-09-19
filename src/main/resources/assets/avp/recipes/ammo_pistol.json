@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " a ",
+        "bcb",
+        "bcb"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemIngotCopper",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemIngotAluminum",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "Items.GUNPOWDER",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:ammo.pistol",
+        "count": 1,
+        "data": 0
+    }
+}

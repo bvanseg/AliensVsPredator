@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderSkull extends TileEntitySpecialRenderer<TileEntitySkull>
 {
     @Override
-    public void renderTileEntityAt(TileEntitySkull skull, double posX, double posY, double posZ, float renderPartialTicks, int destroyStage)
+    public void render(TileEntitySkull skull, double posX, double posY, double posZ, float renderPartialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

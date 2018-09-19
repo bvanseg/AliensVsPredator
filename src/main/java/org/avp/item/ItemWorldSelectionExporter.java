@@ -6,6 +6,7 @@ import com.arisux.mdx.lib.world.Pos;
 import com.arisux.mdx.lib.world.Pos.BlockDataStore;
 import com.arisux.mdx.lib.world.item.HookedItem;
 
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,14 +37,14 @@ public class ItemWorldSelectionExporter extends HookedItem
     }
     
     @Override
-    public EnumActionResult onItemUseFirst(ItemStack stack, EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand)
+    public EnumActionResult onItemUseFirst(EntityPlayer player, World world, BlockPos pos, EnumFacing side, float hitX, float hitY, float hitZ, EnumHand hand)
     {
         if (!player.world.isRemote)
         {
-            this.writeSelectionDataToStack(null, new Pos(pos).store(new BlockDataStore(player.world.getBlockState(pos).getBlock(), (byte) 0)), stack);
+            this.writeSelectionDataToStack(null, new Pos(pos).store(new BlockDataStore(player.world.getBlockState(pos).getBlock(), (byte) 0)), player.getActiveItemStack());
         }
         
-        return super.onItemUseFirst(stack, player, world, pos, side, hitX, hitY, hitZ, hand);
+        return super.onItemUseFirst(player, world, pos, side, hitX, hitY, hitZ, hand);
     }
 
     public void writeSelectionDataToStack(Pos pos1, Pos pos2, ItemStack stack)
@@ -73,10 +74,9 @@ public class ItemWorldSelectionExporter extends HookedItem
     }
 
     @Override
-    @SuppressWarnings("all")
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack itemstack, EntityPlayer entityPlayer, List list, boolean par4)
+    public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-        list.add("World Selection Exporter");
+        tooltip.add("World Selection Exporter");
     }
 }

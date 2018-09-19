@@ -4,8 +4,8 @@ import org.avp.client.model.items.ModelAK47;
 import org.avp.client.render.items.ItemRendererGroup;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.client.render.model.MapModelTexture;
+import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;

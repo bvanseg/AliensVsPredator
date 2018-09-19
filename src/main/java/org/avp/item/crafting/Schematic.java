@@ -39,11 +39,11 @@ public class Schematic implements ISchematic
         for (ItemStack stack : schematic.getItemsRequired())
         {
             int amountOfStack = AssemblyManager.amountForMatchingStack(player, stack);
-            maxProgress += stack.stackSize;
+            maxProgress += stack.getCount();
 
             if (amountOfStack > 0)
             {
-                progress += amountOfStack > stack.stackSize ? stack.stackSize : amountOfStack;
+                progress += amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack;
             }
         }
 

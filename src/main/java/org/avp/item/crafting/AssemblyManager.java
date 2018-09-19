@@ -124,9 +124,9 @@ public class AssemblyManager
 
                         for (ItemStack potentialMatch : OreDictionary.getOres(sharedName))
                         {
-                            if (Inventories.getAmountOfItemPlayerHas(potentialMatch.getItem(), player) >= requirement.stackSize)
+                            if (Inventories.getAmountOfItemPlayerHas(potentialMatch.getItem(), player) >= requirement.getCount())
                             {
-                                for (int x = 0; x < requirement.stackSize; x++)
+                                for (int x = 0; x < requirement.getCount(); x++)
                                 {
                                     if (!Inventories.consumeItem(player, potentialMatch.getItem()))
                                     {
@@ -141,9 +141,9 @@ public class AssemblyManager
                 }
                 else
                 {
-                    if (Inventories.getAmountOfItemPlayerHas(requirement.getItem(), player) >= requirement.stackSize)
+                    if (Inventories.getAmountOfItemPlayerHas(requirement.getItem(), player) >= requirement.getCount())
                     {
-                        for (int x = 0; x < requirement.stackSize; x++)
+                        for (int x = 0; x < requirement.getCount(); x++)
                         {
                             if (!Inventories.consumeItem(player, requirement.getItem()))
                             {

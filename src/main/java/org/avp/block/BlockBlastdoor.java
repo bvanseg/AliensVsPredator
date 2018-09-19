@@ -39,7 +39,7 @@ public class BlockBlastdoor extends Block
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileEntity tile = world.getTileEntity(pos);
 
@@ -59,7 +59,7 @@ public class BlockBlastdoor extends Block
 
             if (blastdoor != null && blastdoor.isOperational())
             {
-                if (heldItem != null && heldItem.getItem() == AliensVsPredator.items().securityTuner)
+                if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == AliensVsPredator.items().securityTuner)
                 {
                     if (blastdoor.playerHoldingRequiredSecurityTuner(player))
                     {
@@ -213,7 +213,7 @@ public class BlockBlastdoor extends Block
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
     {
         TileEntity tileEntity = worldIn.getTileEntity(pos);
 

@@ -185,7 +185,7 @@ public class EntityAethon extends EntityMob implements IMob, IHost
     }
     
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return null;
     }

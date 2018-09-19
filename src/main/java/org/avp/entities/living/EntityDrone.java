@@ -57,7 +57,7 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.ALIEN_HURT.event();
     }
@@ -134,7 +134,7 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
 
                 if (this.targetOvamorph != null)
                 {
-                    double distance = this.getDistanceSqToEntity(targetOvamorph);
+                    double distance = this.getDistanceSq(targetOvamorph);
 
                     if (distance <= 2)
                     {
@@ -221,7 +221,7 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
 
                             if (hit != null)
                             {
-                                canSeeCoord = hit.hitVec.xCoord == x && hit.hitVec.yCoord == y && hit.hitVec.zCoord == z;
+                                canSeeCoord = hit.hitVec.x == x && hit.hitVec.y == y && hit.hitVec.z == z;
                             }
 
                             if (Pos.isAnySurfaceEmpty(location, this.world) && canSeeCoord)

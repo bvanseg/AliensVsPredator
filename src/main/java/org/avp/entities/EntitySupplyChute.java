@@ -13,6 +13,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
@@ -89,7 +90,7 @@ public class EntitySupplyChute extends Entity
             if (i > 0)
             {
                 ArrayList arraylist = new ArrayList(this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox()));
-                DamageSource damagesource = DamageSource.fallingBlock;
+                DamageSource damagesource = DamageSource.FALLING_BLOCK;
                 Iterator iterator = arraylist.iterator();
 
                 while (iterator.hasNext())
@@ -183,7 +184,7 @@ public class EntitySupplyChute extends Entity
             this.prevPosZ = this.posZ;
             ++this.fallTime;
             this.motionY -= 0.03999999910593033D;
-            this.move(this.motionX, this.motionY, this.motionZ);
+            this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
             this.motionX *= 0.9800000190734863D;
             this.motionY *= 0.9800000190734863D;
             this.motionZ *= 0.9800000190734863D;

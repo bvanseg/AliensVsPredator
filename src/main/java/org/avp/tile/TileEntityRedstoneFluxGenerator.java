@@ -149,7 +149,7 @@ public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implem
     {
         super.readFromNBT(nbt);
         this.rfEnergy = nbt.getInteger("RFEnergy");
-        this.direction = EnumFacing.getFront(nbt.getInteger("Direction"));
+        this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
     }
 
     @Override

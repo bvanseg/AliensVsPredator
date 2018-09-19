@@ -24,11 +24,11 @@ public class ItemEntitySummoner extends HookedItem
         super();
         this.c = c;
         this.setDescription("Summoner for " + c.getSimpleName().replace("Entity", ""));
-        this.setUnlocalizedName(AliensVsPredator.Properties.DOMAIN + "summon." + c.getSimpleName());
+        this.setTranslationKey(AliensVsPredator.Properties.DOMAIN + "summon." + c.getSimpleName());
     }
     
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemstack, World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         Entity entity = createNewEntity(world);
         Inventories.consumeItem(player, this);
@@ -36,10 +36,10 @@ public class ItemEntitySummoner extends HookedItem
         if (world.isRemote && entity != null)
         {
             RayTraceResult ray = player.rayTrace(50D, 1F);
-            AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.xCoord + 0.5, ray.hitVec.yCoord + 1D, ray.hitVec.zCoord + 0.5, Entities.getEntityRegistrationId(c)));
+            AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c)));
         }
 
-        return super.onItemRightClick(itemstack, world, player, hand);
+        return super.onItemRightClick(world, player, hand);
     }
 
     public Class<? extends Entity> getEntityClass()

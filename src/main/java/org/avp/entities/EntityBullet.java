@@ -93,7 +93,7 @@ public class EntityBullet extends Entity
         this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
         this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
         this.motionY = (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
-        this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
+        this.shoot(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
 
         if (source instanceof EntityLivingBase)
         {
@@ -161,7 +161,7 @@ public class EntityBullet extends Entity
             double xOffset = x / v;
             double zOffset = z / v;
             this.setLocationAndAngles(srcX + xOffset, this.posY, srcZ + zOffset, yaw, pitch);
-            this.setThrowableHeading(x, y, z, velocity, damage);
+            this.shoot(x, y, z, velocity, damage);
         }
     }
 
@@ -171,7 +171,7 @@ public class EntityBullet extends Entity
         ;
     }
 
-    public void setThrowableHeading(double posX, double posY, double posZ, float velocity, double damage)
+    public void shoot(double posX, double posY, double posZ, float velocity, double damage)
     {
         float v = MathHelper.sqrt(posX * posX + posY * posY + posZ * posZ);
         posX /= v;
@@ -235,7 +235,7 @@ public class EntityBullet extends Entity
         {
             AxisAlignedBB box = blockstate.getCollisionBoundingBox(this.world, pos);
 
-            if (box != null && box.isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
+            if (box != null && box.contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
                 this.inGround = true;
             }
@@ -256,8 +256,8 @@ public class EntityBullet extends Entity
             if (block == Blocks.GLASS_PANE)
             {
                 this.world.setBlockToAir(pos);
-                GameSounds.fxMinecraftGlassShatter3.playSound(this.world, this.xTile, this.yTile, this.zTile, 1F, 1F);
-                GameSounds.fxMinecraftGlassShatter1.playSound(this.shootingEntity);
+                GameSounds.fxMinecraftGlassShatter3.playSound(this.world, this.xTile, this.yTile, this.zTile, 1F, 1F);;
+                GameSounds.fxMinecraftGlassShatter1.playSound(this.shootingEntity);;
             }
 
             if (block == this.inTile)
@@ -295,11 +295,11 @@ public class EntityBullet extends Entity
 
             if (result != null)
             {
-                vecNext = new Vec3d(result.hitVec.xCoord, result.hitVec.yCoord, result.hitVec.zCoord);
+                vecNext = new Vec3d(result.hitVec.x, result.hitVec.y, result.hitVec.z);
             }
 
             Entity entity = null;
-            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d = 0.0D;
             float radius;
 
@@ -373,13 +373,13 @@ public class EntityBullet extends Entity
                 }
                 else
                 {
-                    this.xTile = (int) result.hitVec.xCoord;
-                    this.yTile = (int) result.hitVec.yCoord;
-                    this.zTile = (int) result.hitVec.zCoord;
+                    this.xTile = (int) result.hitVec.x;
+                    this.yTile = (int) result.hitVec.y;
+                    this.zTile = (int) result.hitVec.z;
                     this.inTile = this.world.getBlockState(new BlockPos(this.xTile, this.yTile, this.zTile)).getBlock();
-                    this.motionX = ((float) (result.hitVec.xCoord - this.posX));
-                    this.motionY = ((float) (result.hitVec.yCoord - this.posY));
-                    this.motionZ = ((float) (result.hitVec.zCoord - this.posZ));
+                    this.motionX = ((float) (result.hitVec.x - this.posX));
+                    this.motionY = ((float) (result.hitVec.y - this.posY));
+                    this.motionZ = ((float) (result.hitVec.z - this.posZ));
                     velocity = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     this.posX -= this.motionX / velocity * 0.05000000074505806D;
                     this.posY -= this.motionY / velocity * 0.05000000074505806D;

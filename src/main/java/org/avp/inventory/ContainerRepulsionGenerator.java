@@ -83,7 +83,7 @@ public class ContainerRepulsionGenerator extends Container
                 return null;
             }
 
-            if (stack.stackSize == 0)
+            if (stack.getCount() == 0)
             {
                 slot.putStack(null);
             }
@@ -92,7 +92,7 @@ public class ContainerRepulsionGenerator extends Container
                 slot.onSlotChanged();
             }
 
-            slot.onPickupFromSlot(null, stack);
+            slot.onTake(null, stack);
 
             return result;
         }

@@ -84,7 +84,7 @@ public class ContainerTurret extends Container
                     return null;
                 }
 
-                if (itemstack.stackSize == 0)
+                if (itemstack.getCount() == 0)
                 {
                     slot.putStack((ItemStack) null);
                 }
@@ -93,12 +93,12 @@ public class ContainerTurret extends Container
                     slot.onSlotChanged();
                 }
 
-                if (itemstack.stackSize == itemstack.stackSize)
+                if (itemstack.getCount() == itemstack.getCount())
                 {
                     return null;
                 }
 
-                slot.onPickupFromSlot(player, itemstack);
+                slot.onTake(player, itemstack);
             }
 
             return itemstack;

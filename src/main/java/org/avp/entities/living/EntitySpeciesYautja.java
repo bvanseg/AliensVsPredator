@@ -159,7 +159,7 @@ public abstract class EntitySpeciesYautja extends EntityMob implements IHost, Pr
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.YAUTJA_HURT.event();
     }

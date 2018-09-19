@@ -13,7 +13,7 @@ import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.chunk.IChunkGenerator;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -39,7 +39,7 @@ public class WorldProviderVarda extends WorldProvider implements IClimateProvide
 
     public WorldProviderVarda()
     {
-        this.hasNoSky = false;
+        this.nether = false;
     }
     
     @Override
@@ -55,7 +55,7 @@ public class WorldProviderVarda extends WorldProvider implements IClimateProvide
     }
 
     @Override
-    protected void createBiomeProvider()
+    protected void init()
     {
         this.biomeProvider = new BiomeProviderVarda(this.getSeed(), WorldType.DEFAULT);
     }
@@ -86,18 +86,6 @@ public class WorldProviderVarda extends WorldProvider implements IClimateProvide
     public String getSaveFolder()
     {
         return AliensVsPredator.dimensions().DIMENSION_ID_VARDA;
-    }
-
-    @Override
-    public String getWelcomeMessage()
-    {
-        return "Enterring " + AliensVsPredator.dimensions().DIMENSION_NAME_VARDA;
-    }
-
-    @Override
-    public String getDepartMessage()
-    {
-        return "Leaving " + AliensVsPredator.dimensions().DIMENSION_NAME_VARDA;
     }
     
     @Override

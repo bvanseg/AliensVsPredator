@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderAmpule extends TileEntitySpecialRenderer<TileEntityAmpule>
 {
     @Override
-    public void renderTileEntityAt(TileEntityAmpule tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityAmpule tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

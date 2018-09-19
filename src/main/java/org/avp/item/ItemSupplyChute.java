@@ -145,13 +145,13 @@ public class ItemSupplyChute extends HookedItem
 
     public ItemSupplyChute(SupplyChuteType type)
     {
-        setUnlocalizedName("supplyChute");
+        setTranslationKey("supplyChute");
         setMaxStackSize(1);
         this.type = type;
     }
     
     @Override
-    public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
         if (playerIn.capabilities.isCreativeMode || Inventories.consumeItem(playerIn, this))
         {
@@ -164,7 +164,7 @@ public class ItemSupplyChute extends HookedItem
                 worldIn.setBlockState(new BlockPos(x, y, z), this.type.getBlock().getDefaultState());
             }
         }
-        return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
+        return super.onItemRightClick(worldIn, playerIn, hand);
     }
 
     public SupplyChuteType getType()

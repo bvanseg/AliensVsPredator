@@ -177,7 +177,7 @@ public class EntityDracomorph extends EntitySpeciesAlien implements IMob, IHost
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return null;
     }

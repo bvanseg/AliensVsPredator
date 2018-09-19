@@ -111,7 +111,7 @@ public class EntityHammerpede extends EntitySpeciesAlien implements IMob
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.CHESTBURSTER_HURT.event();
     }
@@ -125,7 +125,7 @@ public class EntityHammerpede extends EntitySpeciesAlien implements IMob
     @Override
     public boolean isOnLadder()
     {
-        return this.isCollidedHorizontally;
+        return this.collidedHorizontally;
     }
 
     public boolean isClimbing()

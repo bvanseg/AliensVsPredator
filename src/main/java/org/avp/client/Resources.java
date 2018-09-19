@@ -92,9 +92,9 @@ import org.avp.client.model.tile.rackmodules.ModelRackModule7;
 import org.avp.client.model.tile.rackmodules.ModelRackModule8;
 
 import com.arisux.mdx.lib.client.render.Texture;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.client.render.model.SpecialModelBiped;
-import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.client.render.model.WavefrontModelLoader;
 import com.arisux.mdx.lib.client.render.wavefront.TriangulatedWavefrontModel;
 

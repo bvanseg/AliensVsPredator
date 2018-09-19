@@ -134,7 +134,7 @@ public class EntityLaserMine extends Entity
 
         if (this.getLaserHit() != null && this.getLaserHit().hitVec != null)
         {
-            return (this.posX - this.getLaserHit().hitVec.xCoord) + (this.posZ - this.getLaserHit().hitVec.zCoord) + (this.posY - this.getLaserHit().hitVec.yCoord);
+            return (this.posX - this.getLaserHit().hitVec.x) + (this.posZ - this.getLaserHit().hitVec.z) + (this.posY - this.getLaserHit().hitVec.y);
         }
 
         return this.getLaserMaxDepth();

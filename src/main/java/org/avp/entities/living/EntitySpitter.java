@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
@@ -34,7 +35,7 @@ public class EntitySpitter extends EntityXenomorph implements IRangedAttackMob
     }
     
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.ALIEN_HURT.event();
     }
@@ -90,5 +91,11 @@ public class EntitySpitter extends EntityXenomorph implements IRangedAttackMob
     public void onUpdate()
     {
         super.onUpdate();
+    }
+
+    @Override
+    public void setSwingingArms(boolean swingingArms)
+    {
+        ;
     }
 }

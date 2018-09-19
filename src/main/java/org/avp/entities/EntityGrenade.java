@@ -10,6 +10,7 @@ import com.arisux.mdx.lib.world.Worlds;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -48,7 +49,7 @@ public class EntityGrenade extends EntityThrowable
         float f = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
         float f1 = -MathHelper.sin(pitch * 0.017453292F);
         float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
-        this.setThrowableHeading((double) f, (double) f1, (double) f2, velocity, inaccuracy);
+        this.shoot((double) f, (double) f1, (double) f2, velocity, inaccuracy);
         this.motionX += shooter.motionX;
         this.motionZ += shooter.motionZ;
 
@@ -81,7 +82,7 @@ public class EntityGrenade extends EntityThrowable
         this.prevPosY = this.posY;
         this.prevPosZ = this.posZ;
         this.motionY -= 0.02999999910593033D;
-        this.move(this.motionX, this.motionY, this.motionZ);
+        this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
         this.motionX *= velocity;
         this.motionY *= velocity;
         this.motionZ *= velocity;

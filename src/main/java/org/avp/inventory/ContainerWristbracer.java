@@ -88,7 +88,7 @@ public class ContainerWristbracer extends Container
 
                 if (slot >= 0 && slot <= this.inventory.getSizeInventory())
                 {
-                    this.inventory.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+                    this.inventory.setInventorySlotContents(slot, new ItemStack(item));
                 }
             }
         }
@@ -130,7 +130,7 @@ public class ContainerWristbracer extends Container
                 return null;
             }
 
-            if (stack.stackSize == 0)
+            if (stack.getCount() == 0)
             {
                 slot.putStack(null);
             }
@@ -139,7 +139,7 @@ public class ContainerWristbracer extends Container
                 slot.onSlotChanged();
             }
 
-            slot.onPickupFromSlot(null, stack);
+            slot.onTake(null, stack);
 
             return result;
         }

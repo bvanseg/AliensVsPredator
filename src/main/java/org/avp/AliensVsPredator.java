@@ -1,4 +1,4 @@
-/** AliensVsPredator Minecraft Mod - Copyright (C) 2012-2017 ASX **/
+/** AliensVsPredator Minecraft Mod - Copyright (C) 2012-2018 ASX **/
 package org.avp;
 
 import org.apache.logging.log4j.Logger;
@@ -12,7 +12,6 @@ import org.avp.world.hives.HiveHandler;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.IMod;
 
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.ModContainer;
@@ -53,17 +52,13 @@ public class AliensVsPredator implements IMod
         console().pre(event);
         settings().pre(event);
         tabs().pre(event);
-        items().pre(event);
         capabilities().pre(event);
-        entities().pre(event);
-        blocks().pre(event);
     }
 
     @SideOnly(Side.CLIENT)
     @Mod.EventHandler
     public void preClient(FMLPreInitializationEvent event)
     {
-        sounds().pre(event);
         renderers().pre(event);
     }
 

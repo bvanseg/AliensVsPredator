@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderStasisMechanism extends TileEntitySpecialRenderer<TileEntityStasisMechanism>
 {
     @Override
-    public void renderTileEntityAt(TileEntityStasisMechanism te, double posX, double posY, double posZ, float renderPartialTicks, int destroyStage)
+    public void render(TileEntityStasisMechanism te, double posX, double posY, double posZ, float renderPartialTicks, int destroyStage, float alpha)
     {
         TileEntityStasisMechanism tile = (TileEntityStasisMechanism) te;
 

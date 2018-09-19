@@ -15,7 +15,7 @@ import net.minecraft.tileentity.TileEntity;
 public class RenderPowerline extends TileEntitySpecialRenderer<TileEntityPowerline>
 {
     @Override
-    public void renderTileEntityAt(TileEntityPowerline tile, double posX, double posY, double posZ, float renderPartialTicks, int destroyStage)
+    public void render(TileEntityPowerline tile, double posX, double posY, double posZ, float renderPartialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

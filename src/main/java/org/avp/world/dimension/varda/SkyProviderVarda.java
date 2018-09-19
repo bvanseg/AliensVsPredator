@@ -13,10 +13,10 @@ import com.arisux.mdx.lib.game.GameResources;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GLAllocation;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,7 +35,7 @@ public class SkyProviderVarda extends IRenderHandler
     private void generateStars()
     {
         Tessellator tessellator = Tessellator.getInstance();
-        VertexBuffer vertexbuffer = tessellator.getBuffer();
+        BufferBuilder vertexbuffer = tessellator.getBuffer();
 
         if (this.starGLCallList >= 0)
         {
@@ -53,7 +53,7 @@ public class SkyProviderVarda extends IRenderHandler
         this.starGLCallList += 1;
     }
 
-    private void renderStars(VertexBuffer buffer)
+    private void renderStars(BufferBuilder buffer)
     {
         Random random = new Random(10842L);
         buffer.begin(7, DefaultVertexFormats.POSITION);

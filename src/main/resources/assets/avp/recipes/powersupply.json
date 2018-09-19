@@ -1,0 +1,45 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "abc",
+        "dec",
+        "abc"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemDiode",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemVoltageRegulator",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemIngotAluminum",
+                "data": 0
+            }
+        ],
+        "d": [
+            {
+                "item": "items.itemCapacitor",
+                "data": 0
+            }
+        ],
+        "e": [
+            {
+                "item": "blocks.transformer",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:part.powersupply",
+        "count": 1,
+        "data": 0
+    }
+}

@@ -120,7 +120,7 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
 
             if (slot >= 0 && slot <= inventory.getSizeInventory())
             {
-                inventory.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+                inventory.setInventorySlotContents(slot, new ItemStack(item));
             }
         }
     }

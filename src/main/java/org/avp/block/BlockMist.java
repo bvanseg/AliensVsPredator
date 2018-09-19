@@ -8,6 +8,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 
 public class BlockMist extends BlockFluidClassic
 {
@@ -16,6 +17,8 @@ public class BlockMist extends BlockFluidClassic
     public BlockMist()
     {
         super(fluid, AliensVsPredator.materials().mist);
+        FluidRegistry.registerFluid(fluid);
+        FluidRegistry.addBucketForFluid(fluid);
     }
     
     @Override

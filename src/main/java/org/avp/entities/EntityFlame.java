@@ -18,6 +18,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
@@ -60,7 +61,7 @@ public class EntityFlame extends EntityThrowable
         float f = -MathHelper.sin(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
         float f1 = -MathHelper.sin(pitch * 0.017453292F);
         float f2 = MathHelper.cos(yaw * 0.017453292F) * MathHelper.cos(pitch * 0.017453292F);
-        this.setThrowableHeading((double) f, (double) f1, (double) f2, velocity, inaccuracy);
+        this.shoot((double) f, (double) f1, (double) f2, velocity, inaccuracy);
         this.motionX += shooter.motionX;
         this.motionZ += shooter.motionZ;
 
@@ -100,7 +101,7 @@ public class EntityFlame extends EntityThrowable
     @Override
     public void onUpdate()
     {
-        this.move(this.motionX, this.motionY, this.motionZ);
+        this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
         RayTraceResult result = this.world.rayTraceBlocks(new Vec3d(this.posX - 1, this.posY, this.posZ - 1), new Vec3d(this.posX - 1 + this.motionX, this.posY + this.motionY, this.posZ - 1 + this.motionZ));
 
         if (!this.world.isRemote)
@@ -153,9 +154,9 @@ public class EntityFlame extends EntityThrowable
     @Override
     protected void onImpact(RayTraceResult result)
     {
-        int posX = (int) result.hitVec.xCoord;
-        int posY = (int) result.hitVec.yCoord;
-        int posZ = (int) result.hitVec.zCoord;
+        int posX = (int) result.hitVec.x;
+        int posY = (int) result.hitVec.y;
+        int posZ = (int) result.hitVec.z;
 
         if (!this.world.isRemote)
         {
@@ -187,7 +188,7 @@ public class EntityFlame extends EntityThrowable
 
         if (rand.nextInt(10) == 0)
         {
-            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int) result.hitVec.xCoord, (int) result.hitVec.yCoord, (int) result.hitVec.zCoord, 1, this.world, AliensVsPredator.blocks().cryoTube);
+            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int) result.hitVec.x, (int) result.hitVec.y, (int) result.hitVec.z, 1, this.world, AliensVsPredator.blocks().cryoTube);
 
             for (Pos coord : list)
             {

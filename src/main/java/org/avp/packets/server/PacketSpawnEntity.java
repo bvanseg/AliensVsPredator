@@ -48,19 +48,19 @@ public class PacketSpawnEntity implements IMessage, IMessageHandler<PacketSpawnE
     @Override
     public PacketSpawnEntity onMessage(PacketSpawnEntity message, MessageContext ctx)
     {
-        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                if (ctx.getServerHandler().playerEntity != null && ctx.getServerHandler().playerEntity.world != null)
+                if (ctx.getServerHandler().player != null && ctx.getServerHandler().player.world != null)
                 {
-                    Entity entity = Entities.constructEntity(ctx.getServerHandler().playerEntity.world, Entities.getRegisteredEntityClass(message.entityId));
+                    Entity entity = Entities.constructEntity(ctx.getServerHandler().player.world, Entities.getRegisteredEntityClass(message.entityId));
 
                     if (entity != null)
                     {
                         entity.setLocationAndAngles(message.x, message.y, message.z, 0.0F, 0.0F);
-                        ctx.getServerHandler().playerEntity.world.spawnEntity(entity);
+                        ctx.getServerHandler().player.world.spawnEntity(entity);
                     }
                 }
             }

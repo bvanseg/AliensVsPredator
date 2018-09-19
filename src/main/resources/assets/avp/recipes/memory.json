@@ -1,0 +1,38 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "CEC",
+    "DBD"
+  ],
+  "key": {
+    "A": [
+      {
+        "item": "avp:part.ic",
+        "data": 0
+      }
+    ],
+    "B": [
+      {
+        "item": "avp:polycarbonate",
+        "data": 0
+      }
+    ],
+    "C": [
+      {
+        "item": "avp:silicon",
+        "data": 0
+      }
+    ],
+    "D": [
+      {
+        "item": "avp:ingot.copper",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "avp:part.ram",
+    "data": 0
+  }
+}

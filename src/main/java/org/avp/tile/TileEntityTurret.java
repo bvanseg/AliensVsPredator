@@ -49,7 +49,6 @@ import com.arisux.mdx.lib.world.storage.NBTStorage;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
@@ -63,11 +62,13 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -394,7 +395,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                 {
                     if (stack.getItem() == this.itemAmmo)
                     {
-                        this.rounds = this.rounds + (stack.stackSize);
+                        this.rounds = this.rounds + (stack.getCount());
                     }
                 }
             }
@@ -412,7 +413,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             {
                 if (!entityItem.cannotPickup())
                 {
-                    ItemStack stack = entityItem.getEntityItem();
+                    ItemStack stack = entityItem.getItem();
 
                     if (stack.getItem() == this.itemAmmo)
                     {
@@ -420,7 +421,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                         {
                             ItemStack invStack = this.inventoryAmmo.getStackInSlot(x);
 
-                            if (invStack == null || invStack != null && invStack.stackSize < 64)
+                            if (invStack == null || invStack != null && invStack.getCount() < 64)
                             {
                                 this.inventoryAmmo.setInventorySlotContents(x, stack);
                                 entityItem.setDead();
@@ -445,7 +446,9 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
                 if (stack != null && stack.getItem() == this.getItemAmmo())
                 {
-                    if (stack.stackSize-- <= 0)
+                    stack.shrink(1);
+                    
+                    if (stack.getCount() <= 0)
                     {
                         this.inventoryAmmo.setInventorySlotContents(x, null);
                     }
@@ -557,7 +560,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
             if (pciSlot != null && pciSlot.getItem() == AliensVsPredator.items().itemProcessor)
             {
-                cycles += 1 * pciSlot.stackSize;
+                cycles += 1 * pciSlot.getCount();
             }
 
             if (pciSlot != null && pciSlot.getItem() == AliensVsPredator.items().itemLedDisplay)
@@ -597,8 +600,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         for (int i = 0; i < list.tagCount(); i++)
         {
             String id = list.getStringTagAt(i);
-
-            Class<? extends Entity> c = (Class<? extends Entity>) EntityList.NAME_TO_CLASS.get(id);
+            
+            Class<? extends Entity> c = (Class<? extends Entity>) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id)).getEntityClass();
             this.addTargetType(c);
         }
     }
@@ -635,7 +638,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
             if (slot >= 0 && slot <= inventory.getSizeInventory())
             {
-                inventory.setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+                inventory.setInventorySlotContents(slot, new ItemStack(item));
             }
         }
     }
@@ -802,7 +805,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                     {
                         String id = list.getStringTagAt(i);
 
-                        Class<? extends Entity> c = (Class<? extends Entity>) EntityList.NAME_TO_CLASS.get(id);
+                        Class<? extends Entity> c = (Class<? extends Entity>) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id)).getEntityClass();
                         this.addTargetType(c);
                         builder.append(id + "-");
                     }

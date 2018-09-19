@@ -82,6 +82,6 @@ public abstract class EntityItemStackProjectile extends EntityProjectile
     public void readEntityFromNBT(NBTTagCompound nbttagcompound)
     {
         super.readEntityFromNBT(nbttagcompound);
-        setItemstack(ItemStack.loadItemStackFromNBT(nbttagcompound.getCompoundTag("stack")));
+        setItemstack(new ItemStack(nbttagcompound.getCompoundTag("stack")));
     }
 }

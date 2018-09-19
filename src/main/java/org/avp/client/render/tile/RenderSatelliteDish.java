@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderSatelliteDish extends TileEntitySpecialRenderer<TileEntitySatelliteDish>
 {
     @Override
-    public void renderTileEntityAt(TileEntitySatelliteDish tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntitySatelliteDish tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

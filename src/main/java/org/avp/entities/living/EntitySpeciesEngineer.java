@@ -122,7 +122,7 @@ public abstract class EntitySpeciesEngineer extends EntityMob
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return null;
     }

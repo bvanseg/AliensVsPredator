@@ -14,7 +14,7 @@ import net.minecraft.util.EnumFacing;
 public class RenderCCFLTube extends TileEntitySpecialRenderer<TileEntityCCFLTube>
 {
     @Override
-    public void renderTileEntityAt(TileEntityCCFLTube ccfl, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityCCFLTube ccfl, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         GlStateManager.pushMatrix();
         OpenGL.disable(GL_CULL_FACE);

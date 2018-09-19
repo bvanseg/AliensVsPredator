@@ -133,7 +133,7 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
                 double ovamorphX = (this.posX + (ovipositorDist * (Math.cos(rotationYawRadians))));
                 double ovamorphZ = (this.posZ + (ovipositorDist * (Math.sin(rotationYawRadians))));
 
-                //this.world.playSound(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), AliensVsPredator.sounds().SOUND_QUEEN_HURT.event(), SoundCategory.HOSTILE, 1F, this.rand.nextInt(10) / 100, true);
+                //this.world.playSound(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), AliensVsPredator.sounds().SOUND_QUEEN_HURT, SoundCategory.HOSTILE, 1F, this.rand.nextInt(10) / 100, true);
 
                 if (this.world.isRemote)
                 {
@@ -285,7 +285,7 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
                         {
                             // if (alien != null && alien.getHive() != null && !(alien instanceof EntityQueen) && alien.getHive() == this.getHive())
                             // {
-                            // if ((this.getAttackTarget() != null || this.getLastAttacker() != null))
+                            // if ((this.getAttackTarget() != null || this.getLastAttackedEntity() != null))
                             // {
                             // if (this.rand.nextInt(6) == 0)
                             // {
@@ -296,7 +296,7 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
                             // }
                             // }
                             //
-                            // EntityLivingBase target = this.getAttackTarget() != null ? this.getAttackTarget() : this.getLastAttacker();
+                            // EntityLivingBase target = this.getAttackTarget() != null ? this.getAttackTarget() : this.getLastAttackedEntity();
                             //
                             // alien.setAttackTarget(target);
                             // alien.getNavigator().tryMoveToEntityLiving(target, alien.getMoveHelper().getSpeed());
@@ -333,7 +333,7 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.QUEEN_HURT.event();
     }

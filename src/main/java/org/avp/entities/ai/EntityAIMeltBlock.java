@@ -92,7 +92,7 @@ public class EntityAIMeltBlock extends EntityAIYOffsetBlockInteract
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return (this.theEntity.world.getDifficulty() == EnumDifficulty.NORMAL || this.theEntity.world.getDifficulty() == EnumDifficulty.HARD) && this.theEntity.getDistanceSq((int) this.theEntity.posX, (int) this.theEntity.posY + yOffset, (int) this.theEntity.posZ) < 4.0D && block != Blocks.AIR && block != AliensVsPredator.blocks().naturalResin && block != Blocks.BEDROCK;
     }

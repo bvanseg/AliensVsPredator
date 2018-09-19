@@ -42,12 +42,12 @@ public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPl
     public PacketPlasmaDischarge onMessage(PacketPlasmaDischarge packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                EntityPlayer player = ctx.getServerHandler().playerEntity;
+                EntityPlayer player = ctx.getServerHandler().player;
 
                 if (player != null)
                 {

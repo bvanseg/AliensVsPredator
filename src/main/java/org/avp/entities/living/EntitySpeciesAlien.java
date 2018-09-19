@@ -93,7 +93,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
 
         if (!this.world.isRemote)
         {
-            if (damagesource != DamageSource.onFire && damagesource != DamageSource.inFire && damagesource != DamageSources.flamethrower)
+            if (damagesource != DamageSource.ON_FIRE && damagesource != DamageSource.IN_FIRE && damagesource != DamageSources.flamethrower)
             {
                 EntityAcidPool entity = new EntityAcidPool(this.world);
                 entity.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -147,7 +147,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
             {
                 if (!entityItem.cannotPickup())
                 {
-                    ItemStack stack = entityItem.getEntityItem();
+                    ItemStack stack = entityItem.getItem();
 
                     if (stack.getItem() == AliensVsPredator.items().itemRoyalJelly)
                     {
@@ -156,7 +156,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
                             this.getNavigator().setPath(this.getNavigator().getPathToEntityLiving(entityItem), 1);
                         }
 
-                        if (this.getDistanceToEntity(entityItem) <= 1)
+                        if (this.getDistanceSq(entityItem) <= 1)
                         {
                             this.onPickupJelly(entityItem);
                         }
@@ -187,7 +187,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
 
     protected void onPickupJelly(EntityItem entityItem)
     {
-        this.setJellyLevel(this.getJellyLevel() + (entityItem.getEntityItem().stackSize * 100));
+        this.setJellyLevel(this.getJellyLevel() + (entityItem.getItem().getCount() * 100));
         entityItem.setDead();
     }
 

@@ -39,7 +39,7 @@ public class InventoryCustomPlayer implements IInventory
         ItemStack stack = getStackInSlot(slot);
         if (stack != null)
         {
-            if (stack.stackSize > amount)
+            if (stack.getCount() > amount)
             {
                 stack = stack.splitStack(amount);
                 this.onInventoryChanged();
@@ -65,9 +65,9 @@ public class InventoryCustomPlayer implements IInventory
     {
         this.inventory[slot] = itemstack;
 
-        if (itemstack != null && itemstack.stackSize > this.getInventoryStackLimit())
+        if (itemstack != null && itemstack.getCount() > this.getInventoryStackLimit())
         {
-            itemstack.stackSize = this.getInventoryStackLimit();
+            itemstack.setCount(this.getInventoryStackLimit());
         }
 
         this.onInventoryChanged();
@@ -83,7 +83,7 @@ public class InventoryCustomPlayer implements IInventory
     {
         for (int i = 0; i < this.getSizeInventory(); ++i)
         {
-            if (this.getStackInSlot(i) != null && this.getStackInSlot(i).stackSize == 0)
+            if (this.getStackInSlot(i) != null && this.getStackInSlot(i).getCount() == 0)
                 this.setInventorySlotContents(i, null);
         }
     }
@@ -143,7 +143,7 @@ public class InventoryCustomPlayer implements IInventory
 
             if (slot >= 0 && slot < getSizeInventory())
             {
-                setInventorySlotContents(slot, ItemStack.loadItemStackFromNBT(item));
+                setInventorySlotContents(slot, new ItemStack(item));
             }
         }
     }
@@ -195,5 +195,11 @@ public class InventoryCustomPlayer implements IInventory
     public void clear()
     {
         ;
+    }
+
+    @Override
+    public boolean isEmpty()
+    {
+        return this.inventory.length <= 0;
     }
 }

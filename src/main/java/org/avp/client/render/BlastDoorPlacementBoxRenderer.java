@@ -11,9 +11,9 @@ import com.arisux.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -38,7 +38,7 @@ public class BlastDoorPlacementBoxRenderer
     {
         EntityPlayer p = Minecraft.getMinecraft().player;
         Tessellator tess = Tessellator.getInstance();
-        VertexBuffer buff = tess.getBuffer();
+        BufferBuilder buff = tess.getBuffer();
 
         if (Game.minecraft().gameSettings.thirdPersonView == 0)
         {
@@ -64,9 +64,9 @@ public class BlastDoorPlacementBoxRenderer
                         double y = p.lastTickPosY + (p.posY - p.lastTickPosY) * (double) event.getPartialTicks();
                         double z = p.lastTickPosZ + (p.posZ - p.lastTickPosZ) * (double) event.getPartialTicks();
 
-                        double locationX = Math.floor(hitVec.xCoord);
-                        double locationY = Math.floor(hitVec.yCoord);
-                        double locationZ = Math.floor(hitVec.zCoord);
+                        double locationX = Math.floor(hitVec.x);
+                        double locationY = Math.floor(hitVec.y);
+                        double locationZ = Math.floor(hitVec.z);
 
                         double placeX = locationX - x;
                         double placeY = locationY - y;

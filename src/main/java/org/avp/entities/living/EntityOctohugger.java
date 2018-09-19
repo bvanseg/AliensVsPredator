@@ -14,6 +14,7 @@ import com.arisux.mdx.lib.world.block.Blocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -178,7 +179,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
 
                 if (target != null)
                 {
-                    if (this.getDistanceToEntity(target) > 0)
+                    if (this.getDistanceSq(target) > 0)
                     {
                         stringStrength = 0.0F;
                     }
@@ -195,7 +196,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
             this.motionY += (hangingY - this.posY) * (stringStrength * 0.85);
             this.motionZ += (hangingZ - this.posZ) * stringStrength * 1.4;
 
-            this.move(this.motionX, this.motionY, this.motionZ);
+            this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 
             double distance = this.getDistance(hangingX, hangingY, hangingZ);
 

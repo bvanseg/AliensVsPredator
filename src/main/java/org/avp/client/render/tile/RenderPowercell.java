@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderPowercell extends TileEntitySpecialRenderer<TileEntityPowercell>
 {
     @Override
-    public void renderTileEntityAt(TileEntityPowercell tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityPowercell tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

@@ -69,7 +69,7 @@ public class EntityAICustomAttackOnCollide extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         EntityLivingBase entitylivingbase = this.attacker.getAttackTarget();
         return entitylivingbase == null ? false : (!entitylivingbase.isEntityAlive() ? false : (!this.longMemory ? !this.attacker.getNavigator().noPath() : this.attacker.isWithinHomeDistanceCurrentPosition()));
@@ -91,7 +91,7 @@ public class EntityAICustomAttackOnCollide extends EntityAIBase
     {
         if (this.attacker != null)
         {
-            this.attacker.getNavigator().clearPathEntity();
+            this.attacker.getNavigator().clearPath();
         }
     }
 
@@ -120,7 +120,7 @@ public class EntityAICustomAttackOnCollide extends EntityAIBase
                     {
                         PathPoint finalPathPoint = this.attacker.getNavigator().getPath().getFinalPathPoint();
 
-                        if (finalPathPoint != null && entitylivingbase.getDistanceSq(finalPathPoint.xCoord, finalPathPoint.yCoord, finalPathPoint.zCoord) < 1)
+                        if (finalPathPoint != null && entitylivingbase.getDistanceSq(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z) < 1)
                         {
                             failedPathFindingPenalty = 0;
                         }

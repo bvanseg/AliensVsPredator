@@ -29,7 +29,7 @@ public class ItemStunBaton extends ItemSword
     }
     
     @Override
-    public float getDamageVsEntity()
+    public float getAttackDamage()
     {
         return 6.0F;
     }

@@ -35,8 +35,9 @@ import net.minecraft.entity.monster.EntitySnowman;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.HorseType;
+import net.minecraft.entity.passive.AbstractHorse;
+import net.minecraft.entity.passive.EntitySkeletonHorse;
+import net.minecraft.entity.passive.EntityZombieHorse;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
@@ -141,11 +142,11 @@ public class EntityParasitoid extends EntitySpeciesAlien implements IMob, IParas
                                                                          if (potentialTarget instanceof EntityShulker)
                                                                              return false;
 
-                                                                         if (potentialTarget instanceof EntityHorse)
+                                                                         if (potentialTarget instanceof AbstractHorse)
                                                                          {
-                                                                             EntityHorse horse = (EntityHorse) potentialTarget;
+                                                                             AbstractHorse horse = (AbstractHorse) potentialTarget;
                                                                              
-                                                                             if (horse.getType() == HorseType.SKELETON || horse.getType() == HorseType.ZOMBIE)
+                                                                             if (horse instanceof EntitySkeletonHorse || horse instanceof EntityZombieHorse)
                                                                              {
                                                                                  return false;
                                                                              }

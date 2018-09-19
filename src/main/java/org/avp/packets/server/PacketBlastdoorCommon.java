@@ -190,11 +190,11 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
     @Override
     public PacketBlastdoorCommon onMessage(PacketBlastdoorCommon packet, MessageContext ctx)
     {
-        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable() {
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable() {
             @Override
             public void run()
             {
-                World world = ctx.getServerHandler().playerEntity.world;
+                World world = ctx.getServerHandler().player.world;
                 TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
                 if (world != null && tile != null && tile instanceof TileEntityBlastdoor)
@@ -223,11 +223,11 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
                                 blastdoor.setAutolock(packet.autolock);
                                 break;
                             case BIND:
-                                ItemStack itemstack = ctx.getServerHandler().playerEntity.getHeldItemMainhand();
+                                ItemStack itemstack = ctx.getServerHandler().player.getHeldItemMainhand();
 
                                 if (itemstack != null)
                                 {
-                                    blastdoor.bindToSecurityTuner(ctx.getServerHandler().playerEntity, itemstack);
+                                    blastdoor.bindToSecurityTuner(ctx.getServerHandler().player, itemstack);
                                 }
                                 break;
                             default:

@@ -12,6 +12,7 @@ import com.google.common.base.Predicate;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
@@ -80,7 +81,7 @@ public class EntityDeaconShark extends EntitySpeciesAlien
     @Override
     public boolean attackEntityAsMob(Entity target)
     {
-        if (this.canEntityBeSeen(target) && this.getDistanceToEntity(target) < 2F)
+        if (this.canEntityBeSeen(target) && this.getDistanceSq(target) < 2F)
         {
             return super.attackEntityAsMob(target);
         }
@@ -128,7 +129,7 @@ public class EntityDeaconShark extends EntitySpeciesAlien
     @Override
     public void onLivingUpdate()
     {
-        if (this.getAttackTarget() == null || this.getAttackTarget() != null && this.getAttackTarget().isDead || !(this.distanceToTargetLastTick - this.getDistanceToEntity(this.getAttackTarget()) > 0.1))
+        if (this.getAttackTarget() == null || this.getAttackTarget() != null && this.getAttackTarget().isDead || !(this.distanceToTargetLastTick - this.getDistanceSq(this.getAttackTarget()) > 0.1))
         {
             if (this.world.getWorldTime() % 60 == 0)
             {
@@ -138,12 +139,12 @@ public class EntityDeaconShark extends EntitySpeciesAlien
         
         if (this.getAttackTarget() == null && this.getNavigator().getPath() != null)
         {
-            this.getNavigator().clearPathEntity();
+            this.getNavigator().clearPath();
         }
         
         if (this.getAttackTarget() != null)
         {
-            this.distanceToTargetLastTick = this.getDistanceToEntity(this.getAttackTarget());
+            this.distanceToTargetLastTick = this.getDistanceSq(this.getAttackTarget());
             this.getMoveHelper().setMoveTo(this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ, 1F);
         }
 
@@ -235,14 +236,14 @@ public class EntityDeaconShark extends EntitySpeciesAlien
     }
     
     @Override
-    public void moveEntityWithHeading(float strafe, float forward)
+    public void travel(float strafe, float vertical, float forward)
     {
         if (!this.world.isRemote)
         {
             if (this.isInWater())
             {
-                this.moveRelative(strafe, forward, 0.1F);
-                this.move(this.motionX, this.motionY, this.motionZ);
+                this.moveRelative(strafe, 1F, forward, 0.1F);
+                this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
                 this.motionX *= 0.8999999761581421D;
                 this.motionY *= 0.8999999761581421D;
                 this.motionZ *= 0.8999999761581421D;
@@ -254,12 +255,12 @@ public class EntityDeaconShark extends EntitySpeciesAlien
             }
             else
             {
-                super.moveEntityWithHeading(strafe, forward);
+                super.travel(strafe, vertical, forward);
             }
         }
         else
         {
-            super.moveEntityWithHeading(strafe, forward);
+            super.travel(strafe, vertical, forward);
         }
     }
 

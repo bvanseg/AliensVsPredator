@@ -9,11 +9,16 @@ import net.minecraft.world.World;
 public class EntityTurret extends EntityLiving
 {
     private TileEntityTurret tile;
-
-    public EntityTurret(TileEntityTurret tile, World world)
+    
+    public EntityTurret(World world)
     {
         super(world);
         this.setSize(1.0F, 1.0F);
+    }
+
+    public EntityTurret(TileEntityTurret tile, World world)
+    {
+        this(world);
         this.tile = tile;
 
         tile.applyUpgrades();

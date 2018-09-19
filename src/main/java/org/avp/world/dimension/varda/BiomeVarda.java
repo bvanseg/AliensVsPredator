@@ -22,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraft.world.gen.ChunkProviderSettings;
+import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -43,7 +43,7 @@ public class BiomeVarda extends BiomeGenLV
     @Override
     public BiomeDecorator createBiomeDecorator()
     {
-        return this.theBiomeDecorator = new BiomeDecoratorVarda();
+        return this.decorator = new BiomeDecoratorVarda();
     }
 
     public static class BiomeDecoratorVarda extends BiomeDecorator
@@ -57,7 +57,7 @@ public class BiomeVarda extends BiomeGenLV
             }
             else
             {
-                this.chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
+                this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
                 this.chunkPos = pos;
                 this.generateOres(world, seed);
                 this.genDecorations(biome, world, seed);

@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderSevastopolBlastdoor extends TileEntitySpecialRenderer<TileEntityBlastdoor>
 {
     @Override
-    public void renderTileEntityAt(TileEntityBlastdoor tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntityBlastdoor tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         if (tile != null && !tile.isChild())
         {

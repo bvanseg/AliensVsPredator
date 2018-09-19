@@ -1,0 +1,32 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aaa",
+        "cb "
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "Items.IRON_INGOT",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "items.itemSilicon",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemCarbon",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:parts.ak47.barrel",
+        "count": 1,
+        "data": 0
+    }
+}

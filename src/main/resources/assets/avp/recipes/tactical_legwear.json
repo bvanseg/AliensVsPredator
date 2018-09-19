@@ -1,0 +1,27 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bab",
+        "b b",
+        "a a"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemIngotAluminum",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "Blocks.WOOL",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:legwear.tactical",
+        "count": 1,
+        "data": 0
+    }
+}

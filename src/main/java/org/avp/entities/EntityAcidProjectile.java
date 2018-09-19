@@ -76,7 +76,7 @@ public class EntityAcidProjectile extends Entity implements IProjectile
         if (distSq >= 1.0E-7D)
         {
             this.setLocationAndAngles(shooter.posX + (distX / distSq), this.posY, shooter.posZ + (distZ / distSq), (float) (Math.atan2(distZ, distX) * 180.0D / Math.PI) - 90.0F, (float) (-(Math.atan2(distY, distSq) * 180.0D / Math.PI)));
-            this.setThrowableHeading(distX, distY + ((float) distSq * 0.2F), distZ, velocity, deviation);
+            this.shoot(distX, distY + ((float) distSq * 0.2F), distZ, velocity, deviation);
         }
     }
 
@@ -100,7 +100,7 @@ public class EntityAcidProjectile extends Entity implements IProjectile
         this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
         this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
         this.motionY = (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
-        this.setThrowableHeading(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
+        this.shoot(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
     }
 
     private static final DataParameter<Byte> CRITICAL = EntityDataManager.<Byte> createKey(EntityAcidProjectile.class, DataSerializers.BYTE);
@@ -110,9 +110,9 @@ public class EntityAcidProjectile extends Entity implements IProjectile
     {
         this.dataManager.register(CRITICAL, (byte) 0);
     }
-
+    
     @Override
-    public void setThrowableHeading(double par1, double par3, double par5, float velocity, float deviation)
+    public void shoot(double par1, double par3, double par5, float velocity, float deviation)
     {
         float f2 = MathHelper.sqrt(par1 * par1 + par3 * par3 + par5 * par5);
         par1 /= f2;
@@ -191,7 +191,7 @@ public class EntityAcidProjectile extends Entity implements IProjectile
         {
             AxisAlignedBB box = block.getCollisionBoundingBox(this.world.getBlockState(this.getPosition()), this.world, this.tile);
 
-            if (box != null && box.isVecInside(new Vec3d(this.posX, this.posY, this.posZ)))
+            if (box != null && box.contains(new Vec3d(this.posX, this.posY, this.posZ)))
             {
                 this.inGround = true;
             }
@@ -227,11 +227,11 @@ public class EntityAcidProjectile extends Entity implements IProjectile
 
             if (result != null)
             {
-                nextPos = new Vec3d(result.hitVec.xCoord, result.hitVec.yCoord, result.hitVec.zCoord);
+                nextPos = new Vec3d(result.hitVec.x, result.hitVec.y, result.hitVec.z);
             }
 
             Entity entity = null;
-            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().addCoord(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(this.motionX, this.motionY, this.motionZ).expand(1.0D, 1.0D, 1.0D));
             double d0 = 0.0D;
             float radius = 0.3F;
 
@@ -344,9 +344,9 @@ public class EntityAcidProjectile extends Entity implements IProjectile
                 {
                     this.tile = result.getBlockPos();
                     this.inTile = this.world.getBlockState(this.getPosition()).getBlock();
-                    this.motionX = ((float) (result.hitVec.xCoord - this.posX));
-                    this.motionY = ((float) (result.hitVec.yCoord - this.posY));
-                    this.motionZ = ((float) (result.hitVec.zCoord - this.posZ));
+                    this.motionX = ((float) (result.hitVec.x - this.posX));
+                    this.motionY = ((float) (result.hitVec.y - this.posY));
+                    this.motionZ = ((float) (result.hitVec.z - this.posZ));
                     var22 = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
                     this.posX -= this.motionX / var22 * 0.05000000074505806D;
                     this.posY -= this.motionY / var22 * 0.05000000074505806D;
@@ -357,7 +357,7 @@ public class EntityAcidProjectile extends Entity implements IProjectile
 
                     if (this.inTile != null)
                     {
-                        inTile.onEntityCollidedWithBlock(this.world, this.getPosition(), this.world.getBlockState(this.getPosition()), this);
+                        inTile.onEntityCollision(this.world, this.getPosition(), this.world.getBlockState(this.getPosition()), this);
                     }
                 }
             }

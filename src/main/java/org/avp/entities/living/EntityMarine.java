@@ -3,7 +3,6 @@ package org.avp.entities.living;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
-import org.avp.AliensVsPredator;
 import org.avp.EntityItemDrops;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityBullet;
@@ -131,7 +130,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     }
 
     @Override
-    protected SoundEvent getHurtSound()
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
         return Sounds.MARINE_HURT.event();
     }
@@ -209,5 +208,11 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     public long getLastShotFired()
     {
         return this.lastShotFired;
+    }
+
+    @Override
+    public void setSwingingArms(boolean swingingArms)
+    {
+        ;
     }
 }

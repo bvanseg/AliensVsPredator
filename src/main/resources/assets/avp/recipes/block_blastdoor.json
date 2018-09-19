@@ -1,0 +1,39 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "aba",
+        "cdc",
+        "aba"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "items.itemPolycarbonate",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "Blocks.OBSIDIAN",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "Items.IRON_DOOR",
+                "data": 0
+            }
+        ],
+        "d": [
+            {
+                "item": "Blocks.STICKY_PISTON",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:blastdoor",
+        "count": 1,
+        "data": 0
+    }
+}

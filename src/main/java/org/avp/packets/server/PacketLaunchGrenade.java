@@ -33,23 +33,23 @@ public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaun
     public PacketLaunchGrenade onMessage(PacketLaunchGrenade packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
-        ctx.getServerHandler().playerEntity.getServerWorld().addScheduledTask(new Runnable()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                if (ctx.getServerHandler().playerEntity != null && ctx.getServerHandler().playerEntity.world != null)
+                if (ctx.getServerHandler().player != null && ctx.getServerHandler().player.world != null)
                 {
-                    boolean hasNormal = Inventories.playerHas(AliensVsPredator.items().itemGrenade, ctx.getServerHandler().playerEntity);
-                    boolean hasIncendiary = Inventories.playerHas(AliensVsPredator.items().itemIncendiaryGrenade, ctx.getServerHandler().playerEntity);
+                    boolean hasNormal = Inventories.playerHas(AliensVsPredator.items().itemGrenade, ctx.getServerHandler().player);
+                    boolean hasIncendiary = Inventories.playerHas(AliensVsPredator.items().itemIncendiaryGrenade, ctx.getServerHandler().player);
 
                     if (hasNormal || hasIncendiary)
                     {
-                        EntityGrenade grenade = new EntityGrenade(ctx.getServerHandler().playerEntity.world, ctx.getServerHandler().playerEntity);
+                        EntityGrenade grenade = new EntityGrenade(ctx.getServerHandler().player.world, ctx.getServerHandler().player);
                         grenade.explodeOnImpact = true;
                         grenade.setFlaming(hasIncendiary);
-                        ctx.getServerHandler().playerEntity.world.spawnEntity(grenade);
-                        Inventories.consumeItem(ctx.getServerHandler().playerEntity, !hasIncendiary ? AliensVsPredator.items().itemGrenade : AliensVsPredator.items().itemIncendiaryGrenade);
+                        ctx.getServerHandler().player.world.spawnEntity(grenade);
+                        Inventories.consumeItem(ctx.getServerHandler().player, !hasIncendiary ? AliensVsPredator.items().itemGrenade : AliensVsPredator.items().itemIncendiaryGrenade);
                     }
                 }
             }

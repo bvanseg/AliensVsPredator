@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraft.world.gen.ChunkProviderSettings;
+import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 
 public class BiomeAcheron extends BiomeGenLV
@@ -28,7 +28,7 @@ public class BiomeAcheron extends BiomeGenLV
     @Override
     public BiomeDecorator createBiomeDecorator()
     {
-        return this.theBiomeDecorator = new BiomeDecoratorAcheron();
+        return this.decorator = new BiomeDecoratorAcheron();
     }
     
     public static class BiomeDecoratorAcheron extends BiomeDecorator
@@ -42,7 +42,8 @@ public class BiomeAcheron extends BiomeGenLV
             }
             else
             {
-                this.chunkProviderSettings = ChunkProviderSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
+                
+                this.chunkProviderSettings = ChunkGeneratorSettings.Factory.jsonToFactory(world.getWorldInfo().getGeneratorOptions()).build();
                 this.chunkPos = pos;
                 this.generateOres(world, random);
                 this.genDecorations(biome, world, random);

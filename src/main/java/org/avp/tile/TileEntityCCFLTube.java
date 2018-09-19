@@ -1,10 +1,9 @@
 package org.avp.tile;
 
-import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
-
 import org.avp.api.power.IVoltageProvider;
 
 import com.arisux.mdx.lib.world.tile.IRotatableXAxis;
+import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -19,11 +18,11 @@ public class TileEntityCCFLTube extends TileEntityLightPanel implements IVoltage
     {
         super.readFromNBT(nbt);
 
-        if (EnumFacing.getFront(nbt.getInteger("RotationX")) != null)
-            this.rotationX = EnumFacing.getFront(nbt.getInteger("RotationX"));
+        if (EnumFacing.byIndex(nbt.getInteger("RotationX")) != null)
+            this.rotationX = EnumFacing.byIndex(nbt.getInteger("RotationX"));
 
-        if (EnumFacing.getFront(nbt.getInteger("RotationY")) != null)
-            this.rotationY = EnumFacing.getFront(nbt.getInteger("RotationY"));
+        if (EnumFacing.byIndex(nbt.getInteger("RotationY")) != null)
+            this.rotationY = EnumFacing.byIndex(nbt.getInteger("RotationY"));
     }
     
     @Override

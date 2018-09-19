@@ -28,7 +28,7 @@ public abstract class EntityAIYOffsetBlockInteract extends EntityAIBase
     }
 
     @Override
-    public boolean continueExecuting()
+    public boolean shouldContinueExecuting()
     {
         return true;
     }

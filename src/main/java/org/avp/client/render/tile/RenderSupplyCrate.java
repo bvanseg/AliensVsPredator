@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 public class RenderSupplyCrate extends TileEntitySpecialRenderer<TileEntitySupplyCrate>
 {
     @Override
-    public void renderTileEntityAt(TileEntitySupplyCrate tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TileEntitySupplyCrate tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {

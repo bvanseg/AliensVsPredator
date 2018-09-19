@@ -1,0 +1,33 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "bab",
+        "aca",
+        "bab"
+    ],
+    "key": {
+        "a": [
+            {
+                "item": "Items.GLOWSTONE_DUST",
+                "data": 0
+            }
+        ],
+        "b": [
+            {
+                "item": "Items.REDSTONE",
+                "data": 0
+            }
+        ],
+        "c": [
+            {
+                "item": "items.itemSilicon",
+                "data": 0
+            }
+        ]
+    },
+    "result": {
+        "item": "avp:mainframepanel.flicker",
+        "count": 1,
+        "data": 0
+    }
+}

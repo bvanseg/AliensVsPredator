@@ -89,8 +89,8 @@ public class GuiWristbracer extends GuiContainer
             }
 
             button.displayString = "";
-            button.xPosition = guiLeft + 15 + 27 * (x1 - 1);
-            button.yPosition = guiTop + 49;
+            button.x = guiLeft + 15 + 27 * (x1 - 1);
+            button.y = guiTop + 49;
             button.width = 25;
             button.height = 28;
             button.baseColor = 0x00000000;

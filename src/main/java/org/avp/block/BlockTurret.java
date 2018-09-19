@@ -21,6 +21,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 
@@ -45,7 +46,7 @@ public class BlockTurret extends Block
     }
     
     @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos)
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
     {
         return null;
     }
@@ -76,7 +77,7 @@ public class BlockTurret extends Block
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileEntityTurret tile = (TileEntityTurret) world.getTileEntity(pos);
 
@@ -98,11 +99,11 @@ public class BlockTurret extends Block
 
         return true;
     }
-
+    
     @Override
-    public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state)
+    public void onPlayerDestroy(World world, BlockPos pos, IBlockState state)
     {
-        super.onBlockDestroyedByPlayer(world, pos, state);
+        super.onPlayerDestroy(world, pos, state);
 
         TileEntityTurret tile = (TileEntityTurret) world.getTileEntity(pos);
 
@@ -143,9 +144,9 @@ public class BlockTurret extends Block
     }
     
     @Override
-    public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn)
+    public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn)
     {
-        super.onBlockDestroyedByExplosion(worldIn, pos, explosionIn);
-        this.onBlockDestroyedByPlayer(worldIn, pos, worldIn.getBlockState(pos));
+        super.onExplosionDestroy(worldIn, pos, explosionIn);
+        this.onPlayerDestroy(worldIn, pos, worldIn.getBlockState(pos));
     }
 }

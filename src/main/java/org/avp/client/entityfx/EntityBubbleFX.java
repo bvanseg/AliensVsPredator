@@ -3,8 +3,8 @@ package org.avp.client.entityfx;
 import com.arisux.mdx.lib.client.render.Draw;
 
 import net.minecraft.client.particle.Particle;
+import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.VertexBuffer;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -47,7 +47,7 @@ public class EntityBubbleFX extends Particle
     }
     
     @Override
-    public void renderParticle(VertexBuffer buffer, Entity entity, float partialTicks, float rX, float rZ, float rYZ, float rXY, float rXZ)
+    public void renderParticle(BufferBuilder buffer, Entity entity, float partialTicks, float rX, float rZ, float rYZ, float rXY, float rXZ)
     {
         super.renderParticle(buffer, entity, partialTicks, rX, rZ, rYZ, rXY, rXZ);
         Draw.drawParticle(32, 0, 0, 1, 1);
