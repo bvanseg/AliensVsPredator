@@ -14,6 +14,7 @@ import com.arisux.mdx.lib.game.Renderers;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
@@ -39,11 +40,11 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
                 {
                     float itemScale = 0.009F;
                     OpenGL.scale(itemScale, itemScale, itemScale);
-                    OpenGL.translate(-46F, -64F, 24F);
+                    OpenGL.translate(-55F, -125F, 24F);
                     OpenGL.enableLight();
                     OpenGL.blendClear();
 
-                    int rows = 21;
+                    int rows = 8;
                     int stackIndex = 0;
 
                     for (int rowX = 0; rowX < tile.inventory.getSizeInventory() / rows; rowX++)
@@ -52,9 +53,10 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
                         {
                             ItemStack stack = tile.inventory.getStackInSlot(stackIndex++);
                             OpenGL.pushMatrix();
-                            OpenGL.translate((rowX * 32), (rowY * 9), 0F);
+                            OpenGL.translate((rowX * 13), (rowY * 28), 0F);
+                            OpenGL.disableCullFace();
 
-                            if (stack != null)
+                            if (stack != null && stack.getItem() != Items.AIR)
                             {
                                 ItemRenderer<?> renderer = Renderers.getItemRenderer(stack.getItem());
 
@@ -62,7 +64,11 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
                                 {
                                     OpenGL.pushMatrix();
                                     {
-                                        OpenGL.translate(8F, 0F, 0F);
+                                        float s = 15F;
+                                        OpenGL.translate(8F, 75F, -45F);
+                                        OpenGL.scale(s, s, s);
+                                        OpenGL.enableBlend();
+                                        OpenGL.scale(-1F, -1F, -1F);
                                         renderer.renderInInventory(stack, Game.minecraft().player, TransformType.GUI);
                                         OpenGL.enableLight();
                                     }
@@ -72,12 +78,14 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
                                 {
                                     OpenGL.pushMatrix();
                                     {
+                                        OpenGL.translate(0, 0, -100);
                                         OpenGL.rotate(-45, 1F, 0F, 0F);
                                         Draw.drawItem(stack, 0, 0, 32, 32);
                                     }
                                     OpenGL.popMatrix();
                                 }
                             }
+                            OpenGL.enableCullFace();
                             OpenGL.popMatrix();
                         }
                     }

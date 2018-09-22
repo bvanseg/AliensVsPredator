@@ -168,7 +168,7 @@ public class EntityParasitoid extends EntitySpeciesAlien implements IMob, IParas
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.55D, true));
         this.tasks.addTask(8, new EntityAIWander(this, 0.55D));
         this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.8F));
-//        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, Entity.class, 0, false, false, this.getEntitySelector()));
+//        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, Entity.class, 0, false, false, this.getEntitySelector()));
     }
 
     @Override

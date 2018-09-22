@@ -2,7 +2,12 @@
     "forge_marker": 1,
     "defaults": {
         "textures": {
-            "all": "avp:blocks/assembler"
+            "north": "avp:blocks/assembler.side",
+            "east": "avp:blocks/assembler.side",
+            "south": "avp:blocks/assembler.side",
+            "west": "avp:blocks/assembler.side",
+            "up": "avp:blocks/assembler.top",
+            "down": "avp:blocks/assembler.top"
         }
     },
     "variants": {

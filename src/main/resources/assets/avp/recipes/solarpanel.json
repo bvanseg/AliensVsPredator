@@ -8,25 +8,25 @@
     "key": {
         "a": [
             {
-                "item": "items.itemPolycarbonate",
+                "item": "avp:polycarbonate",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemSilicon",
+                "item": "avp:silicon",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "items.itemIngotCopper",
+                "item": "avp:ingot.copper",
                 "data": 0
             }
         ],
         "d": [
             {
-                "item": "items.itemIngotLithium",
+                "item": "avp:ingot.lithium",
                 "data": 0
             }
         ]

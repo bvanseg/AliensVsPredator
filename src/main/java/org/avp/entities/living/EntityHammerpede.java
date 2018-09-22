@@ -46,7 +46,7 @@ public class EntityHammerpede extends EntitySpeciesAlien implements IMob
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.8D, true));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-//        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, Entity.class, 10 /** targetChance **/
+//        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, Entity.class, 10 /** targetChance **/
 //            , false /** checkSight **/
 //            , false /** nearbyOnly **/
 //            , entitySelector));

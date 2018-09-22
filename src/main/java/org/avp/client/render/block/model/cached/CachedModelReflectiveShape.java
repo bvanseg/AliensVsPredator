@@ -8,7 +8,6 @@ import javax.vecmath.Matrix4f;
 import org.apache.commons.lang3.tuple.Pair;
 import org.avp.block.BlockReflective;
 import org.avp.block.util.EnumAlignment;
-import org.avp.client.Resources;
 
 import com.arisux.mdx.lib.client.render.model.Model;
 import com.arisux.mdx.lib.client.render.model.block.ModelRotationXYZ;
@@ -18,7 +17,6 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.block.model.BakedQuad;
 import net.minecraft.client.renderer.block.model.IBakedModel;
@@ -43,13 +41,13 @@ import net.minecraftforge.common.property.IExtendedBlockState;
 public class CachedModelReflectiveShape implements IBakedModel
 {
     private static final String                                                            TEXTURE_KEY            = "#texture";
-    private static final String                                                            TEXTURE_LOCATION       = "avp:blocks/reflection";
+    private static final String                                                            TEXTURE_LOCATION       = "reflection";
     private static final VertexFormat                                                      VERTEX_FORMAT          = DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL;
     private static final java.util.function.Function<ResourceLocation, TextureAtlasSprite> TEXTURE_GETTER         = ModelLoader.defaultTextureGetter();
     private static final Function<ResourceLocation, TextureAtlasSprite>                    DEFAULT_TEXTURE_GETTER = new Function<ResourceLocation, TextureAtlasSprite>() {
                                                                                                                       public TextureAtlasSprite apply(ResourceLocation location)
                                                                                                                       {
-                                                                                                                          return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Resources.instance.REFLECTION.toString());
+                                                                                                                          return Game.minecraft().getTextureMapBlocks().getAtlasSprite("avp:blocks/reflection");
                                                                                                                       }
                                                                                                                   };
 
@@ -154,12 +152,7 @@ public class CachedModelReflectiveShape implements IBakedModel
     {
         if (transformType == TransformType.GUI)
         {
-            return this.model.bake(new TRSRTransformation(ModelRotationXYZ.getModelRotation(90, 90, 0).getMatrix()), VERTEX_FORMAT, new Function<ResourceLocation, TextureAtlasSprite>() {
-                public TextureAtlasSprite apply(ResourceLocation location)
-                {
-                    return Minecraft.getMinecraft().getTextureMapBlocks().getAtlasSprite(Resources.instance.BLACKGOO.toString());
-                }
-            }).getQuads(state, side, rand);
+            return this.model.bake(new TRSRTransformation(ModelRotationXYZ.getModelRotation(0, 90, 0).getMatrix()), VERTEX_FORMAT, DEFAULT_TEXTURE_GETTER).getQuads(state, side, rand);
         }
 
         if (side == null && transformType == null)
@@ -188,6 +181,10 @@ public class CachedModelReflectiveShape implements IBakedModel
                     {
                         this.sprite = textureMap.getAtlasSprite(TEXTURE_LOCATION);
                     }
+                }
+                else
+                {
+                    
                 }
             }
 

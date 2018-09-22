@@ -8,19 +8,19 @@
     "key": {
         "a": [
             {
-                "item": "items.itemIngotCopper",
+                "item": "avp:ingot.copper",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemIngotAluminum",
+                "item": "avp:ingot.aluminum",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "Items.GUNPOWDER",
+                "item": "minecraft:gunpowder",
                 "data": 0
             }
         ]

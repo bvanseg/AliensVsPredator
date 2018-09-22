@@ -8,13 +8,13 @@
   "key": {
     "a": [
       {
-        "item": "items.itemPolycarbonate",
+        "item": "avp:polycarbonate",
         "data": 0
       }
     ],
     "b": [
       {
-        "item": "Blocks.STONE",
+        "item": "minecraft:stone",
         "data": 0
       }
     ]

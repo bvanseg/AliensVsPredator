@@ -11,6 +11,7 @@ import com.arisux.mdx.lib.game.Renderers;
 
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
 public class RenderGunLocker extends TileEntitySpecialRenderer<TileEntityGunLocker>
@@ -38,45 +39,46 @@ public class RenderGunLocker extends TileEntitySpecialRenderer<TileEntityGunLock
                     float itemScale = 0.06F;
                     OpenGL.scale(itemScale, itemScale, itemScale);
                     OpenGL.rotate(-90F, 0F, 0F, 1F);
-                    OpenGL.translate(-27F, -7.5F, -4F);
-                    OpenGL.rotate(-50F, 0F, 1F, 0F);
+                    OpenGL.translate(-17F, 0F, 0F);
                     OpenGL.enableLight();
                     OpenGL.blendClear();
 
                     ItemStack stack = null;
-                    int rows = 21;
+                    int rows = 8;
                     int stackIndex = 0;
+                    boolean alternate = false;
 
                     for (int rowX = 0; rowX < tile.inventory.getSizeInventory() / rows; rowX++)
                     {
+                        alternate = !alternate;
+
                         for (int rowY = 0; rowY < rows; rowY++)
                         {
                             stack = tile.inventory.getStackInSlot(stackIndex++);
-
-                            if (stack != null)
-                            {
-                                break;
-                            }
-                        }
-
-                        if (stack != null)
-                        {
-                            break;
-                        }
-                    }
-
-                    if (stack != null)
-                    {
-                        ItemRenderer<?> renderer = Renderers.getItemRenderer(stack.getItem());
-
-                        if (renderer != null)
-                        {
                             OpenGL.pushMatrix();
+                            OpenGL.translate((rowX * 3), alternate ? 2F : -2F, 0F);
+                            OpenGL.disableCullFace();
+
+                            if (stack != null && stack.getItem() != Items.AIR && rowY == 0)
                             {
-                                OpenGL.translate(8F, 0F, 0F);
-                                renderer.renderInInventory(stack, Game.minecraft().player, TransformType.GUI);
-                                OpenGL.enableLight();
+                                ItemRenderer<?> renderer = Renderers.getItemRenderer(stack.getItem());
+
+                                if (renderer != null)
+                                {
+                                    OpenGL.pushMatrix();
+                                    {
+                                        float s = 10F;
+                                        OpenGL.scale(s, s, s);
+                                        OpenGL.enableBlend();
+                                        OpenGL.scale(-1F, alternate ? -1F : 1F, -1F);
+                                        OpenGL.rotate(-50F, 0F, 1F, 0F);
+                                        renderer.renderInInventory(stack, Game.minecraft().player, TransformType.GUI);
+                                        OpenGL.enableLight();
+                                    }
+                                    OpenGL.popMatrix();
+                                }
                             }
+                            OpenGL.enableCullFace();
                             OpenGL.popMatrix();
                         }
                     }

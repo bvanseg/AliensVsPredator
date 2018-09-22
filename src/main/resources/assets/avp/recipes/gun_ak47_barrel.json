@@ -7,25 +7,25 @@
     "key": {
         "a": [
             {
-                "item": "Items.IRON_INGOT",
+                "item": "minecraft:iron_ingot",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemSilicon",
+                "item": "avp:silicon",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "items.itemCarbon",
+                "item": "avp:carbon",
                 "data": 0
             }
         ]
     },
     "result": {
-        "item": "avp:parts.ak47.barrel",
+        "item": "avp:part.ak47.barrel",
         "count": 1,
         "data": 0
     }

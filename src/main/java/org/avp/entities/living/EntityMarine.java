@@ -58,7 +58,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.rangedAttackAI = new EntityAIAttackRanged(this, 0.4D, (int) getMarineType().getFirearmItem().getProfile().getShotsPerTick(), 24);
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, this.rangedAttackAI);
-        this.tasks.addTask(1, new EntityAIAvoidEntity(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
+        this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
         this.tasks.addTask(2, new EntityAIMoveIndoors(this));
         this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
         this.tasks.addTask(4, new EntityAIOpenDoor(this, true));

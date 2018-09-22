@@ -8,13 +8,13 @@
     "key": {
         "a": [
             {
-                "item": "Items.IRON_INGOT",
+                "item": "minecraft:iron_ingot",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "Items.BRICK",
+                "item": "minecraft:BRICK",
                 "data": 0
             }
         ]

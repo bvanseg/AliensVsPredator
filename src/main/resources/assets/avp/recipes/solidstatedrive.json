@@ -2,55 +2,43 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         "aaa",
-        "dcb",
-        "fgh"
+        "fcf",
+        "beh"
     ],
     "key": {
         "a": [
             {
-                "item": "items.itemRAM",
+                "item": "avp:part.ram",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemVoltageRegulator",
+                "item": "avp:polycarbonate",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "items.itemIntegratedCircuit",
-                "data": 0
-            }
-        ],
-        "d": [
-            {
-                "item": "items.itemIngotLithium",
+                "item": "avp:part.ic",
                 "data": 0
             }
         ],
         "e": [
             {
-                "item": "items.itemVoltageRegulator",
+                "item": "avp:part.regulator",
                 "data": 0
             }
         ],
         "f": [
             {
-                "item": "items.itemTransistor",
-                "data": 0
-            }
-        ],
-        "g": [
-            {
-                "item": "items.itemPolycarbonate",
+                "item": "avp:part.transistor",
                 "data": 0
             }
         ],
         "h": [
             {
-                "item": "items.itemCapacitor",
+                "item": "avp:part.capacitor",
                 "data": 0
             }
         ]

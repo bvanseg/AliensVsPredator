@@ -420,36 +420,36 @@ public class Renders implements IInitEvent, IPreInitEvent
     
     private void registerBlockItemRenderers()
     {
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullEngineer), new RenderItemSkull());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullJockey), new RenderItemSkull());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullXeno), new RenderItemSkull());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullXenoWarrior), new RenderItemSkull());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullYautja), new RenderItemSkull());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.turret), new RenderItemTurret());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.terminal), new RenderItemWorkstation());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.stasisMechanism), new RenderItemStasisMechanism());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.cryoTube), new RenderItemCryostasisTube());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.repulsionGenerator), new RenderItemRepulsionGenerator());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.blastDoor), new RenderItemBlastDoor());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.lightPanel), new RenderItemLightPanel());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.ccflTube), new RenderItemCCFLTube());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.powerline), new RenderItemPowerline());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.solarPanel), new RenderItemSolarPanel());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.powercell), new RenderItemPowercell());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.transformer), new RenderItemTransformer());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.stepdownTransformer), new RenderItemTransformer());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.universalGenerator), new RenderItemRedstoneFluxGenerator());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.ampule), new RenderItemAmpule());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.locker), new RenderItemLocker());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.gunLocker), new RenderItemGunLocker());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.medpod), new RenderItemMedpod());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.satelliteDish), new RenderItemSatelliteDish());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.sevastopolBlastDoor), new RenderItemSevastopolBlastdoor());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullEngineer), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullJockey), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullXeno), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullXenoWarrior), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullYautja), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.turret), new RenderItemTurret());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.terminal), new RenderItemWorkstation());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.stasisMechanism), new RenderItemStasisMechanism());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.cryoTube), new RenderItemCryostasisTube());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.repulsionGenerator), new RenderItemRepulsionGenerator());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.blastDoor), new RenderItemBlastDoor());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.lightPanel), new RenderItemLightPanel());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.ccflTube), new RenderItemCCFLTube());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.powerline), new RenderItemPowerline());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.solarPanel), new RenderItemSolarPanel());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.powercell), new RenderItemPowercell());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.transformer), new RenderItemTransformer());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.stepdownTransformer), new RenderItemTransformer());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.universalGenerator), new RenderItemRedstoneFluxGenerator());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.ampule), new RenderItemAmpule());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.locker), new RenderItemLocker());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.gunLocker), new RenderItemGunLocker());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.medpod), new RenderItemMedpod());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.satelliteDish), new RenderItemSatelliteDish());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.sevastopolBlastDoor), new RenderItemSevastopolBlastdoor());
 
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.supplyCrate), new RenderItemSupplyCrate());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.crateMarines), new RenderItemSupplyCrate());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.crateSeegson), new RenderItemSupplyCrate());
-        Renderers.registerItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.networkRack), new RenderItemNetworkRack());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.supplyCrate), new RenderItemSupplyCrate());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.crateMarines), new RenderItemSupplyCrate());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.crateSeegson), new RenderItemSupplyCrate());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.networkRack), new RenderItemNetworkRack());
     }
 
     private void registerItemRenderers()

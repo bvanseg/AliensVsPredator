@@ -60,7 +60,7 @@ public class EntityDeaconShark extends EntitySpeciesAlien
         this.tasks.addTask(9, new EntityAILookIdle(this));
         this.moveTowardsRestriction.setMutexBits(3);
         this.wander.setMutexBits(3);
-//        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget(this, Entity.class, 10, true, false, entitySelector));
+//        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, Entity.class, 10, true, false, entitySelector));
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
         Entities.setMoveHelper(this, new EntityDeaconShark.DeaconSharkMoveHelper());

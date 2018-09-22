@@ -7,19 +7,19 @@
     "key": {
         "a": [
             {
-                "item": "items.itemM4Stock",
+                "item": "avp:part.m4.stock",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemM4Action",
+                "item": "avp:part.m4.action",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "items.itemM4Barrel",
+                "item": "avp:part.m4.barrel",
                 "data": 0
             }
         ]

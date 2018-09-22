@@ -5,7 +5,6 @@ import java.util.Random;
 import org.avp.AliensVsPredator;
 import org.avp.block.properties.UnlistedPropertyBlockstate;
 import org.avp.block.util.EnumAlignment;
-import org.avp.client.model.loaders.ReflectiveModelLoader;
 import org.avp.tile.TileEntityReflective;
 
 import com.arisux.mdx.commands.CommandBlockUpdate;
@@ -36,10 +35,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.registries.IForgeRegistry;
 
 public class BlockReflective extends Block implements ITileEntityProvider
 {

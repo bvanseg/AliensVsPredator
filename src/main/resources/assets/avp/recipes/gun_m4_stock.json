@@ -7,25 +7,25 @@
     "key": {
         "c": [
             {
-                "item": "items.itemIngotAluminum",
+                "item": "avp:ingot.aluminum",
                 "data": 0
             }
         ],
         "a": [
             {
-                "item": "items.itemSilicon",
+                "item": "avp:silicon",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemCarbon",
+                "item": "avp:carbon",
                 "data": 0
             }
         ]
     },
     "result": {
-        "item": "avp:parts.m4.stock",
+        "item": "avp:part.m4.stock",
         "count": 1,
         "data": 0
     }

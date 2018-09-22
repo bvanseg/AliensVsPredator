@@ -7,19 +7,19 @@
     "key": {
         "a": [
             {
-                "item": "items.itemPistolStock",
+                "item": "avp:part.pistol.stock",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemPistolAction",
+                "item": "avp:part.pistol.action",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "items.itemPistolBarrel",
+                "item": "avp:part.pistol.barrel",
                 "data": 0
             }
         ]

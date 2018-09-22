@@ -8,25 +8,25 @@
     "key": {
         "a": [
             {
-                "item": "items.itemIntegratedCircuit",
+                "item": "avp:part.ic",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemLed",
+                "item": "avp:part.led",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "items.itemPolycarbonate",
+                "item": "avp:polycarbonate",
                 "data": 0
             }
         ],
         "d": [
             {
-                "item": "items.itemIngotLithium",
+                "item": "avp:ingot.lithium",
                 "data": 0
             }
         ]

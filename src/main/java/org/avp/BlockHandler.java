@@ -117,14 +117,14 @@ public class BlockHandler implements IInitEvent
     public static final Block paddingpanel          = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("paddingpanel");
     public static final Block plastictri            = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("plastictiletri");
     public static final Block plastictile           = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("plastictile");
-    public static final Block oreSilicon            = new BlockMaterial(Material.ROCK).setHardness(2.2F).setResistance(1.4F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("oresilicon");
-    public static final Block oreLithium            = new BlockMaterial(Material.IRON).setHardness(4.2F).setResistance(5.4F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("orelithium");
-    public static final Block oreCopper             = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("orecopper");
-    public static final Block oreBauxite            = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("orebauxite");
-    public static final Block oreMonazite           = new BlockOreMonazite().setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("oremonazite");
-    public static final Block oreCobalt             = new BlockOreCobalt().setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("orecobalt");
-    public static final Block muthurPanel1          = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(1F).setLightLevel(0.5F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("mainframepanel.shimmer");
-    public static final Block muthurPanel2          = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(10F).setLightLevel(0.5F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("mainframepanel.flicker");
+    public static final Block oreSilicon            = new BlockMaterial(Material.ROCK).setHardness(2.2F).setResistance(1.4F).setCreativeTab(Tab.MAIN).setRegistryName("oresilicon");
+    public static final Block oreLithium            = new BlockMaterial(Material.IRON).setHardness(4.2F).setResistance(5.4F).setCreativeTab(Tab.MAIN).setRegistryName("orelithium");
+    public static final Block oreCopper             = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("orecopper");
+    public static final Block oreBauxite            = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("orebauxite");
+    public static final Block oreMonazite           = new BlockOreMonazite().setCreativeTab(Tab.MAIN).setRegistryName("oremonazite");
+    public static final Block oreCobalt             = new BlockOreCobalt().setCreativeTab(Tab.MAIN).setRegistryName("orecobalt");
+    public static final Block muthurPanel1          = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(1F).setLightLevel(0.5F).setCreativeTab(Tab.MAIN).setRegistryName("mainframepanel.shimmer");
+    public static final Block muthurPanel2          = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(10F).setLightLevel(0.5F).setCreativeTab(Tab.MAIN).setRegistryName("mainframepanel.flicker");
     public static final Block vent0                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialvent");
     public static final Block vent1                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("vent.wall");
     public static final Block vent2                 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("vent.ceiling");
@@ -160,16 +160,16 @@ public class BlockHandler implements IInitEvent
     public static final Block unisand               = new BlockMaterial(Material.SAND).setHardness(3.5F).setResistance(2.0F).setRegistryName("unisand");
     public static final Block unigravel             = new BlockMaterial(Material.SAND).setHardness(3.0F).setLightOpacity(255).setRegistryName("unigravel");
     public static final Block unidirt               = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("unidirt");
-    public static final Block stalagmite            = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("stalagmite");
-    public static final Block gigerLog              = new BlockUnidentifiedLog().setHardness(0.0F).setLightOpacity(0).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("unitree.wood");
-    public static final Block gigerTendons          = new BlockUnidentifiedTreeTendon().setHardness(0.0F).setLightOpacity(0).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("unitree.tendons");
-    public static final Block gigerLeaves           = new BlockUnidentifiedTreeLeaves().setHardness(0.0F).setLightOpacity(0).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("unitree.leaves");
-    public static final Block gigerSapling          = new BlockUnidentifiedTreeSapling().setHardness(0.0F).setLightOpacity(0).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("unitree.sapling");
-    public static final Block satelliteDish         = new BlockSatelliteDish().setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("satellitedish");
-    public static final Block eggReceptacle         = new BlockTempleSpawner(Material.ROCK, false).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("spawner");
-    public static final Block portalVarda           = new BlockPortal(AliensVsPredator.dimensions().VARDA).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("portal.varda");
-    public static final Block portalAcheron         = new BlockPortal(AliensVsPredator.dimensions().ACHERON).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("portal.acheron");
-    public static final Block assembler             = new BlockAssembler(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("assembler");
+    public static final Block stalagmite            = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("stalagmite");
+    public static final Block gigerLog              = new BlockUnidentifiedLog().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.wood");
+    public static final Block gigerTendons          = new BlockUnidentifiedTreeTendon().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.tendons");
+    public static final Block gigerLeaves           = new BlockUnidentifiedTreeLeaves().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.leaves");
+    public static final Block gigerSapling          = new BlockUnidentifiedTreeSapling().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.sapling");
+    public static final Block satelliteDish         = new BlockSatelliteDish().setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("satellitedish");
+    public static final Block eggReceptacle         = new BlockTempleSpawner(Material.ROCK, false).setCreativeTab(Tab.MAIN).setRegistryName("spawner");
+    public static final Block portalVarda           = new BlockPortal(AliensVsPredator.dimensions().VARDA).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(Tab.MAIN).setRegistryName("portal.varda");
+    public static final Block portalAcheron         = new BlockPortal(AliensVsPredator.dimensions().ACHERON).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(Tab.MAIN).setRegistryName("portal.acheron");
+    public static final Block assembler             = new BlockAssembler(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("assembler");
     public static final Block floorGrillStairs      = new BlockCustomStairs(floorgrill.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("floorgrillstairs");
     public static final Block ceilingGrillStairs    = new BlockCustomStairs(ceilinggrill.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("ceilinggrillstairs");
     public static final Block ironBricksStairs      = new BlockCustomStairs(industrialbricks.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickstairs");
@@ -182,36 +182,36 @@ public class BlockHandler implements IInitEvent
     public static final Block industrialGlassSlab   = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassslab");
     public static final Block blackgoo              = createFluidBlock(BlockBlackGoo.fluid, BlockBlackGoo.class, "blackgoo");
     public static final Block mist                  = createFluidBlock(BlockMist.fluid, BlockMist.class, "mist");
-    public static final Block turret                = new BlockTurret(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("turret");
-    public static final Block terminal              = new BlockWorkstation(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("terminal");
-    public static final Block stasisMechanism       = new BlockStasisMechanism(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("stasismechanism");
-    public static final Block repulsionGenerator    = new BlockGenerator(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("generator");
-    public static final Block powerline             = new BlockPowerline(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("powerline");
-    public static final Block blastDoor             = new BlockBlastdoor(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("blastdoor");
-    public static final Block sevastopolBlastDoor   = new BlockSevastopolBlastDoor().setHardness(10F).setResistance(15.0F).setLightOpacity(0).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("blastdoor.sevastopol");
-    public static final Block cryoTube              = new BlockCryostasisTube(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(4).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("cryostasistube");
-    public static final Block lightPanel            = new BlockLightPanel(Material.IRON).setHardness(1.5F).setResistance(2.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("lightpanel");
-    public static final Block ccflTube              = new BlockCCFLTube(Material.IRON).setHardness(0.5F).setResistance(1.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("ccfltube");
-    public static final Block networkRack           = new BlockNetworkRack(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("networkrack");
-    public static final Block powercell             = new BlockPowercell(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("powercell");
-    public static final Block redstoneSensor        = new BlockRedstoneSensor(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("redstonesensor");
-    public static final Block redstoneEmitter       = new BlockRedstoneEmitter(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("redstoneemitter");
-    public static final Block universalGenerator    = new BlockRedstoneFluxGenerator(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("universalgenerator");
-    public static final Block transformer           = new BlockTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("transformer");
-    public static final Block stepdownTransformer   = new BlockNegativeTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("transformernegative");
-    public static final Block supplyCrate           = new BlockSupplyCrate(SupplyChuteType.UNBRANDED).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("supplychuteblock");
-    public static final Block crateMarines          = new BlockSupplyCrate(SupplyChuteType.MARINES).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("supplychuteblock.marines");
-    public static final Block crateSeegson          = new BlockSupplyCrate(SupplyChuteType.SEEGSON).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("supplychuteblock.seegson");
-    public static final Block solarPanel            = new BlockSolarPanel(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("solarpanel");
-    public static final Block locker                = new BlockLocker(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("locker");
-    public static final Block medpod                = new BlockMedpod(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("medpod");
-    public static final Block gunLocker             = new BlockGunLocker(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("gunlocker");
-    public static final Block ampule                = new BlockAmpule().setHardness(5.0F).setResistance(10.0F).setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("engineership.ampule");
-    public static final Block skullEngineer         = new BlockSkullEngineer().setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("skull.engineer");
-    public static final Block skullJockey           = new BlockSkullSpaceJockey().setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("skull.spacejockey");
-    public static final Block skullXeno             = new BlockSkullXenomorph().setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("skull.xenomorph");
-    public static final Block skullXenoWarrior      = new BlockSkullXenomorphWarrior().setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("skull.xenomorph.warrior");
-    public static final Block skullYautja           = new BlockSkullYautja().setCreativeTab(AliensVsPredator.tabs().main).setRegistryName("skull.yautja");
+    public static final Block turret                = new BlockTurret(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("turret");
+    public static final Block terminal              = new BlockWorkstation(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("terminal");
+    public static final Block stasisMechanism       = new BlockStasisMechanism(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("stasismechanism");
+    public static final Block repulsionGenerator    = new BlockGenerator(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("generator");
+    public static final Block powerline             = new BlockPowerline(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("powerline");
+    public static final Block blastDoor             = new BlockBlastdoor(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("blastdoor");
+    public static final Block sevastopolBlastDoor   = new BlockSevastopolBlastDoor().setHardness(10F).setResistance(15.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("blastdoor.sevastopol");
+    public static final Block cryoTube              = new BlockCryostasisTube(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(4).setCreativeTab(Tab.MAIN).setRegistryName("cryostasistube");
+    public static final Block lightPanel            = new BlockLightPanel(Material.IRON).setHardness(1.5F).setResistance(2.0F).setCreativeTab(Tab.MAIN).setRegistryName("lightpanel");
+    public static final Block ccflTube              = new BlockCCFLTube(Material.IRON).setHardness(0.5F).setResistance(1.0F).setCreativeTab(Tab.MAIN).setRegistryName("ccfltube");
+    public static final Block networkRack           = new BlockNetworkRack(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("networkrack");
+    public static final Block powercell             = new BlockPowercell(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("powercell");
+    public static final Block redstoneSensor        = new BlockRedstoneSensor(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("redstonesensor");
+    public static final Block redstoneEmitter       = new BlockRedstoneEmitter(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("redstoneemitter");
+    public static final Block universalGenerator    = new BlockRedstoneFluxGenerator(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("universalgenerator");
+    public static final Block transformer           = new BlockTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("transformer");
+    public static final Block stepdownTransformer   = new BlockNegativeTransformer(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("transformer.stepdown");
+    public static final Block supplyCrate           = new BlockSupplyCrate(SupplyChuteType.UNBRANDED).setCreativeTab(Tab.MAIN).setRegistryName("supplychuteblock");
+    public static final Block crateMarines          = new BlockSupplyCrate(SupplyChuteType.MARINES).setCreativeTab(Tab.MAIN).setRegistryName("supplychuteblock.marines");
+    public static final Block crateSeegson          = new BlockSupplyCrate(SupplyChuteType.SEEGSON).setCreativeTab(Tab.MAIN).setRegistryName("supplychuteblock.seegson");
+    public static final Block solarPanel            = new BlockSolarPanel(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("solarpanel");
+    public static final Block locker                = new BlockLocker(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("locker");
+    public static final Block medpod                = new BlockMedpod(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("medpod");
+    public static final Block gunLocker             = new BlockGunLocker(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("gunlocker");
+    public static final Block ampule                = new BlockAmpule().setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("engineership.ampule");
+    public static final Block skullEngineer         = new BlockSkullEngineer().setCreativeTab(Tab.MAIN).setRegistryName("skull.engineer");
+    public static final Block skullJockey           = new BlockSkullSpaceJockey().setCreativeTab(Tab.MAIN).setRegistryName("skull.spacejockey");
+    public static final Block skullXeno             = new BlockSkullXenomorph().setCreativeTab(Tab.MAIN).setRegistryName("skull.xenomorph");
+    public static final Block skullXenoWarrior      = new BlockSkullXenomorphWarrior().setCreativeTab(Tab.MAIN).setRegistryName("skull.xenomorph.warrior");
+    public static final Block skullYautja           = new BlockSkullYautja().setCreativeTab(Tab.MAIN).setRegistryName("skull.yautja");
     public static final Block slope                 = new BlockReflective(Material.CIRCUITS).setRegistryName("slope");
     public static final Block corner                = new BlockReflective(Material.CIRCUITS).setRegistryName("corner");
     public static final Block invertedCorner        = new BlockReflective(Material.CIRCUITS).setRegistryName("invertedcorner");
@@ -283,7 +283,15 @@ public class BlockHandler implements IInitEvent
                     Block block = (Block) obj;
                     block.setTranslationKey(block.getRegistryName().getNamespace() + ":" + block.getRegistryName().getPath());
                     event.getRegistry().register(block);
-                    block.setCreativeTab(AliensVsPredator.tabs().blocks);
+                    
+                    if (block.getCreativeTab() != null)
+                    {
+                        block.setCreativeTab(block.getCreativeTab());
+                    }
+                    else
+                    {
+                        block.setCreativeTab(Tab.BLOCKS);
+                    }
                     registerModel(getItemFromBlock(block));
                 }
             }
@@ -314,7 +322,16 @@ public class BlockHandler implements IInitEvent
                     event.getRegistry().register(itemblock);
                     registerModel(itemblock);
                     
-                    itemblock.setCreativeTab(AliensVsPredator.tabs().blocks);
+                    itemblock.setCreativeTab(Tab.BLOCKS);
+                    
+                    if (block.getCreativeTab() != null)
+                    {
+                        itemblock.setCreativeTab(block.getCreativeTab());
+                    }
+                    else
+                    {
+                        itemblock.setCreativeTab(Tab.BLOCKS);
+                    }
                 }
             }
             catch (Exception e)

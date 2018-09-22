@@ -1,21 +1,26 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "AA",
-    "AA",
-    ""
-  ],
-  "key": {
-    "A": [
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+      {
+        "item": "minecraft:coal",
+        "data": 1
+      },
+      {
+        "item": "minecraft:coal",
+        "data": 1
+      },
+      {
+        "item": "minecraft:coal",
+        "data": 1
+      },
       {
         "item": "minecraft:coal",
         "data": 1
       }
-    ]
-  },
-  "result": {
-    "item": "avp:carbon",
-    "count": 2,
-    "data": 0
-  }
+    ],
+    "result": {
+        "item": "avp:carbon",
+        "count": 2,
+        "data": 0
+    }
 }

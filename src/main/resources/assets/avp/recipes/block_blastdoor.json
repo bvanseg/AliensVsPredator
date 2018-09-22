@@ -8,25 +8,25 @@
     "key": {
         "a": [
             {
-                "item": "items.itemPolycarbonate",
+                "item": "avp:polycarbonate",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "Blocks.OBSIDIAN",
+                "item": "minecraft:obsidian",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "Items.IRON_DOOR",
+                "item": "minecraft:IRON_DOOR",
                 "data": 0
             }
         ],
         "d": [
             {
-                "item": "Blocks.STICKY_PISTON",
+                "item": "minecraft:sticky_piston",
                 "data": 0
             }
         ]

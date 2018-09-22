@@ -14,7 +14,7 @@
     ],
     "B": [
       {
-        "item": "avp:part.voltageregulator",
+        "item": "avp:part.regulator",
         "data": 0
       }
     ],
@@ -26,7 +26,7 @@
     ]
   },
   "result": {
-    "item": "avp:transformernegative",
+    "item": "avp:transformer.stepdown",
     "data": 0
   }
 }

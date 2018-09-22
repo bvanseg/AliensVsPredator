@@ -6,8 +6,8 @@ import net.minecraftforge.fluids.Fluid;
 public class FluidMist extends Fluid
 {
     //TODO: Flowing, Still texture locations
-    public static final ResourceLocation flowing = new ResourceLocation("avp:blocks/mist.flowing");
-    public static final ResourceLocation still = new ResourceLocation("avp:blocks/mist.still");
+    public static final ResourceLocation flowing = new ResourceLocation("items.blocks/mist.flowing");
+    public static final ResourceLocation still = new ResourceLocation("items.blocks/mist.still");
     
     public FluidMist()
     {

@@ -8,49 +8,49 @@
     "key": {
         "a": [
             {
-                "item": "items.itemRAM",
+                "item": "avp:part.ram",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemProcessor",
+                "item": "avp:part.processor",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "items.itemPowerSupply",
+                "item": "avp:part.powersupply",
                 "data": 0
             }
         ],
         "d": [
             {
-                "item": "items.itemPolycarbonate",
+                "item": "avp:polycarbonate",
                 "data": 0
             }
         ],
         "e": [
             {
-                "item": "items.itemSolidStateDrive",
+                "item": "avp:part.solidstatedrive",
                 "data": 0
             }
         ],
         "f": [
             {
-                "item": "items.itemLedDisplay",
+                "item": "avp:part.led.display",
                 "data": 0
             }
         ],
         "g": [
             {
-                "item": "items.itemMotherboard",
+                "item": "avp:part.motherboard",
                 "data": 0
             }
         ],
         "h": [
             {
-                "item": "items.itemTransistor",
+                "item": "avp:part.transistor",
                 "data": 0
             }
         ]

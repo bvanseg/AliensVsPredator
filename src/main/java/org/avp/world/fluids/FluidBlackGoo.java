@@ -1,13 +1,15 @@
 package org.avp.world.fluids;
 
+import org.avp.AliensVsPredator;
+
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 
 public class FluidBlackGoo extends Fluid
 {
     //TODO: Flowing, Still texture locations
-    public static final ResourceLocation flowing = new ResourceLocation("avp:blocks/blackgoo.flowing");
-    public static final ResourceLocation still = new ResourceLocation("avp:blocks/blackgoo.still");
+    public static final ResourceLocation flowing = new ResourceLocation(AliensVsPredator.Properties.ID, "blocks/blackgoo.flowing");
+    public static final ResourceLocation still = new ResourceLocation(AliensVsPredator.Properties.ID, "blocks/blackgoo.still");
     
     public FluidBlackGoo()
     {

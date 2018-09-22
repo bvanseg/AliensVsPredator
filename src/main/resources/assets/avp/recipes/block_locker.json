@@ -8,13 +8,13 @@
     "key": {
         "a": [
             {
-                "item": "items.itemIngotAluminum",
+                "item": "avp:ingot.aluminum",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "Items.OAK_DOOR",
+                "item": "minecraft:wooden_door",
                 "data": 0
             }
         ]

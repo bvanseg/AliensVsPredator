@@ -7,25 +7,25 @@
     "key": {
         "a": [
             {
-                "item": "items.itemIngotAluminum",
+                "item": "avp:ingot.aluminum",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemSilicon",
+                "item": "avp:silicon",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "Blocks.PLANKS",
+                "item": "minecraft:planks",
                 "data": 0
             }
         ]
     },
     "result": {
-        "item": "avp:parts.pistol.stock",
+        "item": "avp:part.pistol.stock",
         "count": 1,
         "data": 0
     }

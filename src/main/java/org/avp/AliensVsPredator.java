@@ -51,7 +51,6 @@ public class AliensVsPredator implements IMod
     {
         console().pre(event);
         settings().pre(event);
-        tabs().pre(event);
         capabilities().pre(event);
     }
 
@@ -222,10 +221,5 @@ public class AliensVsPredator implements IMod
     public static Settings settings()
     {
         return Settings.instance;
-    }
-
-    public static CreativeTab tabs()
-    {
-        return CreativeTab.instance;
     }
 }

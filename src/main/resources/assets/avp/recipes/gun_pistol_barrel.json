@@ -7,19 +7,19 @@
     "key": {
         "a": [
             {
-                "item": "Items.IRON_INGOT",
+                "item": "minecraft:iron_ingot",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemSilicon",
+                "item": "avp:silicon",
                 "data": 0
             }
         ]
     },
     "result": {
-        "item": "avp:parts.pistol.barrel",
+        "item": "avp:part.pistol.barrel",
         "count": 1,
         "data": 0
     }

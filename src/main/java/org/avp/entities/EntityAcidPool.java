@@ -28,7 +28,7 @@ public class EntityAcidPool extends EntityLiquidPool implements IMob
         this.ignoreFrustumCheck = true;
         this.setSize(0.08F, 0.08F);
         this.tasks.addTask(0, new EntityAIMeltBlock(this, -1));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, SELECTOR));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<>(this, EntityLiving.class, 0, false, false, SELECTOR));
     }
 
     private static final Predicate<EntityLivingBase> SELECTOR = new Predicate<EntityLivingBase>()

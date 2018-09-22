@@ -23,11 +23,11 @@ public class MaterialHandler implements IInitEvent
     //TODO: Armor enum textures, sounds, and toughness
     public static class Armors
     {
-        public final ArmorMaterial celtic = EnumHelper.addArmorMaterial("celtic", "avp:celtic", 34, new int[] { 4, 7, 5, 3 }, 20, null, 5);
-        public final ArmorMaterial chitin = EnumHelper.addArmorMaterial("chitin", "avp:chitin", 30, new int[] { 2, 7, 5, 3 }, 7, null, 1);
-        public final ArmorMaterial kevlar = EnumHelper.addArmorMaterial("kevlar", "avp:kevlar", 26, new int[] { 2, 6, 3, 2 }, 5, null, 2);
-        public final ArmorMaterial pressuresuit = EnumHelper.addArmorMaterial("pressuresuit", "avp:pressuresuit", 22, new int[] { 2, 4, 3, 2 }, 6, null, 1);
-        public final ArmorMaterial mk50 = EnumHelper.addArmorMaterial("mk50", "avp:mk50", 24, new int[] { 2, 4, 3, 2 }, 6, null, 1);
+        public final ArmorMaterial celtic = EnumHelper.addArmorMaterial("celtic", "items.celtic", 34, new int[] { 4, 7, 5, 3 }, 20, null, 5);
+        public final ArmorMaterial chitin = EnumHelper.addArmorMaterial("chitin", "items.chitin", 30, new int[] { 2, 7, 5, 3 }, 7, null, 1);
+        public final ArmorMaterial kevlar = EnumHelper.addArmorMaterial("kevlar", "items.kevlar", 26, new int[] { 2, 6, 3, 2 }, 5, null, 2);
+        public final ArmorMaterial pressuresuit = EnumHelper.addArmorMaterial("pressuresuit", "items.pressuresuit", 22, new int[] { 2, 4, 3, 2 }, 6, null, 1);
+        public final ArmorMaterial mk50 = EnumHelper.addArmorMaterial("mk50", "items.mk50", 24, new int[] { 2, 4, 3, 2 }, 6, null, 1);
     }
 
     public static class Tools

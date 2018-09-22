@@ -7,19 +7,19 @@
     "key": {
         "a": [
             {
-                "item": "items.itemAK47Stock",
+                "item": "avp:part.ak47.stock",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "items.itemAK47Action",
+                "item": "avp:part.ak47.action",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "items.itemAK47Barrel",
+                "item": "avp:part.ak47.barrel",
                 "data": 0
             }
         ]

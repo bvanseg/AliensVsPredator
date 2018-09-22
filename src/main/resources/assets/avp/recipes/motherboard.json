@@ -32,7 +32,7 @@
     ],
     "E": [
       {
-        "item": "avp:part.voltageregulator",
+        "item": "avp:part.regulator",
         "data": 0
       }
     ],

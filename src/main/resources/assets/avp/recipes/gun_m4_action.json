@@ -7,25 +7,25 @@
     "key": {
         "a": [
             {
-                "item": "items.itemIngotAluminum",
+                "item": "avp:ingot.aluminum",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "Blocks.LEVER",
+                "item": "minecraft:lever",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "items.itemSilicon",
+                "item": "avp:silicon",
                 "data": 0
             }
         ]
     },
     "result": {
-        "item": "avp:parts.m4.action",
+        "item": "avp:part.m4.action",
         "count": 1,
         "data": 0
     }

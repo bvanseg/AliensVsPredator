@@ -39,10 +39,10 @@ public abstract class EntitySpeciesEngineer extends EntityMob
         this.tasks.addTask(8, new EntityAIWander(this, 0.800000011920929D));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.4F));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntitySpeciesAlien.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntitySpeciesYautja.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityMarine.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntitySpeciesAlien.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntitySpeciesYautja.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityMarine.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
     }
 
     @Override

@@ -8,25 +8,25 @@
     "key": {
         "a": [
             {
-                "item": "items.itemIngotAluminum",
+                "item": "avp:ingot.aluminum",
                 "data": 0
             }
         ],
         "b": [
             {
-                "item": "blocks.industrialglass",
+                "item": "industrialglass",
                 "data": 0
             }
         ],
         "c": [
             {
-                "item": "items.itemCarbon",
+                "item": "avp:carbon",
                 "data": 0
             }
         ],
         "d": [
             {
-                "item": "items.itemSilicon",
+                "item": "avp:silicon",
                 "data": 0
             }
         ]
