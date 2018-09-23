@@ -18,7 +18,8 @@
       "item": "avp:polycarbonate"
     },
     "C": {
-      "item": "ore:ingotAluminum"
+      "ore": "ingotAluminum",
+      "type": "forge:ore_dict"
     }
   }
 }

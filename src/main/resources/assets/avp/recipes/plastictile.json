@@ -14,7 +14,8 @@
       "item": "avp:polycarbonate"
     },
     "B": {
-      "item": "ore:itemSilicon"
+      "ore": "itemSilicon",
+      "type": "forge:ore_dict"
     }
   }
 }

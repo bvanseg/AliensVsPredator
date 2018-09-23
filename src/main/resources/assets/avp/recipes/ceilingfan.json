@@ -14,7 +14,8 @@
       "item": "minecraft:iron_nugget"
     },
     "B": {
-      "item": "ore:ingotCopper"
+      "ore": "ingotCopper",
+      "type": "forge:ore_dict"
     }
   }
 }

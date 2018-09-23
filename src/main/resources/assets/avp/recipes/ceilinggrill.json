@@ -11,7 +11,8 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "A": {
-      "item": "ore:ingotAluminum"
+      "ore": "ingotAluminum",
+      "type": "forge:ore_dict"
     },
     "B": {
       "item": "minecraft:iron_ingot"

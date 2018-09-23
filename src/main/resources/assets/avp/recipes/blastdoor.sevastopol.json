@@ -11,7 +11,8 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "A": {
-      "item": "ore:ingotAluminum"
+      "ore": "ingotAluminum",
+      "type": "forge:ore_dict"
     },
     "B": {
       "item": "avp:part.led.display"
@@ -20,7 +21,7 @@
       "item": "minecraft:iron_door"
     },
     "D": {
-      "item": "minecraft.sticky_piston"
+      "item": "minecraft:sticky_piston"
     }
   }
 }

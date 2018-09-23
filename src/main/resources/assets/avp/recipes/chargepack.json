@@ -23,7 +23,8 @@
       "item": "avp:polycarbonate"
     },
     "E": {
-      "item": "ore:ingotLithium"
+      "ore": "ingotLithium",
+      "type": "forge:ore_dict"
     }
   }
 }

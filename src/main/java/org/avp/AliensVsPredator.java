@@ -69,7 +69,6 @@ public class AliensVsPredator implements IMod
         dimensions().init(event);
         materials().init(event);
         world().init(event);
-        crafting().init(event);
         interfaces().init(event);
         events().init(event);
         commands().init(event);
@@ -191,11 +190,6 @@ public class AliensVsPredator implements IMod
     public static GuiHandler interfaces()
     {
         return GuiHandler.instance;
-    }
-
-    public static CraftingHandler crafting()
-    {
-        return CraftingHandler.instance;
     }
 
     public static CapabilityHandler capabilities()
