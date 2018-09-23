@@ -86,7 +86,7 @@ public class ContainerLocker extends Container
 
             if (stack.getCount() == 0)
             {
-                slot.putStack(null);
+//                slot.putStack(null);
             }
             else
             {

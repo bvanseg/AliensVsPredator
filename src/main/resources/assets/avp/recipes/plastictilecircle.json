@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "avp:plastictilecircle",
+    "count": 8
+  },
+  "pattern": [
+    "ABA",
+    "BBB",
+    "ABA"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "avp:polycarbonate"
+    },
+    "B": {
+      "item": "ore:itemSilicon"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "result": {
+    "item": "avp:metalpanel2",
+    "count": 16
+  },
+  "pattern": [
+    "ABA",
+    "ABA",
+    "ABA"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "ore:ingotAluminum"
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    }
+  }
+}

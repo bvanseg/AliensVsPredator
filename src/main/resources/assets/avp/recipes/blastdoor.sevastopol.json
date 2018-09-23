@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "avp:blastdoor.sevastopol",
+    "count": 1
+  },
+  "pattern": [
+    "ABA",
+    "ACA",
+    "ADA"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "ore:ingotAluminum"
+    },
+    "B": {
+      "item": "avp:part.led.display"
+    },
+    "C": {
+      "item": "minecraft:iron_door"
+    },
+    "D": {
+      "item": "minecraft.sticky_piston"
+    }
+  }
+}

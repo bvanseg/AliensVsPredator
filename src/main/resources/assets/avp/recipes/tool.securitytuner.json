@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "avp:tool.securitytuner",
+    "count": 1
+  },
+  "pattern": [
+    "ABA",
+    "CDC",
+    "CCC"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:stone_button"
+    },
+    "B": {
+      "item": "avp:part.led.display"
+    },
+    "C": {
+      "item": "avp:polycarbonate"
+    },
+    "D": {
+      "item": "avp:part.processor"
+    }
+  }
+}

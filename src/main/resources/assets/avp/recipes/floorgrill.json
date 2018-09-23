@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "avp:floorgrill",
+    "count": 16
+  },
+  "pattern": [
+    "ABA",
+    "CCC",
+    "ABA"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "ore:ingotAluminum"
+    },
+    "B": {
+      "item": "minecraft:iron_ingot"
+    },
+    "C": {
+      "item": "minecraft:iron_bars"
+    }
+  }
+}

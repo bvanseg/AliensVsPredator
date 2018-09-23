@@ -1,0 +1,16 @@
+{
+  "result": {
+    "item": "avp:plasticblock",
+    "count": 8
+  },
+  "pattern": [
+    "AA",
+    "AA"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "avp:polycarbonate"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "result": {
+    "item": "avp:ceilingvent",
+    "count": 16
+  },
+  "pattern": [
+    "BAB",
+    "ACA",
+    "BAB"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "A": {
+      "item": "minecraft:iron_nugget"
+    },
+    "B": {
+      "item": "ore:ingotAluminus"
+    },
+    "C": {
+      "item": "minecraft:iron_bars"
+    }
+  }
+}
