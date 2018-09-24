@@ -1,7 +1,5 @@
 package org.avp.inventory;
 
-import org.avp.inventory.ContainerTurret.SlotAmmunition.ITurretAmmunition;
-import org.avp.inventory.ContainerTurret.SlotExpansion.ITurretUpgrade;
 import org.avp.item.ItemStorageDevice;
 import org.avp.tile.TileEntityTurret;
 
@@ -16,6 +14,16 @@ import net.minecraft.world.World;
 public class ContainerTurret extends Container
 {
     private TileEntityTurret tile;
+    
+    public static interface ITurretUpgrade
+    {
+        ;
+    }
+    
+    public static interface ITurretAmmunition
+    {
+        ;
+    }
 
     public static class SlotDigitalStorage extends Slot
     {
@@ -38,11 +46,6 @@ public class ContainerTurret extends Container
 
     public static class SlotExpansion extends Slot
     {
-        public static interface ITurretUpgrade
-        {
-            ;
-        }
-
         public SlotExpansion(IInventory inventoryIn, int index, int xPosition, int yPosition)
         {
             super(inventoryIn, index, xPosition, yPosition);
@@ -62,11 +65,6 @@ public class ContainerTurret extends Container
 
     public static class SlotAmmunition extends Slot
     {
-        public static interface ITurretAmmunition
-        {
-            ;
-        }
-
         public SlotAmmunition(IInventory inventoryIn, int index, int xPosition, int yPosition)
         {
             super(inventoryIn, index, xPosition, yPosition);

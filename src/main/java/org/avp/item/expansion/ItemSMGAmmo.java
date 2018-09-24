@@ -1,6 +1,6 @@
 package org.avp.item.expansion;
 
-import org.avp.inventory.ContainerTurret.SlotAmmunition.ITurretAmmunition;
+import org.avp.inventory.ContainerTurret.ITurretAmmunition;
 import org.avp.item.ItemFirearm.Classification;
 import org.avp.item.ItemFirearm.ItemAmmunition;
 

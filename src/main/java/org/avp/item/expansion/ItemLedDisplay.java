@@ -1,6 +1,6 @@
 package org.avp.item.expansion;
 
-import org.avp.inventory.ContainerTurret.SlotExpansion.ITurretUpgrade;
+import org.avp.inventory.ContainerTurret.ITurretUpgrade;
 
 import com.arisux.mdx.lib.world.item.HookedItem;
 
