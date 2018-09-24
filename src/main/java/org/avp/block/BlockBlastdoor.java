@@ -1,6 +1,7 @@
 package org.avp.block;
 
 import org.avp.AliensVsPredator;
+import org.avp.BlockHandler;
 import org.avp.client.gui.GuiBlastdoor;
 import org.avp.item.ItemMaintenanceJack;
 import org.avp.tile.TileEntityBlastdoor;
@@ -22,6 +23,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -262,5 +264,24 @@ public class BlockBlastdoor extends Block
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
     {
         return true;
+    }
+    
+    @Override
+    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+    {
+        TileEntity tile = world.getTileEntity(target.getBlockPos());
+        System.out.println("TEST");
+        
+        if (tile instanceof TileEntityBlastdoor)
+        {
+            TileEntityBlastdoor door = (TileEntityBlastdoor) tile;
+            
+            if (door.isChild())
+            {
+                return new ItemStack(BlockHandler.getItemFromBlock(world.getBlockState(door.getParent().getPos()).getBlock()));
+            }
+        }
+        
+        return new ItemStack(BlockHandler.getItemFromBlock(BlockHandler.sevastopolBlastDoor));
     }
 }
