@@ -1,13 +1,3 @@
-# ITEMS-NETWORK RACK MODULES
-item.avp:rackmodule1.name=Recorder
-item.avp:rackmodule2.name=Management Console
-item.avp:rackmodule3.name=Network Transmitter
-item.avp:rackmodule4.name=Function Generator
-item.avp:rackmodule5.name=Network Receiver
-item.avp:rackmodule6.name=Logic Analyzer
-item.avp:rackmodule7.name=Network Attached Storage
-item.avp:rackmodule8.name=Oscilloscope
-
 # ITEMS-AMMO
 item.avp:ammo.pistol.name=Pistol Rounds
 item.avp:ammo.ar.name=Assault Rifle Rounds
@@ -55,7 +45,7 @@ item.avp:shuriken.name=Shuriken
 item.avp:artifact.tech.name=Yautja Artifact
 item.avp:plasmacannon.name=Plasma Caster
 item.avp:tool.maintenancejack.name=Maintenance Jack
-item.avp:tool.securityaccessruner.name=Security Access Tuner
+item.avp:tool.securitytuner.name=Security Access Tuner
 item.avp:stun.baton.name=Stun Baton
 
 
@@ -88,9 +78,6 @@ item.avp:part.m56sg.aimingmodule.name=M56SG Aiming Module
 
 
 # ITEMS-MISC
-item.avp:neodymium.magnet.name=Neodymium Magnet
-item.avp:cobalt.name=Cobalt
-item.avp:neodymium.name=Neodymium
 item.avp:silicon.name=Silicon
 item.avp:polycarbonate.name=Polycarbonate
 item.avp:ingot.aluminum.name=Aluminum Ingot
@@ -98,7 +85,7 @@ item.avp:ingot.titanium.name=Titanium Ingot
 item.avp:ingot.copper.name=Copper Ingot
 item.avp:part.ic.name=Integrated Circuit
 item.avp:part.processor.name=Microprocessor
-tile.avp:transformernegative.name=Step-Down Transformer
+tile.avp:transformer.stepdown.name=Step-Down Transformer
 tile.avp:transformer.name=Step-Up Transformer
 item.avp:part.led.name=Light Emitting Diode (LED)
 item.avp:part.led.display.name=7 Segment LED Display
@@ -163,6 +150,7 @@ item.avp:summon.ultramorph.name=Ultramorph
 Xenomorph-Like Organisms
 item.avp:summon.trilobite.name=Trilobite
 item.avp:summon.deacon.name=Deacon
+item.avp:summon.deacon.adult.name=Adult Common Deacon
 item.avp:summon.octohugger.name=Octohugger
 item.avp:summon.belugaburster.name=Belugaburster
 item.avp:summon.belugamorph.name=Belugamorph
@@ -178,7 +166,7 @@ item.avp:summon.ursuidae.name=Ursuidae
 item.avp:summon.yautjamutant.name=Mutant Yautja
 
 Predators
-item.avp:summon.yautja.name=Yautja (Predator)
+item.avp:summon.yautja.warrior.name=Yautja (Predator)
 item.avp:summon.yautja.berserker.name=Berserker Yautja
 item.avp:summon.predatorhound.name=Hellhound
 
@@ -250,6 +238,7 @@ tile.avp:metalpanel3.name=Metal Panel
 tile.avp:metalpanel3stairs.name=Metal Panel Stairs
 tile.avp:metalpanel3slab.name=Metal Panel Slab
 tile.avp:hiveresin.name=Hive Resin
+tile.avp:hiveresin.standard.name=Hive Resin (Standard)
 tile.avp:shippanel.name=Ship Panel
 tile.avp:shippanelstairs.name=Ship Panel Stairs
 tile.avp:shippanelslab.name=Ship Panel Slab
@@ -316,8 +305,6 @@ tile.avp:orecopper.name=Copper Ore
 tile.avp:orebauxite.name=Bauxite Ore
 tile.avp:oresilicon.name=Silicon Ore
 tile.avp:orelithium.name=Lithium Ore
-tile.avp:orecobalt.name=Cobalt Ore
-tile.avp:oremonazite.name=Monazite Ore
 tile.avp:blockBlackGoo.name=Black Goo
 tile.avp:blackgoo.name=Black Goo
 tile.avp:mist.name=Reactive Mist
@@ -345,6 +332,7 @@ tile.avp:redstonesensor.name=Redstone Sensor
 tile.avp:redstoneemitter.name=Redstone Emitter
 tile.avp:universalgenerator.name=Universal Power Converter
 tile.avp:ccfltube.name=Fluorescent Light
+tile.avp:networkrack.name=Netword Rack
 
 
 #BLOCKS-SHAPED
