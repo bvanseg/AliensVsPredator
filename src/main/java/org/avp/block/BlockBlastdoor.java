@@ -58,10 +58,10 @@ public class BlockBlastdoor extends Block
             {
                 blastdoor = doorSubBlock;
             }
-
-            if (blastdoor != null && blastdoor.isOperational())
+            
+            if (blastdoor != null)
             {
-                if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == AliensVsPredator.items().securityTuner)
+                if (blastdoor.isOperational() && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == AliensVsPredator.items().securityTuner)
                 {
                     if (blastdoor.playerHoldingRequiredSecurityTuner(player))
                     {
@@ -73,7 +73,7 @@ public class BlockBlastdoor extends Block
                 {
                     this.onOpen(blastdoor, world, player);
                 }
-                else if (blastdoor.isLocked())
+                else if (blastdoor.isLocked() && blastdoor.isOperational())
                 {
                     if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
                     showUnlockGUI(blastdoor);
@@ -98,6 +98,7 @@ public class BlockBlastdoor extends Block
 
     private void onOpen(TileEntityBlastdoor blastdoor, World world, EntityPlayer player)
     {
+        System.out.println("test2");
         if (isOpenedByJack(blastdoor, player))
         {
             blastdoor.setBeingPryedOpen(true);

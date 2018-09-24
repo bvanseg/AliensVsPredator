@@ -2,7 +2,7 @@ package org.avp.item;
 
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 
 import com.arisux.mdx.lib.client.entityfx.EntityFXElectricArc;
@@ -60,9 +60,9 @@ public class ItemStunBaton extends ItemSword
             return true;
         }
 
-        if (Inventories.playerHas(AliensVsPredator.items().itemChargePack, player))
+        if (Inventories.playerHas(ItemHandler.itemChargePack, player))
         {
-            ItemStack ammoStack = player.inventory.getStackInSlot(Inventories.getSlotForItemIn(AliensVsPredator.items().itemChargePack, player.inventory));
+            ItemStack ammoStack = player.inventory.getStackInSlot(Inventories.getSlotForItemIn(ItemHandler.itemChargePack, player.inventory));
 
             if (ammoStack != null && ammoStack.getItem() != null)
             {
