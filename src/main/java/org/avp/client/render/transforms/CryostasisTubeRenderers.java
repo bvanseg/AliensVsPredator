@@ -120,7 +120,9 @@ public class CryostasisTubeRenderers
 
                     if (tile.getVoltage() > 0)
                         OpenGL.disableLight();
+                    OpenGL.scale(0.25, 0.25, 0.25);
                     OpenGL.translate(0F, -2.75F, depth);
+                    OpenGL.translate(0F, 2F, 0F);
                     OpenGL.rotate(90F, 1F, 0F, 0F);
                     Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
 
@@ -128,7 +130,7 @@ public class CryostasisTubeRenderers
                 else if (tile.stasisEntity instanceof EntityMatriarch)
                 {
                     OpenGL.disableLight();
-                    OpenGL.scale(0.25, 0.25, 0.25);
+                    OpenGL.scale(0.05, 0.05, 0.05);
                     OpenGL.translate(-3.25, -16, 0);
                     Draw.drawString("\u26A0", 0, 0, 0xFFFF0000, false);
                     OpenGL.enableLight();
@@ -160,8 +162,6 @@ public class CryostasisTubeRenderers
                 }
 
                 OpenGL.disableCullFace();
-                OpenGL.scale(4, 3, 4);
-                OpenGL.translate(0F, -0.75F, 0F);
                 mask.draw();
                 OpenGL.scale(0.5, 0.5, 0.5);
                 OpenGL.enableLightMapping();
