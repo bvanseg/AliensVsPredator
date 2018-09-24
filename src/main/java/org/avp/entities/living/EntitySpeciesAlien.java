@@ -136,7 +136,6 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
         this.setDead();
     }
 
-    @SuppressWarnings("unchecked")
     protected void findRoyalJelly()
     {
         if (!this.world.isRemote && this.world.getWorldTime() % 40 == 0)
@@ -240,7 +239,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
         {
             if (this.world.getWorldTime() % 20 == 0)
             {
-                this.setJellyLevel(this.getJellyLevel() + 20);
+                //this.setJellyLevel(this.getJellyLevel() + 20);
             }
         }
     }
