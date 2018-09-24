@@ -240,11 +240,7 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
             {
                 if (this.getHealth() > this.getMaxHealth() / 4)
                 {
-                    this.heal(6F);
-                }
-                else if (this.world.getWorldTime() % (20 * 2) == 0)
-                {
-                    this.heal(2F);
+                    this.heal(1F);
                 }
             }
         }
