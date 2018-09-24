@@ -1,5 +1,8 @@
 package org.avp.inventory;
 
+import org.avp.inventory.ContainerTurret.SlotAmmunition.ITurretAmmunition;
+import org.avp.inventory.ContainerTurret.SlotExpansion.ITurretUpgrade;
+import org.avp.item.ItemStorageDevice;
 import org.avp.tile.TileEntityTurret;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,6 +17,73 @@ public class ContainerTurret extends Container
 {
     private TileEntityTurret tile;
 
+    public static class SlotDigitalStorage extends Slot
+    {
+        public SlotDigitalStorage(IInventory inventoryIn, int index, int xPosition, int yPosition)
+        {
+            super(inventoryIn, index, xPosition, yPosition);
+        }
+
+        @Override
+        public boolean isItemValid(ItemStack stack)
+        {
+            if (stack.getItem() instanceof ItemStorageDevice)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    public static class SlotExpansion extends Slot
+    {
+        public static interface ITurretUpgrade
+        {
+            ;
+        }
+
+        public SlotExpansion(IInventory inventoryIn, int index, int xPosition, int yPosition)
+        {
+            super(inventoryIn, index, xPosition, yPosition);
+        }
+
+        @Override
+        public boolean isItemValid(ItemStack stack)
+        {
+            if (stack.getItem() instanceof ITurretUpgrade)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    public static class SlotAmmunition extends Slot
+    {
+        public static interface ITurretAmmunition
+        {
+            ;
+        }
+
+        public SlotAmmunition(IInventory inventoryIn, int index, int xPosition, int yPosition)
+        {
+            super(inventoryIn, index, xPosition, yPosition);
+        }
+
+        @Override
+        public boolean isItemValid(ItemStack stack)
+        {
+            if (stack.getItem() instanceof ITurretAmmunition)
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
     public ContainerTurret(EntityPlayer player, TileEntityTurret turret, World world, int posX, int posY, int posZ)
     {
         this.tile = turret;
@@ -23,11 +93,11 @@ public class ContainerTurret extends Container
             this.addSlotToContainer(new Slot(player.inventory, x, 33 + 18 * x, 141));
         }
 
-        this.addSlotToContainer(new Slot(tile.inventoryDrive, 0, 161, 21));
+        this.addSlotToContainer(new SlotDigitalStorage(tile.inventoryDrive, 0, 161, 21));
 
         for (byte x = 0; x < this.tile.inventoryExpansion.getSizeInventory(); x++)
         {
-            this.addSlotToContainer(new Slot(tile.inventoryExpansion, x, 146 + 25 * x, 62));
+            this.addSlotToContainer(new SlotExpansion(tile.inventoryExpansion, x, 146 + 25 * x, 62));
 
             ItemStack stack = this.tile.inventoryExpansion.getStackInSlot(x);
 
@@ -39,7 +109,7 @@ public class ContainerTurret extends Container
 
         for (byte x = 0; x < this.tile.inventoryAmmo.getSizeInventory(); x++)
         {
-            this.addSlotToContainer(new Slot(tile.inventoryAmmo, x, 33 + 18 * x, 114));
+            this.addSlotToContainer(new SlotAmmunition(tile.inventoryAmmo, x, 33 + 18 * x, 114));
 
             ItemStack stack = this.tile.inventoryAmmo.getStackInSlot(x);
 
@@ -73,40 +143,57 @@ public class ContainerTurret extends Container
     {
         Slot slot = (Slot) this.inventorySlots.get(slotId);
 
-        if (slot != null)
+        if (slot != null && slot.getHasStack())
         {
             ItemStack itemstack = slot.getStack();
+            ItemStack result = itemstack.copy();
 
-            if (itemstack != null && itemstack.getItem() == this.tile.getItemAmmo())
+            if (slotId <= 8)
             {
-                if (!this.mergeItemStack(itemstack, 13, 22, true))
+                if (itemstack.getItem() instanceof ITurretAmmunition)
                 {
-                    return null;
+                    if (!this.mergeItemStack(itemstack, 13, 22, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
                 }
-
-                if (itemstack.getCount() == 0)
+                else if (itemstack.getItem() instanceof ItemStorageDevice)
                 {
-                    slot.putStack((ItemStack) null);
+                    if (!this.mergeItemStack(itemstack, 9, 10, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
                 }
-                else
+                else if (itemstack.getItem() instanceof ITurretUpgrade)
                 {
-                    slot.onSlotChanged();
+                    if (!this.mergeItemStack(itemstack, 10, 13, false))
+                    {
+                        return ItemStack.EMPTY;
+                    }
                 }
-
-                if (itemstack.getCount() == itemstack.getCount())
-                {
-                    return null;
-                }
-
-                slot.onTake(player, itemstack);
+            }
+            else
+            {
+                return ItemStack.EMPTY;
             }
 
-            return itemstack;
+            if (itemstack.getCount() == 0)
+            {
+                slot.putStack(ItemStack.EMPTY);
+            }
+            else
+            {
+                slot.onSlotChanged();
+            }
+
+            slot.onTake(null, itemstack);
+
+            return result;
         }
 
-        return null;
+        return ItemStack.EMPTY;
     }
-    
+
     @Override
     public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player)
     {

@@ -10,8 +10,8 @@ import net.minecraft.item.ItemStack;
 
 public class ContainerLocker extends Container
 {
-    public IInventory inventory;
-    public EntityPlayer player;
+    public IInventory       inventory;
+    public EntityPlayer     player;
     public TileEntityLocker locker;
 
     public ContainerLocker(EntityPlayer player, TileEntityLocker locker)
@@ -55,50 +55,49 @@ public class ContainerLocker extends Container
         this.locker.inventory = this.inventory;
         this.locker.setOpen(!this.locker.isOpen());
     }
-
+    
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int i)
+    public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex)
     {
-        Slot slot = getSlot(i);
+        Slot slot = getSlot(slotIndex);
 
         if (slot != null && slot.getHasStack())
         {
+            int inventoryLastSlot = this.inventory.getSizeInventory() - 1;
+            int containerLastSlot = this.inventorySlots.size() - 1;
             ItemStack stack = slot.getStack();
             ItemStack result = stack.copy();
-
-            if (i >= 36)
+            
+            if (slotIndex <= inventoryLastSlot)
             {
-                if (!super.mergeItemStack(stack, 0, 36, false))
+                if (!this.mergeItemStack(stack, inventoryLastSlot + 1, containerLastSlot + 1, false))
                 {
-                    return null;
-
+                    return ItemStack.EMPTY;
                 }
-            }
-            else if (i != 36 || !this.mergeItemStack(stack, 36, 36 + (this.inventory.getSizeInventory() - 1), false))
-            {
-                return null;
-
             }
             else
             {
-                return null;
+                if (!this.mergeItemStack(stack, 0, inventoryLastSlot, false))
+                {
+                    return ItemStack.EMPTY;
+                }
             }
 
             if (stack.getCount() == 0)
             {
-//                slot.putStack(null);
+                slot.putStack(ItemStack.EMPTY);
             }
             else
             {
                 slot.onSlotChanged();
             }
 
-            slot.onTake(null, stack);
+            slot.onTake(player, stack);
 
             return result;
         }
 
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override

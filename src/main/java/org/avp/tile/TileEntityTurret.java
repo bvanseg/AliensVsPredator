@@ -402,7 +402,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         }
     }
 
-    @SuppressWarnings("unchecked")
     public void pickUpAmmunition()
     {
         if (this.world != null && this.inventoryAmmo != null)
@@ -594,7 +593,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         }
     }
 
-    @SuppressWarnings("unchecked")
     public void readTargetList(NBTTagList list)
     {
         for (int i = 0; i < list.tagCount(); i++)
@@ -784,7 +782,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         return isFiring;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public void readFromOtherDevice(int ID)
     {

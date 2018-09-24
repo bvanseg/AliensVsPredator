@@ -57,48 +57,49 @@ public class ContainerSupplyCrate extends Container
     }
 
     @Override
-    public ItemStack transferStackInSlot(EntityPlayer player, int i)
+    public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex)
     {
-        Slot slot = getSlot(i);
+        Slot slot = getSlot(slotIndex);
 
         if (slot != null && slot.getHasStack())
         {
+            int inventoryLastSlot = this.supplyCrate.inventory.getSizeInventory() - 1;
+            int containerLastSlot = this.inventorySlots.size() - 1;
             ItemStack stack = slot.getStack();
             ItemStack result = stack.copy();
-
-            if (i >= 36)
+            
+            if (slotIndex <= inventoryLastSlot)
             {
-                if (!super.mergeItemStack(stack, 0, 36, false))
+                if (!this.mergeItemStack(stack, inventoryLastSlot + 1, containerLastSlot + 1, false))
                 {
-                    return null;
-
+                    System.out.println(1);
+                    return ItemStack.EMPTY;
                 }
-            }
-            else if (i != 36 || !this.mergeItemStack(stack, 36, 36 + (this.supplyCrate.inventory.getSizeInventory() - 1), false))
-            {
-                return null;
-
             }
             else
             {
-                return null;
+                if (!this.mergeItemStack(stack, 0, inventoryLastSlot, false))
+                {
+                    System.out.println(1);
+                    return ItemStack.EMPTY;
+                }
             }
 
             if (stack.getCount() == 0)
             {
-                slot.putStack(null);
+                slot.putStack(ItemStack.EMPTY);
             }
             else
             {
                 slot.onSlotChanged();
             }
 
-            slot.onTake(null, stack);
+            slot.onTake(player, stack);
 
             return result;
         }
 
-        return null;
+        return ItemStack.EMPTY;
     }
 
     @Override
