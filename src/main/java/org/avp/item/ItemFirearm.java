@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
+import org.avp.client.Sounds;
 import org.avp.packets.server.PacketFirearmSync;
 import org.avp.packets.server.PacketReloadFirearm;
 
@@ -21,6 +22,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
@@ -98,7 +100,7 @@ public class ItemFirearm extends HookedItem
             this.reloadTime = 6 * 20;
             this.ammoConsumptionRate = 1;
             this.soundLength = 0;
-            this.sound = AliensVsPredator.sounds().fxWeaponPistol;
+            this.sound = Sounds.fxWeaponPistol;
             this.register();
         }
 
@@ -256,6 +258,13 @@ public class ItemFirearm extends HookedItem
 
                 this.renderRecoil();
                 this.fixDelay();
+
+                if (this.profile != null && this.canSoundPlay())
+                {
+                    world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), this.profile.getSound().event(), SoundCategory.PLAYERS, 0.5F, 1F, true);
+                    this.setLastSoundPlayed(System.currentTimeMillis());
+                }
+
 
                 if (trace != null && trace.typeOfHit == Type.BLOCK)
                 {
