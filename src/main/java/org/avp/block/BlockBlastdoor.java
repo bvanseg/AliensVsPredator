@@ -270,7 +270,6 @@ public class BlockBlastdoor extends Block
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         TileEntity tile = world.getTileEntity(target.getBlockPos());
-        System.out.println("TEST");
         
         if (tile instanceof TileEntityBlastdoor)
         {
