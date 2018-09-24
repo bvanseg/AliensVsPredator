@@ -179,7 +179,7 @@ public class EntityImpregnationHandler
 
         if (host instanceof EntityCreeper)
         {
-            particleColor = 0x507d2a;
+            particleColor = 0x75974B;
             glow = false;
         }
         
