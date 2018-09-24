@@ -1,7 +1,7 @@
 package org.avp.block;
 
-import org.avp.AliensVsPredator;
 import org.avp.BlockHandler;
+import org.avp.ItemHandler;
 import org.avp.client.gui.GuiBlastdoor;
 import org.avp.item.ItemMaintenanceJack;
 import org.avp.tile.TileEntityBlastdoor;
@@ -61,7 +61,7 @@ public class BlockBlastdoor extends Block
             
             if (blastdoor != null)
             {
-                if (blastdoor.isOperational() && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == AliensVsPredator.items().securityTuner)
+                if (blastdoor.isOperational() && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ItemHandler.securityTuner)
                 {
                     if (blastdoor.playerHoldingRequiredSecurityTuner(player))
                     {
@@ -98,7 +98,6 @@ public class BlockBlastdoor extends Block
 
     private void onOpen(TileEntityBlastdoor blastdoor, World world, EntityPlayer player)
     {
-        System.out.println("test2");
         if (isOpenedByJack(blastdoor, player))
         {
             blastdoor.setBeingPryedOpen(true);
