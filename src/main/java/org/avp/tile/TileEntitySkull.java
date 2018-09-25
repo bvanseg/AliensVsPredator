@@ -4,6 +4,7 @@ import org.avp.block.BlockSkull;
 
 import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
 
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
@@ -13,10 +14,17 @@ import net.minecraft.util.EnumFacing;
 public class TileEntitySkull extends TileEntity implements IRotatableYAxis
 {
     private EnumFacing direction;
-    
+
     public BlockSkull getSkullBlock()
     {
-        return (BlockSkull) this.world.getBlockState(this.getPos()).getBlock();
+        Block block = this.world.getBlockState(this.getPos()).getBlock();
+
+        if (block instanceof BlockSkull)
+        {
+            return (BlockSkull) block;
+        }
+        
+        return null;
     }
 
     @Override
@@ -46,7 +54,7 @@ public class TileEntitySkull extends TileEntity implements IRotatableYAxis
         {
             nbt.setInteger("Direction", this.direction.ordinal());
         }
-        
+
         return nbt;
     }
 
