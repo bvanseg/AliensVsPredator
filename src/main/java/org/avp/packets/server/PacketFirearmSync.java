@@ -86,7 +86,7 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
 
                     if (itemFirearm != null && itemFirearm.canSoundPlay())
                     {
-                        world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), firearm.getSound().event(), SoundCategory.PLAYERS, 0.5F, 1F, true);
+                        world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), firearm.getSound().event(), SoundCategory.PLAYERS, 1F, 1F, true);
                         itemFirearm.setLastSoundPlayed(System.currentTimeMillis());
                     }
 

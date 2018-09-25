@@ -261,7 +261,7 @@ public class ItemFirearm extends HookedItem
 
                 if (this.profile != null && this.canSoundPlay())
                 {
-                    world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), this.profile.getSound().event(), SoundCategory.PLAYERS, 0.5F, 1F, true);
+                    world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), this.profile.getSound().event(), SoundCategory.PLAYERS, 1F, 1F, true);
                     this.setLastSoundPlayed(System.currentTimeMillis());
                 }
 
