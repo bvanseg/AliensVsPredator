@@ -80,18 +80,18 @@ dependencies {
 }
 
 jar {
-	archiveName = "[${version_minecraft}][${version}] ${archivesBaseName}.jar"
+	archiveName = "${archivesBaseName}-${version}.jar"
 }
 
 task srcJar(type: Jar) {
     from sourceSets.main.output
-	archiveName = "[${version_minecraft}][${version}] ${archivesBaseName}-sources.jar"
+	archiveName = "${archivesBaseName}-${version}-sources.jar"
     classifier = 'sources'
 }
 
 task deobfJar(type: Jar) {
     from sourceSets.main.output
-	archiveName = "[${version_minecraft}][${version}] ${archivesBaseName}-deobf.jar"
+	archiveName = "${archivesBaseName}-${version}-deobf.jar"
     classifier = 'deobf'
 }
 
