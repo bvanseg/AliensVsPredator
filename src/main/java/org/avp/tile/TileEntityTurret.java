@@ -449,7 +449,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                     
                     if (stack.getCount() <= 0)
                     {
-                        this.inventoryAmmo.setInventorySlotContents(x, null);
+                        this.inventoryAmmo.setInventorySlotContents(x, ItemStack.EMPTY);
                     }
 
                     break;
