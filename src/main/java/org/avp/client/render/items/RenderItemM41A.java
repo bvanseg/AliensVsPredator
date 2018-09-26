@@ -1,6 +1,7 @@
 package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
+import org.avp.ItemHandler;
 import org.avp.URLs;
 import org.avp.client.model.items.ModelM41A;
 import org.avp.item.ItemFirearm;
@@ -82,7 +83,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
                 OpenGL.color(1F, 1F, 1F, 1F);
             }
             
-            if (Inventories.getAmountOfItemPlayerHas(AliensVsPredator.items().itemMotionTracker, (EntityPlayer) entity) > 0)
+            if (Inventories.getAmountOfItemPlayerHas(ItemHandler.itemMotionTracker, (EntityPlayer) entity) > 0)
             {
                 OpenGL.translate(-50F, -20F, -50F);
                 OpenGL.rotate(-90F, 0F, 1F, 0F);
