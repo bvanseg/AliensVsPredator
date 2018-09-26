@@ -5,9 +5,11 @@ import org.avp.item.crafting.Schematic;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.PotionTypes;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -68,6 +70,23 @@ public class CraftingHandler
 
     private static void addSchematics()
     {
+        AssemblyManager.register(new Schematic("medpod", new ItemStack(BlockHandler.medpod, 1)) {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                        new ItemStack(BlockHandler.terminal, 1),
+                        new ItemStack(BlockHandler.lightPanel, 2),
+                        new ItemStack(BlockHandler.industrialglass, 4),
+                        new ItemStack(Blocks.IRON_BLOCK, 1),
+                        new ItemStack(BlockHandler.paddingSquareWhite, 3),
+                        new ItemStack(BlockHandler.transformer, 1),
+                        new ItemStack(ItemHandler.itemChargePack, 1),
+                        new ItemStack(ItemHandler.itemIngotAluminum, 8),
+                        PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.HEALING)
+                };
+            }
+        });
         AssemblyManager.register(new Schematic("turret", new ItemStack(BlockHandler.turret, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
