@@ -362,73 +362,73 @@ tile.avp:engineership.ampule.name=Ampule
 
 #MOBS
 Immature Xenomorphs
-entity.avp.Ovamorph.name=Ovamorph (Egg)
-entity.avp.Facehugger.name=Facehugger
-entity.avp.RoyalFacehugger.name=Royal Facehugger
-entity.avp.Chestbuster.name=Chestburster
-entity.avp.RunnerChestburster.name=Runner Chestburster
-entity.avp.PredalienChestburster.name=Predalien Chestburster
-entity.avp.QueenChestburster.name=Queen Chestburster
-entity.avp.DracoOvamorph.name=Dracovamorph
-entity.avp.DracoBurster.name=Dracoburster
+entity.Ovamorph.name=Ovamorph (Egg)
+entity.Facehugger.name=Facehugger
+entity.RoyalFacehugger.name=Royal Facehugger
+entity.Chestbuster.name=Chestburster
+entity.RunnerChestburster.name=Runner Chestburster
+entity.PredalienChestburster.name=Predalien Chestburster
+entity.QueenChestburster.name=Queen Chestburster
+entity.DracoOvamorph.name=Dracovamorph
+entity.DracoBurster.name=Dracoburster
 
 Default Evolving Xenomorphs
-entity.avp.Drone.name=Xenomorph Drone
-entity.avp.Warrior.name=Xenomorph Warrior
-entity.avp.Praetorian.name=Xenomorph Praetorian
-entity.avp.Queen.name=Xenomorph Queen
+entity.Drone.name=Xenomorph Drone
+entity.Warrior.name=Xenomorph Warrior
+entity.Praetorian.name=Xenomorph Praetorian
+entity.Queen.name=Xenomorph Queen
 
 Animal Evolving Xenomorphs
-entity.avp.RunnerDrone.name=Xenomorph Runner
-entity.avp.RunnerWarrior.name=Xenomorph Runner Warrior
-entity.avp.Crusher.name=Xenomorph Crusher
+entity.RunnerDrone.name=Xenomorph Runner
+entity.RunnerWarrior.name=Xenomorph Runner Warrior
+entity.Crusher.name=Xenomorph Crusher
 
 Other Xenomorphs
-entity.avp.Spitter.name=Xenomorph Spitter
-entity.avp.Boiler.name=Boiler
-entity.avp.Dracomorph.name=Dracomorph
-entity.avp.BatXeno.name=Chiroptermorph
-entity.avp.Predalien.name=Predalien
-entity.avp.Aqua Xenomorph.name=Nauticomorph
-entity.avp.Pantheramorph.name=Pantheramorph
-entity.avp.Myceliomorph.name=Myceliomorph
-entity.avp.Ultramorph.name=Ultramorph
+entity.Spitter.name=Xenomorph Spitter
+entity.Boiler.name=Boiler
+entity.Dracomorph.name=Dracomorph
+entity.BatXeno.name=Chiroptermorph
+entity.Predalien.name=Predalien
+entity.Aqua Xenomorph.name=Nauticomorph
+entity.Pantheramorph.name=Pantheramorph
+entity.Myceliomorph.name=Myceliomorph
+entity.Ultramorph.name=Ultramorph
 
 Xenomorph-like Organsims
-entity.avp.Trilobite.name=Trilobite
-entity.avp.Deacon.name=Deacon
-entity.avp.Octohugger.name=Octohugger
-entity.avp.Belugaburster.name=Belugaburster
-entity.avp.Belugamorph.name=Belugamorph
+entity.Trilobite.name=Trilobite
+entity.Deacon.name=Deacon
+entity.Octohugger.name=Octohugger
+entity.Belugaburster.name=Belugaburster
+entity.Belugamorph.name=Belugamorph
 
 Goo-based Creatures and Mutants
-entity.avp.Hammerpede.name=Hammerpede
-entity.avp.DeaconShark.name=Deacon Shark
-entity.avp.GooMutant.name=Goo Mutant
-entity.avp.Babyhead.name=Babyhead
-entity.avp.Aethon.name=Aethon
-entity.avp.VardaMonkey.name=Scelemur
-entity.avp.Ursuidae.name=Ursuidae
-entity.avp.YautjaMutant.name=Mutant Yautja
+entity.Hammerpede.name=Hammerpede
+entity.DeaconShark.name=Deacon Shark
+entity.GooMutant.name=Goo Mutant
+entity.Babyhead.name=Babyhead
+entity.Aethon.name=Aethon
+entity.VardaMonkey.name=Scelemur
+entity.Ursuidae.name=Ursuidae
+entity.YautjaMutant.name=Mutant Yautja
 
 Predators
-entity.avp.Yautja.name=Yautja (Predator)
-entity.avp.YautjaBerserker.name=Berserker Yautja
-entity.avp.HellHound.name=Hellhound
+entity.Yautja.name=Yautja (Predator)
+entity.YautjaBerserker.name=Berserker Yautja
+entity.HellHound.name=Hellhound
 
 Engineers
-entity.avp.SpaceJockey.name=Space Jockey
-entity.avp.Engineer.name=Engineer
+entity.SpaceJockey.name=Space Jockey
+entity.Engineer.name=Engineer
 
 Humans and Synthetics
-entity.avp.Marine.name=Marine
-entity.avp.CombatSynthetic.name=Combat Synthetic
+entity.Marine.name=Marine
+entity.CombatSynthetic.name=Combat Synthetic
 
 
 #MOBS-MISC
-entity.avp.EntityFXAcid.name=Acid
-entity.avp.EntityTurret.name=Turret
-entity.avp.APC.name=APC
+entity.EntityFXAcid.name=Acid
+entity.EntityTurret.name=Turret
+entity.APC.name=APC
 
 
 #TEXT-DEATH MESSAGES
