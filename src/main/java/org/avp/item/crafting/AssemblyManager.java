@@ -13,14 +13,14 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class AssemblyManager
 {
-    public static final AssemblyManager   instance   = new AssemblyManager();
-    private ArrayList<Schematic> schematics = new ArrayList<Schematic>();
+    public static final AssemblyManager instance   = new AssemblyManager();
+    private ArrayList<Schematic>        schematics = new ArrayList<Schematic>();
 
     public ArrayList<Schematic> schematics()
     {
         return this.schematics;
     }
-    
+
     public static void register(Schematic schematic)
     {
         AssemblyManager.instance.add(schematic);
@@ -78,11 +78,11 @@ public class AssemblyManager
             MDX.log().warn(String.format("[AVP/API/Assembler] Schematic for id '%s' is already registered.", schematic.getName()));
         }
     }
-    
+
     public static int amountForMatchingStack(EntityPlayer player, ItemStack requirement)
     {
         int count = 0;
-        
+
         int[] matches = OreDictionary.getOreIDs(requirement);
         boolean checkOreDictionary = matches.length > 0;
 
@@ -102,7 +102,7 @@ public class AssemblyManager
         {
             count += Inventories.getAmountOfItemPlayerHas(requirement.getItem(), player);
         }
-        
+
         return count;
     }
 
@@ -112,42 +112,45 @@ public class AssemblyManager
         {
             for (ItemStack requirement : schematic.getItemsRequired())
             {
-                int[] matches = OreDictionary.getOreIDs(requirement);
-                boolean checkOreDictionary = matches.length > 0;
-
-                if (checkOreDictionary)
+                if (requirement != null && requirement != ItemStack.EMPTY)
                 {
-                    matchLoop:
-                    for (int id : matches)
+                    int[] matches = OreDictionary.getOreIDs(requirement);
+                    boolean checkOreDictionary = matches.length > 0;
+
+                    if (checkOreDictionary)
                     {
-                        String sharedName = OreDictionary.getOreName(id);
-
-                        for (ItemStack potentialMatch : OreDictionary.getOres(sharedName))
+                        matchLoop:
+                        for (int id : matches)
                         {
-                            if (Inventories.getAmountOfItemPlayerHas(potentialMatch.getItem(), player) >= requirement.getCount())
-                            {
-                                for (int x = 0; x < requirement.getCount(); x++)
-                                {
-                                    if (!Inventories.consumeItem(player, potentialMatch.getItem()))
-                                    {
-                                        return false;
-                                    }
-                                }
+                            String sharedName = OreDictionary.getOreName(id);
 
-                                break matchLoop;
+                            for (ItemStack potentialMatch : OreDictionary.getOres(sharedName))
+                            {
+                                if (Inventories.getAmountOfItemPlayerHas(potentialMatch.getItem(), player) >= requirement.getCount())
+                                {
+                                    for (int x = 0; x < requirement.getCount(); x++)
+                                    {
+                                        if (!Inventories.consumeItem(player, potentialMatch.getItem()))
+                                        {
+                                            return false;
+                                        }
+                                    }
+
+                                    break matchLoop;
+                                }
                             }
                         }
                     }
-                }
-                else
-                {
-                    if (Inventories.getAmountOfItemPlayerHas(requirement.getItem(), player) >= requirement.getCount())
+                    else
                     {
-                        for (int x = 0; x < requirement.getCount(); x++)
+                        if (Inventories.getAmountOfItemPlayerHas(requirement.getItem(), player) >= requirement.getCount())
                         {
-                            if (!Inventories.consumeItem(player, requirement.getItem()))
+                            for (int x = 0; x < requirement.getCount(); x++)
                             {
-                                return false;
+                                if (!Inventories.consumeItem(player, requirement.getItem()))
+                                {
+                                    return false;
+                                }
                             }
                         }
                     }
