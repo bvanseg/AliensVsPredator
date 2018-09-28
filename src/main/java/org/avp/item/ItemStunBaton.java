@@ -45,7 +45,7 @@ public class ItemStunBaton extends ItemSword
             if (entity instanceof EntityLiving)
             {
                 EntityLiving living = (EntityLiving) entity;
-                living.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 160));
+                living.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 160, 2));
                 living.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 160));
             }
         }
