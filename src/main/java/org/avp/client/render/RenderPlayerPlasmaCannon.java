@@ -151,7 +151,7 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
                     OpenGL.rotate(rotationPitch, 1.0F, 0.0F, 0.0F);
                     OpenGL.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks, 0.0F, 1.0F, 0.0F);
                     OpenGL.enableStandardItemLighting();
-                    OpenGL.enableLightMapping();
+//                    OpenGL.enableLightMapping();
                     OpenGL.popMatrix();
                     EntityPlayerSP entityplayersp = (EntityPlayerSP) entity;
                     float armPitch = entityplayersp.prevRenderArmPitch + (entityplayersp.renderArmPitch - entityplayersp.prevRenderArmPitch) * partialTicks;
