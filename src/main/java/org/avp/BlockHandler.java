@@ -161,7 +161,7 @@ public class BlockHandler implements IInitEvent
     public static final Block unigravel             = new BlockMaterial(Material.SAND).setHardness(3.0F).setLightOpacity(255).setRegistryName("unigravel");
     public static final Block unidirt               = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("unidirt");
     public static final Block stalagmite            = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("stalagmite");
-    public static final Block gigerLog              = new BlockUnidentifiedLog().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.wood");
+    public static final Block gigerLog              = new BlockUnidentifiedLog().setHardness(5F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.wood");
     public static final Block gigerTendons          = new BlockUnidentifiedTreeTendon().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.tendons");
     public static final Block gigerLeaves           = new BlockUnidentifiedTreeLeaves().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.leaves");
     public static final Block gigerSapling          = new BlockUnidentifiedTreeSapling().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.sapling");
