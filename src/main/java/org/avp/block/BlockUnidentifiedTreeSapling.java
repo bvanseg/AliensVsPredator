@@ -46,11 +46,10 @@ public class BlockUnidentifiedTreeSapling extends BlockBush implements IGrowable
         return true;
     }
     
-    @SuppressWarnings("unchecked")
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
     {
-//        list.add(new ItemStack(itemIn, 1, 0));
+        items.add(new ItemStack(this, 1));
     }
 
     public boolean isSapling(World world, BlockPos pos)

@@ -159,7 +159,7 @@ public class BlockHandler implements IInitEvent
     public static final Block unistone              = new BlockMaterial(Material.ROCK).setHardness(1.3F).setResistance(2.0F).setRegistryName("unistone");
     public static final Block unisand               = new BlockMaterial(Material.SAND).setHardness(3.5F).setResistance(2.0F).setRegistryName("unisand");
     public static final Block unigravel             = new BlockMaterial(Material.SAND).setHardness(3.0F).setLightOpacity(255).setRegistryName("unigravel");
-    public static final Block unidirt               = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("unidirt");
+    public static final Block unidirt               = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("unidirt").setCreativeTab(Tab.BLOCKS);
     public static final Block stalagmite            = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("stalagmite");
     public static final Block gigerLog              = new BlockUnidentifiedLog().setHardness(5F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.wood");
     public static final Block gigerTendons          = new BlockUnidentifiedTreeTendon().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.tendons");
@@ -284,11 +284,7 @@ public class BlockHandler implements IInitEvent
                     block.setTranslationKey(block.getRegistryName().getNamespace() + ":" + block.getRegistryName().getPath());
                     event.getRegistry().register(block);
                     
-                    if (block.getCreativeTab() != null)
-                    {
-                        block.setCreativeTab(block.getCreativeTab());
-                    }
-                    else
+                    if (block.getCreativeTab() == null)
                     {
                         block.setCreativeTab(Tab.BLOCKS);
                     }

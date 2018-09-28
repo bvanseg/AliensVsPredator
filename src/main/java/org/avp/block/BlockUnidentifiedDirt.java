@@ -10,8 +10,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockUnidentifiedDirt extends BlockDirt
 {
@@ -32,10 +30,9 @@ public class BlockUnidentifiedDirt extends BlockDirt
         super.onPlayerDestroy(worldIn, pos, state);
     }
     
-    @SideOnly(Side.CLIENT)
     @Override
     public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
     {
-        //items.add(new ItemStack(itemIn));
+        items.add(new ItemStack(this, 1));
     }
 }
