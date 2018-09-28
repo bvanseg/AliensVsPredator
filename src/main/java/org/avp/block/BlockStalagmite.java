@@ -2,12 +2,13 @@ package org.avp.block;
 
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.BlockHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -28,7 +29,7 @@ public class BlockStalagmite extends Block
 
     protected boolean canThisPlantGrowOn(IBlockState state)
     {
-        return state.getBlock() == AliensVsPredator.blocks().unidirt || state.getBlock() == AliensVsPredator.blocks().unistone || state.getMaterial() == Material.GROUND || state.getMaterial() == Material.ROCK;
+        return state.getBlock() == BlockHandler.unidirt || state.getBlock() == BlockHandler.unistone || state.getMaterial() == Material.GROUND || state.getMaterial() == Material.ROCK;
     }
 
     @Override
@@ -73,5 +74,17 @@ public class BlockStalagmite extends Block
     public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
+    }
+    
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    {
+        return null;
+    }
+    
+    @Override
+    public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+    {
+        return true;
     }
 }
