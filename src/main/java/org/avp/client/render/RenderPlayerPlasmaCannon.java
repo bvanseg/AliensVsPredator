@@ -142,16 +142,11 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
 
                 OpenGL.pushMatrix();
                 {
-//                    int brightness = Worlds.getLightAtCoord(Game.minecraft().world, entity.getPosition());
-//                    int ltu = brightness % 65536;
-//                    int ltv = brightness / 65536;
-//                    OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) ltu / 1.0F, (float) ltv / 1.0F);
                     GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 
                     OpenGL.rotate(rotationPitch, 1.0F, 0.0F, 0.0F);
                     OpenGL.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks, 0.0F, 1.0F, 0.0F);
                     OpenGL.enableStandardItemLighting();
-//                    OpenGL.enableLightMapping();
                     OpenGL.popMatrix();
                     EntityPlayerSP entityplayersp = (EntityPlayerSP) entity;
                     float armPitch = entityplayersp.prevRenderArmPitch + (entityplayersp.renderArmPitch - entityplayersp.prevRenderArmPitch) * partialTicks;
