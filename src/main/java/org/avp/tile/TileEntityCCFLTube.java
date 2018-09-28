@@ -51,7 +51,7 @@ public class TileEntityCCFLTube extends TileEntityLightPanel implements IVoltage
             return false;
         }
         
-        if (side == this.getRotationYAxis() || side == this.getRotationYAxis().getOpposite())
+        if (side == this.getRotationYAxis() || this.getRotationYAxis() != null && side == this.getRotationYAxis().getOpposite())
         {
             return true;
         }
