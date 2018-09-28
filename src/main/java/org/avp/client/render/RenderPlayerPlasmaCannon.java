@@ -19,13 +19,11 @@ import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.util.MDXMath;
-import com.arisux.mdx.lib.world.Worlds;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.ItemRenderer;
-import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
@@ -87,18 +85,15 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
                         OpenGL.pushMatrix();
                         OpenGL.scale(scale, -scale, -scale);
                         OpenGL.rotate(rotationYaw, 0F, 1F, 0F);
-                        OpenGL.translate(-0.75F, -0.125F, -0.55F);
+                        float cannonHeight = player.getEyeHeight() > 1.6F ? 0F : 0.65F;
+                        OpenGL.translate(-0.85F, -3.425F + cannonHeight, -0.85F);
+                        OpenGL.rotate(-25F, 0F, 0F, 1F);
                         MODEL.bindTexture();
                         MODEL.getModel().render(player);
                         OpenGL.popMatrix();
                     }
                 }
             }
-        }
-
-        if (event instanceof RenderLivingEvent.Post)
-        {
-            RenderLivingEvent.Post pre = (RenderLivingEvent.Post) event;
         }
     }
 

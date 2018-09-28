@@ -1,6 +1,7 @@
 package org.avp.client.model.items;
 
 import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -87,15 +88,20 @@ public class ModelPlasmaCannon extends Model
 
             if (swingProgress(obj) > -9990.0F)
             {
-                float progress = swingProgress(obj);
-                progress = 1.0F - swingProgress(obj);
-                progress *= progress;
-                progress *= progress;
-                progress = 1.0F - progress;
-                float p1 = MathHelper.sin(progress * (float)Math.PI);
-                float p2 = MathHelper.sin(swingProgress(obj) * (float)Math.PI) * -(0F - 0.7F) * 0.75F;
-                this.supportBar.rotateAngleX = (float)((double)this.supportBar.rotateAngleX - ((double)p1 * 1.2D + (double)p2));
-                this.supportBar.rotateAngleZ = MathHelper.sin(swingProgress(obj) * (float)Math.PI) * -0.4F;
+//                float progress = swingProgress(obj);
+//                progress = 1.0F - swingProgress(obj);
+//                progress *= progress;
+//                progress *= progress;
+//                progress = 1.0F - progress;
+//                float p1 = MathHelper.sin(progress * (float)Math.PI);
+//                float p2 = -MathHelper.sin((float) (swingProgress(obj) * 0.67F)) * -(0F - 0.7F) * 0.75F;
+//                
+////                p1 = 0F;
+////                p2 = 0F;
+////                
+////                p1 = swingProgress(obj);
+//                this.supportBar.rotateAngleX = (float)((double)this.supportBar.rotateAngleX - ((double)p1 * 1.2D + (double)p2));
+////                this.supportBar.rotateAngleZ = MathHelper.sin(swingProgress(obj) * (float)Math.PI) * -0.4F;
             }
 
             this.swivelHinge.rotateAngleX = (float) Math.toRadians(-30 + headPitch(obj));
