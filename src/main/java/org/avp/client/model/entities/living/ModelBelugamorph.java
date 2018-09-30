@@ -466,7 +466,7 @@ public class ModelBelugamorph extends Model
             this.upperJaw.offsetZ = (-0.075F * innerJawDistance * Game.partialTicks()) / Game.partialTicks();
             this.lowerJaw.offsetY = (0.055F * innerJawDistance * Game.partialTicks()) / Game.partialTicks();
             this.lowerJaw.offsetZ = (-0.075F * innerJawDistance * Game.partialTicks()) / Game.partialTicks();
-            this.lowerJaw.rotateAngleX = (float) Math.toRadians((lowerJawAngle - 20) * Game.partialTicks()) / Game.partialTicks();
+            this.lowerJaw.rotateAngleX = (float) Math.toRadians((lowerJawAngle - 70) * Game.partialTicks()) / Game.partialTicks();
         }
         this.headBase.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;
         this.rThigh.rotateAngleX = MathHelper.cos(swingProgress * 0.8662F + (float) Math.PI) * 0.9F * swingProgressPrev - 0.3F;
