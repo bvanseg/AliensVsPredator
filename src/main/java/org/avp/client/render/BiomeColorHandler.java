@@ -1,0 +1,101 @@
+package org.avp.client.render;
+
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.Random;
+
+import javax.annotation.Nullable;
+
+import org.avp.BlockHandler;
+
+import com.arisux.mdx.lib.game.Game;
+import com.arisux.mdx.lib.game.IInitEvent;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.color.IBlockColor;
+import net.minecraft.client.renderer.color.IItemColor;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.ColorizerGrass;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.biome.BiomeColorHelper;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+@SideOnly(Side.CLIENT)
+public class BiomeColorHandler implements IInitEvent
+{
+    public static final BiomeColorHandler instance  = new BiomeColorHandler();
+
+    @SuppressWarnings("deprecation")
+    private static final IItemColor       ITEMBLOCK = (stack, tintIndex) -> {
+                                                        IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
+                                                        return Game.minecraft().getBlockColors().colorMultiplier(iblockstate, null, null, tintIndex);
+                                                    };
+
+    private static final IBlockColor      GRASS     = (state, blockAccess, pos, tintIndex) -> {
+                                                        if (blockAccess != null && pos != null)
+                                                        {
+                                                            return BiomeColorHelper.getGrassColorAtPos(blockAccess, pos);
+                                                        }
+
+                                                        return ColorizerGrass.getGrassColor(0.5D, 1.0D);
+                                                    };
+
+    @Override
+    public void init(FMLInitializationEvent event)
+    {
+        registerFoliageColorHandler(BlockHandler.paradiseLeavesSmall);
+        registerFoliageColorHandler(BlockHandler.paradiseLeavesMed);
+        registerFoliageColorHandler(BlockHandler.paradiseLeavesLarge);
+    }
+
+    public static void registerFoliageColorHandler(Block block)
+    {
+        Game.minecraft().getItemColors().registerItemColorHandler(new IItemColor() {
+            @Override
+            public int colorMultiplier(ItemStack stack, int tintIndex)
+            {
+                return 0x228833;
+            }
+        }, block);
+
+        Game.minecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
+            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
+            {
+                Date date = new Date();
+                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+                if ((localDate.getMonthValue() == 10 && localDate.getDayOfMonth() >= 28 || localDate.getMonthValue() == 11 && localDate.getDayOfMonth() <= 3))
+                {
+                    switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
+                    {
+                        case 0:
+                            return 0xAA6644; //Brown
+                        case 1:
+                            return 0xF1CC0C; //Yellow
+                        case 2:
+                            return 0xF08C00; //Orange
+                        case 3:
+                            return 0xAA1111; //Red
+
+                        default:
+                            return 0xAA6644; //Brown
+                    }
+                }
+
+                return 0x228833; //Default
+            }
+        }, block);
+    }
+
+    public static void registerGrassColorHandler(Block block)
+    {
+        Game.minecraft().getBlockColors().registerBlockColorHandler(GRASS, block);
+        Game.minecraft().getItemColors().registerItemColorHandler(ITEMBLOCK, block);
+    }
+}

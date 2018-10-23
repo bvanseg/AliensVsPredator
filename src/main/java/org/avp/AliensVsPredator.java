@@ -6,6 +6,7 @@ import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
 import org.avp.client.Resources;
 import org.avp.client.Sounds;
+import org.avp.client.render.BiomeColorHandler;
 import org.avp.world.CapabilityHandler;
 import org.avp.world.hives.HiveHandler;
 
@@ -69,6 +70,7 @@ public class AliensVsPredator implements IMod
         dimensions().init(event);
         materials().init(event);
         world().init(event);
+        biomeColors().init(event);
         interfaces().init(event);
         events().init(event);
         commands().init(event);
@@ -132,6 +134,11 @@ public class AliensVsPredator implements IMod
     public static BlockHandler blocks()
     {
         return blocks == null ? blocks = new BlockHandler() : blocks;
+    }
+    
+    public static BiomeColorHandler biomeColors()
+    {
+        return BiomeColorHandler.instance;
     }
 
     public static MaterialHandler materials()
