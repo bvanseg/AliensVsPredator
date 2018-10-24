@@ -7,6 +7,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import org.avp.AliensVsPredator;
 import org.avp.BlockHandler;
 
 import com.arisux.mdx.lib.game.Game;
@@ -67,10 +68,7 @@ public class BiomeColorHandler implements IInitEvent
         Game.minecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
             public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
             {
-                Date date = new Date();
-                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-                if ((localDate.getMonthValue() == 10 && localDate.getDayOfMonth() >= 28 || localDate.getMonthValue() == 11 && localDate.getDayOfMonth() <= 3))
+                if (AliensVsPredator.settings().isHalloweenEventEnabled())
                 {
                     switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
                     {

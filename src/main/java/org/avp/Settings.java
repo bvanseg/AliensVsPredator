@@ -1,7 +1,10 @@
 package org.avp;
 
 import java.io.File;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.arisux.mdx.config.ConfigSetting;
 import com.arisux.mdx.config.ConfigSettingBoolean;
@@ -190,5 +193,13 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     public float globalSoundVolume()
     {
         return (float) ((Integer) this.globalSoundVolume.value()) / 100F;
+    }
+    
+    public boolean isHalloweenEventEnabled()
+    {
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        return (localDate.getMonthValue() == 10 && localDate.getDayOfMonth() >= 28 || localDate.getMonthValue() == 11 && localDate.getDayOfMonth() <= 3);
     }
 }
