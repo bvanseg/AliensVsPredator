@@ -6,7 +6,9 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.arisux.mdx.MDX;
 import com.arisux.mdx.config.ConfigSetting;
+import com.arisux.mdx.config.ConfigSettingBiomeList;
 import com.arisux.mdx.config.ConfigSettingBoolean;
 import com.arisux.mdx.config.ConfigSettingGraphics;
 import com.arisux.mdx.config.ConfigSettingInteger;
@@ -14,6 +16,7 @@ import com.arisux.mdx.config.GraphicsSetting;
 import com.arisux.mdx.config.IFlexibleConfiguration;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -30,7 +33,8 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
 
     private final String                   CATEGORY_OTHER  = "general";
     private final String                   CATEGORY_BIOMES = "biomes";
-
+    private final String                   CATEGORY_SPAWNING  = "spawning";
+    
     private ConfigSetting                  explosionsEnabled;
     private ConfigSetting                  plasmaCannonExplosions;
     private ConfigSetting                  updaterEnabled;
@@ -43,6 +47,12 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     private ConfigSetting                  biomeVardaForest;
     private ConfigSetting                  biomeAcheron;
     private ConfigSetting                  globalSoundVolume;
+
+    private ConfigSetting                  spawnsAlien;
+    private ConfigSetting                  spawnsAquaticAlien;
+    private ConfigSetting                  spawnsPredator;
+    private ConfigSetting                  spawnsMarine;
+    private ConfigSetting                  spawnsVarda;
 
     @Override
     public ArrayList<ConfigSetting> allSettings()
@@ -117,12 +127,25 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
             plasmaCannonExplosions = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "plasma_cannon_explosions", false, "If enabled, a plasma cannon's projectiles will explode upon impact."));
             explosionsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "explosion_block_damage", true, "If disabled, all explosions triggered by this mod will be cancelled."));
             nukesEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "nukes", true, "If disabled, you will not be allowed to use any nuke-based functionality."));
-            overworldSpawnsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "overworld_spawning", true, "If disabled, no mobs from this mod will spawn in the overworld.")).setRequiresRestart();
-            autoSpawnsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "auto_spawning", true, "If disabled, no mobs from this mod will spawn.")).setRequiresRestart();
-            evolvedXenomorphSpawns = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "mature_spawns", true, "If disabled, no mature alien states will spawn naturally.")).setRequiresRestart();
             updaterEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "updater", true, "Toggle the mod's update checking capabilities. Will not check for new updates if disabled.")).setRequiresRestart();
             debugToolsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "debug_tools", false, "Toggle the built in debugging tools. Used primarily in development environments."));
             globalSoundVolume = new ConfigSettingInteger(this, configuration.get(CATEGORY_OTHER, "global_volume", 75, "Change the default volume of this mod's sounds. EXAMPLE: 100 = 100% Volume, 50 = 50% Volume, 150 = 150% Volume")).setRequiresRestart();
+
+            overworldSpawnsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_SPAWNING, "overworld_spawning", true, "If disabled, no mobs from this mod will spawn in the overworld.")).setRequiresRestart();
+            autoSpawnsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_SPAWNING, "auto_spawning", true, "If disabled, no mobs from this mod will spawn.")).setRequiresRestart();
+            evolvedXenomorphSpawns = new ConfigSettingBoolean(this, configuration.get(CATEGORY_SPAWNING, "mature_spawns", true, "If disabled, no mature alien states will spawn naturally.")).setRequiresRestart();
+            
+            System.out.println("Listing Overworld Biome IDs for configuration settings...");
+            for (Biome b : EntityHandler.getOverworldBiomeList())
+            {
+                MDX.log().info(b.getBiomeName() + " : " + b.getRegistryName());
+            }
+
+            spawnsAlien = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "alien_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_ALIEN_SPAWNS), "List of biomes for aliens to spawn in.")).setRequiresRestart();
+            spawnsAquaticAlien = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "aquatic_alien_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_AQUA_ALIEN_SPAWNS), "List of biomes for aquatic aliens to spawn in.")).setRequiresRestart();
+            spawnsPredator = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "predator_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_PREDATOR_SPAWNS), "List of biomes for predators to spawn in.")).setRequiresRestart();
+            spawnsMarine = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "marine_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_MARINE_SPAWNS), "List of biomes for marines to spawn in.")).setRequiresRestart();
+            spawnsVarda = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "varda_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_VARDA_LIFE_SPAWNS), "List of biomes for varda wildlife to spawn in.")).setRequiresRestart();
         }
         finally
         {
@@ -201,5 +224,30 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
         return (localDate.getMonthValue() == 10 && localDate.getDayOfMonth() >= 28 || localDate.getMonthValue() == 11 && localDate.getDayOfMonth() <= 3);
+    }
+    
+    public ConfigSettingBiomeList getSpawnsAlien()
+    {
+        return (ConfigSettingBiomeList) spawnsAlien;
+    }
+    
+    public ConfigSettingBiomeList getSpawnsAquaticAlien()
+    {
+        return (ConfigSettingBiomeList) spawnsAquaticAlien;
+    }
+    
+    public ConfigSettingBiomeList getSpawnsMarine()
+    {
+        return (ConfigSettingBiomeList) spawnsMarine;
+    }
+    
+    public ConfigSettingBiomeList getSpawnsPredator()
+    {
+        return (ConfigSettingBiomeList) spawnsPredator;
+    }
+    
+    public ConfigSettingBiomeList getSpawnsVarda()
+    {
+        return (ConfigSettingBiomeList) spawnsVarda;
     }
 }
