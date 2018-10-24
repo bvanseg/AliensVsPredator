@@ -37,9 +37,9 @@ public class DimensionHandler implements IInitEvent
         @SubscribeEvent
         public static void registerBiomes(final RegistryEvent.Register<Biome> event)
         {
-            event.getRegistry().register(BiomeAcheron.acheron.setRegistryName(AliensVsPredator.Properties.ID, "acheron"));
-            event.getRegistry().register(BiomeVarda.vardaBadlands.setRegistryName(AliensVsPredator.Properties.ID, "vardabadlands"));
-            event.getRegistry().register(BiomeVarda.vardaForest.setRegistryName(AliensVsPredator.Properties.ID, "vardaforest"));
+            event.getRegistry().register(BiomeAcheron.acheron);
+            event.getRegistry().register(BiomeVarda.vardaBadlands);
+            event.getRegistry().register(BiomeVarda.vardaForest);
         }
     }
 

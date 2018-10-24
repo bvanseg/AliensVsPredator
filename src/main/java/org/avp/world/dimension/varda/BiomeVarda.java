@@ -29,8 +29,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class BiomeVarda extends BiomeGenLV
 {
-    public static BiomeVarda vardaBadlands = new BiomeVarda(new BiomeProperties(AliensVsPredator.dimensions().BIOME_NAME_VARDA_BADLANDS).setBaseHeight(1.0F).setHeightVariation(2.0F).setRainDisabled().setWaterColor(0xFFFF66));
-    public static BiomeVarda vardaForest   = new BiomeVarda(new BiomeProperties(AliensVsPredator.dimensions().BIOME_NAME_VARDA_FOREST).setBaseHeight(1.0F).setHeightVariation(8.0F).setTemperature(0.7F).setRainfall(0.1F).setWaterColor(0xFFFF66));
+    public static BiomeVarda vardaBadlands = (BiomeVarda) new BiomeVarda(new BiomeProperties(AliensVsPredator.dimensions().BIOME_NAME_VARDA_BADLANDS).setBaseHeight(1.0F).setHeightVariation(2.0F).setRainDisabled().setWaterColor(0xFFFF66)).setRegistryName(AliensVsPredator.Properties.ID, "vardabadlands");
+    public static BiomeVarda vardaForest   = (BiomeVarda) new BiomeVarda(new BiomeProperties(AliensVsPredator.dimensions().BIOME_NAME_VARDA_FOREST).setBaseHeight(1.0F).setHeightVariation(8.0F).setTemperature(0.7F).setRainfall(0.1F).setWaterColor(0xFFFF66)).setRegistryName(AliensVsPredator.Properties.ID, "vardaforest");
 
     public BiomeVarda(BiomeProperties properties)
     {

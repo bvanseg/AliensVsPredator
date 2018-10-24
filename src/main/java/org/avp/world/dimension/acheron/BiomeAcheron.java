@@ -16,7 +16,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 public class BiomeAcheron extends BiomeGenLV
 {
-    public static final BiomeAcheron acheron = new BiomeAcheron(new BiomeProperties("Acheron").setBaseHeight(0.1F).setHeightVariation(0.4F).setTemperature(0.5F).setRainDisabled());
+    public static final BiomeAcheron acheron = (BiomeAcheron) new BiomeAcheron(new BiomeProperties("Acheron").setBaseHeight(0.1F).setHeightVariation(0.4F).setTemperature(0.5F).setRainDisabled()).setRegistryName(AliensVsPredator.Properties.ID, "acheron");
 
     public BiomeAcheron(BiomeProperties properties)
     {
