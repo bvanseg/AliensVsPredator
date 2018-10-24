@@ -301,7 +301,8 @@ public class GuiTurret extends GuiContainer
 
         for (Entity entity : this.entityLivingList)
         {
-            entity.onUpdate();
+            //TODO: Temporarily disabled to fix a crash
+//            entity.onUpdate();
         }
 
         int dWheel = Mouse.getDWheel();
