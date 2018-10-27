@@ -13,6 +13,7 @@ import org.avp.block.BlockCryostasisTube;
 import org.avp.block.BlockCustomSlab;
 import org.avp.block.BlockCustomStairs;
 import org.avp.block.BlockGenerator;
+import org.avp.block.BlockGroundFern;
 import org.avp.block.BlockGunLocker;
 import org.avp.block.BlockHiveResin;
 import org.avp.block.BlockLightPanel;
@@ -176,6 +177,7 @@ public class BlockHandler implements IInitEvent
     public static final Block paradiseLogMed        = new BlockParadiseLog().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("paradise_log_med").setCreativeTab(Tab.BLOCKS);
     public static final Block paradiseLeavesSmall   = new BlockParadiseTreeLeaves().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("paradise_leaves_small").setCreativeTab(Tab.BLOCKS);
     public static final Block paradiseLogSmall      = new BlockParadiseLog().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("paradise_log_small").setCreativeTab(Tab.BLOCKS);
+    public static final Block groundFern            = new BlockGroundFern().setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.BLOCKS).setRegistryName("paradisian_ground_fern");
     
     /** Varda **/
     public static final Block gigerLog              = new BlockUnidentifiedLog().setHardness(5F).setLightOpacity(0).setCreativeTab(Tab.BLOCKS).setRegistryName("unitree.wood");

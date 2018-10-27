@@ -81,6 +81,7 @@ import org.avp.client.model.tile.ModelStasisMechanism;
 import org.avp.client.model.tile.ModelTransformer;
 import org.avp.client.model.tile.ModelTurret;
 import org.avp.client.model.tile.ModelWorkstation;
+import org.avp.client.model.tile.plants.ModelGroundFern;
 import org.avp.client.model.tile.rackmodules.ModelNetworkModuleRack;
 import org.avp.client.model.tile.rackmodules.ModelRackModule1;
 import org.avp.client.model.tile.rackmodules.ModelRackModule2;
@@ -229,6 +230,9 @@ public class Resources
         public final MapModelTexture<ModelPredatorHound>          PREDATOR_HOUND                 = new MapModelTexture(new ModelPredatorHound(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/predatorhound.png"));
         public final MapModelTexture<ModelUrsuidae>               URSUIDAE                       = new MapModelTexture(new ModelUrsuidae(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/vardaboar.png"));
         public final MapModelTexture<ModelVardaMonkey>            VARDA_MONKEY                   = new MapModelTexture(new ModelVardaMonkey(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/vardamonkey.png"));
+
+        public final MapModelTexture<ModelGroundFern>             GROUND_FERN_OVERLAY            = new MapModelTexture(new ModelGroundFern(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/plants/paradisiangroundfern_overlay.png"));
+        public final MapModelTexture<ModelGroundFern>             GROUND_FERN_COLORMAP           = new MapModelTexture(new ModelGroundFern(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/plants/paradisiangroundfern.png"));
 
         /** New xenomorph model format **/
         public final MapModelTexture<ModelUltramorph>             ULTRAMORPH                     = new MapModelTexture(new ModelUltramorph(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/ultramorph.png"));

@@ -96,11 +96,10 @@ import org.avp.tile.TileEntitySupplyCrate;
 import org.avp.tile.TileEntityTransformer;
 import org.avp.tile.TileEntityTurret;
 import org.avp.tile.TileEntityWorkstation;
+import org.avp.tile.plants.TileEntityGroundFern;
 import org.avp.world.dimension.acheron.BiomeAcheron;
 import org.avp.world.dimension.varda.BiomeVarda;
 
-import com.arisux.mdx.MDX;
-import com.arisux.mdx.config.ConfigSettingBiomeList;
 import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraft.entity.EnumCreatureType;
@@ -313,6 +312,7 @@ public class EntityHandler implements IInitEvent
         GameRegistry.registerTileEntity(TileEntitySkull.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.skull"));
         GameRegistry.registerTileEntity(TileEntityRedstoneFluxGenerator.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.redstonefluxgenerator"));
         GameRegistry.registerTileEntity(TileEntityReflective.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.reflective"));
+        GameRegistry.registerTileEntity(TileEntityGroundFern.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.groundfern"));
     }
 
     private void registerSpawns()

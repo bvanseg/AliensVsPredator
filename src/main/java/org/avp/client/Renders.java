@@ -81,6 +81,7 @@ import org.avp.client.render.items.RenderItemAmpule;
 import org.avp.client.render.items.RenderItemBlastDoor;
 import org.avp.client.render.items.RenderItemCCFLTube;
 import org.avp.client.render.items.RenderItemCryostasisTube;
+import org.avp.client.render.items.RenderItemGroundFern;
 import org.avp.client.render.items.RenderItemGunLocker;
 import org.avp.client.render.items.RenderItemLightPanel;
 import org.avp.client.render.items.RenderItemLocker;
@@ -164,6 +165,7 @@ import org.avp.client.render.tile.RenderSupplyCrate;
 import org.avp.client.render.tile.RenderTransformer;
 import org.avp.client.render.tile.RenderTurret;
 import org.avp.client.render.tile.RenderWorkstation;
+import org.avp.client.render.tile.plants.RenderGroundFern;
 import org.avp.client.render.transforms.CryostasisTubeRenderers;
 import org.avp.client.render.transforms.FaceLocationTransforms;
 import org.avp.client.render.transforms.MedpodTransforms;
@@ -259,6 +261,7 @@ import org.avp.tile.TileEntitySupplyCrate;
 import org.avp.tile.TileEntityTransformer;
 import org.avp.tile.TileEntityTurret;
 import org.avp.tile.TileEntityWorkstation;
+import org.avp.tile.plants.TileEntityGroundFern;
 
 import com.arisux.mdx.lib.client.render.model.MapModelTexture;
 import com.arisux.mdx.lib.game.IInitEvent;
@@ -450,6 +453,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.crateMarines), new RenderItemSupplyCrate());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.crateSeegson), new RenderItemSupplyCrate());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.networkRack), new RenderItemNetworkRack());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.groundFern), new RenderItemGroundFern());
     }
 
     private void registerItemRenderers()
@@ -596,5 +600,6 @@ public class Renders implements IInitEvent, IPreInitEvent
         bindTileEntitySpecialRenderer(TileEntitySupplyCrate.class, new RenderSupplyCrate());
         bindTileEntitySpecialRenderer(TileEntityHiveResin.class, new RenderHiveResin());
         bindTileEntitySpecialRenderer(TileEntitySkull.class, new RenderSkull());
+        bindTileEntitySpecialRenderer(TileEntityGroundFern.class, new RenderGroundFern());
     }
 }
