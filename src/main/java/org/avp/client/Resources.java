@@ -82,6 +82,7 @@ import org.avp.client.model.tile.ModelTransformer;
 import org.avp.client.model.tile.ModelTurret;
 import org.avp.client.model.tile.ModelWorkstation;
 import org.avp.client.model.tile.plants.ModelGroundFern;
+import org.avp.client.model.tile.plants.ModelTreeFern;
 import org.avp.client.model.tile.rackmodules.ModelNetworkModuleRack;
 import org.avp.client.model.tile.rackmodules.ModelRackModule1;
 import org.avp.client.model.tile.rackmodules.ModelRackModule2;
@@ -231,14 +232,14 @@ public class Resources
         public final MapModelTexture<ModelUrsuidae>               URSUIDAE                       = new MapModelTexture(new ModelUrsuidae(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/vardaboar.png"));
         public final MapModelTexture<ModelVardaMonkey>            VARDA_MONKEY                   = new MapModelTexture(new ModelVardaMonkey(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/vardamonkey.png"));
 
-        public final MapModelTexture<ModelGroundFern>             GROUND_FERN_OVERLAY            = new MapModelTexture(new ModelGroundFern(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/plants/paradisiangroundfern_overlay.png"));
-        public final MapModelTexture<ModelGroundFern>             GROUND_FERN_COLORMAP           = new MapModelTexture(new ModelGroundFern(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/plants/paradisiangroundfern.png"));
+        public final MapModelTexture<ModelGroundFern>             GROUND_FERN                    = new MapModelTexture(new ModelGroundFern(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/plants/paradisiangroundfern.png"));
+        public final MapModelTexture<ModelTreeFern>               TREE_FERN                      = new MapModelTexture(new ModelTreeFern(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/plants/paradisiantreefern.png"));
 
         /** New xenomorph model format **/
         public final MapModelTexture<ModelUltramorph>             ULTRAMORPH                     = new MapModelTexture(new ModelUltramorph(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/ultramorph.png"));
 
         /** Wavefront models **/
-        public final TriangulatedWavefrontModel                 M577_APC                       = WavefrontModelLoader.load(AliensVsPredator.class, AliensVsPredator.Properties.ID, "m577apc", "/assets/avp/models/m577apc");
+        public final TriangulatedWavefrontModel                   M577_APC                       = WavefrontModelLoader.load(AliensVsPredator.class, AliensVsPredator.Properties.ID, "m577apc", "/assets/avp/models/m577apc");
 
         public final MapModelTexture<ModelNetworkModuleRack>      NETWORKMODULERACK              = new MapModelTexture(new ModelNetworkModuleRack(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/networkmodulerack.png"));
         public final MapModelTexture<ModelNetworkModuleRack>      NETWORKMODULERACK_ON           = new MapModelTexture(new ModelNetworkModuleRack(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/networkmodulerack_on.png"));
