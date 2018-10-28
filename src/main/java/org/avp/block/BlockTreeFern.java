@@ -2,7 +2,7 @@ package org.avp.block;
 
 import java.util.Random;
 
-import org.avp.tile.plants.TileEntityGroundFern;
+import org.avp.tile.plants.TileEntityTreeFern;
 import org.avp.tile.plants.TileEntityPlant.PlantColor;
 import org.avp.tile.plants.TileEntityPlant.PlantSize;
 
@@ -22,9 +22,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockGroundFern extends BlockBush implements ITileEntityProvider
+public class BlockTreeFern extends BlockBush implements ITileEntityProvider
 {
-    public BlockGroundFern()
+    public BlockTreeFern()
     {
         super(Material.PLANTS);
         this.setLightOpacity(2);
@@ -48,9 +48,9 @@ public class BlockGroundFern extends BlockBush implements ITileEntityProvider
 
         TileEntity tile = (TileEntity) world.getTileEntity(pos);
 
-        if (tile instanceof TileEntityGroundFern)
+        if (tile instanceof TileEntityTreeFern)
         {
-            TileEntityGroundFern fern = (TileEntityGroundFern) tile;
+            TileEntityTreeFern fern = (TileEntityTreeFern) tile;
             fern.setPlantSize(PlantSize.random(world));
             
             Random rand = new Random();
@@ -58,11 +58,11 @@ public class BlockGroundFern extends BlockBush implements ITileEntityProvider
             
             if (rand.nextInt(150) == 0)
             {
-                fern.setPlantColor(TileEntityGroundFern.WHITE);
+                fern.setPlantColor(TileEntityTreeFern.WHITE);
             }
             else
             {
-                PlantColor color = TileEntityGroundFern.STANDARD_COLOR_GROUP[rand.nextInt(TileEntityGroundFern.STANDARD_COLOR_GROUP.length)];
+                PlantColor color = TileEntityTreeFern.STANDARD_COLOR_GROUP[rand.nextInt(TileEntityTreeFern.STANDARD_COLOR_GROUP.length)];
                 fern.setPlantColor(color);
             }
         }
@@ -79,9 +79,9 @@ public class BlockGroundFern extends BlockBush implements ITileEntityProvider
         super.onBlockPlacedBy(world, pos, state, placer, stack);
         TileEntity tile = world.getTileEntity(pos);
 
-        if (tile != null && tile instanceof TileEntityGroundFern && placer != null)
+        if (tile != null && tile instanceof TileEntityTreeFern && placer != null)
         {
-            TileEntityGroundFern plant = (TileEntityGroundFern) tile;
+            TileEntityTreeFern plant = (TileEntityTreeFern) tile;
             plant.setRotationYAxis(Entities.getEntityFacingRotY(placer));
         }
     }
@@ -89,7 +89,7 @@ public class BlockGroundFern extends BlockBush implements ITileEntityProvider
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileEntityGroundFern();
+        return new TileEntityTreeFern();
     }
 
     @Override

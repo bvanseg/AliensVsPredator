@@ -41,6 +41,7 @@ import org.avp.block.BlockStasisMechanism;
 import org.avp.block.BlockSupplyCrate;
 import org.avp.block.BlockTempleSpawner;
 import org.avp.block.BlockTransformer;
+import org.avp.block.BlockTreeFern;
 import org.avp.block.BlockTurret;
 import org.avp.block.BlockUnidentifiedDirt;
 import org.avp.block.BlockUnidentifiedLog;
@@ -178,6 +179,7 @@ public class BlockHandler implements IInitEvent
     public static final Block paradiseLeavesSmall   = new BlockParadiseTreeLeaves().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("paradise_leaves_small").setCreativeTab(Tab.BLOCKS);
     public static final Block paradiseLogSmall      = new BlockParadiseLog().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("paradise_log_small").setCreativeTab(Tab.BLOCKS);
     public static final Block groundFern            = new BlockGroundFern().setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.BLOCKS).setRegistryName("paradisian_ground_fern");
+    public static final Block treeFern              = new BlockTreeFern().setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.BLOCKS).setRegistryName("paradisian_tree_fern");
     
     /** Varda **/
     public static final Block gigerLog              = new BlockUnidentifiedLog().setHardness(5F).setLightOpacity(0).setCreativeTab(Tab.BLOCKS).setRegistryName("unitree.wood");

@@ -1,10 +1,9 @@
 package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
-import org.avp.client.model.tile.plants.ModelGroundFern;
+import org.avp.client.model.tile.plants.ModelTreeFern;
 import org.avp.tile.plants.TileEntityGroundFern;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import com.arisux.mdx.lib.client.render.ItemRenderer;
 import com.arisux.mdx.lib.client.render.OpenGL;
@@ -14,11 +13,11 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemGroundFern extends ItemRenderer<ModelGroundFern>
+public class RenderItemTreeFern extends ItemRenderer<ModelTreeFern>
 {
-    public RenderItemGroundFern()
+    public RenderItemTreeFern()
     {
-        super(AliensVsPredator.resources().models().GROUND_FERN);
+        super(AliensVsPredator.resources().models().TREE_FERN);
     }
 
     @Override

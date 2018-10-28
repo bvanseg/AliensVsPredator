@@ -1,17 +1,17 @@
 package org.avp.client.render.tile.plants;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.plants.TileEntityGroundFern;
+import org.avp.tile.plants.TileEntityTreeFern;
 import org.lwjgl.opengl.GL12;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
-public class RenderGroundFern extends TileEntitySpecialRenderer<TileEntityGroundFern>
+public class RenderTreeFern extends TileEntitySpecialRenderer<TileEntityTreeFern>
 {
     @Override
-    public void render(TileEntityGroundFern tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    public void render(TileEntityTreeFern tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
         OpenGL.pushMatrix();
         {
@@ -22,7 +22,7 @@ public class RenderGroundFern extends TileEntitySpecialRenderer<TileEntityGround
             OpenGL.rotate(180F, 1, 0, 0);
             OpenGL.rotate(tile);
             OpenGL.color(tile.getPlantColor().r(), tile.getPlantColor().g(), tile.getPlantColor().b());
-            AliensVsPredator.resources().models().GROUND_FERN.draw(tile);
+            AliensVsPredator.resources().models().TREE_FERN.draw(tile);
             OpenGL.color(1F, 1F, 1F);
         }
         OpenGL.popMatrix();

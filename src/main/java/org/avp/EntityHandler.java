@@ -97,6 +97,7 @@ import org.avp.tile.TileEntityTransformer;
 import org.avp.tile.TileEntityTurret;
 import org.avp.tile.TileEntityWorkstation;
 import org.avp.tile.plants.TileEntityGroundFern;
+import org.avp.tile.plants.TileEntityTreeFern;
 import org.avp.world.dimension.acheron.BiomeAcheron;
 import org.avp.world.dimension.varda.BiomeVarda;
 
@@ -313,6 +314,7 @@ public class EntityHandler implements IInitEvent
         GameRegistry.registerTileEntity(TileEntityRedstoneFluxGenerator.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.redstonefluxgenerator"));
         GameRegistry.registerTileEntity(TileEntityReflective.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.reflective"));
         GameRegistry.registerTileEntity(TileEntityGroundFern.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.groundfern"));
+        GameRegistry.registerTileEntity(TileEntityTreeFern.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.treefern"));
     }
 
     private void registerSpawns()
