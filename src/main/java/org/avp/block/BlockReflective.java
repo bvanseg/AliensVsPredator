@@ -1,13 +1,8 @@
 package org.avp.block;
 
-import java.util.Random;
-
-import org.avp.AliensVsPredator;
 import org.avp.block.properties.UnlistedPropertyBlockstate;
 import org.avp.block.util.EnumAlignment;
 import org.avp.tile.TileEntityReflective;
-
-import com.arisux.mdx.commands.CommandBlockUpdate;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -17,14 +12,12 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
@@ -277,136 +270,5 @@ public class BlockReflective extends Block implements ITileEntityProvider
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
         return new TileEntityReflective();
-    }
-
-    /** 1.7.10 -> 1.10.2 Shaped Block Compatability **/
-
-    public boolean convert;
-
-    public BlockReflective(Material materialIn, boolean convert)
-    {
-        this(materialIn);
-        this.convert = convert;
-        this.setTickRandomly(convert);
-    }
-
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state)
-    {
-        return convert ? EnumBlockRenderType.INVISIBLE : EnumBlockRenderType.MODEL;
-    }
-
-    @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        super.updateTick(worldIn, pos, state, rand);
-        this.convert(worldIn, pos);
-    }
-
-    @Override
-    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
-    {
-        this.convert(worldIn, pos);
-    }
-
-    @Override
-    public void onEntityCollision(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
-    {
-        super.onEntityCollision(worldIn, pos, state, entityIn);
-        this.convert(worldIn, pos);
-    }
-
-    @Override
-    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
-    {
-        super.onBlockClicked(worldIn, pos, playerIn);
-        this.convert(worldIn, pos);
-    }
-
-    @Override
-    public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
-    {
-        super.onEntityWalk(worldIn, pos, entityIn);
-        this.convert(worldIn, pos);
-    }
-
-    private void convert(World world, BlockPos pos)
-    {
-        if (this.convert && !world.isRemote)
-        {
-            String unlocalizedName = this.getTranslationKey();
-            IBlockState state = world.getBlockState(pos);
-            Block type = null;
-            String name = "";
-
-            if (this.getTranslationKey().contains("slope"))
-            {
-                type = AliensVsPredator.blocks().slope;
-                name = "slope";
-            }
-
-            if (this.getTranslationKey().contains("corner"))
-            {
-                type = AliensVsPredator.blocks().corner;
-                name = "corner";
-            }
-
-            if (this.getTranslationKey().contains("invertedcorner"))
-            {
-                type = AliensVsPredator.blocks().invertedCorner;
-                name = "invertedcorner";
-            }
-
-            if (this.getTranslationKey().contains("ridge"))
-            {
-                type = AliensVsPredator.blocks().ridge;
-                name = "ridge";
-            }
-
-            if (this.getTranslationKey().contains("invertedridge"))
-            {
-                type = AliensVsPredator.blocks().invertedRidge;
-                name = "invertedridge";
-            }
-
-            if (this.getTranslationKey().contains("smartridge"))
-            {
-                type = AliensVsPredator.blocks().pyramid;
-                name = "smartridge";
-            }
-
-            if (this.getTranslationKey().contains("smartinvertedridge"))
-            {
-                type = AliensVsPredator.blocks().invertedPyramid;
-                name = "smartinvertedridge";
-            }
-
-            if (type != null && world != null)
-            {
-                String blockName = AliensVsPredator.Properties.DOMAIN + unlocalizedName.replace("." + name, "").split(":")[1];
-                Block parentBlockType = Block.getBlockFromName(blockName);
-
-                EnumAlignment alignment = state.getValue(ALIGNMENT);
-                EnumFacing facing = state.getValue(FACING);
-
-                if (alignment == EnumAlignment.TOP)
-                {
-                    facing = facing.getOpposite();
-                }
-
-                IBlockState newState = type.getDefaultState().withProperty(FACING, facing).withProperty(ALIGNMENT, alignment);
-                world.setBlockState(pos, newState);
-
-                TileEntity tile = world.getTileEntity(pos);
-
-                if (tile instanceof TileEntityReflective)
-                {
-                    TileEntityReflective reflective = (TileEntityReflective) tile;
-                    reflective.setReflection(parentBlockType, 0);
-                }
-
-                CommandBlockUpdate.triggerBlockUpdates(world, 4, pos.getX(), pos.getY(), pos.getZ());
-            }
-        }
     }
 }
