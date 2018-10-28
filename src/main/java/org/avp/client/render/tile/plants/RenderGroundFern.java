@@ -26,6 +26,7 @@ public class RenderGroundFern extends TileEntitySpecialRenderer<TileEntityGround
             OpenGL.color(tile.getPlantColor().r(), tile.getPlantColor().g(), tile.getPlantColor().b());
             AliensVsPredator.resources().models().GROUND_FERN_OVERLAY.draw(tile);
             OpenGL.color(1F, 1F, 1F);
+            AliensVsPredator.resources().models().GROUND_FERN_COLORMAP.draw(tile);
         }
         OpenGL.popMatrix();
     }
