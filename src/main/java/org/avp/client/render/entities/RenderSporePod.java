@@ -28,7 +28,8 @@ public class RenderSporePod extends Render<EntitySporePod>
         OpenGL.translate(0F, 0F, 0F);
         float s = 0.25F;
         OpenGL.scale(s, s, s);
-        AliensVsPredator.resources().models().SPOREPOD.draw();
+        AliensVsPredator.resources().models().SPOREPOD.bindTexture();
+        AliensVsPredator.resources().models().SPOREPOD.getModel().render(pod);
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
         OpenGL.popMatrix();
     }

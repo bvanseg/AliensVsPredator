@@ -1,6 +1,8 @@
 
 package org.avp.client.model.entities;
 
+import org.avp.entities.EntitySporePod;
+
 import com.arisux.mdx.lib.client.render.model.Model;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -228,7 +230,17 @@ public class ModelSporePod extends Model
     @Override
     public void render(Object obj)
     {
+        int podCount = 5;
+        
+        if (obj != null && obj instanceof EntitySporePod)
+        {
+            EntitySporePod pod = (EntitySporePod) obj;
+            podCount = pod.getPodCount();
+        }
+        
+        if (podCount > 4)
         draw(this.podBase02);
+        if (podCount > 3)
         draw(this.podBase03);
         GlStateManager.pushMatrix();
         GlStateManager.translate(this.podBase04.offsetX, this.podBase04.offsetY, this.podBase04.offsetZ);
@@ -236,6 +248,7 @@ public class ModelSporePod extends Model
         GlStateManager.scale(0.6D, 0.6D, 0.6D);
         GlStateManager.translate(-this.podBase04.offsetX, -this.podBase04.offsetY, -this.podBase04.offsetZ);
         GlStateManager.translate(-this.podBase04.rotationPointX * DEFAULT_SCALE, -this.podBase04.rotationPointY * DEFAULT_SCALE, -this.podBase04.rotationPointZ * DEFAULT_SCALE);
+        if (podCount > 2)
         draw(this.podBase04);
         GlStateManager.popMatrix();
         GlStateManager.pushMatrix();
@@ -244,6 +257,7 @@ public class ModelSporePod extends Model
         GlStateManager.scale(0.8D, 0.8D, 0.8D);
         GlStateManager.translate(-this.podBase05.offsetX, -this.podBase05.offsetY, -this.podBase05.offsetZ);
         GlStateManager.translate(-this.podBase05.rotationPointX * DEFAULT_SCALE, -this.podBase05.rotationPointY * DEFAULT_SCALE, -this.podBase05.rotationPointZ * DEFAULT_SCALE);
+        if (podCount > 1)
         draw(this.podBase05);
         GlStateManager.popMatrix();
         GlStateManager.pushMatrix();
@@ -252,6 +266,7 @@ public class ModelSporePod extends Model
         GlStateManager.scale(0.8D, 0.8D, 0.8D);
         GlStateManager.translate(-this.podBase06.offsetX, -this.podBase06.offsetY, -this.podBase06.offsetZ);
         GlStateManager.translate(-this.podBase06.rotationPointX * DEFAULT_SCALE, -this.podBase06.rotationPointY * DEFAULT_SCALE, -this.podBase06.rotationPointZ * DEFAULT_SCALE);
+        if (podCount > 0)
         draw(this.podBase06);
         GlStateManager.popMatrix();
         draw(this.podBase01);

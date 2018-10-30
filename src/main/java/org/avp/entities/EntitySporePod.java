@@ -13,11 +13,14 @@ import net.minecraft.world.World;
 
 public class EntitySporePod extends Entity
 {
+    private int podCount;
+    
     public EntitySporePod(World world)
     {
         super(world);
         this.ignoreFrustumCheck = true;
         this.setSize(0.5F, 0.5F);
+        this.setRandomAmountOfPods();
     }
 
     @Override
@@ -103,16 +106,26 @@ public class EntitySporePod extends Entity
 
         return true;
     }
+    
+    public int setRandomAmountOfPods()
+    {
+        return this.podCount = 1 + rand.nextInt(5);
+    }
+    
+    public int getPodCount()
+    {
+        return podCount;
+    }
 
     @Override
     protected void readEntityFromNBT(NBTTagCompound compound)
     {
-        ;
+        this.podCount = compound.getInteger("PodCount");
     }
-
+    
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound)
     {
-        ;
+        compound.setInteger("PodCount", this.podCount);
     }
 }

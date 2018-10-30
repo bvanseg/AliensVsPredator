@@ -23,17 +23,22 @@ public class ItemSporePod extends HookedItem
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         Entity entity = createNewEntity(world);
-        Inventories.consumeItem(player, this);
-        RayTraceResult ray = player.rayTrace(4D, 1F);
 
-        if (world.isRemote && entity != null && ray.typeOfHit == Type.BLOCK)
+        if (entity instanceof EntitySporePod)
         {
-            AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x, ray.hitVec.y + 0.5D, ray.hitVec.z, Entities.getEntityRegistrationId(EntitySporePod.class)));
+            Inventories.consumeItem(player, this);
+            RayTraceResult ray = player.rayTrace(4D, 1F);
+
+            if (world.isRemote && entity != null && ray.typeOfHit == Type.BLOCK)
+            {
+                
+                AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x, ray.hitVec.y + 0.5D, ray.hitVec.z, Entities.getEntityRegistrationId(EntitySporePod.class)));
+            }
         }
 
         return super.onItemRightClick(world, player, hand);
     }
-    
+
     public Entity createNewEntity(World world)
     {
         return Entities.constructEntity(world, EntitySporePod.class);
