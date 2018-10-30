@@ -49,6 +49,7 @@ import org.avp.block.BlockUnidentifiedTreeLeaves;
 import org.avp.block.BlockUnidentifiedTreeSapling;
 import org.avp.block.BlockUnidentifiedTreeTendon;
 import org.avp.block.BlockWall;
+import org.avp.block.BlockWheatGrass;
 import org.avp.block.BlockWorkstation;
 import org.avp.block.skulls.BlockSkullEngineer;
 import org.avp.block.skulls.BlockSkullSpaceJockey;
@@ -180,6 +181,7 @@ public class BlockHandler implements IInitEvent
     public static final Block paradiseLogSmall      = new BlockParadiseLog().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("paradise_log_small").setCreativeTab(Tab.BLOCKS);
     public static final Block groundFern            = new BlockGroundFern().setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.BLOCKS).setRegistryName("paradisian_ground_fern");
     public static final Block treeFern              = new BlockTreeFern().setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.BLOCKS).setRegistryName("paradisian_tree_fern");
+    public static final Block wheatGrass            = new BlockWheatGrass().setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.BLOCKS).setRegistryName("paradisian_wheat_grass");
     
     /** Varda **/
     public static final Block gigerLog              = new BlockUnidentifiedLog().setHardness(5F).setLightOpacity(0).setCreativeTab(Tab.BLOCKS).setRegistryName("unitree.wood");
