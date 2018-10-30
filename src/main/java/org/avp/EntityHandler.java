@@ -17,6 +17,7 @@ import org.avp.entities.EntityPlasma;
 import org.avp.entities.EntityShuriken;
 import org.avp.entities.EntitySmartDisc;
 import org.avp.entities.EntitySpear;
+import org.avp.entities.EntitySporePod;
 import org.avp.entities.EntitySupplyChute;
 import org.avp.entities.EntitySupplyChuteMarines;
 import org.avp.entities.EntitySupplyChuteSeegson;
@@ -211,6 +212,7 @@ public class EntityHandler implements IInitEvent
             entities.add(EntityEntryBuilder.create().entity(EntitySupplyChute.class).id("SupplyChute", entityId++).name("SupplyChute").tracker(250, 4, true).build());
             entities.add(EntityEntryBuilder.create().entity(EntitySupplyChuteMarines.class).id("SupplyChuteMarines", entityId++).name("SupplyChuteMarines").tracker(250, 4, true).build());
             entities.add(EntityEntryBuilder.create().entity(EntitySupplyChuteSeegson.class).id("SupplyChuteSeegson", entityId++).name("SupplyChuteSeegson").tracker(250, 4, true).build());
+            entities.add(EntityEntryBuilder.create().entity(EntitySporePod.class).id("SporePod", entityId++).name("SporePod").tracker(250, 4, true).build());
 
             livingEntities.add(EntityEntryBuilder.create().entity(EntityRunnerDrone.class).id("RunnerDrone", entityId++).name("RunnerDrone").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityRunnerWarrior.class).id("RunnerWarrior", entityId++).name("RunnerWarrior").tracker(250, 4, true).build());

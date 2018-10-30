@@ -26,6 +26,7 @@ import org.avp.client.render.entities.RenderMedpodEntity;
 import org.avp.client.render.entities.RenderPlasmaBlast;
 import org.avp.client.render.entities.RenderShuriken;
 import org.avp.client.render.entities.RenderSpear;
+import org.avp.client.render.entities.RenderSporePod;
 import org.avp.client.render.entities.RenderSupplyChute;
 import org.avp.client.render.entities.RenderWristbracer;
 import org.avp.client.render.entities.living.RenderAethon;
@@ -106,6 +107,7 @@ import org.avp.client.render.items.RenderItemSkull;
 import org.avp.client.render.items.RenderItemSniper;
 import org.avp.client.render.items.RenderItemSolarPanel;
 import org.avp.client.render.items.RenderItemSpear;
+import org.avp.client.render.items.RenderItemSporepod;
 import org.avp.client.render.items.RenderItemStasisMechanism;
 import org.avp.client.render.items.RenderItemStunBaton;
 import org.avp.client.render.items.RenderItemSummoner;
@@ -186,6 +188,7 @@ import org.avp.entities.EntityPlasma;
 import org.avp.entities.EntityShuriken;
 import org.avp.entities.EntitySmartDisc;
 import org.avp.entities.EntitySpear;
+import org.avp.entities.EntitySporePod;
 import org.avp.entities.EntitySupplyChute;
 import org.avp.entities.EntitySupplyChuteMarines;
 import org.avp.entities.EntitySupplyChuteSeegson;
@@ -422,6 +425,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerRenderer(EntitySupplyChute.class, RenderSupplyChute.class);
         Renderers.registerRenderer(EntitySupplyChuteMarines.class, RenderSupplyChute.class);
         Renderers.registerRenderer(EntitySupplyChuteSeegson.class, RenderSupplyChute.class);
+        Renderers.registerRenderer(EntitySporePod.class, RenderSporePod.class);
     }
     
     private void registerBlockItemRenderers()
@@ -479,6 +483,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(ItemHandler.itemAPC, new RenderItemAPC());
         Renderers.registerItemRenderer(ItemHandler.itemGrenade, new RenderItemM40(AliensVsPredator.resources().models().M40GRENADE));
         Renderers.registerItemRenderer(ItemHandler.itemIncendiaryGrenade, new RenderItemM40(AliensVsPredator.resources().models().M40GRENADE_INCENDIARY));
+        Renderers.registerItemRenderer(ItemHandler.sporepod, new RenderItemSporepod());
         
         Renderers.registerItemRenderer(ItemHandler.itemSupplyChute, new RenderItemSupplyChute());
         Renderers.registerItemRenderer(ItemHandler.itemSupplyChuteMarines, new RenderItemSupplyChute());
