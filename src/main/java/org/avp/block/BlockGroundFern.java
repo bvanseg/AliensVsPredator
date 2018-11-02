@@ -11,6 +11,7 @@ import com.arisux.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -28,6 +29,7 @@ public class BlockGroundFern extends BlockBush implements ITileEntityProvider
     {
         super(Material.PLANTS);
         this.setLightOpacity(2);
+        this.setSoundType(SoundType.PLANT);
     }
 
     @Override

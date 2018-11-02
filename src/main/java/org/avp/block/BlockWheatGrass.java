@@ -3,6 +3,7 @@ package org.avp.block;
 import java.util.Random;
 
 import net.minecraft.block.BlockBush;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -23,6 +24,7 @@ public class BlockWheatGrass extends BlockBush
     {
         super();
         this.setDefaultState(this.blockState.getBaseState());
+        this.setSoundType(SoundType.PLANT);
     }
 
     @Override
