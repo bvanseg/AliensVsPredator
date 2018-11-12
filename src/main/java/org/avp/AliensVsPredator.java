@@ -70,7 +70,6 @@ public class AliensVsPredator implements IMod
         dimensions().init(event);
         materials().init(event);
         world().init(event);
-        biomeColors().init(event);
         interfaces().init(event);
         events().init(event);
         commands().init(event);
@@ -84,6 +83,7 @@ public class AliensVsPredator implements IMod
     public void initClient(FMLInitializationEvent event)
     {
         renderers().init(event);
+        biomeColors().init(event);
     }
 
     @Mod.EventHandler
@@ -136,6 +136,7 @@ public class AliensVsPredator implements IMod
         return blocks == null ? blocks = new BlockHandler() : blocks;
     }
     
+    @SideOnly(Side.CLIENT)
     public static BiomeColorHandler biomeColors()
     {
         return BiomeColorHandler.instance;

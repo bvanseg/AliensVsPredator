@@ -26,15 +26,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class Settings implements IPreInitEvent, IFlexibleConfiguration
 {
-    public static final Settings           instance        = new Settings();
+    public static final Settings           instance          = new Settings();
 
     private Configuration                  configuration;
-    private final ArrayList<ConfigSetting> allSettings     = new ArrayList<ConfigSetting>();
+    private final ArrayList<ConfigSetting> allSettings       = new ArrayList<ConfigSetting>();
 
-    private final String                   CATEGORY_OTHER  = "general";
-    private final String                   CATEGORY_BIOMES = "biomes";
-    private final String                   CATEGORY_SPAWNING  = "spawning";
-    
+    private final String                   CATEGORY_OTHER    = "general";
+    private final String                   CATEGORY_BIOMES   = "biomes";
+    private final String                   CATEGORY_SPAWNING = "spawning";
+
     private ConfigSetting                  explosionsEnabled;
     private ConfigSetting                  plasmaCannonExplosions;
     private ConfigSetting                  updaterEnabled;
@@ -134,11 +134,14 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
             overworldSpawnsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_SPAWNING, "overworld_spawning", true, "If disabled, no mobs from this mod will spawn in the overworld.")).setRequiresRestart();
             autoSpawnsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_SPAWNING, "auto_spawning", true, "If disabled, no mobs from this mod will spawn.")).setRequiresRestart();
             evolvedXenomorphSpawns = new ConfigSettingBoolean(this, configuration.get(CATEGORY_SPAWNING, "mature_spawns", true, "If disabled, no mature alien states will spawn naturally.")).setRequiresRestart();
-            
-            System.out.println("Listing Overworld Biome IDs for configuration settings...");
-            for (Biome b : EntityHandler.getOverworldBiomeList())
+
+            if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
             {
-                MDX.log().info(b.getBiomeName() + " : " + b.getRegistryName());
+                System.out.println("Listing Overworld Biome IDs for configuration settings...");
+                for (Biome b : EntityHandler.getOverworldBiomeList())
+                {
+                    MDX.log().info(b.getBiomeName() + " : " + b.getRegistryName());
+                }
             }
 
             spawnsAlien = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "alien_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_ALIEN_SPAWNS), "List of biomes for aliens to spawn in.")).setRequiresRestart();
@@ -157,7 +160,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     {
         return configuration;
     }
-    
+
     public boolean areOverworldSpawnsEnabled()
     {
         return (Boolean) overworldSpawnsEnabled.value();
@@ -217,7 +220,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     {
         return (float) ((Integer) this.globalSoundVolume.value()) / 100F;
     }
-    
+
     public boolean isHalloweenEventEnabled()
     {
         Date date = new Date();
@@ -225,27 +228,27 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
 
         return (localDate.getMonthValue() == 10 && localDate.getDayOfMonth() >= 28 || localDate.getMonthValue() == 11 && localDate.getDayOfMonth() <= 3);
     }
-    
+
     public ConfigSettingBiomeList getSpawnsAlien()
     {
         return (ConfigSettingBiomeList) spawnsAlien;
     }
-    
+
     public ConfigSettingBiomeList getSpawnsAquaticAlien()
     {
         return (ConfigSettingBiomeList) spawnsAquaticAlien;
     }
-    
+
     public ConfigSettingBiomeList getSpawnsMarine()
     {
         return (ConfigSettingBiomeList) spawnsMarine;
     }
-    
+
     public ConfigSettingBiomeList getSpawnsPredator()
     {
         return (ConfigSettingBiomeList) spawnsPredator;
     }
-    
+
     public ConfigSettingBiomeList getSpawnsVarda()
     {
         return (ConfigSettingBiomeList) spawnsVarda;

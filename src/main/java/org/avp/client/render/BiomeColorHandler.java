@@ -1,8 +1,5 @@
 package org.avp.client.render;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.Random;
 
 import javax.annotation.Nullable;
