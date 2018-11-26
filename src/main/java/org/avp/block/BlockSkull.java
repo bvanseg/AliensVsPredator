@@ -1,6 +1,7 @@
 package org.avp.block;
 
 import org.avp.tile.TileEntitySkull;
+import org.avp.tile.TileEntitySkull.EnumOrientation;
 
 import com.arisux.mdx.lib.client.render.OpenGL;
 import com.arisux.mdx.lib.client.render.Texture;
@@ -11,9 +12,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -76,10 +80,52 @@ public abstract class BlockSkull extends Block
             skull.setRotationYAxis(Entities.getEntityFacingRotY(placer));
         }
     }
+    
+    @Override
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        TileEntity tile = world.getTileEntity(pos);
 
+        if (tile != null && tile instanceof TileEntitySkull && player != null)
+        {
+            TileEntitySkull skull = (TileEntitySkull) tile;
+            
+            if (this.canChangeOrientation())
+            {
+                EnumOrientation orientation = EnumOrientation.WALL;
+                
+                switch(facing)
+                {
+                    case UP:
+                        if (player.isSneaking())
+                        {
+                            orientation = EnumOrientation.SIDE;
+                        }
+                        else
+                        {
+                            orientation = EnumOrientation.FLAT;
+                        }
+                        break;
+                    default:
+                        orientation = EnumOrientation.WALL;
+                }
+                
+                skull.setOrientation(orientation);
+                System.out.println("orientation set to " + orientation);
+            }
+        }
+        
+        return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+    }
+    
     @Override
     public boolean hasTileEntity(IBlockState state)
     {
         return true;
+    }
+    
+    public boolean canChangeOrientation()
+    {
+        return false;
     }
 }

@@ -435,6 +435,15 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullXeno), new RenderItemSkull());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullXenoWarrior), new RenderItemSkull());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullYautja), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullMatriarch), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullProtomorph), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullNeomorph), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.biomaskClassic), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.biomaskBerserker), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.biomaskFalconer), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.biomaskTracker), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.headAethon), new RenderItemSkull());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.headGigerAlien), new RenderItemSkull());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.turret), new RenderItemTurret());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.terminal), new RenderItemWorkstation());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.stasisMechanism), new RenderItemStasisMechanism());

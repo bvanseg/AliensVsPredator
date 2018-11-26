@@ -14,6 +14,25 @@ import net.minecraft.util.EnumFacing;
 public class TileEntitySkull extends TileEntity implements IRotatableYAxis
 {
     private EnumFacing direction;
+    private EnumOrientation orientation;
+    
+    public enum EnumOrientation
+    {
+        FLAT(), SIDE(), WALL();
+        
+        public static EnumOrientation byIndex(int id)
+        {
+            for (EnumOrientation o : EnumOrientation.values())
+            {
+                if (o.ordinal() == id)
+                {
+                    return o;
+                }
+            }
+            
+            return FLAT;
+        }
+    }
 
     public BlockSkull getSkullBlock()
     {
@@ -55,6 +74,11 @@ public class TileEntitySkull extends TileEntity implements IRotatableYAxis
             nbt.setInteger("Direction", this.direction.ordinal());
         }
 
+        if (this.orientation != null)
+        {
+            nbt.setInteger("Orientation", this.orientation.ordinal());
+        }
+
         return nbt;
     }
 
@@ -66,6 +90,11 @@ public class TileEntitySkull extends TileEntity implements IRotatableYAxis
         if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
         {
             this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
+        }
+
+        if (EnumOrientation.byIndex(nbt.getInteger("Orientation")) != null)
+        {
+            this.orientation = EnumOrientation.byIndex(nbt.getInteger("Orientation"));
         }
     }
 
@@ -79,5 +108,15 @@ public class TileEntitySkull extends TileEntity implements IRotatableYAxis
     public void setRotationYAxis(EnumFacing direction)
     {
         this.direction = direction;
+    }
+    
+    public void setOrientation(EnumOrientation orientation)
+    {
+        this.orientation = orientation;
+    }
+    
+    public EnumOrientation getOrientation()
+    {
+        return orientation;
     }
 }

@@ -1,0 +1,43 @@
+package org.avp.block.skulls;
+
+import org.avp.AliensVsPredator;
+import org.avp.block.BlockSkull;
+import org.avp.client.model.tile.skulls.ModelProtomorphSkull;
+
+import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.render.Texture;
+import com.arisux.mdx.lib.client.render.model.MapModelTexture;
+
+import net.minecraft.client.model.ModelRenderer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+public class BlockSkullProtomorph extends BlockSkull
+{
+    @SideOnly(Side.CLIENT)
+    private static class Resources
+    {
+        private static final MapModelTexture<ModelProtomorphSkull> model = AliensVsPredator.resources().models().PROTOMORPH_SKULL;
+    }
+
+    @Override
+    public ModelRenderer[] getSkullModelRenderers()
+    {
+        ModelProtomorphSkull m = Resources.model.getModel();
+        return new ModelRenderer[] { m.head1 };
+    }
+
+    @Override
+    public void preRenderTransforms()
+    {
+        float scale = 1.9F;
+        OpenGL.scale(scale, scale, scale);
+        OpenGL.translate(0F, -1.5F, 0F);
+    }
+
+    @Override
+    public Texture getSkullTexture()
+    {
+        return Resources.model.getTexture();
+    }
+}

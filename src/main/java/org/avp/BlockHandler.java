@@ -35,6 +35,7 @@ import org.avp.block.BlockRedstoneSensor;
 import org.avp.block.BlockReflective;
 import org.avp.block.BlockSatelliteDish;
 import org.avp.block.BlockSevastopolBlastDoor;
+import org.avp.block.BlockSkull;
 import org.avp.block.BlockSolarPanel;
 import org.avp.block.BlockStalagmite;
 import org.avp.block.BlockStasisMechanism;
@@ -51,11 +52,21 @@ import org.avp.block.BlockUnidentifiedTreeTendon;
 import org.avp.block.BlockWall;
 import org.avp.block.BlockWheatGrass;
 import org.avp.block.BlockWorkstation;
+import org.avp.block.skulls.BlockBiomaskBerserker;
+import org.avp.block.skulls.BlockBiomaskClassic;
+import org.avp.block.skulls.BlockBiomaskFalconer;
+import org.avp.block.skulls.BlockBiomaskTracker;
+import org.avp.block.skulls.BlockHeadAethon;
+import org.avp.block.skulls.BlockHeadGigerAlien;
+import org.avp.block.skulls.BlockSkullNeomorph;
+import org.avp.block.skulls.BlockSkullProtomorph;
 import org.avp.block.skulls.BlockSkullEngineer;
+import org.avp.block.skulls.BlockSkullMatriarch;
 import org.avp.block.skulls.BlockSkullSpaceJockey;
 import org.avp.block.skulls.BlockSkullXenomorph;
 import org.avp.block.skulls.BlockSkullXenomorphWarrior;
 import org.avp.block.skulls.BlockSkullYautja;
+import org.avp.item.ItemBlockSkull;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 
 import com.arisux.mdx.lib.game.IInitEvent;
@@ -239,6 +250,15 @@ public class BlockHandler implements IInitEvent
     public static final Block skullXeno             = new BlockSkullXenomorph().setCreativeTab(Tab.MAIN).setRegistryName("skull.xenomorph");
     public static final Block skullXenoWarrior      = new BlockSkullXenomorphWarrior().setCreativeTab(Tab.MAIN).setRegistryName("skull.xenomorph.warrior");
     public static final Block skullYautja           = new BlockSkullYautja().setCreativeTab(Tab.MAIN).setRegistryName("skull.yautja");
+    public static final Block skullMatriarch        = new BlockSkullMatriarch().setCreativeTab(Tab.MAIN).setRegistryName("skull.matriarch");
+    public static final Block skullProtomorph       = new BlockSkullProtomorph().setCreativeTab(Tab.MAIN).setRegistryName("skull.protomorph");
+    public static final Block skullNeomorph         = new BlockSkullNeomorph().setCreativeTab(Tab.MAIN).setRegistryName("skull.neomorph");
+    public static final Block biomaskClassic        = new BlockBiomaskClassic().setCreativeTab(Tab.MAIN).setRegistryName("biomask.classic");
+    public static final Block biomaskBerserker      = new BlockBiomaskBerserker().setCreativeTab(Tab.MAIN).setRegistryName("biomask.berserker");
+    public static final Block biomaskFalconer       = new BlockBiomaskFalconer().setCreativeTab(Tab.MAIN).setRegistryName("biomask.falconer");
+    public static final Block biomaskTracker        = new BlockBiomaskTracker().setCreativeTab(Tab.MAIN).setRegistryName("biomask.tracker");
+    public static final Block headAethon            = new BlockHeadAethon().setCreativeTab(Tab.MAIN).setRegistryName("head.aethon");
+    public static final Block headGigerAlien        = new BlockHeadGigerAlien().setCreativeTab(Tab.MAIN).setRegistryName("head.gigeralien");
     public static final Block slope                 = new BlockReflective(Material.CIRCUITS).setRegistryName("slope");
     public static final Block corner                = new BlockReflective(Material.CIRCUITS).setRegistryName("corner");
     public static final Block invertedCorner        = new BlockReflective(Material.CIRCUITS).setRegistryName("invertedcorner");
@@ -270,7 +290,13 @@ public class BlockHandler implements IInitEvent
     
     private static Block createItem(Block block)
     {
-        ItemBlock itemblock = new ItemBlock(block);
+        ItemBlock itemblock = null;
+        
+        if (block instanceof BlockSkull)
+            itemblock = new ItemBlockSkull(block);
+        else
+            itemblock = new ItemBlock(block);
+        
         itemblock.setRegistryName(block.getRegistryName());
         itemblock.setTranslationKey(itemblock.getRegistryName().toString());
         
