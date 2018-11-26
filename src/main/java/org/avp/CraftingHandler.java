@@ -70,6 +70,25 @@ public class CraftingHandler
 
     private static void addSchematics()
     {
+        AssemblyManager.register(new Schematic("terminal", new ItemStack(BlockHandler.terminal, 1)) {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                        new ItemStack(ItemHandler.itemLedDisplay, 3),
+                        new ItemStack(BlockHandler.transformer, 1),
+                        new ItemStack(BlockHandler.muthurPanel1, 3),
+                        new ItemStack(BlockHandler.muthurPanel2, 3),
+                        new ItemStack(ItemHandler.itemPowerSupply, 1),
+                        new ItemStack(ItemHandler.itemRAM, 6),
+                        new ItemStack(ItemHandler.itemProcessor, 6),
+                        new ItemStack(ItemHandler.itemSolidStateDrive, 2),
+                        new ItemStack(ItemHandler.itemMotherboard, 1),
+                        new ItemStack(ItemHandler.itemPolycarbonate, 6),
+                        new ItemStack(Blocks.STONE_BUTTON, 16),
+                };
+            }
+        });
         AssemblyManager.register(new Schematic("medpod", new ItemStack(BlockHandler.medpod, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
