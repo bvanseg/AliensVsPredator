@@ -1,5 +1,6 @@
 package org.avp.client.render.tile;
 
+import org.avp.block.BlockSkull;
 import org.avp.tile.TileEntitySkull;
 import org.avp.tile.TileEntitySkull.EnumOrientation;
 import org.lwjgl.opengl.GL11;
@@ -15,6 +16,8 @@ public class RenderSkull extends TileEntitySpecialRenderer<TileEntitySkull>
     @Override
     public void render(TileEntitySkull skull, double posX, double posY, double posZ, float renderPartialTicks, int destroyStage, float alpha)
     {
+        BlockSkull block = (BlockSkull) skull.getBlockType();
+
         OpenGL.pushMatrix();
         float scale = 0.64F;
 
@@ -30,17 +33,20 @@ public class RenderSkull extends TileEntitySpecialRenderer<TileEntitySkull>
         }
 
         skull.getSkullBlock().preRenderTransforms();
-        
-        if (skull.getOrientation() == EnumOrientation.FLAT)
+
+        if (block.canChangeOrientation())
         {
-            OpenGL.translate(-0.4, 0.71F, 0);
-            OpenGL.rotate(-53.5F, 0, 0, 1);
-        }
-        
-        if (skull.getOrientation() == EnumOrientation.WALL)
-        {
-            OpenGL.translate(-0.25, -0.1, 0);
-            OpenGL.rotate(37.5F, 0, 0, 1);
+            if (skull.getOrientation() == EnumOrientation.FLAT)
+            {
+                OpenGL.translate(-0.4, 0.71F, 0);
+                OpenGL.rotate(-53.5F, 0, 0, 1);
+            }
+
+            if (skull.getOrientation() == EnumOrientation.WALL)
+            {
+                OpenGL.translate(-0.25, -0.1, 0);
+                OpenGL.rotate(37.5F, 0, 0, 1);
+            }
         }
 
         for (ModelRenderer m : skull.getSkullBlock().getSkullModelRenderers())
