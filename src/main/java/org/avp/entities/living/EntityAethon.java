@@ -206,19 +206,13 @@ public class EntityAethon extends EntityMob implements IMob, IHost
     public void onDeath(DamageSource source)
     {
         super.onDeath(source);
-
-        switch (this.rand.nextInt(4))
-        {
-            case 0:
-                EntityItemDrops.SKULL_ENGINEER.tryDrop(this);
-            case 1:
-                EntityItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
-            case 2:
-                EntityItemDrops.SKULL_PREDATOR.tryDrop(this);
-            case 3:
-                EntityItemDrops.SKULL_XENO_DRONE.tryDrop(this);
-            case 4:
-                EntityItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
-        }
+        
+        EntityItemDrops.SKULL_ENGINEER.tryDrop(this);
+        EntityItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
+        EntityItemDrops.SKULL_PREDATOR.tryDrop(this);
+        EntityItemDrops.SKULL_XENO_DRONE.tryDrop(this);
+        EntityItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
+        EntityItemDrops.SKULL_AETHON.tryDrop(this);
+        EntityItemDrops.HEAD_GIGER.tryDrop(this);
     }
 }
