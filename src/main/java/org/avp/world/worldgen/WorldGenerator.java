@@ -33,7 +33,7 @@ public class WorldGenerator implements IWorldGenerator
         Worlds.generateInBiome(world, new WorldGenMinable(AliensVsPredator.blocks().oreBauxite.getDefaultState(), 4), rand, 20, 16, 128, chunkCoords, overworldBiomes);
         Worlds.generateInBiome(world, new WorldGenMinable(AliensVsPredator.blocks().oreCopper.getDefaultState(), 4), rand, 20, 0, 128, chunkCoords, overworldBiomes);
         Worlds.generateInBiome(world, new WorldGenMinable(AliensVsPredator.blocks().oreSilicon.getDefaultState(), 1), rand, 15, 0, 64, chunkCoords, overworldBiomes);
-        Worlds.generateInBiome(world, new WorldGenMinable(AliensVsPredator.blocks().oreMonazite.getDefaultState(), 3), rand, 1, 1, 48, chunkCoords, overworldBiomes);
+        Worlds.generateInBiome(world, new WorldGenMinable(AliensVsPredator.blocks().oreMonazite.getDefaultState(), 3), rand, 4, 1, 48, chunkCoords, overworldBiomes);
         
         if (biome == Biomes.BEACH || biome == Biomes.OCEAN || biome == Biomes.DEEP_OCEAN || biome == Biomes.FROZEN_OCEAN || biome == Biomes.FROZEN_RIVER)
         {
