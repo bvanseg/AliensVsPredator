@@ -27,7 +27,11 @@ public class EntityItemDrops
     public static final ItemDrop PREDATOR_ARTIFACT = new ItemDrop(25, new ItemStack(items.itemArtifactTech));
     public static final ItemDrop PLASMACANNON = new ItemDrop(2, new ItemStack(items.itemPlasmaCannon));
     public static final ItemDrop WRISTBRACER = new ItemDrop(2, new ItemStack(items.itemWristbracer));
-    public static final ItemDrop WRISTBRACER_BLADES = new ItemDrop(15, new ItemStack(items.itemWristbracerBlades));
+    public static final ItemDrop WRISTBRACER_BLADES = new ItemDrop(7, new ItemStack(items.itemWristbracerBlades));
+    public static final ItemDrop SHURIKEN = new ItemDrop(7, new ItemStack(items.itemShuriken));
+    public static final ItemDrop SILICON = new ItemDrop(25, new ItemStack(items.itemSilicon));
+    public static final ItemDrop BIOMASK = new ItemDrop(3, new ItemStack(AliensVsPredator.blocks().biomaskClassic));
+    public static final ItemDrop BIOMASK_BERSERKER = new ItemDrop(3, new ItemStack(AliensVsPredator.blocks().biomaskBerserker));
     public static final ItemDrop AMMUNITION = new ItemDrop(75, DropType.RATE_PERSTACK_MULTIPLE, new ItemStack(items.itemAmmoAR), new ItemStack(items.itemAmmoPistol), new ItemStack(items.itemAmmoSMG), new ItemStack(items.itemAmmoSniper));
     public static final ItemDrop FIREARMS = new ItemDrop(15, DropType.RATE_PERSTACK_SINGLE, new ItemStack(items.itemM56SG), new ItemStack(items.itemPistol), new ItemStack(items.itemM4), new ItemStack(items.itemM41A), new ItemStack(items.itemSniper));
 }
