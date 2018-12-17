@@ -181,7 +181,12 @@ public abstract class EntitySpeciesYautja extends EntityMob implements IHost, Pr
         EntityItemDrops.SHURIKEN.tryDrop(this);
         EntityItemDrops.SILICON.tryDrop(this);
         EntityItemDrops.WRISTBRACER_BLADES.tryDrop(this);
-
+        
+        dropBiomaskAndSkull(damagesource);
+    }
+    
+    protected void dropBiomaskAndSkull(DamageSource damagesource)
+    {
         if (damagesource == DamageSources.wristbracer)
         {
             EntityItemDrops.SKULL_PREDATOR.tryDrop(this, 25);

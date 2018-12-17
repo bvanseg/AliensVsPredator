@@ -1,6 +1,10 @@
 package org.avp.entities.living;
 
+import org.avp.DamageSources;
+import org.avp.EntityItemDrops;
+
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class EntityYautjaBerserker extends EntitySpeciesYautja
@@ -25,5 +29,20 @@ public class EntityYautjaBerserker extends EntitySpeciesYautja
     public int getTotalArmorValue()
     {
         return 8;
+    }
+    
+    @Override
+    protected void dropBiomaskAndSkull(DamageSource damagesource)
+    {
+        if (damagesource == DamageSources.wristbracer)
+        {
+            EntityItemDrops.SKULL_PREDATOR.tryDrop(this, 25);
+            EntityItemDrops.BIOMASK_BERSERKER.tryDrop(this, 25);
+        }
+        else
+        {
+            EntityItemDrops.SKULL_PREDATOR.tryDrop(this);
+            EntityItemDrops.BIOMASK_BERSERKER.tryDrop(this);
+        }
     }
 }
