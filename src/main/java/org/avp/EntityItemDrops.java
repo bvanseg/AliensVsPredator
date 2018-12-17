@@ -34,6 +34,8 @@ public class EntityItemDrops
     public static final ItemDrop SILICON = new ItemDrop(25, new ItemStack(items.itemSilicon));
     public static final ItemDrop BIOMASK = new ItemDrop(3, new ItemStack(AliensVsPredator.blocks().biomaskClassic));
     public static final ItemDrop BIOMASK_BERSERKER = new ItemDrop(3, new ItemStack(AliensVsPredator.blocks().biomaskBerserker));
+    public static final ItemDrop BIOMASK_FALCONER = new ItemDrop(3, new ItemStack(AliensVsPredator.blocks().biomaskFalconer));
+    public static final ItemDrop BIOMASK_TRACKER = new ItemDrop(3, new ItemStack(AliensVsPredator.blocks().biomaskTracker));
     public static final ItemDrop AMMUNITION = new ItemDrop(75, DropType.RATE_PERSTACK_MULTIPLE, new ItemStack(items.itemAmmoAR), new ItemStack(items.itemAmmoPistol), new ItemStack(items.itemAmmoSMG), new ItemStack(items.itemAmmoSniper));
     public static final ItemDrop FIREARMS = new ItemDrop(15, DropType.RATE_PERSTACK_SINGLE, new ItemStack(items.itemM56SG), new ItemStack(items.itemPistol), new ItemStack(items.itemM4), new ItemStack(items.itemM41A), new ItemStack(items.itemSniper));
 }

@@ -38,11 +38,15 @@ public class EntityYautjaBerserker extends EntitySpeciesYautja
         {
             EntityItemDrops.SKULL_PREDATOR.tryDrop(this, 25);
             EntityItemDrops.BIOMASK_BERSERKER.tryDrop(this, 25);
+            EntityItemDrops.BIOMASK_FALCONER.tryDrop(this, 25);
+            EntityItemDrops.BIOMASK_TRACKER.tryDrop(this, 25);
         }
         else
         {
             EntityItemDrops.SKULL_PREDATOR.tryDrop(this);
             EntityItemDrops.BIOMASK_BERSERKER.tryDrop(this);
+            EntityItemDrops.BIOMASK_FALCONER.tryDrop(this);
+            EntityItemDrops.BIOMASK_TRACKER.tryDrop(this);
         }
     }
 }
