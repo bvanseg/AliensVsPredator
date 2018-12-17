@@ -23,6 +23,7 @@ public class EntityItemDrops
     public static final ItemDrop SKULL_XENO_DRONE = new ItemDrop(1, new ItemStack(AliensVsPredator.blocks().skullXeno));
     public static final ItemDrop SKULL_XENO_WARRIOR = new ItemDrop(1, new ItemStack(AliensVsPredator.blocks().skullXenoWarrior));
     public static final ItemDrop SKULL_PREDATOR = new ItemDrop(1, new ItemStack(AliensVsPredator.blocks().skullYautja));
+    public static final ItemDrop SKULL_AETHON = new ItemDrop(1, new ItemStack(AliensVsPredator.blocks().headAethon));
     public static final ItemDrop SKULLS_XENO = new ItemDrop(1, DropType.RATE_PERDROP_SINGLE, new ItemStack(AliensVsPredator.blocks().skullXenoWarrior), new ItemStack(AliensVsPredator.blocks().skullXeno));
     public static final ItemDrop PREDATOR_ARTIFACT = new ItemDrop(25, new ItemStack(items.itemArtifactTech));
     public static final ItemDrop PLASMACANNON = new ItemDrop(2, new ItemStack(items.itemPlasmaCannon));
