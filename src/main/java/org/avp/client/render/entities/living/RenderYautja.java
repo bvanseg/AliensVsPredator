@@ -19,6 +19,6 @@ public class RenderYautja<T extends EntitySpeciesYautja, MODEL extends Model> ex
     @Override
     protected void preRenderCallback(EntitySpeciesYautja yautja, float renderPartialTicks)
     {
-        OpenGL.scale(0.85F, 0.85F, 0.85F);
+        OpenGL.scale(1F, 1F, 1F);
     }
 }

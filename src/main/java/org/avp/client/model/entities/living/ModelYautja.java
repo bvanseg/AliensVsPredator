@@ -622,7 +622,7 @@ public class ModelYautja extends Model
         this.rMandibleLower1.rotateAngleY = -(float) Math.sin(Math.toRadians(mandibleProgress)) * 0.075F;
         this.rMandibleLower1.rotateAngleZ = -(float) Math.cos(Math.toRadians(mandibleProgress)) * 0.075F;
 
-        this.face.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;
+        this.face.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 1F;
         this.rThigh.rotateAngleX = MathHelper.cos(swingProgress * 1F + (float) Math.PI) * 0.75F * swingProgressPrev - 0.2F;
         this.lThigh.rotateAngleX = MathHelper.sin(swingProgress * 1F + (float) Math.PI) * 0.75F * swingProgressPrev - 0.2F;
         this.rArmUpper.rotateAngleX = MathHelper.cos(swingProgress * 0.75F) * 0.6F * swingProgressPrev;
