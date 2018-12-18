@@ -37,7 +37,7 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
 {
     private static final MapModelTexture<ModelPlasmaCannon> MODEL              = AliensVsPredator.resources().models().PLASMACANNON.clone();
     private static final MapModelTexture<ModelPlasmaCannon> MODEL_FIRST_PERSON = MODEL.clone();
-    private static final ModelPlasma                      MODEL_PLASMA       = new ModelPlasma().setColor(new Color(0.3F, 0.6F, 1F, 0.7F));
+    private static final ModelPlasma                        MODEL_PLASMA       = new ModelPlasma().setColor(new Color(0.3F, 0.6F, 1F, 0.7F));
 
     @Override
     public void update(Event event, Minecraft game, World world)
@@ -72,25 +72,56 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
 
                 if (!(player.getRidingEntity() instanceof EntityMedpod))
                 {
+
                     if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(player)))
                     {
-                        float rotationYaw = MDXMath.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, partialTicks);
-                        float rotationYawHead = MDXMath.interpolateRotation(player.prevRotationYawHead, player.rotationYawHead, partialTicks);
-                        float rotationPitch = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * partialTicks;
-                        float idleProgress = player.ticksExisted + partialTicks;
-                        float swingProgress = player.getSwingProgress(partialTicks);
-                        float swingProgressPrev = player.prevSwingProgress;
-                        float scale = 0.5F;
+                        if (player.getName().equalsIgnoreCase(Game.minecraft().player.getName()))
+                        {
+                            float rotationYaw = MDXMath.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, partialTicks);
+                            float rotationYawHead = MDXMath.interpolateRotation(player.prevRotationYawHead, player.rotationYawHead, partialTicks);
+                            float rotationPitch = player.prevRotationPitch + (player.rotationPitch - player.prevRotationPitch) * partialTicks;
+                            float idleProgress = player.ticksExisted + partialTicks;
+                            float swingProgress = player.getSwingProgress(partialTicks);
+                            float swingProgressPrev = player.prevSwingProgress;
+                            float scale = 0.5F;
 
-                        OpenGL.pushMatrix();
-                        OpenGL.scale(scale, -scale, -scale);
-                        OpenGL.rotate(rotationYaw, 0F, 1F, 0F);
-                        float cannonHeight = player.getEyeHeight() > 1.6F ? 0F : 0.65F;
-                        OpenGL.translate(-0.85F, -3.425F + cannonHeight, -0.85F);
-                        OpenGL.rotate(-25F, 0F, 0F, 1F);
-                        MODEL.bindTexture();
-                        MODEL.getModel().render(player);
-                        OpenGL.popMatrix();
+                            OpenGL.pushMatrix();
+                            OpenGL.scale(scale, -scale, -scale);
+                            OpenGL.rotate(rotationYaw, 0F, 1F, 0F);
+                            float cannonHeight = player.getEyeHeight() > 1.6F ? 0F : 0.65F;
+                            OpenGL.translate(-0.85F, -3.425F + cannonHeight, -0.85F);
+                            OpenGL.rotate(-25F, 0F, 0F, 1F);
+                            MODEL.bindTexture();
+                            MODEL.getModel().render(player);
+                            OpenGL.popMatrix();
+                        }
+                        else
+                        {
+                            float rotationYaw = MDXMath.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, partialTicks);
+                            float scale = 0.5F;
+
+                            float offsetX = (float) player.posX - (float) Game.minecraft().player.posX;
+                            float offsetY = (float) player.posY - (float) Game.minecraft().player.posY;
+                            float offsetZ = (float) player.posZ - (float) Game.minecraft().player.posZ;
+
+                            float offsetXPrev = (float) player.prevPosX - (float) Game.minecraft().player.prevPosX;
+                            float offsetYPrev = (float) player.prevPosY - (float) Game.minecraft().player.prevPosY;
+                            float offsetZPrev = (float) player.prevPosZ - (float) Game.minecraft().player.prevPosZ;
+
+                            double averageX = MDXMath.interpolateRotation(offsetXPrev, offsetX, partialTicks);
+                            double averageY = MDXMath.interpolateRotation(offsetYPrev, offsetY, partialTicks);
+                            double averageZ = MDXMath.interpolateRotation(offsetZPrev, offsetZ, partialTicks);
+
+                            OpenGL.pushMatrix();
+                            OpenGL.translate(averageX, averageY, averageZ);
+                            OpenGL.scale(scale, -scale, -scale);
+                            OpenGL.rotate(rotationYaw, 0F, 1F, 0F);
+                            float cannonHeight = player.getEyeHeight() > 1.6F ? 0F : 0.65F;
+                            OpenGL.translate(-0.7F, -3.425F + cannonHeight, -0.6F);
+                            MODEL.bindTexture();
+                            MODEL.getModel().render(player);
+                            OpenGL.popMatrix();
+                        }
                     }
                 }
             }
@@ -175,7 +206,7 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
                         // OpenGL.rotate(rotationYawHead, 0F, 1F, 0F);
                         // OpenGL.rotate(rotationPitch, 1F, 0F, 0F);
                         // OpenGL.translate(0F, 0F, -1F);
-//                         OpenGL.enableLight();
+                        // OpenGL.enableLight();
                         MODEL_FIRST_PERSON.draw();
 
                         float rotation = (entity.world.getWorldTime() + partialTicks) % 360;
