@@ -1,5 +1,8 @@
 package org.avp.block;
 
+import java.util.List;
+import java.util.Random;
+
 import org.avp.tile.TileEntitySkull;
 import org.avp.tile.TileEntitySkull.EnumOrientation;
 
@@ -13,12 +16,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -127,5 +133,25 @@ public abstract class BlockSkull extends Block
     public boolean canChangeOrientation()
     {
         return false;
+    }
+    
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        System.out.println("get item dropped");
+        System.out.println(Item.getItemFromBlock(this));
+        return super.getItemDropped(state, rand, fortune);
+    }
+    
+    @Override
+    public void onPlayerDestroy(World worldIn, BlockPos pos, IBlockState state)
+    {
+        dropBlockAsItem(worldIn, pos, state, 1);
+    }
+    
+    @Override
+    public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn)
+    {
+        dropBlockAsItem(worldIn, pos, null, 1);
     }
 }
