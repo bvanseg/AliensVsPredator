@@ -612,6 +612,17 @@ public class ModelYautja extends Model
         float swingProgressPrev = swingProgressPrev(obj);
         float mandibleProgress = (idleProgress(obj) + (swingProgress(obj) * 75F)) * 2F;
 
+        if (base instanceof EntitySpeciesYautja)
+        {
+            EntitySpeciesYautja y = (EntitySpeciesYautja) base;
+            
+            if (Math.abs(base.motionY) > 0.1F)
+            {
+                swingProgress = 0F;
+                swingProgressPrev = 0F;
+            }
+        }
+
         this.lMandibleUpper.rotateAngleY = (float) ((float) Math.sin(Math.toRadians(mandibleProgress)) * 0.075F - Math.toRadians(15F));
         this.lMandibleUpper.rotateAngleZ = (float) ((float) Math.sin(Math.toRadians(mandibleProgress)) * 0.075F + Math.toRadians(5F));
         this.lMandibleLower1.rotateAngleY = (float) Math.sin(Math.toRadians(mandibleProgress)) * 0.075F;
@@ -627,6 +638,7 @@ public class ModelYautja extends Model
         this.lThigh.rotateAngleX = MathHelper.sin(swingProgress * 1F + (float) Math.PI) * 0.75F * swingProgressPrev - 0.2F;
         this.rArmUpper.rotateAngleX = MathHelper.cos(swingProgress * 0.75F) * 0.6F * swingProgressPrev;
         this.lArmUpper.rotateAngleX = MathHelper.sin(swingProgress * 0.75F) * 0.6F * swingProgressPrev;
+        
         this.rShin.rotateAngleX = this.rThigh.rotateAngleX * 0.75F + 0.35F;
         this.lShin.rotateAngleX = this.lThigh.rotateAngleX * 0.75F + 0.35F;
         this.lArmLower.rotateAngleX = this.rThigh.rotateAngleX * 1.75F;
@@ -634,7 +646,8 @@ public class ModelYautja extends Model
 
         if (base instanceof EntitySpeciesYautja)
         {
-            EntitySpeciesYautja yautja = (EntitySpeciesYautja) base;
+            EntitySpeciesYautja y = (EntitySpeciesYautja) base;
+            
             this.biomaskMouth.isHidden = false;
             this.lMandibleLower1.isHidden = true;
             this.rMandibleLower1.isHidden = true;
@@ -642,7 +655,7 @@ public class ModelYautja extends Model
             this.rMandibleUpper.isHidden = true;
             this.nose.isHidden = true;
 
-            if (!yautja.isWearingMask())
+            if (!y.isWearingMask())
             {
                 this.biomaskMouth.isHidden = true;
                 this.lMandibleLower1.isHidden = false;
@@ -650,6 +663,12 @@ public class ModelYautja extends Model
                 this.lMandibleUpper.isHidden = false;
                 this.rMandibleUpper.isHidden = false;
                 this.nose.isHidden = false;
+            }
+            
+            if (Math.abs(base.motionY) > 0.1F)
+            {
+                this.rArmUpper.rotateAngleX = -2.5F;
+                this.lArmUpper.rotateAngleX = -2F;
             }
         }
 
