@@ -95,7 +95,6 @@ public abstract class EntitySpeciesYautja extends EntityMob implements IHost, Pr
         {
             BlockPos aboveHead = this.getPosition().add(0, 3, 0);
             this.setDucking(this.world.getBlockState(aboveHead).getBlock() != Blocks.AIR);
-            System.out.println(this.isDucking());
             
             if (this.isDucking())
             {
