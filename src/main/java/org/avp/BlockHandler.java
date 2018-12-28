@@ -24,6 +24,7 @@ import org.avp.block.BlockNegativeTransformer;
 import org.avp.block.BlockNetworkRack;
 import org.avp.block.BlockOreCobalt;
 import org.avp.block.BlockOreMonazite;
+import org.avp.block.BlockOreSilicon;
 import org.avp.block.BlockParadiseLog;
 import org.avp.block.BlockParadiseTreeLeaves;
 import org.avp.block.BlockPortal;
@@ -133,7 +134,7 @@ public class BlockHandler implements IInitEvent
     public static final Block paddingpanel          = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("paddingpanel");
     public static final Block plastictri            = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("plastictiletri");
     public static final Block plastictile           = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("plastictile");
-    public static final Block oreSilicon            = new BlockMaterial(Material.ROCK).setHardness(2.2F).setResistance(1.4F).setCreativeTab(Tab.MAIN).setRegistryName("oresilicon");
+    public static final Block oreSilicon            = new BlockOreSilicon().setHardness(2.2F).setResistance(1.4F).setCreativeTab(Tab.MAIN).setRegistryName("oresilicon");
     public static final Block oreLithium            = new BlockMaterial(Material.IRON).setHardness(4.2F).setResistance(5.4F).setCreativeTab(Tab.MAIN).setRegistryName("orelithium");
     public static final Block oreCopper             = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("orecopper");
     public static final Block oreBauxite            = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("orebauxite");
