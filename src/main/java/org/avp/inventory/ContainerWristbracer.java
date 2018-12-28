@@ -17,6 +17,20 @@ public class ContainerWristbracer extends Container
     public IInventory   inventory;
     public ItemStack    stack;
     public EntityPlayer player;
+    
+    public static class SlotWristbracer extends Slot
+    {
+        public SlotWristbracer(IInventory inventoryIn, int index, int xPosition, int yPosition)
+        {
+            super(inventoryIn, index, xPosition, yPosition);
+        }
+        
+        @Override
+        public boolean isItemValid(ItemStack stack)
+        {
+            return stack != null && !(stack.getItem() instanceof ItemWristbracer);
+        }
+    }
 
     public ContainerWristbracer(EntityPlayer player)
     {
@@ -30,7 +44,7 @@ public class ContainerWristbracer extends Container
     {
         for (byte x = 0; x < this.inventory.getSizeInventory(); x++)
         {
-            addSlotToContainer(new Slot(inventory, x, 31 + (28 * x), 16));
+            addSlotToContainer(new SlotWristbracer(inventory, x, 31 + (28 * x), 16));
         }
 
         for (byte x = 0; x < 9; x++)
@@ -145,7 +159,7 @@ public class ContainerWristbracer extends Container
 
         return ItemStack.EMPTY;
     }
-
+    
     @Override
     public void onContainerClosed(EntityPlayer player)
     {
