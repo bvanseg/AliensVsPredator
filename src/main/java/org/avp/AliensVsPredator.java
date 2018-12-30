@@ -52,6 +52,7 @@ public class AliensVsPredator implements IMod
     {
         console().pre(event);
         settings().pre(event);
+        webRequests().pre(event);
         capabilities().pre(event);
     }
 
@@ -114,6 +115,11 @@ public class AliensVsPredator implements IMod
     public static AliensVsPredator instance()
     {
         return AliensVsPredator.instance;
+    }
+    
+    public static WebRequestHandler webRequests()
+    {
+        return WebRequestHandler.instance;
     }
 
     public static Console console()
