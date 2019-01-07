@@ -114,7 +114,7 @@ item.avp:food.doritos.coolranch.name=Doritos (Cool Ranch)
 
 
 #ITEMS-SUMMONERS
-Immature Xenomorphs
+#Immature Xenomorphs
 item.avp:summon.ovamorph.name=Ovamorph (Egg)
 item.avp:summon.facehugger.name=Facehugger
 item.avp:summon.chestburster.name=Chestburster
@@ -125,18 +125,18 @@ item.avp:summon.chestburster.queen.name=Queen Chestburster
 item.avp:summon.dracoegg.name=Dracovamorph
 item.avp:summon.dracoburster.name=Dracoburster
 
-Default Evolving Xenomorphs
+#Default Evolving Xenomorphs
 item.avp:summon.drone.name=Xenomorph Drone
 item.avp:summon.warrior.name=Xenomorph Warrior
 item.avp:summon.praetorian.name=Xenomorph Praetorian
 item.avp:summon.queen.name=Xenomorph Queen
 
-Animal Evolving Xenomorphs
+#Animal Derived Xenomorphs
 item.avp:summon.runner.drone.name=Xenomorph Runner
 item.avp:summon.runner.warrior.name=Xenomorph Runner Warrior
 item.avp:summon.crusher.name=Xenomorph Crusher
 
-Other Xenomorphs
+#Other Xenomorphs
 item.avp:summon.spitter.name=Xenomorph Spitter
 item.avp:summon.boiler.name=Boiler
 item.avp:summon.predalien.name=Predalien
@@ -147,7 +147,7 @@ item.avp:summon.dracomorph.name=Dracomorph
 item.avp:summon.batxeno.name=Chiropteramorph
 item.avp:summon.ultramorph.name=Ultramorph
 
-Xenomorph-Like Organisms
+#Xenomorph-Like Organisms
 item.avp:summon.trilobite.name=Trilobite
 item.avp:summon.deacon.name=Deacon
 item.avp:summon.deacon.adult.name=Adult Common Deacon
@@ -155,7 +155,7 @@ item.avp:summon.octohugger.name=Octohugger
 item.avp:summon.belugaburster.name=Belugaburster
 item.avp:summon.belugamorph.name=Belugamorph
 
-Goo-based Creatures and Mutants
+#Goo-based Creatures and Mutants
 item.avp:summon.hammerpede.name=Hammerpede
 item.avp:summon.deaconshark.name=Deacon Shark
 item.avp:summon.goomutant.name=Goo Mutant
@@ -165,16 +165,16 @@ item.avp:summon.vardamonkey.name=Scelemur
 item.avp:summon.ursuidae.name=Ursuidae
 item.avp:summon.yautjamutant.name=Mutant Yautja
 
-Predators
+#Predators
 item.avp:summon.yautja.warrior.name=Yautja (Predator)
 item.avp:summon.yautja.berserker.name=Berserker Yautja
 item.avp:summon.predatorhound.name=Hellhound
 
-Engineers
+#Engineers
 item.avp:summon.engineer.name=Engineer
 item.avp:summon.spacejockey.name=SpaceJockey
 
-Humans and Synthetics
+#Humans and Synthetics
 item.avp:summon.marine.name=Marine
 item.avp:summon.synthetic.combat.name=Combat Synthetic
 
@@ -361,7 +361,7 @@ tile.avp:engineership.ampule.name=Ampule
 
 
 #MOBS
-Immature Xenomorphs
+#Immature Xenomorphs
 entity.Ovamorph.name=Ovamorph (Egg)
 entity.Facehugger.name=Facehugger
 entity.RoyalFacehugger.name=Royal Facehugger
@@ -372,18 +372,18 @@ entity.QueenChestburster.name=Queen Chestburster
 entity.DracoOvamorph.name=Dracovamorph
 entity.DracoBurster.name=Dracoburster
 
-Default Evolving Xenomorphs
+#Default Evolving Xenomorphs
 entity.Drone.name=Xenomorph Drone
 entity.Warrior.name=Xenomorph Warrior
 entity.Praetorian.name=Xenomorph Praetorian
 entity.Queen.name=Xenomorph Queen
 
-Animal Evolving Xenomorphs
+#Animal Derived Xenomorphs
 entity.RunnerDrone.name=Xenomorph Runner
 entity.RunnerWarrior.name=Xenomorph Runner Warrior
 entity.Crusher.name=Xenomorph Crusher
 
-Other Xenomorphs
+#Other Xenomorphs
 entity.Spitter.name=Xenomorph Spitter
 entity.Boiler.name=Boiler
 entity.Dracomorph.name=Dracomorph
@@ -394,14 +394,14 @@ entity.Pantheramorph.name=Pantheramorph
 entity.Myceliomorph.name=Myceliomorph
 entity.Ultramorph.name=Ultramorph
 
-Xenomorph-like Organsims
+#Xenomorph-like Organsims
 entity.Trilobite.name=Trilobite
 entity.Deacon.name=Deacon
 entity.Octohugger.name=Octohugger
 entity.Belugaburster.name=Belugaburster
 entity.Belugamorph.name=Belugamorph
 
-Goo-based Creatures and Mutants
+#Goo-based Creatures and Mutants
 entity.Hammerpede.name=Hammerpede
 entity.DeaconShark.name=Deacon Shark
 entity.GooMutant.name=Goo Mutant
@@ -411,16 +411,16 @@ entity.VardaMonkey.name=Scelemur
 entity.Ursuidae.name=Ursuidae
 entity.YautjaMutant.name=Mutant Yautja
 
-Predators
+#Predators
 entity.Yautja.name=Yautja (Predator)
 entity.YautjaBerserker.name=Berserker Yautja
 entity.HellHound.name=Hellhound
 
-Engineers
+#Engineers
 entity.SpaceJockey.name=Space Jockey
 entity.Engineer.name=Engineer
 
-Humans and Synthetics
+#Humans and Synthetics
 entity.Marine.name=Marine
 entity.CombatSynthetic.name=Combat Synthetic
 
