@@ -1,4 +1,4 @@
-/** AliensVsPredator Minecraft Mod - Copyright (C) 2012-2018 ASX **/
+/** AliensVsPredator Minecraft Mod - Copyright (C) 2012-2019 ASX **/
 package org.avp;
 
 import org.apache.logging.log4j.Logger;
