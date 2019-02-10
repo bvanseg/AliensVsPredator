@@ -196,7 +196,7 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
 
             int hiveDist = (int) this.getDistance(coordHive.x, coordHive.y, coordHive.z);
 
-            if (hiveDist > this.hive.getMaxHiveRadius() * 0.5 && this.getAttackTarget() == null || this.getAttackTarget() == null && this.getNavigator().tryMoveToXYZ(coordHive.x, coordHive.y, coordHive.z, 1.55D))
+            if (hiveDist > this.hive.getMaxHiveRadius() * 0.5 && this.getAttackTarget() == null)
             {
                 this.pathPoints = Pos.getPointsBetween(coordQueen, coordHive, hiveDist / 12);
 
@@ -259,7 +259,7 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
         this.reproduce();
         this.handleOvipositorGrowth();
         this.jumpBoost();
-        // this.pathfindToHive(); //causes queen to glitch out ... detect if close enough
+        this.pathfindToHive(); //causes queen to glitch out ... detect if close enough
         this.heal();
 
         // this.getHive().destroy();
