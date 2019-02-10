@@ -177,7 +177,10 @@ public class HiveHandler implements IWorldSaveHandler
             return false;
         }
 
-        MDX.log().info(String.format("Saved %s hives for level '%s'/%s", hiveCount, world.getSaveHandler().getWorldDirectory(), world.provider.getDimensionType().getName()));
+        if (hiveCount > 0)
+        {
+            MDX.log().info(String.format("Saved %s hives for level '%s'/%s", hiveCount, world.getSaveHandler().getWorldDirectory(), world.provider.getDimensionType().getName()));
+        }
 
         return true;
     }
