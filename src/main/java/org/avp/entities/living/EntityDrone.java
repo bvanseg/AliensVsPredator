@@ -116,7 +116,6 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
             {
                 if (this.rand.nextInt(3) == 0)
                 {
-                    @SuppressWarnings("unchecked")
                     ArrayList<EntityOvamorph> ovamorphs = (ArrayList<EntityOvamorph>) Entities.getEntitiesInCoordsRange(this.world, EntityOvamorph.class, new Pos(this), 16);
 
                     if (this.getHive() != null)
@@ -147,6 +146,20 @@ public class EntityDrone extends EntityXenomorph implements IMaturable
         }
     }
 
+    @Override
+    public void produceJelly()
+    {
+        if (!this.world.isRemote)
+        {
+            if (this.world.getWorldTime() % 20 == 0)
+            {
+                if (this.getJellyLevel() < (this.getMaturityLevel() / 2))
+                {
+                    this.setJellyLevel(this.getJellyLevel() + 20);
+                }
+            }
+        }
+    }
     public void tickHiveBuildingAI()
     {
         if (!this.world.isRemote)
