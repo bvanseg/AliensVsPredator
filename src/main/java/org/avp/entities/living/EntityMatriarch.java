@@ -33,18 +33,18 @@ import net.minecraft.world.World;
 
 public class EntityMatriarch extends EntityXenomorph implements IMob
 {
-    public static final float OVIPOSITOR_THRESHOLD_SIZE          = 1.3F;
-    public static final float OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE = 0.00225F;
-    public static final int   OVIPOSITOR_UNHEALTHY_THRESHOLD     = 50;
-    public static final int   OVIPOSITOR_JELLYLEVEL_THRESHOLD    = 1000;
-    public static final int   OVIPOSITOR_JELLYLEVEL_GROWTH_USE   = 1;
+    public static final float                 OVIPOSITOR_THRESHOLD_SIZE          = 1.3F;
+    public static final float                 OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE = 0.00225F;
+    public static final int                   OVIPOSITOR_UNHEALTHY_THRESHOLD     = 50;
+    public static final int                   OVIPOSITOR_JELLYLEVEL_THRESHOLD    = 1000;
+    public static final int                   OVIPOSITOR_JELLYLEVEL_GROWTH_USE   = 1;
 
-    private static final DataParameter<Float> OVIPOSITOR_SIZE = EntityDataManager.createKey(EntityMatriarch.class, DataSerializers.FLOAT);
-    
-    public boolean            growingOvipositor;
-    public boolean            reproducing;
+    private static final DataParameter<Float> OVIPOSITOR_SIZE                    = EntityDataManager.createKey(EntityMatriarch.class, DataSerializers.FLOAT);
 
-    private ArrayList<Pos>    pathPoints                         = new ArrayList<Pos>();
+    public boolean                            growingOvipositor;
+    public boolean                            reproducing;
+
+    private ArrayList<Pos>                    pathPoints                         = new ArrayList<Pos>();
 
     public EntityMatriarch(World world)
     {
@@ -136,7 +136,7 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
                 double ovamorphX = (this.posX + (ovipositorDist * (Math.cos(rotationYawRadians))));
                 double ovamorphZ = (this.posZ + (ovipositorDist * (Math.sin(rotationYawRadians))));
 
-                //this.world.playSound(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), AliensVsPredator.sounds().SOUND_QUEEN_HURT, SoundCategory.HOSTILE, 1F, this.rand.nextInt(10) / 100, true);
+                // this.world.playSound(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), AliensVsPredator.sounds().SOUND_QUEEN_HURT, SoundCategory.HOSTILE, 1F, this.rand.nextInt(10) / 100, true);
 
                 if (this.world.isRemote)
                 {
@@ -151,12 +151,14 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
     {
         if (!this.world.isRemote)
         {
-            if (this.hive != null)
-            {
-                boolean ovipositorHealthy = this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD;
+            boolean ovipositorHealthy = this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD;
 
-                if (ovipositorHealthy && !this.world.canSeeSky(this.getPosition()))
+            if (ovipositorHealthy)
+            {
+                if (!this.world.canSeeSky(this.getPosition()))
                 {
+                    this.constructHive();
+
                     if (this.getOvipositorSize() < OVIPOSITOR_THRESHOLD_SIZE)
                     {
                         this.setOvipositorSize(this.getOvipositorSize() + OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE);
@@ -165,11 +167,11 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
 
                     this.removeAI();
                 }
-                else if (!ovipositorHealthy)
-                {
-                    this.setOvipositorSize(0F);
-                    this.addStandardXenomorphAISet();
-                }
+            }
+            else if (!ovipositorHealthy)
+            {
+                this.setOvipositorSize(0F);
+                this.addStandardXenomorphAISet();
             }
         }
     }
@@ -254,11 +256,10 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
     {
         super.onUpdate();
         this.reproducing = this.getOvipositorSize() >= 1.3F;
-        this.constructHive();
         this.reproduce();
         this.handleOvipositorGrowth();
         this.jumpBoost();
-        this.pathfindToHive();
+        // this.pathfindToHive(); //causes queen to glitch out ... detect if close enough
         this.heal();
 
         // this.getHive().destroy();
@@ -273,7 +274,6 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
 
             if (this.world.getWorldTime() % 20 == 0)
             {
-                @SuppressWarnings("unchecked")
                 ArrayList<EntitySpeciesAlien> aliens = (ArrayList<EntitySpeciesAlien>) Entities.getEntitiesInCoordsRange(this.world, EntitySpeciesAlien.class, new Pos(this), 16);
 
                 if (this.getHive() != null)
