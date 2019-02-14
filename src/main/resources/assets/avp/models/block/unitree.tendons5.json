@@ -1,6 +1,6 @@
 {
     "parent": "block/cross",
     "textures": {
-        "cross": "avp:blocks/unitree.tendons"
+        "cross": "avp:blocks/unitree_tendons_5"
     }
 }
