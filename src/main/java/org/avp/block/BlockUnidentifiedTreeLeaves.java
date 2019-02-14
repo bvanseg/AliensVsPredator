@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.avp.AliensVsPredator;
+import org.avp.BlockHandler;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -11,20 +12,73 @@ import net.minecraft.block.BlockPlanks.EnumType;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockUnidentifiedTreeLeaves extends BlockLeaves
 {
-    protected int[] surroundings;
+    public static enum Type
+    {
+        TOP, MIDDLE, BOTTOM
+    }
+
+    protected int[]                   surroundings;
+    public static final AxisAlignedBB AABB = new AxisAlignedBB(0.3D, 0.3D, 0.3D, 0.7D, 0.7D, 0.7D);
+    public final Type                 type;
     
-    public BlockUnidentifiedTreeLeaves()
+    public BlockUnidentifiedTreeLeaves(Type type)
     {
         super();
+        this.type = type;
+    }
+
+    public boolean canBlockStay(World world, BlockPos pos, IBlockState state)
+    {
+        switch (this.type)
+        {
+            case MIDDLE:
+            case BOTTOM:
+                IBlockState above = world.getBlockState(pos.up());
+                if (this.type == Type.MIDDLE)
+                {
+                    return above.getBlock() == BlockHandler.gigerLeaves || above.getBlock() == BlockHandler.gigerLeavesM;
+                }
+                else
+                {
+                    return above.getBlock() == BlockHandler.gigerLeavesM;
+                }
+            default:
+                return true;
+        }
+    }
+
+    protected void checkAndDropBlock(World worldIn, BlockPos pos, IBlockState state)
+    {
+        if (!this.canBlockStay(worldIn, pos, state))
+        {
+            this.dropBlockAsItem(worldIn, pos, state, 0);
+            worldIn.setBlockState(pos, Blocks.AIR.getDefaultState(), 3);
+        }
+    }
+    
+    @Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos)
+    {
+        return super.canPlaceBlockAt(world, pos) && this.canBlockStay(world, pos, world.getBlockState(pos));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
+    {
+        super.neighborChanged(state, worldIn, pos, blockIn, fromPos);
+        this.checkAndDropBlock(worldIn, pos, state);
     }
 
     @Override
@@ -84,8 +138,15 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
         return BlockRenderLayer.TRANSLUCENT;
     }
 
+    @Override
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
     {
+        if (this.type == Type.TOP)
+        {
+            super.updateTick(worldIn, pos, state, rand);
+        }
+        this.checkAndDropBlock(worldIn, pos, state);
+        
         if (!worldIn.isRemote)
         {
             if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue())

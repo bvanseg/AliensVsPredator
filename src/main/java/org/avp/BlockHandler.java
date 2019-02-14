@@ -48,6 +48,7 @@ import org.avp.block.BlockTurret;
 import org.avp.block.BlockUnidentifiedDirt;
 import org.avp.block.BlockUnidentifiedLog;
 import org.avp.block.BlockUnidentifiedTreeLeaves;
+import org.avp.block.BlockUnidentifiedTreeLeaves.Type;
 import org.avp.block.BlockUnidentifiedTreeSapling;
 import org.avp.block.BlockUnidentifiedTreeTendon;
 import org.avp.block.BlockWall;
@@ -198,7 +199,9 @@ public class BlockHandler implements IInitEvent
     /** Varda **/
     public static final Block gigerLog              = new BlockUnidentifiedLog().setHardness(5F).setLightOpacity(0).setCreativeTab(Tab.BLOCKS).setRegistryName("unitree.wood");
     public static final Block gigerTendons          = new BlockUnidentifiedTreeTendon().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.BLOCKS).setRegistryName("unitree.tendons");
-    public static final Block gigerLeaves           = new BlockUnidentifiedTreeLeaves().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.BLOCKS).setRegistryName("unitree.leaves");
+    public static final Block gigerLeaves           = new BlockUnidentifiedTreeLeaves(Type.TOP).setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.BLOCKS).setRegistryName("unitree.leaves");
+    public static final Block gigerLeavesM          = new BlockUnidentifiedTreeLeaves(Type.MIDDLE).setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.BLOCKS).setRegistryName("unitree.leaves.m");
+    public static final Block gigerLeavesB          = new BlockUnidentifiedTreeLeaves(Type.BOTTOM).setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.BLOCKS).setRegistryName("unitree.leaves.b");
     public static final Block gigerSapling          = new BlockUnidentifiedTreeSapling().setHardness(0.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("unitree.sapling");
     
     /** Acheron **/

@@ -1,15 +1,10 @@
 {
     "forge_marker": 1,
-    "defaults": {
-        "textures": {
-            "all": "avp:blocks/unitree.leaves"
-        }
-    },
     "variants": {
-        "inventory": { "model": "cube_all" },
-        "check_decay=false,decayable=false": { "model": "cube_all" },
-        "check_decay=true,decayable=false": { "model": "cube_all" },
-        "check_decay=false,decayable=true": { "model": "cube_all" },
-        "check_decay=true,decayable=true": { "model": "cube_all" }
+        "inventory": { "model": "avp:unitree_leaves_top" },
+        "check_decay=false,decayable=false": { "model": "avp:unitree_leaves_top" },
+        "check_decay=true,decayable=false": { "model": "avp:unitree_leaves_top" },
+        "check_decay=false,decayable=true": { "model": "avp:unitree_leaves_top" },
+        "check_decay=true,decayable=true": { "model": "avp:unitree_leaves_top" }
     }
 }
