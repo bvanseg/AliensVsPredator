@@ -830,7 +830,7 @@ public class ModelTrilobite extends Model<EntityTrilobite>
         {
             updateAnimations(trilobite);
 
-            float speed = (float) (Math.PI * 0.08F);
+            float speed = (float) (Math.PI * 0.2F);
             float mult = 0.8F;
 
             float sp = swingProgress(trilobite);
