@@ -17,7 +17,7 @@ public class EntityDeaconAdult extends EntityXenomorph
 
         this.jumpMovementFactor = 0.02F;
         this.experienceValue = 100;
-        this.setSize(0.8F, 1.8F);
+        this.setSize(0.8F, 3.2F);
         this.ableToClimb = false;
         this.isDependant = false;
         
