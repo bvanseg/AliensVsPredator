@@ -51,7 +51,34 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
     public void onUpdate()
     {
         super.onUpdate();
-
+        
+        // int s = 2;
+        // long ms = this.world.getWorldTime() % (80 * s);
+        // float speed = 0.3F;
+        // travel(0, 0, speed);
+        //
+        // if (ms < 20 * s)
+        // {
+        // this.rotationYaw = 0;
+        // }
+        // if (ms > 20 * s && ms < 40 * s)
+        // {
+        // this.rotationYaw = 270;
+        // }
+        // if (ms > 40 * s && ms < 60 * s)
+        // {
+        // this.rotationYaw = 180;
+        //
+        // if (ms == (40 * s + 1))
+        // {
+        // this.setPosition(-525, 3, 453);
+        // }
+        // }
+        // if (ms > 60 * s && ms < 80 * s)
+        // {
+        // this.rotationYaw = 90;
+        // }
+        
         if (this.collidedHorizontally)
         {
             this.motionY += 0.25F;
