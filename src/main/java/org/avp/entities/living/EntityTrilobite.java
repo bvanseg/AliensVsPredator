@@ -25,7 +25,7 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
     {
         super(world);
 
-        this.setSize(1.5F, 1.5F);
+        this.setSize(1.5F, 1.65F);
         this.experienceValue = 32;
 
         this.tasks.addTask(0, new EntityAISwimming(this));
@@ -54,7 +54,7 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
         
         // int s = 2;
         // long ms = this.world.getWorldTime() % (80 * s);
-        // float speed = 0.3F;
+        // float speed = 0.1F;
         // travel(0, 0, speed);
         //
         // if (ms < 20 * s)
