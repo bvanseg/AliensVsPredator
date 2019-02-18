@@ -5,9 +5,9 @@ import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.LevelData;
 import org.avp.world.playermode.PlayerMode;
 
-import com.arisux.mdx.lib.client.render.Texture;
-import com.arisux.mdx.lib.client.render.model.MapModelTexture;
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.Texture;
+import com.arisux.mdx.lib.client.util.models.MapModelTexture;
+import com.arisux.mdx.lib.client.util.models.Model;
 import com.arisux.mdx.lib.game.IInitEvent;
 import com.arisux.mdx.lib.world.entity.player.Players;
 

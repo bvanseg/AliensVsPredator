@@ -6,7 +6,7 @@ import org.avp.item.ItemFlamethrower;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.PlayerMode;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelBiped;

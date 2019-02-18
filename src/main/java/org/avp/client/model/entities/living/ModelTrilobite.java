@@ -1,14 +1,15 @@
 package org.avp.client.model.entities.living;
 
-import static com.arisux.mdx.lib.client.render.model.AnimationHelper.bob;
-import static com.arisux.mdx.lib.client.render.model.AnimationHelper.flap;
-import static com.arisux.mdx.lib.client.render.model.AnimationHelper.oscillate;
-import static com.arisux.mdx.lib.client.render.model.AnimationHelper.swing;
+import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.bob;
+import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.flap;
+import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.oscillate;
+import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.swing;
 
 import org.avp.entities.living.EntityTrilobite;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.OpenGL;
+import com.arisux.mdx.lib.client.util.models.Model;
+import com.arisux.mdx.lib.game.Game;
 
 public class ModelTrilobite extends Model<EntityTrilobite>
 {
@@ -898,8 +899,30 @@ public class ModelTrilobite extends Model<EntityTrilobite>
             swing(tail3, 1F * speed, -0.7F * mult, false, -0.5F, 0F, sp - 15, spp);
             swing(tail4, 1F * speed, -0.8F * mult, false, -0.5F, 0F, sp - 15, spp);
             swing(tail5, 1F * speed, -0.5F * mult, false, -0.5F, 0F, sp - 15, spp);
+            
+            if (trilobite.motionY > 0.1F)
+            {
+                rFrontTenticle1.rotateAngleZ = 0.6F;
+                rMiddleTenticle1.rotateAngleZ = 0.6F;
+                rBackTenticle1.rotateAngleZ = 0.6F;
+                lFrontTenticle1.rotateAngleZ = -0.6F;
+                lMiddleTenticle1.rotateAngleZ = -0.6F;
+                lBackTenticle1.rotateAngleZ = -0.6F;
+                tail.rotateAngleX = 0.6F;
+            }
+            
+            if (trilobite.motionY < -0.1F)
+            {
+                rFrontTenticle1.rotateAngleZ = 0.6F;
+                rMiddleTenticle1.rotateAngleZ = 0.6F;
+                rBackTenticle1.rotateAngleZ = 0.6F;
+                lFrontTenticle1.rotateAngleZ = -0.6F;
+                lMiddleTenticle1.rotateAngleZ = -0.6F;
+                lBackTenticle1.rotateAngleZ = -0.6F;
+                tail.rotateAngleX = 0.6F;
+            }
         }
-
+        
         OpenGL.translate(0F, -0.1F, 0F);
         this.body.render(DEFAULT_SCALE);
 

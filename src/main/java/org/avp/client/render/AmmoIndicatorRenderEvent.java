@@ -2,8 +2,8 @@ package org.avp.client.render;
 
 import org.avp.item.ItemFirearm;
 
-import com.arisux.mdx.lib.client.render.Draw;
-import com.arisux.mdx.lib.client.render.Screen;
+import com.arisux.mdx.lib.client.util.Draw;
+import com.arisux.mdx.lib.client.util.Screen;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 

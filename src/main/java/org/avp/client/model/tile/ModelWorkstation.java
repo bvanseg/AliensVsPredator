@@ -3,7 +3,7 @@ package org.avp.client.model.tile;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityWorkstation;
 
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.models.Model;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.block.state.IBlockState;

@@ -4,6 +4,9 @@ import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 
+import com.arisux.mdx.lib.world.entity.Animation;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -21,6 +24,8 @@ import net.minecraft.world.World;
 
 public class EntityTrilobite extends EntitySpeciesAlien implements IMob
 {
+    public static final Animation TOOB_ANIMATION = Animation.create(50);
+    
     public EntityTrilobite(World world)
     {
         super(world);
@@ -138,5 +143,18 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
-    }  
+    }
+    
+    @Override
+    public boolean attackEntityAsMob(Entity entityIn)
+    {
+        return false;
+    }
+    
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount)
+    {
+        
+        return super.attackEntityFrom(source, amount);
+    }
 }

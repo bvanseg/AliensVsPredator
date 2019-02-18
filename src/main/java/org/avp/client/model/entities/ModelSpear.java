@@ -2,8 +2,8 @@ package org.avp.client.model.entities;
 
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.OpenGL;
+import com.arisux.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.gui.Gui;
 

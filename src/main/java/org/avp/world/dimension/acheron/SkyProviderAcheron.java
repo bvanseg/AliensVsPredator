@@ -6,9 +6,9 @@ import org.avp.AliensVsPredator;
 import org.avp.world.dimension.DimensionUtil;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.render.Color;
-import com.arisux.mdx.lib.client.render.Draw;
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.Color;
+import com.arisux.mdx.lib.client.util.Draw;
+import com.arisux.mdx.lib.client.util.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.game.GameResources;
 
@@ -31,9 +31,9 @@ public class SkyProviderAcheron extends IRenderHandler
 {
     public static final SkyProviderAcheron instance = new SkyProviderAcheron();
     
-    protected Color skyColor       = new com.arisux.mdx.lib.client.render.Color(0.0F, 0.0F, 0.0F, 1F);
-    protected Color cloudColor     = new com.arisux.mdx.lib.client.render.Color(0.03F, 0.03F, 0.05F, 0.8F);
-    protected Color starColor      = new com.arisux.mdx.lib.client.render.Color(0.0F, 0.5F, 1.0F, 0.15F);
+    protected Color skyColor       = new com.arisux.mdx.lib.client.util.Color(0.0F, 0.0F, 0.0F, 1F);
+    protected Color cloudColor     = new com.arisux.mdx.lib.client.util.Color(0.03F, 0.03F, 0.05F, 0.8F);
+    protected Color starColor      = new com.arisux.mdx.lib.client.util.Color(0.0F, 0.5F, 1.0F, 0.15F);
     private int     starGLCallList = GLAllocation.generateDisplayLists(3);
 
     public SkyProviderAcheron()

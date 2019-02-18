@@ -2,7 +2,7 @@ package org.avp.client.model.entities.living;
 
 import org.avp.entities.living.EntitySpeciesEngineer;
 
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;

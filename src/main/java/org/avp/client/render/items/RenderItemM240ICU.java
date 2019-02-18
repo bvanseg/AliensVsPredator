@@ -6,9 +6,9 @@ import org.avp.item.ItemFirearm;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.render.Draw;
-import com.arisux.mdx.lib.client.render.ItemRenderer;
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.Draw;
+import com.arisux.mdx.lib.client.util.ItemRenderer;
+import com.arisux.mdx.lib.client.util.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.GlStateManager;

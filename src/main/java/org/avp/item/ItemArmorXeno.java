@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelDrone;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
-import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.util.Draw;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 

@@ -3,9 +3,9 @@ package org.avp.client.render.items;
 import org.avp.client.model.entities.ModelSupplyChute;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 
-import com.arisux.mdx.lib.client.render.ItemRenderer;
-import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.model.MapModelTexture;
+import com.arisux.mdx.lib.client.util.ItemRenderer;
+import com.arisux.mdx.lib.client.util.OpenGL;
+import com.arisux.mdx.lib.client.util.models.MapModelTexture;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;

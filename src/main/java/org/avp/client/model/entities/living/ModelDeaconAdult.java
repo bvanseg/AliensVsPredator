@@ -1,13 +1,13 @@
 package org.avp.client.model.entities.living;
 
-import static com.arisux.mdx.lib.client.render.model.AnimationHelper.bob;
-import static com.arisux.mdx.lib.client.render.model.AnimationHelper.flap;
-import static com.arisux.mdx.lib.client.render.model.AnimationHelper.oscillate;
-import static com.arisux.mdx.lib.client.render.model.AnimationHelper.swing;
+import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.bob;
+import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.flap;
+import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.oscillate;
+import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.swing;
 
 import org.avp.entities.living.EntityDeaconAdult;
 
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.models.Model;
 
 public class ModelDeaconAdult extends Model<EntityDeaconAdult>
 {

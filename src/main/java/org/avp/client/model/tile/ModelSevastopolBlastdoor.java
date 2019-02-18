@@ -2,7 +2,7 @@ package org.avp.client.model.tile;
 
 import org.avp.tile.TileEntityBlastdoor;
 
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.models.Model;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.model.ModelRenderer;

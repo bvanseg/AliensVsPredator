@@ -2,7 +2,7 @@ package org.avp.client.model.items;
 
 import org.avp.item.ItemFlamethrower;
 
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.models.Model;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 

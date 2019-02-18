@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelMarine;
 import org.avp.entities.living.EntityMarine;
 
-import com.arisux.mdx.lib.client.render.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.util.entity.RenderLivingWrapper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped.ArmPose;

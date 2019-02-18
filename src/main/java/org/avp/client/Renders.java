@@ -269,7 +269,7 @@ import org.avp.tile.TileEntityWorkstation;
 import org.avp.tile.plants.TileEntityGroundFern;
 import org.avp.tile.plants.TileEntityTreeFern;
 
-import com.arisux.mdx.lib.client.render.model.MapModelTexture;
+import com.arisux.mdx.lib.client.util.models.MapModelTexture;
 import com.arisux.mdx.lib.game.IInitEvent;
 import com.arisux.mdx.lib.game.IPreInitEvent;
 import com.arisux.mdx.lib.game.Renderers;

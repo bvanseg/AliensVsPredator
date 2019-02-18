@@ -1,7 +1,7 @@
 package org.avp.world.playermode;
 
-import com.arisux.mdx.lib.client.render.model.MapModelTexture;
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.models.MapModelTexture;
+import com.arisux.mdx.lib.client.util.models.Model;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.relauncher.Side;

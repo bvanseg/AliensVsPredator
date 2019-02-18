@@ -2,9 +2,9 @@ package org.avp.client.render.items;
 
 import org.avp.item.ItemNetworkRackModule;
 
-import com.arisux.mdx.lib.client.render.ItemRenderer;
-import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.ItemRenderer;
+import com.arisux.mdx.lib.client.util.OpenGL;
+import com.arisux.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;

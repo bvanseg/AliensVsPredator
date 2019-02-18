@@ -12,7 +12,7 @@ import com.arisux.mdx.lib.client.gui.GuiCustomScreen;
 import com.arisux.mdx.lib.client.gui.GuiCustomTextbox;
 import com.arisux.mdx.lib.client.gui.IAction;
 import com.arisux.mdx.lib.client.gui.IGuiElement;
-import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.util.Draw;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.renderer.GlStateManager;

@@ -2,8 +2,8 @@ package org.avp.world.dimension.varda;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdx.lib.client.render.Texture;
-import com.arisux.mdx.lib.client.render.world.CloudProvider;
+import com.arisux.mdx.lib.client.util.Texture;
+import com.arisux.mdx.lib.client.world.CloudProvider;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.util.MDXMath;
 

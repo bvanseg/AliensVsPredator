@@ -9,8 +9,8 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.avp.block.BlockReflective;
 import org.avp.block.util.EnumAlignment;
 
-import com.arisux.mdx.lib.client.render.model.Model;
-import com.arisux.mdx.lib.client.render.model.block.ModelRotationXYZ;
+import com.arisux.mdx.lib.client.util.models.Model;
+import com.arisux.mdx.lib.client.util.models.block.ModelRotationXYZ;
 import com.arisux.mdx.lib.game.Game;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;

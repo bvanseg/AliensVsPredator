@@ -2,7 +2,7 @@ package org.avp.client.render.entities;
 
 import org.avp.entities.EntitySupplyChute;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

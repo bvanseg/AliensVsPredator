@@ -1,7 +1,7 @@
 package org.avp.item;
 
-import com.arisux.mdx.lib.client.render.model.MapModelTexture;
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.models.MapModelTexture;
+import com.arisux.mdx.lib.client.util.models.Model;
 import com.arisux.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.entity.Entity;

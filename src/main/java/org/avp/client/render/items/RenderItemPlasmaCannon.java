@@ -4,8 +4,8 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.items.ModelPlasmaCannon;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.render.ItemRenderer;
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.ItemRenderer;
+import com.arisux.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;

@@ -7,7 +7,7 @@ import org.avp.entities.living.EntityEngineer;
 import org.avp.entities.living.EntityMarine;
 import org.avp.entities.living.EntitySpeciesYautja;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.entity.Entity;
 

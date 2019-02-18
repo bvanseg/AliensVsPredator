@@ -2,10 +2,10 @@ package org.avp.client.render.entities.living;
 
 import org.avp.entities.living.EntitySpeciesYautja;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.render.model.MapModelTexture;
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.OpenGL;
+import com.arisux.mdx.lib.client.util.entity.RenderLivingWrapper;
+import com.arisux.mdx.lib.client.util.models.MapModelTexture;
+import com.arisux.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 

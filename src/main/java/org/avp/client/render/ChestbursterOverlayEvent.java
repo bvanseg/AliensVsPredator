@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
-import com.arisux.mdx.lib.client.render.Draw;
+import com.arisux.mdx.lib.client.util.Draw;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

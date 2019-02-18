@@ -6,7 +6,7 @@ import org.avp.entities.EntitySupplyChute;
 import org.avp.entities.EntitySupplyChuteMarines;
 import org.avp.entities.EntitySupplyChuteSeegson;
 
-import com.arisux.mdx.lib.client.render.model.MapModelTexture;
+import com.arisux.mdx.lib.client.util.models.MapModelTexture;
 import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
 import com.arisux.mdx.lib.world.item.HookedItem;
 

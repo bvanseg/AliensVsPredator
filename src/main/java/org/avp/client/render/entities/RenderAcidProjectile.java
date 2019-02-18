@@ -3,8 +3,8 @@ package org.avp.client.render.entities;
 import org.avp.client.model.entities.ModelPlasma;
 import org.avp.entities.EntityAcidProjectile;
 
-import com.arisux.mdx.lib.client.render.Color;
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.Color;
+import com.arisux.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.item.ItemNetworkRackModule;
 import org.avp.tile.TileEntityNetworkRack;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

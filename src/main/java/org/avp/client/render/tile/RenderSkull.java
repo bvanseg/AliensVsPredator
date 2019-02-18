@@ -5,8 +5,8 @@ import org.avp.tile.TileEntitySkull;
 import org.avp.tile.TileEntitySkull.EnumOrientation;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.OpenGL;
+import com.arisux.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

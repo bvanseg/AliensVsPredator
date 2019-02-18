@@ -3,8 +3,8 @@ package org.avp.client.gui;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityNetworkRack;
 
-import com.arisux.mdx.lib.client.render.Draw;
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.Draw;
+import com.arisux.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;

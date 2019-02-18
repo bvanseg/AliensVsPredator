@@ -16,9 +16,9 @@ import com.arisux.mdx.lib.client.gui.GuiCustomButton;
 import com.arisux.mdx.lib.client.gui.GuiCustomSlider;
 import com.arisux.mdx.lib.client.gui.IAction;
 import com.arisux.mdx.lib.client.gui.IGuiElement;
-import com.arisux.mdx.lib.client.render.Color;
-import com.arisux.mdx.lib.client.render.Draw;
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.Color;
+import com.arisux.mdx.lib.client.util.Draw;
+import com.arisux.mdx.lib.client.util.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.entity.Entities;
 

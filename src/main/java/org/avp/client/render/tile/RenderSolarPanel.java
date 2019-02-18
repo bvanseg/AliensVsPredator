@@ -3,7 +3,7 @@ package org.avp.client.render.tile;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntitySolarPanel;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

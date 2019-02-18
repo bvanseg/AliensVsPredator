@@ -2,7 +2,7 @@ package org.avp.client.model.entities.living;
 
 import org.avp.entities.living.EntityMarine;
 
-import com.arisux.mdx.lib.client.render.model.Model;
+import com.arisux.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;

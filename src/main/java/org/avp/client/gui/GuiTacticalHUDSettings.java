@@ -11,9 +11,9 @@ import com.arisux.mdx.lib.client.gui.GuiCustomSlider;
 import com.arisux.mdx.lib.client.gui.GuiCustomTextbox;
 import com.arisux.mdx.lib.client.gui.IAction;
 import com.arisux.mdx.lib.client.gui.IGuiElement;
-import com.arisux.mdx.lib.client.render.Draw;
-import com.arisux.mdx.lib.client.render.ScaledResolution;
-import com.arisux.mdx.lib.client.render.Screen;
+import com.arisux.mdx.lib.client.util.Draw;
+import com.arisux.mdx.lib.client.util.ScaledResolution;
+import com.arisux.mdx.lib.client.util.Screen;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.gui.GuiScreen;

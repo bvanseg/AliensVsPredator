@@ -3,9 +3,9 @@ package org.avp.client.render.entities;
 import org.avp.AliensVsPredator;
 import org.avp.entities.EntityAPC;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.wavefront.Part;
-import com.arisux.mdx.lib.client.render.wavefront.TriangulatedWavefrontModel;
+import com.arisux.mdx.lib.client.util.OpenGL;
+import com.arisux.mdx.lib.client.util.models.wavefront.Part;
+import com.arisux.mdx.lib.client.util.models.wavefront.TriangulatedWavefrontModel;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.world.entity.Entities;
 

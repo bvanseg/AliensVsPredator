@@ -5,9 +5,9 @@ import org.avp.URLs;
 import org.avp.client.model.items.ModelAK47;
 import org.lwjgl.input.Mouse;
 
-import com.arisux.mdx.lib.client.render.ItemRenderer;
-import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.Texture;
+import com.arisux.mdx.lib.client.util.ItemRenderer;
+import com.arisux.mdx.lib.client.util.OpenGL;
+import com.arisux.mdx.lib.client.util.Texture;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.util.Remote;
 

@@ -4,9 +4,9 @@ import org.avp.AliensVsPredator;
 import org.avp.block.BlockSkull;
 import org.avp.client.model.tile.skulls.ModelQueenSkull;
 
-import com.arisux.mdx.lib.client.render.OpenGL;
-import com.arisux.mdx.lib.client.render.Texture;
-import com.arisux.mdx.lib.client.render.model.MapModelTexture;
+import com.arisux.mdx.lib.client.util.OpenGL;
+import com.arisux.mdx.lib.client.util.Texture;
+import com.arisux.mdx.lib.client.util.models.MapModelTexture;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelRenderer;

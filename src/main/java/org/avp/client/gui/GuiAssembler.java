@@ -14,8 +14,8 @@ import org.lwjgl.input.Mouse;
 import com.arisux.mdx.lib.client.gui.GuiCustomButton;
 import com.arisux.mdx.lib.client.gui.IAction;
 import com.arisux.mdx.lib.client.gui.IGuiElement;
-import com.arisux.mdx.lib.client.render.Draw;
-import com.arisux.mdx.lib.client.render.OpenGL;
+import com.arisux.mdx.lib.client.util.Draw;
+import com.arisux.mdx.lib.client.util.OpenGL;
 import com.arisux.mdx.lib.game.Game;
 
 import net.minecraft.client.gui.GuiButton;

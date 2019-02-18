@@ -40,7 +40,7 @@ import org.avp.inventory.ContainerTurret;
 import org.avp.packets.client.PacketTurretSync;
 import org.avp.packets.server.PacketTurretTargetUpdate;
 
-import com.arisux.mdx.lib.client.render.Rotation;
+import com.arisux.mdx.lib.client.util.Rotation;
 import com.arisux.mdx.lib.game.Game;
 import com.arisux.mdx.lib.util.MDXMath;
 import com.arisux.mdx.lib.world.Pos;
