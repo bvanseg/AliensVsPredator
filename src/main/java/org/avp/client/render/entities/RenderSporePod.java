@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.entities.EntitySporePod;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

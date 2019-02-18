@@ -2,8 +2,8 @@ package org.avp.client;
 
 import org.lwjgl.input.Keyboard;
 
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.game.IPostInitEvent;
+import com.asx.mdx.core.mods.IPostInitEvent;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

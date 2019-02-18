@@ -2,8 +2,8 @@ package org.avp.world.dimension.varda;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdx.lib.client.util.Texture;
-import com.arisux.mdx.lib.client.world.StormProvider;
+import com.asx.mdx.lib.client.util.Texture;
+import com.asx.mdx.lib.client.world.StormProvider;
 
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;

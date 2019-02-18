@@ -4,7 +4,7 @@ import java.util.Random;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdx.lib.world.block.BlockMaterial;
+import com.asx.mdx.lib.world.block.BlockMaterial;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

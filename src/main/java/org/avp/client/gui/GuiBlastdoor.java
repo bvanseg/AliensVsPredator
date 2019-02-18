@@ -7,13 +7,13 @@ import org.avp.packets.server.PacketBlastdoorCommon;
 import org.avp.packets.server.PacketBlastdoorCommon.PacketMode;
 import org.avp.tile.TileEntityBlastdoor;
 
-import com.arisux.mdx.lib.client.gui.GuiCustomButton;
-import com.arisux.mdx.lib.client.gui.GuiCustomScreen;
-import com.arisux.mdx.lib.client.gui.GuiCustomTextbox;
-import com.arisux.mdx.lib.client.gui.IAction;
-import com.arisux.mdx.lib.client.gui.IGuiElement;
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.client.gui.GuiCustomButton;
+import com.asx.mdx.lib.client.gui.GuiCustomScreen;
+import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
+import com.asx.mdx.lib.client.gui.IAction;
+import com.asx.mdx.lib.client.gui.IGuiElement;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.renderer.GlStateManager;
 

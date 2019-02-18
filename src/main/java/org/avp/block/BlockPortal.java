@@ -2,8 +2,8 @@ package org.avp.block;
 
 import java.util.Random;
 
-import com.arisux.mdx.lib.world.Dimension;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.Dimension;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

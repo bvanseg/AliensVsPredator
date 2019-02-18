@@ -1,6 +1,6 @@
 package org.avp.client.render;
 
-import com.arisux.mdx.lib.util.MDXMath;
+import com.asx.mdx.lib.util.MDXMath;
 
 public enum XenomorphJawState
 {

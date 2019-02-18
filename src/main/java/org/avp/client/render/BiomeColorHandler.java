@@ -7,8 +7,8 @@ import javax.annotation.Nullable;
 import org.avp.AliensVsPredator;
 import org.avp.BlockHandler;
 
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.game.IInitEvent;
+import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

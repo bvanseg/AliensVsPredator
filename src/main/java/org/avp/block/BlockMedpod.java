@@ -3,8 +3,8 @@ package org.avp.block;
 import org.avp.api.machines.IOpenable;
 import org.avp.tile.TileEntityMedpod;
 
-import com.arisux.mdx.lib.world.entity.Entities;
-import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

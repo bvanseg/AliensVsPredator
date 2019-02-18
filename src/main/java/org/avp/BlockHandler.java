@@ -71,8 +71,8 @@ import org.avp.block.skulls.BlockSkullYautja;
 import org.avp.item.ItemBlockSkull;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 
-import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.world.block.BlockMaterial;
+import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.lib.world.block.BlockMaterial;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

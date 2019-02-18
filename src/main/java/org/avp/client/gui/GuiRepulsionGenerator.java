@@ -3,7 +3,7 @@ package org.avp.client.gui;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityRepulsionGenerator;
 
-import com.arisux.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.Draw;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;

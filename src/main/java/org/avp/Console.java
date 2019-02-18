@@ -3,9 +3,9 @@ package org.avp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IPostInitEvent;
-import com.arisux.mdx.lib.game.IPreInitEvent;
+import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.core.mods.IPostInitEvent;
+import com.asx.mdx.core.mods.IPreInitEvent;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

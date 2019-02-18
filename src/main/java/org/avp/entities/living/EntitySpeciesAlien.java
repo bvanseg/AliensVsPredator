@@ -11,9 +11,9 @@ import org.avp.entities.EntityAcidPool;
 import org.avp.world.hives.HiveHandler;
 import org.avp.world.hives.XenomorphHive;
 
-import com.arisux.mdx.lib.world.Worlds;
-import com.arisux.mdx.lib.world.entity.Entities;
-import com.arisux.mdx.lib.world.entity.ItemDrop;
+import com.asx.mdx.lib.world.Worlds;
+import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.ItemDrop;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;

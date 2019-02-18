@@ -5,9 +5,9 @@ import java.util.Random;
 import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 
-import com.arisux.mdx.lib.client.entityfx.EntityFXElectricArc;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

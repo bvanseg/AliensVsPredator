@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import com.arisux.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.Pos;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

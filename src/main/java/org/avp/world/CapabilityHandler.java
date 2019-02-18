@@ -7,7 +7,7 @@ import org.avp.world.capabilities.IOrganism.Provider;
 import org.avp.world.capabilities.ISpecialPlayer;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
-import com.arisux.mdx.lib.game.IPreInitEvent;
+import com.asx.mdx.core.mods.IPreInitEvent;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

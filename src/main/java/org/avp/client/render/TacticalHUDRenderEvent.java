@@ -16,16 +16,16 @@ import org.avp.world.capabilities.IOrganism.Provider;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.gui.GuiCustomButton;
-import com.arisux.mdx.lib.client.gui.IAction;
-import com.arisux.mdx.lib.client.gui.IGuiElement;
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.Screen;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.Pos;
-import com.arisux.mdx.lib.world.entity.Entities;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.client.gui.GuiCustomButton;
+import com.asx.mdx.lib.client.gui.IAction;
+import com.asx.mdx.lib.client.gui.IGuiElement;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.Screen;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiChat;

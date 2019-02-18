@@ -2,9 +2,9 @@ package org.avp;
 
 import java.io.File;
 
-import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.SchematicLoader;
-import com.arisux.mdx.lib.world.storage.Schematic;
+import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.lib.world.SchematicLoader;
+import com.asx.mdx.lib.world.storage.Schematic;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 

@@ -3,9 +3,9 @@ package org.avp.item;
 import org.avp.AliensVsPredator;
 import org.avp.entities.EntitySmartDisc;
 
-import com.arisux.mdx.lib.game.GameSounds;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
-import com.arisux.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.lib.util.GameSounds;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

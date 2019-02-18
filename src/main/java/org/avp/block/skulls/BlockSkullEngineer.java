@@ -4,8 +4,8 @@ import org.avp.AliensVsPredator;
 import org.avp.block.BlockSkull;
 import org.avp.client.model.entities.living.ModelEngineer;
 
-import com.arisux.mdx.lib.client.util.Texture;
-import com.arisux.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.lib.client.util.Texture;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraftforge.fml.relauncher.Side;

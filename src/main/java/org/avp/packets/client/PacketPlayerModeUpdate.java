@@ -3,7 +3,7 @@ package org.avp.packets.client;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.PlayerMode;
 
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.util.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

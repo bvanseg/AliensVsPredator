@@ -3,8 +3,8 @@ package org.avp.item.rackmodules;
 import org.avp.AliensVsPredator;
 import org.avp.item.ItemNetworkRackModule;
 
-import com.arisux.mdx.lib.client.util.models.MapModelTexture;
-import com.arisux.mdx.lib.client.util.models.Model;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.lib.client.util.models.Model;
 
 public class ItemNetworkRackModule7 extends ItemNetworkRackModule
 {

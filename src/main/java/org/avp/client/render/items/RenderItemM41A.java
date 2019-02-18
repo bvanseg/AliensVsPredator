@@ -8,13 +8,13 @@ import org.avp.item.ItemFirearm;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.ItemRenderer;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.Texture;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.util.Remote;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.ItemRenderer;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.Texture;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.util.Networks;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -66,7 +66,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
 
             GlStateManager.disableCull();
             OpenGL.scale(glScale, -glScale, -glScale);
-            new Texture(Remote.downloadResource(String.format(URLs.SKIN_M41A, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
+            new Texture(Networks.downloadResource(String.format(URLs.SKIN_M41A, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
             this.getModel().getModel().render();
 
             if (Game.minecraft().player.getHeldItemMainhand() != null && Game.minecraft().player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
@@ -103,7 +103,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
         OpenGL.translate(0F, -0.65F, 0F);
         OpenGL.rotate(90F, 0.0F, 1.0F, 0.0F);
         GlStateManager.disableCull();
-        new Texture(Remote.downloadResource(String.format(URLs.SKIN_M41A, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
+        new Texture(Networks.downloadResource(String.format(URLs.SKIN_M41A, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
         this.getModel().getModel().render();
     }
 

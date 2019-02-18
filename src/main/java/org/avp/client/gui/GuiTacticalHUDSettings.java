@@ -5,16 +5,16 @@ import java.io.IOException;
 import org.avp.client.render.TacticalHUDRenderEvent;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
-import com.arisux.mdx.lib.client.gui.GuiCustomButton;
-import com.arisux.mdx.lib.client.gui.GuiCustomScreen;
-import com.arisux.mdx.lib.client.gui.GuiCustomSlider;
-import com.arisux.mdx.lib.client.gui.GuiCustomTextbox;
-import com.arisux.mdx.lib.client.gui.IAction;
-import com.arisux.mdx.lib.client.gui.IGuiElement;
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.ScaledResolution;
-import com.arisux.mdx.lib.client.util.Screen;
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.client.gui.GuiCustomButton;
+import com.asx.mdx.lib.client.gui.GuiCustomScreen;
+import com.asx.mdx.lib.client.gui.GuiCustomSlider;
+import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
+import com.asx.mdx.lib.client.gui.IAction;
+import com.asx.mdx.lib.client.gui.IGuiElement;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.ScaledResolution;
+import com.asx.mdx.lib.client.util.Screen;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.gui.GuiScreen;
 

@@ -15,6 +15,9 @@ import org.avp.packets.server.PacketAddTuretTarget;
 import org.avp.packets.server.PacketAssemble;
 import org.avp.packets.server.PacketBlastdoorCommon;
 import org.avp.packets.server.PacketBlastdoorCommon.PacketBlastdoorClient;
+
+import com.asx.mdx.core.mods.IInitEvent;
+
 import org.avp.packets.server.PacketDamageEntity;
 import org.avp.packets.server.PacketFireAPC;
 import org.avp.packets.server.PacketFirearmSync;
@@ -30,8 +33,6 @@ import org.avp.packets.server.PacketSpawnNuke;
 import org.avp.packets.server.PacketTurretTargetUpdate;
 import org.avp.packets.server.PacketWriteToDataDevice;
 import org.avp.packets.server.SpecialPlayerServerSync;
-
-import com.arisux.mdx.lib.game.IInitEvent;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

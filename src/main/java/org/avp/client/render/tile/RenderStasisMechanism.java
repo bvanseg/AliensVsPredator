@@ -5,8 +5,8 @@ import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityStasisMechanism;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 

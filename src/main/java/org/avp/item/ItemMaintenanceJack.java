@@ -2,7 +2,7 @@ package org.avp.item;
 
 import java.util.List;
 
-import com.arisux.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;

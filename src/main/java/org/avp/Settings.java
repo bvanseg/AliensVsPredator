@@ -6,15 +6,15 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.arisux.mdx.MDX;
-import com.arisux.mdx.config.ConfigSetting;
-import com.arisux.mdx.config.ConfigSettingBiomeList;
-import com.arisux.mdx.config.ConfigSettingBoolean;
-import com.arisux.mdx.config.ConfigSettingGraphics;
-import com.arisux.mdx.config.ConfigSettingInteger;
-import com.arisux.mdx.config.GraphicsSetting;
-import com.arisux.mdx.config.IFlexibleConfiguration;
-import com.arisux.mdx.lib.game.IPreInitEvent;
+import com.asx.mdx.MDX;
+import com.asx.mdx.config.ConfigSetting;
+import com.asx.mdx.config.ConfigSettingBiomeList;
+import com.asx.mdx.config.ConfigSettingBoolean;
+import com.asx.mdx.config.ConfigSettingGraphics;
+import com.asx.mdx.config.ConfigSettingInteger;
+import com.asx.mdx.config.GraphicsSetting;
+import com.asx.mdx.config.IFlexibleConfiguration;
+import com.asx.mdx.core.mods.IPreInitEvent;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.config.Configuration;

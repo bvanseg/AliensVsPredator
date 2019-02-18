@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.avp.tile.TileEntityBlastdoor;
 
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;

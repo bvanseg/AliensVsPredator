@@ -5,7 +5,7 @@ import org.avp.client.input.IInputHandler;
 import org.avp.item.ItemFirearm;
 import org.avp.packets.server.PacketReloadFirearm;
 
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.util.Game;
 
 public class InputHandlerFirearm implements IInputHandler
 {

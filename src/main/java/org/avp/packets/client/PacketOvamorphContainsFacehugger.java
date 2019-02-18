@@ -2,7 +2,7 @@ package org.avp.packets.client;
 
 import org.avp.entities.living.EntityOvamorph;
 
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.util.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;

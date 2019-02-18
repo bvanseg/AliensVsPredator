@@ -3,7 +3,7 @@ package org.avp.packets.server;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityPlasma;
 
-import com.arisux.mdx.lib.util.MDXMath;
+import com.asx.mdx.lib.util.MDXMath;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;

@@ -3,7 +3,7 @@ package org.avp.world.dimension.acheron.worldgen.formations;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.arisux.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.Pos;
 
 public class LV426Formation5 extends LV426Formation
 {

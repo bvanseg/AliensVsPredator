@@ -1,7 +1,7 @@
 package org.avp.packets.client;
 
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;

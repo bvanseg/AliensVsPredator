@@ -3,8 +3,8 @@ package org.avp.packets.server;
 import org.avp.AliensVsPredator;
 import org.avp.entities.EntityWristbracer;
 
-import com.arisux.mdx.MDX;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.MDX;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;

@@ -9,9 +9,9 @@ import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.Pos;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

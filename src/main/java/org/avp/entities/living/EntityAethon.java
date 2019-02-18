@@ -5,7 +5,7 @@ import org.avp.api.parasitoidic.IHost;
 import org.avp.entities.EntityLiquidPool;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 
-import com.arisux.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.Pos;
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.EntityCreature;

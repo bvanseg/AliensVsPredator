@@ -7,8 +7,8 @@ import org.avp.api.parasitoidic.IMaturable;
 import org.avp.client.Sounds;
 import org.avp.tile.TileEntityHiveResin;
 
-import com.arisux.mdx.lib.world.Pos;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

@@ -3,9 +3,9 @@ package org.avp.client.render.entities;
 import org.avp.AliensVsPredator;
 import org.avp.entities.EntityLiquidLatexPool;
 
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.entity.Render;

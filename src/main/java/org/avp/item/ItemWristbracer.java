@@ -10,8 +10,8 @@ import org.avp.client.Sounds;
 import org.avp.inventory.ContainerWristbracer;
 import org.avp.packets.server.PacketSpawnNuke;
 
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;

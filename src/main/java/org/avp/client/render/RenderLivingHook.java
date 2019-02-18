@@ -4,12 +4,12 @@ import org.avp.client.render.tile.RenderMedpod;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.entities.EntityMedpod;
 
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.models.Model;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.util.MDXMath;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.util.MDXMath;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderLivingBase;

@@ -6,7 +6,7 @@ import java.util.Iterator;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 import org.avp.tile.TileEntitySupplyCrate;
 
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;

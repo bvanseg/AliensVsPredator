@@ -85,10 +85,10 @@ import org.avp.item.rackmodules.ItemNetworkRackModule6;
 import org.avp.item.rackmodules.ItemNetworkRackModule7;
 import org.avp.item.rackmodules.ItemNetworkRackModule8;
 
-import com.arisux.mdx.lib.game.Renderers;
-import com.arisux.mdx.lib.world.item.HookedItem;
-import com.arisux.mdx.lib.world.item.ItemToolMaterialAxe;
-import com.arisux.mdx.lib.world.item.ItemToolMaterialPickaxe;
+import com.asx.mdx.lib.client.Renderers;
+import com.asx.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.lib.world.item.ItemToolMaterialAxe;
+import com.asx.mdx.lib.world.item.ItemToolMaterialPickaxe;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;

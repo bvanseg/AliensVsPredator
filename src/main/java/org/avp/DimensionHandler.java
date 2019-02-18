@@ -6,11 +6,11 @@ import org.avp.world.dimension.acheron.WorldProviderAcheron;
 import org.avp.world.dimension.varda.BiomeVarda;
 import org.avp.world.dimension.varda.WorldProviderVarda;
 
-import com.arisux.mdx.MDX;
-import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.world.Dimension;
-import com.arisux.mdx.lib.world.Pos;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.MDX;
+import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.lib.world.Dimension;
+import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;

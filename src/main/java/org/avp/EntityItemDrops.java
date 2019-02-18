@@ -1,7 +1,7 @@
 package org.avp;
 
-import com.arisux.mdx.lib.world.entity.ItemDrop;
-import com.arisux.mdx.lib.world.entity.ItemDrop.DropType;
+import com.asx.mdx.lib.world.entity.ItemDrop;
+import com.asx.mdx.lib.world.entity.ItemDrop.DropType;
 
 import net.minecraft.item.ItemStack;
 

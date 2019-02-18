@@ -4,8 +4,8 @@ import java.lang.reflect.Field;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdx.MDX;
-import com.arisux.mdx.lib.client.Sound;
+import com.asx.mdx.MDX;
+import com.asx.mdx.lib.util.Sound;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;

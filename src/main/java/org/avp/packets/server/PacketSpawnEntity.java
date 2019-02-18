@@ -2,7 +2,7 @@ package org.avp.packets.server;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;

@@ -3,8 +3,8 @@ package org.avp.block;
 import org.avp.tile.TileEntityHiveResin;
 import org.avp.world.hives.HiveHandler;
 
-import com.arisux.mdx.lib.world.Pos;
-import com.arisux.mdx.lib.world.Pos.BlockDataStore;
+import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.Pos.BlockDataStore;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

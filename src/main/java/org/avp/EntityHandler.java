@@ -102,7 +102,7 @@ import org.avp.tile.plants.TileEntityTreeFern;
 import org.avp.world.dimension.acheron.BiomeAcheron;
 import org.avp.world.dimension.varda.BiomeVarda;
 
-import com.arisux.mdx.lib.game.IInitEvent;
+import com.asx.mdx.core.mods.IInitEvent;
 
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;

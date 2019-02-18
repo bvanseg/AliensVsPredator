@@ -6,7 +6,7 @@ import org.avp.inventory.ContainerSupplyCrate;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 import org.avp.packets.client.PacketOpenable;
 
-import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;

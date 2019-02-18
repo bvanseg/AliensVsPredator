@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.avp.world.hives.HiveHandler;
 import org.avp.world.hives.XenomorphHive;
 
-import com.arisux.mdx.lib.world.Worlds;
+import com.asx.mdx.lib.world.Worlds;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

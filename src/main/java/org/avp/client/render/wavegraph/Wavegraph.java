@@ -6,9 +6,9 @@ import java.util.Random;
 import org.avp.client.render.wavegraph.DataEntry.DisplayData;
 import org.avp.client.render.wavegraph.DataEntry.Interval;
 
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;

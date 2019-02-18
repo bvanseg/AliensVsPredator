@@ -28,7 +28,7 @@ import org.avp.entities.living.EntityYautjaBerserker;
 import org.avp.entities.living.EntityYautjaWarrior;
 import org.avp.world.capabilities.IOrganism.Organism;
 
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

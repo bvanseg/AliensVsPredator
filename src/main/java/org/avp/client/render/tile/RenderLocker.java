@@ -5,11 +5,11 @@ import org.avp.client.model.tile.ModelLocker;
 import org.avp.tile.TileEntityLocker;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.ItemRenderer;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.game.Renderers;
+import com.asx.mdx.lib.client.Renderers;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.ItemRenderer;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;

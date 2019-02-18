@@ -3,7 +3,7 @@ package org.avp.block;
 import org.avp.item.ItemEntitySummoner;
 import org.avp.tile.TileEntityStasisMechanism;
 
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

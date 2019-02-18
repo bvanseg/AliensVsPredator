@@ -1,6 +1,6 @@
 package org.avp.item;
 
-import com.arisux.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;

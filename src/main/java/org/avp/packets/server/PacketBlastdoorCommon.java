@@ -3,7 +3,7 @@ package org.avp.packets.server;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityBlastdoor;
 
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.util.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.item.ItemStack;

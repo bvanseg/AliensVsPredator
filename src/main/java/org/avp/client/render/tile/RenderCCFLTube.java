@@ -5,7 +5,7 @@ import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityCCFLTube;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;

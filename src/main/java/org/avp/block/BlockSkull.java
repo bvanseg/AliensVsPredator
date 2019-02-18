@@ -5,9 +5,9 @@ import java.util.Random;
 import org.avp.tile.TileEntitySkull;
 import org.avp.tile.TileEntitySkull.EnumOrientation;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.Texture;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.Texture;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

@@ -1,9 +1,9 @@
 package org.avp.item;
 
-import com.arisux.mdx.lib.world.Pos;
-import com.arisux.mdx.lib.world.Worlds;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
-import com.arisux.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.Worlds;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

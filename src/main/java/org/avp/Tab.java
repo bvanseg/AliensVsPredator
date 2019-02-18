@@ -1,6 +1,6 @@
 package org.avp;
 
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;

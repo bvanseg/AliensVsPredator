@@ -6,7 +6,7 @@ import org.avp.item.ItemFirearm;
 import org.avp.item.ItemFirearm.FirearmProfile;
 import org.avp.world.hives.HiveHandler;
 
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;

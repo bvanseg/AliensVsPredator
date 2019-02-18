@@ -6,7 +6,7 @@ import org.avp.client.input.IInputHandler;
 import org.avp.item.ItemWristbracer;
 import org.avp.packets.server.PacketPlasmaDischarge;
 
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.util.Game;
 
 public class InputHandlerPlasmaCannon implements IInputHandler
 {

@@ -3,8 +3,8 @@ package org.avp.world;
 import org.avp.AliensVsPredator;
 import org.avp.item.ItemFirearm;
 
-import com.arisux.mdx.lib.client.util.models.MapModelTexture;
-import com.arisux.mdx.lib.client.util.models.Model;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;

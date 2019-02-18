@@ -7,7 +7,7 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityRepulsionGenerator;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 

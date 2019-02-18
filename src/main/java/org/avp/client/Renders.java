@@ -269,10 +269,10 @@ import org.avp.tile.TileEntityWorkstation;
 import org.avp.tile.plants.TileEntityGroundFern;
 import org.avp.tile.plants.TileEntityTreeFern;
 
-import com.arisux.mdx.lib.client.util.models.MapModelTexture;
-import com.arisux.mdx.lib.game.IInitEvent;
-import com.arisux.mdx.lib.game.IPreInitEvent;
-import com.arisux.mdx.lib.game.Renderers;
+import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.core.mods.IPreInitEvent;
+import com.asx.mdx.lib.client.Renderers;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;

@@ -9,9 +9,9 @@ import org.avp.AliensVsPredator;
 import org.avp.entities.living.EntityMatriarch;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;

@@ -2,8 +2,8 @@ package org.avp.world.worldgen;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdx.lib.world.Pos;
-import com.arisux.mdx.lib.world.Structure;
+import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.Structure;
 
 import net.minecraft.world.WorldServer;
 

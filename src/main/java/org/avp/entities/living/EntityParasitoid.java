@@ -11,7 +11,7 @@ import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.Entities;
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.Entity;

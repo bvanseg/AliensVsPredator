@@ -3,8 +3,8 @@ package org.avp.client.render.items;
 import org.avp.client.model.entities.ModelSupplyChute;
 import org.avp.item.ItemSupplyChute;
 
-import com.arisux.mdx.lib.client.util.ItemRenderer;
-import com.arisux.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.ItemRenderer;
+import com.asx.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;

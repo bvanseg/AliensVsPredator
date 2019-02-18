@@ -5,8 +5,8 @@ import java.util.List;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityFlame;
 
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
-import com.arisux.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;

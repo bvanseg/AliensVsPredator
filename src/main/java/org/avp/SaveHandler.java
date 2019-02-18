@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import org.avp.api.storage.IWorldSaveHandler;
 import org.avp.world.hives.HiveHandler;
 
-import com.arisux.mdx.MDX;
-import com.arisux.mdx.lib.world.storage.NBTStorage;
+import com.asx.mdx.MDX;
+import com.asx.mdx.lib.world.storage.NBTStorage;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;

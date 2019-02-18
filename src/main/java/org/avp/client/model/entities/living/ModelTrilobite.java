@@ -1,15 +1,15 @@
 package org.avp.client.model.entities.living;
 
-import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.bob;
-import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.flap;
-import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.oscillate;
-import static com.arisux.mdx.lib.client.model.animations.AnimationHelper.swing;
+import static com.asx.mdx.lib.client.model.animations.AnimationHelper.bob;
+import static com.asx.mdx.lib.client.model.animations.AnimationHelper.flap;
+import static com.asx.mdx.lib.client.model.animations.AnimationHelper.oscillate;
+import static com.asx.mdx.lib.client.model.animations.AnimationHelper.swing;
 
 import org.avp.entities.living.EntityTrilobite;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.models.Model;
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.lib.util.Game;
 
 public class ModelTrilobite extends Model<EntityTrilobite>
 {

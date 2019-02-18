@@ -8,11 +8,11 @@ import org.avp.client.Sounds;
 import org.avp.packets.server.PacketFirearmSync;
 import org.avp.packets.server.PacketReloadFirearm;
 
-import com.arisux.mdx.lib.client.Sound;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.entity.Entities;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
-import com.arisux.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.util.Sound;
+import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;

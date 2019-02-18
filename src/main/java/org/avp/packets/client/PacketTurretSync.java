@@ -2,9 +2,9 @@ package org.avp.packets.client;
 
 import org.avp.tile.TileEntityTurret;
 
-import com.arisux.mdx.lib.client.util.Rotation;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.storage.NBTStorage;
+import com.asx.mdx.lib.client.util.Rotation;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.storage.NBTStorage;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagList;

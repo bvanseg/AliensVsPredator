@@ -3,7 +3,7 @@ package org.avp.tile;
 import org.avp.entities.EntityMechanism;
 import org.avp.item.ItemEntitySummoner;
 
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

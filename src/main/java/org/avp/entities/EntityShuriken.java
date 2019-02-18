@@ -5,7 +5,7 @@ import java.util.List;
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 
-import com.arisux.mdx.lib.game.GameSounds;
+import com.asx.mdx.lib.util.GameSounds;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

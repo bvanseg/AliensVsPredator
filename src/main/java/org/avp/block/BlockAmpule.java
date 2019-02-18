@@ -2,7 +2,7 @@ package org.avp.block;
 
 import org.avp.tile.TileEntityAmpule;
 
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;

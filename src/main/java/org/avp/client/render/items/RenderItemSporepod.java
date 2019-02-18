@@ -3,10 +3,10 @@ package org.avp.client.render.items;
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.ModelSporePod;
 
-import com.arisux.mdx.lib.client.util.ItemRenderer;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.models.MapModelTexture;
-import com.arisux.mdx.lib.client.util.models.Model;
+import com.asx.mdx.lib.client.util.ItemRenderer;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;

@@ -8,9 +8,9 @@ import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.entities.EntityMedpod;
 import org.avp.entities.living.EntityFacehugger;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.entity.RenderLivingWrapper;
-import com.arisux.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;

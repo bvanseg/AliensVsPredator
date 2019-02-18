@@ -6,8 +6,8 @@ import org.avp.tile.plants.TileEntityGroundFern;
 import org.avp.tile.plants.TileEntityPlant.PlantColor;
 import org.avp.tile.plants.TileEntityPlant.PlantSize;
 
-import com.arisux.mdx.lib.world.Pos;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.ITileEntityProvider;

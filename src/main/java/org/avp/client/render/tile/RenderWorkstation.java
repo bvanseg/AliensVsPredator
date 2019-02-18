@@ -11,9 +11,9 @@ import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityWorkstation;
 import org.lwjgl.opengl.GL12;
 
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.util.SystemInfo;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.system.SystemInfo;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 

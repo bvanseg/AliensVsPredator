@@ -2,9 +2,9 @@ package org.avp.client.model.items;
 
 import org.avp.item.ItemFlamethrower;
 
-import com.arisux.mdx.lib.client.util.models.Model;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;

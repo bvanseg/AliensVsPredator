@@ -2,7 +2,7 @@ package org.avp.tile;
 
 import org.avp.block.BlockSkull;
 
-import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;

@@ -5,9 +5,9 @@ import org.avp.client.model.entities.ModelPlasma;
 import org.avp.client.model.items.ModelWristBlade;
 import org.avp.entities.EntityWristbracer;
 
-import com.arisux.mdx.lib.client.util.Color;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.lib.client.util.Color;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

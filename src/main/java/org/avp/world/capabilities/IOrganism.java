@@ -7,8 +7,8 @@ import org.avp.packets.client.OrganismClientSync;
 import org.avp.packets.server.OrganismServerSync;
 import org.avp.world.Embryo;
 
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

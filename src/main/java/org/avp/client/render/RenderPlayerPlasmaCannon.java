@@ -13,12 +13,12 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.util.glu.Project;
 
-import com.arisux.mdx.MDX;
-import com.arisux.mdx.lib.client.util.Color;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.models.MapModelTexture;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.util.MDXMath;
+import com.asx.mdx.MDX;
+import com.asx.mdx.lib.client.util.Color;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.util.MDXMath;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;

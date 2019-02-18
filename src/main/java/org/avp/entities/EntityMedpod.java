@@ -8,8 +8,8 @@ import org.avp.tile.TileEntityMedpod;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
-import com.arisux.mdx.lib.world.Worlds;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.Worlds;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

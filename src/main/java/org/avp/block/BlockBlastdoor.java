@@ -6,10 +6,10 @@ import org.avp.client.gui.GuiBlastdoor;
 import org.avp.item.ItemMaintenanceJack;
 import org.avp.tile.TileEntityBlastdoor;
 
-import com.arisux.mdx.lib.client.gui.notifications.Notification;
-import com.arisux.mdx.lib.client.gui.notifications.Notifications;
-import com.arisux.mdx.lib.client.gui.notifications.Notification.DynamicNotification;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.client.gui.notifications.Notification;
+import com.asx.mdx.lib.client.gui.notifications.Notifications;
+import com.asx.mdx.lib.client.gui.notifications.Notification.DynamicNotification;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

@@ -8,10 +8,10 @@ import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntitySpeciesAlien;
 import org.avp.tile.TileEntityHiveResin;
 
-import com.arisux.mdx.MDX;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.Pos;
-import com.arisux.mdx.lib.world.Worlds;
+import com.asx.mdx.MDX;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.Worlds;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntitySlime;

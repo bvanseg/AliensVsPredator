@@ -3,7 +3,7 @@ package org.avp.block;
 import org.avp.tile.TileEntityCCFLTube;
 import org.avp.tile.TileEntityElectrical;
 
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

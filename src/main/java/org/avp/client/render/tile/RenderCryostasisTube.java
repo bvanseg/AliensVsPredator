@@ -12,9 +12,9 @@ import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.tile.TileEntityCryostasisTube;
 import org.lwjgl.opengl.GL12;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.models.MapModelTexture;
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;

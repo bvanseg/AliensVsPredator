@@ -19,7 +19,7 @@ import org.avp.tile.TileEntityRepulsionGenerator;
 import org.avp.tile.TileEntitySupplyCrate;
 import org.avp.tile.TileEntityTurret;
 
-import com.arisux.mdx.lib.game.IInitEvent;
+import com.asx.mdx.core.mods.IInitEvent;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

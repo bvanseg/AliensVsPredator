@@ -2,9 +2,9 @@ package org.avp;
 
 import org.avp.world.hives.HiveHandler;
 
-import com.arisux.mdx.web.RequestHandler;
-import com.arisux.mdx.web.WebModule;
-import com.arisux.mdx.web.RequestHandler.StandardRequestHandler;
+import com.asx.mdx.webserver.RequestHandler;
+import com.asx.mdx.webserver.WebModule;
+import com.asx.mdx.webserver.RequestHandler.StandardRequestHandler;
 
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 

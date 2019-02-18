@@ -2,9 +2,9 @@ package org.avp.world.dimension.varda;
 
 import org.avp.AliensVsPredator;
 
-import com.arisux.mdx.lib.client.world.IClimateProvider;
-import com.arisux.mdx.lib.client.world.ICloudProvider;
-import com.arisux.mdx.lib.client.world.IStormProvider;
+import com.asx.mdx.lib.client.world.IClimateProvider;
+import com.asx.mdx.lib.client.world.ICloudProvider;
+import com.asx.mdx.lib.client.world.IStormProvider;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;

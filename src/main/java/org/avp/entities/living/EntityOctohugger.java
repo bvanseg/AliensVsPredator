@@ -9,7 +9,7 @@ import org.avp.world.Embryo;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
-import com.arisux.mdx.lib.world.block.Blocks;
+import com.asx.mdx.lib.world.block.Blocks;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

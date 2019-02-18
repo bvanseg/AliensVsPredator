@@ -5,11 +5,11 @@ import org.avp.URLs;
 import org.avp.client.model.items.ModelAK47;
 import org.lwjgl.input.Mouse;
 
-import com.arisux.mdx.lib.client.util.ItemRenderer;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.Texture;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.util.Remote;
+import com.asx.mdx.lib.client.util.ItemRenderer;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.Texture;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.util.Networks;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -67,7 +67,7 @@ public class RenderItemAK47 extends ItemRenderer<ModelAK47>
         OpenGL.rotate(-45F, 0F, 0F, 1F);
         OpenGL.rotate(90F, 0.0F, 1.0F, 0.0F);
         GlStateManager.disableCull();
-        new Texture(Remote.downloadResource(String.format(URLs.SKIN_AK47, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
+        new Texture(Networks.downloadResource(String.format(URLs.SKIN_AK47, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
         this.getModel().getModel().render();
     }
 }

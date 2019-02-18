@@ -2,7 +2,7 @@ package org.avp.packets.client;
 
 import org.avp.item.ItemFirearm;
 
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.util.Game;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

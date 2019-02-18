@@ -10,8 +10,8 @@ import org.avp.api.machines.IOpenable;
 import org.avp.api.power.IVoltageReceiver;
 import org.avp.packets.client.PacketOpenBlastdoor;
 
-import com.arisux.mdx.lib.world.block.IMultiBlock;
-import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.lib.world.block.IMultiBlock;
+import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

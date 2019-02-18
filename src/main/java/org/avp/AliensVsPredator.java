@@ -10,8 +10,8 @@ import org.avp.client.render.BiomeColorHandler;
 import org.avp.world.CapabilityHandler;
 import org.avp.world.hives.HiveHandler;
 
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.game.IMod;
+import com.asx.mdx.core.mods.IMod;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;

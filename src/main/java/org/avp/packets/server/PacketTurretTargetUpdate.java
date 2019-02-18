@@ -2,9 +2,9 @@ package org.avp.packets.server;
 
 import org.avp.tile.TileEntityTurret;
 
-import com.arisux.mdx.lib.client.util.Rotation;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.Pos;
+import com.asx.mdx.lib.client.util.Rotation;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.Pos;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;

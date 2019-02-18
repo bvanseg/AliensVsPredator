@@ -10,8 +10,8 @@ import org.avp.entities.EntityMedpod;
 import org.avp.entities.living.EntityOctohugger;
 import org.lwjgl.opengl.GL11;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.entity.RenderLivingWrapper;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;

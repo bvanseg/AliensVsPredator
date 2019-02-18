@@ -5,9 +5,9 @@ import org.avp.client.render.VisionModeRenderEvent;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.input.Keyboard;
 
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

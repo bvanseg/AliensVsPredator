@@ -4,7 +4,7 @@ import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 
-import com.arisux.mdx.lib.world.entity.Animation;
+import com.asx.mdx.lib.world.entity.animations.Animation;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

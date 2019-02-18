@@ -12,15 +12,15 @@ import org.avp.tile.TileEntityTurret;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
-import com.arisux.mdx.lib.client.gui.GuiCustomButton;
-import com.arisux.mdx.lib.client.gui.GuiCustomSlider;
-import com.arisux.mdx.lib.client.gui.IAction;
-import com.arisux.mdx.lib.client.gui.IGuiElement;
-import com.arisux.mdx.lib.client.util.Color;
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.client.gui.GuiCustomButton;
+import com.asx.mdx.lib.client.gui.GuiCustomSlider;
+import com.asx.mdx.lib.client.gui.IAction;
+import com.asx.mdx.lib.client.gui.IGuiElement;
+import com.asx.mdx.lib.client.util.Color;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;

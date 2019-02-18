@@ -15,7 +15,7 @@ import org.avp.world.dimension.varda.gen.VardaTree3Generator;
 import org.avp.world.dimension.varda.gen.VardaTreeGenerator;
 import org.avp.world.dimension.varda.gen.WorldGenSustainableOnDirt;
 
-import com.arisux.mdx.lib.world.Worlds;
+import com.asx.mdx.lib.world.Worlds;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;

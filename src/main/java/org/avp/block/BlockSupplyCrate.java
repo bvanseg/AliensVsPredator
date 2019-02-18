@@ -6,8 +6,8 @@ import org.avp.entities.EntitySupplyChute;
 import org.avp.item.ItemSupplyChute.SupplyChuteType;
 import org.avp.tile.TileEntitySupplyCrate;
 
-import com.arisux.mdx.lib.world.entity.Entities;
-import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;

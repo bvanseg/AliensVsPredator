@@ -3,7 +3,7 @@ package org.avp;
 import org.avp.command.CommandPlayerMode;
 import org.avp.command.CommandSettings;
 
-import com.arisux.mdx.lib.game.IInitEvent;
+import com.asx.mdx.core.mods.IInitEvent;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;

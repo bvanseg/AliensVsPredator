@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelYautja;
 import org.avp.entities.living.EntityYautjaBerserker;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 

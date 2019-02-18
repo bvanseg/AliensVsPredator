@@ -18,13 +18,13 @@ import org.avp.world.capabilities.IOrganism.Provider;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.dimension.varda.WorldProviderVarda;
 
-import com.arisux.mdx.lib.client.util.Draw;
-import com.arisux.mdx.lib.client.util.OpenGL;
-import com.arisux.mdx.lib.client.util.ScaledResolution;
-import com.arisux.mdx.lib.client.util.Screen;
-import com.arisux.mdx.lib.game.Game;
-import com.arisux.mdx.lib.world.block.Blocks;
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.ScaledResolution;
+import com.asx.mdx.lib.client.util.Screen;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.world.block.Blocks;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

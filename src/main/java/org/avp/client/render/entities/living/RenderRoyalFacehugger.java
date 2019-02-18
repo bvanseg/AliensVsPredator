@@ -5,7 +5,7 @@ import org.avp.client.model.entities.living.ModelRoyalFacehugger;
 import org.avp.entities.living.EntityFacehugger;
 import org.avp.entities.living.EntityRoyalFacehugger;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 

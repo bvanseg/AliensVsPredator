@@ -7,8 +7,8 @@ import org.avp.AliensVsPredator;
 import org.avp.api.power.IVoltageReceiver;
 import org.avp.inventory.ContainerNetworkRack;
 
-import com.arisux.mdx.lib.world.block.IMultiBlock;
-import com.arisux.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.lib.world.block.IMultiBlock;
+import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

@@ -103,12 +103,12 @@ import org.avp.client.model.tile.skulls.ModelNeomorphSkull;
 import org.avp.client.model.tile.skulls.ModelProtomorphSkull;
 import org.avp.client.model.tile.skulls.ModelQueenSkull;
 
-import com.arisux.mdx.lib.client.model.SpecialModelBiped;
-import com.arisux.mdx.lib.client.model.loaders.WavefrontModelLoader;
-import com.arisux.mdx.lib.client.util.Texture;
-import com.arisux.mdx.lib.client.util.models.MapModelTexture;
-import com.arisux.mdx.lib.client.util.models.Model;
-import com.arisux.mdx.lib.client.util.models.wavefront.TriangulatedWavefrontModel;
+import com.asx.mdx.lib.client.model.SpecialModelBiped;
+import com.asx.mdx.lib.client.model.loaders.WavefrontModelLoader;
+import com.asx.mdx.lib.client.util.Texture;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.lib.client.util.models.wavefront.TriangulatedWavefrontModel;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

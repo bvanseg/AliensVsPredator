@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.packets.server.PacketAddTuretTarget;
 import org.avp.tile.TileEntityTurret;
 
-import com.arisux.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

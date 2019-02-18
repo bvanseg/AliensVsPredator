@@ -3,8 +3,8 @@ package org.avp.client.model.entities.living;
 import org.avp.client.render.XenomorphJawState;
 import org.avp.entities.living.EntityXenomorph;
 
-import com.arisux.mdx.lib.client.util.models.Model;
-import com.arisux.mdx.lib.game.Game;
+import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;

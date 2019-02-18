@@ -4,7 +4,7 @@ import org.avp.AliensVsPredator;
 import org.avp.tile.plants.TileEntityGroundFern;
 import org.lwjgl.opengl.GL12;
 
-import com.arisux.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.OpenGL;
 
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 

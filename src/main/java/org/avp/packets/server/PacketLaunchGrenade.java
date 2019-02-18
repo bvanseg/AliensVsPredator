@@ -3,7 +3,7 @@ package org.avp.packets.server;
 import org.avp.AliensVsPredator;
 import org.avp.entities.EntityGrenade;
 
-import com.arisux.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;

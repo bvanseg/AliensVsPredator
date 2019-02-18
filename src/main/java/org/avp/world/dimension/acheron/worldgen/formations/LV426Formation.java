@@ -7,7 +7,7 @@ import org.avp.AliensVsPredator;
 import org.avp.BlockHandler;
 import org.avp.world.worldgen.TerrainGenVariant;
 
-import com.arisux.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.Pos;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
