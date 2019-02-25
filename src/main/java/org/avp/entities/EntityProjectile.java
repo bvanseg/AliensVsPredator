@@ -14,6 +14,7 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityArrow;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketChangeGameState;
@@ -28,16 +29,16 @@ import net.minecraftforge.fml.common.registry.IThrowableEntity;
 
 public abstract class EntityProjectile extends EntityArrow implements IThrowableEntity
 {
-    protected int xTile;
-    protected int yTile;
-    protected int zTile;
-    protected Block inTile;
+    protected int     xTile;
+    protected int     yTile;
+    protected int     zTile;
+    protected Block   inTile;
     protected boolean inGround;
-    protected int ticksInGround;
-    protected int ticksInAir;
-    public boolean beenInGround;
-    public float additionalDamage;
-    public int knockback;
+    protected int     ticksInGround;
+    protected int     ticksInAir;
+    public boolean    beenInGround;
+    public float      additionalDamage;
+    public int        knockback;
 
     public EntityProjectile(World world)
     {
@@ -127,19 +128,9 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
             prevRotationPitch = rotationPitch = (float) ((Math.atan2(motionY, MathHelper.sqrt(motionX * motionX + motionZ * motionZ)) * 180D) / Math.PI);
         }
 
-        BlockPos pos = new BlockPos(this.xTile, this.yTile, this.zTile);    
+        BlockPos pos = new BlockPos(this.xTile, this.yTile, this.zTile);
         IBlockState blockstate = this.world.getBlockState(pos);
         Block block = blockstate.getBlock();
-
-        if (block != null)
-        {
-            AxisAlignedBB box = blockstate.getBoundingBox(this.world, pos);
-
-            if (box != null && box.contains(new Vec3d(this.posX, this.posY, this.posZ)))
-            {
-                this.inGround = true;
-            }
-        }
 
         if (this.arrowShake > 0)
         {
@@ -148,9 +139,21 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
 
         if (this.inGround)
         {
-            Block blockIn = block;
+            Vec3d vecPos = new Vec3d(this.posX, this.posY, this.posZ);
+            Vec3d vecPosNext = new Vec3d(this.posX + this.motionX, this.posY + this.motionY, this.posZ + this.motionZ);
+            RayTraceResult hit = world.rayTraceBlocks(vecPos, vecPosNext, false, true, false);
 
-            if (blockIn == this.inTile)
+            if (block == Blocks.AIR && hit == null)
+            {
+                this.inGround = false;
+                this.motionX *= this.rand.nextFloat() * 0.2F;
+                this.motionY *= this.rand.nextFloat() * 0.2F;
+                this.motionZ *= this.rand.nextFloat() * 0.2F;
+                this.ticksInGround = 0;
+                this.ticksInAir = 0;
+            }
+
+            if (block == this.inTile)
             {
                 ticksInGround++;
 
@@ -168,6 +171,7 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
                 this.ticksInGround = 0;
                 this.ticksInAir = 0;
             }
+
             return;
         }
 
@@ -183,17 +187,18 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         }
 
         Entity target = null;
-        @SuppressWarnings("unchecked")
-        List<Entity> possibleTargets = world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(motionX, motionY, motionZ).expand(1.0D, 1.0D, 1.0D));
+        List<Entity> targets = world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(motionX, motionY, motionZ).expand(1.0D, 1.0D, 1.0D));
         double distanceTo = 0.0D;
 
-        for (int x = 0; x < possibleTargets.size(); x++)
+        for (int x = 0; x < targets.size(); x++)
         {
-            Entity possibleTarget = possibleTargets.get(x);
+            Entity possibleTarget = targets.get(x);
+
             if (!possibleTarget.canBeCollidedWith() || possibleTarget == shootingEntity && ticksInAir < 5)
             {
                 continue;
             }
+
             float radius = 0.3F;
             AxisAlignedBB targetBounds = possibleTarget.getEntityBoundingBox().expand(radius, radius, radius);
             RayTraceResult intercept = targetBounds.calculateIntercept(vecPos, vecPosNext);
@@ -411,6 +416,11 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
     {
         return false;
     }
+    
+    public boolean isInGround()
+    {
+        return inGround;
+    }
 
     public void setAdditionalDamage(float additionalDamage)
     {
@@ -431,19 +441,22 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
     @Override
     public void onCollideWithPlayer(EntityPlayer entityplayer)
     {
-        if (this.inGround && this.arrowShake <= 0)
+        if (this.inGround)
         {
             if (this.canPickup(entityplayer))
             {
                 if (!this.world.isRemote)
                 {
-                    ItemStack item = new ItemStack(this.getItemstack().getItem(), 1, this.getItemstack().getItemDamage() + 1);
-
-                    if (item != null && entityplayer.inventory.addItemStackToInventory(item))
+                    if (this.getItemstack() != null)
                     {
-                        GameSounds.fxPop.playSound(this, 0.2F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);;
-                        this.onItemPickup(entityplayer);
-                        this.setDead();
+                        ItemStack item = new ItemStack(this.getItemstack().getItem(), 1, this.getItemstack().getItemDamage() + 1);
+
+                        if (item != null && entityplayer.inventory.addItemStackToInventory(item))
+                        {
+                            GameSounds.fxPop.playSound(this, 0.2F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                            this.onItemPickup(entityplayer);
+                            this.setDead();
+                        }
                     }
                 }
             }
