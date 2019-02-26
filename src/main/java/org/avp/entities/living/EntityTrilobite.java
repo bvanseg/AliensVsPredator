@@ -5,6 +5,8 @@ import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 
 import com.asx.mdx.lib.world.entity.animations.Animation;
+import com.asx.mdx.lib.world.entity.animations.IAnimated;
+import com.asx.mdx.lib.world.entity.animations.ai.AIAttack;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -22,9 +24,13 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityTrilobite extends EntitySpeciesAlien implements IMob
+public class EntityTrilobite extends EntitySpeciesAlien implements IMob, IAnimated
 {
-    public static final Animation TOOB_ANIMATION = Animation.create(50);
+    public static final Animation ATTACK_ANIMATION = Animation.create(50);
+
+    public int                    frame;
+    private int                   animationTick;
+    private Animation             animation        = NO_ANIMATION;
     
     public EntityTrilobite(World world)
     {
@@ -34,6 +40,7 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
         this.experienceValue = 32;
 
         this.tasks.addTask(0, new EntityAISwimming(this));
+        this.tasks.addTask(1, new AIAttack<EntityTrilobite>(this, ATTACK_ANIMATION, null, null, 2 /** knockback **/, 4.5F /** range **/, 1.0F /** damageMultiplier **/, 3 /** damageFrame **/));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
         this.tasks.addTask(8, new EntityAIWander(this, 0.800000011920929D));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
@@ -56,6 +63,18 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
     public void onUpdate()
     {
         super.onUpdate();
+
+        frame++;
+        
+        if (getActiveAnimation() != NO_ANIMATION)
+        {
+            animationTick++;
+            
+            if (world.isRemote && animationTick >= animation.getDuration())
+            {
+                setActiveAnimation(NO_ANIMATION);
+            }
+        }
         
         // int s = 2;
         // long ms = this.world.getWorldTime() % (80 * s);
@@ -154,7 +173,49 @@ public class EntityTrilobite extends EntitySpeciesAlien implements IMob
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
-        
         return super.attackEntityFrom(source, amount);
+    }
+    
+    /** Animation Dependent **/
+
+    @Override
+    public int getAnimationTick()
+    {
+        return this.animationTick;
+    }
+
+    @Override
+    public void setAnimationTick(int tick)
+    {
+        this.animationTick = tick;
+    }
+
+    @Override
+    public Animation getActiveAnimation()
+    {
+        return this.animation;
+    }
+
+    @Override
+    public void setActiveAnimation(Animation animation)
+    {
+        if (animation == NO_ANIMATION)
+        {
+            onAnimationFinish(this.animation);
+        }
+        
+        this.animation = animation;
+        setAnimationTick(0);
+    }
+
+    @Override
+    public Animation[] getAnimations()
+    {
+        return new Animation[] { ATTACK_ANIMATION };
+    }
+
+    protected void onAnimationFinish(Animation animation)
+    {
+        ;
     }
 }
