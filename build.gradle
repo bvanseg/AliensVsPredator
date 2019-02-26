@@ -44,7 +44,7 @@ def version_micro=0
 def version_minecraft="1.12.2"
 def version_forge="14.23.4.2705"
 def version_mappings="stable_39"
-def mdxversion="3.0.0.8"
+def mdxversion="3.0.0.10"
 def curseforge_id="221641"
 def curseforge_release_type="release"
 def curseforge_api_key=project.ext.properties.curseforge_api_key == null ? "00000-00000-00000-00000-00000" : project.ext.properties.curseforge_api_key
@@ -76,7 +76,8 @@ println "Minecraft Development Library X ${mdxversion}"
 
 dependencies {
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
-    compile "com.arisux:mdxlib:${mdxversion}:deobf"
+    compile "com.asx:mdxlib:${mdxversion}:deobf"
+    compile fileTree(dir: 'lib', includes: ['*.jar'])
 }
 
 jar {
