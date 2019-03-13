@@ -2,12 +2,14 @@ package org.avp.world;
 
 import org.avp.Settings.ClientSettings;
 import org.avp.entities.living.EntitySpeciesYautja;
+import org.avp.entities.living.EntityTrilobite;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
 import com.asx.mdx.lib.client.entityfx.EntityBloodFX;
 import com.asx.mdx.lib.util.Game;
 
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
@@ -21,6 +23,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -31,13 +34,52 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityImpregnationHandler
 {
-    public static final EntityImpregnationHandler instance = new EntityImpregnationHandler();
+    public static final EntityImpregnationHandler instance          = new EntityImpregnationHandler();
+
+    private static float                          rotationYawLock   = 0F;
+    private static float                          rotationPitchLock = 0F;
+    private static boolean                        rotationLocked    = false;
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void clientTick(TickEvent.ClientTickEvent event)
     {
         this.tick(Game.minecraft().world);
+    }
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void handlePlayerInput(InputUpdateEvent event)
+    {
+        if (Game.minecraft().player != null && Game.minecraft().player.getPassengers() != null && Game.minecraft().player.getPassengers().size() >= 1 && Game.minecraft().player.getPassengers().get(0) instanceof EntityTrilobite)
+        {
+            EntityTrilobite trilobite = (EntityTrilobite) Game.minecraft().player.getPassengers().get(0);
+
+            if (!rotationLocked)
+            {
+                rotationYawLock = Game.minecraft().player.rotationYaw;
+                rotationPitchLock = Game.minecraft().player.rotationPitch;
+                Game.minecraft().player.moveRelative(0F, 0F, 2F, 1.0F);
+                rotationLocked = true;
+            }
+
+
+            trilobite.rotationYawHead = rotationYawLock;
+            trilobite.rotationYaw = rotationYawLock;
+            trilobite.prevRotationYawHead = rotationYawLock;
+            trilobite.prevRotationYaw = rotationYawLock;
+            Game.minecraft().player.rotationPitch = -10F;
+            Game.minecraft().player.rotationYaw = rotationYawLock;
+            Game.minecraft().player.rotationYawHead = rotationYawLock;
+            Game.minecraft().player.moveStrafing = 0F;
+            event.getMovementInput().jump = false;
+            event.getMovementInput().moveForward = event.getMovementInput().moveForward - event.getMovementInput().moveForward;
+            event.getMovementInput().moveStrafe = event.getMovementInput().moveStrafe - event.getMovementInput().moveStrafe;
+        }
+        else
+        {
+            rotationLocked = false;
+        }
     }
 
     @SubscribeEvent
@@ -125,7 +167,7 @@ public class EntityImpregnationHandler
                                 if (world.isRemote && age >= timeBleed)
                                 {
                                     this.bleed(host, 0.25F);
-                                    
+
                                     if (host.getRNG().nextInt(100) == 0)
                                     {
                                         for (int i = 32; i > 0; i--)
@@ -182,31 +224,31 @@ public class EntityImpregnationHandler
             particleColor = 0x75974B;
             glow = false;
         }
-        
+
         if (host instanceof EntityGhast)
         {
             particleColor = 0xF0F0F0;
             glow = false;
         }
-        
+
         if (host instanceof EntityMooshroom)
         {
             particleColor = 0xCD8C6F;
             glow = false;
         }
-        
+
         if (host instanceof EntityEnderman)
         {
             particleColor = 0xCC00FA;
             glow = true;
         }
-        
+
         if (host instanceof EntityDragon)
         {
             particleColor = 0xA831FF;
             glow = true;
         }
-        
+
         Game.minecraft().effectRenderer.addEffect(new EntityBloodFX(host.world, pX, pY, pZ, particleColor, glow));
     }
 
