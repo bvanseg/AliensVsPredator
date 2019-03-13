@@ -14,6 +14,8 @@ import org.avp.world.hives.XenomorphHive;
 import com.asx.mdx.lib.world.Worlds;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.ItemDrop;
+import com.asx.mdx.lib.world.entity.animations.Animation;
+import com.asx.mdx.lib.world.entity.animations.IAnimated;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
@@ -28,13 +30,19 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoyalOrganism
+public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoyalOrganism, IAnimated
 {
-    private static final DataParameter<Integer> JELLY_LEVEL = EntityDataManager.createKey(EntitySpeciesAlien.class, DataSerializers.VARINT);
-    protected XenomorphHive hive;
-    private UUID            signature;
-    protected boolean       jellyLimitOverride;
-    protected boolean 		isDependant = false;
+    private static final DataParameter<Integer> JELLY_LEVEL       = EntityDataManager.createKey(EntitySpeciesAlien.class, DataSerializers.VARINT);
+    protected XenomorphHive                     hive;
+    private UUID                                signature;
+    protected boolean                           jellyLimitOverride;
+    protected boolean                           isDependant       = false;
+
+    /** Animations **/
+    public int                                  frame;
+    private int                                 animationTick;
+    protected Animation                         animation         = NO_ANIMATION;
+    protected boolean                           isAnimationPaused = false;
 
     public EntitySpeciesAlien(World world)
     {
@@ -108,8 +116,9 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
             }
 
             ItemDrop dynamicJelly = new ItemDrop(100, new ItemStack(AliensVsPredator.items().itemRoyalJelly, adjustedLevel));
-            if(this.isDependant) {
-            	dynamicJelly.tryDrop(this);
+            if (this.isDependant)
+            {
+                dynamicJelly.tryDrop(this);
             }
         }
     }
@@ -190,10 +199,29 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
         entityItem.setDead();
     }
 
+    protected void updateAnimations()
+    {
+        frame++;
+
+        if (getActiveAnimation() != NO_ANIMATION)
+        {
+            if (!this.isAnimationPaused())
+            {
+                animationTick++;
+            }
+
+            if (animationTick >= animation.getDuration())
+            {
+                onAnimationFinish(animation);
+            }
+        }
+    }
+
     @Override
     public void onUpdate()
     {
         super.onUpdate();
+        this.updateAnimations();
 
         if (this.canProduceJelly())
         {
@@ -239,7 +267,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
         {
             if (this.world.getWorldTime() % 20 == 0)
             {
-                //this.setJellyLevel(this.getJellyLevel() + 20);
+                // this.setJellyLevel(this.getJellyLevel() + 20);
             }
         }
     }
@@ -292,10 +320,70 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     {
         return 0;
     }
-    
+
     @Override
     protected void despawnEntity()
     {
         ;
+    }
+
+    /** Animation Dependent **/
+
+    @Override
+    public int getAnimationTick()
+    {
+        return this.animationTick;
+    }
+
+    @Override
+    public void setAnimationTick(int tick)
+    {
+        this.animationTick = tick;
+    }
+
+    @Override
+    public Animation getActiveAnimation()
+    {
+        return this.animation;
+    }
+
+    @Override
+    public void setActiveAnimation(Animation animation)
+    {
+        this.animation = animation;
+        setAnimationTick(0);
+    }
+
+    @Override
+    public Animation[] getAnimations()
+    {
+        return new Animation[] {};
+    }
+
+    @Override
+    public boolean isAnimationPaused()
+    {
+        return this.isAnimationPaused;
+    }
+    
+    @Override
+    public void pauseAnimation()
+    {
+        this.isAnimationPaused = true;
+    }
+    
+    @Override
+    public void playAnimation()
+    {
+        this.isAnimationPaused = false;
+    }
+
+    protected void onAnimationFinish(Animation animation)
+    {
+        /** If the set animation duration is 0, do not expire. **/
+        if (animation.getDuration() > 0)
+        {
+            setActiveAnimation(NO_ANIMATION);
+        }
     }
 }
