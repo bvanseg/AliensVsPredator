@@ -16,7 +16,7 @@ public class RenderSkull extends TileEntitySpecialRenderer<TileEntitySkull>
     @Override
     public void render(TileEntitySkull skull, double posX, double posY, double posZ, float renderPartialTicks, int destroyStage, float alpha)
     {
-        if (skull != null)
+        if (skull != null && skull.getBlockType() instanceof BlockSkull)
         {
             BlockSkull block = (BlockSkull) skull.getBlockType();
 
