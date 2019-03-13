@@ -226,7 +226,6 @@ public class EntityTrilobite extends EntitySpecies223ODe implements IParasitoid,
                 EntityLiving living = (EntityLiving) this.getRidingEntity();
 
                 EntityMoveHelper newMoveHelper = new EntityMoveHelper(living) {
-                    @Override
                     public void onUpdateMoveHelper()
                     {
                         ;
@@ -235,7 +234,6 @@ public class EntityTrilobite extends EntitySpecies223ODe implements IParasitoid,
                 MDX.access().setMoveHelper(living, newMoveHelper);
 
                 EntityLookHelper newLookHelper = new EntityLookHelper(living) {
-                    @Override
                     public float updateRotation(float x, float y, float z)
                     {
                         return 0F;
