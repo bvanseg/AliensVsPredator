@@ -57,7 +57,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         this.tasks.addTask(1, new EntityAICustomAttackOnCollide(this, 0.55D, true));
         this.tasks.addTask(2, new EntityAIWander(this, 0.55D));
         this.targetTasks.addTask(0, new EntityAILeapAtTarget(this, 0.8F));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getEntitySelector()));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getImpregnationEntitiySelector()));
     }
 
     @Override
@@ -169,7 +169,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
             {
                 for (EntityLivingBase entity : new ArrayList<EntityLivingBase>(entities))
                 {
-                    if (!parasiteSelector.apply(entity) || entity instanceof EntityParasitoid)
+                    if (!impregnationSelector.apply(entity) || entity instanceof EntityParasitoid)
                     {
                         entities.remove(entity);
                     }

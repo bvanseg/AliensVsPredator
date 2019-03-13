@@ -123,7 +123,7 @@ public class EntityOvamorph extends EntitySpeciesAlien implements IMob
 
                 for (EntityLivingBase living : new ArrayList<EntityLivingBase>(potentialHosts))
                 {
-                    if (!EntityParasitoid.parasiteSelector.apply(living))
+                    if (!EntityParasitoid.impregnationSelector.apply(living))
                     {
                         potentialHosts.remove(living);
                     }
