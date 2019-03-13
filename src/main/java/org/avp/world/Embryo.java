@@ -9,6 +9,8 @@ import org.avp.entities.living.EntityBelugaburster;
 import org.avp.entities.living.EntityBelugamorph;
 import org.avp.entities.living.EntityBoiler;
 import org.avp.entities.living.EntityChestburster;
+import org.avp.entities.living.EntityDeacon;
+import org.avp.entities.living.EntityDeaconAdult;
 import org.avp.entities.living.EntityDracoburster;
 import org.avp.entities.living.EntityDracomorph;
 import org.avp.entities.living.EntityDrone;
@@ -35,6 +37,9 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityCreeper;
+import net.minecraft.entity.monster.EntityElderGuardian;
+import net.minecraft.entity.monster.EntityGuardian;
+import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityCow;
@@ -54,6 +59,7 @@ public class Embryo implements Cloneable
     public static final Embryo            STANDARD        = new Embryo(EntityChestburster.class, EntityDrone.class, EntityLiving.class).register();
     public static final Embryo            QUEEN           = new Embryo(EntityQueenChestburster.class, EntityMatriarch.class, EntityLiving.class).setGestationPeriod(10 * 60 * 20).register();
     public static final Embryo            BELUGA          = new Embryo(EntityBelugaburster.class, EntityBelugamorph.class, EntityLiving.class).register();
+    public static final Embryo            DEACON          = new Embryo(EntityDeacon.class, EntityDeaconAdult.class, EntityLiving.class).register();
 
     static
     {
@@ -63,9 +69,9 @@ public class Embryo implements Cloneable
         new Embryo(EntityChestburster.class, EntityMyceliomorph.class, EntityMooshroom.class).register();
         new Embryo(EntityChestburster.class, EntityPantheramorph.class, EntityOcelot.class).register();
         new Embryo(EntityChestburster.class, EntityBatXeno.class, EntityBat.class).register();
-        new Embryo(EntityChestburster.class, EntityAqua.class, EntitySquid.class).register();
+        new Embryo(EntityChestburster.class, EntityAqua.class, EntitySquid.class, EntityGuardian.class, EntityElderGuardian.class).register();
         new Embryo(EntityPredalienChestburster.class, EntityPredalien.class, EntityYautjaWarrior.class, EntityYautjaBerserker.class).register();
-        new Embryo(EntityRunnerChestburster.class, EntityRunnerDrone.class, EntityCow.class, EntityHorse.class, EntityWolf.class).register();
+        new Embryo(EntityRunnerChestburster.class, EntityRunnerDrone.class, EntityCow.class, EntityHorse.class, EntityWolf.class, EntityPolarBear.class).register();
         new Embryo(EntityChestburster.class, EntityUltramorph.class, EntityEngineer.class, EntitySpaceJockey.class).register();
     }
 
