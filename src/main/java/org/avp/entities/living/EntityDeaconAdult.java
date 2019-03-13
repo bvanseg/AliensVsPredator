@@ -1,15 +1,25 @@
 package org.avp.entities.living;
 
 import org.avp.client.Sounds;
+import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityDeaconAdult extends EntityXenomorph
+public class EntityDeaconAdult extends EntitySpecies223ODe
 {
     public EntityDeaconAdult(World world)
     {
@@ -18,13 +28,16 @@ public class EntityDeaconAdult extends EntityXenomorph
         this.jumpMovementFactor = 0.02F;
         this.experienceValue = 100;
         this.setSize(0.8F, 3.2F);
-        this.ableToClimb = false;
         this.isDependant = false;
-        
-        
         this.tasks.addTask(0, new EntityAISwimming(this));
-        
-        this.addStandardXenomorphAISet();
+        this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
+        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityCreature.class, 1.0D, false));
+        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+        this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
+        this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.6F));
+        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityCreature>(this, EntityCreature.class, 0, false, false, EntitySelectorXenomorph.instance));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, false, false, EntitySelectorXenomorph.instance));
     }
 
     @Override
