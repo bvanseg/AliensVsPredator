@@ -13,6 +13,7 @@ import org.avp.packets.client.SpecialPlayerClientSync;
 import org.avp.packets.server.OrganismServerSync;
 import org.avp.packets.server.PacketAddTuretTarget;
 import org.avp.packets.server.PacketAssemble;
+import org.avp.packets.server.PacketAttachParasiteToEntity;
 import org.avp.packets.server.PacketBlastdoorCommon;
 import org.avp.packets.server.PacketBlastdoorCommon.PacketBlastdoorClient;
 
@@ -54,6 +55,7 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
+        /** Send to the server **/
         this.registerMessage(Side.SERVER, PacketAssemble.class);
         this.registerMessage(Side.SERVER, PacketOpenContainer.class);
         this.registerMessage(Side.SERVER, PacketReloadFirearm.class);
@@ -71,6 +73,8 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.SERVER, OrganismServerSync.class);
         this.registerMessage(Side.SERVER, SpecialPlayerServerSync.class);
         this.registerMessage(Side.SERVER, PacketBlastdoorCommon.class);
+        
+        /** Send to the client **/
         this.registerMessage(Side.CLIENT, PacketTurretTargetUpdate.class);
         this.registerMessage(Side.CLIENT, PacketOvamorphContainsFacehugger.class);
         this.registerMessage(Side.CLIENT, PacketAmmoUpdate.class);
@@ -84,6 +88,7 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.CLIENT, PacketSyncRF.class);
         this.registerMessage(Side.CLIENT, PacketOpenGui.class);
         this.registerMessage(Side.CLIENT, PacketBlastdoorClient.class);
+        this.registerMessage(Side.CLIENT, PacketAttachParasiteToEntity.class);
     }
 
     /**
