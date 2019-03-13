@@ -12,6 +12,7 @@ public class DamageSources extends DamageSource
     public static DamageSource acid = (new DamageSource("acid")).setDamageBypassesArmor();
     public static DamageSource acidProjectile = (new DamageSource("acidshot")).setDamageBypassesArmor().setProjectile();
     public static DamageSource chestburster = (new DamageSource("chestburster")).setDamageIsAbsolute().setDamageBypassesArmor();
+    public static DamageSource deaconBurster = (new DamageSource("deaconBurster")).setDamageIsAbsolute().setDamageBypassesArmor();
     public static DamageSource vardaAtmosphere = new DamageSource("atmosphere.varda").setDamageBypassesArmor();
     public static DamageSource bullet = (new DamageSource("bullet")).setProjectile();
     public static DamageSource smartdisc = (new DamageSource("smartdisc")).setProjectile();
@@ -66,6 +67,11 @@ public class DamageSources extends DamageSource
     public static DamageSource causeChestbursterDamage(Entity sourceEntity, Entity entity)
     {
         return (new EntityDamageSourceIndirect(chestburster.getDamageType(), sourceEntity, entity)).setDamageIsAbsolute().setDamageBypassesArmor();
+    }
+
+    public static DamageSource causeDeaconBursterDamage(Entity sourceEntity, Entity entity)
+    {
+        return (new EntityDamageSourceIndirect(deaconBurster.getDamageType(), sourceEntity, entity)).setDamageIsAbsolute().setDamageBypassesArmor();
     }
 
     public static DamageSource causeAcidicProjectileDamage(Entity sourceEntity, Entity entity)
