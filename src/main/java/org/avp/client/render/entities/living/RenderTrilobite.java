@@ -20,8 +20,8 @@ public class RenderTrilobite extends RenderLivingWrapper<EntityTrilobite, ModelT
     protected void preRenderCallback(EntityTrilobite trilobite, float partialTicks)
     {
         super.preRenderCallback(trilobite, shadowSize);
-        float scale = 1.7F;
+        float scale = 2.75F;
         OpenGL.scale(scale, scale, scale);
-        OpenGL.translate(-0.2F, 0F, 0F);
+        OpenGL.translate(0F, 0F, 0F);
     }
 }
