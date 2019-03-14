@@ -10,7 +10,6 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
 
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
 
@@ -857,16 +856,6 @@ public class ModelTrilobite extends Model<EntityTrilobite>
 
             if (this.isRiding)
             {
-                if (trilobite.getRidingEntity() != null)
-                {
-                    EntityLivingBase riding = (EntityLivingBase) trilobite.getRidingEntity();
-
-                    if (riding instanceof EntityPlayerSP)
-                    {
-                        // OpenGL.rotate(32F, 0, 1, 0);
-                    }
-                }
-
                 OpenGL.rotate(180F, 0, 1, 0);
                 OpenGL.translate(0F, 0F, 0.25F);
 

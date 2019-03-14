@@ -16,7 +16,6 @@ import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
 import com.asx.mdx.MDX;
-import com.asx.mdx.core.network.server.PacketAnimationPause;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.animations.Animation;
 import com.asx.mdx.lib.world.entity.animations.AnimationHandler;
@@ -49,6 +48,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
@@ -124,7 +124,7 @@ public class EntityTrilobite extends EntitySpecies223ODe implements IParasitoid,
     public EntityTrilobite(World world)
     {
         super(world);
-        this.setSize(2.5F, 1.98F);
+        this.setSize(3F, 1.98F);
         this.experienceValue = 32;
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
@@ -189,11 +189,10 @@ public class EntityTrilobite extends EntitySpecies223ODe implements IParasitoid,
 
         if (this.collidedHorizontally)
         {
-            // this.motionY += 0.25F;
+             this.motionY += 0.25F;
         }
 
-        this.fallDistance = 0F;
-
+        this.jumpMovementFactor = 1.0F;
         if (this.world.getWorldTime() % 20 == 0)
         {
             if (isFertile())
@@ -225,6 +224,16 @@ public class EntityTrilobite extends EntitySpecies223ODe implements IParasitoid,
             {
                 EntityLiving living = (EntityLiving) this.getRidingEntity();
 
+                living.rotationYawHead = 0;
+                living.rotationYaw = 0;
+                living.prevRotationYawHead = 0;
+                living.prevRotationYaw = 0;
+
+                this.rotationYawHead = 0;
+                this.rotationYaw = 0;
+                this.prevRotationYawHead = 0;
+                this.prevRotationYaw = 0;
+
                 EntityMoveHelper newMoveHelper = new EntityMoveHelper(living) {
                     public void onUpdateMoveHelper()
                     {
@@ -232,19 +241,24 @@ public class EntityTrilobite extends EntitySpecies223ODe implements IParasitoid,
                     }
                 };
                 MDX.access().setMoveHelper(living, newMoveHelper);
+                MDX.access().setMoveHelper(this, newMoveHelper);
 
                 EntityLookHelper newLookHelper = new EntityLookHelper(living) {
+                    public void setLookPosition(double x, double y, double z, float deltaYaw, float deltaPitch)
+                    {
+                        ;
+                    }
+                    public void setLookPositionWithEntity(Entity entityIn, float deltaYaw, float deltaPitch)
+                    {
+                        ;
+                    }
                     public float updateRotation(float x, float y, float z)
                     {
                         return 0F;
                     }
                 };
                 MDX.access().setLookHelper(living, newLookHelper);
-
-                this.rotationYawHead = living.rotationYawHead;
-                this.rotationYaw = living.rotationYaw;
-                this.prevRotationYawHead = living.prevRotationYawHead;
-                this.prevRotationYaw = living.prevRotationYaw;
+                MDX.access().setLookHelper(this, newLookHelper);
             }
         }
 
@@ -265,35 +279,27 @@ public class EntityTrilobite extends EntitySpecies223ODe implements IParasitoid,
                 this.detachFromHost();
             }
         }
-
+        
         if (this.getAttackTarget() != null)
         {
             if (this.getActiveAnimation() == ANIMATION_HUG_WALL)
             {
-                if (this.getAnimationTick() > ANIMATION_HUG_WALL.getDuration() / 2)
-                {
-//                    if (this.world.getWorldTime() % 10 == 0)
-//                    AliensVsPredator.network().sendToServer(new PacketAnimationPause(this.getEntityId(), true));
-                }
-                // this.playAnimation();
-                // System.out.println(this.getAnimationTick());
-                // System.out.println(this.world.isRemote);
-
                 Entity entityIn = this.getAttackTarget();
                 float angle = (float) (MathHelper.atan2(entityIn.posZ - this.posZ, entityIn.posX - this.posX) * (180D / Math.PI)) - 90.0F;
                 angle = MathHelper.floor((angle / 90) + 0.5) * 90F;
                 this.rotationYaw = angle;
-                this.moveRelative(0F, 0F, 0.03F, 0.1F);
             }
-
-            if ((this.collidedHorizontally) && this.getActiveAnimation() == NO_ANIMATION)
+            
+            double distanceX = this.prevPosX - this.posX;
+            double distanceZ = this.prevPosZ - this.posZ;
+            
+            double motion = distanceX * distanceZ;
+            
+            if ((this.collidedHorizontally) && this.getActiveAnimation() == NO_ANIMATION && Math.abs(motion) < 0.3D && Math.abs(motion) > 0.0D)
             {
                 AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_HUG_WALL);
             }
         }
-        
-        if (this.getRidingEntity() != null)
-            this.getRidingEntity().setDead();
         
         if (this.getRidingEntity() == null && this.getActiveAnimation() == IMPREGNATION_ANIMATION)
         {
@@ -362,7 +368,7 @@ public class EntityTrilobite extends EntitySpecies223ODe implements IParasitoid,
     @Override
     public boolean isOnLadder()
     {
-        return false;
+        return this.motionY > 1.0099999997764826D;
     }
 
     public boolean isClimbing()
