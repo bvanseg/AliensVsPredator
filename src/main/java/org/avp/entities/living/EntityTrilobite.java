@@ -291,6 +291,14 @@ public class EntityTrilobite extends EntitySpecies223ODe implements IParasitoid,
                 AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_HUG_WALL);
             }
         }
+        
+        if (this.getRidingEntity() != null)
+            this.getRidingEntity().setDead();
+        
+        if (this.getRidingEntity() == null && this.getActiveAnimation() == IMPREGNATION_ANIMATION)
+        {
+            this.setActiveAnimation(NO_ANIMATION);
+        }
     }
 
     @Override
