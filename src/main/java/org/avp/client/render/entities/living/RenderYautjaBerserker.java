@@ -4,8 +4,6 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelYautja;
 import org.avp.entities.living.EntityYautjaBerserker;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderYautjaBerserker extends RenderYautja<EntityYautjaBerserker, ModelYautja>
@@ -18,6 +16,6 @@ public class RenderYautjaBerserker extends RenderYautja<EntityYautjaBerserker, M
     @Override
     protected void preRenderCallback(EntityYautjaBerserker entityliving, float renderPartialTicks)
     {
-        OpenGL.scale(0.85F, 0.85F, 0.85F);
+        ;
     }
 }
