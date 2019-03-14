@@ -38,9 +38,6 @@ repositories {
     }
 }
 
-def version_major=6
-def version_minor=0
-def version_micro=0
 def version_minecraft="1.12.2"
 def version_forge="14.23.4.2705"
 def version_mappings="stable_39"
@@ -51,7 +48,7 @@ def curseforge_api_key=project.ext.properties.curseforge_api_key == null ? "0000
 def mavenUsername=project.ext.properties.mavenUsername == null ? "user" : project.ext.properties.mavenUsername
 def mavenPassword=project.ext.properties.mavenPassword == null ? "none" : project.ext.properties.mavenPassword
 
-version = "${version_major}.${version_minor}.${version_micro}.${System.env.BUILD_NUMBER}"
+version = "${System.env.PROJECT_VERSION}"
 group = "org.avp"
 archivesBaseName = "aliensvspredator"
 
@@ -134,9 +131,6 @@ idea {
     module {
         inheritOutputDirs = true 
     }
-}
-task('setEnvironmentVariables', type:Exec) {
-    environment "PROJECT_VERSION", "${version}"
 }
 task("publishToMaven", dependsOn:"build") {
     description = "Uploads the artifacts generated during the build process to the aliensvspredator maven repository"
