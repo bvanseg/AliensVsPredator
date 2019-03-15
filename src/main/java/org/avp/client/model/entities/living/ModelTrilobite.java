@@ -967,28 +967,6 @@ public class ModelTrilobite extends Model<EntityTrilobite>
         swing(tail3, 1F * speed, -0.7F * mult, false, -0.5F, 0F, sp - 15, spp);
         swing(tail4, 1F * speed, -0.8F * mult, false, -0.5F, 0F, sp - 15, spp);
         swing(tail5, 1F * speed, -0.5F * mult, false, -0.5F, 0F, sp - 15, spp);
-
-        // if (trilobite.motionY > 0.1F)
-        // {
-        // rFrontTenticle1.rotateAngleZ = 0.6F;
-        // rMiddleTenticle1.rotateAngleZ = 0.6F;
-        // rBackTenticle1.rotateAngleZ = 0.6F;
-        // lFrontTenticle1.rotateAngleZ = -0.6F;
-        // lMiddleTenticle1.rotateAngleZ = -0.6F;
-        // lBackTenticle1.rotateAngleZ = -0.6F;
-        // tail.rotateAngleX = 0.6F;
-        // }
-        //
-        // if (trilobite.motionY < -0.1F)
-        // {
-        // rFrontTenticle1.rotateAngleZ = 0.6F;
-        // rMiddleTenticle1.rotateAngleZ = 0.6F;
-        // rBackTenticle1.rotateAngleZ = 0.6F;
-        // lFrontTenticle1.rotateAngleZ = -0.6F;
-        // lMiddleTenticle1.rotateAngleZ = -0.6F;
-        // lBackTenticle1.rotateAngleZ = -0.6F;
-        // tail.rotateAngleX = 0.6F;
-        // }
     }
 
     public void standUp(EntityTrilobite trilobite)
@@ -1313,91 +1291,6 @@ public class ModelTrilobite extends Model<EntityTrilobite>
         animator.rotateTo(rBackPetal, 33.0F, 24.0F, 120.0F);
         animator.rotateTo(tube03, 7.83F, 0.0F, 0.0F);
         animator.rotateTo(smallToobBase, -85.0F, 0.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube01, 0.0F, 1.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube02, 0.0F, 2.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube03, 0.0F, 3.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube04, 0.0F, 4.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube05, 0.0F, 5.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube06, 0.0F, 6.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube07, 0.0F, 7.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube08, 0.0F, 8.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube09, 0.0F, 9.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube10, 0.0F, 10.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube11, 0.0F, 11.0F, 0.0F);
-        // animator.moveTo(lFrontSmallTube12, 0.0F, 12.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube01, 0.0F, 1.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube02, 0.0F, 2.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube03, 0.0F, 3.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube04, 0.0F, 4.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube05, 0.0F, 5.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube06, 0.0F, 6.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube07, 0.0F, 7.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube08, 0.0F, 8.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube09, 0.0F, 9.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube10, 0.0F, 10.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube11, 0.0F, 11.0F, 0.0F);
-        // animator.moveTo(rFrontSmallTube12, 0.0F, 12.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube01, 0.0F, 1.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube02, 0.0F, 2.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube03, 0.0F, 3.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube04, 0.0F, 4.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube05, 0.0F, 5.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube06, 0.0F, 6.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube07, 0.0F, 7.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube08, 0.0F, 8.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube09, 0.0F, 9.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube10, 0.0F, 10.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube11, 0.0F, 11.0F, 0.0F);
-        // animator.moveTo(lMiddleSmallTube12, 0.0F, 12.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube01, 0.0F, 1.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube02, 0.0F, 2.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube03, 0.0F, 3.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube04, 0.0F, 4.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube05, 0.0F, 5.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube06, 0.0F, 6.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube07, 0.0F, 7.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube08, 0.0F, 8.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube09, 0.0F, 9.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube10, 0.0F, 10.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube11, 0.0F, 11.0F, 0.0F);
-        // animator.moveTo(rMiddleSmallTube12, 0.0F, 12.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube01, 0.0F, 1.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube02, 0.0F, 2.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube03, 0.0F, 3.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube04, 0.0F, 4.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube05, 0.0F, 5.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube06, 0.0F, 6.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube07, 0.0F, 7.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube08, 0.0F, 8.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube09, 0.0F, 9.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube10, 0.0F, 10.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube11, 0.0F, 11.0F, 0.0F);
-        // animator.moveTo(lBackSmallTube12, 0.0F, 12.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube01, 0.0F, 1.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube02, 0.0F, 2.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube03, 0.0F, 3.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube04, 0.0F, 4.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube05, 0.0F, 5.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube06, 0.0F, 6.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube07, 0.0F, 7.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube08, 0.0F, 8.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube09, 0.0F, 9.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube10, 0.0F, 10.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube11, 0.0F, 11.0F, 0.0F);
-        // animator.moveTo(rBackSmallTube12, 0.0F, 12.0F, 0.0F);
-        // animator.moveTo(tailSmallTube01, 0.0F, 1.0F, 0.0F);
-        // animator.moveTo(tailSmallTube02, 0.0F, 2.0F, 0.0F);
-        // animator.moveTo(tailSmallTube03, 0.0F, 3.0F, 0.0F);
-        // animator.moveTo(tailSmallTube04, 0.0F, 4.0F, 0.0F);
-        // animator.moveTo(tailSmallTube05, 0.0F, 5.0F, 0.0F);
-        // animator.moveTo(tailSmallTube06, 0.0F, 6.0F, 0.0F);
-        // animator.moveTo(tailSmallTube07, 0.0F, 7.0F, 0.0F);
-        // animator.moveTo(tailSmallTube08, 0.0F, 8.0F, 0.0F);
-        // animator.moveTo(tailSmallTube09, 0.0F, 9.0F, 0.0F);
-        // animator.moveTo(tailSmallTube10, 0.0F, 10.0F, 0.0F);
-        // animator.moveTo(tailSmallTube11, 0.0F, 11.0F, 0.0F);
-        // animator.moveTo(tailSmallTube12, 0.0F, 12.0F, 0.0F);
-
     }
 
     public void animate(EntityTrilobite trilobite)
