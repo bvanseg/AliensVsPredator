@@ -8,4 +8,10 @@ public abstract class EntitySpecies223ODe extends EntitySpeciesAlien
     {
         super(world);
     }
+    
+    @Override
+    protected void spawnAcidPool()
+    {
+        ;
+    }
 }

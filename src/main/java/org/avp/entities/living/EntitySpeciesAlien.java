@@ -94,6 +94,13 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
         return false;
     }
 
+    protected void spawnAcidPool()
+    {
+        EntityAcidPool entity = new EntityAcidPool(this.world);
+        entity.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
+        this.world.spawnEntity(entity);
+    }
+
     @Override
     public void onDeath(DamageSource damagesource)
     {
@@ -103,9 +110,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
         {
             if (damagesource != DamageSource.ON_FIRE && damagesource != DamageSource.IN_FIRE && damagesource != DamageSources.flamethrower)
             {
-                EntityAcidPool entity = new EntityAcidPool(this.world);
-                entity.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
-                this.world.spawnEntity(entity);
+                this.spawnAcidPool();
             }
 
             int adjustedLevel = this.getJellyLevel() / 4;
@@ -365,13 +370,13 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     {
         return this.isAnimationPaused;
     }
-    
+
     @Override
     public void pauseAnimation()
     {
         this.isAnimationPaused = true;
     }
-    
+
     @Override
     public void playAnimation()
     {
