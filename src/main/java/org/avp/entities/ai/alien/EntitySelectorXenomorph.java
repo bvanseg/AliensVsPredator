@@ -7,7 +7,6 @@ import org.avp.world.capabilities.IOrganism.Provider;
 
 import com.google.common.base.Predicate;
 
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -45,7 +44,7 @@ public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
             }
         }
         
-        if (!(target instanceof EntityLiving))
+        if (!(target instanceof EntityLivingBase))
         {
             return false;
         }
