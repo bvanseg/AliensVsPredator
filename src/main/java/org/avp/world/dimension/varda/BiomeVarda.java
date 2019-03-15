@@ -3,7 +3,7 @@ package org.avp.world.dimension.varda;
 import java.util.Random;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.living.EntityDeaconShark;
+import org.avp.entities.living.vardic.EntityDeaconShark;
 import org.avp.world.dimension.BiomeGenLV;
 import org.avp.world.dimension.GenerationFilters;
 import org.avp.world.dimension.WorldGenSurfaceBlock;

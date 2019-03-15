@@ -1,5 +1,8 @@
 package org.avp.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
+import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+
 import com.asx.mdx.lib.world.Pos;
 
 import net.minecraft.entity.Entity;

@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelPantheramorph;
-import org.avp.entities.living.EntityPantheramorph;
+import org.avp.entities.living.species.xenomorphs.EntityPantheramorph;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 

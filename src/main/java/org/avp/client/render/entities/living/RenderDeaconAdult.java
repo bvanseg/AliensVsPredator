@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelDeaconAdult;
-import org.avp.entities.living.EntityDeaconAdult;
+import org.avp.entities.living.species.species223ode.EntityDeaconAdult;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;

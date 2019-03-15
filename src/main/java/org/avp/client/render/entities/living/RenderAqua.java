@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelAqua;
-import org.avp.entities.living.EntityAqua;
+import org.avp.entities.living.species.xenomorphs.EntityAqua;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.OpenGL;

@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelDracomorph;
-import org.avp.entities.living.EntityDracomorph;
+import org.avp.entities.living.species.xenomorphs.EntityDracomorph;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;

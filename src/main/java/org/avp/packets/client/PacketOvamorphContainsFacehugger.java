@@ -1,6 +1,6 @@
 package org.avp.packets.client;
 
-import org.avp.entities.living.EntityOvamorph;
+import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
 
 import com.asx.mdx.lib.util.Game;
 

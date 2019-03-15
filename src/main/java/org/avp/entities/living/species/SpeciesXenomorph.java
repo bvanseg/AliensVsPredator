@@ -4,7 +4,7 @@ import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
-import org.avp.entities.living.EntityMatriarch;
+import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

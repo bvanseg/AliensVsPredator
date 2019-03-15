@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelMatriarch;
-import org.avp.entities.living.EntityMatriarch;
+import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;

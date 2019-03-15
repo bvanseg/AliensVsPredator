@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.entities.living.EntityFacehugger;
+import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

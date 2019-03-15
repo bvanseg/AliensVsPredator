@@ -6,7 +6,7 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.living.EntityMatriarch;
+import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.Draw;

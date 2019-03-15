@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelGooMutant;
-import org.avp.entities.living.EntityGooMutant;
+import org.avp.entities.living.vardic.EntityGooMutant;
 
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 

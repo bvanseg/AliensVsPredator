@@ -6,7 +6,7 @@ import org.avp.client.model.entities.living.ModelFacehugger;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.entities.EntityMedpod;
-import org.avp.entities.living.EntityFacehugger;
+import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;

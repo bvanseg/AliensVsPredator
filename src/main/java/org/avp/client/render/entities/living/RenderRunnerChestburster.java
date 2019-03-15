@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelChestbursterRunner;
-import org.avp.entities.living.EntityRunnerChestburster;
+import org.avp.entities.living.species.xenomorphs.EntityRunnerChestburster;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;

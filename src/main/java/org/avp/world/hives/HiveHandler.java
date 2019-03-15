@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import org.avp.api.storage.IWorldSaveHandler;
-import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.species.SpeciesAlien;
+import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.tile.TileEntityHiveResin;
 
 import com.asx.mdx.MDX;

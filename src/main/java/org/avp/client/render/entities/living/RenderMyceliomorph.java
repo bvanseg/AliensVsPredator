@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelMyceliomorph;
-import org.avp.entities.living.EntityMyceliomorph;
+import org.avp.entities.living.species.xenomorphs.EntityMyceliomorph;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.OpenGL;

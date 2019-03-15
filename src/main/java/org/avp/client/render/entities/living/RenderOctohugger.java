@@ -7,7 +7,7 @@ import org.avp.client.model.entities.living.ModelOctohugger;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.entities.EntityMedpod;
-import org.avp.entities.living.EntityOctohugger;
+import org.avp.entities.living.vardic.EntityOctohugger;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.OpenGL;

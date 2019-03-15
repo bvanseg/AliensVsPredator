@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelPraetorian;
-import org.avp.entities.living.EntityPraetorian;
+import org.avp.entities.living.species.xenomorphs.EntityPraetorian;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 

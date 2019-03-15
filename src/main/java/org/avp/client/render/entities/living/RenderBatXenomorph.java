@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelBatXenomorph;
-import org.avp.entities.living.EntityBatXeno;
+import org.avp.entities.living.species.xenomorphs.EntityBatXeno;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 

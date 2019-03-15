@@ -1,8 +1,8 @@
 package org.avp.world;
 
 import org.avp.Settings.ClientSettings;
-import org.avp.entities.living.EntityTrilobite;
 import org.avp.entities.living.species.SpeciesYautja;
+import org.avp.entities.living.species.species223ode.EntityTrilobite;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 

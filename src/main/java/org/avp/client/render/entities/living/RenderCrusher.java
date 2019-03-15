@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelCrusher;
-import org.avp.entities.living.EntityCrusher;
+import org.avp.entities.living.species.xenomorphs.EntityCrusher;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 

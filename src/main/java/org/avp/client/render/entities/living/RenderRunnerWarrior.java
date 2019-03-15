@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelRunnerWarrior;
-import org.avp.entities.living.EntityRunnerWarrior;
+import org.avp.entities.living.species.xenomorphs.EntityRunnerWarrior;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 

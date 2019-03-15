@@ -8,8 +8,8 @@ import org.avp.DamageSources;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.api.parasitoidic.IRoyalOrganism;
 import org.avp.entities.EntityAcidPool;
-import org.avp.entities.living.EntityMatriarch;
-import org.avp.entities.living.EntityOvamorph;
+import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
+import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
 import org.avp.world.hives.HiveHandler;
 import org.avp.world.hives.XenomorphHive;
 
