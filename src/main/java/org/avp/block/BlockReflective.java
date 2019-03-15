@@ -102,6 +102,13 @@ public class BlockReflective extends Block implements ITileEntityProvider
                 Item itemHeld = playerIn.getHeldItemMainhand().getItem();
                 Block blockHeld = Block.getBlockFromItem(itemHeld);
                 int metadata = playerIn.getHeldItemMainhand().getMetadata();
+                
+                if (playerIn.isSneaking() && blockHeld == Blocks.AIR)
+                {
+                    reflective.setReflection(Blocks.AIR, 0);
+                    worldIn.notifyBlockUpdate(pos, state, state, 3);
+                    return true;
+                }
 
                 if (blockHeld != Blocks.AIR)
                 {
