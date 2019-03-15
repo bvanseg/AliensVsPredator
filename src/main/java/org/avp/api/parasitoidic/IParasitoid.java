@@ -3,8 +3,8 @@ package org.avp.api.parasitoidic;
 import java.util.ArrayList;
 
 import org.avp.entities.EntityLiquidPool;
-import org.avp.entities.living.EntitySpecies223ODe;
-import org.avp.entities.living.EntitySpeciesAlien;
+import org.avp.entities.living.species.Species223ODe;
+import org.avp.entities.living.species.SpeciesAlien;
 
 import com.google.common.base.Predicate;
 
@@ -77,10 +77,10 @@ public interface IParasitoid
         ArrayList<Class<?>> blacklist = new ArrayList<Class<?>>();
 
         blacklist.add(EntityArmorStand.class);
-        blacklist.add(EntitySpeciesAlien.class);
+        blacklist.add(SpeciesAlien.class);
         blacklist.add(EntityLiquidPool.class);
         blacklist.add(IParasitoid.class);
-        blacklist.add(EntitySpecies223ODe.class);
+        blacklist.add(Species223ODe.class);
         blacklist.add(EntitySnowman.class);
         blacklist.add(EntityGolem.class);
         blacklist.add(EntitySkeleton.class);

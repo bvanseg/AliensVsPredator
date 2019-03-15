@@ -1,4 +1,4 @@
-package org.avp.entities.living;
+package org.avp.entities.living.species;
 
 import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
@@ -6,6 +6,7 @@ import org.avp.api.parasitoidic.IHost;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.EntityAISuperjump;
+import org.avp.entities.living.EntityMarine;
 import org.avp.item.ItemDisc;
 import org.avp.item.ItemFirearm;
 import org.avp.item.ItemPlasmaCannon;
@@ -45,12 +46,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public abstract class EntitySpeciesYautja extends EntityMob implements IHost, Predicate<EntityLivingBase>
+public abstract class SpeciesYautja extends EntityMob implements IHost, Predicate<EntityLivingBase>
 {
-    private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(EntitySpeciesYautja.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> DUCKING = EntityDataManager.createKey(EntitySpeciesYautja.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> DUCKING = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
 
-    public EntitySpeciesYautja(World world)
+    public SpeciesYautja(World world)
     {
         super(world);
         this.experienceValue = 250;
@@ -160,7 +161,7 @@ public abstract class EntitySpeciesYautja extends EntityMob implements IHost, Pr
             }
         }
 
-        if ((entity instanceof EntitySpeciesAlien) || (entity instanceof EntitySpeciesEngineer) || (entity instanceof EntityMarine))
+        if ((entity instanceof SpeciesAlien) || (entity instanceof SpeciesEngineer) || (entity instanceof EntityMarine))
         {
             return true;
         }
@@ -195,7 +196,7 @@ public abstract class EntitySpeciesYautja extends EntityMob implements IHost, Pr
     @Override
     protected void collideWithEntity(Entity entity)
     {
-        if (entity instanceof IMob && this.rand.nextInt(20) == 0 && !(entity instanceof EntitySpeciesYautja))
+        if (entity instanceof IMob && this.rand.nextInt(20) == 0 && !(entity instanceof SpeciesYautja))
         {
             this.setAttackTarget((EntityLivingBase) entity);
             this.setRevengeTarget((EntityLivingBase) entity);

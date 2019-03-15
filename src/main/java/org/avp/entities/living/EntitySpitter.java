@@ -2,6 +2,7 @@ package org.avp.entities.living;
 
 import org.avp.client.Sounds;
 import org.avp.entities.EntityAcidProjectile;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,7 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntitySpitter extends EntityXenomorph implements IRangedAttackMob
+public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob
 {
     public EntitySpitter(World par1World)
     {

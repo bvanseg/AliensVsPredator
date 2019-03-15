@@ -1,7 +1,7 @@
 package org.avp.client.model.entities.living;
 
 import org.avp.client.render.XenomorphJawState;
-import org.avp.entities.living.EntityXenomorph;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
@@ -312,7 +312,7 @@ public class ModelUltramorph extends Model
     public void render(Object obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;;
-        EntityXenomorph xenomorph = (EntityXenomorph) base;
+        SpeciesXenomorph xenomorph = (SpeciesXenomorph) base;
 
         float swingProgress = swingProgress(obj);
         float swingProgressPrev = swingProgressPrev(obj);

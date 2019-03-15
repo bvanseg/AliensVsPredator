@@ -7,6 +7,9 @@ import org.avp.client.Sounds;
 import org.avp.entities.EntityBullet;
 import org.avp.entities.EntityLiquidLatexPool;
 import org.avp.entities.EntityLiquidPool;
+import org.avp.entities.living.species.SpeciesAlien;
+import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.entities.living.species.SpeciesYautja;
 
 import com.google.common.base.Predicate;
 
@@ -143,19 +146,19 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     @Override
     public boolean apply(EntityLivingBase entity)
     {
-        if (entity instanceof EntitySpeciesAlien)
+        if (entity instanceof SpeciesAlien)
             return true;
 
         if (entity instanceof EntityMob)
             return true;
 
-        if (entity instanceof EntitySpeciesYautja)
+        if (entity instanceof SpeciesYautja)
             return true;
 
         if (entity instanceof EntityGolem)
             return true;
 
-        if (entity instanceof EntityXenomorph)
+        if (entity instanceof SpeciesXenomorph)
             return true;
 
         if (entity instanceof EntityLiquidPool)

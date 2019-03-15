@@ -3,7 +3,7 @@ package org.avp.client.render.transforms;
 import org.avp.client.render.tile.RenderMedpod;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.entities.living.EntityMarine;
-import org.avp.entities.living.EntitySpeciesYautja;
+import org.avp.entities.living.species.SpeciesYautja;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 
@@ -67,7 +67,7 @@ public class MedpodTransforms
             }
         });
 
-        RenderMedpod.transforms.add(new EntityRenderTransforms(EntitySpeciesYautja.class)
+        RenderMedpod.transforms.add(new EntityRenderTransforms(SpeciesYautja.class)
         {
             @Override
             public void pre(Entity entity, float partialTicks)

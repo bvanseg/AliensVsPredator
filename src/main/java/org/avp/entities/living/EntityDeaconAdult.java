@@ -3,6 +3,7 @@ package org.avp.entities.living;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
+import org.avp.entities.living.species.Species223ODe;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,7 +20,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityDeaconAdult extends EntitySpecies223ODe
+public class EntityDeaconAdult extends Species223ODe
 {
     public EntityDeaconAdult(World world)
     {

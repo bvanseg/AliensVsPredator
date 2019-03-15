@@ -1,9 +1,11 @@
 package org.avp.entities.living;
 
+import org.avp.entities.living.species.SpeciesXenomorph;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
-public class EntityMyceliomorph extends EntityXenomorph
+public class EntityMyceliomorph extends SpeciesXenomorph
 {
     public EntityMyceliomorph(World world)
     {

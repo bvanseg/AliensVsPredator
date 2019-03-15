@@ -1,8 +1,8 @@
 package org.avp.world;
 
 import org.avp.Settings.ClientSettings;
-import org.avp.entities.living.EntitySpeciesYautja;
 import org.avp.entities.living.EntityTrilobite;
+import org.avp.entities.living.species.SpeciesYautja;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
@@ -207,7 +207,7 @@ public class EntityImpregnationHandler
         int particleColor = 0x610000;
         boolean glow = false;
 
-        if (host instanceof EntitySpeciesYautja)
+        if (host instanceof SpeciesYautja)
         {
             particleColor = 0x00FF00;
             glow = true;

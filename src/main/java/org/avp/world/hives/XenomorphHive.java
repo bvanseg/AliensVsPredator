@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 import org.avp.entities.living.EntityMatriarch;
-import org.avp.entities.living.EntitySpeciesAlien;
+import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.tile.TileEntityHiveResin;
 
 import com.asx.mdx.MDX;
@@ -22,7 +22,7 @@ import net.minecraftforge.common.util.Constants.NBT;
 
 public class XenomorphHive
 {
-    private ArrayList<EntitySpeciesAlien>  aliens;
+    private ArrayList<SpeciesAlien>  aliens;
     private ArrayList<TileEntityHiveResin> resinInHive;
     private UUID                           uuid;
     private EntityMatriarch                    queen;
@@ -36,7 +36,7 @@ public class XenomorphHive
     {
         this.uuid = uuid;
         this.queen = (EntityMatriarch) Worlds.getEntityByUUID(world, this.uuid);
-        this.aliens = new ArrayList<EntitySpeciesAlien>();
+        this.aliens = new ArrayList<SpeciesAlien>();
         this.resinInHive = new ArrayList<TileEntityHiveResin>();
 
         if (this.getQueen() != null)
@@ -58,7 +58,7 @@ public class XenomorphHive
         return this;
     }
 
-    public ArrayList<EntitySpeciesAlien> getAliensInHive()
+    public ArrayList<SpeciesAlien> getAliensInHive()
     {
         return this.aliens;
     }
@@ -68,7 +68,7 @@ public class XenomorphHive
         return resinInHive;
     }
 
-    public void addMemberToHive(EntitySpeciesAlien alien)
+    public void addMemberToHive(SpeciesAlien alien)
     {
         if (!this.aliens.contains(alien))
         {
@@ -143,7 +143,7 @@ public class XenomorphHive
 
         if (world.getWorldTime() % (20 * 5) == 0)
         {
-            for (EntitySpeciesAlien alien : (ArrayList<EntitySpeciesAlien>) this.getAliensInHive().clone())
+            for (SpeciesAlien alien : (ArrayList<SpeciesAlien>) this.getAliensInHive().clone())
             {
                 if (alien == null || alien.isDead)
                 {
@@ -163,7 +163,7 @@ public class XenomorphHive
             }
         }
 
-        for (EntitySpeciesAlien alien : new ArrayList<EntitySpeciesAlien>(this.getAliensInHive()))
+        for (SpeciesAlien alien : new ArrayList<SpeciesAlien>(this.getAliensInHive()))
         {
             if (alien != null)
             {

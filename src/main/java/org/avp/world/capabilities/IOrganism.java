@@ -2,7 +2,7 @@ package org.avp.world.capabilities;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.render.TacticalHUDRenderEvent;
-import org.avp.entities.living.EntitySpeciesAlien;
+import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.packets.client.OrganismClientSync;
 import org.avp.packets.server.OrganismServerSync;
 import org.avp.world.Embryo;
@@ -86,7 +86,7 @@ public interface IOrganism
             this.removeEmbryo();
         }
 
-        if (Entities.getEntityRiddenBy(living) != null && Entities.getEntityRiddenBy(living) instanceof EntitySpeciesAlien)
+        if (Entities.getEntityRiddenBy(living) != null && Entities.getEntityRiddenBy(living) instanceof SpeciesAlien)
         {
             Entities.getEntityRiddenBy(living).setDead();
         }

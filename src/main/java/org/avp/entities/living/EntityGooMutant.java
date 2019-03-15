@@ -2,6 +2,7 @@ package org.avp.entities.living;
 
 import org.avp.api.parasitoidic.IHost;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.living.species.SpeciesAlien;
 
 import com.google.common.base.Predicate;
 
@@ -35,7 +36,7 @@ public class EntityGooMutant extends EntityMob implements IMob, IHost
                 return false;
             }
             
-            if (target instanceof EntitySpeciesAlien)
+            if (target instanceof SpeciesAlien)
             {
                 return false;
             }

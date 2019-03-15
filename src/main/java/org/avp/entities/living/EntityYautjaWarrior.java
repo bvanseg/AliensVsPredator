@@ -1,8 +1,10 @@
 package org.avp.entities.living;
 
+import org.avp.entities.living.species.SpeciesYautja;
+
 import net.minecraft.world.World;
 
-public class EntityYautjaWarrior extends EntitySpeciesYautja
+public class EntityYautjaWarrior extends SpeciesYautja
 {
     public EntityYautjaWarrior(World world)
     {

@@ -2,13 +2,14 @@ package org.avp.entities.living;
 
 import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
+import org.avp.entities.living.species.SpeciesEngineer;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntitySpaceJockey extends EntitySpeciesEngineer
+public class EntitySpaceJockey extends SpeciesEngineer
 {
     public EntitySpaceJockey(World world)
     {

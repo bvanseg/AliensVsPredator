@@ -1,7 +1,8 @@
-package org.avp.entities.living;
+package org.avp.entities.living.species;
 
 import org.avp.EntityItemDrops;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.living.EntityMarine;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -24,11 +25,11 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public abstract class EntitySpeciesEngineer extends EntityMob
+public abstract class SpeciesEngineer extends EntityMob
 {
-    private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(EntitySpeciesEngineer.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(SpeciesEngineer.class, DataSerializers.BOOLEAN);
     
-    public EntitySpeciesEngineer(World world)
+    public SpeciesEngineer(World world)
     {
         super(world);
         this.experienceValue = 250;
@@ -39,8 +40,8 @@ public abstract class EntitySpeciesEngineer extends EntityMob
         this.tasks.addTask(8, new EntityAIWander(this, 0.800000011920929D));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.4F));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntitySpeciesAlien.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntitySpeciesYautja.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, SpeciesAlien.class, true));
+        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, SpeciesYautja.class, true));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityMarine.class, true));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
     }
@@ -100,7 +101,7 @@ public abstract class EntitySpeciesEngineer extends EntityMob
     @Override
     protected void collideWithEntity(Entity entity)
     {
-        if (entity instanceof IMob && this.getRNG().nextInt(20) == 0 && !(entity instanceof EntitySpeciesEngineer))
+        if (entity instanceof IMob && this.getRNG().nextInt(20) == 0 && !(entity instanceof SpeciesEngineer))
         {
             this.setAttackTarget((EntityLivingBase) entity);
             this.setRevengeTarget((EntityLivingBase) entity);

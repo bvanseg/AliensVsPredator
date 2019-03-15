@@ -3,7 +3,7 @@ package org.avp.entities;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.living.EntityXenomorph;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Worlds;
@@ -121,7 +121,7 @@ public class EntityGrenade extends EntityThrowable
             for (int idx = 0; idx < list.size(); ++idx)
             {
                 Entity entity = list.get(idx);
-                float targetDamage = entity instanceof EntityXenomorph ? 8F * 2 : 8F;
+                float targetDamage = entity instanceof SpeciesXenomorph ? 8F * 2 : 8F;
                 entity.attackEntityFrom(DamageSource.causeExplosionDamage(explosion), targetDamage);
             }
         }

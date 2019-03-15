@@ -6,6 +6,7 @@ import org.avp.AliensVsPredator;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityAcidPool;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.living.species.SpeciesAlien;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.block.Blocks;
@@ -24,14 +25,14 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class EntityHammerpede extends EntitySpeciesAlien implements IMob
+public class EntityHammerpede extends SpeciesAlien implements IMob
 {
     public static Predicate<EntityLivingBase> entitySelector = new Predicate<EntityLivingBase>()
     {
         @Override
         public boolean apply(EntityLivingBase entity)
         {
-            return !(entity instanceof EntitySpeciesAlien) && !(entity instanceof EntityHammerpede) && !(entity instanceof EntityAcidPool);
+            return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityHammerpede) && !(entity instanceof EntityAcidPool);
         }
     };
 

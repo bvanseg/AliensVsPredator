@@ -1,12 +1,13 @@
-package org.avp.entities.living;
+package org.avp.entities.living.species;
 
 import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
+import org.avp.entities.living.EntityMatriarch;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -23,7 +24,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public abstract class EntityXenomorph extends EntitySpeciesAlien implements IMob
+public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
 {
     public static final float                   JAW_PROGRESS_INCR   = 0.3F;
     public static final float                   JAW_PROGRESS_MAX    = 1.0F;
@@ -31,15 +32,15 @@ public abstract class EntityXenomorph extends EntitySpeciesAlien implements IMob
     public static final float                   MOUTH_PROGRESS_INCR = 0.175F;
     public static final float                   MOUTH_PROGRESS_MAX  = 1.0F;
 
-    private static final DataParameter<Boolean> CRAWLING            = EntityDataManager.createKey(EntityXenomorph.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Float>   JAW_PROGRESS        = EntityDataManager.createKey(EntityXenomorph.class, DataSerializers.FLOAT);
-    private static final DataParameter<Float>   MOUTH_PROGRESS      = EntityDataManager.createKey(EntityXenomorph.class, DataSerializers.FLOAT);
+    private static final DataParameter<Boolean> CRAWLING            = EntityDataManager.createKey(SpeciesXenomorph.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Float>   JAW_PROGRESS        = EntityDataManager.createKey(SpeciesXenomorph.class, DataSerializers.FLOAT);
+    private static final DataParameter<Float>   MOUTH_PROGRESS      = EntityDataManager.createKey(SpeciesXenomorph.class, DataSerializers.FLOAT);
 
     private boolean                             startBite           = false;
     private boolean                             retractMouth        = false;
     protected boolean                           ableToClimb;
 
-    public EntityXenomorph(World world)
+    public SpeciesXenomorph(World world)
     {
         super(world);
         this.jumpMovementFactor = 0.045F;
@@ -52,12 +53,12 @@ public abstract class EntityXenomorph extends EntitySpeciesAlien implements IMob
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityCreature.class, 1.0D, false));
+        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityLiving.class, 1.0D, false));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
         this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
         this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.6F));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityCreature>(this, EntityCreature.class, 0, false, false, EntitySelectorXenomorph.instance));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLiving>(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, false, false, EntitySelectorXenomorph.instance));
     }
 

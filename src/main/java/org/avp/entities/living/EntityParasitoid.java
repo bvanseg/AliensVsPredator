@@ -8,6 +8,7 @@ import org.avp.AliensVsPredator;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.packets.server.PacketAttachParasiteToEntity;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
@@ -37,7 +38,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntityParasitoid extends EntitySpeciesAlien implements IMob, IParasitoid
+public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
 {
     private static final DataParameter<Boolean> FERTILE              = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
     private int                                 ticksOnHost          = 0;

@@ -6,6 +6,7 @@ import org.avp.entities.EntityAcidPool;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.helpers.EntityExtendedLookHelper;
 import org.avp.entities.ai.pathfinding.PathNavigateSwimmer;
+import org.avp.entities.living.species.SpeciesAlien;
 
 import com.asx.mdx.lib.world.entity.Entities;
 import com.google.common.base.Predicate;
@@ -28,7 +29,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityDeaconShark extends EntitySpeciesAlien
+public class EntityDeaconShark extends SpeciesAlien
 {
     private EntityAIWander                 wander;
     private EntityAIMoveTowardsRestriction moveTowardsRestriction;

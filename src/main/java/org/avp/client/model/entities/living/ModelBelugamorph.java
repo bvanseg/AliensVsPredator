@@ -1,7 +1,7 @@
 package org.avp.client.model.entities.living;
 
 import org.avp.client.render.XenomorphJawState;
-import org.avp.entities.living.EntityXenomorph;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
@@ -453,7 +453,7 @@ public class ModelBelugamorph extends Model
     @Override
     public void render(Object obj)
     {
-        EntityXenomorph xenomorph = (EntityXenomorph) obj;
+        SpeciesXenomorph xenomorph = (SpeciesXenomorph) obj;
         float swingProgress = swingProgress(obj);
         float swingProgressPrev = swingProgressPrev(obj);
 

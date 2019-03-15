@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.avp.AliensVsPredator;
 import org.avp.EntityItemDrops;
+import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.packets.client.PacketOvamorphContainsFacehugger;
 
 import com.asx.mdx.lib.world.Pos;
@@ -18,7 +19,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntityOvamorph extends EntitySpeciesAlien implements IMob
+public class EntityOvamorph extends SpeciesAlien implements IMob
 {
     protected int hatchingTime;
     protected boolean hasHatched;

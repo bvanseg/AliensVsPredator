@@ -1,7 +1,7 @@
 package org.avp.entities.ai.alien;
 
 import org.avp.entities.EntityLiquidPool;
-import org.avp.entities.living.EntitySpeciesAlien;
+import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
@@ -16,17 +16,17 @@ public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
     public static final EntitySelectorXenomorph instance = new EntitySelectorXenomorph();
 
     @Override
-    public boolean apply(EntityLivingBase potentialTarget)
+    public boolean apply(EntityLivingBase target)
     {
-        if (potentialTarget instanceof EntitySpeciesAlien)
+        if (target instanceof SpeciesAlien)
             return false;
         
-        if (potentialTarget instanceof EntityLiquidPool)
+        if (target instanceof EntityLiquidPool)
             return false;
         
-        if (potentialTarget instanceof EntityLivingBase)
+        if (target instanceof EntityLivingBase)
         {
-            EntityLivingBase livingBase = (EntityLivingBase) potentialTarget;
+            EntityLivingBase livingBase = (EntityLivingBase) target;
             Organism organism = (Organism) livingBase.getCapability(Provider.CAPABILITY, null);
             
             if (organism.hasEmbryo())
@@ -35,9 +35,9 @@ public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
             }
         }
         
-        if (potentialTarget instanceof EntityPlayer)
+        if (target instanceof EntityPlayer)
         {
-            EntityPlayer player = (EntityPlayer) potentialTarget;
+            EntityPlayer player = (EntityPlayer) target;
             
             if (player.capabilities.isCreativeMode)
             {
@@ -45,7 +45,7 @@ public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
             }
         }
         
-        if (!(potentialTarget instanceof EntityLiving))
+        if (!(target instanceof EntityLiving))
         {
             return false;
         }

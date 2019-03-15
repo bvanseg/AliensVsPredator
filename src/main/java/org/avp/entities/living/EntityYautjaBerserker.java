@@ -2,12 +2,13 @@ package org.avp.entities.living;
 
 import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
+import org.avp.entities.living.species.SpeciesYautja;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public class EntityYautjaBerserker extends EntitySpeciesYautja
+public class EntityYautjaBerserker extends SpeciesYautja
 {
     public EntityYautjaBerserker(World world)
     {

@@ -1,9 +1,11 @@
 package org.avp.entities.living;
 
+import org.avp.entities.living.species.SpeciesXenomorph;
+
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
-public class EntityPantheramorph extends EntityXenomorph
+public class EntityPantheramorph extends SpeciesXenomorph
 {
     public EntityPantheramorph(World world)
     {

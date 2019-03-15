@@ -7,6 +7,8 @@ import org.avp.EntityItemDrops;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityBullet;
 import org.avp.entities.EntityLiquidPool;
+import org.avp.entities.living.species.SpeciesAlien;
+import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.world.MarineTypes;
 
 import com.google.common.base.Predicate;
@@ -84,7 +86,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     @Override
     public boolean apply(EntityLivingBase entity)
     {
-        if (entity instanceof EntitySpeciesAlien)
+        if (entity instanceof SpeciesAlien)
             return true;
 
         if (entity instanceof EntityMob)
@@ -96,7 +98,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         if (entity instanceof EntityGolem)
             return true;
 
-        if (entity instanceof EntityXenomorph)
+        if (entity instanceof SpeciesXenomorph)
             return true;
 
         if (entity instanceof EntityLiquidPool)

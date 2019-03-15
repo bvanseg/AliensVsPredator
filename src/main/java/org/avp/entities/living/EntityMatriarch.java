@@ -7,6 +7,8 @@ import org.avp.AliensVsPredator;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
+import org.avp.entities.living.species.SpeciesAlien;
+import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.packets.server.PacketSpawnEntity;
 import org.avp.world.hives.HiveHandler;
 
@@ -31,7 +33,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityMatriarch extends EntityXenomorph implements IMob
+public class EntityMatriarch extends SpeciesXenomorph implements IMob
 {
     public static final float                 OVIPOSITOR_THRESHOLD_SIZE          = 1.3F;
     public static final float                 OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE = 0.00225F;
@@ -274,11 +276,11 @@ public class EntityMatriarch extends EntityXenomorph implements IMob
 
             if (this.world.getWorldTime() % 20 == 0)
             {
-                ArrayList<EntitySpeciesAlien> aliens = (ArrayList<EntitySpeciesAlien>) Entities.getEntitiesInCoordsRange(this.world, EntitySpeciesAlien.class, new Pos(this), 16);
+                ArrayList<SpeciesAlien> aliens = (ArrayList<SpeciesAlien>) Entities.getEntitiesInCoordsRange(this.world, SpeciesAlien.class, new Pos(this), 16);
 
                 if (this.getHive() != null)
                 {
-                    for (EntitySpeciesAlien alien : aliens)
+                    for (SpeciesAlien alien : aliens)
                     {
                         if (this.rand.nextInt(3) == 0)
                         {

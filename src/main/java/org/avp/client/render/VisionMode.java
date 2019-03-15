@@ -8,8 +8,8 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_ZERO;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.living.EntitySpeciesAlien;
-import org.avp.entities.living.EntityXenomorph;
+import org.avp.entities.living.species.SpeciesAlien;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -93,7 +93,7 @@ public enum VisionMode
 
         public boolean isEntityTypeAllowed(Entity entity)
         {
-            Class<?>[] allowedEntityTypes = new Class<?>[] { EntitySpeciesAlien.class, EntityEnderman.class, EntityDragon.class };
+            Class<?>[] allowedEntityTypes = new Class<?>[] { SpeciesAlien.class, EntityEnderman.class, EntityDragon.class };
 
             for (Class<?> cls : allowedEntityTypes)
             {
@@ -135,7 +135,7 @@ public enum VisionMode
         @Override
         public void renderEntityPre(RenderLivingEvent.Pre event)
         {
-            if (event.getEntity().getCreatureAttribute() != EnumCreatureAttribute.UNDEAD && !(event.getEntity() instanceof EntityXenomorph))
+            if (event.getEntity().getCreatureAttribute() != EnumCreatureAttribute.UNDEAD && !(event.getEntity() instanceof SpeciesXenomorph))
             {
                 OpenGL.disableLight();
                 OpenGL.disableLightMapping();

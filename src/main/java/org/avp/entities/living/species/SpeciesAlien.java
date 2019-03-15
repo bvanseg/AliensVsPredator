@@ -1,4 +1,4 @@
-package org.avp.entities.living;
+package org.avp.entities.living.species;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -8,6 +8,8 @@ import org.avp.DamageSources;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.api.parasitoidic.IRoyalOrganism;
 import org.avp.entities.EntityAcidPool;
+import org.avp.entities.living.EntityMatriarch;
+import org.avp.entities.living.EntityOvamorph;
 import org.avp.world.hives.HiveHandler;
 import org.avp.world.hives.XenomorphHive;
 
@@ -30,9 +32,9 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoyalOrganism, IAnimated
+public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrganism, IAnimated
 {
-    private static final DataParameter<Integer> JELLY_LEVEL       = EntityDataManager.createKey(EntitySpeciesAlien.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> JELLY_LEVEL       = EntityDataManager.createKey(SpeciesAlien.class, DataSerializers.VARINT);
     protected XenomorphHive                     hive;
     private UUID                                signature;
     protected boolean                           jellyLimitOverride;
@@ -44,7 +46,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     protected Animation                         animation         = NO_ANIMATION;
     protected boolean                           isAnimationPaused = false;
 
-    public EntitySpeciesAlien(World world)
+    public SpeciesAlien(World world)
     {
         super(world);
         this.jumpMovementFactor = 0.2F;
@@ -138,7 +140,7 @@ public abstract class EntitySpeciesAlien extends EntityMob implements IMob, IRoy
     public void mature()
     {
         IMaturable maturable = (IMaturable) this;
-        EntitySpeciesAlien alien = (EntitySpeciesAlien) Entities.constructEntity(this.world, maturable.getMatureState());
+        SpeciesAlien alien = (SpeciesAlien) Entities.constructEntity(this.world, maturable.getMatureState());
         NBTTagCompound tag = new NBTTagCompound();
 
         alien.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0F, 0.0F);

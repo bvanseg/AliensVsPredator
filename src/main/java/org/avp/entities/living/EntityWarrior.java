@@ -2,6 +2,7 @@ package org.avp.entities.living;
 
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.client.Sounds;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -11,7 +12,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityWarrior extends EntityXenomorph implements IMob, IMaturable
+public class EntityWarrior extends SpeciesXenomorph implements IMob, IMaturable
 {
     public EntityWarrior(World world)
     {

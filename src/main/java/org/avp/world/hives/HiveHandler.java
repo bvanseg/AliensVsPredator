@@ -5,7 +5,7 @@ import java.util.UUID;
 
 import org.avp.api.storage.IWorldSaveHandler;
 import org.avp.entities.living.EntityMatriarch;
-import org.avp.entities.living.EntitySpeciesAlien;
+import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.tile.TileEntityHiveResin;
 
 import com.asx.mdx.MDX;
@@ -50,11 +50,11 @@ public class HiveHandler implements IWorldSaveHandler
         return hives;
     }
 
-    public XenomorphHive getHiveForAlien(EntitySpeciesAlien alien)
+    public XenomorphHive getHiveForAlien(SpeciesAlien alien)
     {
         for (XenomorphHive hive : this.hives)
         {
-            for (EntitySpeciesAlien a : hive.getAliensInHive())
+            for (SpeciesAlien a : hive.getAliensInHive())
             {
                 if (a == alien)
                 {

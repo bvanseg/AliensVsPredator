@@ -3,6 +3,7 @@ package org.avp.entities.living;
 import org.avp.DamageSources;
 import org.avp.api.parasitoidic.INascentic;
 import org.avp.client.Sounds;
+import org.avp.entities.living.species.Species223ODe;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
@@ -18,7 +19,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityDeacon extends EntitySpecies223ODe implements INascentic
+public class EntityDeacon extends Species223ODe implements INascentic
 {
     public EntityDeacon(World world)
     {

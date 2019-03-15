@@ -1,10 +1,10 @@
-package org.avp.entities.living;
+package org.avp.entities.living.species;
 
 import net.minecraft.world.World;
 
-public abstract class EntitySpecies223ODe extends EntitySpeciesAlien
+public abstract class Species223ODe extends SpeciesAlien
 {
-    public EntitySpecies223ODe(World world)
+    public Species223ODe(World world)
     {
         super(world);
     }

@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import org.avp.DamageSources;
 import org.avp.entities.ai.EntityAIMeltBlock;
-import org.avp.entities.living.EntitySpeciesAlien;
+import org.avp.entities.living.species.SpeciesAlien;
 
 import com.google.common.base.Predicate;
 
@@ -41,7 +41,7 @@ public class EntityAcidPool extends EntityLiquidPool implements IMob
                 return false;
             }
 
-            if (living instanceof EntitySpeciesAlien)
+            if (living instanceof SpeciesAlien)
             {
                 return false;
             }

@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.entities.living.EntitySpeciesEngineer;
+import org.avp.entities.living.species.SpeciesEngineer;
 
 import com.asx.mdx.lib.client.util.models.Model;
 
@@ -171,7 +171,7 @@ public class ModelEngineer extends Model
         draw(lArmLower_1);
         draw(neck);
 
-        EntitySpeciesEngineer engineer = (EntitySpeciesEngineer) base;
+        SpeciesEngineer engineer = (SpeciesEngineer) base;
 
         if (engineer != null && engineer.isWearingMask() || engineer == null)
         {

@@ -1,6 +1,7 @@
 package org.avp.entities.living;
 
 import org.avp.client.Sounds;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
@@ -9,7 +10,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityBelugamorph extends EntityXenomorph implements IMob
+public class EntityBelugamorph extends SpeciesXenomorph implements IMob
 {
     public EntityBelugamorph(World world)
     {

@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.entities.living.EntitySpeciesYautja;
+import org.avp.entities.living.species.SpeciesYautja;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
@@ -612,9 +612,9 @@ public class ModelYautja extends Model
         float swingProgressPrev = swingProgressPrev(obj);
         float mandibleProgress = (idleProgress(obj) + (swingProgress(obj) * 75F)) * 2F;
 
-        if (base instanceof EntitySpeciesYautja)
+        if (base instanceof SpeciesYautja)
         {
-            EntitySpeciesYautja y = (EntitySpeciesYautja) base;
+            SpeciesYautja y = (SpeciesYautja) base;
             
             if (Math.abs(base.motionY) > 0.1F)
             {
@@ -644,9 +644,9 @@ public class ModelYautja extends Model
         this.lArmLower.rotateAngleX = this.rThigh.rotateAngleX * 1.75F;
         this.rArmLower.rotateAngleX = this.lThigh.rotateAngleX * 1.75F;
 
-        if (base instanceof EntitySpeciesYautja)
+        if (base instanceof SpeciesYautja)
         {
-            EntitySpeciesYautja y = (EntitySpeciesYautja) base;
+            SpeciesYautja y = (SpeciesYautja) base;
             
             this.biomaskMouth.isHidden = false;
             this.lMandibleLower1.isHidden = true;

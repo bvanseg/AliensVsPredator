@@ -3,7 +3,7 @@ package org.avp.entities;
 import java.util.List;
 import java.util.UUID;
 
-import org.avp.entities.living.EntitySpeciesAlien;
+import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.tile.TileEntityMedpod;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
@@ -67,7 +67,7 @@ public class EntityMedpod extends Entity
             {
                 Entity entity = entities.get(0);
 
-                if (!entity.isRiding() && !entity.isSneaking() && (entity != this.lastRiddenEntity && !entity.getPersistentID().equals(this.lastRiddenEntityUUID)) && !(entity instanceof EntitySpeciesAlien))
+                if (!entity.isRiding() && !entity.isSneaking() && (entity != this.lastRiddenEntity && !entity.getPersistentID().equals(this.lastRiddenEntityUUID)) && !(entity instanceof SpeciesAlien))
                 {
                     lastRiddenEntity = entity;
 

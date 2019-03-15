@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 import org.avp.client.Sounds;
 import org.avp.entities.EntityAcidPool;
+import org.avp.entities.living.species.SpeciesAlien;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.block.Blocks;
@@ -19,7 +21,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 @SuppressWarnings("all")
-public class EntityAqua extends EntityXenomorph
+public class EntityAqua extends SpeciesXenomorph
 {
     public EntityAqua(World world)
     {
@@ -47,7 +49,7 @@ public class EntityAqua extends EntityXenomorph
         @Override
         public boolean apply(EntityLivingBase entity)
         {
-            return !(entity instanceof EntitySpeciesAlien) && !(entity instanceof EntityAqua) && !(entity instanceof EntityAcidPool);
+            return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityAqua) && !(entity instanceof EntityAcidPool);
         }
     };
 

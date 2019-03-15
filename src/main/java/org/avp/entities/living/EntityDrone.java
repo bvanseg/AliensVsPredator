@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.avp.AliensVsPredator;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.client.Sounds;
+import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.tile.TileEntityHiveResin;
 
 import com.asx.mdx.lib.world.Pos;
@@ -25,7 +26,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class EntityDrone extends EntityXenomorph implements IMaturable
+public class EntityDrone extends SpeciesXenomorph implements IMaturable
 {
     public int             					mobType;
     private EntityOvamorph 					targetOvamorph;

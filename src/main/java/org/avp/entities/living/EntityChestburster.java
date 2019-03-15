@@ -6,6 +6,7 @@ import org.avp.api.parasitoidic.INascentic;
 import org.avp.api.parasitoidic.IRoyalOrganism;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
@@ -31,7 +32,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityChestburster extends EntitySpeciesAlien implements IMob, INascentic
+public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
 {
     private Class<? extends Entity> matureState;
 
@@ -97,7 +98,7 @@ public class EntityChestburster extends EntitySpeciesAlien implements IMob, INas
             this.setJellyLevel(this.getJellyLevel() - this.getMaturityLevel());
         }
 
-        EntitySpeciesAlien matureState = (EntitySpeciesAlien) Entities.constructEntity(this.world, this.getMatureState());
+        SpeciesAlien matureState = (SpeciesAlien) Entities.constructEntity(this.world, this.getMatureState());
 
         if (matureState != null)
         {

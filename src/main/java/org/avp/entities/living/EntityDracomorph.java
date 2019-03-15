@@ -4,6 +4,7 @@ import org.avp.EntityItemDrops;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.entities.EntityLiquidPool;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.living.species.SpeciesAlien;
 
 import com.asx.mdx.lib.world.Pos;
 import com.google.common.base.Predicate;
@@ -30,7 +31,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityDracomorph extends EntitySpeciesAlien implements IMob, IHost
+public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
 {
     private static final DataParameter<Integer> FLYING = EntityDataManager.createKey(EntityDracomorph.class, DataSerializers.VARINT);
     private BlockPos flyToPosition;
@@ -45,7 +46,7 @@ public class EntityDracomorph extends EntitySpeciesAlien implements IMob, IHost
                                                               return true;
                                                           }
                                                           
-                                                          if (target instanceof EntitySpeciesAlien)
+                                                          if (target instanceof SpeciesAlien)
                                                           {
                                                               return false;
                                                           }

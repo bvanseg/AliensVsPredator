@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.entities.living.EntityXenomorph;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
@@ -10,7 +10,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderXenomorph<XENO extends EntityXenomorph, MODEL extends Model> extends RenderLivingWrapper<XENO, MODEL>
+public class RenderXenomorph<XENO extends SpeciesXenomorph, MODEL extends Model> extends RenderLivingWrapper<XENO, MODEL>
 {
     private float scale;
 
@@ -33,7 +33,7 @@ public class RenderXenomorph<XENO extends EntityXenomorph, MODEL extends Model> 
     }
     
     @Override
-    public ResourceLocation getEntityTexture(EntityXenomorph entity)
+    public ResourceLocation getEntityTexture(SpeciesXenomorph entity)
     {
         return this.getModel().getTexture();
     }

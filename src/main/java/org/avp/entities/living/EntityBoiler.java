@@ -1,6 +1,7 @@
 package org.avp.entities.living;
 
 import org.avp.client.Sounds;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -8,7 +9,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
-public class EntityBoiler extends EntityXenomorph
+public class EntityBoiler extends SpeciesXenomorph
 {
     public EntityBoiler(World world)
     {

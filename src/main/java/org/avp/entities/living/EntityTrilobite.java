@@ -10,6 +10,7 @@ import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorTrilobite;
+import org.avp.entities.living.species.Species223ODe;
 import org.avp.packets.server.PacketAttachParasiteToEntity;
 import org.avp.world.Embryo;
 import org.avp.world.capabilities.IOrganism.Organism;
@@ -51,7 +52,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public class EntityTrilobite extends EntitySpecies223ODe implements IParasitoid, IAnimated
+public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnimated
 {
     public static final Animation               IMPREGNATION_ANIMATION = Animation.create(0);
     public static final Animation               ANIMATION_HUG_WALL     = Animation.create(20 * 5);

@@ -1,15 +1,15 @@
 package org.avp.entities.ai.alien;
 
-import org.avp.entities.living.EntityXenomorph;
+import org.avp.entities.living.species.SpeciesXenomorph;
 
 import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAIClimb extends EntityAIBase
 {
-    private EntityXenomorph xenomorph;
+    private SpeciesXenomorph xenomorph;
     private float climbSpeed;
 
-    public EntityAIClimb(EntityXenomorph xenomorph, float climbSpeed)
+    public EntityAIClimb(SpeciesXenomorph xenomorph, float climbSpeed)
     {
         super();
         this.xenomorph = xenomorph;

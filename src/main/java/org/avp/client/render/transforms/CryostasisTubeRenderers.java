@@ -13,7 +13,7 @@ import org.avp.entities.living.EntityFacehugger;
 import org.avp.entities.living.EntityMatriarch;
 import org.avp.entities.living.EntityOvamorph;
 import org.avp.entities.living.EntityPraetorian;
-import org.avp.entities.living.EntityXenomorph;
+import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.tile.TileEntityCryostasisTube;
 import org.lwjgl.opengl.GL12;
 
@@ -87,11 +87,11 @@ public class CryostasisTubeRenderers
             }
         });
 
-        RenderCryostasisTube.renderers.add(new CryostasisEntityRenderer(EntityXenomorph.class) {
+        RenderCryostasisTube.renderers.add(new CryostasisEntityRenderer(SpeciesXenomorph.class) {
             @Override
             public boolean isApplicable(Entity entity)
             {
-                return entity instanceof EntityXenomorph;
+                return entity instanceof SpeciesXenomorph;
             }
 
             @Override
