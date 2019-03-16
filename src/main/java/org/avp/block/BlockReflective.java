@@ -19,6 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.Mirror;
@@ -28,8 +29,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -43,6 +48,7 @@ public class BlockReflective extends Block implements ITileEntityProvider
     {
         super(materialIn);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(ALIGNMENT, EnumAlignment.BOTTOM));
+        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @SideOnly(Side.CLIENT)
@@ -87,12 +93,18 @@ public class BlockReflective extends Block implements ITileEntityProvider
     {
         return false;
     }
-
+    
+    @Override
+    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
+    {
+        super.onBlockClicked(worldIn, pos, playerIn);
+    }
+    
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileEntity tile = worldIn.getTileEntity(pos);
-        
+
         if (tile != null && tile instanceof TileEntityReflective)
         {
             TileEntityReflective reflective = (TileEntityReflective) tile;
@@ -102,19 +114,15 @@ public class BlockReflective extends Block implements ITileEntityProvider
                 Item itemHeld = playerIn.getHeldItemMainhand().getItem();
                 Block blockHeld = Block.getBlockFromItem(itemHeld);
                 int metadata = playerIn.getHeldItemMainhand().getMetadata();
-                
-                if (playerIn.isSneaking() && blockHeld == Blocks.AIR)
-                {
-                    reflective.setReflection(Blocks.AIR, 0);
-                    worldIn.notifyBlockUpdate(pos, state, state, 3);
-                    return true;
-                }
 
-                if (blockHeld != Blocks.AIR)
+                if (playerIn.isSneaking())
                 {
-                    reflective.setReflection(blockHeld, metadata);
-                    worldIn.notifyBlockUpdate(pos, state, state, 3);
-                    return true;
+                    if (blockHeld != Blocks.AIR)
+                    {
+                        reflective.setReflection(blockHeld, metadata);
+                        worldIn.notifyBlockUpdate(pos, state, state, 3);
+                        return true;
+                    }
                 }
             }
         }
@@ -274,16 +282,27 @@ public class BlockReflective extends Block implements ITileEntityProvider
 
         return state;
     }
-    
+
     @Override
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         super.getDrops(drops, world, pos, state, fortune);
     }
-    
+
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
         return new TileEntityReflective();
+    }
+    
+    @SubscribeEvent
+    public void onRightClickBlock(PlayerInteractEvent.RightClickBlock event)
+    {
+        Block block = event.getWorld().getBlockState(event.getPos()).getBlock();
+        
+        if (block instanceof BlockReflective)
+        {
+            event.setUseBlock(Result.ALLOW);
+        }
     }
 }
