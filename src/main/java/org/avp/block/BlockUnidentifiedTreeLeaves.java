@@ -135,7 +135,7 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
     @Override
     public BlockRenderLayer getRenderLayer()
     {
-        return BlockRenderLayer.TRANSLUCENT;
+        return BlockRenderLayer.CUTOUT_MIPPED;
     }
 
     @Override
