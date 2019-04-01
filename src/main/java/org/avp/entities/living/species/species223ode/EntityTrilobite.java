@@ -520,7 +520,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
 
     public void dropTentacle()
     {
-        this.dropItem(ItemHandler.itemRawTentacle, 1 + this.rand.nextInt(2));
+        this.dropItem(ItemHandler.itemRawTentacle, 1);
     }
 
     public int getAmountOfTentacles()
