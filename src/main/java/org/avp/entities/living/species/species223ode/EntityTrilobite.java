@@ -5,13 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorTrilobite;
-import org.avp.entities.living.species.EntityParasitoid;
 import org.avp.entities.living.species.Species223ODe;
+import org.avp.item.ItemWristbracer;
 import org.avp.packets.server.PacketAttachParasiteToEntity;
 import org.avp.world.Embryo;
 import org.avp.world.capabilities.IOrganism.Organism;
@@ -42,7 +43,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagIntArray;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -55,72 +58,73 @@ import net.minecraft.world.World;
 
 public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnimated
 {
-    public static final Animation               IMPREGNATION_ANIMATION = Animation.create(0);
-    public static final Animation               ANIMATION_HUG_WALL     = Animation.create(20 * 5);
+    public static final Animation                      IMPREGNATION_ANIMATION = Animation.create(0);
+    public static final Animation                      ANIMATION_HUG_WALL     = Animation.create(20 * 5);
 
-    private static final DataParameter<Boolean> FERTILE                = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
-    private int                                 ticksOnHost            = 0;
+    private static final DataParameter<Boolean>        FERTILE                = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<NBTTagCompound> DETACHED_TENTACLES     = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.COMPOUND_TAG);
+    private int                                        ticksOnHost            = 0;
 
-    public static Predicate<EntityLivingBase>   impregnationSelector   = new Predicate<EntityLivingBase>() {
-                                                                           @Override
-                                                                           public boolean apply(EntityLivingBase target)
-                                                                           {
-                                                                               ArrayList<Class<?>> blacklist = IParasitoid.getDefaultEntityBlacklist();
+    public static Predicate<EntityLivingBase>          impregnationSelector   = new Predicate<EntityLivingBase>() {
+                                                                                  @Override
+                                                                                  public boolean apply(EntityLivingBase target)
+                                                                                  {
+                                                                                      ArrayList<Class<?>> blacklist = IParasitoid.getDefaultEntityBlacklist();
 
-                                                                               for (Class<?> c : blacklist)
-                                                                               {
-                                                                                   if (c.isInstance(target))
-                                                                                   {
-                                                                                       return false;
-                                                                                   }
-                                                                               }
+                                                                                      for (Class<?> c : blacklist)
+                                                                                      {
+                                                                                          if (c.isInstance(target))
+                                                                                          {
+                                                                                              return false;
+                                                                                          }
+                                                                                      }
 
-                                                                               Organism organism = (Organism) target.getCapability(Provider.CAPABILITY, null);
+                                                                                      Organism organism = (Organism) target.getCapability(Provider.CAPABILITY, null);
 
-                                                                               if (target instanceof IHost)
-                                                                               {
-                                                                                   IHost host = (IHost) target;
+                                                                                      if (target instanceof IHost)
+                                                                                      {
+                                                                                          IHost host = (IHost) target;
 
-                                                                                   if (!host.canHostParasite() || !host.canParasiteAttach())
-                                                                                   {
-                                                                                       return false;
-                                                                                   }
-                                                                               }
+                                                                                          if (!host.canHostParasite() || !host.canParasiteAttach())
+                                                                                          {
+                                                                                              return false;
+                                                                                          }
+                                                                                      }
 
-                                                                               if (organism != null && organism.hasEmbryo())
-                                                                               {
-                                                                                   return false;
-                                                                               }
+                                                                                      if (organism != null && organism.hasEmbryo())
+                                                                                      {
+                                                                                          return false;
+                                                                                      }
 
-                                                                               if (target instanceof EntityPlayer)
-                                                                               {
-                                                                                   EntityPlayer player = (EntityPlayer) target;
-                                                                                   ItemStack headwear = Inventories.getHelmSlotItemStack(player);
+                                                                                      if (target instanceof EntityPlayer)
+                                                                                      {
+                                                                                          EntityPlayer player = (EntityPlayer) target;
+                                                                                          ItemStack headwear = Inventories.getHelmSlotItemStack(player);
 
-                                                                                   if (headwear != null && headwear.getItem() != Items.AIR || ((EntityPlayer) target).capabilities.isCreativeMode)
-                                                                                   {
-                                                                                       return false;
-                                                                                   }
-                                                                               }
+                                                                                          if (headwear != null && headwear.getItem() != Items.AIR || ((EntityPlayer) target).capabilities.isCreativeMode)
+                                                                                          {
+                                                                                              return false;
+                                                                                          }
+                                                                                      }
 
-                                                                               if (!(target instanceof EntityLivingBase))
-                                                                               {
-                                                                                   return false;
-                                                                               }
+                                                                                      if (!(target instanceof EntityLivingBase))
+                                                                                      {
+                                                                                          return false;
+                                                                                      }
 
-                                                                               if (target instanceof EntityLiving)
-                                                                               {
-                                                                                   EntityLiving living = (EntityLiving) target;
+                                                                                      if (target instanceof EntityLiving)
+                                                                                      {
+                                                                                          EntityLiving living = (EntityLiving) target;
 
-                                                                                   if (living.isChild())
-                                                                                   {
-                                                                                       return false;
-                                                                                   }
-                                                                               }
+                                                                                          if (living.isChild())
+                                                                                          {
+                                                                                              return false;
+                                                                                          }
+                                                                                      }
 
-                                                                               return true;
-                                                                           }
-                                                                       };
+                                                                                      return true;
+                                                                                  }
+                                                                              };
 
     public EntityTrilobite(World world)
     {
@@ -151,6 +155,10 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     {
         super.entityInit();
         this.getDataManager().register(FERTILE, true);
+
+        NBTTagCompound tagDetachedTentacles = new NBTTagCompound();
+        tagDetachedTentacles.setIntArray("Tentacles", new int[this.getAmountOfTentacles()]);
+        this.getDataManager().register(DETACHED_TENTACLES, tagDetachedTentacles);
     }
 
     @Override
@@ -175,7 +183,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     public void onUpdate()
     {
         super.onUpdate();
-        
+
         if (!this.isFertile())
         {
             this.setNoAI(true);
@@ -190,7 +198,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
 
         if (this.collidedHorizontally)
         {
-             this.motionY += 0.25F;
+            this.motionY += 0.25F;
         }
 
         this.jumpMovementFactor = 1.0F;
@@ -249,10 +257,12 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
                     {
                         ;
                     }
+
                     public void setLookPositionWithEntity(Entity entityIn, float deltaYaw, float deltaPitch)
                     {
                         ;
                     }
+
                     public float updateRotation(float x, float y, float z)
                     {
                         return 0F;
@@ -280,7 +290,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
                 this.detachFromHost();
             }
         }
-        
+
         if (this.getAttackTarget() != null)
         {
             if (this.getActiveAnimation() == ANIMATION_HUG_WALL)
@@ -290,18 +300,18 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
                 angle = MathHelper.floor((angle / 90) + 0.5) * 90F;
                 this.rotationYaw = angle;
             }
-            
+
             double distanceX = this.prevPosX - this.posX;
             double distanceZ = this.prevPosZ - this.posZ;
-            
+
             double motion = distanceX * distanceZ;
-            
+
             if ((this.collidedHorizontally) && this.getActiveAnimation() == NO_ANIMATION && Math.abs(motion) < 0.3D && Math.abs(motion) > 0.0D)
             {
                 AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_HUG_WALL);
             }
         }
-        
+
         if (this.getRidingEntity() == null && this.getActiveAnimation() == IMPREGNATION_ANIMATION)
         {
             this.setActiveAnimation(NO_ANIMATION);
@@ -428,11 +438,15 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     {
         super.readFromNBT(nbt);
         IParasitoid.readFromNBT(this, nbt);
+
+        this.setDetachedTentacles(nbt.getIntArray("Tentacles"));
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+        nbt.setTag("Tentacles", new NBTTagIntArray(this.getDetachedTentacles()));
+
         IParasitoid.writeToNBT(this, nbt);
         return super.writeToNBT(nbt);
     }
@@ -481,6 +495,109 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     }
 
     @Override
+    public boolean hitByEntity(Entity entity)
+    {
+        if (!this.isFertile() && this.getRidingEntity() == null)
+        {
+            if (entity instanceof EntityPlayer)
+            {
+                EntityPlayer player = (EntityPlayer) entity;
+                ItemStack held = player.getHeldItemMainhand();
+
+                if (held != null)
+                {
+                    if (held.getItem() instanceof ItemSword || ItemWristbracer.equippedHasBlades(player))
+                    {
+                        this.detachTentacle();
+                    }
+                }
+            }
+        }
+
+        return super.hitByEntity(entity);
+    }
+
+    public void dropTentacle()
+    {
+        this.dropItem(ItemHandler.itemRawTentacle, 1 + this.rand.nextInt(2));
+    }
+
+    public int getAmountOfTentacles()
+    {
+        return 7;
+    }
+
+    public void detachTentacle()
+    {
+        int qty = getAmountOfTentacles();
+        int[] tentacles = this.getDetachedTentacles();
+
+        if (tentacles == null || tentacles != null && tentacles.length < qty)
+        {
+            tentacles = new int[qty];
+        }
+
+        this.detachNextTentacleRandomly(tentacles, qty, -1);
+        this.setDetachedTentacles(tentacles);
+    }
+
+    private int[] detachNextTentacleRandomly(int[] tentacles, int qty, int idx)
+    {
+        int randTentacle = this.rand.nextInt(qty);
+        boolean canContinue = false;
+
+        for (int t = 0; t < qty; t++)
+        {
+            if (tentacles[t] == 0)
+            {
+                canContinue = true;
+                break;
+            }
+        }
+
+        if (canContinue)
+        {
+            if (randTentacle != idx)
+            {
+                if (tentacles[randTentacle] == 0)
+                {
+                    tentacles[randTentacle] = 1;
+
+                    if (!this.world.isRemote)
+                    {
+                        this.dropTentacle();
+                    }
+                    
+                    return tentacles;
+                }
+                else
+                {
+                    detachNextTentacleRandomly(tentacles, qty, randTentacle);
+                }
+            }
+            else
+            {
+                detachNextTentacleRandomly(tentacles, qty, randTentacle);
+            }
+        }
+
+        return tentacles;
+    }
+
+    public void setDetachedTentacles(int[] tentacles)
+    {
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setTag("Tentacles", new NBTTagIntArray(tentacles));
+
+        this.getDataManager().set(DETACHED_TENTACLES, tag);
+    }
+
+    public int[] getDetachedTentacles()
+    {
+        return this.getDataManager().get(DETACHED_TENTACLES).getIntArray("Tentacles");
+    }
+
+    @Override
     public void setFertility(boolean fertility)
     {
         this.getDataManager().set(FERTILE, fertility);
@@ -489,7 +606,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     public boolean isFertile()
     {
-        return this.getDataManager().get(FERTILE);
+        return this.getDataManager().get(FERTILE).booleanValue();
     }
 
     @Override

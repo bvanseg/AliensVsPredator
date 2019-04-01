@@ -180,6 +180,8 @@ public class ItemHandler
     public static final Item itemAK47Action             = new HookedItem().setMaxStackSize(64).setCreativeTab(Tab.GUN_PARTS).setRegistryName("part.ak47.action");
     public static final Item itemDoritos                = new ItemFood(8, true).setAlwaysEdible().setCreativeTab(Tab.MAIN).setRegistryName("food.doritos");
     public static final Item itemDoritosCoolRanch       = new ItemFood(8, true).setAlwaysEdible().setCreativeTab(Tab.MAIN).setRegistryName("food.doritos.coolranch");
+    public static final Item itemRawTentacle            = new ItemFood(4, true).setAlwaysEdible().setCreativeTab(Tab.MAIN).setRegistryName("food.raw.tentacle");
+    public static final Item itemTriloBite              = new ItemFood(10, 1.0F, true).setAlwaysEdible().setCreativeTab(Tab.MAIN).setRegistryName("food.trilo.bite");
     public static final Item itemFlashDrive             = new ItemStorageDevice().setMaxStackSize(64).setCreativeTab(Tab.MAIN).setRegistryName("device.nbtdrive");
     public static final Item itemCapacitor              = new HookedItem().setMaxStackSize(64).setCreativeTab(Tab.CRAFTING).setRegistryName("part.capacitor");
     public static final Item itemTransistor             = new HookedItem().setMaxStackSize(64).setCreativeTab(Tab.CRAFTING).setRegistryName("part.transistor");

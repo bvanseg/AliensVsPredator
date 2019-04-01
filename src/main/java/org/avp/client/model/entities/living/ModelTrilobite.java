@@ -839,12 +839,51 @@ public class ModelTrilobite extends Model<EntityTrilobite>
         updateDefaultPose();
     }
 
+    public Model.Part getTentacleById(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                return this.tail;
+            case 1:
+                return this.lFrontTenticle1;
+            case 2:
+                return this.rFrontTenticle1;
+            case 3:
+                return this.lMiddleTenticle1;
+            case 4:
+                return this.rMiddleTenticle1;
+            case 5:
+                return this.lBackTenticle1;
+            case 6:
+                return this.rBackTenticle1;
+            default:
+                return null;
+        }
+    }
+
     @Override
     public void render(EntityTrilobite trilobite)
     {
         if (trilobite != null)
         {
             animate(trilobite);
+
+            if (!trilobite.isFertile())
+            {
+                int[] tentacles = trilobite.getDetachedTentacles();
+
+                for (int i = 0; i < trilobite.getAmountOfTentacles(); i++)
+                {
+                    Model.Part tentacle = getTentacleById(i);
+
+                    if (tentacle != null)
+                    {
+                        boolean hidden = tentacles[i] == 1 ? true : false;
+                        tentacle.isHidden = hidden;
+                    }
+                }
+            }
 
             if (!trilobite.isFertile() && !this.isRiding)
             {

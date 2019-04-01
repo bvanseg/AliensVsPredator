@@ -65,6 +65,7 @@ public class CraftingHandler
         GameRegistry.addSmelting(BlockHandler.oreLithium, new ItemStack(ItemHandler.itemIngotLithium), 1.0F);
         GameRegistry.addSmelting(BlockHandler.oreBauxite, new ItemStack(ItemHandler.itemIngotAluminum), 1.0F);
         GameRegistry.addSmelting(BlockHandler.oreSilicon, new ItemStack(ItemHandler.itemSilicon), 1.0F);
+        GameRegistry.addSmelting(ItemHandler.itemRawTentacle, new ItemStack(ItemHandler.itemTriloBite), 2.0F);
         GameRegistry.addSmelting(BlockHandler.gigerLog, CHARCOAL, 1.0F);
     }
 
