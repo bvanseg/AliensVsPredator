@@ -270,27 +270,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
             }
         }
 
-        // if (this.world.getWorldTime() % 20 == 0)
-        // {
-        // if (isFertile())
-        // {
-        // ArrayList<EntityLivingBase> targetHosts = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1.0D, 16.0D, 1.0D), this.getImpregnationEntitiySelector());
-        //
-        // if (targetHosts != null && targetHosts.size() > 0)
-        // {
-        // Collections.sort(targetHosts, new EntityAINearestAttackableTarget.Sorter(this));
-        //
-        // EntityLivingBase targetHost = targetHosts.get(0);
-        // this.setAttackTarget(targetHost);
-        //
-        // if (!targetHosts.contains(this.getAttackTarget()))
-        // {
-        // this.setAttackTarget(null);
-        // }
-        // }
-        // }
-        // }
-
         this.handleInfertileState();
     }
 
