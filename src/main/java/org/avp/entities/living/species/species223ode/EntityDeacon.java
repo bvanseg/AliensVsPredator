@@ -3,6 +3,8 @@ package org.avp.entities.living.species.species223ode;
 import org.avp.DamageSources;
 import org.avp.api.parasitoidic.INascentic;
 import org.avp.client.Sounds;
+import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 import org.avp.entities.living.species.Species223ODe;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
@@ -11,9 +13,16 @@ import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAILeapAtTarget;
+import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -25,15 +34,19 @@ public class EntityDeacon extends Species223ODe implements INascentic
     {
         super(world);
 
-        this.jumpMovementFactor = 0.02F;
         this.experienceValue = 100;
-        this.setSize(0.8F, 1.8F);
-        // this.ableToClimb = false;
+        this.jumpMovementFactor = 1.0F;
+        this.setSize(0.6F, 1.8F);
         this.isDependant = false;
-
         this.tasks.addTask(0, new EntityAISwimming(this));
-
-//         this.addStandardXenomorphAISet();
+        this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
+        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityLiving.class, 1.0D, false));
+        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+        this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
+        this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.6F));
+        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLiving>(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, false, false, EntitySelectorXenomorph.instance));
     }
 
     @Override
