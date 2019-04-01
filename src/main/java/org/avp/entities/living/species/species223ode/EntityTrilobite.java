@@ -1,7 +1,6 @@
 package org.avp.entities.living.species.species223ode;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
@@ -132,6 +131,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         super(world);
         this.setSize(3F, 1.98F);
         this.experienceValue = 32;
+        this.jumpMovementFactor = 1.0F;
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
         this.tasks.addTask(8, new EntityAIWander(this, 0.800000011920929D));
@@ -179,12 +179,131 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     {
         super.onEntityUpdate();
     }
+    
+    @Override
+    public void updatePassenger(Entity passenger)
+    {
+        super.updatePassenger(passenger);
+    }
+
+    private void updateHitbox()
+    {
+        if (this.world.getWorldTime() % 20 == 0)
+        {
+            if (!this.isFertile() && this.getRidingEntity() == null)
+            {
+                this.height = 0.5F;
+            }
+            
+            if (!this.isFertile() && this.getRidingEntity() != null)
+            {
+                this.height = 3F;
+            }
+
+            int[] tentacles = this.getDetachedTentacles();
+            boolean hasAllTentacles = true;
+
+            for (int i = 0; i < this.getAmountOfTentacles(); i++)
+            {
+                if (tentacles[i] == 1)
+                {
+                    hasAllTentacles = false;
+                }
+            }
+
+            if (!hasAllTentacles)
+            {
+                this.width = 2;
+            }
+        }
+    }
+    
+    @Override
+    protected void updateAnimations()
+    {
+        super.updateAnimations();
+
+        if (this.getAttackTarget() != null)
+        {
+            if (this.getActiveAnimation() == ANIMATION_HUG_WALL)
+            {
+                Entity entityIn = this.getAttackTarget();
+                float angle = (float) (MathHelper.atan2(entityIn.posZ - this.posZ, entityIn.posX - this.posX) * (180D / Math.PI)) - 90.0F;
+                angle = MathHelper.floor((angle / 90) + 0.5) * 90F;
+                this.rotationYaw = angle;
+            }
+
+            double distanceX = this.prevPosX - this.posX;
+            double distanceZ = this.prevPosZ - this.posZ;
+
+            double motion = distanceX * distanceZ;
+
+            if ((this.collidedHorizontally) && this.getActiveAnimation() == NO_ANIMATION && Math.abs(motion) < 0.3D && Math.abs(motion) > 0.0D)
+            {
+                AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_HUG_WALL);
+            }
+        }
+
+        if (this.getRidingEntity() == null && this.getActiveAnimation() == IMPREGNATION_ANIMATION)
+        {
+            this.setActiveAnimation(NO_ANIMATION);
+        }
+    }
 
     @Override
     public void onUpdate()
     {
         super.onUpdate();
 
+        this.updateHitbox();
+        this.negateFallDamage();
+        this.slideUpSurface();
+
+        if (this.getAttackTarget() != null)
+        {
+            if (this.world.getWorldTime() % 5 == 0)
+            {
+                if (!this.getImpregnationEntitiySelector().apply(this.getAttackTarget()))
+                {
+                    this.setAttackTarget(null);
+                }
+            }
+        }
+
+        // if (this.world.getWorldTime() % 20 == 0)
+        // {
+        // if (isFertile())
+        // {
+        // ArrayList<EntityLivingBase> targetHosts = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1.0D, 16.0D, 1.0D), this.getImpregnationEntitiySelector());
+        //
+        // if (targetHosts != null && targetHosts.size() > 0)
+        // {
+        // Collections.sort(targetHosts, new EntityAINearestAttackableTarget.Sorter(this));
+        //
+        // EntityLivingBase targetHost = targetHosts.get(0);
+        // this.setAttackTarget(targetHost);
+        //
+        // if (!targetHosts.contains(this.getAttackTarget()))
+        // {
+        // this.setAttackTarget(null);
+        // }
+        // }
+        // }
+        // }
+
+        this.handleInfertileState();
+    }
+
+    private void slideUpSurface()
+    {
+        if (this.collidedHorizontally)
+        {
+            this.motionY += 0.25F;
+        }
+    }
+
+    private void handleInfertileState()
+    {
         if (!this.isFertile())
         {
             this.setNoAI(true);
@@ -196,35 +315,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
             this.motionZ *= 0.98F;
             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
         }
-
-        if (this.collidedHorizontally)
-        {
-            this.motionY += 0.25F;
-        }
-
-        this.jumpMovementFactor = 1.0F;
-        if (this.world.getWorldTime() % 20 == 0)
-        {
-            if (isFertile())
-            {
-                ArrayList<EntityLivingBase> targetHosts = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1.0D, 16.0D, 1.0D), this.getImpregnationEntitiySelector());
-
-                if (targetHosts != null && targetHosts.size() > 0)
-                {
-                    Collections.sort(targetHosts, new EntityAINearestAttackableTarget.Sorter(this));
-
-                    EntityLivingBase targetHost = targetHosts.get(0);
-                    this.setAttackTarget(targetHost);
-
-                    if (!targetHosts.contains(this.getAttackTarget()))
-                    {
-                        this.setAttackTarget(null);
-                    }
-                }
-            }
-        }
-
-        this.negateFallDamage();
 
         if (this.isAttachedToHost())
         {
@@ -290,32 +380,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
                 }
                 this.detachFromHost();
             }
-        }
-
-        if (this.getAttackTarget() != null)
-        {
-            if (this.getActiveAnimation() == ANIMATION_HUG_WALL)
-            {
-                Entity entityIn = this.getAttackTarget();
-                float angle = (float) (MathHelper.atan2(entityIn.posZ - this.posZ, entityIn.posX - this.posX) * (180D / Math.PI)) - 90.0F;
-                angle = MathHelper.floor((angle / 90) + 0.5) * 90F;
-                this.rotationYaw = angle;
-            }
-
-            double distanceX = this.prevPosX - this.posX;
-            double distanceZ = this.prevPosZ - this.posZ;
-
-            double motion = distanceX * distanceZ;
-
-            if ((this.collidedHorizontally) && this.getActiveAnimation() == NO_ANIMATION && Math.abs(motion) < 0.3D && Math.abs(motion) > 0.0D)
-            {
-                AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_HUG_WALL);
-            }
-        }
-
-        if (this.getRidingEntity() == null && this.getActiveAnimation() == IMPREGNATION_ANIMATION)
-        {
-            this.setActiveAnimation(NO_ANIMATION);
         }
     }
 
@@ -568,7 +632,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
                     {
                         this.dropTentacle();
                     }
-                    
+
                     return tentacles;
                 }
                 else
