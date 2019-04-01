@@ -1,8 +1,11 @@
 package org.avp.world.capabilities;
 
+import java.util.concurrent.Callable;
+
 import org.avp.AliensVsPredator;
 import org.avp.packets.client.OrganismClientSync;
 import org.avp.packets.server.OrganismServerSync;
+import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.PlayerMode;
 
 import net.minecraft.entity.EntityLivingBase;
@@ -56,7 +59,7 @@ public interface ISpecialPlayer
         @Override
         public <T> T getCapability(Capability<T> capability, EnumFacing facing)
         {
-            return hasCapability(capability, facing) ? CAPABILITY.<T> cast(this.instance) : null;
+            return hasCapability(capability, facing) ? CAPABILITY.<T>cast(this.instance) : null;
         }
 
         @Override
@@ -74,20 +77,29 @@ public interface ISpecialPlayer
 
     public static class SpecialPlayer implements ISpecialPlayer, IStorage<ISpecialPlayer>
     {
+        public static class Factory implements Callable<ISpecialPlayer>
+        {
+            @Override
+            public ISpecialPlayer call() throws Exception
+            {
+                return new SpecialPlayer();
+            }
+        }
+
         public static final String  IDENTIFIER                  = "SpecialPlayer";
         private static final String ID_INT_BROADCAST_RADIUS     = "broadcastRadius";
         private static final String ID_STRING_BROADCAST_CHANNEL = "broadcastChannel";
         private static final String ID_BOOLEAN_ENTITY_CULLING   = "entityCulling";
         private static final String ID_BOOLEAN_NIGHTVISION      = "nightvisionEnabled";
         private static final String ID_BOOLEAN_CAN_CLIMB        = "canClimb";
-        
-        public int         broadcastRadius;
-        private String     broadcastChannel;
-        private boolean    entityCulling;
-        private boolean    nightvisionEnabled;
-        private boolean    canClimb;
-        private PlayerMode playerMode = PlayerMode.NORMAL;
-        
+
+        public int                  broadcastRadius;
+        private String              broadcastChannel;
+        private boolean             entityCulling;
+        private boolean             nightvisionEnabled;
+        private boolean             canClimb;
+        private PlayerMode          playerMode                  = PlayerMode.NORMAL;
+
         public SpecialPlayer()
         {
             this.broadcastChannel = "Default";
@@ -167,7 +179,7 @@ public interface ISpecialPlayer
         public NBTBase writeNBT(Capability<ISpecialPlayer> capability, ISpecialPlayer instance, EnumFacing side)
         {
             NBTTagCompound tag = new NBTTagCompound();
-            
+
             tag.setInteger(ID_INT_BROADCAST_RADIUS, instance.getBroadcastRadius());
             tag.setString(ID_STRING_BROADCAST_CHANNEL, instance.getBroadcastChannel());
             tag.setBoolean(ID_BOOLEAN_ENTITY_CULLING, instance.isEntityCullingEnabled());
@@ -183,7 +195,7 @@ public interface ISpecialPlayer
             if (nbt instanceof NBTTagCompound)
             {
                 NBTTagCompound tag = (NBTTagCompound) nbt;
-                
+
                 instance.setBroadcastChannel(tag.getString(ID_STRING_BROADCAST_CHANNEL));
                 instance.setBroadcastRadius(tag.getInteger(ID_INT_BROADCAST_RADIUS));
                 instance.setEntityCullingEnabled(tag.getBoolean(ID_BOOLEAN_ENTITY_CULLING));

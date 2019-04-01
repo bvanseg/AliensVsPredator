@@ -33,8 +33,8 @@ public class CapabilityHandler implements IPreInitEvent
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
-        CapabilityManager.INSTANCE.register(IOrganism.class, new Organism(), Organism.class);
-        CapabilityManager.INSTANCE.register(ISpecialPlayer.class, new SpecialPlayer(), SpecialPlayer.class);
+        CapabilityManager.INSTANCE.register(IOrganism.class, new Organism(), new Organism.Factory());
+        CapabilityManager.INSTANCE.register(ISpecialPlayer.class, new SpecialPlayer(), new SpecialPlayer.Factory());
     }
     
     @SubscribeEvent
@@ -49,8 +49,6 @@ public class CapabilityHandler implements IPreInitEvent
             event.addCapability(SPECIAL_PLAYER, new ISpecialPlayer.Provider());
         }
     }
-    
-    ///////////////////////////////////////////////////////////////////////
     
     @SubscribeEvent
     public void onEntityTrackEvent(PlayerEvent.StartTracking event)

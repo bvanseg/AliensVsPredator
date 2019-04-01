@@ -1,5 +1,7 @@
 package org.avp.world.capabilities;
 
+import java.util.concurrent.Callable;
+
 import org.avp.AliensVsPredator;
 import org.avp.client.render.TacticalHUDRenderEvent;
 import org.avp.entities.living.species.SpeciesAlien;
@@ -55,7 +57,7 @@ public interface IOrganism
         @Override
         public <T> T getCapability(Capability<T> capability, EnumFacing facing)
         {
-            return hasCapability(capability, facing) ? CAPABILITY.<T> cast(this.instance) : null;
+            return hasCapability(capability, facing) ? CAPABILITY.<T>cast(this.instance) : null;
         }
 
         @Override
@@ -100,6 +102,15 @@ public interface IOrganism
 
     public static class Organism implements IOrganism, IStorage<IOrganism>
     {
+        public static class Factory implements Callable<IOrganism>
+        {
+            @Override
+            public IOrganism call() throws Exception
+            {
+                return new Organism();
+            }
+        }
+
         private Embryo embryo;
         private int    heartRate;
 
@@ -221,13 +232,13 @@ public interface IOrganism
         public void syncWithServer(EntityLivingBase living)
         {
             if (living != null)
-            AliensVsPredator.network().sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+                AliensVsPredator.network().sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         public void syncWithClients(EntityLivingBase living)
         {
             if (living != null)
-            AliensVsPredator.network().sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+                AliensVsPredator.network().sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         @Override
