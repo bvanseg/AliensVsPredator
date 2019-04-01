@@ -141,4 +141,16 @@ public class EntityDeacon extends Species223ODe implements INascentic
         host.getActivePotionEffects().clear();
         host.attackEntityFrom(DamageSources.causeDeaconBursterDamage(this, host), 100000F);
     }
+
+    @Override
+    public void produceJelly()
+    {
+        if (!this.world.isRemote)
+        {
+            if (this.world.getWorldTime() % 20 == 0)
+            {
+                this.setJellyLevel(this.getJellyLevel() + 20);
+            }
+        }
+    }
 }
