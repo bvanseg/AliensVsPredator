@@ -42,6 +42,7 @@ import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
@@ -506,7 +507,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
 
                 if (held != null)
                 {
-                    if (held.getItem() instanceof ItemSword || ItemWristbracer.equippedHasBlades(player))
+                    if (held.getItem() instanceof ItemSword || held.getItem() instanceof ItemAxe || ItemWristbracer.equippedHasBlades(player))
                     {
                         this.detachTentacle();
                     }
