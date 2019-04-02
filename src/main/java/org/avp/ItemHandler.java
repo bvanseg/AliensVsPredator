@@ -283,8 +283,6 @@ public class ItemHandler
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event)
         {
-            event.getRegistry().registerAll();
-
             for (java.lang.reflect.Field field : AliensVsPredator.items().getClass().getDeclaredFields())
             {
                 try
