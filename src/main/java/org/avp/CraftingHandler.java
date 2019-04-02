@@ -41,10 +41,12 @@ public class CraftingHandler
         OreDictionary.registerOre("oreAluminium", BlockHandler.oreBauxite);
         OreDictionary.registerOre("oreSilicon", BlockHandler.oreSilicon);
         OreDictionary.registerOre("itemSilicon", ItemHandler.itemSilicon);
+        OreDictionary.registerOre("itemSilica", ItemHandler.itemSilicon);
         OreDictionary.registerOre("itemPolycarbonate", ItemHandler.itemPolycarbonate);
         OreDictionary.registerOre("itemPlastic", ItemHandler.itemPolycarbonate);
         OreDictionary.registerOre("logWood", BlockHandler.gigerLog);
         OreDictionary.registerOre("itemNeodymium", ItemHandler.neodymium);
+        OreDictionary.registerOre("itemMagnet", ItemHandler.neodymiumMagnet);
         OreDictionary.registerOre("oreMonazite", BlockHandler.oreMonazite);
         OreDictionary.registerOre("ingotCobalt", ItemHandler.cobalt);
         OreDictionary.registerOre("oreCobalt", BlockHandler.oreCobalt);        
