@@ -147,6 +147,11 @@ public class AliensVsPredator implements IMod
     {
         return BiomeColorHandler.instance;
     }
+    
+    public static CraftingHandler crafting()
+    {
+        return CraftingHandler.instance;
+    }
 
     public static MaterialHandler materials()
     {

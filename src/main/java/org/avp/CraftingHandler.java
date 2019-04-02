@@ -23,40 +23,31 @@ public class CraftingHandler
     private static final ItemStack      CHARCOAL = new ItemStack(Items.COAL, 1, 1);
 
     @SubscribeEvent
+    public static void registerRecipes(RegistryEvent.Register<IRecipe> event)
+    {
+        addSmelting();
+        addSchematics();
+    }
+
+    @SubscribeEvent
     public static void registerOres(RegistryEvent.Register<Item> event)
     {
-        OreDictionary.registerOre("copper", ItemHandler.itemIngotCopper);
         OreDictionary.registerOre("ingotCopper", ItemHandler.itemIngotCopper);
-        OreDictionary.registerOre("lithium", ItemHandler.itemIngotLithium);
         OreDictionary.registerOre("itemLithium", ItemHandler.itemIngotLithium);
-        OreDictionary.registerOre("aluminum", ItemHandler.itemIngotAluminum);
         OreDictionary.registerOre("ingotAluminum", ItemHandler.itemIngotAluminum);
-        OreDictionary.registerOre("aluminium", ItemHandler.itemIngotAluminum);
-        OreDictionary.registerOre("ingotAluminium", ItemHandler.itemIngotAluminum);
         OreDictionary.registerOre("oreCopper", BlockHandler.oreCopper);
         OreDictionary.registerOre("oreLithium", BlockHandler.oreLithium);
         OreDictionary.registerOre("oreAluminum", BlockHandler.oreBauxite);
         OreDictionary.registerOre("oreAluminium", BlockHandler.oreBauxite);
         OreDictionary.registerOre("oreSilicon", BlockHandler.oreSilicon);
-        OreDictionary.registerOre("silicon", ItemHandler.itemSilicon);
         OreDictionary.registerOre("itemSilicon", ItemHandler.itemSilicon);
-        OreDictionary.registerOre("polycarbonate", ItemHandler.itemPolycarbonate);
         OreDictionary.registerOre("itemPolycarbonate", ItemHandler.itemPolycarbonate);
-        OreDictionary.registerOre("plastic", ItemHandler.itemPolycarbonate);
         OreDictionary.registerOre("itemPlastic", ItemHandler.itemPolycarbonate);
         OreDictionary.registerOre("logWood", BlockHandler.gigerLog);
-        OreDictionary.registerOre("log", BlockHandler.gigerLog);
-        OreDictionary.registerOre("neodymium", ItemHandler.neodymium);
+        OreDictionary.registerOre("itemNeodymium", ItemHandler.neodymium);
         OreDictionary.registerOre("oreMonazite", BlockHandler.oreMonazite);
-        OreDictionary.registerOre("cobalt", ItemHandler.cobalt);
-        OreDictionary.registerOre("oreCobalt", BlockHandler.oreCobalt);
-    }
-
-    @SubscribeEvent
-    public static void registerRecipes(RegistryEvent.Register<IRecipe> event)
-    {
-        addSmelting();
-        addSchematics();
+        OreDictionary.registerOre("ingotCobalt", ItemHandler.cobalt);
+        OreDictionary.registerOre("oreCobalt", BlockHandler.oreCobalt);        
     }
 
     private static void addSmelting()
