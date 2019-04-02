@@ -869,19 +869,16 @@ public class ModelTrilobite extends Model<EntityTrilobite>
         {
             animate(trilobite);
 
-            if (!trilobite.isFertile())
+            int[] tentacles = trilobite.getDetachedTentacles();
+
+            for (int i = 0; i < trilobite.getAmountOfTentacles(); i++)
             {
-                int[] tentacles = trilobite.getDetachedTentacles();
+                Model.Part tentacle = getTentacleById(i);
 
-                for (int i = 0; i < trilobite.getAmountOfTentacles(); i++)
+                if (tentacle != null)
                 {
-                    Model.Part tentacle = getTentacleById(i);
-
-                    if (tentacle != null)
-                    {
-                        boolean hidden = tentacles[i] == 1 ? true : false;
-                        tentacle.isHidden = hidden;
-                    }
+                    boolean hidden = tentacles[i] == 1 ? true : false;
+                    tentacle.isHidden = hidden;
                 }
             }
 
