@@ -20,14 +20,14 @@
         ],
         "c": [
             {
-                "item": "avp:polycarbonate",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "polycarbonate"
             }
         ],
         "d": [
             {
-                "item": "avp:ingot.lithium",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotLithium"
             }
         ]
     },

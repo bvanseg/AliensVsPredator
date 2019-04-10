@@ -8,8 +8,8 @@
     "key": {
         "a": [
             {
-                "item": "minecraft:iron_ingot",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotIron"
             }
         ],
         "b": [

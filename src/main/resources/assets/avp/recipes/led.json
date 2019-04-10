@@ -14,8 +14,8 @@
     ],
     "B": [
       {
-        "item": "avp:polycarbonate",
-        "data": 0
+        "type": "forge:ore_dict",
+        "ore": "polycarbonate"
       }
     ],
     "C": [

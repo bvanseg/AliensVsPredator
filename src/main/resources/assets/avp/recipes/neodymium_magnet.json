@@ -2,16 +2,16 @@
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
         {
-            "item": "avp:neodymium",
-            "data": 0
+            "type": "forge:ore_dict",
+            "ore": "neodymium"
         },
         {
-            "item": "avp:cobalt",
-            "data": 0
+            "type": "forge:ore_dict",
+            "ore": "cobalt"
         },
         {
-            "item": "avp:cobalt",
-            "data": 0
+            "type": "forge:ore_dict",
+            "ore": "cobalt"
         }
     ],
     "result": {

@@ -8,14 +8,14 @@
     "key": {
         "a": [
             {
-                "item": "avp:polycarbonate",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "polycarbonate"
             }
         ],
         "b": [
             {
-                "item": "avp:ingot.aluminum",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotAluminum"
             }
         ],
         "c": [
@@ -26,14 +26,14 @@
         ],
         "d": [
             {
-                "item": "avp:silicon",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "silicon"
             }
         ],
         "e": [
             {
-                "item": "minecraft:iron_ingot",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotIron"
             }
         ],
         "f": [

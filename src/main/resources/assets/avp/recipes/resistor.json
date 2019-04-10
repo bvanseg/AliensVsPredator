@@ -8,14 +8,14 @@
   "key": {
     "A": [
       {
-        "item": "avp:ingot.copper",
-        "data": 0
+        "type": "forge:ore_dict",
+        "ore": "ingotCopper"
       }
     ],
     "B": [
       {
-        "item": "avp:carbon",
-        "data": 0
+        "type": "forge:ore_dict",
+        "ore": "carbon"
       }
     ]
   },

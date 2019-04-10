@@ -8,15 +8,15 @@
     "key": {
         "a": [
             {
-                "item": "minecraft:iron_ingot",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotIron"
             }
         ],
         "b": [
             {
-                "item": "avp:ingot.aluminum",
-                "data": 0
-            }
+                "type": "forge:ore_dict",
+                "ore": "ingotAluminum"            
+			}
         ],
         "c": [
             {
@@ -26,8 +26,8 @@
         ],
         "d": [
             {
-                "item": "avp:ingot.copper",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotCopper"
             }
         ]
     },

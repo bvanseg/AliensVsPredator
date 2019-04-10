@@ -8,14 +8,14 @@
     "key": {
         "a": [
             {
-                "item": "minecraft:slime_ball",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "slimeball"
             }
         ],
         "b": [
             {
-                "item": "avp:ingot.aluminum",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotAluminum"
             }
         ],
         "c": [
@@ -26,8 +26,8 @@
         ],
         "d": [
             {
-                "item": "avp:polycarbonate",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "polycarbonate"
             }
         ]
     },

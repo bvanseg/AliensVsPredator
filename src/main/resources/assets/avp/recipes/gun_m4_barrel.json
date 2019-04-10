@@ -7,20 +7,20 @@
     "key": {
         "a": [
             {
-                "item": "minecraft:iron_ingot",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotIron"
             }
         ],
         "b": [
             {
-                "item": "avp:silicon",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "silicon"
             }
         ],
         "c": [
             {
-                "item": "avp:carbon",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "carbon"
             }
         ]
     },

@@ -11,10 +11,11 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "A": {
-      "item": "avp:polycarbonate"
+      "type": "forge:ore_dict",
+      "ore": "polycarbonate"
     },
     "B": {
-      "ore": "itemSilicon",
+      "ore": "silicon",
       "type": "forge:ore_dict"
     }
   }

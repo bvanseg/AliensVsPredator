@@ -7,14 +7,14 @@
     "key": {
         "a": [
             {
-                "item": "avp:ingot.aluminum",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotAluminum"
             }
         ],
         "b": [
             {
-                "item": "avp:silicon",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "silicon"
             }
         ],
         "c": [

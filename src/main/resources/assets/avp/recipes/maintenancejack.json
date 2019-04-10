@@ -8,14 +8,14 @@
     "key": {
         "a": [
             {
-                "item": "avp:ingot.aluminum",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotAluminum"
             }
         ],
         "b": [
             {
-                "item": "avp:polycarbonate",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "polycarbonate"
             }
         ]
     },

@@ -8,8 +8,8 @@
     "key": {
         "a": [
             {
-                "item": "avp:ingot.aluminum",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "ingotAluminum"
             }
         ],
         "b": [
@@ -20,14 +20,14 @@
         ],
         "c": [
             {
-                "item": "avp:carbon",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "carbon"
             }
         ],
         "d": [
             {
-                "item": "avp:silicon",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "silicon"
             }
         ]
     },

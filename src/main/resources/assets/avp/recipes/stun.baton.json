@@ -23,7 +23,8 @@
       "item": "avp:part.capacitor"
     },
     "E": {
-      "item": "avp:polycarbonate"
+      "type": "forge:ore_dict",
+      "ore": "polycarbonate"
     },
     "F": {
       "item": "minecraft:stone_button"
