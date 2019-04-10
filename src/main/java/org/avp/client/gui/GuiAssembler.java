@@ -12,6 +12,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
+import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
 import com.asx.mdx.lib.client.gui.IAction;
 import com.asx.mdx.lib.client.gui.IGuiElement;
 import com.asx.mdx.lib.client.util.Draw;
@@ -39,15 +40,19 @@ public class GuiAssembler extends GuiContainer
     private GuiCustomButton      buttonAssemble16;
     private GuiCustomButton      buttonAssemble32;
     private GuiCustomButton      buttonAssembleStack;
+
+    private GuiCustomTextbox     searchBar;
+
     private int                  scroll       = 0;
     private boolean              hasMaterials = false;
 
     public GuiAssembler(InventoryPlayer invPlayer, TileEntityAssembler assembler, World world, int x, int y, int z)
     {
         super(assembler.getNewContainer(invPlayer.player));
-        this.schematics = AssemblyManager.instance.schematics();
+        this.schematics = new ArrayList<Schematic>(AssemblyManager.instance.schematics());
         this.xSize = 256;
         this.ySize = 170;
+        this.allowUserInput = true;
     }
 
     @Override
@@ -62,14 +67,16 @@ public class GuiAssembler extends GuiContainer
         this.buttonAssemble16 = new GuiCustomButton(2, 0, 0, 50, 20, "");
         this.buttonAssemble32 = new GuiCustomButton(2, 0, 0, 50, 20, "");
         this.buttonAssembleStack = new GuiCustomButton(2, 0, 0, 50, 20, "");
+        this.searchBar = new GuiCustomTextbox(0, 0, 100, 20);
+        this.searchBar.setFocused(true);
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        if (schematics != null)
+        if (schematics != null && schematics.size() > 0)
         {
-            Schematic selectedSchematic = schematics.get(getScroll());
+            Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
 
             if (selectedSchematic != null)
             {
@@ -127,6 +134,7 @@ public class GuiAssembler extends GuiContainer
             /**
              * Draw the schematics in the assembler
              */
+
             int curItem = -1;
 
             for (Schematic schematic : schematics)
@@ -135,14 +143,14 @@ public class GuiAssembler extends GuiContainer
                 {
                     Item item = schematic.getItemStackAssembled().getItem();
 
-                    if (item != null)
+                    if (item != null && schematic.getItemStackAssembled().getDisplayName().toLowerCase().contains(this.searchBar.getText().toLowerCase()))
                     {
                         curItem++;
                         int numberRendered = curItem - (getScroll());
-                        int entryHeight = 11;
+                        int entryHeight = 10;
                         int entryWidth = this.xSize - Math.round(this.xSize / 5.35F);
                         int entryX = 4;
-                        int entryY = 18 + (numberRendered) * entryHeight;
+                        int entryY = 33 + (numberRendered) * entryHeight;
 
                         if (numberRendered >= 0 && numberRendered <= 10)
                         {
@@ -183,6 +191,14 @@ public class GuiAssembler extends GuiContainer
         int buttonOffsetX = buttonWidth + 9;
         int offset = 0;
 
+        this.searchBar.setX(this.guiLeft + 4);
+        this.searchBar.setY(this.guiTop + 17);
+        this.searchBar.setWidth(208);
+        this.searchBar.setHeight(15);
+        this.searchBar.setBackgroundColor(0xFF000000);
+        this.searchBar.setTextColor(0xFF88FF00);
+        this.searchBar.drawTextBox();
+
         this.buttonScrollUp.x = this.guiLeft + xSize + 5 - buttonOffsetX;
         this.buttonScrollUp.y = this.guiTop + 4;
         this.buttonScrollUp.width = buttonWidth;
@@ -199,7 +215,7 @@ public class GuiAssembler extends GuiContainer
             }
         });
 
-        boolean hasMaterials1X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 1, true) >= 1;
+        boolean hasMaterials1X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.size() > 0 ? schematics.size() > 0 ? schematics.get(getScroll()) : null : null, 1, true) >= 1;
         this.buttonAssemble.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssemble.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssemble.displayString = "\u2692 x1";
@@ -213,14 +229,18 @@ public class GuiAssembler extends GuiContainer
             @Override
             public void perform(IGuiElement element)
             {
-                Schematic selectedSchematic = schematics.get(getScroll());
-                AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 1));
+                Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+
+                if (selectedSchematic != null)
+                {
+                    AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
+                    AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 1));
+                }
             }
         });
 
-//        System.out.println(AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 4, true));
-        boolean hasMaterials4X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 4, true) >= 4;
+        // System.out.println(AssemblyManager.tryAssembly(Game.minecraft().player, schematics.size() > 0 ? schematics.get(getScroll()) : null, 4, true));
+        boolean hasMaterials4X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.size() > 0 ? schematics.get(getScroll()) : null, 4, true) >= 4;
         this.buttonAssemble4.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssemble4.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssemble4.displayString = "\u2692 x4";
@@ -234,13 +254,17 @@ public class GuiAssembler extends GuiContainer
             @Override
             public void perform(IGuiElement element)
             {
-                Schematic selectedSchematic = schematics.get(getScroll());
-                AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 4));
+                Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+
+                if (selectedSchematic != null)
+                {
+                    AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
+                    AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 4));
+                }
             }
         });
 
-        boolean hasMaterials8X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 8, true) >= 8;
+        boolean hasMaterials8X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.size() > 0 ? schematics.get(getScroll()) : null, 8, true) >= 8;
         this.buttonAssemble8.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssemble8.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssemble8.displayString = "\u2692 x8";
@@ -254,13 +278,17 @@ public class GuiAssembler extends GuiContainer
             @Override
             public void perform(IGuiElement element)
             {
-                Schematic selectedSchematic = schematics.get(getScroll());
-                AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 8));
+                Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+
+                if (selectedSchematic != null)
+                {
+                    AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
+                    AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 8));
+                }
             }
         });
 
-        boolean hasMaterials16X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 16, true) >= 16;
+        boolean hasMaterials16X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.size() > 0 ? schematics.get(getScroll()) : null, 16, true) >= 16;
         this.buttonAssemble16.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssemble16.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssemble16.displayString = "\u2692 x16";
@@ -274,13 +302,17 @@ public class GuiAssembler extends GuiContainer
             @Override
             public void perform(IGuiElement element)
             {
-                Schematic selectedSchematic = schematics.get(getScroll());
-                AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 16));
+                Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+
+                if (selectedSchematic != null)
+                {
+                    AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
+                    AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 16));
+                }
             }
         });
 
-        boolean hasMaterial32X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 32, true) >= 32;
+        boolean hasMaterial32X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.size() > 0 ? schematics.get(getScroll()) : null, 32, true) >= 32;
         this.buttonAssemble32.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssemble32.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssemble32.displayString = "\u2692 x32";
@@ -294,13 +326,17 @@ public class GuiAssembler extends GuiContainer
             @Override
             public void perform(IGuiElement element)
             {
-                Schematic selectedSchematic = schematics.get(getScroll());
-                AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 32));
+                Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+
+                if (selectedSchematic != null)
+                {
+                    AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
+                    AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 32));
+                }
             }
         });
 
-        boolean hasMaterialStack = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 64, true) >= 64;
+        boolean hasMaterialStack = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.size() > 0 ? schematics.get(getScroll()) : null, 64, true) >= 64;
         this.buttonAssembleStack.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssembleStack.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssembleStack.displayString = "\u2692 x64";
@@ -314,9 +350,13 @@ public class GuiAssembler extends GuiContainer
             @Override
             public void perform(IGuiElement element)
             {
-                Schematic selectedSchematic = schematics.get(getScroll());
-                AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-                AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 64));
+                Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+
+                if (selectedSchematic != null)
+                {
+                    AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
+                    AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), 64));
+                }
             }
         });
 
@@ -335,6 +375,19 @@ public class GuiAssembler extends GuiContainer
                 scrollUp();
             }
         });
+    }
+
+    @Override
+    protected void keyTyped(char typedChar, int keyCode) throws IOException
+    {
+        this.scroll = 0;
+
+        this.searchBar.textboxKeyTyped(typedChar, keyCode);
+
+        if (!(keyCode == Keyboard.KEY_E && this.searchBar.isFocused()))
+        {
+            super.keyTyped(typedChar, keyCode);
+        }
     }
 
     @Override
@@ -362,6 +415,22 @@ public class GuiAssembler extends GuiContainer
         {
             scrollUp();
         }
+
+        ArrayList<Schematic> searchedSchematics = new ArrayList<Schematic>();
+
+        for (Schematic schematic : AssemblyManager.instance.schematics())
+        {
+            if (schematic != null && schematic.getItemStackAssembled() != null)
+            {
+                Item item = schematic.getItemStackAssembled().getItem();
+
+                if (item != null && schematic.getItemStackAssembled().getDisplayName().toLowerCase().contains(this.searchBar.getText().toLowerCase()))
+                {
+                    searchedSchematics.add(schematic);
+                }
+            }
+        }
+        this.schematics = searchedSchematics;
     }
 
     public void scrollDown()
