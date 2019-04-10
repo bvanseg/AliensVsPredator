@@ -55,26 +55,13 @@ public class PacketAssemble implements IMessage, IMessageHandler<PacketAssemble,
                 if (player != null)
                 {
                     Schematic schematic = AssemblyManager.instance.getSchematic(packet.id);
+                    int qtyAssembled = AssemblyManager.tryAssembly(player, schematic, packet.count);
 
-                    int amount = 0;
-
-                    for (int i = 0; i < packet.count; i++)
+                    if (qtyAssembled > 0)
                     {
-                        if (AssemblyManager.handleAssembly(schematic, player))
-                        {
-                            amount++;
-                        }
-                        else
-                        {
-                            break;
-                        }
+                        player.sendMessage(new TextComponentString(String.format("Assembled %sx %s", qtyAssembled, schematic.getItemStackAssembled().getDisplayName())));
                     }
-
-                    if (amount > 0)
-                    {
-                        player.sendMessage(new TextComponentString(String.format("Assembled %sx %s", amount, schematic.getItemStackAssembled().getDisplayName())));
-                    }
-                    else if (amount == 0)
+                    else if (qtyAssembled == 0)
                     {
                         player.sendMessage(new TextComponentString(String.format("Not enough materials to assemble %sx %s", packet.count, schematic.getItemStackAssembled().getDisplayName())));
                     }

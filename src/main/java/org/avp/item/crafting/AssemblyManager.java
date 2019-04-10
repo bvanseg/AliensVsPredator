@@ -7,6 +7,8 @@ import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -106,7 +108,77 @@ public class AssemblyManager
         return count;
     }
 
+    /**
+     * Try to assemble the specified schematic, for the specified player, the specified amount of times.
+     * 
+     * @param player - The player whose resources will be used to assemble the schematic.
+     * @param schematic - The schematic to be assembled.
+     * @param count - The amount of items to assemble this schematic.
+     * @return - The amount of items assembled. Returns 0 of the process was not successful.
+     */
+    public static int tryAssembly(EntityPlayer player, Schematic schematic, int count)
+    {
+        return tryAssembly(player, schematic, count, false);
+    }
+
+    /**
+     * Try to assemble the specified schematic, for the specified player, the specified amount of times. Simulate if specified.
+     * 
+     * @param player - The player whose resources will be used to assemble the schematic.
+     * @param schematic - The schematic to be assembled.
+     * @param count - The amount of items to assemble this schematic.
+     * @param simulate - Set to true if the assembly should only be simulated.
+     * @return - The amount of items assembled. Returns 0 of the process was not successful.
+     */
+    public static int tryAssembly(EntityPlayer player, Schematic schematic, int count, boolean simulate)
+    {
+        int amount = 0;
+
+        for (int i = 0; i < count; i++)
+        {
+            if (AssemblyManager.handleAssembly(schematic, player, simulate))
+            {
+                amount++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return amount;
+    }
+
     public static boolean handleAssembly(Schematic schematic, EntityPlayer player)
+    {
+        return handleAssembly(schematic, player, false);
+    }
+
+    public static ItemStack findInventoryItemstackMatchOreDict(EntityPlayer player, ItemStack stack)
+    {
+        int[] matches = OreDictionary.getOreIDs(stack);
+        boolean checkOreDictionary = matches.length > 0;
+
+        if (checkOreDictionary)
+        {
+            for (int id : matches)
+            {
+                String sharedName = OreDictionary.getOreName(id);
+
+                for (ItemStack potentialMatch : OreDictionary.getOres(sharedName))
+                {
+                    if (Inventories.getAmountOfItemPlayerHas(potentialMatch.getItem(), player) >= stack.getCount())
+                    {
+                        return potentialMatch;
+                    }
+                }
+            }
+        }
+
+        return stack;
+    }
+
+    public static boolean handleAssembly(Schematic schematic, EntityPlayer player, boolean simulate)
     {
         if (schematic != null && Schematic.isComplete(schematic, player))
         {
@@ -114,58 +186,37 @@ public class AssemblyManager
             {
                 if (requirement != null && requirement != ItemStack.EMPTY)
                 {
-                    int[] matches = OreDictionary.getOreIDs(requirement);
-                    boolean checkOreDictionary = matches.length > 0;
-
-                    if (checkOreDictionary)
+                    Item requiredItem = findInventoryItemstackMatchOreDict(player, requirement).getItem();
+                    
+                    if (Inventories.getAmountOfItemPlayerHas(requiredItem, player) >= requirement.getCount())
                     {
-                        matchLoop:
-                        for (int id : matches)
+                        for (int x = 0; x < requirement.getCount(); x++)
                         {
-                            String sharedName = OreDictionary.getOreName(id);
-
-                            for (ItemStack potentialMatch : OreDictionary.getOres(sharedName))
+                            if (!simulate)
                             {
-                                if (Inventories.getAmountOfItemPlayerHas(potentialMatch.getItem(), player) >= requirement.getCount())
-                                {
-                                    for (int x = 0; x < requirement.getCount(); x++)
-                                    {
-                                        if (!Inventories.consumeItem(player, potentialMatch.getItem()))
-                                        {
-                                            return false;
-                                        }
-                                    }
-
-                                    break matchLoop;
-                                }
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (Inventories.getAmountOfItemPlayerHas(requirement.getItem(), player) >= requirement.getCount())
-                        {
-                            for (int x = 0; x < requirement.getCount(); x++)
-                            {
-                                if (!Inventories.consumeItem(player, requirement.getItem()))
+                                if (!Inventories.consumeItem(player, requiredItem))
                                 {
                                     return false;
                                 }
                             }
                         }
                     }
+                    else
+                    {
+                        return false;
+                    }
                 }
             }
 
-            if (player.inventory.addItemStackToInventory(schematic.getItemStackAssembled().copy()))
+            if (!simulate)
             {
-                return true;
+                if (!player.inventory.addItemStackToInventory(schematic.getItemStackAssembled().copy()))
+                {
+                    new EntityItem(player.world, player.posX, player.posY, player.posZ, schematic.getItemStackAssembled().copy());
+                }
             }
-            else
-            {
-                new EntityItem(player.world, player.posX, player.posY, player.posZ, schematic.getItemStackAssembled().copy());
-                return true;
-            }
+
+            return true;
         }
 
         return false;

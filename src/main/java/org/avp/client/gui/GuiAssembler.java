@@ -31,16 +31,16 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiAssembler extends GuiContainer
 {
     private ArrayList<Schematic> schematics;
-    private GuiCustomButton buttonScrollUp;
-    private GuiCustomButton buttonScrollDown;
-    private GuiCustomButton buttonAssemble;
-    private GuiCustomButton buttonAssemble4;
-    private GuiCustomButton buttonAssemble8;
-    private GuiCustomButton buttonAssemble16;
-    private GuiCustomButton buttonAssemble32;
-    private GuiCustomButton buttonAssembleStack;
-    private int scroll = 0;
-    private boolean hasMaterials = false;
+    private GuiCustomButton      buttonScrollUp;
+    private GuiCustomButton      buttonScrollDown;
+    private GuiCustomButton      buttonAssemble;
+    private GuiCustomButton      buttonAssemble4;
+    private GuiCustomButton      buttonAssemble8;
+    private GuiCustomButton      buttonAssemble16;
+    private GuiCustomButton      buttonAssemble32;
+    private GuiCustomButton      buttonAssembleStack;
+    private int                  scroll       = 0;
+    private boolean              hasMaterials = false;
 
     public GuiAssembler(InventoryPlayer invPlayer, TileEntityAssembler assembler, World world, int x, int y, int z)
     {
@@ -54,8 +54,6 @@ public class GuiAssembler extends GuiContainer
     public void initGui()
     {
         super.initGui();
-        this.guiTop = 5;
-
         this.buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "");
         this.buttonScrollDown = new GuiCustomButton(1, 0, 0, 20, 20, "");
         this.buttonAssemble = new GuiCustomButton(2, 0, 0, 50, 20, "");
@@ -78,30 +76,43 @@ public class GuiAssembler extends GuiContainer
                 int curStack = -1;
                 int progress = 0;
                 int maxProgress = 0;
+                int assemblerSidePanelWidth = this.xSize - (this.xSize / 2);
+                int assemblerSidePanelX = -assemblerSidePanelWidth;
 
                 for (ItemStack stack : selectedSchematic.getItemsRequired())
                 {
                     curStack++;
                     int amountOfStack = AssemblyManager.amountForMatchingStack(Game.minecraft().player, stack);
-                    boolean playerHasItemstack = amountOfStack > 0;
-                    int stackY = this.ySize + 12 + (curStack * 12);
+                    int stackY = 15 + (curStack * 8);
                     int curStackSize = (amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack);
                     OpenGL.enableBlend();
-                    Draw.drawRect(2, stackY - 2, this.xSize - 4, 12, 0x22FFFFFF);
-                    Draw.drawString(curStackSize + "/" + stack.getCount(), 220, stackY, curStackSize >= stack.getCount() ? 0xFF00AAFF : curStackSize < stack.getCount() && curStackSize > 0 ? 0xFFFFAA00 : 0xFF888888);
-                    Draw.drawString(stack.getDisplayName(), 20, stackY, 0xFF888888);
-                    Draw.drawItem(stack, 5, stackY, 8, 8);
+                    Draw.drawRect(assemblerSidePanelX, stackY - 2, assemblerSidePanelWidth, 8, 0xDD000000);
+
+                    OpenGL.pushMatrix();
+                    {
+                        float s = 0.5F;
+                        float m = 1F / s;
+                        int textColor = curStackSize >= stack.getCount() ? 0xFF00AAFF : curStackSize < stack.getCount() && curStackSize > 0 ? 0xFFFFAA00 : 0xFF888888;
+
+                        OpenGL.scale(s, s, 1.0F);
+                        Draw.drawString(curStackSize + "/" + stack.getCount(), Math.round((-12) * m), Math.round((stackY) * m), textColor, false);
+                        Draw.drawString(stack.getDisplayName(), Math.round((assemblerSidePanelX + 12) * m), Math.round((stackY) * m), 0xFF888888, false);
+                        Draw.drawItem(stack, Math.round((assemblerSidePanelX + 2) * m), Math.round((stackY - 2) * m), 16, 16);
+                    }
+                    OpenGL.popMatrix();
 
                     maxProgress += stack.getCount();
 
-                    if (playerHasItemstack)
+                    if (amountOfStack > 0)
                     {
                         progress += amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack;
                     }
                 }
 
                 int percentComplete = (progress * 100 / maxProgress);
-                Draw.drawProgressBar("" + progress + " of " + maxProgress + " Materials / " + percentComplete + "% Complete", maxProgress, progress, 0, this.ySize - 4, this.xSize, 7, 3, percentComplete < 25 ? 0xFFFF2222 : percentComplete < 50 ? 0xFFFFAA00 : (percentComplete == 100 ? 0xFF00AAFF : 0xFFFFAA00), false);
+                String progressBarString = "" + progress + "/" + maxProgress + " Materials";
+                int progressBarColor = percentComplete < 25 ? 0xFFFF2222 : percentComplete < 50 ? 0xFFFFAA00 : (percentComplete == 100 ? 0xFF00AAFF : 0xFFFFAA00);
+                Draw.drawProgressBar(progressBarString, maxProgress, progress, assemblerSidePanelX, 0, assemblerSidePanelWidth, 8, 3, progressBarColor, false);
 
                 if (percentComplete == 100)
                 {
@@ -128,14 +139,17 @@ public class GuiAssembler extends GuiContainer
                     {
                         curItem++;
                         int numberRendered = curItem - (getScroll());
+                        int entryHeight = 11;
+                        int entryWidth = this.xSize - Math.round(this.xSize / 5.35F);
                         int entryX = 4;
-                        int entryY = 20 + (numberRendered) * 11;
+                        int entryY = 18 + (numberRendered) * entryHeight;
 
                         if (numberRendered >= 0 && numberRendered <= 10)
                         {
                             OpenGL.enableBlend();
                             OpenGL.disableBlend();
-                            Draw.drawString((curItem + 1) + " " + I18n.translateToLocal(item.getTranslationKey() + ".name"), entryX + 13, entryY + 2, curItem == this.scroll ? 0xFF00AAFF : 0xFF555555, false);
+                            Draw.drawRect(entryX, entryY + entryHeight, entryWidth, 1, 0xFF000000);
+                            Draw.drawString(I18n.translateToLocal(item.getTranslationKey() + ".name"), entryX + 13, entryY + 2, curItem == this.scroll ? 0xFF00AAFF : 0xFF555555, false);
                             Draw.drawItem(schematic.getItemStackAssembled(), entryX + 2, entryY + 2, 8, 8);
                         }
                     }
@@ -153,18 +167,18 @@ public class GuiAssembler extends GuiContainer
         AliensVsPredator.resources().GUI_ASSEMBLER.bind();
         drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
     }
-    
+
     @Override
     protected void actionPerformed(GuiButton button) throws IOException
     {
         super.actionPerformed(button);
     }
-    
+
     @Override
     public void drawScreen(int mouseX, int mouseY, float renderPartial)
     {
         super.drawScreen(mouseX, mouseY, renderPartial);
-        
+
         int buttonWidth = 38;
         int buttonOffsetX = buttonWidth + 9;
         int offset = 0;
@@ -175,9 +189,9 @@ public class GuiAssembler extends GuiContainer
         this.buttonScrollUp.height = 19;
         this.buttonScrollUp.displayString = "\u21e7";
         this.buttonScrollUp.baseColor = this.getScroll() == 0 ? 0x22000000 : 0xAA000000;
+        this.buttonScrollUp.overlayColorHover = 0x22FFFFFF;
         this.buttonScrollUp.drawButton();
-        this.buttonScrollUp.setAction(new IAction()
-        {
+        this.buttonScrollUp.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -185,14 +199,17 @@ public class GuiAssembler extends GuiContainer
             }
         });
 
+        boolean hasMaterials1X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 1, true) >= 1;
         this.buttonAssemble.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssemble.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssemble.displayString = "\u2692 x1";
         this.buttonAssemble.width = buttonWidth;
-        this.buttonAssemble.baseColor = this.hasMaterials ? 0xAA000000 : 0x22000000;
+        this.buttonAssemble.baseColor = hasMaterials1X ? 0xAA000000 : 0x22000000;
+        this.buttonAssemble.overlayColorHover = hasMaterials1X ? 0xFF88FF00 : 0xFFFF0000;
+        this.buttonAssemble.fontColor = this.buttonAssemble.isMouseOver() ? 0xFF000000 : 0xFFFFFFFF;
+        this.buttonAssemble.fontShadow = false;
         this.buttonAssemble.drawButton();
-        this.buttonAssemble.setAction(new IAction()
-        {
+        this.buttonAssemble.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -202,14 +219,18 @@ public class GuiAssembler extends GuiContainer
             }
         });
 
+//        System.out.println(AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 4, true));
+        boolean hasMaterials4X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 4, true) >= 4;
         this.buttonAssemble4.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssemble4.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssemble4.displayString = "\u2692 x4";
         this.buttonAssemble4.width = buttonWidth;
-        this.buttonAssemble4.baseColor = this.hasMaterials ? 0xAA000000 : 0x22000000;
+        this.buttonAssemble4.baseColor = hasMaterials4X ? 0xAA000000 : 0x22000000;
+        this.buttonAssemble4.overlayColorHover = hasMaterials4X ? 0xFF88FF00 : 0xFFFF0000;
+        this.buttonAssemble4.fontColor = this.buttonAssemble4.isMouseOver() ? 0xFF000000 : 0xFFFFFFFF;
+        this.buttonAssemble4.fontShadow = false;
         this.buttonAssemble4.drawButton();
-        this.buttonAssemble4.setAction(new IAction()
-        {
+        this.buttonAssemble4.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -219,14 +240,17 @@ public class GuiAssembler extends GuiContainer
             }
         });
 
+        boolean hasMaterials8X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 8, true) >= 8;
         this.buttonAssemble8.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssemble8.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssemble8.displayString = "\u2692 x8";
         this.buttonAssemble8.width = buttonWidth;
-        this.buttonAssemble8.baseColor = this.hasMaterials ? 0xAA000000 : 0x22000000;
+        this.buttonAssemble8.baseColor = hasMaterials8X ? 0xAA000000 : 0x22000000;
+        this.buttonAssemble8.overlayColorHover = hasMaterials8X ? 0xFF88FF00 : 0xFFFF0000;
+        this.buttonAssemble8.fontColor = this.buttonAssemble8.isMouseOver() ? 0xFF000000 : 0xFFFFFFFF;
+        this.buttonAssemble8.fontShadow = false;
         this.buttonAssemble8.drawButton();
-        this.buttonAssemble8.setAction(new IAction()
-        {
+        this.buttonAssemble8.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -236,14 +260,17 @@ public class GuiAssembler extends GuiContainer
             }
         });
 
+        boolean hasMaterials16X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 16, true) >= 16;
         this.buttonAssemble16.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssemble16.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssemble16.displayString = "\u2692 x16";
         this.buttonAssemble16.width = buttonWidth;
-        this.buttonAssemble16.baseColor = this.hasMaterials ? 0xAA000000 : 0x22000000;
+        this.buttonAssemble16.baseColor = hasMaterials16X ? 0xAA000000 : 0x22000000;
+        this.buttonAssemble16.overlayColorHover = hasMaterials16X ? 0xFF88FF00 : 0xFFFF0000;
+        this.buttonAssemble16.fontColor = this.buttonAssemble16.isMouseOver() ? 0xFF000000 : 0xFFFFFFFF;
+        this.buttonAssemble16.fontShadow = false;
         this.buttonAssemble16.drawButton();
-        this.buttonAssemble16.setAction(new IAction()
-        {
+        this.buttonAssemble16.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -253,14 +280,17 @@ public class GuiAssembler extends GuiContainer
             }
         });
 
+        boolean hasMaterial32X = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 32, true) >= 32;
         this.buttonAssemble32.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssemble32.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssemble32.displayString = "\u2692 x32";
         this.buttonAssemble32.width = buttonWidth;
-        this.buttonAssemble32.baseColor = this.hasMaterials ? 0xAA000000 : 0x22000000;
+        this.buttonAssemble32.baseColor = hasMaterial32X ? 0xAA000000 : 0x22000000;
+        this.buttonAssemble32.overlayColorHover = hasMaterial32X ? 0xFF88FF00 : 0xFFFF0000;
+        this.buttonAssemble32.fontColor = this.buttonAssemble32.isMouseOver() ? 0xFF000000 : 0xFFFFFFFF;
+        this.buttonAssemble32.fontShadow = false;
         this.buttonAssemble32.drawButton();
-        this.buttonAssemble32.setAction(new IAction()
-        {
+        this.buttonAssemble32.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -270,14 +300,17 @@ public class GuiAssembler extends GuiContainer
             }
         });
 
+        boolean hasMaterialStack = AssemblyManager.tryAssembly(Game.minecraft().player, schematics.get(getScroll()), 64, true) >= 64;
         this.buttonAssembleStack.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
         this.buttonAssembleStack.y = this.guiTop + 3 + (offset += 20);
         this.buttonAssembleStack.displayString = "\u2692 x64";
         this.buttonAssembleStack.width = buttonWidth;
-        this.buttonAssembleStack.baseColor = this.hasMaterials ? 0xAA000000 : 0x22000000;
+        this.buttonAssembleStack.baseColor = hasMaterialStack ? 0xAA000000 : 0x22000000;
+        this.buttonAssembleStack.overlayColorHover = hasMaterialStack ? 0xFF88FF00 : 0xFFFF0000;
+        this.buttonAssembleStack.fontColor = this.buttonAssembleStack.isMouseOver() ? 0xFF000000 : 0xFFFFFFFF;
+        this.buttonAssembleStack.fontShadow = false;
         this.buttonAssembleStack.drawButton();
-        this.buttonAssembleStack.setAction(new IAction()
-        {
+        this.buttonAssembleStack.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -293,9 +326,9 @@ public class GuiAssembler extends GuiContainer
         this.buttonScrollDown.height = 19;
         this.buttonScrollDown.displayString = "\u21e9";
         this.buttonScrollDown.baseColor = this.getScroll() >= (this.schematics.size() - 1) ? 0x22000000 : 0xAA000000;
+        this.buttonScrollDown.overlayColorHover = 0x22FFFFFF;
         this.buttonScrollDown.drawButton();
-        this.buttonScrollDown.setAction(new IAction()
-        {
+        this.buttonScrollDown.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
