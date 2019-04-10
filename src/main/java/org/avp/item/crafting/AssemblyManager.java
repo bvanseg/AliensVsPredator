@@ -180,30 +180,33 @@ public class AssemblyManager
 
     public static boolean handleAssembly(Schematic schematic, EntityPlayer player, boolean simulate)
     {
-        if (schematic != null && Schematic.isComplete(schematic, player))
+        if (schematic != null && Schematic.isComplete(schematic, player) || schematic != null && player.isCreative())
         {
-            for (ItemStack requirement : schematic.getItemsRequired())
+            if (!player.isCreative())
             {
-                if (requirement != null && requirement != ItemStack.EMPTY)
+                for (ItemStack requirement : schematic.getItemsRequired())
                 {
-                    Item requiredItem = findInventoryItemstackMatchOreDict(player, requirement).getItem();
-                    
-                    if (Inventories.getAmountOfItemPlayerHas(requiredItem, player) >= requirement.getCount())
+                    if (requirement != null && requirement != ItemStack.EMPTY)
                     {
-                        for (int x = 0; x < requirement.getCount(); x++)
+                        Item requiredItem = findInventoryItemstackMatchOreDict(player, requirement).getItem();
+
+                        if (Inventories.getAmountOfItemPlayerHas(requiredItem, player) >= requirement.getCount())
                         {
-                            if (!simulate)
+                            for (int x = 0; x < requirement.getCount(); x++)
                             {
-                                if (!Inventories.consumeItem(player, requiredItem))
+                                if (!simulate)
                                 {
-                                    return false;
+                                    if (!Inventories.consumeItem(player, requiredItem))
+                                    {
+                                        return false;
+                                    }
                                 }
                             }
                         }
-                    }
-                    else
-                    {
-                        return false;
+                        else
+                        {
+                            return false;
+                        }
                     }
                 }
             }
