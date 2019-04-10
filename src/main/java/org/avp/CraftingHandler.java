@@ -30,7 +30,7 @@ public class CraftingHandler
     }
 
     @SubscribeEvent
-    public static void registerOres(RegistryEvent.Register<Item> event)
+    public static void registerOres(RegistryEvent.Register<IRecipe> event)
     {
         OreDictionary.registerOre("ingotCopper", ItemHandler.itemIngotCopper);
         OreDictionary.registerOre("itemLithium", ItemHandler.itemIngotLithium);
@@ -80,6 +80,83 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemMotherboard, 1),
                         new ItemStack(ItemHandler.itemPolycarbonate, 6),
                         new ItemStack(Blocks.STONE_BUTTON, 16),
+                };
+            }
+        });
+        AssemblyManager.register(new Schematic("reflective_slope", new ItemStack(BlockHandler.slope, 1)) {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                        new ItemStack(ItemHandler.itemIngotAluminum, 1),
+                        new ItemStack(Items.IRON_NUGGET, 8),
+                        new ItemStack(ItemHandler.itemArtifactTech, 1),
+                };
+            }
+        });
+        AssemblyManager.register(new Schematic("reflective_corner", new ItemStack(BlockHandler.corner, 1)) {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                        new ItemStack(ItemHandler.itemIngotAluminum, 1),
+                        new ItemStack(Items.IRON_NUGGET, 8),
+                        new ItemStack(ItemHandler.itemArtifactTech, 1),
+                };
+            }
+        });
+        AssemblyManager.register(new Schematic("reflective_inverter_corner", new ItemStack(BlockHandler.invertedCorner, 1)) {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                        new ItemStack(ItemHandler.itemIngotAluminum, 1),
+                        new ItemStack(Items.IRON_NUGGET, 8),
+                        new ItemStack(ItemHandler.itemArtifactTech, 1),
+                };
+            }
+        });
+        AssemblyManager.register(new Schematic("reflective_ridge", new ItemStack(BlockHandler.ridge, 1)) {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                        new ItemStack(ItemHandler.itemIngotAluminum, 1),
+                        new ItemStack(Items.IRON_NUGGET, 8),
+                        new ItemStack(ItemHandler.itemArtifactTech, 1),
+                };
+            }
+        });
+        AssemblyManager.register(new Schematic("reflective_pyramid", new ItemStack(BlockHandler.pyramid, 1)) {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                        new ItemStack(ItemHandler.itemIngotAluminum, 1),
+                        new ItemStack(Items.IRON_NUGGET, 8),
+                        new ItemStack(ItemHandler.itemArtifactTech, 1),
+                };
+            }
+        });
+        AssemblyManager.register(new Schematic("reflective_inverted_ridge", new ItemStack(BlockHandler.invertedRidge, 1)) {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                        new ItemStack(ItemHandler.itemIngotAluminum, 1),
+                        new ItemStack(Items.IRON_NUGGET, 8),
+                        new ItemStack(ItemHandler.itemArtifactTech, 1),
+                };
+            }
+        });
+        AssemblyManager.register(new Schematic("reflective_inverted_pyramid", new ItemStack(BlockHandler.invertedPyramid, 1)) {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                        new ItemStack(ItemHandler.itemIngotAluminum, 1),
+                        new ItemStack(Items.IRON_NUGGET, 8),
+                        new ItemStack(ItemHandler.itemArtifactTech, 1),
                 };
             }
         });
