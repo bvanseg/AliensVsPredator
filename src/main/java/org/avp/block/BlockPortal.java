@@ -14,9 +14,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -73,31 +71,13 @@ public class BlockPortal extends Block
             if (player.dimension != this.dimension.getId())
             {
                 player.timeUntilPortal = 10;
-                teleportPlayerToDimension(player, this.dimension.getId());
+                dimension.transferEntityTo(player);
             }
             else
             {
                 player.timeUntilPortal = 10;
-                teleportPlayerToDimension(player, 0);
+                Dimension.transferEntityTo(player, 0);
             }
         }
-    }
-    
-    public static void teleportPlayerToDimension(EntityPlayerMP player, int dimension)
-    {
-        player.getServer().getPlayerList().transferPlayerToDimension(player, dimension, new Teleporter(player.getServerWorld())
-        {
-            @Override
-            public void placeInPortal(Entity entityIn, float rotationYaw)
-            {
-                int x = MathHelper.floor(entityIn.posX);
-                int y = MathHelper.floor(entityIn.posY) - 1;
-                int z = MathHelper.floor(entityIn.posZ);
-                entityIn.setLocationAndAngles((double) x, (double) y, (double) z, entityIn.rotationYaw, 0.0F);
-                entityIn.motionX = 0.0D;
-                entityIn.motionY = 0.0D;
-                entityIn.motionZ = 0.0D;
-            }
-        });
     }
 }
