@@ -41,7 +41,7 @@ repositories {
 def version_minecraft="1.12.2"
 def version_forge="14.23.4.2705"
 def version_mappings="stable_39"
-def mdxversion="3.0.0.12"
+def mdxversion="3.0.0.15"
 def curseforge_id="221641"
 def curseforge_release_type="release"
 def curseforge_api_key=project.ext.properties.curseforge_api_key == null ? "00000-00000-00000-00000-00000" : project.ext.properties.curseforge_api_key
