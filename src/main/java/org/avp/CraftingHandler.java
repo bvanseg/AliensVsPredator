@@ -32,6 +32,7 @@ public class CraftingHandler
     @SubscribeEvent
     public static void registerOres(RegistryEvent.Register<IRecipe> event)
     {
+        AliensVsPredator.log().info("Ore dictionary registration");
         OreDictionary.registerOre("ingotCopper", ItemHandler.itemIngotCopper);
         OreDictionary.registerOre("itemLithium", ItemHandler.itemIngotLithium);
         OreDictionary.registerOre("ingotAluminum", ItemHandler.itemIngotAluminum);
