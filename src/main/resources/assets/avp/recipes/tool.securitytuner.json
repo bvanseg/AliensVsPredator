@@ -17,7 +17,7 @@
       "item": "avp:part.led.display"
     },
     "C": {
-      "type": "forge:ore:dict",
+      "type": "forge:ore_dict",
       "ore": "polycarbonate"
     },
     "D": {

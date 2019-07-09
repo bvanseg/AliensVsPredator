@@ -19,7 +19,7 @@
         ],
         "c": [
             {
-                "type": "avp:silicon",
+                "type": "forge:ore_dict",
                 "ore": "silicon"
             }
         ]

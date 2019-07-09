@@ -8,7 +8,7 @@
     "key": {
         "a": [
             {
-                "item": "forge:ore_dict",
+                "type": "forge:ore_dict",
                 "ore": "ingotIron"
             }
         ],
