@@ -50,7 +50,8 @@ public class CraftingHandler
         OreDictionary.registerOre("itemMagnet", ItemHandler.neodymiumMagnet);
         OreDictionary.registerOre("oreMonazite", BlockHandler.oreMonazite);
         OreDictionary.registerOre("ingotCobalt", ItemHandler.cobalt);
-        OreDictionary.registerOre("oreCobalt", BlockHandler.oreCobalt);        
+        OreDictionary.registerOre("oreCobalt", BlockHandler.oreCobalt);     
+        OreDictionary.registerOre("carbon", ItemHandler.itemCarbon);        
     }
 
     private static void addSmelting()
