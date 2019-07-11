@@ -63,6 +63,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -196,8 +197,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         super.update();
         super.updateEnergyAsReceiver();
 
-        // System.out.println(this.getRotation().yaw);
-
         if (this.pos == null)
         {
             this.pos = new Pos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
@@ -228,7 +227,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
         if (this.canTarget(newTarget) && canSee(newTarget))
         {
-            System.out.println(newTarget);
             this.targetEntity = newTarget;
 
             if (this.world.isRemote)
@@ -474,7 +472,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.timeout = this.timeoutMax;
         this.targetEntity.attackEntityFrom(DamageSources.bullet, 1F);
         this.targetEntity.hurtResistantTime = 0;
-        // this.world.spawnParticle("largesmoke", xCoord, yCoord, zCoord, 1, 1, 1);
+        this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.pos.x, this.pos.y, this.pos.z, 1, 1, 1);
         Sounds.WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 1F, 1F);
     }
 
@@ -487,7 +485,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
         float newYaw = (float) (Math.atan2(z, x) * 180.0D / Math.PI) - 90.0F;
         float f1 = (float) (-(Math.atan2(y, sq) * 180.0D / Math.PI));
-        
+
         return rotation.setYaw(MDXMath.wrapAngle(this.rot.yaw, newYaw, deltaYaw)).setPitch(MDXMath.wrapAngle(this.rot.pitch, f1, deltaPitch));
     }
 
@@ -786,7 +784,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         return this.rot.pitch;
     }
-    
+
     public Rotation getRotationPrev()
     {
         return rotPrev;
