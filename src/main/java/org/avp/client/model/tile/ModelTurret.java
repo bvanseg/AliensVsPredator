@@ -3,6 +3,7 @@ package org.avp.client.model.tile;
 import org.avp.tile.TileEntityTurret;
 
 import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.model.ModelRenderer;
 
@@ -150,7 +151,12 @@ public class ModelTurret extends Model
         if (tile != null)
         {
             float rotationYaw = (-tile.getRotationYaw()) / (180F / (float) Math.PI);
+            float rotationYawPrev = (-tile.getRotationPrev().yaw) / (180F / (float) Math.PI);
             float rotationPitch = -tile.getRotationPitch() / (180F / (float) Math.PI);
+            float rotationPitchPrev = -tile.getRotationPrev().pitch / (180F / (float) Math.PI);
+
+            rotationYaw = rotationYawPrev + (rotationYaw - rotationYawPrev) * Game.partialTicks();
+            rotationPitch = rotationPitchPrev + (rotationPitch - rotationPitchPrev) * Game.partialTicks();
 
             barrel.rotateAngleY = rotationYaw;
             barrel.rotateAngleX = rotationPitch;

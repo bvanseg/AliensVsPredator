@@ -94,6 +94,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     private ContainerTurret                    container;
     private Pos                                pos;
     private Rotation                           rot;
+    private Rotation                           rotPrev;
     private Pos                                foc;
     private Rotation                           focrot;
     private Item                               itemAmmo;
@@ -111,6 +112,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.cycleCount = getBaseCycleCount();
         this.curAmmo = 0;
         this.rot = new Rotation(0F, 0F);
+        this.rotPrev = new Rotation(0F, 0F);
         this.focrot = new Rotation(0F, 0F);
         this.ammoDisplayEnabled = false;
         this.timeoutMax = 60;
@@ -347,19 +349,23 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             {
                 if (Math.ceil(this.getRotationYaw()) < Math.ceil(this.focrot.yaw))
                 {
+                    this.rotPrev.yaw = this.rot.yaw;
                     this.rot.yaw += 1;
                 }
                 else if (Math.ceil(this.getRotationYaw()) > Math.ceil(this.focrot.yaw))
                 {
+                    this.rotPrev.yaw = this.rot.yaw;
                     this.rot.yaw -= 1;
                 }
 
                 if (Math.ceil(this.getRotationPitch()) < Math.ceil(this.focrot.pitch))
                 {
+                    this.rotPrev.pitch = this.rot.pitch;
                     this.rot.pitch += 1;
                 }
                 else if (Math.ceil(this.getRotationPitch()) > Math.ceil(this.focrot.pitch))
                 {
+                    this.rotPrev.pitch = this.rot.pitch;
                     this.rot.pitch -= 1;
                 }
 
@@ -367,6 +373,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
                 if (Math.ceil(this.getRotationPitch()) >= Math.ceil(this.focrot.pitch - focus) && Math.ceil(this.getRotationPitch()) <= Math.ceil(this.focrot.pitch + focus) && Math.ceil(this.getRotationYaw()) >= Math.ceil(this.focrot.yaw - focus) && Math.ceil(this.getRotationYaw()) <= Math.ceil(this.focrot.yaw + focus))
                 {
+                    this.rotPrev.pitch = this.rot.pitch;
+                    this.rotPrev.yaw = this.rot.yaw;
                     this.rot.pitch = this.focrot.pitch;
                     this.rot.yaw = this.focrot.yaw;
                 }
@@ -479,7 +487,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
         float newYaw = (float) (Math.atan2(z, x) * 180.0D / Math.PI) - 90.0F;
         float f1 = (float) (-(Math.atan2(y, sq) * 180.0D / Math.PI));
-
+        
         return rotation.setYaw(MDXMath.wrapAngle(this.rot.yaw, newYaw, deltaYaw)).setPitch(MDXMath.wrapAngle(this.rot.pitch, f1, deltaPitch));
     }
 
@@ -777,6 +785,11 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public float getRotationPitch()
     {
         return this.rot.pitch;
+    }
+    
+    public Rotation getRotationPrev()
+    {
+        return rotPrev;
     }
 
     public boolean isFiring()
