@@ -225,16 +225,19 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         Entity newTarget = Entities.getRandomEntityInCoordsRange(world, EntityLiving.class, this.pos, 32);
 
-        if (this.canTarget(newTarget) && canSee(newTarget))
+        if (this.targetEntity == null || this.targetEntity != null && this.targetEntity.isDead || this.targetEntity != null && !canSee(this.targetEntity))
         {
-            this.targetEntity = newTarget;
-
-            if (this.world.isRemote)
+            if (this.canTarget(newTarget) && canSee(newTarget))
             {
-                AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
-            }
+                this.targetEntity = newTarget;
 
-            return newTarget;
+                if (this.world.isRemote)
+                {
+                    AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
+                }
+
+                return newTarget;
+            }
         }
 
         return null;
@@ -472,7 +475,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.timeout = this.timeoutMax;
         this.targetEntity.attackEntityFrom(DamageSources.bullet, 1F);
         this.targetEntity.hurtResistantTime = 0;
-        this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.pos.x, this.pos.y, this.pos.z, 1, 1, 1);
+        this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.pos.x, this.pos.y, this.pos.z, 0, 0, 0);
         Sounds.WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 1F, 1F);
     }
 
