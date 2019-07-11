@@ -49,6 +49,7 @@ import com.asx.mdx.lib.world.storage.NBTStorage;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
@@ -161,7 +162,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.saveInventoryToNBT(nbt, this.inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
         this.saveInventoryToNBT(nbt, this.inventoryDrive);
-        
+
         return nbt;
     }
 
@@ -214,29 +215,30 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             this.pickUpAmmunition();
             this.updateAmmunitionCount();
             this.reloadIfNecessary();
+            this.findTarget();
             this.targetAndAttack();
         }
     }
 
-    // public Entity findTarget()
-    // {
-    // Entity newTarget = Entities.getRandomEntityInCoordsRange(this.world, EntityLiving.class, this.pos, range, range);
-    //
-    // if (this.canTarget(newTarget) && canSee(newTarget))
-    // {
-    // System.out.println(newTarget);
-    // this.targetEntity = newTarget;
-    //
-    // if (this.world.isRemote)
-    // {
-    // AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
-    // }
-    //
-    // return newTarget;
-    // }
-    //
-    // return null;
-    // }
+    public Entity findTarget()
+    {
+        Entity newTarget = Entities.getRandomEntityInCoordsRange(world, EntityLiving.class, this.pos, 32);
+
+        if (this.canTarget(newTarget) && canSee(newTarget))
+        {
+            System.out.println(newTarget);
+            this.targetEntity = newTarget;
+
+            if (this.world.isRemote)
+            {
+                AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
+            }
+
+            return newTarget;
+        }
+
+        return null;
+    }
 
     public boolean canTarget(Entity e)
     {
@@ -446,7 +448,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                 if (stack != null && stack.getItem() == this.getItemAmmo())
                 {
                     stack.shrink(1);
-                    
+
                     if (stack.getCount() <= 0)
                     {
                         this.inventoryAmmo.setInventorySlotContents(x, ItemStack.EMPTY);
@@ -598,7 +600,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         for (int i = 0; i < list.tagCount(); i++)
         {
             String id = list.getStringTagAt(i);
-            
+
             Class<? extends Entity> c = (Class<? extends Entity>) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id)).getEntityClass();
             this.addTargetType(c);
         }
