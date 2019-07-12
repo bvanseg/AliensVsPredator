@@ -1,7 +1,7 @@
 package org.avp.block;
 
 import org.avp.AliensVsPredator;
-import org.avp.packets.server.PacketAddTuretTarget;
+import org.avp.packets.server.PacketAddTurretTarget;
 import org.avp.tile.TileEntityTurret;
 
 import com.asx.mdx.lib.world.entity.Entities;
@@ -89,7 +89,7 @@ public class BlockTurret extends Block
                 {
                     if (tile.getDangerousTargets().get(i) != null)
                     {
-                        AliensVsPredator.network().sendToAll(new PacketAddTuretTarget(pos.getX(), pos.getY(), pos.getZ(), Entities.getEntityRegistrationId(tile.getDangerousTargets().get(i))));
+                        AliensVsPredator.network().sendToAll(new PacketAddTurretTarget(pos.getX(), pos.getY(), pos.getZ(), Entities.getEntityRegistrationId(tile.getDangerousTargets().get(i))));
                     }
                 }
             }
