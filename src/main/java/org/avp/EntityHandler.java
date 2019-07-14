@@ -348,7 +348,7 @@ public class EntityHandler implements IInitEvent
             }
             else
             {
-                EntityRegistry.addSpawn(EntityFacehugger.class, 30, 1, 2, EnumCreatureType.MONSTER, array(alienSpawns));
+                EntityRegistry.addSpawn(EntityFacehugger.class, 3, 1, 2, EnumCreatureType.MONSTER, array(alienSpawns));
             }
 
             EntityRegistry.addSpawn(EntityYautjaWarrior.class, 1, 0, 1, EnumCreatureType.MONSTER, array(predatorSpawns));
