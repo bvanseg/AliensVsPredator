@@ -150,12 +150,12 @@ public class GuiTurret extends GuiContainer
     @Override
     public void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        if ((getCurrentSelectedEntity() instanceof EntityLivingBase))
-        {
-            int modelScale = 25;
-            Draw.drawEntity(-40, 100, getCurrentSelectedEntity().height >= 4.0F ? modelScale / 2 : getCurrentSelectedEntity().height >= 8.0F ? modelScale / 4 : modelScale, this.modelRotation += 1F, 0.0F, getCurrentSelectedEntity());
-            OpenGL.disableLight();
-        }
+//        if ((getCurrentSelectedEntity() instanceof EntityLivingBase))
+//        {
+//            int modelScale = 25;
+//            Draw.drawEntity(-40, 100, getCurrentSelectedEntity().height >= 4.0F ? modelScale / 2 : getCurrentSelectedEntity().height >= 8.0F ? modelScale / 4 : modelScale, this.modelRotation += 1F, 0.0F, getCurrentSelectedEntity());
+//            OpenGL.disableLight();
+//        }
 
         for (int x = 0; x < this.entityLivingList.size(); x++)
         {
@@ -180,38 +180,15 @@ public class GuiTurret extends GuiContainer
         super.drawScreen(mouseX, mouseY, p_73863_3_);
 
         this.playerNameInput.setX(guiLeft);
-        this.playerNameInput.setY(guiTop - 20);
+        this.playerNameInput.setY(guiTop + ySize - 34);
         this.playerNameInput.setWidth(225);
+        this.playerNameInput.setHeight(16);
         this.playerNameInput.setBackgroundColor(0xFF222222);
-        this.playerNameInput.setTextColor(0xFFDDDDDD);
+        this.playerNameInput.setTextColor(0xFF99FF55);
         this.playerNameInput.setBorderColor(0xFF555555);
         this.playerNameInput.drawTextBox();
 
-        this.sliderColorA.y = guiTop + 170 + 0;
-        this.sliderColorA.x = guiLeft + 3;
-        this.sliderColorA.width = 219;
-        this.sliderColorA.sliderButtonColor = 0xFFFFFFFF;
-        this.sliderColorA.drawButton();
-
-        this.sliderColorR.y = guiTop + 170 + 25;
-        this.sliderColorR.sliderButtonColor = 0xFFFF0000;
-        this.sliderColorR.x = guiLeft + 3;
-        this.sliderColorR.width = 219;
-        this.sliderColorR.drawButton();
-
-        this.sliderColorG.y = guiTop + 170 + 50;
-        this.sliderColorG.sliderButtonColor = 0xFF00FF00;
-        this.sliderColorG.x = guiLeft + 3;
-        this.sliderColorG.width = 219;
-        this.sliderColorG.drawButton();
-
-        this.sliderColorB.y = guiTop + 170 + 75;
-        this.sliderColorB.sliderButtonColor = 0xFF0000FF;
-        this.sliderColorB.x = guiLeft + 3;
-        this.sliderColorB.width = 219;
-        this.sliderColorB.drawButton();
-
-        this.tile.beamColor = Color.createHexadecimal((int) (sliderColorA.sliderValue * sliderColorA.sliderMaxValue), (int) (sliderColorR.sliderValue * sliderColorR.sliderMaxValue), (int) (sliderColorG.sliderValue * sliderColorG.sliderMaxValue), (int) (sliderColorB.sliderValue * sliderColorB.sliderMaxValue));
+//        this.tile.beamColor = Color.createHexadecimal((int) (sliderColorA.sliderValue * sliderColorA.sliderMaxValue), (int) (sliderColorR.sliderValue * sliderColorR.sliderMaxValue), (int) (sliderColorG.sliderValue * sliderColorG.sliderMaxValue), (int) (sliderColorB.sliderValue * sliderColorB.sliderMaxValue));
 
         this.buttonScrollUp.x = this.guiLeft + xSize + 5;
         this.buttonScrollUp.y = this.guiTop + 42;
@@ -327,12 +304,6 @@ public class GuiTurret extends GuiContainer
     {
         super.updateScreen();
 
-        for (Entity entity : this.entityLivingList)
-        {
-            // TODO: Temporarily disabled to fix a crash
-            // entity.onUpdate();
-        }
-
         int dWheel = Mouse.getDWheel();
 
         if (dWheel > 0)
@@ -388,10 +359,15 @@ public class GuiTurret extends GuiContainer
     {
         if (this.playerNameInput.isEnabled() && this.playerNameInput.isFocused() && keyCode != Keyboard.KEY_ESCAPE)
         {
+            if (keyCode == Keyboard.KEY_RETURN)
+            {
+                this.buttonAddAsTarget.getAction().perform(this.buttonAddAsTarget);
+            }
+            
             this.playerNameInput.textboxKeyTyped(typedChar, keyCode);
             return;
         }
-
+        
         super.keyTyped(typedChar, keyCode);
     }
 }
