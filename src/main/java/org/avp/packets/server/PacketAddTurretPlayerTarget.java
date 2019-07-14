@@ -1,34 +1,30 @@
 package org.avp.packets.server;
 
-import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityTurret;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
-public class PacketAddTuretTarget implements IMessage, IMessageHandler<PacketAddTuretTarget, PacketAddTuretTarget>
+public class PacketAddTurretPlayerTarget implements IMessage, IMessageHandler<PacketAddTurretPlayerTarget, PacketAddTurretPlayerTarget>
 {
     public int    x, y, z;
-    public String entityIdentifier;
+    public String name;
 
-    public PacketAddTuretTarget()
+    public PacketAddTurretPlayerTarget()
     {
         ;
     }
 
-    public PacketAddTuretTarget(int x, int y, int z, String globalID)
+    public PacketAddTurretPlayerTarget(int x, int y, int z, String globalID)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.entityIdentifier = globalID;
+        this.name = globalID;
     }
 
     @Override
@@ -37,7 +33,7 @@ public class PacketAddTuretTarget implements IMessage, IMessageHandler<PacketAdd
         this.x = buf.readInt();
         this.y = buf.readInt();
         this.z = buf.readInt();
-        this.entityIdentifier = ByteBufUtils.readUTF8String(buf);
+        this.name = ByteBufUtils.readUTF8String(buf);
     }
 
     @Override
@@ -46,11 +42,11 @@ public class PacketAddTuretTarget implements IMessage, IMessageHandler<PacketAdd
         buf.writeInt(x);
         buf.writeInt(y);
         buf.writeInt(z);
-        ByteBufUtils.writeUTF8String(buf, this.entityIdentifier);
+        ByteBufUtils.writeUTF8String(buf, this.name);
     }
 
     @Override
-    public PacketAddTuretTarget onMessage(PacketAddTuretTarget packet, MessageContext ctx)
+    public PacketAddTurretPlayerTarget onMessage(PacketAddTurretPlayerTarget packet, MessageContext ctx)
     {
         System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
@@ -62,7 +58,7 @@ public class PacketAddTuretTarget implements IMessage, IMessageHandler<PacketAdd
 
                 if (tile != null)
                 {
-                    tile.addTargetType((Class<? extends Entity>) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, packet.entityIdentifier)).getEntityClass());
+                    tile.addTargetPlayer(packet.name);
                 }
             }
         });

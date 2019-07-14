@@ -52,16 +52,26 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         buf.writeInt(y);
         buf.writeInt(z);
         buf.writeInt(id);
+
+        if (foc == null)
+        {
+            foc = new Pos(0, 0, 0);
+        }
+        
         foc.writeToBuffer(buf);
+
+        if (focrot == null)
+        {
+            focrot = new Rotation(0F, 0F);
+        }
+        
         focrot.writeToBuffer(buf);
     }
 
     @Override
     public PacketTurretTargetUpdate onMessage(PacketTurretTargetUpdate packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
-        Game.minecraft().addScheduledTask(new Runnable()
-        {
+        Game.minecraft().addScheduledTask(new Runnable() {
             @Override
             public void run()
             {

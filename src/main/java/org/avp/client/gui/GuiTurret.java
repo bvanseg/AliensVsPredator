@@ -1,11 +1,14 @@
 package org.avp.client.gui;
 
+import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
-import org.avp.packets.server.PacketAddTuretTarget;
+import org.avp.packets.server.PacketAddTurretPlayerTarget;
+import org.avp.packets.server.PacketAddTurretTarget;
 import org.avp.packets.server.PacketReadFromDataDevice;
+import org.avp.packets.server.PacketRemoveTurretPlayerTarget;
 import org.avp.packets.server.PacketRemoveTurretTarget;
 import org.avp.packets.server.PacketWriteToDataDevice;
 import org.avp.tile.TileEntityTurret;
@@ -14,6 +17,7 @@ import org.lwjgl.input.Mouse;
 
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
 import com.asx.mdx.lib.client.gui.GuiCustomSlider;
+import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
 import com.asx.mdx.lib.client.gui.IAction;
 import com.asx.mdx.lib.client.gui.IGuiElement;
 import com.asx.mdx.lib.client.util.Color;
@@ -37,17 +41,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiTurret extends GuiContainer
 {
-    private TileEntityTurret tile;
-    private GuiCustomButton buttonScrollUp;
-    private GuiCustomButton buttonScrollDown;
-    private GuiCustomButton buttonAddAsTarget;
-    private GuiCustomButton buttonSave;
-    private GuiCustomButton buttonLoad;
-    private GuiCustomSlider sliderColorR, sliderColorG, sliderColorB, sliderColorA;
-    private int scroll = 0;
-    private float modelRotation = -90.0F;
+    private TileEntityTurret                   tile;
+    private GuiCustomButton                    buttonScrollUp;
+    private GuiCustomButton                    buttonScrollDown;
+    private GuiCustomButton                    buttonAddAsTarget;
+    private GuiCustomButton                    buttonSave;
+    private GuiCustomButton                    buttonLoad;
+    private GuiCustomSlider                    sliderColorR, sliderColorG, sliderColorB, sliderColorA;
+    private GuiCustomTextbox                   playerNameInput;
+    private int                                scroll        = 0;
+    private float                              modelRotation = -90.0F;
     private ArrayList<Class<? extends Entity>> entityList;
-    private ArrayList<EntityLiving> entityLivingList;
+    private ArrayList<EntityLiving>            entityLivingList;
 
     public GuiTurret(EntityPlayer player, TileEntityTurret turret, World world, int x, int y, int z)
     {
@@ -93,6 +98,8 @@ public class GuiTurret extends GuiContainer
         this.buttonSave = new GuiCustomButton(3, 0, 0, 35, 20, "");
         this.buttonLoad = new GuiCustomButton(4, 0, 0, 35, 20, "");
 
+        this.playerNameInput = new GuiCustomTextbox(0, 0, 200, 20);
+
         this.sliderColorA = new GuiCustomSlider(0, 0, 0, "Laser Color A", 0F, 255F);
         this.sliderColorR = new GuiCustomSlider(0, 0, 0, "Laser Color R", 0F, 255F);
         this.sliderColorG = new GuiCustomSlider(0, 0, 0, "Laser Color G", 0F, 255F);
@@ -113,7 +120,7 @@ public class GuiTurret extends GuiContainer
 
         for (Class<? extends Entity> c : this.tile.getDangerousTargets())
         {
-            AliensVsPredator.network().sendToServer(new PacketAddTuretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), Entities.getEntityRegistrationId(c)));
+            AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), Entities.getEntityRegistrationId(c)));
         }
     }
 
@@ -172,6 +179,14 @@ public class GuiTurret extends GuiContainer
     {
         super.drawScreen(mouseX, mouseY, p_73863_3_);
 
+        this.playerNameInput.setX(guiLeft);
+        this.playerNameInput.setY(guiTop - 20);
+        this.playerNameInput.setWidth(225);
+        this.playerNameInput.setBackgroundColor(0xFF222222);
+        this.playerNameInput.setTextColor(0xFFDDDDDD);
+        this.playerNameInput.setBorderColor(0xFF555555);
+        this.playerNameInput.drawTextBox();
+
         this.sliderColorA.y = guiTop + 170 + 0;
         this.sliderColorA.x = guiLeft + 3;
         this.sliderColorA.width = 219;
@@ -203,8 +218,7 @@ public class GuiTurret extends GuiContainer
         this.buttonScrollUp.displayString = "\u21e7";
         this.buttonScrollUp.baseColor = this.getScroll() == 0 ? 0x22000000 : 0xAA000000;
         this.buttonScrollUp.drawButton();
-        this.buttonScrollUp.setAction(new IAction()
-        {
+        this.buttonScrollUp.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -217,8 +231,7 @@ public class GuiTurret extends GuiContainer
         this.buttonScrollDown.displayString = "\u21e9";
         this.buttonScrollDown.baseColor = this.getScroll() >= this.entityLivingList.size() - 1 ? 0x22000000 : 0xAA000000;
         this.buttonScrollDown.drawButton();
-        this.buttonScrollDown.setAction(new IAction()
-        {
+        this.buttonScrollDown.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -230,22 +243,39 @@ public class GuiTurret extends GuiContainer
         this.buttonAddAsTarget.y = this.guiTop + 65;
         this.buttonAddAsTarget.width = 20;
         this.buttonAddAsTarget.drawButton();
-        this.buttonAddAsTarget.setAction(new IAction()
-        {
+        this.buttonAddAsTarget.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
                 if (tile != null)
                 {
-                    if (!tile.canTargetType(getCurrentSelectedEntity().getClass()))
+                    if (playerNameInput != null && playerNameInput.getText().isEmpty() || playerNameInput == null)
                     {
-                        tile.addTargetType(getCurrentSelectedEntity().getClass());
-                        AliensVsPredator.network().sendToServer(new PacketAddTuretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity())));
+                        if (!tile.canTargetType(getCurrentSelectedEntity().getClass()))
+                        {
+                            tile.addTargetType(getCurrentSelectedEntity().getClass());
+                            AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity())));
+                        }
+                        else
+                        {
+                            tile.removeTargetType(getCurrentSelectedEntity().getClass());
+                            AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity())));
+                        }
                     }
                     else
                     {
-                        tile.removeTargetType(getCurrentSelectedEntity().getClass());
-                        AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity())));
+                        if (!tile.getTargetPlayers().contains(playerNameInput.getText()))
+                        {
+                            Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' added to turret player target list.");
+                            tile.addTargetPlayer(playerNameInput.getText());
+                            AliensVsPredator.network().sendToServer(new PacketAddTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
+                        }
+                        else
+                        {
+                            Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' removed from turret player target list.");
+                            tile.removeTargetPlayer(playerNameInput.getText());
+                            AliensVsPredator.network().sendToServer(new PacketRemoveTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
+                        }
                     }
                 }
             }
@@ -256,8 +286,7 @@ public class GuiTurret extends GuiContainer
         this.buttonSave.displayString = "S";
         this.buttonSave.width = 14;
         this.buttonSave.drawButton();
-        this.buttonSave.setAction(new IAction()
-        {
+        this.buttonSave.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -271,8 +300,7 @@ public class GuiTurret extends GuiContainer
         this.buttonLoad.displayString = "L";
         this.buttonLoad.width = 14;
         this.buttonLoad.drawButton();
-        this.buttonLoad.setAction(new IAction()
-        {
+        this.buttonLoad.setAction(new IAction() {
             @Override
             public void perform(IGuiElement element)
             {
@@ -301,8 +329,8 @@ public class GuiTurret extends GuiContainer
 
         for (Entity entity : this.entityLivingList)
         {
-            //TODO: Temporarily disabled to fix a crash
-//            entity.onUpdate();
+            // TODO: Temporarily disabled to fix a crash
+            // entity.onUpdate();
         }
 
         int dWheel = Mouse.getDWheel();
@@ -353,5 +381,17 @@ public class GuiTurret extends GuiContainer
     public int getScroll()
     {
         return this.scroll;
+    }
+
+    @Override
+    protected void keyTyped(char typedChar, int keyCode) throws IOException
+    {
+        if (this.playerNameInput.isEnabled() && this.playerNameInput.isFocused() && keyCode != Keyboard.KEY_ESCAPE)
+        {
+            this.playerNameInput.textboxKeyTyped(typedChar, keyCode);
+            return;
+        }
+
+        super.keyTyped(typedChar, keyCode);
     }
 }

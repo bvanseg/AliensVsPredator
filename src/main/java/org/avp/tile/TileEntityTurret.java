@@ -49,6 +49,7 @@ import com.asx.mdx.lib.world.storage.NBTStorage;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
@@ -62,6 +63,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -86,6 +88,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     private int                                timeout;
     private int                                timeoutMax;
     private ArrayList<Class<? extends Entity>> targetTypes;
+    private ArrayList<String>                  targetPlayers;
     public InventoryBasic                      inventoryAmmo;
     public InventoryBasic                      inventoryExpansion;
     public InventoryBasic                      inventoryDrive;
@@ -93,6 +96,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     private ContainerTurret                    container;
     private Pos                                pos;
     private Rotation                           rot;
+    private Rotation                           rotPrev;
     private Pos                                foc;
     private Rotation                           focrot;
     private Item                               itemAmmo;
@@ -102,6 +106,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         super(false);
         this.targetTypes = new ArrayList<Class<? extends Entity>>();
+        this.targetPlayers = new ArrayList<String>();
         this.inventoryAmmo = new InventoryBasic("TurretAmmoBay", true, 9);
         this.inventoryExpansion = new InventoryBasic("TurretExpansionBay", true, 3);
         this.inventoryDrive = new InventoryBasic("TurretDriveBay", true, 1);
@@ -110,6 +115,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.cycleCount = getBaseCycleCount();
         this.curAmmo = 0;
         this.rot = new Rotation(0F, 0F);
+        this.rotPrev = new Rotation(0F, 0F);
         this.focrot = new Rotation(0F, 0F);
         this.ammoDisplayEnabled = false;
         this.timeoutMax = 60;
@@ -161,7 +167,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.saveInventoryToNBT(nbt, this.inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
         this.saveInventoryToNBT(nbt, this.inventoryDrive);
-        
+
         return nbt;
     }
 
@@ -193,8 +199,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         super.update();
         super.updateEnergyAsReceiver();
 
-        // System.out.println(this.getRotation().yaw);
-
         if (this.pos == null)
         {
             this.pos = new Pos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
@@ -214,36 +218,50 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             this.pickUpAmmunition();
             this.updateAmmunitionCount();
             this.reloadIfNecessary();
+            this.findTarget();
             this.targetAndAttack();
         }
     }
 
-    // public Entity findTarget()
-    // {
-    // Entity newTarget = Entities.getRandomEntityInCoordsRange(this.world, EntityLiving.class, this.pos, range, range);
-    //
-    // if (this.canTarget(newTarget) && canSee(newTarget))
-    // {
-    // System.out.println(newTarget);
-    // this.targetEntity = newTarget;
-    //
-    // if (this.world.isRemote)
-    // {
-    // AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
-    // }
-    //
-    // return newTarget;
-    // }
-    //
-    // return null;
-    // }
+    public Entity findTarget()
+    {
+        Entity newTarget = Entities.getRandomEntityInCoordsRange(world, EntityLivingBase.class, this.pos, 32);
+        
+        if (this.targetEntity == null || this.targetEntity != null && this.targetEntity.isDead || this.targetEntity != null && !canSee(this.targetEntity))
+        {
+            
+            if (this.canTarget(newTarget) && canSee(newTarget))
+            {
+                this.targetEntity = newTarget;
+
+                if (this.world.isRemote)
+                {
+                    AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
+                }
+
+                return newTarget;
+            }
+        }
+
+        return null;
+    }
 
     public boolean canTarget(Entity e)
     {
         if (e != null)
         {
             double distance = Pos.distance(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), e.posX, e.posY, e.posZ);
-            return !e.isDead && this.canTargetType(e.getClass()) && distance <= this.range;
+            return !e.isDead && (e instanceof EntityPlayer && this.canTargetPlayer((EntityPlayer) e) || this.canTargetType(e.getClass())) && distance <= this.range;
+        }
+
+        return false;
+    }
+
+    public boolean canTargetPlayer(EntityPlayer player)
+    {
+        for (String name : this.targetPlayers)
+        {
+            return player.getCommandSenderEntity().getName().equalsIgnoreCase(name);
         }
 
         return false;
@@ -345,19 +363,23 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             {
                 if (Math.ceil(this.getRotationYaw()) < Math.ceil(this.focrot.yaw))
                 {
+                    this.rotPrev.yaw = this.rot.yaw;
                     this.rot.yaw += 1;
                 }
                 else if (Math.ceil(this.getRotationYaw()) > Math.ceil(this.focrot.yaw))
                 {
+                    this.rotPrev.yaw = this.rot.yaw;
                     this.rot.yaw -= 1;
                 }
 
                 if (Math.ceil(this.getRotationPitch()) < Math.ceil(this.focrot.pitch))
                 {
+                    this.rotPrev.pitch = this.rot.pitch;
                     this.rot.pitch += 1;
                 }
                 else if (Math.ceil(this.getRotationPitch()) > Math.ceil(this.focrot.pitch))
                 {
+                    this.rotPrev.pitch = this.rot.pitch;
                     this.rot.pitch -= 1;
                 }
 
@@ -365,6 +387,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
                 if (Math.ceil(this.getRotationPitch()) >= Math.ceil(this.focrot.pitch - focus) && Math.ceil(this.getRotationPitch()) <= Math.ceil(this.focrot.pitch + focus) && Math.ceil(this.getRotationYaw()) >= Math.ceil(this.focrot.yaw - focus) && Math.ceil(this.getRotationYaw()) <= Math.ceil(this.focrot.yaw + focus))
                 {
+                    this.rotPrev.pitch = this.rot.pitch;
+                    this.rotPrev.yaw = this.rot.yaw;
                     this.rot.pitch = this.focrot.pitch;
                     this.rot.yaw = this.focrot.yaw;
                 }
@@ -446,7 +470,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                 if (stack != null && stack.getItem() == this.getItemAmmo())
                 {
                     stack.shrink(1);
-                    
+
                     if (stack.getCount() <= 0)
                     {
                         this.inventoryAmmo.setInventorySlotContents(x, ItemStack.EMPTY);
@@ -464,7 +488,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.timeout = this.timeoutMax;
         this.targetEntity.attackEntityFrom(DamageSources.bullet, 1F);
         this.targetEntity.hurtResistantTime = 0;
-        // this.world.spawnParticle("largesmoke", xCoord, yCoord, zCoord, 1, 1, 1);
+        this.world.spawnParticle(EnumParticleTypes.CLOUD, this.pos.x, this.pos.y, this.pos.z, 0, 10, 0);
         Sounds.WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 1F, 1F);
     }
 
@@ -479,6 +503,27 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         float f1 = (float) (-(Math.atan2(y, sq) * 180.0D / Math.PI));
 
         return rotation.setYaw(MDXMath.wrapAngle(this.rot.yaw, newYaw, deltaYaw)).setPitch(MDXMath.wrapAngle(this.rot.pitch, f1, deltaPitch));
+    }
+
+    public void addTargetPlayer(String name)
+    {
+        if (!this.targetPlayers.contains(name))
+        {
+            this.targetPlayers.add(name);
+        }
+    }
+
+    public void removeTargetPlayer(String name)
+    {
+        if (this.targetPlayers.contains(name))
+        {
+            this.targetPlayers.remove(name);
+            
+            if (this.targetEntity instanceof EntityPlayer && this.targetEntity.getName().equalsIgnoreCase(name))
+            {
+                this.targetEntity = null;
+            }
+        }
     }
 
     public void removeTargetType(Class<? extends Entity> entityClass)
@@ -513,6 +558,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     public void setPredefinedTargets()
     {
+        this.addTargetType(EntityPlayer.class);
         this.addTargetType(EntityOvamorph.class);
         this.addTargetType(EntityFacehugger.class);
         this.addTargetType(EntityChestburster.class);
@@ -598,7 +644,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         for (int i = 0; i < list.tagCount(); i++)
         {
             String id = list.getStringTagAt(i);
-            
+
             Class<? extends Entity> c = (Class<? extends Entity>) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id)).getEntityClass();
             this.addTargetType(c);
         }
@@ -705,6 +751,11 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         return ammoDisplayEnabled;
     }
+    
+    public ArrayList<String> getTargetPlayers()
+    {
+        return targetPlayers;
+    }
 
     public Entity getTargetEntity()
     {
@@ -775,6 +826,11 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public float getRotationPitch()
     {
         return this.rot.pitch;
+    }
+
+    public Rotation getRotationPrev()
+    {
+        return rotPrev;
     }
 
     public boolean isFiring()

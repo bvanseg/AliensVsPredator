@@ -20,7 +20,7 @@
         "c": [
             {
                 "type": "forge:ore_dict",
-                "Ore": "silicon"
+                "ore": "silicon"
             }
         ],
         "d": [
