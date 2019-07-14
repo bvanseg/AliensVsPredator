@@ -1,16 +1,15 @@
 package org.avp.packets.server;
 
-import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityTurret;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class PacketAddTurretTarget implements IMessage, IMessageHandler<PacketAddTurretTarget, PacketAddTurretTarget>
@@ -52,7 +51,6 @@ public class PacketAddTurretTarget implements IMessage, IMessageHandler<PacketAd
     @Override
     public PacketAddTurretTarget onMessage(PacketAddTurretTarget packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
@@ -62,7 +60,17 @@ public class PacketAddTurretTarget implements IMessage, IMessageHandler<PacketAd
 
                 if (tile != null)
                 {
-                    tile.addTargetType((Class<? extends Entity>) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, packet.entityIdentifier)).getEntityClass());
+                    EntityEntry e = null;
+                    
+                    for (EntityEntry ee : ForgeRegistries.ENTITIES)
+                    {
+                        if (ee.getRegistryName().toString().equalsIgnoreCase(packet.entityIdentifier))
+                        {
+                            e = ee;
+                            break;
+                        }
+                    }
+                    tile.addTargetType((Class<? extends Entity>) e.getEntityClass());
                 }
             }
         });

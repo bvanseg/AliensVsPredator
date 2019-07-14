@@ -1,16 +1,15 @@
 package org.avp.packets.server;
 
-import org.avp.AliensVsPredator;
 import org.avp.tile.TileEntityTurret;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class PacketRemoveTurretTarget implements IMessage, IMessageHandler<PacketRemoveTurretTarget, PacketRemoveTurretTarget>
@@ -52,7 +51,6 @@ public class PacketRemoveTurretTarget implements IMessage, IMessageHandler<Packe
     @Override
     public PacketRemoveTurretTarget onMessage(PacketRemoveTurretTarget packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
@@ -62,7 +60,17 @@ public class PacketRemoveTurretTarget implements IMessage, IMessageHandler<Packe
 
                 if (tile != null)
                 {
-                    tile.removeTargetType((Class<? extends Entity>) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, packet.entityIdentifier)).getEntityClass());
+                    EntityEntry e = null;
+                    
+                    for (EntityEntry ee : ForgeRegistries.ENTITIES)
+                    {
+                        if (ee.getRegistryName().toString().equalsIgnoreCase(packet.entityIdentifier))
+                        {
+                            e = ee;
+                            break;
+                        }
+                    }
+                    tile.removeTargetType((Class<? extends Entity>) e.getEntityClass());
                 }
             }
         });

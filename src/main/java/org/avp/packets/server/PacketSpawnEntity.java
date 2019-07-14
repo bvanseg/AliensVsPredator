@@ -1,7 +1,5 @@
 package org.avp.packets.server;
 
-import org.avp.AliensVsPredator;
-
 import com.asx.mdx.lib.world.entity.Entities;
 
 import io.netty.buffer.ByteBuf;
@@ -57,7 +55,7 @@ public class PacketSpawnEntity implements IMessage, IMessageHandler<PacketSpawnE
             {
                 if (ctx.getServerHandler().player != null && ctx.getServerHandler().player.world != null)
                 {
-                    Entity entity = Entities.constructEntity(ctx.getServerHandler().player.world, Entities.getRegisteredEntityClass(AliensVsPredator.Properties.DOMAIN + message.entityId));
+                    Entity entity = Entities.constructEntity(ctx.getServerHandler().player.world, Entities.getRegisteredEntityClass(message.entityId));
 
                     if (entity != null)
                     {
