@@ -49,7 +49,15 @@ public class TileEntityPowerline extends TileEntityElectrical implements IVoltag
                     {
                         IVoltageProvider provider = (IVoltageProvider) electrical;
 
-                        if (electrical.canProvideEnergyToReceiver(direction) && provider.canConnectPower(direction) && electrical.getVoltage() < this.getVoltage())
+                        if (electrical.canProvideEnergyToReceiver(direction) && provider.canConnectPower(direction))
+                        {
+                            connections++;
+                        }
+                    }
+
+                    if (electrical instanceof IVoltageReceiver)
+                    {
+                        if (electrical.getVoltage() < this.getVoltage())
                         {
                             connections++;
                         }
@@ -57,8 +65,8 @@ public class TileEntityPowerline extends TileEntityElectrical implements IVoltag
                 }
             }
 
-            boolean canArc = connections < 1;
-
+            boolean canArc = connections <= 1;
+            
             if (canArc)
             {
                 Random rand = new Random();
