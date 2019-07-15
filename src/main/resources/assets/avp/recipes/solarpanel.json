@@ -27,7 +27,7 @@
         "d": [
             {
                 "type": "forge:ore_dict",
-                "ore": "ingotLithium"
+                "ore": "lithium"
             }
         ]
     },

@@ -34,22 +34,22 @@ public class CraftingHandler
     {
         AliensVsPredator.log().info("Ore dictionary registration");
         OreDictionary.registerOre("ingotCopper", ItemHandler.itemIngotCopper);
-        OreDictionary.registerOre("itemLithium", ItemHandler.itemIngotLithium);
+        OreDictionary.registerOre("lithium", ItemHandler.itemIngotLithium);
         OreDictionary.registerOre("ingotAluminum", ItemHandler.itemIngotAluminum);
         OreDictionary.registerOre("oreCopper", BlockHandler.oreCopper);
         OreDictionary.registerOre("oreLithium", BlockHandler.oreLithium);
         OreDictionary.registerOre("oreAluminum", BlockHandler.oreBauxite);
         OreDictionary.registerOre("oreAluminium", BlockHandler.oreBauxite);
         OreDictionary.registerOre("oreSilicon", BlockHandler.oreSilicon);
-        OreDictionary.registerOre("itemSilicon", ItemHandler.itemSilicon);
-        OreDictionary.registerOre("itemSilica", ItemHandler.itemSilicon);
-        OreDictionary.registerOre("itemPolycarbonate", ItemHandler.itemPolycarbonate);
-        OreDictionary.registerOre("itemPlastic", ItemHandler.itemPolycarbonate);
+        OreDictionary.registerOre("silicon", ItemHandler.itemSilicon);
+        OreDictionary.registerOre("silica", ItemHandler.itemSilicon);
+        OreDictionary.registerOre("polycarbonate", ItemHandler.itemPolycarbonate);
+        OreDictionary.registerOre("plastic", ItemHandler.itemPolycarbonate);
         OreDictionary.registerOre("logWood", BlockHandler.gigerLog);
-        OreDictionary.registerOre("itemNeodymium", ItemHandler.neodymium);
-        OreDictionary.registerOre("itemMagnet", ItemHandler.neodymiumMagnet);
+        OreDictionary.registerOre("neodymium", ItemHandler.neodymium);
+        OreDictionary.registerOre("magnet", ItemHandler.neodymiumMagnet);
         OreDictionary.registerOre("oreMonazite", BlockHandler.oreMonazite);
-        OreDictionary.registerOre("ingotCobalt", ItemHandler.cobalt);
+        OreDictionary.registerOre("cobalt", ItemHandler.cobalt);
         OreDictionary.registerOre("oreCobalt", BlockHandler.oreCobalt);     
         OreDictionary.registerOre("carbon", ItemHandler.itemCarbon);        
     }

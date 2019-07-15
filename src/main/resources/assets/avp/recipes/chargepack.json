@@ -20,10 +20,11 @@
       "item": "avp:part.resistor"
     },
     "D": {
-      "item": "avp:polycarbonate"
+      "type": "forge:ore_dict",
+      "ore": "polycarbonate"
     },
     "E": {
-      "ore": "ingotLithium",
+      "ore": "lithium",
       "type": "forge:ore_dict"
     }
   }

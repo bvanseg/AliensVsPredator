@@ -20,8 +20,8 @@
         ],
         "c": [
             {
-                "item": "avp:silicon",
-                "data": 0
+                "type": "forge:ore_dict",
+                "ore": "silicon"
             }
         ]
     },
