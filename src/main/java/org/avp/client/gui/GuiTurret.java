@@ -16,22 +16,19 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
-import com.asx.mdx.lib.client.gui.GuiCustomSlider;
 import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
 import com.asx.mdx.lib.client.gui.IAction;
 import com.asx.mdx.lib.client.gui.IGuiElement;
-import com.asx.mdx.lib.client.util.Color;
 import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -47,10 +44,8 @@ public class GuiTurret extends GuiContainer
     private GuiCustomButton                    buttonAddAsTarget;
     private GuiCustomButton                    buttonSave;
     private GuiCustomButton                    buttonLoad;
-    private GuiCustomSlider                    sliderColorR, sliderColorG, sliderColorB, sliderColorA;
     private GuiCustomTextbox                   playerNameInput;
     private int                                scroll        = 0;
-    private float                              modelRotation = -90.0F;
     private ArrayList<Class<? extends Entity>> entityList;
     private ArrayList<EntityLiving>            entityLivingList;
 
@@ -99,16 +94,7 @@ public class GuiTurret extends GuiContainer
         this.buttonLoad = new GuiCustomButton(4, 0, 0, 35, 20, "");
 
         this.playerNameInput = new GuiCustomTextbox(0, 0, 200, 20);
-
-        this.sliderColorA = new GuiCustomSlider(0, 0, 0, "Laser Color A", 0F, 255F);
-        this.sliderColorR = new GuiCustomSlider(0, 0, 0, "Laser Color R", 0F, 255F);
-        this.sliderColorG = new GuiCustomSlider(0, 0, 0, "Laser Color G", 0F, 255F);
-        this.sliderColorB = new GuiCustomSlider(0, 0, 0, "Laser Color B", 0F, 255F);
-
-        this.sliderColorA.sliderValue = ((this.tile.beamColor >> 24 & 255) / 255.0F);
-        this.sliderColorR.sliderValue = ((this.tile.beamColor >> 16 & 255) / 255.0F);
-        this.sliderColorG.sliderValue = ((this.tile.beamColor >> 8 & 255) / 255.0F);
-        this.sliderColorB.sliderValue = ((this.tile.beamColor & 255) / 255.0F);
+        this.playerNameInput.setFocused(true);
     }
 
     @Override
@@ -150,13 +136,6 @@ public class GuiTurret extends GuiContainer
     @Override
     public void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-//        if ((getCurrentSelectedEntity() instanceof EntityLivingBase))
-//        {
-//            int modelScale = 25;
-//            Draw.drawEntity(-40, 100, getCurrentSelectedEntity().height >= 4.0F ? modelScale / 2 : getCurrentSelectedEntity().height >= 8.0F ? modelScale / 4 : modelScale, this.modelRotation += 1F, 0.0F, getCurrentSelectedEntity());
-//            OpenGL.disableLight();
-//        }
-
         for (int x = 0; x < this.entityLivingList.size(); x++)
         {
             int yPos = 56;
@@ -183,12 +162,10 @@ public class GuiTurret extends GuiContainer
         this.playerNameInput.setY(guiTop + ySize - 34);
         this.playerNameInput.setWidth(225);
         this.playerNameInput.setHeight(16);
-        this.playerNameInput.setBackgroundColor(0xFF222222);
+        this.playerNameInput.setBackgroundColor(0xFF000000);
         this.playerNameInput.setTextColor(0xFF99FF55);
         this.playerNameInput.setBorderColor(0xFF555555);
         this.playerNameInput.drawTextBox();
-
-//        this.tile.beamColor = Color.createHexadecimal((int) (sliderColorA.sliderValue * sliderColorA.sliderMaxValue), (int) (sliderColorR.sliderValue * sliderColorR.sliderMaxValue), (int) (sliderColorG.sliderValue * sliderColorG.sliderMaxValue), (int) (sliderColorB.sliderValue * sliderColorB.sliderMaxValue));
 
         this.buttonScrollUp.x = this.guiLeft + xSize + 5;
         this.buttonScrollUp.y = this.guiTop + 42;
@@ -335,7 +312,6 @@ public class GuiTurret extends GuiContainer
     {
         if (this.scroll > 0)
         {
-            this.modelRotation = -90.0F;
             this.scroll -= 1;
         }
     }
@@ -344,7 +320,6 @@ public class GuiTurret extends GuiContainer
     {
         if (this.scroll < this.entityLivingList.size() - 1)
         {
-            this.modelRotation = -90.0F;
             this.scroll += 1;
         }
     }
@@ -361,13 +336,74 @@ public class GuiTurret extends GuiContainer
         {
             if (keyCode == Keyboard.KEY_RETURN)
             {
-                this.buttonAddAsTarget.getAction().perform(this.buttonAddAsTarget);
+                String commandLineText = this.playerNameInput.getText();
+
+                if (commandLineText.startsWith("/"))
+                {
+                    String command = commandLineText.substring(1, commandLineText.length());
+                    String[] args = command.split(" ");
+
+                    if (args.length > 0 && !args[0].equalsIgnoreCase(""))
+                    {
+                        if (args[0].equalsIgnoreCase("lasercolor"))
+                        {
+                            if (args.length == 2)
+                            {
+                                try
+                                {
+                                    if (args[1].contains("0x"))
+                                    {
+                                        args[1] = args[1].replace("0x", "");
+                                    }
+
+                                    int color = (int) Long.parseLong(args[1], 16);
+                                    String hexString = "0x" + Integer.toHexString(color).toUpperCase();
+                                    this.tile.beamColor = color;
+                                    mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Set turret laser beam color to " + hexString));
+                                }
+                                catch (Exception e)
+                                {
+                                    mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Invalid hexadecimal color string '" + args[1] + "'"));
+                                }
+                            }
+                            else
+                            {
+                                mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Invalid amount of arguments provided."));
+                            }
+                        }
+                        else if (args[0].equalsIgnoreCase("test"))
+                        {
+                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("0 argument command executed."));
+                        }
+                        else if (args[0].equalsIgnoreCase("help"))
+                        {
+                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("lasercolor <hex> - Set the laser beam color"));
+                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("help - Shows this command list."));
+                        }
+                        else
+                        {
+                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString(String.format("Command '%s' not recognized. See '/help'.", args[0])));
+                        }
+                    }
+                    else
+                    {
+                        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("No command provided."));
+                    }
+
+                    this.playerNameInput.setText("");
+                    return;
+                }
+                else
+                {
+                    this.buttonAddAsTarget.getAction().perform(this.buttonAddAsTarget);
+                    return;
+                }
             }
-            
+
             this.playerNameInput.textboxKeyTyped(typedChar, keyCode);
             return;
         }
-        
+
         super.keyTyped(typedChar, keyCode);
     }
 }
