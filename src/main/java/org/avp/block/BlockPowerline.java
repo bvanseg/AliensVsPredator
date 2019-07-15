@@ -1,5 +1,7 @@
 package org.avp.block;
 
+import java.util.Random;
+
 import org.avp.tile.TileEntityPowerline;
 
 import net.minecraft.block.Block;
@@ -17,6 +19,12 @@ public class BlockPowerline extends Block
     public BlockPowerline(Material material)
     {
         super(material);
+    }
+    
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        super.updateTick(worldIn, pos, state, rand);
     }
     
     @Override

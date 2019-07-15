@@ -10,6 +10,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -64,7 +65,7 @@ public class BlockTransformer extends Block
 
         if (te != null && te instanceof TileEntityTransformer)
         {
-            if (playerIn.getHeldItemMainhand() == ItemStack.EMPTY)
+            if (playerIn.getHeldItemMainhand().getItem() == Items.AIR)
             {
                 TileEntityTransformer transformer = (TileEntityTransformer) te;
 
