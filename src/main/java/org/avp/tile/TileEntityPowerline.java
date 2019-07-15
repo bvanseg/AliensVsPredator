@@ -19,6 +19,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityPowerline extends TileEntityElectrical implements IVoltageProvider, IVoltageReceiver
 {
@@ -66,7 +69,7 @@ public class TileEntityPowerline extends TileEntityElectrical implements IVoltag
             }
 
             boolean canArc = connections <= 1;
-            
+
             if (canArc)
             {
                 Random rand = new Random();
@@ -85,7 +88,7 @@ public class TileEntityPowerline extends TileEntityElectrical implements IVoltag
                 {
                     t = new Pos(target.getPosition()).add(target.width / 2, 0, target.width / 2);
                     m = 8F;
-                    dist = target.getDistanceSq(x, y, z);
+                    dist = target.getDistance(x, y, z);
 
                     if (dist <= maxArcDist)
                     {
@@ -96,16 +99,25 @@ public class TileEntityPowerline extends TileEntityElectrical implements IVoltag
 
                 if (dist <= maxArcDist)
                 {
-                    float targetX = (float) (t.x + (rand.nextFloat() / m) - (rand.nextFloat() / m));
-                    float targetY = (float) (t.y + 1);
-                    float targetZ = (float) (t.z + (rand.nextFloat() / m) - (rand.nextFloat() / m));
-                    int age = 4;
-                    int color = 0xFF8866CC;
-                    EntityFXElectricArc arc = new EntityFXElectricArc(world, x, y, z, targetX, targetY, targetZ, age, 0.24F * dist, 0.1F, (float) arcWidth, color);
-                    Game.minecraft().effectRenderer.addEffect(arc);
+                    if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                    {
+                        this.spawnArc(t, m, rand, dist, x, y, z, arcWidth);
+                    }
                 }
             }
         }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public void spawnArc(Pos t, float m, Random rand, double dist, double x, double y, double z, double arcWidth)
+    {
+        float targetX = (float) (t.x + (rand.nextFloat() / m) - (rand.nextFloat() / m));
+        float targetY = (float) (t.y + 1);
+        float targetZ = (float) (t.z + (rand.nextFloat() / m) - (rand.nextFloat() / m));
+        int age = 4;
+        int color = 0xFF8866CC;
+        EntityFXElectricArc arc = new EntityFXElectricArc(world, x, y, z, targetX, targetY, targetZ, age, 0.24F * dist, 0.1F, (float) arcWidth, color);
+        Game.minecraft().effectRenderer.addEffect(arc);
     }
 
     public static Pos getNextGroundingPoint(Pos pos, World world)
