@@ -63,43 +63,46 @@ public class BlockTransformer extends Block
     {
         TileEntity te = world.getTileEntity(pos);
 
-        if (te != null && te instanceof TileEntityTransformer)
+        if (hand == EnumHand.MAIN_HAND)
         {
-            if (playerIn.getHeldItemMainhand().getItem() == Items.AIR)
+            if (te != null && te instanceof TileEntityTransformer)
             {
-                TileEntityTransformer transformer = (TileEntityTransformer) te;
-
-                ArrayList<EnumFacing> facing = new ArrayList<EnumFacing>();
-
-                for (EnumFacing dir : EnumFacing.VALUES)
+                if (playerIn.getHeldItemMainhand().getItem() == Items.AIR)
                 {
-                    if (dir != EnumFacing.UP && dir != EnumFacing.DOWN)
+                    TileEntityTransformer transformer = (TileEntityTransformer) te;
+
+                    ArrayList<EnumFacing> facing = new ArrayList<EnumFacing>();
+
+                    for (EnumFacing dir : EnumFacing.VALUES)
                     {
-                        facing.add(dir);
+                        if (dir != EnumFacing.UP && dir != EnumFacing.DOWN)
+                        {
+                            facing.add(dir);
+                        }
                     }
+
+                    if (transformer.getRotationYAxis() != null)
+                    {
+                        int index = facing.indexOf(transformer.getRotationYAxis());
+
+                        if (index + 1 >= facing.size())
+                        {
+                            index = -1;
+                        }
+
+                        if (facing.get(index + 1) != null)
+                        {
+                            transformer.setRotationYAxis(facing.get(index + 1));
+                        }
+
+                        if (!world.isRemote)
+                        {
+                            AliensVsPredator.network().sendToAll(new PacketRotateRotatable(transformer.getRotationYAxis().ordinal(), transformer.getPos().getX(), transformer.getPos().getY(), transformer.getPos().getZ()));
+                        }
+                    }
+
+                    transformer.getUpdatePacket();
                 }
-
-                if (transformer.getRotationYAxis() != null)
-                {
-                    int index = facing.indexOf(transformer.getRotationYAxis());
-
-                    if (index + 1 >= facing.size())
-                    {
-                        index = -1;
-                    }
-
-                    if (facing.get(index + 1) != null)
-                    {
-                        transformer.setRotationYAxis(facing.get(index + 1));
-                    }
-
-                    if (!world.isRemote)
-                    {
-                        AliensVsPredator.network().sendToAll(new PacketRotateRotatable(transformer.getRotationYAxis().ordinal(), transformer.getPos().getX(), transformer.getPos().getY(), transformer.getPos().getZ()));
-                    }
-                }
-
-                transformer.getUpdatePacket();
             }
         }
         return super.onBlockActivated(world, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
