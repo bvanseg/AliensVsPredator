@@ -44,7 +44,6 @@ public class OrganismServerSync implements IMessage, IMessageHandler<OrganismSer
     @Override
     public OrganismServerSync onMessage(OrganismServerSync packet, MessageContext ctx)
     {
-        // System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
