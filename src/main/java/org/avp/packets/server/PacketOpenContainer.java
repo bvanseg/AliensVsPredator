@@ -38,7 +38,6 @@ public class PacketOpenContainer implements IMessage, IMessageHandler<PacketOpen
     @Override
     public PacketOpenContainer onMessage(PacketOpenContainer packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override

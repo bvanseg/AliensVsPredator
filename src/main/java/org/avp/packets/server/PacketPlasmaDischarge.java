@@ -41,7 +41,6 @@ public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPl
     @Override
     public PacketPlasmaDischarge onMessage(PacketPlasmaDischarge packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override

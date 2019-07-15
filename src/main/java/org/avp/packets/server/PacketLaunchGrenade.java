@@ -32,7 +32,6 @@ public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaun
     @Override
     public PacketLaunchGrenade onMessage(PacketLaunchGrenade packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override

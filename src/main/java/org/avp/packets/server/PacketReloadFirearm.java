@@ -30,7 +30,6 @@ public class PacketReloadFirearm implements IMessage, IMessageHandler<PacketRelo
     @Override
     public PacketReloadFirearm onMessage(PacketReloadFirearm message, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override

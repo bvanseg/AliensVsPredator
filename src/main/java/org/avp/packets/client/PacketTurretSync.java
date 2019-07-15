@@ -56,7 +56,6 @@ public class PacketTurretSync implements IMessage, IMessageHandler<PacketTurretS
     @Override
     public PacketTurretSync onMessage(PacketTurretSync packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         Game.minecraft().addScheduledTask(new Runnable()
         {
             @Override

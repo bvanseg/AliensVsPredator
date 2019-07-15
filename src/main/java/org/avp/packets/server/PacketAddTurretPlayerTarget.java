@@ -48,7 +48,6 @@ public class PacketAddTurretPlayerTarget implements IMessage, IMessageHandler<Pa
     @Override
     public PacketAddTurretPlayerTarget onMessage(PacketAddTurretPlayerTarget packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override

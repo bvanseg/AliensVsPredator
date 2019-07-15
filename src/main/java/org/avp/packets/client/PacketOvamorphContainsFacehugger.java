@@ -44,7 +44,6 @@ public class PacketOvamorphContainsFacehugger implements IMessage, IMessageHandl
     @Override
     public PacketOvamorphContainsFacehugger onMessage(PacketOvamorphContainsFacehugger packet, MessageContext ctx)
     {
-        // System.out.println("Sent packet " + this.getClass().getName());
         Game.minecraft().addScheduledTask(new Runnable()
         {
             @Override

@@ -53,7 +53,6 @@ public class PacketOpenable implements IMessage, IMessageHandler<PacketOpenable,
     @Override
     public PacketOpenable onMessage(PacketOpenable packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         Game.minecraft().addScheduledTask(new Runnable()
         {
             @Override

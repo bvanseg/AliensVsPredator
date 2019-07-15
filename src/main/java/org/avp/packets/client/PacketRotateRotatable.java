@@ -53,7 +53,6 @@ public class PacketRotateRotatable implements IMessage, IMessageHandler<PacketRo
     @Override
     public PacketRotateRotatable onMessage(PacketRotateRotatable packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         Game.minecraft().addScheduledTask(new Runnable()
         {
             @Override

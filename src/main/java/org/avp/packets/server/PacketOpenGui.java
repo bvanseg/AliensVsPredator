@@ -43,7 +43,6 @@ public class PacketOpenGui implements IMessage, IMessageHandler<PacketOpenGui, P
     @SideOnly(Side.CLIENT)
     public PacketOpenGui onMessage(PacketOpenGui packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         Game.minecraft().addScheduledTask(new Runnable()
         {
             @Override

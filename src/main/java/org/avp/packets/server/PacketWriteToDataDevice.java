@@ -49,7 +49,6 @@ public class PacketWriteToDataDevice implements IMessage, IMessageHandler<Packet
     @Override
     public PacketWriteToDataDevice onMessage(PacketWriteToDataDevice packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override

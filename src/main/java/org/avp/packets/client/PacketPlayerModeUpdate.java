@@ -39,7 +39,6 @@ public class PacketPlayerModeUpdate implements IMessage, IMessageHandler<PacketP
     @Override
     public PacketPlayerModeUpdate onMessage(PacketPlayerModeUpdate packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         Game.minecraft().addScheduledTask(new Runnable()
         {
             @Override

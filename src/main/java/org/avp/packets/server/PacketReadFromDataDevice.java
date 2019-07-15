@@ -50,7 +50,6 @@ public class PacketReadFromDataDevice implements IMessage, IMessageHandler<Packe
     @Override
     public PacketReadFromDataDevice onMessage(PacketReadFromDataDevice packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override

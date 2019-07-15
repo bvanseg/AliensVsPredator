@@ -45,7 +45,6 @@ public class SpecialPlayerServerSync implements IMessage, IMessageHandler<Specia
     @Override
     public SpecialPlayerServerSync onMessage(SpecialPlayerServerSync packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override

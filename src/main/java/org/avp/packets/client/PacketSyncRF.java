@@ -53,7 +53,6 @@ public class PacketSyncRF implements IMessage, IMessageHandler<PacketSyncRF, Pac
     @Override
     public PacketSyncRF onMessage(PacketSyncRF packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         Game.minecraft().addScheduledTask(new Runnable()
         {
             @Override

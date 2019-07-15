@@ -43,7 +43,6 @@ public class PacketAmmoUpdate implements IMessage, IMessageHandler<PacketAmmoUpd
             @Override
             public void run()
             {
-                System.out.println("Sent packet " + this.getClass().getName());
                 ((ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem()).setAmmoCount(packet.ammo);
             }
         });

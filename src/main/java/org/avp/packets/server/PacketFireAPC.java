@@ -29,7 +29,6 @@ public class PacketFireAPC implements IMessage, IMessageHandler<PacketFireAPC, P
     @Override
     public PacketFireAPC onMessage(PacketFireAPC packet, MessageContext ctx)
     {
-        System.out.println("Sent packet " + this.getClass().getName());
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
         {
             @Override
