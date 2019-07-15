@@ -63,7 +63,6 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -488,7 +487,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.timeout = this.timeoutMax;
         this.targetEntity.attackEntityFrom(DamageSources.bullet, 1F);
         this.targetEntity.hurtResistantTime = 0;
-        this.world.spawnParticle(EnumParticleTypes.CLOUD, this.pos.x, this.pos.y, this.pos.z, 0, 10, 0);
+//        this.world.spawnParticle(EnumParticleTypes.CLOUD, this.pos.x, this.pos.y, this.pos.z, 0, 10, 0);
         Sounds.WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 1F, 1F);
     }
 
