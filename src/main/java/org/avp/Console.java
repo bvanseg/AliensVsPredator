@@ -25,7 +25,7 @@ public class Console implements IPreInitEvent, IInitEvent, IPostInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
-        logger.info("AliensVsPredator Minecraft Mod Copyright \u00A9 2012-2018 ASX");
+        logger.info("AliensVsPredator Minecraft Mod Copyright \u00A9 2012-2019 ASX");
         logger.info("Initializing...");
     }
 
