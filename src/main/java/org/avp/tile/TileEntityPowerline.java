@@ -68,18 +68,22 @@ public class TileEntityPowerline extends TileEntityElectrical implements IVoltag
                 double y = this.pos.getY() + 0.5;
                 double z = this.pos.getZ() + 0.5;
                 Pos t = getNextGroundingPoint(new Pos(x, y + 1, z), this.world);
-                Entity target = Entities.getRandomEntityInCoordsRange(world, EntityLivingBase.class, new Pos(this), (int) Math.round(maxArcDist));
+                Entity target = Entities.getRandomEntityInCoordsRange(world, EntityLivingBase.class, new Pos(this), (int) Math.floor(maxArcDist));
                 double dist = y - t.y;
                 double arcWidth = MDXMath.map((double) this.voltage, 600D, 10000D, 0.05D, 0.5D);
-                float damageMult = (float) (arcWidth * 20F);
+                float damageMult = (float) (arcWidth * 100F);
 
                 if (target != null)
                 {
                     t = new Pos(target.getPosition()).add(target.width / 2, 0, target.width / 2);
                     m = 8F;
-                    dist = target.getDistance(x, y, z);
-                    target.attackEntityFrom(DamageSources.electricity, damageMult);
-                    target.setFire(3);
+                    dist = target.getDistanceSq(x, y, z);
+
+                    if (dist <= maxArcDist)
+                    {
+                        target.attackEntityFrom(DamageSources.electricity, damageMult);
+                        target.setFire(3);
+                    }
                 }
 
                 if (dist <= maxArcDist)
