@@ -10,7 +10,7 @@ import net.minecraft.util.EntityDamageSourceIndirect;
 public class DamageSources extends DamageSource
 {
     public static DamageSource acid = (new DamageSource("acid")).setDamageBypassesArmor();
-    public static DamageSource electricity = (new DamageSource("electricity")).setDamageBypassesArmor().setFireDamage();
+    public static DamageSource electricity = (new DamageSource("electricity")).setDamageBypassesArmor();
     public static DamageSource acidProjectile = (new DamageSource("acidshot")).setDamageBypassesArmor().setProjectile();
     public static DamageSource chestburster = (new DamageSource("chestburster")).setDamageIsAbsolute().setDamageBypassesArmor();
     public static DamageSource deaconBurster = (new DamageSource("deaconBurster")).setDamageIsAbsolute().setDamageBypassesArmor();
