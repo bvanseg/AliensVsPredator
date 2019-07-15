@@ -10,13 +10,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 
 public class BlockTransformer extends Block
 {
@@ -25,19 +25,19 @@ public class BlockTransformer extends Block
         super(material);
         this.setTickRandomly(true);
     }
-    
+
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
     }
-    
+
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.INVISIBLE;
     }
-    
+
     @Override
     public TileEntity createTileEntity(World world, IBlockState state)
     {
@@ -49,14 +49,14 @@ public class BlockTransformer extends Block
     {
         return true;
     }
-    
+
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
     {
         super.breakBlock(worldIn, pos, state);
         worldIn.removeTileEntity(pos);
     }
-    
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
@@ -64,39 +64,42 @@ public class BlockTransformer extends Block
 
         if (te != null && te instanceof TileEntityTransformer)
         {
-            TileEntityTransformer transformer = (TileEntityTransformer) te;
-
-            ArrayList<EnumFacing> facing = new ArrayList<EnumFacing>();
-
-            for (EnumFacing dir : EnumFacing.VALUES)
+            if (playerIn.getHeldItemMainhand() == ItemStack.EMPTY)
             {
-                if (dir != EnumFacing.UP && dir != EnumFacing.DOWN)
+                TileEntityTransformer transformer = (TileEntityTransformer) te;
+
+                ArrayList<EnumFacing> facing = new ArrayList<EnumFacing>();
+
+                for (EnumFacing dir : EnumFacing.VALUES)
                 {
-                    facing.add(dir);
+                    if (dir != EnumFacing.UP && dir != EnumFacing.DOWN)
+                    {
+                        facing.add(dir);
+                    }
                 }
+
+                if (transformer.getRotationYAxis() != null)
+                {
+                    int index = facing.indexOf(transformer.getRotationYAxis());
+
+                    if (index + 1 >= facing.size())
+                    {
+                        index = -1;
+                    }
+
+                    if (facing.get(index + 1) != null)
+                    {
+                        transformer.setRotationYAxis(facing.get(index + 1));
+                    }
+
+                    if (!world.isRemote)
+                    {
+                        AliensVsPredator.network().sendToAll(new PacketRotateRotatable(transformer.getRotationYAxis().ordinal(), transformer.getPos().getX(), transformer.getPos().getY(), transformer.getPos().getZ()));
+                    }
+                }
+
+                transformer.getUpdatePacket();
             }
-
-            if (transformer.getRotationYAxis() != null)
-            {
-                int index = facing.indexOf(transformer.getRotationYAxis());
-
-                if (index + 1 >= facing.size())
-                {
-                    index = -1;
-                }
-
-                if (facing.get(index + 1) != null)
-                {
-                    transformer.setRotationYAxis(facing.get(index + 1));
-                }
-
-                if (!world.isRemote)
-                {
-                    AliensVsPredator.network().sendToAll(new PacketRotateRotatable(transformer.getRotationYAxis().ordinal(), transformer.getPos().getX(), transformer.getPos().getY(), transformer.getPos().getZ()));
-                }
-            }
-
-            transformer.getUpdatePacket();
         }
         return super.onBlockActivated(world, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
     }
