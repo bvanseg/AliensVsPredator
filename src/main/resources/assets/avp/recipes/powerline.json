@@ -21,6 +21,7 @@
   },
   "result": {
     "item": "avp:powerline",
-    "data": 0
+    "data": 0,
+    "count": 4
   }
 }
