@@ -66,28 +66,28 @@ public class BlockTransformer extends Block
         {
             TileEntityTransformer transformer = (TileEntityTransformer) te;
 
-            ArrayList<EnumFacing> EnumFacings = new ArrayList<EnumFacing>();
+            ArrayList<EnumFacing> facing = new ArrayList<EnumFacing>();
 
             for (EnumFacing dir : EnumFacing.VALUES)
             {
                 if (dir != EnumFacing.UP && dir != EnumFacing.DOWN)
                 {
-                    EnumFacings.add(dir);
+                    facing.add(dir);
                 }
             }
 
             if (transformer.getRotationYAxis() != null)
             {
-                int index = EnumFacings.indexOf(transformer.getRotationYAxis());
+                int index = facing.indexOf(transformer.getRotationYAxis());
 
-                if (index + 1 >= EnumFacings.size())
+                if (index + 1 >= facing.size())
                 {
                     index = -1;
                 }
 
-                if (EnumFacings.get(index + 1) != null)
+                if (facing.get(index + 1) != null)
                 {
-                    transformer.setRotationYAxis(EnumFacings.get(index + 1));
+                    transformer.setRotationYAxis(facing.get(index + 1));
                 }
 
                 if (!world.isRemote)
