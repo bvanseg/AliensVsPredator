@@ -1,15 +1,19 @@
-[{
-  "modid": "avp",
-  "name": "AliensVsPredator",
-  "description": "Contains content from several movie series, including the Alien, Predator, Aliens Vs Predator, and Prometheus series. The mod adds countless blocks, items, and mobs to the world of Minecraft for you to start Building Better Worlds(TM). ",
-  "version": "${version}",
-  "mcversion": "${mcversion}",
-  "url": "http://aliensvspredator.org/",
-  "changelogUrl": "http://aliensvspredator.org/",
-  "authorList": ["Ri5ux", "Cybercat5555"],
-  "credits": "",
-  "logoFile": "",
-  "screenshots": [],
-  "requiredMods": [],
-  "dependencies": []
-}]
+[
+	{
+		"modid": "redstoneflux",
+		"name": "Redstone Flux",
+		"description": "The Redstone Flux API - the cornerstone of Energy Transfer in modded Minecraft since 1.6.4.",
+		"version": "${version}",
+		"credits": "Team CoFH",
+		"logoFile": "assets/redstoneflux/textures/logo.png",
+		"mcversion": "${mc_version}",
+		"url": "http://www.teamcofh.com",
+		"updateUrl": "",
+		"authorList": [ "Team CoFH" ],
+		"parent": "",
+		"screenshots": [],
+		"dependencies": [
+			"forge"
+		]
+	}
+]

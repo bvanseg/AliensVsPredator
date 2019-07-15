@@ -1,16 +1,18 @@
 package org.avp.tile;
 
+import org.avp.AliensVsPredator;
 import org.avp.api.power.IVoltageProvider;
+import org.avp.packets.client.PacketSyncRF;
 
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
+import cofh.redstoneflux.api.IEnergyReceiver;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 
-//TODO: Re-implement IEnergyReceiver from the COFH API
-public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implements IVoltageProvider, IRotatableYAxis
+public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implements IVoltageProvider, IRotatableYAxis, IEnergyReceiver
 {
     private EnumFacing direction;
     protected int rfEnergy;
@@ -30,7 +32,7 @@ public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implem
     {
         super.update();
         this.updateEnergyAsReceiver();
-        //this.updateRF();
+        this.updateRF();
     }
 
     @Override
@@ -62,55 +64,55 @@ public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implem
         this.rfEnergy = rfEnergy;
     }
     
-//    public void updateRF()
-//    {
-//        if (rfEnergy >= rfUsedPerTick)
-//        {
-//            this.setVoltage(240);
-//            rfEnergy = rfEnergy - rfUsedPerTick;
-//        }
-//        else
-//        {
-//            this.setVoltage(0);
-//        }
-//
-//        if (!this.world.isRemote && this.world.getWorldTime() % 20 == 0)
-//        {
-//            AliensVsPredator.network().sendToAll(new PacketSyncRF(this.getEnergyStored(null), this.xCoord, this.yCoord, this.zCoord));
-//        }
-//    }
-//
-//    @Override
-//    public boolean canConnectEnergy(EnumFacing from)
-//    {
-//        return true;
-//    }
-//
-//    @Override
-//    public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate)
-//    {
-//        int usedRF = 0;
-//        
-//        if (maxReceive >= this.rfStoredPerTick && this.rfEnergy < this.getMaxEnergyStored(from))
-//        {
-//            this.rfEnergy = this.rfEnergy + rfStoredPerTick;
-//            usedRF = Math.min(maxReceive, rfStoredPerTick);
-//        }
-//        
-//        return usedRF;
-//    }
-//
-//    @Override
-//    public int getEnergyStored(EnumFacing from)
-//    {
-//        return this.rfEnergy;
-//    }
-//
-//    @Override
-//    public int getMaxEnergyStored(EnumFacing from)
-//    {
-//        return 10000;
-//    }
+    public void updateRF()
+    {
+        if (rfEnergy >= rfUsedPerTick)
+        {
+            this.setVoltage(240);
+            rfEnergy = rfEnergy - rfUsedPerTick;
+        }
+        else
+        {
+            this.setVoltage(0);
+        }
+
+        if (!this.world.isRemote && this.world.getWorldTime() % 20 == 0)
+        {
+            AliensVsPredator.network().sendToAll(new PacketSyncRF(this.getEnergyStored(null), this.pos.getX(), this.pos.getY(), this.pos.getZ()));
+        }
+    }
+
+    @Override
+    public boolean canConnectEnergy(EnumFacing from)
+    {
+        return true;
+    }
+
+    @Override
+    public int receiveEnergy(EnumFacing from, int maxReceive, boolean simulate)
+    {
+        int usedRF = 0;
+        
+        if (maxReceive >= this.rfStoredPerTick && this.rfEnergy < this.getMaxEnergyStored(from))
+        {
+            this.rfEnergy = this.rfEnergy + rfStoredPerTick;
+            usedRF = Math.min(maxReceive, rfStoredPerTick);
+        }
+        
+        return usedRF;
+    }
+
+    @Override
+    public int getEnergyStored(EnumFacing from)
+    {
+        return this.rfEnergy;
+    }
+
+    @Override
+    public int getMaxEnergyStored(EnumFacing from)
+    {
+        return 10000;
+    }
 
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()
