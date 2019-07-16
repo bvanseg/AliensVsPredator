@@ -94,6 +94,7 @@ import org.avp.tile.TileEntitySkull;
 import org.avp.tile.TileEntitySolarPanel;
 import org.avp.tile.TileEntityStasisMechanism;
 import org.avp.tile.TileEntitySupplyCrate;
+import org.avp.tile.TileEntityTeslaCoil;
 import org.avp.tile.TileEntityTransformer;
 import org.avp.tile.TileEntityTurret;
 import org.avp.tile.TileEntityWorkstation;
@@ -317,6 +318,7 @@ public class EntityHandler implements IInitEvent
         GameRegistry.registerTileEntity(TileEntityReflective.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.reflective"));
         GameRegistry.registerTileEntity(TileEntityGroundFern.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.groundfern"));
         GameRegistry.registerTileEntity(TileEntityTreeFern.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.treefern"));
+        GameRegistry.registerTileEntity(TileEntityTeslaCoil.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.tesacoil"));
     }
 
     private void registerSpawns()

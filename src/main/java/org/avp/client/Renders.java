@@ -113,6 +113,7 @@ import org.avp.client.render.items.RenderItemStunBaton;
 import org.avp.client.render.items.RenderItemSummoner;
 import org.avp.client.render.items.RenderItemSupplyChute;
 import org.avp.client.render.items.RenderItemSupplyCrate;
+import org.avp.client.render.items.RenderItemTeslaCoil;
 import org.avp.client.render.items.RenderItemTransformer;
 import org.avp.client.render.items.RenderItemTreeFern;
 import org.avp.client.render.items.RenderItemTurret;
@@ -165,6 +166,7 @@ import org.avp.client.render.tile.RenderSkull;
 import org.avp.client.render.tile.RenderSolarPanel;
 import org.avp.client.render.tile.RenderStasisMechanism;
 import org.avp.client.render.tile.RenderSupplyCrate;
+import org.avp.client.render.tile.RenderTeslaCoil;
 import org.avp.client.render.tile.RenderTransformer;
 import org.avp.client.render.tile.RenderTurret;
 import org.avp.client.render.tile.RenderWorkstation;
@@ -263,6 +265,7 @@ import org.avp.tile.TileEntitySkull;
 import org.avp.tile.TileEntitySolarPanel;
 import org.avp.tile.TileEntityStasisMechanism;
 import org.avp.tile.TileEntitySupplyCrate;
+import org.avp.tile.TileEntityTeslaCoil;
 import org.avp.tile.TileEntityTransformer;
 import org.avp.tile.TileEntityTurret;
 import org.avp.tile.TileEntityWorkstation;
@@ -452,6 +455,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.blastDoor), new RenderItemBlastDoor());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.lightPanel), new RenderItemLightPanel());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.ccflTube), new RenderItemCCFLTube());
+        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.teslaCoil), new RenderItemTeslaCoil());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.powerline), new RenderItemPowerline());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.solarPanel), new RenderItemSolarPanel());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.powercell), new RenderItemPowercell());
@@ -620,5 +624,6 @@ public class Renders implements IInitEvent, IPreInitEvent
         bindTileEntitySpecialRenderer(TileEntitySkull.class, new RenderSkull());
         bindTileEntitySpecialRenderer(TileEntityGroundFern.class, new RenderGroundFern());
         bindTileEntitySpecialRenderer(TileEntityTreeFern.class, new RenderTreeFern());
+        bindTileEntitySpecialRenderer(TileEntityTeslaCoil.class, new RenderTeslaCoil());
     }
 }

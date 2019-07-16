@@ -87,6 +87,7 @@ item.avp:part.ic.name=Integrated Circuit
 item.avp:part.processor.name=Microprocessor
 tile.avp:transformer.stepdown.name=Step-Down Transformer
 tile.avp:transformer.name=Step-Up Transformer
+tile.avp:teslacoil.name=Tesla Coil
 item.avp:part.led.name=Light Emitting Diode (LED)
 item.avp:part.led.display.name=7 Segment LED Display
 item.avp:part.capacitor.name=Capacitor
@@ -435,6 +436,7 @@ entity.APC.name=APC
 
 #TEXT-DEATH MESSAGES
 death.attack.bullet=%1$s was shot by %2$s.
+death.attack.electricity=%1$s was electrocuted.
 death.attack.acidshot=%1$s was vaporized in acid by %2$s.
 death.attack.acid=%1$s vaporized in acid.
 death.attack.spear=%1$s was speared by %2$s.

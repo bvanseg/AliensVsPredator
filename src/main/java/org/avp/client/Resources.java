@@ -79,6 +79,7 @@ import org.avp.client.model.tile.ModelSatelliteDish;
 import org.avp.client.model.tile.ModelSevastopolBlastdoor;
 import org.avp.client.model.tile.ModelSolarPanel;
 import org.avp.client.model.tile.ModelStasisMechanism;
+import org.avp.client.model.tile.ModelTeslaCoil;
 import org.avp.client.model.tile.ModelTransformer;
 import org.avp.client.model.tile.ModelTurret;
 import org.avp.client.model.tile.ModelWorkstation;
@@ -160,6 +161,7 @@ public class Resources
         public final MapModelTexture<ModelM40>                    M40GRENADE_INCENDIARY          = new MapModelTexture(new ModelM40(), new Texture(AliensVsPredator.Properties.ID, "textures/items/models/m40incendiary.png"));
         public final MapModelTexture<ModelMotionTracker>          MOTIONTRACKER                  = new MapModelTexture(new ModelMotionTracker(), new Texture(AliensVsPredator.Properties.ID, "textures/items/models/motiontracker.png"));
         public final MapModelTexture<ModelTurret>                 TURRET                         = new MapModelTexture(new ModelTurret(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/turret.png"));
+        public final MapModelTexture<ModelTeslaCoil>              TESLA_COIL                     = new MapModelTexture(new ModelTeslaCoil(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/teslacoil.png"));
         public final MapModelTexture<ModelWorkstation>            WORKSTATION                    = new MapModelTexture(new ModelWorkstation(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/workstation.png"));
         public final MapModelTexture<ModelWorkstation>            WORKSTATION_MASK               = new MapModelTexture(new ModelWorkstation(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/workstation-on.png"));
         public final MapModelTexture<ModelLightPanel>             LIGHT_PANEL                    = new MapModelTexture(new ModelLightPanel(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/lightpanel.png"));
