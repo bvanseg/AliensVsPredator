@@ -66,6 +66,21 @@ public class CraftingHandler
 
     private static void addSchematics()
     {
+        AssemblyManager.register(new Schematic("teslacoil", new ItemStack(BlockHandler.teslaCoil, 1)) {
+            @Override
+            public ItemStack[] getItemsRequired()
+            {
+                return new ItemStack[] {
+                        new ItemStack(ItemHandler.itemIngotCopper, 9),
+                        new ItemStack(ItemHandler.itemIngotAluminum, 9),
+                        new ItemStack(BlockHandler.transformer, 2),
+                        new ItemStack(Blocks.IRON_BLOCK, 1),
+                        new ItemStack(BlockHandler.powerline, 2),
+                        new ItemStack(ItemHandler.itemCapacitor, 6),
+                        new ItemStack(ItemHandler.itemPowerSupply, 1),
+                };
+            }
+        });
         AssemblyManager.register(new Schematic("terminal", new ItemStack(BlockHandler.terminal, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
