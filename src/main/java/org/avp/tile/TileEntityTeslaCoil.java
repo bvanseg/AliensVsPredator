@@ -231,13 +231,13 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltag
 
             if (target != null)
             {
-//                Pos p = new Pos(target.getPosition()).add(target.width / 2, 0, target.width / 2);
-//                distE = target.getDistance(origin.x, origin.y, origin.z);
-//                t = p;
-//                m = 8F;
-//                dist = distE;
-//                target.attackEntityFrom(DamageSources.electricity, damageMult);
-//                target.setFire(3);
+                Pos p = new Pos(target.getPosition()).add(target.width / 2, 0, target.width / 2);
+                distE = target.getDistance(origin.x, origin.y, origin.z);
+                t = p;
+                m = 8F;
+                dist = distE;
+                target.attackEntityFrom(DamageSources.electricity, damageMult);
+                target.setFire(3);
             }
 
             if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
