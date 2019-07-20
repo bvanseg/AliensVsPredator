@@ -33,7 +33,7 @@ import org.avp.entities.living.species.engineer.EntitySpaceJockey;
 import org.avp.entities.living.species.species223ode.EntityDeacon;
 import org.avp.entities.living.species.species223ode.EntityDeaconAdult;
 import org.avp.entities.living.species.species223ode.EntityTrilobite;
-import org.avp.entities.living.species.xenomorphs.EntityAqua;
+import org.avp.entities.living.species.xenomorphs.EntityNauticomorph;
 import org.avp.entities.living.species.xenomorphs.EntityBatXeno;
 import org.avp.entities.living.species.xenomorphs.EntityBoiler;
 import org.avp.entities.living.species.xenomorphs.EntityChestburster;
@@ -229,7 +229,7 @@ public class EntityHandler implements IInitEvent
             livingEntities.add(EntityEntryBuilder.create().entity(EntityChestburster.class).id("Chestbuster", entityId++).name("Chestbuster").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityOvamorph.class).id("Ovamorph", entityId++).name("Ovamorph").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityRoyalFacehugger.class).id("RoyalFacehugger", entityId++).name("RoyalFacehugger").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityAqua.class).id("AquaAlien", entityId++).name("AquaAlien").tracker(250, 4, true).build());
+            livingEntities.add(EntityEntryBuilder.create().entity(EntityNauticomorph.class).id("AquaAlien", entityId++).name("AquaAlien").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityPredalien.class).id("Predalien", entityId++).name("Predalien").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityCombatSynthetic.class).id("CombatSynthetic", entityId++).name("CombatSynthetic").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityDeacon.class).id("Deacon", entityId++).name("Deacon").tracker(250, 4, true).build());
@@ -341,7 +341,7 @@ public class EntityHandler implements IInitEvent
 
             if (AliensVsPredator.settings().shouldEvolvedXenomorphsSpawn())
             {
-                EntityRegistry.addSpawn(EntityAqua.class, 5, 1, 2, EnumCreatureType.MONSTER, array(aquaAlienSpawns));
+                EntityRegistry.addSpawn(EntityNauticomorph.class, 5, 1, 2, EnumCreatureType.MONSTER, array(aquaAlienSpawns));
                 EntityRegistry.addSpawn(EntityDrone.class, 50, 1, 3, EnumCreatureType.MONSTER, array(alienSpawns));
                 EntityRegistry.addSpawn(EntityWarrior.class, 20, 1, 3, EnumCreatureType.MONSTER, array(alienSpawns));
                 EntityRegistry.addSpawn(EntityPraetorian.class, 5, 1, 2, EnumCreatureType.MONSTER, array(alienSpawns));

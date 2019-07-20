@@ -10,7 +10,7 @@ import org.avp.entities.living.species.engineer.EntitySpaceJockey;
 import org.avp.entities.living.species.species223ode.EntityDeacon;
 import org.avp.entities.living.species.species223ode.EntityDeaconAdult;
 import org.avp.entities.living.species.species223ode.EntityTrilobite;
-import org.avp.entities.living.species.xenomorphs.EntityAqua;
+import org.avp.entities.living.species.xenomorphs.EntityNauticomorph;
 import org.avp.entities.living.species.xenomorphs.EntityBatXeno;
 import org.avp.entities.living.species.xenomorphs.EntityBoiler;
 import org.avp.entities.living.species.xenomorphs.EntityChestburster;
@@ -230,7 +230,7 @@ public class ItemHandler
     public static final Item rackModule8                = new ItemNetworkRackModule8().setCreativeTab(Tab.MAIN).setRegistryName("rackmodule8");
     public static final Item sporepod                   = new ItemSporePod().setCreativeTab(Tab.ENTITIES).setRegistryName("sporepod");
     public static final Item summonerDrone              = new ItemEntitySummoner(EntityDrone.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.drone");
-    public static final Item summonerAqua               = new ItemEntitySummoner(EntityAqua.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.aqua");
+    public static final Item summonerAqua               = new ItemEntitySummoner(EntityNauticomorph.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.aqua");
     public static final Item summonerWarrior            = new ItemEntitySummoner(EntityWarrior.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.warrior");
     public static final Item summonerCrusher            = new ItemEntitySummoner(EntityCrusher.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.crusher");
     public static final Item summonerSpitter            = new ItemEntitySummoner(EntitySpitter.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.spitter");

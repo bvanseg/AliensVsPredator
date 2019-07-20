@@ -7,7 +7,7 @@ import org.avp.entities.living.species.engineer.EntityEngineer;
 import org.avp.entities.living.species.engineer.EntitySpaceJockey;
 import org.avp.entities.living.species.species223ode.EntityDeacon;
 import org.avp.entities.living.species.species223ode.EntityDeaconAdult;
-import org.avp.entities.living.species.xenomorphs.EntityAqua;
+import org.avp.entities.living.species.xenomorphs.EntityNauticomorph;
 import org.avp.entities.living.species.xenomorphs.EntityBatXeno;
 import org.avp.entities.living.species.xenomorphs.EntityBoiler;
 import org.avp.entities.living.species.xenomorphs.EntityChestburster;
@@ -69,7 +69,7 @@ public class Embryo implements Cloneable
         new Embryo(EntityChestburster.class, EntityMyceliomorph.class, EntityMooshroom.class).register();
         new Embryo(EntityChestburster.class, EntityPantheramorph.class, EntityOcelot.class).register();
         new Embryo(EntityChestburster.class, EntityBatXeno.class, EntityBat.class).register();
-        new Embryo(EntityChestburster.class, EntityAqua.class, EntitySquid.class, EntityGuardian.class, EntityElderGuardian.class).register();
+        new Embryo(EntityChestburster.class, EntityNauticomorph.class, EntitySquid.class, EntityGuardian.class, EntityElderGuardian.class).register();
         new Embryo(EntityPredalienChestburster.class, EntityPredalien.class, EntityYautjaWarrior.class, EntityYautjaBerserker.class).register();
         new Embryo(EntityRunnerChestburster.class, EntityRunnerDrone.class, EntityCow.class, EntityHorse.class, EntityWolf.class, EntityPolarBear.class).register();
         new Embryo(EntityChestburster.class, EntityUltramorph.class, EntityEngineer.class, EntitySpaceJockey.class).register();
