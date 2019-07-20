@@ -31,7 +31,9 @@ public class WorldProviderAcheron extends WorldProvider
     @Override
     protected void init()
     {
+        this.hasSkyLight = true;
         this.biomeProvider = new BiomeProviderAcheron(BiomeAcheron.acheron);
+        this.generateLightBrightnessTable();
     }
     
     @Override
@@ -122,6 +124,12 @@ public class WorldProviderAcheron extends WorldProvider
         brightness = (float) (brightness * (1.0D - this.world.getRainStrength(angle) * 5.0F / 16.0D));
         brightness = (float) (brightness * (1.0D - this.world.getThunderStrength(angle) * 5.0F / 16.0D));
         return brightness * 0.05F;
+    }
+    
+    @Override
+    public float getSunBrightnessFactor(float par1)
+    {
+        return super.getSunBrightnessFactor(par1);
     }
 
     @Override

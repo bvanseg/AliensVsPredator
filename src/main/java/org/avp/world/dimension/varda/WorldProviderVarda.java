@@ -57,6 +57,7 @@ public class WorldProviderVarda extends WorldProvider implements IClimateProvide
     @Override
     protected void init()
     {
+        this.hasSkyLight = true;
         this.biomeProvider = new BiomeProviderVarda(this.getSeed(), WorldType.DEFAULT);
     }
     
