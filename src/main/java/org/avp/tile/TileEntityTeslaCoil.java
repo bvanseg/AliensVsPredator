@@ -17,6 +17,7 @@ import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -115,7 +116,7 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltag
     @Override
     public boolean canArc()
     {
-        if (this.world.getWorldTime() % 5 == 0)
+        if (this.world.getWorldTime() % 2 == 0)
         {
             return true;
         }
@@ -189,7 +190,7 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltag
                 this.sustainArcPos = null;
                 this.sustainArcTimestamp = 0;
             }
-            
+
             if (this.sustainArcPos != null)
             {
                 t = sustainArcPos;
@@ -231,13 +232,24 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltag
 
             if (target != null)
             {
-                Pos p = new Pos(target.getPosition()).add(target.width / 2, 0, target.width / 2);
-                distE = target.getDistance(origin.x, origin.y, origin.z);
-                t = p;
-                m = 8F;
-                dist = distE;
-                target.attackEntityFrom(DamageSources.electricity, damageMult);
-                target.setFire(3);
+                boolean validTarget = true;
+
+                if (target instanceof EntityPlayer && ((EntityPlayer) target).capabilities.isCreativeMode)
+                {
+                    validTarget = false;
+                }
+
+                if (validTarget)
+                {
+                    Pos p = new Pos(target.getPosition()).add(target.width / 2, 0, target.width / 2);
+                    distE = target.getDistance(origin.x, origin.y, origin.z);
+                    t = p;
+                    m = 8F;
+                    dist = distE;
+
+                    target.attackEntityFrom(DamageSources.electricity, damageMult);
+                    target.setFire(3);
+                }
             }
 
             if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
@@ -261,7 +273,7 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltag
         {
             if (this.world.isRemote)
             {
-                EntityFXElectricArc arc = new EntityFXElectricArc(world, origin.x, origin.y, origin.z, targetX, targetY, targetZ, age, 6F, 0.065F, (float) 0.2F, color);
+                EntityFXElectricArc arc = new EntityFXElectricArc(world, origin.x, origin.y, origin.z, targetX, targetY, targetZ, age, 3F + rand.nextInt(7), 0.05F, (float) (rand.nextFloat() * 0.25F) + (float) arcWidth, color);
                 Game.minecraft().effectRenderer.addEffect(arc);
             }
         }
