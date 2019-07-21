@@ -89,6 +89,24 @@ public class TileEntityTransformer extends TileEntityElectrical implements IVolt
             }
         }
     }
+    
+    @Override
+    public boolean canReceiveVoltageFromSide(EnumFacing from)
+    {
+        TileEntity t = this.world.getTileEntity(this.getPos().offset(direction));
+
+        if (t != null && t instanceof TileEntityElectrical)
+        {
+            TileEntityElectrical e = (TileEntityElectrical) t;
+            
+            if (super.canReceiveVoltageFromSide(from) && e.getVoltage() > this.getVoltage() && this.getVoltage() > 0)
+            {
+                return false;
+            }
+        }
+        
+        return super.canReceiveVoltageFromSide(from);
+    }
 
     @Override
     public EnumFacing getSourcePowerDirection()
