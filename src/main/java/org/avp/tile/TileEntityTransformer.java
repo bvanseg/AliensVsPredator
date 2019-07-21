@@ -11,7 +11,6 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 
-
 public class TileEntityTransformer extends TileEntityElectrical implements IVoltageProvider, IVoltageReceiver, IRotatableYAxis
 {
     private EnumFacing direction;
@@ -100,7 +99,13 @@ public class TileEntityTransformer extends TileEntityElectrical implements IVolt
     @Override
     public boolean canConnectPower(EnumFacing from)
     {
-        return from == direction;
+        return from == direction || from == direction.getOpposite();
+    }
+
+    @Override
+    public boolean canProvideEnergyToReceiver(EnumFacing side)
+    {
+        return side == direction;
     }
 
     @Override
@@ -121,13 +126,6 @@ public class TileEntityTransformer extends TileEntityElectrical implements IVolt
 
         return 0;
     }
-
-    @Override
-    public boolean canProvideEnergyToReceiver(EnumFacing side)
-    {
-        return side == direction || side == direction.getOpposite();
-    }
-
     @Override
     public double getMaxVoltage(EnumFacing from)
     {

@@ -3,6 +3,7 @@ package org.avp.tile;
 import java.util.Random;
 
 import org.avp.DamageSources;
+import org.avp.api.power.IPowerConnection;
 import org.avp.api.power.IVoltageProvider;
 import org.avp.api.power.IVoltageReceiver;
 
@@ -26,7 +27,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class TileEntityElectrical extends TileEntity implements ITickable
+public abstract class TileEntityElectrical extends TileEntity implements ITickable, IPowerConnection
 {
     protected double  voltage;
     protected double  voltagePrev;
@@ -246,43 +247,43 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
     {
         this.voltagePrev = this.voltage;
 
-        for (EnumFacing direction : EnumFacing.VALUES)
-        {
-            TileEntity tile = this.world.getTileEntity(this.getPos().offset(direction));
-
-            if (tile != null && tile instanceof TileEntityElectrical)
-            {
-                TileEntityElectrical electrical = (TileEntityElectrical) tile;
-
-                if (electrical instanceof IVoltageProvider)
-                {
-                    IVoltageProvider provider = (IVoltageProvider) electrical;
-
-                    if (electrical.canProvideEnergyToReceiver(direction) && provider.canConnectPower(direction) && electrical.getVoltage() > this.getVoltage())
-                    {
-                        this.receiveVoltage(direction.getOpposite(), provider.extractVoltage(direction.getOpposite(), electrical.getVoltage() - this.getVoltage(), false), false);
-                    }
-                }
-            }
-        }
-
         TileEntity surroundingTile = null;
 
         for (EnumFacing direction : EnumFacing.VALUES)
         {
-            TileEntity tile = this.world.getTileEntity(this.getPos().offset(direction));
+            TileEntity t = this.world.getTileEntity(this.getPos().offset(direction));
 
-            if (tile != null && tile instanceof TileEntityElectrical)
+            if (t != null && t instanceof TileEntityElectrical)
             {
-                TileEntityElectrical tee = (TileEntityElectrical) tile;
+                TileEntityElectrical e = (TileEntityElectrical) t;
 
-                if (tee.getBoost() == 0 && tee.getVoltage() > this.getVoltage() && tile instanceof IVoltageProvider)
+                if (e instanceof IVoltageProvider)
                 {
-                    surroundingTile = tile;
+                    IVoltageProvider provider = (IVoltageProvider) e;
+
+                    /** Check if we can pull power from surrounding providers **/
+                    if (e.canProvideEnergyToReceiver(direction) && provider.canConnectPower(direction))
+                    {
+                        /** Make sure this receiver can accept power on the side we're pulling power from **/
+                        if (this.canReceiveVoltageFromSide(direction))
+                        {
+                            /** Make sure the provider has a higher voltage than this receiver does **/
+                            if (e.getVoltage() > this.getVoltage())
+                            {
+                                double newVoltage = provider.extractVoltage(direction.getOpposite(), e.getVoltage() - this.getVoltage(), false);
+                                this.receiveVoltage(direction.getOpposite(), newVoltage, false);
+                            }
+                        }
+                    }
                 }
-                else if (tee.getVoltage() > 0 && tee.getBoost() != 0 && direction == tee.getSourcePowerDirection())
+
+                if (e.getBoost() == 0 && e.getVoltage() > this.getVoltage() && t instanceof IVoltageProvider)
                 {
-                    surroundingTile = tile;
+                    surroundingTile = t;
+                }
+                else if (e.getVoltage() > 0 && e.getBoost() != 0 && direction == e.getSourcePowerDirection())
+                {
+                    surroundingTile = t;
                 }
             }
         }
@@ -291,7 +292,6 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
         {
             this.setVoltage(0);
         }
-
     }
 
     /**
@@ -345,12 +345,18 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
         }
         return this.voltage;
     }
-
-    public boolean canReceiveVoltageFromSide(EnumFacing from)
+    
+    @Override
+    public boolean canConnectPower(EnumFacing from)
     {
         return true;
     }
-    
+
+    public boolean canReceiveVoltageFromSide(EnumFacing from)
+    {
+        return this.canConnectPower(from);
+    }
+
     public int getNearbyConnectionCount()
     {
         int connections = 0;
@@ -382,7 +388,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
                 }
             }
         }
-        
+
         return connections;
     }
 
@@ -395,7 +401,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
 
         return false;
     }
-    
+
     public Pos getArcOrigin()
     {
         Pos pos = new Pos(this.pos);
