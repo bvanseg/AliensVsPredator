@@ -18,6 +18,7 @@ import org.avp.client.model.entities.living.ModelChestbursterPredalien;
 import org.avp.client.model.entities.living.ModelChestbursterQueen;
 import org.avp.client.model.entities.living.ModelChestbursterRunner;
 import org.avp.client.model.entities.living.ModelCrusher;
+import org.avp.client.model.entities.living.ModelCrusherQuad;
 import org.avp.client.model.entities.living.ModelDeacon;
 import org.avp.client.model.entities.living.ModelDeaconAdult;
 import org.avp.client.model.entities.living.ModelDeaconShark;
@@ -212,6 +213,7 @@ public class Resources
         public final MapModelTexture<ModelSpitter>                SPITTER                        = new MapModelTexture(new ModelSpitter(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/spitter.png"));
         public final MapModelTexture<ModelSpitter>                SPITTER_MASK                   = new MapModelTexture(new ModelSpitter(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/spitter_glow.png"));
         public final MapModelTexture<ModelCrusher>                CRUSHER                        = new MapModelTexture(new ModelCrusher(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/crusher.png"));
+        public final MapModelTexture<ModelCrusherQuad>            CRUSHER_QUAD                   = new MapModelTexture(new ModelCrusherQuad(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/crusher_quad.png"));
         public final MapModelTexture<SpecialModelBiped>           COMBAT_SYNTHETIC               = new MapModelTexture(new SpecialModelBiped(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/combat_synthetic.png"));
         public final MapModelTexture<ModelSupplyChute>            SUPPLY_CHUTE                   = new MapModelTexture(new ModelSupplyChute(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/supplychute.png"));
         public final MapModelTexture<ModelSupplyChute>            SUPPLY_CHUTE_MARINES           = new MapModelTexture(new ModelSupplyChute(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/supplychute.marines.png"));
