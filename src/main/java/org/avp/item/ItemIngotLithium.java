@@ -1,5 +1,7 @@
 package org.avp.item;
 
+import java.util.Random;
+
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Worlds;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
@@ -8,13 +10,10 @@ import com.asx.mdx.lib.world.item.HookedItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 public class ItemIngotLithium extends HookedItem
 {
-    public int depletionTicks = 20 * 60;
-
     public ItemIngotLithium()
     {
         ;
@@ -25,25 +24,22 @@ public class ItemIngotLithium extends HookedItem
     {
         super.onUpdate(itemstack, world, entity, slot, selected);
 
-        if (itemstack != null && itemstack.getTagCompound() != null)
+        if (entity.isInWater())
         {
-            int currentDepletion = itemstack.getTagCompound().getInteger("depletion");
-            NBTTagCompound newTag = new NBTTagCompound();
-            newTag.setInteger("depletion", currentDepletion + 1);
-            itemstack.setTagCompound(newTag);
-            currentDepletion = itemstack.getTagCompound().getInteger("depletion");
-
-            if (currentDepletion >= depletionTicks)
-            {
-                Worlds.createExplosion(entity, world, new Pos(entity), 1F, true, true, !world.isRemote);
-                Inventories.consumeItem((EntityPlayer) entity, this, true);
-            }
+            Worlds.createExplosion(entity, world, new Pos(entity), 1F, true, true, !world.isRemote);
+            Inventories.consumeItem((EntityPlayer) entity, this, true);
         }
-        else if (itemstack != null && itemstack.getTagCompound() == null)
+
+        if (world.isRaining() && world.canSeeSky(entity.getPosition()))
         {
-            NBTTagCompound newTag = new NBTTagCompound();
-            newTag.setInteger("depletion", 1);
-            itemstack.setTagCompound(newTag);
+            if (world.getWorldTime() % 20 == 0)
+            {
+                if (new Random().nextInt(5) == 0)
+                {
+                    Worlds.createExplosion(entity, world, new Pos(entity), 1F, true, true, !world.isRemote);
+                    Inventories.consumeItem((EntityPlayer) entity, this, true);
+                }
+            }
         }
     }
 }
