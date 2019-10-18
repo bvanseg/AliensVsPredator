@@ -126,11 +126,11 @@ public class EntityHandler implements IInitEvent
     private static ArrayList<EntityEntry> entities                  = new ArrayList<EntityEntry>();
     private static ArrayList<EntityEntry> livingEntities            = new ArrayList<EntityEntry>();
 
-    public static ArrayList<Biome>  DEFAULT_ALIEN_SPAWNS      = new ArrayList<Biome>();
-    public static ArrayList<Biome>  DEFAULT_AQUA_ALIEN_SPAWNS = new ArrayList<Biome>();
-    public static ArrayList<Biome>  DEFAULT_PREDATOR_SPAWNS   = new ArrayList<Biome>();
-    public static ArrayList<Biome>  DEFAULT_VARDA_LIFE_SPAWNS = new ArrayList<Biome>();
-    public static ArrayList<Biome>  DEFAULT_MARINE_SPAWNS     = new ArrayList<Biome>();
+    public static ArrayList<Biome>        DEFAULT_ALIEN_SPAWNS      = new ArrayList<Biome>();
+    public static ArrayList<Biome>        DEFAULT_AQUA_ALIEN_SPAWNS = new ArrayList<Biome>();
+    public static ArrayList<Biome>        DEFAULT_PREDATOR_SPAWNS   = new ArrayList<Biome>();
+    public static ArrayList<Biome>        DEFAULT_VARDA_LIFE_SPAWNS = new ArrayList<Biome>();
+    public static ArrayList<Biome>        DEFAULT_MARINE_SPAWNS     = new ArrayList<Biome>();
 
     static
     {
@@ -248,19 +248,23 @@ public class EntityHandler implements IInitEvent
             livingEntities.add(EntityEntryBuilder.create().entity(EntityPredalienChestburster.class).id("PredalienChestburster", entityId++).name("PredalienChestburster").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityQueenChestburster.class).id("QueenChestburster", entityId++).name("QueenChestburster").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityRunnerChestburster.class).id("RunnerChestburster", entityId++).name("RunnerChestburster").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityBabyhead.class).id("Babyhead", entityId++).name("Babyhead").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityBatXeno.class).id("BatXeno", entityId++).name("BatXeno").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityBoiler.class).id("Boiler", entityId++).name("Boiler").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityDracoburster.class).id("Dracoburster", entityId++).name("Dracoburster").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityDracoEgg.class).id("DracoOvamorph", entityId++).name("DracoOvamorph").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityDracomorph.class).id("Dracomorph", entityId++).name("Dracomorph").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityMyceliomorph.class).id("Myceliomorph", entityId++).name("Myceliomorph").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityPantheramorph.class).id("Pantheramorph", entityId++).name("Pantheramorph").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityPredatorHound.class).id("HellHound", entityId++).name("HellHound").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityUrsuidae.class).id("Ursuidae", entityId++).name("Ursuidae").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityScelemur.class).id("VardaMonkey", entityId++).name("VardaMonkey").tracker(250, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityYautjaMutant.class).id("YautjaMutant", entityId++).name("YautjaMutant").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityDeaconAdult.class).id("DeaconAdult", entityId++).name("DeaconAdult").tracker(250, 4, true).build());
+
+            if (AliensVsPredator.settings().areExperimentalFeaturesEnabled())
+            {
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityBabyhead.class).id("Babyhead", entityId++).name("Babyhead").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityBatXeno.class).id("BatXeno", entityId++).name("BatXeno").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityBoiler.class).id("Boiler", entityId++).name("Boiler").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityDracoburster.class).id("Dracoburster", entityId++).name("Dracoburster").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityDracoEgg.class).id("DracoOvamorph", entityId++).name("DracoOvamorph").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityDracomorph.class).id("Dracomorph", entityId++).name("Dracomorph").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityMyceliomorph.class).id("Myceliomorph", entityId++).name("Myceliomorph").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityPantheramorph.class).id("Pantheramorph", entityId++).name("Pantheramorph").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityPredatorHound.class).id("HellHound", entityId++).name("HellHound").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityUrsuidae.class).id("Ursuidae", entityId++).name("Ursuidae").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityScelemur.class).id("VardaMonkey", entityId++).name("VardaMonkey").tracker(250, 4, true).build());
+                livingEntities.add(EntityEntryBuilder.create().entity(EntityYautjaMutant.class).id("YautjaMutant", entityId++).name("YautjaMutant").tracker(250, 4, true).build());
+            }
 
         }
 

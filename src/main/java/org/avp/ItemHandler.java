@@ -263,19 +263,22 @@ public class ItemHandler
     public static final Item summonerPredalienBurster   = new ItemEntitySummoner(EntityPredalienChestburster.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.chestburster.predalien");
     public static final Item summonerQueenBurster       = new ItemEntitySummoner(EntityQueenChestburster.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.chestburster.queen");
     public static final Item summonerRunnerBurster      = new ItemEntitySummoner(EntityRunnerChestburster.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.chestburster.runner");
-    public static final Item summonerBabyhead           = new ItemEntitySummoner(EntityBabyhead.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.babyhead");
-    public static final Item summonerBatXeno            = new ItemEntitySummoner(EntityBatXeno.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.batxeno");
-    public static final Item summonerBoiler             = new ItemEntitySummoner(EntityBoiler.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.boiler");
-    public static final Item summonerDracoburster       = new ItemEntitySummoner(EntityDracoburster.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.dracoburster");
-    public static final Item summonerDracoEgg           = new ItemEntitySummoner(EntityDracoEgg.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.dracoegg");
-    public static final Item summonerDracomorph         = new ItemEntitySummoner(EntityDracomorph.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.dracomorph");
-    public static final Item summonerMyceliomorph       = new ItemEntitySummoner(EntityMyceliomorph.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.myceliomorph");
-    public static final Item summonerPantheramorph      = new ItemEntitySummoner(EntityPantheramorph.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.pantheramorph");
-    public static final Item summonerPredatorHound      = new ItemEntitySummoner(EntityPredatorHound.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.predatorhound");
-    public static final Item summonerUrsuidae           = new ItemEntitySummoner(EntityUrsuidae.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.ursuidae");
-    public static final Item summonerVardaMonkey        = new ItemEntitySummoner(EntityScelemur.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.vardamonkey");
-    public static final Item summonerYautjaMutant       = new ItemEntitySummoner(EntityYautjaMutant.class).setCreativeTab(Tab.ENTITIES_WIP).setRegistryName("summon.yautjamutant");
-
+    
+    public static class Experimental
+    {
+        public static final Item summonerBabyhead           = new ItemEntitySummoner(EntityBabyhead.class).setRegistryName("summon.babyhead");
+        public static final Item summonerBatXeno            = new ItemEntitySummoner(EntityBatXeno.class).setRegistryName("summon.batxeno");
+        public static final Item summonerBoiler             = new ItemEntitySummoner(EntityBoiler.class).setRegistryName("summon.boiler");
+        public static final Item summonerDracoburster       = new ItemEntitySummoner(EntityDracoburster.class).setRegistryName("summon.dracoburster");
+        public static final Item summonerDracoEgg           = new ItemEntitySummoner(EntityDracoEgg.class).setRegistryName("summon.dracoegg");
+        public static final Item summonerDracomorph         = new ItemEntitySummoner(EntityDracomorph.class).setRegistryName("summon.dracomorph");
+        public static final Item summonerMyceliomorph       = new ItemEntitySummoner(EntityMyceliomorph.class).setRegistryName("summon.myceliomorph");
+        public static final Item summonerPantheramorph      = new ItemEntitySummoner(EntityPantheramorph.class).setRegistryName("summon.pantheramorph");
+        public static final Item summonerPredatorHound      = new ItemEntitySummoner(EntityPredatorHound.class).setRegistryName("summon.predatorhound");
+        public static final Item summonerUrsuidae           = new ItemEntitySummoner(EntityUrsuidae.class).setRegistryName("summon.ursuidae");
+        public static final Item summonerVardaMonkey        = new ItemEntitySummoner(EntityScelemur.class).setRegistryName("summon.vardamonkey");
+        public static final Item summonerYautjaMutant       = new ItemEntitySummoner(EntityYautjaMutant.class).setRegistryName("summon.yautjamutant");
+    }
 
     @Mod.EventBusSubscriber(modid = AliensVsPredator.Properties.ID)
     public static class RegistrationHandler
@@ -304,6 +307,35 @@ public class ItemHandler
                     e.printStackTrace();
                 }
 
+            }
+            
+            if (AliensVsPredator.settings().areExperimentalFeaturesEnabled())
+            {
+                for (java.lang.reflect.Field field : ItemHandler.Experimental.class.getDeclaredFields())
+                {
+                    try
+                    {
+                        field.setAccessible(true);
+
+                        Object obj = field.get(null);
+
+                        if (obj instanceof Item)
+                        {
+                            Item item = (Item) obj;
+                            item.setCreativeTab(Tab.ENTITIES_WIP);
+                            item.setTranslationKey(item.getRegistryName().getNamespace() + ":" + item.getRegistryName().getPath());
+                            event.getRegistry().register(item);
+                            registerIcon(item);
+
+                            System.out.println("Experimental item " + item.getRegistryName());
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
+                }
             }
         }
     }

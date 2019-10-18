@@ -35,6 +35,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
     private final String                   CATEGORY_BIOMES   = "biomes";
     private final String                   CATEGORY_SPAWNING = "spawning";
 
+    private ConfigSetting                  experimentalFeatures;
     private ConfigSetting                  explosionsEnabled;
     private ConfigSetting                  plasmaCannonExplosions;
     private ConfigSetting                  updaterEnabled;
@@ -124,6 +125,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
             biomeAcheron = new ConfigSettingInteger(this, configuration.get(CATEGORY_BIOMES, "acheron", 224, "Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.")).setRequiresRestart();
             biomeVardaForest = new ConfigSettingInteger(this, configuration.get(CATEGORY_BIOMES, "varda_forest", 229, "Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.")).setRequiresRestart();
 
+            experimentalFeatures = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "experimental_features", false, "If enabled, experimental mod features will be turned on. If using this on a server, it will need to be enabled on both the client and server to work properly."));
             plasmaCannonExplosions = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "plasma_cannon_explosions", false, "If enabled, a plasma cannon's projectiles will explode upon impact."));
             explosionsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "explosion_block_damage", true, "If disabled, all explosions triggered by this mod will be cancelled."));
             nukesEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "nukes", true, "If disabled, you will not be allowed to use any nuke-based functionality."));
@@ -196,6 +198,11 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
         return (Boolean) this.debugToolsEnabled.value();
     }
 
+    public boolean areExperimentalFeaturesEnabled()
+    {
+        return (Boolean) this.experimentalFeatures.value();
+    }
+
     public boolean areNukesEnabled()
     {
         return (Boolean) this.nukesEnabled.value();
@@ -226,7 +233,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
         Date date = new Date();
         LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
-        return (localDate.getMonthValue() == 10 && localDate.getDayOfMonth() >= 28 || localDate.getMonthValue() == 11 && localDate.getDayOfMonth() <= 3);
+        return (localDate.getMonthValue() == 10 && localDate.getDayOfMonth() >= 27 || localDate.getMonthValue() == 11 && localDate.getDayOfMonth() <= 3);
     }
 
     public ConfigSettingBiomeList getSpawnsAlien()

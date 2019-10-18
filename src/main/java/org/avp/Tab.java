@@ -1,13 +1,17 @@
 package org.avp;
 
+import com.asx.mdx.core.mods.IPreInitEvent;
 import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public class Tab
+public class Tab implements IPreInitEvent
 {
-    public static final CreativeTabs MAIN               = new CreativeTabs("main") {
+    public static Tab instance = new Tab();
+    
+    public static CreativeTabs MAIN               = new CreativeTabs("main") {
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
@@ -19,7 +23,7 @@ public class Tab
                                                                 return "Main";
                                                             }
                                                         };
-    public static final CreativeTabs BLOCKS             = new CreativeTabs("blocks") {
+    public static CreativeTabs BLOCKS             = new CreativeTabs("blocks") {
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
@@ -31,7 +35,7 @@ public class Tab
                                                                 return "Blocks";
                                                             }
                                                         };
-    public static final CreativeTabs ENTITIES           = new CreativeTabs("summoners") {
+    public static CreativeTabs ENTITIES           = new CreativeTabs("summoners") {
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
@@ -43,19 +47,8 @@ public class Tab
                                                                 return "Mobs";
                                                             }
                                                         };
-    public static final CreativeTabs ENTITIES_WIP = new CreativeTabs("summoners_wip") {
-                                                            @Override
-                                                            public ItemStack createIcon()
-                                                            {
-                                                                return new ItemStack(ItemHandler.summonerBabyhead);
-                                                            }
-
-                                                            public String getTranslationKey()
-                                                            {
-                                                                return "Mobs (Incomplete)";
-                                                            }
-                                                        };
-    public static final CreativeTabs GUN_PARTS      = new CreativeTabs("gunparts") {
+    public static CreativeTabs ENTITIES_WIP;
+    public static CreativeTabs GUN_PARTS      = new CreativeTabs("gunparts") {
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
@@ -67,7 +60,7 @@ public class Tab
                                                                 return "Gun Parts";
                                                             }
                                                         };
-    public static final CreativeTabs CRAFTING        = new CreativeTabs("crafting") {
+    public static CreativeTabs CRAFTING        = new CreativeTabs("crafting") {
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
@@ -79,4 +72,24 @@ public class Tab
                                                                 return "Crafting";
                                                             }
                                                         };
+                                                        
+    @Override
+    public void pre(FMLPreInitializationEvent event)
+    {
+        if (AliensVsPredator.settings().areExperimentalFeaturesEnabled())
+        {
+            ENTITIES_WIP = new CreativeTabs("summoners_wip") {
+                @Override
+                public ItemStack createIcon()
+                {
+                    return new ItemStack(ItemHandler.Experimental.summonerBabyhead);
+                }
+
+                public String getTranslationKey()
+                {
+                    return "Mobs (Incomplete)";
+                }
+            };
+        }
+    }
 }

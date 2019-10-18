@@ -54,6 +54,7 @@ public class AliensVsPredator implements IMod
         settings().pre(event);
         webRequests().pre(event);
         capabilities().pre(event);
+        tabs().pre(event);
     }
 
     @SideOnly(Side.CLIENT)
@@ -181,6 +182,11 @@ public class AliensVsPredator implements IMod
     public static EntityHandler entities()
     {
         return EntityHandler.instance;
+    }
+
+    public static Tab tabs()
+    {
+        return Tab.instance;
     }
 
     @SideOnly(Side.CLIENT)
