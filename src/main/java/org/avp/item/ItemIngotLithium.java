@@ -41,5 +41,23 @@ public class ItemIngotLithium extends HookedItem
                 }
             }
         }
+
+        if (world.getBiome(entity.getPosition()).isHighHumidity())
+        {
+            if (world.getWorldTime() % 20 == 0)
+            {
+                if (new Random().nextInt(5) == 0)
+                {
+                    if (world.getWorldTime() % 20 == 0)
+                    {
+                        if (new Random().nextInt(30) == 0)
+                        {
+                            Worlds.createExplosion(entity, world, new Pos(entity), 1F, true, true, !world.isRemote);
+                            Inventories.consumeItem((EntityPlayer) entity, this, true);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
