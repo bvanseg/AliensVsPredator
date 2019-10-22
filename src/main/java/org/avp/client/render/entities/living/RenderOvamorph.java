@@ -8,6 +8,7 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.util.ResourceLocation;
 
 public class RenderOvamorph extends RenderLivingWrapper<EntityOvamorph, ModelOvamorph>
 {
@@ -21,5 +22,11 @@ public class RenderOvamorph extends RenderLivingWrapper<EntityOvamorph, ModelOva
     {
         super.preRenderCallback(ovamorph, partialTicks);
         OpenGL.scale(1.75F, 1.75F, 1.75F);
+    }
+    
+    @Override
+    protected ResourceLocation getEntityTexture(EntityOvamorph ovamorph)
+    {
+        return AliensVsPredator.settings().isHalloweenEventEnabled() ? AliensVsPredator.resources().models().OVAMORPH_JACKO.getTexture() :  this.model.getTexture();
     }
 }
