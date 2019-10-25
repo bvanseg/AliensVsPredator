@@ -144,7 +144,6 @@ public class ContainerTurret extends Container
         if (slot != null && slot.getHasStack())
         {
             ItemStack itemstack = slot.getStack();
-            ItemStack result = itemstack.copy();
 
             if (slotId <= 8)
             {
@@ -184,9 +183,9 @@ public class ContainerTurret extends Container
                 slot.onSlotChanged();
             }
 
-            slot.onTake(null, itemstack);
+            slot.onTake(player, itemstack);
 
-            return result;
+            return ItemStack.EMPTY;
         }
 
         return ItemStack.EMPTY;
