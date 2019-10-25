@@ -30,6 +30,9 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
@@ -38,8 +41,11 @@ import net.minecraft.world.World;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost, Predicate<EntityLivingBase>
 {
-    private EntityAIBase aiRangedAttack;
+    private static final DataParameter<Boolean> FIRING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     
+    private EntityAIBase                        aiRangedAttack;
+    private long                                lastShotFired;
+
     public EntityCombatSynthetic(World word)
     {
         super(word);
@@ -61,6 +67,13 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5499999761581421D);
+    }
+    
+    @Override
+    protected void entityInit()
+    {
+        super.entityInit();
+        this.getDataManager().register(FIRING, false);
     }
     
     @Override
@@ -104,9 +117,15 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     {
         super.onUpdate();
 
-        if (this.getAttackTarget() != null && this.world.getWorldTime() % 20 == 0 && this.aiRangedAttack.shouldExecute() && this.canEntityBeSeen(this.getAttackTarget()))
+        if (!this.world.isRemote)
         {
+            this.getDataManager().set(FIRING, !(System.currentTimeMillis() - getLastShotFired() >= 1000 * 3));
         }
+    }
+
+    public boolean isFiring()
+    {
+        return this.getDataManager().get(FIRING);
     }
     
     @Override
@@ -114,12 +133,13 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     {
         return 0.5F - this.world.getLightBrightness(pos);
     }
-
+    
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase targetEntity, float damage)
     {
         if (this.getAttackTarget() != null)
         {
+            this.lastShotFired = System.currentTimeMillis();
             Sounds.WEAPON_PULSERIFLE.playSound(this);
             EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.5F);
             entityBullet.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -192,5 +212,10 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     public void setSwingingArms(boolean swingingArms)
     {
         ;
+    }
+
+    public long getLastShotFired()
+    {
+        return this.lastShotFired;
     }
 }
