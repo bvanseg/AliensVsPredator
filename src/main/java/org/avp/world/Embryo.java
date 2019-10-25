@@ -46,6 +46,8 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityHorse;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityOcelot;
+import net.minecraft.entity.passive.EntityPig;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.nbt.NBTTagCompound;
@@ -71,7 +73,7 @@ public class Embryo implements Cloneable
         new Embryo(EntityChestburster.class, EntityBatXeno.class, EntityBat.class).register();
         new Embryo(EntityChestburster.class, EntityNauticomorph.class, EntitySquid.class, EntityGuardian.class, EntityElderGuardian.class).register();
         new Embryo(EntityPredalienChestburster.class, EntityPredalien.class, EntityYautjaWarrior.class, EntityYautjaBerserker.class).register();
-        new Embryo(EntityRunnerChestburster.class, EntityRunnerDrone.class, EntityCow.class, EntityHorse.class, EntityWolf.class, EntityPolarBear.class).register();
+        new Embryo(EntityRunnerChestburster.class, EntityRunnerDrone.class, EntityCow.class, EntityHorse.class, EntityWolf.class, EntityPolarBear.class, EntityPig.class, EntitySheep.class).register();
         new Embryo(EntityChestburster.class, EntityUltramorph.class, EntityEngineer.class, EntitySpaceJockey.class).register();
     }
 
