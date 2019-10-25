@@ -160,7 +160,7 @@ public class ItemFirearm extends HookedItem
         
         public int getShotsPerTick()
         {
-            return (int) Math.round(this.rpm / (1 * 60 * 20));
+            return (int) Math.round(this.rpm / 20);
         }
 
         public FirearmProfile setReloadTime(int reloadTime)
@@ -368,7 +368,7 @@ public class ItemFirearm extends HookedItem
     public void fixDelay()
     {
         Game.setEquippedProgress(0.85F);
-        Game.setRightClickDelayTimer(this.getProfile().getShotsPerTick());
+        Game.setRightClickDelayTimer((int) Math.round(this.getProfile().getRoundsPerMinute() / (1 * 60 * 20)));
     }
 
     @Override
