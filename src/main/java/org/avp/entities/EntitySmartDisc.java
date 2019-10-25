@@ -11,9 +11,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -23,7 +20,6 @@ import net.minecraft.world.World;
 
 public class EntitySmartDisc extends EntityProjectile
 {
-    private static final DataParameter<Float> FLOAT_STRENGTH = EntityDataManager.<Float> createKey(EntitySmartDisc.class, DataSerializers.FLOAT);
     public static final double RETURN_STRENGTH = 0.05D;
     public static final float MIN_FLOAT_STRENGTH = 0.7F;
     private float soundTimer;
@@ -57,13 +53,13 @@ public class EntitySmartDisc extends EntityProjectile
         this.shoot(this.motionX, this.motionY, this.motionZ, velocity, 5.0F);
         this.soundTimer = 0.0F;
         this.floatStrength = Math.min(1.5F, velocity);
+        System.out.println(this.floatStrength);
     }
 
     @Override
     public void entityInit()
     {
         super.entityInit();
-        this.getDataManager().register(FLOAT_STRENGTH, 0F);
     }
 
     public void setAim(Entity shooter, float pitch, float yaw, float velocity, float inaccuracy)
@@ -85,7 +81,6 @@ public class EntitySmartDisc extends EntityProjectile
     public void onUpdate()
     {
         super.onUpdate();
-        this.floatStrength = this.getDataManager().get(FLOAT_STRENGTH);
 
         if (!this.inGround)
         {
@@ -128,8 +123,6 @@ public class EntitySmartDisc extends EntityProjectile
                     this.soundTimer %= 3.0F;
                 }
             }
-
-            this.getDataManager().set(FLOAT_STRENGTH, this.floatStrength);
         }
     }
 
