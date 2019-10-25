@@ -62,13 +62,13 @@ public interface IParasitoid
 
     public static void readFromNBT(IParasitoid parasitoid, NBTTagCompound nbt)
     {
-        boolean isFertile = nbt.getInteger("IsFertile") == 1;
+        boolean isFertile = nbt.getInteger("IsFertile") == 0;
         parasitoid.setFertility(isFertile);
     }
 
     public static NBTTagCompound writeToNBT(IParasitoid parasitoid, NBTTagCompound nbt)
     {
-        nbt.setInteger("IsFertile", parasitoid.isFertile() ? 1 : 0);
+        nbt.setInteger("IsFertile", parasitoid.isFertile() ? 0 : 1);
         return nbt;
     }
 

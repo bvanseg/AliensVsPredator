@@ -135,7 +135,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     public void onUpdate()
     {
         super.onUpdate();
-
+        
         if (!this.isFertile())
         {
             this.setNoAI(true);
@@ -228,6 +228,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     {
         this.dismountRidingEntity();
         this.setNoAI(true);
+        this.setFertility(false);
     }
 
     @Override
