@@ -21,6 +21,7 @@ public class EntityShuriken extends EntityItemStackProjectile
     {
         super(world);
         this.setSize(0.5F, 0.5F);
+        this.setItemstack(new ItemStack(AliensVsPredator.items().itemShuriken));
     }
 
     public EntityShuriken(World world, double posX, double posY, double posZ)
@@ -32,9 +33,8 @@ public class EntityShuriken extends EntityItemStackProjectile
 
     public EntityShuriken(World world, EntityLivingBase entityliving, float velocity)
     {
-        super(world);
+        this(world);
         this.shootingEntity = entityliving;
-        this.setItemstack(new ItemStack(AliensVsPredator.items().itemShuriken, 1));
         this.setLocationAndAngles(entityliving.posX, entityliving.posY + entityliving.getEyeHeight(), entityliving.posZ, entityliving.rotationYaw, entityliving.rotationPitch);
         this.posX -= MathHelper.cos((rotationYaw / 180F) * 3.141593F) * 0.16F;
         this.posY -= 0.1D;
