@@ -7,8 +7,8 @@ import org.avp.item.ItemMaintenanceJack;
 import org.avp.tile.TileEntityBlastdoor;
 
 import com.asx.mdx.lib.client.gui.notifications.Notification;
-import com.asx.mdx.lib.client.gui.notifications.Notifications;
 import com.asx.mdx.lib.client.gui.notifications.Notification.DynamicNotification;
+import com.asx.mdx.lib.client.gui.notifications.Notifications;
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
@@ -16,6 +16,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -58,7 +59,7 @@ public class BlockBlastdoor extends Block
             {
                 blastdoor = doorSubBlock;
             }
-            
+
             if (blastdoor != null)
             {
                 if (blastdoor.isOperational() && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ItemHandler.securityTuner)
@@ -66,7 +67,7 @@ public class BlockBlastdoor extends Block
                     if (blastdoor.playerHoldingRequiredSecurityTuner(player))
                     {
                         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-                        showAdministrationGUI(blastdoor);
+                            showAdministrationGUI(blastdoor);
                     }
                 }
                 else if (canOpen(blastdoor, player))
@@ -76,14 +77,14 @@ public class BlockBlastdoor extends Block
                 else if (blastdoor.isLocked() && blastdoor.isOperational())
                 {
                     if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-                    showUnlockGUI(blastdoor);
+                        showUnlockGUI(blastdoor);
                 }
             }
         }
 
         return true;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public static void showUnlockGUI(TileEntityBlastdoor blastdoor)
     {
@@ -265,22 +266,38 @@ public class BlockBlastdoor extends Block
     {
         return true;
     }
-    
+
     @Override
     public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
     {
         TileEntity tile = world.getTileEntity(target.getBlockPos());
-        
+
         if (tile instanceof TileEntityBlastdoor)
         {
             TileEntityBlastdoor door = (TileEntityBlastdoor) tile;
-            
+
             if (door.isChild())
             {
-                return new ItemStack(BlockHandler.getItemFromBlock(world.getBlockState(door.getParent().getPos()).getBlock()));
+                BlockPos parentPos = door.getParent().getPos();
+                IBlockState parentState = world.getBlockState(parentPos);
+
+                if (parentState != null)
+                {
+                    Block parentBlock = parentState.getBlock();
+
+                    if (parentBlock != null)
+                    {
+                        Item itemblock = BlockHandler.getItemFromBlock(parentBlock);
+
+                        if (itemblock != null)
+                        {
+                            return new ItemStack(itemblock);
+                        }
+                    }
+                }
             }
         }
-        
+
         return new ItemStack(BlockHandler.getItemFromBlock(BlockHandler.sevastopolBlastDoor));
     }
 }
