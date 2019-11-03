@@ -69,7 +69,11 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
-
+        this.writeAlienToNBT(nbt);
+    }
+    
+    public void writeAlienToNBT(NBTTagCompound nbt)
+    {
         nbt.setString("HiveSignature", signature != null ? this.signature.toString() : "");
         nbt.setInteger("JellyLevel", this.getJellyLevel());
     }
@@ -78,7 +82,11 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
-
+        this.readAlienFromNBT(nbt);
+    }
+    
+    public void readAlienFromNBT(NBTTagCompound nbt)
+    {
         this.signature = Worlds.uuidFromNBT(nbt, "HiveSignature");
         this.setJellyLevel(nbt.getInteger("JellyLevel"));
     }
@@ -145,8 +153,8 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
 
         alien.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0F, 0.0F);
         this.world.spawnEntity(alien);
-        this.writeEntityToNBT(tag);
-        alien.readEntityFromNBT(tag);
+        this.writeAlienToNBT(tag);
+        alien.readAlienFromNBT(tag);
         alien.setJellyLevel(this.getJellyLevel() - maturable.getMaturityLevel());
         // TODO: Create a shell of the original entity.
         this.setDead();
@@ -241,7 +249,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
 
             if (!this.world.isRemote)
             {
-                if (this.world.getWorldTime() % 20 == 0)
+                if (this.ticksExisted % 20 == 0)
                 {
                     if (maturable.isReadyToMature(this))
                     {
