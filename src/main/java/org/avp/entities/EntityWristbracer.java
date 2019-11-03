@@ -1,6 +1,7 @@
 package org.avp.entities;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import org.avp.AliensVsPredator;
@@ -9,12 +10,17 @@ import org.avp.client.Sounds;
 import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.LargeExplosion;
+import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -109,6 +115,17 @@ public class EntityWristbracer extends EntityThrowable
                         excludedMaterials.add(Material.ROCK);
                         LargeExplosion explosion = new LargeExplosion(world, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1000F, new Random().nextLong(), excludedBlocks, excludedMaterials, 0, 2);
                         explosion.start();
+
+                        List<Entity> entities = Entities.getEntitiesInCoordsRange(world, Entity.class, new Pos(this.getPosition()), (int) explosionWidthMax, (int) explosionHeightMax);
+                        
+                        for (int idx = 0; idx < entities.size(); ++idx)
+                        {
+                            if (entities.get(idx) instanceof EntityLivingBase)
+                            {
+                                EntityLivingBase living = (EntityLivingBase) entities.get(idx);
+                                living.attackEntityFrom(DamageSource.causeExplosionDamage(living), 1000000);
+                            }
+                        }
                     }
 
                     this.setDead();
@@ -120,8 +137,7 @@ public class EntityWristbracer extends EntityThrowable
     @SideOnly(Side.CLIENT)
     private void spawnElectricArc(float explosionWidthMax, float explosionHeightMax, float explosionWidth2)
     {
-        float explosionWidth = 10F;
-
+        float explosionWidth = explosionWidthMax * this.getInitTicks() / this.getInitTicksMax();
         float iS = 1F;
         double sX = this.posX + (this.rand.nextDouble() * iS) - (this.rand.nextDouble() * iS);
         double sY = this.posY + (this.rand.nextDouble() * iS) - (this.rand.nextDouble() * iS);
@@ -130,10 +146,10 @@ public class EntityWristbracer extends EntityThrowable
         double pY = this.posY + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
         double pZ = this.posZ + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
         double arcFluctuation = 1 + (this.getInitTicks() * 40 / this.getInitTicksMax());
-        double arcComplexity = (explosionWidth * 0.5 / explosionWidth);
-        float arcDensity = (float) (0.01F) + (explosionWidth * 1F / explosionWidth);
+        double arcComplexity = (1F / explosionWidth) * 2;
+        float arcDensity = 0.7F * this.getInitTicks() / this.getInitTicksMax();
 
-        Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, sX, sY, sZ, pX, pY, pZ, 1, arcFluctuation, arcComplexity, arcDensity, 0xFF00CCFF));
+        Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, sX, sY, sZ, pX, pY, pZ, 1, arcFluctuation, arcComplexity, arcDensity, 0xAA00CCFF));
     }
 
     public int getInitTicksMax()
