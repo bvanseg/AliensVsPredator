@@ -8,6 +8,7 @@ import org.avp.DamageSources;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.api.parasitoidic.IRoyalOrganism;
 import org.avp.entities.EntityAcidPool;
+import org.avp.entities.living.species.xenomorphs.EntityDrone;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
 import org.avp.world.hives.HiveHandler;
@@ -30,6 +31,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrganism, IAnimated
@@ -162,9 +164,10 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
 
     protected void findRoyalJelly()
     {
-        if (!this.world.isRemote && this.world.getWorldTime() % 40 == 0)
+        if (!this.world.isRemote && this.ticksExisted % 40 == 0)
         {
-            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) world.getEntitiesWithinAABB(EntityItem.class, this.getEntityBoundingBox().expand(8, 8, 8));
+            int range = 8;
+            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.getPosition().add(-range, -8, -range), this.getPosition().add(range, 8, range)));
 
             for (EntityItem entityItem : entityItemList)
             {
