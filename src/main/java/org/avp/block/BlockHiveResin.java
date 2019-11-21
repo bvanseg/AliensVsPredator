@@ -1,6 +1,9 @@
 package org.avp.block;
 
+import java.util.Random;
+
 import org.avp.tile.TileEntityHiveResin;
+import org.avp.tile.TileEntityHiveResin.ResinVariant;
 import org.avp.world.hives.HiveHandler;
 
 import com.asx.mdx.lib.world.Pos;
@@ -31,7 +34,7 @@ public class BlockHiveResin extends Block
     {
         return false;
     }
-    
+
     @Override
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
@@ -90,5 +93,46 @@ public class BlockHiveResin extends Block
         }
 
         super.onBlockClicked(world, pos, playerIn);
+    }
+
+    @Override
+    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor)
+    {
+        evaluateNeighbors(world, pos);
+        super.onNeighborChange(world, pos, neighbor);
+    }
+
+    public void evaluateNeighbors(IBlockAccess world, BlockPos pos)
+    {
+        TileEntityHiveResin te = (TileEntityHiveResin) world.getTileEntity(pos);
+
+        if (te != null)
+        {
+            if (te.variant == null)
+            {
+                te.variant = ResinVariant.fromId(1 + new Random().nextInt(ResinVariant.values().length));
+            }
+
+            ResinVariant variant = te.variant;
+
+            te.bottomBlock = world.getBlockState(pos.add(0, -1, 0)).getBlock();
+            te.topBlock = world.getBlockState(pos.add(0, 1, 0)).getBlock();
+
+            te.northBlock = world.getBlockState(pos.add(variant.nX, 0, variant.nZ)).getBlock();
+            te.northTopBlock = world.getBlockState(pos.add(variant.nX, 1, variant.nZ)).getBlock();
+            te.northBottomBlock = world.getBlockState(pos.add(variant.nX, -1, variant.nZ)).getBlock();
+
+            te.southBlock = world.getBlockState(pos.add(variant.sX, 0, variant.sZ)).getBlock();
+            te.southTopBlock = world.getBlockState(pos.add(variant.sX, 1, variant.sZ)).getBlock();
+            te.southBottomBlock = world.getBlockState(pos.add(variant.sX, -1, variant.sZ)).getBlock();
+
+            te.eastBlock = world.getBlockState(pos.add(variant.eX, 0, variant.eZ)).getBlock();
+            te.eastTopBlock = world.getBlockState(pos.add(variant.eX, 1, variant.eZ)).getBlock();
+            te.eastBottomBlock = world.getBlockState(pos.add(variant.eX, -1, variant.eZ)).getBlock();
+
+            te.westBlock = world.getBlockState(pos.add(variant.wX, 0, variant.wZ)).getBlock();
+            te.westTopBlock = world.getBlockState(pos.add(variant.wX, 1, variant.wZ)).getBlock();
+            te.westBottomBlock = world.getBlockState(pos.add(variant.wX, -1, variant.wZ)).getBlock();
+        }
     }
 }
