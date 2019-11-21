@@ -21,7 +21,7 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
 
         if (hiveTessellation == GraphicsSetting.MEDIUM || hiveTessellation == GraphicsSetting.HIGH || hiveTessellation == GraphicsSetting.ULTRA)
         {
-            TileEntityHiveResin resin = (TileEntityHiveResin) tile;
+            TileEntityHiveResin resin = tile;
 
             OpenGL.pushMatrix();
             {
@@ -30,10 +30,11 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
                 AliensVsPredator.resources().models().HIVE_RESIN.bindTexture();
                 ModelHiveResin model = AliensVsPredator.resources().models().HIVE_RESIN.getModel();
                 OpenGL.enableCullFace();
+                OpenGL.disableLight();
 
                 if (resin.topBlock == Blocks.AIR)
                 {
-                    if (hiveTessellation == GraphicsSetting.MEDIUM ||hiveTessellation == GraphicsSetting.HIGH || hiveTessellation == GraphicsSetting.ULTRA)
+                    if (hiveTessellation == GraphicsSetting.MEDIUM || hiveTessellation == GraphicsSetting.HIGH || hiveTessellation == GraphicsSetting.ULTRA)
                     {
                         model.blockFaceTop.offsetY = 2.002F;
                         model.blockFaceTop.rotateAngleX = (float) Math.toRadians(180);
@@ -53,7 +54,8 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
 
                 OpenGL.rotate(resin.getVariant() == null ? 0 : (resin.getVariant().id - 1) * 90F, 0F, 1F, 0F);
 
-                // if (hiveTessellation == GraphicsSetting.HIGH || hiveTessellation == GraphicsSetting.ULTRA)
+                // if (hiveTessellation == GraphicsSetting.HIGH || hiveTessellation ==
+                // GraphicsSetting.ULTRA)
                 {
                     model.nBottomRoot01.isHidden = resin.northTopBlock == Blocks.AIR;
                     model.nTopRoot01.isHidden = resin.northBottomBlock == Blocks.AIR;
@@ -76,7 +78,8 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
                     }
                 }
 
-                // if (hiveTessellation == GraphicsSetting.HIGH || hiveTessellation == GraphicsSetting.ULTRA)
+                // if (hiveTessellation == GraphicsSetting.HIGH || hiveTessellation ==
+                // GraphicsSetting.ULTRA)
                 {
                     model.wBottomRoot01.isHidden = resin.westTopBlock == Blocks.AIR;
                     model.wTopRoot01.isHidden = resin.westBottomBlock == Blocks.AIR;
@@ -97,7 +100,8 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
                     }
                 }
 
-                // if (hiveTessellation == GraphicsSetting.HIGH || hiveTessellation == GraphicsSetting.ULTRA)
+                // if (hiveTessellation == GraphicsSetting.HIGH || hiveTessellation ==
+                // GraphicsSetting.ULTRA)
                 {
                     model.sBottomRoot01.isHidden = resin.southTopBlock == Blocks.AIR;
                     model.sTopRoot01.isHidden = resin.southBottomBlock == Blocks.AIR;
@@ -119,7 +123,8 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
                     }
                 }
 
-//                if (hiveTessellation == GraphicsSetting.HIGH || hiveTessellation == GraphicsSetting.ULTRA)
+                // if (hiveTessellation == GraphicsSetting.HIGH || hiveTessellation ==
+                // GraphicsSetting.ULTRA)
                 {
                     model.eBottomRoot01.isHidden = resin.eastTopBlock == Blocks.AIR;
                     model.eTopRoot01.isHidden = resin.eastBottomBlock == Blocks.AIR;
@@ -140,6 +145,7 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
                     }
                 }
             }
+            OpenGL.enableLight();
             OpenGL.popMatrix();
         }
     }

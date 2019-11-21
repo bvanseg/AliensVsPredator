@@ -3,6 +3,7 @@ package org.avp.tile;
 import java.util.Random;
 import java.util.UUID;
 
+import org.avp.block.BlockHiveResin;
 import org.avp.world.hives.HiveHandler;
 import org.avp.world.hives.XenomorphHive;
 
@@ -14,30 +15,29 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 //TODO: Redo this
-public class TileEntityHiveResin extends TileEntity implements ITickable
+public class TileEntityHiveResin extends TileEntity
 {
-    private ResinVariant variant;
-    private UUID         signature;
-    private IBlockState  blockCovering;
-    public Block         northBlock;
-    public Block         northTopBlock;
-    public Block         northBottomBlock;
-    public Block         southBlock;
-    public Block         southTopBlock;
-    public Block         southBottomBlock;
-    public Block         eastBlock;
-    public Block         eastTopBlock;
-    public Block         eastBottomBlock;
-    public Block         westBlock;
-    public Block         westTopBlock;
-    public Block         westBottomBlock;
-    public Block         bottomBlock;
-    public Block         topBlock;
+    public ResinVariant variant;
+    private UUID        signature;
+    private IBlockState blockCovering;
+    public Block        northBlock;
+    public Block        northTopBlock;
+    public Block        northBottomBlock;
+    public Block        southBlock;
+    public Block        southTopBlock;
+    public Block        southBottomBlock;
+    public Block        eastBlock;
+    public Block        eastTopBlock;
+    public Block        eastBottomBlock;
+    public Block        westBlock;
+    public Block        westTopBlock;
+    public Block        westBottomBlock;
+    public Block        bottomBlock;
+    public Block        topBlock;
 
     public enum ResinVariant
     {
@@ -84,36 +84,10 @@ public class TileEntityHiveResin extends TileEntity implements ITickable
     }
 
     @Override
-    public void update()
+    public void onLoad()
     {
-        if (this.world.getWorldTime() % 20 == 0)
-        {
-            if (variant != null)
-            {
-                bottomBlock = this.world.getBlockState(this.getPos().add(0, -1, 0)).getBlock();
-                topBlock = this.world.getBlockState(this.getPos().add(0, 1, 0)).getBlock();
-
-                northBlock = this.world.getBlockState(this.getPos().add(variant.nX, 0, variant.nZ)).getBlock();
-                northTopBlock = this.world.getBlockState(this.getPos().add(variant.nX, 1, variant.nZ)).getBlock();
-                northBottomBlock = this.world.getBlockState(this.getPos().add(variant.nX, -1, variant.nZ)).getBlock();
-
-                southBlock = this.world.getBlockState(this.getPos().add(variant.sX, 0, variant.sZ)).getBlock();
-                southTopBlock = this.world.getBlockState(this.getPos().add(variant.sX, 1, variant.sZ)).getBlock();
-                southBottomBlock = this.world.getBlockState(this.getPos().add(variant.sX, -1, variant.sZ)).getBlock();
-
-                eastBlock = this.world.getBlockState(this.getPos().add(variant.eX, 0, variant.eZ)).getBlock();
-                eastTopBlock = this.world.getBlockState(this.getPos().add(variant.eX, 1, variant.eZ)).getBlock();
-                eastBottomBlock = this.world.getBlockState(this.getPos().add(variant.eX, -1, variant.eZ)).getBlock();
-
-                westBlock = this.world.getBlockState(this.getPos().add(variant.wX, 0, variant.wZ)).getBlock();
-                westTopBlock = this.world.getBlockState(this.getPos().add(variant.wX, 1, variant.wZ)).getBlock();
-                westBottomBlock = this.world.getBlockState(this.getPos().add(variant.wX, -1, variant.wZ)).getBlock();
-            }
-            else
-            {
-                this.variant = ResinVariant.fromId(1 + new Random().nextInt(ResinVariant.values().length));
-            }
-        }
+        super.onLoad();
+        ((BlockHiveResin) world.getBlockState(pos).getBlock()).evaluateNeighbors(world, pos);
     }
 
     public XenomorphHive getHive()
