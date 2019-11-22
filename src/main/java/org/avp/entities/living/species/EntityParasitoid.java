@@ -140,12 +140,9 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
         {
             this.setNoAI(true);
 
-            this.motionY -= 0.25F;
-
-            this.motionX *= 0.98F;
+            this.motionY -= 0.05F;
             this.motionY *= 0.98F;
-            this.motionZ *= 0.98F;
-            this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+            this.move(MoverType.SELF, 0, this.motionY, 0);
         }
 
         if (this.world.getWorldTime() % 20 == 0)
@@ -246,7 +243,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
         {
             for (int i = 0; i < list.size(); ++i)
             {
-                Entity entity = (Entity) list.get(i);
+                Entity entity = list.get(i);
 
                 this.collideWithEntity(entity);
             }
@@ -333,6 +330,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
         return false;
     }
 
+    @Override
     public boolean isPotionApplicable(PotionEffect effect)
     {
         return effect.getPotion() == MobEffects.POISON ? false : super.isPotionApplicable(effect);
