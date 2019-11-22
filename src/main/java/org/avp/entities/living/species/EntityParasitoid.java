@@ -177,11 +177,10 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
                 EntityLiving living = (EntityLiving) this.getRidingEntity();
 
                 living.setNoAI(true);
-                living.motionY -= 0.25F;
-                living.motionX *= 0.98F;
+                
+                living.motionY -= 0.05F;
                 living.motionY *= 0.98F;
-                living.motionZ *= 0.98F;
-                living.move(MoverType.SELF, living.motionX, living.motionY, living.motionZ);
+                living.move(MoverType.SELF, 0, living.motionY, 0);
 
                 this.rotationYawHead = living.rotationYawHead;
                 this.rotationYaw = living.rotationYaw;
