@@ -17,6 +17,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -155,6 +156,10 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
     protected void collideWithEntity(Entity entity)
     {
         super.collideWithEntity(entity);
+        if((entity instanceof EntityPlayer) && !((EntityPlayer)entity).capabilities.isCreativeMode || !(entity instanceof SpeciesAlien) && !(entity instanceof EntityPlayer))
+        {
+            this.hatchingTime = 0;
+        }
     }
 
     @Override

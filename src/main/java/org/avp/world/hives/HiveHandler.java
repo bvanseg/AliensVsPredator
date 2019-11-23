@@ -1,7 +1,12 @@
 package org.avp.world.hives;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.avp.api.storage.IWorldSaveHandler;
 import org.avp.entities.living.species.SpeciesAlien;
@@ -13,7 +18,6 @@ import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Worlds;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,6 +26,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -29,46 +34,52 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 public class HiveHandler implements IWorldSaveHandler
 {
     public static final HiveHandler  instance = new HiveHandler();
-    private ArrayList<XenomorphHive> hives    = null;
+    private HashMap<UUID, XenomorphHive> hives    = null;
     public ArrayList<Pos>            burntResin;
 
     public HiveHandler()
     {
-        this.hives = new ArrayList<XenomorphHive>();
+        this.hives = new HashMap<UUID, XenomorphHive>();
         this.burntResin = new ArrayList<Pos>();
     }
-    
+
     public XenomorphHive createHive(EntityMatriarch queen)
     {
         XenomorphHive hive = new XenomorphHive(queen.world, queen.getUniqueID()).setLocation(queen.posX, queen.posY, queen.posZ);
-        HiveHandler.instance.getHives().add(hive);
+        HiveHandler.instance.hives.put(hive.getUniqueIdentifier(), hive);
         return hive;
     }
-
-    public ArrayList<XenomorphHive> getHives()
+    
+    public HashMap<UUID, XenomorphHive> getHiveMap()
     {
         return hives;
     }
 
+    public List<XenomorphHive> getHives()
+    {
+        return hives.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
+    }
+
+    /**
+     * Fetches the hive for the given {@link SpeciesAlien}. May return null if the alien has no hive.
+     * 
+     * @param alien The alien to get a {@link XenomorphHive} for.
+     * @return The hive of the alien, or null if it has no hive at all.
+     */
     public XenomorphHive getHiveForAlien(SpeciesAlien alien)
     {
-        for (XenomorphHive hive : this.hives)
-        {
-            for (SpeciesAlien a : hive.getAliensInHive())
-            {
-                if (a == alien)
-                {
-                    return hive;
-                }
-            }
-        }
-
+        XenomorphHive hive = alien.getHive();
+        
+        // Safety check to make sure the hive also exists within the map, as well.
+        if (hive != null && hive.getAlienMap().containsKey(hive.getUniqueIdentifier()))
+            return hive;
+        
         return null;
     }
 
     public XenomorphHive getHiveForUUID(UUID uuid)
     {
-        for (XenomorphHive hive : this.hives)
+        for (XenomorphHive hive : this.getHives())
         {
             if (hive != null && hive.getUniqueIdentifier() != null && hive.getUniqueIdentifier().equals(uuid))
             {
@@ -91,7 +102,7 @@ public class HiveHandler implements IWorldSaveHandler
             if (resin != null && resin.getBlockCovering() != null)
             {
                 world.setBlockState(pos, resin.getBlockCovering(), 3);
-                
+
                 return true;
             }
         }
@@ -109,34 +120,30 @@ public class HiveHandler implements IWorldSaveHandler
     }
 
     @SubscribeEvent
-    public void updateHives(TickEvent.WorldTickEvent event)
+    public void removeSlimes(EntityJoinWorldEvent event)
     {
         // Murder annoying slimes if this is a dev environment.
         if (Game.isDevEnvironment())
-        {
-            for (Object o : new ArrayList(event.world.loadedEntityList))
-            {
-                Entity entity = (Entity) o;
+            if (event.getEntity() instanceof EntitySlime)
+                event.setCanceled(true);
+    }
 
-                if (o instanceof EntitySlime)
-                {
-                    entity.setDead();
-                }
-            }
-        }
-
+    @SubscribeEvent
+    public void updateHives(TickEvent.WorldTickEvent event)
+    {
         for (Pos coord : new ArrayList<Pos>(this.burntResin))
         {
             event.world.setBlockState(coord.blockPos(), Blocks.AIR.getDefaultState(), 3);
             this.burntResin.remove(coord);
         }
 
-        for (XenomorphHive hive : (ArrayList<XenomorphHive>) this.hives.clone())
+        Iterator<XenomorphHive> iter = this.getHives().iterator();
+
+        while (iter.hasNext())
         {
+            XenomorphHive hive = iter.next();
             if (hive != null && hive.getDimensionId() == event.world.provider.getDimension())
-            {
                 hive.update(event.world);
-            }
         }
     }
 
@@ -157,7 +164,7 @@ public class HiveHandler implements IWorldSaveHandler
             {
                 NBTTagList tagHives = new NBTTagList();
 
-                for (XenomorphHive hive : this.hives)
+                for (XenomorphHive hive : this.getHives())
                 {
                     if (hive.getDimensionId() == world.provider.getDimension())
                     {
@@ -206,12 +213,12 @@ public class HiveHandler implements IWorldSaveHandler
                     {
                         hive = new XenomorphHive(world, uuid);
 
-                        if (!this.hives.contains(hive))
+                        if (!this.hives.containsKey(hive.getUniqueIdentifier()))
                         {
-                            this.hives.add(hive);
+                            this.hives.put(hive.getUniqueIdentifier(), hive);
                         }
                     }
-                    
+
                     if (hive == null || uuid == null)
                     {
                         MDX.log().warn(String.format("Failed to load a hive, Debug Information: UUID(%s), Instance(%s)", uuid, hive));
