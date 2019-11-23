@@ -1,7 +1,11 @@
 package org.avp.world.hives;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
@@ -22,10 +26,10 @@ import net.minecraftforge.common.util.Constants.NBT;
 
 public class XenomorphHive
 {
-    private ArrayList<SpeciesAlien>  aliens;
+    private HashMap<UUID, SpeciesAlien>    aliens;
     private ArrayList<TileEntityHiveResin> resinInHive;
     private UUID                           uuid;
-    private EntityMatriarch                    queen;
+    private EntityMatriarch                queen;
     public World                           world;
     private int                            dimensionId;
     private int                            xCoord;
@@ -36,7 +40,7 @@ public class XenomorphHive
     {
         this.uuid = uuid;
         this.queen = (EntityMatriarch) Worlds.getEntityByUUID(world, this.uuid);
-        this.aliens = new ArrayList<SpeciesAlien>();
+        this.aliens = new HashMap<UUID, SpeciesAlien>();
         this.resinInHive = new ArrayList<TileEntityHiveResin>();
 
         if (this.getQueen() != null)
@@ -58,9 +62,14 @@ public class XenomorphHive
         return this;
     }
 
-    public ArrayList<SpeciesAlien> getAliensInHive()
+    public HashMap<UUID, SpeciesAlien> getAlienMap()
     {
         return this.aliens;
+    }
+
+    public List<SpeciesAlien> getAliensInHive()
+    {
+        return this.aliens.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
     }
 
     public ArrayList<TileEntityHiveResin> getResinInHive()
@@ -70,10 +79,8 @@ public class XenomorphHive
 
     public void addMemberToHive(SpeciesAlien alien)
     {
-        if (!this.aliens.contains(alien))
-        {
-            this.aliens.add(alien);
-        }
+        if (!this.aliens.containsKey(alien.getUniqueID()) || !this.aliens.containsValue(alien))
+            this.aliens.put(alien.getUniqueID(), alien);
     }
 
     public void addResin(TileEntityHiveResin resin)
@@ -133,7 +140,7 @@ public class XenomorphHive
 
         if (this.getQueen() != null && this.getQueen().isDead)
         {
-            HiveHandler.instance.getHives().remove(this);
+            HiveHandler.instance.getHiveMap().remove(this.getUniqueIdentifier());
         }
 
         if (this.getQueen() != null)
@@ -142,15 +149,7 @@ public class XenomorphHive
         }
 
         if (world.getWorldTime() % (20 * 5) == 0)
-        {
-            for (SpeciesAlien alien : (ArrayList<SpeciesAlien>) this.getAliensInHive().clone())
-            {
-                if (alien == null || alien.isDead)
-                {
-                    this.getAliensInHive().remove(alien);
-                }
-            }
-        }
+            aliens.entrySet().removeIf(e -> e.getValue() == null || e.getValue().isDead);
     }
 
     public void destroy()
@@ -173,7 +172,7 @@ public class XenomorphHive
 
         this.getAliensInHive().clear();
         this.getResinInHive().clear();
-        HiveHandler.instance.getHives().remove(this);
+        HiveHandler.instance.getHiveMap().remove(this.getUniqueIdentifier());
     }
 
     public void load(World world, UUID uniqueIdentifier, NBTTagCompound nbt)
