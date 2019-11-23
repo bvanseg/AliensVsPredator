@@ -131,10 +131,9 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
                 adjustedLevel = adjustedLevel < 64 ? adjustedLevel : 64;
             }
 
-            ItemDrop dynamicJelly = new ItemDrop(100, new ItemStack(AliensVsPredator.items().itemRoyalJelly, adjustedLevel));
             if (this.isDependant)
             {
-                dynamicJelly.tryDrop(this);
+                new ItemDrop(100, new ItemStack(AliensVsPredator.items().itemRoyalJelly, adjustedLevel)).tryDrop(this);
             }
         }
     }
