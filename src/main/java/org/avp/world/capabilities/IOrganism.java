@@ -181,7 +181,7 @@ public interface IOrganism
         {
             World world = living.world;
 
-            if (!world.isRemote && world.getWorldTime() % 60 == 0)
+            if (!world.isRemote && world.getTotalWorldTime() % 60 == 0)
             {
                 this.syncWithClients(living);
             }
@@ -212,7 +212,7 @@ public interface IOrganism
                     {
                         organism.setHeartRate(60 + (250 - (timeLeft * 250 / (30 * 20))));
 
-                        if (world.getWorldTime() % 10 == 0)
+                        if (world.getTotalWorldTime() % 10 == 0)
                         {
                             this.syncWithClients(living);
                         }

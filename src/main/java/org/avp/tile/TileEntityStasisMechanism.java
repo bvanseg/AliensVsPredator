@@ -32,7 +32,7 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
     @Override
     public void update()
     {
-        if (this.dummyEntity == null && this.world.getWorldTime() % 20 == 0)
+        if (this.dummyEntity == null && this.world.getTotalWorldTime() % 20 == 0)
         {
             this.dummyEntity = (EntityMechanism) getEntityForUUID(this.world, this.readOnlyDmmyEntityUUID);
 

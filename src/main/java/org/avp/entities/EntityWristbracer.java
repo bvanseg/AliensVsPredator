@@ -78,7 +78,7 @@ public class EntityWristbracer extends EntityThrowable
             this.motionY *= -0.5D;
         }
 
-        if (this.world.getWorldTime() % 20 == 0)
+        if (this.world.getTotalWorldTime() % 20 == 0)
         {
             Sounds.fxWristbracerAlarm.playSound(this, 15F, 1F);
         }

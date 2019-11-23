@@ -267,7 +267,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     @Override
     public boolean canProduceJelly()
     {
-        return this.world.getWorldTime() % this.getJellyProductionRate() == 0;
+        return this.world.getTotalWorldTime() % this.getJellyProductionRate() == 0;
     }
 
     @Override
@@ -281,7 +281,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     {
         if (!this.world.isRemote)
         {
-            if (this.world.getWorldTime() % 20 == 0)
+            if (this.world.getTotalWorldTime() % 20 == 0)
             {
                 // this.setJellyLevel(this.getJellyLevel() + 20);
             }

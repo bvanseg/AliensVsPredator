@@ -40,7 +40,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         
         if (this.stasisEntity != null && !this.isOperational())
         {
-            if (this.world.getWorldTime() % 100 == 0)
+            if (this.world.getTotalWorldTime() % 100 == 0)
             {
                 if (this.world.rand.nextInt(8) == 0)
                 {

@@ -113,7 +113,7 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
     {
         if (!this.world.isRemote)
         {
-            if (this.world.getWorldTime() % 20 == 0)
+            if (this.world.getTotalWorldTime() % 20 == 0)
             {
                 if (this.rand.nextInt(3) == 0)
                 {
@@ -152,7 +152,7 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
     {
         if (!this.world.isRemote)
         {
-            if (this.world.getWorldTime() % 20 == 0)
+            if (this.world.getTotalWorldTime() % 20 == 0)
             {
                 if (this.getJellyLevel() < (this.getMaturityLevel() / 2))
                 {
@@ -167,7 +167,7 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
         {
             if (this.targetOvamorph == null)
             {
-                if (this.getHive() != null && this.world.getWorldTime() % 10 == 0 && rand.nextInt(3) == 0)
+                if (this.getHive() != null && this.world.getTotalWorldTime() % 10 == 0 && rand.nextInt(3) == 0)
                 {
                     if (this.getJellyLevel() >= 16)
                     {

@@ -76,7 +76,7 @@ public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implem
             this.setVoltage(0);
         }
 
-        if (!this.world.isRemote && this.world.getWorldTime() % 20 == 0)
+        if (!this.world.isRemote && this.world.getTotalWorldTime() % 20 == 0)
         {
             AliensVsPredator.network().sendToAll(new PacketSyncRF(this.getEnergyStored(null), this.pos.getX(), this.pos.getY(), this.pos.getZ()));
         }

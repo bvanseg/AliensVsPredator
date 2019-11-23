@@ -132,7 +132,7 @@ public class EntityDeaconShark extends SpeciesAlien
     {
         if (this.getAttackTarget() == null || this.getAttackTarget() != null && this.getAttackTarget().isDead || !(this.distanceToTargetLastTick - this.getDistanceSq(this.getAttackTarget()) > 0.1))
         {
-            if (this.world.getWorldTime() % 60 == 0)
+            if (this.world.getTotalWorldTime() % 60 == 0)
             {
                 this.setAttackTarget(this.findTarget());
             }
@@ -195,7 +195,7 @@ public class EntityDeaconShark extends SpeciesAlien
     @Override
     public boolean getCanSpawnHere()
     {
-        if (!(this.posZ > 16 && this.posY <= 64 && this.world.getWorldTime() % 80 == 0))
+        if (!(this.posZ > 16 && this.posY <= 64 && this.world.getTotalWorldTime() % 80 == 0))
         {
             return false;
         }

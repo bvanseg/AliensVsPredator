@@ -41,7 +41,7 @@ public class BossBarEvent
     {
         if (Game.minecraft().player != null)
         {
-            if (Game.minecraft().player.world.getWorldTime() % 40 == 0)
+            if (Game.minecraft().player.world.getTotalWorldTime() % 40 == 0)
             {
                 for (Object o : Game.minecraft().world.loadedEntityList)
                 {

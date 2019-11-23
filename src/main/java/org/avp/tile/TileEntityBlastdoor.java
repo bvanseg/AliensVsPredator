@@ -133,7 +133,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
         if (this.isParent())
         {
-            if (this.isLocked() && !this.isOpen() && this.getWorld().getWorldTime() % 10 == 0)
+            if (this.isLocked() && !this.isOpen() && this.getWorld().getTotalWorldTime() % 10 == 0)
             {
                 int scanRange = 1;
                 List<EntityPlayer> players = world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1, pos.getY() + 1, pos.getZ() + 1).grow(scanRange * 2, 5, scanRange * 2));

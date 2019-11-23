@@ -86,7 +86,7 @@ public class ItemRendererGroup<MODEL extends Model> extends ItemRenderer<MODEL>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate((Game.minecraft().world.getTotalWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
         this.renderPart();
     }
 }

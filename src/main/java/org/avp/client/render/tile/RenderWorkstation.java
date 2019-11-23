@@ -65,7 +65,7 @@ public class RenderWorkstation extends TileEntitySpecialRenderer<TileEntityWorks
             OpenGL.rotate(6.5F, 1F, 0F, 0F);
             OpenGL.scale(-textscale, textscale, textscale);
 
-            if (tile.getWorld().getWorldTime() % 40 == 0)
+            if (tile.getWorld().getTotalWorldTime() % 40 == 0)
             {
                 try
                 {
