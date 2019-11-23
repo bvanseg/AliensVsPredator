@@ -236,15 +236,18 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     @Override
     protected void collideWithNearbyEntities()
     {
-        List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
-
-        if (list != null && !list.isEmpty())
+        if(this.isFertile()) 
         {
-            for (int i = 0; i < list.size(); ++i)
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
+    
+            if (list != null && !list.isEmpty())
             {
-                Entity entity = list.get(i);
-
-                this.collideWithEntity(entity);
+                for (int i = 0; i < list.size(); ++i)
+                {
+                    Entity entity = list.get(i);
+    
+                    this.collideWithEntity(entity);
+                }
             }
         }
     }
