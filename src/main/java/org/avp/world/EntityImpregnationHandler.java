@@ -9,7 +9,6 @@ import org.avp.world.capabilities.IOrganism.Provider;
 import com.asx.mdx.lib.client.entityfx.EntityBloodFX;
 import com.asx.mdx.lib.util.Game;
 
-import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
@@ -24,11 +23,11 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.InputUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -39,13 +38,6 @@ public class EntityImpregnationHandler
     private static float                          rotationYawLock   = 0F;
     private static float                          rotationPitchLock = 0F;
     private static boolean                        rotationLocked    = false;
-
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void clientTick(TickEvent.ClientTickEvent event)
-    {
-        this.tick(Game.minecraft().world);
-    }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
@@ -83,107 +75,100 @@ public class EntityImpregnationHandler
     }
 
     @SubscribeEvent
-    public void tick(TickEvent.WorldTickEvent event)
+    public void tick(LivingUpdateEvent event)
     {
-        this.tick(event.world);
-    }
-
-    public void tick(World world)
-    {
+        World world = event.getEntity().getEntityWorld();
         if (world != null)
         {
-            for (int x = 0; x < world.loadedEntityList.size(); ++x)
+            Entity entity = event.getEntity();
+            
+            if (entity != null && entity instanceof EntityLivingBase)
             {
-                Entity entity = (Entity) world.loadedEntityList.get(x);
+                EntityLivingBase host = (EntityLivingBase) entity;
+                Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
+                EntityPlayer player = null;
 
-                if (entity != null && entity instanceof EntityLivingBase)
+                if (host instanceof EntityPlayer)
                 {
-                    EntityLivingBase host = (EntityLivingBase) entity;
-                    Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
-                    EntityPlayer player = null;
+                    player = (EntityPlayer) host;
+                }
 
-                    if (host instanceof EntityPlayer)
+                organism.onTick(host, organism);
+
+                if (host.isEntityAlive() && organism.hasEmbryo())
+                {
+
+                    if (player != null && !player.capabilities.isCreativeMode || player == null)
                     {
-                        player = (EntityPlayer) host;
-                    }
-
-                    organism.onTick(host, organism);
-
-                    if (host.isEntityAlive() && organism.hasEmbryo())
-                    {
-
-                        if (player != null && !player.capabilities.isCreativeMode || player == null)
+                        if (!world.isRemote)
                         {
-                            if (!world.isRemote)
+                            organism.gestate(host);
+                        }
+                        else if (world.isRemote)
+                        {
+                            if (!Game.minecraft().isGamePaused())
                             {
                                 organism.gestate(host);
                             }
-                            else if (world.isRemote)
+                        }
+                    }
+
+                    if (organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod())
+                    {
+                        if (organism.getEmbryo().getNascenticOrganism() != null)
+                        {
+                            if (!world.isRemote)
                             {
-                                if (!Game.minecraft().isGamePaused())
-                                {
-                                    organism.gestate(host);
-                                }
+                                organism.getEmbryo().getNascenticOrganism().vitalize(host);
                             }
                         }
+                    }
 
-                        if (organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod())
+                    if (organism.hasEmbryo() && organism.getEmbryo().getAge() > 0)
+                    {
+                        if (player == null || player != null && !player.capabilities.isCreativeMode)
                         {
-                            if (organism.getEmbryo().getNascenticOrganism() != null)
+                            int age = organism.getEmbryo().getAge();
+                            int gestationPeriod = organism.getEmbryo().getGestationPeriod();
+                            int timeLeft = gestationPeriod - age;
+                            int timeBlind = gestationPeriod - (gestationPeriod / 2);
+                            int timeBleed = gestationPeriod - (gestationPeriod / 10);
+
+                            if (age >= timeBlind)
                             {
                                 if (!world.isRemote)
                                 {
-                                    organism.getEmbryo().getNascenticOrganism().vitalize(host);
+                                    host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, organism.getEmbryo().getGestationPeriod() / 2));
                                 }
                             }
-                        }
 
-                        if (organism.hasEmbryo() && organism.getEmbryo().getAge() > 0)
-                        {
-                            if (player == null || player != null && !player.capabilities.isCreativeMode)
+                            if (world.isRemote && timeLeft <= 3)
                             {
-                                int age = organism.getEmbryo().getAge();
-                                int gestationPeriod = organism.getEmbryo().getGestationPeriod();
-                                int timeLeft = gestationPeriod - age;
-                                int timeBlind = gestationPeriod - (gestationPeriod / 2);
-                                int timeBleed = gestationPeriod - (gestationPeriod / 10);
-
-                                if (age >= timeBlind)
+                                for (int i = 256; i > 0; i--)
                                 {
-                                    if (!world.isRemote)
-                                    {
-                                        host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, organism.getEmbryo().getGestationPeriod() / 2));
-                                    }
+                                    this.bleed(host, 0.5F);
                                 }
+                            }
 
-                                if (world.isRemote && timeLeft <= 3)
+                            if (world.isRemote && age >= timeBleed)
+                            {
+                                this.bleed(host, 0.25F);
+
+                                if (host.getRNG().nextInt(100) == 0)
                                 {
-                                    for (int i = 256; i > 0; i--)
+                                    for (int i = 32; i > 0; i--)
                                     {
                                         this.bleed(host, 0.5F);
                                     }
                                 }
-
-                                if (world.isRemote && age >= timeBleed)
-                                {
-                                    this.bleed(host, 0.25F);
-
-                                    if (host.getRNG().nextInt(100) == 0)
-                                    {
-                                        for (int i = 32; i > 0; i--)
-                                        {
-                                            this.bleed(host, 0.5F);
-                                        }
-                                    }
-                                }
                             }
+                        }
 
-                            if (player != null && player.capabilities.isCreativeMode)
+                        if (player != null && player.capabilities.isCreativeMode)
+                        {
+                            if (!world.isRemote)
                             {
-                                if (!world.isRemote)
-                                {
-                                    player.clearActivePotions();
-                                }
+                                player.clearActivePotions();
                             }
                         }
                     }
@@ -255,7 +240,7 @@ public class EntityImpregnationHandler
     @SubscribeEvent
     public void respawnEvent(PlayerRespawnEvent event)
     {
-        EntityLivingBase living = (EntityLivingBase) event.player;
+        EntityLivingBase living = event.player;
         Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
 
         if (organism.hasEmbryo())
@@ -267,7 +252,7 @@ public class EntityImpregnationHandler
     @SubscribeEvent
     public void despawnEvent(LivingSpawnEvent.AllowDespawn event)
     {
-        EntityLivingBase living = (EntityLivingBase) event.getEntityLiving();
+        EntityLivingBase living = event.getEntityLiving();
         Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
 
         if (organism.hasEmbryo())
