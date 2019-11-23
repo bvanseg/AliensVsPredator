@@ -87,7 +87,7 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
     {
         if (this.getAttackTarget() == null)
         {
-            if (this.world.getWorldTime() % 40 == 0 && this.rand.nextInt(4) == 0)
+            if (this.world.getTotalWorldTime() % 40 == 0 && this.rand.nextInt(4) == 0)
             {
                 if (this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)).getBlock() != AliensVsPredator.blocks().blackgoo)
                 {

@@ -32,7 +32,7 @@ public class ItemIngotLithium extends HookedItem
 
         if (world.isRaining() && world.canSeeSky(entity.getPosition()))
         {
-            if (world.getWorldTime() % 20 == 0)
+            if (world.getTotalWorldTime() % 20 == 0)
             {
                 if (new Random().nextInt(5) == 0)
                 {
@@ -44,11 +44,11 @@ public class ItemIngotLithium extends HookedItem
 
         if (world.getBiome(entity.getPosition()).isHighHumidity())
         {
-            if (world.getWorldTime() % 20 == 0)
+            if (world.getTotalWorldTime() % 20 == 0)
             {
                 if (new Random().nextInt(5) == 0)
                 {
-                    if (world.getWorldTime() % 20 == 0)
+                    if (world.getTotalWorldTime() % 20 == 0)
                     {
                         if (new Random().nextInt(30) == 0)
                         {

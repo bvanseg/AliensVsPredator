@@ -115,7 +115,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
     {
         if (!this.world.isRemote)
         {
-            if (this.world.getWorldTime() % 20 == 0)
+            if (this.world.getTotalWorldTime() % 20 == 0)
             {
                 this.hive = HiveHandler.instance.getHiveForUUID(this.getUniqueID());
 
@@ -131,7 +131,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
     {
         if (this.reproducing)
         {
-            if (this.world.getWorldTime() % (20 * 120) == 0 && this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD)
+            if (this.world.getTotalWorldTime() % (20 * 120) == 0 && this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD)
             {
                 int ovipositorDist = 10;
                 double rotationYawRadians = Math.toRadians(this.rotationYawHead - 90);
@@ -216,7 +216,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
 
                     if (!this.getNavigator().tryMoveToXYZ(closestPoint.x, closestPoint.y, closestPoint.z, 1.55D))
                     {
-                        if (Game.isDevEnvironment() && this.world.getWorldTime() % (20 * 3) == 0)
+                        if (Game.isDevEnvironment() && this.world.getTotalWorldTime() % (20 * 3) == 0)
                         {
                             // System.out.println("Unable to pathfind to closest point, too far: " + this.pathPoints.size() + " Points, " + ((int) closestPoint.distanceFrom(this)) + " Meters, " + closestPoint);
                             // System.out.println(this.pathPoints);
@@ -243,7 +243,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
     {
         if (!this.world.isRemote)
         {
-            if (this.world.getWorldTime() % 20 == 0)
+            if (this.world.getTotalWorldTime() % 20 == 0)
             {
                 if (this.getHealth() > this.getMaxHealth() / 4)
                 {
@@ -274,7 +274,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
                 this.setDead();
             }
 
-            if (this.world.getWorldTime() % 20 == 0)
+            if (this.world.getTotalWorldTime() % 20 == 0)
             {
                 ArrayList<SpeciesAlien> aliens = (ArrayList<SpeciesAlien>) Entities.getEntitiesInCoordsRange(this.world, SpeciesAlien.class, new Pos(this), 16);
 

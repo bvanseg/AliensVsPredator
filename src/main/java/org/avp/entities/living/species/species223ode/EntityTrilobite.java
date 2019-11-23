@@ -188,7 +188,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
 
     private void updateHitbox()
     {
-        if (this.world.getWorldTime() % 20 == 0)
+        if (this.world.getTotalWorldTime() % 20 == 0)
         {
             if (!this.isFertile() && this.getRidingEntity() == null)
             {
@@ -261,7 +261,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
 
         if (this.getAttackTarget() != null)
         {
-            if (this.world.getWorldTime() % 5 == 0)
+            if (this.world.getTotalWorldTime() % 5 == 0)
             {
                 if (!this.getImpregnationEntitiySelector().apply(this.getAttackTarget()))
                 {

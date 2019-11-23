@@ -14,16 +14,12 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.EntityViewRenderEvent.FogColors;
 import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -42,7 +38,7 @@ public class MaterialHandler
             if (materialInside != null && materialInside instanceof IMaterialPhysics)
             {
                 IMaterialPhysics physics = (IMaterialPhysics) materialInside;
-                IMaterialRenderer renderer = (IMaterialRenderer) physics.getMaterialRenderer();
+                IMaterialRenderer renderer = physics.getMaterialRenderer();
 
                 if (renderer != null)
                 {
@@ -57,14 +53,40 @@ public class MaterialHandler
             }
         }
     }
-
-    @SideOnly(Side.CLIENT)
+    
     @SubscribeEvent
-    public void clientUpdate(ClientTickEvent event)
+    public void update(LivingUpdateEvent event)
     {
-        if (Game.minecraft().world != null && !Game.minecraft().isGamePaused())
+        Entity entity = event.getEntity();
+
+        if (!entity.isDead)
         {
-            this.update(Game.minecraft().world);
+            try
+            {
+                Material material = getMaterialInside(entity);
+
+                if (material instanceof IMaterialPhysics)
+                {
+                    IMaterialPhysics physics = (IMaterialPhysics) material;
+                    Vec3d motion = MaterialHandler.instance.handleMaterialAcceleration(entity, material, physics);
+
+                    if (motion != null)
+                    {
+                        physics.onCollision(entity);
+
+                        if (entity.isPushedByWater() || physics.ignoresPushableCheck())
+                        {
+                            motion = motion.normalize();
+                            physics.handleMovement(entity);
+                            physics.handleForce(entity, motion);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MDX.log().warn("Error handling fluid physics update for entity: " + e);
+            }
         }
     }
 
@@ -79,7 +101,7 @@ public class MaterialHandler
             if (material instanceof IMaterialPhysics && Game.minecraft().player.isInsideOfMaterial(material))
             {
                 IMaterialPhysics physics = (IMaterialPhysics) material;
-                IMaterialRenderer renderer = (IMaterialRenderer) physics.getMaterialRenderer();
+                IMaterialRenderer renderer = physics.getMaterialRenderer();
 
                 if (renderer != null)
                 {
@@ -102,7 +124,7 @@ public class MaterialHandler
                 if (Game.minecraft().player.isInsideOfMaterial(material))
                 {
                     IMaterialPhysics physics = (IMaterialPhysics) material;
-                    IMaterialRenderer renderer = (IMaterialRenderer) physics.getMaterialRenderer();
+                    IMaterialRenderer renderer = physics.getMaterialRenderer();
 
                     if (renderer != null)
                     {
@@ -116,54 +138,7 @@ public class MaterialHandler
             }
         }
     }
-
-    @SubscribeEvent
-    public void onUpdate(WorldTickEvent event)
-    {
-        if (event.getPhase() == EventPriority.NORMAL && event.phase == Phase.END)
-        {
-            this.update(event.world);
-        }
-    }
-
-    private void update(World world)
-    {
-        for (int idx = 0; idx < world.loadedEntityList.size(); ++idx)
-        {
-            Entity entity = (Entity) world.loadedEntityList.get(idx);
-
-            if (!entity.isDead)
-            {
-                try
-                {
-                    Material material = getMaterialInside(entity);
-
-                    if (material instanceof IMaterialPhysics)
-                    {
-                        IMaterialPhysics physics = (IMaterialPhysics) material;
-                        Vec3d motion = MaterialHandler.instance.handleMaterialAcceleration(entity, material, physics);
-
-                        if (motion != null)
-                        {
-                            physics.onCollision(entity);
-
-                            if (entity.isPushedByWater() || physics.ignoresPushableCheck())
-                            {
-                                motion = motion.normalize();
-                                physics.handleMovement(entity);
-                                physics.handleForce(entity, motion);
-                            }
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    MDX.log().warn("Error handling fluid physics update for entity: " + e);
-                }
-            }
-        }
-    }
-
+    
     public static Material getMaterialInside(Entity entity)
     {
         AxisAlignedBB box = entity.getEntityBoundingBox();
@@ -230,9 +205,9 @@ public class MaterialHandler
 
                         if (block.getMaterial() == material)
                         {
-                            double lhp = (double) ((float) (y + 1) - BlockLiquid.getLiquidHeightPercent(block.getBlock().getMetaFromState(block)));
+                            double lhp = y + 1 - BlockLiquid.getLiquidHeightPercent(block.getBlock().getMetaFromState(block));
 
-                            if ((double) maxY >= lhp)
+                            if (maxY >= lhp)
                             {
                                 block.getBlock().modifyAcceleration(entity.world, pos, entity, motion = new Vec3d(0.0D, 0.0D, 0.0D));
                             }

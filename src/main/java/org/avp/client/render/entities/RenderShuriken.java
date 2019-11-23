@@ -32,7 +32,7 @@ public class RenderShuriken extends Render<EntityShuriken>
             
             if (!entity.isInGround())
             {
-                OpenGL.rotate(360 - (entity.world.getWorldTime() % 360 + Game.partialTicks()) * 60, 0, 1, 0);
+                OpenGL.rotate(360 - (entity.world.getTotalWorldTime() % 360 + Game.partialTicks()) * 60, 0, 1, 0);
             }
             
             OpenGL.translate(-0.5F, 0.0F, -0.5F);

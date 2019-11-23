@@ -32,7 +32,7 @@ public class EntityMechanism extends Entity
     {
         super.onUpdate();
 
-        if (this.world.getWorldTime() % 20 == 0)
+        if (this.world.getTotalWorldTime() % 20 == 0)
         {
             Block block = this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ - 1)).getBlock();
 

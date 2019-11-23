@@ -116,7 +116,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         super.onUpdate();
         this.fallDistance = 0;
 
-        if (!this.world.isRemote && this.world.getWorldTime() % 60 == 0 && isHangingLocationStale())
+        if (!this.world.isRemote && this.world.getTotalWorldTime() % 60 == 0 && isHangingLocationStale())
         {
             ArrayList<BlockPos> locations = Blocks.getPositionsInRange((int) this.posX, (int) this.posY, (int) this.posZ, 8);
 

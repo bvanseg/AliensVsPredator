@@ -54,7 +54,7 @@ public class Wavegraph
     {
         this.newdata = false;
 
-        if (world.getWorldTime() % Math.floor((60D / this.rate) * 20) == 0 && !Game.minecraft().isGamePaused())
+        if (world.getTotalWorldTime() % Math.floor((60D / this.rate) * 20) == 0 && !Game.minecraft().isGamePaused())
         {
             this.newdata = true;
             long start = System.currentTimeMillis();

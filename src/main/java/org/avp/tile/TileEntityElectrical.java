@@ -394,7 +394,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
 
     public boolean canArc()
     {
-        if (this.voltage > 600 && this.world.getWorldTime() % 8 == 0)
+        if (this.voltage > 600 && this.world.getTotalWorldTime() % 8 == 0)
         {
             return getNearbyConnectionCount() <= 1;
         }

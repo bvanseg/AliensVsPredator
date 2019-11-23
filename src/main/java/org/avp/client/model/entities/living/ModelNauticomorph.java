@@ -310,7 +310,7 @@ public class ModelNauticomorph extends Model<EntityNauticomorph>
     {
         float swingProgress = swingProgress(e);
         float swingProgressPrev = swingProgressPrev(e);
-        float tailAngle = MathHelper.cos((Minecraft.getMinecraft().world.getWorldTime() % 360 + Game.partialTicks()) * (e != null && e.motionX + e.motionZ != 0 ? 0.67F : 0.07F));
+        float tailAngle = MathHelper.cos((Minecraft.getMinecraft().world.getTotalWorldTime() % 360 + Game.partialTicks()) * (e != null && e.motionX + e.motionZ != 0 ? 0.67F : 0.07F));
 
         if (e != null)
         {

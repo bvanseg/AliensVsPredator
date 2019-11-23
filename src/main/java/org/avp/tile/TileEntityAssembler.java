@@ -49,7 +49,7 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     @Override
     public void update()
     {
-        if (this.getWorld().getWorldTime() % 20 == 0)
+        if (this.getWorld().getTotalWorldTime() % 20 == 0)
         {
             Random rand = new Random();
 

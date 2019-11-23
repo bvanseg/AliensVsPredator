@@ -391,7 +391,7 @@ public class PressureHUDRenderEvent
             EntityPlayer player = (EntityPlayer) living;
             Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
 
-            if (organism.hasEmbryo() && living.world.getWorldTime() % 20 <= 10)
+            if (organism.hasEmbryo() && living.world.getTotalWorldTime() % 20 <= 10)
             {
                 ScaledResolution res = Screen.scaledDisplayResolution();
                 int lifeTimeTicks = organism.getEmbryo().getGestationPeriod() - organism.getEmbryo().getAge();

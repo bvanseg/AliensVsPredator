@@ -25,7 +25,7 @@ public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityAssembl
             OpenGL.enable(GL_BLEND);
             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             OpenGL.translate(posX + 0.5F, posY + 0.95F, posZ + 0.5F);
-            OpenGL.rotate(tile.getWorld().getWorldTime() % 360 * 12, 0, 1, 0);
+            OpenGL.rotate(tile.getWorld().getTotalWorldTime() % 360 * 12, 0, 1, 0);
 
             OpenGL.pushMatrix();
             {

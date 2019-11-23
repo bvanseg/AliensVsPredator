@@ -116,7 +116,7 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltag
     @Override
     public boolean canArc()
     {
-        if (this.world.getWorldTime() % 2 == 0)
+        if (this.world.getTotalWorldTime() % 2 == 0)
         {
             return true;
         }
@@ -185,7 +185,7 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltag
             int rng = 8;
             Pos t = null;
 
-            if (this.sustainArcTimestamp > 0 && world.getWorldTime() - this.sustainArcTimestamp > SUSTAIN_TIME || this.getWorld().getWorldTime() - this.sustainArcTimestamp < 0)
+            if (this.sustainArcTimestamp > 0 && world.getTotalWorldTime() - this.sustainArcTimestamp > SUSTAIN_TIME || this.getWorld().getTotalWorldTime() - this.sustainArcTimestamp < 0)
             {
                 this.sustainArcPos = null;
                 this.sustainArcTimestamp = 0;
@@ -221,7 +221,7 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltag
 
                         if (this.sustainArcPos == null)
                         {
-                            this.sustainArcTimestamp = world.getWorldTime();
+                            this.sustainArcTimestamp = world.getTotalWorldTime();
                             this.sustainArcPos = t = t.add(-0.5, -1, -0.5);
                         }
 
@@ -262,7 +262,7 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltag
     @SideOnly(Side.CLIENT)
     public void spawnArc(Pos t, float m, Random rand, double dist, Pos origin, double arcWidth)
     {
-        boolean holdArc = sustainArcTimestamp > 0 && this.world.getWorldTime() - sustainArcTimestamp < 1;
+        boolean holdArc = sustainArcTimestamp > 0 && this.world.getTotalWorldTime() - sustainArcTimestamp < 1;
         float targetX = (float) (t.x + (rand.nextFloat() / m) - (rand.nextFloat() / m));
         float targetY = (float) (t.y + 1);
         float targetZ = (float) (t.z + (rand.nextFloat() / m) - (rand.nextFloat() / m));

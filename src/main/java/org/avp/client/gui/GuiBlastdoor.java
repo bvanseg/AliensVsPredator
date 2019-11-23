@@ -117,7 +117,7 @@ public class GuiBlastdoor extends GuiCustomScreen
                 GlStateManager.enableBlend();
                 Draw.drawRect(screenX, screenY + headerHeight, guiWidth, 13, 0xEE000000);
 
-                if (Game.minecraft().world.getWorldTime() % 20 <= 10)
+                if (Game.minecraft().world.getTotalWorldTime() % 20 <= 10)
                 {
                     Draw.drawString(status, screenX + padding, screenY + headerHeight + padding, 0xFFFF0000, false);
                 }

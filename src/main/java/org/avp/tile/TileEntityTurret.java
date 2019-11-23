@@ -311,7 +311,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             }
         }
 
-        if (!this.world.isRemote && this.world.getWorldTime() % 10 == 0)
+        if (!this.world.isRemote && this.world.getTotalWorldTime() % 10 == 0)
         {
             if (this.getTargetEntity() == null || this.getTargetEntity() != null && !this.canTarget(targetEntity))
             {
@@ -339,7 +339,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             {
                 AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
 
-                if (world.getWorldInfo().getWorldTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw)
+                if (world.getWorldInfo().getWorldTotalTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw)
                 {
                     if (curAmmo-- > 0)
                     {
@@ -405,7 +405,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     public void updateAmmunitionCount()
     {
-        if (world.getWorldInfo().getWorldTime() % 8L == 0L)
+        if (world.getWorldInfo().getWorldTotalTime() % 8L == 0L)
         {
             this.roundsMax = (9 * 64);
             this.rounds = 0;

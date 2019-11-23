@@ -92,7 +92,7 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
     {
         super.onUpdate();
         
-        if (this.world.getWorldTime() % 10 == 0)
+        if (this.world.getTotalWorldTime() % 10 == 0)
         {
             BlockPos aboveHead = this.getPosition().add(0, 3, 0);
             this.setDucking(this.world.getBlockState(aboveHead).getBlock() != Blocks.AIR);
@@ -123,7 +123,7 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
         {
             this.playSound(this.getFallSound(intensity), 1.0F, 1.0F);
             
-            if (this.world.getWorldTime() % 4 == 0)
+            if (this.world.getTotalWorldTime() % 4 == 0)
             this.playSound(this.getDeathSound(), 1.0F, 1.0F);
             
             int x = MathHelper.floor(this.posX);

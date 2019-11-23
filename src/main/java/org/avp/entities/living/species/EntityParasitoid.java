@@ -145,7 +145,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
             this.move(MoverType.SELF, 0, this.motionY, 0);
         }
 
-        if (this.world.getWorldTime() % 20 == 0)
+        if (this.world.getTotalWorldTime() % 20 == 0)
         {
             if (isFertile())
             {
@@ -198,7 +198,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     @Override
     public boolean canProduceJelly()
     {
-        return this.world.getWorldTime() % this.getJellyProductionRate() == 0 && this.isFertile() && this.getJellyLevel() <= 256;
+        return this.world.getTotalWorldTime() % this.getJellyProductionRate() == 0 && this.isFertile() && this.getJellyLevel() <= 256;
     }
 
     @Override

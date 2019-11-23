@@ -86,7 +86,7 @@ public class EntityLaserMine extends Entity
     {
         super.onUpdate();
 
-        if (this.world.getWorldTime() % 10 == 0)
+        if (this.world.getTotalWorldTime() % 10 == 0)
         {
             this.laserHit = Entities.rayTraceAll(this, this.getLaserMaxDepth());
         }

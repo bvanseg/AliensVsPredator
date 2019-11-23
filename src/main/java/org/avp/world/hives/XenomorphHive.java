@@ -148,7 +148,7 @@ public class XenomorphHive
             this.dimensionId = this.getQueen().world.provider.getDimension();
         }
 
-        if (world.getWorldTime() % (20 * 5) == 0)
+        if (world.getTotalWorldTime() % (20 * 5) == 0)
             aliens.entrySet().removeIf(e -> e.getValue() == null || e.getValue().isDead);
     }
 

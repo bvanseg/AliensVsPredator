@@ -73,7 +73,7 @@ public class TacticalHUDRenderEvent
         {
             if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().helmMarine)
             {
-                if (Game.minecraft().world != null && Game.minecraft().world.getWorldTime() % (20 * 3) == 0)
+                if (Game.minecraft().world != null && Game.minecraft().world.getTotalWorldTime() % (20 * 3) == 0)
                 {
                     if (trackedEntities != null)
                     {

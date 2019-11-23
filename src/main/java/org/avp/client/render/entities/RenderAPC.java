@@ -194,7 +194,7 @@ public class RenderAPC extends Render<EntityAPC>
                     || model.getPart("Mesh221_APCHndPt1_Model") == p)
             {
                 OpenGL.pushMatrix();
-                float doorProgress = (float) (-1.25 * Game.minecraft().world.getWorldTime() % 315 / 100);
+                float doorProgress = (float) (-1.25 * Game.minecraft().world.getTotalWorldTime() % 315 / 100);
                 OpenGL.translate(Math.sin(doorProgress), 0, 0);
                 p.draw();
                 OpenGL.popMatrix();

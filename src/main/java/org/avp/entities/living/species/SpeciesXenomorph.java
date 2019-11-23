@@ -171,7 +171,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
     {
         if (!this.world.isRemote)
         {
-            if (this.world.getWorldTime() % ((20 * 4) + (20 * this.rand.nextInt(32))) == 0)
+            if (this.world.getTotalWorldTime() % ((20 * 4) + (20 * this.rand.nextInt(32))) == 0)
             {
                 this.bite();
             }

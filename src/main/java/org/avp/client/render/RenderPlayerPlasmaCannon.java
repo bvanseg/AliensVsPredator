@@ -209,7 +209,7 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
                         // OpenGL.enableLight();
                         MODEL_FIRST_PERSON.draw();
 
-                        float rotation = (entity.world.getWorldTime() + partialTicks) % 360;
+                        float rotation = (entity.world.getTotalWorldTime() + partialTicks) % 360;
                         double wave = Math.sin(rotation);
 
                         OpenGL.pushMatrix();

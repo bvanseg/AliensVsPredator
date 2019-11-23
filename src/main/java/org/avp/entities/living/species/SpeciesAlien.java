@@ -8,7 +8,6 @@ import org.avp.DamageSources;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.api.parasitoidic.IRoyalOrganism;
 import org.avp.entities.EntityAcidPool;
-import org.avp.entities.living.species.xenomorphs.EntityDrone;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
 import org.avp.world.hives.HiveHandler;
@@ -73,7 +72,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
         super.writeEntityToNBT(nbt);
         this.writeAlienToNBT(nbt);
     }
-    
+
     public void writeAlienToNBT(NBTTagCompound nbt)
     {
         nbt.setString("HiveSignature", signature != null ? this.signature.toString() : "");
@@ -86,7 +85,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
         super.readEntityFromNBT(nbt);
         this.readAlienFromNBT(nbt);
     }
-    
+
     public void readAlienFromNBT(NBTTagCompound nbt)
     {
         this.signature = Worlds.uuidFromNBT(nbt, "HiveSignature");
@@ -132,10 +131,9 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
                 adjustedLevel = adjustedLevel < 64 ? adjustedLevel : 64;
             }
 
-            ItemDrop dynamicJelly = new ItemDrop(100, new ItemStack(AliensVsPredator.items().itemRoyalJelly, adjustedLevel));
             if (this.isDependant)
             {
-                dynamicJelly.tryDrop(this);
+                new ItemDrop(100, new ItemStack(AliensVsPredator.items().itemRoyalJelly, adjustedLevel)).tryDrop(this);
             }
         }
     }
@@ -143,7 +141,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     public boolean isReadyToMature(IRoyalOrganism jellyProducer)
     {
         IMaturable maturable = (IMaturable) this;
-        IRoyalOrganism ro = (IRoyalOrganism) this;
+        IRoyalOrganism ro = this;
         return maturable.getMatureState() != null && maturable.getMaturityLevel() > 0 && ro.getJellyLevel() >= maturable.getMaturityLevel();
     }
 
@@ -269,7 +267,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     @Override
     public boolean canProduceJelly()
     {
-        return this.world.getWorldTime() % this.getJellyProductionRate() == 0;
+        return this.world.getTotalWorldTime() % this.getJellyProductionRate() == 0;
     }
 
     @Override
@@ -283,7 +281,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     {
         if (!this.world.isRemote)
         {
-            if (this.world.getWorldTime() % 20 == 0)
+            if (this.world.getTotalWorldTime() % 20 == 0)
             {
                 // this.setJellyLevel(this.getJellyLevel() + 20);
             }

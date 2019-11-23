@@ -147,7 +147,7 @@ public class EntityDeacon extends Species223ODe implements INascentic
     {
         if (!this.world.isRemote)
         {
-            if (this.world.getWorldTime() % 20 == 0)
+            if (this.world.getTotalWorldTime() % 20 == 0)
             {
                 this.setJellyLevel(this.getJellyLevel() + 20);
             }

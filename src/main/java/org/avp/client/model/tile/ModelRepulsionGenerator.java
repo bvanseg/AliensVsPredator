@@ -140,7 +140,7 @@ public class ModelRepulsionGenerator extends Model
         if (obj instanceof TileEntityRepulsionGenerator)
         {
             TileEntityRepulsionGenerator generator = (TileEntityRepulsionGenerator) obj;
-            this.rotor.rotateAngleY = ((Minecraft.getMinecraft().player.world.getWorldTime() % 360) + Game.partialTicks()) * (generator.getRotationSpeed());
+            this.rotor.rotateAngleY = ((Minecraft.getMinecraft().player.world.getTotalWorldTime() % 360) + Game.partialTicks()) * (generator.getRotationSpeed());
         }
 
         this.wireframe2.render(DEFAULT_SCALE);

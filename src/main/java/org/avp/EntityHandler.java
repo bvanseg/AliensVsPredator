@@ -3,6 +3,7 @@ package org.avp;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 
 import org.avp.entities.EntityAPC;
 import org.avp.entities.EntityAcidPool;
@@ -33,7 +34,6 @@ import org.avp.entities.living.species.engineer.EntitySpaceJockey;
 import org.avp.entities.living.species.species223ode.EntityDeacon;
 import org.avp.entities.living.species.species223ode.EntityDeaconAdult;
 import org.avp.entities.living.species.species223ode.EntityTrilobite;
-import org.avp.entities.living.species.xenomorphs.EntityNauticomorph;
 import org.avp.entities.living.species.xenomorphs.EntityBatXeno;
 import org.avp.entities.living.species.xenomorphs.EntityBoiler;
 import org.avp.entities.living.species.xenomorphs.EntityChestburster;
@@ -43,6 +43,7 @@ import org.avp.entities.living.species.xenomorphs.EntityDracomorph;
 import org.avp.entities.living.species.xenomorphs.EntityDrone;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.entities.living.species.xenomorphs.EntityMyceliomorph;
+import org.avp.entities.living.species.xenomorphs.EntityNauticomorph;
 import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
 import org.avp.entities.living.species.xenomorphs.EntityPantheramorph;
 import org.avp.entities.living.species.xenomorphs.EntityPraetorian;
@@ -374,18 +375,16 @@ public class EntityHandler implements IInitEvent
 
     public ArrayList<Biome> filterOverworldBiomes(ArrayList<Biome> biomes)
     {
-        @SuppressWarnings("unchecked")
-        ArrayList<Biome> newList = (ArrayList<Biome>) biomes.clone();
+        Iterator<Biome> iter = biomes.iterator();
 
-        for (Biome b : getOverworldBiomeList())
+        while (iter.hasNext())
         {
-            if (newList.contains(b))
-            {
-                newList.remove(b);
-            }
+            Biome biome = iter.next();
+            if (biomes.contains(biome))
+                iter.remove();
         }
 
-        return newList;
+        return biomes;
     }
 
     public static ArrayList<Biome> getOverworldBiomeList()

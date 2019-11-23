@@ -85,7 +85,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
         {
             OpenGL.scale(0.2F, 0.2F, 0.2F);
             OpenGL.translate(0, -1F, 0);
-            OpenGL.rotate((Game.minecraft().world.getWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((Game.minecraft().world.getTotalWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
 
             for (Part p : AliensVsPredator.resources().models().M577_APC.parts.values())
             {
