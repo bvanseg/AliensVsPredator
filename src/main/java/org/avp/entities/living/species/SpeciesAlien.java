@@ -8,7 +8,6 @@ import org.avp.DamageSources;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.api.parasitoidic.IRoyalOrganism;
 import org.avp.entities.EntityAcidPool;
-import org.avp.entities.living.species.xenomorphs.EntityDrone;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
 import org.avp.world.hives.HiveHandler;
@@ -73,7 +72,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
         super.writeEntityToNBT(nbt);
         this.writeAlienToNBT(nbt);
     }
-    
+
     public void writeAlienToNBT(NBTTagCompound nbt)
     {
         nbt.setString("HiveSignature", signature != null ? this.signature.toString() : "");
@@ -86,7 +85,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
         super.readEntityFromNBT(nbt);
         this.readAlienFromNBT(nbt);
     }
-    
+
     public void readAlienFromNBT(NBTTagCompound nbt)
     {
         this.signature = Worlds.uuidFromNBT(nbt, "HiveSignature");
@@ -143,7 +142,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     public boolean isReadyToMature(IRoyalOrganism jellyProducer)
     {
         IMaturable maturable = (IMaturable) this;
-        IRoyalOrganism ro = (IRoyalOrganism) this;
+        IRoyalOrganism ro = this;
         return maturable.getMatureState() != null && maturable.getMaturityLevel() > 0 && ro.getJellyLevel() >= maturable.getMaturityLevel();
     }
 
