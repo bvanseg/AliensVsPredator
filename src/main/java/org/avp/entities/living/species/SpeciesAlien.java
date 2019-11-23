@@ -160,40 +160,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
         this.setDead();
     }
 
-    protected void findRoyalJelly()
-    {
-        if (!this.world.isRemote && this.ticksExisted % 40 == 0)
-        {
-            int range = 8;
-            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(this.getPosition().add(-range, -8, -range), this.getPosition().add(range, 8, range)));
-
-            for (EntityItem entityItem : entityItemList)
-            {
-                if (!entityItem.cannotPickup())
-                {
-                    ItemStack stack = entityItem.getItem();
-
-                    if (stack.getItem() == AliensVsPredator.items().itemRoyalJelly)
-                    {
-                        if (this.canMoveToJelly() && this.isDependant)
-                        {
-                            this.getNavigator().setPath(this.getNavigator().getPathToEntityLiving(entityItem), 1);
-                        }
-
-                        if (this.getDistanceSq(entityItem) <= 1)
-                        {
-                            this.onPickupJelly(entityItem);
-                        }
-                        break;
-                    }
-                }
-            }
-
-            entityItemList.clear();
-            entityItemList = null;
-        }
-    }
-
     public UUID getHiveSignature()
     {
         return this.signature;
@@ -261,7 +227,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
         }
 
         this.identifyHive();
-        this.findRoyalJelly();
     }
 
     @Override
