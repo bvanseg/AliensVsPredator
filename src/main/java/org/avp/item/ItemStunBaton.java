@@ -39,7 +39,9 @@ public class ItemStunBaton extends ItemSword
     {
         if (hasCharge(player.world, player))
         {
-            addArcEffect(player, entity);
+            if(player.world.isRemote)
+                addArcEffect(player, entity);
+            
             Sounds.WEAPON_STUNBATON.playSound(entity);
 
             if (entity instanceof EntityLiving)
