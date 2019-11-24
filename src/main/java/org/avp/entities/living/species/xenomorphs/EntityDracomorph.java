@@ -220,10 +220,4 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
     {
         ;
     }
-    
-    @Override
-    protected void findRoyalJelly()
-    {
-        ;
-    }
 }

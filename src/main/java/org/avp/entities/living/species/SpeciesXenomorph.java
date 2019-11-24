@@ -3,6 +3,7 @@ package org.avp.entities.living.species;
 import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntityAIFindJelly;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 
@@ -53,10 +54,11 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityLiving.class, 1.0D, false));
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+        this.tasks.addTask(1, new EntityAIFindJelly(this));
         this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
-        this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.6F));
+        this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, EntityLiving.class, 1.0D, false));
+        this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
+        this.tasks.addTask(5, new EntityAILeapAtTarget(this, 0.6F));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLiving>(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, false, false, EntitySelectorXenomorph.instance));
