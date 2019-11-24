@@ -14,6 +14,7 @@ public class EntityAIShareJelly extends EntityAIBase
     {
         super();
         this.xenomorph = xenomorph;
+        this.setMutexBits(5);
     }
 
     @Override
