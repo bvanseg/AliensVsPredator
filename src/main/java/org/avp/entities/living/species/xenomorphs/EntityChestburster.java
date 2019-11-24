@@ -223,6 +223,8 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
         organism.removeEmbryo();
         host.getActivePotionEffects().clear();
         host.attackEntityFrom(DamageSources.causeChestbursterDamage(this, host), 100000F);
+        if(!host.isDead)
+            host.setHealth(0);
     }
     
     @Override
