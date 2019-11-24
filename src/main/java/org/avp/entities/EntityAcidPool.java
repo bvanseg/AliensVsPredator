@@ -8,6 +8,7 @@ import org.avp.entities.living.species.SpeciesAlien;
 
 import com.google.common.base.Predicate;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -26,9 +27,8 @@ public class EntityAcidPool extends EntityLiquidPool implements IMob
         super(world);
         this.isImmuneToFire = false;
         this.ignoreFrustumCheck = true;
-        this.setSize(0.08F, 0.08F);
+        this.setSize(1.65F, 0.09F);
         this.tasks.addTask(0, new EntityAIMeltBlock(this, -1));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<>(this, EntityLiving.class, 0, false, false, SELECTOR));
     }
 
     private static final Predicate<EntityLivingBase> SELECTOR = new Predicate<EntityLivingBase>()
@@ -93,6 +93,18 @@ public class EntityAcidPool extends EntityLiquidPool implements IMob
     {
         return true;
     }
+    
+    @Override
+    protected void collideWithEntity(Entity target)
+    {
+        if(!this.world.isRemote && target instanceof EntityLivingBase)
+        {
+            if (target != null && SELECTOR.apply((EntityLivingBase)target))
+            {
+                target.attackEntityFrom(DamageSources.acid, 4F);
+            }
+        }
+    }
 
     public float getAcidIntensity()
     {
@@ -103,18 +115,6 @@ public class EntityAcidPool extends EntityLiquidPool implements IMob
     public void onUpdate()
     {
         super.onUpdate();
-
-        if (!this.world.isRemote)
-        {
-            double range = 1.2;
-            EntityLivingBase target = (EntityLivingBase) (this.world.findNearestEntityWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(range, 0.1D, range), this));
-
-            if (target != null && SELECTOR.apply(target))
-            {
-                this.setAttackTarget(target);
-                target.attackEntityFrom(DamageSources.acid, 4F);
-            }
-        }
 
         if (world.isRemote && world.getTotalWorldTime() % 4 <= 0)
         {
