@@ -71,15 +71,14 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
 
             if (Game.minecraft().player.getHeldItemMainhand() != null && Game.minecraft().player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
             {
-                OpenGL.disable(GL11.GL_LIGHTING);
+                OpenGL.disableLighting();
                 OpenGL.translate(-0.3439F, 0.6F, 0.04F);
                 OpenGL.scale(displayScale, displayScale, displayScale);
                 OpenGL.rotate(90F, 0F, 1F, 0F);
                 Draw.drawRect(-2, -2, 16, 11, 0xFF000000);
                 OpenGL.translate(0F, 0F, -0.01F);
-                OpenGL.disableLightMapping();
                 Draw.drawString(getAmmoCountDisplayString(), 0, 0, 0xFFFF0000);
-                OpenGL.enable(GL11.GL_LIGHTING);
+                OpenGL.enableLighting();
                 OpenGL.color(1F, 1F, 1F, 1F);
             }
             
