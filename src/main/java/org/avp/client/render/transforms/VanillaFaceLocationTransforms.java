@@ -175,6 +175,23 @@ public class VanillaFaceLocationTransforms
                 OpenGL.translate(0F, -1.1F, -0.95F);
             }
         });
+        
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityDonkey.class)
+        {
+            @Override
+            public void pre(Entity entity, float partialTicks)
+            {
+                ;
+            }
+
+            @Override
+            public void post(Entity entity, float partialTicks)
+            {
+                OpenGL.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+                OpenGL.rotate(-130.0F, 1.0F, 0.0F, 0.0F);
+                OpenGL.translate(0F, -0.55F, -1.05F);
+            }
+        });
 
         RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityCreeper.class)
         {
