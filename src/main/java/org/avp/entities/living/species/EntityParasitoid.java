@@ -136,6 +136,9 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     {
         super.onUpdate();
         
+        if(this.getAttackTarget() != null && !EntityParasitoid.impregnationSelector.apply(this.getAttackTarget()))
+            this.setAttackTarget(null);
+        
         if (!this.isFertile())
         {
             this.setNoAI(true);
