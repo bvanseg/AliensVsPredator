@@ -225,6 +225,8 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     @Override
     public void detachFromHost()
     {
+        if(this.getRidingEntity() instanceof EntityLivingBase)
+            ((EntityLiving) this.getRidingEntity()).setNoAI(false);
         this.dismountRidingEntity();
         this.setNoAI(true);
         this.setFertility(false);
