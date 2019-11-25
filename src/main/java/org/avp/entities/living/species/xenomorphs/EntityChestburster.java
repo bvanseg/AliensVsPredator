@@ -6,6 +6,7 @@ import org.avp.api.parasitoidic.INascentic;
 import org.avp.api.parasitoidic.IRoyalOrganism;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 import org.avp.entities.living.species.EntityParasitoid;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.world.capabilities.IOrganism.Organism;
@@ -81,6 +82,9 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     public void onUpdate()
     {
         super.onUpdate();
+        
+        if(this.getAttackTarget() != null && !EntityParasitoid.impregnationSelector.apply(this.getAttackTarget()))
+            this.setAttackTarget(null);
     }
 
     @Override
