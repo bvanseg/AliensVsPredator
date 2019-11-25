@@ -93,6 +93,9 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
 
         this.updateInnerMouth();
         this.ocassionallyOpenMouth();
+        
+        if(this.getAttackTarget() != null && !EntitySelectorXenomorph.instance.apply(this.getAttackTarget()))
+            this.setAttackTarget(null);
     }
 
     public boolean isCrawling()
