@@ -1,13 +1,16 @@
 package org.avp.entities.living.species.xenomorphs;
 
 import org.avp.EntityItemDrops;
+import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.living.species.SpeciesXenomorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityPredalien extends SpeciesXenomorph implements IMob
@@ -55,5 +58,11 @@ public class EntityPredalien extends SpeciesXenomorph implements IMob
     {
         super.onDeath(damageSource);
         EntityItemDrops.SKULL_PREDATOR.tryDrop(this);
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerPredalien);
     }
 }

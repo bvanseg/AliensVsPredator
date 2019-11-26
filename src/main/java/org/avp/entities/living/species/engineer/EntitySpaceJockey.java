@@ -2,11 +2,14 @@ package org.avp.entities.living.species.engineer;
 
 import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
+import org.avp.ItemHandler;
 import org.avp.entities.living.species.SpeciesEngineer;
 
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntitySpaceJockey extends SpeciesEngineer
@@ -76,5 +79,11 @@ public class EntitySpaceJockey extends SpeciesEngineer
     public boolean isWearingMask()
     {
         return true;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerSpaceJockey);
     }
 }

@@ -1,6 +1,7 @@
 package org.avp.entities.living.species.species223ode;
 
 import org.avp.DamageSources;
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.INascentic;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
@@ -23,9 +24,11 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityDeacon extends Species223ODe implements INascentic
@@ -152,5 +155,11 @@ public class EntityDeacon extends Species223ODe implements INascentic
                 this.setJellyLevel(this.getJellyLevel() + 20);
             }
         }
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerDeacon);
     }
 }

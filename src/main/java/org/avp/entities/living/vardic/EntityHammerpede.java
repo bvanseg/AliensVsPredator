@@ -3,6 +3,7 @@ package org.avp.entities.living.vardic;
 import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
+import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityAcidPool;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
@@ -18,11 +19,13 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityHammerpede extends SpeciesAlien implements IMob
@@ -162,5 +165,11 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
     public void identifyHive()
     {
         ;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerHammerpede);
     }
 }

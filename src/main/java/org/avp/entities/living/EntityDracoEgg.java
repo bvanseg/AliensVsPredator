@@ -1,5 +1,6 @@
 package org.avp.entities.living;
 
+import org.avp.ItemHandler;
 import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
 import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 
@@ -7,6 +8,8 @@ import com.asx.mdx.lib.world.Pos;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityDracoEgg extends EntityOvamorph
@@ -62,5 +65,11 @@ public class EntityDracoEgg extends EntityOvamorph
 
             this.setContainsFacehugger(false);
         }
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.Experimental.summonerDracoEgg);
     }
 }

@@ -3,6 +3,7 @@ package org.avp.entities.living.species.xenomorphs;
 import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.client.Sounds;
 import org.avp.entities.living.species.SpeciesXenomorph;
@@ -16,6 +17,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.tileentity.TileEntity;
@@ -284,5 +286,11 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
     public int getMaturityTime()
     {
         return (15 * 60) * 20;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerDrone);
     }
 }

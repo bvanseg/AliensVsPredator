@@ -1,5 +1,6 @@
 package org.avp.entities.living.species.xenomorphs.parasites;
 
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
@@ -13,7 +14,9 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityFacehugger extends EntityParasitoid implements IMob, IParasitoid
@@ -98,5 +101,11 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     protected SoundEvent getDeathSound()
     {
         return this.isFertile() ? Sounds.FACEHUGGER_DEATH.event() : super.getDeathSound();
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerFacehugger);
     }
 }

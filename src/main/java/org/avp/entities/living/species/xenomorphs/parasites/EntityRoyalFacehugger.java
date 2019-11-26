@@ -1,5 +1,6 @@
 package org.avp.entities.living.species.xenomorphs.parasites;
 
+import org.avp.ItemHandler;
 import org.avp.world.Embryo;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
@@ -7,6 +8,8 @@ import org.avp.world.capabilities.IOrganism.Provider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityRoyalFacehugger extends EntityFacehugger
@@ -59,5 +62,11 @@ public class EntityRoyalFacehugger extends EntityFacehugger
         organism.impregnate(Embryo.QUEEN);
         organism.syncWithClients(living);
         this.setFertility(false);
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerRoyalFacehugger);
     }
 }

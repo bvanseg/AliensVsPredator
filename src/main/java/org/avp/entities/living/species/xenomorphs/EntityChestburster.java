@@ -1,6 +1,7 @@
 package org.avp.entities.living.species.xenomorphs;
 
 import org.avp.DamageSources;
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.api.parasitoidic.INascentic;
 import org.avp.api.parasitoidic.IRoyalOrganism;
@@ -29,11 +30,13 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
@@ -247,5 +250,11 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     public int getMaturityLevel()
     {
         return 6400;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerChestburster);
     }
 }

@@ -2,6 +2,7 @@ package org.avp.entities.living.vardic;
 
 import java.util.List;
 
+import org.avp.ItemHandler;
 import org.avp.entities.EntityAcidPool;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.helpers.EntityExtendedLookHelper;
@@ -25,8 +26,10 @@ import net.minecraft.entity.ai.EntityLookHelper;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityDeaconShark extends SpeciesAlien
@@ -338,5 +341,11 @@ public class EntityDeaconShark extends SpeciesAlien
                 this.shark.setAIMoveSpeed(0.0F);
             }
         }
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerDeaconShark);
     }
 }

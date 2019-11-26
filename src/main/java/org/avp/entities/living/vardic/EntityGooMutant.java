@@ -1,5 +1,6 @@
 package org.avp.entities.living.vardic;
 
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.living.species.SpeciesAlien;
@@ -20,8 +21,10 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityGooMutant extends EntityMob implements IMob, IHost
@@ -114,5 +117,11 @@ public class EntityGooMutant extends EntityMob implements IMob, IHost
     public boolean canHostParasite()
     {
         return false;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerGooMutant);
     }
 }

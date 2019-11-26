@@ -2,6 +2,7 @@ package org.avp.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.EntityItemDrops;
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityBullet;
@@ -37,6 +38,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost, Predicate<EntityLivingBase>
@@ -217,5 +219,11 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     public long getLastShotFired()
     {
         return this.lastShotFired;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerCombatSynthetic);
     }
 }
