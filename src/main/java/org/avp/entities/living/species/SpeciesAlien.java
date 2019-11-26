@@ -24,6 +24,7 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -110,6 +111,14 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
         EntityAcidPool entity = new EntityAcidPool(this.world);
         entity.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
         this.world.spawnEntity(entity);
+    }
+    
+    @Override
+    public boolean attackEntityFrom(DamageSource source, float amount)
+    {
+        if(!this.world.isRemote && this.getHealth() > amount && !source.isProjectile() && !source.isMagicDamage() && (this.getMaxHealth() * 0.25 <= amount || this.rand.nextInt(30) == 0))
+            this.spawnAcidPool();
+        return super.attackEntityFrom(source, amount);
     }
 
     @Override
