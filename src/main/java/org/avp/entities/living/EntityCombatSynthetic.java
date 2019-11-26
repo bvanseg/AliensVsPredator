@@ -183,9 +183,6 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
         if (entity instanceof SpeciesXenomorph)
             return true;
 
-        if (entity instanceof EntityLiquidPool)
-            return false;
-
         if (entity instanceof EntityPlayer)
             return false;
 

@@ -48,11 +48,6 @@ public class EntityAethon extends EntityMob implements IMob, IHost
                                                                   return false;
                                                               }
 
-                                                              if (target instanceof EntityLiquidPool)
-                                                              {
-                                                                  return false;
-                                                              }
-
                                                               return true;
                                                           }
                                                       };

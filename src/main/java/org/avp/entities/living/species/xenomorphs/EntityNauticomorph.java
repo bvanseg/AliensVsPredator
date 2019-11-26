@@ -54,7 +54,7 @@ public class EntityNauticomorph extends SpeciesXenomorph
         @Override
         public boolean apply(EntityLivingBase entity)
         {
-            return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityNauticomorph) && !(entity instanceof EntityAcidPool);
+            return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityNauticomorph);
         }
     };
 

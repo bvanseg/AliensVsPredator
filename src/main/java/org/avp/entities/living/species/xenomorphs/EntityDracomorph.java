@@ -54,11 +54,6 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
                                                               return false;
                                                           }
 
-                                                          if (target instanceof EntityLiquidPool)
-                                                          {
-                                                              return false;
-                                                          }
-
                                                           return true;
                                                       }
                                                   };

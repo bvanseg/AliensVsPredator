@@ -1,12 +1,10 @@
 package org.avp.entities;
 
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class EntityLiquidPool extends EntityCreature
+public class EntityLiquidPool extends Entity
 {
     protected int lifetime;
 
@@ -23,21 +21,16 @@ public class EntityLiquidPool extends EntityCreature
     @Override
     protected void entityInit()
     {
-        super.entityInit();
-    }
-    
-    @Override
-    public boolean isAIDisabled()
-    {
-        return false;
     }
 
     @Override
-    protected void applyEntityAttributes()
+    protected void readEntityFromNBT(NBTTagCompound compound)
     {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0D);
+    }
+
+    @Override
+    protected void writeEntityToNBT(NBTTagCompound compound)
+    {
     }
 
     @Override
@@ -84,17 +77,5 @@ public class EntityLiquidPool extends EntityCreature
     public int getLifetime()
     {
         return lifetime;
-    }
-    
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return null;
-    }
-    
-    @Override
-    protected SoundEvent getDeathSound()
-    {
-        return null;
     }
 }

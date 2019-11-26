@@ -35,7 +35,7 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
         @Override
         public boolean apply(EntityLivingBase entity)
         {
-            return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityHammerpede) && !(entity instanceof EntityAcidPool);
+            return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityHammerpede);
         }
     };
 

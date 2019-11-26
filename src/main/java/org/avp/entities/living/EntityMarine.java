@@ -104,9 +104,6 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         if (entity instanceof SpeciesXenomorph)
             return true;
 
-        if (entity instanceof EntityLiquidPool)
-            return false;
-
         if (entity instanceof EntityPlayer)
             return false;
 

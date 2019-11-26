@@ -1,10 +1,10 @@
 package org.avp.api.blocks;
 
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public interface IAcidResistant
 {
-    public boolean canAcidDestroy(World world, BlockPos posBelow, EntityLiving acid);
+    public boolean canAcidDestroy(World world, BlockPos posBelow, Entity acid);
 }

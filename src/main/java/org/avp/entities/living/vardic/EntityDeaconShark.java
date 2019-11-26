@@ -42,11 +42,6 @@ public class EntityDeaconShark extends SpeciesAlien
                                                               @Override
                                                               public boolean apply(EntityLivingBase target)
                                                               {
-                                                                  if (target instanceof EntityAcidPool)
-                                                                  {
-                                                                      return false;
-                                                                  }
-                                                                  
                                                                   return  !(target instanceof EntityDeaconShark) && EntityDeaconShark.this.canEntityBeSeen(target);
                                                               }
                                                           };
