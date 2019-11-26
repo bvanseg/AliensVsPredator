@@ -145,7 +145,7 @@ public class EntityAcidPool extends EntityLiquidPool
             });
         }
 
-        if (world.isRemote && world.getTotalWorldTime() % 4 <= 0)
+        if (world.isRemote && world.getTotalWorldTime() % 10 <= 0)
         {
             this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX + this.rand.nextDouble(), this.posY + this.rand.nextDouble(), this.posZ + this.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
         }
