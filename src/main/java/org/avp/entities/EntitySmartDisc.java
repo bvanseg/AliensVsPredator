@@ -2,6 +2,7 @@ package org.avp.entities;
 
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
+import org.avp.ItemHandler;
 
 import com.asx.mdx.lib.util.GameSounds;
 
@@ -25,6 +26,7 @@ public class EntitySmartDisc extends EntityProjectile
     private float soundTimer;
     public float floatStrength;
     public Item thrownItem;
+    public ItemStack stack;
 
     public EntitySmartDisc(World world)
     {
@@ -54,6 +56,7 @@ public class EntitySmartDisc extends EntityProjectile
         this.soundTimer = 0.0F;
         this.floatStrength = Math.min(1.5F, velocity);
         System.out.println(this.floatStrength);
+        itemstack = stack;
     }
 
     @Override
@@ -129,7 +132,7 @@ public class EntitySmartDisc extends EntityProjectile
     @Override
     public void onEntityHit(Entity entity)
     {
-        if (!this.world.isRemote && this.floatStrength >= 0.7F)
+        if (!this.world.isRemote)
         {
             EntityPlayer player;
 
@@ -166,25 +169,20 @@ public class EntitySmartDisc extends EntityProjectile
                 if (entity instanceof EntityPlayer)
                 {
                     player = (EntityPlayer) entity;
-                    ItemStack item = this.getItemstack();
+                    
+                    GameSounds.fxPop.playSound(this, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);;
+                    this.onItemPickup(player);
 
-                    if (item == null)
-                    {
-                        return;
-                    }
-
-                    if (player.capabilities.isCreativeMode || player.inventory.addItemStackToInventory(item))
-                    {
-                        GameSounds.fxPop.playSound(this, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);;
-                        this.onItemPickup(player);
-                        this.setDead();
-                        return;
-                    }
+                    if (!player.capabilities.isCreativeMode)
+                        player.inventory.add(-1, stack == null ? new ItemStack(ItemHandler.itemDisc) : stack);
+                    
+                    this.setDead();
+                    return;
                 }
             }
         }
     }
-
+    
     @Override
     public void onGroundHit(RayTraceResult result)
     {
