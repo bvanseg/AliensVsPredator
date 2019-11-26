@@ -9,21 +9,18 @@ import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 import org.avp.api.blocks.IAcidResistant;
 import org.avp.entities.living.species.SpeciesAlien;
-
-import com.asx.mdx.lib.util.GameSounds;
 import com.google.common.base.Predicate;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
@@ -100,7 +97,11 @@ public class EntityAcidPool extends EntityLiquidPool
         @Override
         public boolean apply(@Nullable EntityLivingBase living)
         {
-            if (living instanceof SpeciesAlien)
+            if (living instanceof EntityPlayer && ((EntityPlayer)living).capabilities.isCreativeMode)
+            {
+                return false;
+            }
+            else if (living instanceof SpeciesAlien)
             {
                 return false;
             }
@@ -116,41 +117,11 @@ public class EntityAcidPool extends EntityLiquidPool
     }
 
     @Override
-    public boolean canBeCollidedWith()
-    {
-        return false;
-    }
-
-    @Override
-    public boolean canBePushed()
-    {
-        return false;
-    }
-
-    @Override
-    protected boolean canTriggerWalking()
-    {
-        return false;
-    }
-
-    @Override
     public boolean isInRangeToRenderDist(double range)
     {
         return true;
     }
-
-    @Override
-    public void applyEntityCollision(Entity target)
-    {
-        if (!this.world.isRemote && target instanceof EntityLivingBase)
-        {
-            if (target != null && SELECTOR.apply((EntityLivingBase) target))
-            {
-                target.attackEntityFrom(DamageSources.acid, 4F);
-            }
-        }
-    }
-
+    
     public float getAcidIntensity()
     {
         return 1F - (1F / this.getLifetime() / (1F / this.ticksExisted));
@@ -160,7 +131,19 @@ public class EntityAcidPool extends EntityLiquidPool
     public void onUpdate()
     {
         super.onUpdate();
+        
+        ArrayList<EntityLivingBase> entityItemList = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - 1, this.posY, this.posZ - 1, this.posX + 1, this.posY + 1, this.posZ + 1));
 
+        if (!this.world.isRemote && !entityItemList.isEmpty())
+        {
+            entityItemList.forEach(e -> {
+                if(SELECTOR.apply(e))
+                {
+                    e.addPotionEffect(new PotionEffect(MobEffects.POISON, (14 * 20), 0));
+                    e.attackEntityFrom(DamageSources.acid, 4f);
+                }
+            });
+        }
 
         if (world.isRemote && world.getTotalWorldTime() % 4 <= 0)
         {
@@ -179,7 +162,8 @@ public class EntityAcidPool extends EntityLiquidPool
 
                 if (this.rand.nextInt(20) == 0)
                 {
-                    GameSounds.fxMinecraftFizz.playSound(this.world, this.getPosition(), 1F, 1F);
+                    //GameSounds.fxMinecraftFizz.playSound(this.world, this.getPosition(), 1F, 1F);
+                    // FIXME: This crashes the game, we can't access sounds through raw resource locations.
                 }
 
                 if (blockBlacklist.contains(destroy) || destroy instanceof IAcidResistant && ((IAcidResistant) destroy).canAcidDestroy(this.world, pos, this))
@@ -188,10 +172,6 @@ public class EntityAcidPool extends EntityLiquidPool
                 }
 
                 this.breakProgress += hardness;
-                // this.theEntity.world.destroyBlockInWorldPartially(this.theEntity.getEntityId(),
-                // (int) Math.floor(this.theEntity.posX), (int) this.theEntity.posY + yOffset,
-                // (int) Math.floor(this.theEntity.posZ), (int) (this.breakProgress * 10.0F) -
-                // 1);
 
                 if (this.breakProgress >= 1F)
                 {
@@ -201,18 +181,6 @@ public class EntityAcidPool extends EntityLiquidPool
                         this.breakProgress = 0;
                     }
                 }
-            }
-        }
-    }
-
-    @Override
-    public void onCollideWithPlayer(EntityPlayer player)
-    {
-        if (!this.world.isRemote)
-        {
-            if (!player.capabilities.isCreativeMode)
-            {
-                player.addPotionEffect(new PotionEffect(MobEffects.POISON, (14 * 20), 0));
             }
         }
     }
