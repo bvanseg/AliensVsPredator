@@ -1,5 +1,6 @@
 package org.avp.entities.living.species.xenomorphs;
 
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.INascentic;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
@@ -16,8 +17,10 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityRunnerChestburster extends EntityChestburster implements IMob, INascentic
@@ -81,5 +84,11 @@ public class EntityRunnerChestburster extends EntityChestburster implements IMob
     public int getMaturityTime()
     {
         return (8 * 60) * 20;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerRunnerBurster);
     }
 }

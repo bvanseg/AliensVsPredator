@@ -2,6 +2,7 @@ package org.avp.entities.living.species.xenomorphs;
 
 import java.util.ArrayList;
 
+import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityAcidPool;
 import org.avp.entities.living.species.SpeciesAlien;
@@ -17,11 +18,13 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityNauticomorph extends SpeciesXenomorph
@@ -51,7 +54,7 @@ public class EntityNauticomorph extends SpeciesXenomorph
         @Override
         public boolean apply(EntityLivingBase entity)
         {
-            return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityNauticomorph) && !(entity instanceof EntityAcidPool);
+            return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityNauticomorph);
         }
     };
 
@@ -211,5 +214,11 @@ public class EntityNauticomorph extends SpeciesXenomorph
     public void setPhosphorescenceLevel(float level)
     {
         this.getDataManager().set(PHOSPHORESCENCE_LEVEL, level);
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerAqua);
     }
 }

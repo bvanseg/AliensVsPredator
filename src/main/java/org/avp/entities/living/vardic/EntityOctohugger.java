@@ -2,6 +2,7 @@ package org.avp.entities.living.vardic;
 
 import java.util.ArrayList;
 
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
@@ -22,6 +23,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -299,5 +301,11 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     public void identifyHive()
     {
         ;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerOctohugger);
     }
 }

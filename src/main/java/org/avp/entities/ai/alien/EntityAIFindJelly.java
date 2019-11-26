@@ -24,6 +24,7 @@ public class EntityAIFindJelly extends EntityAIBase
         this.xenomorph = xenomorph;
         this.world = xenomorph.world;
         this.hasPickedUpJelly = false;
+        this.setMutexBits(1);
     }
 
     @Override

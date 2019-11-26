@@ -4,6 +4,7 @@ import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntityAIFindJelly;
+import org.avp.entities.ai.alien.EntityAIShareJelly;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 
@@ -53,12 +54,13 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
     protected void addStandardXenomorphAISet()
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
-        this.tasks.addTask(1, new EntityAIFindJelly(this));
-        this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
-        this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, EntityLiving.class, 1.0D, false));
-        this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-        this.tasks.addTask(5, new EntityAILeapAtTarget(this, 0.6F));
+        this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.6F));
+        this.tasks.addTask(2, new EntityAIWander(this, 0.8D));
+        this.tasks.addTask(3, new EntityAIFindJelly(this));
+        this.tasks.addTask(3, new EntityAIShareJelly(this));
+        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
+        this.tasks.addTask(5, new EntityAICustomAttackOnCollide(this, EntityLiving.class, 1.0D, false));
+        this.tasks.addTask(5, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLiving>(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
         this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, false, false, EntitySelectorXenomorph.instance));
@@ -91,7 +93,9 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
 
         this.updateInnerMouth();
         this.ocassionallyOpenMouth();
-        this.shareJelly();
+        
+        if(this.getAttackTarget() != null && !EntitySelectorXenomorph.instance.apply(this.getAttackTarget()))
+            this.setAttackTarget(null);
     }
 
     public boolean isCrawling()
@@ -223,28 +227,6 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
                 {
                     this.decreaseOuterJawProgress();
                 }
-            }
-        }
-    }
-
-    private void shareJelly()
-    {
-        if (this.hive != null && !this.world.isRemote)
-        {
-            if (this.hive.getQueen() != null && !this.hive.getQueen().isDead && !(this instanceof EntityMatriarch))
-            {
-                if (this.hive.getQueen().getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || this.hive.getQueen().reproducing)
-                {
-                    if (this.hive.getQueen().getJellyLevel() < EntityMatriarch.OVIPOSITOR_JELLYLEVEL_THRESHOLD * 2 && this.getJellyLevel() >= 80)
-                    {
-                        this.hive.getQueen().setJellyLevel(this.hive.getQueen().getJellyLevel() + this.getJellyLevel());
-                        this.setJellyLevel(0);
-                    }
-                }
-            }
-            else
-            {
-                this.hive = null;
             }
         }
     }

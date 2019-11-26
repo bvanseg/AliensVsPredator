@@ -147,7 +147,7 @@ public class TacticalHUDRenderEvent
                                                 OpenGL.rotate(180F, 0F, 1F, 0F);
                                                 OpenGL.scale(textScale, -textScale, textScale);
 
-                                                String dist = ((int) living.getDistanceSq(Game.minecraft().player)) + "";
+                                                String dist = ((int) living.getDistance((Game.minecraft().player)) + "");
                                                 Draw.drawString(dist, textX - 19 - (Draw.getStringRenderWidth(dist) / 2), (textY += textMultiplier) + 15, color, false);
 
                                                 if (organism.hasEmbryo())

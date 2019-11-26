@@ -1,5 +1,6 @@
 package org.avp.entities.living.species.xenomorphs;
 
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.client.Sounds;
 import org.avp.entities.living.species.SpeciesXenomorph;
@@ -7,8 +8,10 @@ import org.avp.entities.living.species.SpeciesXenomorph;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityPraetorian extends SpeciesXenomorph implements IMaturable
@@ -75,5 +78,11 @@ public class EntityPraetorian extends SpeciesXenomorph implements IMaturable
     public int getMaturityTime()
     {
         return (30 * 60) * 20;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerPraetorian);
     }
 }

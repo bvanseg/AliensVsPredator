@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.avp.AliensVsPredator;
 import org.avp.EntityItemDrops;
+import org.avp.ItemHandler;
 import org.avp.entities.living.species.EntityParasitoid;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
@@ -18,8 +19,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityOvamorph extends SpeciesAlien implements IMob
@@ -208,5 +211,11 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
     public void setContainsFacehugger(boolean containsFacehugger)
     {
         this.containsFacehugger = containsFacehugger;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerOvamorph);
     }
 }

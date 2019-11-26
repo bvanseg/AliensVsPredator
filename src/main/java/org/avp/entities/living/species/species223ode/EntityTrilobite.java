@@ -54,6 +54,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnimated
@@ -692,5 +693,11 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     public Animation[] getAnimations()
     {
         return new Animation[] { IMPREGNATION_ANIMATION, ANIMATION_HUG_WALL };
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerTrilobite);
     }
 }

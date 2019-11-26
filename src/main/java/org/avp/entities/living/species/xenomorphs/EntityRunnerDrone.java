@@ -1,9 +1,12 @@
 package org.avp.entities.living.species.xenomorphs;
 
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IMaturable;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityRunnerDrone extends EntityDrone implements IMaturable
@@ -27,5 +30,11 @@ public class EntityRunnerDrone extends EntityDrone implements IMaturable
     public Class<? extends Entity> getMatureState()
     {
         return EntityRunnerWarrior.class;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerRunnerDrone);
     }
 }

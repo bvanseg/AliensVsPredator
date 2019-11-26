@@ -1,6 +1,5 @@
 package org.avp.entities;
 
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
 
 public class EntityLiquidLatexPool extends EntityLiquidPool
@@ -14,20 +13,6 @@ public class EntityLiquidLatexPool extends EntityLiquidPool
     protected void entityInit()
     {
         super.entityInit();
-    }
-
-    @Override
-    public boolean isAIDisabled()
-    {
-        return false;
-    }
-
-    @Override
-    protected void applyEntityAttributes()
-    {
-        super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0D);
     }
 
     @Override

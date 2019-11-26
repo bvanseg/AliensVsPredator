@@ -2,10 +2,13 @@ package org.avp.entities.living.species.yautja;
 
 import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
+import org.avp.ItemHandler;
 import org.avp.entities.living.species.SpeciesYautja;
 
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityYautjaBerserker extends SpeciesYautja
@@ -50,5 +53,11 @@ public class EntityYautjaBerserker extends SpeciesYautja
             EntityItemDrops.BIOMASK_FALCONER.tryDrop(this);
             EntityItemDrops.BIOMASK_TRACKER.tryDrop(this);
         }
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerYautjaBerserker);
     }
 }

@@ -56,6 +56,7 @@ public class BlockGenerator extends Block
         {
             TileEntityRepulsionGenerator generator = (TileEntityRepulsionGenerator) tile;
             showGeneratorGUI(playerIn, generator);
+            return true;
         }
 
         return super.onBlockActivated(world, pos, state, playerIn, hand, side, hitX, hitY, hitZ);

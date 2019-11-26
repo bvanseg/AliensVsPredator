@@ -1,5 +1,6 @@
 package org.avp.entities.living.species.species223ode;
 
+import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
@@ -15,9 +16,11 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityDeaconAdult extends Species223ODe
@@ -90,5 +93,11 @@ public class EntityDeaconAdult extends Species223ODe
     public void identifyHive()
     {
         ;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerDeaconAdult);
     }
 }

@@ -1,5 +1,6 @@
 package org.avp.entities.living.vardic;
 
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 
@@ -13,8 +14,10 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityUrsuidae extends EntityMob implements IMob, IHost
@@ -84,5 +87,11 @@ public class EntityUrsuidae extends EntityMob implements IMob, IHost
     public boolean canHostParasite()
     {
         return false;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.Experimental.summonerUrsuidae);
     }
 }

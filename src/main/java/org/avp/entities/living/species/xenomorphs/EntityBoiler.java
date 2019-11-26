@@ -1,12 +1,15 @@
 package org.avp.entities.living.species.xenomorphs;
 
+import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.living.species.SpeciesXenomorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityBoiler extends SpeciesXenomorph
@@ -65,5 +68,11 @@ public class EntityBoiler extends SpeciesXenomorph
     public void identifyHive()
     {
         ;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.Experimental.summonerBoiler);
     }
 }

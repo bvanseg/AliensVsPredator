@@ -257,6 +257,11 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     {
         return hive;
     }
+    
+    public void setHive(XenomorphHive hive)
+    {
+        this.hive = hive;
+    }
 
     public void identifyHive()
     {

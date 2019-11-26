@@ -23,7 +23,9 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityDonkey;
 import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityLlama;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityPig;
@@ -152,8 +154,42 @@ public class VanillaFaceLocationTransforms
             public void post(Entity entity, float partialTicks)
             {
                 OpenGL.rotate(180.0F, 0.0F, 1.0F, 0.0F);
-                OpenGL.rotate(-150.0F, 1.0F, 0.0F, 0.0F);
-                OpenGL.translate(0F, -0.6F, -1.0F);
+                OpenGL.rotate(-137.0F, 1.0F, 0.0F, 0.0F);
+                OpenGL.translate(0F, -0.6F, -1.1F);
+            }
+        });
+        
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityLlama.class)
+        {
+            @Override
+            public void pre(Entity entity, float partialTicks)
+            {
+                ;
+            }
+
+            @Override
+            public void post(Entity entity, float partialTicks)
+            {
+                OpenGL.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+                OpenGL.rotate(-105.0F, 1.0F, 0.0F, 0.0F);
+                OpenGL.translate(0F, -1.1F, -0.95F);
+            }
+        });
+        
+        RenderFacehuggers.transforms.add(new EntityRenderTransforms(EntityDonkey.class)
+        {
+            @Override
+            public void pre(Entity entity, float partialTicks)
+            {
+                ;
+            }
+
+            @Override
+            public void post(Entity entity, float partialTicks)
+            {
+                OpenGL.rotate(180.0F, 0.0F, 1.0F, 0.0F);
+                OpenGL.rotate(-130.0F, 1.0F, 0.0F, 0.0F);
+                OpenGL.translate(0F, -0.55F, -1.05F);
             }
         });
 
@@ -406,7 +442,7 @@ public class VanillaFaceLocationTransforms
                 OpenGL.rotate(90.0F, 0.0F, 0.0F, 1.0F);
                 OpenGL.rotate(140.0F, 0.0F, 1.0F, 0.0F);
                 OpenGL.rotate(90.0F, 0.0F, 0.0F, 1.0F);
-                OpenGL.translate(0F, -0.15F, 0.75F);
+                OpenGL.translate(0F, -0.37F, 0.55F);
             }
         });
 

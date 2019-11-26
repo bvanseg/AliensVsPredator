@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.avp.EntityItemDrops;
+import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityBullet;
 import org.avp.entities.EntityLiquidPool;
@@ -45,6 +46,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Predicate<EntityLivingBase>
@@ -101,9 +103,6 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
         if (entity instanceof SpeciesXenomorph)
             return true;
-
-        if (entity instanceof EntityLiquidPool)
-            return false;
 
         if (entity instanceof EntityPlayer)
             return false;
@@ -217,5 +216,11 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     public void setSwingingArms(boolean swingingArms)
     {
         ;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerMarine);
     }
 }

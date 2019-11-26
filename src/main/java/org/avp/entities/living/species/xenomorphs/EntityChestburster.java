@@ -1,11 +1,13 @@
 package org.avp.entities.living.species.xenomorphs;
 
 import org.avp.DamageSources;
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.api.parasitoidic.INascentic;
 import org.avp.api.parasitoidic.IRoyalOrganism;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 import org.avp.entities.living.species.EntityParasitoid;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.world.capabilities.IOrganism.Organism;
@@ -28,11 +30,13 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
@@ -81,6 +85,9 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     public void onUpdate()
     {
         super.onUpdate();
+        
+        if(this.getAttackTarget() != null && !EntityParasitoid.impregnationSelector.apply(this.getAttackTarget()))
+            this.setAttackTarget(null);
     }
 
     @Override
@@ -223,6 +230,8 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
         organism.removeEmbryo();
         host.getActivePotionEffects().clear();
         host.attackEntityFrom(DamageSources.causeChestbursterDamage(this, host), 100000F);
+        if(!host.isDead)
+            host.setHealth(0);
     }
     
     @Override
@@ -241,5 +250,11 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     public int getMaturityLevel()
     {
         return 6400;
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerChestburster);
     }
 }

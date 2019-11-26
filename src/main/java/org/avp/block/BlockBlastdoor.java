@@ -296,8 +296,14 @@ public class BlockBlastdoor extends Block
                     }
                 }
             }
+            else
+            {
+                BlockPos parentPos = door.getPos();
+                IBlockState parentState = world.getBlockState(parentPos);
+                return new ItemStack(BlockHandler.getItemFromBlock(parentState.getBlock()));
+            }
         }
-
-        return new ItemStack(BlockHandler.getItemFromBlock(BlockHandler.sevastopolBlastDoor));
+        
+        return null; // Null here means something went seriously wrong.
     }
 }

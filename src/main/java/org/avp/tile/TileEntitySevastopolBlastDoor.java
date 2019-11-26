@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import org.avp.AliensVsPredator;
+import org.avp.BlockHandler;
 
+import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 
 public class TileEntitySevastopolBlastDoor extends TileEntityBlastdoor
@@ -47,5 +49,11 @@ public class TileEntitySevastopolBlastDoor extends TileEntityBlastdoor
     public void playCloseSound()
     {
         AliensVsPredator.sounds().BLASTDOOR_SEVASTOPOL_CLOSE.playSound(world, pos, 1F, 1F);
+    }
+    
+    @Override
+    public Block getMultiBlockType()
+    {
+        return BlockHandler.sevastopolBlastDoor;
     }
 }

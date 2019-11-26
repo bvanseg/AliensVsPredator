@@ -20,9 +20,6 @@ public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
         if (target instanceof SpeciesAlien)
             return false;
         
-        if (target instanceof EntityLiquidPool)
-            return false;
-        
         if (target instanceof EntityLivingBase)
         {
             EntityLivingBase livingBase = (EntityLivingBase) target;

@@ -1,6 +1,7 @@
 package org.avp.entities.living;
 
 import org.avp.EntityItemDrops;
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.entities.EntityLiquidPool;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
@@ -22,6 +23,7 @@ import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -29,6 +31,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityAethon extends EntityMob implements IMob, IHost
@@ -41,11 +44,6 @@ public class EntityAethon extends EntityMob implements IMob, IHost
                                                           public boolean apply(EntityLivingBase target)
                                                           {
                                                               if (target instanceof EntityAethon)
-                                                              {
-                                                                  return false;
-                                                              }
-
-                                                              if (target instanceof EntityLiquidPool)
                                                               {
                                                                   return false;
                                                               }
@@ -214,5 +212,11 @@ public class EntityAethon extends EntityMob implements IMob, IHost
         EntityItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
         EntityItemDrops.SKULL_AETHON.tryDrop(this);
         EntityItemDrops.HEAD_GIGER.tryDrop(this);
+    }
+    
+    @Override
+    public ItemStack getPickedResult(RayTraceResult target)
+    {
+        return new ItemStack(ItemHandler.summonerAethon);
     }
 }
