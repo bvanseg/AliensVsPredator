@@ -10,6 +10,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAIAttackMelee;
 import net.minecraft.entity.ai.EntityAIAttackRanged;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -22,7 +23,10 @@ import net.minecraft.world.World;
 
 public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob
 {
-    EntityAIBase rangedAttackAI = new EntityAIAttackRanged(this, 0.4D, 16, 40);
+    private final EntityAIBase rangedAttackAI = new EntityAIAttackRanged(this, 0.4D, 16, 40);
+    private final EntityAIAttackMelee meleeAttackAI = new EntityAIAttackMelee(this, 1.2D, false);
+    
+    private boolean isMeleeMode = false;
     
     public EntitySpitter(World par1World)
     {
@@ -68,12 +72,38 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob
     {
         return 2;
     }
+    
+    /**
+     * Updates the combat tasks of the spitter. If an entity is within sqrt(34) blocks, it will use melee. Else, it will use spit.
+     */
+    public void updateCombatTasks()
+    {
+        float rangeThreshold = 34f;
+        
+        if(this.getAttackTarget() != null)
+        {
+            if (this.getDistanceSq(this.getAttackTarget()) <= rangeThreshold && !this.isMeleeMode)
+            {
+                this.isMeleeMode = true;
+                this.tasks.removeTask(rangedAttackAI);
+                this.tasks.addTask(1, meleeAttackAI);
+            }
+            else if (this.getDistanceSq(this.getAttackTarget()) >= rangeThreshold && this.isMeleeMode)
+            {
+                this.isMeleeMode = false;
+                this.tasks.removeTask(meleeAttackAI);
+                this.tasks.addTask(1, rangedAttackAI);
+            }
+        }
+    }
 
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        this.attackEntityWithRangedAttack((EntityLivingBase) entity, 0.2f);
-        return true;
+        if(!isMeleeMode)
+            this.attackEntityWithRangedAttack((EntityLivingBase) entity, 0.2f);
+        
+        return super.attackEntityAsMob(entity);
     }
 
     @Override
@@ -96,6 +126,7 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob
     public void onUpdate()
     {
         super.onUpdate();
+        this.updateCombatTasks();
     }
 
     @Override
