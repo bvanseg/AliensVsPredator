@@ -190,6 +190,13 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
                 this.prevRotationYawHead = living.prevRotationYawHead;
                 this.prevRotationYaw = living.prevRotationYaw;
             }
+            
+            if(this.getRidingEntity() instanceof EntityPlayer && ((EntityPlayer)this.getRidingEntity()).capabilities.isCreativeMode)
+            {
+                Organism organism = (Organism) this.getRidingEntity().getCapability(Provider.CAPABILITY, null);
+                organism.removeEmbryo();
+                this.detachFromHost();
+            }
         }
 
         if (this.getTicksOnHost() > this.getDetachTime())
@@ -225,7 +232,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     @Override
     public void detachFromHost()
     {
-        if(this.getRidingEntity() instanceof EntityLivingBase)
+        if(!(this.getRidingEntity() instanceof EntityPlayer) && this.getRidingEntity() instanceof EntityLivingBase)
             ((EntityLiving) this.getRidingEntity()).setNoAI(false);
         this.dismountRidingEntity();
         this.setNoAI(true);

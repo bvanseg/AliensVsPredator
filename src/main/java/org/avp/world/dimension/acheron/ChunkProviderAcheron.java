@@ -373,7 +373,8 @@ public class ChunkProviderAcheron implements IChunkGenerator
     @Override
     public List<SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
     {
-        return null;
+        Biome biome = this.world.getBiome(pos);
+        return biome == null ? null : biome.getSpawnableList(creatureType);
     }
 
     @Override

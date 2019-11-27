@@ -21,5 +21,6 @@ public class RenderRunnerChestburster extends RenderLivingWrapper<EntityRunnerCh
     {
         super.preRenderCallback(entitylivingBase, shadowSize);
         OpenGL.scale(0.55F, 0.55F, 0.55F);
+        OpenGL.translate(0.0f, 0f, -0.9f);
     }
 }

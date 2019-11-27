@@ -67,7 +67,7 @@ public class EntityAcidProjectile extends Entity implements IProjectile
             this.canBePickedUp = 1;
         }
 
-        this.posY = shooter.posY + shooter.getEyeHeight() - 0.10000000149011612D;
+        this.posY = shooter.posY + shooter.getEyeHeight()  / 1.5D;
         double distX = target.posX - shooter.posX;
         double distY = target.getEntityBoundingBox().minY + target.height / 3.0F - this.posY;
         double distZ = target.posZ - shooter.posZ;
@@ -159,16 +159,9 @@ public class EntityAcidProjectile extends Entity implements IProjectile
     {
         super.onUpdate();
 
-        ++this.ticksInGround;
-
-        if (this.ticksInGround >= 200)
-        {
-            this.setDead();
-        }
-
         if (((this.prevPosX - this.posX) + (this.prevPosY - this.posY) + (this.prevPosZ - this.prevPosZ)) == 0)
         {
-            if (!world.isRemote)
+            if (!world.isRemote && this.inGround)
             {
                 Entity entity = new EntityAcidPool(world);
                 entity.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -303,16 +296,11 @@ public class EntityAcidProjectile extends Entity implements IProjectile
                         result.entityHit.setFire(5);
                     }
 
-                    if (result.entityHit.attackEntityFrom(damagesource, var23))
+                    if (result.entityHit != this.shootingEntity && result.entityHit.attackEntityFrom(damagesource, var23))
                     {
                         if (result.entityHit instanceof EntityLivingBase)
                         {
                             EntityLivingBase entitylivingbase = (EntityLivingBase) result.entityHit;
-
-                            if (!this.world.isRemote)
-                            {
-                                entitylivingbase.setArrowCountInEntity(entitylivingbase.getArrowCountInEntity() + 1);
-                            }
 
                             if (this.knockbackStrength > 0)
                             {

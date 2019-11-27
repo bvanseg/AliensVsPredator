@@ -44,6 +44,7 @@ import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityHorse;
+import net.minecraft.entity.passive.EntityLlama;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.passive.EntityPig;
@@ -66,7 +67,7 @@ public class Embryo implements Cloneable
     static
     {
         new Embryo(EntityChestburster.class, EntityBoiler.class, EntityCreeper.class).register();
-        new Embryo(EntityChestburster.class, EntitySpitter.class, EntityWitch.class).register();
+        new Embryo(EntityChestburster.class, EntitySpitter.class, EntityWitch.class, EntityLlama.class).register();
         new Embryo(EntityDracoburster.class, EntityDracomorph.class, EntityDragon.class).register();
         new Embryo(EntityChestburster.class, EntityMyceliomorph.class, EntityMooshroom.class).register();
         new Embryo(EntityChestburster.class, EntityPantheramorph.class, EntityOcelot.class).register();
