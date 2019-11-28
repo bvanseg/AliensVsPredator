@@ -152,7 +152,6 @@ public class EntityAcidPool extends EntityLiquidPool
         
         if (this.world.getGameRules().getBoolean("mobGriefing"))
         {
-            System.out.println(this.breakProgress);
             if ((this.world.getDifficulty() == EnumDifficulty.NORMAL || this.world.getDifficulty() == EnumDifficulty.HARD) && this.getDistanceSq((int) this.posX, (int) this.posY + yOffset, (int) this.posZ) < 4.0D && block != Blocks.AIR && block != AliensVsPredator.blocks().naturalResin && block != Blocks.BEDROCK)
             {
                 BlockPos pos = new BlockPos((int) Math.floor(this.posX), (int) this.posY - 1, (int) Math.floor(this.posZ));
