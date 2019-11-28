@@ -77,12 +77,14 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
         private final String                   CATEGORY_GRAPHICS = "graphics";
 
         private ConfigSettingGraphics          hiveTessellation;
+        private ConfigSettingGraphics          bloodDetails;
         private ConfigSettingBoolean           bloodEffects;
 
         public void load(Configuration configuration)
         {
             this.configuration = configuration;
             this.hiveTessellation = new ConfigSettingGraphics(this, configuration.get(CATEGORY_GRAPHICS, "hive_tessellation", GraphicsSetting.ULTRA.ordinal(), "The visual complexity and detail of xenomorph hives."));
+            this.bloodDetails = new ConfigSettingGraphics(this, configuration.get(CATEGORY_GRAPHICS, "blood_details", GraphicsSetting.ULTRA.ordinal(), "Sets the amount of blood particles and how long they last."));
             this.bloodEffects = new ConfigSettingBoolean(this, configuration.get(CATEGORY_GRAPHICS, "blood_fx", true, "Turns blood particle effects on or off."));
         }
 
@@ -94,6 +96,11 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
         public ConfigSettingGraphics hiveTessellation()
         {
             return this.hiveTessellation;
+        }
+
+        public ConfigSettingGraphics bloodDetails()
+        {
+            return this.bloodDetails;
         }
 
         public ConfigSettingBoolean bloodFX()
