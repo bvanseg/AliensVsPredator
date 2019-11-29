@@ -335,7 +335,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     @Override
     public boolean attackEntityFrom(DamageSource source, float attackStrength)
     {
-    	if(source == DamageSource.IN_WALL && this.isAttachedToHost())
+    	if(source == DamageSource.IN_WALL && (this.isAttachedToHost() || !this.isFertile()))
     		return false;
     	
         return super.attackEntityFrom(source, attackStrength);
