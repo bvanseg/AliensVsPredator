@@ -325,6 +325,24 @@ public class ItemFirearm extends HookedItem
                 }
             }
         }
+        
+        for (ItemStack itemstack : player.inventory.offHandInventory)
+        {
+            if (itemstack != null && itemstack.getItem() instanceof ItemAmmunition)
+            {
+                ItemAmmunition ammunition = (ItemAmmunition) itemstack.getItem();
+
+                if (ammunition.getClassification() == firearm.getClassification())
+                {
+                    if (!simulate)
+                    {
+                        Inventories.consumeItem(player, ammunition);
+                    }
+
+                    return true;
+                }
+            }
+        }
 
         return false;
     }
