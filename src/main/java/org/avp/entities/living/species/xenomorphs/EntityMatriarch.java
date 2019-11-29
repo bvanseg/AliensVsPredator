@@ -7,6 +7,7 @@ import org.avp.AliensVsPredator;
 import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntityAIFindJelly;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.SpeciesXenomorph;
@@ -107,6 +108,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
         {
             this.tasks.addTask(0, new EntityAISwimming(this));
             this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
+            this.tasks.addTask(2, new EntityAIFindJelly(this));
             this.tasks.addTask(4, new EntityAICustomAttackOnCollide(this, 0.8D, true));
             this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
             this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
