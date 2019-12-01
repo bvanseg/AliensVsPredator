@@ -9,7 +9,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 
-abstract class ItemFirearmRenderer<T extends Model<?>> extends ItemRenderer<T>
+abstract class ItemFirearmRenderer<T extends Model> extends ItemRenderer<T>
 {
 	public ItemFirearmRenderer(MapModelTexture<T> model)
 	{
