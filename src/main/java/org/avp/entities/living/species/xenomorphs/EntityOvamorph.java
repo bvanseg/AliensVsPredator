@@ -21,28 +21,30 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
 public class EntityOvamorph extends SpeciesAlien implements IMob
 {
-    protected int hatchingTime;
     protected boolean hasHatched;
     protected boolean acceleratedHatching;
-    protected int openProgress;
     protected int hatchWaitTimer;
     protected final int maxOpenProgress = 21;
     protected boolean containsFacehugger;
     protected boolean sendUpdates;
+    
+    private static final DataParameter<Byte>    OPEN_PROGRESS       = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);
+    private static final DataParameter<Integer> HATCHING_TIME       = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.VARINT);
 
     public EntityOvamorph(World par1World)
     {
         super(par1World);
         this.setSize(1F, 1F);
-        this.hatchingTime = 20 * 30 + (10 * rand.nextInt(24));
         this.experienceValue = 10;
-        this.openProgress = -maxOpenProgress;
         this.hatchWaitTimer = 20 * 3 + (20 * rand.nextInt(5));
         this.containsFacehugger = true;
         this.sendUpdates = true;
@@ -59,6 +61,8 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
     protected void entityInit()
     {
         super.entityInit();
+        this.getDataManager().register(OPEN_PROGRESS, (byte)-this.maxOpenProgress);
+        this.getDataManager().register(HATCHING_TIME, 20 * 30 + (10 * rand.nextInt(24)));
     }
 
     @Override
@@ -67,7 +71,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
         super.readEntityFromNBT(nbt);
 
         this.containsFacehugger = nbt.getBoolean("containsFacehugger");
-        this.openProgress = nbt.getInteger("openProgress");
+        this.setOpenProgress(nbt.getInteger("openProgress"));
         this.sendUpdates = true;
     }
 
@@ -77,7 +81,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
         super.writeEntityToNBT(nbt);
 
         nbt.setBoolean("containsFacehugger", this.containsFacehugger);
-        nbt.setInteger("openProgress", this.openProgress);
+        nbt.setInteger("openProgress", this.getOpenProgress());
     }
 
     @Override
@@ -104,7 +108,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
     public void onUpdate()
     {
         super.onUpdate();
-
+        
         if (!this.world.isRemote && this.ticksExisted >= 20 && this.sendUpdates)
         {
             AliensVsPredator.network().sendToAll(new PacketOvamorphContainsFacehugger(this.containsFacehugger, this.getEntityId()));
@@ -118,7 +122,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
 
         if (!this.containsFacehugger)
         {
-            this.openProgress = this.getMaxOpenProgress();
+            this.setOpenProgress(this.getMaxOpenProgress());
         }
 
         if (this.containsFacehugger)
@@ -138,12 +142,14 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
 
                 if (this.hasHatched || potentialHosts.size() > 0)
                 {
-                    if (this.acceleratedHatching || this.hatchingTime <= 0)
+                    if (this.acceleratedHatching || this.getHatchingTime() <= 0)
                     {
-                        this.openProgress = this.openProgress < (maxOpenProgress) ? openProgress + 1 : this.openProgress;
+                        this.setOpenProgress(this.getOpenProgress() < (maxOpenProgress) ? this.getOpenProgress() + 1 : this.getOpenProgress());
                     }
 
-                    if ((this.hatchingTime -= hatchAcceleration) <= 1 || this.hasHatched)
+                    this.setHatchingTime(this.getHatchingTime() - hatchAcceleration);
+                    
+                    if (this.getHatchingTime() <= 1 || this.hasHatched)
                     {
                         if (this.hatchWaitTimer-- <= 0)
                         {
@@ -161,7 +167,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
         super.collideWithEntity(entity);
         if((entity instanceof EntityPlayer) && !((EntityPlayer)entity).capabilities.isCreativeMode || !(entity instanceof SpeciesAlien) && !(entity instanceof EntityPlayer))
         {
-            this.hatchingTime = 0;
+            this.setHatchingTime(0);
         }
     }
 
@@ -195,7 +201,22 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
 
     public int getOpenProgress()
     {
-        return this.openProgress;
+        return this.getDataManager().get(OPEN_PROGRESS);
+    }
+    
+    public void setOpenProgress(int progress)
+    {
+       this.getDataManager().set(OPEN_PROGRESS, (byte)progress);
+    }
+
+    public int getHatchingTime()
+    {
+        return this.getDataManager().get(HATCHING_TIME);
+    }
+    
+    public void setHatchingTime(int hatchingTime)
+    {
+       this.getDataManager().set(HATCHING_TIME, hatchingTime);
     }
 
     public int getMaxOpenProgress()
