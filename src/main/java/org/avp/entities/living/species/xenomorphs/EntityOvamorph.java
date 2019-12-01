@@ -55,6 +55,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
     {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(8.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.0D);
     }
 
     @Override
