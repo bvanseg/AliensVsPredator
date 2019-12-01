@@ -1,14 +1,17 @@
 package org.avp.world;
 
+import org.avp.AliensVsPredator;
 import org.avp.Settings.ClientSettings;
 import org.avp.entities.living.species.SpeciesYautja;
 import org.avp.entities.living.species.species223ode.EntityTrilobite;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
+import com.asx.mdx.config.GraphicsSetting;
 import com.asx.mdx.lib.client.entityfx.EntityBloodFX;
 import com.asx.mdx.lib.util.Game;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
@@ -141,24 +144,30 @@ public class EntityImpregnationHandler
                                     host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, organism.getEmbryo().getGestationPeriod() / 2));
                                 }
                             }
-
-                            if (world.isRemote && timeLeft <= 3)
+                            
+                            if(world.isRemote)
                             {
-                                for (int i = 256; i > 0; i--)
+                                GraphicsSetting bloodDetails = ClientSettings.instance.bloodDetails().value();
+                                int particleCount = bloodDetails.ordinal() < 2 ? 32 : 0 + 32 * (int)Math.pow(2, bloodDetails.ordinal());
+                                
+                                if (timeLeft <= 3)
                                 {
-                                    this.bleed(host, 0.5F);
-                                }
-                            }
-
-                            if (world.isRemote && age >= timeBleed)
-                            {
-                                this.bleed(host, 0.25F);
-
-                                if (host.getRNG().nextInt(100) == 0)
-                                {
-                                    for (int i = 32; i > 0; i--)
+                                    for (int i = particleCount; i > 0; i--)
                                     {
                                         this.bleed(host, 0.5F);
+                                    }
+                                }
+
+                                if (age >= timeBleed && bloodDetails.ordinal() > 2)
+                                {
+                                    this.bleed(host, 0.25F);
+
+                                    if (host.getRNG().nextInt(100) == 0 && bloodDetails.ordinal() > 3)
+                                    {
+                                        for (int i = 32; i > 0; i--)
+                                        {
+                                            this.bleed(host, 0.5F);
+                                        }
                                     }
                                 }
                             }
@@ -233,8 +242,27 @@ public class EntityImpregnationHandler
             particleColor = 0xA831FF;
             glow = true;
         }
+        
+        GraphicsSetting bloodDetails = ClientSettings.instance.bloodDetails().value();
+        int maxAge = 0;
+        
+        switch(bloodDetails)
+        {
+        	case LOW:
+        		maxAge = 60; // 3 seconds
+        		break;
+        	case MEDIUM:
+        		maxAge = 30 * 20; // 30 seconds
+        		break;
+        	case HIGH:
+        		maxAge = (30 * 20) * 2; // 60 seconds
+        		break;
+        	case ULTRA:
+        		maxAge = (60 * 20) * 2; // 120 seconds
+        		break;
+        }
 
-        Game.minecraft().effectRenderer.addEffect(new EntityBloodFX(host.world, pX, pY, pZ, particleColor, glow));
+        Game.minecraft().effectRenderer.addEffect(new EntityBloodFX(host.world, pX, pY, pZ, particleColor, maxAge, glow));
     }
 
     @SubscribeEvent

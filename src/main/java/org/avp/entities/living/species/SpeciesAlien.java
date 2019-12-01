@@ -116,7 +116,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     @Override
     public boolean attackEntityFrom(DamageSource source, float amount)
     {
-        if(!this.world.isRemote && this.getHealth() > amount && !source.isProjectile() && !source.isMagicDamage() && (this.getMaxHealth() * 0.25 <= amount || this.rand.nextInt(30) == 0))
+        if(!this.world.isRemote && this.getHealth() > amount && source != DamageSource.IN_WALL && !source.isProjectile() && !source.isMagicDamage() && (this.getMaxHealth() * 0.25 <= amount || this.rand.nextInt(30) == 0))
             this.spawnAcidPool();
         return super.attackEntityFrom(source, amount);
     }

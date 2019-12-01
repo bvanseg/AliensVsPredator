@@ -5,6 +5,7 @@ import org.avp.item.ItemFirearm;
 import com.asx.mdx.lib.util.Game;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -43,7 +44,16 @@ public class PacketAmmoUpdate implements IMessage, IMessageHandler<PacketAmmoUpd
             @Override
             public void run()
             {
-                ((ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem()).setAmmoCount(packet.ammo);
+            	EntityPlayer player = ctx.getServerHandler().player;
+
+                if (player != null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
+                {
+                    ((ItemFirearm) player.getHeldItemMainhand().getItem()).setAmmoCount(packet.ammo);
+                }
+                else if (player != null && player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
+                {
+                	((ItemFirearm) player.getHeldItemOffhand().getItem()).setAmmoCount(packet.ammo);
+                }
             }
         });
         return null;

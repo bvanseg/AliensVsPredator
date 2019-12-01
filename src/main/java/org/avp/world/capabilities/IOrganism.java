@@ -237,7 +237,7 @@ public interface IOrganism
 
         public void syncWithClients(EntityLivingBase living)
         {
-            if (living != null)
+            if (living != null && !living.world.isRemote)
                 AliensVsPredator.network().sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 

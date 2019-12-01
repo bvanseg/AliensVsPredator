@@ -86,11 +86,13 @@ public class Electrocardiogram extends Wavegraph
         flatlineY = (y + height - flatlineHeight) - (height / 2);
 
         OpenGL.enableBlend();
+        OpenGL.enableAlphaTest();
         Draw.drawRect(x, y, width, height, newdata ? backlightColor : backgroundColor);
         this.drawBPMString(partialTicks);
         OpenGL.disableTexture2d();
         this.drawRecords(partialTicks);
         OpenGL.enableTexture2d();
+        OpenGL.disableAlphaTest();
         OpenGL.disableBlend();
     }
 

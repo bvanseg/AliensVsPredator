@@ -22,7 +22,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemM41A extends ItemRenderer<ModelM41A>
+public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
 {
     private RenderMotionTrackerScreen motionTracker = new RenderMotionTrackerScreen();
 
@@ -59,7 +59,7 @@ public class RenderItemM41A extends ItemRenderer<ModelM41A>
         {
             OpenGL.translate(1F, 1.25F, -0.3F);
 
-            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
+            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
             {
                 OpenGL.translate(-1.16F, -0.095F, 0.52F);
             }

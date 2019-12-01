@@ -14,7 +14,7 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemSniper extends ItemRenderer<ModelSniper>
+public class RenderItemSniper extends ItemFirearmRenderer<ModelSniper>
 {
     private float defaultFOV = Game.minecraft().gameSettings.getOptionFloatValue(GameSettings.Options.FOV);
 
@@ -43,7 +43,7 @@ public class RenderItemSniper extends ItemRenderer<ModelSniper>
                     this.defaultFOV = Game.minecraft().gameSettings.getOptionFloatValue(GameSettings.Options.FOV);
                 }
 
-                if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
+                if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
                 {
                     Game.minecraft().gameSettings.setOptionFloatValue(GameSettings.Options.FOV, 9F);
                 }
@@ -71,7 +71,7 @@ public class RenderItemSniper extends ItemRenderer<ModelSniper>
         float glScale = 1.5F;
         OpenGL.translate(0F, 0.35F, -0.3F);
 
-        if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
+        if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
         {
             this.getModel().getModel().setFirstPerson(true);
             OpenGL.translate(-0.5125F, 0.095F, 0.62F);

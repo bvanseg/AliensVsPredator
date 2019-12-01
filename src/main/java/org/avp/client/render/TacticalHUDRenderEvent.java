@@ -11,6 +11,7 @@ import org.avp.AliensVsPredator;
 import org.avp.client.gui.GuiTacticalHUDSettings;
 import org.avp.client.render.wavegraph.Wavegraph;
 import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
+import org.avp.entities.living.species.EntityParasitoid;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
@@ -81,6 +82,10 @@ public class TacticalHUDRenderEvent
                     }
 
                     trackedEntities = (ArrayList<EntityLivingBase>) Entities.getEntitiesInCoordsRange(Game.minecraft().player.world, EntityLivingBase.class, new Pos(Game.minecraft().player), 30, 30);
+                    
+                    trackedEntities.removeIf(e -> {
+                    	return (e instanceof EntityParasitoid) && !((EntityParasitoid)e).isFertile();
+                    });
                 }
 
                 if (trackedEntities != null)

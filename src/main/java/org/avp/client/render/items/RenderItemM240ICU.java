@@ -16,7 +16,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
+public class RenderItemM240ICU extends ItemFirearmRenderer<ModelM240ICU>
 {
     public RenderItemM240ICU()
     {
@@ -51,7 +51,7 @@ public class RenderItemM240ICU extends ItemRenderer<ModelM240ICU>
         {
             OpenGL.translate(0F, 0.15F, -0.4F);
 
-            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
+            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
             {
                 OpenGL.translate(-0.6495F, 0F, 0F);
             }

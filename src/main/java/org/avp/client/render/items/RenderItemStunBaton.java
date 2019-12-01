@@ -23,7 +23,7 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
     {
         float glScale = 1.1F;
         OpenGL.scale(glScale, glScale, glScale);
-        OpenGL.translate(0F, 0.1F, 0.1F);
+        OpenGL.translate(0F, 0.12F, 0.1F);
         OpenGL.rotate(180.0F, 1.0F, 0.0F, 1.0F);
         OpenGL.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
         this.getModel().draw();

@@ -14,7 +14,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemNostromoFlamethrower extends ItemRenderer<ModelSevastopolFlamethrower>
+public class RenderItemNostromoFlamethrower extends ItemFirearmRenderer<ModelSevastopolFlamethrower>
 {
     public RenderItemNostromoFlamethrower()
     {
@@ -48,7 +48,7 @@ public class RenderItemNostromoFlamethrower extends ItemRenderer<ModelSevastopol
         {
             OpenGL.translate(0F, 0.35F, -0.9F);
 
-            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
+            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
             {
                 OpenGL.translate(-0.5595F, 0F, 0F);
             }

@@ -3,6 +3,8 @@ package org.avp.tile;
 import org.avp.api.power.IVoltageProvider;
 
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.EnumSkyBlock;
 
 
 
@@ -16,11 +18,21 @@ public class TileEntitySolarPanel extends TileEntityElectrical implements IVolta
     @Override
     public void update()
     {
-        if (this.world.getWorldTime() < 12300 || this.world.getWorldTime() > 23850)
+        if (this.world.provider.hasSkyLight())
         {
-            if (this.getWorld().getTotalWorldTime() % (1000 / this.getUpdateFrequency()) == 0)
+            if (this.world.getTotalWorldTime() % (1000 / this.getUpdateFrequency()) == 0)
             {
-                this.setVoltage(120);
+                int i = this.world.getLightFor(EnumSkyBlock.SKY, pos) - this.world.getSkylightSubtracted();
+                float f = this.world.getCelestialAngleRadians(1.0F);
+
+                if (i > 0)
+                {
+                    float f1 = f < (float)Math.PI ? 0.0F : ((float)Math.PI * 2F);
+                    f = f + (f1 - f) * 0.2F;
+                    i = Math.round((float)i * MathHelper.cos(f));
+                }
+
+				this.setVoltage(MathHelper.clamp(i*10, 0, 120));
             }
         }
         else

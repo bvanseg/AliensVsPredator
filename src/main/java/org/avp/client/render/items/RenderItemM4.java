@@ -13,7 +13,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemM4 extends ItemRenderer<ModelM4>
+public class RenderItemM4 extends ItemFirearmRenderer<ModelM4>
 {
     public RenderItemM4()
     {
@@ -46,7 +46,7 @@ public class RenderItemM4 extends ItemRenderer<ModelM4>
             float glScale = 1.0F;
             OpenGL.translate(0F, 0.85F, 0F);
 
-            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus)
+            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
             {
                 OpenGL.translate(-0.8095F, 0.165F, 0.4F);
             }
