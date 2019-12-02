@@ -516,6 +516,8 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     {
         Organism organism = (Organism) target.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(Embryo.DEACON);
+        if(this.getImplantSound() != null)
+            this.playSound(this.getImplantSound(), 0.5F, 1F);
         organism.syncWithClients(target);
         this.setFertility(false);
     }
@@ -699,5 +701,10 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(ItemHandler.summonerTrilobite);
+    }
+    
+    public SoundEvent getImplantSound()
+    {
+        return Sounds.FACEHUGGER_IMPLANT.event();
     }
 }
