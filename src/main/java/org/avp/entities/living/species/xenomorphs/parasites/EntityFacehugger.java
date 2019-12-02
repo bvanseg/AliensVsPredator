@@ -123,6 +123,6 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     @Override
     protected void playStepSound(BlockPos pos, Block blockIn)
     {
-        this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.0475F, 3.0F);
+        this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.0575F, 3.0F);
     }
 }
