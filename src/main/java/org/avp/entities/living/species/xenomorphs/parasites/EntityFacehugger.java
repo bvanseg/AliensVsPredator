@@ -6,7 +6,9 @@ import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.living.species.EntityParasitoid;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
@@ -14,8 +16,10 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
@@ -69,7 +73,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     @Override
     protected boolean canTriggerWalking()
     {
-        return false;
+        return true;
     }
     
     @Override
@@ -107,5 +111,17 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(ItemHandler.summonerFacehugger);
+    }
+    
+    @Override
+    public SoundEvent getImplantSound()
+    {
+        return Sounds.FACEHUGGER_IMPLANT.event();
+    }
+    
+    @Override
+    protected void playStepSound(BlockPos pos, Block blockIn)
+    {
+        this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.0475F, 3.0F);
     }
 }

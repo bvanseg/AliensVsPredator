@@ -30,9 +30,13 @@ public class Sounds
     public static final Sound  CHESTBURSTER_HURT            = sound("chestburster.hurt");
     public static final Sound  CHESTBURSTER_ATTACK          = sound("chestburster.attack");
     public static final Sound  CHESTBURSTER_BURST           = sound("chestburster.burst");
+    
+    /** FACEHUGGER SOUNDS **/
     public static final Sound  FACEHUGGER_DEATH             = sound("facehugger.death");
     public static final Sound  FACEHUGGER_HURT              = sound("facehugger.hurt");
+    public static final Sound  FACEHUGGER_IMPLANT           = sound("facehugger.implant");
     public static final Sound  FACEHUGGER_LIVING            = sound("facehugger.living");
+    
     public static final Sound  MARINE_HURT                  = sound("marine.hurt");
     public static final Sound  MARINE_DEATH                 = sound("marine.death");
     public static final Sound  YAUTJA_LIVING                = sound("predator.living");

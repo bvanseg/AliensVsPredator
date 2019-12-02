@@ -35,6 +35,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
@@ -310,6 +311,8 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     {
         Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(living);
+        if(this.getImplantSound() != null)
+            this.playSound(this.getImplantSound(), 0.5F, 1F);
         organism.syncWithClients(living);
         this.setFertility(false);
     }
@@ -365,5 +368,10 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     {
         IParasitoid.writeToNBT(this, nbt);
         return super.writeToNBT(nbt);
+    }
+    
+    public SoundEvent getImplantSound()
+    {
+        return null;
     }
 }
