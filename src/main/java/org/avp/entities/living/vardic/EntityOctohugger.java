@@ -308,4 +308,10 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     {
         return new ItemStack(ItemHandler.summonerOctohugger);
     }
+    
+    @Override
+    public SoundEvent getImplantSound()
+    {
+        return Sounds.FACEHUGGER_IMPLANT.event();
+    }
 }
