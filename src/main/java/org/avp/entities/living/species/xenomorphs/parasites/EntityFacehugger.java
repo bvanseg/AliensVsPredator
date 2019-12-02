@@ -4,6 +4,7 @@ import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntityAIFacehuggerLeap;
 import org.avp.entities.living.species.EntityParasitoid;
 
 import net.minecraft.block.Block;
@@ -43,7 +44,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.55D, true));
         this.tasks.addTask(8, new EntityAIWander(this, 0.55D));
-        this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.8F));
+        this.targetTasks.addTask(2, new EntityAIFacehuggerLeap(this));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getImpregnationEntitiySelector()));
     }
 
