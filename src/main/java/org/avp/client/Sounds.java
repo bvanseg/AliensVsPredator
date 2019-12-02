@@ -28,12 +28,18 @@ public class Sounds
     public static final Sound  QUEEN_LIVING_CONSTANT        = sound("queen.living.constant");
     public static final Sound  QUEEN_LIVING                 = sound("queen.living");
     public static final Sound  QUEEN_DEATH                  = sound("queen.death");
-    
+
     /** PRAETORIAN SOUNDS **/
-    public static final Sound  PRAETORIAN_HURT                   = sound("praetorian.hurt");
-    public static final Sound  PRAETORIAN_LIVING                 = sound("praetorian.living");
-    public static final Sound  PRAETORIAN_DEATH                  = sound("praetorian.death");
-    
+    public static final Sound  PRAETORIAN_HURT              = sound("praetorian.hurt");
+    public static final Sound  PRAETORIAN_LIVING            = sound("praetorian.living");
+    public static final Sound  PRAETORIAN_DEATH             = sound("praetorian.death");
+
+    /** PRED-ALIEN SOUNDS **/
+    public static final Sound  PREDALIEN_ATTACK             = sound("predalien.attack");
+    public static final Sound  PREDALIEN_HURT               = sound("predalien.hurt");
+    public static final Sound  PREDALIEN_LIVING             = sound("predalien.living");
+    public static final Sound  PREDALIEN_DEATH              = sound("predalien.death");
+
     /** CHESTBURSTER SOUNDS **/
     public static final Sound  CHESTBURSTER_DEATH           = sound("chestburster.death");
     public static final Sound  CHESTBURSTER_HURT            = sound("chestburster.hurt");

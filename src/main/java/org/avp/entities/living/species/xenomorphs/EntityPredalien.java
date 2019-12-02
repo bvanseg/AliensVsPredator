@@ -5,6 +5,7 @@ import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.living.species.SpeciesXenomorph;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
@@ -38,19 +39,26 @@ public class EntityPredalien extends SpeciesXenomorph implements IMob
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.ALIEN_HURT.event();
+        return Sounds.PREDALIEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.ALIEN_LIVING.event();
+        return Sounds.PREDALIEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.ALIEN_DEATH.event();
+        return Sounds.PREDALIEN_DEATH.event();
+    }
+    
+    @Override
+    public boolean attackEntityAsMob(Entity entity)
+    {
+        Sounds.PREDALIEN_ATTACK.playSound(this, 1F, 1F);
+        return super.attackEntityAsMob(entity);
     }
 
     @Override
