@@ -41,19 +41,19 @@ public class EntityPraetorian extends SpeciesXenomorph implements IMaturable
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.ALIEN_HURT.event();
+        return Sounds.PRAETORIAN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.ALIEN_LIVING.event();
+        return Sounds.PRAETORIAN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.ALIEN_DEATH.event();
+        return Sounds.PRAETORIAN_DEATH.event();
     }
 
     @Override

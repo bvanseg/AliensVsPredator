@@ -22,10 +22,19 @@ public class Sounds
     public static final Sound  ALIEN_LIVING                 = sound("xeno.living");
     public static final Sound  ALIEN_HURT                   = sound("xeno.hurt");
     public static final Sound  ALIEN_DEATH                  = sound("xeno.death");
+    
+    /** QUEEN SOUNDS **/
     public static final Sound  QUEEN_HURT                   = sound("queen.hurt");
     public static final Sound  QUEEN_LIVING_CONSTANT        = sound("queen.living.constant");
     public static final Sound  QUEEN_LIVING                 = sound("queen.living");
     public static final Sound  QUEEN_DEATH                  = sound("queen.death");
+    
+    /** PRAETORIAN SOUNDS **/
+    public static final Sound  PRAETORIAN_HURT                   = sound("praetorian.hurt");
+    public static final Sound  PRAETORIAN_LIVING                 = sound("praetorian.living");
+    public static final Sound  PRAETORIAN_DEATH                  = sound("praetorian.death");
+    
+    /** CHESTBURSTER SOUNDS **/
     public static final Sound  CHESTBURSTER_DEATH           = sound("chestburster.death");
     public static final Sound  CHESTBURSTER_HURT            = sound("chestburster.hurt");
     public static final Sound  CHESTBURSTER_ATTACK          = sound("chestburster.attack");
