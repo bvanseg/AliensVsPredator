@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
@@ -28,6 +29,7 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -40,10 +42,18 @@ import net.minecraft.world.World;
 
 public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
 {
-    private static final DataParameter<Boolean> FERTILE              = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
-    private int                                 ticksOnHost          = 0;
+    private static final DataParameter<Boolean> FERTILE            = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
+    private int                                 ticksOnHost        = 0;
 
-    public static Predicate<EntityLivingBase>   impregnationSelector = new Predicate<EntityLivingBase>() {
+    public static ArrayList<Item>               blacklistedHelmets = new ArrayList();
+
+    static
+    {
+        blacklistedHelmets.add(ItemHandler.helmTitanium);
+        blacklistedHelmets.add(ItemHandler.mk50helmet);
+    }
+
+    public static Predicate<EntityLivingBase> impregnationSelector = new Predicate<EntityLivingBase>() {
                                                                          @Override
                                                                          public boolean apply(EntityLivingBase potentialTarget)
                                                                          {
@@ -79,7 +89,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
                                                                                  EntityPlayer player = (EntityPlayer) potentialTarget;
                                                                                  ItemStack headwear = Inventories.getHelmSlotItemStack(player);
 
-                                                                                 if (headwear != null && headwear.getItem() != Items.AIR || ((EntityPlayer) potentialTarget).capabilities.isCreativeMode)
+                                                                                 if (headwear != null && blacklistedHelmets.contains(headwear.getItem()) || ((EntityPlayer) potentialTarget).capabilities.isCreativeMode)
                                                                                  {
                                                                                      return false;
                                                                                  }
