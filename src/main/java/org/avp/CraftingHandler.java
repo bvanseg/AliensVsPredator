@@ -1,8 +1,12 @@
 package org.avp;
 
+import java.util.Arrays;
+
+import org.apache.commons.lang3.StringUtils;
 import org.avp.item.crafting.AssemblyManager;
 import org.avp.item.crafting.Schematic;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.PotionTypes;
@@ -33,25 +37,89 @@ public class CraftingHandler
     public static void registerOres(RegistryEvent.Register<IRecipe> event)
     {
         AliensVsPredator.log().info("Ore dictionary registration");
-        OreDictionary.registerOre("ingotCopper", ItemHandler.itemIngotCopper);
-        OreDictionary.registerOre("lithium", ItemHandler.itemIngotLithium);
-        OreDictionary.registerOre("ingotAluminum", ItemHandler.itemIngotAluminum);
-        OreDictionary.registerOre("oreCopper", BlockHandler.oreCopper);
-        OreDictionary.registerOre("oreLithium", BlockHandler.oreLithium);
-        OreDictionary.registerOre("oreAluminum", BlockHandler.oreBauxite);
-        OreDictionary.registerOre("oreAluminium", BlockHandler.oreBauxite);
-        OreDictionary.registerOre("oreSilicon", BlockHandler.oreSilicon);
-        OreDictionary.registerOre("silicon", ItemHandler.itemSilicon);
-        OreDictionary.registerOre("silica", ItemHandler.itemSilicon);
-        OreDictionary.registerOre("polycarbonate", ItemHandler.itemPolycarbonate);
-        OreDictionary.registerOre("plastic", ItemHandler.itemPolycarbonate);
-        OreDictionary.registerOre("logWood", BlockHandler.gigerLog);
-        OreDictionary.registerOre("neodymium", ItemHandler.neodymium);
-        OreDictionary.registerOre("magnet", ItemHandler.neodymiumMagnet);
-        OreDictionary.registerOre("oreMonazite", BlockHandler.oreMonazite);
-        OreDictionary.registerOre("cobalt", ItemHandler.cobalt);
-        OreDictionary.registerOre("oreCobalt", BlockHandler.oreCobalt);     
-        OreDictionary.registerOre("carbon", ItemHandler.itemCarbon);        
+        
+        registerOreDict("copper", ItemHandler.itemIngotCopper, "ingot");
+        registerOreDict("lithium", ItemHandler.itemIngotLithium, "ingot");
+        registerOreDict("aluminum", ItemHandler.itemIngotAluminum, "ingot");
+        registerOreDict("cobalt", ItemHandler.cobalt, "ingot");
+
+        registerOreDict("silicon", ItemHandler.itemSilicon, true, "material");
+        registerOreDict("silica", ItemHandler.itemSilicon, true, "material");
+        registerOreDict("polycarbonate", ItemHandler.itemPolycarbonate, true, "material");
+        registerOreDict("plastic", ItemHandler.itemPolycarbonate, true, "material");
+        registerOreDict("neodymium", ItemHandler.neodymium, true, "material");
+        registerOreDict("magnet", ItemHandler.neodymiumMagnet, true, "material");
+        registerOreDict("carbon", ItemHandler.itemCarbon, true, "material");
+
+        registerOreDict("copper", BlockHandler.oreCopper, "ore");
+        registerOreDict("lithium", BlockHandler.oreLithium, "ore"); 
+        registerOreDict("aluminum", BlockHandler.oreBauxite, "ore");
+        registerOreDict("aluminium", BlockHandler.oreBauxite, "ore");
+        registerOreDict("silicon", BlockHandler.oreSilicon, "ore");
+        registerOreDict("monazite", BlockHandler.oreMonazite, "ore");
+        registerOreDict("cobalt", BlockHandler.oreCobalt, "ore");
+
+        registerOreDict("wood", BlockHandler.gigerLog, true, "log");
+        
+//        OreDictionary.registerOre("ingotCopper", ItemHandler.itemIngotCopper);
+//        OreDictionary.registerOre("lithium", ItemHandler.itemIngotLithium);
+//        OreDictionary.registerOre("ingotAluminum", ItemHandler.itemIngotAluminum);
+//        OreDictionary.registerOre("oreCopper", BlockHandler.oreCopper);
+//        OreDictionary.registerOre("oreLithium", BlockHandler.oreLithium);
+//        OreDictionary.registerOre("oreAluminum", BlockHandler.oreBauxite);
+//        OreDictionary.registerOre("oreAluminium", BlockHandler.oreBauxite);
+//        OreDictionary.registerOre("oreSilicon", BlockHandler.oreSilicon);
+//        OreDictionary.registerOre("silicon", ItemHandler.itemSilicon);
+//        OreDictionary.registerOre("silica", ItemHandler.itemSilicon);
+//        OreDictionary.registerOre("polycarbonate", ItemHandler.itemPolycarbonate);
+//        OreDictionary.registerOre("plastic", ItemHandler.itemPolycarbonate);
+//        OreDictionary.registerOre("logWood", BlockHandler.gigerLog);
+//        OreDictionary.registerOre("neodymium", ItemHandler.neodymium);
+//        OreDictionary.registerOre("magnet", ItemHandler.neodymiumMagnet);
+//        OreDictionary.registerOre("oreMonazite", BlockHandler.oreMonazite);
+//        OreDictionary.registerOre("cobalt", ItemHandler.cobalt);
+//        OreDictionary.registerOre("oreCobalt", BlockHandler.oreCobalt);     
+//        OreDictionary.registerOre("carbon", ItemHandler.itemCarbon);        
+    }
+    
+    public static void registerOreDict(String name, Item item, String... prefixes)
+    {
+        registerOreDict(name, item, false, prefixes);
+    }
+    
+    public static void registerOreDict(String name, Item item, boolean registerSingleName, String... prefixes)
+    {
+        String tempName = name.toLowerCase();
+        
+        if(registerSingleName)
+            OreDictionary.registerOre(tempName, item);
+        
+        Arrays.stream(prefixes).forEach(e ->
+        {
+            OreDictionary.registerOre(e + "." + tempName, item);
+            OreDictionary.registerOre(e + "_" + tempName, item);
+            OreDictionary.registerOre(e + StringUtils.capitalize(tempName), item);
+        });
+    }
+    
+    public static void registerOreDict(String name, Block block, String... prefixes)
+    {
+        registerOreDict(name, block, false, prefixes);
+    }
+    
+    public static void registerOreDict(String name, Block block, boolean registerSingleName, String... prefixes)
+    {
+        String tempName = name.toLowerCase();
+        
+        if(registerSingleName)
+            OreDictionary.registerOre(tempName, block);
+        
+        Arrays.stream(prefixes).forEach(e ->
+        {
+            OreDictionary.registerOre(e + "." + tempName, block);
+            OreDictionary.registerOre(e + "_" + tempName, block);
+            OreDictionary.registerOre(e + StringUtils.capitalize(tempName), block);
+        });
     }
 
     private static void addSmelting()
