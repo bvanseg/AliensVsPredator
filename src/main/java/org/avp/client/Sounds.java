@@ -58,11 +58,18 @@ public class Sounds
     public static final Sound  FACEHUGGER_IMPLANT           = sound("facehugger.implant");
     public static final Sound  FACEHUGGER_LIVING            = sound("facehugger.living");
     
+    /** MARINE SOUNDS **/
     public static final Sound  MARINE_HURT                  = sound("marine.hurt");
     public static final Sound  MARINE_DEATH                 = sound("marine.death");
+    
+    /** YAUTJA SOUNDS **/
     public static final Sound  YAUTJA_LIVING                = sound("predator.living");
     public static final Sound  YAUTJA_HURT                  = sound("predator.hurt");
     public static final Sound  YAUTJA_DEATH                 = sound("predator.death");
+
+    /** YAUTJA VISION SOUNDS **/
+    public static final Sound  YAUTJA_VISION_SWITCH         = sound("predator.vision.switch");
+
     public static final Sound  WEAPON_FLAMETHROWER          = sound("weapon.flamethrower");
     public static final Sound  WEAPON_GUNSHOT               = sound("weapon.gunshot");
     public static final Sound  WEAPON_PLASMACASTER          = sound("weapon.plasmacaster");

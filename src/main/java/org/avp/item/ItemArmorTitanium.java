@@ -1,6 +1,7 @@
 package org.avp.item;
 
 import org.avp.AliensVsPredator;
+import org.avp.client.Sounds;
 import org.avp.client.render.VisionModeRenderEvent;
 import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.input.Keyboard;
@@ -67,6 +68,7 @@ public class ItemArmorTitanium extends ItemArmor
 
             if (helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().helmTitanium && AliensVsPredator.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
             {
+                Sounds.YAUTJA_VISION_SWITCH.playSound(Game.minecraft().player, 1F, 1F);
                 VisionModeRenderEvent.instance.switchMode();
             }
         }
