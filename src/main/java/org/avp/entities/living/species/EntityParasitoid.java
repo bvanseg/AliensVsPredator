@@ -237,7 +237,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
             ((EntityLiving) this.getRidingEntity()).setNoAI(false);
         this.dismountRidingEntity();
         this.setNoAI(true);
-        this.setFertility(false);
     }
 
     @Override
