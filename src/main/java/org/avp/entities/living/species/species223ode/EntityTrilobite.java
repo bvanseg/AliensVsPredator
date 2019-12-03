@@ -12,6 +12,7 @@ import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorTrilobite;
 import org.avp.entities.living.species.Species223ODe;
 import org.avp.item.ItemWristbracer;
+import org.avp.packets.client.PacketImpregnationSound;
 import org.avp.packets.server.PacketAttachParasiteToEntity;
 import org.avp.world.Embryo;
 import org.avp.world.capabilities.IOrganism.Organism;
@@ -243,6 +244,11 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
             {
                 AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_HUG_WALL);
             }
+        }
+        
+        if(this.getActiveAnimation() == IMPREGNATION_ANIMATION && this.getAnimationTick() == 95)
+        {
+            Sounds.FACEHUGGER_IMPLANT.playSound(this, 1F, 1F);
         }
 
         if (this.getRidingEntity() == null && this.getActiveAnimation() == IMPREGNATION_ANIMATION)
@@ -518,8 +524,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     {
         Organism organism = (Organism) target.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(Embryo.DEACON);
-        if(this.getImplantSound() != null)
-            this.playSound(this.getImplantSound(), 0.5F, 1F);
         organism.syncWithClients(target);
         this.setFertility(false);
     }
