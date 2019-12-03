@@ -8,9 +8,11 @@ import org.avp.packets.server.PacketDamageEntity;
 
 import com.asx.mdx.lib.world.entity.Entities;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -27,6 +29,7 @@ public class EntityLaserMine extends Entity
     private String ownerUUID;
     public int direction;
     public RayTraceResult laserHit;
+    public BlockPos parentBlockPos;
 
     public EntityLaserMine(World world)
     {
@@ -38,6 +41,7 @@ public class EntityLaserMine extends Entity
     public EntityLaserMine(World world, BlockPos pos, int direction, String ownerUUID)
     {
         this(world);
+        this.parentBlockPos = pos;
         this.direction = direction;
         this.ownerUUID = ownerUUID;
         this.moveToBlockPosAndAngles(pos, 0F, 0F);
@@ -53,7 +57,10 @@ public class EntityLaserMine extends Entity
     public boolean canStay()
     {
         List<Entity> entities = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
-
+        
+        if(parentBlockPos != null && (world.getBlockState(parentBlockPos) == null || world.getBlockState(parentBlockPos) == Blocks.AIR.getDefaultState()))
+            return false;
+        
         for (Entity entity : entities)
         {
             if (entity instanceof EntityLaserMine)
