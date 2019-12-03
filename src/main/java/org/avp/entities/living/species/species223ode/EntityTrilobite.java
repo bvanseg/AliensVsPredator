@@ -304,6 +304,8 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
             {
                 EntityLiving living = (EntityLiving) this.getRidingEntity();
 
+                living.setNoAI(true);
+                
                 living.rotationYawHead = 0;
                 living.rotationYaw = 0;
                 living.prevRotationYawHead = 0;
@@ -525,6 +527,8 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     public void detachFromHost()
     {
+        if(!(this.getRidingEntity() instanceof EntityPlayer) && this.getRidingEntity() instanceof EntityLivingBase)
+            ((EntityLiving) this.getRidingEntity()).setNoAI(false);
         this.dismountRidingEntity();
         this.setNoAI(true);
     }
