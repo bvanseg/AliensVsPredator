@@ -3,7 +3,6 @@ package org.avp.client.model.tile.skulls;
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
 
 public class ModelBiomaskFalconer extends Model
 {

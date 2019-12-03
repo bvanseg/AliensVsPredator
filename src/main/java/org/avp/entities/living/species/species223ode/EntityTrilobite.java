@@ -12,7 +12,6 @@ import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorTrilobite;
 import org.avp.entities.living.species.Species223ODe;
 import org.avp.item.ItemWristbracer;
-import org.avp.packets.client.PacketImpregnationSound;
 import org.avp.packets.server.PacketAttachParasiteToEntity;
 import org.avp.world.Embryo;
 import org.avp.world.capabilities.IOrganism.Organism;

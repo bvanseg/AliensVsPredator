@@ -5,7 +5,6 @@ import org.avp.URLs;
 import org.avp.client.model.items.ModelAK47;
 import org.lwjgl.input.Mouse;
 
-import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.util.Game;

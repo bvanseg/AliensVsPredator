@@ -9,7 +9,6 @@ import org.avp.Settings;
 import org.avp.Settings.ClientSettings;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.config.ConfigSetting;
 import com.asx.mdx.config.ConfigSettingBoolean;

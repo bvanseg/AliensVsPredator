@@ -5,7 +5,6 @@ import java.util.concurrent.Callable;
 import org.avp.AliensVsPredator;
 import org.avp.packets.client.OrganismClientSync;
 import org.avp.packets.server.OrganismServerSync;
-import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.avp.world.playermode.PlayerMode;
 
 import net.minecraft.entity.EntityLivingBase;

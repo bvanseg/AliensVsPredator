@@ -9,7 +9,6 @@ import org.avp.packets.server.PacketFirearmSync;
 import org.avp.packets.server.PacketReloadFirearm;
 
 import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.util.Sound;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;

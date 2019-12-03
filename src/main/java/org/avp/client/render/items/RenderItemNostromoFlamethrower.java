@@ -5,7 +5,6 @@ import org.avp.client.model.items.ModelSevastopolFlamethrower;
 import org.avp.item.ItemFirearm;
 import org.lwjgl.input.Mouse;
 
-import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
 

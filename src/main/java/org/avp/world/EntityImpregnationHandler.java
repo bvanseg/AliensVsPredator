@@ -1,6 +1,5 @@
 package org.avp.world;
 
-import org.avp.AliensVsPredator;
 import org.avp.Settings.ClientSettings;
 import org.avp.entities.living.species.SpeciesYautja;
 import org.avp.entities.living.species.species223ode.EntityTrilobite;
@@ -11,7 +10,6 @@ import com.asx.mdx.config.GraphicsSetting;
 import com.asx.mdx.lib.client.entityfx.EntityBloodFX;
 import com.asx.mdx.lib.util.Game;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;

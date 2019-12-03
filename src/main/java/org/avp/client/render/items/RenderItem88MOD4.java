@@ -4,7 +4,6 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.items.Model88MOD4;
 import org.lwjgl.input.Mouse;
 
-import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
 

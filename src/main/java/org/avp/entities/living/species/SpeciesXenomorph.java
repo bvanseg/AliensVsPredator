@@ -6,7 +6,6 @@ import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntityAIFindJelly;
 import org.avp.entities.ai.alien.EntityAIShareJelly;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
-import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

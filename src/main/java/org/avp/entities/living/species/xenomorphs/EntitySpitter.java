@@ -3,7 +3,6 @@ package org.avp.entities.living.species.xenomorphs;
 import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityAcidProjectile;
-import org.avp.entities.EntityBullet;
 import org.avp.entities.living.species.SpeciesXenomorph;
 
 import net.minecraft.entity.Entity;
@@ -16,7 +15,6 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;

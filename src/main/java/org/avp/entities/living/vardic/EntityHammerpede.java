@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import org.avp.AliensVsPredator;
 import org.avp.ItemHandler;
 import org.avp.client.Sounds;
-import org.avp.entities.EntityAcidPool;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.living.species.SpeciesAlien;
 

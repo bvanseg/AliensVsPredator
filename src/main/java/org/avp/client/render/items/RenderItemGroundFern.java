@@ -4,7 +4,6 @@ import org.avp.AliensVsPredator;
 import org.avp.client.model.tile.plants.ModelGroundFern;
 import org.avp.tile.plants.TileEntityGroundFern;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;

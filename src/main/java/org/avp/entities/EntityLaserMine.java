@@ -4,11 +4,9 @@ import java.util.List;
 
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
-import org.avp.packets.server.PacketDamageEntity;
 
 import com.asx.mdx.lib.world.entity.Entities;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;

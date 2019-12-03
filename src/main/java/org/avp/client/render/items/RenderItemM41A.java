@@ -6,10 +6,8 @@ import org.avp.URLs;
 import org.avp.client.model.items.ModelM41A;
 import org.avp.item.ItemFirearm;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.util.Game;
