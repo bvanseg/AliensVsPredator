@@ -27,6 +27,7 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
@@ -89,7 +90,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
                                                                                  EntityPlayer player = (EntityPlayer) potentialTarget;
                                                                                  ItemStack headwear = Inventories.getHelmSlotItemStack(player);
 
-                                                                                 if (headwear != null && blacklistedHelmets.contains(headwear.getItem()) || ((EntityPlayer) potentialTarget).capabilities.isCreativeMode)
+                                                                                 if (headwear != null && blacklistedHelmets.contains(headwear.getItem()) && headwear.getItem() != Items.AIR  || ((EntityPlayer) potentialTarget).capabilities.isCreativeMode)
                                                                                  {
                                                                                      return false;
                                                                                  }
