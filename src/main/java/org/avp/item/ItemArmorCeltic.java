@@ -19,9 +19,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemArmorTitanium extends ItemArmor
+public class ItemArmorCeltic extends ItemArmor
 {
-    public ItemArmorTitanium(int renderIndex, EntityEquipmentSlot armorType)
+    public ItemArmorCeltic(int renderIndex, EntityEquipmentSlot armorType)
     {
         super(AliensVsPredator.materials().armors().celtic, renderIndex, armorType);
     }
@@ -32,22 +32,22 @@ public class ItemArmorTitanium extends ItemArmor
         switch (slot)
         {
             case FEET:
-                return Draw.getPath(AliensVsPredator.resources().TITANIUM1);
+                return Draw.getPath(AliensVsPredator.resources().CELTIC1);
             case LEGS:
-                return Draw.getPath(AliensVsPredator.resources().TITANIUM2);
+                return Draw.getPath(AliensVsPredator.resources().CELTIC2);
             case CHEST:
-                return Draw.getPath(AliensVsPredator.resources().TITANIUM1);
+                return Draw.getPath(AliensVsPredator.resources().CELTIC1);
             case HEAD:
-                return Draw.getPath(AliensVsPredator.resources().TITANIUM1);
+                return Draw.getPath(AliensVsPredator.resources().CELTIC1);
             default:
-                return Draw.getPath(AliensVsPredator.resources().TITANIUM1);
+                return Draw.getPath(AliensVsPredator.resources().CELTIC1);
         }
     }
 
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AliensVsPredator.items().helmTitanium)
+        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AliensVsPredator.items().biomaskCeltic)
         {
             SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
             player.fallDistance = 0.0F;
@@ -66,7 +66,7 @@ public class ItemArmorTitanium extends ItemArmor
         {
             ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
 
-            if (helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().helmTitanium && AliensVsPredator.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
+            if (helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().biomaskCeltic && AliensVsPredator.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
             {
                 Sounds.YAUTJA_VISION_SWITCH.playSound(Game.minecraft().player, 1F, 1F);
                 VisionModeRenderEvent.instance.switchMode();

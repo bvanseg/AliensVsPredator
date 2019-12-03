@@ -307,8 +307,8 @@ public class Resources
     public final Texture SKY_CALPAMOS             = new Texture(AliensVsPredator.Properties.ID, "textures/misc/calpamos.png");
     public final Texture SKY_VARDA                = new Texture(AliensVsPredator.Properties.ID, "textures/misc/varda.png");
     public final Texture SKY_ACHERON              = new Texture(AliensVsPredator.Properties.ID, "textures/misc/acheron.png");
-    public final Texture TITANIUM1                = new Texture(AliensVsPredator.Properties.ID, "textures/armor/titanium_1.png");
-    public final Texture TITANIUM2                = new Texture(AliensVsPredator.Properties.ID, "textures/armor/titanium_2.png");
+    public final Texture CELTIC1                  = new Texture(AliensVsPredator.Properties.ID, "textures/armor/celtic_1.png");
+    public final Texture CELTIC2                  = new Texture(AliensVsPredator.Properties.ID, "textures/armor/celtic_2.png");
     public final Texture PRESSURESUIT1            = new Texture(AliensVsPredator.Properties.ID, "textures/armor/suit_1.png");
     public final Texture PRESSURESUIT2            = new Texture(AliensVsPredator.Properties.ID, "textures/armor/suit_2.png");
     public final Texture MK501                    = new Texture(AliensVsPredator.Properties.ID, "textures/armor/mk50_1.png");

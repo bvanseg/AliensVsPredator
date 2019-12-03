@@ -530,7 +530,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemIngotLithium, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("celticBiomask", new ItemStack(ItemHandler.helmTitanium, 1)) {
+        AssemblyManager.register(new Schematic("celticBiomask", new ItemStack(ItemHandler.biomaskCeltic, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -543,7 +543,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemProcessor, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("celticPlate", new ItemStack(ItemHandler.plateTitanium, 1)) {
+        AssemblyManager.register(new Schematic("celticPlate", new ItemStack(ItemHandler.chestplateCeltic, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -554,7 +554,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemPolycarbonate, 3) };
             }
         });
-        AssemblyManager.register(new Schematic("celticLegs", new ItemStack(ItemHandler.legsTitanium, 1)) {
+        AssemblyManager.register(new Schematic("celticLegs", new ItemStack(ItemHandler.legsCeltic, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -565,7 +565,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemPolycarbonate, 2) };
             }
         });
-        AssemblyManager.register(new Schematic("celticBoots", new ItemStack(ItemHandler.bootsTitanium, 1)) {
+        AssemblyManager.register(new Schematic("celticBoots", new ItemStack(ItemHandler.bootsCeltic, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -576,7 +576,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemPolycarbonate, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("celticAxe", new ItemStack(ItemHandler.axeTitanium, 1)) {
+        AssemblyManager.register(new Schematic("celticAxe", new ItemStack(ItemHandler.axeCeltic, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -587,7 +587,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemPolycarbonate, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("celticPickaxe", new ItemStack(ItemHandler.pickaxeTitanium, 1)) {
+        AssemblyManager.register(new Schematic("celticPickaxe", new ItemStack(ItemHandler.pickaxeCeltic, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -598,7 +598,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemPolycarbonate, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("celticHoe", new ItemStack(ItemHandler.hoeTitanium, 1)) {
+        AssemblyManager.register(new Schematic("celticHoe", new ItemStack(ItemHandler.hoeCeltic, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -609,7 +609,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemPolycarbonate, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("celticShovel", new ItemStack(ItemHandler.shovelTitanium, 1)) {
+        AssemblyManager.register(new Schematic("celticShovel", new ItemStack(ItemHandler.shovelCeltic, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -620,7 +620,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemPolycarbonate, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("celticSword", new ItemStack(ItemHandler.swordTitanium, 1)) {
+        AssemblyManager.register(new Schematic("celticSword", new ItemStack(ItemHandler.swordCeltic, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {

@@ -50,7 +50,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
 
     static
     {
-        blacklistedHelmets.add(ItemHandler.helmTitanium);
+        blacklistedHelmets.add(ItemHandler.biomaskCeltic);
         blacklistedHelmets.add(ItemHandler.mk50helmet);
     }
 
