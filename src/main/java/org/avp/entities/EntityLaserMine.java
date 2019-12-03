@@ -90,28 +90,25 @@ public class EntityLaserMine extends Entity
         {
             this.laserHit = Entities.rayTraceAll(this, this.getLaserMaxDepth());
         }
-
-        if (this.world.isRemote)
+        
+        if (this.getLaserHit() != null && this.getLaserHit().entityHit != null)
         {
-            if (this.getLaserHit() != null && this.getLaserHit().entityHit != null)
+            if (!(this.getLaserHit().entityHit instanceof EntityLaserMine))
             {
-                if (!(this.getLaserHit().entityHit instanceof EntityLaserMine))
+                if (!(this.getLaserHit().entityHit instanceof EntityPlayer))
                 {
-                    if (!(this.getLaserHit().entityHit instanceof EntityPlayer))
-                    {
-                        this.explode(this.getLaserHit().entityHit);
-                    }
-                    else if (this.getLaserHit().entityHit instanceof EntityPlayer && !((EntityPlayer) this.getLaserHit().entityHit).capabilities.isCreativeMode)
-                    {
-                        this.explode(this.getLaserHit().entityHit);
-                    }
+                    this.explode(this.getLaserHit().entityHit);
+                }
+                else if (this.getLaserHit().entityHit instanceof EntityPlayer && !((EntityPlayer) this.getLaserHit().entityHit).capabilities.isCreativeMode)
+                {
+                    this.explode(this.getLaserHit().entityHit);
                 }
             }
+        }
 
-            if (!this.canStay())
-            {
-                this.drop();
-            }
+        if (!this.canStay())
+        {
+            this.drop();
         }
     }
 
@@ -154,11 +151,6 @@ public class EntityLaserMine extends Entity
         if (entityHit != null)
         {
             entityHit.attackEntityFrom(DamageSources.causeLaserMineDamage(this, entityHit), 15F);
-
-            if (this.world.isRemote)
-            {
-                AliensVsPredator.network().sendToServer(new PacketDamageEntity(entityHit, this, 15F));
-            }
         }
 
         this.setDead();
