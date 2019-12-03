@@ -40,6 +40,12 @@ public class Sounds
     public static final Sound  PREDALIEN_LIVING             = sound("predalien.living");
     public static final Sound  PREDALIEN_DEATH              = sound("predalien.death");
 
+    /** PREQUELMORPH SOUNDS **/
+    public static final Sound  PREQUELMORPH_ATTACK          = sound("prequelmorph.attack");
+    public static final Sound  PREQUELMORPH_HURT            = sound("prequelmorph.hurt");
+    public static final Sound  PREQUELMORPH_LIVING          = sound("prequelmorph.living");
+    public static final Sound  PREQUELMORPH_DEATH           = sound("prequelmorph.death");
+
     /** CHESTBURSTER SOUNDS **/
     public static final Sound  CHESTBURSTER_DEATH           = sound("chestburster.death");
     public static final Sound  CHESTBURSTER_HURT            = sound("chestburster.hurt");
