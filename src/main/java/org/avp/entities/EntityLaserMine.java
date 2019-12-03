@@ -168,54 +168,34 @@ public class EntityLaserMine extends Entity
     {
         this.rotationYaw = 90F * (this.direction);
         float bounds = -0.00625F;
-        float f = 16.0F;
-        float f1 = 16.0F;
-        float f2 = 16.0F;
 
-        if (side != 0 && side != 2)
-        {
-            f = 0.5F;
-        }
-        else
-        {
-            f2 = 0.5F;
-        }
-
-        f /= 32.0F;
-        f1 /= 32.0F;
-        f2 /= 32.0F;
         float xPos = (float) (this.posX + 0.5F);
         float yPos = (float) (this.posY + 0.5F);
         float zPos = (float) (this.posZ + 0.5F);
-        float f6 = 0.5625F;
+        float f6 = 0.53F;
 
-        if (side == 0)
-            zPos -= f6;
+        switch(side)
+        {
+            case 0:
+                xPos -= f6;
+                zPos -= f6 * 2;
+                break;
+            case 1:
+                xPos -= f6 * 2;
+                zPos -= f6;
+                break;
+            case 2:
+                xPos -= f6;
+                zPos += 0.06f;
+                break;
+            case 3:
+                xPos += 0.06f;
+                zPos -= f6;
+                break;
+        }
 
-        if (side == 1)
-            xPos -= f6;
-
-        if (side == 2)
-            zPos += f6;
-
-        if (side == 3)
-            xPos += f6;
-
-        if (side == 0)
-            xPos -= 0.0F;
-
-        if (side == 1)
-            zPos += 0.0F;
-
-        if (side == 2)
-            xPos += 0.0F;
-
-        if (side == 3)
-            zPos -= 0.0F;
-
-        yPos += 0.0F;
         this.setPosition(xPos, yPos, zPos);
-        this.setEntityBoundingBox(new AxisAlignedBB(xPos - f - bounds, yPos - f1 - bounds, zPos - f2 - bounds, xPos + f + bounds, yPos + f1 + bounds, zPos + f2 + bounds));
+        this.setEntityBoundingBox(new AxisAlignedBB(xPos - bounds, yPos - bounds, zPos - bounds, xPos + bounds, yPos + bounds, zPos + bounds));
     }
 
     @Override
