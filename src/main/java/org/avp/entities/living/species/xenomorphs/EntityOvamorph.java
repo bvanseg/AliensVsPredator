@@ -37,8 +37,9 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
     protected boolean containsFacehugger;
     protected boolean sendUpdates;
     
-    private static final DataParameter<Byte>    OPEN_PROGRESS       = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);
-    private static final DataParameter<Integer> HATCHING_TIME       = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.VARINT);
+    private static final DataParameter<Byte>    OPEN_PROGRESS    = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);
+    private static final DataParameter<Integer> HATCHING_TIME    = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.VARINT);
+    private int                                 timeSinceHatched = 0;
 
     public EntityOvamorph(World par1World)
     {
@@ -72,6 +73,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
         super.readEntityFromNBT(nbt);
 
         this.containsFacehugger = nbt.getBoolean("containsFacehugger");
+        this.timeSinceHatched = nbt.getInteger("timeHatched");
         this.setOpenProgress(nbt.getInteger("openProgress"));
         this.sendUpdates = true;
     }
@@ -83,6 +85,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
 
         nbt.setBoolean("containsFacehugger", this.containsFacehugger);
         nbt.setInteger("openProgress", this.getOpenProgress());
+        nbt.setInteger("timeHatched", this.timeSinceHatched);
     }
 
     @Override
@@ -124,6 +127,12 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
         if (!this.containsFacehugger)
         {
             this.setOpenProgress(this.getMaxOpenProgress());
+            
+
+            this.timeSinceHatched++;
+            
+            if(this.timeSinceHatched >= 20 * 60 *  5)
+                this.setDead();
         }
 
         if (this.containsFacehugger)
