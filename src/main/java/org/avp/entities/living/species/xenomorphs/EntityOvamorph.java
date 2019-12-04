@@ -173,7 +173,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
         {
             if (this.hasHatched)
             {
-                this.openProgress = this.getMaxOpenProgress();
+                this.setOpenProgress(this.getMaxOpenProgress());
             }
         }
     }
