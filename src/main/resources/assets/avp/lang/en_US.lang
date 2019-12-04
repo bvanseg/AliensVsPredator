@@ -119,6 +119,7 @@ item.avp:food.trilo.bite.name=Trilo Bite
 #ITEMS-SUMMONERS
 #Immature Xenomorphs
 item.avp:summon.ovamorph.name=Ovamorph (Egg)
+item.avp:summon.ovamorph.giger.name=Ovamorph (Egg, Giger)
 item.avp:summon.facehugger.name=Facehugger
 item.avp:summon.chestburster.name=Chestburster
 item.avp:summon.royalfacehugger.name=Royal Facehugger
@@ -366,6 +367,7 @@ tile.avp:engineership.ampule.name=Ampule
 #MOBS
 #Immature Xenomorphs
 entity.Ovamorph.name=Ovamorph (Egg)
+entity.OvamorphGiger.name=Ovamorph (Egg, Giger)
 entity.Facehugger.name=Facehugger
 entity.RoyalFacehugger.name=Royal Facehugger
 entity.Chestbuster.name=Chestburster
