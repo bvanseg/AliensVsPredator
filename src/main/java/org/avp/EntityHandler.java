@@ -45,6 +45,7 @@ import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.entities.living.species.xenomorphs.EntityMyceliomorph;
 import org.avp.entities.living.species.xenomorphs.EntityNauticomorph;
 import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
+import org.avp.entities.living.species.xenomorphs.EntityOvamorphGiger;
 import org.avp.entities.living.species.xenomorphs.EntityPantheramorph;
 import org.avp.entities.living.species.xenomorphs.EntityPraetorian;
 import org.avp.entities.living.species.xenomorphs.EntityPredalien;
@@ -250,6 +251,7 @@ public class EntityHandler implements IInitEvent
             livingEntities.add(EntityEntryBuilder.create().entity(EntityQueenChestburster.class).id("QueenChestburster", entityId++).name("QueenChestburster").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityRunnerChestburster.class).id("RunnerChestburster", entityId++).name("RunnerChestburster").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityDeaconAdult.class).id("DeaconAdult", entityId++).name("DeaconAdult").tracker(250, 4, true).build());
+            livingEntities.add(EntityEntryBuilder.create().entity(EntityOvamorphGiger.class).id("OvamorphGiger", entityId++).name("OvamorphGiger").tracker(250, 4, true).build());
 
             if (AliensVsPredator.settings().areExperimentalFeaturesEnabled())
             {
