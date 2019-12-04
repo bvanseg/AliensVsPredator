@@ -43,9 +43,10 @@ import net.minecraft.world.World;
 public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
 {
     private static final DataParameter<Boolean> FERTILE            = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
+    private int                                 timeSinceInfertile = 0;
     private int                                 ticksOnHost        = 0;
 
-    public static ArrayList<Item>               blacklistedHelmets = new ArrayList();
+    public static ArrayList<Item>               blacklistedHelmets = new ArrayList<>();
 
     static
     {
@@ -157,6 +158,12 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
             this.motionY -= 0.05F;
             this.motionY *= 0.98F;
             this.move(MoverType.SELF, 0, this.motionY, 0);
+            
+
+            this.timeSinceInfertile++;
+            
+            if(this.timeSinceInfertile >= 20 * 60 *  5)
+                this.setDead();
         }
 
         if (this.world.getTotalWorldTime() % 20 == 0)
@@ -370,12 +377,14 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     {
         super.readFromNBT(nbt);
         IParasitoid.readFromNBT(this, nbt);
+        this.timeSinceInfertile = nbt.getInteger("timeOfInfertility");
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         IParasitoid.writeToNBT(this, nbt);
+        nbt.setInteger("timeOfInfertility", this.timeSinceInfertile);
         return super.writeToNBT(nbt);
     }
     
