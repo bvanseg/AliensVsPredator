@@ -118,7 +118,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
             AliensVsPredator.network().sendToAll(new PacketOvamorphContainsFacehugger(this.containsFacehugger, this.getEntityId()));
             this.sendUpdates = false;
         }
-
+        
         if (this.getHealth() < this.getMaxHealth())
         {
             this.acceleratedHatching = true;
@@ -127,8 +127,8 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
         if (!this.containsFacehugger)
         {
             this.setOpenProgress(this.getMaxOpenProgress());
+            this.hasHatched = true;
             
-
             this.timeSinceHatched++;
             
             if(this.timeSinceHatched >= 20 * 60 *  5)
@@ -169,6 +169,13 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
                 }
             }
         }
+        else
+        {
+            if (this.hasHatched)
+            {
+                this.openProgress = this.getMaxOpenProgress();
+            }
+        }
     }
 
     @Override
@@ -199,7 +206,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
             facehugger.setLocationAndAngles(pos.x, pos.y, pos.z, 0F, 0F);
             world.spawnEntity(facehugger);
             facehugger.motionY = 0.75F;
-
+            this.hasHatched = true;
             this.setContainsFacehugger(false);
         }
     }
@@ -207,6 +214,11 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
     public void setHatched(boolean hasHatched)
     {
         this.hasHatched = hasHatched;
+    }
+    
+    public boolean hasHatched()
+    {
+        return hasHatched;
     }
 
     public int getOpenProgress()

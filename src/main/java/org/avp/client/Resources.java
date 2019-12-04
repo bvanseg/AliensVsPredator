@@ -36,6 +36,7 @@ import org.avp.client.model.entities.living.ModelMyceliomorph;
 import org.avp.client.model.entities.living.ModelNauticomorph;
 import org.avp.client.model.entities.living.ModelOctohugger;
 import org.avp.client.model.entities.living.ModelOvamorph;
+import org.avp.client.model.entities.living.ModelOvamorphGiger;
 import org.avp.client.model.entities.living.ModelPantheramorph;
 import org.avp.client.model.entities.living.ModelPraetorian;
 import org.avp.client.model.entities.living.ModelPredalien;
@@ -194,6 +195,7 @@ public class Resources
         public final MapModelTexture<ModelMarine>                 MARINE                         = new MapModelTexture(new ModelMarine(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/marine.png"));
         public final MapModelTexture<ModelOvamorph>               OVAMORPH                       = new MapModelTexture(new ModelOvamorph(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/alienegg.png"));
         public final MapModelTexture<ModelOvamorph>               OVAMORPH_JACKO                 = new MapModelTexture(new ModelOvamorph(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/alienegg_jack.png"));
+        public final MapModelTexture<ModelOvamorphGiger>          OVAMORPH_GIGER                 = new MapModelTexture(new ModelOvamorphGiger(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/gigeregg.png"));
         public final MapModelTexture<ModelPredalien>              PREDALIEN                      = new MapModelTexture(new ModelPredalien(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/predalien.png"));
         public final MapModelTexture<ModelPraetorian>             PRAETORIAN                     = new MapModelTexture(new ModelPraetorian(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/praetorian.png"));
         public final MapModelTexture<ModelWarrior>                WARRIOR                        = new MapModelTexture(new ModelWarrior(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/warrior.png"));

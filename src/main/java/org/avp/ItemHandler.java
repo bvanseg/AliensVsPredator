@@ -21,6 +21,7 @@ import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.entities.living.species.xenomorphs.EntityMyceliomorph;
 import org.avp.entities.living.species.xenomorphs.EntityNauticomorph;
 import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
+import org.avp.entities.living.species.xenomorphs.EntityOvamorphGiger;
 import org.avp.entities.living.species.xenomorphs.EntityPantheramorph;
 import org.avp.entities.living.species.xenomorphs.EntityPraetorian;
 import org.avp.entities.living.species.xenomorphs.EntityPredalien;
@@ -240,6 +241,7 @@ public class ItemHandler
     public static final Item summonerFacehugger         = new ItemEntitySummoner(EntityFacehugger.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.facehugger");
     public static final Item summonerMarine             = new ItemEntitySummoner(EntityMarine.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.marine");
     public static final Item summonerOvamorph           = new ItemEntitySummoner(EntityOvamorph.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.ovamorph");
+    public static final Item summonerOvamorphGiger      = new ItemEntitySummoner(EntityOvamorphGiger.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.ovamorph.giger");
     public static final Item summonerRoyalFacehugger    = new ItemEntitySummoner(EntityRoyalFacehugger.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.royalfacehugger");
     public static final Item summonerYautjaWarrior      = new ItemEntitySummoner(EntityYautjaWarrior.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.yautja.warrior");
     public static final Item summonerPredalien          = new ItemEntitySummoner(EntityPredalien.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.predalien");
