@@ -15,7 +15,7 @@ public class Tab implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(ItemHandler.helmTitanium);
+                                                                return new ItemStack(ItemHandler.biomaskCeltic);
                                                             }
 
                                                             public String getTranslationKey()

@@ -64,19 +64,19 @@ public class EntityDeacon extends Species223ODe implements INascentic
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.ALIEN_HURT.event();
+        return Sounds.PREQUELMORPH_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.ALIEN_LIVING.event();
+        return Sounds.PREQUELMORPH_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.ALIEN_DEATH.event();
+        return Sounds.PREQUELMORPH_DEATH.event();
     }
 
     @Override

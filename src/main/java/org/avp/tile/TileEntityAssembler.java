@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 
 public class TileEntityAssembler extends TileEntity implements IInventory, ITickable
 {
-    private Item               randomItem  = AliensVsPredator.items().helmTitanium;
+    private Item               randomItem  = AliensVsPredator.items().biomaskCeltic;
     private ItemStack[]        items       = new ItemStack[28];
     private ItemStack          previousTickStack;
     public int                 clickAmount = 0;

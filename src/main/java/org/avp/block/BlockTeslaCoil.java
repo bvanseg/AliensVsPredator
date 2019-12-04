@@ -1,6 +1,5 @@
 package org.avp.block;
 
-import org.avp.tile.TileEntityCCFLTube;
 import org.avp.tile.TileEntityTeslaCoil;
 
 import com.asx.mdx.lib.world.entity.Entities;

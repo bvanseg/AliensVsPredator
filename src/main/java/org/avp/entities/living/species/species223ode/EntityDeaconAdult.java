@@ -52,23 +52,23 @@ public class EntityDeaconAdult extends Species223ODe
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4700000238418579D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3D);
     }
-
+    
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.ALIEN_HURT.event();
+        return Sounds.PREQUELMORPH_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.ALIEN_LIVING.event();
+        return Sounds.PREQUELMORPH_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.ALIEN_DEATH.event();
+        return Sounds.PREQUELMORPH_DEATH.event();
     }
 
     @Override

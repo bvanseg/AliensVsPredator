@@ -3,7 +3,6 @@ package org.avp.entities.living.vardic;
 import java.util.List;
 
 import org.avp.ItemHandler;
-import org.avp.entities.EntityAcidPool;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.helpers.EntityExtendedLookHelper;
 import org.avp.entities.ai.pathfinding.PathNavigateSwimmer;

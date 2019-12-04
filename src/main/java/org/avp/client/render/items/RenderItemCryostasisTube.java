@@ -7,7 +7,6 @@ import org.lwjgl.opengl.GL11;
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
 
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -25,7 +24,7 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
         float glScale = 0.75F;
 
         OpenGL.translate(0F, -0.3F, -0.35F);
-        GlStateManager.disableCull();
+        OpenGL.disableCullFace();
         OpenGL.scale(glScale, -glScale, -glScale);
         this.getModel().draw();
 
@@ -34,6 +33,7 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
             AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK.draw();
         }
         OpenGL.popMatrix();
+        OpenGL.enableCullFace();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
         float glScale = 0.5F;
 
         OpenGL.translate(0.1F, 0.4F, -0.1F);
-        GlStateManager.disableCull();
+        OpenGL.disableCullFace();
         OpenGL.scale(glScale, -glScale, glScale);
         this.getModel().draw();
 
@@ -51,6 +51,7 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
             AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK.draw();
         }
         OpenGL.popMatrix();
+        OpenGL.enableCullFace();
     }
 
     @Override
@@ -62,8 +63,10 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
         OpenGL.rotate(230F, 1F, 0F, 0F);
         OpenGL.rotate(45F, 0F, 0F, 1F);
         OpenGL.rotate(230F, 0.0F, 1.0F, 0.0F);
+        OpenGL.disableCullFace();
         this.getModel().draw();
         AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK.draw();
+        OpenGL.enableCullFace();
     }
 
     @Override
@@ -71,14 +74,16 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
     {
         OpenGL.scale(0.5F, -0.5F, 0.5F);
         OpenGL.translate(0F, -1.5F, 0F);
-        GlStateManager.disableCull();
+        OpenGL.disableCullFace();
         this.getModel().draw();
 
         OpenGL.pushMatrix();
         {
             OpenGL.enable(GL11.GL_BLEND);
             AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK.draw();
+            OpenGL.disableBlend();
         }
         OpenGL.popMatrix();
+        OpenGL.enableCullFace();
     }
 }

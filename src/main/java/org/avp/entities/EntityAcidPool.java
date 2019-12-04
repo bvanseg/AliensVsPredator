@@ -9,12 +9,12 @@ import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 import org.avp.api.blocks.IAcidResistant;
 import org.avp.entities.living.species.SpeciesAlien;
+
 import com.google.common.base.Predicate;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;

@@ -3,7 +3,6 @@ package org.avp.entities.living.species.xenomorphs;
 import org.avp.EntityItemDrops;
 import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
-import org.avp.entities.EntityLiquidPool;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.living.species.SpeciesAlien;
 

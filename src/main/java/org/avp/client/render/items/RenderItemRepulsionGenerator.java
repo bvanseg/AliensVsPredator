@@ -6,7 +6,6 @@ import org.avp.client.model.tile.ModelRepulsionGenerator;
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
 
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -23,9 +22,10 @@ public class RenderItemRepulsionGenerator extends ItemRenderer<ModelRepulsionGen
     {
         float glScale = 0.8F;
         OpenGL.translate(0, 0.5F, 0F);
-        GlStateManager.disableCull();
         OpenGL.scale(glScale, -glScale, glScale);
+        OpenGL.disableCullFace();
         this.getModel().draw();
+        OpenGL.enableCullFace();
     }
 
     @Override
@@ -36,7 +36,6 @@ public class RenderItemRepulsionGenerator extends ItemRenderer<ModelRepulsionGen
         OpenGL.rotate(95.0F, 1.0F, 0.0F, 0.0F);
         OpenGL.rotate(120.0F, 0.0F, 1.0F, 0.0F);
         OpenGL.rotate(79.0F, 0.0F, 0.0F, 1.0F);
-        GlStateManager.disableCull();
         OpenGL.scale(glScale, glScale, glScale);
         this.getModel().draw();
     }
@@ -58,7 +57,8 @@ public class RenderItemRepulsionGenerator extends ItemRenderer<ModelRepulsionGen
     {
         OpenGL.scale(1F, -1F, 1F);
         OpenGL.translate(0F, -1.5F, 0F);
-        GlStateManager.disableCull();
+        OpenGL.disableCullFace();
         this.getModel().draw();
+        OpenGL.enableCullFace();
     }
 }

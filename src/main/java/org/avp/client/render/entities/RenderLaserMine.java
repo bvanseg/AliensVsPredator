@@ -57,12 +57,9 @@ public class RenderLaserMine extends Render<EntityLaserMine>
             OpenGL.rotate(rotationYaw, 0F, 1F, 0F);
             OpenGL.rotate(rotationPitch, 0F, 0F, 1F);
             OpenGL.scale(1F / scale, 1F / scale, 1F / scale);
-            OpenGL.disable(GL11.GL_TEXTURE_2D);
-            OpenGL.disable(GL11.GL_LIGHTING);
-            OpenGL.disableLight();
-            OpenGL.enable(GL11.GL_BLEND);
+            OpenGL.disableTexture2d();
+            OpenGL.enableBlend();
             OpenGL.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-            GL11.glShadeModel(GL11.GL_SMOOTH);
             Draw.startQuadsColored();
             Draw.vertex(w, y, zLevel).color((color2 >> 16 & 255) / 255.0F, (color2 >> 8 & 255) / 255.0F, (color2 & 255) / 255.0F, (color2 >> 24 & 255) / 255.0F).endVertex();
             Draw.vertex(x, y, zLevel).color((color2 >> 16 & 255) / 255.0F, (color2 >> 8 & 255) / 255.0F, (color2 & 255) / 255.0F, (color2 >> 24 & 255) / 255.0F).endVertex();
@@ -77,11 +74,9 @@ public class RenderLaserMine extends Render<EntityLaserMine>
             Draw.vertex(x, l, zLevel).color((color1 >> 16 & 255) / 255.0F, (color1 >> 8 & 255) / 255.0F, (color1 & 255) / 255.0F, (color1 >> 24 & 255) / 255.0F).endVertex();
             Draw.vertex(w, h, zLevel).color((color1 >> 16 & 255) / 255.0F, (color1 >> 8 & 255) / 255.0F, (color1 & 255) / 255.0F, (color1 >> 24 & 255) / 255.0F).endVertex();
             Draw.tessellate();
-            GL11.glShadeModel(GL11.GL_FLAT);
-            OpenGL.enable(GL11.GL_LIGHTING);
-            OpenGL.enableLight();
-            OpenGL.enable(GL11.GL_TEXTURE_2D);
-            OpenGL.disable(GL11.GL_BLEND);
+            OpenGL.blendClear();
+            OpenGL.disableBlend();
+            OpenGL.enableTexture2d();
         }
         OpenGL.popMatrix();
     }

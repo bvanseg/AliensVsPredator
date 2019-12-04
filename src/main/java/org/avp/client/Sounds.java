@@ -22,22 +22,54 @@ public class Sounds
     public static final Sound  ALIEN_LIVING                 = sound("xeno.living");
     public static final Sound  ALIEN_HURT                   = sound("xeno.hurt");
     public static final Sound  ALIEN_DEATH                  = sound("xeno.death");
+    
+    /** QUEEN SOUNDS **/
     public static final Sound  QUEEN_HURT                   = sound("queen.hurt");
     public static final Sound  QUEEN_LIVING_CONSTANT        = sound("queen.living.constant");
     public static final Sound  QUEEN_LIVING                 = sound("queen.living");
     public static final Sound  QUEEN_DEATH                  = sound("queen.death");
+
+    /** PRAETORIAN SOUNDS **/
+    public static final Sound  PRAETORIAN_HURT              = sound("praetorian.hurt");
+    public static final Sound  PRAETORIAN_LIVING            = sound("praetorian.living");
+    public static final Sound  PRAETORIAN_DEATH             = sound("praetorian.death");
+
+    /** PRED-ALIEN SOUNDS **/
+    public static final Sound  PREDALIEN_ATTACK             = sound("predalien.attack");
+    public static final Sound  PREDALIEN_HURT               = sound("predalien.hurt");
+    public static final Sound  PREDALIEN_LIVING             = sound("predalien.living");
+    public static final Sound  PREDALIEN_DEATH              = sound("predalien.death");
+
+    /** PREQUELMORPH SOUNDS **/
+    public static final Sound  PREQUELMORPH_ATTACK          = sound("prequelmorph.attack");
+    public static final Sound  PREQUELMORPH_HURT            = sound("prequelmorph.hurt");
+    public static final Sound  PREQUELMORPH_LIVING          = sound("prequelmorph.living");
+    public static final Sound  PREQUELMORPH_DEATH           = sound("prequelmorph.death");
+
+    /** CHESTBURSTER SOUNDS **/
     public static final Sound  CHESTBURSTER_DEATH           = sound("chestburster.death");
     public static final Sound  CHESTBURSTER_HURT            = sound("chestburster.hurt");
     public static final Sound  CHESTBURSTER_ATTACK          = sound("chestburster.attack");
     public static final Sound  CHESTBURSTER_BURST           = sound("chestburster.burst");
+    
+    /** FACEHUGGER SOUNDS **/
     public static final Sound  FACEHUGGER_DEATH             = sound("facehugger.death");
     public static final Sound  FACEHUGGER_HURT              = sound("facehugger.hurt");
+    public static final Sound  FACEHUGGER_IMPLANT           = sound("facehugger.implant");
     public static final Sound  FACEHUGGER_LIVING            = sound("facehugger.living");
+    
+    /** MARINE SOUNDS **/
     public static final Sound  MARINE_HURT                  = sound("marine.hurt");
     public static final Sound  MARINE_DEATH                 = sound("marine.death");
+    
+    /** YAUTJA SOUNDS **/
     public static final Sound  YAUTJA_LIVING                = sound("predator.living");
     public static final Sound  YAUTJA_HURT                  = sound("predator.hurt");
     public static final Sound  YAUTJA_DEATH                 = sound("predator.death");
+
+    /** YAUTJA VISION SOUNDS **/
+    public static final Sound  YAUTJA_VISION_SWITCH         = sound("predator.vision.switch");
+
     public static final Sound  WEAPON_FLAMETHROWER          = sound("weapon.flamethrower");
     public static final Sound  WEAPON_GUNSHOT               = sound("weapon.gunshot");
     public static final Sound  WEAPON_PLASMACASTER          = sound("weapon.plasmacaster");

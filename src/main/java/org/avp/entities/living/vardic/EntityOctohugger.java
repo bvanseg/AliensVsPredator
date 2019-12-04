@@ -166,7 +166,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
 
         if (this.getEntityBoundingBox() != null)
         {
-            ArrayList<EntityLivingBase> entities = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(0, 16, 0));
+            ArrayList<EntityLivingBase> entities = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1, -8, 1));
 
             if (entities != null)
             {
@@ -307,5 +307,11 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(ItemHandler.summonerOctohugger);
+    }
+    
+    @Override
+    public SoundEvent getImplantSound()
+    {
+        return Sounds.FACEHUGGER_IMPLANT.event();
     }
 }

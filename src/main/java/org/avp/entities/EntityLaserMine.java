@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
-import org.avp.packets.server.PacketDamageEntity;
 
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -27,6 +27,7 @@ public class EntityLaserMine extends Entity
     private String ownerUUID;
     public int direction;
     public RayTraceResult laserHit;
+    public BlockPos parentBlockPos;
 
     public EntityLaserMine(World world)
     {
@@ -38,6 +39,7 @@ public class EntityLaserMine extends Entity
     public EntityLaserMine(World world, BlockPos pos, int direction, String ownerUUID)
     {
         this(world);
+        this.parentBlockPos = pos;
         this.direction = direction;
         this.ownerUUID = ownerUUID;
         this.moveToBlockPosAndAngles(pos, 0F, 0F);
@@ -53,7 +55,10 @@ public class EntityLaserMine extends Entity
     public boolean canStay()
     {
         List<Entity> entities = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
-
+        
+        if(parentBlockPos != null && (world.getBlockState(parentBlockPos) == null || world.getBlockState(parentBlockPos) == Blocks.AIR.getDefaultState()))
+            return false;
+        
         for (Entity entity : entities)
         {
             if (entity instanceof EntityLaserMine)
@@ -90,28 +95,25 @@ public class EntityLaserMine extends Entity
         {
             this.laserHit = Entities.rayTraceAll(this, this.getLaserMaxDepth());
         }
-
-        if (this.world.isRemote)
+        
+        if (this.getLaserHit() != null && this.getLaserHit().entityHit != null)
         {
-            if (this.getLaserHit() != null && this.getLaserHit().entityHit != null)
+            if (!(this.getLaserHit().entityHit instanceof EntityLaserMine))
             {
-                if (!(this.getLaserHit().entityHit instanceof EntityLaserMine))
+                if (!(this.getLaserHit().entityHit instanceof EntityPlayer))
                 {
-                    if (!(this.getLaserHit().entityHit instanceof EntityPlayer))
-                    {
-                        this.explode(this.getLaserHit().entityHit);
-                    }
-                    else if (this.getLaserHit().entityHit instanceof EntityPlayer && !((EntityPlayer) this.getLaserHit().entityHit).capabilities.isCreativeMode)
-                    {
-                        this.explode(this.getLaserHit().entityHit);
-                    }
+                    this.explode(this.getLaserHit().entityHit);
+                }
+                else if (this.getLaserHit().entityHit instanceof EntityPlayer && !((EntityPlayer) this.getLaserHit().entityHit).capabilities.isCreativeMode)
+                {
+                    this.explode(this.getLaserHit().entityHit);
                 }
             }
+        }
 
-            if (!this.canStay())
-            {
-                this.drop();
-            }
+        if (!this.canStay())
+        {
+            this.drop();
         }
     }
 
@@ -154,11 +156,6 @@ public class EntityLaserMine extends Entity
         if (entityHit != null)
         {
             entityHit.attackEntityFrom(DamageSources.causeLaserMineDamage(this, entityHit), 15F);
-
-            if (this.world.isRemote)
-            {
-                AliensVsPredator.network().sendToServer(new PacketDamageEntity(entityHit, this, 15F));
-            }
         }
 
         this.setDead();
@@ -168,54 +165,34 @@ public class EntityLaserMine extends Entity
     {
         this.rotationYaw = 90F * (this.direction);
         float bounds = -0.00625F;
-        float f = 16.0F;
-        float f1 = 16.0F;
-        float f2 = 16.0F;
 
-        if (side != 0 && side != 2)
-        {
-            f = 0.5F;
-        }
-        else
-        {
-            f2 = 0.5F;
-        }
-
-        f /= 32.0F;
-        f1 /= 32.0F;
-        f2 /= 32.0F;
         float xPos = (float) (this.posX + 0.5F);
         float yPos = (float) (this.posY + 0.5F);
         float zPos = (float) (this.posZ + 0.5F);
-        float f6 = 0.5625F;
+        float f6 = 0.53F;
 
-        if (side == 0)
-            zPos -= f6;
+        switch(side)
+        {
+            case 0:
+                xPos -= f6;
+                zPos -= f6 * 2;
+                break;
+            case 1:
+                xPos -= f6 * 2;
+                zPos -= f6;
+                break;
+            case 2:
+                xPos -= f6;
+                zPos += 0.06f;
+                break;
+            case 3:
+                xPos += 0.06f;
+                zPos -= f6;
+                break;
+        }
 
-        if (side == 1)
-            xPos -= f6;
-
-        if (side == 2)
-            zPos += f6;
-
-        if (side == 3)
-            xPos += f6;
-
-        if (side == 0)
-            xPos -= 0.0F;
-
-        if (side == 1)
-            zPos += 0.0F;
-
-        if (side == 2)
-            xPos += 0.0F;
-
-        if (side == 3)
-            zPos -= 0.0F;
-
-        yPos += 0.0F;
         this.setPosition(xPos, yPos, zPos);
-        this.setEntityBoundingBox(new AxisAlignedBB(xPos - f - bounds, yPos - f1 - bounds, zPos - f2 - bounds, xPos + f + bounds, yPos + f1 + bounds, zPos + f2 + bounds));
+        this.setEntityBoundingBox(new AxisAlignedBB(xPos - bounds, yPos - bounds, zPos - bounds, xPos + bounds, yPos + bounds, zPos + bounds));
     }
 
     @Override

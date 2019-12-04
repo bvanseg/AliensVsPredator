@@ -244,6 +244,11 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
                 AnimationHandler.INSTANCE.sendAnimationMessage(this, ANIMATION_HUG_WALL);
             }
         }
+        
+        if(this.getActiveAnimation() == IMPREGNATION_ANIMATION && this.getAnimationTick() == 95)
+        {
+            Sounds.FACEHUGGER_IMPLANT.playSound(this, 1F, 1F);
+        }
 
         if (this.getRidingEntity() == null && this.getActiveAnimation() == IMPREGNATION_ANIMATION)
         {
@@ -304,6 +309,8 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
             {
                 EntityLiving living = (EntityLiving) this.getRidingEntity();
 
+                living.setNoAI(true);
+                
                 living.rotationYawHead = 0;
                 living.rotationYaw = 0;
                 living.prevRotationYawHead = 0;
@@ -523,6 +530,8 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     public void detachFromHost()
     {
+        if(!(this.getRidingEntity() instanceof EntityPlayer) && this.getRidingEntity() instanceof EntityLivingBase)
+            ((EntityLiving) this.getRidingEntity()).setNoAI(false);
         this.dismountRidingEntity();
         this.setNoAI(true);
     }
@@ -699,5 +708,10 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(ItemHandler.summonerTrilobite);
+    }
+    
+    public SoundEvent getImplantSound()
+    {
+        return Sounds.FACEHUGGER_IMPLANT.event();
     }
 }

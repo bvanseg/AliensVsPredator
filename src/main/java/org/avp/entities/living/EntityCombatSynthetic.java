@@ -7,7 +7,6 @@ import org.avp.api.parasitoidic.IHost;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityBullet;
 import org.avp.entities.EntityLiquidLatexPool;
-import org.avp.entities.EntityLiquidPool;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.entities.living.species.SpeciesYautja;

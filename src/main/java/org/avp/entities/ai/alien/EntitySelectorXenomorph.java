@@ -1,6 +1,5 @@
 package org.avp.entities.ai.alien;
 
-import org.avp.entities.EntityLiquidPool;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;

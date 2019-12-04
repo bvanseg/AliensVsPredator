@@ -1,6 +1,5 @@
 package org.avp.entities.living.species;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 import org.avp.AliensVsPredator;
@@ -24,14 +23,12 @@ import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrganism, IAnimated

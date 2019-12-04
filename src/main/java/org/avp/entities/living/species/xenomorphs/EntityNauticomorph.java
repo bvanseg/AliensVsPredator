@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.avp.ItemHandler;
 import org.avp.client.Sounds;
-import org.avp.entities.EntityAcidPool;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.SpeciesXenomorph;
 

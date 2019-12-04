@@ -2,11 +2,10 @@ package org.avp.block;
 
 import java.util.Random;
 
-import org.avp.tile.plants.TileEntityTreeFern;
 import org.avp.tile.plants.TileEntityPlant.PlantColor;
 import org.avp.tile.plants.TileEntityPlant.PlantSize;
+import org.avp.tile.plants.TileEntityTreeFern;
 
-import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.BlockBush;

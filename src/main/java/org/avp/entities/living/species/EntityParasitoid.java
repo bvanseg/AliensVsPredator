@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
@@ -28,6 +29,7 @@ import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -35,14 +37,24 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 
 public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
 {
-    private static final DataParameter<Boolean> FERTILE              = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
-    private int                                 ticksOnHost          = 0;
+    private static final DataParameter<Boolean> FERTILE            = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
+    private int                                 timeSinceInfertile = 0;
+    private int                                 ticksOnHost        = 0;
 
-    public static Predicate<EntityLivingBase>   impregnationSelector = new Predicate<EntityLivingBase>() {
+    public static ArrayList<Item>               blacklistedHelmets = new ArrayList<>();
+
+    static
+    {
+        blacklistedHelmets.add(ItemHandler.biomaskCeltic);
+        blacklistedHelmets.add(ItemHandler.mk50helmet);
+    }
+
+    public static Predicate<EntityLivingBase> impregnationSelector = new Predicate<EntityLivingBase>() {
                                                                          @Override
                                                                          public boolean apply(EntityLivingBase potentialTarget)
                                                                          {
@@ -78,7 +90,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
                                                                                  EntityPlayer player = (EntityPlayer) potentialTarget;
                                                                                  ItemStack headwear = Inventories.getHelmSlotItemStack(player);
 
-                                                                                 if (headwear != null && headwear.getItem() != Items.AIR || ((EntityPlayer) potentialTarget).capabilities.isCreativeMode)
+                                                                                 if (headwear != null && blacklistedHelmets.contains(headwear.getItem()) && headwear.getItem() != Items.AIR  || ((EntityPlayer) potentialTarget).capabilities.isCreativeMode)
                                                                                  {
                                                                                      return false;
                                                                                  }
@@ -146,6 +158,12 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
             this.motionY -= 0.05F;
             this.motionY *= 0.98F;
             this.move(MoverType.SELF, 0, this.motionY, 0);
+            
+
+            this.timeSinceInfertile++;
+            
+            if(this.timeSinceInfertile >= 20 * 60 *  5)
+                this.setDead();
         }
 
         if (this.world.getTotalWorldTime() % 20 == 0)
@@ -236,7 +254,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
             ((EntityLiving) this.getRidingEntity()).setNoAI(false);
         this.dismountRidingEntity();
         this.setNoAI(true);
-        this.setFertility(false);
     }
 
     @Override
@@ -310,6 +327,8 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     {
         Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(living);
+        if(this.getImplantSound() != null)
+            this.playSound(this.getImplantSound(), 0.5F, 1F);
         organism.syncWithClients(living);
         this.setFertility(false);
     }
@@ -358,12 +377,19 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     {
         super.readFromNBT(nbt);
         IParasitoid.readFromNBT(this, nbt);
+        this.timeSinceInfertile = nbt.getInteger("timeOfInfertility");
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         IParasitoid.writeToNBT(this, nbt);
+        nbt.setInteger("timeOfInfertility", this.timeSinceInfertile);
         return super.writeToNBT(nbt);
+    }
+    
+    public SoundEvent getImplantSound()
+    {
+        return null;
     }
 }
