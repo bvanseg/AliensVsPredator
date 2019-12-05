@@ -100,7 +100,7 @@ public class BlockHandler implements IInitEvent
 {
     private static HashMap<Block, ItemBlock> ITEMBLOCKS = new HashMap<Block, ItemBlock>();
     
-    public static final Block naturalResin          = new BlockHiveResin(Material.WOOD).setLightOpacity(255).setRegistryName("hiveresin");
+    public static final Block naturalResin          = new BlockHiveResin(Material.WOOD).setRegistryName("hiveresin");
     public static final Block resin                 = new BlockMaterial(Material.WOOD).setHardness(5F).setResistance(10.0F).setRegistryName("hiveresin.standard");
     public static final Block relicovamorph         = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("tileovamorphdesign");
     public static final Block metal1                = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shippanel");

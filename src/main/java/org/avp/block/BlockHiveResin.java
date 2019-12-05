@@ -26,7 +26,12 @@ public class BlockHiveResin extends Block
     public BlockHiveResin(Material material)
     {
         super(material);
-        this.setLightLevel(0.1F);
+    }
+
+    @Override
+    public EnumBlockRenderType getRenderType(IBlockState state)
+    {
+        return EnumBlockRenderType.MODEL;
     }
 
     @Override
@@ -36,9 +41,15 @@ public class BlockHiveResin extends Block
     }
 
     @Override
-    public EnumBlockRenderType getRenderType(IBlockState state)
+    public boolean isFullBlock(IBlockState state)
     {
-        return EnumBlockRenderType.MODEL;
+        return true;
+    }
+
+    @Override
+    public boolean isFullCube(IBlockState state)
+    {
+        return false;
     }
 
     @Override
@@ -64,7 +75,7 @@ public class BlockHiveResin extends Block
     {
         return true;
     }
-
+    
     @Override
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer playerIn)
     {

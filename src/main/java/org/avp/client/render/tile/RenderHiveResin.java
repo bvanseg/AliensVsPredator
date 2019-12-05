@@ -30,7 +30,6 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
                 AliensVsPredator.resources().models().HIVE_RESIN.bindTexture();
                 ModelHiveResin model = AliensVsPredator.resources().models().HIVE_RESIN.getModel();
                 OpenGL.enableCullFace();
-                OpenGL.disableLight();
 
                 if (resin.topBlock == Blocks.AIR)
                 {
@@ -145,7 +144,6 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
                     }
                 }
             }
-            OpenGL.enableLight();
             OpenGL.popMatrix();
         }
     }
