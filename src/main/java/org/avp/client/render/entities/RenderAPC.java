@@ -154,7 +154,7 @@ public class RenderAPC extends Render<EntityAPC>
         GlStateManager.enableBlend();
         OpenGL.blendClear();
         OpenGL.translate((float) posX, (float) posY, (float) posZ);
-        OpenGL.rotate(-apc.rotationYaw + 180, 0, 1, 0);
+        OpenGL.rotate(-((apc.rotationYaw - apc.prevRotationYaw) * Game.partialTicks() + apc.prevRotationYaw + 180), 0, 1, 0);
         OpenGL.translate(3, 0, 0);
         
         if (time > 0.0F)
@@ -195,7 +195,7 @@ public class RenderAPC extends Render<EntityAPC>
             {
                 OpenGL.pushMatrix();
                 float doorProgress = (float) (-1.25 * Game.minecraft().world.getTotalWorldTime() % 315 / 100);
-                OpenGL.translate(Math.sin(doorProgress), 0, 0);
+//                OpenGL.translate(Math.sin(doorProgress), 0, 0);
                 p.draw();
                 OpenGL.popMatrix();
             } else if (isPartATire(p))
@@ -220,19 +220,22 @@ public class RenderAPC extends Render<EntityAPC>
                 OpenGL.popMatrix();
             } else if (this.isPartOfTurret(p))
             {
+                float turretYaw = 108F;
+                
                 if (Entities.isRiding(apc, EntityPlayer.class))
                 {
                     EntityPlayer playerIn = (EntityPlayer) apc.getPassengers().get(0);
-
-                    OpenGL.pushMatrix();
-                    OpenGL.translate(-2.9F, 0.75F, -0.25F);
-                    OpenGL.rotate(-90, 0F, 1F, 0F);
-                    OpenGL.rotate(apc.rotationYaw - 108, 0, 1, 0);
-                    OpenGL.rotate(-playerIn.rotationYawHead - 72, 0F, 1F, 0F);
-                    OpenGL.translate(2.9F, -0.75F, 0.25F);
-                    p.draw();
-                    OpenGL.popMatrix();
+                    turretYaw = (((-playerIn.rotationYawHead - -playerIn.prevRotationYawHead) * Game.partialTicks() + -playerIn.rotationYawHead) - 72);
                 }
+                
+                OpenGL.pushMatrix();
+                OpenGL.translate(-2.9F, 0.75F, -0.25F);
+                OpenGL.rotate(-90, 0F, 1F, 0F);
+                OpenGL.rotate(apc.rotationYaw - 108, 0, 1, 0);
+                OpenGL.rotate(turretYaw, 0F, 1F, 0F);
+                OpenGL.translate(2.9F, -0.75F, 0.25F);
+                p.draw();
+                OpenGL.popMatrix();
             }
             else if (((this.isPartOfTurret(p) && apc.getPassengers().size() > 0 && apc.getPassengers().get(0) == null)))
             {

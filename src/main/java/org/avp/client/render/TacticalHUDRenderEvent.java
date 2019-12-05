@@ -11,6 +11,7 @@ import org.avp.AliensVsPredator;
 import org.avp.client.gui.GuiTacticalHUDSettings;
 import org.avp.client.render.wavegraph.Wavegraph;
 import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
+import org.avp.entities.EntityAPC;
 import org.avp.entities.living.species.EntityParasitoid;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
@@ -82,9 +83,9 @@ public class TacticalHUDRenderEvent
                     }
 
                     trackedEntities = (ArrayList<EntityLivingBase>) Entities.getEntitiesInCoordsRange(Game.minecraft().player.world, EntityLivingBase.class, new Pos(Game.minecraft().player), 30, 30);
-                    
+
                     trackedEntities.removeIf(e -> {
-                    	return (e instanceof EntityParasitoid) && !((EntityParasitoid)e).isFertile();
+                        return (e instanceof EntityParasitoid) && !((EntityParasitoid) e).isFertile();
                     });
                 }
 
@@ -228,6 +229,18 @@ public class TacticalHUDRenderEvent
         if (Game.minecraft().player != null && event.getType() == ElementType.HOTBAR)
         {
             this.renderInventoryElements(event);
+        }
+        
+        if (Game.minecraft().player != null && event.getType() == ElementType.HELMET)
+        {
+            if (Game.minecraft().player.getRidingEntity() instanceof EntityAPC)
+            {
+                EntityAPC apc = (EntityAPC) Game.minecraft().player.getRidingEntity();
+                double apcVelocity = Math.sqrt(apc.motionX * apc.motionX + apc.motionZ * apc.motionZ);
+                EntityAPC.Gear apcGear = EntityAPC.Gear.forVelocity(apcVelocity);
+                
+                Draw.drawString("Gear: " + apcGear.ordinal(), 10, 10, 0xFFFF0000, false);
+            }
         }
     }
 
