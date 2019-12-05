@@ -412,12 +412,12 @@ public class EntityAPC extends Entity
 
         velocity1 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
-        if (Entities.getEntityRiddenBy(this) == null)
-        {
-            this.motionX = 0;
-            this.motionY = 0;
-            this.motionZ = 0;
-        }
+//        if (Entities.getEntityRiddenBy(this) == null)
+//        {
+//            this.motionX = 0;
+//            this.motionY = 0;
+//            this.motionZ = 0;
+//        }
 
         this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
         this.motionX *= 0.65D;
