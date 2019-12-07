@@ -24,7 +24,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -147,19 +146,7 @@ public abstract class BlockSkull extends Block
     {
         return super.getItemDropped(state, rand, fortune);
     }
-
-    @Override
-    public void onPlayerDestroy(World worldIn, BlockPos pos, IBlockState state)
-    {
-        dropBlockAsItem(worldIn, pos, state, 1);
-    }
-
-    @Override
-    public void onExplosionDestroy(World worldIn, BlockPos pos, Explosion explosionIn)
-    {
-        dropBlockAsItem(worldIn, pos, null, 1);
-    }
-
+    
     public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
     {
         Random rand = world instanceof World ? ((World) world).rand : RANDOM;
@@ -169,11 +156,5 @@ public abstract class BlockSkull extends Block
         {
             drops.add(new ItemStack(item, 1, this.damageDropped(state)));
         }
-    }
-    
-    @Override
-    public boolean canHarvestBlock(IBlockAccess world, BlockPos pos, EntityPlayer player)
-    {
-        return false;
     }
 }
