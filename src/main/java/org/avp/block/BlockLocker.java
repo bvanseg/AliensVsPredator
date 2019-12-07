@@ -23,6 +23,8 @@ import net.minecraft.world.World;
 
 public class BlockLocker extends Block
 {
+    public static final AxisAlignedBB LOCKER_AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D, 1.0D);
+    
     public BlockLocker(Material material)
     {
         super(material);
@@ -57,6 +59,12 @@ public class BlockLocker extends Block
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
     {
         return true;
+    }
+    
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return LOCKER_AABB;
     }
     
     @Override
