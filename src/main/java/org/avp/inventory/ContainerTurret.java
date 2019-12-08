@@ -171,7 +171,10 @@ public class ContainerTurret extends Container
             }
             else
             {
-                return ItemStack.EMPTY;
+                if (!this.mergeItemStack(itemstack, 0, 8, false))
+                {
+                    return ItemStack.EMPTY;
+                }
             }
 
             if (itemstack.getCount() == 0)
