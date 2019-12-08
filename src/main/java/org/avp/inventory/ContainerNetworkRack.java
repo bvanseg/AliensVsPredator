@@ -54,6 +54,7 @@ public class ContainerNetworkRack extends Container
         {
             int inventoryLastSlot = this.rack.inventory.getSizeInventory() - 1;
             int containerLastSlot = this.inventorySlots.size() - 1;
+            System.out.println(this.rack.inventory.getSizeInventory());
             ItemStack stack = slot.getStack();
             ItemStack result = stack.copy();
             
@@ -66,7 +67,7 @@ public class ContainerNetworkRack extends Container
             }
             else
             {
-                if (!this.mergeItemStack(stack, 0, inventoryLastSlot, false))
+                if (!this.mergeItemStack(stack, 0, inventoryLastSlot + 1, false))
                 {
                     return ItemStack.EMPTY;
                 }
