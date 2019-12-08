@@ -1,6 +1,8 @@
 package org.avp.tile;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
@@ -66,6 +68,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -224,11 +227,25 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     public Entity findTarget()
     {
-        Entity newTarget = Entities.getRandomEntityInCoordsRange(world, EntityLivingBase.class, this.pos, 32);
+        List<? extends Entity> entities = Entities.getEntitiesInCoordsRange(world, EntityLivingBase.class, this.pos, 32);
+
+        Entity newTarget = null;
+        
+        if (entities.size() > 0)
+        {
+            entities.get(new Random().nextInt(entities.size()));
+        }
+
+        for (Entity e : entities)
+        {
+            if (this.canSee(e))
+            {
+                newTarget = e;
+            }
+        }
         
         if (this.targetEntity == null || this.targetEntity != null && this.targetEntity.isDead || this.targetEntity != null && !canSee(this.targetEntity))
         {
-            
             if (this.canTarget(newTarget) && canSee(newTarget))
             {
                 this.targetEntity = newTarget;
@@ -270,16 +287,16 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         double height = e.getEntityBoundingBox().maxY - e.getEntityBoundingBox().minY;
         double halfHeight = height / 2;
+        
+        Vec3d mid = new Vec3d(e.posX, e.getEntityBoundingBox().maxY - (halfHeight), e.posZ);
+        Vec3d top = new Vec3d(e.posX, e.getEntityBoundingBox().maxY - (halfHeight + halfHeight), e.posZ);
+        Vec3d bot = new Vec3d(e.posX, e.getEntityBoundingBox().maxY - (halfHeight - halfHeight), e.posZ);
+        Vec3d offset = new Vec3d(this.pos.x, this.pos.y, this.pos.z).add(0.5, 1, 0.5);
+        RayTraceResult midResult = this.world.rayTraceBlocks(mid, offset, false, true, false);
+        RayTraceResult topResult = this.world.rayTraceBlocks(top, offset, false, true, false);
+        RayTraceResult botResult = this.world.rayTraceBlocks(bot, offset, false, true, false);
 
-        Pos middlePos = new Pos(e.posX, e.getEntityBoundingBox().maxY - (halfHeight), e.posZ);
-        Pos topPos = new Pos(e.posX, e.getEntityBoundingBox().maxY - (halfHeight + halfHeight), e.posZ);
-        Pos botPos = new Pos(e.posX, e.getEntityBoundingBox().maxY - (halfHeight - halfHeight), e.posZ);
-        Pos newPos = this.pos.add(0.5, 1, 0.5);
-        RayTraceResult middle = Entities.rayTraceBlocks(this.world, middlePos, newPos, false, true, false);
-        RayTraceResult top = Entities.rayTraceBlocks(this.world, topPos, newPos, false, true, false);
-        RayTraceResult bot = Entities.rayTraceBlocks(this.world, botPos, newPos, false, true, false);
-
-        if (middle == null || top == null || bot == null)
+        if (midResult == null || topResult == null || botResult == null)
         {
             return true;
         }
@@ -339,15 +356,18 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             {
                 AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
 
-                if (world.getWorldInfo().getWorldTotalTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw)
+                if (this.canSee(targetEntity))
                 {
-                    if (curAmmo-- > 0)
+                    if (world.getWorldInfo().getWorldTotalTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw)
                     {
-                        this.fire();
-                    }
-                    else
-                    {
-                        this.reload();
+                        if (curAmmo-- > 0)
+                        {
+                            this.fire();
+                        }
+                        else
+                        {
+                            this.reload();
+                        }
                     }
                 }
             }
@@ -487,7 +507,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.timeout = this.timeoutMax;
         this.targetEntity.attackEntityFrom(DamageSources.bullet, 1F);
         this.targetEntity.hurtResistantTime = 0;
-//        this.world.spawnParticle(EnumParticleTypes.CLOUD, this.pos.x, this.pos.y, this.pos.z, 0, 10, 0);
+        // this.world.spawnParticle(EnumParticleTypes.CLOUD, this.pos.x, this.pos.y,
+        // this.pos.z, 0, 10, 0);
         Sounds.WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 1F, 1F);
     }
 
@@ -517,7 +538,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         if (this.targetPlayers.contains(name))
         {
             this.targetPlayers.remove(name);
-            
+
             if (this.targetEntity instanceof EntityPlayer && this.targetEntity.getName().equalsIgnoreCase(name))
             {
                 this.targetEntity = null;
@@ -750,7 +771,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         return ammoDisplayEnabled;
     }
-    
+
     public ArrayList<String> getTargetPlayers()
     {
         return targetPlayers;
