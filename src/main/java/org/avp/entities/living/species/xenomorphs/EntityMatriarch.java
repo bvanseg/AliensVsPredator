@@ -369,8 +369,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
         super.writeEntityToNBT(nbt);
         nbt.setFloat("ovipositorSize", this.getOvipositorSize());
     }
-
-    @Override
+    
     public boolean canBeCollidedWith()
     {
         return true;
@@ -380,6 +379,12 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
     public boolean canBePushed()
     {
         return false;
+    }
+    
+    @Override
+    protected void collideWithEntity(Entity entityIn)
+    {
+        ;
     }
 
     @Override
