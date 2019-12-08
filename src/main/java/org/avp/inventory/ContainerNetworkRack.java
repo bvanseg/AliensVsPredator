@@ -54,7 +54,6 @@ public class ContainerNetworkRack extends Container
         {
             int inventoryLastSlot = this.rack.inventory.getSizeInventory() - 1;
             int containerLastSlot = this.inventorySlots.size() - 1;
-            System.out.println(this.rack.inventory.getSizeInventory());
             ItemStack stack = slot.getStack();
             ItemStack result = stack.copy();
             
