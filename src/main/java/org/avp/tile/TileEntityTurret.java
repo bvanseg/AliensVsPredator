@@ -72,6 +72,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -147,7 +148,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-
+        
         this.direction = nbt.getInteger("Direction");
         this.focrot.setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
         this.readTargetListFromCompoundTag(nbt);
@@ -161,7 +162,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-
+        
         nbt.setInteger("Direction", this.direction);
         nbt.setFloat("FocusYaw", this.focrot.yaw);
         nbt.setFloat("FocusPitch", this.focrot.pitch);
@@ -230,7 +231,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         List<? extends Entity> entities = Entities.getEntitiesInCoordsRange(world, EntityLivingBase.class, this.pos, 32);
 
         Entity newTarget = null;
-        
+
         if (entities.size() > 0)
         {
             entities.get(new Random().nextInt(entities.size()));
@@ -243,7 +244,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                 newTarget = e;
             }
         }
-        
+
         if (this.targetEntity == null || this.targetEntity != null && this.targetEntity.isDead || this.targetEntity != null && !canSee(this.targetEntity))
         {
             if (this.canTarget(newTarget) && canSee(newTarget))
@@ -287,7 +288,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         double height = e.getEntityBoundingBox().maxY - e.getEntityBoundingBox().minY;
         double halfHeight = height / 2;
-        
+
         Vec3d mid = new Vec3d(e.posX, e.getEntityBoundingBox().maxY - (halfHeight), e.posZ);
         Vec3d top = new Vec3d(e.posX, e.getEntityBoundingBox().maxY - (halfHeight + halfHeight), e.posZ);
         Vec3d bot = new Vec3d(e.posX, e.getEntityBoundingBox().maxY - (halfHeight - halfHeight), e.posZ);
@@ -355,19 +356,19 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             if (!this.world.isRemote)
             {
                 AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
+            }
 
-                if (this.canSee(targetEntity))
+            if (this.canSee(targetEntity))
+            {
+                if (world.getWorldInfo().getWorldTotalTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw)
                 {
-                    if (world.getWorldInfo().getWorldTotalTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw)
+                    if (curAmmo-- > 0)
                     {
-                        if (curAmmo-- > 0)
-                        {
-                            this.fire();
-                        }
-                        else
-                        {
-                            this.reload();
-                        }
+                        this.fire();
+                    }
+                    else
+                    {
+                        this.reload();
                     }
                 }
             }
@@ -652,7 +653,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void readTargetListFromCompoundTag(NBTTagCompound nbt)
     {
         NBTTagList list = nbt.getTagList("Targets", NBT.TAG_STRING);
-
+        
         if (list instanceof NBTTagList)
         {
             this.readTargetList(list);
@@ -665,7 +666,9 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         {
             String id = list.getStringTagAt(i);
 
-            Class<? extends Entity> c = (Class<? extends Entity>) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id)).getEntityClass();
+            ResourceLocation identifier = new ResourceLocation(id);
+            EntityEntry ee = ForgeRegistries.ENTITIES.getValue(identifier);
+            Class<? extends Entity> c = (Class<? extends Entity>) ee.getEntityClass();
             this.addTargetType(c);
         }
     }
