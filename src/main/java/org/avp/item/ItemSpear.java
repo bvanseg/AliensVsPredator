@@ -30,7 +30,7 @@ public class ItemSpear extends ItemSword
         if (entityLiving instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) entityLiving;
-            
+
             if (Inventories.playerHas(AliensVsPredator.items().itemSpear, player))
             {
                 float charge = (this.getMaxItemUseDuration(itemstack) - timeLeft * 1F) / 9F;
@@ -49,11 +49,7 @@ public class ItemSpear extends ItemSword
                     entityspear.shoot(entityspear.motionX, entityspear.motionY, entityspear.motionZ, 0.9F * charge, 0.1F);
                     GameSounds.fxPop.playSound(player, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
                     world.spawnEntity(entityspear);
-
-                    if (!player.capabilities.isCreativeMode)
-                    {
-                        Inventories.consumeItem(player, AliensVsPredator.items().itemSpear, true);
-                    }
+                    Inventories.consumeItem(player, AliensVsPredator.items().itemSpear, true);
                 }
             }
         }
@@ -70,7 +66,7 @@ public class ItemSpear extends ItemSword
     {
         return EnumAction.BOW;
     }
-    
+
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
@@ -78,7 +74,7 @@ public class ItemSpear extends ItemSword
         {
             player.setActiveHand(hand);
         }
-        
+
         return super.onItemRightClick(world, player, hand);
     }
 }
