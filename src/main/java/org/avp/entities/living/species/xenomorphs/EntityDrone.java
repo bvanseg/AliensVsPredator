@@ -220,11 +220,11 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
     {
         ArrayList<BlockPos> data = new ArrayList<BlockPos>();
 
-        for (int x = (int) (posX - range); x < posX + range; x++)
+        for (int x = (int) (posX - range); x < posX + (range * 2); x++)
         {
-            for (int y = (int) (posY - range); y < posY + range; y++)
+            for (int y = (int) (posY - range); y < posY + (range); y++)
             {
-                for (int z = (int) (posZ - range); z < posZ + range; z++)
+                for (int z = (int) (posZ - range); z < posZ + (range * 2); z++)
                 {
                     BlockPos location = new BlockPos(x, y, z);
                     IBlockState blockstate = this.world.getBlockState(location);
@@ -234,18 +234,11 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
                     {
                         Vec3d start = new Vec3d(this.posX, this.posY + (double) this.getEyeHeight(), this.posZ);
                         Vec3d end = new Vec3d(x, y, z);
-                        RayTraceResult hit = this.world.rayTraceBlocks(start, end);
+                        RayTraceResult hit =  this.world.rayTraceBlocks(start, end, false, true, false);
 
                         if (hit != null && hit.typeOfHit == RayTraceResult.Type.BLOCK || hit == null)
                         {
-                            boolean canSeeCoord = true;
-
-                            if (hit != null)
-                            {
-                                canSeeCoord = hit.hitVec.x == x && hit.hitVec.y == y && hit.hitVec.z == z;
-                            }
-
-                            if (Pos.isAnySurfaceEmpty(location, this.world) && canSeeCoord)
+                            if (Pos.isAnySurfaceEmpty(location, this.world))
                             {
                                 data.add(location);
                             }
