@@ -220,11 +220,11 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
     {
         ArrayList<BlockPos> data = new ArrayList<BlockPos>();
 
-        for (int x = (int) (posX - range); x < posX + (range * 2); x++)
+        for (int x = (int) (posX - range); x < posX + (range); x++)
         {
             for (int y = (int) (posY - range); y < posY + (range); y++)
             {
-                for (int z = (int) (posZ - range); z < posZ + (range * 2); z++)
+                for (int z = (int) (posZ - range); z < posZ + (range); z++)
                 {
                     BlockPos location = new BlockPos(x, y, z);
                     IBlockState blockstate = this.world.getBlockState(location);
