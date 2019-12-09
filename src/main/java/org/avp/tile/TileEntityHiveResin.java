@@ -10,20 +10,18 @@ import org.avp.world.hives.XenomorphHive;
 import com.asx.mdx.lib.world.Worlds;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 //TODO: Redo this
 public class TileEntityHiveResin extends TileEntity
 {
     public ResinVariant variant;
     private UUID        signature;
-    private IBlockState blockCovering;
+    private Block       parentBlock;
+    private int         parentBlockMeta;
     public Block        northBlock;
     public Block        northTopBlock;
     public Block        northBottomBlock;
@@ -105,16 +103,6 @@ public class TileEntityHiveResin extends TileEntity
         this.signature = signature;
     }
 
-    public void setBlockCovering(IBlockState blockCovering, int meta)
-    {
-        this.blockCovering = blockCovering;
-    }
-
-    public IBlockState getBlockCovering()
-    {
-        return this.blockCovering;
-    }
-
     @Override
     public SPacketUpdateTileEntity getUpdatePacket()
     {
@@ -132,6 +120,22 @@ public class TileEntityHiveResin extends TileEntity
     {
         this.readFromNBT(packet.getNbtCompound());
     }
+    
+    public void setParentBlock(Block parent, int metadata)
+    {
+        this.parentBlock = parent;
+        this.parentBlockMeta = metadata;
+    }
+    
+    public Block getParentBlock()
+    {
+        return parentBlock;
+    }
+    
+    public int getParentBlockMeta()
+    {
+        return parentBlockMeta;
+    }
 
     @Override
     public void readFromNBT(NBTTagCompound compound)
@@ -139,14 +143,14 @@ public class TileEntityHiveResin extends TileEntity
         super.readFromNBT(compound);
 
         int variantOrdinal = compound.getInteger("RandomVariant");
-        String blockString = compound.getString("BlockCovered");
+        int id = compound.getInteger("Parent");
 
-        if (blockString != null && blockString.contains(":"))
+        if (id != 0)
         {
-            String[] identifier = blockString.split(":");
-            this.blockCovering = GameRegistry.findRegistry(Block.class).getValue(new ResourceLocation(identifier[0], identifier[1])).getDefaultState();
+            this.parentBlock = Block.getBlockById(id);
+            this.parentBlockMeta = compound.getInteger("ParentMeta");
         }
-
+        
         this.signature = Worlds.uuidFromNBT(compound, "HiveSignature");
         this.variant = ResinVariant.fromId(variantOrdinal == 0 ? 1 + new Random().nextInt(ResinVariant.values().length) : variantOrdinal);
     }
@@ -156,14 +160,8 @@ public class TileEntityHiveResin extends TileEntity
     {
         super.writeToNBT(nbt);
 
-        if (blockCovering != null)
-        {
-            if (this.blockCovering.getBlock().getRegistryName() != null)
-            {
-                nbt.setString("BlockCovered", this.blockCovering.getBlock().getRegistryName().toString());
-            }
-        }
-
+        nbt.setInteger("Parent", Block.getIdFromBlock(parentBlock));
+        nbt.setInteger("ParentMeta", parentBlockMeta);
         nbt.setString("HiveSignature", signature != null ? this.signature.toString() : "");
         nbt.setInteger("RandomVariant", this.variant != null ? this.variant.id : 0);
 

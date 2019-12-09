@@ -17,6 +17,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.Path;
@@ -163,6 +164,7 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
             }
         }
     }
+    
     public void tickHiveBuildingAI()
     {
         if (!this.world.isRemote)
@@ -198,7 +200,10 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
                                 {
                                     TileEntityHiveResin resin = (TileEntityHiveResin) tileEntity;
                                     resin.setHiveSignature(this.getHive().getUniqueIdentifier());
-                                    resin.setBlockCovering(state, 0);
+
+                                    resin.setParentBlock(state.getBlock(), 0);
+                                    this.world.notifyBlockUpdate(pos, state, state, 3);
+
                                     this.hive.addResin(resin);
                                 }
 

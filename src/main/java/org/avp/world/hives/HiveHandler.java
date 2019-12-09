@@ -99,9 +99,9 @@ public class HiveHandler implements IWorldSaveHandler
         {
             TileEntityHiveResin resin = (TileEntityHiveResin) tile;
 
-            if (resin != null && resin.getBlockCovering() != null)
+            if (resin != null && resin.getParentBlock() != null)
             {
-                world.setBlockState(pos, resin.getBlockCovering(), 3);
+                world.setBlockState(pos, resin.getParentBlock().getDefaultState(), 3);
 
                 return true;
             }

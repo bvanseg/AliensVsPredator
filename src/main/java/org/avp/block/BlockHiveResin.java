@@ -2,6 +2,7 @@ package org.avp.block;
 
 import java.util.Random;
 
+import org.avp.block.properties.UnlistedPropertyBlockstate;
 import org.avp.tile.TileEntityHiveResin;
 import org.avp.tile.TileEntityHiveResin.ResinVariant;
 import org.avp.world.hives.HiveHandler;
@@ -11,6 +12,7 @@ import com.asx.mdx.lib.world.Pos.BlockDataStore;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -20,12 +22,43 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.property.IExtendedBlockState;
+import net.minecraftforge.common.property.IUnlistedProperty;
 
 public class BlockHiveResin extends Block
 {
+    public static final IUnlistedProperty<IBlockState> PARENT_BLOCK = new UnlistedPropertyBlockstate();
+    
     public BlockHiveResin(Material material)
     {
         super(material);
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState()
+    {
+        return new BlockStateContainer.Builder(this).add(PARENT_BLOCK).build();
+    }
+
+    @Override
+    public IBlockState getExtendedState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        if (state != null && state instanceof IExtendedBlockState)
+        {
+            IExtendedBlockState extendedState = ((IExtendedBlockState) state);
+            TileEntity tile = world.getTileEntity(pos);
+
+            if (tile != null && tile instanceof TileEntityHiveResin)
+            {
+                TileEntityHiveResin resin = (TileEntityHiveResin) tile;
+                Block reflection = resin.getParentBlock();
+                IBlockState reflectionState = reflection != null ? reflection.getStateFromMeta(resin.getParentBlockMeta()) : null;
+
+                return extendedState.withProperty(PARENT_BLOCK, reflectionState);
+            }
+        }
+
+        return state;
     }
 
     @Override
@@ -90,9 +123,9 @@ public class BlockHiveResin extends Block
             {
                 if (coord.isAnySurfaceNextTo(world, Blocks.FIRE))
                 {
-                    if (resin != null && resin.getBlockCovering() != null)
+                    if (resin != null && resin.getParentBlock() != null)
                     {
-                        HiveHandler.instance.burntResin.add(new Pos(pos).store(new BlockDataStore(resin.getBlockCovering().getBlock(), (byte) 0)));
+                        HiveHandler.instance.burntResin.add(new Pos(pos).store(new BlockDataStore(resin.getParentBlock(), (byte) 0)));
                     }
                 }
 

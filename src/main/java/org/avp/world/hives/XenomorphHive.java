@@ -158,7 +158,7 @@ public class XenomorphHive
         {
             if (resin != null)
             {
-                this.world.setBlockState(resin.getPos(), resin.getBlockCovering());
+                this.world.setBlockState(resin.getPos(), resin.getParentBlock().getDefaultState());
             }
         }
 
