@@ -67,7 +67,7 @@ public class EntityMedpod extends Entity
             {
                 Entity entity = entities.get(0);
 
-                if (!entity.isRiding() && !entity.isSneaking() && (entity != this.lastRiddenEntity && !entity.getPersistentID().equals(this.lastRiddenEntityUUID)) && !(entity instanceof SpeciesAlien))
+                if (!entity.isRiding() && !entity.isSneaking() && !(entity instanceof SpeciesAlien))
                 {
                     lastRiddenEntity = entity;
 
@@ -78,30 +78,30 @@ public class EntityMedpod extends Entity
                 }
             }
         }
-
-        if (lastRiddenEntity != null)
-        {
-            lastRiddenEntityUUID = lastRiddenEntity.getPersistentID();
-        }
-
-        if (this.lastRiddenEntity == null)
-        {
-            if (this.lastRiddenEntityUUID != null)
-            {
-                this.lastRiddenEntity = Worlds.getEntityByUUID(this.world, this.lastRiddenEntityUUID);
-            }
-        }
-
-        if (Entities.getEntityRiddenBy(this) != null && this.getTileEntity() != null)
-        {
-            if (this.getTileEntity().getVoltage() > 0 && this.getTileEntity().getDoorProgress() <= 0 && !this.getTileEntity().isOpen() && Entities.getEntityRiddenBy(this) instanceof EntityLivingBase)
-            {
-                EntityLivingBase living = (EntityLivingBase) Entities.getEntityRiddenBy(this);
-                Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
-                
-                organism.heal(living);
-            }
-        }
+//
+//        if (lastRiddenEntity != null)
+//        {
+//            lastRiddenEntityUUID = lastRiddenEntity.getPersistentID();
+//        }
+//
+//        if (this.lastRiddenEntity == null)
+//        {
+//            if (this.lastRiddenEntityUUID != null)
+//            {
+//                this.lastRiddenEntity = Worlds.getEntityByUUID(this.world, this.lastRiddenEntityUUID);
+//            }
+//        }
+//
+//        if (Entities.getEntityRiddenBy(this) != null && this.getTileEntity() != null)
+//        {
+//            if (this.getTileEntity().getVoltage() > 0 && this.getTileEntity().getDoorProgress() <= 0 && !this.getTileEntity().isOpen() && Entities.getEntityRiddenBy(this) instanceof EntityLivingBase)
+//            {
+//                EntityLivingBase living = (EntityLivingBase) Entities.getEntityRiddenBy(this);
+//                Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+//                
+//                organism.heal(living);
+//            }
+//        }
     }
 
     @Override
