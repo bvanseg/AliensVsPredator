@@ -53,8 +53,7 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
 
                 OpenGL.rotate(resin.getVariant() == null ? 0 : (resin.getVariant().id - 1) * 90F, 0F, 1F, 0F);
 
-                // if (hiveTessellation == GraphicsSetting.HIGH || hiveTessellation ==
-                // GraphicsSetting.ULTRA)
+//                if (hiveTessellation == GraphicsSetting.HIGH || hiveTessellation == GraphicsSetting.ULTRA)
                 {
                     model.nBottomRoot01.isHidden = resin.northTopBlock == Blocks.AIR;
                     model.nTopRoot01.isHidden = resin.northBottomBlock == Blocks.AIR;
