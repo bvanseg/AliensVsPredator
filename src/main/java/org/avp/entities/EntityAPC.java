@@ -13,6 +13,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -53,7 +54,6 @@ public class EntityAPC extends Entity
         this.setSize(3F, 2F);
         this.ignoreFrustumCheck = true;
         this.stepHeight = 1.0F;
-        this.updateBlocked = false;
     }
 
     @Override
@@ -418,7 +418,7 @@ public class EntityAPC extends Entity
 //            this.motionY = 0;
 //            this.motionZ = 0;
 //        }
-
+        
         this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
         this.motionX *= 0.65D;
         this.motionY *= 0.94D;
@@ -501,7 +501,7 @@ public class EntityAPC extends Entity
     @Override
     public float getCollisionBorderSize()
     {
-        return 9F;
+        return 0F;
     }
 
     @Override

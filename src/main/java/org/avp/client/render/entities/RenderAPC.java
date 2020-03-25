@@ -143,7 +143,6 @@ public class RenderAPC extends Render<EntityAPC>
     public void doRender(EntityAPC apc, double posX, double posY, double posZ, float yaw, float partialTicks)
     {
         float scale = 1F;
-        float curVelocity = (float) Math.sqrt(apc.motionX * apc.motionX + apc.motionZ * apc.motionZ);
         float tireRotation = apc.getTireRotation();
         float time = (float) apc.getTimeSinceHit() - partialTicks;
         float damage = apc.getDamageTaken() - partialTicks;
@@ -194,8 +193,6 @@ public class RenderAPC extends Render<EntityAPC>
                     || model.getPart("Mesh221_APCHndPt1_Model") == p)
             {
                 OpenGL.pushMatrix();
-                float doorProgress = (float) (-1.25 * Game.minecraft().world.getTotalWorldTime() % 315 / 100);
-//                OpenGL.translate(Math.sin(doorProgress), 0, 0);
                 p.draw();
                 OpenGL.popMatrix();
             } else if (isPartATire(p))
