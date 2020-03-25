@@ -239,7 +239,12 @@ public class XenomorphHive
 
     public boolean isQueenAtCore()
     {
-        return this.getQueen().getDistance(this.xCoord(), this.yCoord(), this.zCoord()) < this.getCoreRange();
+        if (this.getQueen() != null)
+        {
+            return this.getQueen().getDistance(this.xCoord(), this.yCoord(), this.zCoord()) < this.getCoreRange();
+        }
+        
+        return false;
     }
 
     public boolean isPointWithinHive(Pos coord)
@@ -249,12 +254,22 @@ public class XenomorphHive
 
     public boolean isPointWithinHive(int x, int y, int z)
     {
-        return this.getQueen().getDistance(x, y, z) < this.getMaxHiveRadius();
+        if (this.getQueen() != null)
+        {
+            return this.getQueen().getDistance(x, y, z) < this.getMaxHiveRadius();
+        }
+        
+        return false;
     }
 
     public double getDistanceFromHive(Entity entity)
     {
-        return this.getQueen().getDistance(entity.posX, entity.posY, entity.posZ);
+        if (this.getQueen() != null)
+        {
+            return this.getQueen().getDistance(entity.posX, entity.posY, entity.posZ);
+        }
+
+        return 0;
     }
 
     public boolean isEntityWithinRange(Entity entity)
