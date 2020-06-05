@@ -9,6 +9,7 @@ import org.avp.tile.TileEntityBlastdoor;
 import com.asx.mdx.lib.client.gui.notifications.Notification;
 import com.asx.mdx.lib.client.gui.notifications.Notification.DynamicNotification;
 import com.asx.mdx.lib.client.gui.notifications.Notifications;
+import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
@@ -66,7 +67,7 @@ public class BlockBlastdoor extends Block
                 {
                     if (blastdoor.playerHoldingRequiredSecurityTuner(player))
                     {
-                        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                        if (FMLCommonHandler.instance().getSide() == Side.CLIENT && player.getName().equalsIgnoreCase(Game.minecraft().player.getName()))
                             showAdministrationGUI(blastdoor);
                     }
                 }
