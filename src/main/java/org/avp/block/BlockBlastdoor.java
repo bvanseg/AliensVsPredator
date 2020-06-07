@@ -77,7 +77,7 @@ public class BlockBlastdoor extends Block
                 }
                 else if (blastdoor.isLocked() && blastdoor.isOperational())
                 {
-                    if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
+                    if (FMLCommonHandler.instance().getSide() == Side.CLIENT && player.getName().equalsIgnoreCase(Game.minecraft().player.getName()))
                         showUnlockGUI(blastdoor);
                 }
             }
