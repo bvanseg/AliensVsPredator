@@ -11,6 +11,7 @@ import org.avp.client.model.items.ModelM4;
 import org.avp.client.model.items.ModelM41A;
 import org.avp.client.model.items.ModelM56SG;
 import org.avp.client.model.items.ModelSniper;
+import org.avp.client.model.loaders.CustomBlockModelLoader;
 import org.avp.client.model.loaders.ReflectiveModelLoader;
 import org.avp.client.render.entities.RenderAPC;
 import org.avp.client.render.entities.RenderAcidPool;
@@ -358,6 +359,7 @@ public class Renders implements IInitEvent, IPreInitEvent
     {
         OBJLoader.INSTANCE.addDomain(AliensVsPredator.Properties.ID);
         ModelLoaderRegistry.registerLoader(ReflectiveModelLoader.INSTANCE);
+        ModelLoaderRegistry.registerLoader(CustomBlockModelLoader.INSTANCE);
     }
 
     private void registerLivingEntityRenderers()
