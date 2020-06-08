@@ -36,7 +36,6 @@ public class BlockHiveResin extends Block
     public BlockHiveResin(Material material)
     {
         super(material);
-        this.setTickRandomly(true);
     }
 
     @Override
@@ -119,12 +118,6 @@ public class BlockHiveResin extends Block
     {
         evaluateNeighbors(worldIn, pos);
         return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
-    }
-    
-    @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        super.updateTick(worldIn, pos, state, rand);
     }
     
     @Override
