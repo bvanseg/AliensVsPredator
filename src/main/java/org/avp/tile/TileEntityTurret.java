@@ -42,6 +42,7 @@ import org.avp.inventory.ContainerTurret;
 import org.avp.packets.client.PacketTurretSync;
 import org.avp.packets.server.PacketTurretTargetUpdate;
 
+import com.asx.mdx.MDX;
 import com.asx.mdx.lib.client.util.Rotation;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.util.MDXMath;
@@ -148,7 +149,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        
+
         this.direction = nbt.getInteger("Direction");
         this.focrot.setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
         this.readTargetListFromCompoundTag(nbt);
@@ -162,7 +163,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        
+
         nbt.setInteger("Direction", this.direction);
         nbt.setFloat("FocusYaw", this.focrot.yaw);
         nbt.setFloat("FocusPitch", this.focrot.pitch);
@@ -653,7 +654,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void readTargetListFromCompoundTag(NBTTagCompound nbt)
     {
         NBTTagList list = nbt.getTagList("Targets", NBT.TAG_STRING);
-        
+
         if (list instanceof NBTTagList)
         {
             this.readTargetList(list);
@@ -880,10 +881,25 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                     for (int i = 0; i < list.tagCount(); i++)
                     {
                         String id = list.getStringTagAt(i);
+                        
+                        EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id));
 
-                        Class<? extends Entity> c = (Class<? extends Entity>) ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id)).getEntityClass();
-                        this.addTargetType(c);
-                        builder.append(id + "-");
+                        for (EntityEntry e : ForgeRegistries.ENTITIES.getValues())
+                        {
+                            if (id.equalsIgnoreCase(e.getRegistryName().toString()))
+                            {
+                                entityEntry = e;
+                            }
+                        }
+
+                        if (entityEntry != null)
+                        {
+                            Class<? extends Entity> c = (Class<? extends Entity>) entityEntry.getEntityClass();
+                            this.addTargetType(c);
+                            builder.append(id + "-");
+                        } else {
+                            MDX.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
+                        }
                     }
                 }
             }
