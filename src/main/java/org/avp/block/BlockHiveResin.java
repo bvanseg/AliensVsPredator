@@ -14,12 +14,16 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.GameType;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
@@ -32,6 +36,7 @@ public class BlockHiveResin extends Block
     public BlockHiveResin(Material material)
     {
         super(material);
+        this.setTickRandomly(true);
     }
 
     @Override
@@ -110,6 +115,32 @@ public class BlockHiveResin extends Block
     }
     
     @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    {
+        evaluateNeighbors(worldIn, pos);
+        return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
+    }
+    
+    @Override
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+    {
+        super.updateTick(worldIn, pos, state, rand);
+    }
+    
+    @Override
+    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+    }
+    
+    @Override
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state)
+    {
+        super.onBlockAdded(worldIn, pos, state);
+        evaluateNeighbors(worldIn, pos);
+    }
+    
+    @Override
     public void onBlockClicked(World world, BlockPos pos, EntityPlayer playerIn)
     {
         TileEntity tile = world.getTileEntity(pos);
@@ -138,12 +169,18 @@ public class BlockHiveResin extends Block
 
         super.onBlockClicked(world, pos, playerIn);
     }
-
+    
     @Override
     public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos neighbor)
     {
         evaluateNeighbors(world, pos);
         super.onNeighborChange(world, pos, neighbor);
+    }
+    
+    @Override
+    public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos)
+    {
+        evaluateNeighbors(worldIn, pos);
     }
 
     public void evaluateNeighbors(IBlockAccess world, BlockPos pos)

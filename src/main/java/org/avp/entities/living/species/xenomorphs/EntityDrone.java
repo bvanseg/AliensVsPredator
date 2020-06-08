@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.avp.AliensVsPredator;
 import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IMaturable;
+import org.avp.block.BlockHiveResin;
 import org.avp.client.Sounds;
 import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.tile.TileEntityHiveResin;
@@ -193,6 +194,7 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
 
                                 this.getNavigator().setPath(path, 0.8D);
                                 this.world.setBlockState(pos, AliensVsPredator.blocks().naturalResin.getDefaultState());
+                                ((BlockHiveResin) AliensVsPredator.blocks().naturalResin).evaluateNeighbors(world, pos);
 
                                 TileEntity tileEntity = this.world.getTileEntity(pos);
 

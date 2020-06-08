@@ -10,13 +10,14 @@ import org.avp.world.hives.XenomorphHive;
 import com.asx.mdx.lib.world.Worlds;
 
 import net.minecraft.block.Block;
+import net.minecraft.util.ITickable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 
 //TODO: Redo this
-public class TileEntityHiveResin extends TileEntity
+public class TileEntityHiveResin extends TileEntity implements ITickable
 {
     public ResinVariant variant;
     private UUID        signature;
@@ -36,6 +37,7 @@ public class TileEntityHiveResin extends TileEntity
     public Block        westBottomBlock;
     public Block        bottomBlock;
     public Block        topBlock;
+    private boolean     evaluated;
 
     public enum ResinVariant
     {
@@ -85,7 +87,6 @@ public class TileEntityHiveResin extends TileEntity
     public void onLoad()
     {
         super.onLoad();
-        ((BlockHiveResin) world.getBlockState(pos).getBlock()).evaluateNeighbors(world, pos);
     }
 
     public XenomorphHive getHive()
@@ -120,18 +121,18 @@ public class TileEntityHiveResin extends TileEntity
     {
         this.readFromNBT(packet.getNbtCompound());
     }
-    
+
     public void setParentBlock(Block parent, int metadata)
     {
         this.parentBlock = parent;
         this.parentBlockMeta = metadata;
     }
-    
+
     public Block getParentBlock()
     {
         return parentBlock;
     }
-    
+
     public int getParentBlockMeta()
     {
         return parentBlockMeta;
@@ -150,7 +151,7 @@ public class TileEntityHiveResin extends TileEntity
             this.parentBlock = Block.getBlockById(id);
             this.parentBlockMeta = compound.getInteger("ParentMeta");
         }
-        
+
         this.signature = Worlds.uuidFromNBT(compound, "HiveSignature");
         this.variant = ResinVariant.fromId(variantOrdinal == 0 ? 1 + new Random().nextInt(ResinVariant.values().length) : variantOrdinal);
     }
@@ -176,5 +177,18 @@ public class TileEntityHiveResin extends TileEntity
     public void setVariant(ResinVariant variant)
     {
         this.variant = variant;
+    }
+
+    @Override
+    public void update()
+    {
+        Block b = this.world.getBlockState(this.pos).getBlock();
+
+        if (b instanceof BlockHiveResin && !evaluated)
+        {
+            BlockHiveResin resin = (BlockHiveResin) b;
+            resin.evaluateNeighbors(world, pos);
+            evaluated = true;
+        }
     }
 }
