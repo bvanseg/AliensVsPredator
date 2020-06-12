@@ -70,6 +70,7 @@ public class PressureHUDRenderEvent
 
                     this.gammaRestored = false;
                     LightmapUpdateEvent.instance.gammaValue = specialPlayer.isNightvisionEnabled() ? 8F : 0F;
+                    LightmapUpdateEvent.instance.overrideGamma();
                     OpenGL.disableLight();
                     OpenGL.disableLightMapping();
 
@@ -94,6 +95,7 @@ public class PressureHUDRenderEvent
                 {
                     this.gammaRestored = true;
                     LightmapUpdateEvent.instance.gammaValue = 0F;
+                    LightmapUpdateEvent.instance.overrideGamma();
                 }
             }
         }

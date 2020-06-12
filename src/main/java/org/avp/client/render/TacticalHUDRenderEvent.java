@@ -200,6 +200,7 @@ public class TacticalHUDRenderEvent
 
                     this.gammaRestored = false;
                     LightmapUpdateEvent.instance.gammaValue = specialPlayer.isNightvisionEnabled() ? 8F : 0F;
+                    LightmapUpdateEvent.instance.overrideGamma();
                     this.scanForNearbyPlayers();
                     OpenGL.enableBlend();
                     OpenGL.blendClear();
@@ -218,6 +219,7 @@ public class TacticalHUDRenderEvent
                 {
                     this.gammaRestored = true;
                     LightmapUpdateEvent.instance.gammaValue = 0F;
+                    LightmapUpdateEvent.instance.overrideGamma();
                 }
             }
         }

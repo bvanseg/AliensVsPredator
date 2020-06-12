@@ -15,11 +15,28 @@ public class LightmapUpdateEvent
 {
     public static final LightmapUpdateEvent instance = new LightmapUpdateEvent();
     public float gammaValue = 0F;
+    private boolean gammaOverride;
+    private int ticksPassed = 0;
+    
+    public void overrideGamma()
+    {
+        this.gammaOverride = true;
+        this.ticksPassed = 0;
+    }
 
     @SubscribeEvent
     public void renderTick(RenderTickEvent event)
     {
-        this.updateLightmap(event.renderTickTime);
+        if (gammaOverride)
+        {
+            this.updateLightmap(event.renderTickTime);
+            ticksPassed++;
+            
+            if (ticksPassed > 20 * 5)
+            {
+                this.gammaOverride = false;
+            }
+        }
     }
 
     public void updateLightmap(float partialTicks)
