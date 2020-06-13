@@ -6,8 +6,11 @@ import java.util.List;
 import javax.vecmath.Matrix4f;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.avp.AliensVsPredator;
+import org.avp.Settings.ClientSettings;
 import org.avp.block.BlockHiveResin;
 
+import com.asx.mdx.config.GraphicsSetting;
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.client.util.models.block.ModelRotationXYZ;
 import com.asx.mdx.lib.util.Game;
@@ -114,7 +117,9 @@ public class CachedModelResin implements IBakedModel
                 {
                     this.sprite = dispatcher.getBlockModelShapes().getTexture(parentState);
 
-                    if (this.sprite != textureMap.getMissingSprite() && sprite != null)
+                    GraphicsSetting hiveTessellation = ClientSettings.instance.hiveTessellation().value();
+                    
+                    if (this.sprite != textureMap.getMissingSprite() && sprite != null && hiveTessellation != GraphicsSetting.LOW)
                     {
                         retextured = retexture(retexturable, TEXTURE_KEY, sprite.getIconName());
                     }
