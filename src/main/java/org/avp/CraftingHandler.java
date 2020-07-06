@@ -43,13 +43,13 @@ public class CraftingHandler
         registerOreDict("aluminum", ItemHandler.itemIngotAluminum, "ingot");
         registerOreDict("cobalt", ItemHandler.cobalt, "ingot");
 
-        registerOreDict("silicon", ItemHandler.itemSilicon, true, "material");
-        registerOreDict("silica", ItemHandler.itemSilicon, true, "material");
-        registerOreDict("polycarbonate", ItemHandler.itemPolycarbonate, true, "material");
-        registerOreDict("plastic", ItemHandler.itemPolycarbonate, true, "material");
-        registerOreDict("neodymium", ItemHandler.neodymium, true, "material");
-        registerOreDict("magnet", ItemHandler.neodymiumMagnet, true, "material");
-        registerOreDict("carbon", ItemHandler.itemCarbon, true, "material");
+        registerOreDict("silicon", ItemHandler.itemSilicon, "", "material");
+        registerOreDict("silica", ItemHandler.itemSilicon, "", "material");
+        registerOreDict("polycarbonate", ItemHandler.itemPolycarbonate, "", "material");
+        registerOreDict("plastic", ItemHandler.itemPolycarbonate, "", "material");
+        registerOreDict("neodymium", ItemHandler.neodymium, "", "material");
+        registerOreDict("magnet", ItemHandler.neodymiumMagnet, "", "material");
+        registerOreDict("carbon", ItemHandler.itemCarbon, "", "material");
 
         registerOreDict("copper", BlockHandler.oreCopper, "ore");
         registerOreDict("lithium", BlockHandler.oreLithium, "ore"); 
@@ -59,27 +59,8 @@ public class CraftingHandler
         registerOreDict("monazite", BlockHandler.oreMonazite, "ore");
         registerOreDict("cobalt", BlockHandler.oreCobalt, "ore");
 
-        registerOreDict("wood", BlockHandler.gigerLog, true, "log");
         
-//        OreDictionary.registerOre("ingotCopper", ItemHandler.itemIngotCopper);
-//        OreDictionary.registerOre("lithium", ItemHandler.itemIngotLithium);
-//        OreDictionary.registerOre("ingotAluminum", ItemHandler.itemIngotAluminum);
-//        OreDictionary.registerOre("oreCopper", BlockHandler.oreCopper);
-//        OreDictionary.registerOre("oreLithium", BlockHandler.oreLithium);
-//        OreDictionary.registerOre("oreAluminum", BlockHandler.oreBauxite);
-//        OreDictionary.registerOre("oreAluminium", BlockHandler.oreBauxite);
-//        OreDictionary.registerOre("oreSilicon", BlockHandler.oreSilicon);
-//        OreDictionary.registerOre("silicon", ItemHandler.itemSilicon);
-//        OreDictionary.registerOre("silica", ItemHandler.itemSilicon);
-//        OreDictionary.registerOre("polycarbonate", ItemHandler.itemPolycarbonate);
-//        OreDictionary.registerOre("plastic", ItemHandler.itemPolycarbonate);
-//        OreDictionary.registerOre("logWood", BlockHandler.gigerLog);
-//        OreDictionary.registerOre("neodymium", ItemHandler.neodymium);
-//        OreDictionary.registerOre("magnet", ItemHandler.neodymiumMagnet);
-//        OreDictionary.registerOre("oreMonazite", BlockHandler.oreMonazite);
-//        OreDictionary.registerOre("cobalt", ItemHandler.cobalt);
-//        OreDictionary.registerOre("oreCobalt", BlockHandler.oreCobalt);     
-//        OreDictionary.registerOre("carbon", ItemHandler.itemCarbon);        
+        registerOreDict("wood", BlockHandler.gigerLog, "log");
     }
     
     public static void registerOreDict(String name, Item item, String... prefixes)
@@ -98,7 +79,7 @@ public class CraftingHandler
         {
             OreDictionary.registerOre(e + "." + tempName, item);
             OreDictionary.registerOre(e + "_" + tempName, item);
-            OreDictionary.registerOre(e + StringUtils.capitalize(tempName), item);
+            OreDictionary.registerOre(e + (e.isEmpty() ? tempName : StringUtils.capitalize(tempName)), item);
         });
     }
     

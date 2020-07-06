@@ -24,7 +24,7 @@
       "ore": "polycarbonate"
     },
     "E": {
-      "ore": "lithium",
+      "ore": "ingotLithium",
       "type": "forge:ore_dict"
     }
   }
