@@ -1,12 +1,12 @@
 package org.avp.client.render.block.model.cached;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import javax.vecmath.Matrix4f;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.avp.AliensVsPredator;
 import org.avp.Settings.ClientSettings;
 import org.avp.block.BlockHiveResin;
 
@@ -34,9 +34,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 
@@ -44,7 +46,7 @@ public class CachedModelResin implements IBakedModel
 {
     private static final String                                                            TEXTURE_KEY            = "#texture";
     private static final String                                                            TEXTURE_LOCATION       = "avp:blocks/hiveresin";
-    private static final VertexFormat                                                      VERTEX_FORMAT          = DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL;
+    private static final VertexFormat                                                      VERTEX_FORMAT          = DefaultVertexFormats.BLOCK;
     private static final java.util.function.Function<ResourceLocation, TextureAtlasSprite> TEXTURE_GETTER         = ModelLoader.defaultTextureGetter();
     private static final Function<ResourceLocation, TextureAtlasSprite>                    DEFAULT_TEXTURE_GETTER = new Function<ResourceLocation, TextureAtlasSprite>() {
                                                                                                                       public TextureAtlasSprite apply(ResourceLocation location)
@@ -91,6 +93,59 @@ public class CachedModelResin implements IBakedModel
         this.selfPair = Pair.of(this, null);
     }
 
+    private void putVertex(UnpackedBakedQuad.Builder builder, Vec3d normal, double x, double y, double z, float u, float v)
+    {
+        for (int e = 0; e < VERTEX_FORMAT.getElementCount(); e++)
+        {
+            switch (VERTEX_FORMAT.getElement(e).getUsage())
+            {
+                case POSITION:
+                    builder.put(e, (float) x, (float) y, (float) z, 1.0f);
+                    break;
+                case COLOR:
+                    builder.put(e, 1.0f, 1.0f, 1.0f, 1.0f);
+                    break;
+                case UV:
+                    switch (VERTEX_FORMAT.getElement(e).getIndex())
+                    {
+                        case 0:
+                            float iu = sprite.getInterpolatedU(u);
+                            float iv = sprite.getInterpolatedV(v);
+                            builder.put(e, iu, iv);
+                            break;
+                        case 2:
+                            builder.put(e, (short) 0, (short) 0);
+                            break;
+                        default:
+                            builder.put(e);
+                            break;
+                    }
+                    break;
+                case NORMAL:
+                    builder.put(e, (float) normal.x, (float) normal.y, (float) normal.z, 0f);
+                    break;
+                default:
+                    builder.put(e);
+                    break;
+            }
+        }
+    }
+
+    private BakedQuad createQuad(Vec3d v1, Vec3d v2, Vec3d v3, Vec3d v4, TextureAtlasSprite sprite)
+    {
+        Vec3d normal = v1.subtract(v2).crossProduct(v3.subtract(v2));
+
+        UnpackedBakedQuad.Builder builder = new UnpackedBakedQuad.Builder(VERTEX_FORMAT);
+
+        builder.setTexture(sprite);
+        putVertex(builder, normal, v1.x, v1.y, v1.z, 0, 0);
+        putVertex(builder, normal, v2.x, v2.y, v2.z, 0, 16);
+        putVertex(builder, normal, v3.x, v3.y, v3.z, 16, 16);
+        putVertex(builder, normal, v4.x, v4.y, v4.z, 16, 0);
+
+        return builder.build();
+    }
+
     @Override
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand)
     {
@@ -102,11 +157,7 @@ public class CachedModelResin implements IBakedModel
         if (side == null && transformType == null && model != null)
         {
             TextureMap textureMap = Game.minecraft().getTextureMapBlocks();
-            BlockRendererDispatcher dispatcher = Game.minecraft().getBlockRendererDispatcher();
-            TRSRTransformation transformation = new TRSRTransformation(ModelRotationXYZ.getModelRotation(0, 0, 0).getMatrix());
-            IModel retextured = model;
-            IModel retexturable = model;
-            retextured = retexture(model, TEXTURE_KEY, TEXTURE_LOCATION);
+            this.sprite = textureMap.getAtlasSprite(TEXTURE_LOCATION);
 
             if (state instanceof IExtendedBlockState)
             {
@@ -115,39 +166,27 @@ public class CachedModelResin implements IBakedModel
 
                 if (parentState != null)
                 {
-                    this.sprite = dispatcher.getBlockModelShapes().getTexture(parentState);
+                    this.sprite = Game.minecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(parentState);
 
                     GraphicsSetting hiveTessellation = ClientSettings.instance.hiveTessellation().value();
-                    
-                    if (this.sprite != textureMap.getMissingSprite() && sprite != null && hiveTessellation != GraphicsSetting.LOW)
-                    {
-                        retextured = retexture(retexturable, TEXTURE_KEY, sprite.getIconName());
-                    }
-                    else
+
+                    if (this.sprite == textureMap.getMissingSprite() || sprite == null || hiveTessellation == GraphicsSetting.LOW)
                     {
                         this.sprite = textureMap.getAtlasSprite(TEXTURE_LOCATION);
                     }
                 }
-                else
-                {
-
-                }
             }
 
-            if (retextured != null)
-            {
-                List<BakedQuad> quads = retextured.bake(transformation, VERTEX_FORMAT, TEXTURE_GETTER).getQuads(state, side, rand);
-                return quads;
-            }
+            List<BakedQuad> quads = new ArrayList<BakedQuad>();
 
-            try
-            {
-                return model.bake(transformation, VERTEX_FORMAT, TEXTURE_GETTER).getQuads(state, side, rand);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            quads.add(createQuad(new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 0.0D), this.sprite));
+            quads.add(createQuad(new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 0.0D), this.sprite));
+            quads.add(createQuad(new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D), this.sprite));
+            quads.add(createQuad(new Vec3d(0.0D, 0.0D, 0.0D), new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(1.0D, 1.0D, 0.0D), new Vec3d(1.0D, 0.0D, 0.0D), this.sprite));
+            quads.add(createQuad(new Vec3d(0.0D, 0.0D, 1.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(0.0D, 0.0D, 0.0D), this.sprite));
+            quads.add(createQuad(new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 1.0D, 0.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 0.0D, 1.0D), this.sprite));
+
+            return quads;
         }
 
         return Collections.emptyList();
