@@ -146,9 +146,14 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         NBTTagCompound nbtStack = nbt.getCompoundTag("StasisItemstack");
         this.stasisItemstack = new ItemStack(nbtStack);
 
-        if (this.stasisEntity == null && this.stasisItemstack != ItemStack.EMPTY)
+        if (this.stasisEntity == null && this.stasisItemstack != ItemStack.EMPTY && stasisItemstack != null)
         {
-            this.stasisEntity = ((ItemEntitySummoner) this.stasisItemstack.getItem()).createNewEntity(this.world);
+            ItemEntitySummoner summoner = ((ItemEntitySummoner) this.stasisItemstack.getItem());
+            
+            if (summoner != null)
+            {
+                this.stasisEntity = summoner.createNewEntity(this.world);
+            }
         }
     }
 
