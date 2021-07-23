@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import org.avp.entities.EntityAPC;
 import org.avp.entities.EntityAcidPool;
 import org.avp.entities.EntityAcidProjectile;
@@ -362,9 +359,6 @@ public class EntityHandler implements IInitEvent
             {
                 EntityRegistry.addSpawn(EntityFacehugger.class, (Integer) AliensVsPredator.settings().spawnWeightEntityFacehugger.value(), 1, 2, EnumCreatureType.MONSTER, array(alienSpawns));
             }
-
-            LogManager.getLogger("AVP").info((Integer) AliensVsPredator.settings().spawnWeightEntityFacehugger.value());
-            LogManager.getLogger("AVP").info("Testing");
 
             EntityRegistry.addSpawn(EntityYautjaWarrior.class, (Integer) AliensVsPredator.settings().spawnWeightEntityYautjaWarrior.value(), 0, 1, EnumCreatureType.MONSTER, array(predatorSpawns));
             EntityRegistry.addSpawn(EntityYautjaBerserker.class, (Integer) AliensVsPredator.settings().spawnWeightEntityYautjaBerserker.value(), 0, 1, EnumCreatureType.MONSTER, array(predatorSpawns));
