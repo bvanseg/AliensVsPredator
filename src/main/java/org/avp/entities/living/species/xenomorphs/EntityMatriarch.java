@@ -20,12 +20,14 @@ import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWander;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -86,8 +88,9 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
+        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(24D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(300.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.400000238418579D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.600000238418579D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(8.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
     }
@@ -106,10 +109,13 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
     {
         if (this.tasks.taskEntries.isEmpty() && this.targetTasks.taskEntries.isEmpty())
         {
+            this.tasks.taskEntries.clear();
+            this.targetTasks.taskEntries.clear();
+            this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 10F));
             this.tasks.addTask(0, new EntityAISwimming(this));
             this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
             this.tasks.addTask(2, new EntityAIFindJelly(this));
-            this.tasks.addTask(4, new EntityAICustomAttackOnCollide(this, 0.8D, true));
+            this.tasks.addTask(4, new EntityAICustomAttackOnCollide(this, 0.6D, true));
             this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
             this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
             this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 1.6F));
@@ -221,6 +227,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
 
                     if (!this.getNavigator().tryMoveToXYZ(closestPoint.x, closestPoint.y, closestPoint.z, 1.55D))
                     {
+                        
                         if (Game.isDevEnvironment() && this.world.getTotalWorldTime() % (20 * 3) == 0)
                         {
                             // System.out.println("Unable to pathfind to closest point, too far: " + this.pathPoints.size() + " Points, " + ((int) closestPoint.distanceFrom(this)) + " Meters, " + closestPoint);
@@ -231,11 +238,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
                     {
                         if (this.getDistance(closestPoint.x, closestPoint.y, closestPoint.z) < 1.0D)
                         {
-                            if (Game.isDevEnvironment())
-                            {
-                                System.out.println("Arrived at closest point. Moving on to next point.");
-                            }
-
+                            System.out.println(String.format(this.getName() + " %s Returning to hive center.", this.getUniqueID()));
                             this.pathPoints.remove(closestPoint);
                         }
                     }
@@ -262,6 +265,10 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
     public void onUpdate()
     {
         super.onUpdate();
+        
+//        if (this.world.getWorldTime() % 20 == 0)
+//        System.out.println(this.getName() + " : " + this.getUniqueID().toString() + " : " + this.targetTasks.taskEntries);
+        
         this.reproducing = this.getOvipositorSize() >= 1.3F;
         this.reproduce();
         this.handleOvipositorGrowth();
