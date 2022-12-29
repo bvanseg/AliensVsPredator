@@ -157,7 +157,6 @@ public class EntityHandler implements IInitEvent
         DEFAULT_ALIEN_SPAWNS.add(Biomes.SWAMPLAND);
         DEFAULT_ALIEN_SPAWNS.add(Biomes.TAIGA);
         DEFAULT_ALIEN_SPAWNS.add(Biomes.TAIGA_HILLS);
-        DEFAULT_ALIEN_SPAWNS.add(BiomeAcheron.acheron);
 
         DEFAULT_PREDATOR_SPAWNS.add(Biomes.BIRCH_FOREST);
         DEFAULT_PREDATOR_SPAWNS.add(Biomes.BIRCH_FOREST_HILLS);
@@ -332,19 +331,11 @@ public class EntityHandler implements IInitEvent
     {
         if (AliensVsPredator.settings().areAutoSpawnsEnabled())
         {
-            ArrayList<Biome> alienSpawns = AliensVsPredator.settings().getSpawnsAlien().value();
-            ArrayList<Biome> aquaAlienSpawns = AliensVsPredator.settings().getSpawnsAquaticAlien().value();
-            ArrayList<Biome> predatorSpawns = AliensVsPredator.settings().getSpawnsPredator().value();
+            ArrayList<Biome> alienSpawns = filterOverworldBiomes("Alien", AliensVsPredator.settings().getSpawnsAlien().value());
+            ArrayList<Biome> aquaAlienSpawns = filterOverworldBiomes("AlienAquatic", AliensVsPredator.settings().getSpawnsAquaticAlien().value());
+            ArrayList<Biome> predatorSpawns = filterOverworldBiomes("Predator", AliensVsPredator.settings().getSpawnsPredator().value());
             ArrayList<Biome> marineSpawns = AliensVsPredator.settings().getSpawnsMarine().value();
-            ArrayList<Biome> vardaSpawns = AliensVsPredator.settings().getSpawnsVarda().value();
-
-            if (!AliensVsPredator.settings().areOverworldSpawnsEnabled())
-            {
-                alienSpawns = filterOverworldBiomes(alienSpawns);
-                aquaAlienSpawns = filterOverworldBiomes(aquaAlienSpawns);
-                predatorSpawns = filterOverworldBiomes(predatorSpawns);
-                vardaSpawns = filterOverworldBiomes(vardaSpawns);
-            }
+            ArrayList<Biome> vardaSpawns = filterOverworldBiomes("Varda", AliensVsPredator.settings().getSpawnsVarda().value());  
 
             if (AliensVsPredator.settings().shouldEvolvedXenomorphsSpawn())
             {
@@ -375,15 +366,21 @@ public class EntityHandler implements IInitEvent
         }
     }
 
-    public ArrayList<Biome> filterOverworldBiomes(ArrayList<Biome> biomes)
+    public ArrayList<Biome> filterOverworldBiomes(String listName, ArrayList<Biome> biomes)
     {
         Iterator<Biome> iter = biomes.iterator();
+        ArrayList<Biome> overworldBiomes = getOverworldBiomeList();
 
         while (iter.hasNext())
         {
             Biome biome = iter.next();
-            if (biomes.contains(biome))
+            
+            if (!AliensVsPredator.settings().areOverworldSpawnsEnabled() && overworldBiomes.contains(biome))
+            {
                 iter.remove();
+
+                System.out.println("Overworld spawn weights disabled. Removing biome from spawn list " + listName + ": " + biome.getBiomeName());
+            }
         }
 
         return biomes;

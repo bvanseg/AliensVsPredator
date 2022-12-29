@@ -150,7 +150,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
             biomeVardaForest = new ConfigSettingInteger(this, configuration.get(CATEGORY_BIOMES, "varda_forest", 229, "Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.")).setRequiresRestart();
 
             experimentalFeatures = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "experimental_features", false, "If enabled, experimental mod features will be turned on. If using this on a server, it will need to be enabled on both the client and server to work properly."));
-            plasmaCannonExplosions = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "plasma_cannon_explosions", false, "If enabled, a plasma cannon's projectiles will explode upon impact."));
+            plasmaCannonExplosions = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "plasma_cannon_explosions", true, "If enabled, a plasma cannon's projectiles will explode upon impact."));
             explosionsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "explosion_block_damage", true, "If disabled, all explosions triggered by this mod will be cancelled."));
             nukesEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "nukes", true, "If disabled, you will not be allowed to use any nuke-based functionality."));
             updaterEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_OTHER, "updater", true, "Toggle the mod's update checking capabilities. Will not check for new updates if disabled.")).setRequiresRestart();
@@ -173,13 +173,14 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
             spawnWeightEntityDeacon = new ConfigSettingInteger(this, configuration.get(CATEGORY_SPAWNING, "EntityDeacon", 5, "Spawn Weight")).setRequiresRestart();
             spawnWeightEntityTrilobite = new ConfigSettingInteger(this, configuration.get(CATEGORY_SPAWNING, "EntityTrilobite", 5, "Spawn Weight")).setRequiresRestart();
 
-            overworldSpawnsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_SPAWNING, "overworld_spawning", true, "If disabled, no mobs from this mod will spawn in the overworld.")).setRequiresRestart();
+            overworldSpawnsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_SPAWNING, "overworld_spawning", false, "If enabled, mobs will spawn in the overworld using spawn weights.")).setRequiresRestart();
             autoSpawnsEnabled = new ConfigSettingBoolean(this, configuration.get(CATEGORY_SPAWNING, "auto_spawning", true, "If disabled, no mobs from this mod will spawn.")).setRequiresRestart();
             evolvedXenomorphSpawns = new ConfigSettingBoolean(this, configuration.get(CATEGORY_SPAWNING, "mature_spawns", true, "If disabled, no mature alien states will spawn naturally.")).setRequiresRestart();
 
             if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
             {
                 System.out.println("Listing Overworld Biome IDs for configuration settings...");
+                
                 for (Biome b : EntityHandler.getOverworldBiomeList())
                 {
                     MDX.log().info(b.getBiomeName() + " : " + b.getRegistryName());
