@@ -60,6 +60,8 @@ public class RenderItemLightPanel extends ItemRenderer<ModelLightPanel>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
+        float glScale = 0.25F;
+        OpenGL.scale(glScale, glScale, glScale);
         GlStateManager.disableCull();
         this.getModel().draw();
     }
