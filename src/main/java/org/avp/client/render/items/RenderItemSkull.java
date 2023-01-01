@@ -1,6 +1,10 @@
 package org.avp.client.render.items;
 
 import org.avp.block.BlockSkull;
+import org.avp.block.skulls.BlockBiomaskBerserker;
+import org.avp.block.skulls.BlockBiomaskClassic;
+import org.avp.block.skulls.BlockBiomaskFalconer;
+import org.avp.block.skulls.BlockBiomaskTracker;
 import org.avp.block.skulls.BlockSkullMatriarch;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -92,6 +96,14 @@ public class RenderItemSkull extends ItemRenderer<Model>
             OpenGL.scale(s, s, s);
             OpenGL.rotate(-45, 1, 0, 0);
             OpenGL.translate(-1F, 1F, 0F);
+        }
+        
+        if (skull instanceof BlockBiomaskBerserker || skull instanceof BlockBiomaskClassic || skull instanceof BlockBiomaskFalconer || skull instanceof BlockBiomaskTracker)
+        {
+            float s = 0.9F;
+            OpenGL.scale(s, s, s);
+            OpenGL.rotate(-20, 0, 1, 0);
+            OpenGL.translate(-0.25F, 0.3F, 0F);
         }
         
         if (skull.getSkullTexture() != null)
