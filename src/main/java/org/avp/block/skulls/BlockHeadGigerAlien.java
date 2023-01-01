@@ -9,6 +9,8 @@ import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -40,6 +42,12 @@ public class BlockHeadGigerAlien extends BlockSkull
     public Texture getSkullTexture()
     {
         return Resources.model.getTexture();
+    }
+    
+    @Override
+    public TextureAtlasSprite getParticleTexture(TextureMap map)
+    {
+        return map.getAtlasSprite("minecraft:blocks/hardened_clay_stained_gray");
     }
     
     @Override

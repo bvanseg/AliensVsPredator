@@ -2,9 +2,12 @@ package org.avp.client;
 
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 
+import java.util.ArrayList;
+
 import org.avp.AliensVsPredator;
 import org.avp.BlockHandler;
 import org.avp.ItemHandler;
+import org.avp.block.BlockSkull;
 import org.avp.client.model.items.Model88MOD4;
 import org.avp.client.model.items.ModelAK47;
 import org.avp.client.model.items.ModelM4;
@@ -276,10 +279,12 @@ import org.avp.tile.plants.TileEntityGroundFern;
 import org.avp.tile.plants.TileEntityTreeFern;
 
 import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.core.mods.IPostInitEvent;
 import com.asx.mdx.core.mods.IPreInitEvent;
 import com.asx.mdx.lib.client.Renderers;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -293,6 +298,7 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -436,22 +442,37 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerRenderer(EntitySporePod.class, RenderSporePod.class);
     }
     
+    private static void registerSkullRenderer(Block block)
+    {
+        if (block instanceof BlockSkull)
+        {
+            BlockSkull skull = (BlockSkull) block;
+            RenderItemSkull render =  new RenderItemSkull(skull);
+            
+            Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(skull), render);
+        } 
+        else
+        {
+            AliensVsPredator.log().error("Error registerring skull block renderer. Type mismatch: " + block.getTranslationKey());
+        }
+    }
+    
     private void registerBlockItemRenderers()
     {
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullEngineer), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullJockey), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullXeno), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullXenoWarrior), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullYautja), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullMatriarch), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullProtomorph), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.skullNeomorph), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.biomaskClassic), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.biomaskBerserker), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.biomaskFalconer), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.biomaskTracker), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.headAethon), new RenderItemSkull());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.headGigerAlien), new RenderItemSkull());
+        Renders.registerSkullRenderer(BlockHandler.skullEngineer);
+        Renders.registerSkullRenderer(BlockHandler.skullJockey);
+        Renders.registerSkullRenderer(BlockHandler.skullXeno);
+        Renders.registerSkullRenderer(BlockHandler.skullXenoWarrior);
+        Renders.registerSkullRenderer(BlockHandler.skullYautja);
+        Renders.registerSkullRenderer(BlockHandler.skullMatriarch);
+        Renders.registerSkullRenderer(BlockHandler.skullProtomorph);
+        Renders.registerSkullRenderer(BlockHandler.skullNeomorph);
+        Renders.registerSkullRenderer(BlockHandler.biomaskClassic);
+        Renders.registerSkullRenderer(BlockHandler.biomaskBerserker);
+        Renders.registerSkullRenderer(BlockHandler.biomaskFalconer);
+        Renders.registerSkullRenderer(BlockHandler.biomaskTracker);
+        Renders.registerSkullRenderer(BlockHandler.headAethon);
+        Renders.registerSkullRenderer(BlockHandler.headGigerAlien);
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.turret), new RenderItemTurret());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.terminal), new RenderItemWorkstation());
         Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.stasisMechanism), new RenderItemStasisMechanism());

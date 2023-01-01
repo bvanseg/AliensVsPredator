@@ -7,12 +7,15 @@ import org.avp.tile.TileEntitySkull.EnumOrientation;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Texture;
+import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelRenderer;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -70,10 +73,18 @@ public abstract class BlockSkull extends Block
         return new ModelRenderer[] {};
     }
 
+    /** Applies to skull model **/
     @SideOnly(Side.CLIENT)
     public Texture getSkullTexture()
     {
         return null;
+    }
+    
+    /** Applies to particle **/
+    @SideOnly(Side.CLIENT)
+    public TextureAtlasSprite getParticleTexture(TextureMap map)
+    {
+        return map.getAtlasSprite("minecraft:blocks/bedrock");
     }
 
     @Override
