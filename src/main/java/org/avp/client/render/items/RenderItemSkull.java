@@ -1,6 +1,7 @@
 package org.avp.client.render.items;
 
 import org.avp.block.BlockSkull;
+import org.avp.block.skulls.BlockSkullMatriarch;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -85,6 +86,14 @@ public class RenderItemSkull extends ItemRenderer<Model>
 
     private void draw(Item item)
     {
+        if (skull instanceof BlockSkullMatriarch)
+        {
+            float s = 0.55F;
+            OpenGL.scale(s, s, s);
+            OpenGL.rotate(-45, 1, 0, 0);
+            OpenGL.translate(-1F, 1F, 0F);
+        }
+        
         if (skull.getSkullTexture() != null)
         {
             skull.getSkullTexture().bind();
