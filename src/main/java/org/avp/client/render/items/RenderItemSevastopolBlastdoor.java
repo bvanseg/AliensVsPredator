@@ -45,7 +45,7 @@ public class RenderItemSevastopolBlastdoor extends ItemRenderer<ModelSevastopolB
     @Override
     public void renderInInventory(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 0.4F;
+        float glScale = 0.3F;
         OpenGL.scale(glScale, glScale, glScale);
         OpenGL.translate(-0.45F, 0.15F, 1F);
         OpenGL.rotate(200F, 1F, 0F, 0F);
