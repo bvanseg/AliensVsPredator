@@ -47,7 +47,7 @@ public class RenderItemNetworkRack extends ItemRenderer<ModelNetworkModuleRack>
     @Override
     public void renderInInventory(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 0.375F;
+        float glScale = 0.3F;
         OpenGL.scale(glScale, glScale, glScale);
         OpenGL.translate(-0.3F, 0.1F, 0F);
         OpenGL.rotate(230F, 1F, 0F, 0F);
