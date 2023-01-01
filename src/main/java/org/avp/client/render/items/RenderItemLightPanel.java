@@ -49,12 +49,11 @@ public class RenderItemLightPanel extends ItemRenderer<ModelLightPanel>
     @Override
     public void renderInInventory(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 0.75F;
+        float glScale = 0.65F;
         OpenGL.scale(glScale, glScale, glScale);
         OpenGL.translate(0.7F, 0.45F, 0F);
         OpenGL.rotate(230F, 1F, 0F, 0F);
         OpenGL.rotate(45F, 0F, 0F, 1F);
-        OpenGL.rotate(90F, 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
     }
 
