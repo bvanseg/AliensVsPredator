@@ -1,15 +1,8 @@
 package org.avp.client.model.tile;
 
-import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityWorkstation;
-
 import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.util.Game;
 
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
 
 public class ModelWorkstation extends Model
 {
@@ -108,81 +101,11 @@ public class ModelWorkstation extends Model
     @Override
     public void render(Object obj)
     {
-        TileEntityWorkstation tile = (TileEntityWorkstation) obj;
-
         stand.render(DEFAULT_SCALE);
         standBase.render(DEFAULT_SCALE);
         desk.render(DEFAULT_SCALE);
         mainArm.render(DEFAULT_SCALE);
-        // supportLeft.render(DEFAULT_SCALE);
         supportCenter.render(DEFAULT_SCALE);
-        // supportRight.render(DEFAULT_SCALE);
-
         screenCenter.render(DEFAULT_SCALE);
-
-        if (tile != null)
-        {
-            IBlockState block = tile.getWorld().getBlockState(tile.getPos());
-            IBlockState left, leftUp, right, rightUp;
-            BlockPos posLeft = tile.getPos();
-            BlockPos posRight = tile.getPos();
-
-            switch (tile.rotation)
-            {
-                case 3:
-                    /* Left is plus z, right is minus z */
-                    leftUp = tile.getWorld().getBlockState(tile.getPos().add(0, 1, 1));
-                    rightUp = tile.getWorld().getBlockState(tile.getPos().add(0, 1, -1));
-                    left = tile.getWorld().getBlockState(posLeft = tile.getPos().add(0, 0, 1));
-                    right = tile.getWorld().getBlockState(posRight = tile.getPos().add(0, 0, -1));
-                    break;
-                case 2:
-                    /* Left is minus x, right is plus x */
-                    leftUp = tile.getWorld().getBlockState(tile.getPos().add(1, 1, 0));
-                    rightUp = tile.getWorld().getBlockState(tile.getPos().add(-1, 1, 0));
-                    left = tile.getWorld().getBlockState(posLeft = tile.getPos().add(1, 0, 0));
-                    right = tile.getWorld().getBlockState(posRight = tile.getPos().add(-1, 0, 0));
-                    break;
-                case 1:
-                    /* Left is minus z, right is plus z */
-                    leftUp = tile.getWorld().getBlockState(tile.getPos().add(0, 1, -1));
-                    rightUp = tile.getWorld().getBlockState(tile.getPos().add(0, 1, 1));
-                    left = tile.getWorld().getBlockState(posLeft = tile.getPos().add(0, 0, -1));
-                    right = tile.getWorld().getBlockState(posRight = tile.getPos().add(0, 0, 1));
-                    break;
-                case 0:
-                    /* Left is plus x, right is minus x, case 4 */
-                    leftUp = tile.getWorld().getBlockState(tile.getPos().add(-1, 1, 0));
-                    rightUp = tile.getWorld().getBlockState(tile.getPos().add(1, 1, 0));
-                    left = tile.getWorld().getBlockState(posLeft = tile.getPos().add(-1, 0, 0));
-                    right = tile.getWorld().getBlockState(posRight = tile.getPos().add(1, 0, 0));
-                    break;
-                default:
-                    left = block;
-                    right = block;
-                    leftUp = block;
-                    rightUp = block;
-                    break;
-            }
-
-            if (left != AliensVsPredator.blocks().terminal && leftUp == Blocks.AIR && left.getCollisionBoundingBox(Game.minecraft().world, posLeft).maxY <= 1.5)
-            {
-                // leftArm.render(DEFAULT_SCALE);
-                screenLeft.render(DEFAULT_SCALE);
-            }
-
-            if (right != AliensVsPredator.blocks().terminal && rightUp == Blocks.AIR && right.getCollisionBoundingBox(Game.minecraft().world, posRight).maxY <= 1.5)
-            {
-                // rightArm.render(DEFAULT_SCALE);
-                screenRight.render(DEFAULT_SCALE);
-            }
-        }
-        else
-        {
-            leftArm.render(DEFAULT_SCALE);
-            screenLeft.render(DEFAULT_SCALE);
-            rightArm.render(DEFAULT_SCALE);
-            screenRight.render(DEFAULT_SCALE);
-        }
     }
 }
