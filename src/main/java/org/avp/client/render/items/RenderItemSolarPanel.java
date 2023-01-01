@@ -5,6 +5,7 @@ import org.avp.client.model.tile.ModelSolarPanel;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -43,9 +44,10 @@ public class RenderItemSolarPanel extends ItemRenderer<ModelSolarPanel>
     public void renderInInventory(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
         float glScale = 0.8F;
-        OpenGL.scale(glScale, glScale, glScale);
-        OpenGL.rotate(45F, 1F, 0F, 0F);
-        OpenGL.rotate(35F, 0F, 0F, 1F);
+        OpenGL.scale(-glScale, -glScale, -glScale);
+        OpenGL.rotate(135F, 1F, 0F, 0F);
+        OpenGL.rotate(-25F, 0F, 0F, 1F);
+        OpenGL.rotate(45F - this.getIconRotation(), 0.0F, 1.0F, 0.0F);
         OpenGL.translate(0F, -1.45F, 0F);
         this.getModel().draw();
     }

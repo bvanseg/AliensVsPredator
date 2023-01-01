@@ -5,6 +5,7 @@ import org.avp.client.model.tile.rackmodules.ModelNetworkModuleRack;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -49,11 +50,12 @@ public class RenderItemNetworkRack extends ItemRenderer<ModelNetworkModuleRack>
     {
         float glScale = 0.3F;
         OpenGL.scale(glScale, glScale, glScale);
-        OpenGL.translate(-0.3F, 0.1F, 0F);
-        OpenGL.rotate(230F, 1F, 0F, 0F);
+        OpenGL.rotate(200F, 1F, 0F, 0F);
         OpenGL.rotate(45F, 0F, 0F, 1F);
         OpenGL.disableCullFace();
         OpenGL.scale(1F, -1F, 1F);
+        OpenGL.rotate(90F + this.getIconRotation(), 0.0F, 1.0F, 0.0F);
+        OpenGL.translate(-0.4F, 0.1F, 0F);
         this.getModel().draw();
         OpenGL.enableCullFace();
     }

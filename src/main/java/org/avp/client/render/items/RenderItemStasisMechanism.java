@@ -5,6 +5,7 @@ import org.avp.client.model.tile.ModelStasisMechanism;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -53,12 +54,10 @@ public class RenderItemStasisMechanism extends ItemRenderer<ModelStasisMechanism
     @Override
     public void renderInInventory(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 0.85F;
-        OpenGL.scale(glScale, glScale, glScale);
-        OpenGL.translate(0.05F, -0.05F, 0F);
-        OpenGL.rotate(230F, 1F, 0F, 0F);
-        OpenGL.rotate(-15F, 0F, 0F, 1F);
-        OpenGL.rotate(90F, 0.0F, 1.0F, 0.0F);
+        OpenGL.translate(-0.05F, -0.05F, 0F);
+        OpenGL.rotate(210F, 1F, 0F, 0F);
+        OpenGL.rotate(45F, 0F, 0F, 1F);
+        OpenGL.rotate(90F + this.getIconRotation(), 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
     }
 }

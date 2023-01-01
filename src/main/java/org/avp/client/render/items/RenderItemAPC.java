@@ -63,12 +63,10 @@ public class RenderItemAPC extends ItemRenderer<Model>
     {
         OpenGL.pushMatrix();
         {
-            float scale = 0.2F;
+            float scale = 0.3F;
             OpenGL.scale(scale, scale, scale);
-            OpenGL.translate(0F, -1F, 0F);
-            OpenGL.rotate(230F, 1F, 0F, 0F);
-            OpenGL.rotate(180F, 0F, 0F, 1F);
-            OpenGL.rotate(45F, 0.0F, 1.0F, 0.0F);
+            OpenGL.translate(0F, -1.3F, 0F);
+            OpenGL.rotate(-90F, 0.0F, 1.0F, 0.0F);
 
             for (Part p : AliensVsPredator.resources().models().M577_APC.parts.values())
             {

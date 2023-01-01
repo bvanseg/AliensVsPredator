@@ -5,6 +5,7 @@ import org.avp.client.model.tile.ModelPowercell;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -43,12 +44,12 @@ public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
     @Override
     public void renderInInventory(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 0.75F;
+        float glScale = 0.8F;
         OpenGL.scale(glScale, glScale, glScale);
-        OpenGL.translate(0.7F, 0.5F, 0F);
-        OpenGL.rotate(230F, 1F, 0F, 0F);
+        OpenGL.translate(0.7F, 0.7F, 0F);
+        OpenGL.rotate(200F, 1F, 0F, 0F);
         OpenGL.rotate(45F, 0F, 0F, 1F);
-        OpenGL.rotate(90F, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate(90F + this.getIconRotation(), 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
         AliensVsPredator.resources().models().POWERCELL_LIQUID.draw();
     }

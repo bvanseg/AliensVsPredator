@@ -5,6 +5,7 @@ import org.avp.client.model.tile.ModelLocker;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -42,12 +43,12 @@ public class RenderItemLocker extends ItemRenderer<ModelLocker>
     @Override
     public void renderInInventory(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 0.5F;
+        float glScale = 0.45F;
         OpenGL.scale(glScale, glScale, glScale);
         OpenGL.translate(0.35F, 0.275F, 0F);
-        OpenGL.rotate(230F, 1F, 0F, 0F);
+        OpenGL.rotate(200F, 1F, 0F, 0F);
         OpenGL.rotate(45F, 0F, 0F, 1F);
-        OpenGL.rotate(90F, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate(90F + this.getIconRotation(), 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
     }
 
