@@ -79,6 +79,8 @@ public class RenderItemWristbracer extends ItemRenderer<ModelWristBlade>
     @Override
     public void renderInWorld(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
+        OpenGL.rotate(-180F, 0F, 0F, 1F);
+        OpenGL.translate(-0.3F, 0F, 0F);
         GlStateManager.disableCull();
         this.getModel().draw();
         Model.draw(this.getModel().getModel().b6);
