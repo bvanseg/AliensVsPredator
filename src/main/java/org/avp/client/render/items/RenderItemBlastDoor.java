@@ -45,7 +45,7 @@ public class RenderItemBlastDoor extends ItemRenderer<ModelBlastdoor>
     @Override
     public void renderInInventory(ItemStack itemstack, EntityLivingBase entity, TransformType cameraTransformType)
     {
-        float glScale = 0.3F;
+        float glScale = 0.25F;
         OpenGL.scale(glScale, glScale, glScale);
         OpenGL.translate(-1F, 0.75F, 1F);
         OpenGL.rotate(230F, 1F, 0F, 0F);
