@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.avp.AliensVsPredator;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.tile.TileEntityHiveResin;
 
-import com.asx.mdx.MDX;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Worlds;
 
@@ -212,7 +212,7 @@ public class XenomorphHive
         }
         else
         {
-            MDX.log().warn(String.format("A hive's UUID was null during the save process. This hive was not saved. Debug information: DIM(%s) XYZ(%s, %s, %s)", this.dimensionId, this.xCoord, this.yCoord, this.zCoord));
+        	AliensVsPredator.log().warn(String.format("A hive's UUID was null during the save process. This hive was not saved. Debug information: DIM(%s) XYZ(%s, %s, %s)", this.dimensionId, this.xCoord, this.yCoord, this.zCoord));
             return;
         }
 

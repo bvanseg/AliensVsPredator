@@ -58,7 +58,7 @@ public class SaveHandler
                 {
                     if (!dataHandler.saveData(world, tag))
                     {
-                        MDX.log().info(String.format("Unable to save world data: ", this.getSaveFilename()));
+                    	AliensVsPredator.log().info(String.format("Unable to save world data: ", this.getSaveFilename()));
                     }
                 }
             }
@@ -84,7 +84,7 @@ public class SaveHandler
             {
                 if (worldSave.getAbsoluteFile().exists())
                 {
-                    MDX.log().info(String.format("Loading world data: ", worldSave.getAbsolutePath()));
+                	AliensVsPredator.log().info(String.format("Loading world data: ", worldSave.getAbsolutePath()));
                     NBTTagCompound read = NBTStorage.readCompressed(worldSave.getAbsoluteFile());
                     tag = read == null ? tag : read;
 
@@ -94,7 +94,7 @@ public class SaveHandler
                         {
                             if (!dataHandler.loadData(world, tag))
                             {
-                                MDX.log().info(String.format("Unable to load world data: ", this.getSaveFilename()));
+                            	AliensVsPredator.log().info(String.format("Unable to load world data: ", this.getSaveFilename()));
                             }
                         }
                     }

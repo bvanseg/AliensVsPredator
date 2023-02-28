@@ -2,7 +2,8 @@ package org.avp.item.crafting;
 
 import java.util.ArrayList;
 
-import com.asx.mdx.MDX;
+import org.avp.AliensVsPredator;
+
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.entity.item.EntityItem;
@@ -75,7 +76,7 @@ public class AssemblyManager
         }
         else
         {
-            MDX.log().warn(String.format("[AVP/API/Assembler] Schematic for id '%s' is already registered.", schematic.getName()));
+        	AliensVsPredator.log().warn(String.format("[AVP/API/Assembler] Schematic for id '%s' is already registered.", schematic.getName()));
         }
     }
 

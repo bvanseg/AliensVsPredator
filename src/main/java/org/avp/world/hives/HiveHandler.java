@@ -1,13 +1,12 @@
 package org.avp.world.hives;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
+import org.avp.AliensVsPredator;
 import org.avp.api.storage.IWorldSaveHandler;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
@@ -55,9 +54,9 @@ public class HiveHandler implements IWorldSaveHandler
         return hives;
     }
 
-    public List<XenomorphHive> getHives()
+    public Collection<XenomorphHive> getHives()
     {
-        return hives.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
+        return hives.values();
     }
 
     /**
@@ -168,7 +167,7 @@ public class HiveHandler implements IWorldSaveHandler
                 {
                     if (hive.getDimensionId() == world.provider.getDimension())
                     {
-                        MDX.log().info(String.format("Saving Hive(%s) at %s, %s, %s", hive.getUniqueIdentifier(), hive.xCoord(), hive.yCoord(), hive.zCoord()));
+                    	AliensVsPredator.log().info(String.format("Saving Hive(%s) at %s, %s, %s", hive.getUniqueIdentifier(), hive.xCoord(), hive.yCoord(), hive.zCoord()));
                         hiveCount++;
                         NBTTagCompound tagHive = new NBTTagCompound();
                         hive.save(world, tagHive);
@@ -186,7 +185,7 @@ public class HiveHandler implements IWorldSaveHandler
 
         if (hiveCount > 0)
         {
-            MDX.log().info(String.format("Saved %s hives for level '%s'/%s", hiveCount, world.getSaveHandler().getWorldDirectory(), world.provider.getDimensionType().getName()));
+        	AliensVsPredator.log().info(String.format("Saved %s hives for level '%s'/%s", hiveCount, world.getSaveHandler().getWorldDirectory(), world.provider.getDimensionType().getName()));
         }
 
         return true;
@@ -221,14 +220,14 @@ public class HiveHandler implements IWorldSaveHandler
 
                     if (hive == null || uuid == null)
                     {
-                        MDX.log().warn(String.format("Failed to load a hive, Debug Information: UUID(%s), Instance(%s)", uuid, hive));
+                    	AliensVsPredator.log().warn(String.format("Failed to load a hive, Debug Information: UUID(%s), Instance(%s)", uuid, hive));
                     }
 
                     if (hive != null)
                     {
                         hiveCount++;
                         hive.load(world, uuid, tagHive);
-                        MDX.log().info(String.format("Loaded Hive(%s) at %s, %s, %s", hive.getUniqueIdentifier(), hive.xCoord(), hive.yCoord(), hive.zCoord()));
+                        AliensVsPredator.log().info(String.format("Loaded Hive(%s) at %s, %s, %s", hive.getUniqueIdentifier(), hive.xCoord(), hive.yCoord(), hive.zCoord()));
                     }
                 }
             }
@@ -238,7 +237,7 @@ public class HiveHandler implements IWorldSaveHandler
             return false;
         }
 
-        MDX.log().info(String.format("%s hives have been loaded for level '%s'/%s. %s hives are globally accessable.", hiveCount, world.getSaveHandler().getWorldDirectory(), world.provider.getDimensionType().getName(), this.hives.size()));
+        AliensVsPredator.log().info(String.format("%s hives have been loaded for level '%s'/%s. %s hives are globally accessable.", hiveCount, world.getSaveHandler().getWorldDirectory(), world.provider.getDimensionType().getName(), this.hives.size()));
 
         return true;
     }

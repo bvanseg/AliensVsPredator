@@ -42,7 +42,6 @@ import org.avp.inventory.ContainerTurret;
 import org.avp.packets.client.PacketTurretSync;
 import org.avp.packets.server.PacketTurretTargetUpdate;
 
-import com.asx.mdx.MDX;
 import com.asx.mdx.lib.client.util.Rotation;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.util.MDXMath;
@@ -898,7 +897,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                             this.addTargetType(c);
                             builder.append(id + "-");
                         } else {
-                            MDX.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
+                        	AliensVsPredator.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
                         }
                     }
                 }
