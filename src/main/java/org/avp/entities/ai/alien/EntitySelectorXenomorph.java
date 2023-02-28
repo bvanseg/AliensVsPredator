@@ -7,6 +7,7 @@ import org.avp.world.capabilities.IOrganism.Provider;
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
@@ -41,6 +42,11 @@ public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
         }
         
         if (!(target instanceof EntityLivingBase))
+        {
+            return false;
+        }
+        
+        if (target instanceof EntityWaterMob && (target.isInWater() || target.isOverWater()))
         {
             return false;
         }
