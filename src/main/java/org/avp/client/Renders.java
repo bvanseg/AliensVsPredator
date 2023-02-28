@@ -112,7 +112,7 @@ import org.avp.client.render.items.RenderItemSkull;
 import org.avp.client.render.items.RenderItemSniper;
 import org.avp.client.render.items.RenderItemSolarPanel;
 import org.avp.client.render.items.RenderItemSpear;
-import org.avp.client.render.items.RenderItemSporepod;
+import org.avp.client.render.items.RenderItemSporePod;
 import org.avp.client.render.items.RenderItemStasisMechanism;
 import org.avp.client.render.items.RenderItemStunBaton;
 import org.avp.client.render.items.RenderItemSummoner;
@@ -522,7 +522,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(ItemHandler.itemAPC, new RenderItemAPC());
         Renderers.registerItemRenderer(ItemHandler.itemGrenade, new RenderItemM40(AliensVsPredator.resources().models().M40GRENADE));
         Renderers.registerItemRenderer(ItemHandler.itemIncendiaryGrenade, new RenderItemM40(AliensVsPredator.resources().models().M40GRENADE_INCENDIARY));
-        Renderers.registerItemRenderer(ItemHandler.sporepod, new RenderItemSporepod());
+        Renderers.registerItemRenderer(ItemHandler.summonerSporePod, new RenderItemSporePod());
         
         Renderers.registerItemRenderer(ItemHandler.itemSupplyChute, new RenderItemSupplyChute());
         Renderers.registerItemRenderer(ItemHandler.itemSupplyChuteMarines, new RenderItemSupplyChute());
