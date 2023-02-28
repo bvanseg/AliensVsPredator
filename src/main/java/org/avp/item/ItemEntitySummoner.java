@@ -30,10 +30,9 @@ public class ItemEntitySummoner extends HookedItem
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        Entity entity = createNewEntity(world);
         Inventories.consumeItem(player, this);
 
-        if (world.isRemote && entity != null)
+        if (world.isRemote)
         {
             RayTraceResult ray = player.rayTrace(50D, 1F);
             
