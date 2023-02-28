@@ -7,6 +7,7 @@ import org.avp.EntityItemDrops;
 import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityBullet;
+import org.avp.entities.ai.EntitySelectorMarine;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.entities.living.species.yautja.EntityYautjaWarrior;
@@ -48,7 +49,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Predicate<EntityLivingBase>
+public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob
 {
     private static final DataParameter<Boolean> FIRING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
@@ -73,7 +74,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.targetTasks.addTask(1, new EntityAIMoveIndoors(this));
         this.targetTasks.addTask(2, new EntityAIOpenDoor(this, true));
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, true, false, this));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, true, false, EntitySelectorMarine.instance));
         
     }
 
@@ -83,36 +84,6 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         super.entityInit();
         this.getDataManager().register(FIRING, false);
         this.getDataManager().register(TYPE, new Random(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())).nextInt(MarineTypes.values().length));
-    }
-
-    @Override
-    public boolean apply(EntityLivingBase entity)
-    {
-        if (entity instanceof SpeciesAlien)
-            return true;
-
-        if (entity instanceof EntityMob)
-            return true;
-
-        if (entity instanceof EntityYautjaWarrior)
-            return true;
-
-        if (entity instanceof EntityGolem)
-            return true;
-
-        if (entity instanceof SpeciesXenomorph)
-            return true;
-
-        if (entity instanceof EntityPlayer)
-            return false;
-
-        if (entity instanceof EntityMarine)
-            return false;
-
-        if (entity instanceof EntityCombatSynthetic)
-            return false;
-
-        return false;
     }
 
     @Override

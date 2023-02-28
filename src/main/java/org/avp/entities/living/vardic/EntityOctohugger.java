@@ -6,6 +6,7 @@ import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntitySelectorParasitoid;
 import org.avp.entities.living.species.EntityParasitoid;
 import org.avp.world.Embryo;
 import org.avp.world.capabilities.IOrganism.Organism;
@@ -60,7 +61,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         this.tasks.addTask(1, new EntityAICustomAttackOnCollide(this, 0.55D, true));
         this.tasks.addTask(2, new EntityAIWander(this, 0.55D));
         this.targetTasks.addTask(0, new EntityAILeapAtTarget(this, 0.8F));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getImpregnationEntitiySelector()));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getImpregnationEntitySelector()));
     }
 
     @Override
@@ -172,7 +173,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
             {
                 for (EntityLivingBase entity : new ArrayList<EntityLivingBase>(entities))
                 {
-                    if (!impregnationSelector.apply(entity) || entity instanceof EntityParasitoid)
+                    if (!EntitySelectorParasitoid.instance.apply(entity) || entity instanceof EntityParasitoid)
                     {
                         entities.remove(entity);
                     }

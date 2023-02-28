@@ -4,6 +4,7 @@ import org.avp.EntityItemDrops;
 import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntitySelectorAethon;
 
 import com.asx.mdx.lib.world.Pos;
 import com.google.common.base.Predicate;
@@ -37,20 +38,6 @@ public class EntityAethon extends EntityMob implements IMob, IHost
 {
     private static final DataParameter<Integer> FLYING = EntityDataManager.<Integer> createKey(EntityAethon.class, DataSerializers.VARINT);
 
-    Predicate<EntityLivingBase> mobSelector           = new Predicate<EntityLivingBase>()
-                                                      {
-                                                          @Override
-                                                          public boolean apply(EntityLivingBase target)
-                                                          {
-                                                              if (target instanceof EntityAethon)
-                                                              {
-                                                                  return false;
-                                                              }
-
-                                                              return true;
-                                                          }
-                                                      };
-
     private BlockPos    flyToPosition;
 
     public EntityAethon(World world)
@@ -67,8 +54,8 @@ public class EntityAethon extends EntityMob implements IMob, IHost
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityCreature>(this, EntityCreature.class, 0, true, false, mobSelector));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, true, false, mobSelector));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityCreature>(this, EntityCreature.class, 0, true, false, EntitySelectorAethon.instance));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, true, false, EntitySelectorAethon.instance));
     }
     
     @Override

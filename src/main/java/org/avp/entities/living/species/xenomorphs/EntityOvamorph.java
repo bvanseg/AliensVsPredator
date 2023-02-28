@@ -6,6 +6,7 @@ import java.util.List;
 import org.avp.AliensVsPredator;
 import org.avp.EntityItemDrops;
 import org.avp.ItemHandler;
+import org.avp.entities.ai.alien.EntitySelectorParasitoid;
 import org.avp.entities.living.species.EntityParasitoid;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
@@ -145,7 +146,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob
 
                 for (EntityLivingBase living : new ArrayList<EntityLivingBase>(potentialHosts))
                 {
-                    if (!EntityParasitoid.impregnationSelector.apply(living))
+                    if (!EntitySelectorParasitoid.instance.apply(living))
                     {
                         potentialHosts.remove(living);
                     }

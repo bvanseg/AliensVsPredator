@@ -8,6 +8,7 @@ import javax.annotation.Nullable;
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 import org.avp.api.blocks.IAcidResistant;
+import org.avp.entities.ai.EntitySelectorAcidPool;
 import org.avp.entities.living.species.SpeciesAlien;
 
 import com.google.common.base.Predicate;
@@ -93,23 +94,6 @@ public class EntityAcidPool extends EntityLiquidPool
         return blocks;
     }
 
-    private static final Predicate<EntityLivingBase> SELECTOR = new Predicate<EntityLivingBase>() {
-        @Override
-        public boolean apply(@Nullable EntityLivingBase living)
-        {
-            if (living instanceof EntityPlayer && ((EntityPlayer)living).capabilities.isCreativeMode)
-            {
-                return false;
-            }
-            else if (living instanceof SpeciesAlien)
-            {
-                return false;
-            }
-
-            return true;
-        }
-    };
-
     @Override
     protected void entityInit()
     {
@@ -137,7 +121,7 @@ public class EntityAcidPool extends EntityLiquidPool
         if (!this.world.isRemote && !entityItemList.isEmpty())
         {
             entityItemList.forEach(e -> {
-                if(SELECTOR.apply(e))
+                if(EntitySelectorAcidPool.instance.apply(e))
                 {
                     e.addPotionEffect(new PotionEffect(MobEffects.POISON, (14 * 20), 0));
                     e.attackEntityFrom(DamageSources.acid, 4f);
