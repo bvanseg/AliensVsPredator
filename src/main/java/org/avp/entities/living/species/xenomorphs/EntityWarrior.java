@@ -23,7 +23,6 @@ public class EntityWarrior extends SpeciesXenomorph implements IMob, IMaturable
         this.experienceValue = 175;
         this.setSize(1.0F, 2.5F);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.addStandardXenomorphAISet();
     }
 
     @Override

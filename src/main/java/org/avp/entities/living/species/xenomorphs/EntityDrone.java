@@ -47,9 +47,6 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
         blockBlacklist.add(Blocks.AIR);
         blockBlacklist.add(AliensVsPredator.blocks().resin);
         blockBlacklist.add(AliensVsPredator.blocks().naturalResin);
-        
-
-        this.addStandardXenomorphAISet();
     }
 
     @Override

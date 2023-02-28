@@ -64,7 +64,6 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob
         this.hurtResistantTime = 0;
         this.ignoreFrustumCheck = true;
         this.jellyLimitOverride = true;
-        this.addStandardXenomorphAISet();
     }
 
     public float getOvipositorSize()

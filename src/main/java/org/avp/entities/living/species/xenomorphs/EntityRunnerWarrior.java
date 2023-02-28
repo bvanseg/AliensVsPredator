@@ -14,7 +14,6 @@ public class EntityRunnerWarrior extends EntityWarrior implements IMaturable
     public EntityRunnerWarrior(World world)
     {
         super(world);
-        this.addStandardXenomorphAISet();
     }
 
     @Override

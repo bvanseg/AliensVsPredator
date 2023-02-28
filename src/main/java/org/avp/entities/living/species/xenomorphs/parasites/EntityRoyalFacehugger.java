@@ -19,7 +19,6 @@ public class EntityRoyalFacehugger extends EntityFacehugger
         super(world);
         this.setSize(1F, 1F);
         this.experienceValue = 300;
-        this.addTasks();
     }
 
     @Override

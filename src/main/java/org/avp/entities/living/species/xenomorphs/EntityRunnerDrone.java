@@ -14,7 +14,6 @@ public class EntityRunnerDrone extends EntityDrone implements IMaturable
     public EntityRunnerDrone(World world)
     {
         super(world);
-        this.addStandardXenomorphAISet();
     }
 
     @Override
