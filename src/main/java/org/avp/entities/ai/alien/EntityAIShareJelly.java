@@ -29,7 +29,7 @@ public class EntityAIShareJelly extends EntityAIBase
         super.updateTask();
         if (this.xenomorph.getHive().getQueen() != null && !this.xenomorph.getHive().getQueen().isDead && !(this.xenomorph instanceof EntityMatriarch))
         {
-            if (this.xenomorph.getHive().getQueen().getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || this.xenomorph.getHive().getQueen().reproducing)
+            if (this.xenomorph.getHive().getQueen().getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || this.xenomorph.getHive().getQueen().isReproducing())
             {
                 if (this.xenomorph.getHive().getQueen().getJellyLevel() < EntityMatriarch.OVIPOSITOR_JELLYLEVEL_THRESHOLD * 2 && this.xenomorph.getJellyLevel() >= 80)
                 {
