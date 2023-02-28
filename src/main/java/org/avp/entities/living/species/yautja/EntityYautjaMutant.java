@@ -54,7 +54,10 @@ public class EntityYautjaMutant extends EntityMob implements IMob, IHost
         super(world);
         this.setSize(1.25F, 2.75F);
         this.experienceValue = 150;
-        
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityCreature.class, 1.0D, false));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));

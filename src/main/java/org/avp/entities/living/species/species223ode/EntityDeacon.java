@@ -41,6 +41,10 @@ public class EntityDeacon extends Species223ODe implements INascentic
         this.jumpMovementFactor = 1.0F;
         this.setSize(0.6F, 1.8F);
         this.isDependant = false;
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityLiving.class, 1.0D, false));

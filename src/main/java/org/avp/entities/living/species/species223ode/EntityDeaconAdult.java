@@ -33,6 +33,10 @@ public class EntityDeaconAdult extends Species223ODe
         this.experienceValue = 100;
         this.setSize(0.8F, 3.2F);
         this.isDependant = false;
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityCreature.class, 1.0D, false));

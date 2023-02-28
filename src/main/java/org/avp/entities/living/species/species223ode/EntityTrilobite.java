@@ -133,6 +133,10 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         this.setSize(3F, 1.98F);
         this.experienceValue = 32;
         this.jumpMovementFactor = 1.0F;
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
         this.tasks.addTask(8, new EntityAIWander(this, 0.800000011920929D));

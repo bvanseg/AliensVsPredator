@@ -44,8 +44,10 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
 
         this.setSize(0.5F, 0.5F);
         this.experienceValue = 16;
-        
-        
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.8D, true));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));

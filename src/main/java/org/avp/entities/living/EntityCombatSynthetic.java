@@ -52,6 +52,10 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
         super(word);
         this.setSize(1, 2);
         this.experienceValue = 40;
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.aiRangedAttack = new EntityAIAttackRanged(this, 0.4D, 20, 24);
         this.tasks.addTask(1, this.aiRangedAttack);
         this.tasks.addTask(2, new EntityAIWander(this, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));

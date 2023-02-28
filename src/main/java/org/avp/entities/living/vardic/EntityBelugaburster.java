@@ -34,8 +34,10 @@ public class EntityBelugaburster extends EntityChestburster implements IMob, INa
         this.matureState = EntityBelugamorph.class;
         this.setSize(1.0F, 0.4F);
         this.experienceValue = 16;
-        
-        
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityPlayer.class, 16.0F, 0.23F, 0.4F));
         this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityYautjaWarrior.class, 16.0F, 0.23F, 0.4F));

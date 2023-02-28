@@ -27,7 +27,10 @@ public class EntityUrsuidae extends EntityMob implements IMob, IHost
         super(world);
         this.setSize(1.5F, 1.75F);
         this.experienceValue = 0;
-        
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIMoveTowardsRestriction(this, 0.55D));
         this.tasks.addTask(2, new EntityAIMoveThroughVillage(this, 0.55D, false));
