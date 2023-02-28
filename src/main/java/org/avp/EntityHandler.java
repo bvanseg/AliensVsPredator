@@ -379,7 +379,7 @@ public class EntityHandler implements IInitEvent
             {
                 iter.remove();
 
-                System.out.println("Overworld spawn weights disabled. Removing biome from spawn list " + listName + ": " + biome.getBiomeClass());
+                System.out.println("Overworld spawn weights disabled. Removing biome from spawn list " + listName + ": " + biome.getRegistryName());
             }
         }
 
