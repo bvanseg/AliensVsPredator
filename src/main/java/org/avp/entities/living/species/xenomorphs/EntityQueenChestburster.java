@@ -4,6 +4,7 @@ import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.INascentic;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.EntityMarine;
 import org.avp.entities.living.species.engineer.EntityEngineer;
 import org.avp.entities.living.species.yautja.EntityYautjaWarrior;
@@ -14,7 +15,6 @@ import net.minecraft.entity.ai.EntityAIAvoidEntity;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -41,7 +41,7 @@ public class EntityQueenChestburster extends EntityChestburster implements IMob,
         this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityEngineer.class, 16.0F, 0.23F, 0.4F));
         this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityMarine.class, 16.0F, 0.23F, 0.4F));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
-        this.tasks.addTask(8, new EntityAIWander(this, 0.800000011920929D));
+        this.tasks.addTask(8, new PatchedEntityAIWander(this, 0.800000011920929D));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.8F));
     }
