@@ -504,7 +504,7 @@ public class ModelMatriarch extends Model
         this.lArmMini1.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6662F + (float) Math.PI) * 1.4F * swingProgressPrev(obj) - 1.9065191F;
 
         draw(torso0);
-        draw(sack0);
+//        draw(sack0);
 
         if (base != null && base instanceof EntityMatriarch)
         {
@@ -514,28 +514,20 @@ public class ModelMatriarch extends Model
             {
                 OpenGL.pushMatrix();
                 {
-                    OpenGL.translate(0, -0.05F, 1F - queen.getOvipositorSize());
+                    OpenGL.translate(0f, Math.min(-0.5f + queen.getOvipositorSize(), 0.25f), 0f);
                     OpenGL.scale(queen.getOvipositorSize(), queen.getOvipositorSize(), queen.getOvipositorSize());
                     OpenGL.enableBlend();
                     OpenGL.blendClear();
                     OpenGL.disableCullFace();
                     OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_COLOR);
                     AliensVsPredator.resources().models().MATRIARCH_MASK.getTexture().bind();
-                    // draw(sack0);
-                    // draw(sack1);
-                    // draw(sack2);
-                    // draw(sack3);
-                    // draw(sack4);
-                    // draw(sack5);
-                    // draw(sack6);
-                    // draw(sack7);
+                    draw(sack0);
                     OpenGL.enableCullFace();
                     OpenGL.blendClear();
                 }
                 OpenGL.popMatrix();
             }
         }
-        OpenGL.enableCullFace();
     }
 
     private void doTail(float angle, float distMult)
