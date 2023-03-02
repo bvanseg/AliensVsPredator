@@ -66,6 +66,8 @@ public class Sounds
     public static final Sound  YAUTJA_LIVING                = sound("predator.living");
     public static final Sound  YAUTJA_HURT                  = sound("predator.hurt");
     public static final Sound  YAUTJA_DEATH                 = sound("predator.death");
+    public static final Sound  YAUTJA_CLOAK                 = sound("predator.cloaking");
+    public static final Sound  YAUTJA_DECLOAK               = sound("predator.decloaking");
 
     /** YAUTJA VISION SOUNDS **/
     public static final Sound  YAUTJA_VISION_SWITCH         = sound("predator.vision.switch");

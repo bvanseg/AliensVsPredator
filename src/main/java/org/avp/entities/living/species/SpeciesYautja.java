@@ -7,11 +7,13 @@ import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.EntityAISuperjump;
 import org.avp.entities.living.EntityMarine;
+import org.avp.entities.state.CloakState;
 import org.avp.item.ItemDisc;
 import org.avp.item.ItemFirearm;
 import org.avp.item.ItemPlasmaCannon;
 import org.avp.item.ItemShuriken;
 import org.avp.item.ItemWristbracer;
+import org.avp.network.AvpDataSerializers;
 
 import com.google.common.base.Predicate;
 
@@ -22,7 +24,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
@@ -49,11 +50,21 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
 {
     private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> DUCKING = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
+    
+    private static final DataParameter<CloakState> CLOAK_STATE = EntityDataManager.createKey(SpeciesYautja.class, AvpDataSerializers.CLOAK_STATE);
+    private static final DataParameter<Integer> CLOAK_PROGRESS = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.VARINT);
+    
+    public static int MAX_CLOAK = 20 * 2;
+    private static int MIN_CLOAK = 0;
+    private static int CLOAK_PROGRESS_SPEED = 1;
+    
+    public int cloakProgress;
 
     public SpeciesYautja(World world)
     {
         super(world);
         this.experienceValue = 250;
+        this.cloakProgress = MIN_CLOAK;
         this.setSize(1.0F, 2.5F);
         
 //        this.tasks.addTask(0, new EntityAISwimming(this));
@@ -61,9 +72,8 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
         this.tasks.addTask(1, new EntityAIWander(this, 0.6D));
         this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
         this.targetTasks.addTask(0, new EntityAISuperjump(this, 1.0F));
-        this.targetTasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.9D, 48));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this));
+        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this));
         this.jumpMovementFactor = 0.1F;
     }
 
@@ -84,6 +94,8 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
         super.entityInit();
         this.getDataManager().register(WEARING_MASK, this.rand.nextBoolean());
         this.getDataManager().register(DUCKING, false);
+        this.getDataManager().register(CLOAK_STATE, CloakState.DECLOAKED);
+        this.getDataManager().register(CLOAK_PROGRESS, MIN_CLOAK);
     }
     
     @Override
@@ -105,6 +117,61 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
                 this.setSize(1.0F,  2.5F);
             }
         }
+        
+        this.handleCloaking();
+    }
+    
+    private void handleCloaking() {
+		if (!this.world.isRemote) {
+        	
+        	if (this.isInWater()) {
+        		if (this.cloakProgress > MIN_CLOAK) {
+        			if (this.getCloakState() != CloakState.DECLOAKING_FORCED && this.getCloakState() != CloakState.DECLOAKING_MANUAL) {
+        		        Sounds.YAUTJA_DECLOAK.playSound(this, 0.6F, 1.0F);;
+        			}
+        			
+        			this.setCloakState(CloakState.DECLOAKING_FORCED);
+        		} else if (this.cloakProgress == MIN_CLOAK) {
+            		this.setCloakState(CloakState.DECLOAKED);
+        		}
+        	} else if(this.getAttackTarget() != null) {
+        		if (this.cloakProgress > MIN_CLOAK) {
+        			this.setCloakState(CloakState.DECLOAKING_MANUAL);
+        		} else if (this.cloakProgress == MIN_CLOAK) {
+            		this.setCloakState(CloakState.DECLOAKED);
+        		}
+        	} else {
+        		if (this.cloakProgress < MAX_CLOAK) {
+        			if (this.getCloakState() != CloakState.CLOAKING) {
+        		        Sounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);;
+        			}
+        			
+        			this.setCloakState(CloakState.CLOAKING);
+        		} else if (this.cloakProgress == MAX_CLOAK) {
+            		this.setCloakState(CloakState.CLOAKED);
+        		}
+        	}
+        }
+    	
+    	switch (this.getCloakState()) {
+        	case CLOAKED:
+    			this.cloakProgress = MAX_CLOAK;
+    			break;
+        	case CLOAKING:
+    			this.cloakProgress++;
+    			break;
+        	case DECLOAKING_FORCED:
+    			this.cloakProgress--;
+        		break;
+        	case DECLOAKING_MANUAL:
+        		this.cloakProgress -= CLOAK_PROGRESS_SPEED * 3;
+    			break;
+			default:
+				this.cloakProgress = MIN_CLOAK;
+				break;
+    	}
+    	
+    	this.cloakProgress = MathHelper.clamp(cloakProgress, MIN_CLOAK, MAX_CLOAK);
     }
     
     @Override
@@ -268,6 +335,8 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
     {
         super.readEntityFromNBT(tag);
         this.setWearingMask(tag.getBoolean("WearingMask"));
+        this.setCloakState(CloakState.getValuesByIdMap().get((int)tag.getByte("CloakState")));
+        this.cloakProgress = tag.getInteger("CloakProgress");
     }
 
     @Override
@@ -275,6 +344,8 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
     {
         super.writeEntityToNBT(tag);
         tag.setBoolean("WearingMask", this.isWearingMask());
+        tag.setByte("CloakState", (byte)this.getCloakState().id);
+        tag.setInteger("CloakProgress", this.cloakProgress);
     }
 
     public boolean isWearingMask()
@@ -285,6 +356,16 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
     public boolean isDucking()
     {
         return this.getDataManager().get(DUCKING);
+    }
+    
+    public void setCloakState(CloakState cloakState) {
+    	if (!this.world.isRemote) {
+    		this.getDataManager().set(CLOAK_STATE, cloakState);
+    	}
+    }
+    
+    public CloakState getCloakState() {
+    	return this.getDataManager().get(CLOAK_STATE);
     }
 
     public void setWearingMask(boolean wearingMask)
