@@ -156,7 +156,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.readInventoryFromNBT(nbt, this.inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
         this.readInventoryFromNBT(nbt, this.inventoryDrive);
-        this.sendSyncPacket();
     }
 
     @Override
@@ -251,12 +250,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             if (this.canTarget(newTarget) && canSee(newTarget))
             {
                 this.targetEntity = newTarget;
-
-                if (this.world.isRemote)
-                {
-                    AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
-                }
-
                 return newTarget;
             }
         }
