@@ -52,6 +52,7 @@ import com.asx.mdx.lib.world.storage.NBTStorage;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntitySlime;
@@ -256,9 +257,9 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     }
 
     public boolean canTarget(Entity e) {
-        if (e != null && !e.isDead && e instanceof EntityPlayer) {
+        if (e != null && !e.isDead) {
             double distance = Pos.distance(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), e.posX, e.posY, e.posZ);
-            return (this.canTargetPlayer((EntityPlayer) e) || this.canTargetType(e.getClass())) && distance <= this.range;
+            return (e instanceof EntityPlayer && this.canTargetPlayer((EntityPlayer) e) || this.canTargetType(e.getClass())) && distance <= this.range;
         }
 
         return false;
@@ -306,10 +307,9 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
         if (!this.world.isRemote) {
             if (!this.canTarget(targetEntity)) {
-            	// TODO: This also picks up item entities, which is sub-optimal. A predicate would be better!
-                Entity newTarget = Entities.getRandomEntityInCoordsRange(this.world, Entity.class, this.pos, range, range);
+            	EntityLiving newTarget = (EntityLiving) Entities.getRandomEntityInCoordsRange(this.world, EntityLiving.class, this.pos, range, range);
 
-                if (this.targetTypes.contains(newTarget.getClass()) && this.canTarget(newTarget) && canSee(newTarget)) {
+                if (newTarget != null && this.targetTypes.contains(newTarget.getClass()) && this.canTarget(newTarget) && canSee(newTarget)) {
                     this.targetEntity = newTarget;
                 }
             }
