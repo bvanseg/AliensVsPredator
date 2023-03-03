@@ -31,7 +31,7 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
 
                 if (!tile.isFiring())
                 {
-                    this.renderBeam(0, 0, tile.getTargetHelper().getRange(), -1, 0, 50, tile.beamColor, 0x00000000, tile.getRotationYaw(), tile.getRotationPitch(), -1);
+                    this.renderBeam(0, 0, tile.getTargetHelper().getRange(), -1, 0, 50, tile.beamColor, 0x00000000, tile.getLookHelper().getRotationYaw(), tile.getLookHelper().getRotationPitch(), -1);
                 }
             }
         }
@@ -55,8 +55,8 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
                 OpenGL.translate(0F, 137.5F, 0F);
 
                 // Rotate & Reposition Display
-                OpenGL.rotate(180 + -tile.getRotationYaw(), 0F, 1F, 0F);
-                OpenGL.rotate(tile.getRotationPitch(), 1F, 0F, 0F);
+                OpenGL.rotate(180 + -tile.getLookHelper().getRotationYaw(), 0F, 1F, 0F);
+                OpenGL.rotate(tile.getLookHelper().getRotationPitch(), 1F, 0F, 0F);
                 OpenGL.translate(-12.5F, -23.5F, 43.76F);
 
                 // Display itself

@@ -150,10 +150,10 @@ public class ModelTurret extends Model
         
         if (tile != null)
         {
-            float rotationYaw = (-tile.getRotationYaw()) / (180F / (float) Math.PI);
-            float rotationYawPrev = (-tile.getRotationPrev().yaw) / (180F / (float) Math.PI);
-            float rotationPitch = -tile.getRotationPitch() / (180F / (float) Math.PI);
-            float rotationPitchPrev = -tile.getRotationPrev().pitch / (180F / (float) Math.PI);
+            float rotationYaw = (-tile.getLookHelper().getRotationYaw()) / (180F / (float) Math.PI);
+            float rotationYawPrev = (-tile.getLookHelper().getRotationPrev().yaw) / (180F / (float) Math.PI);
+            float rotationPitch = -tile.getLookHelper().getRotationPitch() / (180F / (float) Math.PI);
+            float rotationPitchPrev = -tile.getLookHelper().getRotationPrev().pitch / (180F / (float) Math.PI);
 
             rotationYaw = rotationYawPrev + (rotationYaw - rotationYawPrev) * Game.partialTicks();
             rotationPitch = rotationPitchPrev + (rotationPitch - rotationPitchPrev) * Game.partialTicks();

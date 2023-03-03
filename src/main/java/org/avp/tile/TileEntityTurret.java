@@ -11,12 +11,11 @@ import org.avp.inventory.ContainerTurret;
 import org.avp.packets.client.PacketTurretSync;
 import org.avp.packets.server.PacketTurretTargetUpdate;
 import org.avp.tile.helpers.TileEntityTurretAmmoHelper;
+import org.avp.tile.helpers.TileEntityTurretLookHelper;
 import org.avp.tile.helpers.TileEntityTurretTargetHelper;
 
 import com.asx.mdx.MDX;
-import com.asx.mdx.lib.client.util.Rotation;
 import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.storage.NBTStorage;
@@ -34,7 +33,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -45,23 +43,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver
 {
-    private int                                cycleCount;
     private boolean                            isFiring;
     private int                                fireRate;
-    private int                                direction;
     private int                                timeout;
     private int                                timeoutMax;
     public InventoryBasic                      inventoryExpansion;
     public InventoryBasic                      inventoryDrive;
     private ContainerTurret                    container;
     private Pos                                pos;
-    private Rotation                           rot;
-    private Rotation                           rotPrev;
-    private Pos                                foc;
-    private Rotation                           focrot;
     public int                                 beamColor;
     
     private TileEntityTurretAmmoHelper         ammoHelper;
+    private TileEntityTurretLookHelper         lookHelper;
     private TileEntityTurretTargetHelper       targetHelper;
 
     public TileEntityTurret()
@@ -70,14 +63,11 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.inventoryExpansion = new InventoryBasic("TurretExpansionBay", true, 3);
         this.inventoryDrive = new InventoryBasic("TurretDriveBay", true, 1);
         this.fireRate = 2;
-        this.cycleCount = getBaseCycleCount();
-        this.rot = new Rotation(0F, 0F);
-        this.rotPrev = new Rotation(0F, 0F);
-        this.focrot = new Rotation(0F, 0F);
         this.timeoutMax = 60;
         this.beamColor = 0xFFFF0000;
         
         this.ammoHelper = new TileEntityTurretAmmoHelper(world, pos);
+        this.lookHelper = new TileEntityTurretLookHelper(pos);
         this.targetHelper = new TileEntityTurretTargetHelper(world, pos);
     }
 
@@ -131,8 +121,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         super.readFromNBT(nbt);
 
-        this.direction = nbt.getInteger("Direction");
-        this.focrot.setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
+        this.lookHelper.getFocusRotation().setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
         this.readTargetListFromCompoundTag(nbt);
         this.readInventoryFromNBT(nbt, this.ammoHelper.inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
@@ -144,9 +133,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         super.writeToNBT(nbt);
 
-        nbt.setInteger("Direction", this.direction);
-        nbt.setFloat("FocusYaw", this.focrot.yaw);
-        nbt.setFloat("FocusPitch", this.focrot.pitch);
+        nbt.setFloat("FocusYaw", this.lookHelper.getFocusRotation().yaw);
+        nbt.setFloat("FocusPitch", this.lookHelper.getFocusRotation().pitch);
         nbt.setTag("Targets", this.getTargetListTag());
         this.saveInventoryToNBT(nbt, this.ammoHelper.inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
@@ -164,8 +152,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         this.applyUpgrades();
         this.readTargetList(packet.targets);
-        this.rot.yaw = packet.rotation.yaw;
-        this.rot.pitch = packet.rotation.pitch;
+        this.lookHelper.getRotation().yaw = packet.rotation.yaw;
+        this.lookHelper.getRotation().pitch = packet.rotation.pitch;
     }
 
     @SideOnly(Side.CLIENT)
@@ -173,53 +161,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         Entity entity = Game.minecraft().world.getEntityByID(packet.id);
         this.targetHelper.setTargetEntity(entity);
-        this.foc = packet.foc;
-        this.focrot = packet.focrot;
-    }
-
-    private void updatePosition(double x, double y, double z) {
-    	this.foc = new Pos(x, y, z);
-    }
-
-    public void lookAtFocusPoint()
-    {
-        if (this.foc != null)
-        {
-            for (int runCycles = this.cycleCount; runCycles > 0; runCycles--)
-            {
-                if (Math.ceil(this.getRotationYaw()) < Math.ceil(this.focrot.yaw))
-                {
-                    this.rotPrev.yaw = this.rot.yaw;
-                    this.rot.yaw += 1;
-                }
-                else if (Math.ceil(this.getRotationYaw()) > Math.ceil(this.focrot.yaw))
-                {
-                    this.rotPrev.yaw = this.rot.yaw;
-                    this.rot.yaw -= 1;
-                }
-
-                if (Math.ceil(this.getRotationPitch()) < Math.ceil(this.focrot.pitch))
-                {
-                    this.rotPrev.pitch = this.rot.pitch;
-                    this.rot.pitch += 1;
-                }
-                else if (Math.ceil(this.getRotationPitch()) > Math.ceil(this.focrot.pitch))
-                {
-                    this.rotPrev.pitch = this.rot.pitch;
-                    this.rot.pitch -= 1;
-                }
-
-                double focus = 1;
-
-                if (Math.ceil(this.getRotationPitch()) >= Math.ceil(this.focrot.pitch - focus) && Math.ceil(this.getRotationPitch()) <= Math.ceil(this.focrot.pitch + focus) && Math.ceil(this.getRotationYaw()) >= Math.ceil(this.focrot.yaw - focus) && Math.ceil(this.getRotationYaw()) <= Math.ceil(this.focrot.yaw + focus))
-                {
-                    this.rotPrev.pitch = this.rot.pitch;
-                    this.rotPrev.yaw = this.rot.yaw;
-                    this.rot.pitch = this.focrot.pitch;
-                    this.rot.yaw = this.focrot.yaw;
-                }
-            }
-        }
+        this.lookHelper.setFocusPosition(packet.foc);
+        this.lookHelper.setFocusRotation(packet.focrot);
     }
 
     public void fire() {
@@ -232,22 +175,9 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         Sounds.WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 1F, 1F);
     }
 
-    public Rotation turnTurretToPoint(Pos pos, Rotation rotation, float deltaYaw, float deltaPitch)
-    {
-        double x = pos.x - this.pos.x;
-        double y = pos.y - this.pos.y;
-        double z = pos.z - this.pos.z;
-        double sq = MathHelper.sqrt(x * x + z * z);
-
-        float newYaw = (float) (Math.atan2(z, x) * 180.0D / Math.PI) - 90.0F;
-        float f1 = (float) (-(Math.atan2(y, sq) * 180.0D / Math.PI));
-
-        return rotation.setYaw(MDXMath.wrapAngle(this.rot.yaw, newYaw, deltaYaw)).setPitch(MDXMath.wrapAngle(this.rot.pitch, f1, deltaPitch));
-    }
-
     public void applyUpgrades()
     {
-        int cycles = this.getBaseCycleCount();
+        int cycles = this.lookHelper.getBaseCycleCount();
         this.ammoHelper.setAmmoDisplayEnabled(false);
 
         for (int i = 0; i < 3; i++)
@@ -265,7 +195,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             }
         }
 
-        this.setCycleCount(cycles);
+        this.lookHelper.setCycleCount(cycles);
     }
 
     public NBTTagList getTargetListTag()
@@ -354,47 +284,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void setFireRate(int fireRate)
     {
         this.fireRate = fireRate;
-    }
-
-    public int getDirection()
-    {
-        return direction;
-    }
-
-    public void setDirection(int direction)
-    {
-        this.direction = direction;
-    }
-
-    public void setCycleCount(int count)
-    {
-        this.cycleCount = count;
-    }
-
-    public int getCycleCount()
-    {
-        return cycleCount;
-    }
-
-    public int getBaseCycleCount()
-    {
-        return 4;
-    }
-
-    public float getRotationYaw()
-    {
-        // this.getDirection() * 90F +
-        return this.rot.yaw;
-    }
-
-    public float getRotationPitch()
-    {
-        return this.rot.pitch;
-    }
-
-    public Rotation getRotationPrev()
-    {
-        return rotPrev;
     }
 
     public boolean isFiring()
@@ -499,23 +388,12 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         return 220;
     }
 
-    public Rotation getRotation()
-    {
-        return this.rot;
-    }
-
-    public Rotation getFocusRotation()
-    {
-        return this.focrot;
-    }
-
-    public Pos getFocusPosition()
-    {
-        return foc;
-    }
-
 	public TileEntityTurretAmmoHelper getAmmoHelper() {
 		return this.ammoHelper;
+	}
+
+	public TileEntityTurretLookHelper getLookHelper() {
+		return this.lookHelper;
 	}
 
 	public TileEntityTurretTargetHelper getTargetHelper() {
