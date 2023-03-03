@@ -1,8 +1,8 @@
 package org.avp.tile;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
-import java.util.Random;
 
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
@@ -91,8 +91,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     private int                                direction;
     private int                                timeout;
     private int                                timeoutMax;
-    private ArrayList<Class<? extends Entity>> targetTypes;
-    private ArrayList<String>                  targetPlayers;
+    private HashSet<Class<? extends Entity>>   targetTypes;
+    private HashSet<String>                    targetPlayers;
     public InventoryBasic                      inventoryAmmo;
     public InventoryBasic                      inventoryExpansion;
     public InventoryBasic                      inventoryDrive;
@@ -109,8 +109,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public TileEntityTurret()
     {
         super(false);
-        this.targetTypes = new ArrayList<Class<? extends Entity>>();
-        this.targetPlayers = new ArrayList<String>();
+        this.targetTypes = new HashSet<>();
+        this.targetPlayers = new HashSet<>();
         this.inventoryAmmo = new InventoryBasic("TurretAmmoBay", true, 9);
         this.inventoryExpansion = new InventoryBasic("TurretExpansionBay", true, 3);
         this.inventoryDrive = new InventoryBasic("TurretDriveBay", true, 1);
@@ -220,7 +220,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             this.timeout = this.timeout > 0 ? this.timeout - 1 : this.timeout;
             this.pickUpAmmunition();
             this.updateAmmunitionCount();
-            this.reloadIfNecessary();
+            this.tryReload();
             this.findTarget();
             this.targetAndAttack();
         }
@@ -232,20 +232,18 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
         Entity newTarget = null;
 
-        if (entities.size() > 0)
-        {
-            entities.get(new Random().nextInt(entities.size()));
+        if (!entities.isEmpty()) {
+            entities.get(this.world.rand.nextInt(entities.size()));
         }
 
-        for (Entity e : entities)
-        {
-            if (this.canSee(e))
-            {
+        for (Entity e : entities) {
+            if (this.canSee(e)) {
                 newTarget = e;
+                break;
             }
         }
 
-        if (this.targetEntity == null || this.targetEntity != null && this.targetEntity.isDead || this.targetEntity != null && !canSee(this.targetEntity))
+        if (this.targetEntity == null || this.targetEntity.isDead || !canSee(this.targetEntity))
         {
             if (this.canTarget(newTarget) && canSee(newTarget))
             {
@@ -257,25 +255,18 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         return null;
     }
 
-    public boolean canTarget(Entity e)
-    {
-        if (e != null)
-        {
+    public boolean canTarget(Entity e) {
+        if (e != null && !e.isDead && e instanceof EntityPlayer) {
             double distance = Pos.distance(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), e.posX, e.posY, e.posZ);
-            return !e.isDead && (e instanceof EntityPlayer && this.canTargetPlayer((EntityPlayer) e) || this.canTargetType(e.getClass())) && distance <= this.range;
+            return (this.canTargetPlayer((EntityPlayer) e) || this.canTargetType(e.getClass())) && distance <= this.range;
         }
 
         return false;
     }
 
-    public boolean canTargetPlayer(EntityPlayer player)
-    {
-        for (String name : this.targetPlayers)
-        {
-            return player.getCommandSenderEntity().getName().equalsIgnoreCase(name);
-        }
-
-        return false;
+    public boolean canTargetPlayer(EntityPlayer player) {
+    	// TODO: Store UUIDs, not names to avoid casing discrepancies.
+    	return this.targetPlayers.contains(player.getCommandSenderEntity().getName());
     }
 
     private boolean canSee(Entity e)
@@ -299,18 +290,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         return false;
     }
 
-    private void updatePosition(double x, double y, double z)
-    {
-        if (this.foc == null)
-        {
-            this.foc = new Pos(x, y, z);
-        }
-        else
-        {
-            this.foc.x = x;
-            this.foc.y = y;
-            this.foc.z = z;
-        }
+    private void updatePosition(double x, double y, double z) {
+    	this.foc = new Pos(x, y, z);
     }
 
     public void targetAndAttack()
@@ -323,19 +304,13 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             }
         }
 
-        if (!this.world.isRemote && this.world.getTotalWorldTime() % 10 == 0)
-        {
-            if (this.getTargetEntity() == null || this.getTargetEntity() != null && !this.canTarget(targetEntity))
-            {
-                for (Class<? extends Entity> type : this.targetTypes)
-                {
-                    Entity newTarget = Entities.getRandomEntityInCoordsRange(this.world, type, this.pos, range, range);
+        if (!this.world.isRemote) {
+            if (!this.canTarget(targetEntity)) {
+            	// TODO: This also picks up item entities, which is sub-optimal. A predicate would be better!
+                Entity newTarget = Entities.getRandomEntityInCoordsRange(this.world, Entity.class, this.pos, range, range);
 
-                    if (this.canTarget(newTarget) && canSee(newTarget))
-                    {
-                        this.targetEntity = newTarget;
-                        break;
-                    }
+                if (this.targetTypes.contains(newTarget.getClass()) && this.canTarget(newTarget) && canSee(newTarget)) {
+                    this.targetEntity = newTarget;
                 }
             }
         }
@@ -354,8 +329,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
             if (this.canSee(targetEntity))
             {
-                if (world.getWorldInfo().getWorldTotalTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw)
-                {
+                if (world.getTotalWorldTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw) {
                     if (curAmmo-- > 0)
                     {
                         this.fire();
@@ -410,8 +384,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         }
     }
 
-    public void reloadIfNecessary()
-    {
+    public void tryReload() {
         if (this.curAmmo < this.getMaxAmmo() && this.curAmmo <= 0)
         {
             this.reload();
@@ -420,7 +393,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     public void updateAmmunitionCount()
     {
-        if (world.getWorldInfo().getWorldTotalTime() % 8L == 0L)
+        if (world.getTotalWorldTime() % 8L == 0L)
         {
             this.roundsMax = (9 * 64);
             this.rounds = 0;
@@ -522,10 +495,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     public void addTargetPlayer(String name)
     {
-        if (!this.targetPlayers.contains(name))
-        {
-            this.targetPlayers.add(name);
-        }
+        this.targetPlayers.add(name);
     }
 
     public void removeTargetPlayer(String name)
@@ -544,31 +514,18 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void removeTargetType(Class<? extends Entity> entityClass)
     {
         this.setTargetEntity(null);
-
-        if (this.targetTypes.contains(entityClass))
-        {
-            this.targetTypes.remove(entityClass);
-        }
+        this.targetTypes.remove(entityClass);
     }
 
     public void addTargetType(Class<? extends Entity> entityClass)
     {
         this.setTargetEntity(null);
-
-        if (!this.targetTypes.contains(entityClass))
-        {
-            this.targetTypes.add(entityClass);
-        }
+        this.targetTypes.add(entityClass);
     }
 
     public boolean canTargetType(Class<? extends Entity> entityClass)
     {
-        if (this.targetTypes.contains(entityClass))
-        {
-            return true;
-        }
-
-        return false;
+        return this.targetTypes.contains(entityClass);
     }
 
     public void setPredefinedTargets()
@@ -618,12 +575,12 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         {
             ItemStack pciSlot = this.inventoryExpansion.getStackInSlot(i);
 
-            if (pciSlot != null && pciSlot.getItem() == AliensVsPredator.items().itemProcessor)
+            if (pciSlot.getItem() == AliensVsPredator.items().itemProcessor)
             {
-                cycles += 1 * pciSlot.getCount();
+                cycles += pciSlot.getCount();
             }
 
-            if (pciSlot != null && pciSlot.getItem() == AliensVsPredator.items().itemLedDisplay)
+            if (pciSlot.getItem() == AliensVsPredator.items().itemLedDisplay)
             {
                 this.setAmmoDisplayEnabled(true);
             }
@@ -647,11 +604,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void readTargetListFromCompoundTag(NBTTagCompound nbt)
     {
         NBTTagList list = nbt.getTagList("Targets", NBT.TAG_STRING);
-
-        if (list instanceof NBTTagList)
-        {
-            this.readTargetList(list);
-        }
+        this.readTargetList(list);
     }
 
     public void readTargetList(NBTTagList list)
@@ -661,9 +614,9 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             String id = list.getStringTagAt(i);
 
             ResourceLocation identifier = new ResourceLocation(id);
-            EntityEntry ee = ForgeRegistries.ENTITIES.getValue(identifier);
-            Class<? extends Entity> c = (Class<? extends Entity>) ee.getEntityClass();
-            this.addTargetType(c);
+            EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(identifier);
+            Class<? extends Entity> entityClass = (Class<? extends Entity>) entityEntry.getEntityClass();
+            this.addTargetType(entityClass);
         }
     }
 
@@ -769,7 +722,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         return ammoDisplayEnabled;
     }
 
-    public ArrayList<String> getTargetPlayers()
+    public HashSet<String> getTargetPlayers()
     {
         return targetPlayers;
     }
@@ -784,7 +737,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.targetEntity = targetEntity;
     }
 
-    public ArrayList<Class<? extends Entity>> getDangerousTargets()
+    public HashSet<Class<? extends Entity>> getDangerousTargets()
     {
         return targetTypes;
     }
@@ -858,41 +811,36 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     @Override
     public void readFromOtherDevice(int ID)
     {
-        StringBuilder builder = new StringBuilder();
         ItemStack devicePort = this.inventoryDrive.getStackInSlot(0);
 
-        if (devicePort != null)
+        NBTTagCompound nbt = devicePort.getTagCompound();
+
+        if (nbt != null)
         {
-            NBTTagCompound nbt = devicePort.getTagCompound();
+            NBTTagList list = nbt.getTagList("Targets", NBT.TAG_STRING);
 
-            if (nbt != null)
+            if (list != null)
             {
-                NBTTagList list = nbt.getTagList("Targets", NBT.TAG_STRING);
-
-                if (list != null)
+                for (int i = 0; i < list.tagCount(); i++)
                 {
-                    for (int i = 0; i < list.tagCount(); i++)
+                    String id = list.getStringTagAt(i);
+
+                    EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id));
+
+                    for (EntityEntry e : ForgeRegistries.ENTITIES.getValues())
                     {
-                        String id = list.getStringTagAt(i);
-                        
-                        EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id));
-
-                        for (EntityEntry e : ForgeRegistries.ENTITIES.getValues())
+                        if (id.equalsIgnoreCase(e.getRegistryName().toString()))
                         {
-                            if (id.equalsIgnoreCase(e.getRegistryName().toString()))
-                            {
-                                entityEntry = e;
-                            }
+                            entityEntry = e;
                         }
+                    }
 
-                        if (entityEntry != null)
-                        {
-                            Class<? extends Entity> c = (Class<? extends Entity>) entityEntry.getEntityClass();
-                            this.addTargetType(c);
-                            builder.append(id + "-");
-                        } else {
-                            MDX.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
-                        }
+                    if (entityEntry != null)
+                    {
+                        Class<? extends Entity> c = entityEntry.getEntityClass();
+                        this.addTargetType(c);
+                    } else {
+                        MDX.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
                     }
                 }
             }
@@ -908,25 +856,22 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         {
             ItemStack devicePort = this.inventoryDrive.getStackInSlot(0);
 
-            if (devicePort != null)
+            NBTTagCompound nbt = new NBTTagCompound();
+            ArrayList<String> entityIDs = new ArrayList<String>();
+
+            for (Class<? extends Entity> c : this.getDangerousTargets())
             {
-                NBTTagCompound nbt = new NBTTagCompound();
-                ArrayList<String> entityIDs = new ArrayList<String>();
-
-                for (Class<? extends Entity> c : this.getDangerousTargets())
+                if (c != null)
                 {
-                    if (c != null)
-                    {
-                        entityIDs.add(Entities.getEntityRegistrationId(c));
-                    }
+                    entityIDs.add(Entities.getEntityRegistrationId(c));
                 }
-
-                nbt.setTag("Targets", NBTStorage.newStringNBTList(entityIDs));
-
-                devicePort.setTagCompound(nbt);
-                devicePort.setStackDisplayName("NBT Drive - " + "TURRET." + this.pos.x + "" + this.pos.y + "" + this.pos.z);
-                this.inventoryDrive.setInventorySlotContents(0, devicePort);
             }
+
+            nbt.setTag("Targets", NBTStorage.newStringNBTList(entityIDs));
+
+            devicePort.setTagCompound(nbt);
+            devicePort.setStackDisplayName("NBT Drive - " + "TURRET." + this.pos.x + "" + this.pos.y + "" + this.pos.z);
+            this.inventoryDrive.setInventorySlotContents(0, devicePort);
         }
     }
 
