@@ -29,7 +29,7 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         this.x = turret.getPos().getX();
         this.y = turret.getPos().getY();
         this.z = turret.getPos().getZ();
-        this.id = turret.getTargetEntity().getEntityId();
+        this.id = turret.getTargetHelper().getTargetEntity().getEntityId();
         this.focrot = turret.getFocusRotation();
         this.foc = turret.getFocusPosition();
     }

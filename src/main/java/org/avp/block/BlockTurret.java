@@ -86,7 +86,7 @@ public class BlockTurret extends Block
         {
             if (!world.isRemote)
             {
-                for (Class<? extends Entity> dangerousTarget: tile.getDangerousTargets())
+                for (Class<? extends Entity> dangerousTarget: tile.getTargetHelper().getDangerousTargets())
                 {
                     if (dangerousTarget != null)
                     {

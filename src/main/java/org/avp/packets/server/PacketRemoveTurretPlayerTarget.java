@@ -57,7 +57,7 @@ public class PacketRemoveTurretPlayerTarget implements IMessage, IMessageHandler
 
                 if (tile != null)
                 {
-                    tile.removeTargetPlayer(packet.name);
+                    tile.getTargetHelper().removeTargetPlayer(packet.name);
                 }
             }
         });

@@ -57,7 +57,7 @@ public class PacketAddTurretPlayerTarget implements IMessage, IMessageHandler<Pa
 
                 if (tile != null)
                 {
-                    tile.addTargetPlayer(packet.name);
+                    tile.getTargetHelper().addTargetPlayer(packet.name);
                 }
             }
         });

@@ -112,7 +112,7 @@ public class GuiTurret extends GuiContainer
 
         tile.applyUpgrades();
 
-        for (Class<? extends Entity> c : this.tile.getDangerousTargets())
+        for (Class<? extends Entity> c : this.tile.getTargetHelper().getDangerousTargets())
         {
             AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), Entities.getEntityRegistrationId(c)));
         }
@@ -154,7 +154,7 @@ public class GuiTurret extends GuiContainer
             if (entity != null && yEntryPos <= yPos + 50)
             {
                 Draw.drawRectWithOutline(3, yEntryPos - 4, 134, 12, 1, 0x00000000, 0xFF444444);
-                Draw.drawString(entity.getName(), 6, yEntryPos - 2, this.tile.canTargetType(entity.getClass()) ? (getCurrentSelectedEntity() == entity ? 0xFFFF8800 : 0xFFFF0000) : (getCurrentSelectedEntity() == entity ? 0xFFFFFFFF : 0xFF444444), false);
+                Draw.drawString(entity.getName(), 6, yEntryPos - 2, this.tile.getTargetHelper().canTargetType(entity.getClass()) ? (getCurrentSelectedEntity() == entity ? 0xFFFF8800 : 0xFFFF0000) : (getCurrentSelectedEntity() == entity ? 0xFFFFFFFF : 0xFF444444), false);
             }
         }
 
@@ -213,29 +213,29 @@ public class GuiTurret extends GuiContainer
                 {
                     if (playerNameInput != null && playerNameInput.getText().isEmpty() || playerNameInput == null)
                     {
-                        if (!tile.canTargetType(getCurrentSelectedEntity().getClass()))
+                        if (!tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getClass()))
                         {
-                            tile.addTargetType(getCurrentSelectedEntity().getClass());
+                            tile.getTargetHelper().addTargetType(getCurrentSelectedEntity().getClass());
                             AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity())));
                         }
                         else
                         {
-                            tile.removeTargetType(getCurrentSelectedEntity().getClass());
+                            tile.getTargetHelper().removeTargetType(getCurrentSelectedEntity().getClass());
                             AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity())));
                         }
                     }
                     else
                     {
-                        if (!tile.getTargetPlayers().contains(playerNameInput.getText()))
+                        if (!tile.getTargetHelper().getTargetPlayers().contains(playerNameInput.getText()))
                         {
                             Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' added to turret player target list.");
-                            tile.addTargetPlayer(playerNameInput.getText());
+                            tile.getTargetHelper().addTargetPlayer(playerNameInput.getText());
                             AliensVsPredator.network().sendToServer(new PacketAddTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
                         }
                         else
                         {
                             Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' removed from turret player target list.");
-                            tile.removeTargetPlayer(playerNameInput.getText());
+                            tile.getTargetHelper().removeTargetPlayer(playerNameInput.getText());
                             AliensVsPredator.network().sendToServer(new PacketRemoveTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
                         }
                     }
@@ -266,13 +266,13 @@ public class GuiTurret extends GuiContainer
             @Override
             public void perform(IGuiElement element)
             {
-                tile.getDangerousTargets().clear();
+                tile.getTargetHelper().getDangerousTargets().clear();
                 AliensVsPredator.network().sendToServer(new PacketReadFromDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
                 tile.readFromOtherDevice(0);
             }
         });
 
-        if (!this.tile.canTargetType(getCurrentSelectedEntity().getClass()))
+        if (!this.tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getClass()))
         {
             this.buttonAddAsTarget.displayString = "+";
             this.buttonAddAsTarget.overlayColorHover = 0xFF00FF77;

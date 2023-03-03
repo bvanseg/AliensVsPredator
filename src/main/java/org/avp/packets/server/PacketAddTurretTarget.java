@@ -70,7 +70,7 @@ public class PacketAddTurretTarget implements IMessage, IMessageHandler<PacketAd
                             break;
                         }
                     }
-                    tile.addTargetType((Class<? extends Entity>) e.getEntityClass());
+                    tile.getTargetHelper().addTargetType((Class<? extends Entity>) e.getEntityClass());
                 }
             }
         });
