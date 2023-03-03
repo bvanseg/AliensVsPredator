@@ -12,7 +12,6 @@ import org.avp.tile.helpers.TileEntityTurretAmmoHelper;
 import org.avp.tile.helpers.TileEntityTurretAttackHelper;
 import org.avp.tile.helpers.TileEntityTurretLookHelper;
 import org.avp.tile.helpers.TileEntityTurretTargetHelper;
-import org.avp.util.LazyDelegate;
 
 import com.asx.mdx.MDX;
 import com.asx.mdx.lib.util.Game;
@@ -33,7 +32,6 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -50,30 +48,28 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver
 {
-    public InventoryBasic                               inventoryExpansion;
-    public InventoryBasic                               inventoryDrive;
-    private ContainerTurret                             container;
-    private Pos                                         pos;
-	public int                                          beamColor;
+    public InventoryBasic                 inventoryExpansion;
+    public InventoryBasic                 inventoryDrive;
+    private ContainerTurret               container;
+    private Pos                           pos;
+	public int                            beamColor;
 	
-	// We have to use lazy delegates because tile entities do not have a world or position initialized during the super constructor. Thanks Mojang, you can't even get factory patterns right.
-    private LazyDelegate<TileEntityTurretAmmoHelper>    ammoHelper;
-    private LazyDelegate<TileEntityTurretTargetHelper>  targetHelper;
-    private LazyDelegate<TileEntityTurretLookHelper>    lookHelper;
-    private LazyDelegate<TileEntityTurretAttackHelper>  attackHelper;
+    private TileEntityTurretAmmoHelper    ammoHelper;
+    private TileEntityTurretTargetHelper  targetHelper;
+    private TileEntityTurretLookHelper    lookHelper;
+    private TileEntityTurretAttackHelper  attackHelper;
 
-    public TileEntityTurret(World world)
+    public TileEntityTurret()
     {
         super(false);
-        this.world = world;
         this.inventoryExpansion = new InventoryBasic("TurretExpansionBay", true, 3);
         this.inventoryDrive = new InventoryBasic("TurretDriveBay", true, 1);
         this.beamColor = 0xFFFF0000;
         
-        this.ammoHelper = new LazyDelegate<>(() -> new TileEntityTurretAmmoHelper(world, pos));
-        this.targetHelper = new LazyDelegate<>(() -> new TileEntityTurretTargetHelper(world, pos));
-        this.lookHelper = new LazyDelegate<>(() -> new TileEntityTurretLookHelper(targetHelper.get(), pos));
-        this.attackHelper = new LazyDelegate<>(() -> new TileEntityTurretAttackHelper(world, ammoHelper.get(), targetHelper.get(), pos));
+        this.ammoHelper = new TileEntityTurretAmmoHelper();
+        this.targetHelper = new TileEntityTurretTargetHelper();
+        this.lookHelper = new TileEntityTurretLookHelper(targetHelper);
+        this.attackHelper = new TileEntityTurretAttackHelper(ammoHelper, targetHelper);
     }
     
     @Override
@@ -89,23 +85,23 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         super.update();
         super.updateEnergyAsReceiver(); 
         
-        // Don't do anything yet until the tile entity is aware of its position.
-        if (this.pos == null) {
+        // Don't do anything yet until the tile entity is aware of its world and position.
+        if (this.world == null || this.pos == null) {
         	return;
         }
 
         if (this.getVoltage() > 0)
         {
-        	this.getLookHelper().update();
-            this.getTargetHelper().update();
+        	this.getLookHelper().update(this.pos);
+            this.getTargetHelper().update(this.world, this.pos);
 
             // While this code could go in the target helper, it is out of scope of what the target helper is intended to do. Leave this here.
             if (!this.world.isRemote && this.getTargetHelper().getTargetEntity() != null) {
                 AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
             }
             
-            this.getAmmoHelper().update();
-            this.getAttackHelper().update(this.getLookHelper());
+            this.getAmmoHelper().update(this.world, this.pos);
+            this.getAttackHelper().update(this.world, this.pos, this.getLookHelper());
         }
     }
 
@@ -375,18 +371,18 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     }
 
 	public TileEntityTurretAmmoHelper getAmmoHelper() {
-		return this.ammoHelper.get();
+		return this.ammoHelper;
 	}
 
 	public TileEntityTurretAttackHelper getAttackHelper() {
-		return this.attackHelper.get();
+		return this.attackHelper;
 	}
 
 	public TileEntityTurretLookHelper getLookHelper() {
-		return this.lookHelper.get();
+		return this.lookHelper;
 	}
 
 	public TileEntityTurretTargetHelper getTargetHelper() {
-		return this.targetHelper.get();
+		return this.targetHelper;
 	}
 }

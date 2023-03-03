@@ -21,8 +21,6 @@ import net.minecraft.world.World;
  */
 public class TileEntityTurretAmmoHelper {
 	
-	private World world;
-	private Pos pos;
     public InventoryBasic inventoryAmmo;
     private Item itemAmmo;
     private boolean ammoDisplayEnabled;
@@ -30,18 +28,16 @@ public class TileEntityTurretAmmoHelper {
     private int rounds;
     private int roundsMax;
     
-    public TileEntityTurretAmmoHelper(World world, Pos pos) {
-    	this.world = world;
-		this.pos = pos;
+    public TileEntityTurretAmmoHelper() {
         this.inventoryAmmo = new InventoryBasic("TurretAmmoBay", true, 9);
         this.itemAmmo = AliensVsPredator.items().itemAmmoSMG;
         this.curAmmo = 0;
         this.ammoDisplayEnabled = false;
     }
     
-    public void update() {
-        this.pickUpAmmunition();
-        this.updateAmmunitionCount();
+    public void update(World world, Pos pos) {
+        this.pickUpAmmunition(world, pos);
+        this.updateAmmunitionCount(world);
         this.tryReload();
     }
 
@@ -52,7 +48,7 @@ public class TileEntityTurretAmmoHelper {
         }
     }
 
-    public void updateAmmunitionCount()
+    public void updateAmmunitionCount(World world)
     {
         if (world.getTotalWorldTime() % 8L == 0L)
         {
@@ -74,11 +70,11 @@ public class TileEntityTurretAmmoHelper {
         }
     }
 
-    public void pickUpAmmunition()
+    public void pickUpAmmunition(World world, Pos pos)
     {
-        if (this.world != null && this.inventoryAmmo != null)
+        if (this.inventoryAmmo != null)
         {
-            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) Entities.getEntitiesInCoordsRange(world, EntityItem.class, this.pos, 1);
+            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) Entities.getEntitiesInCoordsRange(world, EntityItem.class, pos, 1);
 
             for (EntityItem entityItem : entityItemList)
             {

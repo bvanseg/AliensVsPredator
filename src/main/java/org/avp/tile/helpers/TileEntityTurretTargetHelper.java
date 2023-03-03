@@ -1,7 +1,6 @@
 package org.avp.tile.helpers;
 
 import java.util.HashSet;
-import java.util.List;
 
 import org.avp.entities.living.EntityAethon;
 import org.avp.entities.living.species.engineer.EntityEngineer;
@@ -38,7 +37,6 @@ import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
@@ -55,29 +53,23 @@ public class TileEntityTurretTargetHelper {
 	
 	private static int TURRET_RANGE = 24;
 
-	private World world;
-	private Pos pos;
-
 	private Entity targetEntity;
 	private HashSet<Class<? extends Entity>> targetTypes;
 	private HashSet<String> targetPlayers;
 
-	public TileEntityTurretTargetHelper(World world, Pos pos) {
-		this.world = world;
-		this.pos = pos;
-
+	public TileEntityTurretTargetHelper() {
 		this.targetEntity = null;
 		this.targetTypes = new HashSet<>();
 		this.targetPlayers = new HashSet<>();
 	}
 	
-	public void update() {
-		if (!doesCurrentTargetStillExist() || !canClearlyAttackCurrentTarget()) {
+	public void update(World world, Pos pos) {
+		if (!doesCurrentTargetStillExist() || !canClearlyAttackCurrentTarget(pos)) {
 			this.targetEntity = null;
 		}
 
 		if (this.targetEntity == null) {
-			this.findTarget();
+			this.findTarget(world, pos);
 		}
 	}
 	
@@ -85,32 +77,33 @@ public class TileEntityTurretTargetHelper {
 		return this.targetEntity != null && !this.targetEntity.isDead;
 	}
 	
-	private boolean canClearlyAttackCurrentTarget() {
-		return this.canTarget(this.targetEntity) && this.canSee(this.targetEntity);
+	private boolean canClearlyAttackCurrentTarget(Pos pos) {
+		return this.canTarget(this.targetEntity, pos) && this.canSee(this.targetEntity, pos);
 	}
 
-	public void findTarget() {
-		if (!this.world.isRemote) {
-			EntityLiving newTarget = (EntityLiving) Entities.getRandomEntityInCoordsRange(this.world,
-					EntityLiving.class, this.pos, TURRET_RANGE, TURRET_RANGE);
+	public void findTarget(World world, Pos pos) {
+		if (!world.isRemote) {
+			EntityLiving newTarget = (EntityLiving) Entities.getRandomEntityInCoordsRange(world,
+					EntityLiving.class, pos, TURRET_RANGE, TURRET_RANGE);
 
-			if (newTarget != null && this.targetTypes.contains(newTarget.getClass()) && this.canTarget(newTarget) && canSee(newTarget)) {
+			if (newTarget != null && this.targetTypes.contains(newTarget.getClass()) && this.canTarget(newTarget, pos) && canSee(newTarget, pos)) {
 				this.targetEntity = newTarget;
 			}
 		}
 	}
 
-	boolean canSee(Entity entity) {
+	boolean canSee(Entity entity, Pos pos) {
+		World world = entity.world;
 		double height = entity.getEntityBoundingBox().maxY - entity.getEntityBoundingBox().minY;
 		double halfHeight = height / 2;
 
 		Vec3d mid = new Vec3d(entity.posX, entity.getEntityBoundingBox().maxY - (halfHeight), entity.posZ);
 		Vec3d top = new Vec3d(entity.posX, entity.getEntityBoundingBox().maxY - (halfHeight + halfHeight), entity.posZ);
 		Vec3d bot = new Vec3d(entity.posX, entity.getEntityBoundingBox().maxY - (halfHeight - halfHeight), entity.posZ);
-		Vec3d offset = new Vec3d(this.pos.x, this.pos.y, this.pos.z).add(0.5, 1, 0.5);
-		RayTraceResult midResult = this.world.rayTraceBlocks(mid, offset, false, true, false);
-		RayTraceResult topResult = this.world.rayTraceBlocks(top, offset, false, true, false);
-		RayTraceResult botResult = this.world.rayTraceBlocks(bot, offset, false, true, false);
+		Vec3d offset = new Vec3d(pos.x, pos.y, pos.z).add(0.5, 1, 0.5);
+		RayTraceResult midResult = world.rayTraceBlocks(mid, offset, false, true, false);
+		RayTraceResult topResult = world.rayTraceBlocks(top, offset, false, true, false);
+		RayTraceResult botResult = world.rayTraceBlocks(bot, offset, false, true, false);
 
 		if (midResult == null || topResult == null || botResult == null) {
 			return true;
@@ -119,9 +112,9 @@ public class TileEntityTurretTargetHelper {
 		return false;
 	}
 
-	private boolean canTarget(Entity entity) {
+	private boolean canTarget(Entity entity, Pos pos) {
 		if (entity != null && !entity.isDead) {
-			double distance = Pos.distance(this.pos.x, this.pos.y, this.pos.z, entity.posX, entity.posY, entity.posZ);
+			double distance = Pos.distance(pos.x, pos.y, pos.z, entity.posX, entity.posY, entity.posZ);
 			boolean playerCheck = entity instanceof EntityPlayer && this.canTargetPlayer((EntityPlayer) entity);
 			return playerCheck || this.canTargetType(entity.getClass()) && distance <= TURRET_RANGE;
 		}

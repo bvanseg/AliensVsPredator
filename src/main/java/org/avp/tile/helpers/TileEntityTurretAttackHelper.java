@@ -15,8 +15,6 @@ import net.minecraft.world.World;
  */
 public class TileEntityTurretAttackHelper {
 
-	private World world;
-	private Pos pos;
 	private TileEntityTurretAmmoHelper ammoHelper;
 	private TileEntityTurretTargetHelper targetHelper;
 	private boolean isFiring;
@@ -24,29 +22,33 @@ public class TileEntityTurretAttackHelper {
 	private int timeout;
 	private int timeoutMax;
 
-	public TileEntityTurretAttackHelper(World world, TileEntityTurretAmmoHelper ammoHelper, TileEntityTurretTargetHelper targetHelper, Pos pos) {
-		this.world = world;
+	public TileEntityTurretAttackHelper(TileEntityTurretAmmoHelper ammoHelper, TileEntityTurretTargetHelper targetHelper) {
 		this.ammoHelper = ammoHelper;
 		this.targetHelper = targetHelper;
-		this.pos = pos;
         this.fireRate = 2;
         this.timeoutMax = 60;
 	}
 	
-	public void update(TileEntityTurretLookHelper lookHelper) {
+	public void update(World world, Pos pos, TileEntityTurretLookHelper lookHelper) {
         this.isFiring = false;
         this.timeout = this.timeout > 0 ? this.timeout - 1 : this.timeout;
 
         Entity targetEntity = targetHelper.getTargetEntity();
         
         if (targetEntity != null) {
-            if (this.targetHelper.canSee(targetEntity))
+            if (this.targetHelper.canSee(targetEntity, pos))
             {
-                if (world.getTotalWorldTime() % fireRate == 0L && lookHelper.getRotation().yaw == lookHelper.getFocusRotation().yaw) {
+            	float turretYaw = lookHelper.getRotation().yaw;
+            	float focusYaw = lookHelper.getFocusRotation().yaw;
+            	float minYaw = focusYaw - 0.5f;
+            	float maxYaw = focusYaw + 0.5f;
+            	boolean isTargetInRange = minYaw < turretYaw && turretYaw < maxYaw;
+            	
+                if (world.getTotalWorldTime() % fireRate == 0L && isTargetInRange) {
                     if (this.ammoHelper.getCurAmmo() - 1 > 0)
                     {
                     	this.ammoHelper.setCurAmmo(this.ammoHelper.getCurAmmo() - 1);
-                        this.fire();
+                        this.fire(world, pos);
                     }
                     else
                     {
@@ -57,14 +59,14 @@ public class TileEntityTurretAttackHelper {
         }
 	}
 
-    public void fire() {
+    public void fire(World world, Pos pos) {
         this.isFiring = true;
         this.timeout = this.timeoutMax;
         this.targetHelper.getTargetEntity().attackEntityFrom(DamageSources.bullet, 1F);
         this.targetHelper.getTargetEntity().hurtResistantTime = 0;
         // this.world.spawnParticle(EnumParticleTypes.CLOUD, this.pos.x, this.pos.y,
         // this.pos.z, 0, 10, 0);
-        Sounds.WEAPON_M56SG.playSound(this.world, this.pos.x, this.pos.y, this.pos.z, 1F, 1F);
+        Sounds.WEAPON_M56SG.playSound(world, pos.x, pos.y, pos.z, 1F, 1F);
     }
 
     public long getFireRate()

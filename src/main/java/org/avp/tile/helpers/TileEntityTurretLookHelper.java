@@ -16,30 +16,28 @@ import net.minecraft.util.math.MathHelper;
 public class TileEntityTurretLookHelper {
 	
 	private TileEntityTurretTargetHelper targetHelper;
-	private Pos pos;
     private int cycleCount;
     private Rotation turretRotation;
     private Rotation previousTurretRotation;
     private Pos targetEntityPosition;
     private Rotation targetTurretRotation;
     
-    public TileEntityTurretLookHelper(TileEntityTurretTargetHelper targetHelper, Pos pos) {
+    public TileEntityTurretLookHelper(TileEntityTurretTargetHelper targetHelper) {
     	this.targetHelper = targetHelper;
-		this.pos = pos;
         this.cycleCount = getBaseCycleCount();
         this.turretRotation = new Rotation(0F, 0F);
         this.previousTurretRotation = new Rotation(0F, 0F);
         this.targetTurretRotation = new Rotation(0F, 0F);
     }
     
-    public void update() {
+    public void update(Pos pos) {
     	Entity targetEntity = this.targetHelper.getTargetEntity();
 
         this.lookAtFocusPoint();
     	
     	if (targetEntity != null) {
             this.updatePosition(targetEntity.posX, targetEntity.posY, targetEntity.posZ);
-            this.setFocusRotation(this.turnTurretToPoint(this.getFocusPosition(), this.getFocusRotation(), 360F, 90F));
+            this.setFocusRotation(this.turnTurretToPoint(pos, this.getFocusPosition(), this.getFocusRotation(), 360F, 90F));
     	}
 
     }
@@ -85,11 +83,11 @@ public class TileEntityTurretLookHelper {
         }
     }
 
-    public Rotation turnTurretToPoint(Pos pos, Rotation rotation, float deltaYaw, float deltaPitch)
+    public Rotation turnTurretToPoint(Pos turretPos, Pos targetPos, Rotation rotation, float deltaYaw, float deltaPitch)
     {
-        double x = pos.x - this.pos.x;
-        double y = pos.y - this.pos.y;
-        double z = pos.z - this.pos.z;
+        double x = targetPos.x - turretPos.x;
+        double y = targetPos.y - turretPos.y;
+        double z = targetPos.z - turretPos.z;
         double sq = MathHelper.sqrt(x * x + z * z);
 
         float newYaw = (float) (Math.atan2(z, x) * 180.0D / Math.PI) - 90.0F;
