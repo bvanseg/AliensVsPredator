@@ -154,7 +154,7 @@ item.avp:summon.ultramorph.name=Ultramorph
 #Xenomorph-Like Organisms
 item.avp:summon.trilobite.name=Trilobite
 item.avp:summon.deacon.name=Deacon
-item.avp:summon.deacon.adult.name=Adult Common Deacon
+item.avp:summon.deacon.adult.name=Deacon (Adult)
 item.avp:summon.octohugger.name=Octohugger
 item.avp:summon.belugaburster.name=Belugaburster
 item.avp:summon.belugamorph.name=Belugamorph
@@ -402,6 +402,7 @@ entity.Ultramorph.name=Ultramorph
 #Xenomorph-like Organsims
 entity.Trilobite.name=Trilobite
 entity.Deacon.name=Deacon
+entity.DeaconAdult.name=Deacon (Adult)
 entity.Octohugger.name=Octohugger
 entity.Belugaburster.name=Belugaburster
 entity.Belugamorph.name=Belugamorph
