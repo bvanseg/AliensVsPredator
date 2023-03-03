@@ -53,7 +53,7 @@ public class BlockTurret extends Block
     @Override
     public TileEntity createTileEntity(World world, IBlockState state)
     {
-        return new TileEntityTurret();
+        return new TileEntityTurret(world);
     }
 
     @Override

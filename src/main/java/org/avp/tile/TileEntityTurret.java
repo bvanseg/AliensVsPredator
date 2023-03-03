@@ -3,16 +3,16 @@ package org.avp.tile;
 import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
-import org.avp.DamageSources;
 import org.avp.api.machines.IDataDevice;
 import org.avp.api.power.IVoltageReceiver;
-import org.avp.client.Sounds;
 import org.avp.inventory.ContainerTurret;
 import org.avp.packets.client.PacketTurretSync;
 import org.avp.packets.server.PacketTurretTargetUpdate;
 import org.avp.tile.helpers.TileEntityTurretAmmoHelper;
+import org.avp.tile.helpers.TileEntityTurretAttackHelper;
 import org.avp.tile.helpers.TileEntityTurretLookHelper;
 import org.avp.tile.helpers.TileEntityTurretTargetHelper;
+import org.avp.util.LazyDelegate;
 
 import com.asx.mdx.MDX;
 import com.asx.mdx.lib.util.Game;
@@ -33,6 +33,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -41,60 +42,70 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+/**
+ * 
+ * @author Ri5ux
+ * @author Boston Vanseghi
+ *
+ */
 public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver
 {
-    private boolean                            isFiring;
-    private int                                fireRate;
-    private int                                timeout;
-    private int                                timeoutMax;
-    public InventoryBasic                      inventoryExpansion;
-    public InventoryBasic                      inventoryDrive;
-    private ContainerTurret                    container;
-    private Pos                                pos;
-    public int                                 beamColor;
-    
-    private TileEntityTurretAmmoHelper         ammoHelper;
-    private TileEntityTurretLookHelper         lookHelper;
-    private TileEntityTurretTargetHelper       targetHelper;
+    public InventoryBasic                               inventoryExpansion;
+    public InventoryBasic                               inventoryDrive;
+    private ContainerTurret                             container;
+    private Pos                                         pos;
+	public int                                          beamColor;
+	
+	// We have to use lazy delegates because tile entities do not have a world or position initialized during the super constructor. Thanks Mojang, you can't even get factory patterns right.
+    private LazyDelegate<TileEntityTurretAmmoHelper>    ammoHelper;
+    private LazyDelegate<TileEntityTurretTargetHelper>  targetHelper;
+    private LazyDelegate<TileEntityTurretLookHelper>    lookHelper;
+    private LazyDelegate<TileEntityTurretAttackHelper>  attackHelper;
 
-    public TileEntityTurret()
+    public TileEntityTurret(World world)
     {
         super(false);
+        this.world = world;
         this.inventoryExpansion = new InventoryBasic("TurretExpansionBay", true, 3);
         this.inventoryDrive = new InventoryBasic("TurretDriveBay", true, 1);
-        this.fireRate = 2;
-        this.timeoutMax = 60;
         this.beamColor = 0xFFFF0000;
         
-        this.ammoHelper = new TileEntityTurretAmmoHelper(world, pos);
-        this.lookHelper = new TileEntityTurretLookHelper(pos);
-        this.targetHelper = new TileEntityTurretTargetHelper(world, pos);
+        this.ammoHelper = new LazyDelegate<>(() -> new TileEntityTurretAmmoHelper(world, pos));
+        this.targetHelper = new LazyDelegate<>(() -> new TileEntityTurretTargetHelper(world, pos));
+        this.lookHelper = new LazyDelegate<>(() -> new TileEntityTurretLookHelper(targetHelper.get(), pos));
+        this.attackHelper = new LazyDelegate<>(() -> new TileEntityTurretAttackHelper(world, ammoHelper.get(), targetHelper.get(), pos));
+    }
+    
+    @Override
+    public void onLoad() {
+    	super.onLoad();
+    	// This method is the earliest point from which we can initialize the tile entity's block position.
+        this.pos = new Pos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
     }
 
     @Override
     public void update()
     {
         super.update();
-        super.updateEnergyAsReceiver();
-
-        if (this.pos == null)
-        {
-            this.pos = new Pos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+        super.updateEnergyAsReceiver(); 
+        
+        // Don't do anything yet until the tile entity is aware of its position.
+        if (this.pos == null) {
+        	return;
         }
-        else
-        {
-            this.pos.x = this.getPos().getX();
-            this.pos.y = this.getPos().getY();
-            this.pos.z = this.getPos().getZ();
-        }
-
-        this.isFiring = false;
 
         if (this.getVoltage() > 0)
         {
-            this.timeout = this.timeout > 0 ? this.timeout - 1 : this.timeout;
-            this.ammoHelper.update();
-            this.targetHelper.update();
+        	this.getLookHelper().update();
+            this.getTargetHelper().update();
+
+            // While this code could go in the target helper, it is out of scope of what the target helper is intended to do. Leave this here.
+            if (!this.world.isRemote && this.getTargetHelper().getTargetEntity() != null) {
+                AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
+            }
+            
+            this.getAmmoHelper().update();
+            this.getAttackHelper().update(this.getLookHelper());
         }
     }
 
@@ -121,9 +132,9 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         super.readFromNBT(nbt);
 
-        this.lookHelper.getFocusRotation().setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
+        this.getLookHelper().getFocusRotation().setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
         this.readTargetListFromCompoundTag(nbt);
-        this.readInventoryFromNBT(nbt, this.ammoHelper.inventoryAmmo);
+        this.readInventoryFromNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
         this.readInventoryFromNBT(nbt, this.inventoryDrive);
     }
@@ -133,10 +144,10 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         super.writeToNBT(nbt);
 
-        nbt.setFloat("FocusYaw", this.lookHelper.getFocusRotation().yaw);
-        nbt.setFloat("FocusPitch", this.lookHelper.getFocusRotation().pitch);
+        nbt.setFloat("FocusYaw", this.getLookHelper().getFocusRotation().yaw);
+        nbt.setFloat("FocusPitch", this.getLookHelper().getFocusRotation().pitch);
         nbt.setTag("Targets", this.getTargetListTag());
-        this.saveInventoryToNBT(nbt, this.ammoHelper.inventoryAmmo);
+        this.saveInventoryToNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
         this.saveInventoryToNBT(nbt, this.inventoryDrive);
 
@@ -152,33 +163,23 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         this.applyUpgrades();
         this.readTargetList(packet.targets);
-        this.lookHelper.getRotation().yaw = packet.rotation.yaw;
-        this.lookHelper.getRotation().pitch = packet.rotation.pitch;
+        this.getLookHelper().getRotation().yaw = packet.rotation.yaw;
+        this.getLookHelper().getRotation().pitch = packet.rotation.pitch;
     }
 
     @SideOnly(Side.CLIENT)
     public void onReceiveTargetUpdatePacket(PacketTurretTargetUpdate packet, MessageContext ctx)
     {
         Entity entity = Game.minecraft().world.getEntityByID(packet.id);
-        this.targetHelper.setTargetEntity(entity);
-        this.lookHelper.setFocusPosition(packet.foc);
-        this.lookHelper.setFocusRotation(packet.focrot);
-    }
-
-    public void fire() {
-        this.isFiring = true;
-        this.timeout = this.timeoutMax;
-        this.targetHelper.getTargetEntity().attackEntityFrom(DamageSources.bullet, 1F);
-        this.targetHelper.getTargetEntity().hurtResistantTime = 0;
-        // this.world.spawnParticle(EnumParticleTypes.CLOUD, this.pos.x, this.pos.y,
-        // this.pos.z, 0, 10, 0);
-        Sounds.WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 1F, 1F);
+        this.getTargetHelper().setTargetEntity(entity);
+        this.getLookHelper().setFocusPosition(packet.foc);
+        this.getLookHelper().setFocusRotation(packet.focrot);
     }
 
     public void applyUpgrades()
     {
-        int cycles = this.lookHelper.getBaseCycleCount();
-        this.ammoHelper.setAmmoDisplayEnabled(false);
+        int cycles = this.getLookHelper().getBaseCycleCount();
+        this.getAmmoHelper().setAmmoDisplayEnabled(false);
 
         for (int i = 0; i < 3; i++)
         {
@@ -191,18 +192,18 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
             if (pciSlot.getItem() == AliensVsPredator.items().itemLedDisplay)
             {
-                this.ammoHelper.setAmmoDisplayEnabled(true);
+                this.getAmmoHelper().setAmmoDisplayEnabled(true);
             }
         }
 
-        this.lookHelper.setCycleCount(cycles);
+        this.getLookHelper().setCycleCount(cycles);
     }
 
     public NBTTagList getTargetListTag()
     {
         ArrayList<String> entityIDs = new ArrayList<String>();
 
-        for (Class<? extends Entity> c : this.targetHelper.getDangerousTargets())
+        for (Class<? extends Entity> c : this.getTargetHelper().getDangerousTargets())
         {
             entityIDs.add(Entities.getEntityRegistrationId(c));
         }
@@ -225,7 +226,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             ResourceLocation identifier = new ResourceLocation(id);
             EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(identifier);
             Class<? extends Entity> entityClass = (Class<? extends Entity>) entityEntry.getEntityClass();
-            this.targetHelper.addTargetType(entityClass);
+            this.getTargetHelper().addTargetType(entityClass);
         }
     }
 
@@ -276,21 +277,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         return container == null && player != null ? container = getNewContainer(player) : container;
     }
 
-    public long getFireRate()
-    {
-        return fireRate;
-    }
-
-    public void setFireRate(int fireRate)
-    {
-        this.fireRate = fireRate;
-    }
-
-    public boolean isFiring()
-    {
-        return isFiring;
-    }
-
     @Override
     public void readFromOtherDevice(int ID)
     {
@@ -321,7 +307,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                     if (entityEntry != null)
                     {
                         Class<? extends Entity> c = entityEntry.getEntityClass();
-                        this.targetHelper.addTargetType(c);
+                        this.getTargetHelper().addTargetType(c);
                     } else {
                         MDX.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
                     }
@@ -342,7 +328,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
             NBTTagCompound nbt = new NBTTagCompound();
             ArrayList<String> entityIDs = new ArrayList<String>();
 
-            for (Class<? extends Entity> c : this.targetHelper.getDangerousTargets())
+            for (Class<? extends Entity> c : this.getTargetHelper().getDangerousTargets())
             {
                 if (c != null)
                 {
@@ -389,14 +375,18 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     }
 
 	public TileEntityTurretAmmoHelper getAmmoHelper() {
-		return this.ammoHelper;
+		return this.ammoHelper.get();
+	}
+
+	public TileEntityTurretAttackHelper getAttackHelper() {
+		return this.attackHelper.get();
 	}
 
 	public TileEntityTurretLookHelper getLookHelper() {
-		return this.lookHelper;
+		return this.lookHelper.get();
 	}
 
 	public TileEntityTurretTargetHelper getTargetHelper() {
-		return this.targetHelper;
+		return this.targetHelper.get();
 	}
 }

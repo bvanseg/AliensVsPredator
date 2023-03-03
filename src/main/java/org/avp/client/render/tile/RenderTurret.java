@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
 {
+	
     @Override
     public void render(TileEntityTurret tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
@@ -29,7 +30,7 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
 //                OpenGL.rotate(tile.getDirection() * 90F, 0F, 1F, 0F);
                 this.renderAmmoDisplay(tile);
 
-                if (!tile.isFiring())
+                if (!tile.getAttackHelper().isFiring())
                 {
                     this.renderBeam(0, 0, tile.getTargetHelper().getRange(), -1, 0, 50, tile.beamColor, 0x00000000, tile.getLookHelper().getRotationYaw(), tile.getLookHelper().getRotationPitch(), -1);
                 }

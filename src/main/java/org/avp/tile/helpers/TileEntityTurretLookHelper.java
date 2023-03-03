@@ -4,6 +4,7 @@ import com.asx.mdx.lib.client.util.Rotation;
 import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.Pos;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
 /**
@@ -13,6 +14,7 @@ import net.minecraft.util.math.MathHelper;
  */
 public class TileEntityTurretLookHelper {
 	
+	private TileEntityTurretTargetHelper targetHelper;
 	private Pos pos;
     private int cycleCount;
     private Rotation rot;
@@ -20,12 +22,25 @@ public class TileEntityTurretLookHelper {
     private Pos foc;
     private Rotation focrot;
     
-    public TileEntityTurretLookHelper(Pos pos) {
+    public TileEntityTurretLookHelper(TileEntityTurretTargetHelper targetHelper, Pos pos) {
+    	this.targetHelper = targetHelper;
 		this.pos = pos;
         this.cycleCount = getBaseCycleCount();
         this.rot = new Rotation(0F, 0F);
         this.rotPrev = new Rotation(0F, 0F);
         this.focrot = new Rotation(0F, 0F);
+    }
+    
+    public void update() {
+    	Entity targetEntity = this.targetHelper.getTargetEntity();
+
+        this.lookAtFocusPoint();
+    	
+    	if (targetEntity != null) {
+            this.updatePosition(targetEntity.posX, targetEntity.posY, targetEntity.posZ);
+            this.setFocusRotation(this.turnTurretToPoint(this.getFocusPosition(), this.getFocusRotation(), 360F, 90F));
+    	}
+
     }
 
     public void lookAtFocusPoint()
@@ -82,7 +97,7 @@ public class TileEntityTurretLookHelper {
         return rotation.setYaw(MDXMath.wrapAngle(this.rot.yaw, newYaw, deltaYaw)).setPitch(MDXMath.wrapAngle(this.rot.pitch, f1, deltaPitch));
     }
 
-    private void updatePosition(double x, double y, double z) {
+    public void updatePosition(double x, double y, double z) {
     	this.foc = new Pos(x, y, z);
     }
 

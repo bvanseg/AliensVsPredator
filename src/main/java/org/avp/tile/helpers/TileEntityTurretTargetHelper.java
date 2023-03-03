@@ -76,8 +76,9 @@ public class TileEntityTurretTargetHelper {
 			this.targetEntity = null;
 		}
 
-        this.findTarget();
-        this.targetAndAttack();
+		if (this.targetEntity == null) {
+			this.findTarget();
+		}
 	}
 	
 	private boolean doesCurrentTargetStillExist() {
@@ -88,7 +89,7 @@ public class TileEntityTurretTargetHelper {
 		return this.canTarget(this.targetEntity) && this.canSee(this.targetEntity);
 	}
 
-	public void targetAndAttack() {
+	public void findTarget() {
 		if (!this.world.isRemote) {
 			EntityLiving newTarget = (EntityLiving) Entities.getRandomEntityInCoordsRange(this.world,
 					EntityLiving.class, this.pos, TURRET_RANGE, TURRET_RANGE);
@@ -97,37 +98,9 @@ public class TileEntityTurretTargetHelper {
 				this.targetEntity = newTarget;
 			}
 		}
-
-		// TODO:
-//        this.lookAtFocusPoint();
-//
-//        if (targetEntity != null)
-//        {
-//            this.updatePosition(targetEntity.posX, targetEntity.posY, targetEntity.posZ);
-//            this.focrot = turnTurretToPoint(this.foc, this.focrot, 360F, 90F);
-//
-//            if (!this.world.isRemote)
-//            {
-//                AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
-//            }
-//
-//            if (this.canSee(targetEntity))
-//            {
-//                if (world.getTotalWorldTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw) {
-//                    if (curAmmo-- > 0)
-//                    {
-//                        this.fire();
-//                    }
-//                    else
-//                    {
-//                        this.reload();
-//                    }
-//                }
-//            }
-//        }
 	}
 
-	private boolean canSee(Entity entity) {
+	boolean canSee(Entity entity) {
 		double height = entity.getEntityBoundingBox().maxY - entity.getEntityBoundingBox().minY;
 		double halfHeight = height / 2;
 
@@ -144,30 +117,6 @@ public class TileEntityTurretTargetHelper {
 		}
 
 		return false;
-	}
-
-	private Entity findTarget() {
-		List<? extends Entity> entities = Entities.getEntitiesInCoordsRange(world, EntityLivingBase.class, this.pos, 32);
-
-		Entity newTarget = null;
-
-		for (Entity e : entities) {
-			if (this.canSee(e)) {
-				newTarget = e;
-				break;
-			}
-		}
-		
-		if (newTarget == null) {
-			return null;
-		}
-
-		if (this.canTarget(newTarget) && this.canSee(newTarget)) {
-			this.targetEntity = newTarget;
-			return newTarget;
-		}
-
-		return null;
 	}
 
 	private boolean canTarget(Entity entity) {
