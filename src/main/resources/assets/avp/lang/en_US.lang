@@ -389,6 +389,7 @@ entity.RunnerWarrior.name=Xenomorph Runner Warrior
 entity.Crusher.name=Xenomorph Crusher
 
 #Other Xenomorphs
+entity.AquaAlien.name=Xenomorph (Aquatic)
 entity.Spitter.name=Xenomorph Spitter
 entity.Boiler.name=Boiler
 entity.Dracomorph.name=Dracomorph
