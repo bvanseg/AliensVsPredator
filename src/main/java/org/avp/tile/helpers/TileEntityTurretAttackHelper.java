@@ -40,8 +40,8 @@ public class TileEntityTurretAttackHelper {
             {
             	float turretYaw = lookHelper.getRotation().yaw;
             	float focusYaw = lookHelper.getFocusRotation().yaw;
-            	float minYaw = focusYaw - 0.5f;
-            	float maxYaw = focusYaw + 0.5f;
+            	float minYaw = focusYaw - 1.5f;
+            	float maxYaw = focusYaw + 1.5f;
             	boolean isTargetInRange = minYaw < turretYaw && turretYaw < maxYaw;
             	
                 if (world.getTotalWorldTime() % fireRate == 0L && isTargetInRange) {
