@@ -19,19 +19,15 @@ public class TileEntityTurretAttackHelper {
 	private TileEntityTurretTargetHelper targetHelper;
 	private boolean isFiring;
 	private int fireRate;
-	private int timeout;
-	private int timeoutMax;
 
 	public TileEntityTurretAttackHelper(TileEntityTurretAmmoHelper ammoHelper, TileEntityTurretTargetHelper targetHelper) {
 		this.ammoHelper = ammoHelper;
 		this.targetHelper = targetHelper;
         this.fireRate = 2;
-        this.timeoutMax = 60;
 	}
 	
 	public void update(World world, Pos pos, TileEntityTurretLookHelper lookHelper) {
         this.isFiring = false;
-        this.timeout = this.timeout > 0 ? this.timeout - 1 : this.timeout;
 
         Entity targetEntity = targetHelper.getTargetEntity();
         
@@ -61,7 +57,6 @@ public class TileEntityTurretAttackHelper {
 
     public void fire(World world, Pos pos) {
         this.isFiring = true;
-        this.timeout = this.timeoutMax;
         this.targetHelper.getTargetEntity().attackEntityFrom(DamageSources.bullet, 1F);
         this.targetHelper.getTargetEntity().hurtResistantTime = 0;
         // this.world.spawnParticle(EnumParticleTypes.CLOUD, this.pos.x, this.pos.y,
