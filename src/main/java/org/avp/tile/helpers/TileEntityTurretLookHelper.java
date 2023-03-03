@@ -9,6 +9,7 @@ import net.minecraft.util.math.MathHelper;
 
 /**
  * 
+ * @author Ri5ux
  * @author Boston Vanseghi
  *
  */
@@ -17,18 +18,18 @@ public class TileEntityTurretLookHelper {
 	private TileEntityTurretTargetHelper targetHelper;
 	private Pos pos;
     private int cycleCount;
-    private Rotation rot;
-    private Rotation rotPrev;
-    private Pos foc;
-    private Rotation focrot;
+    private Rotation turretRotation;
+    private Rotation previousTurretRotation;
+    private Pos targetEntityPosition;
+    private Rotation targetTurretRotation;
     
     public TileEntityTurretLookHelper(TileEntityTurretTargetHelper targetHelper, Pos pos) {
     	this.targetHelper = targetHelper;
 		this.pos = pos;
         this.cycleCount = getBaseCycleCount();
-        this.rot = new Rotation(0F, 0F);
-        this.rotPrev = new Rotation(0F, 0F);
-        this.focrot = new Rotation(0F, 0F);
+        this.turretRotation = new Rotation(0F, 0F);
+        this.previousTurretRotation = new Rotation(0F, 0F);
+        this.targetTurretRotation = new Rotation(0F, 0F);
     }
     
     public void update() {
@@ -45,40 +46,40 @@ public class TileEntityTurretLookHelper {
 
     public void lookAtFocusPoint()
     {
-        if (this.foc != null)
+        if (this.targetEntityPosition != null)
         {
             for (int runCycles = this.cycleCount; runCycles > 0; runCycles--)
             {
-                if (Math.ceil(this.getRotationYaw()) < Math.ceil(this.focrot.yaw))
+                if (Math.ceil(this.getRotationYaw()) < Math.ceil(this.targetTurretRotation.yaw))
                 {
-                    this.rotPrev.yaw = this.rot.yaw;
-                    this.rot.yaw += 1;
+                    this.previousTurretRotation.yaw = this.turretRotation.yaw;
+                    this.turretRotation.yaw += 1;
                 }
-                else if (Math.ceil(this.getRotationYaw()) > Math.ceil(this.focrot.yaw))
+                else if (Math.ceil(this.getRotationYaw()) > Math.ceil(this.targetTurretRotation.yaw))
                 {
-                    this.rotPrev.yaw = this.rot.yaw;
-                    this.rot.yaw -= 1;
+                    this.previousTurretRotation.yaw = this.turretRotation.yaw;
+                    this.turretRotation.yaw -= 1;
                 }
 
-                if (Math.ceil(this.getRotationPitch()) < Math.ceil(this.focrot.pitch))
+                if (Math.ceil(this.getRotationPitch()) < Math.ceil(this.targetTurretRotation.pitch))
                 {
-                    this.rotPrev.pitch = this.rot.pitch;
-                    this.rot.pitch += 1;
+                    this.previousTurretRotation.pitch = this.turretRotation.pitch;
+                    this.turretRotation.pitch += 1;
                 }
-                else if (Math.ceil(this.getRotationPitch()) > Math.ceil(this.focrot.pitch))
+                else if (Math.ceil(this.getRotationPitch()) > Math.ceil(this.targetTurretRotation.pitch))
                 {
-                    this.rotPrev.pitch = this.rot.pitch;
-                    this.rot.pitch -= 1;
+                    this.previousTurretRotation.pitch = this.turretRotation.pitch;
+                    this.turretRotation.pitch -= 1;
                 }
 
                 double focus = 1;
 
-                if (Math.ceil(this.getRotationPitch()) >= Math.ceil(this.focrot.pitch - focus) && Math.ceil(this.getRotationPitch()) <= Math.ceil(this.focrot.pitch + focus) && Math.ceil(this.getRotationYaw()) >= Math.ceil(this.focrot.yaw - focus) && Math.ceil(this.getRotationYaw()) <= Math.ceil(this.focrot.yaw + focus))
+                if (Math.ceil(this.getRotationPitch()) >= Math.ceil(this.targetTurretRotation.pitch - focus) && Math.ceil(this.getRotationPitch()) <= Math.ceil(this.targetTurretRotation.pitch + focus) && Math.ceil(this.getRotationYaw()) >= Math.ceil(this.targetTurretRotation.yaw - focus) && Math.ceil(this.getRotationYaw()) <= Math.ceil(this.targetTurretRotation.yaw + focus))
                 {
-                    this.rotPrev.pitch = this.rot.pitch;
-                    this.rotPrev.yaw = this.rot.yaw;
-                    this.rot.pitch = this.focrot.pitch;
-                    this.rot.yaw = this.focrot.yaw;
+                    this.previousTurretRotation.pitch = this.turretRotation.pitch;
+                    this.previousTurretRotation.yaw = this.turretRotation.yaw;
+                    this.turretRotation.pitch = this.targetTurretRotation.pitch;
+                    this.turretRotation.yaw = this.targetTurretRotation.yaw;
                 }
             }
         }
@@ -94,11 +95,11 @@ public class TileEntityTurretLookHelper {
         float newYaw = (float) (Math.atan2(z, x) * 180.0D / Math.PI) - 90.0F;
         float f1 = (float) (-(Math.atan2(y, sq) * 180.0D / Math.PI));
 
-        return rotation.setYaw(MDXMath.wrapAngle(this.rot.yaw, newYaw, deltaYaw)).setPitch(MDXMath.wrapAngle(this.rot.pitch, f1, deltaPitch));
+        return rotation.setYaw(MDXMath.wrapAngle(this.turretRotation.yaw, newYaw, deltaYaw)).setPitch(MDXMath.wrapAngle(this.turretRotation.pitch, f1, deltaPitch));
     }
 
     public void updatePosition(double x, double y, double z) {
-    	this.foc = new Pos(x, y, z);
+    	this.targetEntityPosition = new Pos(x, y, z);
     }
 
     public void setCycleCount(int count)
@@ -119,39 +120,39 @@ public class TileEntityTurretLookHelper {
     public float getRotationYaw()
     {
         // this.getDirection() * 90F +
-        return this.rot.yaw;
+        return this.turretRotation.yaw;
     }
 
     public float getRotationPitch()
     {
-        return this.rot.pitch;
+        return this.turretRotation.pitch;
     }
 
     public Rotation getRotationPrev()
     {
-        return rotPrev;
+        return previousTurretRotation;
     }
 
     public Rotation getRotation()
     {
-        return this.rot;
+        return this.turretRotation;
     }
 
     public Rotation getFocusRotation()
     {
-        return this.focrot;
+        return this.targetTurretRotation;
     }
 
     public Pos getFocusPosition()
     {
-        return foc;
+        return targetEntityPosition;
     }
 
 	public void setFocusPosition(Pos foc) {
-		this.foc = foc;
+		this.targetEntityPosition = foc;
 	}
 
 	public void setFocusRotation(Rotation focrot) {
-		this.focrot = focrot;
+		this.targetTurretRotation = focrot;
 	}
 }
