@@ -24,14 +24,14 @@ public class TileEntityTurretAmmoHelper {
     public InventoryBasic inventoryAmmo;
     private Item itemAmmo;
     private boolean ammoDisplayEnabled;
-    private int curAmmo;
-    private int rounds;
+    private int currentAmmoCount;
+    private int currentRounds;
     private int roundsMax;
     
     public TileEntityTurretAmmoHelper() {
         this.inventoryAmmo = new InventoryBasic("TurretAmmoBay", true, 9);
         this.itemAmmo = AliensVsPredator.items().itemAmmoSMG;
-        this.curAmmo = 0;
+        this.currentAmmoCount = 0;
         this.ammoDisplayEnabled = false;
     }
     
@@ -42,7 +42,7 @@ public class TileEntityTurretAmmoHelper {
     }
 
     public void tryReload() {
-        if (this.curAmmo < this.getMaxAmmo() && this.curAmmo <= 0)
+        if (this.currentAmmoCount < this.getMaxAmmo() && this.currentAmmoCount <= 0)
         {
             this.reload();
         }
@@ -53,7 +53,7 @@ public class TileEntityTurretAmmoHelper {
         if (world.getTotalWorldTime() % 8L == 0L)
         {
             this.roundsMax = (9 * 64);
-            this.rounds = 0;
+            this.currentRounds = 0;
 
             for (int i = 0; i < 9; i++)
             {
@@ -63,7 +63,7 @@ public class TileEntityTurretAmmoHelper {
                 {
                     if (stack.getItem() == this.itemAmmo)
                     {
-                        this.rounds = this.rounds + (stack.getCount());
+                        this.currentRounds = this.currentRounds + (stack.getCount());
                     }
                 }
             }
@@ -103,9 +103,9 @@ public class TileEntityTurretAmmoHelper {
 
     public void reload()
     {
-        if (this.rounds >= 1)
+        if (this.currentRounds >= 1)
         {
-            this.curAmmo = this.getMaxAmmo();
+            this.currentAmmoCount = this.getMaxAmmo();
 
             for (int x = 0; x < 9; x++)
             {
@@ -138,7 +138,7 @@ public class TileEntityTurretAmmoHelper {
 
     public int getCurAmmo()
     {
-        return curAmmo;
+        return currentAmmoCount;
     }
 
     public int getMaxAmmo()
@@ -146,9 +146,9 @@ public class TileEntityTurretAmmoHelper {
         return 128;
     }
 
-    public void setCurAmmo(int curAmmo)
+    public void setCurrentAmmoCount(int currentAmmoCount)
     {
-        this.curAmmo = curAmmo;
+        this.currentAmmoCount = currentAmmoCount;
     }
 
     public Item getItemAmmo()
@@ -161,9 +161,9 @@ public class TileEntityTurretAmmoHelper {
         this.itemAmmo = itemAmmo;
     }
 
-    public int getCurRounds()
+    public int getCurrentRounds()
     {
-        return rounds;
+        return currentRounds;
     }
 
     public int getMaxRounds()
@@ -171,9 +171,9 @@ public class TileEntityTurretAmmoHelper {
         return roundsMax;
     }
 
-    public void setCurRounds(int curRounds)
+    public void setCurrentRounds(int currentRounds)
     {
-        this.rounds = curRounds;
+        this.currentRounds = currentRounds;
     }
 
     public void setMaxRounds(int maxRounds)
