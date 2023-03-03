@@ -1,10 +1,10 @@
 package org.avp.client.gui;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Comparator;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.avp.AliensVsPredator;
 import org.avp.packets.server.PacketAddTurretPlayerTarget;
 import org.avp.packets.server.PacketAddTurretTarget;
@@ -39,6 +39,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiTurret extends GuiContainer
 {
+    private static ArrayList<Pair<EntityEntry, String>> entityList;
+	
+	private static final Comparator<Pair<EntityEntry, String>> ALPHABETICAL_COMPARATOR = new Comparator<Pair<EntityEntry, String>>() {
+		@Override
+		public int compare(Pair<EntityEntry, String> o1, Pair<EntityEntry, String> o2) {
+			return o1.getRight().compareTo(o2.getRight());
+		}
+    };
+	
     private TileEntityTurret                   tile;
     private GuiCustomButton                    buttonScrollUp;
     private GuiCustomButton                    buttonScrollDown;
@@ -47,8 +56,7 @@ public class GuiTurret extends GuiContainer
     private GuiCustomButton                    buttonLoad;
     private GuiCustomTextbox                   playerNameInput;
     private int                                scroll        = 0;
-    private ArrayList<Class<? extends Entity>> entityList;
-    private ArrayList<EntityLiving>            entityLivingList;
+    
 
     public GuiTurret(EntityPlayer player, TileEntityTurret turret, World world, int x, int y, int z)
     {
@@ -56,38 +64,19 @@ public class GuiTurret extends GuiContainer
         this.xSize = 225;
         this.ySize = 200;
         this.tile = turret;
-        this.entityList = new ArrayList<Class<? extends Entity>>();
-        for (EntityEntry e : ForgeRegistries.ENTITIES.getValuesCollection())
-        {
-            this.entityList.add(e.getEntityClass());
-        }
-        this.entityLivingList = new ArrayList<EntityLiving>();
-
-        for (Class<?> c : this.entityList)
-        {
-            Entity entity = null;
-            try
-            {
-                Constructor<?> ctor = c.getConstructor(new Class[] { World.class });
-                entity = (Entity) ctor.newInstance(new Object[] { Game.minecraft().world });
-            }
-            catch (Exception e)
-            {
-                ;
-            }
-
-            if (entity != null && entity instanceof EntityLiving)
-            {
-                this.entityLivingList.add((EntityLiving) entity);
-            }
-        }
         
-        this.entityLivingList.sort(new Comparator<EntityLiving>() {
-			@Override
-			public int compare(EntityLiving o1, EntityLiving o2) {
-				return o1.getName().compareTo(o2.getName());
-			}
-        });
+        if (entityList == null) {
+            entityList = new ArrayList<Pair<EntityEntry, String>>();
+            
+            for (EntityEntry entry: ForgeRegistries.ENTITIES.getValuesCollection()) {
+            	Entity instance = entry.newInstance(world);
+            	if (instance instanceof EntityLiving) {
+            		entityList.add(Pair.of(entry, instance.getName()));
+            	}
+            }
+            
+            entityList.sort(ALPHABETICAL_COMPARATOR);
+        }
     }
 
     @Override
@@ -144,17 +133,24 @@ public class GuiTurret extends GuiContainer
     @Override
     public void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        for (int x = 0; x < this.entityLivingList.size(); x++)
+        for (int x = 0; x < entityList.size(); x++)
         {
             int yPos = 56;
             int yEntryPos = yPos + 11 * x;
 
-            Entity entity = x + this.scroll < this.entityLivingList.size() ? (EntityLiving) this.entityLivingList.get(x + this.scroll) : null;
+            Pair<EntityEntry, String> entityData = x + this.scroll < entityList.size() ? entityList.get(x + this.scroll) : null;
+            
+            if (entityData == null) {
+            	continue;
+            }
+            
+            EntityEntry entity = entityData.getLeft();
+            String entityName = entityData.getRight();
 
-            if (entity != null && yEntryPos <= yPos + 50)
-            {
+            if (yEntryPos <= yPos + 50) {
+            	Class<? extends Entity> entityClass = entity.getEntityClass();
                 Draw.drawRectWithOutline(3, yEntryPos - 4, 134, 12, 1, 0x00000000, 0xFF444444);
-                Draw.drawString(entity.getName(), 6, yEntryPos - 2, this.tile.getTargetHelper().canTargetType(entity.getClass()) ? (getCurrentSelectedEntity() == entity ? 0xFFFF8800 : 0xFFFF0000) : (getCurrentSelectedEntity() == entity ? 0xFFFFFFFF : 0xFF444444), false);
+                Draw.drawString(entityName, 6, yEntryPos - 2, this.tile.getTargetHelper().canTargetType(entityClass) ? (getCurrentSelectedEntity() == entity ? 0xFFFF8800 : 0xFFFF0000) : (getCurrentSelectedEntity() == entity ? 0xFFFFFFFF : 0xFF444444), false);
             }
         }
 
@@ -191,7 +187,7 @@ public class GuiTurret extends GuiContainer
         this.buttonScrollDown.x = this.guiLeft + this.xSize + 5;
         this.buttonScrollDown.y = this.guiTop + 88;
         this.buttonScrollDown.displayString = "\u21e9";
-        this.buttonScrollDown.baseColor = this.getScroll() >= this.entityLivingList.size() - 1 ? 0x22000000 : 0xAA000000;
+        this.buttonScrollDown.baseColor = this.getScroll() >= entityList.size() - 1 ? 0x22000000 : 0xAA000000;
         this.buttonScrollDown.drawButton();
         this.buttonScrollDown.setAction(new IAction() {
             @Override
@@ -213,15 +209,15 @@ public class GuiTurret extends GuiContainer
                 {
                     if (playerNameInput != null && playerNameInput.getText().isEmpty() || playerNameInput == null)
                     {
-                        if (!tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getClass()))
+                        if (!tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getEntityClass()))
                         {
-                            tile.getTargetHelper().addTargetType(getCurrentSelectedEntity().getClass());
-                            AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity())));
+                            tile.getTargetHelper().addTargetType(getCurrentSelectedEntity().getEntityClass());
+                            AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity().getEntityClass())));
                         }
                         else
                         {
-                            tile.getTargetHelper().removeTargetType(getCurrentSelectedEntity().getClass());
-                            AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity())));
+                            tile.getTargetHelper().removeTargetType(getCurrentSelectedEntity().getEntityClass());
+                            AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity().getEntityClass())));
                         }
                     }
                     else
@@ -272,7 +268,7 @@ public class GuiTurret extends GuiContainer
             }
         });
 
-        if (!this.tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getClass()))
+        if (!this.tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getEntityClass()))
         {
             this.buttonAddAsTarget.displayString = "+";
             this.buttonAddAsTarget.overlayColorHover = 0xFF00FF77;
@@ -311,9 +307,9 @@ public class GuiTurret extends GuiContainer
         }
     }
 
-    public EntityLiving getCurrentSelectedEntity()
+    public EntityEntry getCurrentSelectedEntity()
     {
-        return this.entityLivingList.get(getScroll());
+        return entityList.get(getScroll()).getLeft();
     }
 
     public void scrollDown()
@@ -326,7 +322,7 @@ public class GuiTurret extends GuiContainer
 
     public void scrollUp()
     {
-        if (this.scroll < this.entityLivingList.size() - 1)
+        if (this.scroll < entityList.size() - 1)
         {
             this.scroll += 1;
         }
