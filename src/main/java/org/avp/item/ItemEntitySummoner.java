@@ -30,24 +30,15 @@ public class ItemEntitySummoner extends HookedItem
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        Entity entity = createNewEntity(world);
         Inventories.consumeItem(player, this);
 
-        if (world.isRemote && entity != null)
-        {
+        if (world.isRemote) {
             RayTraceResult ray = player.rayTrace(50D, 1F);
             
-            if(player.isSneaking() && player.isCreative())
-            {
-                // TODO: Just send the same packet but with a group count. - bvan
-                for(int i = 0; i < 5; i++)
-                {
-                    AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c)));
-                }
-            }
-            else
-            {
-                AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c)));
+            if(player.isSneaking() && player.isCreative()) {
+                AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 5));
+            } else {
+                AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 1));
             }
         
         }
