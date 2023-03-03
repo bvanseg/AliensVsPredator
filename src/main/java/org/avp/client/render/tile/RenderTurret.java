@@ -31,7 +31,7 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
 
                 if (!tile.isFiring())
                 {
-                    this.renderBeam(0, 0, tile.getRange(), -1, 0, 50, tile.beamColor, 0x00000000, tile.getRotationYaw(), tile.getRotationPitch(), -1);
+                    this.renderBeam(0, 0, tile.getTargetHelper().getRange(), -1, 0, 50, tile.beamColor, 0x00000000, tile.getRotationYaw(), tile.getRotationPitch(), -1);
                 }
             }
         }
@@ -40,9 +40,9 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
 
     public void renderAmmoDisplay(TileEntityTurret tile)
     {
-        if (tile.isAmmoDisplayEnabled())
+        if (tile.getAmmoHelper().isAmmoDisplayEnabled())
         {
-            int ammo = (tile.getCurRounds() * tile.getMaxAmmo()) + tile.getCurAmmo();
+            int ammo = (tile.getAmmoHelper().getCurRounds() * tile.getAmmoHelper().getMaxAmmo()) + tile.getAmmoHelper().getCurAmmo();
             String displayText = ammo >= 0 ? ammo < 10 ? "000" + ammo : ammo < 100 ? "00" + ammo : ammo < 1000 ? "0" + ammo : "" + ammo : "----";
 
             OpenGL.pushMatrix();

@@ -132,12 +132,12 @@ public class GuiTurret extends GuiContainer
         {
             ItemStack stack = this.tile.getContainer(this.mc.player).getAmmoBay().getStackInSlot(i);
 
-            if ((stack == null) || (stack.getItem() != this.tile.getItemAmmo()))
+            if ((stack == null) || (stack.getItem() != this.tile.getAmmoHelper().getItemAmmo()))
                 continue;
             stacksCurrent += stack.getCount();
         }
 
-        Draw.drawProgressBar("Magazine " + (this.tile.getCurAmmo() <= 0 ? 0 : this.tile.getCurAmmo()) + "/" + this.tile.getMaxAmmo(), this.tile.getMaxAmmo(), this.tile.getCurAmmo() < 0 ? 1 : this.tile.getCurAmmo(), this.guiLeft + 7, this.guiTop + 20, this.xSize - 100, 3, 1, this.tile.getCurAmmo() < this.tile.getMaxAmmo() / 2 ? -22016 : this.tile.getCurAmmo() < this.tile.getMaxAmmo() / 6 ? -65536 : -16733441, false);
+        Draw.drawProgressBar("Magazine " + (this.tile.getAmmoHelper().getCurAmmo() <= 0 ? 0 : this.tile.getAmmoHelper().getCurAmmo()) + "/" + this.tile.getAmmoHelper().getMaxAmmo(), this.tile.getAmmoHelper().getMaxAmmo(), this.tile.getAmmoHelper().getCurAmmo() < 0 ? 1 : this.tile.getAmmoHelper().getCurAmmo(), this.guiLeft + 7, this.guiTop + 20, this.xSize - 100, 3, 1, this.tile.getAmmoHelper().getCurAmmo() < this.tile.getAmmoHelper().getMaxAmmo() / 2 ? -22016 : this.tile.getAmmoHelper().getCurAmmo() < this.tile.getAmmoHelper().getMaxAmmo() / 6 ? -65536 : -16733441, false);
         Draw.drawProgressBar("Total " + stacksCurrent + "/" + stacksTotal, stacksTotal, stacksCurrent, this.guiLeft + 7, this.guiTop + 30, this.xSize - 100, 3, 1, stacksCurrent < stacksTotal / 2 ? -22016 : stacksCurrent < stacksTotal / 6 ? -65536 : -16733441, false);
     }
 

@@ -179,6 +179,10 @@ public class TileEntityTurretTargetHelper {
 
 		return false;
 	}
+	
+	public int getRange() {
+		return TURRET_RANGE;
+	}
 
 	private boolean canTargetPlayer(EntityPlayer player) {
 		// TODO: Store UUIDs, not names to avoid casing discrepancies.

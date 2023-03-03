@@ -112,9 +112,9 @@ public class BlockTurret extends Block
         {
             if (!world.isRemote)
             {
-                for (int i = 0; i < tile.inventoryAmmo.getSizeInventory(); i++)
+                for (int i = 0; i < tile.getAmmoHelper().inventoryAmmo.getSizeInventory(); i++)
                 {
-                    ItemStack stack = tile.inventoryAmmo.getStackInSlot(i);
+                    ItemStack stack = tile.getAmmoHelper().inventoryAmmo.getStackInSlot(i);
 
                     if (stack != null)
                     {

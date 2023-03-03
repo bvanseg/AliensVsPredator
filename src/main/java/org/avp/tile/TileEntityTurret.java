@@ -10,6 +10,7 @@ import org.avp.client.Sounds;
 import org.avp.inventory.ContainerTurret;
 import org.avp.packets.client.PacketTurretSync;
 import org.avp.packets.server.PacketTurretTargetUpdate;
+import org.avp.tile.helpers.TileEntityTurretAmmoHelper;
 import org.avp.tile.helpers.TileEntityTurretTargetHelper;
 
 import com.asx.mdx.MDX;
@@ -22,12 +23,10 @@ import com.asx.mdx.lib.world.storage.NBTStorage;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -46,18 +45,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver
 {
-    private boolean                            ammoDisplayEnabled;
+    private int                                cycleCount;
     private boolean                            isFiring;
     private int                                fireRate;
-    private int                                range;
-    private int                                cycleCount;
-    private int                                curAmmo;
-    private int                                rounds;
-    private int                                roundsMax;
     private int                                direction;
     private int                                timeout;
     private int                                timeoutMax;
-    public InventoryBasic                      inventoryAmmo;
     public InventoryBasic                      inventoryExpansion;
     public InventoryBasic                      inventoryDrive;
     private ContainerTurret                    container;
@@ -66,28 +59,25 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     private Rotation                           rotPrev;
     private Pos                                foc;
     private Rotation                           focrot;
-    private Item                               itemAmmo;
     public int                                 beamColor;
     
+    private TileEntityTurretAmmoHelper         ammoHelper;
     private TileEntityTurretTargetHelper       targetHelper;
 
     public TileEntityTurret()
     {
         super(false);
-        this.inventoryAmmo = new InventoryBasic("TurretAmmoBay", true, 9);
         this.inventoryExpansion = new InventoryBasic("TurretExpansionBay", true, 3);
         this.inventoryDrive = new InventoryBasic("TurretDriveBay", true, 1);
         this.fireRate = 2;
-        this.range = 24;
         this.cycleCount = getBaseCycleCount();
-        this.curAmmo = 0;
         this.rot = new Rotation(0F, 0F);
         this.rotPrev = new Rotation(0F, 0F);
         this.focrot = new Rotation(0F, 0F);
-        this.ammoDisplayEnabled = false;
         this.timeoutMax = 60;
-        this.itemAmmo = AliensVsPredator.items().itemAmmoSMG;
         this.beamColor = 0xFFFF0000;
+        
+        this.ammoHelper = new TileEntityTurretAmmoHelper(world, pos);
         this.targetHelper = new TileEntityTurretTargetHelper(world, pos);
     }
 
@@ -113,9 +103,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         if (this.getVoltage() > 0)
         {
             this.timeout = this.timeout > 0 ? this.timeout - 1 : this.timeout;
-            this.pickUpAmmunition();
-            this.updateAmmunitionCount();
-            this.tryReload();
+            this.ammoHelper.update();
             this.targetHelper.update();
         }
     }
@@ -146,7 +134,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.direction = nbt.getInteger("Direction");
         this.focrot.setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
         this.readTargetListFromCompoundTag(nbt);
-        this.readInventoryFromNBT(nbt, this.inventoryAmmo);
+        this.readInventoryFromNBT(nbt, this.ammoHelper.inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
         this.readInventoryFromNBT(nbt, this.inventoryDrive);
     }
@@ -160,7 +148,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         nbt.setFloat("FocusYaw", this.focrot.yaw);
         nbt.setFloat("FocusPitch", this.focrot.pitch);
         nbt.setTag("Targets", this.getTargetListTag());
-        this.saveInventoryToNBT(nbt, this.inventoryAmmo);
+        this.saveInventoryToNBT(nbt, this.ammoHelper.inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
         this.saveInventoryToNBT(nbt, this.inventoryDrive);
 
@@ -234,91 +222,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         }
     }
 
-    public void tryReload() {
-        if (this.curAmmo < this.getMaxAmmo() && this.curAmmo <= 0)
-        {
-            this.reload();
-        }
-    }
-
-    public void updateAmmunitionCount()
-    {
-        if (world.getTotalWorldTime() % 8L == 0L)
-        {
-            this.roundsMax = (9 * 64);
-            this.rounds = 0;
-
-            for (int i = 0; i < 9; i++)
-            {
-                ItemStack stack = this.inventoryAmmo.getStackInSlot(i);
-
-                if (stack != null)
-                {
-                    if (stack.getItem() == this.itemAmmo)
-                    {
-                        this.rounds = this.rounds + (stack.getCount());
-                    }
-                }
-            }
-        }
-    }
-
-    public void pickUpAmmunition()
-    {
-        if (this.world != null && this.inventoryAmmo != null)
-        {
-            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) Entities.getEntitiesInCoordsRange(world, EntityItem.class, new Pos(this), 1);
-
-            for (EntityItem entityItem : entityItemList)
-            {
-                if (!entityItem.cannotPickup())
-                {
-                    ItemStack stack = entityItem.getItem();
-
-                    if (stack.getItem() == this.itemAmmo)
-                    {
-                        for (int x = 0; x < 9; x++)
-                        {
-                            ItemStack invStack = this.inventoryAmmo.getStackInSlot(x);
-
-                            if (invStack == null || invStack != null && invStack.getCount() < 64)
-                            {
-                                this.inventoryAmmo.setInventorySlotContents(x, stack);
-                                entityItem.setDead();
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void reload()
-    {
-        if (this.rounds >= 1)
-        {
-            this.curAmmo = this.getMaxAmmo();
-
-            for (int x = 0; x < 9; x++)
-            {
-                ItemStack stack = this.inventoryAmmo.getStackInSlot(x);
-
-                if (stack != null && stack.getItem() == this.getItemAmmo())
-                {
-                    stack.shrink(1);
-
-                    if (stack.getCount() <= 0)
-                    {
-                        this.inventoryAmmo.setInventorySlotContents(x, ItemStack.EMPTY);
-                    }
-
-                    break;
-                }
-            }
-        }
-    }
-
     public void fire() {
         this.isFiring = true;
         this.timeout = this.timeoutMax;
@@ -345,7 +248,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void applyUpgrades()
     {
         int cycles = this.getBaseCycleCount();
-        this.setAmmoDisplayEnabled(false);
+        this.ammoHelper.setAmmoDisplayEnabled(false);
 
         for (int i = 0; i < 3; i++)
         {
@@ -358,7 +261,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
             if (pciSlot.getItem() == AliensVsPredator.items().itemLedDisplay)
             {
-                this.setAmmoDisplayEnabled(true);
+                this.ammoHelper.setAmmoDisplayEnabled(true);
             }
         }
 
@@ -453,11 +356,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.fireRate = fireRate;
     }
 
-    public int getRange()
-    {
-        return range;
-    }
-
     public int getDirection()
     {
         return direction;
@@ -481,61 +379,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public int getBaseCycleCount()
     {
         return 4;
-    }
-
-    public void setAmmoDisplayEnabled(boolean ammoDisplayEnabled)
-    {
-        this.ammoDisplayEnabled = ammoDisplayEnabled;
-    }
-
-    public boolean isAmmoDisplayEnabled()
-    {
-        return ammoDisplayEnabled;
-    }
-
-    public int getCurAmmo()
-    {
-        return curAmmo;
-    }
-
-    public int getMaxAmmo()
-    {
-        return 128;
-    }
-
-    public void setCurAmmo(int curAmmo)
-    {
-        this.curAmmo = curAmmo;
-    }
-
-    public Item getItemAmmo()
-    {
-        return itemAmmo;
-    }
-
-    public void setItemAmmo(Item itemAmmo)
-    {
-        this.itemAmmo = itemAmmo;
-    }
-
-    public int getCurRounds()
-    {
-        return rounds;
-    }
-
-    public int getMaxRounds()
-    {
-        return roundsMax;
-    }
-
-    public void setCurRounds(int curRounds)
-    {
-        this.rounds = curRounds;
-    }
-
-    public void setMaxRounds(int maxRounds)
-    {
-        this.roundsMax = maxRounds;
     }
 
     public float getRotationYaw()
@@ -670,6 +513,10 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         return foc;
     }
+
+	public TileEntityTurretAmmoHelper getAmmoHelper() {
+		return this.ammoHelper;
+	}
 
 	public TileEntityTurretTargetHelper getTargetHelper() {
 		return this.targetHelper;
