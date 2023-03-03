@@ -1,6 +1,7 @@
 package org.avp.block;
 
 import org.avp.AliensVsPredator;
+import org.avp.item.ItemStorageDevice;
 import org.avp.packets.server.PacketAddTurretTarget;
 import org.avp.tile.TileEntityTurret;
 
@@ -13,6 +14,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -20,9 +23,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 
 public class BlockTurret extends Block
@@ -93,6 +98,29 @@ public class BlockTurret extends Block
                     }
                 }
             }
+        }
+        
+        ItemStack activeHandStack = player.getHeldItem(hand);
+
+        if (activeHandStack.getItem() instanceof ItemStorageDevice) {
+        	if (!world.isRemote && player.isSneaking()) {
+        		if (!activeHandStack.hasTagCompound()) {
+            		TileEntityTurret turretTileEntity = (TileEntityTurret) world.getTileEntity(pos);
+        			NBTTagCompound nbt = new NBTTagCompound();
+        			NBTTagList targetListTag = turretTileEntity.getTargetListTag();
+        			nbt.setTag("Targets", targetListTag);
+        			activeHandStack.setTagCompound(nbt);
+                    activeHandStack.setStackDisplayName("NBT Drive - " + "TURRET (" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")");
+            		player.sendMessage(new TextComponentString("Successfully wrote data to NBT Drive."));
+        		} else {
+                    NBTTagList targetList = activeHandStack.getTagCompound().getTagList("Targets", NBT.TAG_STRING);
+            		TileEntityTurret turretTileEntity = (TileEntityTurret) world.getTileEntity(pos);
+            		turretTileEntity.readTargetList(targetList);
+            		player.sendMessage(new TextComponentString("Successfully loaded NBT data to turret (" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")."));
+        		}
+        	}
+        	
+        	return true;
         }
 
         FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_TURRET, world, pos.getX(), pos.getY(), pos.getZ());
