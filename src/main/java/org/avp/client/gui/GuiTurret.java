@@ -2,7 +2,9 @@ package org.avp.client.gui;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.avp.AliensVsPredator;
@@ -101,10 +103,8 @@ public class GuiTurret extends GuiContainer
 
         tile.applyUpgrades();
 
-        for (Class<? extends Entity> c : this.tile.getTargetHelper().getDangerousTargets())
-        {
-            AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), Entities.getEntityRegistrationId(c)));
-        }
+    	Collection<String> entityIdentifiers = tile.getTargetHelper().getDangerousTargets().stream().map((e) -> Entities.getEntityRegistrationId(e)).collect(Collectors.toList());
+        AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), entityIdentifiers));
     }
 
     @Override
@@ -212,6 +212,7 @@ public class GuiTurret extends GuiContainer
                         if (!tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getEntityClass()))
                         {
                             tile.getTargetHelper().addTargetType(getCurrentSelectedEntity().getEntityClass());
+                            
                             AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity().getEntityClass())));
                         }
                         else

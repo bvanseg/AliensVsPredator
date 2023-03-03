@@ -1,5 +1,8 @@
 package org.avp.block;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import org.avp.AliensVsPredator;
 import org.avp.packets.server.PacketAddTurretTarget;
 import org.avp.tile.TileEntityTurret;
@@ -73,13 +76,8 @@ public class BlockTurret extends Block
         {
             if (!world.isRemote)
             {
-                for (Class<? extends Entity> dangerousTarget: tile.getTargetHelper().getDangerousTargets())
-                {
-                    if (dangerousTarget != null)
-                    {
-                        AliensVsPredator.network().sendToAll(new PacketAddTurretTarget(pos.getX(), pos.getY(), pos.getZ(), Entities.getEntityRegistrationId(dangerousTarget)));
-                    }
-                }
+            	Collection<String> entityIdentifiers = tile.getTargetHelper().getDangerousTargets().stream().map((e) -> Entities.getEntityRegistrationId(e)).collect(Collectors.toList());
+                AliensVsPredator.network().sendToAll(new PacketAddTurretTarget(pos.getX(), pos.getY(), pos.getZ(), entityIdentifiers));
             }
         }
 
