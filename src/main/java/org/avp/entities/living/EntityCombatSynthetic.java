@@ -42,7 +42,7 @@ import net.minecraft.world.World;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost, Predicate<EntityLivingBase>
 {
-    private static final DataParameter<Boolean> FIRING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> FIRING = EntityDataManager.createKey(EntityCombatSynthetic.class, DataSerializers.BOOLEAN);
     
     private EntityAIBase                        aiRangedAttack;
     private long                                lastShotFired;
