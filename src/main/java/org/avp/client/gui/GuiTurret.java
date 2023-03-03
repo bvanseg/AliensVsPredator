@@ -3,6 +3,7 @@ package org.avp.client.gui;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import org.avp.AliensVsPredator;
 import org.avp.packets.server.PacketAddTurretPlayerTarget;
@@ -80,6 +81,13 @@ public class GuiTurret extends GuiContainer
                 this.entityLivingList.add((EntityLiving) entity);
             }
         }
+        
+        this.entityLivingList.sort(new Comparator<EntityLiving>() {
+			@Override
+			public int compare(EntityLiving o1, EntityLiving o2) {
+				return o1.getName().compareTo(o2.getName());
+			}
+        });
     }
 
     @Override
