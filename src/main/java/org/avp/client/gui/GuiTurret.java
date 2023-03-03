@@ -43,21 +43,110 @@ public class GuiTurret extends GuiContainer
 {
     private static ArrayList<Pair<EntityEntry, String>> entityList;
 	
-	private static final Comparator<Pair<EntityEntry, String>> ALPHABETICAL_COMPARATOR = new Comparator<Pair<EntityEntry, String>>() {
-		@Override
-		public int compare(Pair<EntityEntry, String> o1, Pair<EntityEntry, String> o2) {
-			return o1.getRight().compareTo(o2.getRight());
-		}
-    };
+	private static final Comparator<Pair<EntityEntry, String>> ALPHABETICAL_COMPARATOR = Comparator.comparing((entry) -> entry.getRight());
 	
     private TileEntityTurret                   tile;
-    private GuiCustomButton                    buttonScrollUp;
-    private GuiCustomButton                    buttonScrollDown;
-    private GuiCustomButton                    buttonAddAsTarget;
-    private GuiCustomButton                    buttonSave;
-    private GuiCustomButton                    buttonLoad;
-    private GuiCustomTextbox                   playerNameInput;
-    private int                                scroll        = 0;
+    private static GuiCustomButton             buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "\u21e7");
+    private static GuiCustomButton             buttonScrollDown = new GuiCustomButton(1, 0, 0, 20, 20, "\u21e9");
+    private static GuiCustomButton             buttonAddAsTarget = new GuiCustomButton(2, 0, 0, 50, 20, "");
+    private static GuiCustomButton             buttonSave = new GuiCustomButton(3, 0, 0, 35, 20, "S");
+    private static GuiCustomButton             buttonLoad = new GuiCustomButton(4, 0, 0, 35, 20, "L");
+    private static GuiCustomTextbox            playerNameInput = new GuiCustomTextbox(0, 0, 200, 20);
+    private static int                         scroll        = 0;
+    
+    private static IAction scrollDownAction = new IAction() {
+        @Override
+        public void perform(IGuiElement element)
+        {
+            scrollDown();
+        }
+    };
+    
+    private static IAction scrollUpAction = new IAction() {
+        @Override
+        public void perform(IGuiElement element)
+        {
+            scrollUp();
+        }
+    };
+    
+    private IAction saveAction = new IAction() {
+        @Override
+        public void perform(IGuiElement element)
+        {
+            AliensVsPredator.network().sendToServer(new PacketWriteToDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
+            tile.writeToOtherDevice(0);
+        }
+    };
+    
+    private IAction loadAction = new IAction() {
+        @Override
+        public void perform(IGuiElement element)
+        {
+            tile.getTargetHelper().getDangerousTargets().clear();
+            AliensVsPredator.network().sendToServer(new PacketReadFromDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
+            tile.readFromOtherDevice(0);
+        }
+    };
+    
+    private IAction addAsTargetAction = new IAction() {
+        @Override
+        public void perform(IGuiElement element)
+        {
+            if (tile != null)
+            {
+                if (playerNameInput != null && playerNameInput.getText().isEmpty() || playerNameInput == null)
+                {
+                    if (!tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getEntityClass()))
+                    {
+                        tile.getTargetHelper().addTargetType(getCurrentSelectedEntity().getEntityClass());
+                        
+                        AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity().getEntityClass())));
+                    }
+                    else
+                    {
+                        tile.getTargetHelper().removeTargetType(getCurrentSelectedEntity().getEntityClass());
+                        AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity().getEntityClass())));
+                    }
+                }
+                else
+                {
+                    if (!tile.getTargetHelper().getTargetPlayers().contains(playerNameInput.getText()))
+                    {
+                        Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' added to turret player target list.");
+                        tile.getTargetHelper().addTargetPlayer(playerNameInput.getText());
+                        AliensVsPredator.network().sendToServer(new PacketAddTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
+                    }
+                    else
+                    {
+                        Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' removed from turret player target list.");
+                        tile.getTargetHelper().removeTargetPlayer(playerNameInput.getText());
+                        AliensVsPredator.network().sendToServer(new PacketRemoveTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
+                    }
+                }
+            }
+        }
+    };
+    
+    static {
+
+        playerNameInput.setFocused(true);
+        playerNameInput.setWidth(225);
+        playerNameInput.setHeight(16);
+        playerNameInput.setBackgroundColor(0xFF000000);
+        playerNameInput.setTextColor(0xFF99FF55);
+        playerNameInput.setBorderColor(0xFF555555);
+        
+        buttonScrollUp.setAction(scrollUpAction);
+        
+        buttonScrollDown.setAction(scrollDownAction);
+        
+        buttonAddAsTarget.width = 20;
+        
+        buttonSave.width = 14;
+        
+        buttonLoad.width = 14;
+    }
     
 
     public GuiTurret(EntityPlayer player, TileEntityTurret turret, World world, int x, int y, int z)
@@ -85,15 +174,31 @@ public class GuiTurret extends GuiContainer
     public void initGui()
     {
         super.initGui();
+        
+        scroll = 0;
+        playerNameInput.setText("");
+        
+        playerNameInput.setX(guiLeft);
+        playerNameInput.setY(guiTop + ySize - 34);
 
-        this.buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "");
-        this.buttonScrollDown = new GuiCustomButton(1, 0, 0, 20, 20, "");
-        this.buttonAddAsTarget = new GuiCustomButton(2, 0, 0, 50, 20, "");
-        this.buttonSave = new GuiCustomButton(3, 0, 0, 35, 20, "");
-        this.buttonLoad = new GuiCustomButton(4, 0, 0, 35, 20, "");
+        buttonScrollUp.x = this.guiLeft + xSize + 5;
+        buttonScrollUp.y = this.guiTop + 42;
 
-        this.playerNameInput = new GuiCustomTextbox(0, 0, 200, 20);
-        this.playerNameInput.setFocused(true);
+        buttonScrollDown.x = this.guiLeft + this.xSize + 5;
+        buttonScrollDown.y = this.guiTop + 88;
+
+        buttonAddAsTarget.x = (this.guiLeft + this.xSize + 5);
+        buttonAddAsTarget.y = this.guiTop + 65;
+        buttonAddAsTarget.setAction(addAsTargetAction);
+
+        buttonSave.x = (this.guiLeft + this.xSize - 38);
+        buttonSave.y = (this.guiTop + 19);
+        buttonSave.setAction(saveAction);
+
+        buttonLoad.x = (this.guiLeft + this.xSize - 21);
+        buttonLoad.y = (this.guiTop + 19);
+        
+        buttonLoad.setAction(loadAction);
     }
 
     @Override
@@ -138,7 +243,7 @@ public class GuiTurret extends GuiContainer
             int yPos = 56;
             int yEntryPos = yPos + 11 * x;
 
-            Pair<EntityEntry, String> entityData = x + this.scroll < entityList.size() ? entityList.get(x + this.scroll) : null;
+            Pair<EntityEntry, String> entityData = x + scroll < entityList.size() ? entityList.get(x + scroll) : null;
             
             if (entityData == null) {
             	continue;
@@ -162,123 +267,32 @@ public class GuiTurret extends GuiContainer
     {
         super.drawScreen(mouseX, mouseY, p_73863_3_);
 
-        this.playerNameInput.setX(guiLeft);
-        this.playerNameInput.setY(guiTop + ySize - 34);
-        this.playerNameInput.setWidth(225);
-        this.playerNameInput.setHeight(16);
-        this.playerNameInput.setBackgroundColor(0xFF000000);
-        this.playerNameInput.setTextColor(0xFF99FF55);
-        this.playerNameInput.setBorderColor(0xFF555555);
-        this.playerNameInput.drawTextBox();
-
-        this.buttonScrollUp.x = this.guiLeft + xSize + 5;
-        this.buttonScrollUp.y = this.guiTop + 42;
-        this.buttonScrollUp.displayString = "\u21e7";
-        this.buttonScrollUp.baseColor = this.getScroll() == 0 ? 0x22000000 : 0xAA000000;
-        this.buttonScrollUp.drawButton();
-        this.buttonScrollUp.setAction(new IAction() {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                scrollDown();
-            }
-        });
-
-        this.buttonScrollDown.x = this.guiLeft + this.xSize + 5;
-        this.buttonScrollDown.y = this.guiTop + 88;
-        this.buttonScrollDown.displayString = "\u21e9";
-        this.buttonScrollDown.baseColor = this.getScroll() >= entityList.size() - 1 ? 0x22000000 : 0xAA000000;
-        this.buttonScrollDown.drawButton();
-        this.buttonScrollDown.setAction(new IAction() {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                scrollUp();
-            }
-        });
-
-        this.buttonAddAsTarget.x = (this.guiLeft + this.xSize + 5);
-        this.buttonAddAsTarget.y = this.guiTop + 65;
-        this.buttonAddAsTarget.width = 20;
-        this.buttonAddAsTarget.drawButton();
-        this.buttonAddAsTarget.setAction(new IAction() {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                if (tile != null)
-                {
-                    if (playerNameInput != null && playerNameInput.getText().isEmpty() || playerNameInput == null)
-                    {
-                        if (!tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getEntityClass()))
-                        {
-                            tile.getTargetHelper().addTargetType(getCurrentSelectedEntity().getEntityClass());
-                            
-                            AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity().getEntityClass())));
-                        }
-                        else
-                        {
-                            tile.getTargetHelper().removeTargetType(getCurrentSelectedEntity().getEntityClass());
-                            AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity().getEntityClass())));
-                        }
-                    }
-                    else
-                    {
-                        if (!tile.getTargetHelper().getTargetPlayers().contains(playerNameInput.getText()))
-                        {
-                            Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' added to turret player target list.");
-                            tile.getTargetHelper().addTargetPlayer(playerNameInput.getText());
-                            AliensVsPredator.network().sendToServer(new PacketAddTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
-                        }
-                        else
-                        {
-                            Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' removed from turret player target list.");
-                            tile.getTargetHelper().removeTargetPlayer(playerNameInput.getText());
-                            AliensVsPredator.network().sendToServer(new PacketRemoveTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
-                        }
-                    }
-                }
-            }
-        });
-
-        this.buttonSave.x = (this.guiLeft + this.xSize - 38);
-        this.buttonSave.y = (this.guiTop + 19);
-        this.buttonSave.displayString = "S";
-        this.buttonSave.width = 14;
-        this.buttonSave.drawButton();
-        this.buttonSave.setAction(new IAction() {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                AliensVsPredator.network().sendToServer(new PacketWriteToDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
-                tile.writeToOtherDevice(0);
-            }
-        });
-
-        this.buttonLoad.x = (this.guiLeft + this.xSize - 21);
-        this.buttonLoad.y = (this.guiTop + 19);
-        this.buttonLoad.displayString = "L";
-        this.buttonLoad.width = 14;
-        this.buttonLoad.drawButton();
-        this.buttonLoad.setAction(new IAction() {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                tile.getTargetHelper().getDangerousTargets().clear();
-                AliensVsPredator.network().sendToServer(new PacketReadFromDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
-                tile.readFromOtherDevice(0);
-            }
-        });
-
+        // Update
+        
         if (!this.tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getEntityClass()))
         {
-            this.buttonAddAsTarget.displayString = "+";
-            this.buttonAddAsTarget.overlayColorHover = 0xFF00FF77;
+            buttonAddAsTarget.displayString = "+";
+            buttonAddAsTarget.overlayColorHover = 0xFF00FF77;
         }
         else
         {
-            this.buttonAddAsTarget.displayString = "-";
-            this.buttonAddAsTarget.overlayColorHover = 0xFFFF0033;
+            buttonAddAsTarget.displayString = "-";
+            buttonAddAsTarget.overlayColorHover = 0xFFFF0033;
         }
+        
+        // Draw
+
+        playerNameInput.drawTextBox();
+
+        buttonScrollUp.baseColor = scroll == 0 ? 0x22000000 : 0xAA000000;
+        buttonScrollUp.drawButton();
+        
+        buttonScrollDown.baseColor = scroll >= entityList.size() - 1 ? 0x22000000 : 0xAA000000;
+        buttonScrollDown.drawButton();
+        
+        buttonAddAsTarget.drawButton();
+        buttonSave.drawButton();
+        buttonLoad.drawButton();
     }
 
     @Override
@@ -290,11 +304,11 @@ public class GuiTurret extends GuiContainer
 
         if (dWheel > 0)
         {
-            scrollDown();
+            scrollUp();
         }
         else if (dWheel < 0)
         {
-            scrollUp();
+            scrollDown();
         }
 
         if (Keyboard.isKeyDown(Keyboard.KEY_DOWN))
@@ -310,38 +324,33 @@ public class GuiTurret extends GuiContainer
 
     public EntityEntry getCurrentSelectedEntity()
     {
-        return entityList.get(getScroll()).getLeft();
+        return entityList.get(scroll).getLeft();
     }
 
-    public void scrollDown()
+    public static void scrollUp()
     {
-        if (this.scroll > 0)
+        if (scroll > 0)
         {
-            this.scroll -= 1;
+            scroll -= 1;
         }
     }
 
-    public void scrollUp()
+    public static void scrollDown()
     {
-        if (this.scroll < entityList.size() - 1)
+        if (scroll < entityList.size() - 1)
         {
-            this.scroll += 1;
+            scroll += 1;
         }
-    }
-
-    public int getScroll()
-    {
-        return this.scroll;
     }
 
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
-        if (this.playerNameInput.isEnabled() && this.playerNameInput.isFocused() && keyCode != Keyboard.KEY_ESCAPE)
+        if (playerNameInput.isEnabled() && playerNameInput.isFocused() && keyCode != Keyboard.KEY_ESCAPE)
         {
             if (keyCode == Keyboard.KEY_RETURN)
             {
-                String commandLineText = this.playerNameInput.getText();
+                String commandLineText = playerNameInput.getText();
 
                 if (commandLineText.startsWith("/"))
                 {
@@ -395,17 +404,17 @@ public class GuiTurret extends GuiContainer
                         mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("No command provided."));
                     }
 
-                    this.playerNameInput.setText("");
+                    playerNameInput.setText("");
                     return;
                 }
                 else
                 {
-                    this.buttonAddAsTarget.getAction().perform(this.buttonAddAsTarget);
+                    buttonAddAsTarget.getAction().perform(buttonAddAsTarget);
                     return;
                 }
             }
 
-            this.playerNameInput.textboxKeyTyped(typedChar, keyCode);
+            playerNameInput.textboxKeyTyped(typedChar, keyCode);
             return;
         }
 
