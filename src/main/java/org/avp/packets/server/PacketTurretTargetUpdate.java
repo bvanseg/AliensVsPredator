@@ -4,7 +4,6 @@ import org.avp.tile.TileEntityTurret;
 
 import com.asx.mdx.lib.client.util.Rotation;
 import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.Pos;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;
@@ -17,7 +16,6 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
     public int      x, y, z;
     public int      id;
     public Rotation focrot;
-    public Pos      foc;
 
     public PacketTurretTargetUpdate()
     {
@@ -31,7 +29,6 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         this.z = turret.getPos().getZ();
         this.id = turret.getTargetHelper().getTargetEntity().getEntityId();
         this.focrot = turret.getLookHelper().getFocusRotation();
-        this.foc = turret.getLookHelper().getFocusPosition();
     }
 
     @Override
@@ -41,7 +38,6 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         this.y = buf.readInt();
         this.z = buf.readInt();
         this.id = buf.readInt();
-        this.foc = new Pos(0, 0, 0).readFromBuffer(buf);
         this.focrot = new Rotation(0F, 0F).readFromBuffer(buf);
     }
 
@@ -52,13 +48,6 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         buf.writeInt(y);
         buf.writeInt(z);
         buf.writeInt(id);
-
-        if (foc == null)
-        {
-            foc = new Pos(0, 0, 0);
-        }
-        
-        foc.writeToBuffer(buf);
 
         if (focrot == null)
         {

@@ -168,7 +168,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         Entity entity = Game.minecraft().world.getEntityByID(packet.id);
         this.getTargetHelper().setTargetEntity(entity);
-        this.getLookHelper().setFocusPosition(packet.foc);
         this.getLookHelper().setFocusRotation(packet.focrot);
     }
 
