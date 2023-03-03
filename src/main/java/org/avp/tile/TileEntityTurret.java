@@ -14,7 +14,6 @@ import org.avp.tile.helpers.TileEntityTurretLookHelper;
 import org.avp.tile.helpers.TileEntityTurretTargetHelper;
 
 import com.asx.mdx.MDX;
-import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.storage.NBTStorage;
@@ -37,8 +36,6 @@ import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * 
@@ -69,7 +66,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.ammoHelper = new TileEntityTurretAmmoHelper();
         this.targetHelper = new TileEntityTurretTargetHelper();
         this.lookHelper = new TileEntityTurretLookHelper(targetHelper);
-        this.attackHelper = new TileEntityTurretAttackHelper(ammoHelper, targetHelper);
+        this.attackHelper = new TileEntityTurretAttackHelper(ammoHelper, lookHelper, targetHelper);
     }
     
     @Override
@@ -161,14 +158,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.readTargetList(packet.targets);
         this.getLookHelper().getRotation().yaw = packet.rotation.yaw;
         this.getLookHelper().getRotation().pitch = packet.rotation.pitch;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void onReceiveTargetUpdatePacket(PacketTurretTargetUpdate packet, MessageContext ctx)
-    {
-        Entity entity = Game.minecraft().world.getEntityByID(packet.id);
-        this.getTargetHelper().setTargetEntity(entity);
-        this.getLookHelper().setFocusRotation(packet.focrot);
     }
 
     public void applyUpgrades()

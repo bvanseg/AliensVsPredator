@@ -73,7 +73,7 @@ public class TileEntityTurretTargetHelper {
 		}
 	}
 	
-	private boolean doesCurrentTargetStillExist() {
+	public boolean doesCurrentTargetStillExist() {
 		return this.targetEntity != null && !this.targetEntity.isDead;
 	}
 	

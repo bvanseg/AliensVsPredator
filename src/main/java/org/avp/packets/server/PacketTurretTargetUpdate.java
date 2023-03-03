@@ -2,10 +2,10 @@ package org.avp.packets.server;
 
 import org.avp.tile.TileEntityTurret;
 
-import com.asx.mdx.lib.client.util.Rotation;
 import com.asx.mdx.lib.util.Game;
 
 import io.netty.buffer.ByteBuf;
+import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -13,14 +13,10 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<PacketTurretTargetUpdate, PacketTurretTargetUpdate>
 {
-    public int      x, y, z;
-    public int      id;
-    public Rotation focrot;
+    private int      x, y, z;
+    private int      id;
 
-    public PacketTurretTargetUpdate()
-    {
-        ;
-    }
+    public PacketTurretTargetUpdate() {}
 
     public PacketTurretTargetUpdate(TileEntityTurret turret)
     {
@@ -28,7 +24,6 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         this.y = turret.getPos().getY();
         this.z = turret.getPos().getZ();
         this.id = turret.getTargetHelper().getTargetEntity().getEntityId();
-        this.focrot = turret.getLookHelper().getFocusRotation();
     }
 
     @Override
@@ -38,7 +33,6 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         this.y = buf.readInt();
         this.z = buf.readInt();
         this.id = buf.readInt();
-        this.focrot = new Rotation(0F, 0F).readFromBuffer(buf);
     }
 
     @Override
@@ -48,28 +42,17 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         buf.writeInt(y);
         buf.writeInt(z);
         buf.writeInt(id);
-
-        if (focrot == null)
-        {
-            focrot = new Rotation(0F, 0F);
-        }
-        
-        focrot.writeToBuffer(buf);
     }
 
     @Override
     public PacketTurretTargetUpdate onMessage(PacketTurretTargetUpdate packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(new Runnable() {
-            @Override
-            public void run()
-            {
-                TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+        Game.minecraft().addScheduledTask(() -> {
+        	TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
-                if (tile != null)
-                {
-                    tile.onReceiveTargetUpdatePacket(packet, ctx);
-                }
+            if (tile != null) {
+                Entity entity = Game.minecraft().world.getEntityByID(packet.id);
+                tile.getTargetHelper().setTargetEntity(entity);
             }
         });
 

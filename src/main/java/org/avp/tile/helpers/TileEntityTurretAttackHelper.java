@@ -16,12 +16,14 @@ import net.minecraft.world.World;
 public class TileEntityTurretAttackHelper {
 
 	private TileEntityTurretAmmoHelper ammoHelper;
+	private TileEntityTurretLookHelper lookHelper;
 	private TileEntityTurretTargetHelper targetHelper;
 	private boolean isFiring;
 	private int fireRate;
 
-	public TileEntityTurretAttackHelper(TileEntityTurretAmmoHelper ammoHelper, TileEntityTurretTargetHelper targetHelper) {
+	public TileEntityTurretAttackHelper(TileEntityTurretAmmoHelper ammoHelper, TileEntityTurretLookHelper lookHelper, TileEntityTurretTargetHelper targetHelper) {
 		this.ammoHelper = ammoHelper;
+		this.lookHelper = lookHelper;
 		this.targetHelper = targetHelper;
         this.fireRate = 2;
 	}
@@ -34,13 +36,8 @@ public class TileEntityTurretAttackHelper {
         if (targetEntity != null) {
             if (this.targetHelper.canSee(targetEntity, pos))
             {
-            	float turretYaw = lookHelper.getRotation().yaw;
-            	float focusYaw = lookHelper.getFocusRotation().yaw;
-            	float minYaw = focusYaw - 1.5f;
-            	float maxYaw = focusYaw + 1.5f;
-            	boolean isTargetInRange = minYaw < turretYaw && turretYaw < maxYaw;
             	
-                if (world.getTotalWorldTime() % fireRate == 0L && isTargetInRange) {
+                if (world.getTotalWorldTime() % fireRate == 0L && this.lookHelper.isLockedOn()) {
                     if (this.ammoHelper.getCurAmmo() - 1 > 0)
                     {
                     	this.ammoHelper.setCurrentAmmoCount(this.ammoHelper.getCurAmmo() - 1);
