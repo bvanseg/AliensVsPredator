@@ -1,0 +1,97 @@
+package org.avp.util.brain.impl.task;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+import org.avp.util.brain.flag.AbstractBrainFlag;
+import org.avp.util.brain.flag.BrainFlagState;
+import org.avp.util.brain.impl.BrainFlags;
+import org.avp.util.brain.impl.BrainMemoryKeys;
+import org.avp.util.brain.impl.EntityBrainContext;
+import org.avp.util.brain.task.AbstractBrainTask;
+
+import com.google.common.base.Predicates;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EntitySelectors;
+
+/**
+ * 
+ * @author Boston Vanseghi
+ *
+ */
+public class WatchClosestBrainTask extends AbstractBrainTask<EntityBrainContext> {
+	
+    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
+    
+    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
+    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<AbstractBrainFlag, BrainFlagState>();
+    	map.put(BrainFlags.LOOK, BrainFlagState.ABSENT);
+		return map;
+    }
+    
+    @Override
+	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+		return FLAGS;
+	}
+    
+    /** The closest entity which is being watched by this one. */
+    protected Entity closestEntity;
+    /** This is the Maximum distance that the AI will look for the Entity */
+    protected float maxDistance;
+    private final float chance;
+    protected Class <? extends Entity > watchedClass;
+    
+    public WatchClosestBrainTask(Class <? extends Entity > watchTargetClass, float maxDistance) {
+    	this(watchTargetClass, maxDistance, 0.02F);
+    }
+
+    public WatchClosestBrainTask(Class <? extends Entity > watchTargetClass, float maxDistance, float chanceIn) {
+        this.watchedClass = watchTargetClass;
+        this.maxDistance = maxDistance;
+        this.chance = chanceIn;
+    }
+	
+	@Override
+	protected boolean shouldExecute(EntityBrainContext ctx) {
+		EntityLiving entity = ctx.getEntity();
+		if (entity.getRNG().nextFloat() >= this.chance) {
+			return false;
+		} else {
+			if (entity.getAttackTarget() != null) {
+				this.closestEntity = entity.getAttackTarget();
+			}
+
+			if (this.watchedClass == EntityPlayer.class) {
+				this.closestEntity = entity.world.getClosestPlayer(entity.posX, entity.posY, entity.posZ,
+						(double) this.maxDistance,
+						Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.notRiding(entity)));
+			} else {
+				Optional<List<EntityLivingBase>> optional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);
+
+				if (optional.isPresent()) {
+					List<EntityLivingBase> nearbyEntities = optional.get();
+
+					if (nearbyEntities.isEmpty()) {
+						return false;
+					}
+					
+					this.closestEntity = nearbyEntities.get(0);
+				}
+			}
+
+			return this.closestEntity != null;
+		}
+	}
+	
+    @Override
+	protected void execute(EntityBrainContext ctx) {
+    	EntityLiving entity = ctx.getEntity();
+        entity.getLookHelper().setLookPosition(this.closestEntity.posX, this.closestEntity.posY + (double)this.closestEntity.getEyeHeight(), this.closestEntity.posZ, (float)entity.getHorizontalFaceSpeed(), (float)entity.getVerticalFaceSpeed());
+	}
+}

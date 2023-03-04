@@ -1,0 +1,32 @@
+package org.avp.util.brain.impl;
+
+import java.util.HashMap;
+
+import org.avp.util.brain.flag.AbstractBrainFlag;
+import org.avp.util.brain.flag.BrainActionFlag;
+import org.avp.util.brain.flag.BrainMemoryFlag;
+import org.avp.util.brain.memory.BrainMemoryKey;
+
+/**
+ * 
+ * @author Boston Vanseghi
+ *
+ */
+public class BrainFlags {
+	public static final AbstractBrainFlag MOVE = new BrainActionFlag("move");
+	public static final AbstractBrainFlag LOOK = new BrainActionFlag("look");
+
+	private static final HashMap<BrainMemoryKey<?>, BrainMemoryFlag> memoryKeysToBrainFlags = new HashMap<>();
+	
+	public static final AbstractBrainFlag NEAREST_ATTACKABLE_TARGET = createMemoryFlag("nearest_attackable_target", BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
+	
+	private static final BrainMemoryFlag createMemoryFlag(String identifier, BrainMemoryKey<?> memoryKey) {
+		BrainMemoryFlag flag = new BrainMemoryFlag(identifier, memoryKey);
+		memoryKeysToBrainFlags.computeIfAbsent(memoryKey, (key) -> flag);
+		return flag;
+	}
+
+	public static AbstractBrainFlag getFlagForKey(BrainMemoryKey<?> memoryKey) {
+		return memoryKeysToBrainFlags.get(memoryKey);
+	}
+}
