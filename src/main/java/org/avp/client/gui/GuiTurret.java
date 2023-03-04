@@ -8,10 +8,9 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.avp.AliensVsPredator;
-import org.avp.packets.server.PacketAddTurretPlayerTarget;
+import org.avp.packets.server.PacketToggleTurretPlayerTarget;
 import org.avp.packets.server.PacketAddTurretTarget;
 import org.avp.packets.server.PacketReadFromDataDevice;
-import org.avp.packets.server.PacketRemoveTurretPlayerTarget;
 import org.avp.packets.server.PacketRemoveTurretTarget;
 import org.avp.packets.server.PacketWriteToDataDevice;
 import org.avp.tile.TileEntityTurret;
@@ -23,7 +22,6 @@ import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
 import com.asx.mdx.lib.client.gui.IAction;
 import com.asx.mdx.lib.client.gui.IGuiElement;
 import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -111,18 +109,7 @@ public class GuiTurret extends GuiContainer
                 }
                 else
                 {
-                    if (!tile.getTargetHelper().getTargetPlayers().contains(playerNameInput.getText()))
-                    {
-                        Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' added to turret player target list.");
-                        tile.getTargetHelper().addTargetPlayer(playerNameInput.getText());
-                        AliensVsPredator.network().sendToServer(new PacketAddTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
-                    }
-                    else
-                    {
-                        Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' removed from turret player target list.");
-                        tile.getTargetHelper().removeTargetPlayer(playerNameInput.getText());
-                        AliensVsPredator.network().sendToServer(new PacketRemoveTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
-                    }
+                    AliensVsPredator.network().sendToServer(new PacketToggleTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
                 }
             }
         }

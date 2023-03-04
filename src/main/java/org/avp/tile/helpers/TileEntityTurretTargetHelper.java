@@ -1,6 +1,7 @@
 package org.avp.tile.helpers;
 
 import java.util.HashSet;
+import java.util.UUID;
 
 import org.avp.entities.living.EntityAethon;
 import org.avp.entities.living.species.engineer.EntityEngineer;
@@ -36,7 +37,7 @@ import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
@@ -55,7 +56,7 @@ public class TileEntityTurretTargetHelper {
 
 	private Entity targetEntity;
 	private HashSet<Class<? extends Entity>> targetTypes;
-	private HashSet<String> targetPlayers;
+	private HashSet<UUID> targetPlayers;
 
 	public TileEntityTurretTargetHelper() {
 		this.targetEntity = null;
@@ -72,6 +73,10 @@ public class TileEntityTurretTargetHelper {
 		if (this.targetEntity == null) {
 			this.findTarget(world, pos);
 		}
+		
+		if (!this.canContinueAttackingTarget(this.targetEntity, pos)) {
+			this.targetEntity = null;
+		}
 	}
 	
 	public boolean doesCurrentTargetStillExist() {
@@ -84,12 +89,30 @@ public class TileEntityTurretTargetHelper {
 
 	public void findTarget(World world, Pos pos) {
 		if (!world.isRemote) {
-			EntityLiving newTarget = (EntityLiving) Entities.getRandomEntityInCoordsRange(world, EntityLiving.class, pos, TURRET_RANGE, TURRET_RANGE);
+			EntityLivingBase newTarget = (EntityLivingBase) Entities.getRandomEntityInCoordsRange(world, EntityLivingBase.class, pos, TURRET_RANGE, TURRET_RANGE);
 
-			if (newTarget != null && this.targetTypes.contains(newTarget.getClass()) && this.canTarget(newTarget, pos) && canSee(newTarget, pos)) {
-				this.targetEntity = newTarget;
+			if (newTarget != null) {
+				boolean mobCheck = this.targetTypes.contains(newTarget.getClass()) && this.canTarget(newTarget, pos) && canSee(newTarget, pos);
+				boolean playerCheck = newTarget instanceof EntityPlayer && canTargetPlayer((EntityPlayer) newTarget) && !((EntityPlayer) newTarget).isCreative();
+				
+				if (mobCheck || playerCheck) {
+					this.targetEntity = newTarget;
+				}
 			}
 		}
+	}
+	
+	private boolean canContinueAttackingTarget(Entity target, Pos pos) {
+		if (target != null) {
+			boolean mobCheck = this.targetTypes.contains(target.getClass()) && this.canTarget(target, pos) && canSee(target, pos);
+			boolean playerCheck = target instanceof EntityPlayer && canTargetPlayer((EntityPlayer) target) && !((EntityPlayer) target).isCreative();
+			
+			if (mobCheck || playerCheck) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	boolean canSee(Entity entity, Pos pos) {
@@ -127,30 +150,22 @@ public class TileEntityTurretTargetHelper {
 	}
 
 	private boolean canTargetPlayer(EntityPlayer player) {
-		// TODO: Store UUIDs, not names to avoid casing discrepancies.
-		return this.targetPlayers.contains(player.getCommandSenderEntity().getName());
+		return this.targetPlayers.contains(player.getPersistentID());
 	}
 
-	public void addTargetPlayer(String name) {
-		this.targetPlayers.add(name);
+	public boolean addTargetPlayer(UUID playerUUID) {
+		return this.targetPlayers.add(playerUUID);
 	}
 
-	public void removeTargetPlayer(String name) {
-		this.targetPlayers.remove(name);
-
-		// TODO: Do not use the player name here, check against their UUID, instead.
-		if (this.targetEntity instanceof EntityPlayer && this.targetEntity.getName().equalsIgnoreCase(name)) {
-			this.targetEntity = null;
-		}
+	public boolean  removeTargetPlayer(UUID playerUUID) {
+		return this.targetPlayers.remove(playerUUID);
 	}
 
 	public void removeTargetType(Class<? extends Entity> entityClass) {
-		this.setTargetEntity(null);
 		this.targetTypes.remove(entityClass);
 	}
 
 	public void addTargetType(Class<? extends Entity> entityClass) {
-		this.setTargetEntity(null);
 		this.targetTypes.add(entityClass);
 	}
 
@@ -158,7 +173,7 @@ public class TileEntityTurretTargetHelper {
 		return this.targetTypes.contains(entityClass);
 	}
 
-	public HashSet<String> getTargetPlayers() {
+	public HashSet<UUID> getTargetPlayers() {
 		return targetPlayers;
 	}
 
