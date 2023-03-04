@@ -17,16 +17,16 @@ import net.minecraft.util.math.MathHelper;
 public class TileEntityTurretLookHelper {
 	
 	private TileEntityTurretTargetHelper targetHelper;
-    private int cycleCount;
     private boolean isLockedOn;
+    private float turretRotateSpeed;
     private Rotation turretRotation;
     private Rotation previousTurretRotation;
     private Rotation targetTurretRotation;
     
     public TileEntityTurretLookHelper(TileEntityTurretTargetHelper targetHelper) {
     	this.targetHelper = targetHelper;
-        this.cycleCount = getBaseCycleCount();
         this.isLockedOn = false;
+        this.turretRotateSpeed = 100f;
         this.turretRotation = new Rotation(0F, 0F);
         this.previousTurretRotation = new Rotation(0F, 0F);
         this.targetTurretRotation = new Rotation(0F, 0F);
@@ -35,45 +35,24 @@ public class TileEntityTurretLookHelper {
     public void update(Pos pos) {
     	Entity targetEntity = this.targetHelper.getTargetEntity();
     	
-		this.rotateTurret();
-		
 		if (targetEntity != null) {
     		this.setFocusRotation(this.turnTurretToPoint(pos, targetEntity.getPosition(), 360F, 90F));
-    		this.tryLockOnToTarget();
+    		this.rotateTurret();
 		}
     }
 
     public void rotateTurret()
     {
-    	if (Math.ceil(this.getRotationYaw()) < Math.ceil(this.targetTurretRotation.yaw))
-        {
-            this.previousTurretRotation.yaw = this.turretRotation.yaw;
-            this.turretRotation.yaw += this.cycleCount;
-        }
-        else if (Math.ceil(this.getRotationYaw()) > Math.ceil(this.targetTurretRotation.yaw))
-        {
-            this.previousTurretRotation.yaw = this.turretRotation.yaw;
-            this.turretRotation.yaw -= this.cycleCount;
-        }
+    	this.previousTurretRotation = new Rotation(this.turretRotation.yaw, this.turretRotation.pitch);
 
-        if (Math.ceil(this.getRotationPitch()) < Math.ceil(this.targetTurretRotation.pitch))
-        {
-            this.previousTurretRotation.pitch = this.turretRotation.pitch;
-            this.turretRotation.pitch += this.cycleCount;
-        }
-        else if (Math.ceil(this.getRotationPitch()) > Math.ceil(this.targetTurretRotation.pitch))
-        {
-            this.previousTurretRotation.pitch = this.turretRotation.pitch;
-            this.turretRotation.pitch -= this.cycleCount;
-        }
-    }
-    
-    public void tryLockOnToTarget() {
+    	turretYawLerp();
+    	turretPitchLerp();
+    	
     	float turretYaw = turretRotation.yaw;
+    	float turretPitch = turretRotation.pitch;
     	float focusYaw = targetTurretRotation.yaw;
-    	float minYaw = focusYaw - this.cycleCount;
-    	float maxYaw = focusYaw + this.cycleCount;
-    	boolean isTargetInRange = minYaw < turretYaw && turretYaw < maxYaw;
+    	float focusPitch = targetTurretRotation.pitch;
+    	boolean isTargetInRange = turretYaw == focusYaw && turretPitch == focusPitch;
     	
         if (isTargetInRange) {
         	this.isLockedOn = true;
@@ -82,6 +61,34 @@ public class TileEntityTurretLookHelper {
             this.turretRotation.pitch = this.targetTurretRotation.pitch;
             this.turretRotation.yaw = this.targetTurretRotation.yaw;
         }
+    }
+    
+    private float lerp(float pointA, float pointB, float percentage) {
+        return (pointA * (1.0f - percentage)) + (pointB * percentage);
+    }
+    
+    private void turretYawLerp() {
+    	float yawDeltaLeft = (this.targetTurretRotation.yaw - this.turretRotation.yaw);
+    	float yawDeltaRight = (this.turretRotation.yaw - this.targetTurretRotation.yaw);
+    	float yawDeltaLeftNormalized = yawDeltaLeft < 0 ? yawDeltaLeft + 360 : yawDeltaLeft;
+    	float yawDeltaRightNormalized = yawDeltaRight < 0 ? yawDeltaRight + 360 : yawDeltaRight;
+    	
+    	float yawScaleFactor = (yawDeltaLeftNormalized < yawDeltaRightNormalized ? yawDeltaLeft : yawDeltaRight) / this.turretRotateSpeed;
+    	float yawLerpValue = lerp(this.turretRotation.yaw, this.targetTurretRotation.yaw, 0.1f / (yawScaleFactor + 0.1f)) - this.turretRotation.yaw;
+    	
+    	this.turretRotation.yaw += yawLerpValue;
+    }
+    
+    private void turretPitchLerp() {
+    	float pitchDeltaLeft = (this.targetTurretRotation.pitch - this.turretRotation.pitch);
+    	float pitchDeltaRight = (this.turretRotation.pitch - this.targetTurretRotation.pitch);
+    	float pitchDeltaLeftNormalized = pitchDeltaLeft < 0 ? pitchDeltaLeft + 360 : pitchDeltaLeft;
+    	float pitchDeltaRightNormalized = pitchDeltaRight < 0 ? pitchDeltaRight + 360 : pitchDeltaRight;
+    	
+    	float pitchScaleFactor = (pitchDeltaLeftNormalized < pitchDeltaRightNormalized ? pitchDeltaLeft : pitchDeltaRight) / this.turretRotateSpeed;
+    	float pitchLerpValue = lerp(this.turretRotation.pitch, this.targetTurretRotation.pitch, 0.1f / (pitchScaleFactor + 0.1f)) - this.turretRotation.pitch;
+    	
+    	this.turretRotation.pitch += pitchLerpValue;
     }
 
     public Rotation turnTurretToPoint(Pos turretPos, BlockPos targetPos, float deltaYaw, float deltaPitch)
@@ -97,21 +104,6 @@ public class TileEntityTurretLookHelper {
         float yaw = MDXMath.wrapAngle(this.turretRotation.yaw, newYaw, deltaYaw);
         float pitch = MDXMath.wrapAngle(this.turretRotation.pitch, f1, deltaPitch);
         return new Rotation(yaw, pitch);
-    }
-
-    public void setCycleCount(int count)
-    {
-        this.cycleCount = count;
-    }
-
-    public int getCycleCount()
-    {
-        return cycleCount;
-    }
-
-    public int getBaseCycleCount()
-    {
-        return 4;
     }
 
     public float getRotationYaw()
@@ -149,5 +141,13 @@ public class TileEntityTurretLookHelper {
 
 	public void setLockedOn(boolean isLockedOn) {
 		this.isLockedOn = isLockedOn;
+	}
+	
+	public float getTurretRotateSpeed() {
+		return this.turretRotateSpeed;
+	}
+	
+	public void setTurretRotateSpeed(float turretRotateSpeed) {
+		this.turretRotateSpeed = turretRotateSpeed;
 	}
 }

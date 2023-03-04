@@ -160,9 +160,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.getLookHelper().getRotation().pitch = packet.rotation.pitch;
     }
 
-    public void applyUpgrades()
-    {
-        int cycles = this.getLookHelper().getBaseCycleCount();
+    public void applyUpgrades() {
+    	float turretRotateSpeed = this.getLookHelper().getTurretRotateSpeed();
         this.getAmmoHelper().setAmmoDisplayEnabled(false);
 
         for (int i = 0; i < 3; i++)
@@ -171,7 +170,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
             if (pciSlot.getItem() == AliensVsPredator.items().itemProcessor)
             {
-                cycles += pciSlot.getCount();
+                turretRotateSpeed += pciSlot.getCount() * (this.getLookHelper().getTurretRotateSpeed() / 64f);
             }
 
             if (pciSlot.getItem() == AliensVsPredator.items().itemLedDisplay)
@@ -179,8 +178,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                 this.getAmmoHelper().setAmmoDisplayEnabled(true);
             }
         }
-
-        this.getLookHelper().setCycleCount(cycles);
+        
+        this.getLookHelper().setTurretRotateSpeed(turretRotateSpeed);
     }
 
     public NBTTagList getTargetListTag()
