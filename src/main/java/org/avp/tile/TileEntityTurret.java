@@ -45,8 +45,8 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
  */
 public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver
 {
-    public InventoryBasic                       inventoryExpansion;
-    public InventoryBasic                       inventoryDrive;
+    public final InventoryBasic                 inventoryExpansion;
+    public final InventoryBasic                 inventoryDrive;
     private ContainerTurret                     container;
     private Pos                                 pos;
 	public int                                  beamColor;
@@ -251,9 +251,12 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         }
     }
 
-    public ContainerTurret getNewContainer(EntityPlayer player)
-    {
-        return (container = new ContainerTurret(player, this, world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
+    public ContainerTurret getNewContainer(EntityPlayer player) {
+    	if (this.container == null) {
+            this.container = new ContainerTurret(player, this, world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+    	}
+    	
+        return this.container;
     }
 
     public ContainerTurret getContainer(EntityPlayer player)
