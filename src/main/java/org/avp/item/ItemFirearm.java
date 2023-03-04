@@ -1,15 +1,14 @@
 package org.avp.item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
-import org.avp.client.Sounds;
+import org.avp.item.firearms.FirearmProfile;
+import org.avp.item.firearms.ItemAmmunition;
 import org.avp.packets.server.PacketFirearmSync;
 import org.avp.packets.server.PacketReloadFirearm;
 
 import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.util.Sound;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.asx.mdx.lib.world.item.HookedItem;
@@ -33,197 +32,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SuppressWarnings("unchecked")
 public class ItemFirearm extends HookedItem
 {
-    private static final ArrayList<FirearmProfile> FIREARMS         = new ArrayList<FirearmProfile>();
-    private static int                             lastRegisteredId = 0;
-
-    public static FirearmProfile getFirearmForGlobalId(int globalId)
-    {
-        for (FirearmProfile firearm : FIREARMS)
-        {
-            if (firearm.getGlobalId() == globalId)
-            {
-                return firearm;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * An enum of the different firearm classifications used to mix and match firearms with different types of ammo.
-     */
-    public static enum Classification
-    {
-        SUB_MACHINE_GUN(1.0F),
-        LIGHT_MACHINE_GUN(1.2F),
-        RIFLE(1.8F),
-        ASSAULT_RIFLE(1.0F),
-        SHOTGUN(2.0F),
-        PISTOL(1.0F);
-
-        private float baseDamage;
-
-        private Classification(float baseDamage)
-        {
-            this.baseDamage = baseDamage;
-        }
-
-        public float getBaseDamage()
-        {
-            return this.baseDamage;
-        }
-    }
-
-    /**
-     * A singleton used to register types of firearms.
-     */
-    public static class FirearmProfile
-    {
-        private Classification classification;
-        private int            ammoMax;
-        private int            ammoConsumptionRate;
-        private float          recoil;
-        private double         rpm;
-        private int            reloadTime;
-        private double         soundLength;
-        private Sound          sound;
-
-        private int            globalId;
-
-        public FirearmProfile(Classification classification)
-        {
-            this.globalId = -1;
-            this.classification = classification;
-            this.ammoMax = 128;
-            this.recoil = 0.2F;
-            this.rpm = 400;
-            this.reloadTime = 6 * 20;
-            this.ammoConsumptionRate = 1;
-            this.soundLength = 0;
-            this.sound = Sounds.fxWeaponPistol;
-            this.register();
-        }
-
-        public FirearmProfile register()
-        {
-            if (this.globalId == -1)
-            {
-                FIREARMS.add(this);
-                this.globalId = ItemFirearm.lastRegisteredId++;
-            }
-
-            return this;
-        }
-
-        public int getGlobalId()
-        {
-            return globalId;
-        }
-
-        public Classification getClassification()
-        {
-            return classification;
-        }
-
-        public FirearmProfile setAmmoMax(int ammoMax)
-        {
-            this.ammoMax = ammoMax;
-            return this;
-        }
-
-        public int getAmmoMax()
-        {
-            return ammoMax;
-        }
-
-        public FirearmProfile setRecoil(float recoil)
-        {
-            this.recoil = recoil;
-            return this;
-        }
-
-        public float getRecoil()
-        {
-            return recoil;
-        }
-
-        public FirearmProfile setRoundsPerMinute(double rpm)
-        {
-            this.rpm = rpm;
-            return this;
-        }
-
-        public double getRoundsPerMinute()
-        {
-            return rpm;
-        }
-        
-        public int getShotsPerTick()
-        {
-            return (int) Math.round(this.rpm / 20);
-        }
-
-        public FirearmProfile setReloadTime(int reloadTime)
-        {
-            this.reloadTime = reloadTime;
-            return this;
-        }
-
-        public int getReloadTime()
-        {
-            return reloadTime;
-        }
-
-        public FirearmProfile setSound(Sound sound)
-        {
-            this.sound = sound;
-            return this;
-        }
-
-        public Sound getSound()
-        {
-            return sound;
-        }
-
-        public FirearmProfile setAmmoConsumptionRate(int ammoConsumptionRate)
-        {
-            this.ammoConsumptionRate = ammoConsumptionRate;
-            return this;
-        }
-
-        public int getAmmoConsumptionRate()
-        {
-            return ammoConsumptionRate;
-        }
-
-        public FirearmProfile setSoundLength(double seconds)
-        {
-            this.soundLength = seconds;
-            return this;
-        }
-
-        public double getSoundLength()
-        {
-            return this.soundLength;
-        }
-    }
-
-    public static class ItemAmmunition extends HookedItem
-    {
-        protected Classification ammoClass;
-
-        public ItemAmmunition(Classification ammoClass)
-        {
-            super();
-            this.ammoClass = ammoClass;
-        }
-
-        public Classification getClassification()
-        {
-            return ammoClass;
-        }
-    }
-
+    
     private FirearmProfile profile;
     private int            ammo;
     private int            reloadTimer;

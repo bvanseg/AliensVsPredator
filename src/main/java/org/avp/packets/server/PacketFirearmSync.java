@@ -3,7 +3,7 @@ package org.avp.packets.server;
 import org.avp.DamageSources;
 import org.avp.block.BlockHiveResin;
 import org.avp.item.ItemFirearm;
-import org.avp.item.ItemFirearm.FirearmProfile;
+import org.avp.item.firearms.FirearmProfile;
 import org.avp.world.hives.HiveHandler;
 
 import com.asx.mdx.lib.world.entity.Entities;
@@ -87,7 +87,7 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
                     else if(ctx.getServerHandler().player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
                             itemFirearm = (ItemFirearm) ctx.getServerHandler().player.getHeldItemOffhand().getItem();
                     
-                    FirearmProfile firearm = ItemFirearm.getFirearmForGlobalId(packet.firearmId);
+                    FirearmProfile firearm = FirearmProfile.getFirearmForGlobalId(packet.firearmId);
 
                     if (itemFirearm != null && itemFirearm.canSoundPlay())
                     {
