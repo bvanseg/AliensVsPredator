@@ -45,16 +45,16 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
  */
 public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver
 {
-    public InventoryBasic                 inventoryExpansion;
-    public InventoryBasic                 inventoryDrive;
-    private ContainerTurret               container;
-    private Pos                           pos;
-	public int                            beamColor;
+    public InventoryBasic                       inventoryExpansion;
+    public InventoryBasic                       inventoryDrive;
+    private ContainerTurret                     container;
+    private Pos                                 pos;
+	public int                                  beamColor;
 	
-    private TileEntityTurretAmmoHelper    ammoHelper;
-    private TileEntityTurretTargetHelper  targetHelper;
-    private TileEntityTurretLookHelper    lookHelper;
-    private TileEntityTurretAttackHelper  attackHelper;
+    private final TileEntityTurretAmmoHelper    ammoHelper;
+    private final TileEntityTurretTargetHelper  targetHelper;
+    private final TileEntityTurretLookHelper    lookHelper;
+    private final TileEntityTurretAttackHelper  attackHelper;
 
     public TileEntityTurret()
     {
@@ -90,7 +90,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         if (this.getVoltage() > 0)
         {
         	this.getLookHelper().update(this.pos);
-            this.getTargetHelper().update(this.world, this.pos);
+            this.getTargetHelper().update(this.world, this.pos, this.getLookHelper());
 
             // While this code could go in the target helper, it is out of scope of what the target helper is intended to do. Leave this here.
             if (!this.world.isRemote && this.getTargetHelper().getTargetEntity() != null) {

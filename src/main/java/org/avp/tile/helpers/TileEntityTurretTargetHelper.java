@@ -63,9 +63,10 @@ public class TileEntityTurretTargetHelper {
 		this.targetPlayers = new HashSet<>();
 	}
 	
-	public void update(World world, Pos pos) {
+	public void update(World world, Pos pos, TileEntityTurretLookHelper lookHelper) {
 		if (!doesCurrentTargetStillExist() || !canClearlyAttackCurrentTarget(pos)) {
 			this.targetEntity = null;
+			lookHelper.setLockedOn(false);
 		}
 
 		if (this.targetEntity == null) {
@@ -83,8 +84,7 @@ public class TileEntityTurretTargetHelper {
 
 	public void findTarget(World world, Pos pos) {
 		if (!world.isRemote) {
-			EntityLiving newTarget = (EntityLiving) Entities.getRandomEntityInCoordsRange(world,
-					EntityLiving.class, pos, TURRET_RANGE, TURRET_RANGE);
+			EntityLiving newTarget = (EntityLiving) Entities.getRandomEntityInCoordsRange(world, EntityLiving.class, pos, TURRET_RANGE, TURRET_RANGE);
 
 			if (newTarget != null && this.targetTypes.contains(newTarget.getClass()) && this.canTarget(newTarget, pos) && canSee(newTarget, pos)) {
 				this.targetEntity = newTarget;

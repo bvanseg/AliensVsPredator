@@ -34,15 +34,16 @@ public class TileEntityTurretLookHelper {
     
     public void update(Pos pos) {
     	Entity targetEntity = this.targetHelper.getTargetEntity();
-
-		this.lookAtFocusPoint();
+    	
+		this.rotateTurret();
 		
 		if (targetEntity != null) {
-    		this.turnTurretToPoint(pos, targetEntity.getPosition(), this.getFocusRotation(), 360F, 90F);
+    		this.setFocusRotation(this.turnTurretToPoint(pos, targetEntity.getPosition(), 360F, 90F));
+    		this.tryLockOnToTarget();
 		}
     }
 
-    public void lookAtFocusPoint()
+    public void rotateTurret()
     {
     	if (Math.ceil(this.getRotationYaw()) < Math.ceil(this.targetTurretRotation.yaw))
         {
@@ -65,7 +66,9 @@ public class TileEntityTurretLookHelper {
             this.previousTurretRotation.pitch = this.turretRotation.pitch;
             this.turretRotation.pitch -= this.cycleCount;
         }
-
+    }
+    
+    public void tryLockOnToTarget() {
     	float turretYaw = turretRotation.yaw;
     	float focusYaw = targetTurretRotation.yaw;
     	float minYaw = focusYaw - this.cycleCount;
@@ -78,12 +81,10 @@ public class TileEntityTurretLookHelper {
             this.previousTurretRotation.yaw = this.turretRotation.yaw;
             this.turretRotation.pitch = this.targetTurretRotation.pitch;
             this.turretRotation.yaw = this.targetTurretRotation.yaw;
-        } else {
-        	this.isLockedOn = false;
         }
     }
 
-    public Rotation turnTurretToPoint(Pos turretPos, BlockPos targetPos, Rotation rotation, float deltaYaw, float deltaPitch)
+    public Rotation turnTurretToPoint(Pos turretPos, BlockPos targetPos, float deltaYaw, float deltaPitch)
     {
         double x = targetPos.getX() - turretPos.x;
         double y = targetPos.getY() - turretPos.y;
@@ -95,7 +96,7 @@ public class TileEntityTurretLookHelper {
 
         float yaw = MDXMath.wrapAngle(this.turretRotation.yaw, newYaw, deltaYaw);
         float pitch = MDXMath.wrapAngle(this.turretRotation.pitch, f1, deltaPitch);
-        return rotation.setYaw(yaw).setPitch(pitch);
+        return new Rotation(yaw, pitch);
     }
 
     public void setCycleCount(int count)
@@ -115,7 +116,6 @@ public class TileEntityTurretLookHelper {
 
     public float getRotationYaw()
     {
-        // this.getDirection() * 90F +
         return this.turretRotation.yaw;
     }
 
@@ -145,5 +145,9 @@ public class TileEntityTurretLookHelper {
 	
 	public boolean isLockedOn() {
 		return this.isLockedOn;
+	}
+
+	public void setLockedOn(boolean isLockedOn) {
+		this.isLockedOn = isLockedOn;
 	}
 }
