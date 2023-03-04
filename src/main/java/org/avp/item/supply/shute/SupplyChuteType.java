@@ -1,4 +1,4 @@
-package org.avp.item;
+package org.avp.item.supply.shute;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.ModelSupplyChute;
@@ -7,29 +7,19 @@ import org.avp.entities.EntitySupplyChuteMarines;
 import org.avp.entities.EntitySupplyChuteSeegson;
 
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-import com.asx.mdx.lib.world.item.HookedItem;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemSupplyChute extends HookedItem
-{
-    public static enum SupplyChuteType
-    {
+public enum SupplyChuteType {
         UNBRANDED(0, EntitySupplyChute.class), MARINES(1, EntitySupplyChuteMarines.class), SEEGSON(2, EntitySupplyChuteSeegson.class);
 
         private int                                id;
         private Class<? extends EntitySupplyChute> entityType;
 
-        private SupplyChuteType(int id, Class<? extends EntitySupplyChute> entityType)
+        SupplyChuteType(int id, Class<? extends EntitySupplyChute> entityType)
         {
             this.id = id;
             this.entityType = entityType;
@@ -140,35 +130,3 @@ public class ItemSupplyChute extends HookedItem
             return null;
         }
     }
-
-    private SupplyChuteType type;
-
-    public ItemSupplyChute(SupplyChuteType type)
-    {
-        setTranslationKey("supplyChute");
-        setMaxStackSize(1);
-        this.type = type;
-    }
-    
-    @Override
-    public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
-    {
-        if (playerIn.capabilities.isCreativeMode || Inventories.consumeItem(playerIn, this))
-        {
-            int x = (int) (playerIn.posX + 1);
-            int y = (int) (playerIn.posY + 80);
-            int z = (int) (playerIn.posZ);
-
-            if (!worldIn.isRemote)
-            {
-                worldIn.setBlockState(new BlockPos(x, y, z), this.type.getBlock().getDefaultState());
-            }
-        }
-        return super.onItemRightClick(worldIn, playerIn, hand);
-    }
-
-    public SupplyChuteType getType()
-    {
-        return type;
-    }
-}
