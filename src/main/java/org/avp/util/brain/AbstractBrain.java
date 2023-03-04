@@ -23,7 +23,7 @@ import net.minecraft.entity.EntityLivingBase;
  * <li>Memorize important input data for later use.</li>
  * <li>Run tasks, presuming the task's flag requirements are met.</li>
  * <li>Produce results from tasks (manifested as observable behavior in the game world).</li>
- * <li>Repeat.
+ * <li>Repeat.</li>
  * </ol>
  * This class has benefits over Minecraft's AI system in the following ways:
  * <ul>
