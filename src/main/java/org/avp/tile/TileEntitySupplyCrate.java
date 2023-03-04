@@ -3,7 +3,7 @@ package org.avp.tile;
 import org.avp.AliensVsPredator;
 import org.avp.api.machines.IOpenable;
 import org.avp.inventory.ContainerSupplyCrate;
-import org.avp.item.supply.shute.SupplyChuteType;
+import org.avp.item.supply.chute.SupplyChuteType;
 import org.avp.packets.client.PacketOpenable;
 
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;

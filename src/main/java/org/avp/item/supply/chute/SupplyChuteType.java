@@ -1,4 +1,4 @@
-package org.avp.item.supply.shute;
+package org.avp.item.supply.chute;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.ModelSupplyChute;

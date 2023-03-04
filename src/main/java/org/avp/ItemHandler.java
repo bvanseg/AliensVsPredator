@@ -83,8 +83,8 @@ import org.avp.item.rackmodules.ItemNetworkRackModule5;
 import org.avp.item.rackmodules.ItemNetworkRackModule6;
 import org.avp.item.rackmodules.ItemNetworkRackModule7;
 import org.avp.item.rackmodules.ItemNetworkRackModule8;
-import org.avp.item.supply.shute.ItemSupplyChute;
-import org.avp.item.supply.shute.SupplyChuteType;
+import org.avp.item.supply.chute.ItemSupplyChute;
+import org.avp.item.supply.chute.SupplyChuteType;
 
 import com.asx.mdx.lib.client.Renderers;
 import com.asx.mdx.lib.world.item.HookedItem;

@@ -1,4 +1,4 @@
-package org.avp.item.supply.shute;
+package org.avp.item.supply.chute;
 
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.asx.mdx.lib.world.item.HookedItem;

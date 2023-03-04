@@ -1,7 +1,7 @@
 package org.avp.client.render.items;
 
 import org.avp.client.model.entities.ModelSupplyChute;
-import org.avp.item.supply.shute.SupplyChuteType;
+import org.avp.item.supply.chute.SupplyChuteType;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
