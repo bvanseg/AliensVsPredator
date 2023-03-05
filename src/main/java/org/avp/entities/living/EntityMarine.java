@@ -167,7 +167,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
         if (!this.world.isRemote)
         {
-            this.getDataManager().set(FIRING, !(System.currentTimeMillis() - getLastShotFired() >= 1000 * 3));
+            this.getDataManager().set(FIRING, this.getAttackTarget() != null);
         }
     }
 
