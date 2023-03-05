@@ -131,6 +131,14 @@ public class TileEntityTurretLookHelper {
         return this.targetTurretRotation;
     }
 
+	public void setPreviousTurretRotation(Rotation rotation) {
+		this.previousTurretRotation = rotation;
+	}
+
+	public void setTurretRotation(Rotation rotation) {
+		this.turretRotation = rotation;
+	}
+
 	public void setFocusRotation(Rotation focrot) {
 		this.targetTurretRotation = focrot;
 	}
