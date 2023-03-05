@@ -1,12 +1,14 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityCrusher;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelCrusherQuad extends Model
+public class ModelCrusherQuad extends Model<EntityCrusher>
 {
     public ModelRenderer chest;
     public ModelRenderer abdomen;
@@ -284,7 +286,7 @@ public class ModelCrusherQuad extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityCrusher obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;
 

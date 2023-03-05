@@ -1,5 +1,7 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityCrusher;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -7,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelCrusher extends Model
+public class ModelCrusher extends Model<EntityCrusher>
 {
     public ModelRenderer sTorso, sTorso2, sRightThigh, sLeftThigh, sLeftShin, sRightShin, sLeftShin2, sRightShin2, sLeftFoot, sRightFoot, sLeftArm, sRightArm, sLeftClaw, sRightArm2, sNeck, sHead, sHead2, sJaw1, sLeftArm2, sRightClaw, sLeftClaw2, sRightClaw2, sVertibrae1, sTail1, sTail2, sTail3, sStabber, sTail4, sTail5, sVertibrae2, sSpike3, sSpike4, sSpike2, sSpike5, sHead4, crest0, crest1, crest2, crest3, crest4, crest5, sArmCrusher1, sArmCrusher;
 
@@ -278,10 +280,8 @@ public class ModelCrusher extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityCrusher obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
-        
         this.sSpike3.rotateAngleX = 0.52F + Math.abs(0.0F);
         this.sSpike4.rotateAngleX = -0.8F - Math.abs(0.0F);
         this.sSpike2.rotateAngleX = 0.35F + Math.abs(0.2F);

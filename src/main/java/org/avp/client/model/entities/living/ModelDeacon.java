@@ -1,12 +1,14 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.species223ode.EntityDeacon;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelDeacon extends Model
+public class ModelDeacon extends Model<EntityDeacon>
 {
     public ModelRenderer chest;
     public ModelRenderer stomach;
@@ -294,10 +296,8 @@ public class ModelDeacon extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityDeacon obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;
-
         this.lThigh.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6562F) * 0.2F * swingProgressPrev(obj) - 0.5028515F;
         this.lShin.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6562F) * 0.2F * swingProgressPrev(obj) - 0.6F;
         this.lFoot.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6562F) * 0.2F * swingProgressPrev(obj) + 0.75F;

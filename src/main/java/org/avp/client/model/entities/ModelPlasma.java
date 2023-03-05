@@ -8,7 +8,7 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Vertex;
 import com.asx.mdx.lib.client.util.models.Model;
 
-public class ModelPlasma extends Model
+public class ModelPlasma extends Model<Object>
 {
     private Color  color;
     private float  scale;

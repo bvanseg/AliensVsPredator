@@ -1,6 +1,7 @@
 package org.avp.client.model.entities.living;
 
 import org.avp.entities.living.species.SpeciesEngineer;
+import org.avp.entities.living.species.engineer.EntityEngineer;
 
 import com.asx.mdx.lib.client.util.models.Model;
 
@@ -9,7 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelEngineer extends Model
+public class ModelEngineer extends Model<EntityEngineer>
 {
     public ModelRenderer chest;
     public ModelRenderer stomach;
@@ -139,7 +140,7 @@ public class ModelEngineer extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityEngineer obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;;
         

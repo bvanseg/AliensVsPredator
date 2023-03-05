@@ -1,5 +1,7 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityWarrior;
+
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
 
@@ -8,7 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelWarrior extends Model
+public class ModelWarrior extends Model<EntityWarrior>
 {
     public ModelRenderer chest, abdomen, rThigh, lThigh, lShin1, rShin1, lShin2, rShin2, lFoot, rFoot, lArm1, rArm1, lClaw1, rArm2, neck, headSpine1, rHead, jaw, jaw2, headSpine2, lArm2, rClaw1, lClaw2, rClaw2, back1, back2, tail1, tail2, stabber, tail3, tail4, lHead, tailSpikes5, tailSpikes4, tailSpikes3, tailSpikes2, tail5, tailSpikes1, part1, part2, part3, part4, headBase, headTop;
 
@@ -283,9 +285,9 @@ public class ModelWarrior extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityWarrior obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
+        EntityLivingBase base = (EntityLivingBase) obj;
         
         this.lThigh.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6662F) * 1.4F * swingProgressPrev(obj) - 0.8028515F;
         this.lShin1.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6662F) * 1.4F * swingProgressPrev(obj) - 0.4014257F;
