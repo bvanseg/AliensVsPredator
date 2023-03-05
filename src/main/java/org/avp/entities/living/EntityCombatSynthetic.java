@@ -120,7 +120,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
 
         if (!this.world.isRemote)
         {
-            this.getDataManager().set(FIRING, !(System.currentTimeMillis() - getLastShotFired() >= 1000 * 3));
+            this.getDataManager().set(FIRING, this.getAttackTarget() != null);
         }
     }
 
