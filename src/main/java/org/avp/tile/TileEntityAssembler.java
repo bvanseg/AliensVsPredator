@@ -1,7 +1,5 @@
 package org.avp.tile;
 
-import java.util.Random;
-
 import org.avp.AliensVsPredator;
 import org.avp.inventory.ContainerAssembler;
 import org.avp.item.crafting.AssemblyManager;
@@ -26,7 +24,6 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     private ItemStack[]        items       = new ItemStack[28];
     private ItemStack          previousTickStack;
     public int                 clickAmount = 0;
-    public EntityPlayer        player;
     private ContainerAssembler container;
 
     public TileEntityAssembler()
@@ -51,11 +48,9 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     {
         if (this.getWorld().getTotalWorldTime() % 20 == 0)
         {
-            Random rand = new Random();
-
-            if (rand.nextInt(3) == 0)
+            if (this.getWorld().rand.nextInt(3) == 0)
             {
-                this.randomItem = AssemblyManager.instance.schematics().get(rand.nextInt(AssemblyManager.instance.schematics().size())).getItemStackAssembled().getItem();
+                this.randomItem = AssemblyManager.instance.schematics().get(this.getWorld().rand.nextInt(AssemblyManager.instance.schematics().size())).getItemStackAssembled().getItem();
             }
         }
 
@@ -231,7 +226,6 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
 
     public ContainerAssembler getNewContainer(EntityPlayer player)
     {
-        this.player = player;
         return (container = new ContainerAssembler(player.inventory, this, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
     }
 
@@ -242,8 +236,6 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
 
     public void openGui(EntityPlayer player)
     {
-        this.player = player;
-
         if (!player.world.isRemote)
         {
             FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_ASSEMBLER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
