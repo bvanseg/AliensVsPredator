@@ -42,6 +42,7 @@ public class EntityGrenade extends EntityThrowable
         super(world);
         this.setSize(0.5F, 0.5F);
         this.fuse = 0;
+        this.isImmuneToFire = true;
     }
 
     public void setAim(Entity shooter, float pitch, float yaw, float p_184547_4_, float velocity, float inaccuracy)
@@ -94,9 +95,15 @@ public class EntityGrenade extends EntityThrowable
             this.motionY *= -0.5D;
         }
 
-        if (this.onGround && this.explodeOnImpact)
+        if (this.onGround)
         {
-            this.explode();
+        	if (this.explodeOnImpact) {
+        		this.explode();
+        	}
+        	
+        	if (this.isBurning()) {
+                this.fuse += 3;
+        	}
         }
 
         if (this.fuse++ >= 50)
