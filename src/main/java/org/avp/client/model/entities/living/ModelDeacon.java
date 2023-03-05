@@ -5,7 +5,6 @@ import org.avp.entities.living.species.species223ode.EntityDeacon;
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 public class ModelDeacon extends Model<EntityDeacon>

@@ -6,7 +6,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelM41A extends Model implements IFirearmModel
+public class ModelM41A extends Model<Object> implements IFirearmModel
 {
     public ModelRenderer stockEnd;
     public ModelRenderer stock1;

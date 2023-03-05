@@ -102,7 +102,6 @@ import org.avp.tile.TileEntityTurret;
 import org.avp.tile.TileEntityWorkstation;
 import org.avp.tile.plants.TileEntityGroundFern;
 import org.avp.tile.plants.TileEntityTreeFern;
-import org.avp.world.dimension.acheron.BiomeAcheron;
 import org.avp.world.dimension.varda.BiomeVarda;
 
 import com.asx.mdx.core.mods.IInitEvent;
