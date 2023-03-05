@@ -42,10 +42,9 @@ import net.minecraft.world.World;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost, Predicate<EntityLivingBase>
 {
-    private static final DataParameter<Boolean> FIRING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     
     private EntityAIBase                        aiRangedAttack;
-    private long                                lastShotFired;
 
     public EntityCombatSynthetic(World word)
     {
@@ -74,7 +73,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataManager().register(FIRING, false);
+        this.getDataManager().register(AIMING, false);
     }
     
     @Override
@@ -120,13 +119,13 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
 
         if (!this.world.isRemote)
         {
-            this.getDataManager().set(FIRING, this.getAttackTarget() != null);
+            this.getDataManager().set(AIMING, this.getAttackTarget() != null);
         }
     }
 
-    public boolean isFiring()
+    public boolean isAiming()
     {
-        return this.getDataManager().get(FIRING);
+        return this.getDataManager().get(AIMING);
     }
     
     @Override
@@ -140,7 +139,6 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     {
         if (this.getAttackTarget() != null)
         {
-            this.lastShotFired = System.currentTimeMillis();
             Sounds.WEAPON_PULSERIFLE.playSound(this);
             EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.5F);
             entityBullet.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -210,11 +208,6 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     public void setSwingingArms(boolean swingingArms)
     {
         ;
-    }
-
-    public long getLastShotFired()
-    {
-        return this.lastShotFired;
     }
     
     @Override
