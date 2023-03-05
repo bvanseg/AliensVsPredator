@@ -10,8 +10,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 
-
-public class ModelCable extends Model
+//TODO: Use a better type than TileEntity for Model.
+public class ModelCable extends Model<TileEntity>
 {
     public ModelRenderer cableWest;
     public ModelRenderer cableEast;
@@ -67,7 +67,7 @@ public class ModelCable extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntity obj)
     {
         TileEntity tile = (TileEntity) obj;
 

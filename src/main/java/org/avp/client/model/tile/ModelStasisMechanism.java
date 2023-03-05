@@ -1,10 +1,12 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntityStasisMechanism;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelStasisMechanism extends Model
+public class ModelStasisMechanism extends Model<TileEntityStasisMechanism>
 {
     ModelRenderer core, west, north, northwest, northeast, east, southeast, southwest, south;
 
@@ -70,7 +72,7 @@ public class ModelStasisMechanism extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityStasisMechanism obj)
     {
         west.render(DEFAULT_SCALE);
         north.render(DEFAULT_SCALE);
