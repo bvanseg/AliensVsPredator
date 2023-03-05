@@ -49,6 +49,9 @@ public class GuiAssembler extends GuiContainer
     private static ArrayList<Schematic> schematics;
     private static int requestedAmount = 1;
     private static int scroll = 0;
+    private static int maxAssemblyAmount = 0;
+    private static boolean searchRequiresUpdate = true;
+    private static boolean assemblyRequiresUpdate = true;
     
     private static final IAction assembleAction = (IGuiElement element) -> {
     	Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
@@ -121,6 +124,9 @@ public class GuiAssembler extends GuiContainer
         super.initGui();
         
         scroll = 0;
+        requestedAmount = 1;
+        assemblyRequiresUpdate = true;
+        searchRequiresUpdate = true;
         schematics = new ArrayList<>(AssemblyManager.instance.schematics());
         searchBar.setText("");
 
@@ -135,26 +141,20 @@ public class GuiAssembler extends GuiContainer
         buttonScrollUp.x = this.guiLeft + xSize + 5 - buttonOffsetX;
         buttonScrollUp.y = this.guiTop + 4;
         
-        buttonAssemble.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
-        buttonAssemble.y = this.guiTop + 3 + (offset += 20);
-        
-        buttonAssemble4.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
-        buttonAssemble4.y = this.guiTop + 3 + (offset += 20);
-        
-        buttonAssemble8.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
-        buttonAssemble8.y = this.guiTop + 3 + (offset += 20);
-        
-        buttonAssemble16.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
-        buttonAssemble16.y = this.guiTop + 3 + (offset += 20);
-        
-        buttonAssemble32.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
-        buttonAssemble32.y = this.guiTop + 3 + (offset += 20);
-        
-        buttonAssembleStack.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
-        buttonAssembleStack.y = this.guiTop + 3 + (offset += 20);
+        this.offsetAssembleButton(buttonAssemble, buttonOffsetX, offset += 20);
+        this.offsetAssembleButton(buttonAssemble4, buttonOffsetX, offset += 20);
+        this.offsetAssembleButton(buttonAssemble8, buttonOffsetX, offset += 20);
+        this.offsetAssembleButton(buttonAssemble16, buttonOffsetX, offset += 20);
+        this.offsetAssembleButton(buttonAssemble32, buttonOffsetX, offset += 20);
+        this.offsetAssembleButton(buttonAssembleStack, buttonOffsetX, offset += 20);
 
         buttonScrollDown.x = this.guiLeft + this.xSize + 5 - buttonOffsetX;
         buttonScrollDown.y = this.guiTop + 3 + (offset += 20);
+    }
+    
+    private void offsetAssembleButton(GuiCustomButton button, int buttonOffsetX, int offset) {
+    	button.x = (this.guiLeft + this.xSize + 5) - buttonOffsetX;
+        button.y = this.guiTop + 3 + (offset);
     }
 
     @Override
@@ -170,84 +170,79 @@ public class GuiAssembler extends GuiContainer
     }
 
 	private void drawMaterialsSidebar() {
-		Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+		if (schematics.isEmpty()) return;
+		
+		Schematic selectedSchematic = schematics.get(getScroll());
 
-		if (selectedSchematic != null)
-		{
-		    int currentStack = -1;
-		    int progress = 0;
-		    int maxProgress = 0;
-		    int assemblerSidePanelWidth = ((this.width - this.xSize) / 2) - 5;
-		    int assemblerSidePanelX = -assemblerSidePanelWidth;
+		int currentStack = -1;
+	    int progress = 0;
+	    int maxProgress = 0;
+	    int assemblerSidePanelWidth = ((this.width - this.xSize) / 2) - 5;
+	    int assemblerSidePanelX = -assemblerSidePanelWidth;
 
-		    for (ItemStack stack : selectedSchematic.getItemsRequired())
-		    {
-		        currentStack++;
-		        int amountOfStack = AssemblyManager.amountForMatchingStack(Game.minecraft().player, stack);
-		        int stackY = 15 + (currentStack * 8);
-		        int curStackSize = (amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack);
-		        OpenGL.enableBlend();
-		        Draw.drawRect(assemblerSidePanelX, stackY - 2, assemblerSidePanelWidth, 8, 0xDD000000);
+	    for (ItemStack stack : selectedSchematic.getItemsRequired())
+	    {
+	        currentStack++;
+	        int amountOfStack = AssemblyManager.amountForMatchingStack(Game.minecraft().player, stack);
+	        int stackY = 15 + (currentStack * 8);
+	        int currentStackSize = (amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack);
+	        OpenGL.enableBlend();
+	        Draw.drawRect(assemblerSidePanelX, stackY - 2, assemblerSidePanelWidth, 8, 0xDD000000);
 
-		        OpenGL.pushMatrix();
-		        {
-		            float s = 0.5F;
-		            float m = 1F / s;
-		            int textColor = curStackSize >= stack.getCount() ? 0xFF00AAFF : curStackSize < stack.getCount() && curStackSize > 0 ? 0xFFFFAA00 : 0xFF888888;
+	        OpenGL.pushMatrix();
+	        {
+	            float s = 0.5F;
+	            float m = 1F / s;
+	            int textColor = currentStackSize >= stack.getCount() ? 0xFF00AAFF : currentStackSize < stack.getCount() && currentStackSize > 0 ? 0xFFFFAA00 : 0xFF888888;
 
-		            OpenGL.scale(s, s, 1.0F);
-		            Draw.drawString(curStackSize + "/" + stack.getCount(), Math.round((-12) * m), Math.round((stackY) * m), textColor, false);
-		            Draw.drawString(stack.getDisplayName(), Math.round((assemblerSidePanelX + 12) * m), Math.round((stackY) * m), 0xFF888888, false);
-		            Draw.drawItem(stack, Math.round((assemblerSidePanelX + 2) * m), Math.round((stackY - 2) * m), 16, 16);
-		        }
-		        OpenGL.popMatrix();
+	            OpenGL.scale(s, s, 1.0F);
+	            Draw.drawString(currentStackSize + "/" + stack.getCount(), Math.round((-12) * m), Math.round((stackY) * m), textColor, false);
+	            Draw.drawString(stack.getDisplayName(), Math.round((assemblerSidePanelX + 12) * m), Math.round((stackY) * m), 0xFF888888, false);
+	            Draw.drawItem(stack, Math.round((assemblerSidePanelX + 2) * m), Math.round((stackY - 2) * m), 16, 16);
+	        }
+	        OpenGL.popMatrix();
 
-		        maxProgress += stack.getCount();
+	        maxProgress += stack.getCount();
 
-		        if (amountOfStack > 0)
-		        {
-		            progress += amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack;
-		        }
-		    }
+	        if (amountOfStack > 0)
+	        {
+	            progress += amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack;
+	        }
+	    }
 
-		    int percentComplete = (progress * 100 / maxProgress);
-		    String progressBarString = "" + progress + "/" + maxProgress + " Materials";
-		    int progressBarColor = percentComplete < 25 ? 0xFFFF2222 : percentComplete < 50 ? 0xFFFFAA00 : (percentComplete == 100 ? 0xFF00AAFF : 0xFFFFAA00);
-		    Draw.drawProgressBar(progressBarString, maxProgress, progress, assemblerSidePanelX, 0, assemblerSidePanelWidth, 8, 3, progressBarColor, false);
-		}
+	    int percentComplete = (progress * 100 / maxProgress);
+	    String progressBarString = "" + progress + "/" + maxProgress + " Materials";
+	    int progressBarColor = percentComplete < 25 ? 0xFFFF2222 : percentComplete < 50 ? 0xFFFFAA00 : (percentComplete == 100 ? 0xFF00AAFF : 0xFFFFAA00);
+	    Draw.drawProgressBar(progressBarString, maxProgress, progress, assemblerSidePanelX, 0, assemblerSidePanelWidth, 8, 3, progressBarColor, false);
 	}
 
     /**
      * Draw the schematics in the assembler
      */
 	private void drawSchematicListItems() {
-		int currentItem = -1;
-
-		for (Schematic schematic : schematics)
-		{
-		    if (schematic != null && schematic.getItemStackAssembled() != null)
-		    {
-		        Item item = schematic.getItemStackAssembled().getItem();
-
-		        if (item != null && schematic.getItemStackAssembled().getDisplayName().toLowerCase().contains(searchBar.getText().toLowerCase()))
-		        {
-		            currentItem++;
-		            int numberRendered = currentItem - (getScroll());
-		            int entryHeight = 10;
-		            int entryWidth = this.xSize - Math.round(this.xSize / 5.35F);
-		            int entryX = 4;
-		            int entryY = 33 + (numberRendered) * entryHeight;
-
-		            if (numberRendered >= 0 && numberRendered <= 10)
-		            {
-		                OpenGL.enableBlend();
-		                OpenGL.disableBlend();
-		                Draw.drawRect(entryX, entryY + entryHeight, entryWidth, 1, 0xFF000000);
-		                Draw.drawString(I18n.translateToLocal(item.getTranslationKey() + ".name"), entryX + 13, entryY + 2, currentItem == scroll ? 0xFF00AAFF : 0xFF555555, false);
-		                Draw.drawItem(schematic.getItemStackAssembled(), entryX + 2, entryY + 2, 8, 8);
-		            }
-		        }
-		    }
+		List<Schematic> visibleSchematics = schematics.subList(getScroll(), Math.min(getScroll() + 10, schematics.size()));
+		
+		int i = getScroll();
+        int entryHeight = 10;
+        int entryX = 4;
+		
+		for (Schematic schematic : visibleSchematics) {
+			ItemStack itemStack = schematic.getItemStackAssembled();
+			Item item = itemStack.getItem();
+	        
+	        if (item != null && itemStack.getDisplayName().toLowerCase().contains(searchBar.getText().toLowerCase()))
+	        {
+	            int numberRendered = i - (getScroll());
+	            int entryWidth = this.xSize - Math.round(this.xSize / 5.35F);
+	            int entryY = 33 + (numberRendered) * entryHeight;
+	            
+                OpenGL.disableBlend();
+                Draw.drawRect(entryX, entryY + entryHeight, entryWidth, 1, 0xFF000000);
+                Draw.drawString(I18n.translateToLocal(item.getTranslationKey() + ".name"), entryX + 13, entryY + 2, numberRendered == 0 ? 0xFF00AAFF : 0xFF555555, false);
+                Draw.drawItem(schematic.getItemStackAssembled(), entryX + 2, entryY + 2, 8, 8);
+	        }
+			
+	        i++;
 		}
 	}
 
@@ -269,14 +264,17 @@ public class GuiAssembler extends GuiContainer
         buttonScrollUp.baseColor = getScroll() == 0 ? 0x22000000 : 0xAA000000;
         buttonScrollUp.drawButton();
 
-        int maxAmount = AssemblyManager.tryAssemblyMax(Game.minecraft().player, schematics.size() > 0 ? schematics.size() > 0 ? schematics.get(getScroll()) : null : null, true);
+        if (assemblyRequiresUpdate) {
+        	maxAssemblyAmount = AssemblyManager.tryAssemblyMax(Game.minecraft().player, schematics.size() > 0 ? schematics.size() > 0 ? schematics.get(getScroll()) : null : null, true);
+        	assemblyRequiresUpdate = false;
+        }
         
-        drawAssembleButton(buttonAssemble, maxAmount >= 1);
-        drawAssembleButton(buttonAssemble4, maxAmount >= 4);
-        drawAssembleButton(buttonAssemble8, maxAmount >= 8);
-        drawAssembleButton(buttonAssemble16, maxAmount >= 16);
-        drawAssembleButton(buttonAssemble32, maxAmount >= 32);
-        drawAssembleButton(buttonAssembleStack, maxAmount >= 64);
+        this.drawAssembleButton(buttonAssemble, maxAssemblyAmount >= 1);
+        this.drawAssembleButton(buttonAssemble4, maxAssemblyAmount >= 4);
+        this.drawAssembleButton(buttonAssemble8, maxAssemblyAmount >= 8);
+        this.drawAssembleButton(buttonAssemble16, maxAssemblyAmount >= 16);
+        this.drawAssembleButton(buttonAssemble32, maxAssemblyAmount >= 32);
+        this.drawAssembleButton(buttonAssembleStack, maxAssemblyAmount >= 64);
 
         buttonScrollDown.baseColor = getScroll() >= (schematics.size() - 1) ? 0x22000000 : 0xAA000000;
         buttonScrollDown.drawButton();
@@ -297,9 +295,9 @@ public class GuiAssembler extends GuiContainer
     			keyCode != Keyboard.KEY_CAPITAL &&
     			keyCode != Keyboard.KEY_LSHIFT) {
     		scroll = 0;
+            searchBar.textboxKeyTyped(typedChar, keyCode);
+            searchRequiresUpdate = true;
     	}
-
-        searchBar.textboxKeyTyped(typedChar, keyCode);
 
         if (!(keyCode == Keyboard.KEY_E && searchBar.isFocused()))
         {
@@ -314,55 +312,54 @@ public class GuiAssembler extends GuiContainer
 
         int dWheel = Mouse.getDWheel();
 
-        if (dWheel > 0)
-        {
+        if (dWheel > 0) {
             scrollUp();
         }
-        else if (dWheel < 0)
-        {
+        else if (dWheel < 0) {
             scrollDown();
         }
 
-        if (Keyboard.isKeyDown(Keyboard.KEY_DOWN))
-        {
+        if (Keyboard.isKeyDown(Keyboard.KEY_DOWN)) {
             scrollDown();
         }
 
-        if (Keyboard.isKeyDown(Keyboard.KEY_UP))
-        {
+        if (Keyboard.isKeyDown(Keyboard.KEY_UP)) {
             scrollUp();
         }
 
-        ArrayList<Schematic> searchedSchematics = new ArrayList<Schematic>();
+        if (searchRequiresUpdate) {
+            ArrayList<Schematic> searchedSchematics = new ArrayList<Schematic>();
 
-        for (Schematic schematic : sortedSchematics)
-        {
-            if (schematic != null && schematic.getItemStackAssembled() != null)
+            for (Schematic schematic : sortedSchematics)
             {
-                Item item = schematic.getItemStackAssembled().getItem();
-
-                if (item != null && schematic.getItemStackAssembled().getDisplayName().toLowerCase().contains(searchBar.getText().toLowerCase()))
+                if (schematic != null && schematic.getItemStackAssembled() != null)
                 {
-                    searchedSchematics.add(schematic);
+                    Item item = schematic.getItemStackAssembled().getItem();
+
+                    if (item != null && schematic.getItemStackAssembled().getDisplayName().toLowerCase().contains(searchBar.getText().toLowerCase()))
+                    {
+                        searchedSchematics.add(schematic);
+                    }
                 }
             }
+            schematics = searchedSchematics;
+            searchRequiresUpdate = false;
         }
-        schematics = searchedSchematics;
     }
 
     public static void scrollDown()
     {
-        if (scroll < schematics.size() - 1)
-        {
+        if (scroll < schematics.size() - 1) {
             scroll += 1;
+            assemblyRequiresUpdate = true;
         }
     }
 
     public static void scrollUp()
     {
-        if (scroll >= 1)
-        {
+        if (scroll >= 1) {
             scroll -= 1;
+            assemblyRequiresUpdate = true;
         }
     }
 
