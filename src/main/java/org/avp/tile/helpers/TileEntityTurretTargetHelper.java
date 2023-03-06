@@ -1,7 +1,10 @@
 package org.avp.tile.helpers;
 
+import java.util.Comparator;
 import java.util.HashSet;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.avp.entities.living.EntityAethon;
 import org.avp.entities.living.species.engineer.EntityEngineer;
@@ -89,27 +92,32 @@ public class TileEntityTurretTargetHelper {
 
 	public void findTarget(World world, Pos pos) {
 		if (!world.isRemote) {
-			EntityLivingBase newTarget = (EntityLivingBase) Entities.getRandomEntityInCoordsRange(world, EntityLivingBase.class, pos, TURRET_RANGE, TURRET_RANGE);
-
-			if (newTarget != null) {
+			List<EntityLivingBase> nearbyLivingEntities = Entities.getEntitiesInCoordsRange(world, EntityLivingBase.class, pos, TURRET_RANGE, TURRET_RANGE);
+			nearbyLivingEntities.sort(Comparator.comparingInt(e -> (int) e.getDistanceSq(pos.blockPos())));
+			
+			List<EntityLivingBase> potentialTargets = nearbyLivingEntities.stream().filter((newTarget) -> {
 				boolean mobCheck = this.targetTypes.contains(newTarget.getClass()) && this.canTarget(newTarget, pos) && canSee(newTarget, pos);
 				boolean playerCheck = newTarget instanceof EntityPlayer && canTargetPlayer((EntityPlayer) newTarget) && !((EntityPlayer) newTarget).isCreative();
 				
 				if (mobCheck || playerCheck) {
-					this.targetEntity = newTarget;
+					return true;
 				}
-			}
+				
+				return false;
+			}).collect(Collectors.toList());
+			
+			this.targetEntity = !potentialTargets.isEmpty() ? potentialTargets.get(0) : null;
 		}
 	}
 	
 	private boolean canContinueAttackingTarget(Entity target, Pos pos) {
-		if (target != null) {
-			boolean mobCheck = this.targetTypes.contains(target.getClass()) && this.canTarget(target, pos) && canSee(target, pos);
-			boolean playerCheck = target instanceof EntityPlayer && canTargetPlayer((EntityPlayer) target) && !((EntityPlayer) target).isCreative();
-			
-			if (mobCheck || playerCheck) {
-				return true;
-			}
+		if (target == null) return false;
+
+		boolean mobCheck = this.targetTypes.contains(target.getClass()) && this.canTarget(target, pos) && canSee(target, pos);
+		boolean playerCheck = target instanceof EntityPlayer && canTargetPlayer((EntityPlayer) target) && !((EntityPlayer) target).isCreative();
+		
+		if (mobCheck || playerCheck) {
+			return true;
 		}
 		
 		return false;
