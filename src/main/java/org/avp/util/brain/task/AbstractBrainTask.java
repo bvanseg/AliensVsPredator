@@ -37,4 +37,6 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	protected abstract boolean shouldExecute(T ctx);
 	protected abstract void execute(T ctx);
 	protected void finish(T ctx) {}
+
+	public boolean isExecuting() { return this.isExecuting; }
 }
