@@ -92,12 +92,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         {
         	this.getLookHelper().update(this.pos);
             this.getTargetHelper().update(this.world, this.pos, this.getLookHelper());
-
-            // While this code could go in the target helper, it is out of scope of what the target helper is intended to do. Leave this here.
-            if (!this.world.isRemote && this.getTargetHelper().getTargetEntity() != null) {
-                AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
-            }
-            
             this.getAmmoHelper().update(this.world, this.pos);
             this.getAttackHelper().update(this.world, this.pos, this.getLookHelper());
         }

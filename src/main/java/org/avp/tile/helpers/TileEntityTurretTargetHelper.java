@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.avp.AliensVsPredator;
 import org.avp.entities.living.EntityAethon;
 import org.avp.entities.living.species.engineer.EntityEngineer;
 import org.avp.entities.living.species.engineer.EntitySpaceJockey;
@@ -35,6 +36,7 @@ import org.avp.entities.living.vardic.EntityDeaconShark;
 import org.avp.entities.living.vardic.EntityGooMutant;
 import org.avp.entities.living.vardic.EntityHammerpede;
 import org.avp.entities.living.vardic.EntityOctohugger;
+import org.avp.packets.server.PacketTurretTargetUpdate;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
@@ -107,6 +109,11 @@ public class TileEntityTurretTargetHelper {
 			}).collect(Collectors.toList());
 			
 			this.targetEntity = !potentialTargets.isEmpty() ? potentialTargets.get(0) : null;
+
+            // While this code could go in the target helper, it is out of scope of what the target helper is intended to do. Leave this here.
+            if (this.getTargetEntity() != null) {
+                AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(pos.blockPos(), this.getTargetEntity().getEntityId()));
+            }
 		}
 	}
 	

@@ -18,12 +18,12 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
 
     public PacketTurretTargetUpdate() {}
 
-    public PacketTurretTargetUpdate(TileEntityTurret turret)
+    public PacketTurretTargetUpdate(BlockPos pos, int targetEntityId)
     {
-        this.x = turret.getPos().getX();
-        this.y = turret.getPos().getY();
-        this.z = turret.getPos().getZ();
-        this.id = turret.getTargetHelper().getTargetEntity().getEntityId();
+        this.x = pos.getX();
+        this.y = pos.getY();
+        this.z = pos.getZ();
+        this.id = targetEntityId;
     }
 
     @Override
