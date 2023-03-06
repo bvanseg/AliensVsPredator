@@ -14,8 +14,6 @@ import org.avp.util.brain.memory.BrainMemoryMap;
 import org.avp.util.brain.sensor.AbstractBrainSensor;
 import org.avp.util.brain.task.AbstractBrainTask;
 
-import net.minecraft.entity.EntityLivingBase;
-
 /**
  * A logical processor with input (sensors) and output/results (tasks). The processing pipeline is as follows:
  * <ol>
@@ -38,24 +36,22 @@ import net.minecraft.entity.EntityLivingBase;
  * @author Boston Vanseghi
  *
  */
-// TODO: Abstract minecraft code away from this class (move minecraft code to subtype).
 public abstract class AbstractBrain<T extends AbstractBrainContext> {
-	private EntityLivingBase entity;
-	
 	private BrainMemoryMap memoryManager;
 	private ArrayList<AbstractBrainSensor<T>> sensors;
 	private ArrayList<AbstractBrainTask<T>> tasks;
 	private HashMap<AbstractBrainFlag, BrainFlagState> brainFlagStates;
 	
-	public AbstractBrain(EntityLivingBase entity) {
-		this.entity = entity;
+	public AbstractBrain() {
 		this.memoryManager = new BrainMemoryMap();
 		this.sensors = new ArrayList<>();
 		this.tasks = new ArrayList<>();
 		this.brainFlagStates = new HashMap<>();
 	}
+
+	public void init() {}
 	
-	public void update(T ctx) {
+	public final void update(T ctx) {
 		sensors.forEach((sensor) -> sensor.sense(ctx));
 		tasks.forEach((task) -> {
 			if (this.canRunTask(task)) {
@@ -65,18 +61,16 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 			}
 		});
 	}
-
-	public void init() {}
 	
-	public void addSense(AbstractBrainSensor<T> brainSensor) {
+	public final void addSense(AbstractBrainSensor<T> brainSensor) {
 		sensors.add(brainSensor);
 	}
 	
-	public void addTask(AbstractBrainTask<T> brainTask) {
+	public final void addTask(AbstractBrainTask<T> brainTask) {
 		tasks.add(brainTask);
 	}
 	
-	public boolean canRunTask(AbstractBrainTask<T> brainTask) {
+	public final boolean canRunTask(AbstractBrainTask<T> brainTask) {
 		Map<AbstractBrainFlag, BrainFlagState> requirements = brainTask.getFlags();
 		
 		boolean allRequirementsPass = requirements.entrySet().stream().allMatch((entry) -> {
@@ -105,7 +99,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		return this.memoryManager.getMemory(memoryKey);
 	}
 	
-	public <U> void remember(BrainMemoryKey<?> memoryKey, U data) {
+	public final <U> void remember(BrainMemoryKey<?> memoryKey, U data) {
 		this.memoryManager.remember(memoryKey, data);
 		
 		if (data != null) {
@@ -117,7 +111,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		}
 	}
 	
-	public boolean hasMemory(BrainMemoryKey<?> memoryKey) {
+	public final boolean hasMemory(BrainMemoryKey<?> memoryKey) {
 		boolean hasMemory = this.memoryManager.hasMemory(memoryKey);
 		AbstractBrainFlag flag = BrainFlags.getFlagForKey(memoryKey);
 		
@@ -128,7 +122,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		return hasMemory;
 	}
 	
-	public void forget(BrainMemoryKey<?> memoryKey) {
+	public final void forget(BrainMemoryKey<?> memoryKey) {
 		this.memoryManager.forget(memoryKey);
 		
 		AbstractBrainFlag flag = BrainFlags.getFlagForKey(memoryKey);
@@ -136,9 +130,5 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		if (flag != null) {
 			this.brainFlagStates.put(flag, BrainFlagState.ABSENT);
 		}
-	}
-	
-	public EntityLivingBase getEntity() {
-		return this.entity;
 	}
 }

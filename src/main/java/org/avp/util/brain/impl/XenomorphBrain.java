@@ -5,7 +5,6 @@ import org.avp.entities.ai.alien.EntityAIFindJelly;
 import org.avp.entities.ai.alien.EntityAIShareJelly;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 import org.avp.entities.living.species.SpeciesXenomorph;
-import org.avp.util.brain.AbstractBrain;
 import org.avp.util.brain.impl.sensor.EntityBrainSensor;
 import org.avp.util.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.avp.util.brain.impl.task.NearestAttackableTargetBrainTask;
@@ -26,9 +25,8 @@ import net.minecraft.entity.player.EntityPlayer;
  * @author Boston Vanseghi
  *
  */
-public class XenomorphBrain extends AbstractBrain<EntityBrainContext> {
-	
-	public XenomorphBrain(EntityLivingBase entity) {
+public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
+	public XenomorphBrain(SpeciesXenomorph entity) {
 		super(entity);
 	}
 
@@ -45,9 +43,9 @@ public class XenomorphBrain extends AbstractBrain<EntityBrainContext> {
 		this.addTask(new NearestAttackableTargetBrainTask());
 //		this.addTask(new AttackOnCollideBrainTask(1.0D));
 
-		SpeciesXenomorph entity = (SpeciesXenomorph) this.getEntity();
+		SpeciesXenomorph entity = this.getEntity();
 		
-		// NOTE: These are adapters for old minecraft AI.
+		// NOTE: These are adapters for the older minecraft AI. The newer AI is commented out above.
         this.addTask(new BrainTaskAdapter(new EntityAISwimming(entity)));
         this.addTask(new BrainTaskAdapter(new EntityAILeapAtTarget(entity, 0.6F)));
         this.addTask(new BrainTaskAdapter(new EntityAIWander(entity, 0.8D)));
