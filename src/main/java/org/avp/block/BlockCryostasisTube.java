@@ -84,7 +84,7 @@ public class BlockCryostasisTube extends Block
 
         if (tile != null)
         {
-            tile.setRotationYAxis(Entities.getEntityFacingRotY(placer));
+            tile.setRotationYAxis(Entities.getEntityFacingRotY(placer).getOpposite());
             world.markBlockRangeForRenderUpdate(pos, pos);
         }
     }
