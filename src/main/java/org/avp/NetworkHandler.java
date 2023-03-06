@@ -17,6 +17,7 @@ import org.avp.packets.server.PacketAssemble;
 import org.avp.packets.server.PacketAttachParasiteToEntity;
 import org.avp.packets.server.PacketBlastdoorCommon;
 import org.avp.packets.server.PacketBlastdoorCommon.PacketBlastdoorClient;
+import org.avp.packets.server.PacketCryostasisStateUpdate;
 import org.avp.packets.server.PacketDamageEntity;
 import org.avp.packets.server.PacketFireAPC;
 import org.avp.packets.server.PacketFirearmSync;
@@ -92,6 +93,7 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.CLIENT, PacketOpenGui.class);
         this.registerMessage(Side.CLIENT, PacketBlastdoorClient.class);
         this.registerMessage(Side.CLIENT, PacketAttachParasiteToEntity.class);
+        this.registerMessage(Side.CLIENT, PacketCryostasisStateUpdate.class);
     }
 
     /**
