@@ -16,9 +16,9 @@ package org.avp.util.brain.flag;
  */
 public abstract class AbstractBrainFlag {
 	
-	private String identifier;
+	private final String identifier;
 	
-	public AbstractBrainFlag(String identifier) {
+	protected AbstractBrainFlag(String identifier) {
 		this.identifier = identifier;
 	}
 

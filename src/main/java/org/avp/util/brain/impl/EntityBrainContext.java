@@ -11,10 +11,10 @@ import net.minecraft.entity.EntityLiving;
  * @author Boston Vanseghi
  *
  */
-public class EntityBrainContext extends AbstractBrainContext {
+public class EntityBrainContext implements AbstractBrainContext {
 
-	private AbstractBrain<?> brain;
-	private EntityLiving entity;
+	private final AbstractBrain<?> brain;
+	private final EntityLiving entity;
 
 	public EntityBrainContext(AbstractBrain<?> brain, EntityLiving entity) {
 		this.brain = brain;

@@ -23,7 +23,7 @@ public class AttackOnCollideBrainTask extends AbstractBrainTask<EntityBrainConte
     private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
     
     public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<AbstractBrainFlag, BrainFlagState>();
+    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
     	map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
     	map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
 		return map;
@@ -34,7 +34,7 @@ public class AttackOnCollideBrainTask extends AbstractBrainTask<EntityBrainConte
 		return FLAGS;
 	}
     
-    private double speedTowardsTarget;
+    private final double speedTowardsTarget;
     
     public AttackOnCollideBrainTask(double speedTowardsTarget) {
     	this.speedTowardsTarget = speedTowardsTarget;
@@ -43,7 +43,7 @@ public class AttackOnCollideBrainTask extends AbstractBrainTask<EntityBrainConte
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
 		EntityLivingBase attackTarget = ctx.getEntity().getAttackTarget();
-		return ctx.getEntity().getAttackTarget() != null && !attackTarget.isDead && ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET).isPresent();
+		return attackTarget != null && !attackTarget.isDead && ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET).isPresent();
 	}
 	
     @Override

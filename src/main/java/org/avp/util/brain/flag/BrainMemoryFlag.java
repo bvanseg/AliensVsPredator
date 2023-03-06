@@ -10,7 +10,7 @@ import org.avp.util.brain.memory.BrainMemoryKey;
  *
  */
 public class BrainMemoryFlag extends AbstractBrainFlag {
-	private BrainMemoryKey<?> memoryKey;
+	private final BrainMemoryKey<?> memoryKey;
 	
 	public BrainMemoryFlag(String identifier, BrainMemoryKey<?> memoryKey) {
 		super(identifier);

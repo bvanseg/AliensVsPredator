@@ -30,7 +30,7 @@ public class WatchClosestBrainTask extends AbstractBrainTask<EntityBrainContext>
     private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
     
     public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<AbstractBrainFlag, BrainFlagState>();
+    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
     	map.put(BrainFlags.LOOK, BrainFlagState.ABSENT);
 		return map;
     }
@@ -69,7 +69,7 @@ public class WatchClosestBrainTask extends AbstractBrainTask<EntityBrainContext>
 
 			if (this.watchedClass == EntityPlayer.class) {
 				this.closestEntity = entity.world.getClosestPlayer(entity.posX, entity.posY, entity.posZ,
-						(double) this.maxDistance,
+						this.maxDistance,
 						Predicates.and(EntitySelectors.NOT_SPECTATING, EntitySelectors.notRiding(entity)));
 			} else {
 				Optional<List<EntityLivingBase>> optional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);
@@ -92,6 +92,6 @@ public class WatchClosestBrainTask extends AbstractBrainTask<EntityBrainContext>
     @Override
 	protected void execute(EntityBrainContext ctx) {
     	EntityLiving entity = ctx.getEntity();
-        entity.getLookHelper().setLookPosition(this.closestEntity.posX, this.closestEntity.posY + (double)this.closestEntity.getEyeHeight(), this.closestEntity.posZ, (float)entity.getHorizontalFaceSpeed(), (float)entity.getVerticalFaceSpeed());
+        entity.getLookHelper().setLookPosition(this.closestEntity.posX, this.closestEntity.posY + this.closestEntity.getEyeHeight(), this.closestEntity.posZ, entity.getHorizontalFaceSpeed(), entity.getVerticalFaceSpeed());
 	}
 }

@@ -7,5 +7,5 @@ package org.avp.util.brain;
  *
  */
 public interface Brainiac<T extends AbstractBrain<?>> {
-	public T getBrain();
+	T getBrain();
 }

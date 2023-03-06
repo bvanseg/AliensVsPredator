@@ -18,7 +18,7 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	
 	private boolean isExecuting = false;
 	
-	public boolean runTask(T ctx) {
+	public void runTask(T ctx) {
 		boolean shouldExecute = this.shouldExecute(ctx);
 		if (shouldExecute) {
 			this.isExecuting = true;
@@ -29,8 +29,6 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 			this.isExecuting = false;
 			this.finish(ctx);
 		}
-		
-		return shouldExecute;
 	}
 	
 	public abstract Map<AbstractBrainFlag, BrainFlagState> getFlags();

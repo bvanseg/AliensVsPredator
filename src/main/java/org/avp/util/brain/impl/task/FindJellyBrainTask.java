@@ -30,7 +30,7 @@ public class FindJellyBrainTask extends AbstractBrainTask<EntityBrainContext> {
     private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
     
     public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<AbstractBrainFlag, BrainFlagState>();
+    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
     	map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
     	map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
 		return map;

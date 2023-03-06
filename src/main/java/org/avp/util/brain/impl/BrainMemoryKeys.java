@@ -16,6 +16,9 @@ import net.minecraft.entity.item.EntityItem;
  */
 @SuppressWarnings("unchecked")
 public class BrainMemoryKeys {
+
+	private BrainMemoryKeys() {}
+
 	public static final BrainMemoryKey<List<Entity>> ENTITIES = (BrainMemoryKey<List<Entity>>) BrainMemoryKey.create(AvpBrainMemoryTypes.ENTITIES);
 	public static final BrainMemoryKey<? super List<EntityLivingBase>> LIVING_ENTITIES = (BrainMemoryKey<? super List<EntityLivingBase>>) BrainMemoryKey.create(AvpBrainMemoryTypes.ENTITIES);
 	public static final BrainMemoryKey<? super List<EntityItem>> ITEM_ENTITIES = (BrainMemoryKey<? super List<EntityItem>>) BrainMemoryKey.create(AvpBrainMemoryTypes.ENTITIES);

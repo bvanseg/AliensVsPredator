@@ -12,7 +12,7 @@ import net.minecraft.entity.Entity;
  * @param <T> The type of entity.
  */
 public class AbstractEntityBrain<T extends Entity> extends AbstractBrain<EntityBrainContext> {
-	private T entity;
+	private final T entity;
 	
 	public AbstractEntityBrain(T entity) {
 		this.entity = entity;

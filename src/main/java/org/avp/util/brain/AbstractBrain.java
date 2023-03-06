@@ -37,12 +37,12 @@ import org.avp.util.brain.task.AbstractBrainTask;
  *
  */
 public abstract class AbstractBrain<T extends AbstractBrainContext> {
-	private BrainMemoryMap memoryManager;
-	private ArrayList<AbstractBrainSensor<T>> sensors;
-	private ArrayList<AbstractBrainTask<T>> tasks;
-	private HashMap<AbstractBrainFlag, BrainFlagState> brainFlagStates;
+	private final BrainMemoryMap memoryManager;
+	private final ArrayList<AbstractBrainSensor<T>> sensors;
+	private final ArrayList<AbstractBrainTask<T>> tasks;
+	private final HashMap<AbstractBrainFlag, BrainFlagState> brainFlagStates;
 	
-	public AbstractBrain() {
+	protected AbstractBrain() {
 		this.memoryManager = new BrainMemoryMap();
 		this.sensors = new ArrayList<>();
 		this.tasks = new ArrayList<>();
@@ -52,11 +52,9 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	public void init() {}
 	
 	public final void update(T ctx) {
-		sensors.forEach((sensor) -> sensor.sense(ctx));
-		tasks.forEach((task) -> {
+		sensors.forEach(sensor -> sensor.sense(ctx));
+		tasks.forEach(task -> {
 			if (this.canRunTask(task)) {
-				// If the task successfully ran, set flags for the masks it used.
-				// Setting the used masks will prevent upcoming tasks sharing the same masks from running.
 				task.runTask(ctx);
 			}
 		});
@@ -72,15 +70,13 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	
 	public final boolean canRunTask(AbstractBrainTask<T> brainTask) {
 		Map<AbstractBrainFlag, BrainFlagState> requirements = brainTask.getFlags();
-		
-		boolean allRequirementsPass = requirements.entrySet().stream().allMatch((entry) -> {
+
+		return requirements.entrySet().stream().allMatch(entry -> {
 			// If the flag type is derived from brain memory, we need to additionally check that the memory is present.
-			boolean memoryPresent = entry.getKey() instanceof BrainMemoryFlag ?
-					this.memoryManager.hasMemory(((BrainMemoryFlag)entry.getKey()).getMemoryKey()) : true;
+			boolean memoryPresent = !(entry.getKey() instanceof BrainMemoryFlag) || this.memoryManager.hasMemory(((BrainMemoryFlag) entry.getKey()).getMemoryKey());
 			
 			// Same as before, but this time for memory absence.
-			boolean memoryAbsent = entry.getKey() instanceof BrainMemoryFlag ?
-					!this.memoryManager.hasMemory(((BrainMemoryFlag)entry.getKey()).getMemoryKey()) : true;
+			boolean memoryAbsent = !(entry.getKey() instanceof BrainMemoryFlag) || !this.memoryManager.hasMemory(((BrainMemoryFlag) entry.getKey()).getMemoryKey());
 			
 			switch (entry.getValue())  {
 				case PRESENT:
@@ -91,8 +87,6 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 					return true;
 			}
 		});
-		
-		return allRequirementsPass;
 	}
 	
 	public <U> Optional<U> getMemory(BrainMemoryKey<? super U> memoryKey) {

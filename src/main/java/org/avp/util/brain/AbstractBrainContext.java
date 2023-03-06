@@ -6,4 +6,4 @@ package org.avp.util.brain;
  * @author Boston Vanseghi
  *
  */
-public abstract class AbstractBrainContext {}
+public interface AbstractBrainContext {}

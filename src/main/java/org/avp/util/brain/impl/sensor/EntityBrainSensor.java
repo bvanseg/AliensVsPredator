@@ -7,7 +7,6 @@ import org.avp.util.brain.impl.EntityBrainContext;
 import org.avp.util.brain.sensor.AbstractBrainSensor;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -25,7 +24,6 @@ public class EntityBrainSensor extends AbstractBrainSensor<EntityBrainContext> {
 	public EntityBrainSensor(int cooldownInTicks) {
 		this.cooldownInTicks = cooldownInTicks;
 	}
-	
 
 	@Override
 	public void sense(EntityBrainContext ctx) {
@@ -43,8 +41,8 @@ public class EntityBrainSensor extends AbstractBrainSensor<EntityBrainContext> {
     		new AxisAlignedBB(entity.getPosition().add(-range, -8, -range), entity.getPosition().add(range, 8, range))
 		);
         
-        ArrayList<EntityLivingBase> livingEntities = new ArrayList<EntityLivingBase>();
-        ArrayList<EntityItem> itemEntities = new ArrayList<EntityItem>();
+        ArrayList<EntityLivingBase> livingEntities = new ArrayList<>();
+        ArrayList<EntityItem> itemEntities = new ArrayList<>();
         
         allEntities.sort((e1, e2) -> {
         	double d1 = e1.getDistanceSq(entity);
@@ -60,7 +58,7 @@ public class EntityBrainSensor extends AbstractBrainSensor<EntityBrainContext> {
         });
         
         // Entities collected from all other entities should also be sorted.
-        allEntities.forEach((e) -> {
+        allEntities.forEach(e -> {
         	// Sensing entity is excluded.
         	if (e.equals(entity)) {
         		return;

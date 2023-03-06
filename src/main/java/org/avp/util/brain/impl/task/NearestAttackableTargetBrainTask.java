@@ -23,7 +23,7 @@ public class NearestAttackableTargetBrainTask extends AbstractBrainTask<EntityBr
     private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
     
     public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<AbstractBrainFlag, BrainFlagState>();
+    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
     	map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
 		return map;
     }
@@ -39,7 +39,7 @@ public class NearestAttackableTargetBrainTask extends AbstractBrainTask<EntityBr
     	Optional<EntityLivingBase> optional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
     	if (optional.isPresent()) {
     		EntityLivingBase nearestAttackTarget = optional.get();
-    		nearestAttackTargetCondition = nearestAttackTarget != null && !nearestAttackTarget.isDead;
+    		nearestAttackTargetCondition = !nearestAttackTarget.isDead;
     	}
 
     	EntityLivingBase attackTarget = ctx.getEntity().getAttackTarget();
