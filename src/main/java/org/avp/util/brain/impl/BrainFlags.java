@@ -15,6 +15,10 @@ import org.avp.util.brain.memory.BrainMemoryKey;
 public class BrainFlags {
 	public static final AbstractBrainFlag MOVE = new BrainActionFlag("move");
 	public static final AbstractBrainFlag LOOK = new BrainActionFlag("look");
+	
+	// These are compatibility flags with Minecraft's old AI.
+	public static final AbstractBrainFlag MINECRAFT_SWIM = new BrainActionFlag("minecraft_swim");
+	public static final AbstractBrainFlag MINECRAFT_UNCATEGORIZED = new BrainActionFlag("minecraft_uncategorized");
 
 	private static final HashMap<BrainMemoryKey<?>, BrainMemoryFlag> memoryKeysToBrainFlags = new HashMap<>();
 	
