@@ -5,6 +5,7 @@ import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.Pos;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -158,4 +159,24 @@ public class TileEntityTurretLookHelper {
 	public void setTurretRotateSpeed(float turretRotateSpeed) {
 		this.turretRotateSpeed = turretRotateSpeed;
 	}
+	
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+    	float yaw = nbt.getFloat("Yaw");
+    	float pitch = nbt.getFloat("Pitch");
+    	// TODO: Eventually use one instance here, not doing so yet because of mutability issues.
+    	this.setPreviousTurretRotation(new Rotation(yaw, pitch));
+    	this.setTurretRotation(new Rotation(yaw, pitch));
+    	this.setFocusRotation(new Rotation(yaw, pitch));
+    }
+
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
+    {
+    	Rotation turretRotation = this.getRotation();
+    	
+    	nbt.setFloat("Yaw", turretRotation.yaw);
+    	nbt.setFloat("Pitch", turretRotation.pitch);
+        
+        return nbt;
+    }
 }

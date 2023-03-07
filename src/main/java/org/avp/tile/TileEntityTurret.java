@@ -13,7 +13,6 @@ import org.avp.tile.helpers.TileEntityTurretLookHelper;
 import org.avp.tile.helpers.TileEntityTurretTargetHelper;
 
 import com.asx.mdx.MDX;
-import com.asx.mdx.lib.client.util.Rotation;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.storage.NBTStorage;
@@ -121,19 +120,11 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         super.readFromNBT(nbt);
         
-    	float yaw = nbt.getFloat("Yaw");
-    	float pitch = nbt.getFloat("TurretPitch");
-    	// TODO: Eventually use one instance here, not doing so yet because of mutability issues.
-    	this.getLookHelper().setPreviousTurretRotation(new Rotation(yaw, pitch));
-    	this.getLookHelper().setTurretRotation(new Rotation(yaw, pitch));
-    	this.getLookHelper().setFocusRotation(new Rotation(yaw, pitch));
-
-        this.getLookHelper().getFocusRotation().setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
+        this.getLookHelper().readFromNBT(nbt);
         this.getTargetHelper().readFromNBT(nbt);
         this.getAmmoHelper().setCurrentAmmoCount(nbt.getInteger("CurrentAmmoCount"));
         this.readInventoryFromNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
-        System.out.println();
         this.readInventoryFromNBT(nbt, this.inventoryDrive);
 
         if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
@@ -147,13 +138,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     {
         super.writeToNBT(nbt);
         
-    	Rotation turretRotation = this.getLookHelper().getRotation();
-    	
-    	nbt.setFloat("Yaw", turretRotation.yaw);
-    	nbt.setFloat("Pitch", turretRotation.pitch);
-
-        nbt.setFloat("FocusYaw", this.getLookHelper().getFocusRotation().yaw);
-        nbt.setFloat("FocusPitch", this.getLookHelper().getFocusRotation().pitch);
+        this.getLookHelper().writeToNBT(nbt);
         this.getTargetHelper().writeToNBT(nbt);
         nbt.setInteger("CurrentAmmoCount", this.getAmmoHelper().getCurrentAmmo());
         this.saveInventoryToNBT(nbt, this.getAmmoHelper().inventoryAmmo);
