@@ -6,6 +6,7 @@ import com.asx.mdx.lib.world.Pos;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
@@ -23,6 +24,7 @@ public class TileEntityTurretLookHelper {
     private Rotation turretRotation;
     private Rotation previousTurretRotation;
     private Rotation targetTurretRotation;
+    public EnumFacing direction;
     
     public TileEntityTurretLookHelper(TileEntityTurretTargetHelper targetHelper) {
     	this.targetHelper = targetHelper;
@@ -159,6 +161,16 @@ public class TileEntityTurretLookHelper {
 	public void setTurretRotateSpeed(float turretRotateSpeed) {
 		this.turretRotateSpeed = turretRotateSpeed;
 	}
+
+    public EnumFacing getRotationYAxis()
+    {
+        return this.direction;
+    }
+
+    public void setRotationYAxis(EnumFacing facing)
+    {
+        this.direction = facing;
+    }
 	
     public void readFromNBT(NBTTagCompound nbt)
     {
@@ -168,6 +180,11 @@ public class TileEntityTurretLookHelper {
     	this.setPreviousTurretRotation(new Rotation(yaw, pitch));
     	this.setTurretRotation(new Rotation(yaw, pitch));
     	this.setFocusRotation(new Rotation(yaw, pitch));
+
+        if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
+        {
+            this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
+        }
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
@@ -176,6 +193,11 @@ public class TileEntityTurretLookHelper {
     	
     	nbt.setFloat("Yaw", turretRotation.yaw);
     	nbt.setFloat("Pitch", turretRotation.pitch);
+
+        if (this.direction != null)
+        {
+            nbt.setInteger("Direction", this.direction.ordinal());
+        }
         
         return nbt;
     }

@@ -45,7 +45,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
  */
 public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver, IRotatableYAxis
 {
-    private EnumFacing                          direction;
     public InventoryBasic                       inventoryExpansion;
     public InventoryBasic                       inventoryDrive;
     private ContainerTurret                     container;
@@ -127,11 +126,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.readInventoryFromNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
         this.readInventoryFromNBT(nbt, this.inventoryDrive);
-
-        if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
-        {
-            this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
-        }
     }
 
     @Override
@@ -146,11 +140,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.saveInventoryToNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
         this.saveInventoryToNBT(nbt, this.inventoryDrive);
-
-        if (this.direction != null)
-        {
-            nbt.setInteger("Direction", this.direction.ordinal());
-        }
 
         return nbt;
     }
@@ -337,13 +326,13 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     @Override
     public EnumFacing getRotationYAxis()
     {
-        return this.direction;
+        return this.getLookHelper().getRotationYAxis();
     }
 
     @Override
     public void setRotationYAxis(EnumFacing facing)
     {
-        this.direction = facing;
+        this.getLookHelper().setRotationYAxis(facing);
     }
 
 	public TileEntityTurretAmmoHelper getAmmoHelper() {
