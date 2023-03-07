@@ -5,7 +5,6 @@ import org.avp.tile.TileEntityTurret;
 import com.asx.mdx.lib.util.Game;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -14,7 +13,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<PacketTurretTargetUpdate, PacketTurretTargetUpdate>
 {
     private int      x, y, z;
-    private int      id;
+    public  int      id;
 
     public PacketTurretTargetUpdate() {}
 
@@ -51,8 +50,7 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         	TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
             if (tile != null) {
-                Entity entity = Game.minecraft().world.getEntityByID(packet.id);
-                tile.getTargetHelper().setTargetEntity(entity);
+                tile.getTargetHelper().setTargetEntity(packet);
             }
         });
 

@@ -20,19 +20,18 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
         {
             GlStateManager.disableCull();
             OpenGL.translate(x + 0.5F, y + 1.5F, z + 0.25F);
-//            OpenGL.rotate(tile.getDirection() * (-90F), 0F, 1F, 0F);
 
             OpenGL.scale(1F, -1F, 1F);
+            OpenGL.rotate(tile);
             AliensVsPredator.resources().models().TURRET.draw(tile);
 
             if (tile.getVoltage() > 0)
             {
-//                OpenGL.rotate(tile.getDirection() * 90F, 0F, 1F, 0F);
                 this.renderAmmoDisplay(tile);
 
                 if (!tile.getAttackHelper().isFiring())
                 {
-                    this.renderBeam(0, 0, tile.getTargetHelper().getRange(), -1, 0, 50, tile.beamColor, 0x00000000, tile.getLookHelper().getRotationYaw(), tile.getLookHelper().getRotationPitch(), -1);
+                    this.renderBeam(tile, 0, 0, -1, 0, 50, tile.beamColor, 0x00000000, -1);
                 }
             }
         }
@@ -72,14 +71,37 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
         }
     }
 
-    public void renderBeam(int x, int y, int w, int h, int zLevel, int scale, int color1, int color2, float rotationYaw, float rotationPitch, int l)
+    public void renderBeam(TileEntityTurret tile, int x, int y, int h, int zLevel, int scale, int color1, int color2, int l)
     {
+    	int w = tile.getTargetHelper().getRange();
+    	float rotationYaw = tile.getLookHelper().getRotationYaw();
+    	float rotationPitch = tile.getLookHelper().getRotationPitch();
+    	
         w = w * scale / 2;
+
+    	float yawOffset = 0F;
+    	
+    	switch (tile.getRotationYAxis()) {
+        	case SOUTH:
+        		yawOffset = 0F;
+        		break;
+        	case NORTH:
+        		yawOffset = 180F;
+        		break;
+        	case EAST:
+        		yawOffset = -90F;
+        		break;
+        	case WEST:
+        		yawOffset = 90F;
+        		break;
+    		default:
+    			break;
+    	}
 
         OpenGL.pushMatrix();
         {
             OpenGL.translate(0F, 0.75F, 0F);
-            OpenGL.rotate(-90 + -rotationYaw, 0F, 1F, 0F);
+            OpenGL.rotate(-90 + -rotationYaw + yawOffset, 0F, 1F, 0F);
             OpenGL.rotate(rotationPitch, 0F, 0F, 1F);
             OpenGL.scale(1F / scale, 1F / scale, 1F / scale);
             OpenGL.disable(GL11.GL_TEXTURE_2D);

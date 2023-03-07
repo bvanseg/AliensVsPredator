@@ -343,7 +343,7 @@ public class EntityBullet extends Entity
 
                         if (!entityTurret.getTileEntity().getTargetHelper().canTargetType(result.entityHit.getClass()))
                         {
-                            entityTurret.getTileEntity().getTargetHelper().setTargetEntity(result.entityHit);
+                            entityTurret.getTileEntity().getTargetHelper().setAndUpdateTargetEntity(this.world, result.entityHit);
                         }
                     }
 

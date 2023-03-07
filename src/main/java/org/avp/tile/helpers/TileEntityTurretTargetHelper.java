@@ -38,6 +38,7 @@ import org.avp.entities.living.vardic.EntityHammerpede;
 import org.avp.entities.living.vardic.EntityOctohugger;
 import org.avp.packets.server.PacketTurretTargetUpdate;
 
+import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 
@@ -48,6 +49,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * 
@@ -62,6 +65,7 @@ public class TileEntityTurretTargetHelper {
 	private Entity targetEntity;
 	private HashSet<Class<? extends Entity>> targetTypes;
 	private HashSet<UUID> targetPlayers;
+	private Pos pos;
 
 	public TileEntityTurretTargetHelper() {
 		this.targetEntity = null;
@@ -70,17 +74,25 @@ public class TileEntityTurretTargetHelper {
 	}
 	
 	public void update(World world, Pos pos, TileEntityTurretLookHelper lookHelper) {
-		if (!doesCurrentTargetStillExist() || !canClearlyAttackCurrentTarget(pos)) {
-			this.targetEntity = null;
-			lookHelper.setLockedOn(false);
+		if (this.pos == null) {
+			this.pos = pos;
 		}
 
-		if (this.targetEntity == null) {
-			this.findTarget(world, pos);
-		}
-		
-		if (!this.canContinueAttackingTarget(this.targetEntity, pos)) {
-			this.targetEntity = null;
+		if (!world.isRemote) {
+			if (!doesCurrentTargetStillExist() || !canClearlyAttackCurrentTarget(pos)) {
+				lookHelper.setLockedOn(false);
+	
+				this.setAndUpdateTargetEntity(world, null);
+			}
+
+			if (this.targetEntity == null) {
+				this.findTarget(world, pos);
+			}
+			
+			if (!this.canContinueAttackingTarget(this.targetEntity, pos)) {
+				this.targetEntity = null;
+				this.setAndUpdateTargetEntity(world, null);
+			}
 		}
 	}
 	
@@ -93,35 +105,21 @@ public class TileEntityTurretTargetHelper {
 	}
 
 	public void findTarget(World world, Pos pos) {
-		if (!world.isRemote) {
-			List<EntityLivingBase> nearbyLivingEntities = Entities.getEntitiesInCoordsRange(world, EntityLivingBase.class, pos, TURRET_RANGE, TURRET_RANGE);
-			nearbyLivingEntities.sort(Comparator.comparingInt(e -> (int) e.getDistanceSq(pos.blockPos())));
-			
-			List<EntityLivingBase> potentialTargets = nearbyLivingEntities.stream().filter((newTarget) -> {
-				boolean mobCheck = this.targetTypes.contains(newTarget.getClass()) && this.canTarget(newTarget, pos) && canSee(newTarget, pos);
-				boolean playerCheck = newTarget instanceof EntityPlayer && canTargetPlayer((EntityPlayer) newTarget) && !((EntityPlayer) newTarget).isCreative();
-				
-				if (mobCheck || playerCheck) {
-					return true;
-				}
-				
-				return false;
-			}).collect(Collectors.toList());
-			
-			this.targetEntity = !potentialTargets.isEmpty() ? potentialTargets.get(0) : null;
-
-            // While this code could go in the target helper, it is out of scope of what the target helper is intended to do. Leave this here.
-            if (this.getTargetEntity() != null) {
-                AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(pos.blockPos(), this.getTargetEntity().getEntityId()));
-            }
-		}
+		List<EntityLivingBase> nearbyLivingEntities = Entities.getEntitiesInCoordsRange(world, EntityLivingBase.class, pos, TURRET_RANGE, TURRET_RANGE);
+		nearbyLivingEntities.sort(Comparator.comparingInt(e -> (int) e.getDistanceSq(pos.blockPos())));
+		
+		List<EntityLivingBase> potentialTargets = nearbyLivingEntities.stream().filter((newTarget) -> {
+			return this.canContinueAttackingTarget(newTarget, pos);
+		}).collect(Collectors.toList());
+		
+		this.setAndUpdateTargetEntity(world, !potentialTargets.isEmpty() ? potentialTargets.get(0) : null);
 	}
 	
 	private boolean canContinueAttackingTarget(Entity target, Pos pos) {
 		if (target == null) return false;
 
 		boolean mobCheck = this.targetTypes.contains(target.getClass()) && this.canTarget(target, pos) && canSee(target, pos);
-		boolean playerCheck = target instanceof EntityPlayer && canTargetPlayer((EntityPlayer) target) && !((EntityPlayer) target).isCreative();
+		boolean playerCheck = target instanceof EntityPlayer && canTargetPlayer((EntityPlayer) target);
 		
 		if (mobCheck || playerCheck) {
 			return true;
@@ -165,7 +163,7 @@ public class TileEntityTurretTargetHelper {
 	}
 
 	private boolean canTargetPlayer(EntityPlayer player) {
-		return this.targetPlayers.contains(player.getPersistentID());
+		return this.targetPlayers.contains(player.getPersistentID()) && !player.isCreative() && !player.isSpectator();
 	}
 
 	public boolean addTargetPlayer(UUID playerUUID) {
@@ -196,8 +194,25 @@ public class TileEntityTurretTargetHelper {
 		return targetEntity;
 	}
 
-	public void setTargetEntity(Entity targetEntity) {
-		this.targetEntity = targetEntity;
+	// A packet is taken as a parameter here to help enforce this method being called only client-side.
+	@SideOnly(Side.CLIENT)
+	public void setTargetEntity(PacketTurretTargetUpdate packet) {
+        Entity entity = Game.minecraft().world.getEntityByID(packet.id);
+		this.targetEntity = entity;
+	}
+	
+	// Turret targets should only be set server-side.
+	public void setAndUpdateTargetEntity(World world, Entity targetEntity) {
+		if (world.isRemote) {
+			throw new IllegalStateException("Attempted to set and update turret target entity client-side!");
+		}
+		
+		if (this.targetEntity != targetEntity && this.pos != null) {
+			System.out.println("SENDING TARGET UPDATE.");
+			int entityId = targetEntity != null ? targetEntity.getEntityId() : Integer.MIN_VALUE;
+            AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(pos.blockPos(), entityId));
+    		this.targetEntity = targetEntity;
+		}
 	}
 
 	public HashSet<Class<? extends Entity>> getDangerousTargets() {
