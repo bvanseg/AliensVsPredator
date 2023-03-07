@@ -179,7 +179,6 @@ public class TileEntityTurretLookHelper {
     	// TODO: Eventually use one instance here, not doing so yet because of mutability issues.
     	this.setPreviousTurretRotation(new Rotation(yaw, pitch));
     	this.setTurretRotation(new Rotation(yaw, pitch));
-    	this.setFocusRotation(new Rotation(yaw, pitch));
 
         if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
         {

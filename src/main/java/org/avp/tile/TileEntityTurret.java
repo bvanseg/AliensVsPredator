@@ -27,8 +27,6 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.Constants;
@@ -36,6 +34,8 @@ import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
  * 
@@ -97,24 +97,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     }
 
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(this.getPos(), 1, this.getUpdateTag());
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
-    {
-        this.readFromNBT(packet.getNbtCompound());
-    }
-
-    @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
@@ -149,12 +131,12 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         AliensVsPredator.network().sendToAll(new PacketTurretSync(this));
     }
 
+    @SideOnly(Side.CLIENT)
     public void onReceiveInitPacket(PacketTurretSync packet, MessageContext ctx)
     {
         this.applyUpgrades();
         this.getTargetHelper().readTargetList(packet.targets);
-        this.getLookHelper().getRotation().yaw = packet.rotation.yaw;
-        this.getLookHelper().getRotation().pitch = packet.rotation.pitch;
+        this.getLookHelper().setTurretRotation(packet.rotation);
     }
 
     public void applyUpgrades() {
@@ -206,13 +188,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         for (byte x = 0; x < items.tagCount(); x++)
         {
             NBTTagCompound item = items.getCompoundTagAt(x);
-
             byte slot = item.getByte("Slot");
-
-            if (slot >= 0 && slot <= inventory.getSizeInventory())
-            {
-                inventory.setInventorySlotContents(slot, new ItemStack(item));
-            }
+            inventory.setInventorySlotContents(slot, new ItemStack(item));
         }
     }
 
