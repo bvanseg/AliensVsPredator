@@ -42,7 +42,7 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
     {
         if (tile.getAmmoHelper().isAmmoDisplayEnabled())
         {
-            int ammo = (tile.getAmmoHelper().getCurrentRounds() * tile.getAmmoHelper().getMaxAmmo()) + tile.getAmmoHelper().getCurAmmo();
+            int ammo = (tile.getAmmoHelper().getCurrentRounds() * tile.getAmmoHelper().getMaxAmmo()) + tile.getAmmoHelper().getCurrentAmmo();
             String displayText = ammo >= 0 ? ammo < 10 ? "000" + ammo : ammo < 100 ? "00" + ammo : ammo < 1000 ? "0" + ammo : "" + ammo : "----";
 
             OpenGL.pushMatrix();

@@ -120,11 +120,20 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
+        
+    	float yaw = nbt.getFloat("Yaw");
+    	float pitch = nbt.getFloat("TurretPitch");
+    	// TODO: Eventually use one instance here, not doing so yet because of mutability issues.
+    	this.getLookHelper().setPreviousTurretRotation(new Rotation(yaw, pitch));
+    	this.getLookHelper().setTurretRotation(new Rotation(yaw, pitch));
+    	this.getLookHelper().setFocusRotation(new Rotation(yaw, pitch));
 
         this.getLookHelper().getFocusRotation().setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
         this.readTargetListFromCompoundTag(nbt);
+        this.getAmmoHelper().setCurrentAmmoCount(nbt.getInteger("CurrentAmmoCount"));
         this.readInventoryFromNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
+        System.out.println();
         this.readInventoryFromNBT(nbt, this.inventoryDrive);
 
         if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
@@ -137,10 +146,16 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
+        
+    	Rotation turretRotation = this.getLookHelper().getRotation();
+    	
+    	nbt.setFloat("Yaw", turretRotation.yaw);
+    	nbt.setFloat("Pitch", turretRotation.pitch);
 
         nbt.setFloat("FocusYaw", this.getLookHelper().getFocusRotation().yaw);
         nbt.setFloat("FocusPitch", this.getLookHelper().getFocusRotation().pitch);
         nbt.setTag("Targets", this.getTargetListTag());
+        nbt.setInteger("CurrentAmmoCount", this.getAmmoHelper().getCurrentAmmo());
         this.saveInventoryToNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
         this.saveInventoryToNBT(nbt, this.inventoryDrive);
@@ -221,11 +236,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     private void saveInventoryToNBT(NBTTagCompound nbt, IInventory inventory)
     {
-    	Rotation turretRotation = this.getLookHelper().getRotation();
-    	
-    	nbt.setFloat("Yaw", turretRotation.yaw);
-    	nbt.setFloat("Pitch", turretRotation.pitch);
-    	
         NBTTagList items = new NBTTagList();
 
         for (byte x = 0; x < inventory.getSizeInventory(); x++)
@@ -246,13 +256,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     private void readInventoryFromNBT(NBTTagCompound nbt, IInventory inventory)
     {
-    	float yaw = nbt.getFloat("Yaw");
-    	float pitch = nbt.getFloat("TurretPitch");
-    	// TODO: Eventually use one instance here, not doing so yet because of mutability issues.
-    	this.getLookHelper().setPreviousTurretRotation(new Rotation(yaw, pitch));
-    	this.getLookHelper().setTurretRotation(new Rotation(yaw, pitch));
-    	this.getLookHelper().setFocusRotation(new Rotation(yaw, pitch));
-    	
         NBTTagList items = nbt.getTagList(inventory.getName(), Constants.NBT.TAG_COMPOUND);
 
         for (byte x = 0; x < items.tagCount(); x++)

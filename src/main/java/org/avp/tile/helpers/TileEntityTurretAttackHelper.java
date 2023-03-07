@@ -38,9 +38,9 @@ public class TileEntityTurretAttackHelper {
             {
             	
                 if (world.getTotalWorldTime() % fireRate == 0L && this.lookHelper.isLockedOn()) {
-                    if (this.ammoHelper.getCurAmmo() - 1 > 0)
+                    if (this.ammoHelper.getCurrentAmmo() - 1 > 0)
                     {
-                    	this.ammoHelper.setCurrentAmmoCount(this.ammoHelper.getCurAmmo() - 1);
+                    	this.ammoHelper.setCurrentAmmoCount(this.ammoHelper.getCurrentAmmo() - 1);
                         this.fire(world, pos);
                     }
                     else

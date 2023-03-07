@@ -136,7 +136,7 @@ public class TileEntityTurretAmmoHelper {
         return ammoDisplayEnabled;
     }
 
-    public int getCurAmmo()
+    public int getCurrentAmmo()
     {
         return currentAmmoCount;
     }
