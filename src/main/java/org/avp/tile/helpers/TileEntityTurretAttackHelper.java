@@ -1,7 +1,9 @@
 package org.avp.tile.helpers;
 
+import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 import org.avp.client.Sounds;
+import org.avp.packets.server.PacketTurretAmmoSync;
 
 import com.asx.mdx.lib.world.Pos;
 
@@ -15,9 +17,9 @@ import net.minecraft.world.World;
  */
 public class TileEntityTurretAttackHelper {
 
-	private TileEntityTurretAmmoHelper ammoHelper;
-	private TileEntityTurretLookHelper lookHelper;
-	private TileEntityTurretTargetHelper targetHelper;
+	private final TileEntityTurretAmmoHelper ammoHelper;
+	private final TileEntityTurretLookHelper lookHelper;
+	private final TileEntityTurretTargetHelper targetHelper;
 	private boolean isFiring;
 	private int fireRate;
 
@@ -28,9 +30,7 @@ public class TileEntityTurretAttackHelper {
         this.fireRate = 2;
 	}
 	
-	public void update(World world, Pos pos, TileEntityTurretLookHelper lookHelper) {
-        this.isFiring = false;
-
+	public void update(World world, Pos pos) {
         Entity targetEntity = targetHelper.getTargetEntity();
         
         if (targetEntity != null) {
@@ -49,6 +49,9 @@ public class TileEntityTurretAttackHelper {
                     }
                 }
             }
+        } else if (!world.isRemote && this.isFiring) {
+            this.isFiring = false;
+        	AliensVsPredator.network().sendToAll(new PacketTurretAmmoSync(pos.blockPos(), this.ammoHelper.getCurrentAmmo()));
         }
 	}
 

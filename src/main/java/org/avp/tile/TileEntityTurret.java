@@ -92,7 +92,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         	this.getLookHelper().update(this.pos);
             this.getTargetHelper().update(this.world, this.pos, this.getLookHelper());
             this.getAmmoHelper().update(this.world, this.pos);
-            this.getAttackHelper().update(this.world, this.pos, this.getLookHelper());
+            this.getAttackHelper().update(this.world, this.pos);
         }
     }
 

@@ -11,7 +11,6 @@ import org.avp.packets.client.PacketSyncRF;
 import org.avp.packets.client.PacketTurretSync;
 import org.avp.packets.client.SpecialPlayerClientSync;
 import org.avp.packets.server.OrganismServerSync;
-import org.avp.packets.server.PacketToggleTurretPlayerTarget;
 import org.avp.packets.server.PacketAddTurretTarget;
 import org.avp.packets.server.PacketAssemble;
 import org.avp.packets.server.PacketAttachParasiteToEntity;
@@ -29,6 +28,8 @@ import org.avp.packets.server.PacketReloadFirearm;
 import org.avp.packets.server.PacketRemoveTurretTarget;
 import org.avp.packets.server.PacketSpawnEntity;
 import org.avp.packets.server.PacketSpawnNuke;
+import org.avp.packets.server.PacketToggleTurretPlayerTarget;
+import org.avp.packets.server.PacketTurretAmmoSync;
 import org.avp.packets.server.PacketTurretTargetUpdate;
 import org.avp.packets.server.PacketWriteToDataDevice;
 import org.avp.packets.server.SpecialPlayerServerSync;
@@ -76,6 +77,7 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.SERVER, PacketBlastdoorCommon.class);
         
         /** Send to the client **/
+        this.registerMessage(Side.CLIENT, PacketTurretAmmoSync.class);
         this.registerMessage(Side.CLIENT, PacketTurretTargetUpdate.class);
         this.registerMessage(Side.CLIENT, PacketOvamorphContainsFacehugger.class);
         this.registerMessage(Side.CLIENT, PacketAmmoUpdate.class);
