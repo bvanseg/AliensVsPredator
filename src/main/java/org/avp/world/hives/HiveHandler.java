@@ -1,12 +1,9 @@
 package org.avp.world.hives;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import org.avp.api.storage.IWorldSaveHandler;
 import org.avp.entities.living.species.SpeciesAlien;
@@ -14,11 +11,9 @@ import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.tile.TileEntityHiveResin;
 
 import com.asx.mdx.MDX;
-import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Worlds;
 
-import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -26,21 +21,21 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public class HiveHandler implements IWorldSaveHandler
 {
-    public static final HiveHandler  instance = new HiveHandler();
-    private HashMap<UUID, XenomorphHive> hives    = null;
-    public ArrayList<Pos>            burntResin;
+    public static final HiveHandler            instance    = new HiveHandler();
+    
+    private final HashMap<UUID, XenomorphHive> hives;
+    public final ArrayList<Pos>                burntResin;
 
-    public HiveHandler()
+    private HiveHandler()
     {
-        this.hives = new HashMap<UUID, XenomorphHive>();
-        this.burntResin = new ArrayList<Pos>();
+        this.hives = new HashMap<>();
+        this.burntResin = new ArrayList<>();
     }
 
     public XenomorphHive createHive(EntityMatriarch queen)
@@ -55,39 +50,14 @@ public class HiveHandler implements IWorldSaveHandler
         return hives;
     }
 
-    public List<XenomorphHive> getHives()
+    public Collection<XenomorphHive> getHives()
     {
-        return hives.entrySet().stream().map(Map.Entry::getValue).collect(Collectors.toList());
-    }
-
-    /**
-     * Fetches the hive for the given {@link SpeciesAlien}. May return null if the alien has no hive.
-     * 
-     * @param alien The alien to get a {@link XenomorphHive} for.
-     * @return The hive of the alien, or null if it has no hive at all.
-     */
-    public XenomorphHive getHiveForAlien(SpeciesAlien alien)
-    {
-        XenomorphHive hive = alien.getHive();
-        
-        // Safety check to make sure the hive also exists within the map, as well.
-        if (hive != null && hive.getAlienMap().containsKey(hive.getUniqueIdentifier()))
-            return hive;
-        
-        return null;
+        return hives.values();
     }
 
     public XenomorphHive getHiveForUUID(UUID uuid)
     {
-        for (XenomorphHive hive : this.getHives())
-        {
-            if (hive != null && hive.getUniqueIdentifier() != null && hive.getUniqueIdentifier().equals(uuid))
-            {
-                return hive;
-            }
-        }
-
-        return null;
+        return this.hives.get(uuid);
     }
 
     public static boolean breakResinAt(World world, int x, int y, int z)
@@ -120,31 +90,16 @@ public class HiveHandler implements IWorldSaveHandler
     }
 
     @SubscribeEvent
-    public void removeSlimes(EntityJoinWorldEvent event)
-    {
-        // Murder annoying slimes if this is a dev environment.
-        if (Game.isDevEnvironment())
-            if (event.getEntity() instanceof EntitySlime)
-                event.setCanceled(true);
-    }
-
-    @SubscribeEvent
     public void updateHives(TickEvent.WorldTickEvent event)
     {
-        for (Pos coord : new ArrayList<Pos>(this.burntResin))
-        {
-            event.world.setBlockState(coord.blockPos(), Blocks.AIR.getDefaultState(), 3);
-            this.burntResin.remove(coord);
-        }
-
-        Iterator<XenomorphHive> iter = this.getHives().iterator();
-
-        while (iter.hasNext())
-        {
-            XenomorphHive hive = iter.next();
-            if (hive != null && hive.getDimensionId() == event.world.provider.getDimension())
+    	this.burntResin.forEach(coord -> event.world.setBlockState(coord.blockPos(), Blocks.AIR.getDefaultState(), 3));
+        this.burntResin.clear();
+        
+        this.getHives().forEach(hive -> {
+            if (hive != null && hive.getDimensionId() == event.world.provider.getDimension()) {
                 hive.update(event.world);
-        }
+            }
+        });
     }
 
     public void clearCaches()
