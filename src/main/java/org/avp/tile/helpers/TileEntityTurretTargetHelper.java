@@ -68,11 +68,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  */
 public class TileEntityTurretTargetHelper {
 	
-	private static int TURRET_RANGE = 24;
+	private static final int TURRET_RANGE = 24;
 
 	private Entity targetEntity;
-	private HashSet<Class<? extends Entity>> targetTypes;
-	private HashSet<UUID> targetPlayers;
+	private int targetEntityId;
+	private final HashSet<Class<? extends Entity>> targetTypes;
+	private final HashSet<UUID> targetPlayers;
 	private Pos pos;
 
 	public TileEntityTurretTargetHelper() {
@@ -85,22 +86,28 @@ public class TileEntityTurretTargetHelper {
 		if (this.pos == null) {
 			this.pos = pos;
 		}
+		
+		// Because the server is always prepared ahead of the client, there is a slight chance that
+		// the target entity packet may be sent out before the client is ready. In that edge case, the client
+		// will not receive the target update, and the turret will not rotate accordingly, but will still fire according
+		// to the server. To work around this desync, there are two options: 1) network the target to the client every tick,
+		// 2) cheat and use the fact that NBT is guaranteed to be serialized and sent to the client on load. This is option 2.
+		if (world.isRemote && this.targetEntity == null && this.targetEntityId != Integer.MIN_VALUE) {
+			Entity entity = world.getEntityByID(targetEntityId);
+			this.targetEntity = entity;
+		}
 
-		if (!world.isRemote) {
-			if (!doesCurrentTargetStillExist() || !canClearlyAttackCurrentTarget(pos)) {
-				lookHelper.setLockedOn(false);
-	
-				this.setAndUpdateTargetEntity(world, null);
-			}
+		if (!doesCurrentTargetStillExist() || !canClearlyAttackCurrentTarget(pos)) {
+			lookHelper.setLockedOn(false);
+			this.setAndUpdateTargetEntity(world, null);
+		}
 
-			if (this.targetEntity == null) {
-				this.findTarget(world, pos);
-			}
-			
-			if (!this.canContinueAttackingTarget(this.targetEntity, pos)) {
-				this.targetEntity = null;
-				this.setAndUpdateTargetEntity(world, null);
-			}
+		if (this.targetEntity == null) {
+			this.findTarget(world, pos);
+		}
+		
+		if (!this.canContinueAttackingTarget(this.targetEntity, pos)) {
+			this.setAndUpdateTargetEntity(world, null);
 		}
 	}
 	
@@ -116,9 +123,8 @@ public class TileEntityTurretTargetHelper {
 		List<EntityLivingBase> nearbyLivingEntities = Entities.getEntitiesInCoordsRange(world, EntityLivingBase.class, pos, TURRET_RANGE, TURRET_RANGE);
 		nearbyLivingEntities.sort(Comparator.comparingInt(e -> (int) e.getDistanceSq(pos.blockPos())));
 		
-		List<EntityLivingBase> potentialTargets = nearbyLivingEntities.stream().filter((newTarget) -> {
-			return this.canContinueAttackingTarget(newTarget, pos);
-		}).collect(Collectors.toList());
+		List<EntityLivingBase> potentialTargets = nearbyLivingEntities.stream()
+				.filter(newTarget -> this.canContinueAttackingTarget(newTarget, pos)).collect(Collectors.toList());
 		
 		this.setAndUpdateTargetEntity(world, !potentialTargets.isEmpty() ? potentialTargets.get(0) : null);
 	}
@@ -212,14 +218,15 @@ public class TileEntityTurretTargetHelper {
 	// Turret targets should only be set server-side.
 	public void setAndUpdateTargetEntity(World world, Entity targetEntity) {
 		if (world.isRemote) {
-			throw new IllegalStateException("Attempted to set and update turret target entity client-side!");
+			// TODO: Warning log.
+			return;
 		}
 		
 		if (this.targetEntity != targetEntity && this.pos != null) {
-			System.out.println("SENDING TARGET UPDATE.");
 			int entityId = targetEntity != null ? targetEntity.getEntityId() : Integer.MIN_VALUE;
             AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(pos.blockPos(), entityId));
     		this.targetEntity = targetEntity;
+			this.targetEntityId = entityId;
 		}
 	}
 
@@ -267,18 +274,20 @@ public class TileEntityTurretTargetHelper {
 	
     public void readFromNBT(NBTTagCompound nbt)
     {
+		this.targetEntityId = nbt.getInteger("CurrentTargetId");
         this.readTargetListFromCompoundTag(nbt);
     }
 
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
+    	nbt.setInteger("CurrentTargetId", this.targetEntity != null ? this.targetEntity.getEntityId() : Integer.MIN_VALUE);
     	nbt.setTag("Targets", this.getTargetListTag());
         return nbt;
     }
 
     public NBTTagList getTargetListTag()
     {
-        ArrayList<String> entityIDs = new ArrayList<String>();
+        ArrayList<String> entityIDs = new ArrayList<>();
 
         for (Class<? extends Entity> c : this.getDangerousTargets())
         {
@@ -302,7 +311,7 @@ public class TileEntityTurretTargetHelper {
 
             ResourceLocation identifier = new ResourceLocation(id);
             EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(identifier);
-            Class<? extends Entity> entityClass = (Class<? extends Entity>) entityEntry.getEntityClass();
+            Class<? extends Entity> entityClass = entityEntry.getEntityClass();
             this.addTargetType(entityClass);
         }
     }
