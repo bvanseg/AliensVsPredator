@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import org.avp.api.storage.IWorldSaveHandler;
-import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.tile.TileEntityHiveResin;
 
@@ -30,6 +29,8 @@ public class HiveHandler implements IWorldSaveHandler
     public static final HiveHandler            instance    = new HiveHandler();
     
     private final HashMap<UUID, XenomorphHive> hives;
+    
+    // FIXME: Shouldn't burnt resin be able to take care of itself?
     public final ArrayList<Pos>                burntResin;
 
     private HiveHandler()

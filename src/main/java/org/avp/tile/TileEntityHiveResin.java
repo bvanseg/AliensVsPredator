@@ -71,6 +71,7 @@ public class TileEntityHiveResin extends TileEntity implements ITickable
 
         public static ResinVariant fromId(int id)
         {
+        	// FIXME: A map could work better, here.
             for (ResinVariant rotation : values())
             {
                 if (rotation.id == id)
