@@ -4,14 +4,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.avp.AliensVsPredator;
-import org.avp.packets.server.PacketToggleTurretPlayerTarget;
 import org.avp.packets.server.PacketAddTurretTarget;
 import org.avp.packets.server.PacketReadFromDataDevice;
 import org.avp.packets.server.PacketRemoveTurretTarget;
+import org.avp.packets.server.PacketToggleTurretPlayerTarget;
 import org.avp.packets.server.PacketWriteToDataDevice;
 import org.avp.tile.TileEntityTurret;
 import org.lwjgl.input.Keyboard;
@@ -39,34 +40,23 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiTurret extends GuiContainer
 {
-    private static ArrayList<Pair<EntityEntry, String>> entityList;
+    private static ArrayList<Pair<EntityEntry, String>> entityListSortedByName;
+    private static List<Pair<EntityEntry, String>> entityList;
 	
 	private static final Comparator<Pair<EntityEntry, String>> ALPHABETICAL_COMPARATOR = Comparator.comparing((entry) -> entry.getRight());
 	
-    private TileEntityTurret                   tile;
-    private static GuiCustomButton             buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "\u21e7");
-    private static GuiCustomButton             buttonScrollDown = new GuiCustomButton(1, 0, 0, 20, 20, "\u21e9");
-    private static GuiCustomButton             buttonAddAsTarget = new GuiCustomButton(2, 0, 0, 50, 20, "");
-    private static GuiCustomButton             buttonSave = new GuiCustomButton(3, 0, 0, 35, 20, "S");
-    private static GuiCustomButton             buttonLoad = new GuiCustomButton(4, 0, 0, 35, 20, "L");
-    private static GuiCustomTextbox            playerNameInput = new GuiCustomTextbox(0, 0, 200, 20);
+    private final TileEntityTurret             tile;
+    private static final GuiCustomButton       buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "\u21e7");
+    private static final GuiCustomButton       buttonScrollDown = new GuiCustomButton(1, 0, 0, 20, 20, "\u21e9");
+    private static final GuiCustomButton       buttonAddAsTarget = new GuiCustomButton(2, 0, 0, 50, 20, "");
+    private static final GuiCustomButton       buttonSave = new GuiCustomButton(3, 0, 0, 35, 20, "S");
+    private static final GuiCustomButton       buttonLoad = new GuiCustomButton(4, 0, 0, 35, 20, "L");
+    private static final GuiCustomTextbox      playerNameInput = new GuiCustomTextbox(0, 0, 200, 20);
     private static int                         scroll        = 0;
+    private static boolean                     searchRequiresUpdate = false;
     
-    private static IAction scrollDownAction = new IAction() {
-        @Override
-        public void perform(IGuiElement element)
-        {
-            scrollDown();
-        }
-    };
-    
-    private static IAction scrollUpAction = new IAction() {
-        @Override
-        public void perform(IGuiElement element)
-        {
-            scrollUp();
-        }
-    };
+    private static IAction scrollDownAction = (IGuiElement element) -> { scrollDown(); };
+    private static IAction scrollUpAction = (IGuiElement element) -> { scrollUp(); };
     
     private IAction saveAction = new IAction() {
         @Override
@@ -93,30 +83,27 @@ public class GuiTurret extends GuiContainer
         {
             if (tile != null)
             {
-                if (playerNameInput != null && playerNameInput.getText().isEmpty() || playerNameInput == null)
+            	EntityEntry currentlySelectedEntityEntry = getCurrentSelectedEntity();
+                if (currentlySelectedEntityEntry != null)
                 {
-                    if (!tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getEntityClass()))
+                	Class<? extends Entity> entityClass = currentlySelectedEntityEntry.getEntityClass();
+                    if (!tile.getTargetHelper().canTargetType(entityClass))
                     {
-                        tile.getTargetHelper().addTargetType(getCurrentSelectedEntity().getEntityClass());
+                        tile.getTargetHelper().addTargetType(entityClass);
                         
-                        AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity().getEntityClass())));
+                        AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
                     }
                     else
                     {
-                        tile.getTargetHelper().removeTargetType(getCurrentSelectedEntity().getEntityClass());
-                        AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity().getEntityClass())));
+                        tile.getTargetHelper().removeTargetType(entityClass);
+                        AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
                     }
-                }
-                else
-                {
-                    AliensVsPredator.network().sendToServer(new PacketToggleTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
                 }
             }
         }
     };
     
     static {
-
         playerNameInput.setFocused(true);
         playerNameInput.setWidth(225);
         playerNameInput.setHeight(16);
@@ -143,25 +130,28 @@ public class GuiTurret extends GuiContainer
         this.ySize = 200;
         this.tile = turret;
         
-        if (entityList == null) {
-            entityList = new ArrayList<Pair<EntityEntry, String>>();
+        if (entityListSortedByName == null) {
+            entityListSortedByName = new ArrayList<>();
             
             for (EntityEntry entry: ForgeRegistries.ENTITIES.getValuesCollection()) {
             	Entity instance = entry.newInstance(world);
             	if (instance instanceof EntityLiving) {
-            		entityList.add(Pair.of(entry, instance.getName()));
+            		entityListSortedByName.add(Pair.of(entry, instance.getName()));
             	}
             }
             
-            entityList.sort(ALPHABETICAL_COMPARATOR);
+            entityListSortedByName.sort(ALPHABETICAL_COMPARATOR);
         }
+        
+        entityList = entityListSortedByName;
     }
 
     @Override
     public void initGui()
     {
         super.initGui();
-        
+
+        searchRequiresUpdate = false;
         scroll = 0;
         playerNameInput.setText("");
         
@@ -255,8 +245,9 @@ public class GuiTurret extends GuiContainer
         super.drawScreen(mouseX, mouseY, p_73863_3_);
 
         // Update
+        EntityEntry currentSelectedEntityEntry = getCurrentSelectedEntity();
         
-        if (!this.tile.getTargetHelper().canTargetType(getCurrentSelectedEntity().getEntityClass()))
+        if (currentSelectedEntityEntry != null && !this.tile.getTargetHelper().canTargetType(currentSelectedEntityEntry.getEntityClass()))
         {
             buttonAddAsTarget.displayString = "+";
             buttonAddAsTarget.overlayColorHover = 0xFF00FF77;
@@ -307,11 +298,17 @@ public class GuiTurret extends GuiContainer
         {
             scrollUp();
         }
+        
+        if (searchRequiresUpdate) {
+        	searchRequiresUpdate = false;
+        	entityList = entityListSortedByName.stream()
+        			.filter(entry -> entry.getRight().toLowerCase().contains(playerNameInput.getText().toLowerCase())).collect(Collectors.toList());
+        }
     }
 
     public EntityEntry getCurrentSelectedEntity()
     {
-        return entityList.get(scroll).getLeft();
+        return !entityList.isEmpty() ? entityList.get(scroll).getLeft() : null;
     }
 
     public static void scrollUp()
@@ -341,70 +338,74 @@ public class GuiTurret extends GuiContainer
 
                 if (commandLineText.startsWith("/"))
                 {
-                    String command = commandLineText.substring(1, commandLineText.length());
-                    String[] args = command.split(" ");
-
-                    if (args.length > 0 && !args[0].equalsIgnoreCase(""))
-                    {
-                        if (args[0].equalsIgnoreCase("lasercolor"))
-                        {
-                            if (args.length == 2)
-                            {
-                                try
-                                {
-                                    if (args[1].contains("0x"))
-                                    {
-                                        args[1] = args[1].replace("0x", "");
-                                    }
-
-                                    int color = (int) Long.parseLong(args[1], 16);
-                                    String hexString = "0x" + Integer.toHexString(color).toUpperCase();
-                                    this.tile.beamColor = color;
-                                    mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Set turret laser beam color to " + hexString));
-                                }
-                                catch (Exception e)
-                                {
-                                    mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Invalid hexadecimal color string '" + args[1] + "'"));
-                                }
-                            }
-                            else
-                            {
-                                mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Invalid amount of arguments provided."));
-                            }
-                        }
-                        else if (args[0].equalsIgnoreCase("test"))
-                        {
-                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("0 argument command executed."));
-                        }
-                        else if (args[0].equalsIgnoreCase("help"))
-                        {
-                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("lasercolor <hex> - Set the laser beam color"));
-                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("help - Shows this command list."));
-                        }
-                        else
-                        {
-                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString(String.format("Command '%s' not recognized. See '/help'.", args[0])));
-                        }
-                    }
-                    else
-                    {
-                        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("No command provided."));
-                    }
-
+                    handlePlayerCommand(commandLineText);
                     playerNameInput.setText("");
                     return;
                 }
-                else
+                else if (playerNameInput != null && !playerNameInput.getText().isEmpty())
                 {
-                    buttonAddAsTarget.getAction().perform(buttonAddAsTarget);
+                	AliensVsPredator.network().sendToServer(new PacketToggleTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
                     return;
                 }
             }
 
             playerNameInput.textboxKeyTyped(typedChar, keyCode);
+            searchRequiresUpdate = true;
             return;
         }
 
         super.keyTyped(typedChar, keyCode);
     }
+
+	private void handlePlayerCommand(String commandLineText) {
+		String command = commandLineText.substring(1, commandLineText.length());
+		String[] args = command.split(" ");
+
+		if (args.length > 0 && !args[0].equalsIgnoreCase(""))
+		{
+		    if (args[0].equalsIgnoreCase("lasercolor"))
+		    {
+		        if (args.length == 2)
+		        {
+		            try
+		            {
+		                if (args[1].contains("0x"))
+		                {
+		                    args[1] = args[1].replace("0x", "");
+		                }
+
+		                int color = (int) Long.parseLong(args[1], 16);
+		                String hexString = "0x" + Integer.toHexString(color).toUpperCase();
+		                this.tile.beamColor = color;
+		                mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Set turret laser beam color to " + hexString));
+		            }
+		            catch (Exception e)
+		            {
+		                mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Invalid hexadecimal color string '" + args[1] + "'"));
+		            }
+		        }
+		        else
+		        {
+		            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Invalid amount of arguments provided."));
+		        }
+		    }
+		    else if (args[0].equalsIgnoreCase("test"))
+		    {
+		        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("0 argument command executed."));
+		    }
+		    else if (args[0].equalsIgnoreCase("help"))
+		    {
+		        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("lasercolor <hex> - Set the laser beam color"));
+		        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("help - Shows this command list."));
+		    }
+		    else
+		    {
+		        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString(String.format("Command '%s' not recognized. See '/help'.", args[0])));
+		    }
+		}
+		else
+		{
+		    mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("No command provided."));
+		}
+	}
 }
