@@ -5,8 +5,8 @@ import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.Pos;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 
 /**
  * 
@@ -16,7 +16,7 @@ import net.minecraft.util.math.MathHelper;
  */
 public class TileEntityTurretLookHelper {
 	
-	private TileEntityTurretTargetHelper targetHelper;
+	private final TileEntityTurretTargetHelper targetHelper;
     private boolean isLockedOn;
     private float turretRotateSpeed;
     private Rotation turretRotation;
@@ -36,7 +36,7 @@ public class TileEntityTurretLookHelper {
     	Entity targetEntity = this.targetHelper.getTargetEntity();
     	
 		if (targetEntity != null) {
-    		this.setFocusRotation(this.turnTurretToPoint(pos, targetEntity.getPosition(), 360F, 90F));
+    		this.setFocusRotation(this.turnTurretToPoint(pos, targetEntity.getPositionVector(), 360F, 90F));
     		this.rotateTurret();
 		}
     }
@@ -45,8 +45,8 @@ public class TileEntityTurretLookHelper {
     {
     	this.previousTurretRotation = new Rotation(this.turretRotation.yaw, this.turretRotation.pitch);
 
-    	turretYawLerp();
-    	turretPitchLerp();
+    	this.updateTurretYawLerp();
+    	this.updateTurretPitchLerp();
     	
     	float turretYaw = turretRotation.yaw;
     	float turretPitch = turretRotation.pitch;
@@ -67,7 +67,7 @@ public class TileEntityTurretLookHelper {
         return (pointA * (1.0f - percentage)) + (pointB * percentage);
     }
     
-    private void turretYawLerp() {
+    private void updateTurretYawLerp() {
     	float yawDeltaLeft = (this.targetTurretRotation.yaw - this.turretRotation.yaw);
     	float yawDeltaRight = (this.turretRotation.yaw - this.targetTurretRotation.yaw);
     	float yawDeltaLeftNormalized = yawDeltaLeft < 0 ? yawDeltaLeft + 360 : yawDeltaLeft;
@@ -79,7 +79,7 @@ public class TileEntityTurretLookHelper {
     	this.turretRotation.yaw += yawLerpValue;
     }
     
-    private void turretPitchLerp() {
+    private void updateTurretPitchLerp() {
     	float pitchDeltaLeft = (this.targetTurretRotation.pitch - this.turretRotation.pitch);
     	float pitchDeltaRight = (this.turretRotation.pitch - this.targetTurretRotation.pitch);
     	float pitchDeltaLeftNormalized = pitchDeltaLeft < 0 ? pitchDeltaLeft + 360 : pitchDeltaLeft;
@@ -91,11 +91,11 @@ public class TileEntityTurretLookHelper {
     	this.turretRotation.pitch += pitchLerpValue;
     }
 
-    public Rotation turnTurretToPoint(Pos turretPos, BlockPos targetPos, float deltaYaw, float deltaPitch)
+    public Rotation turnTurretToPoint(Pos turretPos, Vec3d targetPos, float deltaYaw, float deltaPitch)
     {
-        double x = targetPos.getX() - turretPos.x;
-        double y = targetPos.getY() - turretPos.y;
-        double z = targetPos.getZ() - turretPos.z;
+        double x = targetPos.x - turretPos.x - 0.5;
+        double y = targetPos.y - turretPos.y;
+        double z = targetPos.z - turretPos.z - 0.25;
         double sq = MathHelper.sqrt(x * x + z * z);
 
         float newYaw = (float) (Math.atan2(z, x) * 180.0D / Math.PI) - 90.0F;
