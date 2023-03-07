@@ -7,7 +7,6 @@ import org.avp.api.machines.IDataDevice;
 import org.avp.api.power.IVoltageReceiver;
 import org.avp.inventory.ContainerTurret;
 import org.avp.packets.client.PacketTurretSync;
-import org.avp.packets.server.PacketTurretTargetUpdate;
 import org.avp.tile.helpers.TileEntityTurretAmmoHelper;
 import org.avp.tile.helpers.TileEntityTurretAttackHelper;
 import org.avp.tile.helpers.TileEntityTurretLookHelper;
@@ -18,6 +17,7 @@ import com.asx.mdx.lib.client.util.Rotation;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.storage.NBTStorage;
+import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -44,8 +44,9 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
  * @author Boston Vanseghi
  *
  */
-public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver
+public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver, IRotatableYAxis
 {
+    private EnumFacing                          direction;
     public InventoryBasic                       inventoryExpansion;
     public InventoryBasic                       inventoryDrive;
     private ContainerTurret                     container;
@@ -125,6 +126,11 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.readInventoryFromNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
         this.readInventoryFromNBT(nbt, this.inventoryDrive);
+
+        if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
+        {
+            this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
+        }
     }
 
     @Override
@@ -138,6 +144,11 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.saveInventoryToNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
         this.saveInventoryToNBT(nbt, this.inventoryDrive);
+
+        if (this.direction != null)
+        {
+            nbt.setInteger("Direction", this.direction.ordinal());
+        }
 
         return nbt;
     }
@@ -362,6 +373,18 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public double getMaxVoltage(EnumFacing from)
     {
         return 220;
+    }
+
+    @Override
+    public EnumFacing getRotationYAxis()
+    {
+        return this.direction;
+    }
+
+    @Override
+    public void setRotationYAxis(EnumFacing facing)
+    {
+        this.direction = facing;
     }
 
 	public TileEntityTurretAmmoHelper getAmmoHelper() {

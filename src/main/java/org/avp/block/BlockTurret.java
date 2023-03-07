@@ -12,7 +12,7 @@ import com.asx.mdx.lib.world.entity.Entities;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -121,11 +121,20 @@ public class BlockTurret extends Block
                     }
                 }
             }
+        }
+    }
+    
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        super.onBlockPlacedBy(world, pos, state, placer, stack);
 
-            // if (tile.getEntity() != null)
-            // {
-            // tile.getEntity().setDead();
-            // }
+        TileEntityTurret tile = (TileEntityTurret) world.getTileEntity(pos);
+
+        if (tile != null)
+        {
+            tile.setRotationYAxis(Entities.getEntityFacingRotY(placer).getOpposite());
+            world.markBlockRangeForRenderUpdate(pos, pos);
         }
     }
     

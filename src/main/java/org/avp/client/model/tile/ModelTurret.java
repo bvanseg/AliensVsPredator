@@ -7,7 +7,7 @@ import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelTurret extends Model
+public class ModelTurret extends Model<TileEntityTurret>
 {
     private ModelRenderer barrel,
         supportLeft,
@@ -144,18 +144,36 @@ public class ModelTurret extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityTurret obj)
     {
-        TileEntityTurret tile = (TileEntityTurret) obj;
-        
-        if (tile != null)
+        if (obj != null)
         {
-            float rotationYaw = (-tile.getLookHelper().getRotationYaw()) / (180F / (float) Math.PI);
-            float rotationYawPrev = (-tile.getLookHelper().getRotationPrev().yaw) / (180F / (float) Math.PI);
-            float rotationPitch = -tile.getLookHelper().getRotationPitch() / (180F / (float) Math.PI);
-            float rotationPitchPrev = -tile.getLookHelper().getRotationPrev().pitch / (180F / (float) Math.PI);
+        	float yawOffset = 0F;
+        	
+        	switch (obj.getRotationYAxis()) {
+	        	case SOUTH:
+	        		yawOffset = 0F;
+	        		break;
+	        	case NORTH:
+	        		yawOffset = 180F * ((float)Math.PI / 180F);
+	        		break;
+	        	case EAST:
+	        		yawOffset = -90F * ((float)Math.PI / 180F);
+	        		break;
+	        	case WEST:
+	        		yawOffset = 90F * ((float)Math.PI / 180F);
+	        		break;
+	    		default:
+	    			break;
+        	}
+        	
+            float rotationYaw = -obj.getLookHelper().getRotationYaw() / (180F / (float) Math.PI);
+            float rotationYawPrev = -obj.getLookHelper().getRotationPrev().yaw / (180F / (float) Math.PI);
+            
+            float rotationPitch = -obj.getLookHelper().getRotationPitch() / (180F / (float) Math.PI);
+            float rotationPitchPrev = -obj.getLookHelper().getRotationPrev().pitch / (180F / (float) Math.PI);
 
-            rotationYaw = rotationYawPrev + (rotationYaw - rotationYawPrev) * Game.partialTicks();
+            rotationYaw = yawOffset + rotationYawPrev + (rotationYaw - rotationYawPrev) * Game.partialTicks();
             rotationPitch = rotationPitchPrev + (rotationPitch - rotationPitchPrev) * Game.partialTicks();
 
             barrel.rotateAngleY = rotationYaw;
