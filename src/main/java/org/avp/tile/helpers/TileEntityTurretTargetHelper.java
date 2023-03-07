@@ -1,5 +1,6 @@
 package org.avp.tile.helpers;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -41,14 +42,21 @@ import org.avp.packets.server.PacketTurretTargetUpdate;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.lib.world.storage.NBTStorage;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants.NBT;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -216,7 +224,7 @@ public class TileEntityTurretTargetHelper {
 	}
 
 	public HashSet<Class<? extends Entity>> getDangerousTargets() {
-		return targetTypes;
+		return this.targetTypes;
 	}
 
 	// TODO: Figure out what this was meant for.
@@ -256,4 +264,46 @@ public class TileEntityTurretTargetHelper {
 		this.addTargetType(EntityGooMutant.class);
 		this.addTargetType(EntityAethon.class);
 	}
+	
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        this.readTargetListFromCompoundTag(nbt);
+    }
+
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
+    {
+    	nbt.setTag("Targets", this.getTargetListTag());
+        return nbt;
+    }
+
+    public NBTTagList getTargetListTag()
+    {
+        ArrayList<String> entityIDs = new ArrayList<String>();
+
+        for (Class<? extends Entity> c : this.getDangerousTargets())
+        {
+            entityIDs.add(Entities.getEntityRegistrationId(c));
+        }
+
+        return NBTStorage.newStringNBTList(entityIDs);
+    }
+
+    public void readTargetListFromCompoundTag(NBTTagCompound nbt)
+    {
+        NBTTagList list = nbt.getTagList("Targets", NBT.TAG_STRING);
+        this.readTargetList(list);
+    }
+
+    public void readTargetList(NBTTagList list)
+    {
+        for (int i = 0; i < list.tagCount(); i++)
+        {
+            String id = list.getStringTagAt(i);
+
+            ResourceLocation identifier = new ResourceLocation(id);
+            EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(identifier);
+            Class<? extends Entity> entityClass = (Class<? extends Entity>) entityEntry.getEntityClass();
+            this.addTargetType(entityClass);
+        }
+    }
 }

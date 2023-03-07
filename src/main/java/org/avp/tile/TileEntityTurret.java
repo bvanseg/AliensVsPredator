@@ -129,7 +129,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     	this.getLookHelper().setFocusRotation(new Rotation(yaw, pitch));
 
         this.getLookHelper().getFocusRotation().setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
-        this.readTargetListFromCompoundTag(nbt);
+        this.getTargetHelper().readFromNBT(nbt);
         this.getAmmoHelper().setCurrentAmmoCount(nbt.getInteger("CurrentAmmoCount"));
         this.readInventoryFromNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
@@ -154,7 +154,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
         nbt.setFloat("FocusYaw", this.getLookHelper().getFocusRotation().yaw);
         nbt.setFloat("FocusPitch", this.getLookHelper().getFocusRotation().pitch);
-        nbt.setTag("Targets", this.getTargetListTag());
+        this.getTargetHelper().writeToNBT(nbt);
         nbt.setInteger("CurrentAmmoCount", this.getAmmoHelper().getCurrentAmmo());
         this.saveInventoryToNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
@@ -176,7 +176,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void onReceiveInitPacket(PacketTurretSync packet, MessageContext ctx)
     {
         this.applyUpgrades();
-        this.readTargetList(packet.targets);
+        this.getTargetHelper().readTargetList(packet.targets);
         this.getLookHelper().getRotation().yaw = packet.rotation.yaw;
         this.getLookHelper().getRotation().pitch = packet.rotation.pitch;
     }
@@ -201,37 +201,6 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         }
         
         this.getLookHelper().setTurretRotateSpeed(turretRotateSpeed);
-    }
-
-    public NBTTagList getTargetListTag()
-    {
-        ArrayList<String> entityIDs = new ArrayList<String>();
-
-        for (Class<? extends Entity> c : this.getTargetHelper().getDangerousTargets())
-        {
-            entityIDs.add(Entities.getEntityRegistrationId(c));
-        }
-
-        return NBTStorage.newStringNBTList(entityIDs);
-    }
-
-    public void readTargetListFromCompoundTag(NBTTagCompound nbt)
-    {
-        NBTTagList list = nbt.getTagList("Targets", NBT.TAG_STRING);
-        this.readTargetList(list);
-    }
-
-    public void readTargetList(NBTTagList list)
-    {
-        for (int i = 0; i < list.tagCount(); i++)
-        {
-            String id = list.getStringTagAt(i);
-
-            ResourceLocation identifier = new ResourceLocation(id);
-            EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(identifier);
-            Class<? extends Entity> entityClass = (Class<? extends Entity>) entityEntry.getEntityClass();
-            this.getTargetHelper().addTargetType(entityClass);
-        }
     }
 
     private void saveInventoryToNBT(NBTTagCompound nbt, IInventory inventory)
