@@ -122,7 +122,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         
         this.getLookHelper().readFromNBT(nbt);
         this.getTargetHelper().readFromNBT(nbt);
-        this.getAmmoHelper().setCurrentAmmoCount(nbt.getInteger("CurrentAmmoCount"));
+        this.getAmmoHelper().readFromNBT(nbt);
+        
         this.readInventoryFromNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
         this.readInventoryFromNBT(nbt, this.inventoryDrive);
@@ -140,7 +141,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         
         this.getLookHelper().writeToNBT(nbt);
         this.getTargetHelper().writeToNBT(nbt);
-        nbt.setInteger("CurrentAmmoCount", this.getAmmoHelper().getCurrentAmmo());
+        this.getAmmoHelper().writeToNBT(nbt);
+        
         this.saveInventoryToNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
         this.saveInventoryToNBT(nbt, this.inventoryDrive);

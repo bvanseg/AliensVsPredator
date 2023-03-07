@@ -11,6 +11,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
 /**
@@ -179,5 +180,16 @@ public class TileEntityTurretAmmoHelper {
     public void setMaxRounds(int maxRounds)
     {
         this.roundsMax = maxRounds;
+    }
+	
+    public void readFromNBT(NBTTagCompound nbt)
+    {
+        this.setCurrentAmmoCount(nbt.getInteger("CurrentAmmoCount"));
+    }
+
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
+    {
+        nbt.setInteger("CurrentAmmoCount", this.getCurrentAmmo());
+        return nbt;
     }
 }
