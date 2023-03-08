@@ -19,6 +19,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -27,16 +28,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SuppressWarnings("unchecked")
 public class ItemFirearm extends HookedItem
 {
     
-    private FirearmProfile profile;
-    private int            ammo;
-    private int            reloadTimer;
-    private long           lastSoundPlayed;
-    private float          breakProgress;
-    private int            breakingIndex;
+    private final FirearmProfile profile;
+    private int                  ammo;
+    private int                  reloadTimer;
+    private long                 lastSoundPlayed;
+    private float                breakProgress;
+    private int                  breakingIndex;
 
     public ItemFirearm(FirearmProfile profile)
     {
@@ -72,12 +72,13 @@ public class ItemFirearm extends HookedItem
                     this.setLastSoundPlayed(System.currentTimeMillis());
                 }
 
-
+                // TODO: The client shouldn't tell the server what it hit.
                 if (trace != null && trace.typeOfHit == Type.BLOCK)
                 {
                     AliensVsPredator.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.x, (int) trace.hitVec.y, (int) trace.hitVec.z, this.profile));
                 }
 
+                // TODO: The client shouldn't tell the server what it hit.
                 if (trace != null && trace.typeOfHit == Type.ENTITY)
                 {
                     AliensVsPredator.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, 0, 0, 0, this.profile));
@@ -102,11 +103,13 @@ public class ItemFirearm extends HookedItem
         return true;
     }
 
+    // TODO: Instead of iterating twice (once for simulation and once for consumption), just return a result data type and then consume on that result type if needed.
     public static boolean hasAmmunitionFor(FirearmProfile firearm, EntityPlayer player)
     {
         return consumeAmmunition(firearm, player, true);
     }
 
+    // TODO: Instead of iterating twice (once for simulation and once for consumption), just return a result data type and then consume on that result type if needed.
     public static boolean consumeAmmunition(FirearmProfile firearm, EntityPlayer player)
     {
         return consumeAmmunition(firearm, player, false);
@@ -114,43 +117,38 @@ public class ItemFirearm extends HookedItem
 
     public static boolean consumeAmmunition(FirearmProfile firearm, EntityPlayer player, boolean simulate)
     {
-        for (ItemStack itemstack : player.inventory.mainInventory)
-        {
-            if (itemstack != null && itemstack.getItem() instanceof ItemAmmunition)
-            {
-                ItemAmmunition ammunition = (ItemAmmunition) itemstack.getItem();
-
-                if (ammunition.getClassification() == firearm.getClassification())
-                {
-                    if (!simulate)
-                    {
-                        Inventories.consumeItem(player, ammunition);
-                    }
-
-                    return true;
-                }
-            }
-        }
-        
-        for (ItemStack itemstack : player.inventory.offHandInventory)
-        {
-            if (itemstack != null && itemstack.getItem() instanceof ItemAmmunition)
-            {
-                ItemAmmunition ammunition = (ItemAmmunition) itemstack.getItem();
-
-                if (ammunition.getClassification() == firearm.getClassification())
-                {
-                    if (!simulate)
-                    {
-                        Inventories.consumeItem(player, ammunition);
-                    }
-
-                    return true;
-                }
-            }
-        }
+    	// Main-hand inventory.
+    	if (tryConsumeAmmoForFirearm(player, firearm, player.inventory.mainInventory, simulate)) {
+    		return true;
+    	}
+    	// Off-hand inventory.
+    	else if (tryConsumeAmmoForFirearm(player, firearm, player.inventory.offHandInventory, simulate)) {
+    		return true;
+    	}
 
         return false;
+    }
+    
+    private static boolean tryConsumeAmmoForFirearm(EntityPlayer player, FirearmProfile firearm, NonNullList<ItemStack> inventory, Boolean simulate) {
+    	for (ItemStack itemstack : inventory)
+        {
+            if (itemstack != null && itemstack.getItem() instanceof ItemAmmunition)
+            {
+                ItemAmmunition ammunition = (ItemAmmunition) itemstack.getItem();
+
+                if (ammunition.getClassification() == firearm.getClassification())
+                {
+                    if (!simulate)
+                    {
+                        Inventories.consumeItem(player, ammunition);
+                    }
+
+                    return true;
+                }
+            }
+        }
+    	
+    	return false;
     }
 
     public void reload(EntityPlayer player)
@@ -159,9 +157,8 @@ public class ItemFirearm extends HookedItem
         {
             consumeAmmunition(this.profile, player);
         }
-
-        if (player.world.isRemote)
-        {
+        else {
+        	// TODO: Try and avoid the client telling the server what to do.
             AliensVsPredator.network().sendToServer(new PacketReloadFirearm());
         }
 
@@ -172,8 +169,9 @@ public class ItemFirearm extends HookedItem
     {
         long major = System.currentTimeMillis() / 1000 - this.getLastSoundPlayTime() / 1000;
         long minor = Math.abs((System.currentTimeMillis() - this.getLastSoundPlayTime()) - (major * 1000));
-        double time = Double.valueOf(String.format("%s.%s", major, minor));
-        return this.getLastSoundPlayTime() == 0 ? true : (time >= this.getProfile().getSoundLength());
+        // TODO: We can just do bit manipulation instead of whatever this is. Also use ticks instead of system time.
+        double time = Double.parseDouble(String.format("%s.%s", major, minor));
+        return this.getLastSoundPlayTime() == 0 || (time >= this.getProfile().getSoundLength());
     }
 
     public void setAmmoCount(int ammoCount)
