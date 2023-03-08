@@ -49,6 +49,7 @@ public class AlienHive {
 	
 	public void destroy() {
 		AlienHiveHandler.instance.removeHiveMembers(this.hiveMemberUUIDs);
+		AlienHiveHandler.instance.removeResinPositions(this.resinInHive);
 	}
 	
 	public void addHiveMember(UUID entityUUID) {

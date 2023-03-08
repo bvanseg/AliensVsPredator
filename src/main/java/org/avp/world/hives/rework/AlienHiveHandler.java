@@ -48,4 +48,8 @@ public class AlienHiveHandler {
 			}
 		}
 	}
+
+	public void removeResinPositions(HashSet<BlockPos> resinPositions) {
+		this.resinPositionsToHive.keySet().removeAll(resinPositions);
+	}
 }
