@@ -1,10 +1,8 @@
-package org.avp.item;
+package org.avp.item.firearms;
 
 import java.util.List;
 
 import org.avp.AliensVsPredator;
-import org.avp.item.firearms.FirearmProfile;
-import org.avp.item.firearms.ItemAmmunition;
 import org.avp.packets.server.PacketFirearmSync;
 import org.avp.packets.server.PacketReloadFirearm;
 

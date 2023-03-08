@@ -1,6 +1,6 @@
 package org.avp.packets.client;
 
-import org.avp.item.ItemFirearm;
+import org.avp.item.firearms.ItemFirearm;
 
 import com.asx.mdx.lib.util.Game;
 

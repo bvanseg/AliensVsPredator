@@ -8,10 +8,10 @@ import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.EntityAISuperjump;
 import org.avp.entities.living.EntityMarine;
 import org.avp.item.ItemDisc;
-import org.avp.item.ItemFirearm;
 import org.avp.item.ItemPlasmaCannon;
 import org.avp.item.ItemShuriken;
 import org.avp.item.ItemWristbracer;
+import org.avp.item.firearms.ItemFirearm;
 
 import com.google.common.base.Predicate;
 
