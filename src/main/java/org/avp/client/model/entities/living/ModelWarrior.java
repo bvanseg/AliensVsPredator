@@ -340,6 +340,7 @@ public class ModelWarrior extends Model
             this.headSpine1.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;
             this.headSpine2.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;
             this.jaw.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;
+            this.jaw2.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;
             this.rHead.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;
             this.lHead.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;
             newangle = MathHelper.cos(idleProgress(obj) * 3.5F * multiplier) * (float) Math.PI * 0.4F;
