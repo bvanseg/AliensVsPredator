@@ -98,12 +98,6 @@ public class EntityDeacon extends Species223ODe implements INascentic
     }
 
     @Override
-    public void identifyHive()
-    {
-        return;
-    }
-
-    @Override
     public Class<? extends Entity> getMatureState()
     {
         return EntityDeaconAdult.class;

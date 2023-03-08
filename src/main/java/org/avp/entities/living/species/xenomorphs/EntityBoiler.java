@@ -65,12 +65,6 @@ public class EntityBoiler extends SpeciesXenomorph
     }
     
     @Override
-    public void identifyHive()
-    {
-        ;
-    }
-    
-    @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(ItemHandler.Experimental.summonerBoiler);

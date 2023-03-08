@@ -296,12 +296,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         }
         return nbt;
     }
-
-    @Override
-    public void identifyHive()
-    {
-        ;
-    }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)

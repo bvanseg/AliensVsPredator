@@ -7,6 +7,7 @@ import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.living.EntityMarine;
 import org.avp.entities.living.species.engineer.EntityEngineer;
 import org.avp.entities.living.species.yautja.EntityYautjaWarrior;
+import org.avp.world.hives.rework.HiveMember;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -23,7 +24,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityPredalienChestburster extends EntityChestburster implements IMob, INascentic
+public class EntityPredalienChestburster extends EntityChestburster implements IMob, INascentic, HiveMember
 {
     private Class<? extends Entity> matureState;
 

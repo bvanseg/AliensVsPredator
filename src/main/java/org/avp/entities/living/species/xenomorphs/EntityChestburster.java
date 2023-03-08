@@ -11,6 +11,7 @@ import org.avp.entities.living.species.EntityParasitoid;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
+import org.avp.world.hives.rework.HiveMember;
 
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
@@ -38,7 +39,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
+public class EntityChestburster extends SpeciesAlien implements IMob, INascentic, HiveMember
 {
     private Class<? extends Entity> matureState;
 

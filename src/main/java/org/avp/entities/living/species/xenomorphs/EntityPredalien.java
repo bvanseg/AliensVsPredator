@@ -4,6 +4,7 @@ import org.avp.EntityItemDrops;
 import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.world.hives.rework.HiveMember;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -14,7 +15,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityPredalien extends SpeciesXenomorph implements IMob
+public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMember
 {
     public EntityPredalien(World world)
     {

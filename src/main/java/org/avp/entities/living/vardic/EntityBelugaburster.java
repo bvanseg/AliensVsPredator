@@ -88,12 +88,6 @@ public class EntityBelugaburster extends EntityChestburster implements IMob, INa
     }
     
     @Override
-    public void identifyHive()
-    {
-        ;
-    }
-    
-    @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(ItemHandler.summonerBelugaburster);
