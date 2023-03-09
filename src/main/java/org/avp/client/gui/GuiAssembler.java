@@ -180,13 +180,13 @@ public class GuiAssembler extends GuiContainer
 	    int assemblerSidePanelWidth = ((this.width - this.xSize) / 2) - 5;
 	    int assemblerSidePanelX = -assemblerSidePanelWidth;
 
+        OpenGL.enableBlend();
 	    for (ItemStack stack : selectedSchematic.getItemsRequired())
 	    {
 	        currentStack++;
 	        int amountOfStack = AssemblyManager.amountForMatchingStack(Game.minecraft().player, stack);
 	        int stackY = 15 + (currentStack * 8);
 	        int currentStackSize = (amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack);
-	        OpenGL.enableBlend();
 	        Draw.drawRect(assemblerSidePanelX, stackY - 2, assemblerSidePanelWidth, 8, 0xDD000000);
 
 	        OpenGL.pushMatrix();
@@ -225,7 +225,8 @@ public class GuiAssembler extends GuiContainer
 		int i = getScroll();
         int entryHeight = 10;
         int entryX = 4;
-		
+
+        OpenGL.disableBlend();
 		for (Schematic schematic : visibleSchematics) {
 			ItemStack itemStack = schematic.getItemStackAssembled();
 			Item item = itemStack.getItem();
@@ -236,7 +237,6 @@ public class GuiAssembler extends GuiContainer
 	            int entryWidth = this.xSize - Math.round(this.xSize / 5.35F);
 	            int entryY = 33 + (numberRendered) * entryHeight;
 	            
-                OpenGL.disableBlend();
                 Draw.drawRect(entryX, entryY + entryHeight, entryWidth, 1, 0xFF000000);
                 Draw.drawString(I18n.translateToLocal(item.getTranslationKey() + ".name"), entryX + 13, entryY + 2, numberRendered == 0 ? 0xFF00AAFF : 0xFF555555, false);
                 Draw.drawItem(schematic.getItemStackAssembled(), entryX + 2, entryY + 2, 8, 8);
