@@ -40,6 +40,8 @@ public class EntityImpregnationHandler
     private static float                          rotationPitchLock = 0F;
     private static boolean                        rotationLocked    = false;
 
+    private EntityImpregnationHandler() {}
+    
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void handlePlayerInput(InputUpdateEvent event)
@@ -55,7 +57,6 @@ public class EntityImpregnationHandler
                 Game.minecraft().player.moveRelative(0F, 0F, 2F, 1.0F);
                 rotationLocked = true;
             }
-
 
             trilobite.rotationYawHead = rotationYawLock;
             trilobite.rotationYaw = rotationYawLock;
@@ -78,111 +79,116 @@ public class EntityImpregnationHandler
     @SubscribeEvent
     public void tick(LivingUpdateEvent event)
     {
+    	Entity entity =  event.getEntity();
+    	
+    	// If the entity is in an invalid state, return.
+    	if (entity == null || entity.isDead || entity.world == null || !(entity instanceof EntityLivingBase))
+    		return;
+    	
         World world = event.getEntity().getEntityWorld();
-        if (world != null)
+        
+        // If the entity has not spawned in a world yet, return.
+        if (world == null)
+        	return;
+        
+        EntityLivingBase host = (EntityLivingBase) entity;
+        Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
+        
+        // If the organism does not have an embryo, return.
+        if (!organism.hasEmbryo())
+        	return;
+
+        // Handle player host.
+        if (host instanceof EntityPlayer) {
+    		EntityPlayer player = (EntityPlayer) host;
+    		
+    		if (player.isCreative())
+    			return;
+    		
+    		tickPlayerHost(world, player, organism);
+        }
+
+        organism.onTick(host, organism);
+
+        // TODO: Both branches below this comment need to be rewritten, remote checks should be done first.
+        // Worth noting that both branches execute on both players and non-players.
+
+    	System.out.println("AGE: " + organism.getEmbryo().getAge() + ", TRIGGER: " + organism.getEmbryo().getGestationPeriod());
+        if (organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod())
         {
-            Entity entity = event.getEntity();
-            
-            if (entity != null && entity instanceof EntityLivingBase)
+            if (!world.isRemote && organism.getEmbryo().getNascenticOrganism() != null)
             {
-                EntityLivingBase host = (EntityLivingBase) entity;
-                Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
-                EntityPlayer player = null;
+                organism.getEmbryo().getNascenticOrganism().vitalize(host);
+            }
+        }
 
-                if (host instanceof EntityPlayer)
-                {
-                    player = (EntityPlayer) host;
-                }
+        if (organism.getEmbryo().getAge() > 0)
+        {
+        	int age = organism.getEmbryo().getAge();
+            int gestationPeriod = organism.getEmbryo().getGestationPeriod();
+            int timeBlind = gestationPeriod - (gestationPeriod / 2);
 
-                organism.onTick(host, organism);
-
-                if (host.isEntityAlive() && organism.hasEmbryo())
-                {
-
-                    if (player != null && !player.capabilities.isCreativeMode || player == null)
-                    {
-                        if (!world.isRemote)
-                        {
-                            organism.gestate(host);
-                        }
-                        else if (world.isRemote)
-                        {
-                            if (!Game.minecraft().isGamePaused())
-                            {
-                                organism.gestate(host);
-                            }
-                        }
-                    }
-
-                    if (organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod())
-                    {
-                        if (organism.getEmbryo().getNascenticOrganism() != null)
-                        {
-                            if (!world.isRemote)
-                            {
-                                organism.getEmbryo().getNascenticOrganism().vitalize(host);
-                            }
-                        }
-                    }
-
-                    if (organism.hasEmbryo() && organism.getEmbryo().getAge() > 0)
-                    {
-                        if (player == null || player != null && !player.capabilities.isCreativeMode)
-                        {
-                            int age = organism.getEmbryo().getAge();
-                            int gestationPeriod = organism.getEmbryo().getGestationPeriod();
-                            int timeLeft = gestationPeriod - age;
-                            int timeBlind = gestationPeriod - (gestationPeriod / 2);
-                            int timeBleed = gestationPeriod - (gestationPeriod / 10);
-
-                            if (age >= timeBlind)
-                            {
-                                if (!world.isRemote)
-                                {
-                                    host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, organism.getEmbryo().getGestationPeriod() / 2));
-                                }
-                            }
-                            
-                            if(world.isRemote)
-                            {
-                                GraphicsSetting bloodDetails = ClientSettings.instance.bloodDetails().value();
-                                int particleCount = bloodDetails.ordinal() < 2 ? 32 : 0 + 32 * (int)Math.pow(2, bloodDetails.ordinal());
-                                
-                                if (timeLeft <= 3)
-                                {
-                                    for (int i = particleCount; i > 0; i--)
-                                    {
-                                        this.bleed(host, 0.5F);
-                                    }
-                                }
-
-                                if (age >= timeBleed && bloodDetails.ordinal() > 2)
-                                {
-                                    this.bleed(host, 0.25F);
-
-                                    if (host.getRNG().nextInt(100) == 0 && bloodDetails.ordinal() > 3)
-                                    {
-                                        for (int i = 32; i > 0; i--)
-                                        {
-                                            this.bleed(host, 0.5F);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        if (player != null && player.capabilities.isCreativeMode)
-                        {
-                            if (!world.isRemote)
-                            {
-                                player.clearActivePotions();
-                            }
-                        }
-                    }
-                }
+            if (!world.isRemote)
+            {
+            	if (age >= timeBlind) {
+                    host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, organism.getEmbryo().getGestationPeriod() / 2));
+            	}
+            }
+            else {
+                int timeLeft = gestationPeriod - age;
+                int timeBleed = gestationPeriod - (gestationPeriod / 10);
+                spawnBloodParticles(host, age, timeLeft, timeBleed);
             }
         }
     }
+
+	private void tickPlayerHost(World world, EntityPlayer player, Organism organism) {
+		
+		// FIXME: Organism gestates server-side but not client-side when game is paused!
+		if (!world.isRemote)
+		{
+		    organism.gestate(player);
+		    
+		    if (organism.getEmbryo().getAge() > 0) {
+		        player.clearActivePotions();
+		    }
+		}
+		else
+		{
+		    if (!Game.minecraft().isGamePaused())
+		    {
+		        organism.gestate(player);
+		    }
+		}
+	}
+
+    @SideOnly(Side.CLIENT)
+	private void spawnBloodParticles(EntityLivingBase host, int age, int timeLeft, int timeBleed) {
+		GraphicsSetting bloodDetails = ClientSettings.instance.bloodDetails().value();
+		// TODO: Not safe to use ordinals like this.
+		int particleCount = bloodDetails.ordinal() < 2 ? 32 : 0 + 32 * (int)Math.pow(2, bloodDetails.ordinal());
+		
+		if (timeLeft <= 3)
+		{
+		    for (int i = particleCount; i > 0; i--)
+		    {
+		        this.bleed(host, 0.5F);
+		    }
+		}
+
+		if (age >= timeBleed && bloodDetails.ordinal() > 2)
+		{
+		    this.bleed(host, 0.25F);
+
+		    if (host.getRNG().nextInt(100) == 0 && bloodDetails.ordinal() > 3)
+		    {
+		        for (int i = 32; i > 0; i--)
+		        {
+		            this.bleed(host, 0.5F);
+		        }
+		    }
+		}
+	}
 
     @SideOnly(Side.CLIENT)
     private void bleed(EntityLivingBase host, float spread)
@@ -208,25 +214,21 @@ public class EntityImpregnationHandler
         if (host instanceof EntitySquid || host instanceof EntitySpider)
         {
             particleColor = 0x0000FF;
-            glow = false;
         }
 
         if (host instanceof EntityCreeper)
         {
             particleColor = 0x75974B;
-            glow = false;
         }
 
         if (host instanceof EntityGhast)
         {
             particleColor = 0xF0F0F0;
-            glow = false;
         }
 
         if (host instanceof EntityMooshroom)
         {
             particleColor = 0xCD8C6F;
-            glow = false;
         }
 
         if (host instanceof EntityEnderman)
