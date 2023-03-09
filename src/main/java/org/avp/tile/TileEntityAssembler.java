@@ -25,6 +25,8 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     private ItemStack          previousTickStack;
     public int                 clickAmount = 0;
     private ContainerAssembler container;
+	
+	public float rotateProgress;
 
     public TileEntityAssembler()
     {
