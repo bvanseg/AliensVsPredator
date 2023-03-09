@@ -193,6 +193,7 @@ public class GuiTurret extends GuiContainer
     @SideOnly(Side.CLIENT)
     protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY)
     {
+    	this.drawDefaultBackground();
         AliensVsPredator.resources().GUI_TURRET.bind();
         drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
