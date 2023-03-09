@@ -250,6 +250,7 @@ public class GuiAssembler extends GuiContainer
     @Override
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
+    	this.drawDefaultBackground();
         AliensVsPredator.resources().GUI_ASSEMBLER.bind();
         drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
     }
