@@ -2,7 +2,6 @@ package org.avp.world;
 
 import org.avp.Settings.ClientSettings;
 import org.avp.entities.living.species.SpeciesYautja;
-import org.avp.entities.living.species.species223ode.EntityTrilobite;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
@@ -23,7 +22,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
@@ -34,140 +32,96 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class EntityImpregnationHandler
 {
-    public static final EntityImpregnationHandler instance          = new EntityImpregnationHandler();
-
-    private static float                          rotationYawLock   = 0F;
-    private static float                          rotationPitchLock = 0F;
-    private static boolean                        rotationLocked    = false;
+    public static final EntityImpregnationHandler instance = new EntityImpregnationHandler();
 
     private EntityImpregnationHandler() {}
-    
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent
-    public void handlePlayerInput(InputUpdateEvent event)
-    {
-        if (Game.minecraft().player != null && Game.minecraft().player.getPassengers() != null && Game.minecraft().player.getPassengers().size() >= 1 && Game.minecraft().player.getPassengers().get(0) instanceof EntityTrilobite)
-        {
-            EntityTrilobite trilobite = (EntityTrilobite) Game.minecraft().player.getPassengers().get(0);
-
-            if (!rotationLocked)
-            {
-                rotationYawLock = Game.minecraft().player.rotationYaw;
-                rotationPitchLock = Game.minecraft().player.rotationPitch;
-                Game.minecraft().player.moveRelative(0F, 0F, 2F, 1.0F);
-                rotationLocked = true;
-            }
-
-            trilobite.rotationYawHead = rotationYawLock;
-            trilobite.rotationYaw = rotationYawLock;
-            trilobite.prevRotationYawHead = rotationYawLock;
-            trilobite.prevRotationYaw = rotationYawLock;
-            Game.minecraft().player.rotationPitch = -10F;
-            Game.minecraft().player.rotationYaw = rotationYawLock;
-            Game.minecraft().player.rotationYawHead = rotationYawLock;
-            Game.minecraft().player.moveStrafing = 0F;
-            event.getMovementInput().jump = false;
-            event.getMovementInput().moveForward = event.getMovementInput().moveForward - event.getMovementInput().moveForward;
-            event.getMovementInput().moveStrafe = event.getMovementInput().moveStrafe - event.getMovementInput().moveStrafe;
-        }
-        else
-        {
-            rotationLocked = false;
-        }
-    }
 
     @SubscribeEvent
     public void tick(LivingUpdateEvent event)
     {
     	Entity entity =  event.getEntity();
     	
-    	// If the entity is in an invalid state, return.
-    	if (entity == null || entity.isDead || entity.world == null || !(entity instanceof EntityLivingBase))
+    	if (!this.canTickHost(entity))
     		return;
     	
-        World world = event.getEntity().getEntityWorld();
-        
-        // If the entity has not spawned in a world yet, return.
-        if (world == null)
-        	return;
+        World world = entity.getEntityWorld();
         
         EntityLivingBase host = (EntityLivingBase) entity;
         Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
-        
-        // If the organism does not have an embryo, return.
-        if (!organism.hasEmbryo())
-        	return;
-
-        // Handle player host.
-        if (host instanceof EntityPlayer) {
-    		EntityPlayer player = (EntityPlayer) host;
-    		
-    		if (player.isCreative())
-    			return;
-    		
-    		tickPlayerHost(world, player, organism);
-        }
 
         organism.onTick(host, organism);
-
-        // TODO: Both branches below this comment need to be rewritten, remote checks should be done first.
-        // Worth noting that both branches execute on both players and non-players.
-
-    	System.out.println("AGE: " + organism.getEmbryo().getAge() + ", TRIGGER: " + organism.getEmbryo().getGestationPeriod());
-        if (organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod())
-        {
-            if (!world.isRemote && organism.getEmbryo().getNascenticOrganism() != null)
-            {
+        
+    	int age = organism.getEmbryo().getAge();
+        int gestationPeriod = organism.getEmbryo().getGestationPeriod();
+        int timeBlind = gestationPeriod - (gestationPeriod / 2);
+        
+ 		if (!world.isRemote)
+ 		{
+ 		    organism.gestate(host);
+ 		    
+ 		    // TODO: This clears potion effects the host has every tick, not sure if this is correct.
+ 		    if (organism.getEmbryo().getAge() > 0) {
+ 		        host.clearActivePotions();
+ 		    }
+ 		    
+        	if (age >= timeBlind && host.getActivePotionEffect(MobEffects.BLINDNESS) == null) {
+                host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, organism.getEmbryo().getGestationPeriod() / 2));
+        	}
+ 		    
+ 		    boolean isEmbryoReadyToLive = organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod();
+ 		    
+ 		    // TODO: Why would nascentic organism ever be null here?
+ 		    if (isEmbryoReadyToLive && organism.getEmbryo().getNascenticOrganism() != null) {
                 organism.getEmbryo().getNascenticOrganism().vitalize(host);
-            }
-        }
+ 		    }
+ 		}
+ 		else // client world.
+ 		{
+ 	        // FIXME: Organism gestates server-side but not client-side when game is paused!
+ 		    if (!Game.minecraft().isGamePaused())
+ 		    {
+ 		        organism.gestate(host);
+ 		    }
 
-        if (organism.getEmbryo().getAge() > 0)
-        {
-        	int age = organism.getEmbryo().getAge();
-            int gestationPeriod = organism.getEmbryo().getGestationPeriod();
-            int timeBlind = gestationPeriod - (gestationPeriod / 2);
-
-            if (!world.isRemote)
-            {
-            	if (age >= timeBlind) {
-                    host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, organism.getEmbryo().getGestationPeriod() / 2));
-            	}
-            }
-            else {
-                int timeLeft = gestationPeriod - age;
-                int timeBleed = gestationPeriod - (gestationPeriod / 10);
-                spawnBloodParticles(host, age, timeLeft, timeBleed);
-            }
-        }
+			// FIXME: This currently runs every tick, but does nothing.
+			if (organism.hasEmbryo() && organism.getEmbryo().getAge() > 0)
+			{
+				int timeLeft = gestationPeriod - age;
+				int timeBleed = gestationPeriod - (gestationPeriod / 10);
+				spawnBloodParticles(host, age, timeLeft, timeBleed);
+			}
+ 		}
     }
+    
+    public boolean canTickHost(Entity entity) {
+    	// If the entity is in an invalid state
+    	if (entity == null || entity.isDead || entity.world == null || !(entity instanceof EntityLivingBase))
+    		return false;
+        
+        // If the entity has not spawned in a world yet
+        if (entity.world == null)
+        	return false;
+        
+        Organism organism = (Organism) entity.getCapability(Provider.CAPABILITY, null);
+        
+        // If the organism does not have an embryo
+        if (!organism.hasEmbryo())
+        	return false;
 
-	private void tickPlayerHost(World world, EntityPlayer player, Organism organism) {
-		
-		// FIXME: Organism gestates server-side but not client-side when game is paused!
-		if (!world.isRemote)
-		{
-		    organism.gestate(player);
-		    
-		    if (organism.getEmbryo().getAge() > 0) {
-		        player.clearActivePotions();
-		    }
-		}
-		else
-		{
-		    if (!Game.minecraft().isGamePaused())
-		    {
-		        organism.gestate(player);
-		    }
-		}
-	}
+        // Ignore creative players.
+        if (entity instanceof EntityPlayer && ((EntityPlayer) entity).isCreative()) {
+			return false;
+        }
+        
+        return true;
+    }
 
     @SideOnly(Side.CLIENT)
 	private void spawnBloodParticles(EntityLivingBase host, int age, int timeLeft, int timeBleed) {
 		GraphicsSetting bloodDetails = ClientSettings.instance.bloodDetails().value();
 		// TODO: Not safe to use ordinals like this.
 		int particleCount = bloodDetails.ordinal() < 2 ? 32 : 0 + 32 * (int)Math.pow(2, bloodDetails.ordinal());
-		
+
 		if (timeLeft <= 3)
 		{
 		    for (int i = particleCount; i > 0; i--)
@@ -268,20 +222,14 @@ public class EntityImpregnationHandler
     @SubscribeEvent
     public void respawnEvent(PlayerRespawnEvent event)
     {
-        EntityLivingBase living = event.player;
-        Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
-
-        if (organism.hasEmbryo())
-        {
-            organism.removeEmbryo();
-        }
+        Organism organism = (Organism) event.player.getCapability(Provider.CAPABILITY, null);
+        organism.removeEmbryo();
     }
 
     @SubscribeEvent
     public void despawnEvent(LivingSpawnEvent.AllowDespawn event)
     {
-        EntityLivingBase living = event.getEntityLiving();
-        Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+        Organism organism = (Organism) event.getEntityLiving().getCapability(Provider.CAPABILITY, null);
 
         if (organism.hasEmbryo())
         {
