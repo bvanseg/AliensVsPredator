@@ -1,10 +1,7 @@
 buildscript {
     repositories {
     	mavenCentral()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven" 
-        }
+        maven { url = "https://maven.minecraftforge.net/" }
         maven {
             url = "https://oss.sonatype.org/content/groups/public"
         }
@@ -13,7 +10,9 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+        classpath ('com.anatawa12.forge:ForgeGradle:2.3-1.0.+') {
+        	changing = true
+        }
         classpath 'org.ajoberstar:gradle-git:0.10.1'
         classpath "gradle.plugin.com.matthewprenger:CurseGradle:1.1.0"
     }
@@ -25,7 +24,7 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'com.matthewprenger.cursegradle'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 configurations {
     deployerJars
@@ -35,6 +34,7 @@ repositories {
     maven {
         name = "aliensvspredator"
         url = "http://maven.aliensvspredator.org/"
+        allowInsecureProtocol = true
     }
 }
 
@@ -73,8 +73,8 @@ println "Minecraft Development Library X ${mdxversion}"
 
 dependencies {
     deployerJars 'org.apache.maven.wagon:wagon-ftp:2.2'
-    compile "com.asx:mdxlib:${mdxversion}:deobf"
-    compile fileTree(dir: 'lib', includes: ['*.jar'])
+    implementation "com.asx:mdxlib:${mdxversion}:deobf"
+    implementation fileTree(dir: 'lib', includes: ['*.jar'])
 }
 
 jar {
@@ -132,22 +132,48 @@ idea {
         inheritOutputDirs = true 
     }
 }
-task("publishToMaven", dependsOn:"build") {
-    description = "Uploads the artifacts generated during the build process to the aliensvspredator maven repository"
 
-    uploadArchives {
-        repositories.mavenDeployer {
-            configuration = configurations.deployerJars
-            repository(url: "ftp://maven.aliensvspredator.org") {
-                authentication(userName: mavenUsername, password: mavenPassword)
-            }
-            
-            pom.project {
-        		properties {
-            		forgeVersion = version_minecraft
-	            	mcVersion = minecraft.version
-            	}
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            pom {
+                properties = [
+                    forgeVersion: version_minecraft,
+                    mcVersion: minecraft.version
+                ]
             }
         }
     }
+
+    repositories {
+        maven {
+            credentials {
+                username mavenUsername
+                password mavenPassword
+            }
+            url = "ftp://maven.aliensvspredator.org"
+        }
+    }
 }
+
+//task("publishToMaven", dependsOn:"build") {
+//    description = "Uploads the artifacts generated during the build process to the aliensvspredator maven repository"
+//
+//    uploadArchives {
+//        repositories.mavenDeployer {
+//            configuration = configurations.deployerJars
+//            repository(url: "ftp://maven.aliensvspredator.org") {
+//                authentication(userName: mavenUsername, password: mavenPassword)
+//            }
+//
+//            pom.project {
+//        		properties {
+//            		forgeVersion = version_minecraft
+//	            	mcVersion = minecraft.version
+//            	}
+//            }
+//        }
+//    }
+//}
