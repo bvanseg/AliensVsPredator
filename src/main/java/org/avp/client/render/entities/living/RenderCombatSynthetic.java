@@ -67,7 +67,7 @@ public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynth
                         GlStateManager.translate(0.0F, 0.2F, 0.0F);
                     }
 
-                    if (synthetic.isFiring())
+                    if (synthetic.isAiming())
                     {
                         renderer.getModel().getModel().aimedBow = true;
                     }

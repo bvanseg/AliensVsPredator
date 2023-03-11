@@ -3,6 +3,7 @@ package org.avp.entities.living.species.xenomorphs;
 import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.client.Sounds;
+import org.avp.world.hives.rework.HiveMember;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -12,7 +13,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityCrusher extends EntityPraetorian implements IMaturable
+public class EntityCrusher extends EntityPraetorian implements IMaturable, HiveMember
 {
     public EntityCrusher(World world)
     {
