@@ -293,7 +293,7 @@ public class PressureHUDRenderEvent
                             if (entity instanceof EntityMarine)
                             {
                                 fontrenderer.drawString("Type: " + ((EntityMarine) entity).getMarineType(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
-                                fontrenderer.drawString("IsFiring: " + ((EntityMarine) entity).isFiring(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
+                                fontrenderer.drawString("IsAiming: " + ((EntityMarine) entity).isAiming(), subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
                             }
 
                             int curHeight = 20 + 12 * curEntry;

@@ -12,7 +12,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 
-public class RenderItemSporepod extends ItemRenderer<ModelSporePod>
+public class RenderItemSporePod extends ItemRenderer<ModelSporePod>
 {
     private float              scale;
     private float              x;
@@ -20,25 +20,25 @@ public class RenderItemSporepod extends ItemRenderer<ModelSporePod>
     private MapModelTexture<?> model;
 
     @SuppressWarnings("all")
-    public RenderItemSporepod()
+    public RenderItemSporePod()
     {
         super(null);
-        this.model = AliensVsPredator.resources().models().SPOREPOD.clone();
+        this.model = AliensVsPredator.resources().models().SPORE_POD.clone();
     }
 
-    public RenderItemSporepod setX(float x)
+    public RenderItemSporePod setX(float x)
     {
         this.x = x;
         return this;
     }
 
-    public RenderItemSporepod setY(float y)
+    public RenderItemSporePod setY(float y)
     {
         this.y = y;
         return this;
     }
 
-    public RenderItemSporepod setScale(float scale)
+    public RenderItemSporePod setScale(float scale)
     {
         this.scale = scale;
         return this;
