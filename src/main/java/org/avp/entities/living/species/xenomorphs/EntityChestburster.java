@@ -7,10 +7,12 @@ import org.avp.api.parasitoidic.INascentic;
 import org.avp.api.parasitoidic.IRoyalOrganism;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.species.EntityParasitoid;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
+import org.avp.world.hives.rework.HiveMember;
 
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
@@ -25,7 +27,6 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -38,7 +39,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
+public class EntityChestburster extends SpeciesAlien implements IMob, INascentic, HiveMember
 {
     private Class<? extends Entity> matureState;
 
@@ -51,7 +52,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIAvoidEntity<EntityLivingBase>(this, EntityLivingBase.class, INascentic.avoidSelector, 8.0F, 0.4F, 0.7F));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
-        this.tasks.addTask(4, new EntityAIWander(this, 0.800000011920929D));
+        this.tasks.addTask(4, new PatchedEntityAIWander(this, 0.800000011920929D));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, EntityParasitoid.impregnationSelector));
         this.targetTasks.addTask(1, new EntityAIAttackMelee(this, 0.8F, false));

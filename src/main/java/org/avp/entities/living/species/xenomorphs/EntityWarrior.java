@@ -4,6 +4,7 @@ import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.client.Sounds;
 import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.world.hives.rework.HiveMember;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -15,7 +16,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityWarrior extends SpeciesXenomorph implements IMob, IMaturable
+public class EntityWarrior extends SpeciesXenomorph implements IMob, IMaturable, HiveMember
 {
     public EntityWarrior(World world)
     {
@@ -23,7 +24,6 @@ public class EntityWarrior extends SpeciesXenomorph implements IMob, IMaturable
         this.experienceValue = 175;
         this.setSize(1.0F, 2.5F);
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.addStandardXenomorphAISet();
     }
 
     @Override

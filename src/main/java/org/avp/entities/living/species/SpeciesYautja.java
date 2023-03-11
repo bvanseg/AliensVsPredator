@@ -6,6 +6,7 @@ import org.avp.api.parasitoidic.IHost;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.EntityAISuperjump;
+import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.EntityMarine;
 import org.avp.entities.state.CloakState;
 import org.avp.item.ItemDisc;
@@ -69,7 +70,7 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
         
 //        this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(0, new EntityAICustomAttackOnCollide(this, EntityLivingBase.class, 0.9D, true));
-        this.tasks.addTask(1, new EntityAIWander(this, 0.6D));
+        this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.6D));
         this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
         this.targetTasks.addTask(0, new EntityAISuperjump(this, 1.0F));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
