@@ -13,7 +13,6 @@ public class EntityBatXeno extends SpeciesXenomorph
     public EntityBatXeno(World world)
     {
         super(world);
-        this.addStandardXenomorphAISet();
     }
 
     @Override

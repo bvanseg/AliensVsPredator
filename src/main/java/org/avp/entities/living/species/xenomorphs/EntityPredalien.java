@@ -23,7 +23,6 @@ public class EntityPredalien extends SpeciesXenomorph implements IMob
         this.experienceValue = 225;
         this.setSize(1.0F, 2.5F);
         this.ignoreFrustumCheck = true;
-        this.addStandardXenomorphAISet();
     }
 
     @Override

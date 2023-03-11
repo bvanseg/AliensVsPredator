@@ -49,8 +49,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         this.experienceValue = 10;
         this.ignoreFrustumCheck = true;
         this.jumpMovementFactor = 0.3F;
-
-        this.addTasks();
     }
 
     @Override

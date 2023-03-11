@@ -13,7 +13,6 @@ public class EntityPantheramorph extends SpeciesXenomorph
     public EntityPantheramorph(World world)
     {
         super(world);
-        this.addStandardXenomorphAISet();
     }
 
     @Override

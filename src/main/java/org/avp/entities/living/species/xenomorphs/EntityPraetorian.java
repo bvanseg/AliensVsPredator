@@ -21,11 +21,6 @@ public class EntityPraetorian extends SpeciesXenomorph implements IMaturable
         super(world);
         this.experienceValue = 300;
         this.setSize(1.0F, 3.0F);
-        
-        
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        
-        this.addStandardXenomorphAISet();
     }
 
     @Override

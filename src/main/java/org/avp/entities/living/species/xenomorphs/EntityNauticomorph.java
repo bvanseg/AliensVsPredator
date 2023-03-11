@@ -38,8 +38,6 @@ public class EntityNauticomorph extends SpeciesXenomorph
         this.jumpMovementFactor = 0.2F;
         this.experienceValue = 100;
         this.setSize(0.8F, 1.8F);
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.addStandardXenomorphAISet();
     }
 
     @Override

@@ -13,7 +13,6 @@ public class EntityMyceliomorph extends SpeciesXenomorph
     public EntityMyceliomorph(World world)
     {
         super(world);
-        this.addStandardXenomorphAISet();
     }
 
     @Override
