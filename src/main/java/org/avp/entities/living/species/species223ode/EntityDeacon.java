@@ -5,6 +5,7 @@ import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.INascentic;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 import org.avp.entities.living.species.Species223ODe;
 import org.avp.world.capabilities.IOrganism.Organism;
@@ -21,7 +22,6 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -46,7 +46,7 @@ public class EntityDeacon extends Species223ODe implements INascentic
     @Override
     protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
+        this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.8D));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityLiving.class, 1.0D, false));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
         this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
@@ -99,12 +99,6 @@ public class EntityDeacon extends Species223ODe implements INascentic
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
-    }
-
-    @Override
-    public void identifyHive()
-    {
-        return;
     }
 
     @Override
