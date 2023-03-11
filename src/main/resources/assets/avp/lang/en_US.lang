@@ -160,6 +160,7 @@ item.avp:summon.belugaburster.name=Belugaburster
 item.avp:summon.belugamorph.name=Belugamorph
 
 #Goo-based Creatures and Mutants
+item.avp:summon.sporepod.name=Spore Pods
 item.avp:summon.hammerpede.name=Hammerpede
 item.avp:summon.deaconshark.name=Deacon Shark
 item.avp:summon.goomutant.name=Goo Mutant
@@ -176,7 +177,7 @@ item.avp:summon.predatorhound.name=Hellhound
 
 #Engineers
 item.avp:summon.engineer.name=Engineer
-item.avp:summon.spacejockey.name=SpaceJockey
+item.avp:summon.spacejockey.name=Space Jockey
 
 #Humans and Synthetics
 item.avp:summon.marine.name=Marine
@@ -309,6 +310,8 @@ tile.avp:orecopper.name=Copper Ore
 tile.avp:orebauxite.name=Bauxite Ore
 tile.avp:oresilicon.name=Silicon Ore
 tile.avp:orelithium.name=Lithium Ore
+tile.avp:oremonazite.name=Monazite Ore
+tile.avp:orecobalt.name=Cobalt Ore
 tile.avp:blockBlackGoo.name=Black Goo
 tile.avp:blackgoo.name=Black Goo
 tile.avp:mist.name=Reactive Mist
