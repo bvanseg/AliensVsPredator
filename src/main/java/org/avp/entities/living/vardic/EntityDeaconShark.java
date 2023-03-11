@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.avp.ItemHandler;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.ai.helpers.EntityExtendedLookHelper;
 import org.avp.entities.ai.pathfinding.PathNavigateSwimmer;
 import org.avp.entities.living.species.SpeciesAlien;
@@ -33,7 +34,7 @@ import net.minecraft.world.World;
 
 public class EntityDeaconShark extends SpeciesAlien
 {
-    private EntityAIWander                 wander;
+    private PatchedEntityAIWander          wander;
     private EntityAIMoveTowardsRestriction moveTowardsRestriction;
     private double                         distanceToTargetLastTick;
     private Predicate<EntityLivingBase>                entitySelector = new Predicate<EntityLivingBase>()
@@ -52,7 +53,7 @@ public class EntityDeaconShark extends SpeciesAlien
         this.setSize(2F, 1F);
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.8D, true));
         this.tasks.addTask(5, moveTowardsRestriction = new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(7, this.wander = new EntityAIWander(this, 1.0D));
+        this.tasks.addTask(7, this.wander = new PatchedEntityAIWander(this, 1.0D));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityDeaconShark.class, 12.0F, 0.01F));
         this.tasks.addTask(9, new EntityAILookIdle(this));
