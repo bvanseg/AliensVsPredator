@@ -4,6 +4,7 @@ import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityAcidProjectile;
 import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.world.hives.rework.HiveMember;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,7 +20,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob
+public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob, HiveMember
 {
     private final EntityAIBase rangedAttackAI = new EntityAIAttackRanged(this, 0.4D, 16, 40);
     private final EntityAIAttackMelee meleeAttackAI = new EntityAIAttackMelee(this, 1.2D, false);
@@ -31,11 +32,12 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob
         super(par1World);
         this.experienceValue = 275;
         this.setSize(1.0F, 3.0F);
-        
-        
-        this.tasks.addTask(0, new EntityAISwimming(this));
+    }
+    
+    @Override
+    protected void addStandardXenomorphAISet() {
         this.tasks.addTask(1, rangedAttackAI);
-        this.addStandardXenomorphAISet();
+    	super.addStandardXenomorphAISet();
     }
 
     @Override
