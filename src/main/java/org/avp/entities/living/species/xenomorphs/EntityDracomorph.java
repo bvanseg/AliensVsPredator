@@ -213,12 +213,6 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
     }
     
     @Override
-    public void identifyHive()
-    {
-        ;
-    }
-    
-    @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(ItemHandler.Experimental.summonerDracomorph);
