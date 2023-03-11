@@ -3,6 +3,7 @@ package org.avp.client.render.entities.living;
 import org.avp.client.render.LayerYautjaCloakStaticArc;
 import org.avp.client.render.LayerYautjaCloakStaticOverlay;
 import org.avp.entities.living.species.SpeciesYautja;
+import org.avp.entities.state.CloakState;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
@@ -22,10 +23,25 @@ public class RenderYautja<T extends SpeciesYautja, MODEL extends Model> extends 
     
     @Override
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
-        GlStateManager.enableBlend();
-        GL11.glColor4f(1F, 1F, 1F, (1F - (entity.cloakProgress / (float)SpeciesYautja.MAX_CLOAK)) + 0.1001F);
+        boolean isRenderableCloakState = entity.getCloakState() != CloakState.DECLOAKED;
+
+        if (isRenderableCloakState) {
+            GlStateManager.alphaFunc(516, 0.003921569F);
+            float transparency = 1F - (entity.cloakProgress / (float)SpeciesYautja.MAX_CLOAK) + 0.05F;
+            GlStateManager.color(1F, 1F, 1F, transparency);
+            GlStateManager.enableNormalize();
+            GlStateManager.enableBlend();
+            GlStateManager.disableLighting();
+            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+        }
+
     	super.doRender(entity, x, y, z, entityYaw, partialTicks);
-        GL11.glColor4f(1F, 1F, 1F, 1F);
-    	GlStateManager.disableBlend();
+
+        if (isRenderableCloakState) {
+            GlStateManager.enableLighting();
+            GlStateManager.disableBlend();
+            GlStateManager.disableNormalize();
+            GlStateManager.alphaFunc(516, 0.1F);
+        }
     }
 }
