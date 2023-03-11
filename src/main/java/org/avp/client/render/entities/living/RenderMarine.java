@@ -66,7 +66,7 @@ public class RenderMarine extends RenderLivingWrapper<EntityMarine, ModelMarine>
                         GlStateManager.translate(0.0F, 0.2F, 0.0F);
                     }
 
-                    if (marine.isFiring())
+                    if (marine.isAiming())
                     {
                         renderer.getModel().getModel().leftArmPose = ArmPose.BOW_AND_ARROW;
                     }
