@@ -161,12 +161,6 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
     }
     
     @Override
-    public void identifyHive()
-    {
-        ;
-    }
-    
-    @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(ItemHandler.summonerHammerpede);
