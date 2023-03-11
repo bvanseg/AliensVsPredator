@@ -7,10 +7,7 @@ import org.avp.DamageSources;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.api.parasitoidic.IRoyalOrganism;
 import org.avp.entities.EntityAcidPool;
-import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
-import org.avp.world.hives.HiveHandler;
-import org.avp.world.hives.XenomorphHive;
 
 import com.asx.mdx.lib.world.Worlds;
 import com.asx.mdx.lib.world.entity.Entities;
@@ -34,7 +31,7 @@ import net.minecraft.world.World;
 public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrganism, IAnimated
 {
     private static final DataParameter<Integer> JELLY_LEVEL       = EntityDataManager.createKey(SpeciesAlien.class, DataSerializers.VARINT);
-    protected XenomorphHive                     hive;
+//    protected XenomorphHive                     hive;
     private UUID                                signature;
     protected boolean                           jellyLimitOverride;
     protected boolean                           isDependant       = false;
@@ -166,16 +163,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
         this.setDead();
     }
 
-    public UUID getHiveSignature()
-    {
-        return this.signature;
-    }
-
-    public void setHiveSignature(UUID signature)
-    {
-        this.signature = signature;
-    }
-
     public boolean canMoveToJelly()
     {
         return !(this instanceof EntityOvamorph);
@@ -231,8 +218,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
                 }
             }
         }
-
-        this.identifyHive();
     }
 
     @Override
@@ -255,32 +240,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
             if (this.world.getTotalWorldTime() % 20 == 0)
             {
                 // this.setJellyLevel(this.getJellyLevel() + 20);
-            }
-        }
-    }
-
-    public XenomorphHive getHive()
-    {
-        return hive;
-    }
-    
-    public void setHive(XenomorphHive hive)
-    {
-        this.hive = hive;
-    }
-
-    public void identifyHive()
-    {
-        if (!(this instanceof EntityMatriarch))
-        {
-            if (this.signature != null)
-            {
-                this.hive = HiveHandler.instance.getHiveForUUID(this.signature);
-            }
-
-            if (this.hive != null)
-            {
-                this.hive.addMemberToHive(this);
             }
         }
     }
