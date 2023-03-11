@@ -154,12 +154,13 @@ item.avp:summon.ultramorph.name=Ultramorph
 #Xenomorph-Like Organisms
 item.avp:summon.trilobite.name=Trilobite
 item.avp:summon.deacon.name=Deacon
-item.avp:summon.deacon.adult.name=Adult Common Deacon
+item.avp:summon.deacon.adult.name=Deacon (Adult)
 item.avp:summon.octohugger.name=Octohugger
 item.avp:summon.belugaburster.name=Belugaburster
 item.avp:summon.belugamorph.name=Belugamorph
 
 #Goo-based Creatures and Mutants
+item.avp:summon.sporepod.name=Spore Pods
 item.avp:summon.hammerpede.name=Hammerpede
 item.avp:summon.deaconshark.name=Deacon Shark
 item.avp:summon.goomutant.name=Goo Mutant
@@ -176,7 +177,7 @@ item.avp:summon.predatorhound.name=Hellhound
 
 #Engineers
 item.avp:summon.engineer.name=Engineer
-item.avp:summon.spacejockey.name=SpaceJockey
+item.avp:summon.spacejockey.name=Space Jockey
 
 #Humans and Synthetics
 item.avp:summon.marine.name=Marine
@@ -309,6 +310,8 @@ tile.avp:orecopper.name=Copper Ore
 tile.avp:orebauxite.name=Bauxite Ore
 tile.avp:oresilicon.name=Silicon Ore
 tile.avp:orelithium.name=Lithium Ore
+tile.avp:oremonazite.name=Monazite Ore
+tile.avp:orecobalt.name=Cobalt Ore
 tile.avp:blockBlackGoo.name=Black Goo
 tile.avp:blackgoo.name=Black Goo
 tile.avp:mist.name=Reactive Mist
@@ -336,7 +339,7 @@ tile.avp:redstonesensor.name=Redstone Sensor
 tile.avp:redstoneemitter.name=Redstone Emitter
 tile.avp:universalgenerator.name=Universal Power Converter
 tile.avp:ccfltube.name=Fluorescent Light
-tile.avp:networkrack.name=Netword Rack
+tile.avp:networkrack.name=Network Rack
 
 
 #BLOCKS-SHAPED
@@ -389,6 +392,7 @@ entity.RunnerWarrior.name=Xenomorph Runner Warrior
 entity.Crusher.name=Xenomorph Crusher
 
 #Other Xenomorphs
+entity.AquaAlien.name=Xenomorph (Aquatic)
 entity.Spitter.name=Xenomorph Spitter
 entity.Boiler.name=Boiler
 entity.Dracomorph.name=Dracomorph
@@ -402,6 +406,7 @@ entity.Ultramorph.name=Ultramorph
 #Xenomorph-like Organsims
 entity.Trilobite.name=Trilobite
 entity.Deacon.name=Deacon
+entity.DeaconAdult.name=Deacon (Adult)
 entity.Octohugger.name=Octohugger
 entity.Belugaburster.name=Belugaburster
 entity.Belugamorph.name=Belugamorph

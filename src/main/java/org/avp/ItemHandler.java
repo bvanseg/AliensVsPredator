@@ -229,7 +229,7 @@ public class ItemHandler
     public static final Item rackModule6                = new ItemNetworkRackModule6().setCreativeTab(Tab.MAIN).setRegistryName("rackmodule6");
     public static final Item rackModule7                = new ItemNetworkRackModule7().setCreativeTab(Tab.MAIN).setRegistryName("rackmodule7");
     public static final Item rackModule8                = new ItemNetworkRackModule8().setCreativeTab(Tab.MAIN).setRegistryName("rackmodule8");
-    public static final Item sporepod                   = new ItemSporePod().setCreativeTab(Tab.ENTITIES).setRegistryName("sporepod");
+    public static final Item summonerSporePod           = new ItemSporePod().setCreativeTab(Tab.ENTITIES).setRegistryName("summon.sporepod");
     public static final Item summonerDrone              = new ItemEntitySummoner(EntityDrone.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.drone");
     public static final Item summonerAqua               = new ItemEntitySummoner(EntityNauticomorph.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.aqua");
     public static final Item summonerWarrior            = new ItemEntitySummoner(EntityWarrior.class).setCreativeTab(Tab.ENTITIES).setRegistryName("summon.warrior");
