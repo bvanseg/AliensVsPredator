@@ -4,7 +4,7 @@ import org.avp.DamageSources;
 import org.avp.block.BlockHiveResin;
 import org.avp.item.ItemFirearm;
 import org.avp.item.ItemFirearm.FirearmProfile;
-import org.avp.world.hives.HiveHandler;
+import org.avp.world.hives.rework.AlienHiveHandler;
 
 import com.asx.mdx.lib.world.entity.Entities;
 
@@ -136,7 +136,7 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
                             {
                                 if (target instanceof BlockHiveResin)
                                 {
-                                    HiveHandler.breakResinAt(world, targetX, targetY, targetZ);
+                                    AlienHiveHandler.instance.breakResinAt(world, targetX, targetY, targetZ);
                                 }
                                 else
                                 {
