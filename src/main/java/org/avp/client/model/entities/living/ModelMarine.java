@@ -1,5 +1,6 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.AliensVsPredator;
 import org.avp.entities.living.EntityMarine;
 
 import com.asx.mdx.lib.client.util.models.Model;
@@ -10,6 +11,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 
@@ -211,7 +213,15 @@ public class ModelMarine extends Model<EntityMarine>
         this.bipedRightArm.rotateAngleX += MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
         this.bipedLeftArm.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
 
-        if (this.rightArmPose == ModelBiped.ArmPose.BOW_AND_ARROW)
+        // Because the smart gun is a relatively large weapon, the marine needs two hands to hold it at all times.
+        if (entityIn instanceof EntityMarine && ((EntityMarine)entityIn).getHeldItemMainhand().getItem() == AliensVsPredator.items().itemM56SG)
+        {
+            this.bipedRightArm.rotateAngleY = -0.4F + this.bipedHead.rotateAngleY;
+            this.bipedLeftArm.rotateAngleY = 0.1F + this.bipedHead.rotateAngleY + 1.4F;
+            this.bipedRightArm.rotateAngleX = -((float) Math.PI / 4F);
+            this.bipedLeftArm.rotateAngleX = -((float) Math.PI / 4F);
+        }
+        else if (this.rightArmPose == ModelBiped.ArmPose.BOW_AND_ARROW)
         {
             this.bipedRightArm.rotateAngleY = -0.1F + this.bipedHead.rotateAngleY;
             this.bipedLeftArm.rotateAngleY = 0.1F + this.bipedHead.rotateAngleY + 0.4F;
