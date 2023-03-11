@@ -13,6 +13,7 @@ import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.entities.living.species.yautja.EntityYautjaWarrior;
 import org.avp.world.MarineTypes;
 
+import com.asx.mdx.lib.world.Worlds;
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.EntityCreature;
@@ -38,6 +39,7 @@ import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -214,5 +216,19 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(ItemHandler.summonerMarine);
+    }
+
+    @Override
+    public void writeEntityToNBT(NBTTagCompound nbt)
+    {
+        super.writeEntityToNBT(nbt);
+        nbt.setInteger("WeaponType", this.dataManager.get(TYPE));
+    }
+
+    @Override
+    public void readEntityFromNBT(NBTTagCompound nbt)
+    {
+        super.readEntityFromNBT(nbt);
+        this.dataManager.set(TYPE, nbt.getInteger("WeaponType"));
     }
 }
