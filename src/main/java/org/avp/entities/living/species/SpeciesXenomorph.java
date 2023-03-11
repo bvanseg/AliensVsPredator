@@ -3,6 +3,7 @@ package org.avp.entities.living.species;
 import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.ai.alien.EntityAIFindJelly;
 import org.avp.entities.ai.alien.EntityAIShareJelly;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
@@ -54,7 +55,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.6F));
-        this.tasks.addTask(2, new EntityAIWander(this, 0.8D));
+        this.tasks.addTask(2, new PatchedEntityAIWander(this, 0.8D));
         this.tasks.addTask(3, new EntityAIFindJelly(this));
         this.tasks.addTask(3, new EntityAIShareJelly(this));
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
