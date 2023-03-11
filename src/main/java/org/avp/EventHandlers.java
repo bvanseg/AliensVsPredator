@@ -21,7 +21,6 @@ import org.avp.world.CapabilityHandler;
 import org.avp.world.EntityImpregnationHandler;
 import org.avp.world.dimension.acheron.SkyProviderAcheron;
 import org.avp.world.fluids.BucketHandlingEvent;
-import org.avp.world.hives.HiveHandler;
 import org.avp.world.hooks.FarmlandRegistry;
 import org.avp.world.hooks.MaterialHandler;
 
@@ -71,7 +70,6 @@ public class EventHandlers implements IInitEvent
         this.registerEvent(SaveHandler.instance);
         this.registerEvent(FarmlandRegistry.instance);
         this.registerEvent(BucketHandlingEvent.instance);
-        this.registerEvent(HiveHandler.instance);
         this.registerEvent(MaterialHandler.instance);
     }
 
