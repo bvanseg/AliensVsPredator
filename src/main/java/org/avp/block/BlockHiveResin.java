@@ -5,10 +5,6 @@ import java.util.Random;
 import org.avp.block.properties.UnlistedPropertyBlockstate;
 import org.avp.tile.TileEntityHiveResin;
 import org.avp.tile.TileEntityHiveResin.ResinVariant;
-import org.avp.world.hives.HiveHandler;
-
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.Pos.BlockDataStore;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,14 +12,12 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.GameType;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
@@ -131,36 +125,6 @@ public class BlockHiveResin extends Block
     {
         super.onBlockAdded(worldIn, pos, state);
         evaluateNeighbors(worldIn, pos);
-    }
-    
-    @Override
-    public void onBlockClicked(World world, BlockPos pos, EntityPlayer playerIn)
-    {
-        TileEntity tile = world.getTileEntity(pos);
-
-        if (tile instanceof TileEntityHiveResin)
-        {
-            Pos coord = new Pos(pos);
-            TileEntityHiveResin resin = (TileEntityHiveResin) tile;
-
-            if (resin != null)
-            {
-                if (coord.isAnySurfaceNextTo(world, Blocks.FIRE))
-                {
-                    if (resin != null && resin.getParentBlock() != null)
-                    {
-                        HiveHandler.instance.burntResin.add(new Pos(pos).store(new BlockDataStore(resin.getParentBlock(), (byte) 0)));
-                    }
-                }
-
-                if (resin.getHive() != null)
-                {
-                    resin.getHive().getResinInHive().remove(resin);
-                }
-            }
-        }
-
-        super.onBlockClicked(world, pos, playerIn);
     }
     
     @Override
