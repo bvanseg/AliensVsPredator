@@ -339,7 +339,7 @@ tile.avp:redstonesensor.name=Redstone Sensor
 tile.avp:redstoneemitter.name=Redstone Emitter
 tile.avp:universalgenerator.name=Universal Power Converter
 tile.avp:ccfltube.name=Fluorescent Light
-tile.avp:networkrack.name=Netword Rack
+tile.avp:networkrack.name=Network Rack
 
 
 #BLOCKS-SHAPED
