@@ -2,6 +2,8 @@ package org.avp.entities.ai.alien;
 
 import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
+import org.avp.world.hives.rework.HiveMember;
+import org.avp.world.hives.rework.HiveOwner;
 
 import net.minecraft.entity.ai.EntityAIBase;
 
@@ -20,25 +22,35 @@ public class EntityAIShareJelly extends EntityAIBase
     @Override
     public boolean shouldExecute()
     {
-        return this.xenomorph.getJellyLevel() > 0 && xenomorph.getHive() != null && xenomorph.getAttackTarget() == null;
+    	if (xenomorph instanceof HiveMember)
+    		return false;
+    	HiveMember hiveMember = (HiveMember)xenomorph;
+
+        return this.xenomorph.getJellyLevel() > 0 && hiveMember.getAlienHive() != null && xenomorph.getAttackTarget() == null;
     }
 
     @Override
     public void updateTask()
     {
         super.updateTask();
-        if (this.xenomorph.getHive().getQueen() != null && !this.xenomorph.getHive().getQueen().isDead && !(this.xenomorph instanceof EntityMatriarch))
-        {
-            if (this.xenomorph.getHive().getQueen().getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || this.xenomorph.getHive().getQueen().isReproducing())
+
+        HiveMember hiveMember = (HiveMember) this.xenomorph;
+    	HiveOwner hiveOwner = hiveMember.getAlienHive().getHiveOwner();
+
+    	if (hiveOwner instanceof EntityMatriarch) {
+    		EntityMatriarch queen = (EntityMatriarch) hiveOwner;
+
+            if (hiveMember.getAlienHive() != null && !(this.xenomorph instanceof EntityMatriarch))
             {
-                if (this.xenomorph.getHive().getQueen().getJellyLevel() < EntityMatriarch.OVIPOSITOR_JELLYLEVEL_THRESHOLD * 2 && this.xenomorph.getJellyLevel() >= 80)
+                if (queen.getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || queen.isReproducing())
                 {
-                    this.xenomorph.getHive().getQueen().setJellyLevel(this.xenomorph.getHive().getQueen().getJellyLevel() + this.xenomorph.getJellyLevel());
-                    this.xenomorph.setJellyLevel(0);
+                    if (queen.getJellyLevel() < EntityMatriarch.OVIPOSITOR_JELLYLEVEL_THRESHOLD * 2 && this.xenomorph.getJellyLevel() >= 80)
+                    {
+                    	queen.setJellyLevel(queen.getJellyLevel() + this.xenomorph.getJellyLevel());
+                        this.xenomorph.setJellyLevel(0);
+                    }
                 }
             }
-        }
-        else
-            this.xenomorph.setHive(null);
+    	}
     }
 }
