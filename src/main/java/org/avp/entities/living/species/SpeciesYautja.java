@@ -26,7 +26,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
@@ -119,62 +118,77 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
             }
         }
         
-        this.handleCloaking();
+        this.tickCloakingLogic();
     }
     
-    private void handleCloaking() {
+    private void tickCloakingLogic() {
 		if (!this.world.isRemote) {
-        	
-        	if (this.isInWater()) {
-        		if (this.cloakProgress > MIN_CLOAK) {
-        			if (this.getCloakState() != CloakState.DECLOAKING_FORCED && this.getCloakState() != CloakState.DECLOAKING_MANUAL) {
-        		        Sounds.YAUTJA_DECLOAK.playSound(this, 0.6F, 1.0F);;
-        			}
-        			
-        			this.setCloakState(CloakState.DECLOAKING_FORCED);
-        		} else if (this.cloakProgress == MIN_CLOAK) {
-            		this.setCloakState(CloakState.DECLOAKED);
-        		}
-        	} else if(this.getAttackTarget() != null) {
-        		if (this.cloakProgress > MIN_CLOAK) {
-        			this.setCloakState(CloakState.DECLOAKING_MANUAL);
-        		} else if (this.cloakProgress == MIN_CLOAK) {
-            		this.setCloakState(CloakState.DECLOAKED);
-        		}
-        	} else {
-        		if (this.cloakProgress < MAX_CLOAK) {
-        			if (this.getCloakState() != CloakState.CLOAKING) {
-        		        Sounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);;
-        			}
-        			
-        			this.setCloakState(CloakState.CLOAKING);
-        		} else if (this.cloakProgress == MAX_CLOAK) {
-            		this.setCloakState(CloakState.CLOAKED);
-        		}
-        	}
+            // Yautja should only force de-cloak in water, snow doesn't count.
+            boolean isInRain = this.world.isRainingAt(this.getPosition()) && !this.world.getBiome(this.getPosition()).getEnableSnow();
+        	if (this.isInWater() || isInRain || this.getAttackTarget() != null) {
+                handleDecloak();
+            } else {
+                handleCloak();
+            }
         }
-    	
-    	switch (this.getCloakState()) {
-        	case CLOAKED:
-    			this.cloakProgress = MAX_CLOAK;
-    			break;
-        	case CLOAKING:
-    			this.cloakProgress++;
-    			break;
-        	case DECLOAKING_FORCED:
-    			this.cloakProgress--;
-        		break;
-        	case DECLOAKING_MANUAL:
-        		this.cloakProgress -= CLOAK_PROGRESS_SPEED * 3;
-    			break;
-			default:
-				this.cloakProgress = MIN_CLOAK;
-				break;
-    	}
-    	
-    	this.cloakProgress = MathHelper.clamp(cloakProgress, MIN_CLOAK, MAX_CLOAK);
+
+        updateCloakingProgress();
     }
-    
+
+    private void updateCloakingProgress() {
+        switch (this.getCloakState()) {
+            case CLOAKED:
+                this.cloakProgress = MAX_CLOAK;
+                break;
+            case CLOAKING:
+                this.cloakProgress += CLOAK_PROGRESS_SPEED;
+                break;
+            case DECLOAKING_FORCED:
+                this.cloakProgress -= CLOAK_PROGRESS_SPEED;
+                break;
+            case DECLOAKING_MANUAL:
+                this.cloakProgress -= CLOAK_PROGRESS_SPEED * 3;
+                break;
+            default:
+                this.cloakProgress = MIN_CLOAK;
+                break;
+        }
+
+        this.cloakProgress = MathHelper.clamp(cloakProgress, MIN_CLOAK, MAX_CLOAK);
+    }
+
+    private void handleCloak() {
+        if (this.cloakProgress < MAX_CLOAK) {
+            if (this.getCloakState() != CloakState.CLOAKING) {
+                Sounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);;
+            }
+
+            this.setCloakState(CloakState.CLOAKING);
+        } else if (this.cloakProgress == MAX_CLOAK) {
+            this.setCloakState(CloakState.CLOAKED);
+        }
+    }
+
+    private void handleDecloak() {
+        CloakState decloakType = this.getAttackTarget() != null ? CloakState.DECLOAKING_MANUAL : CloakState.DECLOAKING_FORCED;
+        if (this.cloakProgress > MIN_CLOAK) {
+            if (this.getCloakState() != CloakState.DECLOAKING_FORCED && this.getCloakState() != CloakState.DECLOAKING_MANUAL) {
+                Sounds.YAUTJA_DECLOAK.playSound(this, 0.6F, 1.0F);
+            }
+
+            this.setCloakState(decloakType);
+        } else if (this.cloakProgress == MIN_CLOAK) {
+            this.setCloakState(CloakState.DECLOAKED);
+        }
+    }
+
+    // This method allows us to cancel the hurt animation, but it looks as if it may be responsible for other things.
+    @Override
+    public void handleStatusUpdate(byte id) {
+        if (this.getCloakState() == CloakState.CLOAKED) return;
+        super.handleStatusUpdate(id);
+    }
+
     @Override
     public int getMaxFallHeight()
     {
