@@ -50,10 +50,9 @@ import net.minecraft.world.World;
 
 public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Predicate<EntityLivingBase>
 {
-    private static final DataParameter<Boolean> FIRING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
     private EntityAIBase                        rangedAttackAI;
-    private long                                lastShotFired;
 
     public EntityMarine(World world)
     {
@@ -81,7 +80,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataManager().register(FIRING, false);
+        this.getDataManager().register(AIMING, false);
         this.getDataManager().register(TYPE, new Random(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())).nextInt(MarineTypes.values().length));
     }
 
@@ -167,7 +166,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
         if (!this.world.isRemote)
         {
-            this.getDataManager().set(FIRING, !(System.currentTimeMillis() - getLastShotFired() >= 1000 * 3));
+            this.getDataManager().set(AIMING, this.getAttackTarget() != null);
         }
     }
 
@@ -183,7 +182,6 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     {
         if (this.getAttackTarget() != null)
         {
-            this.lastShotFired = System.currentTimeMillis();
             EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.0000001F);
             this.world.spawnEntity(entityBullet);
             this.playSound(getMarineType().getGunfireSound(), 0.7F, 1F);
@@ -201,14 +199,9 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return MarineTypes.M41A;
     }
 
-    public boolean isFiring()
+    public boolean isAiming()
     {
-        return this.getDataManager().get(FIRING);
-    }
-
-    public long getLastShotFired()
-    {
-        return this.lastShotFired;
+        return this.getDataManager().get(AIMING);
     }
 
     @Override
