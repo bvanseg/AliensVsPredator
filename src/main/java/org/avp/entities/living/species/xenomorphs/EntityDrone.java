@@ -9,6 +9,7 @@ import org.avp.block.BlockHiveResin;
 import org.avp.client.Sounds;
 import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.tile.TileEntityHiveResin;
+import org.avp.world.hives.rework.HiveMember;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
@@ -29,7 +30,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class EntityDrone extends SpeciesXenomorph implements IMaturable
+public class EntityDrone extends SpeciesXenomorph implements IMaturable, HiveMember
 {
     public int             					mobType;
     private EntityOvamorph 					targetOvamorph;
@@ -46,9 +47,6 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
         blockBlacklist.add(Blocks.AIR);
         blockBlacklist.add(AliensVsPredator.blocks().resin);
         blockBlacklist.add(AliensVsPredator.blocks().naturalResin);
-        
-
-        this.addStandardXenomorphAISet();
     }
 
     @Override
@@ -86,11 +84,11 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
         this.tickRepurposingAI();
         this.tickHiveBuildingAI();
 
-        if (this.hive != null)
+        if (this.getAlienHive() != null)
         {
-            if (!this.hive.isEntityWithinRange(this))
+            if (!this.getAlienHive().isEntityWithinRange(this))
             {
-                Path path = this.getNavigator().getPathToXYZ(this.hive.xCoord(), this.hive.yCoord(), this.hive.zCoord());
+                Path path = this.getNavigator().getPathToPos(this.getAlienHive().getCoreBlockPos());
 
                 if (path != null)
                 {
@@ -122,7 +120,7 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
                 {
                     ArrayList<EntityOvamorph> ovamorphs = (ArrayList<EntityOvamorph>) Entities.getEntitiesInCoordsRange(this.world, EntityOvamorph.class, new Pos(this), 16);
 
-                    if (this.getHive() != null)
+                    if (this.getAlienHive() != null)
                     {
                         for (EntityOvamorph ovamorph : ovamorphs)
                         {
@@ -171,7 +169,7 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
         {
             if (this.targetOvamorph == null)
             {
-                if (this.getHive() != null && this.world.getTotalWorldTime() % 10 == 0 && rand.nextInt(3) == 0)
+                if (this.getAlienHive() != null && this.world.getTotalWorldTime() % 10 == 0 && rand.nextInt(3) == 0)
                 {
                     if (this.getJellyLevel() >= 16)
                     {
@@ -200,12 +198,10 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable
                                 if (tileEntity != null && tileEntity instanceof TileEntityHiveResin)
                                 {
                                     TileEntityHiveResin resin = (TileEntityHiveResin) tileEntity;
-                                    resin.setHiveSignature(this.getHive().getUniqueIdentifier());
 
                                     resin.setParentBlock(state.getBlock(), 0);
                                     this.world.notifyBlockUpdate(pos, state, state, 3);
-
-                                    this.hive.addResin(resin);
+                                    this.getAlienHive().addResin(pos);
                                 }
 
                                 this.setJellyLevel(this.getJellyLevel() - 16);

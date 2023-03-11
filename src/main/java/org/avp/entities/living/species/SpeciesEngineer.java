@@ -2,6 +2,7 @@ package org.avp.entities.living.species;
 
 import org.avp.EntityItemDrops;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.EntityMarine;
 
 import net.minecraft.block.material.Material;
@@ -12,7 +13,6 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -37,7 +37,7 @@ public abstract class SpeciesEngineer extends EntityMob
         
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
-        this.tasks.addTask(8, new EntityAIWander(this, 0.800000011920929D));
+        this.tasks.addTask(8, new PatchedEntityAIWander(this, 0.800000011920929D));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.4F));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, SpeciesAlien.class, true));
