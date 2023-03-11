@@ -8,7 +8,6 @@ import org.avp.client.Resources;
 import org.avp.client.Sounds;
 import org.avp.client.render.BiomeColorHandler;
 import org.avp.world.CapabilityHandler;
-import org.avp.world.hives.HiveHandler;
 
 import com.asx.mdx.core.mods.IMod;
 import com.asx.mdx.lib.util.Game;
@@ -20,7 +19,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
-import net.minecraftforge.fml.common.event.FMLServerStoppedEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -52,7 +50,6 @@ public class AliensVsPredator implements IMod
     {
         console().pre(event);
         settings().pre(event);
-        webRequests().pre(event);
         capabilities().pre(event);
         tabs().pre(event);
     }
@@ -107,20 +104,9 @@ public class AliensVsPredator implements IMod
         commands().onServerStarting(event);
     }
 
-    @EventHandler
-    public void onServerStopped(FMLServerStoppedEvent event)
-    {
-        HiveHandler.instance.clearCaches();
-    }
-
     public static AliensVsPredator instance()
     {
         return AliensVsPredator.instance;
-    }
-    
-    public static WebRequestHandler webRequests()
-    {
-        return WebRequestHandler.instance;
     }
 
     public static Console console()

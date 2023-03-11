@@ -2,18 +2,18 @@ package org.avp.entities.living.species.xenomorphs;
 
 import org.avp.ItemHandler;
 import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.world.hives.rework.HiveMember;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityBatXeno extends SpeciesXenomorph
+public class EntityBatXeno extends SpeciesXenomorph implements HiveMember
 {
     public EntityBatXeno(World world)
     {
         super(world);
-        this.addStandardXenomorphAISet();
     }
 
     @Override

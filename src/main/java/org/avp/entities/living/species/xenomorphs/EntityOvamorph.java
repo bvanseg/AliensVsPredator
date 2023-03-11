@@ -11,6 +11,7 @@ import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 import org.avp.entities.living.species.xenomorphs.parasites.EntityRoyalFacehugger;
 import org.avp.packets.client.PacketOvamorphContainsFacehugger;
+import org.avp.world.hives.rework.HiveMember;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
@@ -29,7 +30,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityOvamorph extends SpeciesAlien implements IMob
+public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
 {
     protected boolean                           hasHatched;
     protected boolean                           acceleratedHatching;
