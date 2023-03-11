@@ -1,7 +1,7 @@
 package org.avp.entities.ai.alien;
 
 import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
-import org.avp.world.hives.HiveHandler;
+import org.avp.world.hives.rework.AlienHiveHandler;
 
 import net.minecraft.entity.ai.EntityAIBase;
 
@@ -24,18 +24,19 @@ public class EntityAIConstructHive extends EntityAIBase {
 	public boolean shouldExecute() {
         boolean ovipositorHealthy = this.matriarch.getJellyLevel() >= EntityMatriarch.OVIPOSITOR_UNHEALTHY_THRESHOLD;
 		return ovipositorHealthy &&
-				this.matriarch.getHive() == null &&
+				this.matriarch.getAlienHive() == null &&
 				this.matriarch.world.getTotalWorldTime() % 20 == 0 &&
 				!this.matriarch.world.canSeeSky(this.matriarch.getPosition());
 	}
 
 	@Override
 	public void updateTask() {
-		this.matriarch.setHive(HiveHandler.instance.getHiveForUUID(this.matriarch.getUniqueID()));
-
-        if (this.matriarch.getHive() == null) {
-            HiveHandler.instance.createHive(matriarch);
-        }
+		// TODO:
+//		this.matriarch.setHive(HiveHandler.instance.getHiveForUUID(this.matriarch.getUniqueID()));
+//
+//        if (this.matriarch.getHive() == null) {
+//            HiveHandler.instance.createHive(matriarch);
+//        }
 
         this.removeAI();
 	}

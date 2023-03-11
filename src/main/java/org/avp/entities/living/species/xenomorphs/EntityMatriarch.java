@@ -54,7 +54,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 
     private static final DataParameter<Float> OVIPOSITOR_SIZE                    = EntityDataManager.createKey(EntityMatriarch.class, DataSerializers.FLOAT);
 
-    public boolean                            growingOvipositor;                     = new ArrayList<Pos>();
+    public boolean                            growingOvipositor;
 
     private AlienHive                         alienHive;
 
@@ -122,7 +122,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 
     private void reproduce()
     {
-        if (this.reproducing)
+        if (this.isReproducing())
         {
             if (this.world.getTotalWorldTime() % (20 * 120) == 0 && this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD)
             {
@@ -160,7 +160,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
                         this.setJellyLevel(this.getJellyLevel() - OVIPOSITOR_JELLYLEVEL_GROWTH_USE);
                     }
 
-                    this.removeAI();
+//                    this.removeAI();
                 }
             }
             else if (!ovipositorHealthy)
@@ -178,53 +178,6 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
             if (isJumping)
             {
                 this.addVelocity(0, 0.2D, 0);
-            }
-        }
-    }
-
-    private void pathfindToHive()
-    {
-        if (this.getAlienHive() != null && !this.reproducing)
-        {
-            Pos coordQueen = new Pos(this);
-            Pos coordHive = new Pos(this.getAlienHive().getCoreBlockPos());
-
-            int hiveDist = (int) this.getDistance(coordHive.x, coordHive.y, coordHive.z);
-
-            if (hiveDist > this.getAlienHive().getMaxHiveRadius() * 0.5 && this.getAttackTarget() == null)
-            {
-                this.pathPoints = Pos.getPointsBetween(coordQueen, coordHive, hiveDist / 12);
-
-                if (this.pathPoints != null && !this.pathPoints.isEmpty())
-                {
-                    Pos closestPoint = this.pathPoints.get(0);
-
-                    for (Pos point : this.pathPoints)
-                    {
-                        if (closestPoint != null && point.distanceFrom(this) < closestPoint.distanceFrom(this))
-                        {
-                            closestPoint = point;
-                        }
-                    }
-
-                    if (!this.getNavigator().tryMoveToXYZ(closestPoint.x, closestPoint.y, closestPoint.z, 1.55D))
-                    {
-
-                        if (Game.isDevEnvironment() && this.world.getTotalWorldTime() % (20 * 3) == 0)
-                        {
-                            // System.out.println("Unable to pathfind to closest point, too far: " + this.pathPoints.size() + " Points, " + ((int) closestPoint.distanceFrom(this)) + " Meters, " + closestPoint);
-                            // System.out.println(this.pathPoints);
-                        }
-                    }
-                    else
-                    {
-                        if (this.getDistance(closestPoint.x, closestPoint.y, closestPoint.z) < 1.0D)
-                        {
-                            System.out.println(String.format(this.getName() + " %s Returning to hive center.", this.getUniqueID()));
-                            this.pathPoints.remove(closestPoint);
-                        }
-                    }
-                }
             }
         }
     }
@@ -309,66 +262,9 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         }
     }
 
-    private void reproduce()
-    {
-        if (this.isReproducing())
-        {
-            if (this.world.getTotalWorldTime() % (20 * 120) == 0 && this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD)
-            {
-                int ovipositorDist = 10;
-                double rotationYawRadians = Math.toRadians(this.rotationYawHead - 90);
-                double ovamorphX = (this.posX + (ovipositorDist * (Math.cos(rotationYawRadians))));
-                double ovamorphZ = (this.posZ + (ovipositorDist * (Math.sin(rotationYawRadians))));
-
-                if (this.world.isRemote)
-                {
-                    AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ovamorphX, this.posY, ovamorphZ, Entities.getEntityRegistrationId(EntityOvamorph.class)));
-                }
-                this.setJellyLevel(this.getJellyLevel() - 100);
-            }
-        }
-    }
-
     public boolean isReproducing() {
     	return this.getOvipositorSize() >= 1.3F;
     }
-
-    private void jumpBoost()
-    {
-        if (!this.world.isRemote)
-        {
-            if (isJumping)
-            {
-                this.addVelocity(0, 0.2D, 0);
-            }
-        }
-    }
-
-    private void heal()
-    {
-        if (!this.world.isRemote)
-        {
-            if (this.world.getTotalWorldTime() % 20 == 0)
-            {
-                if (this.getHealth() > this.getMaxHealth() / 4)
-                {
-                    this.heal(1F);
-                }
-            }
-        }
-    }
-
-	private void handleOvipositorGrowth() {
-		if (this.getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE) {
-            this.setOvipositorSize(this.getOvipositorSize() + EntityMatriarch.OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE);
-            this.setJellyLevel(this.getJellyLevel() - EntityMatriarch.OVIPOSITOR_JELLYLEVEL_GROWTH_USE);
-        }
-
-        if (this.getJellyLevel() < OVIPOSITOR_UNHEALTHY_THRESHOLD) {
-            this.setOvipositorSize(0F);
-            this.addStandardXenomorphAISet();
-        }
-	}
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)

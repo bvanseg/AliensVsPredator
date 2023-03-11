@@ -27,18 +27,18 @@ public class EntityAIPathFindToHive extends EntityAIBase {
 
 	@Override
 	public boolean shouldExecute() {
-		return this.matriarch.getHive() != null && !this.matriarch.isReproducing();
+		return this.matriarch.getAlienHive() != null && !this.matriarch.isReproducing();
 	}
 
 	@Override
 	public void updateTask() {
 		Pos coordQueen = new Pos(matriarch);
-		Pos coordHive = new Pos(this.matriarch.getHive().xCoord(), this.matriarch.getHive().yCoord(),
-				this.matriarch.getHive().zCoord());
+		Pos coordHive = new Pos(this.matriarch.getAlienHive().getCoreBlockPos().getX(), this.matriarch.getAlienHive().getCoreBlockPos().getY(),
+				this.matriarch.getAlienHive().getCoreBlockPos().getZ());
 
 		int hiveDist = (int) this.matriarch.getDistance(coordHive.x, coordHive.y, coordHive.z);
 
-		if (hiveDist > this.matriarch.getHive().getMaxHiveRadius() * 0.5 && this.matriarch.getAttackTarget() == null) {
+		if (hiveDist > this.matriarch.getAlienHive().getMaxHiveRadius() * 0.5 && this.matriarch.getAttackTarget() == null) {
 			this.pathPoints = Pos.getPointsBetween(coordQueen, coordHive, hiveDist / 12);
 
 			if (this.pathPoints != null && !this.pathPoints.isEmpty()) {
