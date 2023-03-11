@@ -3,6 +3,7 @@ package org.avp.entities.living.species;
 import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.ai.alien.EntityAIFindJelly;
 import org.avp.entities.ai.alien.EntityAIShareJelly;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
@@ -53,7 +54,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
         this.ableToClimb = false;
         this.isDependant = true;
     }
-    
+
     @Override
     public XenomorphBrain getBrain() {
     	if (brain == null && !this.world.isRemote) {
@@ -61,7 +62,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     	}
     	return brain;
     }
-    
+
     @Override
     protected void initEntityAI() {
     	this.getBrain().init();
@@ -91,7 +92,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     public void onUpdate()
     {
         super.onUpdate();
-        
+
         if (!this.world.isRemote) {
             brain.update(new EntityBrainContext(this.getBrain(), this));
         }

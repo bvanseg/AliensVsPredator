@@ -112,7 +112,7 @@ import org.avp.client.render.items.RenderItemSkull;
 import org.avp.client.render.items.RenderItemSniper;
 import org.avp.client.render.items.RenderItemSolarPanel;
 import org.avp.client.render.items.RenderItemSpear;
-import org.avp.client.render.items.RenderItemSporepod;
+import org.avp.client.render.items.RenderItemSporePod;
 import org.avp.client.render.items.RenderItemStasisMechanism;
 import org.avp.client.render.items.RenderItemStunBaton;
 import org.avp.client.render.items.RenderItemSummoner;
@@ -522,7 +522,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(ItemHandler.itemAPC, new RenderItemAPC());
         Renderers.registerItemRenderer(ItemHandler.itemGrenade, new RenderItemM40(AliensVsPredator.resources().models().M40GRENADE));
         Renderers.registerItemRenderer(ItemHandler.itemIncendiaryGrenade, new RenderItemM40(AliensVsPredator.resources().models().M40GRENADE_INCENDIARY));
-        Renderers.registerItemRenderer(ItemHandler.sporepod, new RenderItemSporepod());
+        Renderers.registerItemRenderer(ItemHandler.summonerSporePod, new RenderItemSporePod());
         
         Renderers.registerItemRenderer(ItemHandler.itemSupplyChute, new RenderItemSupplyChute());
         Renderers.registerItemRenderer(ItemHandler.itemSupplyChuteMarines, new RenderItemSupplyChute());
@@ -551,11 +551,11 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(ItemHandler.summonerChestburster, (new RenderItemSummoner(AliensVsPredator.resources().models().CHESTBUSTER)).setScale(9F).setY(3F).setX(5F));
         Renderers.registerItemRenderer(ItemHandler.summonerFacehugger, (new RenderItemSummoner(AliensVsPredator.resources().models().FACEHUGGER)).setScale(15F).setY(-8F));
         Renderers.registerItemRenderer(ItemHandler.summonerRoyalFacehugger, (new RenderItemSummoner(AliensVsPredator.resources().models().ROYALFACEHUGGER)).setScale(15F).setY(-8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerMarine, (new RenderItemSummoner(AliensVsPredator.resources().models().MARINE)).setScale(10F).setY(3F));
+        Renderers.registerItemRenderer(ItemHandler.summonerMarine, (new RenderItemSummoner(AliensVsPredator.resources().models().MARINE)).setScale(16F).setY(-8F));
         Renderers.registerItemRenderer(ItemHandler.summonerYautjaWarrior, (new RenderItemSummoner(AliensVsPredator.resources().models().YAUTJA_WARRIOR)).setScale(7.5F).setY(8F));
         Renderers.registerItemRenderer(ItemHandler.summonerPredalien, (new RenderItemSummoner(AliensVsPredator.resources().models().PREDALIEN)).setScale(8F).setY(6F));
         Renderers.registerItemRenderer(ItemHandler.summonerAqua, (new RenderItemSummoner(AliensVsPredator.resources().models().NAUTICOMORPH_XENOMORPH)).setScale(7.5F).setY(8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerCombatSynthetic, (new RenderItemSummoner(AliensVsPredator.resources().models().COMBAT_SYNTHETIC)).setScale(16F).setY(-12F));
+        Renderers.registerItemRenderer(ItemHandler.summonerCombatSynthetic, (new RenderItemSummoner(AliensVsPredator.resources().models().COMBAT_SYNTHETIC)).setScale(16F).setY(-8F));
         Renderers.registerItemRenderer(ItemHandler.summonerHammerpede, (new RenderItemSummoner(AliensVsPredator.resources().models().HAMMERPEDE)).setScale(10.5F).setX(3F));
         Renderers.registerItemRenderer(ItemHandler.summonerTrilobite, (new RenderItemSummoner(AliensVsPredator.resources().models().TRILOBITE)).setScale(8F).setY(4F));
         Renderers.registerItemRenderer(ItemHandler.summonerSpaceJockey, (new RenderItemSummoner(AliensVsPredator.resources().models().SPACE_JOCKEY)).setScale(10F).setY(0F));

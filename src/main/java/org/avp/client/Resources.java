@@ -259,7 +259,7 @@ public class Resources
 
         public final MapModelTexture<ModelGroundFern>             GROUND_FERN                    = new MapModelTexture(new ModelGroundFern(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/plants/paradisiangroundfern.png"));
         public final MapModelTexture<ModelTreeFern>               TREE_FERN                      = new MapModelTexture(new ModelTreeFern(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/plants/paradisiantreefern.png"));
-        public final MapModelTexture<ModelSporePod>               SPOREPOD                       = new MapModelTexture(new ModelSporePod(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/sporepods.png"));
+        public final MapModelTexture<ModelSporePod>               SPORE_POD                      = new MapModelTexture(new ModelSporePod(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/sporepods.png"));
 
         /** New xenomorph model format **/
         public final MapModelTexture<ModelUltramorph>             ULTRAMORPH                     = new MapModelTexture(new ModelUltramorph(), new Texture(AliensVsPredator.Properties.ID, "textures/mob/ultramorph.png"));
