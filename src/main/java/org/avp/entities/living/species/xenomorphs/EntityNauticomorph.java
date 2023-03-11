@@ -6,6 +6,7 @@ import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.alien.EntitySelectorNauticomorph;
 import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.world.hives.rework.HiveMember;
 
 import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.Pos;
@@ -25,7 +26,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityNauticomorph extends SpeciesXenomorph
+public class EntityNauticomorph extends SpeciesXenomorph implements HiveMember
 {
     private static final DataParameter<Float> PHOSPHORESCENCE_LEVEL = EntityDataManager.createKey(EntityNauticomorph.class, DataSerializers.FLOAT);
 
@@ -37,8 +38,6 @@ public class EntityNauticomorph extends SpeciesXenomorph
         this.jumpMovementFactor = 0.2F;
         this.experienceValue = 100;
         this.setSize(0.8F, 1.8F);
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.addStandardXenomorphAISet();
     }
 
     @Override

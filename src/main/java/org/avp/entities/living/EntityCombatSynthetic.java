@@ -7,6 +7,12 @@ import org.avp.api.parasitoidic.IHost;
 import org.avp.client.Sounds;
 import org.avp.entities.EntityBullet;
 import org.avp.entities.EntityLiquidLatexPool;
+import org.avp.entities.ai.PatchedEntityAIWander;
+import org.avp.entities.living.species.SpeciesAlien;
+import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.entities.living.species.SpeciesYautja;
+
+import com.google.common.base.Predicate;
 import org.avp.entities.ai.EntitySelectorCombatSynthetic;
 
 import net.minecraft.entity.EntityCreature;
@@ -19,7 +25,6 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,10 +41,9 @@ import net.minecraft.world.World;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost
 {
-    private static final DataParameter<Boolean> FIRING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     
     private EntityAIBase                        aiRangedAttack;
-    private long                                lastShotFired;
 
     public EntityCombatSynthetic(World word)
     {
@@ -48,7 +52,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
         this.experienceValue = 40;
         this.aiRangedAttack = new EntityAIAttackRanged(this, 0.4D, 20, 24);
         this.tasks.addTask(1, this.aiRangedAttack);
-        this.tasks.addTask(2, new EntityAIWander(this, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
+        this.tasks.addTask(2, new PatchedEntityAIWander(this, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
         this.tasks.addTask(3, new EntityAISwimming(this));
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
@@ -68,7 +72,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataManager().register(FIRING, false);
+        this.getDataManager().register(AIMING, false);
     }
     
     @Override
@@ -114,13 +118,13 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
 
         if (!this.world.isRemote)
         {
-            this.getDataManager().set(FIRING, !(System.currentTimeMillis() - getLastShotFired() >= 1000 * 3));
+            this.getDataManager().set(AIMING, this.getAttackTarget() != null);
         }
     }
 
-    public boolean isFiring()
+    public boolean isAiming()
     {
-        return this.getDataManager().get(FIRING);
+        return this.getDataManager().get(AIMING);
     }
     
     @Override
@@ -134,7 +138,6 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     {
         if (this.getAttackTarget() != null)
         {
-            this.lastShotFired = System.currentTimeMillis();
             Sounds.WEAPON_PULSERIFLE.playSound(this);
             EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.5F);
             entityBullet.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
@@ -174,11 +177,6 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     public void setSwingingArms(boolean swingingArms)
     {
         ;
-    }
-
-    public long getLastShotFired()
-    {
-        return this.lastShotFired;
     }
     
     @Override

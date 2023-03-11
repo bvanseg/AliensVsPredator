@@ -4,6 +4,7 @@ import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.ai.alien.EntityAIFacehuggerLeap;
 import org.avp.entities.living.species.EntityParasitoid;
 
@@ -12,7 +13,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.SoundEvents;
@@ -32,8 +32,6 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
         this.setSize(0.8F, 0.8F);
         this.experienceValue = 10;
         this.jumpMovementFactor = 0.3F;
-        
-        this.addTasks();
     }
 
     @Override
@@ -41,7 +39,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.55D, true));
-        this.tasks.addTask(8, new EntityAIWander(this, 0.55D));
+        this.tasks.addTask(8, new PatchedEntityAIWander(this, 0.55D));
         this.targetTasks.addTask(2, new EntityAIFacehuggerLeap(this));
         this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getImpregnationEntitySelector()));
     }

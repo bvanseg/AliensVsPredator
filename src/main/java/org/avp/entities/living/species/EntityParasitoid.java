@@ -8,6 +8,7 @@ import org.avp.AliensVsPredator;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.alien.EntitySelectorParasitoid;
+import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.packets.server.PacketAttachParasiteToEntity;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
@@ -22,7 +23,6 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -51,7 +51,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.55D, true));
-        this.tasks.addTask(8, new EntityAIWander(this, 0.55D));
+        this.tasks.addTask(8, new PatchedEntityAIWander(this, 0.55D));
         this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.8F));
         // this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, Entity.class, 0, false, false, this.getEntitySelector()));
     }
