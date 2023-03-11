@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.avp.api.storage.IWorldSaveHandler;
-import org.avp.world.hives.HiveHandler;
 
 import com.asx.mdx.MDX;
 import com.asx.mdx.lib.world.storage.NBTStorage;
@@ -30,7 +29,6 @@ public class SaveHandler
     public void addDataHandlers()
     {
         // this.dataHandlers.add(DerelictWorldData.instance);
-        this.dataHandlers.add(HiveHandler.instance);
     }
 
     public File getSaveFile(World world)
