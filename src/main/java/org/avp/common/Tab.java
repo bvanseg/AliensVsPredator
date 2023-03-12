@@ -6,7 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
-import org.predator.PredatorBlocks;
+import org.predator.common.PredatorBlocks;
 
 public class Tab implements IPreInitEvent
 {

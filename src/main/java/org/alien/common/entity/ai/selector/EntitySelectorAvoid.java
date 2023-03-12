@@ -6,12 +6,12 @@ import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntityZombieHorse;
+import org.alien.common.entity.living.SpeciesEngineer;
 import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.entities.living.EntityMarine;
-import org.alien.common.entity.living.SpeciesEngineer;
-import org.predator.common.entity.living.SpeciesYautja;
 import org.avp.common.world.capabilities.IOrganism.Organism;
 import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.predator.common.entity.living.SpeciesYautja;
 
 import java.util.ArrayList;
 

@@ -10,7 +10,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
 import org.avp.client.model.items.ModelWristBlade;
-import org.avp.common.item.ItemWristbracer;
+import org.predator.common.item.ItemWristbracer;
 
 public class RenderItemWristbracer extends ItemRenderer<ModelWristBlade>
 {

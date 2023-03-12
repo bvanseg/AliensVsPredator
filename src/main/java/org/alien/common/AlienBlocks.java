@@ -1,4 +1,4 @@
-package org.alien;
+package org.alien.common;
 
 import com.asx.mdx.core.mods.IPreInitEvent;
 import com.asx.mdx.lib.world.block.BlockMaterial;

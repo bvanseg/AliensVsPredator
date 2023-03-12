@@ -13,15 +13,15 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.entity.living.engineer.EntityEngineer;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.INascentic;
 import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entities.ai.PatchedEntityAIWander;
 import org.avp.common.entities.living.EntityMarine;
-import org.alien.common.entity.living.engineer.EntityEngineer;
-import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 import org.avp.common.world.hives.rework.HiveMember;
+import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
 public class EntityQueenChestburster extends EntityChestburster implements IMob, INascentic, HiveMember
 {

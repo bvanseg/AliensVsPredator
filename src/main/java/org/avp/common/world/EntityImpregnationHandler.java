@@ -24,9 +24,9 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.Settings.ClientSettings;
-import org.predator.common.entity.living.SpeciesYautja;
 import org.avp.common.world.capabilities.IOrganism.Organism;
 import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.predator.common.entity.living.SpeciesYautja;
 
 public class EntityImpregnationHandler
 {

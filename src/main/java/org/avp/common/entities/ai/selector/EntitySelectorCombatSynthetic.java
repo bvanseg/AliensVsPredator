@@ -5,10 +5,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import org.avp.common.entities.living.EntityCombatSynthetic;
-import org.avp.common.entities.living.EntityMarine;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
+import org.avp.common.entities.living.EntityCombatSynthetic;
+import org.avp.common.entities.living.EntityMarine;
 import org.predator.common.entity.living.SpeciesYautja;
 
 public class EntitySelectorCombatSynthetic implements Predicate<EntityLivingBase>

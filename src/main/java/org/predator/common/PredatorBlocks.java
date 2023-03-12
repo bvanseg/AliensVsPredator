@@ -1,4 +1,4 @@
-package org.predator;
+package org.predator.common;
 
 import com.asx.mdx.core.mods.IPreInitEvent;
 import com.asx.mdx.lib.world.block.BlockMaterial;

@@ -28,11 +28,11 @@ import org.avp.common.DamageSources;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.predator.common.entity.ai.EntityAISuperjump;
 import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.network.AvpDataSerializers;
+import org.predator.common.entity.ai.EntityAISuperjump;
 import org.predator.common.entity.ai.selector.EntitySelectorYautja;
 import org.predator.common.entity.state.CloakState;
-import org.avp.common.network.AvpDataSerializers;
 
 public abstract class SpeciesYautja extends EntityMob implements IHost
 {

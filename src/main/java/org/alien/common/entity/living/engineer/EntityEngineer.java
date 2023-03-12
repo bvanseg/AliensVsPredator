@@ -6,10 +6,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.entity.living.SpeciesEngineer;
 import org.avp.common.DamageSources;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.ItemHandler;
-import org.alien.common.entity.living.SpeciesEngineer;
 
 public class EntityEngineer extends SpeciesEngineer
 {

@@ -5,8 +5,8 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
-import org.predator.common.entity.EntitySpear;
 import org.lwjgl.opengl.GL12;
+import org.predator.common.entity.EntitySpear;
 
 public class RenderSpear extends Render<EntitySpear>
 {

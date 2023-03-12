@@ -4,8 +4,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.common.ItemHandler;
 import org.alien.common.entity.living.SpeciesXenomorph;
+import org.avp.common.ItemHandler;
 import org.avp.common.world.hives.rework.HiveMember;
 
 public class EntityPantheramorph extends SpeciesXenomorph implements HiveMember

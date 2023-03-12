@@ -5,8 +5,8 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.predator.client.model.entity.ModelPlasma;
 import org.alien.common.entity.EntityAcidProjectile;
+import org.predator.client.model.entity.ModelPlasma;
 
 public class RenderAcidProjectile extends Render<EntityAcidProjectile>
 {

@@ -4,9 +4,9 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.avp.AVP;
 import org.alien.client.model.entity.living.ModelDeacon;
 import org.alien.common.entity.living.species223ode.EntityDeacon;
+import org.avp.AVP;
 
 public class RenderDeacon extends RenderLivingWrapper<EntityDeacon, ModelDeacon>
 {

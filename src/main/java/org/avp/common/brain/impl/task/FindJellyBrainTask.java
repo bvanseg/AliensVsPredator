@@ -1,6 +1,7 @@
 package org.avp.common.brain.impl.task;
 
 import net.minecraft.entity.item.EntityItem;
+import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.AVP;
 import org.avp.common.brain.flag.AbstractBrainFlag;
 import org.avp.common.brain.flag.BrainFlagState;
@@ -8,7 +9,6 @@ import org.avp.common.brain.impl.BrainFlags;
 import org.avp.common.brain.impl.BrainMemoryKeys;
 import org.avp.common.brain.impl.EntityBrainContext;
 import org.avp.common.brain.task.AbstractBrainTask;
-import org.alien.common.entity.living.SpeciesXenomorph;
 
 import java.util.HashMap;
 import java.util.List;

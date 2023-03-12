@@ -26,19 +26,19 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
+import org.alien.common.entity.living.Species223ODe;
 import org.avp.AVP;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
-import org.alien.common.entity.living.Species223ODe;
-import org.avp.common.item.ItemWristbracer;
 import org.avp.common.packets.server.PacketAttachParasiteToEntity;
 import org.avp.common.world.Embryo;
 import org.avp.common.world.capabilities.IOrganism.Organism;
 import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.predator.common.item.ItemWristbracer;
 
 import java.util.List;
 

@@ -13,11 +13,11 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import org.alien.AlienBlocks;
+import org.alien.common.AlienBlocks;
+import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.AVPBlocks;
 import org.avp.common.DamageSources;
 import org.avp.common.api.blocks.IAcidResistant;
-import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.entities.EntityLiquidPool;
 
 import java.util.ArrayList;

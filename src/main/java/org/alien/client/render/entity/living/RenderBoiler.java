@@ -4,9 +4,9 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import org.avp.AVP;
 import org.alien.client.model.entity.living.ModelBoiler;
 import org.alien.common.entity.living.xenomorphs.EntityBoiler;
+import org.avp.AVP;
 import org.lwjgl.opengl.GL11;
 
 public class RenderBoiler extends RenderLivingWrapper<EntityBoiler, ModelBoiler>

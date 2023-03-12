@@ -3,9 +3,9 @@ package org.avp.common;
 import com.asx.mdx.lib.world.entity.ItemDrop;
 import com.asx.mdx.lib.world.entity.ItemDrop.DropType;
 import net.minecraft.item.ItemStack;
-import org.alien.AlienBlocks;
+import org.alien.common.AlienBlocks;
 import org.avp.AVP;
-import org.predator.PredatorBlocks;
+import org.predator.common.PredatorBlocks;
 
 public class EntityItemDrops
 {

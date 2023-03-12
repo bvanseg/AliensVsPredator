@@ -5,8 +5,8 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import org.avp.AVP;
 import org.alien.common.entity.living.xenomorphs.EntityMatriarch;
+import org.avp.AVP;
 import org.lwjgl.opengl.GL11;
 
 public class ModelMatriarch extends Model<EntityMatriarch>

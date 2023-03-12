@@ -19,14 +19,16 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.alien.common.entity.living.EntityAethon;
 import org.alien.common.entity.living.engineer.EntityEngineer;
 import org.alien.common.entity.living.engineer.EntitySpaceJockey;
 import org.alien.common.entity.living.species223ode.EntityDeacon;
 import org.alien.common.entity.living.species223ode.EntityTrilobite;
+import org.alien.common.entity.living.vardic.*;
+import org.alien.common.entity.living.xenomorphs.*;
 import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
 import org.alien.common.entity.living.xenomorphs.parasites.EntityRoyalFacehugger;
+import org.avp.AVP;
 import org.avp.common.packets.server.PacketTurretTargetUpdate;
 
 import java.util.*;

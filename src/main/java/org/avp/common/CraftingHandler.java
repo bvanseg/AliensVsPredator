@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import org.alien.AlienBlocks;
+import org.alien.common.AlienBlocks;
 import org.apache.commons.lang3.StringUtils;
 import org.avp.AVP;
 import org.avp.common.item.crafting.AssemblyManager;

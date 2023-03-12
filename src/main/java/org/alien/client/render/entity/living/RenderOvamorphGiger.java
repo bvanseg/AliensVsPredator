@@ -4,9 +4,9 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.avp.AVP;
 import org.alien.client.model.entity.living.ModelOvamorphGiger;
 import org.alien.common.entity.living.xenomorphs.EntityOvamorphGiger;
+import org.avp.AVP;
 
 public class RenderOvamorphGiger extends RenderLivingWrapper<EntityOvamorphGiger, ModelOvamorphGiger>
 {

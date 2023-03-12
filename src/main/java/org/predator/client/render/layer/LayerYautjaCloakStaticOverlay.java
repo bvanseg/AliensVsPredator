@@ -7,11 +7,11 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 import org.predator.client.model.entity.living.ModelYautja;
 import org.predator.client.render.entity.living.RenderYautja;
 import org.predator.common.entity.living.SpeciesYautja;
 import org.predator.common.entity.state.CloakState;
-import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class LayerYautjaCloakStaticOverlay implements LayerRenderer<SpeciesYautja>

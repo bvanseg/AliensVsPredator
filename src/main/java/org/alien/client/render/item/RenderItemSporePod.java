@@ -7,8 +7,8 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
 import org.alien.client.model.entity.ModelSporePod;
+import org.avp.AVP;
 
 public class RenderItemSporePod extends ItemRenderer<ModelSporePod>
 {

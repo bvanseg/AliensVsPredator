@@ -3,7 +3,7 @@ package org.avp.common.world.dimension.acheron.worldgen.formations;
 import com.asx.mdx.lib.world.Pos;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import org.alien.AlienBlocks;
+import org.alien.common.AlienBlocks;
 import org.avp.common.AVPBlocks;
 import org.avp.common.world.worldgen.TerrainGenVariant;
 

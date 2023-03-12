@@ -24,8 +24,8 @@ import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.entities.EntityBullet;
 import org.avp.common.entities.EntityLiquidLatexPool;
-import org.avp.common.entities.ai.selector.EntitySelectorCombatSynthetic;
 import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entities.ai.selector.EntitySelectorCombatSynthetic;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost
 {

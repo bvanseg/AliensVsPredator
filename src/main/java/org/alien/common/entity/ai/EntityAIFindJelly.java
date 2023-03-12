@@ -5,8 +5,8 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
-import org.avp.AVP;
 import org.alien.common.entity.living.SpeciesXenomorph;
+import org.avp.AVP;
 
 import java.util.ArrayList;
 

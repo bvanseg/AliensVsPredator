@@ -3,9 +3,9 @@ package org.alien.client.render.entity.living;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import org.avp.AVP;
 import org.alien.client.model.entity.living.ModelMatriarch;
 import org.alien.common.entity.living.xenomorphs.EntityMatriarch;
+import org.avp.AVP;
 
 public class RenderMatriarch extends RenderLivingWrapper<EntityMatriarch, ModelMatriarch>
 {

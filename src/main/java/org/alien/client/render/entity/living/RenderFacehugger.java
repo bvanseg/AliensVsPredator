@@ -1,9 +1,9 @@
 package org.alien.client.render.entity.living;
 
 import net.minecraft.client.renderer.entity.RenderManager;
-import org.avp.AVP;
 import org.alien.client.model.entity.living.ModelFacehugger;
 import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
+import org.avp.AVP;
 
 public class RenderFacehugger extends RenderFacehuggers<EntityFacehugger, ModelFacehugger>
 {

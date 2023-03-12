@@ -9,8 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.common.ItemHandler;
 import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
+import org.avp.common.ItemHandler;
 
 public class EntityOvamorphGiger extends EntityOvamorph
 {

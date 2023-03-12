@@ -9,16 +9,17 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import org.avp.common.api.parasitoidic.INascentic;
 import org.alien.common.entity.living.engineer.EntityEngineer;
 import org.alien.common.entity.living.engineer.EntitySpaceJockey;
 import org.alien.common.entity.living.species223ode.EntityDeacon;
 import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
-import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
-import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 import org.alien.common.entity.living.vardic.EntityBelugaburster;
 import org.alien.common.entity.living.vardic.EntityBelugamorph;
+import org.alien.common.entity.living.xenomorphs.*;
+import org.avp.common.api.parasitoidic.INascentic;
 import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
+import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
 import java.util.ArrayList;
 

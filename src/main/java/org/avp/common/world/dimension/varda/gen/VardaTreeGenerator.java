@@ -10,7 +10,7 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import org.alien.AlienBlocks;
+import org.alien.common.AlienBlocks;
 import org.avp.common.AVPBlocks;
 import org.avp.common.block.BlockUnidentifiedLog;
 

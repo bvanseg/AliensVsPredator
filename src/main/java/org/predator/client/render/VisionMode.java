@@ -8,9 +8,9 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraftforge.client.event.RenderLivingEvent;
-import org.avp.AVP;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
+import org.avp.AVP;
 import org.avp.client.render.LightmapUpdateEvent;
 
 import static org.lwjgl.opengl.GL11.*;

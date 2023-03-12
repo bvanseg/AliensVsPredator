@@ -1,4 +1,4 @@
-package org.avp.common.item;
+package org.predator.common.item;
 
 import com.asx.mdx.lib.util.GameSounds;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;

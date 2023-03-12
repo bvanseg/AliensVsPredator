@@ -8,9 +8,9 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import org.avp.AVP;
 import org.alien.client.model.entity.living.ModelNauticomorph;
 import org.alien.common.entity.living.xenomorphs.EntityNauticomorph;
+import org.avp.AVP;
 
 public class RenderNauticomorph<N extends EntityNauticomorph> extends RenderLivingWrapper<N, ModelNauticomorph>
 {

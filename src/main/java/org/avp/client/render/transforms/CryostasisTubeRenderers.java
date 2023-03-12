@@ -5,11 +5,12 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.entity.Entity;
+import org.alien.common.entity.living.SpeciesXenomorph;
+import org.alien.common.entity.living.xenomorphs.*;
+import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
 import org.avp.AVP;
 import org.avp.client.render.tile.RenderCryostasisTube;
 import org.avp.client.render.tile.RenderCryostasisTube.CryostasisEntityRenderer;
-import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
 import org.avp.common.tile.TileEntityCryostasisTube;
 import org.lwjgl.opengl.GL12;
 

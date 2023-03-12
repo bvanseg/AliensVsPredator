@@ -4,9 +4,9 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import net.minecraft.client.renderer.entity.RenderManager;
-import org.avp.AVP;
 import org.alien.client.model.entity.living.ModelEngineer;
 import org.alien.common.entity.living.SpeciesEngineer;
+import org.avp.AVP;
 
 public class RenderEngineer extends RenderLivingWrapper<SpeciesEngineer, ModelEngineer>
 {

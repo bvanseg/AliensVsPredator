@@ -14,12 +14,12 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.ItemHandler;
 import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entities.ai.PatchedEntityAIWander;
 import org.avp.common.entities.ai.helpers.EntityExtendedLookHelper;
 import org.avp.common.entities.ai.pathfinding.PathNavigateSwimmer;
-import org.alien.common.entity.living.SpeciesAlien;
 
 import java.util.List;
 

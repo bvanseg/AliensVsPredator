@@ -18,8 +18,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import org.avp.AVP;
 import org.alien.common.entity.living.SpeciesXenomorph;
+import org.avp.AVP;
 
 import java.util.List;
 

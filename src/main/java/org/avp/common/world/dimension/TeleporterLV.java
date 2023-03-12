@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
-import org.alien.AlienBlocks;
+import org.alien.common.AlienBlocks;
 import org.avp.AVP;
 
 import java.util.Random;

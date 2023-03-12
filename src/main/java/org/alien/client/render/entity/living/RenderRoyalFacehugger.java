@@ -2,10 +2,10 @@ package org.alien.client.render.entity.living;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.entity.RenderManager;
-import org.avp.AVP;
 import org.alien.client.model.entity.living.ModelRoyalFacehugger;
 import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
 import org.alien.common.entity.living.xenomorphs.parasites.EntityRoyalFacehugger;
+import org.avp.AVP;
 
 public class RenderRoyalFacehugger extends RenderFacehuggers<EntityRoyalFacehugger, ModelRoyalFacehugger>
 {

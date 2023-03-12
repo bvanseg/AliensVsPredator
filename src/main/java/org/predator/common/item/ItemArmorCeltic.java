@@ -1,4 +1,4 @@
-package org.avp.common.item;
+package org.predator.common.item;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.util.Game;
@@ -13,9 +13,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.client.Sounds;
-import org.predator.client.render.VisionModeRenderEvent;
 import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.input.Keyboard;
+import org.predator.client.render.VisionModeRenderEvent;
 
 public class ItemArmorCeltic extends ItemArmor
 {

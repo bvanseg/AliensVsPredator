@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
-import org.predator.common.entity.EntityShuriken;
 import org.lwjgl.opengl.GL11;
+import org.predator.common.entity.EntityShuriken;
 
 public class RenderShuriken extends Render<EntityShuriken>
 {

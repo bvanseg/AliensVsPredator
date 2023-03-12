@@ -4,15 +4,15 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
+import org.alien.common.entity.ai.EntityAIFindJelly;
+import org.alien.common.entity.ai.EntityAIShareJelly;
+import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
+import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.common.brain.impl.sensor.EntityBrainSensor;
 import org.avp.common.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.avp.common.brain.impl.task.NearestAttackableTargetBrainTask;
 import org.avp.common.brain.task.BrainTaskAdapter;
 import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.alien.common.entity.ai.EntityAIFindJelly;
-import org.alien.common.entity.ai.EntityAIShareJelly;
-import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
-import org.alien.common.entity.living.SpeciesXenomorph;
 
 /**
  * 

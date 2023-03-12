@@ -15,13 +15,13 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.AVP;
-import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
 import org.alien.common.entity.living.xenomorphs.parasites.EntityRoyalFacehugger;
+import org.avp.AVP;
+import org.avp.common.EntityItemDrops;
+import org.avp.common.ItemHandler;
 import org.avp.common.packets.client.PacketOvamorphContainsFacehugger;
 import org.avp.common.world.hives.rework.HiveMember;
 

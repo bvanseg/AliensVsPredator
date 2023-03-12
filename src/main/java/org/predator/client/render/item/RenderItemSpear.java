@@ -7,9 +7,9 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
-import org.predator.client.model.entity.ModelSpear;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import org.predator.client.model.entity.ModelSpear;
 
 public class RenderItemSpear extends ItemRenderer<ModelSpear>
 {

@@ -6,12 +6,12 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import org.avp.AVP;
 import org.alien.client.model.entity.living.ModelOctohugger;
+import org.alien.common.entity.living.vardic.EntityOctohugger;
+import org.avp.AVP;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entities.EntityMedpod;
-import org.alien.common.entity.living.vardic.EntityOctohugger;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;

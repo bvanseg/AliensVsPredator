@@ -1,4 +1,4 @@
-package org.avp.common.item;
+package org.predator.common.item;
 
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.item.HookedItem;

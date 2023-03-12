@@ -8,7 +8,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.predator.PredatorBlocks;
+import org.predator.common.PredatorBlocks;
 
 public class EntityMechanism extends Entity
 {

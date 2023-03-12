@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
-import org.predator.client.model.entity.ModelPlasma;
 import org.avp.client.model.items.ModelWristBlade;
+import org.predator.client.model.entity.ModelPlasma;
 import org.predator.common.entity.EntityWristbracer;
 
 public class RenderWristbracer extends Render<EntityWristbracer>

@@ -17,12 +17,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.alien.AlienBlocks;
+import org.alien.common.AlienBlocks;
+import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.block.BlockHiveResin;
-import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.common.tile.TileEntityHiveResin;
 import org.avp.common.world.hives.rework.HiveMember;
 

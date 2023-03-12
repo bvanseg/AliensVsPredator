@@ -1,4 +1,4 @@
-package org.avp.common.item;
+package org.alien.common.item;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.util.Game;
@@ -13,8 +13,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.alien.client.model.entity.living.ModelDrone;
+import org.avp.AVP;
 import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
 public class ItemArmorXeno extends ItemArmor

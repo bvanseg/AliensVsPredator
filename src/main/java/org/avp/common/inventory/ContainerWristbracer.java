@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
-import org.avp.common.item.ItemWristbracer;
+import org.predator.common.item.ItemWristbracer;
 
 public class ContainerWristbracer extends Container
 {

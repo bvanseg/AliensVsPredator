@@ -7,14 +7,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
-import org.avp.common.entities.living.EntityMarine;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesEngineer;
-import org.avp.common.item.ItemDisc;
-import org.avp.common.item.ItemPlasmaCannon;
-import org.avp.common.item.ItemShuriken;
-import org.avp.common.item.ItemWristbracer;
+import org.avp.common.entities.living.EntityMarine;
 import org.avp.common.item.firearms.ItemFirearm;
+import org.predator.common.item.ItemDisc;
+import org.predator.common.item.ItemPlasmaCannon;
+import org.predator.common.item.ItemShuriken;
+import org.predator.common.item.ItemWristbracer;
 
 public class EntitySelectorYautja implements Predicate<EntityLivingBase>
 {

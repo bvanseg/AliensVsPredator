@@ -3,11 +3,11 @@ package org.avp.client.render.transforms;
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.entity.Entity;
 import org.alien.client.render.entity.living.RenderFacehuggers;
+import org.alien.common.entity.living.engineer.EntityEngineer;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entities.living.EntityCombatSynthetic;
 import org.avp.common.entities.living.EntityMarine;
 import org.predator.common.entity.living.SpeciesYautja;
-import org.alien.common.entity.living.engineer.EntityEngineer;
 
 public class FaceLocationTransforms
 {

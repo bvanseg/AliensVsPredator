@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.alien.AlienBlocks;
+import org.alien.common.AlienBlocks;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
@@ -22,7 +22,7 @@ import org.avp.client.render.BiomeColorHandler;
 import org.avp.common.*;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
-import org.predator.PredatorBlocks;
+import org.predator.common.PredatorBlocks;
 
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
 public class AVP implements IMod

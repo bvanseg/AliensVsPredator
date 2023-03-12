@@ -13,13 +13,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.entity.ai.EntityAIFacehuggerLeap;
+import org.alien.common.entity.living.EntityParasitoid;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.alien.common.entity.ai.EntityAIFacehuggerLeap;
-import org.alien.common.entity.living.EntityParasitoid;
 
 public class EntityFacehugger extends EntityParasitoid implements IMob, IParasitoid
 {

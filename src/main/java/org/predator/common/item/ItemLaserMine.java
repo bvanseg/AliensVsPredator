@@ -1,4 +1,4 @@
-package org.avp.common.item;
+package org.predator.common.item;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;

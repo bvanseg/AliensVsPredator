@@ -4,8 +4,8 @@ import com.asx.mdx.lib.util.Game;
 import org.avp.AVP;
 import org.avp.client.Sounds;
 import org.avp.client.input.IInputHandler;
-import org.avp.common.item.ItemWristbracer;
 import org.avp.common.packets.server.PacketPlasmaDischarge;
+import org.predator.common.item.ItemWristbracer;
 
 public class InputHandlerPlasmaCannon implements IInputHandler
 {

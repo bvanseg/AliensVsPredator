@@ -15,7 +15,7 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.alien.AlienBlocks;
+import org.alien.common.AlienBlocks;
 import org.avp.AVP;
 
 import javax.annotation.Nullable;
