@@ -6,7 +6,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelMedpod extends Model
+public class ModelMedpod extends Model<TileEntityMedpod>
 {
     public ModelRenderer base;
     public ModelRenderer baseRod1;
@@ -99,7 +99,7 @@ public class ModelMedpod extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityMedpod obj)
     {
         if (obj != null)
         {

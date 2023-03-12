@@ -1,11 +1,13 @@
 package org.avp.client.model.tile.plants;
 
+import org.avp.tile.plants.TileEntityTreeFern;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 
-public class ModelTreeFern extends Model
+public class ModelTreeFern extends Model<TileEntityTreeFern>
 {
     public ModelRenderer trunk01;
     public ModelRenderer trunk04;
@@ -213,7 +215,7 @@ public class ModelTreeFern extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityTreeFern obj)
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate(this.trunk04.offsetX, this.trunk04.offsetY, this.trunk04.offsetZ);

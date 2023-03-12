@@ -1,10 +1,12 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntityTransformer;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelTransformer extends Model
+public class ModelTransformer extends Model<TileEntityTransformer>
 {
     public ModelRenderer powerOutput;
     public ModelRenderer rightSupport;
@@ -42,7 +44,7 @@ public class ModelTransformer extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityTransformer obj)
     {
         draw(core);
         draw(base);

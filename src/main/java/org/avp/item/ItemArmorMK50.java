@@ -20,14 +20,9 @@ public class ItemArmorMK50 extends ItemAntiVacuumArmor
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-        switch (slot)
-        {
+        switch (slot) {
             case FEET:
-                return Draw.getPath(AliensVsPredator.resources().MK501);
             case LEGS:
-                return Draw.getPath(AliensVsPredator.resources().MK501);
-            case CHEST:
-                return Draw.getPath(AliensVsPredator.resources().MK502);
             case HEAD:
                 return Draw.getPath(AliensVsPredator.resources().MK501);
             default:

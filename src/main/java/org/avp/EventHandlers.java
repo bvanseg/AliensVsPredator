@@ -19,6 +19,7 @@ import org.avp.client.render.VisionModeRenderEvent;
 import org.avp.client.render.items.RenderMotionTrackerScreen;
 import org.avp.world.CapabilityHandler;
 import org.avp.world.EntityImpregnationHandler;
+import org.avp.world.TrilobiteImpregnationHandler;
 import org.avp.world.dimension.acheron.SkyProviderAcheron;
 import org.avp.world.fluids.BucketHandlingEvent;
 import org.avp.world.hooks.FarmlandRegistry;
@@ -66,6 +67,7 @@ public class EventHandlers implements IInitEvent
         }
 
         this.registerEvent(EntityImpregnationHandler.instance);
+        this.registerEvent(TrilobiteImpregnationHandler.instance);
         this.registerEvent(CapabilityHandler.instance);
         this.registerEvent(SaveHandler.instance);
         this.registerEvent(FarmlandRegistry.instance);

@@ -4,7 +4,8 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelRackModule8 extends Model
+//TODO: Use a better type than Object for Model.
+public class ModelRackModule8 extends Model<Object>
 {
     public ModelRenderer faceplate;
     public ModelRenderer body;

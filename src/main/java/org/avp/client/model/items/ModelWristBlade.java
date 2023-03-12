@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelWristBlade extends Model
+public class ModelWristBlade extends Model<Object>
 {
     public ModelRenderer bBase;
     public ModelRenderer b1;

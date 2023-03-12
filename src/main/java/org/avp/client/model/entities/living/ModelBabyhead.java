@@ -1,10 +1,12 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.vardic.EntityBabyhead;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelBabyhead extends Model
+public class ModelBabyhead extends Model<EntityBabyhead>
 {
     public ModelRenderer chest;
     public ModelRenderer lowerbody;
@@ -306,7 +308,7 @@ public class ModelBabyhead extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityBabyhead obj)
     {
         draw(chest);
     }

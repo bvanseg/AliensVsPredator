@@ -2,6 +2,7 @@ package org.avp.client.model.entities.living;
 
 import org.avp.client.render.XenomorphJawState;
 import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.entities.living.species.xenomorphs.EntityUltramorph;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
@@ -12,7 +13,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelUltramorph extends Model
+public class ModelUltramorph extends Model<EntityUltramorph>
 {
     public ModelRenderer rArmUpper;
     public ModelRenderer chest;
@@ -309,7 +310,7 @@ public class ModelUltramorph extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityUltramorph obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;;
         SpeciesXenomorph xenomorph = (SpeciesXenomorph) base;

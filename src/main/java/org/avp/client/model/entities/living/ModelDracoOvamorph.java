@@ -1,10 +1,12 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.EntityDracoEgg;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelDracoOvamorph extends Model
+public class ModelDracoOvamorph extends Model<EntityDracoEgg>
 {
     public ModelRenderer lFrontLobe2;
     public ModelRenderer center;
@@ -138,7 +140,7 @@ public class ModelDracoOvamorph extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityDracoEgg obj)
     {
         draw(lFrontLobe2);
         draw(lBackLobe2);
