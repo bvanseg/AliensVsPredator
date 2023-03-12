@@ -43,7 +43,7 @@ public class DimensionHandler implements IInitEvent
         }
     }
 
-    public final Dimension ACHERON                   = new Dimension("Acheron", "_acheron", WorldProviderAcheron.class, true);
+    public final Dimension ACHERON                   = new Dimension("Acheron", "_acheron", WorldProviderAcheron.class, false);
     public final Dimension VARDA                     = new Dimension("Varda", "_varda", WorldProviderVarda.class, true);
 
     public boolean         initialized;
