@@ -7,6 +7,9 @@ import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.ai.alien.EntityAIFindJelly;
 import org.avp.entities.ai.alien.EntityAIShareJelly;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
+import org.avp.util.brain.Brainiac;
+import org.avp.util.brain.impl.EntityBrainContext;
+import org.avp.util.brain.impl.XenomorphBrain;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -26,7 +29,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
+public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Brainiac<XenomorphBrain>
 {
     public static final float                   JAW_PROGRESS_INCR   = 0.3F;
     public static final float                   JAW_PROGRESS_MAX    = 1.0F;
@@ -42,29 +45,31 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
     private boolean                             retractMouth        = false;
     protected boolean                           ableToClimb;
 
+    private              XenomorphBrain         brain;
+
     public SpeciesXenomorph(World world)
     {
         super(world);
         this.jumpMovementFactor = 0.045F;
         this.ableToClimb = false;
         this.isDependant = true;
-        this.addStandardXenomorphAISet();
     }
 
-    protected void addStandardXenomorphAISet()
-    {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAILeapAtTarget(this, 0.6F));
-        this.tasks.addTask(2, new PatchedEntityAIWander(this, 0.8D));
-        this.tasks.addTask(3, new EntityAIFindJelly(this));
-        this.tasks.addTask(3, new EntityAIShareJelly(this));
-        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
-        this.tasks.addTask(5, new EntityAICustomAttackOnCollide(this, EntityLiving.class, 1.0D, false));
-        this.tasks.addTask(5, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLiving>(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, false, false, EntitySelectorXenomorph.instance));
+    @Override
+    public XenomorphBrain getBrain() {
+    	if (brain == null && !this.world.isRemote) {
+    		brain = new XenomorphBrain(this);
+    	}
+    	return brain;
     }
+
+    @Override
+    protected void initEntityAI() {
+    	this.getBrain().init();
+    }
+
+    @Deprecated
+    protected void addStandardXenomorphAISet() {}
 
     @Override
     protected void entityInit()
@@ -88,14 +93,15 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob
     {
         super.onUpdate();
 
+        if (!this.world.isRemote) {
+            brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
+
         /** Fall Damage Negation **/
         this.fallDistance = 0F;
 
         this.updateInnerMouth();
         this.ocassionallyOpenMouth();
-        
-        if(this.getAttackTarget() != null && !EntitySelectorXenomorph.instance.apply(this.getAttackTarget()))
-            this.setAttackTarget(null);
     }
 
     public boolean isCrawling()
