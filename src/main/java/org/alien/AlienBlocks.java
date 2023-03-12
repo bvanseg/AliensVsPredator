@@ -1,10 +1,10 @@
 package org.alien;
 
-import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.core.mods.IPreInitEvent;
 import com.asx.mdx.lib.world.block.BlockMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AliensVsPredator;
 import org.avp.common.Tab;
 import org.avp.common.block.*;
@@ -13,7 +13,7 @@ import org.lib.BlockRegistryUtil;
 /**
  * @author Boston Vanseghi
  */
-public class AlienBlocks implements IInitEvent {
+public class AlienBlocks implements IPreInitEvent {
     public static final AlienBlocks instance = new AlienBlocks();
 
     private AlienBlocks() {}
@@ -77,7 +77,7 @@ public class AlienBlocks implements IInitEvent {
     public static final Block PORTAL_ACHERON = new BlockPortal(AliensVsPredator.dimensions().ACHERON).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(Tab.MAIN).setRegistryName("portal.acheron");
 
     @Override
-    public void init(FMLInitializationEvent fmlInitializationEvent) {
+    public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         BlockRegistryUtil.registerBlock(NATURAL_RESIN);
         BlockRegistryUtil.registerBlock(RESIN);
         BlockRegistryUtil.registerBlock(RELIC_OVAMORPH);

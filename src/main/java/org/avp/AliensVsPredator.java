@@ -50,6 +50,8 @@ public class AliensVsPredator implements IMod
     @Mod.EventHandler
     public void pre(FMLPreInitializationEvent event)
     {
+        AlienBlocks.instance.pre(event);
+        AVPBlocks.instance.pre(event);
         console().pre(event);
         settings().pre(event);
         capabilities().pre(event);
@@ -68,8 +70,6 @@ public class AliensVsPredator implements IMod
     {
         console().init(event);
         network().init(event);
-        AlienBlocks.instance.init(event);
-        AVPBlocks.instance.init(event);
         dimensions().init(event);
         materials().init(event);
         world().init(event);

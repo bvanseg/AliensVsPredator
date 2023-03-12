@@ -1,26 +1,22 @@
 package org.avp.common;
 
-import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.core.mods.IPreInitEvent;
 import com.asx.mdx.lib.world.block.BlockMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraftforge.fluids.BlockFluidBase;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AliensVsPredator;
 import org.avp.common.block.*;
 import org.avp.common.block.skulls.*;
 import org.avp.common.item.supply.chute.SupplyChuteType;
 import org.lib.BlockRegistryUtil;
 
-import java.util.List;
-
 /**
  * @author Ri5ux
  * @author Boston Vanseghi
  */
-public class AVPBlocks implements IInitEvent
+public class AVPBlocks implements IPreInitEvent
 {
     public static final AVPBlocks instance = new AVPBlocks();
 
@@ -146,7 +142,7 @@ public class AVPBlocks implements IInitEvent
     public static final Block INVERTED_PYRAMID = new BlockReflective(Material.CIRCUITS).setRegistryName("invertedpyramid");
 
     @Override
-    public void init(FMLInitializationEvent event) {
+    public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         AliensVsPredator.log().info("Registering Blocks");
 
         BlockRegistryUtil.registerBlock(METAL_1);
