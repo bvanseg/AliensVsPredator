@@ -9,6 +9,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.time.LocalDate;
+
 public class Console implements IPreInitEvent, IInitEvent, IPostInitEvent
 {
     public static final Console instance = new Console();
@@ -23,7 +25,8 @@ public class Console implements IPreInitEvent, IInitEvent, IPostInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
-        logger.info("AliensVsPredator Minecraft Mod Copyright \u00A9 2012-2019 ASX");
+        int currentYear = LocalDate.now().getYear();
+        logger.info("AliensVsPredator Minecraft Mod Copyright © 2012-{} ASX", currentYear);
         logger.info("Initializing...");
     }
 
