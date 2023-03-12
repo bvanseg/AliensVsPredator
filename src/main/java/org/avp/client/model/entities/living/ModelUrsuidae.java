@@ -2,7 +2,7 @@ package org.avp.client.model.entities.living;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.avp.common.entities.living.vardic.EntityUrsuidae;
+import org.alien.common.entity.living.vardic.EntityUrsuidae;
 
 public class ModelUrsuidae extends Model<EntityUrsuidae>
 {

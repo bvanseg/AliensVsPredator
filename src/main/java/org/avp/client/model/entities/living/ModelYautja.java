@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import org.avp.common.entities.living.species.SpeciesYautja;
+import org.predator.common.entity.living.SpeciesYautja;
 
 
 public class ModelYautja extends Model<SpeciesYautja>

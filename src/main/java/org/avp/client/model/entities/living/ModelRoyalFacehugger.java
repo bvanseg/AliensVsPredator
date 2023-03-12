@@ -3,7 +3,7 @@ package org.avp.client.model.entities.living;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
 
 
 public class ModelRoyalFacehugger extends ModelFacehugger

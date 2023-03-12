@@ -4,7 +4,7 @@ package org.avp.client.model.entities;
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
-import org.avp.common.entities.EntitySporePod;
+import org.alien.common.entity.living.EntitySporePod;
 
 public class ModelSporePod extends Model<Object>
 {

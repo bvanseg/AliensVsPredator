@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
-import org.avp.common.entities.living.species.species223ode.EntityTrilobite;
+import org.alien.common.entity.living.species223ode.EntityTrilobite;
 
 import static com.asx.mdx.lib.client.model.animations.AnimationHelper.*;
 

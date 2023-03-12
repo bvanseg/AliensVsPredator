@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelMyceliomorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityMyceliomorph;
+import org.alien.common.entity.living.xenomorphs.EntityMyceliomorph;
 import org.lwjgl.opengl.GL11;
 
 public class RenderMyceliomorph extends RenderLivingWrapper<EntityMyceliomorph, ModelMyceliomorph>

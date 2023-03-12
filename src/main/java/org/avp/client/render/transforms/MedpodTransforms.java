@@ -12,7 +12,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import org.avp.client.render.tile.RenderMedpod;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entities.living.EntityMarine;
-import org.avp.common.entities.living.species.SpeciesYautja;
+import org.predator.common.entity.living.SpeciesYautja;
 
 public class MedpodTransforms
 {

@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import org.avp.client.render.XenomorphJawState;
-import org.avp.common.entities.living.species.xenomorphs.EntityNauticomorph;
+import org.alien.common.entity.living.xenomorphs.EntityNauticomorph;
 
 public class ModelNauticomorph extends Model<EntityNauticomorph>
 {

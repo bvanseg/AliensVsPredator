@@ -29,7 +29,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import org.avp.AVP;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.entities.living.EntityMarine;
-import org.avp.common.entities.living.species.SpeciesAlien;
+import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.tile.TileEntityPowercell;
 import org.avp.common.tile.TileEntityStasisMechanism;
 import org.avp.common.world.capabilities.IOrganism.Organism;

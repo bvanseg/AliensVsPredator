@@ -6,7 +6,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 import org.avp.AVP;
-import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
+import org.alien.common.entity.living.xenomorphs.EntityMatriarch;
 import org.lwjgl.opengl.GL11;
 
 public class ModelMatriarch extends Model<EntityMatriarch>

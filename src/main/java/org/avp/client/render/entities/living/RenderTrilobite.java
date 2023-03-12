@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelTrilobite;
-import org.avp.common.entities.living.species.species223ode.EntityTrilobite;
+import org.alien.common.entity.living.species223ode.EntityTrilobite;
 
 public class RenderTrilobite extends RenderLivingWrapper<EntityTrilobite, ModelTrilobite>
 {

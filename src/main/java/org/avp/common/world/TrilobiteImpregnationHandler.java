@@ -5,7 +5,7 @@ import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.entities.living.species.species223ode.EntityTrilobite;
+import org.alien.common.entity.living.species223ode.EntityTrilobite;
 
 /**
  * 

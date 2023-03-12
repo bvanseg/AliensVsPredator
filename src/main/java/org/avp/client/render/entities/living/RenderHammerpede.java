@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelHammerpede;
-import org.avp.common.entities.living.vardic.EntityHammerpede;
+import org.alien.common.entity.living.vardic.EntityHammerpede;
 
 public class RenderHammerpede extends RenderLivingWrapper<EntityHammerpede, ModelHammerpede>
 {

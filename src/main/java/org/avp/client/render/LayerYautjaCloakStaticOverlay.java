@@ -9,8 +9,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.model.entities.living.ModelYautja;
 import org.avp.client.render.entities.living.RenderYautja;
-import org.avp.common.entities.living.species.SpeciesYautja;
-import org.avp.common.entities.state.CloakState;
+import org.predator.common.entity.living.SpeciesYautja;
+import org.predator.common.entity.state.CloakState;
 import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)

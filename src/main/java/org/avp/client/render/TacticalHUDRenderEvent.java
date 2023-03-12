@@ -29,7 +29,7 @@ import org.avp.client.gui.GuiTacticalHUDSettings;
 import org.avp.client.render.wavegraph.Wavegraph;
 import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
 import org.avp.common.entities.EntityAPC;
-import org.avp.common.entities.living.species.EntityParasitoid;
+import org.alien.common.entity.living.EntityParasitoid;
 import org.avp.common.world.capabilities.IOrganism.Organism;
 import org.avp.common.world.capabilities.IOrganism.Provider;
 import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;

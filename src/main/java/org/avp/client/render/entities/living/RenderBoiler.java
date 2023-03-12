@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelBoiler;
-import org.avp.common.entities.living.species.xenomorphs.EntityBoiler;
+import org.alien.common.entity.living.xenomorphs.EntityBoiler;
 import org.lwjgl.opengl.GL11;
 
 public class RenderBoiler extends RenderLivingWrapper<EntityBoiler, ModelBoiler>

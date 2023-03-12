@@ -8,7 +8,7 @@ import org.avp.common.brain.impl.BrainFlags;
 import org.avp.common.brain.impl.BrainMemoryKeys;
 import org.avp.common.brain.impl.EntityBrainContext;
 import org.avp.common.brain.task.AbstractBrainTask;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
+import org.alien.common.entity.living.SpeciesXenomorph;
 
 import java.util.HashMap;
 import java.util.List;

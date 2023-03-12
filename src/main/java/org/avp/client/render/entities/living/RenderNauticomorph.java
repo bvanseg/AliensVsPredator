@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelNauticomorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityNauticomorph;
+import org.alien.common.entity.living.xenomorphs.EntityNauticomorph;
 
 public class RenderNauticomorph<N extends EntityNauticomorph> extends RenderLivingWrapper<N, ModelNauticomorph>
 {

@@ -3,7 +3,7 @@ package org.avp.client.render.entities;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.avp.common.entities.EntityMechanism;
+import org.predator.common.entity.EntityMechanism;
 
 public class RenderMechanism extends Render<EntityMechanism>
 {

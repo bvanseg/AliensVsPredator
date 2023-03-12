@@ -6,7 +6,7 @@ import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
+import org.alien.common.entity.living.SpeciesXenomorph;
 
 public class RenderXenomorph<XENO extends SpeciesXenomorph, MODEL extends Model<? extends SpeciesXenomorph>> extends RenderLivingWrapper<XENO, MODEL>
 {

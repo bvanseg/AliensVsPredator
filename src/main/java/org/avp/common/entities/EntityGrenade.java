@@ -19,7 +19,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import org.avp.AVP;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
+import org.alien.common.entity.living.SpeciesXenomorph;
 
 import java.util.List;
 

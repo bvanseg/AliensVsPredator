@@ -20,7 +20,7 @@ import org.avp.client.Sounds;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.ItemHandler;
 import org.avp.common.entities.EntityBullet;
-import org.avp.common.entities.ai.EntitySelectorMarine;
+import org.avp.common.entities.ai.selector.EntitySelectorMarine;
 import org.avp.common.entities.ai.PatchedEntityAIWander;
 import org.avp.common.item.firearms.FirearmProfile;
 import org.avp.common.world.MarineTypes;

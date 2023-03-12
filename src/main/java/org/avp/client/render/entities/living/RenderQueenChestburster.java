@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelChestbursterQueen;
-import org.avp.common.entities.living.species.xenomorphs.EntityQueenChestburster;
+import org.alien.common.entity.living.xenomorphs.EntityQueenChestburster;
 
 public class RenderQueenChestburster extends RenderLivingWrapper<EntityQueenChestburster, ModelChestbursterQueen>
 {

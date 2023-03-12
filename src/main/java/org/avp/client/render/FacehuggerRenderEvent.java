@@ -8,7 +8,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.avp.AVP;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
 
 public class FacehuggerRenderEvent
 {

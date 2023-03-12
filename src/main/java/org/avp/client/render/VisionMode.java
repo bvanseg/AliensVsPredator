@@ -9,8 +9,8 @@ import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import org.avp.AVP;
-import org.avp.common.entities.living.species.SpeciesAlien;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
+import org.alien.common.entity.living.SpeciesAlien;
+import org.alien.common.entity.living.SpeciesXenomorph;
 
 import static org.lwjgl.opengl.GL11.*;
 

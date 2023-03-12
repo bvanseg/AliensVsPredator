@@ -11,7 +11,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import org.avp.AVP;
-import org.avp.common.entities.EntitySmartDisc;
+import org.predator.common.entity.EntitySmartDisc;
 
 public class ItemDisc extends HookedItem
 {

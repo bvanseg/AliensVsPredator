@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.avp.client.Sounds;
-import org.avp.common.entities.EntityPlasma;
+import org.predator.common.entity.EntityPlasma;
 
 public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPlasmaDischarge, PacketPlasmaDischarge>
 {

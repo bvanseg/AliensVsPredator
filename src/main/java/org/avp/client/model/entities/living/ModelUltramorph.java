@@ -7,8 +7,8 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 import org.avp.client.render.XenomorphJawState;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityUltramorph;
+import org.alien.common.entity.living.SpeciesXenomorph;
+import org.alien.common.entity.living.xenomorphs.EntityUltramorph;
 
 
 public class ModelUltramorph extends Model<EntityUltramorph>

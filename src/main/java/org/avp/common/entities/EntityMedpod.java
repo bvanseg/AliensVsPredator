@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.avp.common.entities.living.species.SpeciesAlien;
+import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.tile.TileEntityMedpod;
 import org.avp.common.world.capabilities.IOrganism.Organism;
 import org.avp.common.world.capabilities.IOrganism.Provider;

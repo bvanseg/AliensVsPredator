@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import org.avp.common.entities.living.species.xenomorphs.EntityPredalien;
+import org.alien.common.entity.living.xenomorphs.EntityPredalien;
 
 
 public class ModelPredalien extends Model<EntityPredalien>

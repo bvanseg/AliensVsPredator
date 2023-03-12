@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import org.avp.common.entities.living.vardic.EntityGooMutant;
+import org.alien.common.entity.living.vardic.EntityGooMutant;
 
 
 public class ModelGooMutant extends Model<EntityGooMutant>

@@ -11,7 +11,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import org.avp.AVP;
-import org.avp.common.entities.EntitySpear;
+import org.predator.common.entity.EntitySpear;
 
 public class ItemSpear extends ItemSword
 {

@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.avp.client.model.entities.ModelPlasma;
-import org.avp.common.entities.EntityAcidProjectile;
+import org.alien.common.entity.EntityAcidProjectile;
 
 public class RenderAcidProjectile extends Render<EntityAcidProjectile>
 {

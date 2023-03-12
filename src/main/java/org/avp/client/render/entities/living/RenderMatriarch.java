@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelMatriarch;
-import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
+import org.alien.common.entity.living.xenomorphs.EntityMatriarch;
 
 public class RenderMatriarch extends RenderLivingWrapper<EntityMatriarch, ModelMatriarch>
 {

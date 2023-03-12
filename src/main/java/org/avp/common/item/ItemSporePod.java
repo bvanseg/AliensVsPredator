@@ -12,7 +12,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
 import org.avp.AVP;
-import org.avp.common.entities.EntitySporePod;
+import org.alien.common.entity.living.EntitySporePod;
 import org.avp.common.packets.server.PacketSpawnEntity;
 
 public class ItemSporePod extends HookedItem

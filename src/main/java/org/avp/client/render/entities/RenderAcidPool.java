@@ -13,7 +13,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import org.avp.AVP;
-import org.avp.common.entities.EntityAcidPool;
+import org.alien.common.entity.EntityAcidPool;
 import org.lwjgl.opengl.GL11;
 
 public class RenderAcidPool extends Render<EntityAcidPool>

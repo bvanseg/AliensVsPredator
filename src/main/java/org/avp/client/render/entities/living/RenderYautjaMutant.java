@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelMutantYautja;
-import org.avp.common.entities.living.species.yautja.EntityYautjaMutant;
+import org.predator.common.entity.living.yautja.EntityYautjaMutant;
 
 public class RenderYautjaMutant extends RenderLivingWrapper<EntityYautjaMutant, ModelMutantYautja>
 {

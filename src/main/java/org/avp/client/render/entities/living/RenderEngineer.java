@@ -6,7 +6,7 @@ import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelEngineer;
-import org.avp.common.entities.living.species.SpeciesEngineer;
+import org.alien.common.entity.living.SpeciesEngineer;
 
 public class RenderEngineer extends RenderLivingWrapper<SpeciesEngineer, ModelEngineer>
 {

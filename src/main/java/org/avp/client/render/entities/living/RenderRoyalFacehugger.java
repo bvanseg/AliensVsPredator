@@ -4,8 +4,8 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelRoyalFacehugger;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityRoyalFacehugger;
+import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
+import org.alien.common.entity.living.xenomorphs.parasites.EntityRoyalFacehugger;
 
 public class RenderRoyalFacehugger extends RenderFacehuggers<EntityRoyalFacehugger, ModelRoyalFacehugger>
 {

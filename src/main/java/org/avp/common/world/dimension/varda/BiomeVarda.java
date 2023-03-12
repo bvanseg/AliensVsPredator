@@ -13,7 +13,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import org.alien.AlienBlocks;
 import org.avp.AVP;
 import org.avp.common.AVPBlocks;
-import org.avp.common.entities.living.vardic.EntityDeaconShark;
+import org.alien.common.entity.living.vardic.EntityDeaconShark;
 import org.avp.common.world.dimension.BiomeGenLV;
 import org.avp.common.world.dimension.GenerationFilters;
 import org.avp.common.world.dimension.WorldGenSurfaceBlock;

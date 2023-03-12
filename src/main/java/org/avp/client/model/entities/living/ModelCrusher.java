@@ -3,7 +3,7 @@ package org.avp.client.model.entities.living;
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import org.avp.common.entities.living.species.xenomorphs.EntityCrusher;
+import org.alien.common.entity.living.xenomorphs.EntityCrusher;
 
 
 public class ModelCrusher extends Model<EntityCrusher>

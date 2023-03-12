@@ -6,8 +6,8 @@ import com.asx.mdx.lib.world.Pos;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.entities.living.species.SpeciesYautja;
-import org.avp.common.entities.state.CloakState;
+import org.predator.common.entity.living.SpeciesYautja;
+import org.predator.common.entity.state.CloakState;
 
 import java.util.Random;
 

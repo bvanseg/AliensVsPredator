@@ -11,7 +11,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import org.avp.AVP;
-import org.avp.common.entities.EntityShuriken;
+import org.predator.common.entity.EntityShuriken;
 
 public class ItemShuriken extends HookedItem
 {

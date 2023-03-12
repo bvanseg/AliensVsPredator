@@ -8,9 +8,8 @@ import net.minecraft.entity.Entity;
 import org.avp.AVP;
 import org.avp.client.render.tile.RenderCryostasisTube;
 import org.avp.client.render.tile.RenderCryostasisTube.CryostasisEntityRenderer;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-import org.avp.common.entities.living.species.xenomorphs.*;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+import org.alien.common.entity.living.SpeciesXenomorph;
+import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
 import org.avp.common.tile.TileEntityCryostasisTube;
 import org.lwjgl.opengl.GL12;
 

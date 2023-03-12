@@ -3,7 +3,7 @@ package org.avp.client.model.entities.living;
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import org.avp.common.entities.living.species.species223ode.EntityDeacon;
+import org.alien.common.entity.living.species223ode.EntityDeacon;
 
 public class ModelDeacon extends Model<EntityDeacon>
 {

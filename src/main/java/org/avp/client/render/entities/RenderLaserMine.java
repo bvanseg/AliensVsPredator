@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
-import org.avp.common.entities.EntityLaserMine;
+import org.predator.common.entity.EntityLaserMine;
 import org.lwjgl.opengl.GL11;
 
 public class RenderLaserMine extends Render<EntityLaserMine>

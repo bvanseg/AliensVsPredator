@@ -4,7 +4,7 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializer;
 import net.minecraft.network.datasync.DataSerializers;
-import org.avp.common.entities.state.CloakState;
+import org.predator.common.entity.state.CloakState;
 
 import java.io.IOException;
 

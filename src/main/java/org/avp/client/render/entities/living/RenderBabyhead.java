@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelBabyhead;
-import org.avp.common.entities.living.vardic.EntityBabyhead;
+import org.alien.common.entity.living.vardic.EntityBabyhead;
 
 public class RenderBabyhead extends RenderLivingWrapper<EntityBabyhead, ModelBabyhead>
 {

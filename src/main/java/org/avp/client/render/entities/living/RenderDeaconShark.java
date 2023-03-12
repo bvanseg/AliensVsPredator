@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelDeaconShark;
-import org.avp.common.entities.living.vardic.EntityDeaconShark;
+import org.alien.common.entity.living.vardic.EntityDeaconShark;
 
 public class RenderDeaconShark extends RenderLivingWrapper<EntityDeaconShark, ModelDeaconShark>
 {

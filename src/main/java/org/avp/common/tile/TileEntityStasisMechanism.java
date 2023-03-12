@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
-import org.avp.common.entities.EntityMechanism;
+import org.predator.common.entity.EntityMechanism;
 import org.avp.common.item.ItemEntitySummoner;
 
 public class TileEntityStasisMechanism extends TileEntity implements ITickable

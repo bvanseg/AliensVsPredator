@@ -9,8 +9,8 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.nbt.NBTTagCompound;
 import org.avp.common.entities.EntityLiquidPool;
-import org.avp.common.entities.living.species.Species223ODe;
-import org.avp.common.entities.living.species.SpeciesAlien;
+import org.alien.common.entity.living.Species223ODe;
+import org.alien.common.entity.living.SpeciesAlien;
 
 import java.util.ArrayList;
 

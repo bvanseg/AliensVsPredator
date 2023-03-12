@@ -5,8 +5,8 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import org.avp.client.render.XenomorphJawState;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-import org.avp.common.entities.living.vardic.EntityBelugamorph;
+import org.alien.common.entity.living.SpeciesXenomorph;
+import org.alien.common.entity.living.vardic.EntityBelugamorph;
 
 
 public class ModelBelugamorph extends Model<EntityBelugamorph>

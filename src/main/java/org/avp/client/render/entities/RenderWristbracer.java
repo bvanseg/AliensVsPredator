@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
 import org.avp.client.model.entities.ModelPlasma;
 import org.avp.client.model.items.ModelWristBlade;
-import org.avp.common.entities.EntityWristbracer;
+import org.predator.common.entity.EntityWristbracer;
 
 public class RenderWristbracer extends Render<EntityWristbracer>
 {

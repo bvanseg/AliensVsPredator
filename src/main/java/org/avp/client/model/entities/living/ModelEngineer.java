@@ -4,8 +4,8 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import org.avp.common.entities.living.species.SpeciesEngineer;
-import org.avp.common.entities.living.species.engineer.EntityEngineer;
+import org.alien.common.entity.living.SpeciesEngineer;
+import org.alien.common.entity.living.engineer.EntityEngineer;
 
 
 public class ModelEngineer extends Model<EntityEngineer>

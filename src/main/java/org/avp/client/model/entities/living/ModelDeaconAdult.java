@@ -1,7 +1,7 @@
 package org.avp.client.model.entities.living;
 
 import com.asx.mdx.lib.client.util.models.Model;
-import org.avp.common.entities.living.species.species223ode.EntityDeaconAdult;
+import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
 
 import static com.asx.mdx.lib.client.model.animations.AnimationHelper.*;
 

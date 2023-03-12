@@ -6,8 +6,8 @@ import org.avp.client.render.entities.living.RenderFacehuggers;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entities.living.EntityCombatSynthetic;
 import org.avp.common.entities.living.EntityMarine;
-import org.avp.common.entities.living.species.SpeciesYautja;
-import org.avp.common.entities.living.species.engineer.EntityEngineer;
+import org.predator.common.entity.living.SpeciesYautja;
+import org.alien.common.entity.living.engineer.EntityEngineer;
 
 public class FaceLocationTransforms
 {

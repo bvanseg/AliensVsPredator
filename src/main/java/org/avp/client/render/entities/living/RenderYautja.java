@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.client.render.LayerYautjaCloakStaticArc;
 import org.avp.client.render.LayerYautjaCloakStaticOverlay;
-import org.avp.common.entities.living.species.SpeciesYautja;
-import org.avp.common.entities.state.CloakState;
+import org.predator.common.entity.living.SpeciesYautja;
+import org.predator.common.entity.state.CloakState;
 
 public class RenderYautja<T extends SpeciesYautja, MODEL extends Model> extends RenderLivingWrapper<T, MODEL> {
 	
