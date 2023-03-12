@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.alien.client.model.entity.living.ModelOvamorph;
-import org.alien.common.entity.living.xenomorphs.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.avp.AVP;
 
 public class RenderOvamorph extends RenderLivingWrapper<EntityOvamorph, ModelOvamorph>

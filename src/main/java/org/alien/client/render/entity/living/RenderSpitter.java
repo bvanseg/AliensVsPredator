@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelSpitter;
-import org.alien.common.entity.living.xenomorphs.EntitySpitter;
+import org.alien.common.entity.living.xenomorph.EntitySpitter;
 import org.avp.AVP;
 import org.lwjgl.opengl.GL11;
 

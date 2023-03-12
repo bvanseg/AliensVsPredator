@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants.NBT;
-import org.alien.common.entity.living.xenomorphs.EntityMatriarch;
+import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 
 import java.util.ArrayList;
 import java.util.HashSet;

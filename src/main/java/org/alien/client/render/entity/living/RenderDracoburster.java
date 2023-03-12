@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelDracoburster;
-import org.alien.common.entity.living.xenomorphs.EntityDracoburster;
+import org.alien.common.entity.living.xenomorph.EntityDracoburster;
 import org.avp.AVP;
 
 public class RenderDracoburster extends RenderLivingWrapper<EntityDracoburster, ModelDracoburster>

@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelChestbursterPredalien;
-import org.alien.common.entity.living.xenomorphs.EntityPredalienChestburster;
+import org.alien.common.entity.living.xenomorph.EntityPredalienChestburster;
 import org.avp.AVP;
 
 public class RenderPredalienChestburster extends RenderLivingWrapper<EntityPredalienChestburster, ModelChestbursterPredalien>

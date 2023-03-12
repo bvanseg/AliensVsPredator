@@ -1,28 +1,27 @@
-package org.alien.common.entity.living.xenomorphs;
+package org.alien.common.entity.living.xenomorph;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
+import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.world.hive.HiveMember;
 
-public class EntityCrusher extends EntityPraetorian implements IMaturable, HiveMember
+public class EntityWarrior extends SpeciesXenomorph implements IMob, IMaturable, HiveMember
 {
-    public EntityCrusher(World world)
+    public EntityWarrior(World world)
     {
         super(world);
-        this.jumpMovementFactor = 0.2F;
-        this.experienceValue = 300;
-        this.setSize(1.0F, 3.0F);
-        
-        
-        
+        this.experienceValue = 175;
+        this.setSize(1.0F, 2.5F);
         this.tasks.addTask(0, new EntityAISwimming(this));
     }
 
@@ -30,16 +29,9 @@ public class EntityCrusher extends EntityPraetorian implements IMaturable, HiveM
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(90.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5500000238418579D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
-    }
-
-    @Override
-    public boolean isAIDisabled()
-    {
-        return false;
     }
 
     @Override
@@ -61,14 +53,26 @@ public class EntityCrusher extends EntityPraetorian implements IMaturable, HiveM
     }
 
     @Override
-    public int getTotalArmorValue()
+    public Class<? extends Entity> getMatureState()
     {
-        return 5;
+        return EntityPraetorian.class;
+    }
+
+    @Override
+    public int getMaturityLevel()
+    {
+        return 1024 * 12;
+    }
+
+    @Override
+    public int getMaturityTime()
+    {
+        return (15 * 60) * 20;
     }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerCrusher);
+        return new ItemStack(ItemHandler.summonerWarrior);
     }
 }

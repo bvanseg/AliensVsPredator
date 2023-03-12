@@ -2,7 +2,7 @@ package org.alien.client.model.entity.living;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.alien.common.entity.living.xenomorphs.EntityBoiler;
+import org.alien.common.entity.living.xenomorph.EntityBoiler;
 
 public class ModelBoiler extends Model<EntityBoiler>
 {

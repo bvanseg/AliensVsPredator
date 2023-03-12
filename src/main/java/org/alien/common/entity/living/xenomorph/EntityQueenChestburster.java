@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorphs;
+package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,14 +20,14 @@ import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.world.hive.HiveMember;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
-public class EntityPredalienChestburster extends EntityChestburster implements IMob, INascentic, HiveMember
+public class EntityQueenChestburster extends EntityChestburster implements IMob, INascentic, HiveMember
 {
     private Class<? extends Entity> matureState;
 
-    public EntityPredalienChestburster(World world)
+    public EntityQueenChestburster(World world)
     {
         super(world);
-        this.matureState = EntityPredalien.class;
+        this.matureState = EntityMatriarch.class;
         this.setSize(1.0F, 0.4F);
         this.experienceValue = 16;
         
@@ -60,12 +60,6 @@ public class EntityPredalienChestburster extends EntityChestburster implements I
     }
 
     @Override
-    public int getMaturityTime()
-    {
-        return (15 * 60) * 20;
-    }
-
-    @Override
     public int getMaturityLevel()
     {
         return 12800;
@@ -74,6 +68,6 @@ public class EntityPredalienChestburster extends EntityChestburster implements I
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerPredalienBurster);
+        return new ItemStack(ItemHandler.summonerQueenBurster);
     }
 }

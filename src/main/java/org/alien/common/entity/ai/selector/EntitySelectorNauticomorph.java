@@ -3,7 +3,7 @@ package org.alien.common.entity.ai.selector;
 import com.google.common.base.Predicate;
 import net.minecraft.entity.EntityLivingBase;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.entity.living.xenomorphs.EntityNauticomorph;
+import org.alien.common.entity.living.xenomorph.EntityNauticomorph;
 
 public class EntitySelectorNauticomorph implements Predicate<EntityLivingBase>
 {

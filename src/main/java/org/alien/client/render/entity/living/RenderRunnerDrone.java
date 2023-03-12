@@ -2,7 +2,7 @@ package org.alien.client.render.entity.living;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelRunnerDrone;
-import org.alien.common.entity.living.xenomorphs.EntityRunnerDrone;
+import org.alien.common.entity.living.xenomorph.EntityRunnerDrone;
 import org.avp.AVP;
 
 public class RenderRunnerDrone extends RenderXenomorph<EntityRunnerDrone, ModelRunnerDrone>

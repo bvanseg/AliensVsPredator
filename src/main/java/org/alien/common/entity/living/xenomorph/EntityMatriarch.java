@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorphs;
+package org.alien.common.entity.living.xenomorph;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;

@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorphs;
+package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

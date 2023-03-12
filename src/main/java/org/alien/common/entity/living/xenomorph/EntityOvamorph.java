@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorphs;
+package org.alien.common.entity.living.xenomorph;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
@@ -17,8 +17,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
-import org.alien.common.entity.living.xenomorphs.parasites.EntityRoyalFacehugger;
+import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
+import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.AVP;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.ItemHandler;

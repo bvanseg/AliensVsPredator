@@ -3,7 +3,7 @@ package org.alien.client.model.entity.living;
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import org.alien.common.entity.living.xenomorphs.EntitySpitter;
+import org.alien.common.entity.living.xenomorph.EntitySpitter;
 
 
 public class ModelSpitter extends Model<EntitySpitter>

@@ -18,7 +18,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.alien.common.entity.EntityAcidPool;
-import org.alien.common.entity.living.xenomorphs.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.avp.AVP;
 import org.avp.common.DamageSources;
 import org.avp.common.api.parasitoidic.IMaturable;

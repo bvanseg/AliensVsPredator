@@ -2,7 +2,7 @@ package org.alien.client.model.entity.living;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.alien.common.entity.living.xenomorphs.EntityMyceliomorph;
+import org.alien.common.entity.living.xenomorph.EntityMyceliomorph;
 
 public class ModelMyceliomorph extends Model<EntityMyceliomorph>
 {

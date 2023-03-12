@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.engineer.EntityEngineer;
-import org.alien.common.entity.living.xenomorphs.EntityChestburster;
+import org.alien.common.entity.living.xenomorph.EntityChestburster;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.INascentic;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;

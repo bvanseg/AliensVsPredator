@@ -2,7 +2,7 @@ package org.alien.common.entity.ai;
 
 import net.minecraft.entity.ai.EntityAIBase;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.entity.living.xenomorphs.EntityMatriarch;
+import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.avp.common.world.hive.HiveMember;
 import org.avp.common.world.hive.HiveOwner;
 

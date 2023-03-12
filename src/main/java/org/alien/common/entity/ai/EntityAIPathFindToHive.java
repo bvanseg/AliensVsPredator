@@ -2,7 +2,7 @@ package org.alien.common.entity.ai;
 
 import com.asx.mdx.lib.world.Pos;
 import net.minecraft.entity.ai.EntityAIBase;
-import org.alien.common.entity.living.xenomorphs.EntityMatriarch;
+import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 
 import java.util.ArrayList;
 

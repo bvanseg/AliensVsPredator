@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.alien.client.model.entity.living.ModelOvamorphGiger;
-import org.alien.common.entity.living.xenomorphs.EntityOvamorphGiger;
+import org.alien.common.entity.living.xenomorph.EntityOvamorphGiger;
 import org.avp.AVP;
 
 public class RenderOvamorphGiger extends RenderLivingWrapper<EntityOvamorphGiger, ModelOvamorphGiger>

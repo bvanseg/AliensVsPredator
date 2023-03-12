@@ -3,8 +3,8 @@ package org.alien.client.render.entity.living;
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelRoyalFacehugger;
-import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
-import org.alien.common.entity.living.xenomorphs.parasites.EntityRoyalFacehugger;
+import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
+import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.AVP;
 
 public class RenderRoyalFacehugger extends RenderFacehuggers<EntityRoyalFacehugger, ModelRoyalFacehugger>

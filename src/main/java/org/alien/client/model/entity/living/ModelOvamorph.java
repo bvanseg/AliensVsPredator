@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import org.alien.common.entity.living.xenomorphs.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 
 
 public class ModelOvamorph extends Model<EntityOvamorph>

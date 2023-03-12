@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorphs;
+package org.alien.common.entity.living.xenomorph;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.animations.Animation;
@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
+import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.avp.common.ItemHandler;
 
 public class EntityOvamorphGiger extends EntityOvamorph

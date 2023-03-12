@@ -3,7 +3,7 @@ package org.alien.client.model.entity.living;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.alien.common.entity.living.xenomorphs.EntityDracomorph;
+import org.alien.common.entity.living.xenomorph.EntityDracomorph;
 
 public class ModelDracomorph extends Model<EntityDracomorph>
 {

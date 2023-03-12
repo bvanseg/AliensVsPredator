@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorphs;
+package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -17,17 +17,18 @@ import org.avp.common.api.parasitoidic.INascentic;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.entity.living.EntityMarine;
+import org.avp.common.world.hive.HiveMember;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
-public class EntityDracoburster extends EntityChestburster implements IMob, INascentic
+public class EntityRunnerChestburster extends EntityChestburster implements IMob, INascentic, HiveMember
 {
     private Class<? extends Entity> matureState;
 
-    public EntityDracoburster(World world)
+    public EntityRunnerChestburster(World world)
     {
         super(world);
-        this.matureState = EntityDracomorph.class;
-        this.setSize(1.0F, 0.4F);
+        this.matureState = EntityRunnerDrone.class;
+        this.setSize(1.0F, 1.0F);
         this.experienceValue = 16;
         
         
@@ -46,7 +47,7 @@ public class EntityDracoburster extends EntityChestburster implements IMob, INas
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(25.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(14.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6499999761581421D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
@@ -57,22 +58,10 @@ public class EntityDracoburster extends EntityChestburster implements IMob, INas
     {
         return this.matureState;
     }
-
-    @Override
-    public int getMaturityTime()
-    {
-        return (15 * 60) * 20;
-    }
-
-    @Override
-    public int getMaturityLevel()
-    {
-        return 12800;
-    }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.Experimental.summonerDracoburster);
+        return new ItemStack(ItemHandler.summonerRunnerBurster);
     }
 }

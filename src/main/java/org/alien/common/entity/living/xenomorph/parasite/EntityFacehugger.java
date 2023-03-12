@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorphs.parasites;
+package org.alien.common.entity.living.xenomorph.parasite;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
