@@ -50,10 +50,9 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         this.ignoreFrustumCheck = true;
         this.jumpMovementFactor = 0.3F;
     }
-
+    
     @Override
-    protected void addTasks()
-    {
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAICustomAttackOnCollide(this, 0.55D, true));
         this.tasks.addTask(2, new PatchedEntityAIWander(this, 0.55D));

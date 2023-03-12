@@ -56,16 +56,19 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
         super(world);
         this.experienceValue = 250;
         this.setSize(1.0F, 2.5F);
-        
-//        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(0, new EntityAICustomAttackOnCollide(this, EntityLivingBase.class, 0.9D, true));
-        this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.6D));
-        this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
-        this.targetTasks.addTask(0, new EntityAISuperjump(this, 1.0F));
-        this.targetTasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.9D, 48));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this));
         this.jumpMovementFactor = 0.1F;
+    }
+
+    @Override
+    protected void initEntityAI() {
+//      this.tasks.addTask(0, new EntityAISwimming(this));
+      this.tasks.addTask(0, new EntityAICustomAttackOnCollide(this, EntityLivingBase.class, 0.9D, true));
+      this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.6D));
+      this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
+      this.targetTasks.addTask(0, new EntityAISuperjump(this, 1.0F));
+      this.targetTasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.9D, 48));
+      this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
+      this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this));
     }
 
     @Override
