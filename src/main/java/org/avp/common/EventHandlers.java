@@ -5,6 +5,8 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import org.alien.client.render.ChestbursterOverlayEvent;
+import org.alien.client.render.FacehuggerRenderEvent;
 import org.avp.client.input.InputHandler;
 import org.avp.client.render.*;
 import org.avp.client.render.items.RenderMotionTrackerScreen;
@@ -15,6 +17,7 @@ import org.avp.common.world.dimension.acheron.SkyProviderAcheron;
 import org.avp.common.world.fluids.BucketHandlingEvent;
 import org.avp.common.world.hooks.FarmlandRegistry;
 import org.avp.common.world.hooks.MaterialHandler;
+import org.predator.client.render.VisionModeRenderEvent;
 
 import java.util.ArrayList;
 

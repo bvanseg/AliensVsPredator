@@ -19,12 +19,13 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import org.avp.client.render.tile.RenderMedpod;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entities.EntityMedpod;
+import org.predator.client.render.RenderPlayerPlasmaCannon;
 
 public class RenderLivingHook
 {
     public static final RenderLivingHook instance           = new RenderLivingHook();
     public RenderLiving                  renderer           = new RenderLiving();
-    public RenderPlayerPlasmaCannon      renderplasmacannon = new RenderPlayerPlasmaCannon();
+    public RenderPlayerPlasmaCannon renderplasmacannon = new RenderPlayerPlasmaCannon();
 
     @SubscribeEvent
     public void update(ClientTickEvent event)

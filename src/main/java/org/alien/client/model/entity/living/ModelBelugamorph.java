@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import org.avp.client.render.XenomorphJawState;
+import org.alien.client.render.XenomorphJawState;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.entity.living.vardic.EntityBelugamorph;
 

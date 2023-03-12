@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.client.Sounds;
-import org.avp.client.render.VisionModeRenderEvent;
+import org.predator.client.render.VisionModeRenderEvent;
 import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.input.Keyboard;
 

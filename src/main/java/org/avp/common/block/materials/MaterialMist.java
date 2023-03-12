@@ -4,7 +4,7 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.MaterialTransparent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.render.materials.RenderMaterialMist;
+import org.alien.client.render.material.RenderMaterialMist;
 import org.avp.common.api.blocks.material.IMaterialPhysics;
 import org.avp.common.api.blocks.material.IMaterialRenderer;
 

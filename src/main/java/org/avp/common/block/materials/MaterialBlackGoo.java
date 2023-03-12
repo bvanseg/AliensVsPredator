@@ -4,7 +4,7 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.MaterialLiquid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.render.materials.RenderMaterialBlackGoo;
+import org.alien.client.render.material.RenderMaterialBlackGoo;
 import org.avp.common.api.blocks.material.IMaterialPhysics;
 import org.avp.common.api.blocks.material.IMaterialRenderer;
 

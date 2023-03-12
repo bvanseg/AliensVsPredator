@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import org.avp.client.render.XenomorphJawState;
+import org.alien.client.render.XenomorphJawState;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.entity.living.xenomorphs.EntityUltramorph;
 

@@ -5,7 +5,7 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import org.avp.client.render.XenomorphJawState;
+import org.alien.client.render.XenomorphJawState;
 import org.alien.common.entity.living.xenomorphs.EntityNauticomorph;
 
 public class ModelNauticomorph extends Model<EntityNauticomorph>

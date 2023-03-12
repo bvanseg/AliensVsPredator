@@ -2,7 +2,7 @@ package org.avp.client.render.transforms;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.entity.Entity;
-import org.avp.client.render.entities.living.RenderFacehuggers;
+import org.alien.client.render.entity.living.RenderFacehuggers;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entities.living.EntityCombatSynthetic;
 import org.avp.common.entities.living.EntityMarine;

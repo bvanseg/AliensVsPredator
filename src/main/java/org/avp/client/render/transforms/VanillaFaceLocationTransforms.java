@@ -6,7 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.entity.player.EntityPlayer;
-import org.avp.client.render.entities.living.RenderFacehuggers;
+import org.alien.client.render.entity.living.RenderFacehuggers;
 import org.avp.client.render.util.EntityRenderTransforms;
 
 public class VanillaFaceLocationTransforms
