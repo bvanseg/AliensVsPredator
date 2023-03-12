@@ -146,16 +146,34 @@ public class ModelTurret extends Model<TileEntityTurret>
     @Override
     public void render(TileEntityTurret obj)
     {
-        TileEntityTurret tile = (TileEntityTurret) obj;
-        
-        if (tile != null)
+        if (obj != null)
         {
-            float rotationYaw = (-tile.getRotationYaw()) / (180F / (float) Math.PI);
-            float rotationYawPrev = (-tile.getRotationPrev().yaw) / (180F / (float) Math.PI);
-            float rotationPitch = -tile.getRotationPitch() / (180F / (float) Math.PI);
-            float rotationPitchPrev = -tile.getRotationPrev().pitch / (180F / (float) Math.PI);
+        	float yawOffset = 0F;
+        	
+        	switch (obj.getRotationYAxis()) {
+	        	case SOUTH:
+	        		yawOffset = 0F;
+	        		break;
+	        	case NORTH:
+	        		yawOffset = 180F * ((float)Math.PI / 180F);
+	        		break;
+	        	case EAST:
+	        		yawOffset = -90F * ((float)Math.PI / 180F);
+	        		break;
+	        	case WEST:
+	        		yawOffset = 90F * ((float)Math.PI / 180F);
+	        		break;
+	    		default:
+	    			break;
+        	}
+        	
+            float rotationYaw = -obj.getLookHelper().getRotationYaw() / (180F / (float) Math.PI);
+            float rotationYawPrev = -obj.getLookHelper().getRotationPrev().yaw / (180F / (float) Math.PI);
+            
+            float rotationPitch = -obj.getLookHelper().getRotationPitch() / (180F / (float) Math.PI);
+            float rotationPitchPrev = -obj.getLookHelper().getRotationPrev().pitch / (180F / (float) Math.PI);
 
-            rotationYaw = rotationYawPrev + (rotationYaw - rotationYawPrev) * Game.partialTicks();
+            rotationYaw = yawOffset + rotationYawPrev + (rotationYaw - rotationYawPrev) * Game.partialTicks();
             rotationPitch = rotationPitchPrev + (rotationPitch - rotationPitchPrev) * Game.partialTicks();
 
             barrel.rotateAngleY = rotationYaw;

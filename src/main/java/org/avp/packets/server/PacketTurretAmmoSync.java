@@ -10,19 +10,19 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
-public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<PacketTurretTargetUpdate, PacketTurretTargetUpdate>
+public class PacketTurretAmmoSync implements IMessage, IMessageHandler<PacketTurretAmmoSync, PacketTurretAmmoSync>
 {
     private int      x, y, z;
-    public  int      id;
+    public  int      ammoCount;
 
-    public PacketTurretTargetUpdate() {}
+    public PacketTurretAmmoSync() {}
 
-    public PacketTurretTargetUpdate(BlockPos pos, int targetEntityId)
+    public PacketTurretAmmoSync(BlockPos pos, int ammoCount)
     {
         this.x = pos.getX();
         this.y = pos.getY();
         this.z = pos.getZ();
-        this.id = targetEntityId;
+        this.ammoCount = ammoCount;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         this.x = buf.readInt();
         this.y = buf.readInt();
         this.z = buf.readInt();
-        this.id = buf.readInt();
+        this.ammoCount = buf.readInt();
     }
 
     @Override
@@ -40,17 +40,17 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
         buf.writeInt(x);
         buf.writeInt(y);
         buf.writeInt(z);
-        buf.writeInt(id);
+        buf.writeInt(ammoCount);
     }
 
     @Override
-    public PacketTurretTargetUpdate onMessage(PacketTurretTargetUpdate packet, MessageContext ctx)
+    public PacketTurretAmmoSync onMessage(PacketTurretAmmoSync packet, MessageContext ctx)
     {
         Game.minecraft().addScheduledTask(() -> {
         	TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
             if (tile != null) {
-                tile.getTargetHelper().setTargetEntity(packet);
+                tile.getAmmoHelper().setCurrentAmmoCount(packet.ammoCount);
             }
         });
 

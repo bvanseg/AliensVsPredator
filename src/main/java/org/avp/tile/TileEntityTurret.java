@@ -1,75 +1,34 @@
 package org.avp.tile;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 import org.avp.AliensVsPredator;
-import org.avp.DamageSources;
 import org.avp.api.machines.IDataDevice;
 import org.avp.api.power.IVoltageReceiver;
-import org.avp.client.Sounds;
-import org.avp.entities.living.EntityAethon;
-import org.avp.entities.living.species.engineer.EntityEngineer;
-import org.avp.entities.living.species.engineer.EntitySpaceJockey;
-import org.avp.entities.living.species.species223ode.EntityDeacon;
-import org.avp.entities.living.species.species223ode.EntityTrilobite;
-import org.avp.entities.living.species.xenomorphs.EntityChestburster;
-import org.avp.entities.living.species.xenomorphs.EntityCrusher;
-import org.avp.entities.living.species.xenomorphs.EntityDrone;
-import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
-import org.avp.entities.living.species.xenomorphs.EntityNauticomorph;
-import org.avp.entities.living.species.xenomorphs.EntityOvamorph;
-import org.avp.entities.living.species.xenomorphs.EntityPraetorian;
-import org.avp.entities.living.species.xenomorphs.EntityPredalien;
-import org.avp.entities.living.species.xenomorphs.EntityPredalienChestburster;
-import org.avp.entities.living.species.xenomorphs.EntityQueenChestburster;
-import org.avp.entities.living.species.xenomorphs.EntityRunnerChestburster;
-import org.avp.entities.living.species.xenomorphs.EntityRunnerDrone;
-import org.avp.entities.living.species.xenomorphs.EntityRunnerWarrior;
-import org.avp.entities.living.species.xenomorphs.EntitySpitter;
-import org.avp.entities.living.species.xenomorphs.EntityUltramorph;
-import org.avp.entities.living.species.xenomorphs.EntityWarrior;
-import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
-import org.avp.entities.living.species.xenomorphs.parasites.EntityRoyalFacehugger;
-import org.avp.entities.living.vardic.EntityBelugaburster;
-import org.avp.entities.living.vardic.EntityBelugamorph;
-import org.avp.entities.living.vardic.EntityDeaconShark;
-import org.avp.entities.living.vardic.EntityGooMutant;
-import org.avp.entities.living.vardic.EntityHammerpede;
-import org.avp.entities.living.vardic.EntityOctohugger;
 import org.avp.inventory.ContainerTurret;
 import org.avp.packets.client.PacketTurretSync;
-import org.avp.packets.server.PacketTurretTargetUpdate;
+import org.avp.tile.helpers.TileEntityTurretAmmoHelper;
+import org.avp.tile.helpers.TileEntityTurretAttackHelper;
+import org.avp.tile.helpers.TileEntityTurretLookHelper;
+import org.avp.tile.helpers.TileEntityTurretTargetHelper;
 
 import com.asx.mdx.MDX;
-import com.asx.mdx.lib.client.util.Rotation;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.storage.NBTStorage;
+import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntitySlime;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -78,97 +37,89 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver
+/**
+ * 
+ * @author Ri5ux
+ * @author Boston Vanseghi
+ *
+ */
+public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver, IRotatableYAxis
 {
-    private boolean                            ammoDisplayEnabled;
-    private boolean                            isFiring;
-    private int                                fireRate;
-    private int                                range;
-    private int                                cycleCount;
-    private int                                curAmmo;
-    private int                                rounds;
-    private int                                roundsMax;
-    private int                                direction;
-    private int                                timeout;
-    private int                                timeoutMax;
-    private ArrayList<Class<? extends Entity>> targetTypes;
-    private ArrayList<String>                  targetPlayers;
-    public InventoryBasic                      inventoryAmmo;
-    public InventoryBasic                      inventoryExpansion;
-    public InventoryBasic                      inventoryDrive;
-    private Entity                             targetEntity;
-    private ContainerTurret                    container;
-    private Pos                                pos;
-    private Rotation                           rot;
-    private Rotation                           rotPrev;
-    private Pos                                foc;
-    private Rotation                           focrot;
-    private Item                               itemAmmo;
-    public int                                 beamColor;
+    public InventoryBasic                       inventoryExpansion;
+    public InventoryBasic                       inventoryDrive;
+    private ContainerTurret                     container;
+    private Pos                                 pos;
+	public int                                  beamColor;
+	
+    private final TileEntityTurretAmmoHelper    ammoHelper;
+    private final TileEntityTurretTargetHelper  targetHelper;
+    private final TileEntityTurretLookHelper    lookHelper;
+    private final TileEntityTurretAttackHelper  attackHelper;
 
     public TileEntityTurret()
     {
         super(false);
-        this.targetTypes = new ArrayList<Class<? extends Entity>>();
-        this.targetPlayers = new ArrayList<String>();
-        this.inventoryAmmo = new InventoryBasic("TurretAmmoBay", true, 9);
         this.inventoryExpansion = new InventoryBasic("TurretExpansionBay", true, 3);
         this.inventoryDrive = new InventoryBasic("TurretDriveBay", true, 1);
-        this.fireRate = 2;
-        this.range = 24;
-        this.cycleCount = getBaseCycleCount();
-        this.curAmmo = 0;
-        this.rot = new Rotation(0F, 0F);
-        this.rotPrev = new Rotation(0F, 0F);
-        this.focrot = new Rotation(0F, 0F);
-        this.ammoDisplayEnabled = false;
-        this.timeoutMax = 60;
-        this.itemAmmo = AliensVsPredator.items().itemAmmoSMG;
         this.beamColor = 0xFFFF0000;
+        
+        this.ammoHelper = new TileEntityTurretAmmoHelper();
+        this.targetHelper = new TileEntityTurretTargetHelper();
+        this.lookHelper = new TileEntityTurretLookHelper(targetHelper);
+        this.attackHelper = new TileEntityTurretAttackHelper(ammoHelper, lookHelper, targetHelper);
+    }
+    
+    @Override
+    public void onLoad() {
+    	super.onLoad();
+    	// This method is the earliest point from which we can initialize the tile entity's block position.
+        this.pos = new Pos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
     }
 
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
+    public void update()
     {
-        return new SPacketUpdateTileEntity(this.getPos(), 1, this.getUpdateTag());
-    }
+        super.update();
+        super.updateEnergyAsReceiver(); 
+        
+        // Don't do anything yet until the tile entity is aware of its world and position.
+        if (this.world == null || this.pos == null) {
+        	return;
+        }
 
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
-    {
-        this.readFromNBT(packet.getNbtCompound());
+        if (this.getVoltage() > 0)
+        {
+        	this.getLookHelper().update(this.pos);
+            this.getTargetHelper().update(this.world, this.pos, this.getLookHelper());
+            this.getAmmoHelper().update(this.world, this.pos);
+            this.getAttackHelper().update(this.world, this.pos);
+        }
     }
 
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-
-        this.direction = nbt.getInteger("Direction");
-        this.focrot.setYaw(nbt.getFloat("FocusYaw")).setPitch(nbt.getFloat("FocusPitch"));
-        this.readTargetListFromCompoundTag(nbt);
-        this.readInventoryFromNBT(nbt, this.inventoryAmmo);
+        
+        this.getLookHelper().readFromNBT(nbt);
+        this.getTargetHelper().readFromNBT(nbt);
+        this.getAmmoHelper().readFromNBT(nbt);
+        
+        this.readInventoryFromNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
         this.readInventoryFromNBT(nbt, this.inventoryDrive);
-        this.sendSyncPacket();
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-
-        nbt.setInteger("Direction", this.direction);
-        nbt.setFloat("FocusYaw", this.focrot.yaw);
-        nbt.setFloat("FocusPitch", this.focrot.pitch);
-        nbt.setTag("Targets", this.getTargetListTag());
-        this.saveInventoryToNBT(nbt, this.inventoryAmmo);
+        
+        this.getLookHelper().writeToNBT(nbt);
+        this.getTargetHelper().writeToNBT(nbt);
+        this.getAmmoHelper().writeToNBT(nbt);
+        
+        this.saveInventoryToNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
         this.saveInventoryToNBT(nbt, this.inventoryDrive);
 
@@ -180,498 +131,34 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         AliensVsPredator.network().sendToAll(new PacketTurretSync(this));
     }
 
+    @SideOnly(Side.CLIENT)
     public void onReceiveInitPacket(PacketTurretSync packet, MessageContext ctx)
     {
         this.applyUpgrades();
-        this.readTargetList(packet.targets);
-        this.rot.yaw = packet.rotation.yaw;
-        this.rot.pitch = packet.rotation.pitch;
+        this.getTargetHelper().readTargetList(packet.targets);
+        this.getLookHelper().setTurretRotation(packet.rotation);
     }
 
-    @SideOnly(Side.CLIENT)
-    public void onReceiveTargetUpdatePacket(PacketTurretTargetUpdate packet, MessageContext ctx)
-    {
-        Entity entity = Game.minecraft().world.getEntityByID(packet.id);
-        this.setTargetEntity(entity);
-        this.foc = packet.foc;
-        this.focrot = packet.focrot;
-    }
-
-    @Override
-    public void update()
-    {
-        super.update();
-        super.updateEnergyAsReceiver();
-
-        if (this.pos == null)
-        {
-            this.pos = new Pos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
-        }
-        else
-        {
-            this.pos.x = this.getPos().getX();
-            this.pos.y = this.getPos().getY();
-            this.pos.z = this.getPos().getZ();
-        }
-
-        this.isFiring = false;
-
-        if (this.getVoltage() > 0)
-        {
-            this.timeout = this.timeout > 0 ? this.timeout - 1 : this.timeout;
-            this.pickUpAmmunition();
-            this.updateAmmunitionCount();
-            this.reloadIfNecessary();
-            this.findTarget();
-            this.targetAndAttack();
-        }
-    }
-
-    public Entity findTarget()
-    {
-        List<? extends Entity> entities = Entities.getEntitiesInCoordsRange(world, EntityLivingBase.class, this.pos, 32);
-
-        Entity newTarget = null;
-
-        if (entities.size() > 0)
-        {
-            entities.get(new Random().nextInt(entities.size()));
-        }
-
-        for (Entity e : entities)
-        {
-            if (this.canSee(e))
-            {
-                newTarget = e;
-            }
-        }
-
-        if (this.targetEntity == null || this.targetEntity != null && this.targetEntity.isDead || this.targetEntity != null && !canSee(this.targetEntity))
-        {
-            if (this.canTarget(newTarget) && canSee(newTarget))
-            {
-                this.targetEntity = newTarget;
-
-                if (this.world.isRemote)
-                {
-                    AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
-                }
-
-                return newTarget;
-            }
-        }
-
-        return null;
-    }
-
-    public boolean canTarget(Entity e)
-    {
-        if (e != null)
-        {
-            double distance = Pos.distance(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), e.posX, e.posY, e.posZ);
-            return !e.isDead && (e instanceof EntityPlayer && this.canTargetPlayer((EntityPlayer) e) || this.canTargetType(e.getClass())) && distance <= this.range;
-        }
-
-        return false;
-    }
-
-    public boolean canTargetPlayer(EntityPlayer player)
-    {
-        for (String name : this.targetPlayers)
-        {
-            return player.getCommandSenderEntity().getName().equalsIgnoreCase(name);
-        }
-
-        return false;
-    }
-
-    private boolean canSee(Entity e)
-    {
-        double height = e.getEntityBoundingBox().maxY - e.getEntityBoundingBox().minY;
-        double halfHeight = height / 2;
-
-        Vec3d mid = new Vec3d(e.posX, e.getEntityBoundingBox().maxY - (halfHeight), e.posZ);
-        Vec3d top = new Vec3d(e.posX, e.getEntityBoundingBox().maxY - (halfHeight + halfHeight), e.posZ);
-        Vec3d bot = new Vec3d(e.posX, e.getEntityBoundingBox().maxY - (halfHeight - halfHeight), e.posZ);
-        Vec3d offset = new Vec3d(this.pos.x, this.pos.y, this.pos.z).add(0.5, 1, 0.5);
-        RayTraceResult midResult = this.world.rayTraceBlocks(mid, offset, false, true, false);
-        RayTraceResult topResult = this.world.rayTraceBlocks(top, offset, false, true, false);
-        RayTraceResult botResult = this.world.rayTraceBlocks(bot, offset, false, true, false);
-
-        if (midResult == null || topResult == null || botResult == null)
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    private void updatePosition(double x, double y, double z)
-    {
-        if (this.foc == null)
-        {
-            this.foc = new Pos(x, y, z);
-        }
-        else
-        {
-            this.foc.x = x;
-            this.foc.y = y;
-            this.foc.z = z;
-        }
-    }
-
-    public void targetAndAttack()
-    {
-        if (this.targetEntity != null)
-        {
-            if (this.targetEntity.isDead)
-            {
-                this.targetEntity = null;
-            }
-        }
-
-        if (!this.world.isRemote && this.world.getTotalWorldTime() % 10 == 0)
-        {
-            if (this.getTargetEntity() == null || this.getTargetEntity() != null && !this.canTarget(targetEntity))
-            {
-                for (Class<? extends Entity> type : this.targetTypes)
-                {
-                    Entity newTarget = Entities.getRandomEntityInCoordsRange(this.world, type, this.pos, range, range);
-
-                    if (this.canTarget(newTarget) && canSee(newTarget))
-                    {
-                        this.targetEntity = newTarget;
-                        break;
-                    }
-                }
-            }
-        }
-
-        this.lookAtFocusPoint();
-
-        if (targetEntity != null)
-        {
-            this.updatePosition(targetEntity.posX, targetEntity.posY, targetEntity.posZ);
-            this.focrot = turnTurretToPoint(this.foc, this.focrot, 360F, 90F);
-
-            if (!this.world.isRemote)
-            {
-                AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(this));
-            }
-
-            if (this.canSee(targetEntity))
-            {
-                if (world.getWorldInfo().getWorldTotalTime() % fireRate == 0L && this.rot.yaw == this.focrot.yaw)
-                {
-                    if (curAmmo-- > 0)
-                    {
-                        this.fire();
-                    }
-                    else
-                    {
-                        this.reload();
-                    }
-                }
-            }
-        }
-    }
-
-    public void lookAtFocusPoint()
-    {
-        if (this.foc != null)
-        {
-            for (int runCycles = this.cycleCount; runCycles > 0; runCycles--)
-            {
-                if (Math.ceil(this.getRotationYaw()) < Math.ceil(this.focrot.yaw))
-                {
-                    this.rotPrev.yaw = this.rot.yaw;
-                    this.rot.yaw += 1;
-                }
-                else if (Math.ceil(this.getRotationYaw()) > Math.ceil(this.focrot.yaw))
-                {
-                    this.rotPrev.yaw = this.rot.yaw;
-                    this.rot.yaw -= 1;
-                }
-
-                if (Math.ceil(this.getRotationPitch()) < Math.ceil(this.focrot.pitch))
-                {
-                    this.rotPrev.pitch = this.rot.pitch;
-                    this.rot.pitch += 1;
-                }
-                else if (Math.ceil(this.getRotationPitch()) > Math.ceil(this.focrot.pitch))
-                {
-                    this.rotPrev.pitch = this.rot.pitch;
-                    this.rot.pitch -= 1;
-                }
-
-                double focus = 1;
-
-                if (Math.ceil(this.getRotationPitch()) >= Math.ceil(this.focrot.pitch - focus) && Math.ceil(this.getRotationPitch()) <= Math.ceil(this.focrot.pitch + focus) && Math.ceil(this.getRotationYaw()) >= Math.ceil(this.focrot.yaw - focus) && Math.ceil(this.getRotationYaw()) <= Math.ceil(this.focrot.yaw + focus))
-                {
-                    this.rotPrev.pitch = this.rot.pitch;
-                    this.rotPrev.yaw = this.rot.yaw;
-                    this.rot.pitch = this.focrot.pitch;
-                    this.rot.yaw = this.focrot.yaw;
-                }
-            }
-        }
-    }
-
-    public void reloadIfNecessary()
-    {
-        if (this.curAmmo < this.getMaxAmmo() && this.curAmmo <= 0)
-        {
-            this.reload();
-        }
-    }
-
-    public void updateAmmunitionCount()
-    {
-        if (world.getWorldInfo().getWorldTotalTime() % 8L == 0L)
-        {
-            this.roundsMax = (9 * 64);
-            this.rounds = 0;
-
-            for (int i = 0; i < 9; i++)
-            {
-                ItemStack stack = this.inventoryAmmo.getStackInSlot(i);
-
-                if (stack != null)
-                {
-                    if (stack.getItem() == this.itemAmmo)
-                    {
-                        this.rounds = this.rounds + (stack.getCount());
-                    }
-                }
-            }
-        }
-    }
-
-    public void pickUpAmmunition()
-    {
-        if (this.world != null && this.inventoryAmmo != null)
-        {
-            ArrayList<EntityItem> entityItemList = (ArrayList<EntityItem>) Entities.getEntitiesInCoordsRange(world, EntityItem.class, new Pos(this), 1);
-
-            for (EntityItem entityItem : entityItemList)
-            {
-                if (!entityItem.cannotPickup())
-                {
-                    ItemStack stack = entityItem.getItem();
-
-                    if (stack.getItem() == this.itemAmmo)
-                    {
-                        for (int x = 0; x < 9; x++)
-                        {
-                            ItemStack invStack = this.inventoryAmmo.getStackInSlot(x);
-
-                            if (invStack == null || invStack != null && invStack.getCount() < 64)
-                            {
-                                this.inventoryAmmo.setInventorySlotContents(x, stack);
-                                entityItem.setDead();
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public void reload()
-    {
-        if (this.rounds >= 1)
-        {
-            this.curAmmo = this.getMaxAmmo();
-
-            for (int x = 0; x < 9; x++)
-            {
-                ItemStack stack = this.inventoryAmmo.getStackInSlot(x);
-
-                if (stack != null && stack.getItem() == this.getItemAmmo())
-                {
-                    stack.shrink(1);
-
-                    if (stack.getCount() <= 0)
-                    {
-                        this.inventoryAmmo.setInventorySlotContents(x, ItemStack.EMPTY);
-                    }
-
-                    break;
-                }
-            }
-        }
-    }
-
-    public void fire()
-    {
-        this.isFiring = true;
-        this.timeout = this.timeoutMax;
-        this.targetEntity.attackEntityFrom(DamageSources.bullet, 1F);
-        this.targetEntity.hurtResistantTime = 0;
-        // this.world.spawnParticle(EnumParticleTypes.CLOUD, this.pos.x, this.pos.y,
-        // this.pos.z, 0, 10, 0);
-        Sounds.WEAPON_M56SG.playSound(this.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 1F, 1F);
-    }
-
-    public Rotation turnTurretToPoint(Pos pos, Rotation rotation, float deltaYaw, float deltaPitch)
-    {
-        double x = pos.x - this.pos.x;
-        double y = pos.y - this.pos.y;
-        double z = pos.z - this.pos.z;
-        double sq = MathHelper.sqrt(x * x + z * z);
-
-        float newYaw = (float) (Math.atan2(z, x) * 180.0D / Math.PI) - 90.0F;
-        float f1 = (float) (-(Math.atan2(y, sq) * 180.0D / Math.PI));
-
-        return rotation.setYaw(MDXMath.wrapAngle(this.rot.yaw, newYaw, deltaYaw)).setPitch(MDXMath.wrapAngle(this.rot.pitch, f1, deltaPitch));
-    }
-
-    public void addTargetPlayer(String name)
-    {
-        if (!this.targetPlayers.contains(name))
-        {
-            this.targetPlayers.add(name);
-        }
-    }
-
-    public void removeTargetPlayer(String name)
-    {
-        if (this.targetPlayers.contains(name))
-        {
-            this.targetPlayers.remove(name);
-
-            if (this.targetEntity instanceof EntityPlayer && this.targetEntity.getName().equalsIgnoreCase(name))
-            {
-                this.targetEntity = null;
-            }
-        }
-    }
-
-    public void removeTargetType(Class<? extends Entity> entityClass)
-    {
-        this.setTargetEntity(null);
-
-        if (this.targetTypes.contains(entityClass))
-        {
-            this.targetTypes.remove(entityClass);
-        }
-    }
-
-    public void addTargetType(Class<? extends Entity> entityClass)
-    {
-        this.setTargetEntity(null);
-
-        if (!this.targetTypes.contains(entityClass))
-        {
-            this.targetTypes.add(entityClass);
-        }
-    }
-
-    public boolean canTargetType(Class<? extends Entity> entityClass)
-    {
-        if (this.targetTypes.contains(entityClass))
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    public void setPredefinedTargets()
-    {
-        this.addTargetType(EntityPlayer.class);
-        this.addTargetType(EntityOvamorph.class);
-        this.addTargetType(EntityFacehugger.class);
-        this.addTargetType(EntityChestburster.class);
-        this.addTargetType(EntityDrone.class);
-        this.addTargetType(EntityWarrior.class);
-        this.addTargetType(EntityPraetorian.class);
-        this.addTargetType(EntityMatriarch.class);
-        this.addTargetType(EntityCrusher.class);
-        this.addTargetType(EntitySpitter.class);
-        this.addTargetType(EntityNauticomorph.class);
-        this.addTargetType(EntityPredalien.class);
-        this.addTargetType(EntitySlime.class);
-        this.addTargetType(EntityNauticomorph.class);
-        this.addTargetType(EntityRunnerWarrior.class);
-        this.addTargetType(EntityRunnerDrone.class);
-        this.addTargetType(EntityDeacon.class);
-        this.addTargetType(EntityUltramorph.class);
-        this.addTargetType(EntityRunnerChestburster.class);
-        this.addTargetType(EntityPredalienChestburster.class);
-        this.addTargetType(EntityQueenChestburster.class);
-        this.addTargetType(EntityBelugaburster.class);
-        this.addTargetType(EntityHammerpede.class);
-        this.addTargetType(EntityOvamorph.class);
-        this.addTargetType(EntityDeaconShark.class);
-        this.addTargetType(EntityOctohugger.class);
-        this.addTargetType(EntityRoyalFacehugger.class);
-        this.addTargetType(EntityTrilobite.class);
-        this.addTargetType(EntityPredalien.class);
-        this.addTargetType(EntitySpaceJockey.class);
-        this.addTargetType(EntityEngineer.class);
-        this.addTargetType(EntityBelugamorph.class);
-        this.addTargetType(EntityGooMutant.class);
-        this.addTargetType(EntityAethon.class);
-    }
-
-    public void applyUpgrades()
-    {
-        int cycles = this.getBaseCycleCount();
-        this.setAmmoDisplayEnabled(false);
+    public void applyUpgrades() {
+    	float turretRotateSpeed = this.getLookHelper().getTurretRotateSpeed();
+        this.getAmmoHelper().setAmmoDisplayEnabled(false);
 
         for (int i = 0; i < 3; i++)
         {
             ItemStack pciSlot = this.inventoryExpansion.getStackInSlot(i);
 
-            if (pciSlot != null && pciSlot.getItem() == AliensVsPredator.items().itemProcessor)
+            if (pciSlot.getItem() == AliensVsPredator.items().itemProcessor)
             {
-                cycles += 1 * pciSlot.getCount();
+                turretRotateSpeed += pciSlot.getCount() * (this.getLookHelper().getTurretRotateSpeed() / 64f);
             }
 
-            if (pciSlot != null && pciSlot.getItem() == AliensVsPredator.items().itemLedDisplay)
+            if (pciSlot.getItem() == AliensVsPredator.items().itemLedDisplay)
             {
-                this.setAmmoDisplayEnabled(true);
+                this.getAmmoHelper().setAmmoDisplayEnabled(true);
             }
         }
-
-        this.setCycleCount(cycles);
-    }
-
-    public NBTTagList getTargetListTag()
-    {
-        ArrayList<String> entityIDs = new ArrayList<String>();
-
-        for (Class<? extends Entity> c : this.getDangerousTargets())
-        {
-            entityIDs.add(Entities.getEntityRegistrationId(c));
-        }
-
-        return NBTStorage.newStringNBTList(entityIDs);
-    }
-
-    public void readTargetListFromCompoundTag(NBTTagCompound nbt)
-    {
-        NBTTagList list = nbt.getTagList("Targets", NBT.TAG_STRING);
-
-        if (list instanceof NBTTagList)
-        {
-            this.readTargetList(list);
-        }
-    }
-
-    public void readTargetList(NBTTagList list)
-    {
-        for (int i = 0; i < list.tagCount(); i++)
-        {
-            String id = list.getStringTagAt(i);
-
-            ResourceLocation identifier = new ResourceLocation(id);
-            EntityEntry ee = ForgeRegistries.ENTITIES.getValue(identifier);
-            Class<? extends Entity> c = (Class<? extends Entity>) ee.getEntityClass();
-            this.addTargetType(c);
-        }
+        
+        this.getLookHelper().setTurretRotateSpeed(turretRotateSpeed);
     }
 
     private void saveInventoryToNBT(NBTTagCompound nbt, IInventory inventory)
@@ -701,13 +188,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         for (byte x = 0; x < items.tagCount(); x++)
         {
             NBTTagCompound item = items.getCompoundTagAt(x);
-
             byte slot = item.getByte("Slot");
-
-            if (slot >= 0 && slot <= inventory.getSizeInventory())
-            {
-                inventory.setInventorySlotContents(slot, new ItemStack(item));
-            }
+            inventory.setInventorySlotContents(slot, new ItemStack(item));
         }
     }
 
@@ -721,185 +203,39 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         return container == null && player != null ? container = getNewContainer(player) : container;
     }
 
-    public long getFireRate()
-    {
-        return fireRate;
-    }
-
-    public void setFireRate(int fireRate)
-    {
-        this.fireRate = fireRate;
-    }
-
-    public int getRange()
-    {
-        return range;
-    }
-
-    public void setRange(int range)
-    {
-        this.range = range;
-    }
-
-    public int getDirection()
-    {
-        return direction;
-    }
-
-    public void setDirection(int direction)
-    {
-        this.direction = direction;
-    }
-
-    public void setCycleCount(int count)
-    {
-        this.cycleCount = count;
-    }
-
-    public int getCycleCount()
-    {
-        return cycleCount;
-    }
-
-    public int getBaseCycleCount()
-    {
-        return 4;
-    }
-
-    public void setAmmoDisplayEnabled(boolean ammoDisplayEnabled)
-    {
-        this.ammoDisplayEnabled = ammoDisplayEnabled;
-    }
-
-    public boolean isAmmoDisplayEnabled()
-    {
-        return ammoDisplayEnabled;
-    }
-
-    public ArrayList<String> getTargetPlayers()
-    {
-        return targetPlayers;
-    }
-
-    public Entity getTargetEntity()
-    {
-        return targetEntity;
-    }
-
-    public void setTargetEntity(Entity targetEntity)
-    {
-        this.targetEntity = targetEntity;
-    }
-
-    public ArrayList<Class<? extends Entity>> getDangerousTargets()
-    {
-        return targetTypes;
-    }
-
-    public int getCurAmmo()
-    {
-        return curAmmo;
-    }
-
-    public int getMaxAmmo()
-    {
-        return 128;
-    }
-
-    public void setCurAmmo(int curAmmo)
-    {
-        this.curAmmo = curAmmo;
-    }
-
-    public Item getItemAmmo()
-    {
-        return itemAmmo;
-    }
-
-    public void setItemAmmo(Item itemAmmo)
-    {
-        this.itemAmmo = itemAmmo;
-    }
-
-    public int getCurRounds()
-    {
-        return rounds;
-    }
-
-    public int getMaxRounds()
-    {
-        return roundsMax;
-    }
-
-    public void setCurRounds(int curRounds)
-    {
-        this.rounds = curRounds;
-    }
-
-    public void setMaxRounds(int maxRounds)
-    {
-        this.roundsMax = maxRounds;
-    }
-
-    public float getRotationYaw()
-    {
-        // this.getDirection() * 90F +
-        return this.rot.yaw;
-    }
-
-    public float getRotationPitch()
-    {
-        return this.rot.pitch;
-    }
-
-    public Rotation getRotationPrev()
-    {
-        return rotPrev;
-    }
-
-    public boolean isFiring()
-    {
-        return isFiring;
-    }
-
     @Override
     public void readFromOtherDevice(int ID)
     {
-        StringBuilder builder = new StringBuilder();
         ItemStack devicePort = this.inventoryDrive.getStackInSlot(0);
 
-        if (devicePort != null)
+        NBTTagCompound nbt = devicePort.getTagCompound();
+
+        if (nbt != null)
         {
-            NBTTagCompound nbt = devicePort.getTagCompound();
+            NBTTagList list = nbt.getTagList("Targets", NBT.TAG_STRING);
 
-            if (nbt != null)
+            if (list != null)
             {
-                NBTTagList list = nbt.getTagList("Targets", NBT.TAG_STRING);
-
-                if (list != null)
+                for (int i = 0; i < list.tagCount(); i++)
                 {
-                    for (int i = 0; i < list.tagCount(); i++)
+                    String id = list.getStringTagAt(i);
+
+                    EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id));
+
+                    for (EntityEntry e : ForgeRegistries.ENTITIES.getValues())
                     {
-                        String id = list.getStringTagAt(i);
-                        
-                        EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id));
-
-                        for (EntityEntry e : ForgeRegistries.ENTITIES.getValues())
+                        if (id.equalsIgnoreCase(e.getRegistryName().toString()))
                         {
-                            if (id.equalsIgnoreCase(e.getRegistryName().toString()))
-                            {
-                                entityEntry = e;
-                            }
+                            entityEntry = e;
                         }
+                    }
 
-                        if (entityEntry != null)
-                        {
-                            Class<? extends Entity> c = (Class<? extends Entity>) entityEntry.getEntityClass();
-                            this.addTargetType(c);
-                            builder.append(id + "-");
-                        } else {
-                            MDX.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
-                        }
+                    if (entityEntry != null)
+                    {
+                        Class<? extends Entity> c = entityEntry.getEntityClass();
+                        this.getTargetHelper().addTargetType(c);
+                    } else {
+                        MDX.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
                     }
                 }
             }
@@ -915,25 +251,22 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         {
             ItemStack devicePort = this.inventoryDrive.getStackInSlot(0);
 
-            if (devicePort != null)
+            NBTTagCompound nbt = new NBTTagCompound();
+            ArrayList<String> entityIDs = new ArrayList<String>();
+
+            for (Class<? extends Entity> c : this.getTargetHelper().getDangerousTargets())
             {
-                NBTTagCompound nbt = new NBTTagCompound();
-                ArrayList<String> entityIDs = new ArrayList<String>();
-
-                for (Class<? extends Entity> c : this.getDangerousTargets())
+                if (c != null)
                 {
-                    if (c != null)
-                    {
-                        entityIDs.add(Entities.getEntityRegistrationId(c));
-                    }
+                    entityIDs.add(Entities.getEntityRegistrationId(c));
                 }
-
-                nbt.setTag("Targets", NBTStorage.newStringNBTList(entityIDs));
-
-                devicePort.setTagCompound(nbt);
-                devicePort.setStackDisplayName("NBT Drive - " + "TURRET." + this.pos.x + "" + this.pos.y + "" + this.pos.z);
-                this.inventoryDrive.setInventorySlotContents(0, devicePort);
             }
+
+            nbt.setTag("Targets", NBTStorage.newStringNBTList(entityIDs));
+
+            devicePort.setTagCompound(nbt);
+            devicePort.setStackDisplayName("NBT Drive - " + "TURRET." + this.pos.x + "" + this.pos.y + "" + this.pos.z);
+            this.inventoryDrive.setInventorySlotContents(0, devicePort);
         }
     }
 
@@ -967,18 +300,31 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         return 220;
     }
 
-    public Rotation getRotation()
+    @Override
+    public EnumFacing getRotationYAxis()
     {
-        return this.rot;
+        return this.getLookHelper().getRotationYAxis();
     }
 
-    public Rotation getFocusRotation()
+    @Override
+    public void setRotationYAxis(EnumFacing facing)
     {
-        return this.focrot;
+        this.getLookHelper().setRotationYAxis(facing);
     }
 
-    public Pos getFocusPosition()
-    {
-        return foc;
-    }
+	public TileEntityTurretAmmoHelper getAmmoHelper() {
+		return this.ammoHelper;
+	}
+
+	public TileEntityTurretAttackHelper getAttackHelper() {
+		return this.attackHelper;
+	}
+
+	public TileEntityTurretLookHelper getLookHelper() {
+		return this.lookHelper;
+	}
+
+	public TileEntityTurretTargetHelper getTargetHelper() {
+		return this.targetHelper;
+	}
 }

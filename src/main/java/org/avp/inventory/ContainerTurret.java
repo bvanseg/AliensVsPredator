@@ -105,15 +105,15 @@ public class ContainerTurret extends Container
             }
         }
 
-        for (byte x = 0; x < this.tile.inventoryAmmo.getSizeInventory(); x++)
+        for (byte x = 0; x < this.tile.getAmmoHelper().inventoryAmmo.getSizeInventory(); x++)
         {
-            this.addSlotToContainer(new SlotAmmunition(tile.inventoryAmmo, x, 33 + 18 * x, 114));
+            this.addSlotToContainer(new SlotAmmunition(tile.getAmmoHelper().inventoryAmmo, x, 33 + 18 * x, 114));
 
-            ItemStack stack = this.tile.inventoryAmmo.getStackInSlot(x);
+            ItemStack stack = this.tile.getAmmoHelper().inventoryAmmo.getStackInSlot(x);
 
             if (stack != null)
             {
-                this.tile.inventoryAmmo.setInventorySlotContents(x, stack);
+                this.tile.getAmmoHelper().inventoryAmmo.setInventorySlotContents(x, stack);
             }
         }
     }
@@ -128,9 +128,9 @@ public class ContainerTurret extends Container
             this.tile.inventoryExpansion.setInventorySlotContents(id, this.tile.inventoryExpansion.getStackInSlot(id));
         }
 
-        for (int id = 0; id < this.tile.inventoryAmmo.getSizeInventory(); id++)
+        for (int id = 0; id < this.tile.getAmmoHelper().inventoryAmmo.getSizeInventory(); id++)
         {
-            this.tile.inventoryAmmo.setInventorySlotContents(id, this.tile.inventoryAmmo.getStackInSlot(id));
+            this.tile.getAmmoHelper().inventoryAmmo.setInventorySlotContents(id, this.tile.getAmmoHelper().inventoryAmmo.getStackInSlot(id));
         }
 
         tile.applyUpgrades();
@@ -208,6 +208,6 @@ public class ContainerTurret extends Container
 
     public IInventory getAmmoBay()
     {
-        return this.tile.inventoryAmmo;
+        return this.tile.getAmmoHelper().inventoryAmmo;
     }
 }
