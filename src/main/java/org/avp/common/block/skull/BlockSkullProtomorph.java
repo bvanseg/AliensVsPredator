@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.client.model.tile.skulls.ModelProtomorphSkull;
+import org.alien.client.model.tile.skull.ModelProtomorphSkull;
 import org.avp.common.block.BlockSkull;
 
 public class BlockSkullProtomorph extends BlockSkull

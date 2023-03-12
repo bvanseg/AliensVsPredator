@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.client.model.tile.skulls.ModelBiomaskBerserker;
+import org.predator.client.model.tile.skull.ModelBiomaskBerserker;
 import org.avp.common.block.BlockSkull;
 
 public class BlockBiomaskBerserker extends BlockSkull

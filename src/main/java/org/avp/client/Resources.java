@@ -10,20 +10,28 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.entity.ModelSporePod;
 import org.alien.client.model.entity.living.*;
+import org.alien.client.model.tile.ModelHiveResin;
+import org.alien.client.model.tile.skull.*;
 import org.avp.AVP;
 import org.avp.client.model.entity.ModelBullet;
 import org.avp.client.model.entity.ModelSupplyChute;
 import org.avp.client.model.entity.living.ModelMarine;
 import org.avp.client.model.item.*;
 import org.avp.client.model.tile.*;
-import org.avp.client.model.tile.plants.ModelGroundFern;
-import org.avp.client.model.tile.plants.ModelTreeFern;
-import org.avp.client.model.tile.rackmodules.*;
-import org.avp.client.model.tile.skulls.*;
+import org.alien.client.model.tile.plant.ModelGroundFern;
+import org.alien.client.model.tile.plant.ModelTreeFern;
+import org.avp.client.model.tile.rackmodule.*;
 import org.predator.client.model.entity.ModelLaserMine;
 import org.predator.client.model.entity.ModelSpear;
 import org.predator.client.model.entity.living.ModelPredatorHound;
 import org.predator.client.model.entity.living.ModelYautja;
+import org.predator.client.model.item.ModelPlasmaCannon;
+import org.predator.client.model.item.ModelWristBlade;
+import org.predator.client.model.tile.ModelStasisMechanism;
+import org.predator.client.model.tile.skull.ModelBiomaskBerserker;
+import org.predator.client.model.tile.skull.ModelBiomaskClassic;
+import org.predator.client.model.tile.skull.ModelBiomaskFalconer;
+import org.predator.client.model.tile.skull.ModelBiomaskTracker;
 
 @SideOnly(Side.CLIENT)
 public class Resources

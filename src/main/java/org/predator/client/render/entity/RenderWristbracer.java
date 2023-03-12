@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
-import org.avp.client.model.item.ModelWristBlade;
+import org.predator.client.model.item.ModelWristBlade;
 import org.predator.client.model.entity.ModelPlasma;
 import org.predator.common.entity.EntityWristbracer;
 

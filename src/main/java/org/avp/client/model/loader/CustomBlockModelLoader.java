@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import org.avp.AVP;
-import org.avp.client.render.block.model.ModelResin;
+import org.alien.client.model.tile.ModelResin;
 
 import java.util.HashMap;
 

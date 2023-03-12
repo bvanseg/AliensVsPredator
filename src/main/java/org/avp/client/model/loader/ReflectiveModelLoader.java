@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
 import org.avp.AVP;
-import org.avp.client.render.block.model.ModelReflectiveShape;
+import org.avp.client.model.tile.ModelReflectiveShape;
 
 import java.util.ArrayList;
 import java.util.HashMap;

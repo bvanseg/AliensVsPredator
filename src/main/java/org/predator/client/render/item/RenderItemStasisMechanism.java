@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
-import org.avp.client.model.tile.ModelStasisMechanism;
+import org.predator.client.model.tile.ModelStasisMechanism;
 
 public class RenderItemStasisMechanism extends ItemRenderer<ModelStasisMechanism>
 {

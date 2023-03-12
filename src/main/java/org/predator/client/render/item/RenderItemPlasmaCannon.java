@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
-import org.avp.client.model.item.ModelPlasmaCannon;
+import org.predator.client.model.item.ModelPlasmaCannon;
 import org.lwjgl.opengl.GL11;
 
 public class RenderItemPlasmaCannon extends ItemRenderer<ModelPlasmaCannon>
