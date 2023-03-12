@@ -6,6 +6,7 @@ import org.avp.api.parasitoidic.IHost;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.EntityAISuperjump;
+import org.avp.entities.ai.alien.EntitySelectorYautja;
 import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.EntityMarine;
 import org.avp.item.ItemDisc;
@@ -29,13 +30,8 @@ import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBow;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -46,7 +42,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
-public abstract class SpeciesYautja extends EntityMob implements IHost, Predicate<EntityLivingBase>
+public abstract class SpeciesYautja extends EntityMob implements IHost
 {
     private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> DUCKING = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
@@ -56,16 +52,19 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
         super(world);
         this.experienceValue = 250;
         this.setSize(1.0F, 2.5F);
-        
-//        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(0, new EntityAICustomAttackOnCollide(this, EntityLivingBase.class, 0.9D, true));
-        this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.6D));
-        this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
-        this.targetTasks.addTask(0, new EntityAISuperjump(this, 1.0F));
-        this.targetTasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.9D, 48));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this));
         this.jumpMovementFactor = 0.1F;
+    }
+
+    @Override
+    protected void initEntityAI() {
+//      this.tasks.addTask(0, new EntityAISwimming(this));
+      this.tasks.addTask(0, new EntityAICustomAttackOnCollide(this, EntityLivingBase.class, 0.9D, true));
+      this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.6D));
+      this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
+      this.targetTasks.addTask(0, new EntityAISuperjump(this, 1.0F));
+      this.targetTasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.9D, 48));
+      this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
+      this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, EntitySelectorYautja.instance));
     }
 
     @Override
@@ -137,36 +136,6 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Predicat
                 this.playSound(soundtype.getFallSound(), soundtype.getVolume() * 0.5F, soundtype.getPitch() * 0.75F);
             }
         }
-    }
-
-    @Override
-    public boolean apply(EntityLivingBase entity)
-    {
-        if (entity instanceof EntityPlayer)
-        {
-            EntityPlayer player = (EntityPlayer) entity;
-            ItemStack stack = player.getHeldItemMainhand();
-
-            if (stack != null)
-            {
-                Item item = stack.getItem();
-
-                if (stack != null)
-                {
-                    if (item instanceof ItemSword || item instanceof ItemFirearm || item instanceof ItemWristbracer || item instanceof ItemPlasmaCannon || item instanceof ItemBow || item instanceof ItemDisc || item instanceof ItemShuriken)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        if ((entity instanceof SpeciesAlien) || (entity instanceof SpeciesEngineer) || (entity instanceof EntityMarine))
-        {
-            return true;
-        }
-
-        return false;
     }
 
     @Override

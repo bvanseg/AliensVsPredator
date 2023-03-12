@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelBullet extends Model
+public class ModelBullet extends Model<Object>
 {
     ModelRenderer caseFR;
     ModelRenderer case2;

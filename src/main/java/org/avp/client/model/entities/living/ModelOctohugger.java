@@ -10,7 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelOctohugger extends Model
+public class ModelOctohugger extends Model<EntityOctohugger>
 {
     public ModelRenderer body;
     public ModelRenderer fFlap1;
@@ -84,7 +84,7 @@ public class ModelOctohugger extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityOctohugger obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;
         float idleProgress = idleProgress(obj);

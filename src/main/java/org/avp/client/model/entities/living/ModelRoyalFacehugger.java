@@ -477,7 +477,7 @@ public class ModelRoyalFacehugger extends ModelFacehugger
     }
     
     @Override
-    public void render(Object obj)
+    public void render(EntityFacehugger obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;;
         float yRot = -0.0585F;

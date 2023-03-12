@@ -1,10 +1,12 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityBoiler;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelBoiler extends Model
+public class ModelBoiler extends Model<EntityBoiler>
 {
     public ModelRenderer chest;
     public ModelRenderer stomach;
@@ -280,7 +282,7 @@ public class ModelBoiler extends Model
     }
     
     @Override
-    public void render(Object obj)
+    public void render(EntityBoiler obj)
     {
         draw(chest);
     }

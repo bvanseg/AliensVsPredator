@@ -34,7 +34,10 @@ public abstract class SpeciesEngineer extends EntityMob
         super(world);
         this.experienceValue = 250;
         this.setSize(1.0F, 2.5F);
-        
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
         this.tasks.addTask(8, new PatchedEntityAIWander(this, 0.800000011920929D));
