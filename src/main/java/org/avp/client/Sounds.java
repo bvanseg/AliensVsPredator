@@ -2,7 +2,7 @@ package org.avp.client;
 
 import java.lang.reflect.Field;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.util.Sound;
 
@@ -95,27 +95,27 @@ public class Sounds
     public static final Sound  ALARM_BUZZER                 = sound("blocks.alarm.buzzer");
     public static final Sound  ALARM_EMERGENCY              = sound("blocks.alarm.emergency");
 
-    @Mod.EventBusSubscriber(modid = AliensVsPredator.Properties.ID)
+    @Mod.EventBusSubscriber(modid = AVP.Properties.ID)
     public static class RegistrationHandler
     {
         @SubscribeEvent
         public static void registerSoundEvents(final RegistryEvent.Register<SoundEvent> event)
         {
-            for (Field field : AliensVsPredator.sounds().getClass().getDeclaredFields())
+            for (Field field : AVP.sounds().getClass().getDeclaredFields())
             {
                 if (field.getType() == Sound.class)
                 {
                     try
                     {
                         field.setAccessible(true);
-                        Sound sound = (Sound) field.get(AliensVsPredator.sounds());
+                        Sound sound = (Sound) field.get(AVP.sounds());
                         event.getRegistry().register(sound.createSoundEvent(sound.getLocation().getPath()));
                     }
                     catch (Exception e1)
                     {
                         try
                         {
-                        	AliensVsPredator.log().info(String.format("Failed to register sound %s: %s", ((Sound) field.get(AliensVsPredator.sounds())).getLocation(), e1));
+                        	AVP.log().info(String.format("Failed to register sound %s: %s", ((Sound) field.get(AVP.sounds())).getLocation(), e1));
                         }
                         catch (Exception e2)
                         {
@@ -129,6 +129,6 @@ public class Sounds
 
     public static Sound sound(String name)
     {
-        return new Sound(new ResourceLocation(AliensVsPredator.Properties.DOMAIN + name));
+        return new Sound(new ResourceLocation(AVP.Properties.DOMAIN + name));
     }
 }

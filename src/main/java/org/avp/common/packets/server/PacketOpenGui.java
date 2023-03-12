@@ -1,6 +1,6 @@
 package org.avp.common.packets.server;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.util.Game;
 
@@ -49,7 +49,7 @@ public class PacketOpenGui implements IMessage, IMessageHandler<PacketOpenGui, P
             public void run()
             {
                 EntityPlayer player = Game.minecraft().player;
-                FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), packet.guiIdentifier, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
+                FMLNetworkHandler.openGui(player, AVP.instance(), packet.guiIdentifier, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
             }
         });
         return null;

@@ -1,6 +1,6 @@
 package org.avp.client.render;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 
 import com.asx.mdx.lib.client.util.Draw;
@@ -27,7 +27,7 @@ public class FacehuggerRenderEvent
                 {
                     OpenGL.pushMatrix();
                     {
-                        Draw.drawOverlay(AliensVsPredator.resources().BLUR_FACEHUGGER);
+                        Draw.drawOverlay(AVP.resources().BLUR_FACEHUGGER);
                     }
                     OpenGL.popMatrix();
                 }

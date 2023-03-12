@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelMatriarch;
 import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
 
@@ -13,7 +13,7 @@ public class RenderMatriarch extends RenderLivingWrapper<EntityMatriarch, ModelM
 {
     public RenderMatriarch(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().MATRIARCH);
+        super(m, AVP.resources().models().MATRIARCH);
     }
 
     @Override

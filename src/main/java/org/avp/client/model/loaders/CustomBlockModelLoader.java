@@ -2,7 +2,7 @@ package org.avp.client.model.loaders;
 
 import java.util.HashMap;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.render.block.model.ModelResin;
 
 import net.minecraft.client.resources.IResourceManager;
@@ -23,7 +23,7 @@ public class CustomBlockModelLoader implements ICustomModelLoader
     public void register()
     {
         //Item Model Key: domain:models/item/ID
-        models.put("hiveresin", new ModelResin(new ResourceLocation(AliensVsPredator.Properties.ID, "block/cube.obj"), new ResourceLocation(AliensVsPredator.Properties.ID, "blocks/hiveresin")));
+        models.put("hiveresin", new ModelResin(new ResourceLocation(AVP.Properties.ID, "block/cube.obj"), new ResourceLocation(AVP.Properties.ID, "blocks/hiveresin")));
     }
 
     @Override
@@ -36,7 +36,7 @@ public class CustomBlockModelLoader implements ICustomModelLoader
     @Override
     public boolean accepts(ResourceLocation modelLocation)
     {
-        if (modelLocation.getNamespace().equals(AliensVsPredator.Properties.ID))
+        if (modelLocation.getNamespace().equals(AVP.Properties.ID))
         {
             if (models.containsKey(modelLocation.getPath()))
             {

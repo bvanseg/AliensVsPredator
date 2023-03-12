@@ -1,6 +1,6 @@
 package org.avp.common.packets.server;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -44,7 +44,7 @@ public class PacketOpenContainer implements IMessage, IMessageHandler<PacketOpen
             public void run()
             {
                 EntityPlayer player = ctx.getServerHandler().player;
-                FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), packet.guiIdentifier, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
+                FMLNetworkHandler.openGui(player, AVP.instance(), packet.guiIdentifier, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
             }
         });
         return null;

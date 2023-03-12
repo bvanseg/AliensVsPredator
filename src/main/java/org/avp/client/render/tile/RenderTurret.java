@@ -1,6 +1,6 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityTurret;
 import org.lwjgl.opengl.GL11;
 
@@ -23,7 +23,7 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
 
             OpenGL.scale(1F, -1F, 1F);
             OpenGL.rotate(tile);
-            AliensVsPredator.resources().models().TURRET.draw(tile);
+            AVP.resources().models().TURRET.draw(tile);
 
             if (tile.getVoltage() > 0)
             {

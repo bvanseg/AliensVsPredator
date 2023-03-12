@@ -2,7 +2,7 @@ package org.avp.common.entities;
 
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.DamageSources;
 
 import net.minecraft.entity.Entity;
@@ -203,7 +203,7 @@ public class EntityLaserMine extends Entity
 
     private void drop()
     {
-        this.world.spawnEntity(new EntityItem(this.world, this.posX, this.posY, this.posZ, new ItemStack(AliensVsPredator.items().itemProximityMine)));
+        this.world.spawnEntity(new EntityItem(this.world, this.posX, this.posY, this.posZ, new ItemStack(AVP.items().itemProximityMine)));
         this.setDead();
     }
 

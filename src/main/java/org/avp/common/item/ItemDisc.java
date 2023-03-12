@@ -1,6 +1,6 @@
 package org.avp.common.item;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntitySmartDisc;
 
 import com.asx.mdx.lib.util.GameSounds;
@@ -24,7 +24,7 @@ public class ItemDisc extends HookedItem
         {
             EntityPlayer player = (EntityPlayer) living;
 
-            if (player.inventory.hasItemStack(new ItemStack(AliensVsPredator.items().itemDisc)))
+            if (player.inventory.hasItemStack(new ItemStack(AVP.items().itemDisc)))
             {
                 int remainingCount = this.getMaxItemUseDuration(itemstack) - itemInUseCount;
                 float charge = remainingCount / 20.0F;
@@ -65,7 +65,7 @@ public class ItemDisc extends HookedItem
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        if (playerIn.inventory.hasItemStack(new ItemStack(AliensVsPredator.items().itemDisc)))
+        if (playerIn.inventory.hasItemStack(new ItemStack(AVP.items().itemDisc)))
         {
             playerIn.setActiveHand(hand);
         }

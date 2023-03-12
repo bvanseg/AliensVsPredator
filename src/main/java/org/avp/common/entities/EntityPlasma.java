@@ -2,7 +2,7 @@ package org.avp.common.entities;
 
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.DamageSources;
 import org.avp.common.Settings;
 import org.avp.client.Sounds;
@@ -137,7 +137,7 @@ public class EntityPlasma extends EntityThrowable
         {
             if (Settings.instance.arePlasmaCannonExplosionsEnabled())
             {
-                Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, AliensVsPredator.settings().areExplosionsEnabled());
+                Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, AVP.settings().areExplosionsEnabled());
             }
 
             Sounds.WEAPON_PLASMA_EXPLOSION.playSound(this, 7F, 1.0F);

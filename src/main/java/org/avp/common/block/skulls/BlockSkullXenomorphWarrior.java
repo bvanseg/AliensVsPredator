@@ -1,6 +1,6 @@
 package org.avp.common.block.skulls;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.block.BlockSkull;
 import org.avp.client.model.entities.living.ModelWarrior;
 
@@ -19,7 +19,7 @@ public class BlockSkullXenomorphWarrior extends BlockSkull
     @SideOnly(Side.CLIENT)
     private static class Resources
     {
-        private static final MapModelTexture<ModelWarrior> model = AliensVsPredator.resources().models().WARRIOR_SKULL;
+        private static final MapModelTexture<ModelWarrior> model = AVP.resources().models().WARRIOR_SKULL;
     }
 
     @Override

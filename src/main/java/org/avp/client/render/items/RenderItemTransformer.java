@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelTransformer;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemTransformer extends ItemRenderer<ModelTransformer>
 {
     public RenderItemTransformer()
     {
-        super(AliensVsPredator.resources().models().TRANSFORMER);
+        super(AVP.resources().models().TRANSFORMER);
     }
 
     @Override

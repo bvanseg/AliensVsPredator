@@ -1,6 +1,6 @@
 package org.avp.common.packets.server;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.client.SpecialPlayerClientSync;
 import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
@@ -59,7 +59,7 @@ public class SpecialPlayerServerSync implements IMessage, IMessageHandler<Specia
                     if (specialPlayer != null)
                     {
                         specialPlayer.readNBT(SpecialPlayer.Provider.CAPABILITY, specialPlayer, null, packet.tag);
-                        AliensVsPredator.network().sendToAll(new SpecialPlayerClientSync(entity.getEntityId(), (NBTTagCompound) specialPlayer.writeNBT(SpecialPlayer.Provider.CAPABILITY, specialPlayer, null)));
+                        AVP.network().sendToAll(new SpecialPlayerClientSync(entity.getEntityId(), (NBTTagCompound) specialPlayer.writeNBT(SpecialPlayer.Provider.CAPABILITY, specialPlayer, null)));
                     }
                 }
             }

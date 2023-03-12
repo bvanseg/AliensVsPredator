@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelPowercell;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
 {
     public RenderItemPowercell()
     {
-        super(AliensVsPredator.resources().models().POWERCELL);
+        super(AVP.resources().models().POWERCELL);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
         OpenGL.scale(glScale, glScale, glScale);
         OpenGL.translate(0F, -1.1F, -0.5F);
         this.getModel().draw();
-        AliensVsPredator.resources().models().POWERCELL_LIQUID.draw();
+        AVP.resources().models().POWERCELL_LIQUID.draw();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
         OpenGL.rotate(45.0F, 0.0F, 0.0F, 1.0F);
         GlStateManager.disableCull();
         this.getModel().draw();
-        AliensVsPredator.resources().models().POWERCELL_LIQUID.draw();
+        AVP.resources().models().POWERCELL_LIQUID.draw();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
         OpenGL.rotate(45F, 0F, 0F, 1F);
         OpenGL.rotate(90F + this.getIconRotation(), 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
-        AliensVsPredator.resources().models().POWERCELL_LIQUID.draw();
+        AVP.resources().models().POWERCELL_LIQUID.draw();
     }
 
     @Override
@@ -58,6 +58,6 @@ public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
     {
         GlStateManager.disableCull();
         this.getModel().draw();
-        AliensVsPredator.resources().models().POWERCELL_LIQUID.draw();
+        AVP.resources().models().POWERCELL_LIQUID.draw();
     }
 }

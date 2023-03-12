@@ -2,8 +2,8 @@ package org.avp.common.entities;
 
 import java.util.ArrayList;
 
+import org.avp.AVP;
 import org.avp.common.AVPBlocks;
-import org.avp.AliensVsPredator;
 import org.avp.common.DamageSources;
 import org.avp.common.item.firearms.ItemFlamethrower;
 import org.avp.common.item.firearms.ItemM240IncineratorUnit;
@@ -79,7 +79,7 @@ public class EntityFlame extends EntityThrowable
 
         if (this.getThrower() != null && this.getThrower().getHeldItemMainhand() != null)
         {
-            if (this.getThrower().getHeldItemMainhand().getItem() == AliensVsPredator.items().itemM240ICU || this.getThrower().getHeldItemMainhand().getItem() == AliensVsPredator.items().itemSevastopolFlamethrower)
+            if (this.getThrower().getHeldItemMainhand().getItem() == AVP.items().itemM240ICU || this.getThrower().getHeldItemMainhand().getItem() == AVP.items().itemSevastopolFlamethrower)
             {
                 ItemFlamethrower flamethrower = (ItemFlamethrower) this.getThrower().getHeldItemMainhand().getItem();
 

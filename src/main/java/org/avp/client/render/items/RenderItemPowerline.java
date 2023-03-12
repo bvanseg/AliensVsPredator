@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelCable;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemPowerline extends ItemRenderer<ModelCable>
 {
     public RenderItemPowerline()
     {
-        super(AliensVsPredator.resources().models().CABLE);
+        super(AVP.resources().models().CABLE);
     }
 
     @Override

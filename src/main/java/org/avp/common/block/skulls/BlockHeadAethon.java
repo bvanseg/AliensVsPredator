@@ -1,6 +1,6 @@
 package org.avp.common.block.skulls;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.block.BlockSkull;
 import org.avp.client.model.tile.skulls.ModelAethonHead;
 
@@ -19,7 +19,7 @@ public class BlockHeadAethon extends BlockSkull
     @SideOnly(Side.CLIENT)
     private static class Resources
     {
-        private static final MapModelTexture<ModelAethonHead> model = AliensVsPredator.resources().models().HEAD_AETHON;
+        private static final MapModelTexture<ModelAethonHead> model = AVP.resources().models().HEAD_AETHON;
     }
 
     @Override

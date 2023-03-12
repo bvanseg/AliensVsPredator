@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelCrusherQuad;
 import org.avp.common.entities.living.species.xenomorphs.EntityCrusher;
 
@@ -10,6 +10,6 @@ public class RenderCrusher extends RenderXenomorph<EntityCrusher, ModelCrusherQu
 {
     public RenderCrusher(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().CRUSHER_QUAD, 1.6F);
+        super(m, AVP.resources().models().CRUSHER_QUAD, 1.6F);
     }
 }

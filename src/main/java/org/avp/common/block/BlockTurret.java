@@ -3,7 +3,7 @@ package org.avp.common.block;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.server.PacketAddTurretTarget;
 import org.avp.common.tile.TileEntityTurret;
 
@@ -77,11 +77,11 @@ public class BlockTurret extends Block
             if (!world.isRemote)
             {
             	Collection<String> entityIdentifiers = tile.getTargetHelper().getDangerousTargets().stream().map((e) -> Entities.getEntityRegistrationId(e)).collect(Collectors.toList());
-                AliensVsPredator.network().sendToAll(new PacketAddTurretTarget(pos.getX(), pos.getY(), pos.getZ(), entityIdentifiers));
+                AVP.network().sendToAll(new PacketAddTurretTarget(pos.getX(), pos.getY(), pos.getZ(), entityIdentifiers));
             }
         }
 
-        FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_TURRET, world, pos.getX(), pos.getY(), pos.getZ());
+        FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_TURRET, world, pos.getX(), pos.getY(), pos.getZ());
 
         return true;
     }

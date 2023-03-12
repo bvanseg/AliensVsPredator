@@ -2,7 +2,7 @@ package org.avp.common.tile;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.machines.IDataDevice;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.inventory.ContainerTurret;
@@ -127,7 +127,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
 
     private void sendSyncPacket()
     {
-        AliensVsPredator.network().sendToAll(new PacketTurretSync(this));
+        AVP.network().sendToAll(new PacketTurretSync(this));
     }
 
     @SideOnly(Side.CLIENT)
@@ -146,12 +146,12 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         {
             ItemStack pciSlot = this.inventoryExpansion.getStackInSlot(i);
 
-            if (pciSlot.getItem() == AliensVsPredator.items().itemProcessor)
+            if (pciSlot.getItem() == AVP.items().itemProcessor)
             {
                 turretRotateSpeed += pciSlot.getCount() * (this.getLookHelper().getTurretRotateSpeed() / 64f);
             }
 
-            if (pciSlot.getItem() == AliensVsPredator.items().itemLedDisplay)
+            if (pciSlot.getItem() == AVP.items().itemLedDisplay)
             {
                 this.getAmmoHelper().setAmmoDisplayEnabled(true);
             }
@@ -219,7 +219,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                 {
                     String id = list.getStringTagAt(i);
 
-                    EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AliensVsPredator.Properties.ID, id));
+                    EntityEntry entityEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(AVP.Properties.ID, id));
 
                     for (EntityEntry e : ForgeRegistries.ENTITIES.getValues())
                     {
@@ -234,7 +234,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                         Class<? extends Entity> c = entityEntry.getEntityClass();
                         this.getTargetHelper().addTargetType(c);
                     } else {
-                        AliensVsPredator.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
+                        AVP.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
                     }
                 }
             }

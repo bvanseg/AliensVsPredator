@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelSevastopolBlastdoor;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemSevastopolBlastdoor extends ItemRenderer<ModelSevastopolB
 {
     public RenderItemSevastopolBlastdoor()
     {
-        super(AliensVsPredator.resources().models().BLASTDOOR_SEVASTOPOL);
+        super(AVP.resources().models().BLASTDOOR_SEVASTOPOL);
     }
 
     @Override

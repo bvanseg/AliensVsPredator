@@ -1,6 +1,6 @@
 package org.avp.common.tile.helpers;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.DamageSources;
 import org.avp.client.Sounds;
 import org.avp.common.packets.server.PacketTurretAmmoSync;
@@ -51,7 +51,7 @@ public class TileEntityTurretAttackHelper {
             }
         } else if (!world.isRemote && this.isFiring) {
             this.isFiring = false;
-        	AliensVsPredator.network().sendToAll(new PacketTurretAmmoSync(pos.blockPos(), this.ammoHelper.getCurrentAmmo()));
+        	AVP.network().sendToAll(new PacketTurretAmmoSync(pos.blockPos(), this.ammoHelper.getCurrentAmmo()));
         }
 	}
 

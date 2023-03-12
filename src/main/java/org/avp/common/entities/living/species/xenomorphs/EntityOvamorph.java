@@ -3,7 +3,7 @@ package org.avp.common.entities.living.species.xenomorphs;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.ItemHandler;
 import org.avp.common.entities.ai.alien.EntitySelectorParasitoid;
@@ -117,7 +117,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
 
         if (!this.world.isRemote && this.ticksExisted >= 20 && this.sendUpdates)
         {
-            AliensVsPredator.network().sendToAll(new PacketOvamorphContainsFacehugger(this.containsFacehugger, this.getEntityId()));
+            AVP.network().sendToAll(new PacketOvamorphContainsFacehugger(this.containsFacehugger, this.getEntityId()));
             this.sendUpdates = false;
         }
 
@@ -139,7 +139,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
 
         if (this.containsFacehugger)
         {
-            if (this.world.getBlockState(this.getPosition()).getMaterial() != AliensVsPredator.materials().mist || this.acceleratedHatching)
+            if (this.world.getBlockState(this.getPosition()).getMaterial() != AVP.materials().mist || this.acceleratedHatching)
             {
                 int hatchAcceleration = this.acceleratedHatching ? 20 : 1;
                 List<EntityLivingBase> potentialHosts = Entities.getEntitiesInCoordsRange(this.world, EntityLivingBase.class, new Pos(this), 8);

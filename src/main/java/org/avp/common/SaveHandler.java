@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.storage.IWorldSaveHandler;
 
 import com.asx.mdx.lib.world.storage.NBTStorage;
@@ -56,7 +56,7 @@ public class SaveHandler
                 {
                     if (!dataHandler.saveData(world, tag))
                     {
-                    	AliensVsPredator.log().info(String.format("Unable to save world data: ", this.getSaveFilename()));
+                    	AVP.log().info(String.format("Unable to save world data: ", this.getSaveFilename()));
                     }
                 }
             }
@@ -82,7 +82,7 @@ public class SaveHandler
             {
                 if (worldSave.getAbsoluteFile().exists())
                 {
-                	AliensVsPredator.log().info(String.format("Loading world data: ", worldSave.getAbsolutePath()));
+                	AVP.log().info(String.format("Loading world data: ", worldSave.getAbsolutePath()));
                     NBTTagCompound read = NBTStorage.readCompressed(worldSave.getAbsoluteFile());
                     tag = read == null ? tag : read;
 
@@ -92,7 +92,7 @@ public class SaveHandler
                         {
                             if (!dataHandler.loadData(world, tag))
                             {
-                            	AliensVsPredator.log().info(String.format("Unable to load world data: ", this.getSaveFilename()));
+                            	AVP.log().info(String.format("Unable to load world data: ", this.getSaveFilename()));
                             }
                         }
                     }

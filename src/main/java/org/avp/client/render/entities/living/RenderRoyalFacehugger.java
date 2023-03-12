@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelRoyalFacehugger;
 import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 import org.avp.common.entities.living.species.xenomorphs.parasites.EntityRoyalFacehugger;
@@ -13,7 +13,7 @@ public class RenderRoyalFacehugger extends RenderFacehuggers<EntityRoyalFacehugg
 {
     public RenderRoyalFacehugger(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().ROYALFACEHUGGER);
+        super(m, AVP.resources().models().ROYALFACEHUGGER);
     }
 
     @Override

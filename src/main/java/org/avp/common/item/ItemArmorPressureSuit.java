@@ -1,6 +1,6 @@
 package org.avp.common.item;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
@@ -17,7 +17,7 @@ public class ItemArmorPressureSuit extends ItemAntiVacuumArmor
 {
     public ItemArmorPressureSuit(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(AliensVsPredator.materials().armors().pressuresuit, renderIndex, armorType);
+        super(AVP.materials().armors().pressuresuit, renderIndex, armorType);
     }
     
     @Override
@@ -28,19 +28,19 @@ public class ItemArmorPressureSuit extends ItemAntiVacuumArmor
             case FEET:
             case CHEST:
             case HEAD:
-                return Draw.getPath(AliensVsPredator.resources().PRESSURESUIT1);
+                return Draw.getPath(AVP.resources().PRESSURESUIT1);
             default:
-                return Draw.getPath(AliensVsPredator.resources().PRESSURESUIT2);
+                return Draw.getPath(AVP.resources().PRESSURESUIT2);
         }
     }
 
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AliensVsPredator.items().pressureMask && 
-                Inventories.getChestSlotItemStack(player) != null && Inventories.getChestSlotItemStack(player).getItem() == AliensVsPredator.items().pressureChest && 
-                    Inventories.getLegsSlotItemStack(player) != null && Inventories.getLegsSlotItemStack(player).getItem() == AliensVsPredator.items().pressurePants && 
-                        Inventories.getBootSlotItemStack(player) != null && Inventories.getBootSlotItemStack(player).getItem() == AliensVsPredator.items().pressureBoots)
+        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AVP.items().pressureMask &&
+                Inventories.getChestSlotItemStack(player) != null && Inventories.getChestSlotItemStack(player).getItem() == AVP.items().pressureChest &&
+                    Inventories.getLegsSlotItemStack(player) != null && Inventories.getLegsSlotItemStack(player).getItem() == AVP.items().pressurePants &&
+                        Inventories.getBootSlotItemStack(player) != null && Inventories.getBootSlotItemStack(player).getItem() == AVP.items().pressureBoots)
         {
             player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 1, 0));
             player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 1, 0));

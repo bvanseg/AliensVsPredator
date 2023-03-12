@@ -1,6 +1,6 @@
 package org.avp.common.world;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.item.firearms.ItemFirearm;
 
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
@@ -12,7 +12,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public enum MarineTypes
 {
-    M4(0, (ItemFirearm) AliensVsPredator.items().itemM4), AK47(1, (ItemFirearm) AliensVsPredator.items().itemAK47), M41A(2, (ItemFirearm) AliensVsPredator.items().itemM41A), SNIPER(3, (ItemFirearm) AliensVsPredator.items().itemSniper), M56SG(4, (ItemFirearm) AliensVsPredator.items().itemM56SG);
+    M4(0, (ItemFirearm) AVP.items().itemM4), AK47(1, (ItemFirearm) AVP.items().itemAK47), M41A(2, (ItemFirearm) AVP.items().itemM41A), SNIPER(3, (ItemFirearm) AVP.items().itemSniper), M56SG(4, (ItemFirearm) AVP.items().itemM56SG);
 
     private int id;
     private ItemFirearm itemFirearm;
@@ -57,15 +57,15 @@ public enum MarineTypes
         switch (this)
         {
             case M4:
-                return AliensVsPredator.resources().models().M4;
+                return AVP.resources().models().M4;
             case AK47:
-                return AliensVsPredator.resources().models().AK47;
+                return AVP.resources().models().AK47;
             case M41A:
-                return AliensVsPredator.resources().models().M41A;
+                return AVP.resources().models().M41A;
             case SNIPER:
-                return AliensVsPredator.resources().models().SNIPER;
+                return AVP.resources().models().SNIPER;
             case M56SG:
-                return AliensVsPredator.resources().models().M56SG;
+                return AVP.resources().models().M56SG;
         }
 
         return null;

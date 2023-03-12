@@ -4,7 +4,7 @@ import static org.lwjgl.opengl.GL11.GL_ALPHA_TEST;
 import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.render.tile.RenderCryostasisTube;
 import org.avp.client.render.tile.RenderCryostasisTube.CryostasisEntityRenderer;
 import org.avp.common.entities.living.species.SpeciesXenomorph;
@@ -107,7 +107,7 @@ public class CryostasisTubeRenderers
                 OpenGL.enable(GL_ALPHA_TEST);
                 OpenGL.scale(4, 3, 4);
                 OpenGL.translate(0F, -0.75F, 0F);
-                AliensVsPredator.resources().models().CRYOSTASIS_TUBE.draw();
+                AVP.resources().models().CRYOSTASIS_TUBE.draw();
                 OpenGL.enableCullFace();
             }
 
@@ -144,15 +144,15 @@ public class CryostasisTubeRenderers
 
                 if (tile.isShattered())
                 {
-                    mask = AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK_SHATTERED;
+                    mask = AVP.resources().models().CRYOSTASIS_TUBE_MASK_SHATTERED;
                 }
                 else if (tile.isCracked())
                 {
-                    mask = AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK_CRACKED;
+                    mask = AVP.resources().models().CRYOSTASIS_TUBE_MASK_CRACKED;
                 }
                 else
                 {
-                    mask = AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK;
+                    mask = AVP.resources().models().CRYOSTASIS_TUBE_MASK;
                 }
 
                 if (tile.getVoltage() > 0)

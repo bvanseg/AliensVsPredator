@@ -1,6 +1,6 @@
 package org.avp.common.command;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.server.PacketOpenGui;
 
 import net.minecraft.client.gui.GuiScreen;
@@ -31,14 +31,14 @@ public class CommandSettings extends CommandBase
     {
         if (FMLCommonHandler.instance().getSide() == Side.SERVER)
         {
-            AliensVsPredator.network().sendTo(new PacketOpenGui(AliensVsPredator.interfaces().GUI_GRAPHICSSETTINGS), (EntityPlayerMP) sender);
+            AVP.network().sendTo(new PacketOpenGui(AVP.interfaces().GUI_GRAPHICSSETTINGS), (EntityPlayerMP) sender);
             return;
         }
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
             EntityPlayerMP player = (EntityPlayerMP) sender;
-            GuiScreen gui = (GuiScreen) AliensVsPredator.interfaces().getClientGuiElement(AliensVsPredator.interfaces().GUI_GRAPHICSSETTINGS, player, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
+            GuiScreen gui = (GuiScreen) AVP.interfaces().getClientGuiElement(AVP.interfaces().GUI_GRAPHICSSETTINGS, player, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
             FMLCommonHandler.instance().showGuiScreen(gui);
         }
     }

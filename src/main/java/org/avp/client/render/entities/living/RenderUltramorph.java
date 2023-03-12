@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelUltramorph;
 import org.avp.common.entities.living.species.xenomorphs.EntityUltramorph;
 
@@ -10,6 +10,6 @@ public class RenderUltramorph extends RenderXenomorph<EntityUltramorph, ModelUlt
 {
     public RenderUltramorph(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().ULTRAMORPH, 1.5F);
+        super(m, AVP.resources().models().ULTRAMORPH, 1.5F);
     }
 }

@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelM41A;
 import org.avp.common.ItemHandler;
 import org.avp.common.URLs;
@@ -26,7 +26,7 @@ public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
 
     public RenderItemM41A()
     {
-        super(AliensVsPredator.resources().models().M41A);
+        super(AVP.resources().models().M41A);
     }
 
     @Override

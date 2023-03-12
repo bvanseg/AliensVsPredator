@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entities.ai.alien.EntitySelectorParasitoid;
@@ -213,7 +213,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
 
         if (!this.world.isRemote && this.isFertile() && this.canAttach(entity))
         {
-            AliensVsPredator.network().sendToAll(new PacketAttachParasiteToEntity(this.getEntityId(), entity.getEntityId()));
+            AVP.network().sendToAll(new PacketAttachParasiteToEntity(this.getEntityId(), entity.getEntityId()));
             this.attachToEntity(entity);
         }
     }

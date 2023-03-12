@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 import org.alien.AlienBlocks;
 import org.apache.commons.lang3.StringUtils;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.item.crafting.AssemblyManager;
 import org.avp.common.item.crafting.Schematic;
 
@@ -38,7 +38,7 @@ public class CraftingHandler
     @SubscribeEvent
     public static void registerOres(RegistryEvent.Register<IRecipe> event)
     {
-        AliensVsPredator.log().info("Ore dictionary registration");
+        AVP.log().info("Ore dictionary registration");
         
         registerOreDict("copper", ItemHandler.itemIngotCopper, "ingot");
         registerOreDict("lithium", ItemHandler.itemIngotLithium, "ingot");

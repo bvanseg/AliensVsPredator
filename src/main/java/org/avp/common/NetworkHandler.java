@@ -1,6 +1,6 @@
 package org.avp.common;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.client.OrganismClientSync;
 import org.avp.common.packets.client.PacketAmmoUpdate;
 import org.avp.common.packets.client.PacketOpenBlastdoor;
@@ -52,7 +52,7 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
 
     public NetworkHandler()
     {
-        super(AliensVsPredator.Properties.ID.toUpperCase());
+        super(AVP.Properties.ID.toUpperCase());
     }
 
     @Override

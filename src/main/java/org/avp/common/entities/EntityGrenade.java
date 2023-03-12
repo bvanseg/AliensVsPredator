@@ -2,7 +2,7 @@ package org.avp.common.entities;
 
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.living.species.SpeciesXenomorph;
 
 import com.asx.mdx.lib.world.Pos;
@@ -127,7 +127,7 @@ public class EntityGrenade extends EntityThrowable
         
         if (!this.world.isRemote)
         {
-        	Explosion explosion = Worlds.createExplosion(null, world, new Pos(this), 2F, isFlaming(), true, AliensVsPredator.settings().areExplosionsEnabled());
+        	Explosion explosion = Worlds.createExplosion(null, world, new Pos(this), 2F, isFlaming(), true, AVP.settings().areExplosionsEnabled());
 
             List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(4, 4, 4));
 

@@ -2,7 +2,7 @@ package org.avp.client.gui;
 
 import java.io.IOException;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.server.PacketBlastdoorCommon;
 import org.avp.common.packets.server.PacketBlastdoorCommon.PacketMode;
 import org.avp.common.tile.TileEntityBlastdoor;
@@ -51,7 +51,7 @@ public class GuiBlastdoor extends GuiCustomScreen
                     public void perform(IGuiElement element)
                     {
                         boolean value = !door.isAutolockEnabled();
-                        AliensVsPredator.network().sendToServer(new PacketBlastdoorCommon(PacketMode.SETAUTOLOCK, door.getPos(), value));
+                        AVP.network().sendToServer(new PacketBlastdoorCommon(PacketMode.SETAUTOLOCK, door.getPos(), value));
                         status = "Auto-Lock " + (door.isAutolockEnabled() ? "Disabled" : "Enabled");
                     }
                 });
@@ -60,7 +60,7 @@ public class GuiBlastdoor extends GuiCustomScreen
                     @Override
                     public void perform(IGuiElement element)
                     {
-                        AliensVsPredator.network().sendToServer(new PacketBlastdoorCommon(PacketMode.BIND, door.getPos()));
+                        AVP.network().sendToServer(new PacketBlastdoorCommon(PacketMode.BIND, door.getPos()));
                         status = String.format("Bound %s to security tuner.", door.getIdentifier());
                     }
                 });
@@ -178,7 +178,7 @@ public class GuiBlastdoor extends GuiCustomScreen
             {
                 if (!this.password.getText().isEmpty())
                 {
-                    AliensVsPredator.network().sendToServer(new PacketBlastdoorCommon(PacketMode.AUTH, this.door.getPos(), this.password.getText()));
+                    AVP.network().sendToServer(new PacketBlastdoorCommon(PacketMode.AUTH, this.door.getPos(), this.password.getText()));
                     Game.minecraft().displayGuiScreen(null);
                 }
                 else
@@ -188,7 +188,7 @@ public class GuiBlastdoor extends GuiCustomScreen
             }
             else
             {
-                AliensVsPredator.network().sendToServer(new PacketBlastdoorCommon(PacketMode.SETPSWD, this.door.getPos(), this.password.getText()));
+                AVP.network().sendToServer(new PacketBlastdoorCommon(PacketMode.SETPSWD, this.door.getPos(), this.password.getText()));
                 this.status = "PASSWORD SET";
             }
         }

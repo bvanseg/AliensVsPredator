@@ -1,6 +1,6 @@
 package org.avp.common.item;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntitySporePod;
 import org.avp.common.packets.server.PacketSpawnEntity;
 
@@ -32,7 +32,7 @@ public class ItemSporePod extends HookedItem
             if (world.isRemote && entity != null && ray.typeOfHit == Type.BLOCK)
             {
                 
-                AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x, ray.hitVec.y + 0.5D, ray.hitVec.z, Entities.getEntityRegistrationId(EntitySporePod.class)));
+                AVP.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x, ray.hitVec.y + 0.5D, ray.hitVec.z, Entities.getEntityRegistrationId(EntitySporePod.class)));
             }
         }
 

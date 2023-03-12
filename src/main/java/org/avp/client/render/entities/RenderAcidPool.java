@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntityAcidPool;
 import org.lwjgl.opengl.GL11;
 
@@ -48,8 +48,8 @@ public class RenderAcidPool extends Render<EntityAcidPool>
             // OpenGL.enableLighting();
             // OpenGL.enableLight();
             // OpenGL.enableLightMapping();
-            this.bindTexture(AliensVsPredator.resources().LIQUID_POOL);
-            AliensVsPredator.resources().LIQUID_POOL.bind();
+            this.bindTexture(AVP.resources().LIQUID_POOL);
+            AVP.resources().LIQUID_POOL.bind();
             Draw.startQuads();
             OpenGL.color(1F, 1F, 0F, 1F);
 

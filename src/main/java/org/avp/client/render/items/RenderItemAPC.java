@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -30,7 +30,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
             OpenGL.scale(scale, scale, scale);
             GlStateManager.disableCull();
 
-            for (Part p : AliensVsPredator.resources().models().M577_APC.parts.values())
+            for (Part p : AVP.resources().models().M577_APC.parts.values())
             {
                 p.draw();
             }
@@ -50,7 +50,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
             OpenGL.rotate(16F, 1F, 0F, 0F);
             GlStateManager.disableCull();
 
-            for (Part p : AliensVsPredator.resources().models().M577_APC.parts.values())
+            for (Part p : AVP.resources().models().M577_APC.parts.values())
             {
                 p.draw();
             }
@@ -68,7 +68,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
             OpenGL.translate(0F, -1.3F, 0F);
             OpenGL.rotate(-90F, 0.0F, 1.0F, 0.0F);
 
-            for (Part p : AliensVsPredator.resources().models().M577_APC.parts.values())
+            for (Part p : AVP.resources().models().M577_APC.parts.values())
             {
                 p.draw();
             }
@@ -85,7 +85,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
             OpenGL.translate(0, -1F, 0);
             OpenGL.rotate((Game.minecraft().world.getTotalWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
 
-            for (Part p : AliensVsPredator.resources().models().M577_APC.parts.values())
+            for (Part p : AVP.resources().models().M577_APC.parts.values())
             {
                 p.draw();
             }

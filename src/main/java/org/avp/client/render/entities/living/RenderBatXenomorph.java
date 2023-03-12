@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelBatXenomorph;
 import org.avp.common.entities.living.species.xenomorphs.EntityBatXeno;
 
@@ -10,6 +10,6 @@ public class RenderBatXenomorph extends RenderXenomorph<EntityBatXeno, ModelBatX
 {
     public RenderBatXenomorph(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().BAT_XENO, 0.75F);
+        super(m, AVP.resources().models().BAT_XENO, 0.75F);
     }
 }

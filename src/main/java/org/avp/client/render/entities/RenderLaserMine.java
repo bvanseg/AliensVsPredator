@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntityLaserMine;
 import org.lwjgl.opengl.GL11;
 
@@ -29,7 +29,7 @@ public class RenderLaserMine extends Render<EntityLaserMine>
             OpenGL.rotate(yaw, 0.0F, 1.0F, 0.0F);
             OpenGL.rotate(180.0F, 0.0F, 0.0F, 1.0F);
             GL11.glScaled(0.5F, 0.5F, 0.5F);
-            AliensVsPredator.resources().models().LASER_MINE.draw();
+            AVP.resources().models().LASER_MINE.draw();
             GlStateManager.disableCull();
             OpenGL.scale(2F, -2F, 2F);
             OpenGL.translate(0.004F, -0.74F, 0.06F);

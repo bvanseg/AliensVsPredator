@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelCCFL;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemCCFLTube extends ItemRenderer<ModelCCFL>
 {
     public RenderItemCCFLTube()
     {
-        super(AliensVsPredator.resources().models().CCFL_BALLAST);
+        super(AVP.resources().models().CCFL_BALLAST);
     }
 
     @Override

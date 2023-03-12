@@ -1,6 +1,6 @@
 package org.avp.common.item;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelDrone;
 import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
@@ -26,16 +26,16 @@ public class ItemArmorXeno extends ItemArmor
 
     public ItemArmorXeno(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(AliensVsPredator.materials().armors().chitin, renderIndex, armorType);
+        super(AVP.materials().armors().chitin, renderIndex, armorType);
     }
 
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
         if (slot == EntityEquipmentSlot.LEGS) {
-            return Draw.getPath(AliensVsPredator.resources().XENO2);
+            return Draw.getPath(AVP.resources().XENO2);
         }
-        return Draw.getPath(AliensVsPredator.resources().XENO1);
+        return Draw.getPath(AVP.resources().XENO1);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class ItemArmorXeno extends ItemArmor
             ItemStack chest = Inventories.getChestSlotItemStack(player);
             ItemStack legs = Inventories.getLegsSlotItemStack(player);
             ItemStack boots = Inventories.getBootSlotItemStack(player);
-            return (helm != null && chest != null && legs != null && boots != null && (helm.getItem() == AliensVsPredator.items().helmXeno && chest.getItem() == AliensVsPredator.items().plateXeno && legs.getItem() == AliensVsPredator.items().legsXeno && boots.getItem() == AliensVsPredator.items().bootsXeno));
+            return (helm != null && chest != null && legs != null && boots != null && (helm.getItem() == AVP.items().helmXeno && chest.getItem() == AVP.items().plateXeno && legs.getItem() == AVP.items().legsXeno && boots.getItem() == AVP.items().bootsXeno));
         }
 
         return false;

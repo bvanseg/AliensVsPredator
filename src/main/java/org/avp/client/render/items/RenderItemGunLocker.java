@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelLocker;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -16,7 +16,7 @@ public class RenderItemGunLocker extends ItemRenderer<ModelLocker>
 {
     public RenderItemGunLocker()
     {
-        super(AliensVsPredator.resources().models().GUN_LOCKER);
+        super(AVP.resources().models().GUN_LOCKER);
     }
 
     @Override

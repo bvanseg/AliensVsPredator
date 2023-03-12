@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelBoiler;
 import org.avp.common.entities.living.species.xenomorphs.EntityBoiler;
 import org.lwjgl.opengl.GL11;
@@ -15,7 +15,7 @@ public class RenderBoiler extends RenderLivingWrapper<EntityBoiler, ModelBoiler>
 {
     public RenderBoiler(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().BOILER);
+        super(m, AVP.resources().models().BOILER);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class RenderBoiler extends RenderLivingWrapper<EntityBoiler, ModelBoiler>
         else
         {
             char light = 61680;
-            AliensVsPredator.resources().models().BOILER_MASK.getTexture().bind();
+            AVP.resources().models().BOILER_MASK.getTexture().bind();
             OpenGL.enableBlend();
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
             GL11.glDepthMask(!entity.isInvisible());

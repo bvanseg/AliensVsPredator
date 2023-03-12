@@ -2,7 +2,7 @@ package org.avp.common.world.capabilities;
 
 import java.util.concurrent.Callable;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.render.TacticalHUDRenderEvent;
 import org.avp.common.entities.living.species.SpeciesAlien;
 import org.avp.common.packets.client.OrganismClientSync;
@@ -232,13 +232,13 @@ public interface IOrganism
         public void syncWithServer(EntityLivingBase living)
         {
             if (living != null)
-                AliensVsPredator.network().sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+                AVP.network().sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         public void syncWithClients(EntityLivingBase living)
         {
             if (living != null && !living.world.isRemote)
-                AliensVsPredator.network().sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+                AVP.network().sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         @Override

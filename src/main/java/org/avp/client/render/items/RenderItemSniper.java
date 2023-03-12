@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelSniper;
 import org.lwjgl.input.Mouse;
 
@@ -19,7 +19,7 @@ public class RenderItemSniper extends ItemFirearmRenderer<ModelSniper>
 
     public RenderItemSniper()
     {
-        super(AliensVsPredator.resources().models().SNIPER);
+        super(AVP.resources().models().SNIPER);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class RenderItemSniper extends ItemFirearmRenderer<ModelSniper>
     {
         if (Game.minecraft().gameSettings.thirdPersonView == 0 && Game.minecraft().player.getHeldItemMainhand() != null)
         {
-            if (Game.minecraft().player.getHeldItemMainhand().getItem() == AliensVsPredator.items().itemSniper)
+            if (Game.minecraft().player.getHeldItemMainhand().getItem() == AVP.items().itemSniper)
             {
                 if (!Game.minecraft().inGameHasFocus)
                 {

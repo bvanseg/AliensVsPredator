@@ -1,6 +1,6 @@
 package org.avp.common;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.gui.GuiAssembler;
 import org.avp.client.gui.GuiBlastdoor;
 import org.avp.client.gui.GuiLocker;
@@ -47,7 +47,7 @@ public class GuiHandler implements IGuiHandler, IInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
-        NetworkRegistry.INSTANCE.registerGuiHandler(AliensVsPredator.instance(), this);
+        NetworkRegistry.INSTANCE.registerGuiHandler(AVP.instance(), this);
     }
 
     @Override
@@ -117,7 +117,7 @@ public class GuiHandler implements IGuiHandler, IInitEvent
         {
             Item item = player.getHeldItemMainhand().getItem();
 
-            if (item == AliensVsPredator.items().itemWristbracer)
+            if (item == AVP.items().itemWristbracer)
             {
                 return new GuiWristbracer(player, (ContainerWristbracer) ((ItemWristbracer) item).getNewContainer(player));
             }

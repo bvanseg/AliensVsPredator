@@ -1,6 +1,6 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.Settings.ClientSettings;
 import org.avp.client.model.tile.ModelHiveResin;
 import org.avp.common.tile.TileEntityHiveResin;
@@ -27,8 +27,8 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
             {
                 OpenGL.translate(posX + 0.5, posY - 0.5, posZ + 0.5);
 
-                AliensVsPredator.resources().models().HIVE_RESIN.bindTexture();
-                ModelHiveResin model = AliensVsPredator.resources().models().HIVE_RESIN.getModel();
+                AVP.resources().models().HIVE_RESIN.bindTexture();
+                ModelHiveResin model = AVP.resources().models().HIVE_RESIN.getModel();
                 OpenGL.enableCullFace();
 
                 /** TOP **/

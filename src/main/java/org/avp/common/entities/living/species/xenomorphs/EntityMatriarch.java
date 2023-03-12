@@ -3,7 +3,7 @@ package org.avp.common.entities.living.species.xenomorphs;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
@@ -141,7 +141,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 
                 if (this.world.isRemote)
                 {
-                    AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ovamorphX, this.posY, ovamorphZ, Entities.getEntityRegistrationId(EntityOvamorph.class)));
+                    AVP.network().sendToServer(new PacketSpawnEntity(ovamorphX, this.posY, ovamorphZ, Entities.getEntityRegistrationId(EntityOvamorph.class)));
                 }
                 this.setJellyLevel(this.getJellyLevel() - 100);
             }

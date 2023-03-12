@@ -1,6 +1,6 @@
 package org.avp.common.world.dimension.varda;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.client.world.CloudProvider;
@@ -18,7 +18,7 @@ public class CloudProviderVarda extends CloudProvider
     @Override
     public Texture getCloudTexture()
     {
-        return AliensVsPredator.resources().SKY_VARDA_CLOUDS;
+        return AVP.resources().SKY_VARDA_CLOUDS;
     }
 
     @Override

@@ -1,6 +1,6 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntitySatelliteDish;
 
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -18,7 +18,7 @@ public class RenderSatelliteDish extends TileEntitySpecialRenderer<TileEntitySat
             OpenGL.scale(1F, -1F, 1F);
             OpenGL.translate(0.5F, -1.525F, 0.5F);
             OpenGL.disableCullFace();
-            AliensVsPredator.resources().models().SATELLITE_DISH.draw(tile);
+            AVP.resources().models().SATELLITE_DISH.draw(tile);
             OpenGL.enableCullFace();
         }
         OpenGL.popMatrix();

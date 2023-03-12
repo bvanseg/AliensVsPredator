@@ -1,6 +1,6 @@
 package org.avp.common.block;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.world.fluids.FluidBlackGoo;
 
 import net.minecraft.util.math.BlockPos;
@@ -15,7 +15,7 @@ public class BlockBlackGoo extends BlockFluidClassic
     
     public BlockBlackGoo()
     {
-        super(fluid, AliensVsPredator.materials().blackgoo);
+        super(fluid, AVP.materials().blackgoo);
     }
     
     @Override

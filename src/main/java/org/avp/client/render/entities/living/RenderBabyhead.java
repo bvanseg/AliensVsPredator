@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelBabyhead;
 import org.avp.common.entities.living.vardic.EntityBabyhead;
 
@@ -13,7 +13,7 @@ public class RenderBabyhead extends RenderLivingWrapper<EntityBabyhead, ModelBab
 {
     public RenderBabyhead(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().BABYHEAD);
+        super(m, AVP.resources().models().BABYHEAD);
     }
     
     public void doRender(EntityBabyhead entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)

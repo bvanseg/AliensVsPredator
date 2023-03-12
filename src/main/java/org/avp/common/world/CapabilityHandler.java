@@ -1,6 +1,6 @@
 package org.avp.common.world;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.world.capabilities.IOrganism;
 import org.avp.common.world.capabilities.IOrganism.Organism;
 import org.avp.common.world.capabilities.IOrganism.Provider;
@@ -27,8 +27,8 @@ public class CapabilityHandler implements IPreInitEvent
 {
     public static final CapabilityHandler instance = new CapabilityHandler();
 
-    public static final ResourceLocation ORGANISM = new ResourceLocation(AliensVsPredator.Properties.ID, "organism");
-    public static final ResourceLocation SPECIAL_PLAYER = new ResourceLocation(AliensVsPredator.Properties.ID, "special_player");
+    public static final ResourceLocation ORGANISM = new ResourceLocation(AVP.Properties.ID, "organism");
+    public static final ResourceLocation SPECIAL_PLAYER = new ResourceLocation(AVP.Properties.ID, "special_player");
 
     @Override
     public void pre(FMLPreInitializationEvent event)

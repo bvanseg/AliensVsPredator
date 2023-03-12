@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 public class Settings implements IPreInitEvent, IFlexibleConfiguration
 {
@@ -183,7 +183,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
                 
                 for (Biome b : EntityHandler.getOverworldBiomeList())
                 {
-                	AliensVsPredator.log().info(b.getBiomeName() + " : " + b.getRegistryName());
+                	AVP.log().info(b.getBiomeName() + " : " + b.getRegistryName());
                 }
             }
 

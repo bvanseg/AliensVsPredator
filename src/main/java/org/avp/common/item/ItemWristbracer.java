@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.DamageSources;
 import org.avp.client.Sounds;
 import org.avp.common.inventory.ContainerWristbracer;
@@ -69,7 +69,7 @@ public class ItemWristbracer extends HookedItem
             @Override
             public void onAction(String combonation, Object... args)
             {
-                AliensVsPredator.network().sendToServer(new PacketSpawnNuke());
+                AVP.network().sendToServer(new PacketSpawnNuke());
                 Game.minecraft().currentScreen = null;
             }
         });
@@ -96,7 +96,7 @@ public class ItemWristbracer extends HookedItem
                         NBTTagCompound slot = wristbracerContents.getCompoundTagAt(s);
                         ItemStack slotstack = new ItemStack(slot);
 
-                        if (slotstack != null && slotstack.getItem() == AliensVsPredator.items().itemWristbracerBlades)
+                        if (slotstack != null && slotstack.getItem() == AVP.items().itemWristbracerBlades)
                         {
                             wristbracerContents.removeTag(s);
                             bladesStack.writeToNBT(slot);
@@ -124,17 +124,17 @@ public class ItemWristbracer extends HookedItem
 
     public static float getDamageToApply()
     {
-        return AliensVsPredator.materials().tools().celtic.getAttackDamage() * 1.5F;
+        return AVP.materials().tools().celtic.getAttackDamage() * 1.5F;
     }
 
     public static ItemStack getBlades(ItemStack wristbracer)
     {
-        return get(wristbracer, AliensVsPredator.items().itemWristbracerBlades);
+        return get(wristbracer, AVP.items().itemWristbracerBlades);
     }
 
     public static ItemStack getPlasmaCannon(ItemStack wristbracer)
     {
-        return get(wristbracer, AliensVsPredator.items().itemPlasmaCannon);
+        return get(wristbracer, AVP.items().itemPlasmaCannon);
     }
 
     public static ItemStack get(ItemStack wristbracer, Item item)

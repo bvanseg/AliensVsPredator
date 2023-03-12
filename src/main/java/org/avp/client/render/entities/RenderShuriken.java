@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntityShuriken;
 import org.lwjgl.opengl.GL11;
 
@@ -38,7 +38,7 @@ public class RenderShuriken extends Render<EntityShuriken>
             OpenGL.translate(-0.5F, 0.0F, -0.5F);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             OpenGL.rotate(90, 1, 0, 0);
-            AliensVsPredator.resources().SHURIKEN.bind();
+            AVP.resources().SHURIKEN.bind();
             Draw.drawQuad(0, 0, 1, 1, 0, 0.5F, 0F, 0F, 0.5F);
             OpenGL.enable(GL11.GL_CULL_FACE);
         }

@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelPredatorHound;
 import org.avp.common.entities.living.EntityPredatorHound;
 
@@ -13,7 +13,7 @@ public class RenderPredatorHound extends RenderLivingWrapper<EntityPredatorHound
 {
     public RenderPredatorHound(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().PREDATOR_HOUND);
+        super(m, AVP.resources().models().PREDATOR_HOUND);
     }
     
     @Override

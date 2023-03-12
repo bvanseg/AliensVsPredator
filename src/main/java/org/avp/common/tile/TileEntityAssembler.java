@@ -1,6 +1,6 @@
 package org.avp.common.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.inventory.ContainerAssembler;
 import org.avp.common.item.crafting.AssemblyManager;
 
@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 
 public class TileEntityAssembler extends TileEntity implements IInventory, ITickable
 {
-    private Item               randomItem  = AliensVsPredator.items().biomaskCeltic;
+    private Item               randomItem  = AVP.items().biomaskCeltic;
     private ItemStack[]        items       = new ItemStack[28];
     private ItemStack          previousTickStack;
     public int                 clickAmount = 0;
@@ -240,7 +240,7 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_ASSEMBLER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_ASSEMBLER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
         }
     }
 

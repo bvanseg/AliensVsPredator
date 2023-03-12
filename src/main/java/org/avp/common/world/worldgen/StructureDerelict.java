@@ -1,6 +1,6 @@
 package org.avp.common.world.worldgen;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Structure;
@@ -17,7 +17,7 @@ public class StructureDerelict extends Structure
 
     public StructureDerelict(WorldServer world, Pos data)
     {
-        super(AliensVsPredator.schematics().derelict, world, data);
+        super(AVP.schematics().derelict, world, data);
     }
 
     @Override

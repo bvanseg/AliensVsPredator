@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelOctohugger;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
@@ -24,7 +24,7 @@ public class RenderOctohugger extends RenderLivingWrapper<EntityOctohugger, Mode
 
     public RenderOctohugger(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().OCTOHUGGER);
+        super(m, AVP.resources().models().OCTOHUGGER);
     }
 
     @Override

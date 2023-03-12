@@ -7,7 +7,7 @@ import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 import org.apache.commons.lang3.SystemUtils;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityWorkstation;
 import org.lwjgl.opengl.GL12;
 
@@ -36,7 +36,7 @@ public class RenderWorkstation extends TileEntitySpecialRenderer<TileEntityWorks
             OpenGL.enable(GL12.GL_RESCALE_NORMAL);
             OpenGL.scale(1.0F, -1.0F, 1.0F);
             OpenGL.enable(GL_ALPHA_TEST);
-            AliensVsPredator.resources().models().WORKSTATION.draw(tile);
+            AVP.resources().models().WORKSTATION.draw(tile);
 
             if (tile.isOperational())
             {
@@ -44,7 +44,7 @@ public class RenderWorkstation extends TileEntitySpecialRenderer<TileEntityWorks
                 OpenGL.disableLight();
                 OpenGL.enable(GL_BLEND);
                 OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-                AliensVsPredator.resources().models().WORKSTATION_MASK.draw(tile);
+                AVP.resources().models().WORKSTATION_MASK.draw(tile);
 
                 this.renderDisplay(tile);
 

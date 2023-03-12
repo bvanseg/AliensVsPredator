@@ -3,7 +3,7 @@ package org.avp.common.world.dimension.acheron;
 import java.util.Random;
 
 import org.avp.common.AVPBlocks;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.world.dimension.BiomeGenLV;
 
 import com.asx.mdx.lib.world.Worlds;
@@ -17,7 +17,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 
 public class BiomeAcheron extends BiomeGenLV
 {
-    public static final BiomeAcheron acheron = (BiomeAcheron) new BiomeAcheron(new BiomeProperties("Acheron").setBaseHeight(0.1F).setHeightVariation(0.4F).setTemperature(0.5F).setRainDisabled()).setRegistryName(AliensVsPredator.Properties.ID, "acheron");
+    public static final BiomeAcheron acheron = (BiomeAcheron) new BiomeAcheron(new BiomeProperties("Acheron").setBaseHeight(0.1F).setHeightVariation(0.4F).setTemperature(0.5F).setRainDisabled()).setRegistryName(AVP.Properties.ID, "acheron");
 
     public BiomeAcheron(BiomeProperties properties)
     {

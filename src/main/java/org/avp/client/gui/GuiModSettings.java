@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.commons.lang3.text.WordUtils;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.Settings;
 import org.avp.common.Settings.ClientSettings;
 import org.lwjgl.input.Keyboard;
@@ -149,7 +149,7 @@ public class GuiModSettings extends GuiCustomScreen
         header.fontShadow = false;
         this.elements.add(header);
 
-        for (ConfigSetting setting : AliensVsPredator.settings().allSettings())
+        for (ConfigSetting setting : AVP.settings().allSettings())
         {
             if (setting instanceof ConfigSettingBoolean)
             {

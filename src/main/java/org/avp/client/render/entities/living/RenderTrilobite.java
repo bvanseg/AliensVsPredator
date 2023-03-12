@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelTrilobite;
 import org.avp.common.entities.living.species.species223ode.EntityTrilobite;
 
@@ -13,7 +13,7 @@ public class RenderTrilobite extends RenderLivingWrapper<EntityTrilobite, ModelT
 {
     public RenderTrilobite(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().TRILOBITE);
+        super(m, AVP.resources().models().TRILOBITE);
     }
 
     @Override

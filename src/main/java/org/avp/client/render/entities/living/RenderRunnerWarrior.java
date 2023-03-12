@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelRunnerWarrior;
 import org.avp.common.entities.living.species.xenomorphs.EntityRunnerWarrior;
 
@@ -10,6 +10,6 @@ public class RenderRunnerWarrior extends RenderXenomorph<EntityRunnerWarrior, Mo
 {
     public RenderRunnerWarrior(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().RUNNER_WARRIOR, 1F);
+        super(m, AVP.resources().models().RUNNER_WARRIOR, 1F);
     }
 }

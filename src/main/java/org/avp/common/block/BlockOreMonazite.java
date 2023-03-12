@@ -2,7 +2,7 @@ package org.avp.common.block;
 
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.world.block.BlockMaterial;
 
@@ -22,7 +22,7 @@ public class BlockOreMonazite extends BlockMaterial
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return AliensVsPredator.items().neodymium;
+        return AVP.items().neodymium;
     }
     
     @Override

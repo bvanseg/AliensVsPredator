@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelM240ICU;
 import org.avp.common.item.firearms.ItemFirearm;
 import org.lwjgl.input.Mouse;
@@ -19,7 +19,7 @@ public class RenderItemM240ICU extends ItemFirearmRenderer<ModelM240ICU>
 {
     public RenderItemM240ICU()
     {
-        super(AliensVsPredator.resources().models().M240ICU);
+        super(AVP.resources().models().M240ICU);
     }
 
     @Override

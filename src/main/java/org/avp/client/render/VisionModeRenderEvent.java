@@ -1,6 +1,6 @@
 package org.avp.client.render;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.client.gui.IAction;
 import com.asx.mdx.lib.client.gui.IGuiElement;
@@ -35,7 +35,7 @@ public class VisionModeRenderEvent
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR && Game.minecraft().gameSettings.thirdPersonView == 0)
             {
-                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().biomaskCeltic)
+                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVP.items().biomaskCeltic)
                 {
                     OpenGL.pushMatrix();
                     this.currentVisionMode.render();
@@ -52,7 +52,7 @@ public class VisionModeRenderEvent
     {
         ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
 
-        if (Game.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().biomaskCeltic)
+        if (Game.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == AVP.items().biomaskCeltic)
         {
             if (event.getEntity() != Game.minecraft().player)
             {
@@ -66,7 +66,7 @@ public class VisionModeRenderEvent
     {
         ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
 
-        if (Game.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().biomaskCeltic)
+        if (Game.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == AVP.items().biomaskCeltic)
         {
             if (event.getEntity() != Game.minecraft().player)
             {

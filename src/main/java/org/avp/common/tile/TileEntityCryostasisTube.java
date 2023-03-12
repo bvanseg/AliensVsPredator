@@ -1,6 +1,6 @@
 package org.avp.common.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.item.ItemEntitySummoner;
 import org.avp.common.packets.server.PacketCryostasisStateUpdate;
@@ -152,7 +152,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         this.cracked = cracked;
 
         if (!this.world.isRemote) {
-            AliensVsPredator.network().sendToAll(new PacketCryostasisStateUpdate(this));
+            AVP.network().sendToAll(new PacketCryostasisStateUpdate(this));
         }
     }
 
@@ -161,7 +161,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         this.shattered = shattered;
 
         if (!this.world.isRemote) {
-            AliensVsPredator.network().sendToAll(new PacketCryostasisStateUpdate(this));
+            AVP.network().sendToAll(new PacketCryostasisStateUpdate(this));
         }
     }
 

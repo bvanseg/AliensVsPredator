@@ -1,6 +1,6 @@
 package org.avp.common.packets.server;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntityGrenade;
 
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
@@ -39,8 +39,8 @@ public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaun
             {
                 if (ctx.getServerHandler().player != null && ctx.getServerHandler().player.world != null)
                 {
-                    boolean hasNormal = Inventories.playerHas(AliensVsPredator.items().itemGrenade, ctx.getServerHandler().player);
-                    boolean hasIncendiary = Inventories.playerHas(AliensVsPredator.items().itemIncendiaryGrenade, ctx.getServerHandler().player);
+                    boolean hasNormal = Inventories.playerHas(AVP.items().itemGrenade, ctx.getServerHandler().player);
+                    boolean hasIncendiary = Inventories.playerHas(AVP.items().itemIncendiaryGrenade, ctx.getServerHandler().player);
 
                     if (hasNormal || hasIncendiary)
                     {
@@ -48,7 +48,7 @@ public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaun
                         grenade.explodeOnImpact = true;
                         grenade.setFlaming(hasIncendiary);
                         ctx.getServerHandler().player.world.spawnEntity(grenade);
-                        Inventories.consumeItem(ctx.getServerHandler().player, !hasIncendiary ? AliensVsPredator.items().itemGrenade : AliensVsPredator.items().itemIncendiaryGrenade);
+                        Inventories.consumeItem(ctx.getServerHandler().player, !hasIncendiary ? AVP.items().itemGrenade : AVP.items().itemIncendiaryGrenade);
                     }
                 }
             }

@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelDrone;
 import org.avp.common.entities.living.species.xenomorphs.EntityDrone;
 
@@ -10,6 +10,6 @@ public class RenderDrone extends RenderXenomorph<EntityDrone, ModelDrone>
 {
     public RenderDrone(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().DRONE_ADVANCED, 0.9F);
+        super(m, AVP.resources().models().DRONE_ADVANCED, 0.9F);
     }
 }

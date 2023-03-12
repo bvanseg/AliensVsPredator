@@ -5,7 +5,7 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
 import org.lwjgl.opengl.GL11;
 
@@ -99,7 +99,7 @@ public class BossBarEvent
             OpenGL.enable(GL11.GL_BLEND);
             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             OpenGL.color4i(0xFFFFFFFF);
-            AliensVsPredator.resources().QUEEN_BOSS_BAR.bind();
+            AVP.resources().QUEEN_BOSS_BAR.bind();
             posX = posX + (index * (tW));
             OpenGL.color4i(color);
             Draw.drawQuad(posX + (offset / 2), posY, (tW - offset) * health / 100, tH, 0, 0.15F, 0.85F, 0F, 0.5F);

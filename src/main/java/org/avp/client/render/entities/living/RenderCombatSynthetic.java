@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.living.EntityCombatSynthetic;
 
 import com.asx.mdx.lib.client.model.SpecialModelBiped;
@@ -90,7 +90,7 @@ public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynth
     
     public RenderCombatSynthetic(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().COMBAT_SYNTHETIC);
+        super(m, AVP.resources().models().COMBAT_SYNTHETIC);
         this.addLayer(new LayerHeldGun(this));
     }
 
@@ -121,7 +121,7 @@ public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynth
                 OpenGL.rotate(180.0F, 0.0F, 0.0F, 1.0F);
                 GlStateManager.disableCull();
                 OpenGL.scale(glScale, glScale, glScale);
-                AliensVsPredator.resources().models().M41A.draw();
+                AVP.resources().models().M41A.draw();
             }
             OpenGL.popMatrix();
         }

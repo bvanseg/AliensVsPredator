@@ -1,6 +1,6 @@
 package org.avp.common.block;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityRepulsionGenerator;
 
 import net.minecraft.block.Block;
@@ -66,7 +66,7 @@ public class BlockGenerator extends Block
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_REPULSION_GENERATOR, player.world, generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_REPULSION_GENERATOR, player.world, generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ());
         }
     }
 }

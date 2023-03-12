@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelSpitter;
 import org.avp.common.entities.living.species.xenomorphs.EntitySpitter;
 import org.lwjgl.opengl.GL11;
@@ -15,7 +15,7 @@ public class RenderSpitter extends RenderLivingWrapper<EntitySpitter, ModelSpitt
 {
     public RenderSpitter(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().SPITTER);
+        super(m, AVP.resources().models().SPITTER);
 //        this.setRenderPassModel(this.getModel().getModel());
     }
 
@@ -38,7 +38,7 @@ public class RenderSpitter extends RenderLivingWrapper<EntitySpitter, ModelSpitt
         }
         else
         {
-            AliensVsPredator.resources().models().SPITTER.getTexture().bind();
+            AVP.resources().models().SPITTER.getTexture().bind();
             OpenGL.enable(GL11.GL_BLEND);
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
 

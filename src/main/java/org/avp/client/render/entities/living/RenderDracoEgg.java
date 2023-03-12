@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelDracoOvamorph;
 import org.avp.common.entities.living.EntityDracoEgg;
 
@@ -13,7 +13,7 @@ public class RenderDracoEgg extends RenderLivingWrapper<EntityDracoEgg, ModelDra
 {
     public RenderDracoEgg(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().DRACO_OVAMORPH);
+        super(m, AVP.resources().models().DRACO_OVAMORPH);
     }
 
     @Override

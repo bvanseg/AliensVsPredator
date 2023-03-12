@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelHammerpede;
 import org.avp.common.entities.living.vardic.EntityHammerpede;
 
@@ -13,7 +13,7 @@ public class RenderHammerpede extends RenderLivingWrapper<EntityHammerpede, Mode
 {
     public RenderHammerpede(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().HAMMERPEDE);
+        super(m, AVP.resources().models().HAMMERPEDE);
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.UUID;
 
 import org.avp.common.AVPBlocks;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.machines.IOpenable;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.packets.client.PacketOpenBlastdoor;
@@ -440,7 +440,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
             if (this.world != null && !this.world.isRemote && sendPacket)
             {
-                AliensVsPredator.network().sendToAll(new PacketOpenBlastdoor(doorOpen, this.getPos()));
+                AVP.network().sendToAll(new PacketOpenBlastdoor(doorOpen, this.getPos()));
             }
         }
     }
@@ -534,27 +534,27 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
     public void playOpenSound()
     {
-        AliensVsPredator.sounds().BLASTDOOR_OPEN.playSound(world, pos, 1F, 1F);
+        AVP.sounds().BLASTDOOR_OPEN.playSound(world, pos, 1F, 1F);
     }
 
     public void playCloseSound()
     {
-        AliensVsPredator.sounds().BLASTDOOR_CLOSE.playSound(world, pos, 1F, 1F);
+        AVP.sounds().BLASTDOOR_CLOSE.playSound(world, pos, 1F, 1F);
     }
 
     public void playUnlockSound()
     {
-        AliensVsPredator.sounds().BLASTDOOR_UNLOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
+        AVP.sounds().BLASTDOOR_UNLOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
 
     public void playLockSound()
     {
-        AliensVsPredator.sounds().BLASTDOOR_LOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
+        AVP.sounds().BLASTDOOR_LOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
 
     public void playIncorrectPasswordSound()
     {
-        AliensVsPredator.sounds().BLASTDOOR_PASSWORD_DENIED.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
+        AVP.sounds().BLASTDOOR_PASSWORD_DENIED.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
 
     public boolean authenticate(String key)
@@ -575,7 +575,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
     public void bindToSecurityTuner(EntityPlayer playerEntity, ItemStack itemstack)
     {
-        if (itemstack.getItem() == AliensVsPredator.items().securityTuner)
+        if (itemstack.getItem() == AVP.items().securityTuner)
         {
             NBTTagCompound tag = itemstack.getTagCompound() != null ? itemstack.getTagCompound() : new NBTTagCompound();
             String tunerBindKey = tag.getString("BindKey");
@@ -600,7 +600,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         ItemStack itemstack = player.getHeldItemMainhand();
 
-        if (itemstack != null && itemstack.getItem() == AliensVsPredator.items().securityTuner)
+        if (itemstack != null && itemstack.getItem() == AVP.items().securityTuner)
         {
             NBTTagCompound tag = itemstack.getTagCompound() != null ? itemstack.getTagCompound() : new NBTTagCompound();
             return tag.getString("BindKey").equals(this.bindKey) || this.bindKey.isEmpty();

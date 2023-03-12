@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelPredalien;
 import org.avp.common.entities.living.species.xenomorphs.EntityPredalien;
 
@@ -13,7 +13,7 @@ public class RenderPredalien extends RenderLivingWrapper<EntityPredalien, ModelP
 {
     public RenderPredalien(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().PREDALIEN);
+        super(m, AVP.resources().models().PREDALIEN);
     }
 
     @Override

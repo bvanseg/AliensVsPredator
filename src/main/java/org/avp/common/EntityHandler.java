@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntityAPC;
 import org.avp.common.entities.EntityAcidPool;
 import org.avp.common.entities.EntityAcidProjectile;
@@ -191,7 +191,7 @@ public class EntityHandler implements IInitEvent
         DEFAULT_VARDA_LIFE_SPAWNS.add(BiomeVarda.vardaForest);
     }
 
-    @Mod.EventBusSubscriber(modid = AliensVsPredator.Properties.ID)
+    @Mod.EventBusSubscriber(modid = AVP.Properties.ID)
     public static class RegistrationHandler
     {
         static
@@ -252,7 +252,7 @@ public class EntityHandler implements IInitEvent
             livingEntities.add(EntityEntryBuilder.create().entity(EntityDeaconAdult.class).id("DeaconAdult", entityId++).name("DeaconAdult").tracker(250, 4, true).build());
             livingEntities.add(EntityEntryBuilder.create().entity(EntityOvamorphGiger.class).id("OvamorphGiger", entityId++).name("OvamorphGiger").tracker(250, 4, true).build());
 
-            if (AliensVsPredator.settings().areExperimentalFeaturesEnabled())
+            if (AVP.settings().areExperimentalFeaturesEnabled())
             {
                 livingEntities.add(EntityEntryBuilder.create().entity(EntityBabyhead.class).id("Babyhead", entityId++).name("Babyhead").tracker(250, 4, true).build());
                 livingEntities.add(EntityEntryBuilder.create().entity(EntityBatXeno.class).id("BatXeno", entityId++).name("BatXeno").tracker(250, 4, true).build());
@@ -294,75 +294,75 @@ public class EntityHandler implements IInitEvent
 
     public void registerTileEntities()
     {
-        GameRegistry.registerTileEntity(TileEntityTurret.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityTurret"));
-        GameRegistry.registerTileEntity(TileEntityWorkstation.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityWorkstation"));
-        GameRegistry.registerTileEntity(TileEntityHiveResin.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityBlockHive"));
-        GameRegistry.registerTileEntity(TileEntityAssembler.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityAssembler"));
-        GameRegistry.registerTileEntity(TileEntityStasisMechanism.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileStasisMechanism"));
-        GameRegistry.registerTileEntity(TileEntityRepulsionGenerator.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityGenerator"));
-        GameRegistry.registerTileEntity(TileEntityPowerline.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityPowerline"));
-        GameRegistry.registerTileEntity(TileEntityBlastdoor.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityBlastdoor"));
-        GameRegistry.registerTileEntity(TileEntitySevastopolBlastDoor.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntitySevastopolBlastdoor"));
-        GameRegistry.registerTileEntity(TileEntityCryostasisTube.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityCryostasisTube"));
-        GameRegistry.registerTileEntity(TileEntityLightPanel.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityLightPanel"));
-        GameRegistry.registerTileEntity(TileEntityCCFLTube.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityCCFLTube"));
-        GameRegistry.registerTileEntity(TileEntityNetworkRack.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntitySatelliteModem"));
-        GameRegistry.registerTileEntity(TileEntitySatelliteDish.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntitySatelliteDish"));
-        GameRegistry.registerTileEntity(TileEntityTransformer.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityTransformer"));
-        GameRegistry.registerTileEntity(TileEntityNegativeTransformer.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityNegativeTransformer"));
-        GameRegistry.registerTileEntity(TileEntityRedstoneSensor.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityR2PConverter"));
-        GameRegistry.registerTileEntity(TileEntityRedstoneEmitter.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityP2RConverter"));
-        GameRegistry.registerTileEntity(TileEntityPowercell.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityPowercell"));
-        GameRegistry.registerTileEntity(TileEntityAmpule.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityAmpule"));
-        GameRegistry.registerTileEntity(TileEntityLocker.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityLocker"));
-        GameRegistry.registerTileEntity(TileEntityGunLocker.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityGunLocker"));
-        GameRegistry.registerTileEntity(TileEntityMedpod.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntityMedpod"));
-        GameRegistry.registerTileEntity(TileEntitySupplyCrate.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tileEntitySupplyCrate"));
-        GameRegistry.registerTileEntity(TileEntitySolarPanel.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.solarpanel"));
-        GameRegistry.registerTileEntity(TileEntitySkull.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.skull"));
-        GameRegistry.registerTileEntity(TileEntityRedstoneFluxGenerator.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.redstonefluxgenerator"));
-        GameRegistry.registerTileEntity(TileEntityReflective.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.reflective"));
-        GameRegistry.registerTileEntity(TileEntityGroundFern.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.groundfern"));
-        GameRegistry.registerTileEntity(TileEntityTreeFern.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.treefern"));
-        GameRegistry.registerTileEntity(TileEntityTeslaCoil.class, new ResourceLocation(AliensVsPredator.Properties.ID, "tile.avp.tesacoil"));
+        GameRegistry.registerTileEntity(TileEntityTurret.class, new ResourceLocation(AVP.Properties.ID, "tileEntityTurret"));
+        GameRegistry.registerTileEntity(TileEntityWorkstation.class, new ResourceLocation(AVP.Properties.ID, "tileEntityWorkstation"));
+        GameRegistry.registerTileEntity(TileEntityHiveResin.class, new ResourceLocation(AVP.Properties.ID, "tileEntityBlockHive"));
+        GameRegistry.registerTileEntity(TileEntityAssembler.class, new ResourceLocation(AVP.Properties.ID, "tileEntityAssembler"));
+        GameRegistry.registerTileEntity(TileEntityStasisMechanism.class, new ResourceLocation(AVP.Properties.ID, "tileStasisMechanism"));
+        GameRegistry.registerTileEntity(TileEntityRepulsionGenerator.class, new ResourceLocation(AVP.Properties.ID, "tileEntityGenerator"));
+        GameRegistry.registerTileEntity(TileEntityPowerline.class, new ResourceLocation(AVP.Properties.ID, "tileEntityPowerline"));
+        GameRegistry.registerTileEntity(TileEntityBlastdoor.class, new ResourceLocation(AVP.Properties.ID, "tileEntityBlastdoor"));
+        GameRegistry.registerTileEntity(TileEntitySevastopolBlastDoor.class, new ResourceLocation(AVP.Properties.ID, "tileEntitySevastopolBlastdoor"));
+        GameRegistry.registerTileEntity(TileEntityCryostasisTube.class, new ResourceLocation(AVP.Properties.ID, "tileEntityCryostasisTube"));
+        GameRegistry.registerTileEntity(TileEntityLightPanel.class, new ResourceLocation(AVP.Properties.ID, "tileEntityLightPanel"));
+        GameRegistry.registerTileEntity(TileEntityCCFLTube.class, new ResourceLocation(AVP.Properties.ID, "tileEntityCCFLTube"));
+        GameRegistry.registerTileEntity(TileEntityNetworkRack.class, new ResourceLocation(AVP.Properties.ID, "tileEntitySatelliteModem"));
+        GameRegistry.registerTileEntity(TileEntitySatelliteDish.class, new ResourceLocation(AVP.Properties.ID, "tileEntitySatelliteDish"));
+        GameRegistry.registerTileEntity(TileEntityTransformer.class, new ResourceLocation(AVP.Properties.ID, "tileEntityTransformer"));
+        GameRegistry.registerTileEntity(TileEntityNegativeTransformer.class, new ResourceLocation(AVP.Properties.ID, "tileEntityNegativeTransformer"));
+        GameRegistry.registerTileEntity(TileEntityRedstoneSensor.class, new ResourceLocation(AVP.Properties.ID, "tileEntityR2PConverter"));
+        GameRegistry.registerTileEntity(TileEntityRedstoneEmitter.class, new ResourceLocation(AVP.Properties.ID, "tileEntityP2RConverter"));
+        GameRegistry.registerTileEntity(TileEntityPowercell.class, new ResourceLocation(AVP.Properties.ID, "tileEntityPowercell"));
+        GameRegistry.registerTileEntity(TileEntityAmpule.class, new ResourceLocation(AVP.Properties.ID, "tileEntityAmpule"));
+        GameRegistry.registerTileEntity(TileEntityLocker.class, new ResourceLocation(AVP.Properties.ID, "tileEntityLocker"));
+        GameRegistry.registerTileEntity(TileEntityGunLocker.class, new ResourceLocation(AVP.Properties.ID, "tileEntityGunLocker"));
+        GameRegistry.registerTileEntity(TileEntityMedpod.class, new ResourceLocation(AVP.Properties.ID, "tileEntityMedpod"));
+        GameRegistry.registerTileEntity(TileEntitySupplyCrate.class, new ResourceLocation(AVP.Properties.ID, "tileEntitySupplyCrate"));
+        GameRegistry.registerTileEntity(TileEntitySolarPanel.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.solarpanel"));
+        GameRegistry.registerTileEntity(TileEntitySkull.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.skull"));
+        GameRegistry.registerTileEntity(TileEntityRedstoneFluxGenerator.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.redstonefluxgenerator"));
+        GameRegistry.registerTileEntity(TileEntityReflective.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.reflective"));
+        GameRegistry.registerTileEntity(TileEntityGroundFern.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.groundfern"));
+        GameRegistry.registerTileEntity(TileEntityTreeFern.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.treefern"));
+        GameRegistry.registerTileEntity(TileEntityTeslaCoil.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.tesacoil"));
     }
 
     private void registerSpawns()
     {
-        if (AliensVsPredator.settings().areAutoSpawnsEnabled())
+        if (AVP.settings().areAutoSpawnsEnabled())
         {
-            ArrayList<Biome> alienSpawns = filterOverworldBiomes("Alien", AliensVsPredator.settings().getSpawnsAlien().value());
-            ArrayList<Biome> aquaAlienSpawns = filterOverworldBiomes("AlienAquatic", AliensVsPredator.settings().getSpawnsAquaticAlien().value());
-            ArrayList<Biome> predatorSpawns = filterOverworldBiomes("Predator", AliensVsPredator.settings().getSpawnsPredator().value());
-            ArrayList<Biome> marineSpawns = AliensVsPredator.settings().getSpawnsMarine().value();
-            ArrayList<Biome> vardaSpawns = filterOverworldBiomes("Varda", AliensVsPredator.settings().getSpawnsVarda().value());  
+            ArrayList<Biome> alienSpawns = filterOverworldBiomes("Alien", AVP.settings().getSpawnsAlien().value());
+            ArrayList<Biome> aquaAlienSpawns = filterOverworldBiomes("AlienAquatic", AVP.settings().getSpawnsAquaticAlien().value());
+            ArrayList<Biome> predatorSpawns = filterOverworldBiomes("Predator", AVP.settings().getSpawnsPredator().value());
+            ArrayList<Biome> marineSpawns = AVP.settings().getSpawnsMarine().value();
+            ArrayList<Biome> vardaSpawns = filterOverworldBiomes("Varda", AVP.settings().getSpawnsVarda().value());
 
-            if (AliensVsPredator.settings().shouldEvolvedXenomorphsSpawn())
+            if (AVP.settings().shouldEvolvedXenomorphsSpawn())
             {
-                EntityRegistry.addSpawn(EntityNauticomorph.class, (Integer) AliensVsPredator.settings().spawnWeightEntityNauticomorph.value(), 1, 2, EnumCreatureType.MONSTER, array(aquaAlienSpawns));
-                EntityRegistry.addSpawn(EntityDrone.class, (Integer) AliensVsPredator.settings().spawnWeightEntityDrone.value(), 1, 3, EnumCreatureType.MONSTER, array(alienSpawns));
-                EntityRegistry.addSpawn(EntityWarrior.class, (Integer) AliensVsPredator.settings().spawnWeightEntityWarrior.value(), 1, 3, EnumCreatureType.MONSTER, array(alienSpawns));
-                EntityRegistry.addSpawn(EntityPraetorian.class, (Integer) AliensVsPredator.settings().spawnWeightEntityPraetorian.value(), 1, 2, EnumCreatureType.MONSTER, array(alienSpawns));
-                EntityRegistry.addSpawn(EntityChestburster.class, (Integer) AliensVsPredator.settings().spawnWeightEntityChestburster.value(), 1, 3, EnumCreatureType.MONSTER, array(alienSpawns));
-                EntityRegistry.addSpawn(EntityFacehugger.class, (Integer) AliensVsPredator.settings().spawnWeightEntityFacehugger.value(), 1, 2, EnumCreatureType.MONSTER, array(alienSpawns));
+                EntityRegistry.addSpawn(EntityNauticomorph.class, (Integer) AVP.settings().spawnWeightEntityNauticomorph.value(), 1, 2, EnumCreatureType.MONSTER, array(aquaAlienSpawns));
+                EntityRegistry.addSpawn(EntityDrone.class, (Integer) AVP.settings().spawnWeightEntityDrone.value(), 1, 3, EnumCreatureType.MONSTER, array(alienSpawns));
+                EntityRegistry.addSpawn(EntityWarrior.class, (Integer) AVP.settings().spawnWeightEntityWarrior.value(), 1, 3, EnumCreatureType.MONSTER, array(alienSpawns));
+                EntityRegistry.addSpawn(EntityPraetorian.class, (Integer) AVP.settings().spawnWeightEntityPraetorian.value(), 1, 2, EnumCreatureType.MONSTER, array(alienSpawns));
+                EntityRegistry.addSpawn(EntityChestburster.class, (Integer) AVP.settings().spawnWeightEntityChestburster.value(), 1, 3, EnumCreatureType.MONSTER, array(alienSpawns));
+                EntityRegistry.addSpawn(EntityFacehugger.class, (Integer) AVP.settings().spawnWeightEntityFacehugger.value(), 1, 2, EnumCreatureType.MONSTER, array(alienSpawns));
             }
             else
             {
-                EntityRegistry.addSpawn(EntityFacehugger.class, (Integer) AliensVsPredator.settings().spawnWeightEntityFacehugger.value(), 1, 2, EnumCreatureType.MONSTER, array(alienSpawns));
+                EntityRegistry.addSpawn(EntityFacehugger.class, (Integer) AVP.settings().spawnWeightEntityFacehugger.value(), 1, 2, EnumCreatureType.MONSTER, array(alienSpawns));
             }
 
-            EntityRegistry.addSpawn(EntityYautjaWarrior.class, (Integer) AliensVsPredator.settings().spawnWeightEntityYautjaWarrior.value(), 0, 1, EnumCreatureType.MONSTER, array(predatorSpawns));
-            EntityRegistry.addSpawn(EntityYautjaBerserker.class, (Integer) AliensVsPredator.settings().spawnWeightEntityYautjaBerserker.value(), 0, 1, EnumCreatureType.MONSTER, array(predatorSpawns));
+            EntityRegistry.addSpawn(EntityYautjaWarrior.class, (Integer) AVP.settings().spawnWeightEntityYautjaWarrior.value(), 0, 1, EnumCreatureType.MONSTER, array(predatorSpawns));
+            EntityRegistry.addSpawn(EntityYautjaBerserker.class, (Integer) AVP.settings().spawnWeightEntityYautjaBerserker.value(), 0, 1, EnumCreatureType.MONSTER, array(predatorSpawns));
 
-            EntityRegistry.addSpawn(EntityMarine.class, (Integer) AliensVsPredator.settings().spawnWeightEntityMarine.value(), 1, 1, EnumCreatureType.CREATURE, array(marineSpawns));
+            EntityRegistry.addSpawn(EntityMarine.class, (Integer) AVP.settings().spawnWeightEntityMarine.value(), 1, 1, EnumCreatureType.CREATURE, array(marineSpawns));
 
-            EntityRegistry.addSpawn(EntityEngineer.class, (Integer) AliensVsPredator.settings().spawnWeightEntityEngineer.value(), 1, 1, EnumCreatureType.MONSTER, array(vardaSpawns));
-            EntityRegistry.addSpawn(EntitySpaceJockey.class, (Integer) AliensVsPredator.settings().spawnWeightEntitySpaceJockey.value(), 1, 1, EnumCreatureType.MONSTER, array(vardaSpawns));
-            EntityRegistry.addSpawn(EntityHammerpede.class, (Integer) AliensVsPredator.settings().spawnWeightEntityHammerpede.value(), 0, 3, EnumCreatureType.MONSTER, array(vardaSpawns));
-            EntityRegistry.addSpawn(EntityOctohugger.class, (Integer) AliensVsPredator.settings().spawnWeightEntityOctohugger.value(), 0, 3, EnumCreatureType.MONSTER, array(vardaSpawns));
-            EntityRegistry.addSpawn(EntityDeacon.class, (Integer) AliensVsPredator.settings().spawnWeightEntityDeacon.value(), 0, 1, EnumCreatureType.MONSTER, array(vardaSpawns));
-            EntityRegistry.addSpawn(EntityEngineer.class, (Integer) AliensVsPredator.settings().spawnWeightEntityEngineer.value(), 0, 1, EnumCreatureType.MONSTER, array(vardaSpawns));
-            EntityRegistry.addSpawn(EntityTrilobite.class, (Integer) AliensVsPredator.settings().spawnWeightEntityTrilobite.value(), 0, 1, EnumCreatureType.MONSTER, array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityEngineer.class, (Integer) AVP.settings().spawnWeightEntityEngineer.value(), 1, 1, EnumCreatureType.MONSTER, array(vardaSpawns));
+            EntityRegistry.addSpawn(EntitySpaceJockey.class, (Integer) AVP.settings().spawnWeightEntitySpaceJockey.value(), 1, 1, EnumCreatureType.MONSTER, array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityHammerpede.class, (Integer) AVP.settings().spawnWeightEntityHammerpede.value(), 0, 3, EnumCreatureType.MONSTER, array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityOctohugger.class, (Integer) AVP.settings().spawnWeightEntityOctohugger.value(), 0, 3, EnumCreatureType.MONSTER, array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityDeacon.class, (Integer) AVP.settings().spawnWeightEntityDeacon.value(), 0, 1, EnumCreatureType.MONSTER, array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityEngineer.class, (Integer) AVP.settings().spawnWeightEntityEngineer.value(), 0, 1, EnumCreatureType.MONSTER, array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityTrilobite.class, (Integer) AVP.settings().spawnWeightEntityTrilobite.value(), 0, 1, EnumCreatureType.MONSTER, array(vardaSpawns));
         }
     }
 
@@ -375,7 +375,7 @@ public class EntityHandler implements IInitEvent
         {
             Biome biome = iter.next();
             
-            if (!AliensVsPredator.settings().areOverworldSpawnsEnabled() && overworldBiomes.contains(biome))
+            if (!AVP.settings().areOverworldSpawnsEnabled() && overworldBiomes.contains(biome))
             {
                 iter.remove();
 

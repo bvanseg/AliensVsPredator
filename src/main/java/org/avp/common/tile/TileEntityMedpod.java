@@ -1,6 +1,6 @@
 package org.avp.common.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.machines.IOpenable;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.entities.EntityMedpod;
@@ -151,7 +151,7 @@ public class TileEntityMedpod extends TileEntityElectrical implements IOpenable,
 
             if (!this.world.isRemote)
             {
-                AliensVsPredator.network().sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
+                AVP.network().sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
             }
 
             if (this.getEntity() != null)

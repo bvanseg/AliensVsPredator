@@ -1,6 +1,6 @@
 package org.avp.common.world.dimension.varda;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.client.world.IClimateProvider;
 import com.asx.mdx.lib.client.world.ICloudProvider;
@@ -86,7 +86,7 @@ public class WorldProviderVarda extends WorldProvider implements IClimateProvide
     @Override
     public String getSaveFolder()
     {
-        return AliensVsPredator.dimensions().DIMENSION_ID_VARDA;
+        return AVP.dimensions().DIMENSION_ID_VARDA;
     }
     
     @Override
@@ -175,6 +175,6 @@ public class WorldProviderVarda extends WorldProvider implements IClimateProvide
     @Override
     public DimensionType getDimensionType()
     {
-        return AliensVsPredator.dimensions().VARDA.getType();
+        return AVP.dimensions().VARDA.getType();
     }
 }

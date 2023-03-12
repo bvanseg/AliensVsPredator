@@ -1,6 +1,6 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityTransformer;
 
 import com.asx.mdx.lib.client.util.Draw;
@@ -49,7 +49,7 @@ public class RenderTransformer extends TileEntitySpecialRenderer<TileEntityTrans
                     OpenGL.rotate(0F, 0F, 1F, 0F);
                 }
 
-                AliensVsPredator.resources().models().TRANSFORMER.draw(transformer);
+                AVP.resources().models().TRANSFORMER.draw(transformer);
             }
             OpenGL.popMatrix();
 

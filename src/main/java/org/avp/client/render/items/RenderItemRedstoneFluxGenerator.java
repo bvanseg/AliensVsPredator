@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelRedstoneFluxGenerator;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemRedstoneFluxGenerator extends ItemRenderer<ModelRedstoneF
 {
     public RenderItemRedstoneFluxGenerator()
     {
-        super(AliensVsPredator.resources().models().RFGENERATOR);
+        super(AVP.resources().models().RFGENERATOR);
     }
 
     @Override

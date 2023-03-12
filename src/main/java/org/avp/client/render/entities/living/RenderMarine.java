@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelMarine;
 import org.avp.common.entities.living.EntityMarine;
 
@@ -89,7 +89,7 @@ public class RenderMarine extends RenderLivingWrapper<EntityMarine, ModelMarine>
 
     public RenderMarine(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().MARINE);
+        super(m, AVP.resources().models().MARINE);
         this.addLayer(new LayerHeldGun(this));
     }
 

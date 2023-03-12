@@ -7,7 +7,7 @@ import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_CONSTANT_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.glDepthMask;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.entities.living.EntityMarine;
 import org.avp.common.entities.living.species.SpeciesAlien;
@@ -64,7 +64,7 @@ public class PressureHUDRenderEvent
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
             {
-                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().pressureMask)
+                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVP.items().pressureMask)
                 {
                     SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
 
@@ -112,7 +112,7 @@ public class PressureHUDRenderEvent
 
     public void renderInventoryElements()
     {
-        if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().pressureMask)
+        if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVP.items().pressureMask)
         {
             ;
         }
@@ -418,7 +418,7 @@ public class PressureHUDRenderEvent
                 }
 
                 OpenGL.color4i(0xFFFFAA00);
-                AliensVsPredator.resources().INFECTION_INDICATOR.bind();
+                AVP.resources().INFECTION_INDICATOR.bind();
                 Draw.drawQuad(res.getScaledWidth() - iconSize, 0, iconSize, iconSize);
             }
         }

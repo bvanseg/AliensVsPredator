@@ -1,6 +1,6 @@
 package org.avp.common.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IHost;
@@ -96,7 +96,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     @Override
     public ItemStack getHeldItemMainhand()
     {
-        return new ItemStack(AliensVsPredator.items().itemM41A);
+        return new ItemStack(AVP.items().itemM41A);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package org.avp.common.packets.server;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityBlastdoor;
 
 import com.asx.mdx.lib.util.Game;
@@ -234,7 +234,7 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
                                 break;
                         }
                         blastdoor.markDirty();
-                        AliensVsPredator.network().sendToAll(new PacketBlastdoorClient(packet.mode, new BlockPos(packet.x, packet.y, packet.z), data));
+                        AVP.network().sendToAll(new PacketBlastdoorClient(packet.mode, new BlockPos(packet.x, packet.y, packet.z), data));
                     }
                 }
             }

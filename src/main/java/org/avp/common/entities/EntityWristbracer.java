@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.Sounds;
 
 import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
@@ -107,7 +107,7 @@ public class EntityWristbracer extends EntityThrowable
             {
                 if (this.getPostInitTicks() >= this.getPostInitTicksMax() * 2)
                 {
-                    if (AliensVsPredator.settings().areExplosionsEnabled())
+                    if (AVP.settings().areExplosionsEnabled())
                     {
                         ArrayList<Block> excludedBlocks = new ArrayList<Block>();
                         excludedBlocks.add(Blocks.BEDROCK);

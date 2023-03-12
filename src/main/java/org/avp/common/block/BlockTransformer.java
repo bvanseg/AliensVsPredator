@@ -2,7 +2,7 @@ package org.avp.common.block;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.client.PacketRotateRotatable;
 import org.avp.common.tile.TileEntityTransformer;
 
@@ -96,7 +96,7 @@ public class BlockTransformer extends Block
 
                         if (!world.isRemote)
                         {
-                            AliensVsPredator.network().sendToAll(new PacketRotateRotatable(transformer.getRotationYAxis().ordinal(), transformer.getPos().getX(), transformer.getPos().getY(), transformer.getPos().getZ()));
+                            AVP.network().sendToAll(new PacketRotateRotatable(transformer.getRotationYAxis().ordinal(), transformer.getPos().getX(), transformer.getPos().getY(), transformer.getPos().getZ()));
                         }
                     }
 

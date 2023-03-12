@@ -1,6 +1,6 @@
 package org.avp.common.item;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.client.util.Draw;
 
@@ -14,7 +14,7 @@ public class ItemArmorMK50 extends ItemAntiVacuumArmor
 {
     public ItemArmorMK50(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(AliensVsPredator.materials().armors().mk50, renderIndex, armorType);
+        super(AVP.materials().armors().mk50, renderIndex, armorType);
     }
 
     @Override
@@ -24,9 +24,9 @@ public class ItemArmorMK50 extends ItemAntiVacuumArmor
             case FEET:
             case LEGS:
             case HEAD:
-                return Draw.getPath(AliensVsPredator.resources().MK501);
+                return Draw.getPath(AVP.resources().MK501);
             default:
-                return Draw.getPath(AliensVsPredator.resources().MK502);
+                return Draw.getPath(AVP.resources().MK502);
         }
     }
     

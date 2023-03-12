@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelAethon;
 import org.avp.common.entities.living.EntityAethon;
 
@@ -13,7 +13,7 @@ public class RenderAethon extends RenderLivingWrapper<EntityAethon, ModelAethon>
 {
     public RenderAethon(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().AETHON);
+        super(m, AVP.resources().models().AETHON);
     }
     
     @Override

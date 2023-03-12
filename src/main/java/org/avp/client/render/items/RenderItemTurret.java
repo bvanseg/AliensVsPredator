@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelTurret;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemTurret extends ItemRenderer<ModelTurret>
 {
     public RenderItemTurret()
     {
-        super(AliensVsPredator.resources().models().TURRET);
+        super(AVP.resources().models().TURRET);
     }
 
     @Override

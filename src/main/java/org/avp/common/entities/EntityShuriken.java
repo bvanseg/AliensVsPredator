@@ -1,6 +1,6 @@
 package org.avp.common.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.DamageSources;
 
 import com.asx.mdx.lib.util.GameSounds;
@@ -21,7 +21,7 @@ public class EntityShuriken extends EntityItemStackProjectile
     {
         super(world);
         this.setSize(0.5F, 0.5F);
-        this.setItemstack(new ItemStack(AliensVsPredator.items().itemShuriken));
+        this.setItemstack(new ItemStack(AVP.items().itemShuriken));
     }
 
     public EntityShuriken(World world, double posX, double posY, double posZ)

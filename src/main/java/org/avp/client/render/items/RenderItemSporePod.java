@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.ModelSporePod;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -23,7 +23,7 @@ public class RenderItemSporePod extends ItemRenderer<ModelSporePod>
     public RenderItemSporePod()
     {
         super(null);
-        this.model = AliensVsPredator.resources().models().SPORE_POD.clone();
+        this.model = AVP.resources().models().SPORE_POD.clone();
     }
 
     public RenderItemSporePod setX(float x)

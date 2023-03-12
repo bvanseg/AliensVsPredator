@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.item.crafting.AssemblyManager;
 import org.avp.common.item.crafting.Schematic;
 import org.avp.common.packets.server.PacketAssemble;
@@ -59,7 +59,7 @@ public class GuiAssembler extends GuiContainer
         if (selectedSchematic != null)
         {
             AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
-            AliensVsPredator.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), requestedAmount));
+            AVP.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), requestedAmount));
         }
     };
     
@@ -251,7 +251,7 @@ public class GuiAssembler extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
     	this.drawDefaultBackground();
-        AliensVsPredator.resources().GUI_ASSEMBLER.bind();
+        AVP.resources().GUI_ASSEMBLER.bind();
         drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
     }
 

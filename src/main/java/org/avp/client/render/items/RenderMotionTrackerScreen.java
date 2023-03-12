@@ -2,7 +2,7 @@ package org.avp.client.render.items;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.Sounds;
 import org.lwjgl.opengl.GL11;
 
@@ -82,7 +82,7 @@ public class RenderMotionTrackerScreen
                     OpenGL.translate(0.0D, hypot, 0.0D);
                     OpenGL.translate(-32.0F, -37.0F, 0.0F);
                     OpenGL.translate(0.0D, -hypot, 0.0D);
-                    AliensVsPredator.resources().MOTIONTRACKER_PING.bind();
+                    AVP.resources().MOTIONTRACKER_PING.bind();
                     OpenGL.antiAlias2d();
                     Draw.drawQuad(x * 2, y * 2, 128, 128);
                 }
@@ -103,7 +103,7 @@ public class RenderMotionTrackerScreen
             OpenGL.translate(0.5F, 0.5F, 0.0F);
             OpenGL.rotate(-this.direction, 0.0F, 0.0F, 1.0F);
             OpenGL.translate(-0.5F, -0.5F, 0.0F);
-            AliensVsPredator.resources().MOTIONTRACKER_BG.bind();
+            AVP.resources().MOTIONTRACKER_BG.bind();
             OpenGL.antiAlias2d();
             Draw.drawQuad(x, y, 128, 76, 64, 64);
 
@@ -111,27 +111,27 @@ public class RenderMotionTrackerScreen
             {
                 if (time >= 14)
                 {
-                    AliensVsPredator.resources().MOTIONTRACKER_S6.bind();
+                    AVP.resources().MOTIONTRACKER_S6.bind();
                 }
                 else if (time >= 13)
                 {
-                    AliensVsPredator.resources().MOTIONTRACKER_S5.bind();
+                    AVP.resources().MOTIONTRACKER_S5.bind();
                 }
                 else if (time >= 12)
                 {
-                    AliensVsPredator.resources().MOTIONTRACKER_S4.bind();
+                    AVP.resources().MOTIONTRACKER_S4.bind();
                 }
                 else if (time >= 11)
                 {
-                    AliensVsPredator.resources().MOTIONTRACKER_S3.bind();
+                    AVP.resources().MOTIONTRACKER_S3.bind();
                 }
                 else if (time >= 10)
                 {
-                    AliensVsPredator.resources().MOTIONTRACKER_S2.bind();
+                    AVP.resources().MOTIONTRACKER_S2.bind();
                 }
                 else if (time >= 9)
                 {
-                    AliensVsPredator.resources().MOTIONTRACKER_S1.bind();
+                    AVP.resources().MOTIONTRACKER_S1.bind();
                 }
 
                 OpenGL.antiAlias2d();
@@ -141,7 +141,7 @@ public class RenderMotionTrackerScreen
         OpenGL.popMatrix();
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
-        AliensVsPredator.resources().MOTIONTRACKER_FG.bind();
+        AVP.resources().MOTIONTRACKER_FG.bind();
         OpenGL.antiAlias2d();
         OpenGL.translate(0, 0, -0.0002F);
         Draw.drawQuad(x, y, 128, 128, 64, 64);

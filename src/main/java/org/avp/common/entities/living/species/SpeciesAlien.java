@@ -2,7 +2,7 @@ package org.avp.common.entities.living.species;
 
 import java.util.UUID;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.DamageSources;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.api.parasitoidic.IRoyalOrganism;
@@ -136,7 +136,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
 
             if (this.isDependant)
             {
-                new ItemDrop(100, new ItemStack(AliensVsPredator.items().itemRoyalJelly, adjustedLevel)).tryDrop(this);
+                new ItemDrop(100, new ItemStack(AVP.items().itemRoyalJelly, adjustedLevel)).tryDrop(this);
             }
         }
     }

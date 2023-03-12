@@ -1,6 +1,6 @@
 package org.avp.common.block;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityNetworkRack;
 
 import com.asx.mdx.lib.world.entity.Entities;
@@ -126,7 +126,7 @@ public class BlockNetworkRack extends Block
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_NETWORK_RACK, player.world, rack.getPos().getX(), rack.getPos().getY(), rack.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_NETWORK_RACK, player.world, rack.getPos().getX(), rack.getPos().getY(), rack.getPos().getZ());
         }
     }
 }

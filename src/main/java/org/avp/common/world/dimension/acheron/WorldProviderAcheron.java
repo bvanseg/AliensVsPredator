@@ -1,6 +1,6 @@
 package org.avp.common.world.dimension.acheron;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -58,7 +58,7 @@ public class WorldProviderAcheron extends WorldProvider
     @Override
     public String getSaveFolder()
     {
-        return AliensVsPredator.dimensions().DIMENSION_ID_ACHERON;
+        return AVP.dimensions().DIMENSION_ID_ACHERON;
     }
 
     @Override
@@ -141,6 +141,6 @@ public class WorldProviderAcheron extends WorldProvider
     @Override
     public DimensionType getDimensionType()
     {
-        return AliensVsPredator.dimensions().ACHERON.getType();
+        return AVP.dimensions().ACHERON.getType();
     }
 }

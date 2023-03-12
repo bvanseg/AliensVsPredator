@@ -2,7 +2,7 @@ package org.avp.common.block;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.client.PacketRotateRotatable;
 import org.avp.common.tile.TileEntityRedstoneFluxGenerator;
 
@@ -73,7 +73,7 @@ public class BlockRedstoneFluxGenerator extends Block
 
                 if (!world.isRemote)
                 {
-                    AliensVsPredator.network().sendToAll(new PacketRotateRotatable(generator.getRotationYAxis().ordinal(), generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ()));
+                    AVP.network().sendToAll(new PacketRotateRotatable(generator.getRotationYAxis().ordinal(), generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ()));
                 }
             }
 

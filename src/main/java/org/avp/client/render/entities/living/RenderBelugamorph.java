@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelBelugamorph;
 import org.avp.common.entities.living.vardic.EntityBelugamorph;
 
@@ -10,6 +10,6 @@ public class RenderBelugamorph extends RenderXenomorph<EntityBelugamorph, ModelB
 {
     public RenderBelugamorph(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().BELUGAMORPH, 1F);
+        super(m, AVP.resources().models().BELUGAMORPH, 1F);
     }
 }

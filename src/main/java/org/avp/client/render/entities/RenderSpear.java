@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntitySpear;
 import org.lwjgl.opengl.GL12;
 
@@ -25,7 +25,7 @@ public class RenderSpear extends Render<EntitySpear>
             OpenGL.translate((float) posX, (float) posY, (float) posZ);
             OpenGL.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * renderPartialTicks - 90.0F, 0.0F, 1.0F, 0.0F);
             OpenGL.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * renderPartialTicks, 0.0F, 0.0F, 1.0F);
-            AliensVsPredator.resources().models().SPEAR.draw();
+            AVP.resources().models().SPEAR.draw();
             OpenGL.disable(GL12.GL_RESCALE_NORMAL);
         }
         OpenGL.popMatrix();

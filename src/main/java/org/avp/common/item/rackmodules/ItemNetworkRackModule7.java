@@ -1,6 +1,6 @@
 package org.avp.common.item.rackmodules;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.item.ItemNetworkRackModule;
 
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
@@ -16,18 +16,18 @@ public class ItemNetworkRackModule7 extends ItemNetworkRackModule
     @Override
     public MapModelTexture<Model<?>> getModel()
     {
-        return AliensVsPredator.resources().models().RACKMODULE7;
+        return AVP.resources().models().RACKMODULE7;
     }
 
     @Override
     public MapModelTexture<Model<?>> getModelOn()
     {
-        return AliensVsPredator.resources().models().RACKMODULE7_ON;
+        return AVP.resources().models().RACKMODULE7_ON;
     }
 
     @Override
     public MapModelTexture<Model<?>> getModelOff()
     {
-        return AliensVsPredator.resources().models().RACKMODULE7_OFF;
+        return AVP.resources().models().RACKMODULE7_OFF;
     }
 }

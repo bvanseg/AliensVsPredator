@@ -2,7 +2,7 @@ package org.avp.client.render.tile;
 
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityStasisMechanism;
 
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -24,12 +24,12 @@ public class RenderStasisMechanism extends TileEntitySpecialRenderer<TileEntityS
             OpenGL.rotate(tile.getDirection() * (-90F), 0F, 1F, 0F);
             OpenGL.scale(1.0F, -1.0F, 1.0F);
 
-            AliensVsPredator.resources().models().STASIS_MECHANISM.draw(tile);
+            AVP.resources().models().STASIS_MECHANISM.draw(tile);
 
             if (Game.minecraft().gameSettings.fancyGraphics)
             {
                 OpenGL.disableLight();
-                AliensVsPredator.resources().models().STASIS_MECHANISM_MASK.draw(tile);
+                AVP.resources().models().STASIS_MECHANISM_MASK.draw(tile);
                 OpenGL.enableLight();
             }
         }

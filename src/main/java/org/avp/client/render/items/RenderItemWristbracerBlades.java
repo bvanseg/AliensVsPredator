@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelWristBlade;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -16,7 +16,7 @@ public class RenderItemWristbracerBlades extends ItemRenderer<ModelWristBlade>
 {
     public RenderItemWristbracerBlades()
     {
-        super(AliensVsPredator.resources().models().WRISTBLADES);
+        super(AVP.resources().models().WRISTBLADES);
     }
 
     @Override

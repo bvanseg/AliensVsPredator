@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelNauticomorph;
 import org.avp.common.entities.living.species.xenomorphs.EntityNauticomorph;
 
@@ -73,8 +73,8 @@ public class RenderNauticomorph<N extends EntityNauticomorph> extends RenderLivi
 
     public RenderNauticomorph(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().NAUTICOMORPH_XENOMORPH);
-        this.addLayer(new LayerPhosphorescent<N>(this, AliensVsPredator.resources().models().NAUTICOMORPH_XENOMORPH_MASK));
+        super(m, AVP.resources().models().NAUTICOMORPH_XENOMORPH);
+        this.addLayer(new LayerPhosphorescent<N>(this, AVP.resources().models().NAUTICOMORPH_XENOMORPH_MASK));
     }
 
     @Override

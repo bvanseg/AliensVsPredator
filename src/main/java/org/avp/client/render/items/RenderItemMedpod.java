@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelMedpod;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemMedpod extends ItemRenderer<ModelMedpod>
 {
     public RenderItemMedpod()
     {
-        super(AliensVsPredator.resources().models().MEDPOD);
+        super(AVP.resources().models().MEDPOD);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class RenderItemMedpod extends ItemRenderer<ModelMedpod>
 
         OpenGL.pushMatrix();
         {
-            AliensVsPredator.resources().models().MEDPOD_MASK.draw();
+            AVP.resources().models().MEDPOD_MASK.draw();
         }
         OpenGL.popMatrix();
     }
@@ -47,7 +47,7 @@ public class RenderItemMedpod extends ItemRenderer<ModelMedpod>
 
         OpenGL.pushMatrix();
         {
-            AliensVsPredator.resources().models().MEDPOD_MASK.draw();
+            AVP.resources().models().MEDPOD_MASK.draw();
         }
         OpenGL.popMatrix();
     }
@@ -62,7 +62,7 @@ public class RenderItemMedpod extends ItemRenderer<ModelMedpod>
         OpenGL.rotate(45F, 0.0F, 0.0F, 1.0F);
         OpenGL.rotate(90F + this.getIconRotation(), 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
-        AliensVsPredator.resources().models().MEDPOD_MASK.draw();
+        AVP.resources().models().MEDPOD_MASK.draw();
     }
 
     @Override

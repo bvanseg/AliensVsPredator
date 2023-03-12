@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelM56SG;
 import org.avp.common.entities.living.EntityMarine;
 
@@ -15,7 +15,7 @@ public class RenderItemM56SG extends ItemFirearmRenderer<ModelM56SG>
 {
     public RenderItemM56SG()
     {
-        super(AliensVsPredator.resources().models().M56SG);
+        super(AVP.resources().models().M56SG);
     }
 
     @Override

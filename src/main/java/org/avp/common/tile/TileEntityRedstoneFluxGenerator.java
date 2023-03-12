@@ -1,6 +1,6 @@
 package org.avp.common.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.power.IVoltageProvider;
 import org.avp.common.packets.client.PacketSyncRF;
 
@@ -78,7 +78,7 @@ public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implem
 
         if (!this.world.isRemote && this.world.getTotalWorldTime() % 20 == 0)
         {
-            AliensVsPredator.network().sendToAll(new PacketSyncRF(this.getEnergyStored(null), this.pos.getX(), this.pos.getY(), this.pos.getZ()));
+            AVP.network().sendToAll(new PacketSyncRF(this.getEnergyStored(null), this.pos.getX(), this.pos.getY(), this.pos.getZ()));
         }
     }
 

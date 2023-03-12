@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelDracoburster;
 import org.avp.common.entities.living.species.xenomorphs.EntityDracoburster;
 
@@ -13,7 +13,7 @@ public class RenderDracoburster extends RenderLivingWrapper<EntityDracoburster, 
 {
     public RenderDracoburster(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().DRACOBURSTER);
+        super(m, AVP.resources().models().DRACOBURSTER);
     }
     
     @Override

@@ -2,7 +2,7 @@ package org.avp.common.world.dimension.acheron;
 
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.world.dimension.DimensionUtil;
 import org.lwjgl.opengl.GL11;
 
@@ -190,7 +190,7 @@ public class SkyProviderAcheron extends IRenderHandler
             OpenGL.color(1.0F, 1.0F, 1.0F, 1.0F);
             OpenGL.rotate(DimensionUtil.calculateCelestialAngle(world.getWorldTime(), renderPartialTicks) * 30.0F, 10.0F, -6.0F, -20.0F);
             OpenGL.rotate(155F, 0.0F, 1.0F, 0.0F);
-            Draw.bindTexture(AliensVsPredator.resources().SKY_VARDA);
+            Draw.bindTexture(AVP.resources().SKY_VARDA);
             Draw.startQuads();
             Draw.vertex(-scale, 150.0D, -scale, 0.0D, 0.0D).endVertex();
             Draw.vertex(scale, 150.0D, -scale, 1.0D, 0.0D).endVertex();
@@ -208,7 +208,7 @@ public class SkyProviderAcheron extends IRenderHandler
             OpenGL.color(1.0F, 1.0F, 1.0F, 1.0F);
             OpenGL.rotate(DimensionUtil.calculateCelestialAngle(world.getWorldTime(), renderPartialTicks) * 360.0F, 10.0F, -6.0F, -20.0F);
             OpenGL.rotate(135F, 0.0F, 1.0F, 0.0F);
-            Draw.bindTexture(AliensVsPredator.resources().SKY_CALPAMOS);
+            Draw.bindTexture(AVP.resources().SKY_CALPAMOS);
             Draw.startQuads();
             Draw.vertex(-scale, 150.0D, -scale, 0.0D, 0.0D).endVertex();
             Draw.vertex(scale, 150.0D, -scale, 1.0D, 0.0D).endVertex();
@@ -261,7 +261,7 @@ public class SkyProviderAcheron extends IRenderHandler
             byte cloudSections = 2;
 
             OpenGL.disableCullFace();
-            Draw.bindTexture(AliensVsPredator.resources().SKY_VARDA_CLOUDS);
+            Draw.bindTexture(AVP.resources().SKY_VARDA_CLOUDS);
             OpenGL.enableBlend();
             OpenGlHelper.glBlendFunc(GL11.GL_ONE_MINUS_DST_COLOR, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
             OpenGL.scale(cloudSpan, 1.0F, cloudSpan);

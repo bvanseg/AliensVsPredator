@@ -1,6 +1,6 @@
 package org.avp.client.input.handlers;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.packets.server.PacketLaunchGrenade;
 
@@ -17,12 +17,12 @@ public class InputHandlerPulseRifle implements IInputHandler
     {
         ItemStack current = Game.minecraft().player.getHeldItemMainhand();
 
-        if (current != null && current.getItem() == AliensVsPredator.items().itemM41A)
+        if (current != null && current.getItem() == AVP.items().itemM41A)
         {
-            if (AliensVsPredator.keybinds().specialPrimary.isPressed())
+            if (AVP.keybinds().specialPrimary.isPressed())
             {
                 Game.setRightClickDelayTimer(20);
-                AliensVsPredator.network().sendToServer(new PacketLaunchGrenade());
+                AVP.network().sendToServer(new PacketLaunchGrenade());
             }
         }
     }

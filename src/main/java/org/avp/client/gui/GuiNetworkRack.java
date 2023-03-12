@@ -1,6 +1,6 @@
 package org.avp.client.gui;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityNetworkRack;
 
 import com.asx.mdx.lib.client.util.Draw;
@@ -26,7 +26,7 @@ public class GuiNetworkRack extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
     	this.drawDefaultBackground();
-        Draw.drawResource(AliensVsPredator.resources().GUI_NETWORK_RACK, this.guiLeft, this.guiTop, 256, 256);
+        Draw.drawResource(AVP.resources().GUI_NETWORK_RACK, this.guiLeft, this.guiTop, 256, 256);
 
         for (int idx = 3; idx >= 0; idx--)
         {

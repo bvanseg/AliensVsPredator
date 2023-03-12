@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.plants.ModelTreeFern;
 import org.avp.common.tile.plants.TileEntityGroundFern;
 import org.lwjgl.opengl.GL11;
@@ -17,7 +17,7 @@ public class RenderItemTreeFern extends ItemRenderer<ModelTreeFern>
 {
     public RenderItemTreeFern()
     {
-        super(AliensVsPredator.resources().models().TREE_FERN);
+        super(AVP.resources().models().TREE_FERN);
     }
 
     @Override

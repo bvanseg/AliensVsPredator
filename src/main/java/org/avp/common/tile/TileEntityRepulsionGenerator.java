@@ -3,7 +3,7 @@ package org.avp.common.tile;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.power.IVoltageProvider;
 import org.avp.common.inventory.ContainerRepulsionGenerator;
 
@@ -27,7 +27,7 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
     public float                                   speed;
     public static final float                      MAX_SPEED        = 10F;
     private static final float                     SPEED_MULTIPLIER = 0.05F;
-    private final Item                             magnet           = AliensVsPredator.items().neodymiumMagnet;
+    private final Item                             magnet           = AVP.items().neodymiumMagnet;
     private ArrayList<HashMap<Integer, ItemStack>> sets             = new ArrayList<HashMap<Integer, ItemStack>>();
     private int                                    fullSets;
     private int                                    emptySets;

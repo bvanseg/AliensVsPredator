@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntityLiquidLatexPool;
 
 import com.asx.mdx.lib.client.util.Draw;
@@ -36,7 +36,7 @@ public class RenderLiquidLatexPool extends Render<EntityLiquidLatexPool>
             double partialY = posY - renderY;
             double partialZ = posZ - renderZ;
 
-            AliensVsPredator.resources().LIQUID_POOL.bind();
+            AVP.resources().LIQUID_POOL.bind();
             Draw.startQuads();
             OpenGL.color(1F, 1F, 1F, 1F);
 

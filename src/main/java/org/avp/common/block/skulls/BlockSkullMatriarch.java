@@ -1,6 +1,6 @@
 package org.avp.common.block.skulls;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.block.BlockSkull;
 import org.avp.client.model.tile.skulls.ModelQueenSkull;
 
@@ -23,7 +23,7 @@ public class BlockSkullMatriarch extends BlockSkull
     @SideOnly(Side.CLIENT)
     private static class Resources
     {
-        private static final MapModelTexture<ModelQueenSkull> model = AliensVsPredator.resources().models().MATRIARCH_SKULL;
+        private static final MapModelTexture<ModelQueenSkull> model = AVP.resources().models().MATRIARCH_SKULL;
     }
 
     public static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D, 1.0D);

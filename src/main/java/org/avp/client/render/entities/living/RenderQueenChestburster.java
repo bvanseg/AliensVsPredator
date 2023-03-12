@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelChestbursterQueen;
 import org.avp.common.entities.living.species.xenomorphs.EntityQueenChestburster;
 
@@ -13,7 +13,7 @@ public class RenderQueenChestburster extends RenderLivingWrapper<EntityQueenChes
 {
     public RenderQueenChestburster(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().CHESTBUSTER_QUEEN);
+        super(m, AVP.resources().models().CHESTBUSTER_QUEEN);
     }
 
     @Override

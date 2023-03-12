@@ -1,6 +1,6 @@
 package org.avp.common.item;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
@@ -18,7 +18,7 @@ public class ItemArmorMarine extends ItemArmor
 {
     public ItemArmorMarine(int renderIndex, EntityEquipmentSlot slot)
     {
-        super(AliensVsPredator.materials().armors().kevlar, renderIndex, slot);
+        super(AVP.materials().armors().kevlar, renderIndex, slot);
     }
     
     @Override
@@ -27,19 +27,19 @@ public class ItemArmorMarine extends ItemArmor
         switch (slot) {
             case FEET:
             case LEGS:
-                return Draw.getPath(AliensVsPredator.resources().MARINE2);
+                return Draw.getPath(AVP.resources().MARINE2);
             default:
-                return Draw.getPath(AliensVsPredator.resources().MARINE1);
+                return Draw.getPath(AVP.resources().MARINE1);
         }
     }
 
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AliensVsPredator.items().helmMarine &&
-                Inventories.getChestSlotItemStack(player) != null && Inventories.getChestSlotItemStack(player).getItem() == AliensVsPredator.items().plateMarine &&
-                Inventories.getLegsSlotItemStack(player) != null && Inventories.getLegsSlotItemStack(player).getItem() == AliensVsPredator.items().legsMarine &&
-                Inventories.getBootSlotItemStack(player) != null && Inventories.getBootSlotItemStack(player).getItem() == AliensVsPredator.items().bootsMarine)
+        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AVP.items().helmMarine &&
+                Inventories.getChestSlotItemStack(player) != null && Inventories.getChestSlotItemStack(player).getItem() == AVP.items().plateMarine &&
+                Inventories.getLegsSlotItemStack(player) != null && Inventories.getLegsSlotItemStack(player).getItem() == AVP.items().legsMarine &&
+                Inventories.getBootSlotItemStack(player) != null && Inventories.getBootSlotItemStack(player).getItem() == AVP.items().bootsMarine)
         {
             player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 1, 1));
             player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 1, 1));

@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelAK47;
 import org.avp.common.URLs;
 import org.lwjgl.input.Mouse;
@@ -19,7 +19,7 @@ public class RenderItemAK47 extends ItemFirearmRenderer<ModelAK47>
 {
     public RenderItemAK47()
     {
-        super(AliensVsPredator.resources().models().AK47);
+        super(AVP.resources().models().AK47);
     }
 
     @Override

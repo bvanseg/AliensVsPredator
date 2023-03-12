@@ -6,9 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.block.*;
-import org.avp.common.block.skulls.*;
 import org.avp.common.item.supply.chute.SupplyChuteType;
 import org.lib.BlockRegistryUtil;
 
@@ -113,7 +112,7 @@ public class AVPBlocks implements IPreInitEvent
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
-        AliensVsPredator.log().info("Registering Blocks");
+        AVP.log().info("Registering Blocks");
 
         BlockRegistryUtil.registerBlock(INDUSTRIAL_WALL);
         BlockRegistryUtil.registerBlock(INDUSTRIAL_WALL_STRIPED);

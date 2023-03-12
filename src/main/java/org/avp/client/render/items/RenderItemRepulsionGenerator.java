@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelRepulsionGenerator;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -14,7 +14,7 @@ public class RenderItemRepulsionGenerator extends ItemRenderer<ModelRepulsionGen
 {
     public RenderItemRepulsionGenerator()
     {
-        super(AliensVsPredator.resources().models().REPULSION_GENERATOR);
+        super(AVP.resources().models().REPULSION_GENERATOR);
     }
 
     @Override

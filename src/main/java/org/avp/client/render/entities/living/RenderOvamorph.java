@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelOvamorph;
 import org.avp.common.entities.living.species.xenomorphs.EntityOvamorph;
 
@@ -14,7 +14,7 @@ public class RenderOvamorph extends RenderLivingWrapper<EntityOvamorph, ModelOva
 {
     public RenderOvamorph(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().OVAMORPH);
+        super(m, AVP.resources().models().OVAMORPH);
     }
 
     @Override
@@ -27,6 +27,6 @@ public class RenderOvamorph extends RenderLivingWrapper<EntityOvamorph, ModelOva
     @Override
     protected ResourceLocation getEntityTexture(EntityOvamorph ovamorph)
     {
-        return AliensVsPredator.settings().isHalloweenEventEnabled() ? AliensVsPredator.resources().models().OVAMORPH_JACKO.getTexture() :  this.model.getTexture();
+        return AVP.settings().isHalloweenEventEnabled() ? AVP.resources().models().OVAMORPH_JACKO.getTexture() :  this.model.getTexture();
     }
 }

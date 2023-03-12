@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelM4;
 import org.lwjgl.input.Mouse;
 
@@ -16,7 +16,7 @@ public class RenderItemM4 extends ItemFirearmRenderer<ModelM4>
 {
     public RenderItemM4()
     {
-        super(AliensVsPredator.resources().models().M4);
+        super(AVP.resources().models().M4);
     }
 
     @Override

@@ -1,6 +1,6 @@
 package org.avp.common.item;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.Sounds;
 import org.avp.client.render.VisionModeRenderEvent;
 import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
@@ -23,7 +23,7 @@ public class ItemArmorCeltic extends ItemArmor
 {
     public ItemArmorCeltic(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(AliensVsPredator.materials().armors().celtic, renderIndex, armorType);
+        super(AVP.materials().armors().celtic, renderIndex, armorType);
     }
     
     @Override
@@ -31,16 +31,16 @@ public class ItemArmorCeltic extends ItemArmor
     {
         switch (slot) {
             case LEGS:
-                return Draw.getPath(AliensVsPredator.resources().CELTIC2);
+                return Draw.getPath(AVP.resources().CELTIC2);
             default:
-                return Draw.getPath(AliensVsPredator.resources().CELTIC1);
+                return Draw.getPath(AVP.resources().CELTIC1);
         }
     }
 
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AliensVsPredator.items().biomaskCeltic)
+        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AVP.items().biomaskCeltic)
         {
             SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
             player.fallDistance = 0.0F;
@@ -59,7 +59,7 @@ public class ItemArmorCeltic extends ItemArmor
         {
             ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
 
-            if (helmSlot != null && helmSlot.getItem() == AliensVsPredator.items().biomaskCeltic && AliensVsPredator.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
+            if (helmSlot != null && helmSlot.getItem() == AVP.items().biomaskCeltic && AVP.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
             {
                 Sounds.YAUTJA_VISION_SWITCH.playSound(Game.minecraft().player, 1F, 1F);
                 VisionModeRenderEvent.instance.switchMode();

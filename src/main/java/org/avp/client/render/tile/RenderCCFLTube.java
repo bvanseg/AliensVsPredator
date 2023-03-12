@@ -2,7 +2,7 @@ package org.avp.client.render.tile;
 
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityCCFLTube;
 
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -28,17 +28,17 @@ public class RenderCCFLTube extends TileEntitySpecialRenderer<TileEntityCCFLTube
         }
         
         OpenGL.translate(0, -0.1F, 0);
-        AliensVsPredator.resources().models().CCFL_BALLAST.draw(ccfl);
+        AVP.resources().models().CCFL_BALLAST.draw(ccfl);
 
         if (ccfl.isOperational())
         {
             OpenGL.disableLight();
-            AliensVsPredator.resources().models().CCFL_TUBE_ON.draw(ccfl);
+            AVP.resources().models().CCFL_TUBE_ON.draw(ccfl);
             OpenGL.enableLight();
         }
         else
         {
-            AliensVsPredator.resources().models().CCFL_TUBE_OFF.draw(ccfl);
+            AVP.resources().models().CCFL_TUBE_OFF.draw(ccfl);
         }
         GlStateManager.popMatrix();
     }

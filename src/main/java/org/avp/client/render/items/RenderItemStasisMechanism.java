@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelStasisMechanism;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemStasisMechanism extends ItemRenderer<ModelStasisMechanism
 {
     public RenderItemStasisMechanism()
     {
-        super(AliensVsPredator.resources().models().STASIS_MECHANISM);
+        super(AVP.resources().models().STASIS_MECHANISM);
     }
 
     @Override

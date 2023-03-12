@@ -1,6 +1,6 @@
 package org.avp.client.render.tile.plants;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.plants.TileEntityTreeFern;
 import org.lwjgl.opengl.GL12;
 
@@ -22,7 +22,7 @@ public class RenderTreeFern extends TileEntitySpecialRenderer<TileEntityTreeFern
             OpenGL.rotate(180F, 1, 0, 0);
             OpenGL.rotate(tile);
             OpenGL.color(tile.getPlantColor().r(), tile.getPlantColor().g(), tile.getPlantColor().b());
-            AliensVsPredator.resources().models().TREE_FERN.draw(tile);
+            AVP.resources().models().TREE_FERN.draw(tile);
             OpenGL.color(1F, 1F, 1F);
         }
         OpenGL.popMatrix();

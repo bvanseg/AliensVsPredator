@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.ModelSpear;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -17,7 +17,7 @@ public class RenderItemSpear extends ItemRenderer<ModelSpear>
 {
     public RenderItemSpear()
     {
-        super(AliensVsPredator.resources().models().SPEAR);
+        super(AVP.resources().models().SPEAR);
     }   
 
     @Override

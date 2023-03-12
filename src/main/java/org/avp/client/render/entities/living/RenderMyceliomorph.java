@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelMyceliomorph;
 import org.avp.common.entities.living.species.xenomorphs.EntityMyceliomorph;
 import org.lwjgl.opengl.GL11;
@@ -15,7 +15,7 @@ public class RenderMyceliomorph extends RenderLivingWrapper<EntityMyceliomorph, 
 {
     public RenderMyceliomorph(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().MYCELIOMORPH);
+        super(m, AVP.resources().models().MYCELIOMORPH);
 //        this.setRenderPassModel(this.getModel().getModel());
     }
 
@@ -38,7 +38,7 @@ public class RenderMyceliomorph extends RenderLivingWrapper<EntityMyceliomorph, 
         }
         else
         {
-            AliensVsPredator.resources().models().MYCELIOMORPH_MASK.getTexture().bind();
+            AVP.resources().models().MYCELIOMORPH_MASK.getTexture().bind();
             OpenGL.enable(GL11.GL_BLEND);
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
 

@@ -1,6 +1,6 @@
 package org.avp.client.render;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.world.capabilities.IOrganism.Organism;
 import org.avp.common.world.capabilities.IOrganism.Provider;
 
@@ -28,7 +28,7 @@ public class ChestbursterOverlayEvent
                 {
                     if (organism.hasEmbryo() && Game.minecraft().player.isDead && organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod() - 80)
                     {
-                        Draw.drawOverlay(AliensVsPredator.resources().BLUR_CHESTBURSTER_EMERGE, 1F, 0F, 0F, 1F);
+                        Draw.drawOverlay(AVP.resources().BLUR_CHESTBURSTER_EMERGE, 1F, 0F, 0F, 1F);
                     }
                 }
             }

@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelEngineer;
 import org.avp.common.entities.living.species.SpeciesEngineer;
 
@@ -14,7 +14,7 @@ public class RenderEngineer extends RenderLivingWrapper<SpeciesEngineer, ModelEn
 {
     public RenderEngineer(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().ENGINEER);
+        super(m, AVP.resources().models().ENGINEER);
     }
     
     public RenderEngineer(RenderManager m, MapModelTexture<ModelEngineer> model)

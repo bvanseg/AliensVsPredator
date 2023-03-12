@@ -2,7 +2,7 @@ package org.avp.common.item.firearms;
 
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.server.PacketFirearmSync;
 import org.avp.common.packets.server.PacketReloadFirearm;
 
@@ -75,13 +75,13 @@ public class ItemFirearm extends HookedItem
                 // TODO: The client shouldn't tell the server what it hit.
                 if (trace != null && trace.typeOfHit == Type.BLOCK)
                 {
-                    AliensVsPredator.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.x, (int) trace.hitVec.y, (int) trace.hitVec.z, this.profile));
+                    AVP.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.x, (int) trace.hitVec.y, (int) trace.hitVec.z, this.profile));
                 }
 
                 // TODO: The client shouldn't tell the server what it hit.
                 if (trace != null && trace.typeOfHit == Type.ENTITY)
                 {
-                    AliensVsPredator.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, 0, 0, 0, this.profile));
+                    AVP.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, 0, 0, 0, this.profile));
                 }
 
                 if (!player.capabilities.isCreativeMode)
@@ -159,7 +159,7 @@ public class ItemFirearm extends HookedItem
         }
         else {
         	// TODO: Try and avoid the client telling the server what to do.
-            AliensVsPredator.network().sendToServer(new PacketReloadFirearm());
+            AVP.network().sendToServer(new PacketReloadFirearm());
         }
 
         this.ammo = this.profile.getAmmoMax();

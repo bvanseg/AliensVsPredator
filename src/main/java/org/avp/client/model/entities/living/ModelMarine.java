@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.living.EntityMarine;
 
 import com.asx.mdx.lib.client.util.models.Model;
@@ -213,7 +213,7 @@ public class ModelMarine extends Model<EntityMarine>
         this.bipedLeftArm.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
 
         // Because the smart gun is a relatively large weapon, the marine needs two hands to hold it at all times.
-        if (entityIn instanceof EntityMarine && ((EntityMarine)entityIn).getHeldItemMainhand().getItem() == AliensVsPredator.items().itemM56SG)
+        if (entityIn instanceof EntityMarine && ((EntityMarine)entityIn).getHeldItemMainhand().getItem() == AVP.items().itemM56SG)
         {
             this.bipedRightArm.rotateAngleY = -0.4F + this.bipedHead.rotateAngleY;
             this.bipedLeftArm.rotateAngleY = 0.1F + this.bipedHead.rotateAngleY + 1.4F;

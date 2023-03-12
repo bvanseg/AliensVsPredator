@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.living.EntityAethon;
 import org.avp.common.entities.living.species.engineer.EntityEngineer;
 import org.avp.common.entities.living.species.engineer.EntitySpaceJockey;
@@ -224,7 +224,7 @@ public class TileEntityTurretTargetHelper {
 		
 		if (this.targetEntity != targetEntity && this.pos != null) {
 			int entityId = targetEntity != null ? targetEntity.getEntityId() : Integer.MIN_VALUE;
-            AliensVsPredator.network().sendToAll(new PacketTurretTargetUpdate(pos.blockPos(), entityId));
+            AVP.network().sendToAll(new PacketTurretTargetUpdate(pos.blockPos(), entityId));
     		this.targetEntity = targetEntity;
 			this.targetEntityId = entityId;
 		}

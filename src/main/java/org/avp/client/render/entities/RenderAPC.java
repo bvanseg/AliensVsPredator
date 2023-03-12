@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntityAPC;
 
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -18,7 +18,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class RenderAPC extends Render<EntityAPC>
 {
-    private final TriangulatedWavefrontModel model      = AliensVsPredator.resources().models().M577_APC;
+    private final TriangulatedWavefrontModel model      = AVP.resources().models().M577_APC;
     
     private Part                             tire0      = model.getPart("Mesh75_APCTire1_4_Group10_Model");
     private Part                             tire0Rim   = model.getPart("Mesh76_APCWhAmr4_Group10_Model");

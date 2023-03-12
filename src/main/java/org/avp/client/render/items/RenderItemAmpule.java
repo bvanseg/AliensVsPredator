@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelAmpule;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemAmpule extends ItemRenderer<ModelAmpule>
 {
     public RenderItemAmpule()
     {
-        super(AliensVsPredator.resources().models().AMPULE);
+        super(AVP.resources().models().AMPULE);
     }
 
     @Override

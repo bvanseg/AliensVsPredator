@@ -1,6 +1,6 @@
 package org.avp.common.block.skulls;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.block.BlockSkull;
 import org.avp.client.model.tile.skulls.ModelGigerAlienHead;
 
@@ -19,7 +19,7 @@ public class BlockHeadGigerAlien extends BlockSkull
     @SideOnly(Side.CLIENT)
     private static class Resources
     {
-        private static final MapModelTexture<ModelGigerAlienHead> model = AliensVsPredator.resources().models().GIGER_ALIEN_HEAD;
+        private static final MapModelTexture<ModelGigerAlienHead> model = AVP.resources().models().GIGER_ALIEN_HEAD;
     }
 
     @Override

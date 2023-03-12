@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelDeacon;
 import org.avp.common.entities.living.species.species223ode.EntityDeacon;
 
@@ -16,7 +16,7 @@ public class RenderDeacon extends RenderLivingWrapper<EntityDeacon, ModelDeacon>
 
     public RenderDeacon(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().DEACON);
+        super(m, AVP.resources().models().DEACON);
         this.scale = 1.0F;
     }
 

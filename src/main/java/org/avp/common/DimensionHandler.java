@@ -1,6 +1,6 @@
 package org.avp.common;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.world.dimension.TeleporterLV;
 import org.avp.common.world.dimension.acheron.BiomeAcheron;
 import org.avp.common.world.dimension.acheron.WorldProviderAcheron;
@@ -31,7 +31,7 @@ public class DimensionHandler implements IInitEvent
 {
     public static final DimensionHandler instance = new DimensionHandler();
 
-    @Mod.EventBusSubscriber(modid = AliensVsPredator.Properties.ID)
+    @Mod.EventBusSubscriber(modid = AVP.Properties.ID)
     public static class RegistrationHandler
     {
         @SubscribeEvent
@@ -110,7 +110,7 @@ public class DimensionHandler implements IInitEvent
     public static void teleportPlayerToDimension(EntityPlayerMP player, int dimensionId)
     {
         PlayerList players = player.getServer().getPlayerList();
-        AliensVsPredator.log().info("Attempting to teleport player to dimension with id " + dimensionId);
+        AVP.log().info("Attempting to teleport player to dimension with id " + dimensionId);
 
         if (player.dimension == 0 || player.dimension != dimensionId)
         {

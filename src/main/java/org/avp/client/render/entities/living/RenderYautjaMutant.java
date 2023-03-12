@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelMutantYautja;
 import org.avp.common.entities.living.species.yautja.EntityYautjaMutant;
 
@@ -13,7 +13,7 @@ public class RenderYautjaMutant extends RenderLivingWrapper<EntityYautjaMutant, 
 {
     public RenderYautjaMutant(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().MUTANT_YAUTJA);
+        super(m, AVP.resources().models().MUTANT_YAUTJA);
     }
 
     @Override

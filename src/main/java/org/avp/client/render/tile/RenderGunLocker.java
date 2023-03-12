@@ -1,6 +1,6 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityGunLocker;
 import org.lwjgl.opengl.GL11;
 
@@ -40,8 +40,8 @@ public class RenderGunLocker extends TileEntitySpecialRenderer<TileEntityGunLock
             float lerpProgress = !tile.isOpen() ? tile.openProgress : 1 - tile.openProgress;
             float openProgress = lerp(tile.isOpen() ? -1.5F : 0F, tile.isOpen() ? 0F : -1.5F, lerpProgress);
             
-            AliensVsPredator.resources().models().GUN_LOCKER.getModel().door.rotateAngleY = openProgress;
-            AliensVsPredator.resources().models().GUN_LOCKER.draw(tile);
+            AVP.resources().models().GUN_LOCKER.getModel().door.rotateAngleY = openProgress;
+            AVP.resources().models().GUN_LOCKER.draw(tile);
 
             if (tile != null)
             {

@@ -3,8 +3,7 @@ package org.avp.common.world.dimension;
 import java.util.Random;
 
 import org.alien.AlienBlocks;
-import org.avp.common.AVPBlocks;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -30,7 +29,7 @@ public class TeleporterLV extends Teleporter
     @Override
     public void placeInPortal(Entity entity, float yaw)
     {
-        portal = this.worldServer.provider.getDimension() == AliensVsPredator.dimensions().VARDA.getId() ? AlienBlocks.PORTAL_VARDA : AlienBlocks.PORTAL_ACHERON;
+        portal = this.worldServer.provider.getDimension() == AVP.dimensions().VARDA.getId() ? AlienBlocks.PORTAL_VARDA : AlienBlocks.PORTAL_ACHERON;
 
         if (this.worldServer.provider.getDimension() != 1)
         {

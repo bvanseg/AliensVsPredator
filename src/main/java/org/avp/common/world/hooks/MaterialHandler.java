@@ -1,6 +1,6 @@
 package org.avp.common.world.hooks;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.blocks.material.IMaterialPhysics;
 import org.avp.common.api.blocks.material.IMaterialRenderer;
 
@@ -85,7 +85,7 @@ public class MaterialHandler
             }
             catch (Exception e)
             {
-            	AliensVsPredator.log().warn("Error handling fluid physics update for entity: " + e);
+            	AVP.log().warn("Error handling fluid physics update for entity: " + e);
             }
         }
     }

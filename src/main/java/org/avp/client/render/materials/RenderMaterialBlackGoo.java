@@ -1,6 +1,6 @@
 package org.avp.client.render.materials;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.blocks.material.IMaterialRenderer;
 import org.lwjgl.opengl.GL11;
 
@@ -25,7 +25,7 @@ public class RenderMaterialBlackGoo implements IMaterialRenderer
         OpenGL.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         OpenGL.color(1F, 1F, 1F, 0.1F);
         OpenGL.disableAlphaTest();
-        Draw.bindTexture(AliensVsPredator.resources().BLACKGOO);
+        Draw.bindTexture(AVP.resources().BLACKGOO);
         Draw.drawQuad(0, 0, Screen.scaledDisplayResolution().getScaledWidth(), Screen.scaledDisplayResolution().getScaledHeight());
         OpenGL.depthMask(true);
         OpenGL.enableDepthTest();

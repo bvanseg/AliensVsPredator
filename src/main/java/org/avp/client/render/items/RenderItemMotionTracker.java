@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelMotionTracker;
 import org.lwjgl.opengl.GL11;
 
@@ -18,7 +18,7 @@ public class RenderItemMotionTracker extends ItemRenderer<ModelMotionTracker>
 
     public RenderItemMotionTracker()
     {
-        super(AliensVsPredator.resources().models().MOTIONTRACKER);
+        super(AVP.resources().models().MOTIONTRACKER);
     }
 
     @Override

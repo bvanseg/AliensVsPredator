@@ -1,7 +1,7 @@
 package org.avp.common.item.supply.chute;
 
+import org.avp.AVP;
 import org.avp.common.AVPBlocks;
-import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.ModelSupplyChute;
 import org.avp.common.entities.EntitySupplyChute;
 import org.avp.common.entities.EntitySupplyChuteMarines;
@@ -82,13 +82,13 @@ public enum SupplyChuteType {
             switch (type)
             {
                 case MARINES:
-                    return AliensVsPredator.resources().models().SUPPLY_CHUTE_MARINES;
+                    return AVP.resources().models().SUPPLY_CHUTE_MARINES;
 
                 case SEEGSON:
-                    return AliensVsPredator.resources().models().SUPPLY_CHUTE_SEEGSON;
+                    return AVP.resources().models().SUPPLY_CHUTE_SEEGSON;
 
                 default:
-                    return AliensVsPredator.resources().models().SUPPLY_CHUTE;
+                    return AVP.resources().models().SUPPLY_CHUTE;
 
             }
         }

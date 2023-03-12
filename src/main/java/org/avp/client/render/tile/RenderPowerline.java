@@ -2,7 +2,7 @@ package org.avp.client.render.tile;
 
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityPowerline;
 
 import com.asx.mdx.lib.client.util.Draw;
@@ -25,7 +25,7 @@ public class RenderPowerline extends TileEntitySpecialRenderer<TileEntityPowerli
             {
                 OpenGL.translate(posX + 0.5F, posY + 0.5F, posZ + 0.5F);
                 OpenGL.scale(1.0F, -1.0F, 1.0F);
-                AliensVsPredator.resources().models().CABLE.draw(tile);
+                AVP.resources().models().CABLE.draw(tile);
             }
             OpenGL.popMatrix();
 

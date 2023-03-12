@@ -1,6 +1,6 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntitySolarPanel;
 
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -25,7 +25,7 @@ public class RenderSolarPanel extends TileEntitySpecialRenderer<TileEntitySolarP
                 OpenGL.translate(0F, -1.4F, 0F);
             }
 
-            AliensVsPredator.resources().models().SOLAR_PANEL.draw(tile);
+            AVP.resources().models().SOLAR_PANEL.draw(tile);
         }
         OpenGL.popMatrix();
     }

@@ -1,6 +1,6 @@
 package org.avp.common.item;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntityShuriken;
 
 import com.asx.mdx.lib.util.GameSounds;
@@ -24,7 +24,7 @@ public class ItemShuriken extends HookedItem
         {
             EntityPlayer player = (EntityPlayer) entityLiving;
             
-            if (player.inventory.hasItemStack(new ItemStack(AliensVsPredator.items().itemShuriken)))
+            if (player.inventory.hasItemStack(new ItemStack(AVP.items().itemShuriken)))
             {
                 int remainingCount = this.getMaxItemUseDuration(itemstack) - timeLeft;
                 float velocity = remainingCount / 20.0F;
@@ -62,7 +62,7 @@ public class ItemShuriken extends HookedItem
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        if (player.inventory.hasItemStack(new ItemStack(AliensVsPredator.items().itemShuriken)))
+        if (player.inventory.hasItemStack(new ItemStack(AVP.items().itemShuriken)))
         {
             player.setActiveHand(hand);
         }

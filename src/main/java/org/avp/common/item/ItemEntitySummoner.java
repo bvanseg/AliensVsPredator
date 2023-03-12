@@ -2,7 +2,7 @@ package org.avp.common.item;
 
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.server.PacketSpawnEntity;
 
 import com.asx.mdx.lib.world.entity.Entities;
@@ -27,7 +27,7 @@ public class ItemEntitySummoner extends HookedItem
         super();
         this.c = c;
         this.setDescription("Summoner for " + c.getSimpleName().replace("Entity", ""));
-        this.setTranslationKey(AliensVsPredator.Properties.DOMAIN + "summon." + c.getSimpleName());
+        this.setTranslationKey(AVP.Properties.DOMAIN + "summon." + c.getSimpleName());
     }
     
     @Override
@@ -40,9 +40,9 @@ public class ItemEntitySummoner extends HookedItem
             RayTraceResult ray = player.rayTrace(50D, 1F);
             
             if(player.isSneaking() && player.isCreative()) {
-                AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 5));
+                AVP.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 5));
             } else {
-                AliensVsPredator.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 1));
+                AVP.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 1));
             }
         
         }

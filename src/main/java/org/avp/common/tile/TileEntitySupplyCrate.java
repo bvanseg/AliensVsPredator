@@ -1,6 +1,6 @@
 package org.avp.common.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.machines.IOpenable;
 import org.avp.common.inventory.ContainerSupplyCrate;
 import org.avp.common.item.supply.chute.SupplyChuteType;
@@ -134,7 +134,7 @@ public class TileEntitySupplyCrate extends TileEntity implements IOpenable, IRot
 	{
 		if (!player.world.isRemote)
 		{
-			FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_SUPPLYCRATE, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+			FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_SUPPLYCRATE, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
 		}
 	}
 
@@ -162,7 +162,7 @@ public class TileEntitySupplyCrate extends TileEntity implements IOpenable, IRot
 
 		if (!this.world.isRemote)
 		{
-			AliensVsPredator.network().sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
+			AVP.network().sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
 		}
 	}
 

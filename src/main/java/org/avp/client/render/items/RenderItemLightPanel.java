@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelLightPanel;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemLightPanel extends ItemRenderer<ModelLightPanel>
 {
     public RenderItemLightPanel()
     {
-        super(AliensVsPredator.resources().models().LIGHT_PANEL);
+        super(AVP.resources().models().LIGHT_PANEL);
     }
 
     @Override

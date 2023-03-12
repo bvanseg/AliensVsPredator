@@ -2,7 +2,7 @@ package org.avp.common.tile.helpers;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
@@ -31,7 +31,7 @@ public class TileEntityTurretAmmoHelper {
     
     public TileEntityTurretAmmoHelper() {
         this.inventoryAmmo = new InventoryBasic("TurretAmmoBay", true, 9);
-        this.itemAmmo = AliensVsPredator.items().itemAmmoSMG;
+        this.itemAmmo = AVP.items().itemAmmoSMG;
         this.currentAmmoCount = 0;
         this.ammoDisplayEnabled = false;
     }

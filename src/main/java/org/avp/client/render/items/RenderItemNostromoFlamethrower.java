@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelSevastopolFlamethrower;
 import org.avp.common.item.firearms.ItemFirearm;
 import org.lwjgl.input.Mouse;
@@ -17,7 +17,7 @@ public class RenderItemNostromoFlamethrower extends ItemFirearmRenderer<ModelSev
 {
     public RenderItemNostromoFlamethrower()
     {
-        super(AliensVsPredator.resources().models().SEVASTOPOL_FLAMETHROWER);
+        super(AVP.resources().models().SEVASTOPOL_FLAMETHROWER);
     }
 
     @Override

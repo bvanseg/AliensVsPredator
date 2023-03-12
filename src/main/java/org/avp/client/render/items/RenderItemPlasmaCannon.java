@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelPlasmaCannon;
 import org.lwjgl.opengl.GL11;
 
@@ -16,7 +16,7 @@ public class RenderItemPlasmaCannon extends ItemRenderer<ModelPlasmaCannon>
 {
     public RenderItemPlasmaCannon()
     {
-        super(AliensVsPredator.resources().models().PLASMACANNON);
+        super(AVP.resources().models().PLASMACANNON);
     }
 
     @Override

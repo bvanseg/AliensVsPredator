@@ -7,7 +7,7 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.render.wavegraph.Wavegraph;
 import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
 import org.avp.client.gui.GuiTacticalHUDSettings;
@@ -73,7 +73,7 @@ public class TacticalHUDRenderEvent
     {
         if (Game.minecraft().gameSettings.thirdPersonView == 0)
         {
-            if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().helmMarine)
+            if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVP.items().helmMarine)
             {
                 if (Game.minecraft().world != null && Game.minecraft().world.getTotalWorldTime() % (20 * 3) == 0)
                 {
@@ -142,7 +142,7 @@ public class TacticalHUDRenderEvent
                                                 if (organism.hasEmbryo())
                                                 {
                                                     OpenGL.color4i(0xFFFF0000);
-                                                    Draw.drawResourceCentered(AliensVsPredator.resources().INFECTION_INDICATOR, 2, -1, 2, 2, 255, 0, 0, 255);
+                                                    Draw.drawResourceCentered(AVP.resources().INFECTION_INDICATOR, 2, -1, 2, 2, 255, 0, 0, 255);
                                                 }
 
                                                 int color = organism.hasEmbryo() || living instanceof IMob ? 0xFFFF0000 : 0xFF00AAFF;
@@ -194,7 +194,7 @@ public class TacticalHUDRenderEvent
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.CROSSHAIRS)
             {
-                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().helmMarine)
+                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVP.items().helmMarine)
                 {
                     SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
 
@@ -206,7 +206,7 @@ public class TacticalHUDRenderEvent
                     OpenGL.blendClear();
                     OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
                     OpenGL.color(1F, 1F, 1F, 1F);
-                    AliensVsPredator.resources().BLUR_TACTICAL_HUD.bind();
+                    AVP.resources().BLUR_TACTICAL_HUD.bind();
                     Draw.drawQuad(0, 0, Screen.scaledDisplayResolution().getScaledWidth(), Screen.scaledDisplayResolution().getScaledHeight());
                     OpenGL.color(1F, 1F, 1F, 1F);
                     OpenGL.blendClear();
@@ -273,7 +273,7 @@ public class TacticalHUDRenderEvent
 
     public void renderInventoryElements(RenderGameOverlayEvent event)
     {
-        if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().helmMarine)
+        if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVP.items().helmMarine)
         {
             if (Game.minecraft().currentScreen instanceof GuiInventory || Game.minecraft().currentScreen instanceof GuiChat)
             {
@@ -378,7 +378,7 @@ public class TacticalHUDRenderEvent
                     OpenGL.rotate(25F, 0F, 1F, 0F);
 
                     OpenGL.color4i(0xFFFF0000);
-                    AliensVsPredator.resources().INFECTION_INDICATOR.bind();
+                    AVP.resources().INFECTION_INDICATOR.bind();
                     Draw.drawQuad(30, 0, 64, 64);
 
                     OpenGL.rotate(180F, 0F, 0F, 1F);
@@ -420,7 +420,7 @@ public class TacticalHUDRenderEvent
                 int btHeight = 64;
                 int batteryWidth = btWidth / 2 * (batteryPercent + hOffset) / 100;
                 float maxU = (batteryPercent + hOffset) / 100F / 2F;
-                AliensVsPredator.resources().BATTERY_INDICATOR.bind();
+                AVP.resources().BATTERY_INDICATOR.bind();
                 Draw.drawQuad(btX, btY, btWidth, btHeight, 0F, 1F, 0F, 0.5F);
                 Draw.drawQuad(btX, btY, batteryWidth, btHeight, 0F, maxU, 0.5F, 1F);
             }

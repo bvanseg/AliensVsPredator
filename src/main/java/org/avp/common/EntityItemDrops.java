@@ -4,11 +4,11 @@ import com.asx.mdx.lib.world.entity.ItemDrop;
 import com.asx.mdx.lib.world.entity.ItemDrop.DropType;
 
 import net.minecraft.item.ItemStack;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 public class EntityItemDrops
 {
-    private static final ItemHandler items = AliensVsPredator.items();
+    private static final ItemHandler items = AVP.items();
 
     public static final ItemDrop ROYAL_JELLY_GENERIC = new ItemDrop(100, new ItemStack(items.itemRoyalJelly, 4));
     public static final ItemDrop ROYAL_JELLY_SINGLE = new ItemDrop(100, new ItemStack(items.itemRoyalJelly, 1));

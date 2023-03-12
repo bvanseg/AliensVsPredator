@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.AVPBlocks;
 
 import net.minecraft.block.Block;
@@ -42,13 +42,13 @@ public class TileEntitySevastopolBlastDoor extends TileEntityBlastdoor
     @Override
     public void playOpenSound()
     {
-        AliensVsPredator.sounds().BLASTDOOR_SEVASTOPOL_OPEN.playSound(world, pos, 1F, 1F);
+        AVP.sounds().BLASTDOOR_SEVASTOPOL_OPEN.playSound(world, pos, 1F, 1F);
     }
     
     @Override
     public void playCloseSound()
     {
-        AliensVsPredator.sounds().BLASTDOOR_SEVASTOPOL_CLOSE.playSound(world, pos, 1F, 1F);
+        AVP.sounds().BLASTDOOR_SEVASTOPOL_CLOSE.playSound(world, pos, 1F, 1F);
     }
     
     @Override

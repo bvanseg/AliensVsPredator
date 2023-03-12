@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelDeaconShark;
 import org.avp.common.entities.living.vardic.EntityDeaconShark;
 
@@ -13,7 +13,7 @@ public class RenderDeaconShark extends RenderLivingWrapper<EntityDeaconShark, Mo
 {
     public RenderDeaconShark(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().DEACON_SHARK);
+        super(m, AVP.resources().models().DEACON_SHARK);
     }
 
     @Override

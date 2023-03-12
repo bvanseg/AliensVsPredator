@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelTeslaCoil;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemTeslaCoil extends ItemRenderer<ModelTeslaCoil>
 {
     public RenderItemTeslaCoil()
     {
-        super(AliensVsPredator.resources().models().TESLA_COIL);
+        super(AVP.resources().models().TESLA_COIL);
     }
 
     @Override

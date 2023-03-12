@@ -1,6 +1,6 @@
 package org.avp.common.world.dimension.varda;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.client.world.StormProvider;
@@ -60,7 +60,7 @@ public class StormProviderVarda extends StormProvider
     @Override
     public Texture getStormTexture(World world, Biome biome)
     {
-        return AliensVsPredator.resources().SKY_SILICA;
+        return AVP.resources().SKY_SILICA;
     }
 
     @Override

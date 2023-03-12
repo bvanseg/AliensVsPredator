@@ -1,6 +1,6 @@
 package org.avp.common.block;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.world.fluids.FluidMist;
 
 import net.minecraft.util.math.BlockPos;
@@ -16,7 +16,7 @@ public class BlockMist extends BlockFluidClassic
     
     public BlockMist()
     {
-        super(fluid, AliensVsPredator.materials().mist);
+        super(fluid, AVP.materials().mist);
         FluidRegistry.registerFluid(fluid);
         FluidRegistry.addBucketForFluid(fluid);
     }

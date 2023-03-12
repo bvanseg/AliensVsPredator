@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelVardaMonkey;
 import org.avp.common.entities.living.vardic.EntityScelemur;
 
@@ -13,7 +13,7 @@ public class RenderScelemur extends RenderLivingWrapper<EntityScelemur, ModelVar
 {
     public RenderScelemur(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().VARDA_MONKEY);
+        super(m, AVP.resources().models().VARDA_MONKEY);
     }
     
     @Override

@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelYautja;
 import org.avp.common.entities.living.species.yautja.EntityYautjaBerserker;
 
@@ -10,7 +10,7 @@ public class RenderYautjaBerserker extends RenderYautja<EntityYautjaBerserker, M
 {
     public RenderYautjaBerserker(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().YAUTJA_BERSERKER);
+        super(m, AVP.resources().models().YAUTJA_BERSERKER);
     }
 
     @Override

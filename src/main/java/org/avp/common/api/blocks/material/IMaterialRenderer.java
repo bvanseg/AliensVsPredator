@@ -3,7 +3,7 @@ package org.avp.common.api.blocks.material;
 import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -25,7 +25,7 @@ public interface IMaterialRenderer
         OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         OpenGL.color3i(material.getMaterialMapColor().colorValue);
         OpenGL.disableAlphaTest();
-        Draw.bindTexture(AliensVsPredator.resources().RES_UNDERWATER_OVERLAY);
+        Draw.bindTexture(AVP.resources().RES_UNDERWATER_OVERLAY);
         Draw.drawQuad(0, 0, Screen.scaledDisplayResolution().getScaledWidth(), Screen.scaledDisplayResolution().getScaledHeight());
         OpenGL.depthMask(true);
         OpenGL.enableDepthTest();

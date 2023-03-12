@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.EntityGrenade;
 import org.lwjgl.opengl.GL11;
 
@@ -30,11 +30,11 @@ public class RenderGrenade extends Render<EntityGrenade>
         
         if (!grenade.isFlaming())
         {
-            AliensVsPredator.resources().models().M40GRENADE.draw();
+            AVP.resources().models().M40GRENADE.draw();
         }
         else
         {
-            AliensVsPredator.resources().models().M40GRENADE_INCENDIARY.draw();
+            AVP.resources().models().M40GRENADE_INCENDIARY.draw();
         }
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);

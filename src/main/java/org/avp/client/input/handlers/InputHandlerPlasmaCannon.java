@@ -1,6 +1,6 @@
 package org.avp.client.input.handlers;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.Sounds;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.item.ItemWristbracer;
@@ -39,7 +39,7 @@ public class InputHandlerPlasmaCannon implements IInputHandler
                 this.recharging = false;
             }
 
-            if (AliensVsPredator.keybinds().specialSecondary.isKeyDown())
+            if (AVP.keybinds().specialSecondary.isKeyDown())
             {
                 if (this.energy >= potentialEnergyUsed && !this.recharging)
                 {
@@ -86,7 +86,7 @@ public class InputHandlerPlasmaCannon implements IInputHandler
     private void onChargeRelease(float chargeSize, float energyUsed)
     {
         this.energy -= energyUsed;
-        AliensVsPredator.network().sendToServer(new PacketPlasmaDischarge(chargeSize));
+        AVP.network().sendToServer(new PacketPlasmaDischarge(chargeSize));
     }
 
     public float getChargeSize()

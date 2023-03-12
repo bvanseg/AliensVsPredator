@@ -3,7 +3,7 @@ package org.avp.client.model.loaders;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.render.block.model.ModelReflectiveShape;
 
 import net.minecraft.client.resources.IResourceManager;
@@ -17,7 +17,7 @@ public class ReflectiveModelLoader implements ICustomModelLoader
     private HashMap<String, IModel> models = new HashMap<String, IModel>();
     private ArrayList<String> dummyIDs = new ArrayList<String>();
 
-    public static final ResourceLocation REFLECTION = new ResourceLocation(AliensVsPredator.Properties.ID, "blocks/reflection");
+    public static final ResourceLocation REFLECTION = new ResourceLocation(AVP.Properties.ID, "blocks/reflection");
 
     public ReflectiveModelLoader()
     {
@@ -27,18 +27,18 @@ public class ReflectiveModelLoader implements ICustomModelLoader
     public void register()
     {
         //Item Model Key: domain:models/item/ID
-        models.put("slope", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/slope.obj"), REFLECTION));
-        models.put("corner", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/corner.obj"), REFLECTION));
-        models.put("ridge", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/ridge.obj"), REFLECTION));
-        models.put("pyramid", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/pyramid.obj"), REFLECTION));
-        models.put("invertedcorner", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/invertedcorner.obj"), REFLECTION));
-        models.put("invertedridge", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/invertedridge.obj"), REFLECTION));
-        models.put("invertedpyramid", new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/invertedpyramid.obj"), REFLECTION));
+        models.put("slope", new ModelReflectiveShape(new ResourceLocation(AVP.Properties.ID, "block/slope.obj"), REFLECTION));
+        models.put("corner", new ModelReflectiveShape(new ResourceLocation(AVP.Properties.ID, "block/corner.obj"), REFLECTION));
+        models.put("ridge", new ModelReflectiveShape(new ResourceLocation(AVP.Properties.ID, "block/ridge.obj"), REFLECTION));
+        models.put("pyramid", new ModelReflectiveShape(new ResourceLocation(AVP.Properties.ID, "block/pyramid.obj"), REFLECTION));
+        models.put("invertedcorner", new ModelReflectiveShape(new ResourceLocation(AVP.Properties.ID, "block/invertedcorner.obj"), REFLECTION));
+        models.put("invertedridge", new ModelReflectiveShape(new ResourceLocation(AVP.Properties.ID, "block/invertedridge.obj"), REFLECTION));
+        models.put("invertedpyramid", new ModelReflectiveShape(new ResourceLocation(AVP.Properties.ID, "block/invertedpyramid.obj"), REFLECTION));
 
         for (String id : this.dummyIDs)
         {
             // DUMMY MODEL
-            models.put(id, new ModelReflectiveShape(new ResourceLocation(AliensVsPredator.Properties.ID, "block/slope.obj"), REFLECTION));
+            models.put(id, new ModelReflectiveShape(new ResourceLocation(AVP.Properties.ID, "block/slope.obj"), REFLECTION));
         }
     }
 
@@ -57,7 +57,7 @@ public class ReflectiveModelLoader implements ICustomModelLoader
     @Override
     public boolean accepts(ResourceLocation modelLocation)
     {
-        if (modelLocation.getNamespace().equals(AliensVsPredator.Properties.ID))
+        if (modelLocation.getNamespace().equals(AVP.Properties.ID))
         {
             if (models.containsKey(modelLocation.getPath()))
             {

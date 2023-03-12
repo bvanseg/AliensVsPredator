@@ -5,8 +5,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import org.alien.AlienBlocks;
-import org.avp.AliensVsPredator;
-import org.avp.common.AVPBlocks;
+import org.avp.AVP;
 
 import com.asx.mdx.core.mods.IInitEvent;
 import com.asx.mdx.lib.util.Game;
@@ -66,7 +65,7 @@ public class BiomeColorHandler implements IInitEvent
         Game.minecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
             public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
             {
-                if (AliensVsPredator.settings().isHalloweenEventEnabled())
+                if (AVP.settings().isHalloweenEventEnabled())
                 {
                     switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
                     {

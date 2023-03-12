@@ -7,7 +7,7 @@ import com.asx.mdx.lib.world.SchematicLoader;
 import com.asx.mdx.lib.world.storage.Schematic;
 
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 public class Schematics implements IInitEvent
 {
@@ -25,8 +25,8 @@ public class Schematics implements IInitEvent
             baseSchematicDir.mkdirs();
         }
 
-        this.schematicTest = SchematicLoader.load(new File(baseSchematicDir, "test.schematic"), AliensVsPredator.class.getResource("/assets/avp/schematics/test.schematic"));
-        this.derelict = SchematicLoader.load(new File(baseSchematicDir, "derelict.schematic"), AliensVsPredator.class.getResource("/assets/avp/schematics/derelict.schematic"));
-        this.derelictOld = SchematicLoader.load(new File(baseSchematicDir, "derelictold.schematic"), AliensVsPredator.class.getResource("/assets/avp/schematics/derelictold.schematic"));
+        this.schematicTest = SchematicLoader.load(new File(baseSchematicDir, "test.schematic"), AVP.class.getResource("/assets/avp/schematics/test.schematic"));
+        this.derelict = SchematicLoader.load(new File(baseSchematicDir, "derelict.schematic"), AVP.class.getResource("/assets/avp/schematics/derelict.schematic"));
+        this.derelictOld = SchematicLoader.load(new File(baseSchematicDir, "derelictold.schematic"), AVP.class.getResource("/assets/avp/schematics/derelictold.schematic"));
     }
 }

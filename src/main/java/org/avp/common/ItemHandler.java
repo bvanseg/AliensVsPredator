@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.living.*;
 import org.avp.common.entities.living.species.engineer.EntityEngineer;
 import org.avp.common.entities.living.species.engineer.EntitySpaceJockey;
@@ -35,7 +35,7 @@ import org.avp.common.item.rackmodules.*;
 import org.avp.common.item.supply.chute.ItemSupplyChute;
 import org.avp.common.item.supply.chute.SupplyChuteType;
 
-@ObjectHolder(AliensVsPredator.Properties.ID)
+@ObjectHolder(AVP.Properties.ID)
 public class ItemHandler
 {
     public static final Item helmXeno                   = new ItemArmorXeno(0, EntityEquipmentSlot.HEAD).setCreativeTab(Tab.MAIN).setRegistryName("helm.xeno");
@@ -58,14 +58,14 @@ public class ItemHandler
     public static final Item chestplateCeltic           = new ItemArmorCeltic(0, EntityEquipmentSlot.CHEST).setCreativeTab(Tab.MAIN).setRegistryName("body.celtic");
     public static final Item legsCeltic                 = new ItemArmorCeltic(0, EntityEquipmentSlot.LEGS).setCreativeTab(Tab.MAIN).setRegistryName("legwear.celtic");
     public static final Item bootsCeltic                = new ItemArmorCeltic(0, EntityEquipmentSlot.FEET).setCreativeTab(Tab.MAIN).setRegistryName("boots.celtic");
-    public static final Item shovelCeltic               = new ItemSpade(AliensVsPredator.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.shovel");
-    public static final Item pickaxeCeltic              = new ItemToolMaterialPickaxe(AliensVsPredator.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.pick");
-    public static final Item axeCeltic                  = new ItemToolMaterialAxe(AliensVsPredator.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.axe");
-    public static final Item swordCeltic                = new ItemSword(AliensVsPredator.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.sword");
-    public static final Item hoeCeltic                  = new ItemHoe(AliensVsPredator.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.hoe");
-    public static final Item itemSpear                  = new ItemSpear(AliensVsPredator.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.spear");
+    public static final Item shovelCeltic               = new ItemSpade(AVP.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.shovel");
+    public static final Item pickaxeCeltic              = new ItemToolMaterialPickaxe(AVP.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.pick");
+    public static final Item axeCeltic                  = new ItemToolMaterialAxe(AVP.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.axe");
+    public static final Item swordCeltic                = new ItemSword(AVP.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.sword");
+    public static final Item hoeCeltic                  = new ItemHoe(AVP.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.hoe");
+    public static final Item itemSpear                  = new ItemSpear(AVP.materials().tools().celtic).setCreativeTab(Tab.MAIN).setRegistryName("tool.celtic.spear");
     public static final Item itemWristbracer            = new ItemWristbracer().setMaxStackSize(1).setCreativeTab(Tab.MAIN).setRegistryName("wristblade");
-    public static final Item itemWristbracerBlades      = new HookedItem().setMaxStackSize(1).setMaxDamage(AliensVsPredator.materials().tools().celtic.getMaxUses()).setCreativeTab(Tab.MAIN).setRegistryName("wristbracer.blades");
+    public static final Item itemWristbracerBlades      = new HookedItem().setMaxStackSize(1).setMaxDamage(AVP.materials().tools().celtic.getMaxUses()).setCreativeTab(Tab.MAIN).setRegistryName("wristbracer.blades");
     public static final Item itemStunBaton              = new ItemStunBaton().setCreativeTab(Tab.MAIN).setRegistryName("stun.baton");
     public static final Item itemPlasmaCannon           = new ItemPlasmaCannon().setFull3D().setCreativeTab(Tab.MAIN).setRegistryName("plasmacannon");
     public static final Item itemProximityMine          = new ItemLaserMine().setCreativeTab(Tab.MAIN).setRegistryName("mine.laser");
@@ -212,19 +212,19 @@ public class ItemHandler
         public static final Item summonerYautjaMutant       = new ItemEntitySummoner(EntityYautjaMutant.class).setRegistryName("summon.yautjamutant");
     }
 
-    @Mod.EventBusSubscriber(modid = AliensVsPredator.Properties.ID)
+    @Mod.EventBusSubscriber(modid = AVP.Properties.ID)
     public static class RegistrationHandler
     {
         @SubscribeEvent
         public static void registerItems(RegistryEvent.Register<Item> event)
         {
-            for (java.lang.reflect.Field field : AliensVsPredator.items().getClass().getDeclaredFields())
+            for (java.lang.reflect.Field field : AVP.items().getClass().getDeclaredFields())
             {
                 try
                 {
                     field.setAccessible(true);
 
-                    Object obj = field.get(AliensVsPredator.items());
+                    Object obj = field.get(AVP.items());
 
                     if (obj instanceof Item)
                     {
@@ -241,7 +241,7 @@ public class ItemHandler
 
             }
             
-            if (AliensVsPredator.settings().areExperimentalFeaturesEnabled())
+            if (AVP.settings().areExperimentalFeaturesEnabled())
             {
                 for (java.lang.reflect.Field field : ItemHandler.Experimental.class.getDeclaredFields())
                 {

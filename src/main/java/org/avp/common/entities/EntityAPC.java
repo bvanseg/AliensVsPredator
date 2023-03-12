@@ -2,7 +2,7 @@ package org.avp.common.entities;
 
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.server.PacketFireAPC;
 
 import com.asx.mdx.lib.util.Game;
@@ -136,7 +136,7 @@ public class EntityAPC extends Entity
 
                 if (!flag)
                 {
-                    this.dropItemWithOffset(AliensVsPredator.items().itemAPC, 1, 0.0F);
+                    this.dropItemWithOffset(AVP.items().itemAPC, 1, 0.0F);
                 }
 
                 this.setDead();
@@ -202,9 +202,9 @@ public class EntityAPC extends Entity
         {
             if (Game.minecraft().player.isRiding() && Game.minecraft().player.getRidingEntity() instanceof EntityAPC)
             {
-                if (AliensVsPredator.keybinds().specialPrimary.isPressed())
+                if (AVP.keybinds().specialPrimary.isPressed())
                 {
-                    AliensVsPredator.network().sendToServer(new PacketFireAPC());
+                    AVP.network().sendToServer(new PacketFireAPC());
                 }
             }
         }

@@ -1,6 +1,6 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityPowercell;
 
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -17,9 +17,9 @@ public class RenderPowercell extends TileEntitySpecialRenderer<TileEntityPowerce
         {
             GlStateManager.disableCull();
             OpenGL.translate(x + 0.5, y - 0.5, z + 0.5);
-            AliensVsPredator.resources().models().POWERCELL.draw(tile);
+            AVP.resources().models().POWERCELL.draw(tile);
             OpenGL.disableLight();
-            AliensVsPredator.resources().models().POWERCELL_LIQUID.draw(tile);
+            AVP.resources().models().POWERCELL_LIQUID.draw(tile);
             OpenGL.enableLight();
         }
         OpenGL.popMatrix();

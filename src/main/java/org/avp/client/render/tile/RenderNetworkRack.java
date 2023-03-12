@@ -1,6 +1,6 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.item.ItemNetworkRackModule;
 import org.avp.common.tile.TileEntityNetworkRack;
 
@@ -28,17 +28,17 @@ public class RenderNetworkRack extends TileEntitySpecialRenderer<TileEntityNetwo
             OpenGL.rotate(rack);
             OpenGL.translate(-0.5F - 0.365F, 0F, 0F);
 
-            AliensVsPredator.resources().models().NETWORKMODULERACK.draw();
+            AVP.resources().models().NETWORKMODULERACK.draw();
 
             if (rack.isOperational())
             {
                 OpenGL.disableLight();
-                AliensVsPredator.resources().models().NETWORKMODULERACK_ON.draw();
+                AVP.resources().models().NETWORKMODULERACK_ON.draw();
                 OpenGL.enableLight();
             }
             else
             {
-                AliensVsPredator.resources().models().NETWORKMODULERACK_OFF.draw();
+                AVP.resources().models().NETWORKMODULERACK_OFF.draw();
             }
 
             if (rack.inventory != null)

@@ -1,6 +1,6 @@
 package org.avp.client.input.handlers;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.item.firearms.ItemFirearm;
 import org.avp.common.packets.server.PacketReloadFirearm;
@@ -28,20 +28,20 @@ public class InputHandlerFirearm implements IInputHandler
             {
                 ItemFirearm fireArm = (ItemFirearm) mainHand;
 
-                if (AliensVsPredator.keybinds().specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
+                if (AVP.keybinds().specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
                 {
                     this.lastReload = 0;
-                    AliensVsPredator.network().sendToServer(new PacketReloadFirearm());
+                    AVP.network().sendToServer(new PacketReloadFirearm());
                 }
             }
             else if (Game.minecraft().inGameHasFocus && offHand != null && offHand instanceof ItemFirearm)
             {
             	ItemFirearm fireArm = (ItemFirearm) offHand;
 
-                if (AliensVsPredator.keybinds().specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
+                if (AVP.keybinds().specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
                 {
                     this.lastReload = 0;
-                    AliensVsPredator.network().sendToServer(new PacketReloadFirearm());
+                    AVP.network().sendToServer(new PacketReloadFirearm());
                 }
             }
         }

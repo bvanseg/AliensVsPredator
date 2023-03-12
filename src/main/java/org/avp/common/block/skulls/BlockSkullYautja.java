@@ -1,6 +1,6 @@
 package org.avp.common.block.skulls;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.block.BlockSkull;
 import org.avp.client.model.entities.living.ModelYautja;
 
@@ -19,7 +19,7 @@ public class BlockSkullYautja extends BlockSkull
     @SideOnly(Side.CLIENT)
     private static class Resources
     {
-        private static final MapModelTexture<ModelYautja> model = AliensVsPredator.resources().models().YAUTJA_SKULL;
+        private static final MapModelTexture<ModelYautja> model = AVP.resources().models().YAUTJA_SKULL;
     }
 
     @Override

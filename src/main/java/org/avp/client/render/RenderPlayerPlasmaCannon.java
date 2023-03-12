@@ -1,6 +1,6 @@
 package org.avp.client.render;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.ModelPlasma;
 import org.avp.client.model.items.ModelPlasmaCannon;
 import org.avp.common.api.client.render.IEventRenderer;
@@ -35,7 +35,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 
 public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRenderer
 {
-    private static final MapModelTexture<ModelPlasmaCannon> MODEL              = AliensVsPredator.resources().models().PLASMACANNON.clone();
+    private static final MapModelTexture<ModelPlasmaCannon> MODEL              = AVP.resources().models().PLASMACANNON.clone();
     private static final MapModelTexture<ModelPlasmaCannon> MODEL_FIRST_PERSON = MODEL.clone();
     private static final ModelPlasma MODEL_PLASMA       = new ModelPlasma().setColor(new Color(0.3F, 0.6F, 1F, 0.7F));
 

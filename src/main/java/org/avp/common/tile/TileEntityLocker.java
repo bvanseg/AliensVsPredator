@@ -1,6 +1,6 @@
 package org.avp.common.tile;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.api.machines.IOpenable;
 import org.avp.common.inventory.ContainerLocker;
 import org.avp.common.item.firearms.ItemFirearm;
@@ -141,7 +141,7 @@ public class TileEntityLocker extends TileEntity implements IOpenable, IRotatabl
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AliensVsPredator.instance(), AliensVsPredator.interfaces().GUI_LOCKER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_LOCKER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
         }
     }
     
@@ -164,7 +164,7 @@ public class TileEntityLocker extends TileEntity implements IOpenable, IRotatabl
 
         if (!this.world.isRemote)
         {
-            AliensVsPredator.network().sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
+            AVP.network().sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
         }
     }
 

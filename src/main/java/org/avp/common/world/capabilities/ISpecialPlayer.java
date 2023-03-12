@@ -2,7 +2,7 @@ package org.avp.common.world.capabilities;
 
 import java.util.concurrent.Callable;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.packets.client.OrganismClientSync;
 import org.avp.common.packets.server.OrganismServerSync;
 import org.avp.common.world.playermode.PlayerMode;
@@ -166,12 +166,12 @@ public interface ISpecialPlayer
 
         public void syncWithServer(EntityLivingBase living)
         {
-            AliensVsPredator.network().sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+            AVP.network().sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         public void syncWithClients(EntityLivingBase living)
         {
-            AliensVsPredator.network().sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+            AVP.network().sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         @Override

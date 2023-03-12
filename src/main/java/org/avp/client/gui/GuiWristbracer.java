@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.inventory.ContainerWristbracer;
 import org.avp.common.item.ItemWristbracer;
 import org.lwjgl.opengl.GL11;
@@ -68,7 +68,7 @@ public class GuiWristbracer extends GuiContainer
         this.guiLeft = this.width / 2 - xSize / 2;
         this.guiTop = this.height / 2 - ySize / 2;
     	this.drawDefaultBackground();
-        AliensVsPredator.resources().GUI_WRISTBRACER.bind();
+        AVP.resources().GUI_WRISTBRACER.bind();
         Draw.drawQuad(guiLeft, guiTop, xSize, ySize - 30, 0, 0, 0);
 
         for (byte s = 0; s < 9; s++)
@@ -148,7 +148,7 @@ public class GuiWristbracer extends GuiContainer
             if (x == number)
             {
                 OpenGL.enable(GL11.GL_BLEND);
-                AliensVsPredator.resources().GUI_WRISTBRACER.bind();
+                AVP.resources().GUI_WRISTBRACER.bind();
                 Draw.drawQuad(xPos, yPos, 28, 50, 0, (27 * (x - 1)), 126);
             }
         }

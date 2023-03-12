@@ -2,7 +2,7 @@ package org.avp.client.render.tile;
 
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.tile.TileEntityLightPanel;
 
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -20,7 +20,7 @@ public class RenderLightPanel extends TileEntitySpecialRenderer<TileEntityLightP
             OpenGL.translate(x + 0.5F, y - 0.5, z + 0.5F);
             OpenGL.rotate(0F, 0F, 1F, 0F);
             OpenGL.scale(1.0F, 1.0F, 1.0F);
-            AliensVsPredator.resources().models().LIGHT_PANEL.draw(tile);
+            AVP.resources().models().LIGHT_PANEL.draw(tile);
         }
         OpenGL.popMatrix();
     }

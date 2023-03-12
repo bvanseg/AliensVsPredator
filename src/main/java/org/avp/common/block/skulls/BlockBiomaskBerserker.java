@@ -1,6 +1,6 @@
 package org.avp.common.block.skulls;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.block.BlockSkull;
 import org.avp.client.model.tile.skulls.ModelBiomaskBerserker;
 
@@ -19,7 +19,7 @@ public class BlockBiomaskBerserker extends BlockSkull
     @SideOnly(Side.CLIENT)
     private static class Resources
     {
-        private static final MapModelTexture<ModelBiomaskBerserker> model = AliensVsPredator.resources().models().BIOMASK_BERSERKER;
+        private static final MapModelTexture<ModelBiomaskBerserker> model = AVP.resources().models().BIOMASK_BERSERKER;
     }
 
     @Override

@@ -2,7 +2,7 @@ package org.avp.common.world.dimension.varda;
 
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.world.dimension.DimensionUtil;
 import org.lwjgl.opengl.GL11;
 
@@ -153,7 +153,7 @@ public class SkyProviderVarda extends IRenderHandler
                 OpenGL.color(1.0F, 1.0F, 1.0F, 1.0F);
                 OpenGL.rotate(DimensionUtil.calculateCelestialAngle(world.getWorldTime(), partialTicks) * 360.0F, 10.0F, -6.0F, -20.0F);
                 OpenGL.rotate(135F, 0.0F, 1.0F, 0.0F);
-                Draw.bindTexture(AliensVsPredator.resources().SKY_CALPAMOS);
+                Draw.bindTexture(AVP.resources().SKY_CALPAMOS);
                 Draw.startQuads();
                 Draw.vertex(-scale, 150.0D, -scale, 0.0D, 0.0D).endVertex();
                 Draw.vertex(scale, 150.0D, -scale, 1.0D, 0.0D).endVertex();

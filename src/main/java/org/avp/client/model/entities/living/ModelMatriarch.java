@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
 import org.lwjgl.opengl.GL11;
 
@@ -520,7 +520,7 @@ public class ModelMatriarch extends Model<EntityMatriarch>
                     OpenGL.blendClear();
                     OpenGL.disableCullFace();
                     OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_COLOR);
-                    AliensVsPredator.resources().models().MATRIARCH_MASK.getTexture().bind();
+                    AVP.resources().models().MATRIARCH_MASK.getTexture().bind();
                     draw(sack0);
                     OpenGL.enableCullFace();
                     OpenGL.blendClear();

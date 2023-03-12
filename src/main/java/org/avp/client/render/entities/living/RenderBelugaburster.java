@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelBelugaburster;
 import org.avp.common.entities.living.vardic.EntityBelugaburster;
 
@@ -13,7 +13,7 @@ public class RenderBelugaburster extends RenderLivingWrapper<EntityBelugaburster
 {
     public RenderBelugaburster(RenderManager m)
     {
-        super(m, AliensVsPredator.resources().models().BELUGABURSTER);
+        super(m, AVP.resources().models().BELUGABURSTER);
     }
 
     @Override

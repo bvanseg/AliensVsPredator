@@ -6,7 +6,7 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 public class Tab implements IPreInitEvent
 {
@@ -77,7 +77,7 @@ public class Tab implements IPreInitEvent
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
-        if (AliensVsPredator.settings().areExperimentalFeaturesEnabled())
+        if (AVP.settings().areExperimentalFeaturesEnabled())
         {
             ENTITIES_WIP = new CreativeTabs("summoners_wip") {
                 @Override

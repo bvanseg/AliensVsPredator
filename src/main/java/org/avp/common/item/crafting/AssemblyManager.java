@@ -2,7 +2,7 @@ package org.avp.common.item.crafting;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
@@ -76,7 +76,7 @@ public class AssemblyManager
         }
         else
         {
-        	AliensVsPredator.log().warn(String.format("[AVP/API/Assembler] Schematic for id '%s' is already registered.", schematic.getName()));
+        	AVP.log().warn(String.format("[AVP/API/Assembler] Schematic for id '%s' is already registered.", schematic.getName()));
         }
     }
 

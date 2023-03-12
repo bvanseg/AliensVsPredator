@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.entities.ModelPlasma;
 import org.avp.client.model.items.ModelWristBlade;
 import org.avp.common.entities.EntityWristbracer;
@@ -15,7 +15,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderWristbracer extends Render<EntityWristbracer>
 {
-    private final MapModelTexture<ModelWristBlade> wristbracer = AliensVsPredator.resources().models().WRISTBLADES.clone();
+    private final MapModelTexture<ModelWristBlade> wristbracer = AVP.resources().models().WRISTBLADES.clone();
     private final ModelPlasma model       = new ModelPlasma();
     private float                                rotation;
     private float                                rotationPrev;

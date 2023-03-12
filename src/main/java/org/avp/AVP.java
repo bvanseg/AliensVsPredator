@@ -26,8 +26,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.predator.PredatorBlocks;
 
-@Mod(name = AliensVsPredator.Properties.NAME, modid = AliensVsPredator.Properties.ID, dependencies = AliensVsPredator.Properties.DEPENDENCIES)
-public class AliensVsPredator implements IMod
+@Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
+public class AVP implements IMod
 {
     public static class Properties
     {
@@ -37,15 +37,15 @@ public class AliensVsPredator implements IMod
         public static final String DOMAIN       = ID + ":";
     }
 
-    @Mod.Instance(AliensVsPredator.Properties.ID)
-    private static AliensVsPredator instance;
+    @Mod.Instance(AVP.Properties.ID)
+    private static AVP instance;
 
     private static ItemHandler      items;
 
     @Override
     public ModContainer container()
     {
-        return Game.getModContainer(AliensVsPredator.Properties.ID);
+        return Game.getModContainer(AVP.Properties.ID);
     }
 
     @Mod.EventHandler
@@ -111,9 +111,9 @@ public class AliensVsPredator implements IMod
         commands().onServerStarting(event);
     }
 
-    public static AliensVsPredator instance()
+    public static AVP instance()
     {
-        return AliensVsPredator.instance;
+        return AVP.instance;
     }
 
     public static Console console()

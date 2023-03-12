@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.items.ModelStunBaton;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
 {
     public RenderItemStunBaton()
     {
-        super(AliensVsPredator.resources().models().STUNBATON);
+        super(AVP.resources().models().STUNBATON);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
         OpenGL.rotate(180.0F, 1.0F, 0.0F, 1.0F);
         OpenGL.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
-        AliensVsPredator.resources().models().STUNBATON.draw();
+        AVP.resources().models().STUNBATON.draw();
     }
 
     @Override
@@ -41,7 +41,7 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
         OpenGL.rotate(-25.0F, 1.0F, 0F, 0F);
         GlStateManager.disableCull();
         this.getModel().draw();
-        AliensVsPredator.resources().models().STUNBATON.draw();
+        AVP.resources().models().STUNBATON.draw();
     }
 
     @Override
@@ -53,7 +53,7 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
         OpenGL.rotate(180F, 1F, 0F, 0F);
         OpenGL.rotate(45F, 0F, 0F, 1F);
         this.getModel().draw();
-        AliensVsPredator.resources().models().STUNBATON.draw();
+        AVP.resources().models().STUNBATON.draw();
     }
 
     @Override
@@ -61,6 +61,6 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
     {
         GlStateManager.disableCull();
         this.getModel().draw();
-        AliensVsPredator.resources().models().STUNBATON.draw();
+        AVP.resources().models().STUNBATON.draw();
     }
 }

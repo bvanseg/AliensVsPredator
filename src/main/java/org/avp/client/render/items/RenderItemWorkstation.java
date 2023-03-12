@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelWorkstation;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemWorkstation extends ItemRenderer<ModelWorkstation>
 {
     public RenderItemWorkstation()
     {
-        super(AliensVsPredator.resources().models().WORKSTATION);
+        super(AVP.resources().models().WORKSTATION);
     }
 
     @Override

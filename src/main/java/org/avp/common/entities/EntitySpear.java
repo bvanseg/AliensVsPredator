@@ -1,6 +1,6 @@
 package org.avp.common.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.common.DamageSources;
 
 import com.asx.mdx.lib.util.GameSounds;
@@ -32,7 +32,7 @@ public class EntitySpear extends EntityItemStackProjectile
     {
         this(world);
         this.shootingEntity = entityliving;
-        this.setItemstack(new ItemStack(AliensVsPredator.items().itemSpear));
+        this.setItemstack(new ItemStack(AVP.items().itemSpear));
         this.setLocationAndAngles(entityliving.posX, entityliving.posY + entityliving.getEyeHeight(), entityliving.posZ, entityliving.rotationYaw, entityliving.rotationPitch);
         this.posX -= MathHelper.cos((rotationYaw / 180F) * 3.141593F) * 0.16F;
         this.posY -= 0.1D;

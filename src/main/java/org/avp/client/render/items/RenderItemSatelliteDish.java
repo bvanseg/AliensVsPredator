@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVP;
 import org.avp.client.model.tile.ModelSatelliteDish;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
@@ -15,7 +15,7 @@ public class RenderItemSatelliteDish extends ItemRenderer<ModelSatelliteDish>
 {
     public RenderItemSatelliteDish()
     {
-        super(AliensVsPredator.resources().models().SATELLITE_DISH);
+        super(AVP.resources().models().SATELLITE_DISH);
     }
 
     @Override
