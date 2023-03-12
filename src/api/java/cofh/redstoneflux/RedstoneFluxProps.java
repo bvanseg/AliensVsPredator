@@ -6,7 +6,7 @@ public class RedstoneFluxProps {
 
 	}
 
-	public static final String MOD_ID = "cofh/redstoneflux";
+	public static final String MOD_ID = "redstoneflux";
 	public static final String MOD_NAME = "Redstone Flux";
 
 	public static final String VERSION = "2.1.0";
