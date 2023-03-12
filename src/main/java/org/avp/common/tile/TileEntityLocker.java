@@ -17,8 +17,8 @@ import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
 import org.avp.common.api.machines.IOpenable;
 import org.avp.common.inventory.ContainerLocker;
-import org.avp.common.item.firearms.ItemFirearm;
-import org.avp.common.packets.client.PacketOpenable;
+import org.avp.common.item.firearm.ItemFirearm;
+import org.avp.common.network.packet.client.PacketOpenable;
 
 
 public class TileEntityLocker extends TileEntity implements IOpenable, IRotatableYAxis

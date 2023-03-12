@@ -11,7 +11,7 @@ import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IMaturable;
-import org.avp.common.world.hives.rework.HiveMember;
+import org.avp.common.world.hive.HiveMember;
 
 public class EntityPraetorian extends SpeciesXenomorph implements IMaturable, HiveMember
 {

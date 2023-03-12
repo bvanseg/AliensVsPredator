@@ -29,10 +29,10 @@ import org.avp.AVP;
 import org.avp.client.gui.GuiTacticalHUDSettings;
 import org.avp.client.render.wavegraph.Wavegraph;
 import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
-import org.avp.common.entities.EntityAPC;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.entity.EntityAPC;
+import org.avp.common.world.capability.IOrganism.Organism;
+import org.avp.common.world.capability.IOrganism.Provider;
+import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;

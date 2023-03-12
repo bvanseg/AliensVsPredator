@@ -15,8 +15,8 @@ import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.Species223ODe;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.PatchedEntityAIWander;
 
 public class EntityDeaconAdult extends Species223ODe
 {

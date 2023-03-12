@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.block.properties.UnlistedPropertyBlockstate;
+import org.avp.common.block.property.UnlistedPropertyBlockstate;
 import org.avp.common.block.util.EnumAlignment;
 import org.avp.common.tile.TileEntityReflective;
 

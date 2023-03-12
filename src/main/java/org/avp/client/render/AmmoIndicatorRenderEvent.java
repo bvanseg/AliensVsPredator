@@ -7,7 +7,7 @@ import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.avp.common.item.firearms.ItemFirearm;
+import org.avp.common.item.firearm.ItemFirearm;
 
 public class AmmoIndicatorRenderEvent
 {

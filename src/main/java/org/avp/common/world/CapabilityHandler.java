@@ -15,11 +15,11 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.avp.AVP;
-import org.avp.common.world.capabilities.IOrganism;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-import org.avp.common.world.capabilities.ISpecialPlayer;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.IOrganism;
+import org.avp.common.world.capability.IOrganism.Organism;
+import org.avp.common.world.capability.IOrganism.Provider;
+import org.avp.common.world.capability.ISpecialPlayer;
+import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 
 public class CapabilityHandler implements IPreInitEvent
 {

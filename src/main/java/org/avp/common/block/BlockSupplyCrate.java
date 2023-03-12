@@ -15,7 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.avp.common.entities.EntitySupplyChute;
+import org.avp.common.entity.EntitySupplyChute;
 import org.avp.common.item.supply.chute.SupplyChuteType;
 import org.avp.common.tile.TileEntitySupplyCrate;
 

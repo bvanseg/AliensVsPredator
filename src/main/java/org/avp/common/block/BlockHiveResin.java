@@ -16,7 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
-import org.avp.common.block.properties.UnlistedPropertyBlockstate;
+import org.avp.common.block.property.UnlistedPropertyBlockstate;
 import org.avp.common.tile.TileEntityHiveResin;
 import org.avp.common.tile.TileEntityHiveResin.ResinVariant;
 

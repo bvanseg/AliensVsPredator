@@ -10,8 +10,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.avp.AVP;
 import org.avp.common.DamageSources;
-import org.avp.common.entities.EntityItemStackProjectile;
-import org.avp.common.entities.EntityProjectile;
+import org.avp.common.entity.EntityItemStackProjectile;
+import org.avp.common.entity.EntityProjectile;
 
 public class EntitySpear extends EntityItemStackProjectile
 {

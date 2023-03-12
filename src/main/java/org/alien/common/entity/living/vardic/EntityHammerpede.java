@@ -19,7 +19,7 @@ import org.alien.common.AlienBlocks;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 
 import java.util.ArrayList;
 

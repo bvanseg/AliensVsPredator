@@ -2,7 +2,7 @@ package org.avp.client.model.tile.plants;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.avp.common.tile.plants.TileEntityGroundFern;
+import org.avp.common.tile.plant.TileEntityGroundFern;
 
 public class ModelGroundFern extends Model<TileEntityGroundFern>
 {

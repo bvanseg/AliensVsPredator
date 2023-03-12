@@ -10,8 +10,8 @@ import net.minecraft.util.EnumFacing;
 import org.avp.AVP;
 import org.avp.common.api.machines.IOpenable;
 import org.avp.common.api.power.IVoltageReceiver;
-import org.avp.common.entities.EntityMedpod;
-import org.avp.common.packets.client.PacketOpenable;
+import org.avp.common.entity.EntityMedpod;
+import org.avp.common.network.packet.client.PacketOpenable;
 
 
 public class TileEntityMedpod extends TileEntityElectrical implements IOpenable, IVoltageReceiver, IRotatableYAxis

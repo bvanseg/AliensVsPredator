@@ -12,7 +12,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.AVP;
-import org.avp.common.packets.server.PacketSpawnEntity;
+import org.avp.common.network.packet.server.PacketSpawnEntity;
 
 import java.util.List;
 

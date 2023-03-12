@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import org.avp.client.render.tile.RenderMedpod;
 import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.common.entities.EntityMedpod;
+import org.avp.common.entity.EntityMedpod;
 import org.predator.client.render.RenderPlayerPlasmaCannon;
 
 public class RenderLivingHook

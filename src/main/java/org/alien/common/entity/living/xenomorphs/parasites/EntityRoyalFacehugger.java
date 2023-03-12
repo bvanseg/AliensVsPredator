@@ -8,8 +8,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.common.ItemHandler;
 import org.avp.common.world.Embryo;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.avp.common.world.capability.IOrganism.Organism;
+import org.avp.common.world.capability.IOrganism.Provider;
 
 public class EntityRoyalFacehugger extends EntityFacehugger
 {

@@ -13,7 +13,7 @@ import net.minecraft.util.ITickable;
 import org.avp.AVP;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.item.ItemEntitySummoner;
-import org.avp.common.packets.server.PacketCryostasisStateUpdate;
+import org.avp.common.network.packet.server.PacketCryostasisStateUpdate;
 
 
 public class TileEntityCryostasisTube extends TileEntityElectrical implements IVoltageReceiver, IRotatableYAxis, ITickable

@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 import org.avp.common.world.playermode.LevelData;
 import org.avp.common.world.playermode.PlayerMode;
 

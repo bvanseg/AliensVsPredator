@@ -12,7 +12,7 @@ import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.client.Sounds;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.ItemHandler;
-import org.avp.common.world.hives.rework.HiveMember;
+import org.avp.common.world.hive.HiveMember;
 
 public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMember
 {

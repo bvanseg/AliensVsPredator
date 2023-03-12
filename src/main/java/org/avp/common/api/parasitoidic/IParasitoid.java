@@ -10,7 +10,7 @@ import net.minecraft.entity.passive.*;
 import net.minecraft.nbt.NBTTagCompound;
 import org.alien.common.entity.living.Species223ODe;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.avp.common.entities.EntityLiquidPool;
+import org.avp.common.entity.EntityLiquidPool;
 
 import java.util.ArrayList;
 

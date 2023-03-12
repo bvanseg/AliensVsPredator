@@ -18,7 +18,7 @@ import org.avp.AVP;
 import org.avp.common.AVPBlocks;
 import org.avp.common.api.machines.IOpenable;
 import org.avp.common.api.power.IVoltageReceiver;
-import org.avp.common.packets.client.PacketOpenBlastdoor;
+import org.avp.common.network.packet.client.PacketOpenBlastdoor;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -12,7 +12,7 @@ import org.avp.common.brain.impl.sensor.EntityBrainSensor;
 import org.avp.common.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.avp.common.brain.impl.task.NearestAttackableTargetBrainTask;
 import org.avp.common.brain.task.BrainTaskAdapter;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 
 /**
  * 

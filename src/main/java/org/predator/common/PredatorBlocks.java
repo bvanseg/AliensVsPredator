@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.common.Tab;
 import org.avp.common.block.BlockStasisMechanism;
-import org.avp.common.block.skulls.*;
+import org.avp.common.block.skull.*;
 import org.lib.BlockRegistryUtil;
 
 /**

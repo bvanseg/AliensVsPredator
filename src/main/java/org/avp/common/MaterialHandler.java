@@ -6,8 +6,8 @@ import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import org.avp.common.block.materials.MaterialBlackGoo;
-import org.avp.common.block.materials.MaterialMist;
+import org.avp.common.block.material.MaterialBlackGoo;
+import org.avp.common.block.material.MaterialMist;
 
 public class MaterialHandler implements IInitEvent
 {

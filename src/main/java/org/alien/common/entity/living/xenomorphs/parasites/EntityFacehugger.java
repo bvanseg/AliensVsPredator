@@ -18,8 +18,8 @@ import org.alien.common.entity.living.EntityParasitoid;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IParasitoid;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.PatchedEntityAIWander;
 
 public class EntityFacehugger extends EntityParasitoid implements IMob, IParasitoid
 {

@@ -26,11 +26,11 @@ import org.avp.AVP;
 import org.avp.common.api.machines.IDataDevice;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.inventory.ContainerTurret;
-import org.avp.common.packets.client.PacketTurretSync;
-import org.avp.common.tile.helpers.TileEntityTurretAmmoHelper;
-import org.avp.common.tile.helpers.TileEntityTurretAttackHelper;
-import org.avp.common.tile.helpers.TileEntityTurretLookHelper;
-import org.avp.common.tile.helpers.TileEntityTurretTargetHelper;
+import org.avp.common.network.packet.client.PacketTurretSync;
+import org.avp.common.tile.helper.TileEntityTurretAmmoHelper;
+import org.avp.common.tile.helper.TileEntityTurretAttackHelper;
+import org.avp.common.tile.helper.TileEntityTurretLookHelper;
+import org.avp.common.tile.helper.TileEntityTurretTargetHelper;
 
 import java.util.ArrayList;
 

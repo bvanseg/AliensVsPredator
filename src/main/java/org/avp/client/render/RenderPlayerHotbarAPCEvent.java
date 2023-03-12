@@ -4,7 +4,7 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.avp.common.entities.EntityAPC;
+import org.avp.common.entity.EntityAPC;
 
 public class RenderPlayerHotbarAPCEvent
 {

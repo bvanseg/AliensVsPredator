@@ -9,7 +9,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import org.avp.AVP;
-import org.avp.common.packets.server.PacketOpenGui;
+import org.avp.common.network.packet.server.PacketOpenGui;
 
 public class CommandSettings extends CommandBase
 {

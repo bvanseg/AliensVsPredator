@@ -21,8 +21,8 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IHost;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.PatchedEntityAIWander;
 
 public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
 {

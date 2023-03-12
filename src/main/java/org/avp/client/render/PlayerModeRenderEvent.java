@@ -12,9 +12,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.avp.common.PlayerModeHandler;
-import org.avp.common.item.firearms.ItemFirearm;
-import org.avp.common.item.firearms.ItemFlamethrower;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.item.firearm.ItemFirearm;
+import org.avp.common.item.firearm.ItemFlamethrower;
+import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 import org.avp.common.world.playermode.PlayerMode;
 
 public class PlayerModeRenderEvent

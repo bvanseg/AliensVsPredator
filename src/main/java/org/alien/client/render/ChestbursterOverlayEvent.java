@@ -6,8 +6,8 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.avp.AVP;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.avp.common.world.capability.IOrganism.Organism;
+import org.avp.common.world.capability.IOrganism.Provider;
 
 public class ChestbursterOverlayEvent
 {

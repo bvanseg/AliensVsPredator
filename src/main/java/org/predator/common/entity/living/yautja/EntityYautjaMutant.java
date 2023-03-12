@@ -14,8 +14,8 @@ import net.minecraft.world.World;
 import org.alien.common.entity.ai.selector.EntitySelectorYautjaMutant;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IHost;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.PatchedEntityAIWander;
 
 public class EntityYautjaMutant extends EntityMob implements IMob, IHost
 {

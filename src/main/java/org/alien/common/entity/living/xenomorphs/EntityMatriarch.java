@@ -26,12 +26,12 @@ import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.AVP;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.packets.server.PacketSpawnEntity;
-import org.avp.common.world.hives.rework.AlienHive;
-import org.avp.common.world.hives.rework.HiveMember;
-import org.avp.common.world.hives.rework.HiveOwner;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.avp.common.network.packet.server.PacketSpawnEntity;
+import org.avp.common.world.hive.AlienHive;
+import org.avp.common.world.hive.HiveMember;
+import org.avp.common.world.hive.HiveOwner;
 
 import java.util.ArrayList;
 import java.util.UUID;

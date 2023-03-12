@@ -18,7 +18,7 @@ import org.avp.AVP;
 import org.avp.common.api.machines.IOpenable;
 import org.avp.common.inventory.ContainerSupplyCrate;
 import org.avp.common.item.supply.chute.SupplyChuteType;
-import org.avp.common.packets.client.PacketOpenable;
+import org.avp.common.network.packet.client.PacketOpenable;
 
 
 public class TileEntitySupplyCrate extends TileEntity implements IOpenable, IRotatableYAxis

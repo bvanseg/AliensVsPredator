@@ -17,9 +17,9 @@ import org.alien.common.entity.living.engineer.EntityEngineer;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.INascentic;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.living.EntityMarine;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.avp.common.entity.living.EntityMarine;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
 public class EntityDracoburster extends EntityChestburster implements IMob, INascentic

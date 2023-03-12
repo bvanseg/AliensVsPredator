@@ -19,7 +19,7 @@ import org.avp.AVP;
 import org.avp.client.Sounds;
 import org.avp.common.DamageSources;
 import org.avp.common.inventory.ContainerWristbracer;
-import org.avp.common.packets.server.PacketSpawnNuke;
+import org.avp.common.network.packet.server.PacketSpawnNuke;
 
 import java.util.ArrayList;
 import java.util.HashMap;

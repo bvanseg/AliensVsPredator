@@ -9,8 +9,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.api.parasitoidic.IParasitoid;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.avp.common.world.capability.IOrganism.Organism;
+import org.avp.common.world.capability.IOrganism.Provider;
 
 import java.util.ArrayList;
 

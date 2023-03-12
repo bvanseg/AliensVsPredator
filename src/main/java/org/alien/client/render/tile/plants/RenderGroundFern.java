@@ -3,7 +3,7 @@ package org.alien.client.render.tile.plants;
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
-import org.avp.common.tile.plants.TileEntityGroundFern;
+import org.avp.common.tile.plant.TileEntityGroundFern;
 import org.lwjgl.opengl.GL12;
 
 public class RenderGroundFern extends TileEntitySpecialRenderer<TileEntityGroundFern>

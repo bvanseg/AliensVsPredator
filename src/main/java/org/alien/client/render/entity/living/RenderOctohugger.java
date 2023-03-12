@@ -11,7 +11,7 @@ import org.alien.common.entity.living.vardic.EntityOctohugger;
 import org.avp.AVP;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.common.entities.EntityMedpod;
+import org.avp.common.entity.EntityMedpod;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;

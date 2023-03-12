@@ -7,9 +7,9 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
 import org.avp.AVP;
-import org.avp.common.packets.client.*;
-import org.avp.common.packets.server.*;
-import org.avp.common.packets.server.PacketBlastdoorCommon.PacketBlastdoorClient;
+import org.avp.common.network.packet.client.*;
+import org.avp.common.network.packet.server.*;
+import org.avp.common.network.packet.server.PacketBlastdoorCommon.PacketBlastdoorClient;
 
 
 public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent

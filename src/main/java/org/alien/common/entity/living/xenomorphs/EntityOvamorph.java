@@ -22,8 +22,8 @@ import org.alien.common.entity.living.xenomorphs.parasites.EntityRoyalFacehugger
 import org.avp.AVP;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.ItemHandler;
-import org.avp.common.packets.client.PacketOvamorphContainsFacehugger;
-import org.avp.common.world.hives.rework.HiveMember;
+import org.avp.common.network.packet.client.PacketOvamorphContainsFacehugger;
+import org.avp.common.world.hive.HiveMember;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -27,11 +27,11 @@ import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.api.parasitoidic.INascentic;
 import org.avp.common.api.parasitoidic.IRoyalOrganism;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-import org.avp.common.world.hives.rework.HiveMember;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.avp.common.world.capability.IOrganism.Organism;
+import org.avp.common.world.capability.IOrganism.Provider;
+import org.avp.common.world.hive.HiveMember;
 
 public class EntityChestburster extends SpeciesAlien implements IMob, INascentic, HiveMember
 {

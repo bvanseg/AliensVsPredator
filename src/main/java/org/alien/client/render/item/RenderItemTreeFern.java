@@ -8,7 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
 import org.avp.client.model.tile.plants.ModelTreeFern;
-import org.avp.common.tile.plants.TileEntityGroundFern;
+import org.avp.common.tile.plant.TileEntityGroundFern;
 import org.lwjgl.opengl.GL11;
 
 public class RenderItemTreeFern extends ItemRenderer<ModelTreeFern>

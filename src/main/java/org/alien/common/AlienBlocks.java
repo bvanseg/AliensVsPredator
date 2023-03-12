@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
 import org.avp.common.Tab;
 import org.avp.common.block.*;
-import org.avp.common.block.skulls.*;
+import org.avp.common.block.skull.*;
 import org.lib.BlockRegistryUtil;
 
 /**

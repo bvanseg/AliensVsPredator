@@ -5,8 +5,8 @@ import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.renderer.GlStateManager;
 import org.avp.AVP;
-import org.avp.common.packets.server.PacketBlastdoorCommon;
-import org.avp.common.packets.server.PacketBlastdoorCommon.PacketMode;
+import org.avp.common.network.packet.server.PacketBlastdoorCommon;
+import org.avp.common.network.packet.server.PacketBlastdoorCommon.PacketMode;
 import org.avp.common.tile.TileEntityBlastdoor;
 
 import java.io.IOException;

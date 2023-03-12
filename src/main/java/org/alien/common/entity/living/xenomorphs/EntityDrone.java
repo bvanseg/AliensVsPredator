@@ -24,7 +24,7 @@ import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.block.BlockHiveResin;
 import org.avp.common.tile.TileEntityHiveResin;
-import org.avp.common.world.hives.rework.HiveMember;
+import org.avp.common.world.hive.HiveMember;
 
 import java.util.ArrayList;
 

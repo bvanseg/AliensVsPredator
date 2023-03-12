@@ -9,14 +9,14 @@ import org.alien.client.render.ChestbursterOverlayEvent;
 import org.alien.client.render.FacehuggerRenderEvent;
 import org.avp.client.input.InputHandler;
 import org.avp.client.render.*;
-import org.avp.client.render.items.RenderMotionTrackerScreen;
+import org.avp.client.render.item.RenderMotionTrackerScreen;
 import org.avp.common.world.CapabilityHandler;
 import org.avp.common.world.EntityImpregnationHandler;
 import org.avp.common.world.TrilobiteImpregnationHandler;
 import org.avp.common.world.dimension.acheron.SkyProviderAcheron;
 import org.avp.common.world.fluids.BucketHandlingEvent;
-import org.avp.common.world.hooks.FarmlandRegistry;
-import org.avp.common.world.hooks.MaterialHandler;
+import org.avp.common.world.hook.FarmlandRegistry;
+import org.avp.common.world.hook.MaterialHandler;
 import org.predator.client.render.VisionModeRenderEvent;
 
 import java.util.ArrayList;

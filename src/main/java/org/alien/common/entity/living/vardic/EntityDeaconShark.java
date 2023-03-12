@@ -16,10 +16,10 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.ItemHandler;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.ai.helpers.EntityExtendedLookHelper;
-import org.avp.common.entities.ai.pathfinding.PathNavigateSwimmer;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.avp.common.entity.ai.helpers.EntityExtendedLookHelper;
+import org.avp.common.entity.ai.pathfinding.PathNavigateSwimmer;
 
 import java.util.List;
 

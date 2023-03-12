@@ -3,7 +3,7 @@ package org.avp.client.model.tile.plants;
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
-import org.avp.common.tile.plants.TileEntityTreeFern;
+import org.avp.common.tile.plant.TileEntityTreeFern;
 
 public class ModelTreeFern extends Model<TileEntityTreeFern>
 {

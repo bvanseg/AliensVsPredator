@@ -20,9 +20,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.living.EntityMarine;
+import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.avp.common.entity.living.EntityMarine;
 import org.predator.common.entity.living.SpeciesYautja;
 
 public abstract class SpeciesEngineer extends EntityMob

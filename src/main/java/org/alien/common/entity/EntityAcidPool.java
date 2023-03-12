@@ -18,7 +18,7 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.AVPBlocks;
 import org.avp.common.DamageSources;
 import org.avp.common.api.blocks.IAcidResistant;
-import org.avp.common.entities.EntityLiquidPool;
+import org.avp.common.entity.EntityLiquidPool;
 
 import java.util.ArrayList;
 import java.util.HashSet;

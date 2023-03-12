@@ -19,7 +19,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
-import org.avp.common.packets.server.PacketAddTurretTarget;
+import org.avp.common.network.packet.server.PacketAddTurretTarget;
 import org.avp.common.tile.TileEntityTurret;
 
 import java.util.Collection;

@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import org.avp.client.Sounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IMaturable;
-import org.avp.common.world.hives.rework.HiveMember;
+import org.avp.common.world.hive.HiveMember;
 
 public class EntityCrusher extends EntityPraetorian implements IMaturable, HiveMember
 {

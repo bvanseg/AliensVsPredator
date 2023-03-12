@@ -7,7 +7,7 @@ import com.asx.mdx.lib.client.util.Screen;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.gui.GuiScreen;
 import org.avp.client.render.TacticalHUDRenderEvent;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 
 import java.io.IOException;
 

@@ -10,7 +10,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.entities.EntityGrenade;
+import org.avp.common.entity.EntityGrenade;
 
 import java.util.List;
 

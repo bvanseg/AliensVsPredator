@@ -14,9 +14,9 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.avp.common.tile.plants.TileEntityGroundFern;
-import org.avp.common.tile.plants.TileEntityPlant.PlantColor;
-import org.avp.common.tile.plants.TileEntityPlant.PlantSize;
+import org.avp.common.tile.plant.TileEntityGroundFern;
+import org.avp.common.tile.plant.TileEntityPlant.PlantColor;
+import org.avp.common.tile.plant.TileEntityPlant.PlantSize;
 
 import java.util.Random;
 

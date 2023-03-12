@@ -12,7 +12,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.avp.common.entities.EntityAPC;
+import org.avp.common.entity.EntityAPC;
 
 public class ItemAPC extends HookedItem
 {

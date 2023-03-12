@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 import org.avp.AVP;
-import org.avp.common.packets.server.*;
+import org.avp.common.network.packet.server.*;
 import org.avp.common.tile.TileEntityTurret;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;

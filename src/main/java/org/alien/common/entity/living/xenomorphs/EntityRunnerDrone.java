@@ -7,7 +7,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IMaturable;
-import org.avp.common.world.hives.rework.HiveMember;
+import org.avp.common.world.hive.HiveMember;
 
 public class EntityRunnerDrone extends EntityDrone implements IMaturable, HiveMember
 {

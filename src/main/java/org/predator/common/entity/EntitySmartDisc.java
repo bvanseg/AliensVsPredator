@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import org.avp.AVP;
 import org.avp.common.DamageSources;
 import org.avp.common.ItemHandler;
-import org.avp.common.entities.EntityProjectile;
+import org.avp.common.entity.EntityProjectile;
 
 public class EntitySmartDisc extends EntityProjectile
 {

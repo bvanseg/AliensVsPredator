@@ -17,7 +17,7 @@ import org.alien.common.entity.living.vardic.EntityBelugaburster;
 import org.alien.common.entity.living.vardic.EntityBelugamorph;
 import org.alien.common.entity.living.xenomorphs.*;
 import org.avp.common.api.parasitoidic.INascentic;
-import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capability.IOrganism.Organism;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 

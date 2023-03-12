@@ -8,7 +8,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import org.avp.AVP;
 import org.avp.common.api.power.IVoltageProvider;
-import org.avp.common.packets.client.PacketSyncRF;
+import org.avp.common.network.packet.client.PacketSyncRF;
 
 public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implements IVoltageProvider, IRotatableYAxis, IEnergyReceiver
 {

@@ -8,9 +8,9 @@ import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntityZombieHorse;
 import org.alien.common.entity.living.SpeciesEngineer;
 import org.avp.common.api.parasitoidic.IHost;
-import org.avp.common.entities.living.EntityMarine;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.avp.common.entity.living.EntityMarine;
+import org.avp.common.world.capability.IOrganism.Organism;
+import org.avp.common.world.capability.IOrganism.Provider;
 import org.predator.common.entity.living.SpeciesYautja;
 
 import java.util.ArrayList;

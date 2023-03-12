@@ -18,7 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.common.item.crafting.AssemblyManager;
 import org.avp.common.item.crafting.Schematic;
-import org.avp.common.packets.server.PacketAssemble;
+import org.avp.common.network.packet.server.PacketAssemble;
 import org.avp.common.tile.TileEntityAssembler;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;

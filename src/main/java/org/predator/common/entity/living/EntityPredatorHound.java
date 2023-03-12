@@ -12,7 +12,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IHost;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entity.ai.PatchedEntityAIWander;
 
 public class EntityPredatorHound extends EntityMob implements IMob, IHost
 {
