@@ -4,26 +4,18 @@ import com.asx.mdx.core.mods.IInitEvent;
 import com.asx.mdx.lib.world.block.BlockMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.BlockRenderLayer;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidBase;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.relauncher.Side;
 import org.avp.AliensVsPredator;
 import org.avp.common.block.*;
 import org.avp.common.block.BlockUnidentifiedTreeLeaves.Type;
 import org.avp.common.block.skulls.*;
-import org.avp.common.item.ItemBlockSkull;
 import org.avp.common.item.supply.chute.SupplyChuteType;
+import org.lib.BlockRegistryUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Ri5ux
@@ -34,10 +26,6 @@ public class AVPBlocks implements IInitEvent
     public static final AVPBlocks instance = new AVPBlocks();
 
     private AVPBlocks() {}
-
-    private static final HashMap<Block, ItemBlock> ITEM_BLOCKS = new HashMap<>();
-
-    private static final ArrayList<BlockFluidBase> FLUIDS = new ArrayList<>();
     
     public static final Block NATURAL_RESIN = new BlockHiveResin(Material.WOOD).setRegistryName("hiveresin");
     public static final Block RESIN = new BlockMaterial(Material.WOOD).setHardness(5F).setResistance(10.0F).setRegistryName("hiveresin.standard");
@@ -162,8 +150,8 @@ public class AVPBlocks implements IInitEvent
     public static final Block WALL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialslab");
     public static final Block IRON_BRICKS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickslab");
     public static final Block INDUSTRIAL_GLASS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassslab");
-    public static final Block BLACK_GOO = createFluidBlock(BlockBlackGoo.fluid, BlockBlackGoo.class, "blackgoo");
-    public static final Block MIST = createFluidBlock(BlockMist.fluid, BlockMist.class, "mist");
+    public static final Block BLACK_GOO = BlockRegistryUtil.createFluidBlock(BlockBlackGoo.fluid, BlockBlackGoo.class, "blackgoo");
+    public static final Block MIST = BlockRegistryUtil.createFluidBlock(BlockMist.fluid, BlockMist.class, "mist");
     public static final Block TURRET = new BlockTurret(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("turret");
     public static final Block TERMINAL = new BlockWorkstation(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("terminal");
     public static final Block STASIS_MECHANISM = new BlockStasisMechanism(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("stasismechanism");
@@ -211,301 +199,211 @@ public class AVPBlocks implements IInitEvent
     public static final Block PYRAMID = new BlockReflective(Material.CIRCUITS).setRegistryName("pyramid");
     public static final Block INVERTED_RIDGE = new BlockReflective(Material.CIRCUITS).setRegistryName("invertedridge");
     public static final Block INVERTED_PYRAMID = new BlockReflective(Material.CIRCUITS).setRegistryName("invertedpyramid");
-
-    private static void registerBlock(Object obj) {
-        if (obj instanceof Block)
-        {
-            createItem((Block) obj);
-        }
-
-        if (obj instanceof Block)
-        {
-            // Register block
-            Block block = (Block) obj;
-            block.setTranslationKey(block.getRegistryName().getNamespace() + ":" + block.getRegistryName().getPath());
-            ForgeRegistries.BLOCKS.register(block);
-
-            if (block.getCreativeTab() == null)
-            {
-                block.setCreativeTab(Tab.BLOCKS);
-            }
-            registerModel(getItemFromBlock(block));
-
-            // Register item block
-            ItemBlock itemblock = getItemFromBlock(block);
-            ForgeRegistries.ITEMS.register(itemblock);
-            registerModel(itemblock);
-
-            itemblock.setCreativeTab(Tab.BLOCKS);
-
-            if (block.getCreativeTab() != null)
-            {
-                itemblock.setCreativeTab(block.getCreativeTab());
-            }
-            else
-            {
-                itemblock.setCreativeTab(Tab.BLOCKS);
-            }
-
-            // Register fluid
-            if (obj instanceof BlockFluidBase) {
-                BlockFluidBase fluid = (BlockFluidBase) obj;
-                FLUIDS.add(fluid);
-            }
-        }
-    }
-    
-    private static void createItem(Block block)
-    {
-        ItemBlock itemblock;
-        
-        if (block instanceof BlockSkull)
-            itemblock = new ItemBlockSkull(block);
-        else
-            itemblock = new ItemBlock(block);
-        
-        itemblock.setRegistryName(block.getRegistryName());
-        itemblock.setTranslationKey(itemblock.getRegistryName().toString());
-
-        ITEM_BLOCKS.put(block, itemblock);
-    }
     
     public static ItemBlock getItemFromBlock(Block block)
     {
-        return ITEM_BLOCKS.get(block);
+        return BlockRegistryUtil.ITEM_BLOCKS.get(block);
     }
 
-    public static ArrayList<BlockFluidBase> getFluids()
+    public static List<BlockFluidBase> getFluids()
     {
-        return FLUIDS;
-    }
-
-    private static void registerModel(ItemBlock item)
-    {
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-        {
-            ModelResourceLocation modelResource = new ModelResourceLocation(item.getRegistryName(), "inventory");
-            ModelLoader.setCustomModelResourceLocation(item, 0, modelResource);
-        }
-
-    }
-
-    private static Block createFluidBlock(Fluid fluid, Class<? extends BlockFluidBase> c, String registryName)
-    {
-        FluidRegistry.registerFluid(fluid);
-        FluidRegistry.addBucketForFluid(fluid);
-
-        try
-        {
-            Object o = c.getConstructor().newInstance();
-
-            if (o instanceof BlockFluidBase)
-            {
-                return ((BlockFluidBase) o).setRegistryName(registryName);
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
-
-        return null;
+        return BlockRegistryUtil.FLUIDS;
     }
 
     @Override
     public void init(FMLInitializationEvent event) {
         AliensVsPredator.log().info("Registering Blocks");
-        registerBlock(NATURAL_RESIN);
-        registerBlock(RESIN);
-        registerBlock(RELIC_OVAMORPH);
+        BlockRegistryUtil.registerBlock(NATURAL_RESIN);
+        BlockRegistryUtil.registerBlock(RESIN);
+        BlockRegistryUtil.registerBlock(RELIC_OVAMORPH);
 
-        registerBlock(METAL_1);
-        registerBlock(METAL_2);
+        BlockRegistryUtil.registerBlock(METAL_1);
+        BlockRegistryUtil.registerBlock(METAL_2);
 
-        registerBlock(RELIC_FACEHUGGER);
-        registerBlock(RELIC_ALIEN);
+        BlockRegistryUtil.registerBlock(RELIC_FACEHUGGER);
+        BlockRegistryUtil.registerBlock(RELIC_ALIEN);
 
-        registerBlock(SHIP_1);
-        registerBlock(SHIP_2);
-        registerBlock(SHIP_3);
-        registerBlock(SHIP_4);
-        registerBlock(SHIP_5);
-        registerBlock(SHIP_6);
+        BlockRegistryUtil.registerBlock(SHIP_1);
+        BlockRegistryUtil.registerBlock(SHIP_2);
+        BlockRegistryUtil.registerBlock(SHIP_3);
+        BlockRegistryUtil.registerBlock(SHIP_4);
+        BlockRegistryUtil.registerBlock(SHIP_5);
+        BlockRegistryUtil.registerBlock(SHIP_6);
 
-        registerBlock(TEMPLE_TILES_SINGLE);
-        registerBlock(TEMPLE_BRICK);
-        registerBlock(TEMPLE_TILE);
-        registerBlock(TEMPLE_WALL_1);
-        registerBlock(TEMPLE_WALL_2);
+        BlockRegistryUtil.registerBlock(TEMPLE_TILES_SINGLE);
+        BlockRegistryUtil.registerBlock(TEMPLE_BRICK);
+        BlockRegistryUtil.registerBlock(TEMPLE_TILE);
+        BlockRegistryUtil.registerBlock(TEMPLE_WALL_1);
+        BlockRegistryUtil.registerBlock(TEMPLE_WALL_2);
 
-        registerBlock(INDUSTRIAL_WALL);
-        registerBlock(INDUSTRIAL_WALL_STRIPED);
-        registerBlock(CEILING);
-        registerBlock(CEILING_FAN);
-        registerBlock(CEILING_VENT);
-        registerBlock(CEILING_GRILL);
+        BlockRegistryUtil.registerBlock(INDUSTRIAL_WALL);
+        BlockRegistryUtil.registerBlock(INDUSTRIAL_WALL_STRIPED);
+        BlockRegistryUtil.registerBlock(CEILING);
+        BlockRegistryUtil.registerBlock(CEILING_FAN);
+        BlockRegistryUtil.registerBlock(CEILING_VENT);
+        BlockRegistryUtil.registerBlock(CEILING_GRILL);
 
-        registerBlock(SKULLS);
-        registerBlock(FLOOR_GRILL);
-        registerBlock(INDUSTRIAL_GLASS);
-        registerBlock(INDUSTRIAL_BRICKS);
+        BlockRegistryUtil.registerBlock(SKULLS);
+        BlockRegistryUtil.registerBlock(FLOOR_GRILL);
+        BlockRegistryUtil.registerBlock(INDUSTRIAL_GLASS);
+        BlockRegistryUtil.registerBlock(INDUSTRIAL_BRICKS);
 
-        registerBlock(METAL_PANEL);
-        registerBlock(METAL_COLUMN_0);
-        registerBlock(METAL_COLUMN_1);
-        registerBlock(PLASTIC_CIRCLE);
-        registerBlock(PLASTIC);
+        BlockRegistryUtil.registerBlock(METAL_PANEL);
+        BlockRegistryUtil.registerBlock(METAL_COLUMN_0);
+        BlockRegistryUtil.registerBlock(METAL_COLUMN_1);
+        BlockRegistryUtil.registerBlock(PLASTIC_CIRCLE);
+        BlockRegistryUtil.registerBlock(PLASTIC);
 
-        registerBlock(PADDING_PANEL);
-        registerBlock(PLASTIC_TRI);
-        registerBlock(PLASTIC_TILE);
+        BlockRegistryUtil.registerBlock(PADDING_PANEL);
+        BlockRegistryUtil.registerBlock(PLASTIC_TRI);
+        BlockRegistryUtil.registerBlock(PLASTIC_TILE);
 
-        registerBlock(ORE_BAUXITE);
-        registerBlock(ORE_COBALT);
-        registerBlock(ORE_COPPER);
-        registerBlock(ORE_LITHIUM);
-        registerBlock(ORE_MONAZITE);
-        registerBlock(ORE_SILICON);
+        BlockRegistryUtil.registerBlock(ORE_BAUXITE);
+        BlockRegistryUtil.registerBlock(ORE_COBALT);
+        BlockRegistryUtil.registerBlock(ORE_COPPER);
+        BlockRegistryUtil.registerBlock(ORE_LITHIUM);
+        BlockRegistryUtil.registerBlock(ORE_MONAZITE);
+        BlockRegistryUtil.registerBlock(ORE_SILICON);
 
-        registerBlock(MUTHUR_PANEL_1);
-        registerBlock(MUTHUR_PANEL_2);
+        BlockRegistryUtil.registerBlock(MUTHUR_PANEL_1);
+        BlockRegistryUtil.registerBlock(MUTHUR_PANEL_2);
 
-        registerBlock(VENT_0);
-        registerBlock(VENT_1);
-        registerBlock(VENT_2);
+        BlockRegistryUtil.registerBlock(VENT_0);
+        BlockRegistryUtil.registerBlock(VENT_1);
+        BlockRegistryUtil.registerBlock(VENT_2);
 
-        registerBlock(ENGINEER_FLOOR);
-        registerBlock(ENGINEER_BRICK_0);
-        registerBlock(ENGINEER_BRICK_1);
-        registerBlock(ENGINEER_BRICK_2);
-        registerBlock(ENGINEER_BRICK_3);
+        BlockRegistryUtil.registerBlock(ENGINEER_FLOOR);
+        BlockRegistryUtil.registerBlock(ENGINEER_BRICK_0);
+        BlockRegistryUtil.registerBlock(ENGINEER_BRICK_1);
+        BlockRegistryUtil.registerBlock(ENGINEER_BRICK_2);
+        BlockRegistryUtil.registerBlock(ENGINEER_BRICK_3);
 
-        registerBlock(ENGINEER_GRAVEL);
+        BlockRegistryUtil.registerBlock(ENGINEER_GRAVEL);
 
-        registerBlock(ENGINEER_WALL_0);
-        registerBlock(ENGINEER_WALL_1);
-        registerBlock(ENGINEER_WALL_2);
-        registerBlock(ENGINEER_WALL_3);
-        registerBlock(ENGINEER_WALL_4);
+        BlockRegistryUtil.registerBlock(ENGINEER_WALL_0);
+        BlockRegistryUtil.registerBlock(ENGINEER_WALL_1);
+        BlockRegistryUtil.registerBlock(ENGINEER_WALL_2);
+        BlockRegistryUtil.registerBlock(ENGINEER_WALL_3);
+        BlockRegistryUtil.registerBlock(ENGINEER_WALL_4);
 
-        registerBlock(ENGINEER_ROCK_0);
-        registerBlock(ENGINEER_ROCK_1);
-        registerBlock(ENGINEER_ROCK_2);
-        registerBlock(ENGINEER_ROCK_3);
+        BlockRegistryUtil.registerBlock(ENGINEER_ROCK_0);
+        BlockRegistryUtil.registerBlock(ENGINEER_ROCK_1);
+        BlockRegistryUtil.registerBlock(ENGINEER_ROCK_2);
+        BlockRegistryUtil.registerBlock(ENGINEER_ROCK_3);
 
-        registerBlock(ENGINEER_COLUMN_1);
-        registerBlock(ENGINEER_COLUMN_2);
+        BlockRegistryUtil.registerBlock(ENGINEER_COLUMN_1);
+        BlockRegistryUtil.registerBlock(ENGINEER_COLUMN_2);
 
-        registerBlock(ENGINEER_MATERIAL_0);
-        registerBlock(ENGINEER_MATERIAL_1);
-        registerBlock(ENGINEER_MATERIAL_2);
+        BlockRegistryUtil.registerBlock(ENGINEER_MATERIAL_0);
+        BlockRegistryUtil.registerBlock(ENGINEER_MATERIAL_1);
+        BlockRegistryUtil.registerBlock(ENGINEER_MATERIAL_2);
 
-        registerBlock(PADDING_PANEL_ORANGE);
-        registerBlock(PADDING_PIPES_ORANGE);
+        BlockRegistryUtil.registerBlock(PADDING_PANEL_ORANGE);
+        BlockRegistryUtil.registerBlock(PADDING_PIPES_ORANGE);
 
-        registerBlock(PADDING_PIPES_WHITE);
-        registerBlock(PADDING_SQUARE_ORANGE);
+        BlockRegistryUtil.registerBlock(PADDING_PIPES_WHITE);
+        BlockRegistryUtil.registerBlock(PADDING_SQUARE_ORANGE);
 
-        registerBlock(PADDING_SQUARE_WHITE);
-        registerBlock(PADDING_TILES_ORANGE);
-        registerBlock(PADDING_TILES_WHITE);
+        BlockRegistryUtil.registerBlock(PADDING_SQUARE_WHITE);
+        BlockRegistryUtil.registerBlock(PADDING_TILES_ORANGE);
+        BlockRegistryUtil.registerBlock(PADDING_TILES_WHITE);
 
-        registerBlock(UNISTONE);
-        registerBlock(UNISAND);
-        registerBlock(UNIGRAVEL);
-        registerBlock(UNIDIRT);
+        BlockRegistryUtil.registerBlock(UNISTONE);
+        BlockRegistryUtil.registerBlock(UNISAND);
+        BlockRegistryUtil.registerBlock(UNIGRAVEL);
+        BlockRegistryUtil.registerBlock(UNIDIRT);
 
-        registerBlock(STALAGMITE);
+        BlockRegistryUtil.registerBlock(STALAGMITE);
 
-        registerBlock(PARADISE_DIRT);
-        registerBlock(PARADISE_DIRT_MOSSY);
-        registerBlock(PARADISE_DIRT_PODZOL);
-        registerBlock(PARADISE_GRASS);
-        registerBlock(PARADISE_LEAVES_LARGE);
-        registerBlock(PARADISE_LOG_LARGE);
-        registerBlock(PARADISE_LEAVES_MED);
-        registerBlock(PARADISE_LOG_MED);
-        registerBlock(PARADISE_LEAVES_SMALL);
-        registerBlock(PARADISE_LOG_SMALL);
-        registerBlock(GROUND_FERN);
-        registerBlock(TREE_FERN);
-        registerBlock(WHEAT_GRASS);
+        BlockRegistryUtil.registerBlock(PARADISE_DIRT);
+        BlockRegistryUtil.registerBlock(PARADISE_DIRT_MOSSY);
+        BlockRegistryUtil.registerBlock(PARADISE_DIRT_PODZOL);
+        BlockRegistryUtil.registerBlock(PARADISE_GRASS);
+        BlockRegistryUtil.registerBlock(PARADISE_LEAVES_LARGE);
+        BlockRegistryUtil.registerBlock(PARADISE_LOG_LARGE);
+        BlockRegistryUtil.registerBlock(PARADISE_LEAVES_MED);
+        BlockRegistryUtil.registerBlock(PARADISE_LOG_MED);
+        BlockRegistryUtil.registerBlock(PARADISE_LEAVES_SMALL);
+        BlockRegistryUtil.registerBlock(PARADISE_LOG_SMALL);
+        BlockRegistryUtil.registerBlock(GROUND_FERN);
+        BlockRegistryUtil.registerBlock(TREE_FERN);
+        BlockRegistryUtil.registerBlock(WHEAT_GRASS);
 
-        registerBlock(GIGER_LOG);
-        registerBlock(GIGER_TENDONS);
-        registerBlock(GIGER_LEAVES);
-        registerBlock(GIGER_LEAVES_M);
-        registerBlock(GIGER_LEAVES_B);
-        registerBlock(GIGER_SAPLING);
+        BlockRegistryUtil.registerBlock(GIGER_LOG);
+        BlockRegistryUtil.registerBlock(GIGER_TENDONS);
+        BlockRegistryUtil.registerBlock(GIGER_LEAVES);
+        BlockRegistryUtil.registerBlock(GIGER_LEAVES_M);
+        BlockRegistryUtil.registerBlock(GIGER_LEAVES_B);
+        BlockRegistryUtil.registerBlock(GIGER_SAPLING);
 
-        registerBlock(LV_426_ROCK);
+        BlockRegistryUtil.registerBlock(LV_426_ROCK);
 
-        registerBlock(SATELLITE_DISH);
-        registerBlock(EGG_RECEPTACLE);
+        BlockRegistryUtil.registerBlock(SATELLITE_DISH);
+        BlockRegistryUtil.registerBlock(EGG_RECEPTACLE);
 
-        registerBlock(PORTAL_VARDA);
-        registerBlock(PORTAL_ACHERON);
+        BlockRegistryUtil.registerBlock(PORTAL_VARDA);
+        BlockRegistryUtil.registerBlock(PORTAL_ACHERON);
 
-        registerBlock(ASSEMBLER);
-        registerBlock(FLOOR_GRILL_STAIRS);
-        registerBlock(CEILING_GRILL_STAIRS);
-        registerBlock(IRON_BRICKS_STAIRS);
-        registerBlock(WALL_STAIRS);
-        registerBlock(INDUSTRIAL_GLASS_STAIRS);
-        registerBlock(FLOOR_GRILL_SLAB);
-        registerBlock(CEILING_GRILL_SLAB);
-        registerBlock(WALL_SLAB);
-        registerBlock(IRON_BRICKS_SLAB);
-        registerBlock(INDUSTRIAL_GLASS_SLAB);
-        registerBlock(BLACK_GOO);
-        registerBlock(MIST);
-        registerBlock(TURRET);
-        registerBlock(TERMINAL);
-        registerBlock(STASIS_MECHANISM);
-        registerBlock(REPULSION_GENERATOR);
-        registerBlock(POWERLINE);
-        registerBlock(BLAST_DOOR);
-        registerBlock(SEVASTOPOL_BLAST_DOOR);
-        registerBlock(CRYO_TUBE);
-        registerBlock(LIGHT_PANEL);
-        registerBlock(CCFL_TUBE);
-        registerBlock(TESLA_COIL);
-        registerBlock(NETWORK_RACK);
-        registerBlock(POWERCELL);
-        registerBlock(REDSTONE_SENSOR);
-        registerBlock(REDSTONE_EMITTER);
-        registerBlock(UNIVERSAL_GENERATOR);
-        registerBlock(TRANSFORMER);
-        registerBlock(STEPDOWN_TRANSFORMER);
-        registerBlock(SUPPLY_CRATE);
-        registerBlock(CRATE_MARINES);
-        registerBlock(CRATE_SEEGSON);
-        registerBlock(SOLAR_PANEL);
-        registerBlock(LOCKER);
-        registerBlock(MEDPOD);
-        registerBlock(GUN_LOCKER);
-        registerBlock(AMPULE);
-        registerBlock(SKULL_ENGINEER);
-        registerBlock(SKULL_JOCKEY);
-        registerBlock(SKULL_XENO);
-        registerBlock(SKULL_XENO_WARRIOR);
-        registerBlock(SKULL_YAUTJA);
-        registerBlock(SKULL_MATRIARCH);
-        registerBlock(SKULL_PROTOMORPH);
-        registerBlock(SKULL_NEOMORPH);
-        registerBlock(BIOMASK_CLASSIC);
-        registerBlock(BIOMASK_BERSERKER);
-        registerBlock(BIOMASK_FALCONER);
-        registerBlock(BIOMASK_TRACKER);
-        registerBlock(HEAD_AETHON);
-        registerBlock(HEAD_GIGER_ALIEN);
+        BlockRegistryUtil.registerBlock(ASSEMBLER);
+        BlockRegistryUtil.registerBlock(FLOOR_GRILL_STAIRS);
+        BlockRegistryUtil.registerBlock(CEILING_GRILL_STAIRS);
+        BlockRegistryUtil.registerBlock(IRON_BRICKS_STAIRS);
+        BlockRegistryUtil.registerBlock(WALL_STAIRS);
+        BlockRegistryUtil.registerBlock(INDUSTRIAL_GLASS_STAIRS);
+        BlockRegistryUtil.registerBlock(FLOOR_GRILL_SLAB);
+        BlockRegistryUtil.registerBlock(CEILING_GRILL_SLAB);
+        BlockRegistryUtil.registerBlock(WALL_SLAB);
+        BlockRegistryUtil.registerBlock(IRON_BRICKS_SLAB);
+        BlockRegistryUtil.registerBlock(INDUSTRIAL_GLASS_SLAB);
+        BlockRegistryUtil.registerBlock(BLACK_GOO);
+        BlockRegistryUtil.registerBlock(MIST);
+        BlockRegistryUtil.registerBlock(TURRET);
+        BlockRegistryUtil.registerBlock(TERMINAL);
+        BlockRegistryUtil.registerBlock(STASIS_MECHANISM);
+        BlockRegistryUtil.registerBlock(REPULSION_GENERATOR);
+        BlockRegistryUtil.registerBlock(POWERLINE);
+        BlockRegistryUtil.registerBlock(BLAST_DOOR);
+        BlockRegistryUtil.registerBlock(SEVASTOPOL_BLAST_DOOR);
+        BlockRegistryUtil.registerBlock(CRYO_TUBE);
+        BlockRegistryUtil.registerBlock(LIGHT_PANEL);
+        BlockRegistryUtil.registerBlock(CCFL_TUBE);
+        BlockRegistryUtil.registerBlock(TESLA_COIL);
+        BlockRegistryUtil.registerBlock(NETWORK_RACK);
+        BlockRegistryUtil.registerBlock(POWERCELL);
+        BlockRegistryUtil.registerBlock(REDSTONE_SENSOR);
+        BlockRegistryUtil.registerBlock(REDSTONE_EMITTER);
+        BlockRegistryUtil.registerBlock(UNIVERSAL_GENERATOR);
+        BlockRegistryUtil.registerBlock(TRANSFORMER);
+        BlockRegistryUtil.registerBlock(STEPDOWN_TRANSFORMER);
+        BlockRegistryUtil.registerBlock(SUPPLY_CRATE);
+        BlockRegistryUtil.registerBlock(CRATE_MARINES);
+        BlockRegistryUtil.registerBlock(CRATE_SEEGSON);
+        BlockRegistryUtil.registerBlock(SOLAR_PANEL);
+        BlockRegistryUtil.registerBlock(LOCKER);
+        BlockRegistryUtil.registerBlock(MEDPOD);
+        BlockRegistryUtil.registerBlock(GUN_LOCKER);
+        BlockRegistryUtil.registerBlock(AMPULE);
+        BlockRegistryUtil.registerBlock(SKULL_ENGINEER);
+        BlockRegistryUtil.registerBlock(SKULL_JOCKEY);
+        BlockRegistryUtil.registerBlock(SKULL_XENO);
+        BlockRegistryUtil.registerBlock(SKULL_XENO_WARRIOR);
+        BlockRegistryUtil.registerBlock(SKULL_YAUTJA);
+        BlockRegistryUtil.registerBlock(SKULL_MATRIARCH);
+        BlockRegistryUtil.registerBlock(SKULL_PROTOMORPH);
+        BlockRegistryUtil.registerBlock(SKULL_NEOMORPH);
+        BlockRegistryUtil.registerBlock(BIOMASK_CLASSIC);
+        BlockRegistryUtil.registerBlock(BIOMASK_BERSERKER);
+        BlockRegistryUtil.registerBlock(BIOMASK_FALCONER);
+        BlockRegistryUtil.registerBlock(BIOMASK_TRACKER);
+        BlockRegistryUtil.registerBlock(HEAD_AETHON);
+        BlockRegistryUtil.registerBlock(HEAD_GIGER_ALIEN);
 
-        registerBlock(SLOPE);
-        registerBlock(CORNER);
-        registerBlock(INVERTED_CORNER);
-        registerBlock(RIDGE);
-        registerBlock(PYRAMID);
-        registerBlock(INVERTED_RIDGE);
-        registerBlock(INVERTED_PYRAMID);
+        BlockRegistryUtil.registerBlock(SLOPE);
+        BlockRegistryUtil.registerBlock(CORNER);
+        BlockRegistryUtil.registerBlock(INVERTED_CORNER);
+        BlockRegistryUtil.registerBlock(RIDGE);
+        BlockRegistryUtil.registerBlock(PYRAMID);
+        BlockRegistryUtil.registerBlock(INVERTED_RIDGE);
+        BlockRegistryUtil.registerBlock(INVERTED_PYRAMID);
     }
 }
