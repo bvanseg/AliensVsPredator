@@ -2,7 +2,6 @@ package org.avp.common.tile;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
-import org.avp.AVP;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPBlocks;
 

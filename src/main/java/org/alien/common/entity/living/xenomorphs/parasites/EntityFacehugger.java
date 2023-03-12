@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.entity.ai.EntityAIFacehuggerLeap;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;

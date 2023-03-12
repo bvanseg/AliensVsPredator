@@ -19,8 +19,6 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import org.avp.AVP;
-import org.predator.client.input.handler.InputHandlerPlasmaCannon;
-import org.predator.client.model.item.ModelPlasmaCannon;
 import org.avp.common.api.client.render.IEventRenderer;
 import org.avp.common.api.client.render.IFirstPersonRenderer;
 import org.avp.common.entity.EntityMedpod;
@@ -28,7 +26,9 @@ import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.util.glu.Project;
+import org.predator.client.input.handler.InputHandlerPlasmaCannon;
 import org.predator.client.model.entity.ModelPlasma;
+import org.predator.client.model.item.ModelPlasmaCannon;
 import org.predator.common.item.ItemWristbracer;
 
 public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRenderer

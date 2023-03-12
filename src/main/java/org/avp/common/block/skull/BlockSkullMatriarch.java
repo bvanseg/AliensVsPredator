@@ -12,8 +12,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.alien.client.model.tile.skull.ModelQueenSkull;
+import org.avp.AVP;
 import org.avp.common.block.BlockSkull;
 
 public class BlockSkullMatriarch extends BlockSkull

@@ -2,7 +2,6 @@ package org.predator.client.input.handler;
 
 import com.asx.mdx.lib.util.Game;
 import org.avp.AVP;
-import org.avp.client.AVPSounds;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.network.packet.server.PacketPlasmaDischarge;
 import org.predator.client.PredatorSounds;

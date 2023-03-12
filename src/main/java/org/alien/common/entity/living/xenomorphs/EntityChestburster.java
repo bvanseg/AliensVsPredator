@@ -22,7 +22,6 @@ import org.alien.client.AlienSounds;
 import org.alien.common.entity.ai.selector.EntitySelectorAvoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.avp.client.AVPSounds;
 import org.avp.common.DamageSources;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IMaturable;

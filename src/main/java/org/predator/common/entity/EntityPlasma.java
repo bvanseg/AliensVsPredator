@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.client.AVPSounds;
 import org.avp.common.DamageSources;
 import org.avp.common.Settings;
 import org.predator.client.PredatorSounds;

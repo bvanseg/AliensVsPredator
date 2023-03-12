@@ -18,7 +18,6 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.entity.ai.selector.EntitySelectorNauticomorph;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.world.hive.HiveMember;
 

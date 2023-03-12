@@ -5,8 +5,8 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
-import org.avp.AVP;
 import org.alien.client.model.tile.ModelHiveResin;
+import org.avp.AVP;
 import org.avp.common.Settings.ClientSettings;
 import org.avp.common.tile.TileEntityHiveResin;
 

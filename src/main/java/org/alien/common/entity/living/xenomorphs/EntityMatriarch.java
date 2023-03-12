@@ -25,7 +25,6 @@ import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.AVP;
-import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;

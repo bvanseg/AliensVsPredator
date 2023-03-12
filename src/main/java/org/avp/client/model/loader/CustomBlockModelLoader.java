@@ -4,8 +4,8 @@ import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
-import org.avp.AVP;
 import org.alien.client.model.tile.ModelResin;
+import org.avp.AVP;
 
 import java.util.HashMap;
 

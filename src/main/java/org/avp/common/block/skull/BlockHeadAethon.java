@@ -8,8 +8,8 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.alien.client.model.tile.skull.ModelAethonHead;
+import org.avp.AVP;
 import org.avp.common.block.BlockSkull;
 
 public class BlockHeadAethon extends BlockSkull

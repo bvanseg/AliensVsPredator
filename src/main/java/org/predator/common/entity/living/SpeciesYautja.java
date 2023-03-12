@@ -23,7 +23,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.avp.client.AVPSounds;
 import org.avp.common.DamageSources;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.api.parasitoidic.IHost;

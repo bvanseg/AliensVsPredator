@@ -7,7 +7,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.client.AVPSounds;
 import org.predator.client.PredatorSounds;
 import org.predator.common.entity.EntityPlasma;
 
