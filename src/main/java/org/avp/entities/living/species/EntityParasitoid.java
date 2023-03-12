@@ -5,17 +5,15 @@ import java.util.Collections;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
-import org.avp.ItemHandler;
-import org.avp.api.parasitoidic.IHost;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntitySelectorParasitoid;
 import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.packets.server.PacketAttachParasiteToEntity;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
 
 import com.asx.mdx.lib.world.entity.Entities;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.Entity;
@@ -27,10 +25,7 @@ import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -45,75 +40,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     private static final DataParameter<Boolean> FERTILE            = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
     private int                                 timeSinceInfertile = 0;
     private int                                 ticksOnHost        = 0;
-
-    public static ArrayList<Item>               blacklistedHelmets = new ArrayList<>();
-
-    static
-    {
-        blacklistedHelmets.add(ItemHandler.biomaskCeltic);
-        blacklistedHelmets.add(ItemHandler.mk50helmet);
-    }
-
-    public static Predicate<EntityLivingBase> impregnationSelector = new Predicate<EntityLivingBase>() {
-                                                                         @Override
-                                                                         public boolean apply(EntityLivingBase potentialTarget)
-                                                                         {
-                                                                             ArrayList<Class<?>> blacklist = IParasitoid.getDefaultEntityBlacklist();
-
-                                                                             for (Class<?> c : blacklist)
-                                                                             {
-                                                                                 if (c.isInstance(potentialTarget))
-                                                                                 {
-                                                                                     return false;
-                                                                                 }
-                                                                             }
-
-                                                                             Organism organism = (Organism) potentialTarget.getCapability(Provider.CAPABILITY, null);
-
-                                                                             if (potentialTarget instanceof IHost)
-                                                                             {
-                                                                                 IHost host = (IHost) potentialTarget;
-
-                                                                                 if (!host.canHostParasite() || !host.canParasiteAttach())
-                                                                                 {
-                                                                                     return false;
-                                                                                 }
-                                                                             }
-
-                                                                             if (organism != null && organism.hasEmbryo())
-                                                                             {
-                                                                                 return false;
-                                                                             }
-
-                                                                             if (potentialTarget instanceof EntityPlayer)
-                                                                             {
-                                                                                 EntityPlayer player = (EntityPlayer) potentialTarget;
-                                                                                 ItemStack headwear = Inventories.getHelmSlotItemStack(player);
-
-                                                                                 if (headwear != null && blacklistedHelmets.contains(headwear.getItem()) && headwear.getItem() != Items.AIR  || ((EntityPlayer) potentialTarget).capabilities.isCreativeMode)
-                                                                                 {
-                                                                                     return false;
-                                                                                 }
-                                                                             }
-                                                                             
-                                                                             if (!(potentialTarget instanceof EntityLivingBase))
-                                                                             {
-                                                                                 return false;
-                                                                             }
-
-                                                                             if (potentialTarget instanceof EntityLiving)
-                                                                             {
-                                                                                 EntityLiving living = (EntityLiving) potentialTarget;
-
-                                                                                 if (living.isChild())
-                                                                                 {
-                                                                                     return false;
-                                                                                 }
-                                                                             }
-
-                                                                             return true;
-                                                                         }
-                                                                     };
 
     public EntityParasitoid(World world)
     {
@@ -147,7 +73,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     {
         super.onUpdate();
         
-        if(this.getAttackTarget() != null && !EntityParasitoid.impregnationSelector.apply(this.getAttackTarget()))
+        if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.apply(this.getAttackTarget()))
             this.setAttackTarget(null);
         
         if (!this.isFertile())
@@ -169,7 +95,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
         {
             if (isFertile())
             {
-                ArrayList<EntityLivingBase> targetHosts = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1.0D, 16.0D, 1.0D), this.getImpregnationEntitiySelector());
+                ArrayList<EntityLivingBase> targetHosts = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1.0D, 16.0D, 1.0D), this.getImpregnationEntitySelector());
 
                 if (targetHosts != null && targetHosts.size() > 0)
                 {
@@ -229,9 +155,9 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     }
 
     @Override
-    public Predicate<EntityLivingBase> getImpregnationEntitiySelector()
+    public Predicate<EntityLivingBase> getImpregnationEntitySelector()
     {
-        return EntityParasitoid.impregnationSelector;
+        return EntitySelectorParasitoid.instance;
     }
 
     @Override
@@ -303,7 +229,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
     {
         if (entity instanceof EntityLivingBase)
         {
-            return impregnationSelector.apply((EntityLivingBase) entity);
+            return EntitySelectorParasitoid.instance.apply((EntityLivingBase) entity);
         }
 
         return false;

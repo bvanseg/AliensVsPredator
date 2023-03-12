@@ -1,11 +1,9 @@
 package org.avp.entities.living.species.species223ode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
 import org.avp.ItemHandler;
-import org.avp.api.parasitoidic.IHost;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
@@ -23,7 +21,6 @@ import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.animations.Animation;
 import com.asx.mdx.lib.world.entity.animations.AnimationHandler;
 import com.asx.mdx.lib.world.entity.animations.IAnimated;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.google.common.base.Predicate;
 
 import net.minecraft.block.state.IBlockState;
@@ -39,7 +36,6 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityLookHelper;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
@@ -65,67 +61,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     private static final DataParameter<Boolean>        FERTILE                = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.BOOLEAN);
     private static final DataParameter<NBTTagCompound> DETACHED_TENTACLES     = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.COMPOUND_TAG);
     private int                                        ticksOnHost            = 0;
-
-    public static Predicate<EntityLivingBase>          impregnationSelector   = new Predicate<EntityLivingBase>() {
-                                                                                  @Override
-                                                                                  public boolean apply(EntityLivingBase target)
-                                                                                  {
-                                                                                      ArrayList<Class<?>> blacklist = IParasitoid.getDefaultEntityBlacklist();
-
-                                                                                      for (Class<?> c : blacklist)
-                                                                                      {
-                                                                                          if (c.isInstance(target))
-                                                                                          {
-                                                                                              return false;
-                                                                                          }
-                                                                                      }
-
-                                                                                      Organism organism = (Organism) target.getCapability(Provider.CAPABILITY, null);
-
-                                                                                      if (target instanceof IHost)
-                                                                                      {
-                                                                                          IHost host = (IHost) target;
-
-                                                                                          if (!host.canHostParasite() || !host.canParasiteAttach())
-                                                                                          {
-                                                                                              return false;
-                                                                                          }
-                                                                                      }
-
-                                                                                      if (organism != null && organism.hasEmbryo())
-                                                                                      {
-                                                                                          return false;
-                                                                                      }
-
-                                                                                      if (target instanceof EntityPlayer)
-                                                                                      {
-                                                                                          EntityPlayer player = (EntityPlayer) target;
-                                                                                          ItemStack headwear = Inventories.getHelmSlotItemStack(player);
-
-                                                                                          if (headwear != null && headwear.getItem() != Items.AIR || ((EntityPlayer) target).capabilities.isCreativeMode)
-                                                                                          {
-                                                                                              return false;
-                                                                                          }
-                                                                                      }
-
-                                                                                      if (!(target instanceof EntityLivingBase))
-                                                                                      {
-                                                                                          return false;
-                                                                                      }
-
-                                                                                      if (target instanceof EntityLiving)
-                                                                                      {
-                                                                                          EntityLiving living = (EntityLiving) target;
-
-                                                                                          if (living.isChild())
-                                                                                          {
-                                                                                              return false;
-                                                                                          }
-                                                                                      }
-
-                                                                                      return true;
-                                                                                  }
-                                                                              };
 
     public EntityTrilobite(World world)
     {
@@ -273,7 +208,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         {
             if (this.world.getTotalWorldTime() % 5 == 0)
             {
-                if (!this.getImpregnationEntitiySelector().apply(this.getAttackTarget()))
+                if (!this.getImpregnationEntitySelector().apply(this.getAttackTarget()))
                 {
                     this.setAttackTarget(null);
                 }
@@ -678,7 +613,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     {
         if (entity instanceof EntityLivingBase)
         {
-            return getImpregnationEntitiySelector().apply((EntityLivingBase) entity);
+            return getImpregnationEntitySelector().apply((EntityLivingBase) entity);
         }
 
         return false;
@@ -697,9 +632,9 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     }
 
     @Override
-    public Predicate<EntityLivingBase> getImpregnationEntitiySelector()
+    public Predicate<EntityLivingBase> getImpregnationEntitySelector()
     {
-        return EntityTrilobite.impregnationSelector;
+        return EntitySelectorTrilobite.instance;
     }
 
     @Override

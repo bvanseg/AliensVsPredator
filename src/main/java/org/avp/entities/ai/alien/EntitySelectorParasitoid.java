@@ -2,6 +2,7 @@ package org.avp.entities.ai.alien;
 
 import java.util.ArrayList;
 
+import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.api.parasitoidic.IParasitoid;
 import org.avp.world.capabilities.IOrganism.Organism;
@@ -14,30 +15,39 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class EntitySelectorTrilobite implements Predicate<EntityLivingBase>
+public class EntitySelectorParasitoid implements Predicate<EntityLivingBase>
 {
-    public static final EntitySelectorTrilobite instance = new EntitySelectorTrilobite();
+    public static final EntitySelectorParasitoid instance           = new EntitySelectorParasitoid();
+
+    public static       ArrayList<Item>          blacklistedHelmets = new ArrayList<>();
+
+    static
+    {
+        blacklistedHelmets.add(ItemHandler.biomaskCeltic);
+        blacklistedHelmets.add(ItemHandler.mk50helmet);
+    }
 
     @Override
-    public boolean apply(EntityLivingBase target)
+    public boolean apply(EntityLivingBase potentialTarget)
     {
         ArrayList<Class<?>> blacklist = IParasitoid.getDefaultEntityBlacklist();
 
         for (Class<?> c : blacklist)
         {
-            if (c.isInstance(target))
+            if (c.isInstance(potentialTarget))
             {
                 return false;
             }
         }
 
-        Organism organism = (Organism) target.getCapability(Provider.CAPABILITY, null);
+        Organism organism = (Organism) potentialTarget.getCapability(Provider.CAPABILITY, null);
 
-        if (target instanceof IHost)
+        if (potentialTarget instanceof IHost)
         {
-            IHost host = (IHost) target;
+            IHost host = (IHost) potentialTarget;
 
             if (!host.canHostParasite() || !host.canParasiteAttach())
             {
@@ -50,25 +60,25 @@ public class EntitySelectorTrilobite implements Predicate<EntityLivingBase>
             return false;
         }
 
-        if (target instanceof EntityPlayer)
+        if (potentialTarget instanceof EntityPlayer)
         {
-            EntityPlayer player = (EntityPlayer) target;
+            EntityPlayer player = (EntityPlayer) potentialTarget;
             ItemStack headwear = Inventories.getHelmSlotItemStack(player);
 
-            if (headwear != null && headwear.getItem() != Items.AIR || ((EntityPlayer) target).capabilities.isCreativeMode)
+            if (headwear != null && blacklistedHelmets.contains(headwear.getItem()) && headwear.getItem() != Items.AIR  || ((EntityPlayer) potentialTarget).capabilities.isCreativeMode)
             {
                 return false;
             }
         }
-
-        if (!(target instanceof EntityLivingBase))
+        
+        if (!(potentialTarget instanceof EntityLivingBase))
         {
             return false;
         }
 
-        if (target instanceof EntityLiving)
+        if (potentialTarget instanceof EntityLiving)
         {
-            EntityLiving living = (EntityLiving) target;
+            EntityLiving living = (EntityLiving) potentialTarget;
 
             if (living.isChild())
             {

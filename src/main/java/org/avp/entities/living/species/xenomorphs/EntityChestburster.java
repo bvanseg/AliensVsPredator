@@ -9,6 +9,8 @@ import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.species.EntityParasitoid;
+import org.avp.entities.ai.alien.EntitySelectorAvoid;
+import org.avp.entities.ai.alien.EntitySelectorParasitoid;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.world.capabilities.IOrganism.Organism;
 import org.avp.world.capabilities.IOrganism.Provider;
@@ -50,11 +52,11 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
         this.setSize(1.0F, 0.4F);
         this.experienceValue = 16;
         this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAvoidEntity<EntityLivingBase>(this, EntityLivingBase.class, INascentic.avoidSelector, 8.0F, 0.4F, 0.7F));
+        this.tasks.addTask(1, new EntityAIAvoidEntity<EntityLivingBase>(this, EntityLivingBase.class, EntitySelectorAvoid.instance, 8.0F, 0.4F, 0.7F));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
         this.tasks.addTask(4, new PatchedEntityAIWander(this, 0.800000011920929D));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, EntityParasitoid.impregnationSelector));
+        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, EntitySelectorParasitoid.instance));
         this.targetTasks.addTask(1, new EntityAIAttackMelee(this, 0.8F, false));
         this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.8F));
     }
@@ -86,7 +88,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     {
         super.onUpdate();
         
-        if(this.getAttackTarget() != null && !EntityParasitoid.impregnationSelector.apply(this.getAttackTarget()))
+        if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.apply(this.getAttackTarget()))
             this.setAttackTarget(null);
     }
 

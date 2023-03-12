@@ -3,13 +3,13 @@ package org.avp.entities.living.vardic;
 import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntitySelectorGooMutant;
 import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.species.SpeciesAlien;
 
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -29,24 +29,6 @@ import net.minecraft.world.World;
 
 public class EntityGooMutant extends EntityMob implements IMob, IHost
 {
-    Predicate<EntityLivingBase> mobSelector = new Predicate<EntityLivingBase>()
-    {
-        @Override
-        public boolean apply(EntityLivingBase target)
-        {
-            if (target instanceof EntityGooMutant)
-            {
-                return false;
-            }
-            
-            if (target instanceof SpeciesAlien)
-            {
-                return false;
-            }
-            
-            return true;
-        }
-    };
     
     public EntityGooMutant(World world)
     {
@@ -66,8 +48,8 @@ public class EntityGooMutant extends EntityMob implements IMob, IHost
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityCreature.class, 0, true, false, mobSelector));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 0, true, false, mobSelector));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityCreature.class, 0, true, false, EntitySelectorGooMutant.instance));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 0, true, false, EntitySelectorGooMutant.instance));
     }
 
     @Override
