@@ -1,8 +1,5 @@
 package org.avp.entities.living;
 
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
 import org.avp.EntityItemDrops;
 import org.avp.ItemHandler;
 import org.avp.client.Sounds;
@@ -11,6 +8,7 @@ import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.entities.living.species.yautja.EntityYautjaWarrior;
+import org.avp.item.ItemFirearm.FirearmProfile;
 import org.avp.world.MarineTypes;
 
 import com.asx.mdx.lib.world.Worlds;
@@ -60,7 +58,13 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     {
         super(world);
         this.experienceValue = 5;
-        this.rangedAttackAI = new EntityAIAttackRanged(this, 0.4D, (int) getMarineType().getFirearmItem().getProfile().getShotsPerTick() / 2, 24);
+
+    }
+
+    @Override
+    protected void initEntityAI() {
+        this.rangedAttackAI = new EntityAIAttackRanged(this, 0.4D, getAttackDelayBasedOnFirearm(), 24);
+
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, this.rangedAttackAI);
         this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
@@ -72,10 +76,18 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.tasks.addTask(9, new PatchedEntityAIWander(this, 0.6D));
         this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
         this.targetTasks.addTask(1, new EntityAIMoveIndoors(this));
+
         this.targetTasks.addTask(2, new EntityAIOpenDoor(this, true));
         this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
         this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, true, false, this));
-        
+    }
+
+    private int getAttackDelayBasedOnFirearm() {
+    	FirearmProfile firearmProfile = getMarineType().getFirearmItem().getProfile();
+    	double rpm = firearmProfile.getRoundsPerMinute();
+    	double rps = rpm / 60; // Rounds per second
+    	double rpt = rps / 20; // Rounds per tick
+		return (int) (1 / rpt); // How many ticks (x) must the entity wait until they can fire once (1 = rpt * x)
     }
 
     @Override
@@ -83,7 +95,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     {
         super.entityInit();
         this.getDataManager().register(AIMING, false);
-        this.getDataManager().register(TYPE, new Random(TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())).nextInt(MarineTypes.values().length));
+        this.getDataManager().register(TYPE, this.world.rand.nextInt(MarineTypes.values().length));
     }
 
     @Override

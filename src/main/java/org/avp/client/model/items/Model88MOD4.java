@@ -6,7 +6,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class Model88MOD4 extends Model implements IFirearmModel
+public class Model88MOD4 extends Model<Object> implements IFirearmModel
 {
     public ModelRenderer barrelRight;
     public ModelRenderer underGrip;

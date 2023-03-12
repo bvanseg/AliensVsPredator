@@ -8,7 +8,7 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelRepulsionGenerator extends Model
+public class ModelRepulsionGenerator extends Model<TileEntityRepulsionGenerator>
 {
     public ModelRenderer side1;
     public ModelRenderer side3;
@@ -135,7 +135,7 @@ public class ModelRepulsionGenerator extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityRepulsionGenerator obj)
     {
         if (obj instanceof TileEntityRepulsionGenerator)
         {

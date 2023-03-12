@@ -7,7 +7,7 @@ import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelTurret extends Model
+public class ModelTurret extends Model<TileEntityTurret>
 {
     private ModelRenderer barrel,
         supportLeft,
@@ -144,7 +144,7 @@ public class ModelTurret extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityTurret obj)
     {
         TileEntityTurret tile = (TileEntityTurret) obj;
         

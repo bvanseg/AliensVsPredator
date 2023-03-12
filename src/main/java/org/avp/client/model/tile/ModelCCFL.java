@@ -1,11 +1,13 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntityCCFLTube;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 
-public class ModelCCFL extends Model
+public class ModelCCFL extends Model<TileEntityCCFLTube>
 {
     public ModelRenderer middleRod;
     public ModelRenderer lightAura;
@@ -36,7 +38,7 @@ public class ModelCCFL extends Model
     }
     
     @Override
-    public void render(Object obj)
+    public void render(TileEntityCCFLTube obj)
     {
         this.middleRod.render(DEFAULT_SCALE);
         GlStateManager.pushMatrix();

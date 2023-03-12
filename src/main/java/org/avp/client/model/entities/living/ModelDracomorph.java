@@ -1,11 +1,13 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityDracomorph;
+
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelDracomorph extends Model
+public class ModelDracomorph extends Model<EntityDracomorph>
 {
     public ModelRenderer chest;
     public ModelRenderer sack0;
@@ -456,7 +458,7 @@ public class ModelDracomorph extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityDracomorph obj)
     {
         draw(sack0);
         OpenGL.pushMatrix();

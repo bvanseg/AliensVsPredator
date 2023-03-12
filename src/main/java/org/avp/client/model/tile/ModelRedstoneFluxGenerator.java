@@ -1,5 +1,7 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntityRedstoneFluxGenerator;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -8,7 +10,7 @@ import net.minecraft.client.model.ModelRenderer;
  * fluxconverter - cybercat5555
  * Created using Tabula 5.1.0
  */
-public class ModelRedstoneFluxGenerator extends Model
+public class ModelRedstoneFluxGenerator extends Model<TileEntityRedstoneFluxGenerator>
 {
     public ModelRenderer base;
     public ModelRenderer fluxLightOutput;
@@ -59,7 +61,7 @@ public class ModelRedstoneFluxGenerator extends Model
         this.base.addChild(this.fluxFaceplate);
     }
     @Override
-    public void render(Object obj)
+    public void render(TileEntityRedstoneFluxGenerator obj)
     {
         draw(base);
         draw(fluxLightOutput);

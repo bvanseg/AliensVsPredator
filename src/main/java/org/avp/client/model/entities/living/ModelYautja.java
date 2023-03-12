@@ -10,7 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelYautja extends Model
+public class ModelYautja extends Model<SpeciesYautja>
 {
     public ModelRenderer face;
     public ModelRenderer nose;
@@ -604,7 +604,7 @@ public class ModelYautja extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(SpeciesYautja obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;;
 
