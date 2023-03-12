@@ -3,9 +3,9 @@ package org.avp.client.gui;
 import java.io.IOException;
 
 import org.avp.AliensVsPredator;
-import org.avp.packets.server.PacketBlastdoorCommon;
-import org.avp.packets.server.PacketBlastdoorCommon.PacketMode;
-import org.avp.tile.TileEntityBlastdoor;
+import org.avp.common.packets.server.PacketBlastdoorCommon;
+import org.avp.common.packets.server.PacketBlastdoorCommon.PacketMode;
+import org.avp.common.tile.TileEntityBlastdoor;
 
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
 import com.asx.mdx.lib.client.gui.GuiCustomScreen;

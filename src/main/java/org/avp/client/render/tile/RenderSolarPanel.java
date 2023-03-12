@@ -1,7 +1,7 @@
 package org.avp.client.render.tile;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntitySolarPanel;
+import org.avp.common.tile.TileEntitySolarPanel;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 

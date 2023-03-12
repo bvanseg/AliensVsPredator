@@ -8,15 +8,15 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.glDepthMask;
 
 import org.avp.AliensVsPredator;
-import org.avp.api.power.IVoltageReceiver;
-import org.avp.entities.living.EntityMarine;
-import org.avp.entities.living.species.SpeciesAlien;
-import org.avp.tile.TileEntityPowercell;
-import org.avp.tile.TileEntityStasisMechanism;
-import org.avp.world.capabilities.IOrganism.Organism;
-import org.avp.world.capabilities.IOrganism.Provider;
-import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
-import org.avp.world.dimension.varda.WorldProviderVarda;
+import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.entities.living.EntityMarine;
+import org.avp.common.entities.living.species.SpeciesAlien;
+import org.avp.common.tile.TileEntityPowercell;
+import org.avp.common.tile.TileEntityStasisMechanism;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.dimension.varda.WorldProviderVarda;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;

@@ -1,7 +1,7 @@
 package org.avp.client.render.entities;
 
 import org.avp.client.model.entities.ModelPlasma;
-import org.avp.entities.EntityAcidProjectile;
+import org.avp.common.entities.EntityAcidProjectile;
 
 import com.asx.mdx.lib.client.util.Color;
 import com.asx.mdx.lib.client.util.OpenGL;

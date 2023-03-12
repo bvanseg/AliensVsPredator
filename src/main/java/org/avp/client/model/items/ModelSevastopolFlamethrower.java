@@ -1,6 +1,6 @@
 package org.avp.client.model.items;
 
-import org.avp.item.firearms.ItemFlamethrower;
+import org.avp.common.item.firearms.ItemFlamethrower;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;

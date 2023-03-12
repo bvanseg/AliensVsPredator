@@ -1,11 +1,11 @@
 package org.avp.client.render.items;
 
-import org.avp.block.BlockSkull;
-import org.avp.block.skulls.BlockBiomaskBerserker;
-import org.avp.block.skulls.BlockBiomaskClassic;
-import org.avp.block.skulls.BlockBiomaskFalconer;
-import org.avp.block.skulls.BlockBiomaskTracker;
-import org.avp.block.skulls.BlockSkullMatriarch;
+import org.avp.common.block.BlockSkull;
+import org.avp.common.block.skulls.BlockBiomaskBerserker;
+import org.avp.common.block.skulls.BlockBiomaskClassic;
+import org.avp.common.block.skulls.BlockBiomaskFalconer;
+import org.avp.common.block.skulls.BlockBiomaskTracker;
+import org.avp.common.block.skulls.BlockSkullMatriarch;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;

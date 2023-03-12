@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelHammerpede;
-import org.avp.entities.living.vardic.EntityHammerpede;
+import org.avp.common.entities.living.vardic.EntityHammerpede;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;

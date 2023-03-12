@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
-import org.avp.inventory.ContainerWristbracer;
-import org.avp.item.ItemWristbracer;
+import org.avp.common.inventory.ContainerWristbracer;
+import org.avp.common.item.ItemWristbracer;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.gui.GuiCustomButton;

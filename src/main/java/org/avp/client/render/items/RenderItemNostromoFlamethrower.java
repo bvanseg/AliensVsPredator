@@ -2,7 +2,7 @@ package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.items.ModelSevastopolFlamethrower;
-import org.avp.item.firearms.ItemFirearm;
+import org.avp.common.item.firearms.ItemFirearm;
 import org.lwjgl.input.Mouse;
 
 import com.asx.mdx.lib.client.util.OpenGL;

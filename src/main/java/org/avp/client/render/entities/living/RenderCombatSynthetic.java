@@ -1,7 +1,7 @@
 package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.living.EntityCombatSynthetic;
+import org.avp.common.entities.living.EntityCombatSynthetic;
 
 import com.asx.mdx.lib.client.model.SpecialModelBiped;
 import com.asx.mdx.lib.client.util.OpenGL;

@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityCryostasisTube;
+import org.avp.common.tile.TileEntityCryostasisTube;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

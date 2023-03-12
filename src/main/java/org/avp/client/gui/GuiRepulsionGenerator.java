@@ -1,7 +1,7 @@
 package org.avp.client.gui;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityRepulsionGenerator;
+import org.avp.common.tile.TileEntityRepulsionGenerator;
 
 import com.asx.mdx.lib.client.util.Draw;
 

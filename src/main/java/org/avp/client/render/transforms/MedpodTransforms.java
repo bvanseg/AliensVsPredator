@@ -2,8 +2,8 @@ package org.avp.client.render.transforms;
 
 import org.avp.client.render.tile.RenderMedpod;
 import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.entities.living.EntityMarine;
-import org.avp.entities.living.species.SpeciesYautja;
+import org.avp.common.entities.living.EntityMarine;
+import org.avp.common.entities.living.species.SpeciesYautja;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 

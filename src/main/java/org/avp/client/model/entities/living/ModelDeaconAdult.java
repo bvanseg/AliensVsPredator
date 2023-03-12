@@ -5,7 +5,7 @@ import static com.asx.mdx.lib.client.model.animations.AnimationHelper.flap;
 import static com.asx.mdx.lib.client.model.animations.AnimationHelper.oscillate;
 import static com.asx.mdx.lib.client.model.animations.AnimationHelper.swing;
 
-import org.avp.entities.living.species.species223ode.EntityDeaconAdult;
+import org.avp.common.entities.living.species.species223ode.EntityDeaconAdult;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

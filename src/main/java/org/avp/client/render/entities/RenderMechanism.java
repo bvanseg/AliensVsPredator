@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.entities.EntityMechanism;
+import org.avp.common.entities.EntityMechanism;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

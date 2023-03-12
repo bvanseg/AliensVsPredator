@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.tile.TileEntityCryostasisTube;
+import org.avp.common.tile.TileEntityCryostasisTube;
 import org.lwjgl.opengl.GL12;
 
 import com.asx.mdx.lib.client.util.OpenGL;

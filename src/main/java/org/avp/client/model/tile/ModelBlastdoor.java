@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityBlastdoor;
+import org.avp.common.tile.TileEntityBlastdoor;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;

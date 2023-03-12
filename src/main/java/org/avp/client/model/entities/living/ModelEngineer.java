@@ -1,7 +1,7 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.entities.living.species.SpeciesEngineer;
-import org.avp.entities.living.species.engineer.EntityEngineer;
+import org.avp.common.entities.living.species.SpeciesEngineer;
+import org.avp.common.entities.living.species.engineer.EntityEngineer;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

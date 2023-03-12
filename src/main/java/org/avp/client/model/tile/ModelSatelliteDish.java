@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntitySatelliteDish;
+import org.avp.common.tile.TileEntitySatelliteDish;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

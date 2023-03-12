@@ -2,8 +2,8 @@ package org.avp.client.render;
 
 import java.util.Random;
 
-import org.avp.entities.living.species.SpeciesYautja;
-import org.avp.entities.state.CloakState;
+import org.avp.common.entities.living.species.SpeciesYautja;
+import org.avp.common.entities.state.CloakState;
 
 import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
 import com.asx.mdx.lib.util.Game;

@@ -1,7 +1,7 @@
 package org.avp.client.render.materials;
 
 import org.avp.AliensVsPredator;
-import org.avp.api.blocks.material.IMaterialRenderer;
+import org.avp.common.api.blocks.material.IMaterialRenderer;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.Draw;

@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityPowercell;
+import org.avp.common.tile.TileEntityPowercell;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

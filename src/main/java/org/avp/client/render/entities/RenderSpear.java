@@ -1,7 +1,7 @@
 package org.avp.client.render.entities;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.EntitySpear;
+import org.avp.common.entities.EntitySpear;
 import org.lwjgl.opengl.GL12;
 
 import com.asx.mdx.lib.client.util.OpenGL;

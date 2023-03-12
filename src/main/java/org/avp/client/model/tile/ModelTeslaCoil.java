@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityTeslaCoil;
+import org.avp.common.tile.TileEntityTeslaCoil;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

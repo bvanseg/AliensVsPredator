@@ -1,7 +1,7 @@
 package org.avp.client.render.tile;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityTransformer;
+import org.avp.common.tile.TileEntityTransformer;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;

@@ -2,7 +2,7 @@ package org.avp.client.render;
 
 import org.avp.client.render.tile.RenderMedpod;
 import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.entities.EntityMedpod;
+import org.avp.common.entities.EntityMedpod;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;

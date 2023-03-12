@@ -5,7 +5,7 @@ import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
-import org.avp.tile.TileEntityAssembler;
+import org.avp.common.tile.TileEntityAssembler;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.Draw;

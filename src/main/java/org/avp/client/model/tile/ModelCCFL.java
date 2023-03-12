@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityCCFLTube;
+import org.avp.common.tile.TileEntityCCFLTube;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

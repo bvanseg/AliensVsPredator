@@ -3,8 +3,8 @@ package org.avp.client.input.handlers;
 import org.avp.AliensVsPredator;
 import org.avp.client.Sounds;
 import org.avp.client.input.IInputHandler;
-import org.avp.item.ItemWristbracer;
-import org.avp.packets.server.PacketPlasmaDischarge;
+import org.avp.common.item.ItemWristbracer;
+import org.avp.common.packets.server.PacketPlasmaDischarge;
 
 import com.asx.mdx.lib.util.Game;
 

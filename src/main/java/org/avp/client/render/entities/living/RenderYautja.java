@@ -2,9 +2,8 @@ package org.avp.client.render.entities.living;
 
 import org.avp.client.render.LayerYautjaCloakStaticArc;
 import org.avp.client.render.LayerYautjaCloakStaticOverlay;
-import org.avp.entities.living.species.SpeciesYautja;
-import org.avp.entities.state.CloakState;
-import org.lwjgl.opengl.GL11;
+import org.avp.common.entities.living.species.SpeciesYautja;
+import org.avp.common.entities.state.CloakState;
 
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;

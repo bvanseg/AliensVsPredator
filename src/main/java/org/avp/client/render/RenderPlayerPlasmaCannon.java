@@ -1,14 +1,14 @@
 package org.avp.client.render;
 
 import org.avp.AliensVsPredator;
-import org.avp.api.client.render.IEventRenderer;
-import org.avp.api.client.render.IFirstPersonRenderer;
-import org.avp.client.input.handlers.InputHandlerPlasmaCannon;
 import org.avp.client.model.entities.ModelPlasma;
 import org.avp.client.model.items.ModelPlasmaCannon;
-import org.avp.entities.EntityMedpod;
-import org.avp.item.ItemWristbracer;
-import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.api.client.render.IEventRenderer;
+import org.avp.common.api.client.render.IFirstPersonRenderer;
+import org.avp.client.input.handlers.InputHandlerPlasmaCannon;
+import org.avp.common.entities.EntityMedpod;
+import org.avp.common.item.ItemWristbracer;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.util.glu.Project;
@@ -37,7 +37,7 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
 {
     private static final MapModelTexture<ModelPlasmaCannon> MODEL              = AliensVsPredator.resources().models().PLASMACANNON.clone();
     private static final MapModelTexture<ModelPlasmaCannon> MODEL_FIRST_PERSON = MODEL.clone();
-    private static final ModelPlasma                        MODEL_PLASMA       = new ModelPlasma().setColor(new Color(0.3F, 0.6F, 1F, 0.7F));
+    private static final ModelPlasma MODEL_PLASMA       = new ModelPlasma().setColor(new Color(0.3F, 0.6F, 1F, 0.7F));
 
     @Override
     public void update(Event event, Minecraft game, World world)

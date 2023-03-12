@@ -1,6 +1,6 @@
 package org.avp.client.model.tile.skulls;
 
-import org.avp.tile.TileEntitySkull;
+import org.avp.common.tile.TileEntitySkull;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

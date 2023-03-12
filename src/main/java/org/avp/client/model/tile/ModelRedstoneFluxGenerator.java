@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityRedstoneFluxGenerator;
+import org.avp.common.tile.TileEntityRedstoneFluxGenerator;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

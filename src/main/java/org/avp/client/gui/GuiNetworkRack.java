@@ -1,7 +1,7 @@
 package org.avp.client.gui;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityNetworkRack;
+import org.avp.common.tile.TileEntityNetworkRack;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;

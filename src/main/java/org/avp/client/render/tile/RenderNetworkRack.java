@@ -1,8 +1,8 @@
 package org.avp.client.render.tile;
 
 import org.avp.AliensVsPredator;
-import org.avp.item.ItemNetworkRackModule;
-import org.avp.tile.TileEntityNetworkRack;
+import org.avp.common.item.ItemNetworkRackModule;
+import org.avp.common.tile.TileEntityNetworkRack;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 

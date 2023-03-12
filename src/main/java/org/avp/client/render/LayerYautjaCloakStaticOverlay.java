@@ -2,8 +2,8 @@ package org.avp.client.render;
 
 import org.avp.client.model.entities.living.ModelYautja;
 import org.avp.client.render.entities.living.RenderYautja;
-import org.avp.entities.living.species.SpeciesYautja;
-import org.avp.entities.state.CloakState;
+import org.avp.common.entities.living.species.SpeciesYautja;
+import org.avp.common.entities.state.CloakState;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.OpenGL;

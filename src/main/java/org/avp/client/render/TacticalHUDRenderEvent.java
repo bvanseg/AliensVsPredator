@@ -8,14 +8,14 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
-import org.avp.client.gui.GuiTacticalHUDSettings;
 import org.avp.client.render.wavegraph.Wavegraph;
 import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
-import org.avp.entities.EntityAPC;
-import org.avp.entities.living.species.EntityParasitoid;
-import org.avp.world.capabilities.IOrganism.Organism;
-import org.avp.world.capabilities.IOrganism.Provider;
-import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.client.gui.GuiTacticalHUDSettings;
+import org.avp.common.entities.EntityAPC;
+import org.avp.common.entities.living.species.EntityParasitoid;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
@@ -55,8 +55,8 @@ public class TacticalHUDRenderEvent
     private boolean                            gammaRestored     = true;
     private int                                viewportThreshold = 20;
     private ArrayList<EntityLivingBase>        trackedEntities;
-    private Electrocardiogram                  electrocardiogram;
-    private Wavegraph                          wavegraph1;
+    private Electrocardiogram electrocardiogram;
+    private Wavegraph wavegraph1;
     private Wavegraph                          wavegraph2;
 
     public TacticalHUDRenderEvent()

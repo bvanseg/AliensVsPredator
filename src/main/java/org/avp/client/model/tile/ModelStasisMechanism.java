@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityStasisMechanism;
+import org.avp.common.tile.TileEntityStasisMechanism;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

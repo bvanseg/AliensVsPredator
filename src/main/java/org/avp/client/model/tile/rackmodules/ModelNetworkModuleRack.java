@@ -1,6 +1,6 @@
 package org.avp.client.model.tile.rackmodules;
 
-import org.avp.tile.TileEntityNetworkRack;
+import org.avp.common.tile.TileEntityNetworkRack;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

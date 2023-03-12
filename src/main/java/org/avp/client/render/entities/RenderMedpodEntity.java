@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.entities.EntityMedpod;
+import org.avp.common.entities.EntityMedpod;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

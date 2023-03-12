@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelAethon;
-import org.avp.entities.living.EntityAethon;
+import org.avp.common.entities.living.EntityAethon;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;

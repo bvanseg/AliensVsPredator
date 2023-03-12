@@ -1,7 +1,7 @@
 package org.avp.client.render.tile;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityRedstoneFluxGenerator;
+import org.avp.common.tile.TileEntityRedstoneFluxGenerator;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 

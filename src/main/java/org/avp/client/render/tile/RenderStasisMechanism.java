@@ -3,7 +3,7 @@ package org.avp.client.render.tile;
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityStasisMechanism;
+import org.avp.common.tile.TileEntityStasisMechanism;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;

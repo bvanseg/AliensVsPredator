@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 import org.apache.commons.lang3.text.WordUtils;
 import org.avp.AliensVsPredator;
-import org.avp.Settings;
-import org.avp.Settings.ClientSettings;
+import org.avp.common.Settings;
+import org.avp.common.Settings.ClientSettings;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 

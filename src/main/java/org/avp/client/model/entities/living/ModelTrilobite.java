@@ -4,7 +4,7 @@ import static com.asx.mdx.lib.client.model.animations.AnimationHelper.bob;
 import static com.asx.mdx.lib.client.model.animations.AnimationHelper.flap;
 import static com.asx.mdx.lib.client.model.animations.AnimationHelper.swing;
 
-import org.avp.entities.living.species.species223ode.EntityTrilobite;
+import org.avp.common.entities.living.species.species223ode.EntityTrilobite;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;

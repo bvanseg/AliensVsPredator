@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelMarine;
-import org.avp.entities.living.EntityMarine;
+import org.avp.common.entities.living.EntityMarine;
 
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 

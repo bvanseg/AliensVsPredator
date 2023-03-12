@@ -1,7 +1,7 @@
 package org.avp.client.render.entities;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.EntityShuriken;
+import org.avp.common.entities.EntityShuriken;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.Draw;

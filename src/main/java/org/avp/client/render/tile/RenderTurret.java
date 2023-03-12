@@ -1,7 +1,7 @@
 package org.avp.client.render.tile;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityTurret;
+import org.avp.common.tile.TileEntityTurret;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.Draw;

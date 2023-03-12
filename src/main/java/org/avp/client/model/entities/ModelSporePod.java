@@ -1,7 +1,7 @@
 
 package org.avp.client.model.entities;
 
-import org.avp.entities.EntitySporePod;
+import org.avp.common.entities.EntitySporePod;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

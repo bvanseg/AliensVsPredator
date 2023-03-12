@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.tile.TileEntityMedpod;
+import org.avp.common.tile.TileEntityMedpod;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 

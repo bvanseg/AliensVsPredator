@@ -1,7 +1,7 @@
 package org.avp.client.model.entities.living;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.living.EntityMarine;
+import org.avp.common.entities.living.EntityMarine;
 
 import com.asx.mdx.lib.client.util.models.Model;
 
@@ -11,7 +11,6 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
 

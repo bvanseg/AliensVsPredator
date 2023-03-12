@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 
 import org.avp.AliensVsPredator;
 
-import com.asx.mdx.MDX;
 import com.asx.mdx.lib.util.Sound;
 
 import net.minecraft.util.ResourceLocation;

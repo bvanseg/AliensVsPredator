@@ -3,7 +3,7 @@ package org.avp.client.render.tile;
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityPowerline;
+import org.avp.common.tile.TileEntityPowerline;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;

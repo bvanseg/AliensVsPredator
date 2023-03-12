@@ -3,7 +3,7 @@ package org.avp.client.input.handlers;
 import org.avp.AliensVsPredator;
 import org.avp.client.gui.GuiWristbracer;
 import org.avp.client.input.IInputHandler;
-import org.avp.packets.server.PacketOpenContainer;
+import org.avp.common.packets.server.PacketOpenContainer;
 
 import com.asx.mdx.lib.util.Game;
 

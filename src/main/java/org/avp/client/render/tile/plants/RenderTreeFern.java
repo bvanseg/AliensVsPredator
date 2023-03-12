@@ -1,7 +1,7 @@
 package org.avp.client.render.tile.plants;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.plants.TileEntityTreeFern;
+import org.avp.common.tile.plants.TileEntityTreeFern;
 import org.lwjgl.opengl.GL12;
 
 import com.asx.mdx.lib.client.util.OpenGL;

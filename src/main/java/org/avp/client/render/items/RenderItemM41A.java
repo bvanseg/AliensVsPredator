@@ -1,10 +1,10 @@
 package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
-import org.avp.ItemHandler;
-import org.avp.URLs;
 import org.avp.client.model.items.ModelM41A;
-import org.avp.item.firearms.ItemFirearm;
+import org.avp.common.ItemHandler;
+import org.avp.common.URLs;
+import org.avp.common.item.firearms.ItemFirearm;
 import org.lwjgl.input.Mouse;
 
 import com.asx.mdx.lib.client.util.Draw;

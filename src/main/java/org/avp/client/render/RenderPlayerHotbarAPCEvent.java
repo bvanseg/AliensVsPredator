@@ -1,6 +1,6 @@
 package org.avp.client.render;
 
-import org.avp.entities.EntityAPC;
+import org.avp.common.entities.EntityAPC;
 
 import com.asx.mdx.lib.util.Game;
 

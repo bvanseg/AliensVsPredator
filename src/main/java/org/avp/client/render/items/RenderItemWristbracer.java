@@ -2,7 +2,7 @@ package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.items.ModelWristBlade;
-import org.avp.item.ItemWristbracer;
+import org.avp.common.item.ItemWristbracer;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;

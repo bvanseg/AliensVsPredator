@@ -6,7 +6,6 @@ import org.avp.client.render.wavegraph.DataEntry;
 import org.avp.client.render.wavegraph.DataEntry.Interval;
 import org.avp.client.render.wavegraph.DataEntry.Segment;
 import org.avp.client.render.wavegraph.Wavegraph;
-import org.avp.client.render.wavegraph.ekg.DataEntryEKG.DisplayDataEKG;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
@@ -104,7 +103,7 @@ public class Electrocardiogram extends Wavegraph
 
         for (DataEntryEKG r : new ArrayList<DataEntryEKG>(this.data))
         {
-            DisplayDataEKG data = r.displaydata();
+            DataEntryEKG.DisplayDataEKG data = r.displaydata();
             data.update(System.currentTimeMillis(), x, y, width, height, widthScale, heightScale);
 
             if (data.teX >= x)

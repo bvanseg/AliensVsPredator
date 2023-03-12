@@ -2,8 +2,8 @@ package org.avp.client.render.entities.living;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.entities.living.ModelRoyalFacehugger;
-import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
-import org.avp.entities.living.species.xenomorphs.parasites.EntityRoyalFacehugger;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityRoyalFacehugger;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 

@@ -1,9 +1,9 @@
 package org.avp.client.render.tile;
 
 import org.avp.AliensVsPredator;
-import org.avp.Settings.ClientSettings;
+import org.avp.common.Settings.ClientSettings;
 import org.avp.client.model.tile.ModelHiveResin;
-import org.avp.tile.TileEntityHiveResin;
+import org.avp.common.tile.TileEntityHiveResin;
 
 import com.asx.mdx.config.GraphicsSetting;
 import com.asx.mdx.lib.client.util.OpenGL;

@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.entities.living.EntityDracoEgg;
+import org.avp.common.entities.living.EntityDracoEgg;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

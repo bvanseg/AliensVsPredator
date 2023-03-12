@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
-import org.avp.item.crafting.AssemblyManager;
-import org.avp.item.crafting.Schematic;
-import org.avp.packets.server.PacketAssemble;
-import org.avp.tile.TileEntityAssembler;
+import org.avp.common.item.crafting.AssemblyManager;
+import org.avp.common.item.crafting.Schematic;
+import org.avp.common.packets.server.PacketAssemble;
+import org.avp.common.tile.TileEntityAssembler;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 

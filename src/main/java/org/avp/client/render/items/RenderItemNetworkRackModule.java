@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.item.ItemNetworkRackModule;
+import org.avp.common.item.ItemNetworkRackModule;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;

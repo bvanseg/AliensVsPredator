@@ -8,7 +8,7 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 import org.apache.commons.lang3.SystemUtils;
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityWorkstation;
+import org.avp.common.tile.TileEntityWorkstation;
 import org.lwjgl.opengl.GL12;
 
 import com.asx.mdx.lib.client.util.Draw;

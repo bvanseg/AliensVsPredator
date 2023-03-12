@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.entities.living.EntityPredatorHound;
+import org.avp.common.entities.living.EntityPredatorHound;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

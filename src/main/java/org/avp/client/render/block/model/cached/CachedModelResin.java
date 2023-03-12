@@ -7,8 +7,8 @@ import java.util.List;
 import javax.vecmath.Matrix4f;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.avp.Settings.ClientSettings;
-import org.avp.block.BlockHiveResin;
+import org.avp.common.Settings.ClientSettings;
+import org.avp.common.block.BlockHiveResin;
 
 import com.asx.mdx.config.GraphicsSetting;
 import com.asx.mdx.lib.client.util.models.Model;

@@ -1,6 +1,6 @@
 package org.avp.client.model.items;
 
-import org.avp.api.client.render.IFirearmModel;
+import org.avp.common.api.client.render.IFirearmModel;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

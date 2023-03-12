@@ -1,6 +1,6 @@
 package org.avp.client.render.materials;
 
-import org.avp.api.blocks.material.IMaterialRenderer;
+import org.avp.common.api.blocks.material.IMaterialRenderer;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.block.material.Material;

@@ -1,6 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;

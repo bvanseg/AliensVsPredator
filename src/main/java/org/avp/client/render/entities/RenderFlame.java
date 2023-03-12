@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.entities.EntityFlame;
+import org.avp.common.entities.EntityFlame;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 

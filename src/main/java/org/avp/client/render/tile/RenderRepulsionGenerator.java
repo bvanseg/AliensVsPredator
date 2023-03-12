@@ -4,7 +4,7 @@ import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityRepulsionGenerator;
+import org.avp.common.tile.TileEntityRepulsionGenerator;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 

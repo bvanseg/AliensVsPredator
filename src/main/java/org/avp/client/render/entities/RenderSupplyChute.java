@@ -1,6 +1,6 @@
 package org.avp.client.render.entities;
 
-import org.avp.entities.EntitySupplyChute;
+import org.avp.common.entities.EntitySupplyChute;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 

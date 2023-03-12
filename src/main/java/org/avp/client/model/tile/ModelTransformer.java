@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityTransformer;
+import org.avp.common.tile.TileEntityTransformer;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

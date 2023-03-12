@@ -1,6 +1,6 @@
 package org.avp.client.render.tile;
 
-import org.avp.tile.TileEntitySupplyCrate;
+import org.avp.common.tile.TileEntitySupplyCrate;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 

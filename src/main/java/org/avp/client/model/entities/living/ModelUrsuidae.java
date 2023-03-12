@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.entities.living.vardic.EntityUrsuidae;
+import org.avp.common.entities.living.vardic.EntityUrsuidae;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

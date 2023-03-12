@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntitySolarPanel;
+import org.avp.common.tile.TileEntitySolarPanel;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

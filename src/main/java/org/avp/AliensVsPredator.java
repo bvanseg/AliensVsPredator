@@ -2,13 +2,14 @@
 package org.avp;
 
 import org.apache.logging.log4j.Logger;
+import org.avp.common.*;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
 import org.avp.client.Resources;
 import org.avp.client.Sounds;
 import org.avp.client.render.BiomeColorHandler;
-import org.avp.network.AvpDataSerializers;
-import org.avp.world.CapabilityHandler;
+import org.avp.common.network.AvpDataSerializers;
+import org.avp.common.world.CapabilityHandler;
 
 import com.asx.mdx.core.mods.IMod;
 import com.asx.mdx.lib.util.Game;

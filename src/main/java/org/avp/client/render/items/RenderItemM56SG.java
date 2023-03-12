@@ -2,7 +2,7 @@ package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.items.ModelM56SG;
-import org.avp.entities.living.EntityMarine;
+import org.avp.common.entities.living.EntityMarine;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 

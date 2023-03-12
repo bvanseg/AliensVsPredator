@@ -1,8 +1,8 @@
 package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
-import org.avp.URLs;
 import org.avp.client.model.items.ModelAK47;
+import org.avp.common.URLs;
 import org.lwjgl.input.Mouse;
 
 import com.asx.mdx.lib.client.util.OpenGL;

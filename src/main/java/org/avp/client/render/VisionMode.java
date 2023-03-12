@@ -8,8 +8,8 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_ZERO;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.living.species.SpeciesAlien;
-import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.common.entities.living.species.SpeciesAlien;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;

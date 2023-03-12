@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.entities.living.species.yautja.EntityYautjaMutant;
+import org.avp.common.entities.living.species.yautja.EntityYautjaMutant;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;

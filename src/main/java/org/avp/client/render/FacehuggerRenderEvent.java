@@ -1,7 +1,7 @@
 package org.avp.client.render;
 
 import org.avp.AliensVsPredator;
-import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;

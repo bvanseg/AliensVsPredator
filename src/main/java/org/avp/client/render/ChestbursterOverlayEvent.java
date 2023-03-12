@@ -1,8 +1,8 @@
 package org.avp.client.render;
 
 import org.avp.AliensVsPredator;
-import org.avp.world.capabilities.IOrganism.Organism;
-import org.avp.world.capabilities.IOrganism.Provider;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.util.Game;

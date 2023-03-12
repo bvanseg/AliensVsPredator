@@ -3,10 +3,10 @@ package org.avp.client.render.entities.living;
 import java.util.ArrayList;
 
 import org.avp.client.model.entities.living.ModelFacehugger;
-import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.entities.EntityMedpod;
-import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+import org.avp.client.render.RenderLivingHook;
+import org.avp.common.entities.EntityMedpod;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;

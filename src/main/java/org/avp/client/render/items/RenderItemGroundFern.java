@@ -2,7 +2,7 @@ package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.tile.plants.ModelGroundFern;
-import org.avp.tile.plants.TileEntityGroundFern;
+import org.avp.common.tile.plants.TileEntityGroundFern;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;

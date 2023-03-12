@@ -2,7 +2,7 @@ package org.avp.client.render.tile;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.tile.ModelLocker;
-import org.avp.tile.TileEntityLocker;
+import org.avp.common.tile.TileEntityLocker;
 import org.lwjgl.opengl.GL11;
 
 import com.asx.mdx.lib.client.Renderers;

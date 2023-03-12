@@ -1,6 +1,6 @@
 package org.avp.client.render.items;
 
-import org.avp.item.firearms.ItemFirearm;
+import org.avp.common.item.firearms.ItemFirearm;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;

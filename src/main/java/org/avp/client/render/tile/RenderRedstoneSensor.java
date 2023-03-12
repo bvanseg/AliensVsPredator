@@ -1,6 +1,6 @@
 package org.avp.client.render.tile;
 
-import org.avp.tile.TileEntityRedstoneSensor;
+import org.avp.common.tile.TileEntityRedstoneSensor;
 
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;

@@ -1,7 +1,7 @@
 package org.avp.client.model.tile;
 
-import org.avp.api.power.IPowerConnection;
-import org.avp.tile.TileEntityElectrical;
+import org.avp.common.api.power.IPowerConnection;
+import org.avp.common.tile.TileEntityElectrical;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

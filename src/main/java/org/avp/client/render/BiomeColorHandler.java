@@ -5,7 +5,7 @@ import java.util.Random;
 import javax.annotation.Nullable;
 
 import org.avp.AliensVsPredator;
-import org.avp.AVPBlocks;
+import org.avp.common.AVPBlocks;
 
 import com.asx.mdx.core.mods.IInitEvent;
 import com.asx.mdx.lib.util.Game;

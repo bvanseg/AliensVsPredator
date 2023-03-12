@@ -2,7 +2,7 @@ package org.avp.client.input.handlers;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.input.IInputHandler;
-import org.avp.packets.server.PacketLaunchGrenade;
+import org.avp.common.packets.server.PacketLaunchGrenade;
 
 import com.asx.mdx.lib.util.Game;
 

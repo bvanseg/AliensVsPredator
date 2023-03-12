@@ -9,12 +9,12 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.avp.AliensVsPredator;
-import org.avp.packets.server.PacketAddTurretTarget;
-import org.avp.packets.server.PacketReadFromDataDevice;
-import org.avp.packets.server.PacketRemoveTurretTarget;
-import org.avp.packets.server.PacketToggleTurretPlayerTarget;
-import org.avp.packets.server.PacketWriteToDataDevice;
-import org.avp.tile.TileEntityTurret;
+import org.avp.common.packets.server.PacketAddTurretTarget;
+import org.avp.common.packets.server.PacketReadFromDataDevice;
+import org.avp.common.packets.server.PacketRemoveTurretTarget;
+import org.avp.common.packets.server.PacketToggleTurretPlayerTarget;
+import org.avp.common.packets.server.PacketWriteToDataDevice;
+import org.avp.common.tile.TileEntityTurret;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 

@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityWorkstation;
+import org.avp.common.tile.TileEntityWorkstation;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

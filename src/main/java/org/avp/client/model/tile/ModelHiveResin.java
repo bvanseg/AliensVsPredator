@@ -1,6 +1,6 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityHiveResin;
+import org.avp.common.tile.TileEntityHiveResin;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

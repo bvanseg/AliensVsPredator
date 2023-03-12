@@ -1,6 +1,6 @@
 package org.avp.client.model.tile.plants;
 
-import org.avp.tile.plants.TileEntityGroundFern;
+import org.avp.common.tile.plants.TileEntityGroundFern;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

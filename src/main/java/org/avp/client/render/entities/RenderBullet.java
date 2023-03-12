@@ -1,7 +1,7 @@
 package org.avp.client.render.entities;
 
 import org.avp.client.model.entities.ModelBullet;
-import org.avp.entities.EntityBullet;
+import org.avp.common.entities.EntityBullet;
 
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;

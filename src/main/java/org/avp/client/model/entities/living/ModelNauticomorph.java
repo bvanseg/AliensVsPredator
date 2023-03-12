@@ -1,7 +1,7 @@
 package org.avp.client.model.entities.living;
 
 import org.avp.client.render.XenomorphJawState;
-import org.avp.entities.living.species.xenomorphs.EntityNauticomorph;
+import org.avp.common.entities.living.species.xenomorphs.EntityNauticomorph;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;

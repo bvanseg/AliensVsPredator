@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.entities.living.species.xenomorphs.EntityRunnerWarrior;
+import org.avp.common.entities.living.species.xenomorphs.EntityRunnerWarrior;
 
 import com.asx.mdx.lib.client.util.models.Model;
 

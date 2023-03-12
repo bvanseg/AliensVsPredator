@@ -1,7 +1,7 @@
 package org.avp.client.render.tile;
 
 import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityAmpule;
+import org.avp.common.tile.TileEntityAmpule;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 

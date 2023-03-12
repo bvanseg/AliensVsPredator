@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.avp.tile.TileEntityBlastdoor;
+import org.avp.common.tile.TileEntityBlastdoor;
 
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;

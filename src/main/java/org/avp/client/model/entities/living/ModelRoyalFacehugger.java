@@ -1,6 +1,6 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;

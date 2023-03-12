@@ -1,8 +1,8 @@
 package org.avp.client.model.entities.living;
 
 import org.avp.client.render.XenomorphJawState;
-import org.avp.entities.living.species.SpeciesXenomorph;
-import org.avp.entities.living.vardic.EntityBelugamorph;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
+import org.avp.common.entities.living.vardic.EntityBelugamorph;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;

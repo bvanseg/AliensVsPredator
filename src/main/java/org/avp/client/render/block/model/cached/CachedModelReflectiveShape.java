@@ -6,8 +6,8 @@ import java.util.List;
 import javax.vecmath.Matrix4f;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.avp.block.BlockReflective;
-import org.avp.block.util.EnumAlignment;
+import org.avp.common.block.BlockReflective;
+import org.avp.common.block.util.EnumAlignment;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.client.util.models.block.ModelRotationXYZ;

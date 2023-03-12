@@ -3,7 +3,7 @@ package org.avp.client.gui;
 import java.io.IOException;
 
 import org.avp.client.render.TacticalHUDRenderEvent;
-import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
 import com.asx.mdx.lib.client.gui.GuiCustomScreen;
