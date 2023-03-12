@@ -18,7 +18,7 @@ public class TileEntitySolarPanel extends TileEntityElectrical implements IVolta
     @Override
     public void update()
     {
-        if (this.world.provider.hasSkyLight())
+        if (this.world.provider.hasSkyLight() && !this.world.isRaining() && !this.world.isThundering())
         {
             if (this.world.getTotalWorldTime() % (1000 / this.getUpdateFrequency()) == 0)
             {
