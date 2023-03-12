@@ -1,33 +1,12 @@
 package org.avp.common.entities.living.species.xenomorphs;
 
-import org.avp.common.DamageSources;
-import org.avp.common.ItemHandler;
-import org.avp.common.api.parasitoidic.IMaturable;
-import org.avp.common.api.parasitoidic.INascentic;
-import org.avp.common.api.parasitoidic.IRoyalOrganism;
-import org.avp.client.Sounds;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.ai.alien.EntitySelectorAvoid;
-import org.avp.common.entities.ai.alien.EntitySelectorParasitoid;
-import org.avp.common.entities.living.species.SpeciesAlien;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-import org.avp.common.world.hives.rework.HiveMember;
-
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -39,6 +18,20 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.client.Sounds;
+import org.avp.common.DamageSources;
+import org.avp.common.ItemHandler;
+import org.avp.common.api.parasitoidic.IMaturable;
+import org.avp.common.api.parasitoidic.INascentic;
+import org.avp.common.api.parasitoidic.IRoyalOrganism;
+import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entities.ai.alien.EntitySelectorAvoid;
+import org.avp.common.entities.ai.alien.EntitySelectorParasitoid;
+import org.avp.common.entities.living.species.SpeciesAlien;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.avp.common.world.hives.rework.HiveMember;
 
 public class EntityChestburster extends SpeciesAlien implements IMob, INascentic, HiveMember
 {

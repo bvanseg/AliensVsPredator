@@ -1,11 +1,5 @@
 package org.avp.common.entities.living.species;
 
-import org.avp.common.DamageSources;
-import org.avp.common.EntityItemDrops;
-import org.avp.common.brain.Brainiac;
-import org.avp.common.brain.impl.EntityBrainContext;
-import org.avp.common.brain.impl.XenomorphBrain;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
@@ -14,6 +8,11 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import org.avp.common.DamageSources;
+import org.avp.common.EntityItemDrops;
+import org.avp.common.brain.Brainiac;
+import org.avp.common.brain.impl.EntityBrainContext;
+import org.avp.common.brain.impl.XenomorphBrain;
 
 public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Brainiac<XenomorphBrain>
 {

@@ -1,14 +1,12 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.client.render.XenomorphJawState;
-import org.avp.common.entities.living.species.xenomorphs.EntityNauticomorph;
-
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
+import org.avp.client.render.XenomorphJawState;
+import org.avp.common.entities.living.species.xenomorphs.EntityNauticomorph;
 
 public class ModelNauticomorph extends Model<EntityNauticomorph>
 {

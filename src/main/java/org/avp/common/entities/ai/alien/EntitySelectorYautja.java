@@ -1,5 +1,12 @@
 package org.avp.common.entities.ai.alien;
 
+import com.google.common.base.Predicate;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBow;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import org.avp.common.entities.living.EntityMarine;
 import org.avp.common.entities.living.species.SpeciesAlien;
 import org.avp.common.entities.living.species.SpeciesEngineer;
@@ -7,15 +14,6 @@ import org.avp.common.item.ItemDisc;
 import org.avp.common.item.ItemPlasmaCannon;
 import org.avp.common.item.ItemShuriken;
 import org.avp.common.item.ItemWristbracer;
-
-import com.google.common.base.Predicate;
-
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBow;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
 import org.avp.common.item.firearms.ItemFirearm;
 
 public class EntitySelectorYautja implements Predicate<EntityLivingBase>

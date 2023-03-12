@@ -1,9 +1,8 @@
 package org.avp.common.world.fluids;
 
-import org.avp.AVP;
-
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
+import org.avp.AVP;
 
 public class FluidBlackGoo extends Fluid
 {

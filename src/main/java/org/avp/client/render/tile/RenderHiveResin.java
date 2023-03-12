@@ -1,16 +1,14 @@
 package org.avp.client.render.tile;
 
-import org.avp.AVP;
-import org.avp.common.Settings.ClientSettings;
-import org.avp.client.model.tile.ModelHiveResin;
-import org.avp.common.tile.TileEntityHiveResin;
-
 import com.asx.mdx.config.GraphicsSetting;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
+import org.avp.AVP;
+import org.avp.client.model.tile.ModelHiveResin;
+import org.avp.common.Settings.ClientSettings;
+import org.avp.common.tile.TileEntityHiveResin;
 
 public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveResin>
 {

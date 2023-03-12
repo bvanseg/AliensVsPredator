@@ -1,10 +1,9 @@
 package org.avp.common.item.firearms;
 
-import java.util.ArrayList;
-
+import com.asx.mdx.lib.util.Sound;
 import org.avp.client.Sounds;
 
-import com.asx.mdx.lib.util.Sound;
+import java.util.ArrayList;
 
 /**
  * A singleton used to register types of firearms.

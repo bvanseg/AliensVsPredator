@@ -1,15 +1,14 @@
 package org.avp.client.model.loaders;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.avp.AVP;
-import org.avp.client.render.block.model.ModelReflectiveShape;
-
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ICustomModelLoader;
 import net.minecraftforge.client.model.IModel;
+import org.avp.AVP;
+import org.avp.client.render.block.model.ModelReflectiveShape;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ReflectiveModelLoader implements ICustomModelLoader
 {

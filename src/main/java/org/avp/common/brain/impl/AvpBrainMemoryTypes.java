@@ -1,10 +1,9 @@
 package org.avp.common.brain.impl;
 
-import java.util.List;
-
+import net.minecraft.entity.Entity;
 import org.avp.common.brain.memory.BrainMemoryType;
 
-import net.minecraft.entity.Entity;
+import java.util.List;
 
 /**
  * Represents the different data types that a memory can be represented as. Every memory

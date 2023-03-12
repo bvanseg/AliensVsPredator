@@ -1,31 +1,7 @@
 package org.avp.common.entities.living;
 
-import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
-import org.avp.client.Sounds;
-import org.avp.common.entities.EntityBullet;
-import org.avp.common.entities.ai.EntitySelectorMarine;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.item.firearms.FirearmProfile;
-import org.avp.common.world.MarineTypes;
-
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackRanged;
-import net.minecraft.entity.ai.EntityAIAvoidEntity;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAIMoveIndoors;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIOpenDoor;
-import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.EntityAIWatchClosest2;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,6 +16,14 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.client.Sounds;
+import org.avp.common.EntityItemDrops;
+import org.avp.common.ItemHandler;
+import org.avp.common.entities.EntityBullet;
+import org.avp.common.entities.ai.EntitySelectorMarine;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.item.firearms.FirearmProfile;
+import org.avp.common.world.MarineTypes;
 
 public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob
 {

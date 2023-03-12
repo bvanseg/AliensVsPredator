@@ -1,11 +1,9 @@
 package org.avp.common.world.dimension;
 
-import org.avp.common.AVPBlocks;
-
 import com.google.common.base.Predicate;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import org.avp.common.AVPBlocks;
 
 public class GenerationFilters
 {

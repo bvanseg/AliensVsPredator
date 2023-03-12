@@ -1,24 +1,13 @@
 package org.avp.common.world.dimension.acheron;
 
-import java.util.Random;
-
-import org.avp.AVP;
-import org.avp.common.world.dimension.DimensionUtil;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.GameResources;
 import com.asx.mdx.lib.client.util.Color;
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.client.IRenderHandler;
@@ -26,6 +15,11 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.world.dimension.DimensionUtil;
+import org.lwjgl.opengl.GL11;
+
+import java.util.Random;
 
 public class SkyProviderAcheron extends IRenderHandler
 {

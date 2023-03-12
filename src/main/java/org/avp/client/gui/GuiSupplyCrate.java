@@ -1,10 +1,9 @@
 package org.avp.client.gui;
 
-import org.avp.AVP;
-import org.avp.common.tile.TileEntitySupplyCrate;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntitySupplyCrate;
 
 public class GuiSupplyCrate extends GuiContainer
 {

@@ -1,8 +1,5 @@
 package org.avp.common.command;
 
-import org.avp.AVP;
-import org.avp.common.packets.server.PacketOpenGui;
-
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
@@ -11,6 +8,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
+import org.avp.AVP;
+import org.avp.common.packets.server.PacketOpenGui;
 
 public class CommandSettings extends CommandBase
 {

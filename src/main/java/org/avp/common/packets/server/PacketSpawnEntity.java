@@ -1,7 +1,6 @@
 package org.avp.common.packets.server;
 
 import com.asx.mdx.lib.world.entity.Entities;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayerMP;

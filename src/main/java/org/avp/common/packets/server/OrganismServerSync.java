@@ -1,8 +1,5 @@
 package org.avp.common.packets.server;
 
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,6 +7,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
 
 public class OrganismServerSync implements IMessage, IMessageHandler<OrganismServerSync, OrganismServerSync>
 {

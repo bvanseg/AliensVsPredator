@@ -3,7 +3,6 @@ package org.avp.common.item;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.world.item.HookedItem;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

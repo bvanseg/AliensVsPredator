@@ -1,9 +1,5 @@
 package org.avp.common.block;
 
-import org.avp.common.block.properties.UnlistedPropertyBlockstate;
-import org.avp.common.block.util.EnumAlignment;
-import org.avp.common.tile.TileEntityReflective;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -18,12 +14,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.Rotation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -36,6 +27,9 @@ import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.common.block.properties.UnlistedPropertyBlockstate;
+import org.avp.common.block.util.EnumAlignment;
+import org.avp.common.tile.TileEntityReflective;
 
 public class BlockReflective extends Block implements ITileEntityProvider
 {

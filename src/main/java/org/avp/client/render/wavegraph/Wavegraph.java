@@ -1,15 +1,14 @@
 package org.avp.client.render.wavegraph;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class Wavegraph

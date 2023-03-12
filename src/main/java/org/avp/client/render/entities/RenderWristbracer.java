@@ -1,17 +1,15 @@
 package org.avp.client.render.entities;
 
+import com.asx.mdx.lib.client.util.Color;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import net.minecraft.client.renderer.entity.Render;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
 import org.avp.client.model.entities.ModelPlasma;
 import org.avp.client.model.items.ModelWristBlade;
 import org.avp.common.entities.EntityWristbracer;
-
-import com.asx.mdx.lib.client.util.Color;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.util.ResourceLocation;
 
 public class RenderWristbracer extends Render<EntityWristbracer>
 {

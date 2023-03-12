@@ -1,9 +1,8 @@
 package org.avp.common.tile;
 
-import org.avp.common.api.power.IVoltageReceiver;
-
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import org.avp.common.api.power.IVoltageReceiver;
 
 public class TileEntityRedstoneEmitter extends TileEntityElectrical implements IVoltageReceiver
 {

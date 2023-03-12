@@ -1,12 +1,10 @@
 package org.avp.client.input.handlers;
 
+import com.asx.mdx.lib.util.Game;
+import net.minecraft.item.ItemStack;
 import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.packets.server.PacketLaunchGrenade;
-
-import com.asx.mdx.lib.util.Game;
-
-import net.minecraft.item.ItemStack;
 
 public class InputHandlerPulseRifle implements IInputHandler
 {

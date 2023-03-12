@@ -7,8 +7,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.common.ItemHandler;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 import org.avp.common.entities.living.species.xenomorphs.EntityOvamorph;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
 
 public class EntityDracoEgg extends EntityOvamorph
 {

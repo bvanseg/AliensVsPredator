@@ -1,14 +1,12 @@
 package org.avp.client.render.entities;
 
-import org.avp.client.model.entities.ModelPlasma;
-import org.avp.common.entities.EntityPlasma;
-
 import com.asx.mdx.lib.client.util.Color;
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import org.avp.client.model.entities.ModelPlasma;
+import org.avp.common.entities.EntityPlasma;
 
 public class RenderPlasmaBlast extends Render<EntityPlasma>
 {

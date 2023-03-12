@@ -1,13 +1,11 @@
 package org.avp.client.render.tile;
 
+import com.asx.mdx.lib.client.util.OpenGL;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.common.tile.TileEntitySupplyCrate;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import com.asx.mdx.lib.client.util.OpenGL;
-
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class RenderSupplyCrate extends TileEntitySpecialRenderer<TileEntitySupplyCrate>
 {

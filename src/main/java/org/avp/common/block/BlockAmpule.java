@@ -1,9 +1,6 @@
 package org.avp.common.block;
 
-import org.avp.common.tile.TileEntityAmpule;
-
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -16,6 +13,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.avp.common.tile.TileEntityAmpule;
 
 public class BlockAmpule extends Block implements ITileEntityProvider
 {

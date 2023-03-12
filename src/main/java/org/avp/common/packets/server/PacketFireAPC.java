@@ -1,11 +1,10 @@
 package org.avp.common.packets.server;
 
-import org.avp.common.entities.EntityGrenade;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.common.entities.EntityGrenade;
 
 public class PacketFireAPC implements IMessage, IMessageHandler<PacketFireAPC, PacketFireAPC>
 {

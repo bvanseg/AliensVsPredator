@@ -1,8 +1,7 @@
 package org.avp.common.brain.impl;
 
-import org.avp.common.brain.AbstractBrain;
-
 import net.minecraft.entity.Entity;
+import org.avp.common.brain.AbstractBrain;
 
 /**
  * An abstraction over AbstractBrain that holds an entity reference.

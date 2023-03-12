@@ -1,22 +1,20 @@
 package org.avp.common.entities.ai.alien;
 
-import java.util.ArrayList;
-
-import org.avp.common.ItemHandler;
-import org.avp.common.api.parasitoidic.IHost;
-import org.avp.common.api.parasitoidic.IParasitoid;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.google.common.base.Predicate;
-
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import org.avp.common.ItemHandler;
+import org.avp.common.api.parasitoidic.IHost;
+import org.avp.common.api.parasitoidic.IParasitoid;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+
+import java.util.ArrayList;
 
 public class EntitySelectorParasitoid implements Predicate<EntityLivingBase>
 {

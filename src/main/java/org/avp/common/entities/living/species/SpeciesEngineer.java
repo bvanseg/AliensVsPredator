@@ -1,10 +1,5 @@
 package org.avp.common.entities.living.species;
 
-import org.avp.common.EntityItemDrops;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.living.EntityMarine;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,6 +19,10 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import org.avp.common.EntityItemDrops;
+import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entities.living.EntityMarine;
 
 public abstract class SpeciesEngineer extends EntityMob
 {

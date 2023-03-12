@@ -1,10 +1,8 @@
 package org.avp.client.model.tile.skulls;
 
-import org.avp.common.tile.TileEntitySkull;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.tile.TileEntitySkull;
 
 public class ModelBiomaskBerserker extends Model<TileEntitySkull>
 {

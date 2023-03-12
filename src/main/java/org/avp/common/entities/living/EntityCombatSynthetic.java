@@ -1,27 +1,10 @@
 package org.avp.common.entities.living;
 
-import org.avp.AVP;
-import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
-import org.avp.common.api.parasitoidic.IHost;
-import org.avp.client.Sounds;
-import org.avp.common.entities.EntityBullet;
-import org.avp.common.entities.EntityLiquidLatexPool;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-
-import org.avp.common.entities.ai.EntitySelectorCombatSynthetic;
-
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackRanged;
-import net.minecraft.entity.ai.EntityAIBase;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -34,6 +17,15 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.client.Sounds;
+import org.avp.common.EntityItemDrops;
+import org.avp.common.ItemHandler;
+import org.avp.common.api.parasitoidic.IHost;
+import org.avp.common.entities.EntityBullet;
+import org.avp.common.entities.EntityLiquidLatexPool;
+import org.avp.common.entities.ai.EntitySelectorCombatSynthetic;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost
 {

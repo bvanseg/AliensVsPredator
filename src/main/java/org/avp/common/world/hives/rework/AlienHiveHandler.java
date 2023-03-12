@@ -1,13 +1,12 @@
 package org.avp.common.world.hives.rework;
 
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import org.avp.common.tile.TileEntityHiveResin;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.UUID;
-
-import org.avp.common.tile.TileEntityHiveResin;
-
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 /**
  * 

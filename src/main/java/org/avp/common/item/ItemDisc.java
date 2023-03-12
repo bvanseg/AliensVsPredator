@@ -1,12 +1,8 @@
 package org.avp.common.item;
 
-import org.avp.AVP;
-import org.avp.common.entities.EntitySmartDisc;
-
 import com.asx.mdx.lib.util.GameSounds;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.asx.mdx.lib.world.item.HookedItem;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -14,6 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.entities.EntitySmartDisc;
 
 public class ItemDisc extends HookedItem
 {

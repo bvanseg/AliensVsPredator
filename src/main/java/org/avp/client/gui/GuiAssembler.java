@@ -1,17 +1,5 @@
 package org.avp.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.item.crafting.AssemblyManager;
-import org.avp.common.item.crafting.Schematic;
-import org.avp.common.packets.server.PacketAssemble;
-import org.avp.common.tile.TileEntityAssembler;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
 import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
 import com.asx.mdx.lib.client.gui.IAction;
@@ -19,7 +7,6 @@ import com.asx.mdx.lib.client.gui.IGuiElement;
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
@@ -28,6 +15,17 @@ import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.item.crafting.AssemblyManager;
+import org.avp.common.item.crafting.Schematic;
+import org.avp.common.packets.server.PacketAssemble;
+import org.avp.common.tile.TileEntityAssembler;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GuiAssembler extends GuiContainer
 {

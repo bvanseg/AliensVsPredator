@@ -1,12 +1,11 @@
 package org.avp.common.world.worldgen;
 
-import java.util.Random;
-
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.StructureGenerationHandler;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class DerelictLocation
 {

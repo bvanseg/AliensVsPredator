@@ -1,16 +1,14 @@
 package org.avp.client.render.tile;
 
-import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
-
-import org.avp.AVP;
-import org.avp.common.tile.TileEntityPowerline;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityPowerline;
+
+import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 
 public class RenderPowerline extends TileEntitySpecialRenderer<TileEntityPowerline>
 {

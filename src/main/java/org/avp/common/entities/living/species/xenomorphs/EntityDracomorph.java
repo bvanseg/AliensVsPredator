@@ -1,24 +1,9 @@
 package org.avp.common.entities.living.species.xenomorphs;
 
-import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
-import org.avp.common.api.parasitoidic.IHost;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.alien.EntitySelectorDracomorph;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.living.species.SpeciesAlien;
-
 import com.asx.mdx.lib.world.Pos;
-
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -31,6 +16,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.common.EntityItemDrops;
+import org.avp.common.ItemHandler;
+import org.avp.common.api.parasitoidic.IHost;
+import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entities.ai.alien.EntitySelectorDracomorph;
+import org.avp.common.entities.living.species.SpeciesAlien;
 
 public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
 {

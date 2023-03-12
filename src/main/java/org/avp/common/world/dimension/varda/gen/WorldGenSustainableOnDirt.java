@@ -1,12 +1,12 @@
 package org.avp.common.world.dimension.varda.gen;
 
-import java.util.Random;
-
 import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenSustainableOnDirt extends WorldGenerator
 {

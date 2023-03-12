@@ -2,7 +2,6 @@ package org.avp.common.item.supply.chute;
 
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.asx.mdx.lib.world.item.HookedItem;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;

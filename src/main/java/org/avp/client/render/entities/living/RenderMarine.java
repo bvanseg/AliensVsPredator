@@ -1,11 +1,6 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AVP;
-import org.avp.client.model.entities.living.ModelMarine;
-import org.avp.common.entities.living.EntityMarine;
-
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped.ArmPose;
 import net.minecraft.client.renderer.GlStateManager;
@@ -16,6 +11,9 @@ import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
+import org.avp.AVP;
+import org.avp.client.model.entities.living.ModelMarine;
+import org.avp.common.entities.living.EntityMarine;
 
 public class RenderMarine extends RenderLivingWrapper<EntityMarine, ModelMarine>
 {

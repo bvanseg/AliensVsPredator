@@ -1,7 +1,6 @@
 package org.avp.client.entityfx;
 
 import com.asx.mdx.lib.client.util.Draw;
-
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.Tessellator;

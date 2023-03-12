@@ -1,19 +1,17 @@
 package org.avp.common.world.dimension.acheron;
 
-import java.util.Random;
-
-import org.avp.common.AVPBlocks;
-import org.avp.AVP;
-import org.avp.common.world.dimension.BiomeGenLV;
-
 import com.asx.mdx.lib.world.Worlds;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenMinable;
+import org.avp.AVP;
+import org.avp.common.AVPBlocks;
+import org.avp.common.world.dimension.BiomeGenLV;
+
+import java.util.Random;
 
 public class BiomeAcheron extends BiomeGenLV
 {

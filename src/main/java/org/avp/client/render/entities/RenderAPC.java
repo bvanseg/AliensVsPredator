@@ -1,20 +1,18 @@
 package org.avp.client.render.entities;
 
-import org.avp.AVP;
-import org.avp.common.entities.EntityAPC;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.wavefront.Part;
 import com.asx.mdx.lib.client.util.models.wavefront.TriangulatedWavefrontModel;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
+import org.avp.AVP;
+import org.avp.common.entities.EntityAPC;
 
 public class RenderAPC extends Render<EntityAPC>
 {

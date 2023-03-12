@@ -1,20 +1,8 @@
 /** AliensVsPredator Minecraft Mod - Copyright (C) 2012-2019 ASX **/
 package org.avp;
 
-import org.alien.AlienBlocks;
-import org.apache.logging.log4j.Logger;
-import org.avp.common.*;
-import org.avp.client.KeybindHandler;
-import org.avp.client.Renders;
-import org.avp.client.Resources;
-import org.avp.client.Sounds;
-import org.avp.client.render.BiomeColorHandler;
-import org.avp.common.network.AvpDataSerializers;
-import org.avp.common.world.CapabilityHandler;
-
 import com.asx.mdx.core.mods.IMod;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.ModContainer;
@@ -24,6 +12,16 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.alien.AlienBlocks;
+import org.apache.logging.log4j.Logger;
+import org.avp.client.KeybindHandler;
+import org.avp.client.Renders;
+import org.avp.client.Resources;
+import org.avp.client.Sounds;
+import org.avp.client.render.BiomeColorHandler;
+import org.avp.common.*;
+import org.avp.common.network.AvpDataSerializers;
+import org.avp.common.world.CapabilityHandler;
 import org.predator.PredatorBlocks;
 
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)

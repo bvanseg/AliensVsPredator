@@ -1,9 +1,5 @@
 package org.avp.common.world.hooks;
 
-import java.util.ArrayList;
-
-import org.avp.common.AVPBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -12,6 +8,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.avp.common.AVPBlocks;
+
+import java.util.ArrayList;
 
 public class FarmlandRegistry
 {

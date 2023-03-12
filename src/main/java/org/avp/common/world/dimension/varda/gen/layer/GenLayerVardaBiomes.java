@@ -1,10 +1,9 @@
 package org.avp.common.world.dimension.varda.gen.layer;
 
-import org.avp.common.world.dimension.varda.BiomeVarda;
-
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
+import org.avp.common.world.dimension.varda.BiomeVarda;
 
 public class GenLayerVardaBiomes extends GenLayer
 {

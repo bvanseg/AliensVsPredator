@@ -1,14 +1,6 @@
 package org.avp.common.block;
 
-import java.util.Collection;
-import java.util.stream.Collectors;
-
-import org.avp.AVP;
-import org.avp.common.packets.server.PacketAddTurretTarget;
-import org.avp.common.tile.TileEntityTurret;
-
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,6 +18,12 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
+import org.avp.AVP;
+import org.avp.common.packets.server.PacketAddTurretTarget;
+import org.avp.common.tile.TileEntityTurret;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class BlockTurret extends Block
 {

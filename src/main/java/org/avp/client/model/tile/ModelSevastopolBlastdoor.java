@@ -1,12 +1,10 @@
 package org.avp.client.model.tile;
 
-import org.avp.common.tile.TileEntityBlastdoor;
-import org.avp.common.tile.TileEntitySevastopolBlastDoor;
-
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.tile.TileEntityBlastdoor;
+import org.avp.common.tile.TileEntitySevastopolBlastDoor;
 
 public class ModelSevastopolBlastdoor extends Model<TileEntitySevastopolBlastDoor>
 {

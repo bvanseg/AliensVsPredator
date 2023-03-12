@@ -1,11 +1,10 @@
 package org.avp.common.entities.ai.alien;
 
+import net.minecraft.entity.ai.EntityAIBase;
 import org.avp.common.entities.living.species.SpeciesXenomorph;
 import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
 import org.avp.common.world.hives.rework.HiveMember;
 import org.avp.common.world.hives.rework.HiveOwner;
-
-import net.minecraft.entity.ai.EntityAIBase;
 
 public class EntityAIShareJelly extends EntityAIBase
 {

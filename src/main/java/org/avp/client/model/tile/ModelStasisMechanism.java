@@ -1,10 +1,8 @@
 package org.avp.client.model.tile;
 
-import org.avp.common.tile.TileEntityStasisMechanism;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.tile.TileEntityStasisMechanism;
 
 public class ModelStasisMechanism extends Model<TileEntityStasisMechanism>
 {

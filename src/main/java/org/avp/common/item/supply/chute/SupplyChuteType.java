@@ -1,18 +1,16 @@
 package org.avp.common.item.supply.chute;
 
-import org.avp.AVP;
-import org.avp.common.AVPBlocks;
-import org.avp.client.model.entities.ModelSupplyChute;
-import org.avp.common.entities.EntitySupplyChute;
-import org.avp.common.entities.EntitySupplyChuteMarines;
-import org.avp.common.entities.EntitySupplyChuteSeegson;
-
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
-
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.client.model.entities.ModelSupplyChute;
+import org.avp.common.AVPBlocks;
+import org.avp.common.entities.EntitySupplyChute;
+import org.avp.common.entities.EntitySupplyChuteMarines;
+import org.avp.common.entities.EntitySupplyChuteSeegson;
 
 public enum SupplyChuteType {
         UNBRANDED(0, EntitySupplyChute.class), MARINES(1, EntitySupplyChuteMarines.class), SEEGSON(2, EntitySupplyChuteSeegson.class);

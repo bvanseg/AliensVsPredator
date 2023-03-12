@@ -1,10 +1,9 @@
 package org.avp.client.render.entities.living;
 
+import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelPraetorian;
 import org.avp.common.entities.living.species.xenomorphs.EntityPraetorian;
-
-import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderPraetorian extends RenderXenomorph<EntityPraetorian, ModelPraetorian>
 {

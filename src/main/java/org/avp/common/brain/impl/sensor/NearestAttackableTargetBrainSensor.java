@@ -1,16 +1,14 @@
 package org.avp.common.brain.impl.sensor;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
+import com.google.common.base.Predicate;
+import net.minecraft.entity.EntityLivingBase;
 import org.avp.common.brain.impl.BrainMemoryKeys;
 import org.avp.common.brain.impl.EntityBrainContext;
 import org.avp.common.brain.sensor.AbstractBrainSensor;
 
-import com.google.common.base.Predicate;
-
-import net.minecraft.entity.EntityLivingBase;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 

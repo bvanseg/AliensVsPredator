@@ -1,17 +1,15 @@
 package org.avp.client.render.items;
 
-import java.util.ArrayList;
-
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import org.avp.AVP;
 import org.avp.client.Sounds;
 import org.lwjgl.opengl.GL11;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
+import java.util.ArrayList;
 
 public class RenderMotionTrackerScreen
 {

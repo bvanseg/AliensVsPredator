@@ -1,13 +1,11 @@
 package org.avp.client.render.entities.living;
 
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
+import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelDracomorph;
 import org.avp.common.entities.living.species.xenomorphs.EntityDracomorph;
-
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
-
-import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderDracomorph extends RenderLivingWrapper<EntityDracomorph, ModelDracomorph>
 {

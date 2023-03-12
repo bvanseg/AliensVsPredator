@@ -1,18 +1,16 @@
 package org.avp.client.input;
 
-import java.util.ArrayList;
-
+import com.asx.mdx.lib.util.Game;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.input.handlers.InputHandlerFirearm;
 import org.avp.client.input.handlers.InputHandlerPlasmaCannon;
 import org.avp.client.input.handlers.InputHandlerPulseRifle;
 import org.avp.client.input.handlers.InputHandlerWristbracer;
 
-import com.asx.mdx.lib.util.Game;
-
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import java.util.ArrayList;
 
 @SideOnly(Side.CLIENT)
 public class InputHandler

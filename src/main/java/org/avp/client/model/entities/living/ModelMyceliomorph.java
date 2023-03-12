@@ -1,10 +1,8 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.common.entities.living.species.xenomorphs.EntityMyceliomorph;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.entities.living.species.xenomorphs.EntityMyceliomorph;
 
 public class ModelMyceliomorph extends Model<EntityMyceliomorph>
 {

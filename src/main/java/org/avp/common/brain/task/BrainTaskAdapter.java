@@ -1,15 +1,14 @@
 package org.avp.common.brain.task;
 
-import java.util.BitSet;
-import java.util.HashMap;
-import java.util.Map;
-
+import net.minecraft.entity.ai.EntityAIBase;
 import org.avp.common.brain.flag.AbstractBrainFlag;
 import org.avp.common.brain.flag.BrainFlagState;
 import org.avp.common.brain.impl.BrainFlags;
 import org.avp.common.brain.impl.EntityBrainContext;
 
-import net.minecraft.entity.ai.EntityAIBase;
+import java.util.BitSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 

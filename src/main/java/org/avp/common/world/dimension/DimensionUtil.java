@@ -1,8 +1,8 @@
 package org.avp.common.world.dimension;
 
-import java.util.Random;
-
 import com.asx.mdx.lib.client.util.Draw;
+
+import java.util.Random;
 
 public class DimensionUtil
 {

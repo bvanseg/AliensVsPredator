@@ -1,14 +1,12 @@
 package org.avp.common;
 
-import org.avp.common.command.CommandPlayerMode;
-import org.avp.common.command.CommandSettings;
-
 import com.asx.mdx.core.mods.IInitEvent;
-
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
+import org.avp.common.command.CommandPlayerMode;
+import org.avp.common.command.CommandSettings;
 
 public class CommandHandler implements IInitEvent
 {

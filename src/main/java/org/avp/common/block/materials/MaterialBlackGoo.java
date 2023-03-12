@@ -1,13 +1,12 @@
 package org.avp.common.block.materials;
 
-import org.avp.common.api.blocks.material.IMaterialPhysics;
-import org.avp.common.api.blocks.material.IMaterialRenderer;
-import org.avp.client.render.materials.RenderMaterialBlackGoo;
-
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.MaterialLiquid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.client.render.materials.RenderMaterialBlackGoo;
+import org.avp.common.api.blocks.material.IMaterialPhysics;
+import org.avp.common.api.blocks.material.IMaterialRenderer;
 
 public class MaterialBlackGoo extends MaterialLiquid implements IMaterialPhysics
 {

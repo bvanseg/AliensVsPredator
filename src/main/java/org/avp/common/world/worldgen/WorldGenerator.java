@@ -1,11 +1,6 @@
 package org.avp.common.world.worldgen;
 
-import java.util.Random;
-
-import org.avp.common.AVPBlocks;
-
 import com.asx.mdx.lib.world.Worlds;
-
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -14,6 +9,9 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import org.avp.common.AVPBlocks;
+
+import java.util.Random;
 
 public class WorldGenerator implements IWorldGenerator
 {

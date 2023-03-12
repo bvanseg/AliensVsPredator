@@ -1,16 +1,14 @@
 package org.avp.client.render.items;
 
-import org.avp.AVP;
-import org.avp.client.model.items.Model88MOD4;
-import org.lwjgl.input.Mouse;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.avp.AVP;
+import org.avp.client.model.items.Model88MOD4;
+import org.lwjgl.input.Mouse;
 
 public class RenderItem88MOD4 extends ItemFirearmRenderer<Model88MOD4>
 {

@@ -1,14 +1,12 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
 
 public class RenderXenomorph<XENO extends SpeciesXenomorph, MODEL extends Model<? extends SpeciesXenomorph>> extends RenderLivingWrapper<XENO, MODEL>
 {

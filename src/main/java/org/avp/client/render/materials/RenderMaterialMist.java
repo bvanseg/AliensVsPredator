@@ -1,11 +1,10 @@
 package org.avp.client.render.materials;
 
-import org.avp.common.api.blocks.material.IMaterialRenderer;
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
+import org.avp.common.api.blocks.material.IMaterialRenderer;
+import org.lwjgl.opengl.GL11;
 
 
 public class RenderMaterialMist implements IMaterialRenderer

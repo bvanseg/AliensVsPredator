@@ -1,10 +1,6 @@
 package org.avp.common.entities;
 
-import org.avp.AVP;
-import org.avp.common.DamageSources;
-
 import com.asx.mdx.lib.util.GameSounds;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -12,6 +8,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.DamageSources;
 
 public class EntityShuriken extends EntityItemStackProjectile
 {

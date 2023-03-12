@@ -1,18 +1,10 @@
 package org.avp.common.entities;
 
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.DamageSources;
-import org.avp.common.Settings;
-import org.avp.client.Sounds;
-
 import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Worlds;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,6 +19,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.client.Sounds;
+import org.avp.common.DamageSources;
+import org.avp.common.Settings;
+
+import java.util.List;
 
 public class EntityPlasma extends EntityThrowable
 {

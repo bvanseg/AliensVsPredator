@@ -1,19 +1,17 @@
 package org.avp.common.brain.impl.task;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Nullable;
-
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.ai.RandomPositionGenerator;
+import net.minecraft.util.math.Vec3d;
 import org.avp.common.brain.flag.AbstractBrainFlag;
 import org.avp.common.brain.flag.BrainFlagState;
 import org.avp.common.brain.impl.BrainFlags;
 import org.avp.common.brain.impl.EntityBrainContext;
 import org.avp.common.brain.task.AbstractBrainTask;
 
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.ai.RandomPositionGenerator;
-import net.minecraft.util.math.Vec3d;
+import javax.annotation.Nullable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 

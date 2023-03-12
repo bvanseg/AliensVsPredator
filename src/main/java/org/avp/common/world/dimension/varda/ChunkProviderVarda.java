@@ -1,11 +1,5 @@
 package org.avp.common.world.dimension.varda;
 
-import java.util.List;
-import java.util.Random;
-
-import org.avp.common.AVPBlocks;
-import org.avp.common.world.dimension.varda.gen.VardaGenCaves;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.EnumCreatureType;
@@ -21,6 +15,11 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
+import org.avp.common.AVPBlocks;
+import org.avp.common.world.dimension.varda.gen.VardaGenCaves;
+
+import java.util.List;
+import java.util.Random;
 
 public class ChunkProviderVarda implements IChunkGenerator
 {

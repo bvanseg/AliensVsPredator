@@ -1,11 +1,8 @@
 package org.avp.common.world.dimension.varda;
 
-import org.avp.AVP;
-
 import com.asx.mdx.lib.client.world.IClimateProvider;
 import com.asx.mdx.lib.client.world.ICloudProvider;
 import com.asx.mdx.lib.client.world.IStormProvider;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -17,6 +14,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
 
 public class WorldProviderVarda extends WorldProvider implements IClimateProvider
 {

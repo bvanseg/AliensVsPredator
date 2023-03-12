@@ -1,18 +1,7 @@
 package org.avp.common.item;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.DamageSources;
-import org.avp.client.Sounds;
-import org.avp.common.inventory.ContainerWristbracer;
-import org.avp.common.packets.server.PacketSpawnNuke;
-
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.item.HookedItem;
-
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -26,6 +15,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.client.Sounds;
+import org.avp.common.DamageSources;
+import org.avp.common.inventory.ContainerWristbracer;
+import org.avp.common.packets.server.PacketSpawnNuke;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class ItemWristbracer extends HookedItem
 {

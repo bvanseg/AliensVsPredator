@@ -1,11 +1,6 @@
 package org.avp.common.world.hooks;
 
-import org.avp.AVP;
-import org.avp.common.api.blocks.material.IMaterialPhysics;
-import org.avp.common.api.blocks.material.IMaterialRenderer;
-
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -22,6 +17,9 @@ import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.api.blocks.material.IMaterialPhysics;
+import org.avp.common.api.blocks.material.IMaterialRenderer;
 
 public class MaterialHandler
 {

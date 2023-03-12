@@ -1,11 +1,10 @@
 package org.avp.client.render.entities;
 
-import org.avp.client.model.entities.ModelBullet;
-import org.avp.common.entities.EntityBullet;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import org.avp.client.model.entities.ModelBullet;
+import org.avp.common.entities.EntityBullet;
 
 public class RenderBullet extends Render<EntityBullet>
 {

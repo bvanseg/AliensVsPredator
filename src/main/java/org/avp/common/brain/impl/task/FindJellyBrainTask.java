@@ -1,21 +1,20 @@
 package org.avp.common.brain.impl.task;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
+import net.minecraft.entity.item.EntityItem;
 import org.avp.AVP;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
 import org.avp.common.brain.flag.AbstractBrainFlag;
 import org.avp.common.brain.flag.BrainFlagState;
 import org.avp.common.brain.impl.BrainFlags;
 import org.avp.common.brain.impl.BrainMemoryKeys;
 import org.avp.common.brain.impl.EntityBrainContext;
 import org.avp.common.brain.task.AbstractBrainTask;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
 
-import net.minecraft.entity.item.EntityItem;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * 

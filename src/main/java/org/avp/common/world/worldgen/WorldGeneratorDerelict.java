@@ -1,11 +1,11 @@
 package org.avp.common.world.worldgen;
 
-import java.util.Random;
-
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
+
+import java.util.Random;
 
 public class WorldGeneratorDerelict implements IWorldGenerator
 {

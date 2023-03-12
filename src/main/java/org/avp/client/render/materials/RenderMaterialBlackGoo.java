@@ -1,16 +1,14 @@
 package org.avp.client.render.materials;
 
-import org.avp.AVP;
-import org.avp.common.api.blocks.material.IMaterialRenderer;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Screen;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
+import org.avp.AVP;
+import org.avp.common.api.blocks.material.IMaterialRenderer;
+import org.lwjgl.opengl.GL11;
 
 
 public class RenderMaterialBlackGoo implements IMaterialRenderer

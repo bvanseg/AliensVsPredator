@@ -1,12 +1,11 @@
 package org.avp.common.inventory;
 
-import org.avp.common.tile.TileEntityRepulsionGenerator;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import org.avp.common.tile.TileEntityRepulsionGenerator;
 
 public class ContainerRepulsionGenerator extends Container
 {

@@ -1,17 +1,5 @@
 package org.avp.common.entities.living.species;
 
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
-import org.avp.common.DamageSources;
-import org.avp.common.EntityItemDrops;
-import org.avp.common.api.parasitoidic.IHost;
-import org.avp.client.Sounds;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.EntityAISuperjump;
-import org.avp.common.entities.ai.alien.EntitySelectorYautja;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.state.CloakState;
-import org.avp.common.network.AvpDataSerializers;
-
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -19,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
+import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
@@ -34,6 +23,16 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import org.avp.client.Sounds;
+import org.avp.common.DamageSources;
+import org.avp.common.EntityItemDrops;
+import org.avp.common.api.parasitoidic.IHost;
+import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entities.ai.EntityAISuperjump;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entities.ai.alien.EntitySelectorYautja;
+import org.avp.common.entities.state.CloakState;
+import org.avp.common.network.AvpDataSerializers;
 
 public abstract class SpeciesYautja extends EntityMob implements IHost
 {

@@ -1,8 +1,8 @@
 package org.avp.common.world.hives.rework;
 
-import java.util.UUID;
-
 import net.minecraft.entity.Entity;
+
+import java.util.UUID;
 
 /**
  * Allows the implementing target to become part of an AlienHive.

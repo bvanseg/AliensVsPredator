@@ -1,18 +1,16 @@
 package org.avp.client.render.items;
 
-import org.avp.AVP;
-import org.avp.client.model.items.ModelWristBlade;
-import org.avp.common.item.ItemWristbracer;
-
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import org.avp.AVP;
+import org.avp.client.model.items.ModelWristBlade;
+import org.avp.common.item.ItemWristbracer;
 
 public class RenderItemWristbracer extends ItemRenderer<ModelWristBlade>
 {

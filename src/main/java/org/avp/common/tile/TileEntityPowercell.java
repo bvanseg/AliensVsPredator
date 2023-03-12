@@ -1,11 +1,10 @@
 package org.avp.common.tile;
 
-import org.avp.common.api.power.IVoltageProvider;
-import org.avp.common.api.power.IVoltageReceiver;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import org.avp.common.api.power.IVoltageProvider;
+import org.avp.common.api.power.IVoltageReceiver;
 
 
 public class TileEntityPowercell extends TileEntityElectrical implements IVoltageReceiver, IVoltageProvider

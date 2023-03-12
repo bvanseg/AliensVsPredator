@@ -1,8 +1,5 @@
 package org.avp.common.inventory;
 
-import org.avp.common.item.ItemStorageDevice;
-import org.avp.common.tile.TileEntityTurret;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
@@ -10,6 +7,8 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.avp.common.item.ItemStorageDevice;
+import org.avp.common.tile.TileEntityTurret;
 
 public class ContainerTurret extends Container
 {

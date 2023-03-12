@@ -1,13 +1,7 @@
 package org.avp.common.entities;
 
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.packets.server.PacketFireAPC;
-
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -26,6 +20,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.packets.server.PacketFireAPC;
+
+import java.util.List;
 
 public class EntityAPC extends Entity
 {

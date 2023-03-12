@@ -1,13 +1,12 @@
 package org.avp.common.entities.living.species.xenomorphs;
 
-import org.avp.common.ItemHandler;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-import org.avp.common.world.hives.rework.HiveMember;
-
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.common.ItemHandler;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
+import org.avp.common.world.hives.rework.HiveMember;
 
 public class EntityBatXeno extends SpeciesXenomorph implements HiveMember
 {

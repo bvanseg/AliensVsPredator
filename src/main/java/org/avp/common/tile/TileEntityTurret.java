@@ -1,22 +1,9 @@
 package org.avp.common.tile;
 
-import java.util.ArrayList;
-
-import org.avp.AVP;
-import org.avp.common.api.machines.IDataDevice;
-import org.avp.common.api.power.IVoltageReceiver;
-import org.avp.common.inventory.ContainerTurret;
-import org.avp.common.packets.client.PacketTurretSync;
-import org.avp.common.tile.helpers.TileEntityTurretAmmoHelper;
-import org.avp.common.tile.helpers.TileEntityTurretAttackHelper;
-import org.avp.common.tile.helpers.TileEntityTurretLookHelper;
-import org.avp.common.tile.helpers.TileEntityTurretTargetHelper;
-
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.storage.NBTStorage;
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -35,6 +22,17 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.api.machines.IDataDevice;
+import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.inventory.ContainerTurret;
+import org.avp.common.packets.client.PacketTurretSync;
+import org.avp.common.tile.helpers.TileEntityTurretAmmoHelper;
+import org.avp.common.tile.helpers.TileEntityTurretAttackHelper;
+import org.avp.common.tile.helpers.TileEntityTurretLookHelper;
+import org.avp.common.tile.helpers.TileEntityTurretTargetHelper;
+
+import java.util.ArrayList;
 
 /**
  *

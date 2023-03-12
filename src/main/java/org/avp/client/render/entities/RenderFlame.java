@@ -1,12 +1,10 @@
 package org.avp.client.render.entities;
 
-import org.avp.common.entities.EntityFlame;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import org.avp.common.entities.EntityFlame;
 
 public class RenderFlame extends Render<EntityFlame>
 {

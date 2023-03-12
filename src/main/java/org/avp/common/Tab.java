@@ -2,7 +2,6 @@ package org.avp.common;
 
 import com.asx.mdx.core.mods.IPreInitEvent;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

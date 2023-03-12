@@ -1,14 +1,12 @@
 package org.avp.common;
 
-import org.avp.common.world.dimension.acheron.WorldGeneratorAcheron;
-import org.avp.common.world.worldgen.WorldGenerator;
-import org.avp.common.world.worldgen.WorldGeneratorDerelict;
-
 import com.asx.mdx.core.mods.IInitEvent;
-
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import org.avp.common.world.dimension.acheron.WorldGeneratorAcheron;
+import org.avp.common.world.worldgen.WorldGenerator;
+import org.avp.common.world.worldgen.WorldGeneratorDerelict;
 
 public class WorldHandler implements IInitEvent
 {

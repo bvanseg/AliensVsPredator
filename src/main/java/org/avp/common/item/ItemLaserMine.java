@@ -1,9 +1,5 @@
 package org.avp.common.item;
 
-import java.util.List;
-
-import org.avp.common.entities.EntityLaserMine;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -15,6 +11,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.common.entities.EntityLaserMine;
+
+import java.util.List;
 
 public class ItemLaserMine extends Item
 {

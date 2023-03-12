@@ -1,13 +1,6 @@
 package org.avp.common.packets.server;
 
-import org.avp.common.DamageSources;
-import org.avp.common.block.BlockHiveResin;
-import org.avp.common.item.firearms.FirearmProfile;
-import org.avp.common.item.firearms.ItemFirearm;
-import org.avp.common.world.hives.rework.AlienHiveHandler;
-
 import com.asx.mdx.lib.world.entity.Entities;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -20,6 +13,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.common.DamageSources;
+import org.avp.common.block.BlockHiveResin;
+import org.avp.common.item.firearms.FirearmProfile;
+import org.avp.common.item.firearms.ItemFirearm;
+import org.avp.common.world.hives.rework.AlienHiveHandler;
 
 public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirearmSync, PacketFirearmSync>
 {

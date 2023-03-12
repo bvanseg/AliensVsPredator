@@ -1,25 +1,11 @@
 package org.avp.client.render;
 
-import org.avp.AVP;
-import org.avp.client.model.entities.ModelPlasma;
-import org.avp.client.model.items.ModelPlasmaCannon;
-import org.avp.common.api.client.render.IEventRenderer;
-import org.avp.common.api.client.render.IFirstPersonRenderer;
-import org.avp.client.input.handlers.InputHandlerPlasmaCannon;
-import org.avp.common.entities.EntityMedpod;
-import org.avp.common.item.ItemWristbracer;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-import org.lwjgl.util.glu.Project;
-
 import com.asx.mdx.MDX;
 import com.asx.mdx.lib.client.util.Color;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.util.MDXMath;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -32,6 +18,18 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
+import org.avp.AVP;
+import org.avp.client.input.handlers.InputHandlerPlasmaCannon;
+import org.avp.client.model.entities.ModelPlasma;
+import org.avp.client.model.items.ModelPlasmaCannon;
+import org.avp.common.api.client.render.IEventRenderer;
+import org.avp.common.api.client.render.IFirstPersonRenderer;
+import org.avp.common.entities.EntityMedpod;
+import org.avp.common.item.ItemWristbracer;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
+import org.lwjgl.util.glu.Project;
 
 public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRenderer
 {

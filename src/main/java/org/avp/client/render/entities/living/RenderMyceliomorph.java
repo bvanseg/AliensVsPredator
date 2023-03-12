@@ -1,15 +1,13 @@
 package org.avp.client.render.entities.living;
 
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
+import net.minecraft.client.renderer.OpenGlHelper;
+import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelMyceliomorph;
 import org.avp.common.entities.living.species.xenomorphs.EntityMyceliomorph;
 import org.lwjgl.opengl.GL11;
-
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
-
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderMyceliomorph extends RenderLivingWrapper<EntityMyceliomorph, ModelMyceliomorph>
 {

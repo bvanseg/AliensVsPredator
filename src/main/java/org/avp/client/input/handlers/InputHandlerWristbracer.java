@@ -1,14 +1,12 @@
 package org.avp.client.input.handlers;
 
+import com.asx.mdx.lib.util.Game;
+import net.minecraft.client.gui.inventory.GuiContainerCreative;
+import net.minecraft.client.gui.inventory.GuiInventory;
 import org.avp.AVP;
 import org.avp.client.gui.GuiWristbracer;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.packets.server.PacketOpenContainer;
-
-import com.asx.mdx.lib.util.Game;
-
-import net.minecraft.client.gui.inventory.GuiContainerCreative;
-import net.minecraft.client.gui.inventory.GuiInventory;
 
 public class InputHandlerWristbracer implements IInputHandler
 {

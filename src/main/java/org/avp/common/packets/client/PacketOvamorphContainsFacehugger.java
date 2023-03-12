@@ -1,15 +1,13 @@
 package org.avp.common.packets.client;
 
-import org.avp.common.entities.living.species.xenomorphs.EntityOvamorph;
-
 import com.asx.mdx.lib.util.Game;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.common.entities.living.species.xenomorphs.EntityOvamorph;
 
 public class PacketOvamorphContainsFacehugger implements IMessage, IMessageHandler<PacketOvamorphContainsFacehugger, PacketOvamorphContainsFacehugger>
 {

@@ -1,10 +1,9 @@
 package org.avp.common.entities;
 
-import org.avp.common.tile.TileEntityTurret;
-
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.world.World;
+import org.avp.common.tile.TileEntityTurret;
 
 public class EntityTurret extends EntityLiving
 {

@@ -1,11 +1,9 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.common.entities.living.species.xenomorphs.EntityDrone;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
+import org.avp.common.entities.living.species.xenomorphs.EntityDrone;
 
 
 public class ModelDrone extends Model<EntityDrone>

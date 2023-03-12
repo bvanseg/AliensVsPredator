@@ -1,10 +1,10 @@
 package org.avp.common.brain.task;
 
-import java.util.Map;
-
 import org.avp.common.brain.AbstractBrainContext;
 import org.avp.common.brain.flag.AbstractBrainFlag;
 import org.avp.common.brain.flag.BrainFlagState;
+
+import java.util.Map;
 
 /**
  * Represents a task to execute. Tasks are ran after all sensors are ran, and have access to the brain

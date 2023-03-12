@@ -1,25 +1,18 @@
 package org.avp.client.render;
 
-import static org.lwjgl.opengl.GL11.GL_ALPHA_TEST;
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_DST_COLOR;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_ZERO;
-
-import org.avp.AVP;
-import org.avp.common.entities.living.species.SpeciesAlien;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Screen;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraftforge.client.event.RenderLivingEvent;
+import org.avp.AVP;
+import org.avp.common.entities.living.species.SpeciesAlien;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public enum VisionMode
 {

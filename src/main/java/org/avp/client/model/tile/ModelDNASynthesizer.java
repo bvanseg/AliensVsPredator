@@ -1,7 +1,6 @@
 package org.avp.client.model.tile;
 
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 
 //TODO: Use a better type than Object for Model.

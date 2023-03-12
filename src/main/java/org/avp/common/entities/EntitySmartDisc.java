@@ -1,11 +1,6 @@
 package org.avp.common.entities;
 
-import org.avp.AVP;
-import org.avp.common.DamageSources;
-import org.avp.common.ItemHandler;
-
 import com.asx.mdx.lib.util.GameSounds;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,6 +13,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.DamageSources;
+import org.avp.common.ItemHandler;
 
 public class EntitySmartDisc extends EntityProjectile
 {

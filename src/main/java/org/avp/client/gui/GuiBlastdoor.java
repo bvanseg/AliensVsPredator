@@ -1,21 +1,15 @@
 package org.avp.client.gui;
 
-import java.io.IOException;
-
+import com.asx.mdx.lib.client.gui.*;
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.util.Game;
+import net.minecraft.client.renderer.GlStateManager;
 import org.avp.AVP;
 import org.avp.common.packets.server.PacketBlastdoorCommon;
 import org.avp.common.packets.server.PacketBlastdoorCommon.PacketMode;
 import org.avp.common.tile.TileEntityBlastdoor;
 
-import com.asx.mdx.lib.client.gui.GuiCustomButton;
-import com.asx.mdx.lib.client.gui.GuiCustomScreen;
-import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
-import com.asx.mdx.lib.client.gui.IAction;
-import com.asx.mdx.lib.client.gui.IGuiElement;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.util.Game;
-
-import net.minecraft.client.renderer.GlStateManager;
+import java.io.IOException;
 
 public class GuiBlastdoor extends GuiCustomScreen
 {

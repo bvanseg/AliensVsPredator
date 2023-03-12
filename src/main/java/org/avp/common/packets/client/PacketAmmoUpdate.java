@@ -1,14 +1,12 @@
 package org.avp.common.packets.client;
 
-import org.avp.common.item.firearms.ItemFirearm;
-
 import com.asx.mdx.lib.util.Game;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.common.item.firearms.ItemFirearm;
 
 public class PacketAmmoUpdate implements IMessage, IMessageHandler<PacketAmmoUpdate, PacketAmmoUpdate>
 {

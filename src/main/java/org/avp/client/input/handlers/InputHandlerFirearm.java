@@ -1,13 +1,11 @@
 package org.avp.client.input.handlers;
 
+import com.asx.mdx.lib.util.Game;
+import net.minecraft.item.Item;
 import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.item.firearms.ItemFirearm;
 import org.avp.common.packets.server.PacketReloadFirearm;
-
-import com.asx.mdx.lib.util.Game;
-
-import net.minecraft.item.Item;
 
 public class InputHandlerFirearm implements IInputHandler
 {

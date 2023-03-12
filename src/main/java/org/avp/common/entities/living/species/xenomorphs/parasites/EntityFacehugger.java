@@ -1,13 +1,5 @@
 package org.avp.common.entities.living.species.xenomorphs.parasites;
 
-import org.avp.common.ItemHandler;
-import org.avp.common.api.parasitoidic.IParasitoid;
-import org.avp.client.Sounds;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.ai.alien.EntityAIFacehuggerLeap;
-import org.avp.common.entities.living.species.EntityParasitoid;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -21,6 +13,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.client.Sounds;
+import org.avp.common.ItemHandler;
+import org.avp.common.api.parasitoidic.IParasitoid;
+import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entities.ai.alien.EntityAIFacehuggerLeap;
+import org.avp.common.entities.living.species.EntityParasitoid;
 
 public class EntityFacehugger extends EntityParasitoid implements IMob, IParasitoid
 {

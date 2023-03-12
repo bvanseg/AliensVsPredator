@@ -1,14 +1,12 @@
 package org.avp.common.tile.helpers;
 
-import org.avp.AVP;
-import org.avp.common.DamageSources;
-import org.avp.client.Sounds;
-import org.avp.common.packets.server.PacketTurretAmmoSync;
-
 import com.asx.mdx.lib.world.Pos;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.client.Sounds;
+import org.avp.common.DamageSources;
+import org.avp.common.packets.server.PacketTurretAmmoSync;
 
 /**
  * 

@@ -1,13 +1,5 @@
 package org.avp.common;
 
-import java.util.Arrays;
-
-import org.alien.AlienBlocks;
-import org.apache.commons.lang3.StringUtils;
-import org.avp.AVP;
-import org.avp.common.item.crafting.AssemblyManager;
-import org.avp.common.item.crafting.Schematic;
-
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -21,6 +13,13 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
+import org.alien.AlienBlocks;
+import org.apache.commons.lang3.StringUtils;
+import org.avp.AVP;
+import org.avp.common.item.crafting.AssemblyManager;
+import org.avp.common.item.crafting.Schematic;
+
+import java.util.Arrays;
 
 @EventBusSubscriber
 public class CraftingHandler

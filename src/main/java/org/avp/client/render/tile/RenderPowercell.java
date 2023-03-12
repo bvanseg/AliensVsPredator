@@ -1,12 +1,10 @@
 package org.avp.client.render.tile;
 
-import org.avp.AVP;
-import org.avp.common.tile.TileEntityPowercell;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityPowercell;
 
 public class RenderPowercell extends TileEntitySpecialRenderer<TileEntityPowercell>
 {

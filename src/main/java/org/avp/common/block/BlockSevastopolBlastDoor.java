@@ -1,11 +1,10 @@
 package org.avp.common.block;
 
-import org.avp.common.tile.TileEntitySevastopolBlastDoor;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import org.avp.common.tile.TileEntitySevastopolBlastDoor;
 
 public class BlockSevastopolBlastDoor extends BlockBlastdoor
 {

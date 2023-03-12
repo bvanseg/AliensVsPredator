@@ -1,23 +1,5 @@
 package org.avp.client.render;
 
-import static org.lwjgl.opengl.GL11.GL_ALPHA_TEST;
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_CONSTANT_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.glDepthMask;
-
-import org.avp.AVP;
-import org.avp.common.api.power.IVoltageReceiver;
-import org.avp.common.entities.living.EntityMarine;
-import org.avp.common.entities.living.species.SpeciesAlien;
-import org.avp.common.tile.TileEntityPowercell;
-import org.avp.common.tile.TileEntityStasisMechanism;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
-import org.avp.common.world.dimension.varda.WorldProviderVarda;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.ScaledResolution;
@@ -25,7 +7,6 @@ import com.asx.mdx.lib.client.util.Screen;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.block.Blocks;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
@@ -45,6 +26,18 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
+import org.avp.AVP;
+import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.entities.living.EntityMarine;
+import org.avp.common.entities.living.species.SpeciesAlien;
+import org.avp.common.tile.TileEntityPowercell;
+import org.avp.common.tile.TileEntityStasisMechanism;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.dimension.varda.WorldProviderVarda;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class PressureHUDRenderEvent
 {

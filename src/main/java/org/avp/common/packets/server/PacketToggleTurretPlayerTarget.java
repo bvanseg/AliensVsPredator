@@ -1,7 +1,5 @@
 package org.avp.common.packets.server;
 
-import org.avp.common.tile.TileEntityTurret;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
@@ -10,6 +8,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.common.tile.TileEntityTurret;
 
 public class PacketToggleTurretPlayerTarget implements IMessage, IMessageHandler<PacketToggleTurretPlayerTarget, PacketToggleTurretPlayerTarget>
 {

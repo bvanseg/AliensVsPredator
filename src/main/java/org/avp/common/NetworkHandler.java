@@ -1,48 +1,15 @@
 package org.avp.common;
 
-import org.avp.AVP;
-import org.avp.common.packets.client.OrganismClientSync;
-import org.avp.common.packets.client.PacketAmmoUpdate;
-import org.avp.common.packets.client.PacketOpenBlastdoor;
-import org.avp.common.packets.client.PacketOpenable;
-import org.avp.common.packets.client.PacketOvamorphContainsFacehugger;
-import org.avp.common.packets.client.PacketPlayerModeUpdate;
-import org.avp.common.packets.client.PacketRotateRotatable;
-import org.avp.common.packets.client.PacketSyncRF;
-import org.avp.common.packets.client.PacketTurretSync;
-import org.avp.common.packets.client.SpecialPlayerClientSync;
-import org.avp.common.packets.server.OrganismServerSync;
-import org.avp.common.packets.server.PacketAddTurretTarget;
-import org.avp.common.packets.server.PacketAssemble;
-import org.avp.common.packets.server.PacketAttachParasiteToEntity;
-import org.avp.common.packets.server.PacketBlastdoorCommon;
-import org.avp.common.packets.server.PacketBlastdoorCommon.PacketBlastdoorClient;
-import org.avp.common.packets.server.PacketCryostasisStateUpdate;
-import org.avp.common.packets.server.PacketDamageEntity;
-import org.avp.common.packets.server.PacketFireAPC;
-import org.avp.common.packets.server.PacketFirearmSync;
-import org.avp.common.packets.server.PacketLaunchGrenade;
-import org.avp.common.packets.server.PacketOpenContainer;
-import org.avp.common.packets.server.PacketOpenGui;
-import org.avp.common.packets.server.PacketPlasmaDischarge;
-import org.avp.common.packets.server.PacketReadFromDataDevice;
-import org.avp.common.packets.server.PacketReloadFirearm;
-import org.avp.common.packets.server.PacketRemoveTurretTarget;
-import org.avp.common.packets.server.PacketSpawnEntity;
-import org.avp.common.packets.server.PacketSpawnNuke;
-import org.avp.common.packets.server.PacketToggleTurretPlayerTarget;
-import org.avp.common.packets.server.PacketTurretAmmoSync;
-import org.avp.common.packets.server.PacketTurretTargetUpdate;
-import org.avp.common.packets.server.PacketWriteToDataDevice;
-import org.avp.common.packets.server.SpecialPlayerServerSync;
-
 import com.asx.mdx.core.mods.IInitEvent;
-
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
+import org.avp.AVP;
+import org.avp.common.packets.client.*;
+import org.avp.common.packets.server.*;
+import org.avp.common.packets.server.PacketBlastdoorCommon.PacketBlastdoorClient;
 
 
 public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent

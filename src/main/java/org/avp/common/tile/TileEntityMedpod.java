@@ -1,19 +1,17 @@
 package org.avp.common.tile;
 
-import org.avp.AVP;
-import org.avp.common.api.machines.IOpenable;
-import org.avp.common.api.power.IVoltageReceiver;
-import org.avp.common.entities.EntityMedpod;
-import org.avp.common.packets.client.PacketOpenable;
-
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
+import org.avp.AVP;
+import org.avp.common.api.machines.IOpenable;
+import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.entities.EntityMedpod;
+import org.avp.common.packets.client.PacketOpenable;
 
 
 public class TileEntityMedpod extends TileEntityElectrical implements IOpenable, IVoltageReceiver, IRotatableYAxis

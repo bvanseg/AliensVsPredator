@@ -1,16 +1,9 @@
 package org.avp.common.world.dimension.varda;
 
-import java.util.Random;
-
-import org.avp.AVP;
-import org.avp.common.world.dimension.DimensionUtil;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.GameResources;
 import com.asx.mdx.lib.client.util.Color;
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -21,6 +14,11 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.world.dimension.DimensionUtil;
+import org.lwjgl.opengl.GL11;
+
+import java.util.Random;
 
 public class SkyProviderVarda extends IRenderHandler
 {

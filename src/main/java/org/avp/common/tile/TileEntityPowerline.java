@@ -1,9 +1,8 @@
 package org.avp.common.tile;
 
+import net.minecraft.util.EnumFacing;
 import org.avp.common.api.power.IVoltageProvider;
 import org.avp.common.api.power.IVoltageReceiver;
-
-import net.minecraft.util.EnumFacing;
 
 public class TileEntityPowerline extends TileEntityElectrical implements IVoltageProvider, IVoltageReceiver
 {

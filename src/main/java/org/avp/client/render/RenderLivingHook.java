@@ -1,16 +1,11 @@
 package org.avp.client.render;
 
-import org.avp.client.render.tile.RenderMedpod;
-import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.common.entities.EntityMedpod;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.Entity;
@@ -21,6 +16,9 @@ import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import org.avp.client.render.tile.RenderMedpod;
+import org.avp.client.render.util.EntityRenderTransforms;
+import org.avp.common.entities.EntityMedpod;
 
 public class RenderLivingHook
 {

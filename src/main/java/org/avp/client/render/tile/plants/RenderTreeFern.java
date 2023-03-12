@@ -1,12 +1,10 @@
 package org.avp.client.render.tile.plants;
 
+import com.asx.mdx.lib.client.util.OpenGL;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
 import org.avp.common.tile.plants.TileEntityTreeFern;
 import org.lwjgl.opengl.GL12;
-
-import com.asx.mdx.lib.client.util.OpenGL;
-
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class RenderTreeFern extends TileEntitySpecialRenderer<TileEntityTreeFern>
 {

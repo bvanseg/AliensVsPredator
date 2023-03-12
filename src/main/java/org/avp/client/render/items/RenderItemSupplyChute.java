@@ -1,15 +1,13 @@
 package org.avp.client.render.items;
 
-import org.avp.client.model.entities.ModelSupplyChute;
-import org.avp.common.item.supply.chute.ItemSupplyChute;
-
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.avp.client.model.entities.ModelSupplyChute;
+import org.avp.common.item.supply.chute.ItemSupplyChute;
 
 public class RenderItemSupplyChute extends ItemRenderer<ModelSupplyChute>
 {

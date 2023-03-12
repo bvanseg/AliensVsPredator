@@ -1,10 +1,6 @@
 package org.avp.common.packets.server;
 
-import org.avp.AVP;
-import org.avp.common.tile.TileEntityBlastdoor;
-
 import com.asx.mdx.lib.util.Game;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -14,6 +10,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityBlastdoor;
 
 public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBlastdoorCommon, PacketBlastdoorCommon>
 {

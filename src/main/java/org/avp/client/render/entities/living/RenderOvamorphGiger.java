@@ -1,14 +1,12 @@
 package org.avp.client.render.entities.living;
 
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
+import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelOvamorphGiger;
 import org.avp.common.entities.living.species.xenomorphs.EntityOvamorphGiger;
-
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
-
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.util.ResourceLocation;
 
 public class RenderOvamorphGiger extends RenderLivingWrapper<EntityOvamorphGiger, ModelOvamorphGiger>
 {

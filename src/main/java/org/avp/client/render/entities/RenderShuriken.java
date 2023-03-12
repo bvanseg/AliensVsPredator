@@ -1,17 +1,15 @@
 package org.avp.client.render.entities;
 
-import org.avp.AVP;
-import org.avp.common.entities.EntityShuriken;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import org.avp.AVP;
+import org.avp.common.entities.EntityShuriken;
+import org.lwjgl.opengl.GL11;
 
 public class RenderShuriken extends Render<EntityShuriken>
 {

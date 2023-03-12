@@ -1,18 +1,9 @@
 package org.avp.common.entities.living.species.xenomorphs;
 
-import java.util.ArrayList;
-
-import org.avp.common.ItemHandler;
-import org.avp.client.Sounds;
-import org.avp.common.entities.ai.alien.EntitySelectorNauticomorph;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-import org.avp.common.world.hives.rework.HiveMember;
-
 import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.block.Blocks;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,6 +15,13 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.client.Sounds;
+import org.avp.common.ItemHandler;
+import org.avp.common.entities.ai.alien.EntitySelectorNauticomorph;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
+import org.avp.common.world.hives.rework.HiveMember;
+
+import java.util.ArrayList;
 
 public class EntityNauticomorph extends SpeciesXenomorph implements HiveMember
 {

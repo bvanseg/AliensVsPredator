@@ -1,11 +1,11 @@
 package org.avp.common.entities.ai;
 
-import java.util.Random;
-
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.MathHelper;
+
+import java.util.Random;
 
 public class EntityAISuperjump extends EntityAIBase
 {

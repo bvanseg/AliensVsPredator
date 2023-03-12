@@ -4,7 +4,6 @@ import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Worlds;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.asx.mdx.lib.world.item.HookedItem;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

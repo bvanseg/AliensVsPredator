@@ -1,24 +1,6 @@
 package org.avp.common.world.dimension.varda;
 
-import java.util.Random;
-
-import org.alien.AlienBlocks;
-import org.avp.AVP;
-import org.avp.common.AVPBlocks;
-import org.avp.common.entities.living.vardic.EntityDeaconShark;
-import org.avp.common.world.dimension.BiomeGenLV;
-import org.avp.common.world.dimension.GenerationFilters;
-import org.avp.common.world.dimension.WorldGenSurfaceBlock;
-import org.avp.common.world.dimension.varda.gen.TerrainFormation;
-import org.avp.common.world.dimension.varda.gen.TerrainFormation1;
-import org.avp.common.world.dimension.varda.gen.VardaTallTreeGenerator;
-import org.avp.common.world.dimension.varda.gen.VardaTree2Generator;
-import org.avp.common.world.dimension.varda.gen.VardaTree3Generator;
-import org.avp.common.world.dimension.varda.gen.VardaTreeGenerator;
-import org.avp.common.world.dimension.varda.gen.WorldGenSustainableOnDirt;
-
 import com.asx.mdx.lib.world.Worlds;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -28,6 +10,16 @@ import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import org.alien.AlienBlocks;
+import org.avp.AVP;
+import org.avp.common.AVPBlocks;
+import org.avp.common.entities.living.vardic.EntityDeaconShark;
+import org.avp.common.world.dimension.BiomeGenLV;
+import org.avp.common.world.dimension.GenerationFilters;
+import org.avp.common.world.dimension.WorldGenSurfaceBlock;
+import org.avp.common.world.dimension.varda.gen.*;
+
+import java.util.Random;
 
 public class BiomeVarda extends BiomeGenLV
 {

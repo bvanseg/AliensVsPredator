@@ -1,16 +1,14 @@
 package org.avp.common.item.crafting;
 
-import java.util.ArrayList;
-
-import org.avp.AVP;
-
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import org.avp.AVP;
+
+import java.util.ArrayList;
 
 public class AssemblyManager
 {

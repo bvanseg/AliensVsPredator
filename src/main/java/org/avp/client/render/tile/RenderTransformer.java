@@ -1,16 +1,14 @@
 package org.avp.client.render.tile;
 
-import org.avp.AVP;
-import org.avp.common.tile.TileEntityTransformer;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityTransformer;
 
 
 public class RenderTransformer extends TileEntitySpecialRenderer<TileEntityTransformer>

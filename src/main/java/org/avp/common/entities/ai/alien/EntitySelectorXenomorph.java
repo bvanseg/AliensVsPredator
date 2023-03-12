@@ -1,15 +1,13 @@
 package org.avp.common.entities.ai.alien;
 
-import org.avp.common.entities.living.species.SpeciesAlien;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-
 import com.google.common.base.Predicate;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
+import org.avp.common.entities.living.species.SpeciesAlien;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
 
 public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
 {

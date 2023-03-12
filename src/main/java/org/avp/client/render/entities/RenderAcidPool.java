@@ -1,13 +1,8 @@
 package org.avp.client.render.entities;
 
-import org.avp.AVP;
-import org.avp.common.entities.EntityAcidPool;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
@@ -17,6 +12,9 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import org.avp.AVP;
+import org.avp.common.entities.EntityAcidPool;
+import org.lwjgl.opengl.GL11;
 
 public class RenderAcidPool extends Render<EntityAcidPool>
 {

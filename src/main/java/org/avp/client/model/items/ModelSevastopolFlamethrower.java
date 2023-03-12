@@ -1,15 +1,13 @@
 package org.avp.client.model.items;
 
-import org.avp.common.item.firearms.ItemFlamethrower;
-
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import org.avp.common.item.firearms.ItemFlamethrower;
 
 public class ModelSevastopolFlamethrower extends Model<Object>
 {

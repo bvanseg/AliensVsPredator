@@ -1,10 +1,5 @@
 package org.avp.common.brain;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-
 import org.avp.common.brain.flag.AbstractBrainFlag;
 import org.avp.common.brain.flag.BrainFlagState;
 import org.avp.common.brain.flag.BrainMemoryFlag;
@@ -13,6 +8,11 @@ import org.avp.common.brain.memory.BrainMemoryKey;
 import org.avp.common.brain.memory.BrainMemoryMap;
 import org.avp.common.brain.sensor.AbstractBrainSensor;
 import org.avp.common.brain.task.AbstractBrainTask;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * A logical processor with input (sensors) and output/results (tasks). The processing pipeline is as follows:

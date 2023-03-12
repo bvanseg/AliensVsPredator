@@ -1,21 +1,7 @@
 package org.avp.common.entities.living.species.xenomorphs;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
-import org.avp.common.entities.ai.alien.EntitySelectorParasitoid;
-import org.avp.common.entities.living.species.SpeciesAlien;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityRoyalFacehugger;
-import org.avp.common.packets.client.PacketOvamorphContainsFacehugger;
-import org.avp.common.world.hives.rework.HiveMember;
-
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -29,6 +15,18 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.EntityItemDrops;
+import org.avp.common.ItemHandler;
+import org.avp.common.entities.ai.alien.EntitySelectorParasitoid;
+import org.avp.common.entities.living.species.SpeciesAlien;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityRoyalFacehugger;
+import org.avp.common.packets.client.PacketOvamorphContainsFacehugger;
+import org.avp.common.world.hives.rework.HiveMember;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
 {

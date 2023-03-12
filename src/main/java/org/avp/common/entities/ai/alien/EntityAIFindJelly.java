@@ -1,15 +1,14 @@
 package org.avp.common.entities.ai.alien;
 
-import java.util.ArrayList;
-
-import org.avp.AVP;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
+
+import java.util.ArrayList;
 
 public class EntityAIFindJelly extends EntityAIBase
 {

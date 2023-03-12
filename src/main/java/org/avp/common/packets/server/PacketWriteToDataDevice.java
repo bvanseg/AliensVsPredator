@@ -1,12 +1,11 @@
 package org.avp.common.packets.server;
 
-import org.avp.common.api.machines.IDataDevice;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.common.api.machines.IDataDevice;
 
 public class PacketWriteToDataDevice implements IMessage, IMessageHandler<PacketWriteToDataDevice, PacketWriteToDataDevice>
 {

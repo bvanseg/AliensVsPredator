@@ -1,19 +1,17 @@
 package org.avp.client.render;
 
-import org.avp.client.model.entities.living.ModelYautja;
-import org.avp.client.render.entities.living.RenderYautja;
-import org.avp.common.entities.living.species.SpeciesYautja;
-import org.avp.common.entities.state.CloakState;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.client.model.entities.living.ModelYautja;
+import org.avp.client.render.entities.living.RenderYautja;
+import org.avp.common.entities.living.species.SpeciesYautja;
+import org.avp.common.entities.state.CloakState;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class LayerYautjaCloakStaticOverlay implements LayerRenderer<SpeciesYautja>

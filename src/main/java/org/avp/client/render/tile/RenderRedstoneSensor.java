@@ -1,12 +1,10 @@
 package org.avp.client.render.tile;
 
-import org.avp.common.tile.TileEntityRedstoneSensor;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import org.avp.common.tile.TileEntityRedstoneSensor;
 
 public class RenderRedstoneSensor extends TileEntitySpecialRenderer<TileEntityRedstoneSensor>
 {

@@ -1,11 +1,7 @@
 package org.avp.common.item;
 
-import org.avp.AVP;
-import org.avp.common.entities.EntitySpear;
-
 import com.asx.mdx.lib.util.GameSounds;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -14,6 +10,8 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.entities.EntitySpear;
 
 public class ItemSpear extends ItemSword
 {

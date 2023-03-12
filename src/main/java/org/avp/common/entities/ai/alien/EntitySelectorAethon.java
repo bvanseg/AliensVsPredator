@@ -1,10 +1,8 @@
 package org.avp.common.entities.ai.alien;
 
-import org.avp.common.entities.living.EntityAethon;
-
 import com.google.common.base.Predicate;
-
 import net.minecraft.entity.EntityLivingBase;
+import org.avp.common.entities.living.EntityAethon;
 
 public class EntitySelectorAethon implements Predicate<EntityLivingBase>
 {

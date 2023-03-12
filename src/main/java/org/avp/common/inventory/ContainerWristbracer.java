@@ -1,7 +1,5 @@
 package org.avp.common.inventory;
 
-import org.avp.common.item.ItemWristbracer;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -11,6 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
+import org.avp.common.item.ItemWristbracer;
 
 public class ContainerWristbracer extends Container
 {

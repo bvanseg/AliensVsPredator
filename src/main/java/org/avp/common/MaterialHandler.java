@@ -1,15 +1,13 @@
 package org.avp.common;
 
-import org.avp.common.block.materials.MaterialBlackGoo;
-import org.avp.common.block.materials.MaterialMist;
-
 import com.asx.mdx.core.mods.IInitEvent;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import org.avp.common.block.materials.MaterialBlackGoo;
+import org.avp.common.block.materials.MaterialMist;
 
 public class MaterialHandler implements IInitEvent
 {

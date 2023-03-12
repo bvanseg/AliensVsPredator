@@ -1,15 +1,14 @@
 package org.avp.common.tile;
 
-import java.util.Random;
-
-import org.avp.common.block.BlockHiveResin;
-
 import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import org.avp.common.block.BlockHiveResin;
+
+import java.util.Random;
 
 //TODO: Redo this
 public class TileEntityHiveResin extends TileEntity implements ITickable

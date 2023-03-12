@@ -1,24 +1,22 @@
 package org.avp.client.render.items;
 
-import org.avp.AVP;
-import org.avp.client.model.items.ModelM41A;
-import org.avp.common.ItemHandler;
-import org.avp.common.URLs;
-import org.avp.common.item.firearms.ItemFirearm;
-import org.lwjgl.input.Mouse;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.util.Networks;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import org.avp.AVP;
+import org.avp.client.model.items.ModelM41A;
+import org.avp.common.ItemHandler;
+import org.avp.common.URLs;
+import org.avp.common.item.firearms.ItemFirearm;
+import org.lwjgl.input.Mouse;
 
 public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
 {

@@ -1,15 +1,13 @@
 package org.avp.common.tile;
 
-import java.util.ArrayList;
-
-import org.avp.common.api.power.IVoltageProvider;
-
 import com.asx.mdx.lib.world.Pos;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+import org.avp.common.api.power.IVoltageProvider;
+
+import java.util.ArrayList;
 
 
 public class TileEntityRedstoneSensor extends TileEntityElectrical implements IVoltageProvider

@@ -1,17 +1,9 @@
 package org.avp.common;
 
-import org.avp.AVP;
-import org.avp.common.world.dimension.TeleporterLV;
-import org.avp.common.world.dimension.acheron.BiomeAcheron;
-import org.avp.common.world.dimension.acheron.WorldProviderAcheron;
-import org.avp.common.world.dimension.varda.BiomeVarda;
-import org.avp.common.world.dimension.varda.WorldProviderVarda;
-
 import com.asx.mdx.core.mods.IInitEvent;
 import com.asx.mdx.lib.world.Dimension;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
@@ -26,6 +18,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.world.dimension.TeleporterLV;
+import org.avp.common.world.dimension.acheron.BiomeAcheron;
+import org.avp.common.world.dimension.acheron.WorldProviderAcheron;
+import org.avp.common.world.dimension.varda.BiomeVarda;
+import org.avp.common.world.dimension.varda.WorldProviderVarda;
 
 public class DimensionHandler implements IInitEvent
 {

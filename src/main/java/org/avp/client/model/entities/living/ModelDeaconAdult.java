@@ -1,13 +1,9 @@
 package org.avp.client.model.entities.living;
 
-import static com.asx.mdx.lib.client.model.animations.AnimationHelper.bob;
-import static com.asx.mdx.lib.client.model.animations.AnimationHelper.flap;
-import static com.asx.mdx.lib.client.model.animations.AnimationHelper.oscillate;
-import static com.asx.mdx.lib.client.model.animations.AnimationHelper.swing;
-
+import com.asx.mdx.lib.client.util.models.Model;
 import org.avp.common.entities.living.species.species223ode.EntityDeaconAdult;
 
-import com.asx.mdx.lib.client.util.models.Model;
+import static com.asx.mdx.lib.client.model.animations.AnimationHelper.*;
 
 public class ModelDeaconAdult extends Model<EntityDeaconAdult>
 {

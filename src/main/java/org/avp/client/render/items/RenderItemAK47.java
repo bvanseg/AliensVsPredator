@@ -1,19 +1,17 @@
 package org.avp.client.render.items;
 
-import org.avp.AVP;
-import org.avp.client.model.items.ModelAK47;
-import org.avp.common.URLs;
-import org.lwjgl.input.Mouse;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.util.Networks;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.avp.AVP;
+import org.avp.client.model.items.ModelAK47;
+import org.avp.common.URLs;
+import org.lwjgl.input.Mouse;
 
 public class RenderItemAK47 extends ItemFirearmRenderer<ModelAK47>
 {

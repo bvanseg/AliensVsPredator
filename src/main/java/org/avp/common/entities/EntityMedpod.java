@@ -1,16 +1,7 @@
 package org.avp.common.entities;
 
-import java.util.List;
-import java.util.UUID;
-
-import org.avp.common.entities.living.species.SpeciesAlien;
-import org.avp.common.tile.TileEntityMedpod;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-
 import com.asx.mdx.lib.world.Worlds;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,6 +9,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.avp.common.entities.living.species.SpeciesAlien;
+import org.avp.common.tile.TileEntityMedpod;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+
+import java.util.List;
+import java.util.UUID;
 
 public class EntityMedpod extends Entity
 {

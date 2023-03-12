@@ -1,26 +1,24 @@
 package org.avp.client.gui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.inventory.ContainerWristbracer;
-import org.avp.common.item.ItemWristbracer;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
 import com.asx.mdx.lib.client.gui.IAction;
 import com.asx.mdx.lib.client.gui.IGuiElement;
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.inventory.ContainerWristbracer;
+import org.avp.common.item.ItemWristbracer;
+import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class GuiWristbracer extends GuiContainer
 {

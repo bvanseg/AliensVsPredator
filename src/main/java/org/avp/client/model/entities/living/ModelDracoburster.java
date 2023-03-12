@@ -1,10 +1,8 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.common.entities.living.species.xenomorphs.EntityDracoburster;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.entities.living.species.xenomorphs.EntityDracoburster;
 
 public class ModelDracoburster extends Model<EntityDracoburster>
 {

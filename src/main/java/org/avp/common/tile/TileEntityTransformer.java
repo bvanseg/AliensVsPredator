@@ -1,15 +1,13 @@
 package org.avp.common.tile;
 
-import org.avp.common.api.power.IVoltageProvider;
-import org.avp.common.api.power.IVoltageReceiver;
-
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import org.avp.common.api.power.IVoltageProvider;
+import org.avp.common.api.power.IVoltageReceiver;
 
 public class TileEntityTransformer extends TileEntityElectrical implements IVoltageProvider, IVoltageReceiver, IRotatableYAxis
 {

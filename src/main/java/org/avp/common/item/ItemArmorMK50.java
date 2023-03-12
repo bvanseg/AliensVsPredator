@@ -1,14 +1,12 @@
 package org.avp.common.item;
 
-import org.avp.AVP;
-
 import com.asx.mdx.lib.client.util.Draw;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import org.avp.AVP;
 
 public class ItemArmorMK50 extends ItemAntiVacuumArmor
 {

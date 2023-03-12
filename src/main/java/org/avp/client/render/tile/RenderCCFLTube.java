@@ -1,15 +1,13 @@
 package org.avp.client.render.tile;
 
-import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
-
-import org.avp.AVP;
-import org.avp.common.tile.TileEntityCCFLTube;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityCCFLTube;
+
+import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 
 public class RenderCCFLTube extends TileEntitySpecialRenderer<TileEntityCCFLTube>
 {

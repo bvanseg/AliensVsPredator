@@ -1,15 +1,5 @@
 package org.avp.client.render.block.model.cached;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import javax.vecmath.Matrix4f;
-
-import org.apache.commons.lang3.tuple.Pair;
-import org.avp.common.Settings.ClientSettings;
-import org.avp.common.block.BlockHiveResin;
-
 import com.asx.mdx.config.GraphicsSetting;
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.client.util.models.block.ModelRotationXYZ;
@@ -17,14 +7,9 @@ import com.asx.mdx.lib.util.Game;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
-
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.BakedQuad;
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
+import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
-import net.minecraft.client.renderer.block.model.ItemOverride;
-import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -40,6 +25,14 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
+import org.apache.commons.lang3.tuple.Pair;
+import org.avp.common.Settings.ClientSettings;
+import org.avp.common.block.BlockHiveResin;
+
+import javax.vecmath.Matrix4f;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class CachedModelResin implements IBakedModel
 {

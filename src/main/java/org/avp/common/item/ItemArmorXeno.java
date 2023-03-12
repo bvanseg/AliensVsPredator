@@ -1,13 +1,8 @@
 package org.avp.common.item;
 
-import org.avp.AVP;
-import org.avp.client.model.entities.living.ModelDrone;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -18,6 +13,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.client.model.entities.living.ModelDrone;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
 public class ItemArmorXeno extends ItemArmor
 {

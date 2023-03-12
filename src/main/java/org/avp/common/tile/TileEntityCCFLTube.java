@@ -1,12 +1,10 @@
 package org.avp.common.tile;
 
-import org.avp.common.api.power.IVoltageProvider;
-
 import com.asx.mdx.lib.world.tile.IRotatableXAxis;
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import org.avp.common.api.power.IVoltageProvider;
 
 public class TileEntityCCFLTube extends TileEntityLightPanel implements IVoltageProvider, IRotatableYAxis, IRotatableXAxis
 {

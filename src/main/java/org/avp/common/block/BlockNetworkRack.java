@@ -1,10 +1,6 @@
 package org.avp.common.block;
 
-import org.avp.AVP;
-import org.avp.common.tile.TileEntityNetworkRack;
-
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -18,6 +14,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityNetworkRack;
 
 public class BlockNetworkRack extends Block
 {

@@ -1,20 +1,6 @@
 package org.avp.common.entities.living.vardic;
 
-import java.util.ArrayList;
-
-import org.avp.common.ItemHandler;
-import org.avp.common.api.parasitoidic.IParasitoid;
-import org.avp.client.Sounds;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.alien.EntitySelectorParasitoid;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.living.species.EntityParasitoid;
-import org.avp.common.world.Embryo;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-
 import com.asx.mdx.lib.world.block.Blocks;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,6 +21,18 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import org.avp.client.Sounds;
+import org.avp.common.ItemHandler;
+import org.avp.common.api.parasitoidic.IParasitoid;
+import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entities.ai.alien.EntitySelectorParasitoid;
+import org.avp.common.entities.living.species.EntityParasitoid;
+import org.avp.common.world.Embryo;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+
+import java.util.ArrayList;
 
 public class EntityOctohugger extends EntityParasitoid implements IMob, IParasitoid
 {

@@ -1,7 +1,5 @@
 package org.avp.common.world.dimension.acheron;
 
-import org.avp.AVP;
-
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
@@ -11,6 +9,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
 
 public class WorldProviderAcheron extends WorldProvider
 {

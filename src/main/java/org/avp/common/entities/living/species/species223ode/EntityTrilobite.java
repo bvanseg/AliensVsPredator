@@ -1,40 +1,14 @@
 package org.avp.common.entities.living.species.species223ode;
 
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.ItemHandler;
-import org.avp.common.api.parasitoidic.IParasitoid;
-import org.avp.client.Sounds;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.ai.alien.EntitySelectorTrilobite;
-import org.avp.common.entities.living.species.Species223ODe;
-import org.avp.common.item.ItemWristbracer;
-import org.avp.common.packets.server.PacketAttachParasiteToEntity;
-import org.avp.common.world.Embryo;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-
 import com.asx.mdx.MDX;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.animations.Animation;
 import com.asx.mdx.lib.world.entity.animations.AnimationHandler;
 import com.asx.mdx.lib.world.entity.animations.IAnimated;
 import com.google.common.base.Predicate;
-
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityLookHelper;
-import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemAxe;
@@ -52,6 +26,21 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.client.Sounds;
+import org.avp.common.ItemHandler;
+import org.avp.common.api.parasitoidic.IParasitoid;
+import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entities.ai.alien.EntitySelectorTrilobite;
+import org.avp.common.entities.living.species.Species223ODe;
+import org.avp.common.item.ItemWristbracer;
+import org.avp.common.packets.server.PacketAttachParasiteToEntity;
+import org.avp.common.world.Embryo;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+
+import java.util.List;
 
 public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnimated
 {

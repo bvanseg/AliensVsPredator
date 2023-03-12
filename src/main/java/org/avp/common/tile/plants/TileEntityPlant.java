@@ -1,16 +1,15 @@
 package org.avp.common.tile.plants;
 
-import java.util.Random;
-
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class TileEntityPlant extends TileEntity implements IRotatableYAxis
 {

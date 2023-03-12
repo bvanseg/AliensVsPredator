@@ -1,11 +1,6 @@
 package org.avp.client.render.block.model;
 
-import java.util.Collection;
-
-import org.avp.client.render.block.model.cached.CachedModelReflectiveShape;
-
 import com.google.common.collect.ImmutableSet;
-
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.vertex.VertexFormat;
@@ -14,6 +9,9 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
 import net.minecraftforge.common.model.IModelState;
 import net.minecraftforge.common.model.TRSRTransformation;
+import org.avp.client.render.block.model.cached.CachedModelReflectiveShape;
+
+import java.util.Collection;
 
 public class ModelReflectiveShape implements IModel
 {

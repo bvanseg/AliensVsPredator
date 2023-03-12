@@ -1,18 +1,16 @@
 package org.avp.common.tile.helpers;
 
-import java.util.ArrayList;
-
-import org.avp.AVP;
-
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import org.avp.AVP;
+
+import java.util.ArrayList;
 
 /**
  * 

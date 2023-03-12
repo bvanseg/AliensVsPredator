@@ -1,13 +1,6 @@
 package org.avp.common.entities;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import org.avp.common.item.supply.chute.SupplyChuteType;
-import org.avp.common.tile.TileEntitySupplyCrate;
-
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -24,6 +17,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.common.item.supply.chute.SupplyChuteType;
+import org.avp.common.tile.TileEntitySupplyCrate;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 public class EntitySupplyChute extends Entity
 {

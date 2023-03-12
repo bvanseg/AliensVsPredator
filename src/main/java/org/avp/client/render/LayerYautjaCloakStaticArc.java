@@ -1,17 +1,15 @@
 package org.avp.client.render;
 
-import java.util.Random;
-
-import org.avp.common.entities.living.species.SpeciesYautja;
-import org.avp.common.entities.state.CloakState;
-
 import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
-
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.common.entities.living.species.SpeciesYautja;
+import org.avp.common.entities.state.CloakState;
+
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class LayerYautjaCloakStaticArc implements LayerRenderer<SpeciesYautja> {

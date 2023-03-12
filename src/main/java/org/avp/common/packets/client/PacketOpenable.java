@@ -1,9 +1,6 @@
 package org.avp.common.packets.client;
 
-import org.avp.common.api.machines.IOpenable;
-
 import com.asx.mdx.lib.util.Game;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -11,6 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.common.api.machines.IOpenable;
 
 public class PacketOpenable implements IMessage, IMessageHandler<PacketOpenable, PacketOpenable>
 {

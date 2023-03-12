@@ -1,10 +1,7 @@
 package org.avp.common.item;
 
-import org.avp.AVP;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -13,6 +10,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import org.avp.AVP;
 
 public class ItemArmorMarine extends ItemArmor
 {

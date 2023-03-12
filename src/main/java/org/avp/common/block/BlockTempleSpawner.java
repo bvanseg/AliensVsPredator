@@ -1,14 +1,13 @@
 package org.avp.common.block;
 
-import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
-import org.avp.common.entities.living.species.xenomorphs.EntityOvamorph;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
+import org.avp.common.entities.living.species.xenomorphs.EntityOvamorph;
 
 public class BlockTempleSpawner extends Block
 {

@@ -1,12 +1,6 @@
 package org.avp.client.render.transforms;
 
-import org.avp.client.render.tile.RenderMedpod;
-import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.common.entities.living.EntityMarine;
-import org.avp.common.entities.living.species.SpeciesYautja;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.entity.EntityPlayerSP;
@@ -15,6 +9,10 @@ import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import org.avp.client.render.tile.RenderMedpod;
+import org.avp.client.render.util.EntityRenderTransforms;
+import org.avp.common.entities.living.EntityMarine;
+import org.avp.common.entities.living.species.SpeciesYautja;
 
 public class MedpodTransforms
 {

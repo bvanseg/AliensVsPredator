@@ -1,28 +1,20 @@
 package org.avp.client.render.transforms;
 
-import static org.lwjgl.opengl.GL11.GL_ALPHA_TEST;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-
-import org.avp.AVP;
-import org.avp.client.render.tile.RenderCryostasisTube;
-import org.avp.client.render.tile.RenderCryostasisTube.CryostasisEntityRenderer;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityChestburster;
-import org.avp.common.entities.living.species.xenomorphs.EntityDrone;
-import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
-import org.avp.common.entities.living.species.xenomorphs.EntityOvamorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityPraetorian;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
-import org.avp.common.tile.TileEntityCryostasisTube;
-import org.lwjgl.opengl.GL12;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.entity.Entity;
+import org.avp.AVP;
+import org.avp.client.render.tile.RenderCryostasisTube;
+import org.avp.client.render.tile.RenderCryostasisTube.CryostasisEntityRenderer;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
+import org.avp.common.entities.living.species.xenomorphs.*;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+import org.avp.common.tile.TileEntityCryostasisTube;
+import org.lwjgl.opengl.GL12;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class CryostasisTubeRenderers
 {

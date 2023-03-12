@@ -1,14 +1,8 @@
 package org.avp.common.world;
 
-import org.avp.common.Settings.ClientSettings;
-import org.avp.common.entities.living.species.SpeciesYautja;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-
 import com.asx.mdx.config.GraphicsSetting;
 import com.asx.mdx.lib.client.entityfx.EntityBloodFX;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
@@ -29,6 +23,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.common.Settings.ClientSettings;
+import org.avp.common.entities.living.species.SpeciesYautja;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
 
 public class EntityImpregnationHandler
 {

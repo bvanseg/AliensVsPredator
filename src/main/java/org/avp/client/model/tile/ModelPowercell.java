@@ -1,10 +1,8 @@
 package org.avp.client.model.tile;
 
-import org.avp.common.tile.TileEntityPowercell;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.tile.TileEntityPowercell;
 
 public class ModelPowercell extends Model<TileEntityPowercell>
 {

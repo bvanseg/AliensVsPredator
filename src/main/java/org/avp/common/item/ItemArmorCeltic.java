@@ -1,15 +1,8 @@
 package org.avp.common.item;
 
-import org.avp.AVP;
-import org.avp.client.Sounds;
-import org.avp.client.render.VisionModeRenderEvent;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
-import org.lwjgl.input.Keyboard;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -18,6 +11,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.client.Sounds;
+import org.avp.client.render.VisionModeRenderEvent;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.lwjgl.input.Keyboard;
 
 public class ItemArmorCeltic extends ItemArmor
 {

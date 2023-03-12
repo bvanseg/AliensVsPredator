@@ -1,15 +1,7 @@
 package org.avp.client.render;
 
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
-import org.alien.AlienBlocks;
-import org.avp.AVP;
-
 import com.asx.mdx.core.mods.IInitEvent;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -23,6 +15,11 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.alien.AlienBlocks;
+import org.avp.AVP;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class BiomeColorHandler implements IInitEvent

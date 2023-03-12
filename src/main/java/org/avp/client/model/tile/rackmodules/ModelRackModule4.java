@@ -1,7 +1,6 @@
 package org.avp.client.model.tile.rackmodules;
 
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 

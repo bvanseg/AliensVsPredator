@@ -1,12 +1,11 @@
 package org.avp.common.packets.server;
 
-import org.avp.common.DamageSources;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.common.DamageSources;
 
 public class PacketDamageEntity implements IMessage, IMessageHandler<PacketDamageEntity, PacketDamageEntity>
 {

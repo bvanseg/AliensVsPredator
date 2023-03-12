@@ -1,11 +1,5 @@
 package org.avp.common.block;
 
-import java.util.Random;
-
-import org.avp.common.block.properties.UnlistedPropertyBlockstate;
-import org.avp.common.tile.TileEntityHiveResin;
-import org.avp.common.tile.TileEntityHiveResin.ResinVariant;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
@@ -22,6 +16,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import net.minecraftforge.common.property.IUnlistedProperty;
+import org.avp.common.block.properties.UnlistedPropertyBlockstate;
+import org.avp.common.tile.TileEntityHiveResin;
+import org.avp.common.tile.TileEntityHiveResin.ResinVariant;
+
+import java.util.Random;
 
 public class BlockHiveResin extends Block
 {

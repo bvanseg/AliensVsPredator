@@ -1,14 +1,12 @@
 package org.avp.client.render.tile;
 
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-
+import com.asx.mdx.lib.client.util.OpenGL;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
 import org.avp.common.tile.TileEntityRepulsionGenerator;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
+import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 public class RenderRepulsionGenerator extends TileEntitySpecialRenderer<TileEntityRepulsionGenerator>
 {

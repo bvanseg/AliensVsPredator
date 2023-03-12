@@ -1,20 +1,10 @@
 package org.avp.common.entities.living.species;
 
-import java.util.UUID;
-
-import org.avp.AVP;
-import org.avp.common.DamageSources;
-import org.avp.common.api.parasitoidic.IMaturable;
-import org.avp.common.api.parasitoidic.IRoyalOrganism;
-import org.avp.common.entities.EntityAcidPool;
-import org.avp.common.entities.living.species.xenomorphs.EntityOvamorph;
-
 import com.asx.mdx.lib.world.Worlds;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.ItemDrop;
 import com.asx.mdx.lib.world.entity.animations.Animation;
 import com.asx.mdx.lib.world.entity.animations.IAnimated;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
@@ -27,6 +17,14 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.DamageSources;
+import org.avp.common.api.parasitoidic.IMaturable;
+import org.avp.common.api.parasitoidic.IRoyalOrganism;
+import org.avp.common.entities.EntityAcidPool;
+import org.avp.common.entities.living.species.xenomorphs.EntityOvamorph;
+
+import java.util.UUID;
 
 public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrganism, IAnimated
 {

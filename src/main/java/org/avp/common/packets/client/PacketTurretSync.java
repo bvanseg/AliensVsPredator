@@ -1,17 +1,15 @@
 package org.avp.common.packets.client;
 
-import org.avp.common.tile.TileEntityTurret;
-
 import com.asx.mdx.lib.client.util.Rotation;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.storage.NBTStorage;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.common.tile.TileEntityTurret;
 
 public class PacketTurretSync implements IMessage, IMessageHandler<PacketTurretSync, PacketTurretSync>
 {

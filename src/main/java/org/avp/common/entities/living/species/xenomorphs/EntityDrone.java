@@ -19,7 +19,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.alien.AlienBlocks;
 import org.avp.client.Sounds;
-import org.avp.common.AVPBlocks;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.block.BlockHiveResin;

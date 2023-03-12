@@ -1,10 +1,8 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.common.entities.living.species.xenomorphs.EntityBoiler;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.entities.living.species.xenomorphs.EntityBoiler;
 
 public class ModelBoiler extends Model<EntityBoiler>
 {

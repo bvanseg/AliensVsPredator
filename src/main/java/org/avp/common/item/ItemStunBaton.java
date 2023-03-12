@@ -1,14 +1,8 @@
 package org.avp.common.item;
 
-import java.util.Random;
-
-import org.avp.common.ItemHandler;
-import org.avp.client.Sounds;
-
 import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +13,10 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.client.Sounds;
+import org.avp.common.ItemHandler;
+
+import java.util.Random;
 
 public class ItemStunBaton extends ItemSword
 {

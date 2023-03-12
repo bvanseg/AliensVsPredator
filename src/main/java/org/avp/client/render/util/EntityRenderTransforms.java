@@ -1,11 +1,11 @@
 package org.avp.client.render.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
 public abstract class EntityRenderTransforms

@@ -1,14 +1,6 @@
 package org.avp.common.world;
 
-import org.avp.AVP;
-import org.avp.common.world.capabilities.IOrganism;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-import org.avp.common.world.capabilities.ISpecialPlayer;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
-
 import com.asx.mdx.core.mods.IPreInitEvent;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityTracker;
@@ -22,6 +14,12 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.avp.AVP;
+import org.avp.common.world.capabilities.IOrganism;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.avp.common.world.capabilities.ISpecialPlayer;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
 public class CapabilityHandler implements IPreInitEvent
 {

@@ -1,9 +1,8 @@
 package org.avp.common.brain.impl;
 
+import net.minecraft.entity.EntityLiving;
 import org.avp.common.brain.AbstractBrain;
 import org.avp.common.brain.AbstractBrainContext;
-
-import net.minecraft.entity.EntityLiving;
 
 /**
  * A brain context in the context of a Minecraft living entity.

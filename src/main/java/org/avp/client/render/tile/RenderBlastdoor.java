@@ -1,13 +1,11 @@
 package org.avp.client.render.tile;
 
-import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
-
+import com.asx.mdx.lib.client.util.OpenGL;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
 import org.avp.common.tile.TileEntityBlastdoor;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 
 public class RenderBlastdoor extends TileEntitySpecialRenderer<TileEntityBlastdoor>
 {

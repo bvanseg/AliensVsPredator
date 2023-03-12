@@ -1,16 +1,14 @@
 package org.avp.common.packets.server;
 
-import org.avp.client.Sounds;
-import org.avp.common.entities.EntityPlasma;
-
 import com.asx.mdx.lib.util.MDXMath;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.client.Sounds;
+import org.avp.common.entities.EntityPlasma;
 
 public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPlasmaDischarge, PacketPlasmaDischarge>
 {

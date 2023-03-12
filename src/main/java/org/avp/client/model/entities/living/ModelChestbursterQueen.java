@@ -1,12 +1,10 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.common.entities.living.species.xenomorphs.EntityQueenChestburster;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
+import org.avp.common.entities.living.species.xenomorphs.EntityQueenChestburster;
 
 
 public class ModelChestbursterQueen extends Model<EntityQueenChestburster>

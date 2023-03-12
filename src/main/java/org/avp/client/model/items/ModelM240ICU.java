@@ -2,7 +2,6 @@ package org.avp.client.model.items;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelM240ICU extends Model<Object>

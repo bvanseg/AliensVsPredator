@@ -1,11 +1,7 @@
 package org.avp.common.block;
 
-import org.avp.common.api.machines.IOpenable;
-import org.avp.common.tile.TileEntityMedpod;
-
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -20,6 +16,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.avp.common.api.machines.IOpenable;
+import org.avp.common.tile.TileEntityMedpod;
 
 
 public class BlockMedpod extends Block

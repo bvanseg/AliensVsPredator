@@ -1,13 +1,6 @@
 package org.avp.common.tile;
 
-import org.avp.AVP;
-import org.avp.common.api.machines.IOpenable;
-import org.avp.common.inventory.ContainerLocker;
-import org.avp.common.item.firearms.ItemFirearm;
-import org.avp.common.packets.client.PacketOpenable;
-
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -21,6 +14,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
+import org.avp.AVP;
+import org.avp.common.api.machines.IOpenable;
+import org.avp.common.inventory.ContainerLocker;
+import org.avp.common.item.firearms.ItemFirearm;
+import org.avp.common.packets.client.PacketOpenable;
 
 
 public class TileEntityLocker extends TileEntity implements IOpenable, IRotatableYAxis

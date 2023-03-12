@@ -1,9 +1,6 @@
 package org.avp.common.brain.impl.task;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-
+import net.minecraft.entity.EntityLivingBase;
 import org.avp.common.brain.flag.AbstractBrainFlag;
 import org.avp.common.brain.flag.BrainFlagState;
 import org.avp.common.brain.impl.BrainFlags;
@@ -11,7 +8,9 @@ import org.avp.common.brain.impl.BrainMemoryKeys;
 import org.avp.common.brain.impl.EntityBrainContext;
 import org.avp.common.brain.task.AbstractBrainTask;
 
-import net.minecraft.entity.EntityLivingBase;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * 

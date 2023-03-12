@@ -1,20 +1,18 @@
 package org.avp.client.render.entities.living;
 
-import java.util.ArrayList;
-
-import org.avp.client.model.entities.living.ModelFacehugger;
-import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.client.render.RenderLivingHook;
-import org.avp.common.entities.EntityMedpod;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
-
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import org.avp.client.model.entities.living.ModelFacehugger;
+import org.avp.client.render.RenderLivingHook;
+import org.avp.client.render.util.EntityRenderTransforms;
+import org.avp.common.entities.EntityMedpod;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+
+import java.util.ArrayList;
 
 public class RenderFacehuggers<FACEHUGGER extends EntityFacehugger, MODEL extends ModelFacehugger> extends RenderLivingWrapper<FACEHUGGER, MODEL>
 {

@@ -1,19 +1,7 @@
 package org.avp.common.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.UUID;
-
-import org.avp.common.AVPBlocks;
-import org.avp.AVP;
-import org.avp.common.api.machines.IOpenable;
-import org.avp.common.api.power.IVoltageReceiver;
-import org.avp.common.packets.client.PacketOpenBlastdoor;
-
 import com.asx.mdx.lib.world.block.IMultiBlock;
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,6 +14,16 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import org.avp.AVP;
+import org.avp.common.AVPBlocks;
+import org.avp.common.api.machines.IOpenable;
+import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.packets.client.PacketOpenBlastdoor;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltageReceiver, IRotatableYAxis, IOpenable, IMultiBlock
 {

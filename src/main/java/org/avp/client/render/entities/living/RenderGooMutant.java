@@ -1,12 +1,10 @@
 package org.avp.client.render.entities.living;
 
+import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
+import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
 import org.avp.client.model.entities.living.ModelGooMutant;
 import org.avp.common.entities.living.vardic.EntityGooMutant;
-
-import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
-
-import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderGooMutant extends RenderLivingWrapper<EntityGooMutant, ModelGooMutant>
 {

@@ -1,13 +1,12 @@
 package org.avp.common.network;
 
-import java.io.IOException;
-
-import org.avp.common.entities.state.CloakState;
-
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializer;
 import net.minecraft.network.datasync.DataSerializers;
+import org.avp.common.entities.state.CloakState;
+
+import java.io.IOException;
 
 /**
  *

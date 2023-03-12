@@ -1,24 +1,18 @@
 package org.avp.common.brain.impl;
 
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.*;
+import net.minecraft.entity.player.EntityPlayer;
+import org.avp.common.brain.impl.sensor.EntityBrainSensor;
+import org.avp.common.brain.impl.sensor.NearestAttackableTargetBrainSensor;
+import org.avp.common.brain.impl.task.NearestAttackableTargetBrainTask;
+import org.avp.common.brain.task.BrainTaskAdapter;
 import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entities.ai.alien.EntityAIFindJelly;
 import org.avp.common.entities.ai.alien.EntityAIShareJelly;
 import org.avp.common.entities.ai.alien.EntitySelectorXenomorph;
 import org.avp.common.entities.living.species.SpeciesXenomorph;
-import org.avp.common.brain.impl.sensor.EntityBrainSensor;
-import org.avp.common.brain.impl.sensor.NearestAttackableTargetBrainSensor;
-import org.avp.common.brain.impl.task.NearestAttackableTargetBrainTask;
-import org.avp.common.brain.task.BrainTaskAdapter;
-
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.player.EntityPlayer;
 
 /**
  * 

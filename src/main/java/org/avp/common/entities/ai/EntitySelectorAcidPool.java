@@ -1,13 +1,11 @@
 package org.avp.common.entities.ai;
 
-import javax.annotation.Nullable;
-
-import org.avp.common.entities.living.species.SpeciesAlien;
-
 import com.google.common.base.Predicate;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import org.avp.common.entities.living.species.SpeciesAlien;
+
+import javax.annotation.Nullable;
 
 public class EntitySelectorAcidPool implements Predicate<EntityLivingBase>
 {

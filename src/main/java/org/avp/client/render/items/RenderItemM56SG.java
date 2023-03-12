@@ -1,15 +1,13 @@
 package org.avp.client.render.items;
 
-import org.avp.AVP;
-import org.avp.client.model.items.ModelM56SG;
-import org.avp.common.entities.living.EntityMarine;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.avp.AVP;
+import org.avp.client.model.items.ModelM56SG;
+import org.avp.common.entities.living.EntityMarine;
 
 public class RenderItemM56SG extends ItemFirearmRenderer<ModelM56SG>
 {

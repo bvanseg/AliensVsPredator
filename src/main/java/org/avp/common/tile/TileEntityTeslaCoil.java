@@ -1,11 +1,5 @@
 package org.avp.common.tile;
 
-import java.util.Random;
-
-import org.avp.common.DamageSources;
-import org.avp.common.api.power.IVoltageProvider;
-import org.avp.common.api.power.IVoltageReceiver;
-
 import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.util.MDXMath;
@@ -13,7 +7,6 @@ import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.tile.IRotatableXAxis;
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,6 +17,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.common.DamageSources;
+import org.avp.common.api.power.IVoltageProvider;
+import org.avp.common.api.power.IVoltageReceiver;
+
+import java.util.Random;
 
 public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltageProvider, IVoltageReceiver, IRotatableYAxis, IRotatableXAxis
 {

@@ -1,12 +1,10 @@
 package org.avp.client.render.tile;
 
-import org.avp.AVP;
-import org.avp.common.tile.TileEntitySolarPanel;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntitySolarPanel;
 
 public class RenderSolarPanel extends TileEntitySpecialRenderer<TileEntitySolarPanel>
 {

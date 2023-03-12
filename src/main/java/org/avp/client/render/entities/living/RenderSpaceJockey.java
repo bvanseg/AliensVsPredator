@@ -1,8 +1,7 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AVP;
-
 import net.minecraft.client.renderer.entity.RenderManager;
+import org.avp.AVP;
 
 public class RenderSpaceJockey extends RenderEngineer
 {

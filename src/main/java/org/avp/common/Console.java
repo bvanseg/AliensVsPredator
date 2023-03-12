@@ -1,15 +1,13 @@
 package org.avp.common;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import com.asx.mdx.core.mods.IInitEvent;
 import com.asx.mdx.core.mods.IPostInitEvent;
 import com.asx.mdx.core.mods.IPreInitEvent;
-
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Console implements IPreInitEvent, IInitEvent, IPostInitEvent
 {

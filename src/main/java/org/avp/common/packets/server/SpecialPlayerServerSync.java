@@ -1,9 +1,5 @@
 package org.avp.common.packets.server;
 
-import org.avp.AVP;
-import org.avp.common.packets.client.SpecialPlayerClientSync;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
@@ -11,6 +7,9 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.AVP;
+import org.avp.common.packets.client.SpecialPlayerClientSync;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
 
 public class SpecialPlayerServerSync implements IMessage, IMessageHandler<SpecialPlayerServerSync, SpecialPlayerServerSync>
 {

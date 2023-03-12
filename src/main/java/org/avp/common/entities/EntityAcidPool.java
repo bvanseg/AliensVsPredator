@@ -1,16 +1,6 @@
 package org.avp.common.entities;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
-import org.alien.AlienBlocks;
-import org.avp.common.AVPBlocks;
-import org.avp.common.DamageSources;
-import org.avp.common.api.blocks.IAcidResistant;
-import org.avp.common.entities.living.species.SpeciesAlien;
-
 import com.google.common.base.Predicate;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -23,6 +13,14 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
+import org.alien.AlienBlocks;
+import org.avp.common.AVPBlocks;
+import org.avp.common.DamageSources;
+import org.avp.common.api.blocks.IAcidResistant;
+import org.avp.common.entities.living.species.SpeciesAlien;
+
+import java.util.ArrayList;
+import java.util.HashSet;
 
 public class EntityAcidPool extends EntityLiquidPool
 {

@@ -1,12 +1,10 @@
 package org.avp.common.entities.ai.alien;
 
-import java.util.ArrayList;
-
+import com.asx.mdx.lib.world.Pos;
+import net.minecraft.entity.ai.EntityAIBase;
 import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
 
-import com.asx.mdx.lib.world.Pos;
-
-import net.minecraft.entity.ai.EntityAIBase;
+import java.util.ArrayList;
 
 /**
  *

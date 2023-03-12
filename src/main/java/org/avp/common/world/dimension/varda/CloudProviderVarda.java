@@ -1,16 +1,14 @@
 package org.avp.common.world.dimension.varda;
 
-import org.avp.AVP;
-
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.client.world.CloudProvider;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.util.MDXMath;
-
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
 
 public class CloudProviderVarda extends CloudProvider
 {

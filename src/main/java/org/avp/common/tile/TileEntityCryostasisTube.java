@@ -1,21 +1,19 @@
 package org.avp.common.tile;
 
-import org.avp.AVP;
-import org.avp.common.api.power.IVoltageReceiver;
-import org.avp.common.item.ItemEntitySummoner;
-import org.avp.common.packets.server.PacketCryostasisStateUpdate;
-
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import org.avp.AVP;
+import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.item.ItemEntitySummoner;
+import org.avp.common.packets.server.PacketCryostasisStateUpdate;
 
 
 public class TileEntityCryostasisTube extends TileEntityElectrical implements IVoltageReceiver, IRotatableYAxis, ITickable

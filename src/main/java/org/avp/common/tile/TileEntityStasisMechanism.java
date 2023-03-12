@@ -1,10 +1,6 @@
 package org.avp.common.tile;
 
-import org.avp.common.entities.EntityMechanism;
-import org.avp.common.item.ItemEntitySummoner;
-
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -12,6 +8,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
+import org.avp.common.entities.EntityMechanism;
+import org.avp.common.item.ItemEntitySummoner;
 
 public class TileEntityStasisMechanism extends TileEntity implements ITickable
 {

@@ -1,24 +1,22 @@
 package org.avp.client.render;
 
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-
-import java.util.ArrayList;
-
-import org.avp.AVP;
-import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import org.avp.AVP;
+import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
+import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
+
+import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
+import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 public class BossBarEvent
 {

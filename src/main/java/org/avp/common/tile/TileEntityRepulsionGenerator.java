@@ -1,12 +1,5 @@
 package org.avp.common.tile;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.avp.AVP;
-import org.avp.common.api.power.IVoltageProvider;
-import org.avp.common.inventory.ContainerRepulsionGenerator;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
@@ -19,6 +12,12 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.util.Constants;
+import org.avp.AVP;
+import org.avp.common.api.power.IVoltageProvider;
+import org.avp.common.inventory.ContainerRepulsionGenerator;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TileEntityRepulsionGenerator extends TileEntityElectrical implements IVoltageProvider
 {

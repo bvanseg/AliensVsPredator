@@ -1,10 +1,9 @@
 package org.avp.common.item.rackmodules;
 
-import org.avp.AVP;
-import org.avp.common.item.ItemNetworkRackModule;
-
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.client.util.models.Model;
+import org.avp.AVP;
+import org.avp.common.item.ItemNetworkRackModule;
 
 public class ItemNetworkRackModule1 extends ItemNetworkRackModule
 {

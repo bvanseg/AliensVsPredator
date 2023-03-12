@@ -1,21 +1,7 @@
 package org.avp.common.entities.living.species;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.api.parasitoidic.IParasitoid;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.alien.EntitySelectorParasitoid;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.packets.server.PacketAttachParasiteToEntity;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-
 import com.asx.mdx.lib.world.entity.Entities;
 import com.google.common.base.Predicate;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -34,6 +20,18 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.api.parasitoidic.IParasitoid;
+import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entities.ai.alien.EntitySelectorParasitoid;
+import org.avp.common.packets.server.PacketAttachParasiteToEntity;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid
 {

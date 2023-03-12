@@ -1,10 +1,8 @@
 package org.avp.client.model.tile;
 
-import org.avp.common.tile.TileEntitySatelliteDish;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.tile.TileEntitySatelliteDish;
 
 public class ModelSatelliteDish extends Model<TileEntitySatelliteDish>
 {

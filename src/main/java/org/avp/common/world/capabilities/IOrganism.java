@@ -1,17 +1,7 @@
 package org.avp.common.world.capabilities;
 
-import java.util.concurrent.Callable;
-
-import org.avp.AVP;
-import org.avp.client.render.TacticalHUDRenderEvent;
-import org.avp.common.entities.living.species.SpeciesAlien;
-import org.avp.common.packets.client.OrganismClientSync;
-import org.avp.common.packets.server.OrganismServerSync;
-import org.avp.common.world.Embryo;
-
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -24,6 +14,14 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import org.avp.AVP;
+import org.avp.client.render.TacticalHUDRenderEvent;
+import org.avp.common.entities.living.species.SpeciesAlien;
+import org.avp.common.packets.client.OrganismClientSync;
+import org.avp.common.packets.server.OrganismServerSync;
+import org.avp.common.world.Embryo;
+
+import java.util.concurrent.Callable;
 
 public interface IOrganism
 {

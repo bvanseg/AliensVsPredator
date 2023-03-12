@@ -1,58 +1,27 @@
 package org.avp.common.world;
 
-import java.util.ArrayList;
-
+import com.asx.mdx.lib.world.entity.Entities;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityDragon;
+import net.minecraft.entity.monster.*;
+import net.minecraft.entity.passive.*;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import org.avp.common.api.parasitoidic.INascentic;
 import org.avp.common.entities.living.species.engineer.EntityEngineer;
 import org.avp.common.entities.living.species.engineer.EntitySpaceJockey;
 import org.avp.common.entities.living.species.species223ode.EntityDeacon;
 import org.avp.common.entities.living.species.species223ode.EntityDeaconAdult;
-import org.avp.common.entities.living.species.xenomorphs.EntityBatXeno;
-import org.avp.common.entities.living.species.xenomorphs.EntityBoiler;
-import org.avp.common.entities.living.species.xenomorphs.EntityChestburster;
-import org.avp.common.entities.living.species.xenomorphs.EntityDracoburster;
-import org.avp.common.entities.living.species.xenomorphs.EntityDracomorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityDrone;
-import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
-import org.avp.common.entities.living.species.xenomorphs.EntityMyceliomorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityNauticomorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityPantheramorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityPredalien;
-import org.avp.common.entities.living.species.xenomorphs.EntityPredalienChestburster;
-import org.avp.common.entities.living.species.xenomorphs.EntityQueenChestburster;
-import org.avp.common.entities.living.species.xenomorphs.EntityRunnerChestburster;
-import org.avp.common.entities.living.species.xenomorphs.EntityRunnerDrone;
-import org.avp.common.entities.living.species.xenomorphs.EntitySpitter;
-import org.avp.common.entities.living.species.xenomorphs.EntityUltramorph;
+import org.avp.common.entities.living.species.xenomorphs.*;
 import org.avp.common.entities.living.species.yautja.EntityYautjaBerserker;
 import org.avp.common.entities.living.species.yautja.EntityYautjaWarrior;
 import org.avp.common.entities.living.vardic.EntityBelugaburster;
 import org.avp.common.entities.living.vardic.EntityBelugamorph;
 import org.avp.common.world.capabilities.IOrganism.Organism;
 
-import com.asx.mdx.lib.world.entity.Entities;
-
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityElderGuardian;
-import net.minecraft.entity.monster.EntityGuardian;
-import net.minecraft.entity.monster.EntityPolarBear;
-import net.minecraft.entity.monster.EntityWitch;
-import net.minecraft.entity.passive.EntityBat;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityHorse;
-import net.minecraft.entity.passive.EntityLlama;
-import net.minecraft.entity.passive.EntityMooshroom;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
+import java.util.ArrayList;
 
 public class Embryo implements Cloneable
 {

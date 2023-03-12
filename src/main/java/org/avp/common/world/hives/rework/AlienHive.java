@@ -1,20 +1,18 @@
 package org.avp.common.world.hives.rework;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.UUID;
-
-import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
-
 import com.asx.mdx.lib.world.Pos;
 import com.google.common.primitives.Bytes;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants.NBT;
+import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.UUID;
 
 /**
  * 

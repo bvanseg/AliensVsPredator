@@ -1,11 +1,10 @@
 package org.avp.common;
 
-import org.avp.common.entities.EntityFlame;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import org.avp.common.entities.EntityFlame;
 
 public class DamageSources extends DamageSource
 {

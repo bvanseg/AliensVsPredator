@@ -1,12 +1,6 @@
 package org.avp.common.entities;
 
-import java.util.List;
-
-import org.avp.common.DamageSources;
-import org.avp.common.entities.living.EntityMarine;
-
 import com.asx.mdx.lib.util.GameSounds;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -17,12 +11,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
+import org.avp.common.DamageSources;
+import org.avp.common.entities.living.EntityMarine;
+
+import java.util.List;
 
 public class EntityBullet extends Entity
 {

@@ -1,14 +1,12 @@
 package org.avp.client.render.tile;
 
-import org.avp.AVP;
-import org.avp.common.item.ItemNetworkRackModule;
-import org.avp.common.tile.TileEntityNetworkRack;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
+import org.avp.AVP;
+import org.avp.common.item.ItemNetworkRackModule;
+import org.avp.common.tile.TileEntityNetworkRack;
 
 public class RenderNetworkRack extends TileEntitySpecialRenderer<TileEntityNetworkRack>
 {

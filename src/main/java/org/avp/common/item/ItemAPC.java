@@ -1,10 +1,7 @@
 package org.avp.common.item;
 
-import org.avp.common.entities.EntityAPC;
-
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.item.HookedItem;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,6 +12,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.avp.common.entities.EntityAPC;
 
 public class ItemAPC extends HookedItem
 {

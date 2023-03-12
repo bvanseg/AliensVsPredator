@@ -1,9 +1,8 @@
 package org.avp.client.render;
 
-import org.avp.common.entities.EntityAPC;
-
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.avp.common.entities.EntityAPC;
 
 public class RenderPlayerAPCEvent
 {

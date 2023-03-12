@@ -1,16 +1,14 @@
 package org.avp.client;
 
-import java.lang.reflect.Field;
-
-import org.avp.AVP;
-
 import com.asx.mdx.lib.util.Sound;
-
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.avp.AVP;
+
+import java.lang.reflect.Field;
 
 public class Sounds
 {

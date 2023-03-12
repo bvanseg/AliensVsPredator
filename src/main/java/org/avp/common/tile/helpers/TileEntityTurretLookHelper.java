@@ -3,7 +3,6 @@ package org.avp.common.tile.helpers;
 import com.asx.mdx.lib.client.util.Rotation;
 import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.Pos;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;

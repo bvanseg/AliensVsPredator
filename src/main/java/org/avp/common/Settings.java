@@ -1,20 +1,7 @@
 package org.avp.common;
 
-import java.io.File;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-
-import com.asx.mdx.config.ConfigSetting;
-import com.asx.mdx.config.ConfigSettingBiomeList;
-import com.asx.mdx.config.ConfigSettingBoolean;
-import com.asx.mdx.config.ConfigSettingGraphics;
-import com.asx.mdx.config.ConfigSettingInteger;
-import com.asx.mdx.config.GraphicsSetting;
-import com.asx.mdx.config.IFlexibleConfiguration;
+import com.asx.mdx.config.*;
 import com.asx.mdx.core.mods.IPreInitEvent;
-
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -23,6 +10,12 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+
+import java.io.File;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Settings implements IPreInitEvent, IFlexibleConfiguration
 {

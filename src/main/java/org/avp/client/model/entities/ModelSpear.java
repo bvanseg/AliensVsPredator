@@ -1,11 +1,9 @@
 package org.avp.client.model.entities;
 
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.gui.Gui;
+import org.lwjgl.opengl.GL11;
 
 public class ModelSpear extends Model<Object>
 {

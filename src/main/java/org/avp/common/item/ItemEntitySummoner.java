@@ -1,14 +1,8 @@
 package org.avp.common.item;
 
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.packets.server.PacketSpawnEntity;
-
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.asx.mdx.lib.world.item.HookedItem;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,6 +11,10 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.packets.server.PacketSpawnEntity;
+
+import java.util.List;
 
 public class ItemEntitySummoner extends HookedItem
 {

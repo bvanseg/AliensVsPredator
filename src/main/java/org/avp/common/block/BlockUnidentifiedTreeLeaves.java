@@ -1,11 +1,5 @@
 package org.avp.common.block;
 
-import java.util.List;
-import java.util.Random;
-
-import org.alien.AlienBlocks;
-import org.avp.common.AVPBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks.EnumType;
@@ -20,6 +14,10 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.alien.AlienBlocks;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockUnidentifiedTreeLeaves extends BlockLeaves
 {

@@ -1,21 +1,15 @@
 package org.avp.client.render.tile;
 
-import static org.lwjgl.opengl.GL11.GL_ALPHA_TEST;
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.system.SystemInfo;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.apache.commons.lang3.SystemUtils;
 import org.avp.AVP;
 import org.avp.common.tile.TileEntityWorkstation;
 import org.lwjgl.opengl.GL12;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.system.SystemInfo;
-
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import static org.lwjgl.opengl.GL11.*;
 
 public class RenderWorkstation extends TileEntitySpecialRenderer<TileEntityWorkstation>
 {

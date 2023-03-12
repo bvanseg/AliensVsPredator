@@ -1,9 +1,6 @@
 package org.avp.common.block;
 
-import org.avp.common.tile.TileEntityTeslaCoil;
-
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -16,6 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.avp.common.tile.TileEntityTeslaCoil;
 
 public class BlockTeslaCoil extends Block
 {

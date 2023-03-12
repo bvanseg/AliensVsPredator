@@ -1,12 +1,6 @@
 package org.avp.common.command;
 
-import org.avp.AVP;
-import org.avp.common.packets.client.PacketPlayerModeUpdate;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
-import org.avp.common.world.playermode.PlayerMode;
-
 import com.asx.mdx.lib.world.entity.player.Players;
-
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;
@@ -14,6 +8,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
+import org.avp.AVP;
+import org.avp.common.packets.client.PacketPlayerModeUpdate;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.playermode.PlayerMode;
 
 public class CommandPlayerMode extends CommandBase
 {

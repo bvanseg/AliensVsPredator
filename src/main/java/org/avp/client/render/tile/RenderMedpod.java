@@ -1,14 +1,12 @@
 package org.avp.client.render.tile;
 
-import java.util.ArrayList;
-
+import com.asx.mdx.lib.client.util.OpenGL;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.tile.TileEntityMedpod;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import java.util.ArrayList;
 
 public class RenderMedpod extends TileEntitySpecialRenderer<TileEntityMedpod>
 {

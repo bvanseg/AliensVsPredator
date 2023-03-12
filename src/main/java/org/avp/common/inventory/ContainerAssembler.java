@@ -1,13 +1,12 @@
 package org.avp.common.inventory;
 
-import org.avp.common.tile.TileEntityAssembler;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import org.avp.common.tile.TileEntityAssembler;
 
 public class ContainerAssembler extends Container
 {

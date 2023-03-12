@@ -1,12 +1,11 @@
 package org.avp.common.tile;
 
-import org.avp.common.api.machines.INetworkDevice;
-import org.avp.common.api.power.IVoltageReceiver;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
+import org.avp.common.api.machines.INetworkDevice;
+import org.avp.common.api.power.IVoltageReceiver;
 
 public class TileEntityWorkstation extends TileEntityElectrical implements INetworkDevice, IVoltageReceiver
 {

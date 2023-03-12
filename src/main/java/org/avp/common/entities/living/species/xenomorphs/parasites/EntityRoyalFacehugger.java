@@ -1,16 +1,15 @@
 package org.avp.common.entities.living.species.xenomorphs.parasites;
 
-import org.avp.common.ItemHandler;
-import org.avp.common.world.Embryo;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.common.ItemHandler;
+import org.avp.common.world.Embryo;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
 
 public class EntityRoyalFacehugger extends EntityFacehugger
 {

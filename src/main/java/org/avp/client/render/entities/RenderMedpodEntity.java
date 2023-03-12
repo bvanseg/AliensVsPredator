@@ -1,10 +1,9 @@
 package org.avp.client.render.entities;
 
-import org.avp.common.entities.EntityMedpod;
-
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import org.avp.common.entities.EntityMedpod;
 
 public class RenderMedpodEntity extends Render<EntityMedpod>
 {

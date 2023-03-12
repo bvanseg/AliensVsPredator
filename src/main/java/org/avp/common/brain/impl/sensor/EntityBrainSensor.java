@@ -1,16 +1,15 @@
 package org.avp.common.brain.impl.sensor;
 
-import java.util.ArrayList;
-
-import org.avp.common.brain.impl.BrainMemoryKeys;
-import org.avp.common.brain.impl.EntityBrainContext;
-import org.avp.common.brain.sensor.AbstractBrainSensor;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import org.avp.common.brain.impl.BrainMemoryKeys;
+import org.avp.common.brain.impl.EntityBrainContext;
+import org.avp.common.brain.sensor.AbstractBrainSensor;
+
+import java.util.ArrayList;
 
 /**
  * 

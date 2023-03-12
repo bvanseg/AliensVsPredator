@@ -1,30 +1,11 @@
 package org.avp.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.apache.commons.lang3.tuple.Pair;
-import org.avp.AVP;
-import org.avp.common.packets.server.PacketAddTurretTarget;
-import org.avp.common.packets.server.PacketReadFromDataDevice;
-import org.avp.common.packets.server.PacketRemoveTurretTarget;
-import org.avp.common.packets.server.PacketToggleTurretPlayerTarget;
-import org.avp.common.packets.server.PacketWriteToDataDevice;
-import org.avp.common.tile.TileEntityTurret;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
 import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
 import com.asx.mdx.lib.client.gui.IAction;
 import com.asx.mdx.lib.client.gui.IGuiElement;
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -36,6 +17,19 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.tuple.Pair;
+import org.avp.AVP;
+import org.avp.common.packets.server.*;
+import org.avp.common.tile.TileEntityTurret;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @SideOnly(Side.CLIENT)
 public class GuiTurret extends GuiContainer

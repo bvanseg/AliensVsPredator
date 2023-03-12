@@ -1,13 +1,8 @@
 package org.avp.common.item;
 
-import org.avp.AVP;
-import org.avp.common.entities.EntitySporePod;
-import org.avp.common.packets.server.PacketSpawnEntity;
-
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.asx.mdx.lib.world.item.HookedItem;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -16,6 +11,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.entities.EntitySporePod;
+import org.avp.common.packets.server.PacketSpawnEntity;
 
 public class ItemSporePod extends HookedItem
 {

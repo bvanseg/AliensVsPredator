@@ -1,11 +1,10 @@
 package org.avp.common.entities.living.species.yautja;
 
-import org.avp.common.ItemHandler;
-import org.avp.common.entities.living.species.SpeciesYautja;
-
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.common.ItemHandler;
+import org.avp.common.entities.living.species.SpeciesYautja;
 
 public class EntityYautjaWarrior extends SpeciesYautja
 {

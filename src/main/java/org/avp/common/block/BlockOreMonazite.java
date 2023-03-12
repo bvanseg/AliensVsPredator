@@ -1,14 +1,12 @@
 package org.avp.common.block;
 
-import java.util.Random;
-
-import org.avp.AVP;
-
 import com.asx.mdx.lib.world.block.BlockMaterial;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
+import org.avp.AVP;
+
+import java.util.Random;
 
 public class BlockOreMonazite extends BlockMaterial
 {

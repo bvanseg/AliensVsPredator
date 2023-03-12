@@ -1,11 +1,11 @@
 package org.avp.common.brain.impl;
 
-import java.util.HashMap;
-
 import org.avp.common.brain.flag.AbstractBrainFlag;
 import org.avp.common.brain.flag.BrainActionFlag;
 import org.avp.common.brain.flag.BrainMemoryFlag;
 import org.avp.common.brain.memory.BrainMemoryKey;
+
+import java.util.HashMap;
 
 /**
  * 

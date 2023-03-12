@@ -1,10 +1,5 @@
 package org.avp.common.entities;
 
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.DamageSources;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -23,6 +18,10 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.DamageSources;
+
+import java.util.List;
 
 public class EntityLaserMine extends Entity
 {

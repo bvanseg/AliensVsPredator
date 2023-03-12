@@ -1,15 +1,14 @@
 package org.avp.common.world.dimension.varda.gen;
 
-import java.util.Random;
-
-import org.avp.common.AVPBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
+import org.avp.common.AVPBlocks;
+
+import java.util.Random;
 
 public class TerrainFormation extends WorldGenerator
 {

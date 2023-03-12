@@ -1,13 +1,7 @@
 package org.avp.common.entities;
 
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Worlds;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
@@ -24,6 +18,10 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
+import org.avp.AVP;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
+
+import java.util.List;
 
 public class EntityGrenade extends EntityThrowable
 {

@@ -1,13 +1,7 @@
 package org.avp.common.item.firearms;
 
-import java.util.List;
-
-import org.avp.client.Sounds;
-import org.avp.common.entities.EntityFlame;
-
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.asx.mdx.lib.world.item.HookedItem;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +13,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.client.Sounds;
+import org.avp.common.entities.EntityFlame;
+
+import java.util.List;
 
 public abstract class ItemFlamethrower extends HookedItem
 {

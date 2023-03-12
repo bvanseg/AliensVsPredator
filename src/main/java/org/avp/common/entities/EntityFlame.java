@@ -1,20 +1,9 @@
 package org.avp.common.entities;
 
-import java.util.ArrayList;
-
-import org.avp.AVP;
-import org.avp.common.AVPBlocks;
-import org.avp.common.DamageSources;
-import org.avp.common.item.firearms.ItemFlamethrower;
-import org.avp.common.item.firearms.ItemM240IncineratorUnit;
-import org.avp.common.item.firearms.ItemSevastopolFlamethrower;
-import org.avp.common.tile.TileEntityCryostasisTube;
-
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.block.Blocks;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -30,6 +19,15 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.AVPBlocks;
+import org.avp.common.DamageSources;
+import org.avp.common.item.firearms.ItemFlamethrower;
+import org.avp.common.item.firearms.ItemM240IncineratorUnit;
+import org.avp.common.item.firearms.ItemSevastopolFlamethrower;
+import org.avp.common.tile.TileEntityCryostasisTube;
+
+import java.util.ArrayList;
 
 public class EntityFlame extends EntityThrowable
 {

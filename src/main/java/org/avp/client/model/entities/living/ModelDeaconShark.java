@@ -1,12 +1,10 @@
 package org.avp.client.model.entities.living;
 
-import org.avp.common.entities.living.vardic.EntityDeaconShark;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
+import org.avp.common.entities.living.vardic.EntityDeaconShark;
 
 
 public class ModelDeaconShark extends Model<EntityDeaconShark>

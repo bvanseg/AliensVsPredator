@@ -1,13 +1,12 @@
 package org.avp.common;
 
-import java.io.File;
-
 import com.asx.mdx.core.mods.IInitEvent;
 import com.asx.mdx.lib.world.SchematicLoader;
 import com.asx.mdx.lib.world.storage.Schematic;
-
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.avp.AVP;
+
+import java.io.File;
 
 public class Schematics implements IInitEvent
 {

@@ -1,17 +1,11 @@
 package org.avp.common;
 
 
-import org.avp.AVP;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
-import org.avp.common.world.playermode.LevelData;
-import org.avp.common.world.playermode.PlayerMode;
-
 import com.asx.mdx.core.mods.IInitEvent;
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.world.entity.player.Players;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
@@ -22,6 +16,10 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.playermode.LevelData;
+import org.avp.common.world.playermode.PlayerMode;
 
 public class PlayerModeHandler implements IInitEvent
 {

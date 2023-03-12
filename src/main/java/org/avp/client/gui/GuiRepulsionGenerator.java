@@ -1,12 +1,10 @@
 package org.avp.client.gui;
 
-import org.avp.AVP;
-import org.avp.common.tile.TileEntityRepulsionGenerator;
-
 import com.asx.mdx.lib.client.util.Draw;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityRepulsionGenerator;
 
 public class GuiRepulsionGenerator extends GuiContainer
 {

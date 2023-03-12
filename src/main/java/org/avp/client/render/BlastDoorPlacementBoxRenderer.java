@@ -1,14 +1,7 @@
 package org.avp.client.render;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import org.avp.common.tile.TileEntityBlastdoor;
-
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -23,6 +16,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.avp.common.tile.TileEntityBlastdoor;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class BlastDoorPlacementBoxRenderer
 {

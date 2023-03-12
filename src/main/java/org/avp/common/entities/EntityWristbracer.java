@@ -1,18 +1,10 @@
 package org.avp.common.entities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import org.avp.AVP;
-import org.avp.client.Sounds;
-
 import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.LargeExplosion;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -26,6 +18,12 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.client.Sounds;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class EntityWristbracer extends EntityThrowable
 {

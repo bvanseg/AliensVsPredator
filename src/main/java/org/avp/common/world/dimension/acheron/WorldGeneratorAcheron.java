@@ -1,19 +1,13 @@
 package org.avp.common.world.dimension.acheron;
 
-import java.util.Random;
-
-import org.avp.common.world.dimension.acheron.worldgen.formations.LV426Formation;
-import org.avp.common.world.dimension.acheron.worldgen.formations.LV426Formation2;
-import org.avp.common.world.dimension.acheron.worldgen.formations.LV426Formation3;
-import org.avp.common.world.dimension.acheron.worldgen.formations.LV426Formation4;
-import org.avp.common.world.dimension.acheron.worldgen.formations.LV426Formation5;
-import org.avp.common.world.dimension.acheron.worldgen.formations.LV426Formation6;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
+import org.avp.common.world.dimension.acheron.worldgen.formations.*;
+
+import java.util.Random;
 
 public class WorldGeneratorAcheron implements IWorldGenerator
 {

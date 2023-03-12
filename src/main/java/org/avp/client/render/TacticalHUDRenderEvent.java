@@ -1,23 +1,5 @@
 package org.avp.client.render;
 
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_CONSTANT_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-
-import java.util.ArrayList;
-
-import org.avp.AVP;
-import org.avp.client.render.wavegraph.Wavegraph;
-import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
-import org.avp.client.gui.GuiTacticalHUDSettings;
-import org.avp.common.entities.EntityAPC;
-import org.avp.common.entities.living.species.EntityParasitoid;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
 import com.asx.mdx.lib.client.gui.IAction;
 import com.asx.mdx.lib.client.gui.IGuiElement;
@@ -28,7 +10,6 @@ import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiChat;
 import net.minecraft.client.gui.inventory.GuiInventory;
@@ -43,6 +24,20 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
+import org.avp.AVP;
+import org.avp.client.gui.GuiTacticalHUDSettings;
+import org.avp.client.render.wavegraph.Wavegraph;
+import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
+import org.avp.common.entities.EntityAPC;
+import org.avp.common.entities.living.species.EntityParasitoid;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
+import org.avp.common.world.capabilities.ISpecialPlayer.SpecialPlayer;
+import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class TacticalHUDRenderEvent
 {

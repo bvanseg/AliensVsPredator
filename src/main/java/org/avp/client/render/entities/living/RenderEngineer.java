@@ -1,14 +1,12 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AVP;
-import org.avp.client.model.entities.living.ModelEngineer;
-import org.avp.common.entities.living.species.SpeciesEngineer;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
-
 import net.minecraft.client.renderer.entity.RenderManager;
+import org.avp.AVP;
+import org.avp.client.model.entities.living.ModelEngineer;
+import org.avp.common.entities.living.species.SpeciesEngineer;
 
 public class RenderEngineer extends RenderLivingWrapper<SpeciesEngineer, ModelEngineer>
 {

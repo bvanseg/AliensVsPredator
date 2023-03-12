@@ -1,9 +1,5 @@
 package org.avp.common.tile;
 
-import org.avp.AVP;
-import org.avp.common.inventory.ContainerAssembler;
-import org.avp.common.item.crafting.AssemblyManager;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -17,6 +13,9 @@ import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
+import org.avp.AVP;
+import org.avp.common.inventory.ContainerAssembler;
+import org.avp.common.item.crafting.AssemblyManager;
 
 public class TileEntityAssembler extends TileEntity implements IInventory, ITickable
 {

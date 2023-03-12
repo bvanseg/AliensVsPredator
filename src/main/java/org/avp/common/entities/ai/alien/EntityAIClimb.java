@@ -1,8 +1,7 @@
 package org.avp.common.entities.ai.alien;
 
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-
 import net.minecraft.entity.ai.EntityAIBase;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
 
 public class EntityAIClimb extends EntityAIBase
 {

@@ -1,13 +1,9 @@
 package org.avp.client.render.entities.living;
 
-import org.avp.AVP;
-import org.avp.common.entities.living.EntityCombatSynthetic;
-
 import com.asx.mdx.lib.client.model.SpecialModelBiped;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -17,6 +13,8 @@ import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
+import org.avp.AVP;
+import org.avp.common.entities.living.EntityCombatSynthetic;
 
 public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynthetic, SpecialModelBiped>
 {

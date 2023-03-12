@@ -1,16 +1,14 @@
 package org.avp.client.render.items;
 
-import org.avp.AVP;
-import org.avp.client.model.items.ModelM4;
-import org.lwjgl.input.Mouse;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.avp.AVP;
+import org.avp.client.model.items.ModelM4;
+import org.lwjgl.input.Mouse;
 
 public class RenderItemM4 extends ItemFirearmRenderer<ModelM4>
 {

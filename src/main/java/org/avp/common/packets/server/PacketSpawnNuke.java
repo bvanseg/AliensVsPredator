@@ -1,15 +1,13 @@
 package org.avp.common.packets.server;
 
-import org.avp.AVP;
-import org.avp.common.entities.EntityWristbracer;
-
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.AVP;
+import org.avp.common.entities.EntityWristbracer;
 
 public class PacketSpawnNuke implements IMessage, IMessageHandler<PacketSpawnNuke, PacketSpawnNuke>
 {

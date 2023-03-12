@@ -1,14 +1,8 @@
 package org.avp.common.block;
 
-import java.util.Random;
-
-import org.avp.common.tile.TileEntitySkull;
-import org.avp.common.tile.TileEntitySkull.EnumOrientation;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -30,6 +24,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.common.tile.TileEntitySkull;
+import org.avp.common.tile.TileEntitySkull.EnumOrientation;
+
+import java.util.Random;
 
 public abstract class BlockSkull extends Block
 {

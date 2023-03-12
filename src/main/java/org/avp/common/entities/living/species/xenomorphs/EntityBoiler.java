@@ -1,15 +1,14 @@
 package org.avp.common.entities.living.species.xenomorphs;
 
-import org.avp.common.ItemHandler;
-import org.avp.client.Sounds;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.client.Sounds;
+import org.avp.common.ItemHandler;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
 
 public class EntityBoiler extends SpeciesXenomorph
 {

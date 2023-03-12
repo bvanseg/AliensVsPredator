@@ -1,9 +1,5 @@
 package org.avp.common.block;
 
-import java.util.Random;
-
-import org.avp.common.tile.TileEntityPowerline;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,6 +9,9 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.avp.common.tile.TileEntityPowerline;
+
+import java.util.Random;
 
 public class BlockPowerline extends Block
 {

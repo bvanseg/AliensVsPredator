@@ -1,15 +1,13 @@
 package org.avp.client.render.items;
 
-import org.avp.client.model.items.ModelM40;
-
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.avp.client.model.items.ModelM40;
 
 public class RenderItemM40 extends ItemRenderer<ModelM40>
 {

@@ -1,16 +1,14 @@
 package org.avp.client.render.entities.living;
 
+import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
+import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.lib.client.util.models.Model;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.client.render.LayerYautjaCloakStaticArc;
 import org.avp.client.render.LayerYautjaCloakStaticOverlay;
 import org.avp.common.entities.living.species.SpeciesYautja;
 import org.avp.common.entities.state.CloakState;
-
-import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.client.util.models.Model;
-
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderManager;
 
 public class RenderYautja<T extends SpeciesYautja, MODEL extends Model> extends RenderLivingWrapper<T, MODEL> {
 	

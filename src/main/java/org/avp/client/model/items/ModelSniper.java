@@ -1,10 +1,8 @@
 package org.avp.client.model.items;
 
-import org.avp.common.api.client.render.IFirearmModel;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.api.client.render.IFirearmModel;
 
 public class ModelSniper extends Model<Object> implements IFirearmModel
 {

@@ -1,15 +1,13 @@
 package org.avp.client.render;
 
-import org.avp.AVP;
-import org.avp.common.world.capabilities.IOrganism.Organism;
-import org.avp.common.world.capabilities.IOrganism.Provider;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.avp.AVP;
+import org.avp.common.world.capabilities.IOrganism.Organism;
+import org.avp.common.world.capabilities.IOrganism.Provider;
 
 public class ChestbursterOverlayEvent
 {

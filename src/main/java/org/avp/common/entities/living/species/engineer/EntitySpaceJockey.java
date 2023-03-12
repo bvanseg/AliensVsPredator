@@ -1,16 +1,15 @@
 package org.avp.common.entities.living.species.engineer;
 
-import org.avp.common.DamageSources;
-import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
-import org.avp.common.entities.living.species.SpeciesEngineer;
-
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.common.DamageSources;
+import org.avp.common.EntityItemDrops;
+import org.avp.common.ItemHandler;
+import org.avp.common.entities.living.species.SpeciesEngineer;
 
 public class EntitySpaceJockey extends SpeciesEngineer
 {

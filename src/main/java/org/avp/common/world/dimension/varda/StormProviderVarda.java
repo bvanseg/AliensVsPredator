@@ -1,16 +1,14 @@
 package org.avp.common.world.dimension.varda;
 
-import org.avp.AVP;
-
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.client.world.StormProvider;
-
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
 
 public class StormProviderVarda extends StormProvider
 {

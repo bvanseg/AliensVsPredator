@@ -1,16 +1,14 @@
 package org.avp.common.tile;
 
-import org.avp.AVP;
-import org.avp.common.api.power.IVoltageProvider;
-import org.avp.common.packets.client.PacketSyncRF;
-
-import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import cofh.redstoneflux.api.IEnergyReceiver;
+import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
+import org.avp.AVP;
+import org.avp.common.api.power.IVoltageProvider;
+import org.avp.common.packets.client.PacketSyncRF;
 
 public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implements IVoltageProvider, IRotatableYAxis, IEnergyReceiver
 {

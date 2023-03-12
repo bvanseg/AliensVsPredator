@@ -1,13 +1,6 @@
 package org.avp.common.block;
 
-import java.util.Random;
-
-import org.avp.common.tile.plants.TileEntityGroundFern;
-import org.avp.common.tile.plants.TileEntityPlant.PlantColor;
-import org.avp.common.tile.plants.TileEntityPlant.PlantSize;
-
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
@@ -21,6 +14,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import org.avp.common.tile.plants.TileEntityGroundFern;
+import org.avp.common.tile.plants.TileEntityPlant.PlantColor;
+import org.avp.common.tile.plants.TileEntityPlant.PlantSize;
+
+import java.util.Random;
 
 public class BlockGroundFern extends BlockBush implements ITileEntityProvider
 {

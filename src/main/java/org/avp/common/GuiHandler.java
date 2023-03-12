@@ -1,27 +1,6 @@
 package org.avp.common;
 
-import org.avp.AVP;
-import org.avp.client.gui.GuiAssembler;
-import org.avp.client.gui.GuiBlastdoor;
-import org.avp.client.gui.GuiLocker;
-import org.avp.client.gui.GuiModSettings;
-import org.avp.client.gui.GuiNetworkRack;
-import org.avp.client.gui.GuiRepulsionGenerator;
-import org.avp.client.gui.GuiSupplyCrate;
-import org.avp.client.gui.GuiTurret;
-import org.avp.client.gui.GuiWristbracer;
-import org.avp.common.inventory.ContainerWristbracer;
-import org.avp.common.item.ItemWristbracer;
-import org.avp.common.tile.TileEntityAssembler;
-import org.avp.common.tile.TileEntityBlastdoor;
-import org.avp.common.tile.TileEntityLocker;
-import org.avp.common.tile.TileEntityNetworkRack;
-import org.avp.common.tile.TileEntityRepulsionGenerator;
-import org.avp.common.tile.TileEntitySupplyCrate;
-import org.avp.common.tile.TileEntityTurret;
-
 import com.asx.mdx.core.mods.IInitEvent;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -30,6 +9,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
+import org.avp.AVP;
+import org.avp.client.gui.*;
+import org.avp.common.inventory.ContainerWristbracer;
+import org.avp.common.item.ItemWristbracer;
+import org.avp.common.tile.*;
 
 public class GuiHandler implements IGuiHandler, IInitEvent
 {

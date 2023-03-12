@@ -1,14 +1,13 @@
 package org.avp.common.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
+import net.minecraft.block.Block;
+import net.minecraft.util.math.BlockPos;
 import org.avp.AVP;
 import org.avp.common.AVPBlocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class TileEntitySevastopolBlastDoor extends TileEntityBlastdoor
 {

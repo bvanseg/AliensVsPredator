@@ -1,10 +1,7 @@
 package org.avp.common.packets.server;
 
 
-import org.avp.common.api.parasitoidic.IParasitoid;
-
 import com.asx.mdx.lib.util.Game;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,6 +10,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.common.api.parasitoidic.IParasitoid;
 
 public class PacketAttachParasiteToEntity implements IMessage, IMessageHandler<PacketAttachParasiteToEntity, PacketAttachParasiteToEntity>
 {

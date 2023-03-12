@@ -1,28 +1,12 @@
 package org.avp.common.entities.living.vardic;
 
-import java.util.List;
-
-import org.avp.common.ItemHandler;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.ai.PatchedEntityAIWander;
-import org.avp.common.entities.ai.helpers.EntityExtendedLookHelper;
-import org.avp.common.entities.ai.pathfinding.PathNavigateSwimmer;
-import org.avp.common.entities.living.species.SpeciesAlien;
-
 import com.asx.mdx.lib.world.entity.Entities;
 import com.google.common.base.Predicate;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.ai.EntityLookHelper;
-import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -30,6 +14,14 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.avp.common.ItemHandler;
+import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entities.ai.PatchedEntityAIWander;
+import org.avp.common.entities.ai.helpers.EntityExtendedLookHelper;
+import org.avp.common.entities.ai.pathfinding.PathNavigateSwimmer;
+import org.avp.common.entities.living.species.SpeciesAlien;
+
+import java.util.List;
 
 public class EntityDeaconShark extends SpeciesAlien
 {

@@ -1,11 +1,9 @@
 package org.avp.common.world.worldgen;
 
-import org.avp.AVP;
-
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Structure;
-
 import net.minecraft.world.WorldServer;
+import org.avp.AVP;
 
 public class StructureDerelict extends Structure
 {

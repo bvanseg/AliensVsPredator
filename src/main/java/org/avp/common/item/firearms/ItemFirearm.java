@@ -1,16 +1,9 @@
 package org.avp.common.item.firearms;
 
-import java.util.List;
-
-import org.avp.AVP;
-import org.avp.common.packets.server.PacketFirearmSync;
-import org.avp.common.packets.server.PacketReloadFirearm;
-
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.asx.mdx.lib.world.item.HookedItem;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,6 +20,11 @@ import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.packets.server.PacketFirearmSync;
+import org.avp.common.packets.server.PacketReloadFirearm;
+
+import java.util.List;
 
 public class ItemFirearm extends HookedItem
 {

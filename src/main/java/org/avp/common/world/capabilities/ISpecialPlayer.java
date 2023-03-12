@@ -1,12 +1,5 @@
 package org.avp.common.world.capabilities;
 
-import java.util.concurrent.Callable;
-
-import org.avp.AVP;
-import org.avp.common.packets.client.OrganismClientSync;
-import org.avp.common.packets.server.OrganismServerSync;
-import org.avp.common.world.playermode.PlayerMode;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,6 +8,12 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
+import org.avp.AVP;
+import org.avp.common.packets.client.OrganismClientSync;
+import org.avp.common.packets.server.OrganismServerSync;
+import org.avp.common.world.playermode.PlayerMode;
+
+import java.util.concurrent.Callable;
 
 public interface ISpecialPlayer
 {

@@ -1,18 +1,16 @@
 package org.avp.client.render.items.firearms.parts;
 
-import org.avp.client.model.items.ModelM41A;
-import org.avp.client.render.items.ItemRendererGroup;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.avp.client.model.items.ModelM41A;
+import org.avp.client.render.items.ItemRendererGroup;
 
 public class RenderItemM41ABarrel extends ItemRendererGroup<ModelM41A>
 {

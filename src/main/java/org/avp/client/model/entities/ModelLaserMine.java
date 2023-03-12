@@ -1,7 +1,6 @@
 package org.avp.client.model.entities;
 
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelLaserMine extends Model<Object>

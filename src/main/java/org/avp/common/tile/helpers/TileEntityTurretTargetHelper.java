@@ -1,49 +1,9 @@
 package org.avp.common.tile.helpers;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
-
-import org.avp.AVP;
-import org.avp.common.entities.living.EntityAethon;
-import org.avp.common.entities.living.species.engineer.EntityEngineer;
-import org.avp.common.entities.living.species.engineer.EntitySpaceJockey;
-import org.avp.common.entities.living.species.species223ode.EntityDeacon;
-import org.avp.common.entities.living.species.species223ode.EntityTrilobite;
-import org.avp.common.entities.living.species.xenomorphs.EntityChestburster;
-import org.avp.common.entities.living.species.xenomorphs.EntityCrusher;
-import org.avp.common.entities.living.species.xenomorphs.EntityDrone;
-import org.avp.common.entities.living.species.xenomorphs.EntityMatriarch;
-import org.avp.common.entities.living.species.xenomorphs.EntityNauticomorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityOvamorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityPraetorian;
-import org.avp.common.entities.living.species.xenomorphs.EntityPredalien;
-import org.avp.common.entities.living.species.xenomorphs.EntityPredalienChestburster;
-import org.avp.common.entities.living.species.xenomorphs.EntityQueenChestburster;
-import org.avp.common.entities.living.species.xenomorphs.EntityRunnerChestburster;
-import org.avp.common.entities.living.species.xenomorphs.EntityRunnerDrone;
-import org.avp.common.entities.living.species.xenomorphs.EntityRunnerWarrior;
-import org.avp.common.entities.living.species.xenomorphs.EntitySpitter;
-import org.avp.common.entities.living.species.xenomorphs.EntityUltramorph;
-import org.avp.common.entities.living.species.xenomorphs.EntityWarrior;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
-import org.avp.common.entities.living.species.xenomorphs.parasites.EntityRoyalFacehugger;
-import org.avp.common.entities.living.vardic.EntityBelugaburster;
-import org.avp.common.entities.living.vardic.EntityBelugamorph;
-import org.avp.common.entities.living.vardic.EntityDeaconShark;
-import org.avp.common.entities.living.vardic.EntityGooMutant;
-import org.avp.common.entities.living.vardic.EntityHammerpede;
-import org.avp.common.entities.living.vardic.EntityOctohugger;
-import org.avp.common.packets.server.PacketTurretTargetUpdate;
-
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.storage.NBTStorage;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;
@@ -59,6 +19,20 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.common.entities.living.EntityAethon;
+import org.avp.common.entities.living.species.engineer.EntityEngineer;
+import org.avp.common.entities.living.species.engineer.EntitySpaceJockey;
+import org.avp.common.entities.living.species.species223ode.EntityDeacon;
+import org.avp.common.entities.living.species.species223ode.EntityTrilobite;
+import org.avp.common.entities.living.species.xenomorphs.*;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityFacehugger;
+import org.avp.common.entities.living.species.xenomorphs.parasites.EntityRoyalFacehugger;
+import org.avp.common.entities.living.vardic.*;
+import org.avp.common.packets.server.PacketTurretTargetUpdate;
+
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 

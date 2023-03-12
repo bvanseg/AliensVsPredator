@@ -1,11 +1,11 @@
 package org.avp.common.entities.ai;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.util.math.Vec3d;
+
+import javax.annotation.Nullable;
 
 public class PatchedEntityAIWander extends EntityAIBase
 {

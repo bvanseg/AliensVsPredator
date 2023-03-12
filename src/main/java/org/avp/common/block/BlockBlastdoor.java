@@ -1,17 +1,10 @@
 package org.avp.common.block;
 
-import org.avp.common.AVPBlocks;
-import org.avp.common.ItemHandler;
-import org.avp.client.gui.GuiBlastdoor;
-import org.avp.common.item.ItemMaintenanceJack;
-import org.avp.common.tile.TileEntityBlastdoor;
-
 import com.asx.mdx.lib.client.gui.notifications.Notification;
 import com.asx.mdx.lib.client.gui.notifications.Notification.DynamicNotification;
 import com.asx.mdx.lib.client.gui.notifications.Notifications;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -31,6 +24,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.client.gui.GuiBlastdoor;
+import org.avp.common.ItemHandler;
+import org.avp.common.item.ItemMaintenanceJack;
+import org.avp.common.tile.TileEntityBlastdoor;
 import org.lib.BlockRegistryUtil;
 
 public class BlockBlastdoor extends Block

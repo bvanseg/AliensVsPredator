@@ -1,14 +1,12 @@
 package org.avp.client.gui;
 
-import org.avp.AVP;
-import org.avp.common.tile.TileEntityNetworkRack;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityNetworkRack;
 
 public class GuiNetworkRack extends GuiContainer
 {

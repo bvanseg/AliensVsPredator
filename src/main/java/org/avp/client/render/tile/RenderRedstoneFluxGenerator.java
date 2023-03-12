@@ -1,11 +1,9 @@
 package org.avp.client.render.tile;
 
+import com.asx.mdx.lib.client.util.OpenGL;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
 import org.avp.common.tile.TileEntityRedstoneFluxGenerator;
-
-import com.asx.mdx.lib.client.util.OpenGL;
-
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 
 public class RenderRedstoneFluxGenerator extends TileEntitySpecialRenderer<TileEntityRedstoneFluxGenerator>
 {

@@ -1,15 +1,7 @@
 package org.avp.common.tile;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.avp.common.AVPBlocks;
-import org.avp.common.api.power.IVoltageReceiver;
-import org.avp.common.inventory.ContainerNetworkRack;
-
 import com.asx.mdx.lib.world.block.IMultiBlock;
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -25,6 +17,12 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
+import org.avp.common.AVPBlocks;
+import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.inventory.ContainerNetworkRack;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TileEntityNetworkRack extends TileEntityElectrical implements IRotatableYAxis, IVoltageReceiver, IMultiBlock
 {

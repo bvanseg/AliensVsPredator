@@ -1,12 +1,11 @@
 package org.avp.common.brain.impl;
 
-import java.util.List;
-
-import org.avp.common.brain.memory.BrainMemoryKey;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import org.avp.common.brain.memory.BrainMemoryKey;
+
+import java.util.List;
 
 /**
  * Minecraft-specific memory key implementations.

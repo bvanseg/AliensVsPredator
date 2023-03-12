@@ -1,14 +1,12 @@
 package org.avp.common.packets.server;
 
-import org.avp.AVP;
-import org.avp.common.entities.EntityGrenade;
-
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.avp.AVP;
+import org.avp.common.entities.EntityGrenade;
 
 public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaunchGrenade, PacketLaunchGrenade>
 {

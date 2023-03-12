@@ -1,19 +1,17 @@
 package org.avp.client.render.items;
 
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.ItemStack;
 import org.avp.AVP;
 import org.avp.client.model.items.ModelM240ICU;
 import org.avp.common.item.firearms.ItemFirearm;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
-
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.item.ItemStack;
 
 public class RenderItemM240ICU extends ItemFirearmRenderer<ModelM240ICU>
 {

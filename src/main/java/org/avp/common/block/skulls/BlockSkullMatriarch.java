@@ -1,13 +1,8 @@
 package org.avp.common.block.skulls;
 
-import org.avp.AVP;
-import org.avp.common.block.BlockSkull;
-import org.avp.client.model.tile.skulls.ModelQueenSkull;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Texture;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
@@ -17,6 +12,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.client.model.tile.skulls.ModelQueenSkull;
+import org.avp.common.block.BlockSkull;
 
 public class BlockSkullMatriarch extends BlockSkull
 {
