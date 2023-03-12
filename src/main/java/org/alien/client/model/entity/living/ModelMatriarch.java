@@ -11,7 +11,7 @@ import org.lwjgl.opengl.GL11;
 
 public class ModelMatriarch extends Model<EntityMatriarch>
 {
-    public ModelRenderer sack0,
+    public final ModelRenderer sack0,
             torso0,
             sack1,
             sack2,

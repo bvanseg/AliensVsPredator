@@ -6,25 +6,25 @@ import org.avp.common.tile.TileEntitySkull;
 
 public class ModelBiomaskClassic extends Model<TileEntitySkull>
 {
-    public ModelRenderer biomaskMouth;
-    public ModelRenderer biomaskVisor;
-    public ModelRenderer biomaskSlope;
-    public ModelRenderer biomaskHeadPlate;
-    public ModelRenderer rBiomaskRidge;
-    public ModelRenderer lBiomaskRidge;
-    public ModelRenderer rBiomaskSide3;
-    public ModelRenderer rBiomaskSide4;
-    public ModelRenderer rBiomaskSide2;
-    public ModelRenderer rBiomaskSide1;
-    public ModelRenderer rBiomaskEye;
-    public ModelRenderer lBiomaskSide4;
-    public ModelRenderer lBiomaskSide3;
-    public ModelRenderer lBiomaskSide2;
-    public ModelRenderer lBiomaskSide1;
-    public ModelRenderer lBiomaskEye;
-    public ModelRenderer sights;
-    public ModelRenderer mBiomaskJaw;
-    public ModelRenderer lBiomaskJaw;
+    public final ModelRenderer biomaskMouth;
+    public final ModelRenderer biomaskVisor;
+    public final ModelRenderer biomaskSlope;
+    public final ModelRenderer biomaskHeadPlate;
+    public final ModelRenderer rBiomaskRidge;
+    public final ModelRenderer lBiomaskRidge;
+    public final ModelRenderer rBiomaskSide3;
+    public final ModelRenderer rBiomaskSide4;
+    public final ModelRenderer rBiomaskSide2;
+    public final ModelRenderer rBiomaskSide1;
+    public final ModelRenderer rBiomaskEye;
+    public final ModelRenderer lBiomaskSide4;
+    public final ModelRenderer lBiomaskSide3;
+    public final ModelRenderer lBiomaskSide2;
+    public final ModelRenderer lBiomaskSide1;
+    public final ModelRenderer lBiomaskEye;
+    public final ModelRenderer sights;
+    public final ModelRenderer mBiomaskJaw;
+    public final ModelRenderer lBiomaskJaw;
 
     public ModelBiomaskClassic()
     {

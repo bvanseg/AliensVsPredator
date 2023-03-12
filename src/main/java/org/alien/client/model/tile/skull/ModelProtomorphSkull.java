@@ -7,14 +7,14 @@ import org.avp.common.tile.TileEntitySkull;
 
 public class ModelProtomorphSkull extends Model<TileEntitySkull>
 {
-    public ModelRenderer head1;
-    public ModelRenderer head2;
-    public ModelRenderer face1;
-    public ModelRenderer jawUpper;
-    public ModelRenderer jawLower;
-    public ModelRenderer face2;
-    public ModelRenderer jawLower2;
-    public ModelRenderer innerJaw;
+    public final ModelRenderer head1;
+    public final ModelRenderer head2;
+    public final ModelRenderer face1;
+    public final ModelRenderer jawUpper;
+    public final ModelRenderer jawLower;
+    public final ModelRenderer face2;
+    public final ModelRenderer jawLower2;
+    public final ModelRenderer innerJaw;
 
     public ModelProtomorphSkull()
     {

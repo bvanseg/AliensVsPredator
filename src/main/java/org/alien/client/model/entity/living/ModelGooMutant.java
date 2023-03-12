@@ -9,18 +9,18 @@ import org.alien.common.entity.living.vardic.EntityGooMutant;
 
 public class ModelGooMutant extends Model<EntityGooMutant>
 {
-    public ModelRenderer headOverlay;
-    public ModelRenderer rArm;
-    public ModelRenderer lLeg;
-    public ModelRenderer head;
-    public ModelRenderer body;
-    public ModelRenderer lArm;
-    public ModelRenderer rLeg;
-    public ModelRenderer head2;
-    public ModelRenderer head3;
-    public ModelRenderer lspike;
-    public ModelRenderer rspike;
-    public ModelRenderer spines;
+    public final ModelRenderer headOverlay;
+    public final ModelRenderer rArm;
+    public final ModelRenderer lLeg;
+    public final ModelRenderer head;
+    public final ModelRenderer body;
+    public final ModelRenderer lArm;
+    public final ModelRenderer rLeg;
+    public final ModelRenderer head2;
+    public final ModelRenderer head3;
+    public final ModelRenderer lspike;
+    public final ModelRenderer rspike;
+    public final ModelRenderer spines;
     public int           heldItemLeft;
     public int           heldItemRight;
     public boolean       isSneak;

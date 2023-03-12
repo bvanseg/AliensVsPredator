@@ -6,35 +6,35 @@ import org.avp.common.tile.TileEntitySkull;
 
 public class ModelBiomaskTracker extends Model<TileEntitySkull>
 {
-    public ModelRenderer biomaskMouth;
-    public ModelRenderer biomaskVisor;
-    public ModelRenderer biomaskSlope;
-    public ModelRenderer biomaskHeadPlate;
-    public ModelRenderer rBiomaskRidge;
-    public ModelRenderer lBiomaskRidge;
-    public ModelRenderer rBiomaskSide3;
-    public ModelRenderer rBiomaskSide4;
-    public ModelRenderer rBiomaskSide2;
-    public ModelRenderer rBiomaskSide1;
-    public ModelRenderer rBiomaskEye;
-    public ModelRenderer lBiomaskSide4;
-    public ModelRenderer lBiomaskSide3;
-    public ModelRenderer lBiomaskSide2;
-    public ModelRenderer lBiomaskSide1;
-    public ModelRenderer lBiomaskEye;
-    public ModelRenderer sights;
-    public ModelRenderer lTusk01a;
-    public ModelRenderer rTusk01a;
-    public ModelRenderer lTusk01b;
-    public ModelRenderer lTusk01c;
-    public ModelRenderer lTusk01d;
-    public ModelRenderer lTusk02;
-    public ModelRenderer lTusk03;
-    public ModelRenderer rTusk01b;
-    public ModelRenderer rTusk01c;
-    public ModelRenderer rTusk01d;
-    public ModelRenderer rTusk02;
-    public ModelRenderer rTusk03;
+    public final ModelRenderer biomaskMouth;
+    public final ModelRenderer biomaskVisor;
+    public final ModelRenderer biomaskSlope;
+    public final ModelRenderer biomaskHeadPlate;
+    public final ModelRenderer rBiomaskRidge;
+    public final ModelRenderer lBiomaskRidge;
+    public final ModelRenderer rBiomaskSide3;
+    public final ModelRenderer rBiomaskSide4;
+    public final ModelRenderer rBiomaskSide2;
+    public final ModelRenderer rBiomaskSide1;
+    public final ModelRenderer rBiomaskEye;
+    public final ModelRenderer lBiomaskSide4;
+    public final ModelRenderer lBiomaskSide3;
+    public final ModelRenderer lBiomaskSide2;
+    public final ModelRenderer lBiomaskSide1;
+    public final ModelRenderer lBiomaskEye;
+    public final ModelRenderer sights;
+    public final ModelRenderer lTusk01a;
+    public final ModelRenderer rTusk01a;
+    public final ModelRenderer lTusk01b;
+    public final ModelRenderer lTusk01c;
+    public final ModelRenderer lTusk01d;
+    public final ModelRenderer lTusk02;
+    public final ModelRenderer lTusk03;
+    public final ModelRenderer rTusk01b;
+    public final ModelRenderer rTusk01c;
+    public final ModelRenderer rTusk01d;
+    public final ModelRenderer rTusk02;
+    public final ModelRenderer rTusk03;
 
     public ModelBiomaskTracker()
     {

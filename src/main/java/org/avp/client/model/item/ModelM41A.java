@@ -6,22 +6,22 @@ import org.avp.common.api.client.render.IFirearmModel;
 
 public class ModelM41A extends Model<Object> implements IFirearmModel
 {
-    public ModelRenderer stockEnd;
-    public ModelRenderer stock1;
-    public ModelRenderer sight1;
-    public ModelRenderer sight2;
-    public ModelRenderer underrail;
-    public ModelRenderer underrail2;
-    public ModelRenderer sight3;
-    public ModelRenderer gunBase1;
-    public ModelRenderer gunBase2;
-    public ModelRenderer barrel;
-    public ModelRenderer gunBase3;
-    public ModelRenderer mechanism;
-    public ModelRenderer grip;
-    public ModelRenderer grip2;
-    public ModelRenderer handle;
-    public ModelRenderer gunFrame;
+    public final ModelRenderer stockEnd;
+    public final ModelRenderer stock1;
+    public final ModelRenderer sight1;
+    public final ModelRenderer sight2;
+    public final ModelRenderer underrail;
+    public final ModelRenderer underrail2;
+    public final ModelRenderer sight3;
+    public final ModelRenderer gunBase1;
+    public final ModelRenderer gunBase2;
+    public final ModelRenderer barrel;
+    public final ModelRenderer gunBase3;
+    public final ModelRenderer mechanism;
+    public final ModelRenderer grip;
+    public final ModelRenderer grip2;
+    public final ModelRenderer handle;
+    public final ModelRenderer gunFrame;
 
     public ModelM41A()
     {

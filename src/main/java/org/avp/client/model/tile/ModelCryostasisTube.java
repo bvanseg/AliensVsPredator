@@ -6,7 +6,7 @@ import org.avp.common.tile.TileEntityCryostasisTube;
 
 public class ModelCryostasisTube extends Model<TileEntityCryostasisTube>
 {
-    public ModelRenderer cap,
+    public final ModelRenderer cap,
         capN,
         glassN,
         capNE,

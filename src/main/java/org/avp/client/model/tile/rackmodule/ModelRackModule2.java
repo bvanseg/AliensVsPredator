@@ -6,36 +6,36 @@ import net.minecraft.client.model.ModelRenderer;
 //TODO: Use a better type than Object for Model.
 public class ModelRackModule2 extends Model<Object>
 {
-    public ModelRenderer monitor;
-    public ModelRenderer light01;
-    public ModelRenderer light02;
-    public ModelRenderer light03;
-    public ModelRenderer light04;
-    public ModelRenderer light05;
-    public ModelRenderer light06;
-    public ModelRenderer light07;
-    public ModelRenderer light08;
-    public ModelRenderer light10;
-    public ModelRenderer light09;
-    public ModelRenderer light11;
-    public ModelRenderer light12;
-    public ModelRenderer light13;
-    public ModelRenderer light14;
-    public ModelRenderer light15;
-    public ModelRenderer light16;
-    public ModelRenderer base;
-    public ModelRenderer frameUpper;
-    public ModelRenderer frameLower;
-    public ModelRenderer borderUpper;
-    public ModelRenderer borderLower;
-    public ModelRenderer borderRight;
-    public ModelRenderer borderLeft;
-    public ModelRenderer glowButton01;
-    public ModelRenderer glowButton02;
-    public ModelRenderer glowButton03;
-    public ModelRenderer glowButton04;
-    public ModelRenderer glowButton05;
-    public ModelRenderer glowButton06;
+    public final ModelRenderer monitor;
+    public final ModelRenderer light01;
+    public final ModelRenderer light02;
+    public final ModelRenderer light03;
+    public final ModelRenderer light04;
+    public final ModelRenderer light05;
+    public final ModelRenderer light06;
+    public final ModelRenderer light07;
+    public final ModelRenderer light08;
+    public final ModelRenderer light10;
+    public final ModelRenderer light09;
+    public final ModelRenderer light11;
+    public final ModelRenderer light12;
+    public final ModelRenderer light13;
+    public final ModelRenderer light14;
+    public final ModelRenderer light15;
+    public final ModelRenderer light16;
+    public final ModelRenderer base;
+    public final ModelRenderer frameUpper;
+    public final ModelRenderer frameLower;
+    public final ModelRenderer borderUpper;
+    public final ModelRenderer borderLower;
+    public final ModelRenderer borderRight;
+    public final ModelRenderer borderLeft;
+    public final ModelRenderer glowButton01;
+    public final ModelRenderer glowButton02;
+    public final ModelRenderer glowButton03;
+    public final ModelRenderer glowButton04;
+    public final ModelRenderer glowButton05;
+    public final ModelRenderer glowButton06;
 
     public ModelRackModule2()
     {

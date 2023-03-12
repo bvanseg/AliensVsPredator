@@ -10,20 +10,20 @@ import org.alien.common.entity.living.vardic.EntityOctohugger;
 
 public class ModelOctohugger extends Model<EntityOctohugger>
 {
-    public ModelRenderer body;
-    public ModelRenderer fFlap1;
-    public ModelRenderer lFlap1;
-    public ModelRenderer bFlap1;
-    public ModelRenderer rFlap1;
-    public ModelRenderer head2;
-    public ModelRenderer body2;
-    public ModelRenderer head1;
-    public ModelRenderer head3;
-    public ModelRenderer head4;
-    public ModelRenderer fFlap2;
-    public ModelRenderer lFlap2;
-    public ModelRenderer bFlap2;
-    public ModelRenderer rFlap2;
+    public final ModelRenderer body;
+    public final ModelRenderer fFlap1;
+    public final ModelRenderer lFlap1;
+    public final ModelRenderer bFlap1;
+    public final ModelRenderer rFlap1;
+    public final ModelRenderer head2;
+    public final ModelRenderer body2;
+    public final ModelRenderer head1;
+    public final ModelRenderer head3;
+    public final ModelRenderer head4;
+    public final ModelRenderer fFlap2;
+    public final ModelRenderer lFlap2;
+    public final ModelRenderer bFlap2;
+    public final ModelRenderer rFlap2;
 
     public ModelOctohugger()
     {

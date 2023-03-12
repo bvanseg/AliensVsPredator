@@ -8,23 +8,23 @@ public class ModelSniper extends Model<Object> implements IFirearmModel
 {
     private boolean firstPerson;
 
-    public ModelRenderer barrel;
-    public ModelRenderer clipHolder1;
-    public ModelRenderer clipHolder2;
-    public ModelRenderer base1;
-    public ModelRenderer base2;
-    public ModelRenderer clip;
-    public ModelRenderer handle;
-    public ModelRenderer triggerGuard;
-    public ModelRenderer trigger;
-    public ModelRenderer stock1;
-    public ModelRenderer stock2;
-    public ModelRenderer stockEnd;
-    public ModelRenderer barrelSupport;
-    public ModelRenderer scopeSupport;
-    public ModelRenderer scopeBase;
-    public ModelRenderer scope;
-    public ModelRenderer scopeFirstPerson;
+    public final ModelRenderer barrel;
+    public final ModelRenderer clipHolder1;
+    public final ModelRenderer clipHolder2;
+    public final ModelRenderer base1;
+    public final ModelRenderer base2;
+    public final ModelRenderer clip;
+    public final ModelRenderer handle;
+    public final ModelRenderer triggerGuard;
+    public final ModelRenderer trigger;
+    public final ModelRenderer stock1;
+    public final ModelRenderer stock2;
+    public final ModelRenderer stockEnd;
+    public final ModelRenderer barrelSupport;
+    public final ModelRenderer scopeSupport;
+    public final ModelRenderer scopeBase;
+    public final ModelRenderer scope;
+    public final ModelRenderer scopeFirstPerson;
 
     public ModelSniper()
     {

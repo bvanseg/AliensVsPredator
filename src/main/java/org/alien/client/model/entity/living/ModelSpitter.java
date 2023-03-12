@@ -8,7 +8,7 @@ import org.alien.common.entity.living.xenomorph.EntitySpitter;
 
 public class ModelSpitter extends Model<EntitySpitter>
 {
-    public ModelRenderer chest, abdomen, rThigh, lThigh, lShin1, rShin1, lShin2, rShin2, lFoot, rFoot, lArm1, rArm1, lClaw1, rArm2, neck, headSpine1, rHead, jaw, jaw2, headSpine2, lArm2, rClaw1, lClaw2, rClaw2, spine1, spine2, spine3, tail1, tail2, tailStabber, tail3, tail4, lHead, spine4, spine5, spine6, spine7, spine8, spine9, spine10, spine11, tail5, spine12, part1, part2, part3, part4, headHornLeft, headPouches, headTop, headBase, headHornRight;
+    public final ModelRenderer chest, abdomen, rThigh, lThigh, lShin1, rShin1, lShin2, rShin2, lFoot, rFoot, lArm1, rArm1, lClaw1, rArm2, neck, headSpine1, rHead, jaw, jaw2, headSpine2, lArm2, rClaw1, lClaw2, rClaw2, spine1, spine2, spine3, tail1, tail2, tailStabber, tail3, tail4, lHead, spine4, spine5, spine6, spine7, spine8, spine9, spine10, spine11, tail5, spine12, part1, part2, part3, part4, headHornLeft, headPouches, headTop, headBase, headHornRight;
 
     public ModelSpitter()
     {

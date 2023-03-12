@@ -9,7 +9,7 @@ import org.alien.common.entity.living.xenomorph.EntityChestburster;
 
 public class ModelChestburster extends Model<EntityChestburster>
 {
-    public ModelRenderer body1, body2, body3, body4, body5, body7, mouth, body8, body9, body10, body11, body12, body13, body14, body15, body16, tail1, tail2, tail3, tail4, tail5, tail6, tail7, body17;
+    public final ModelRenderer body1, body2, body3, body4, body5, body7, mouth, body8, body9, body10, body11, body12, body13, body14, body15, body16, tail1, tail2, tail3, tail4, tail5, tail6, tail7, body17;
 
     public ModelChestburster()
     {

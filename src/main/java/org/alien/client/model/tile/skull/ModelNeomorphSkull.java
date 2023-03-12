@@ -6,26 +6,26 @@ import org.avp.common.tile.TileEntitySkull;
 
 public class ModelNeomorphSkull extends Model<TileEntitySkull>
 {
-    public ModelRenderer head;
-    public ModelRenderer muzzle01;
-    public ModelRenderer jawLower;
-    public ModelRenderer head2;
-    public ModelRenderer headLower01;
-    public ModelRenderer face01;
-    public ModelRenderer muzzle03;
-    public ModelRenderer jawUpper01;
-    public ModelRenderer face02;
-    public ModelRenderer muzzle04;
-    public ModelRenderer jawUpperInner1;
-    public ModelRenderer jawUpper02;
-    public ModelRenderer JawUpperInner02;
-    public ModelRenderer jawLowerInner;
-    public ModelRenderer jawLowerInner02;
-    public ModelRenderer head5;
-    public ModelRenderer head3;
-    public ModelRenderer head6;
-    public ModelRenderer head4;
-    public ModelRenderer headLower02;
+    public final ModelRenderer head;
+    public final ModelRenderer muzzle01;
+    public final ModelRenderer jawLower;
+    public final ModelRenderer head2;
+    public final ModelRenderer headLower01;
+    public final ModelRenderer face01;
+    public final ModelRenderer muzzle03;
+    public final ModelRenderer jawUpper01;
+    public final ModelRenderer face02;
+    public final ModelRenderer muzzle04;
+    public final ModelRenderer jawUpperInner1;
+    public final ModelRenderer jawUpper02;
+    public final ModelRenderer JawUpperInner02;
+    public final ModelRenderer jawLowerInner;
+    public final ModelRenderer jawLowerInner02;
+    public final ModelRenderer head5;
+    public final ModelRenderer head3;
+    public final ModelRenderer head6;
+    public final ModelRenderer head4;
+    public final ModelRenderer headLower02;
 
     public ModelNeomorphSkull()
     {

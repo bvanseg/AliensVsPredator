@@ -6,21 +6,21 @@ import org.avp.common.tile.TileEntitySkull;
 
 public class ModelQueenSkull extends Model<TileEntitySkull>
 {
-    public ModelRenderer head0;
-    public ModelRenderer head1;
-    public ModelRenderer Jaw1;
-    public ModelRenderer headFinL0;
-    public ModelRenderer headFinR0;
-    public ModelRenderer headBase0;
-    public ModelRenderer headWebL;
-    public ModelRenderer headWebR;
-    public ModelRenderer headFinL1;
-    public ModelRenderer headFinR1;
-    public ModelRenderer headFinL2;
-    public ModelRenderer headFinR2;
-    public ModelRenderer headSpinesM;
-    public ModelRenderer headSpinesL;
-    public ModelRenderer headSpinesR;
+    public final ModelRenderer head0;
+    public final ModelRenderer head1;
+    public final ModelRenderer Jaw1;
+    public final ModelRenderer headFinL0;
+    public final ModelRenderer headFinR0;
+    public final ModelRenderer headBase0;
+    public final ModelRenderer headWebL;
+    public final ModelRenderer headWebR;
+    public final ModelRenderer headFinL1;
+    public final ModelRenderer headFinR1;
+    public final ModelRenderer headFinL2;
+    public final ModelRenderer headFinR2;
+    public final ModelRenderer headSpinesM;
+    public final ModelRenderer headSpinesL;
+    public final ModelRenderer headSpinesR;
 
     public ModelQueenSkull()
     {

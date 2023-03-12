@@ -6,15 +6,15 @@ import net.minecraft.client.model.ModelRenderer;
 //TODO: Use a better type than Object for Model.
 public class ModelRackModule5 extends Model<Object>
 {
-    public ModelRenderer faceplate;
-    public ModelRenderer light01;
-    public ModelRenderer light02;
-    public ModelRenderer light03;
-    public ModelRenderer chassis;
-    public ModelRenderer dial1;
-    public ModelRenderer dial2;
-    public ModelRenderer lhandle;
-    public ModelRenderer rhandle;
+    public final ModelRenderer faceplate;
+    public final ModelRenderer light01;
+    public final ModelRenderer light02;
+    public final ModelRenderer light03;
+    public final ModelRenderer chassis;
+    public final ModelRenderer dial1;
+    public final ModelRenderer dial2;
+    public final ModelRenderer lhandle;
+    public final ModelRenderer rhandle;
 
     public ModelRackModule5()
     {

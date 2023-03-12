@@ -6,22 +6,22 @@ import org.avp.common.tile.TileEntityMedpod;
 
 public class ModelMedpod extends Model<TileEntityMedpod>
 {
-    public ModelRenderer base;
-    public ModelRenderer baseRod1;
-    public ModelRenderer baseRod2;
-    public ModelRenderer bedBack;
-    public ModelRenderer bedHead;
-    public ModelRenderer rGlassBack;
-    public ModelRenderer lGlassBack;
-    public ModelRenderer glassTop;
-    public ModelRenderer footrest;
-    public ModelRenderer headrest;
-    public ModelRenderer lLoop1;
-    public ModelRenderer lLoop2;
-    public ModelRenderer loopTop;
-    public ModelRenderer rLoop2;
-    public ModelRenderer rLoop1;
-    public ModelRenderer orb;
+    public final ModelRenderer base;
+    public final ModelRenderer baseRod1;
+    public final ModelRenderer baseRod2;
+    public final ModelRenderer bedBack;
+    public final ModelRenderer bedHead;
+    public final ModelRenderer rGlassBack;
+    public final ModelRenderer lGlassBack;
+    public final ModelRenderer glassTop;
+    public final ModelRenderer footrest;
+    public final ModelRenderer headrest;
+    public final ModelRenderer lLoop1;
+    public final ModelRenderer lLoop2;
+    public final ModelRenderer loopTop;
+    public final ModelRenderer rLoop2;
+    public final ModelRenderer rLoop1;
+    public final ModelRenderer orb;
 
     public ModelMedpod()
     {

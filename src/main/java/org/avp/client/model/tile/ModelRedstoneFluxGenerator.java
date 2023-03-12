@@ -10,15 +10,15 @@ import org.avp.common.tile.TileEntityRedstoneFluxGenerator;
  */
 public class ModelRedstoneFluxGenerator extends Model<TileEntityRedstoneFluxGenerator>
 {
-    public ModelRenderer base;
-    public ModelRenderer fluxLightOutput;
-    public ModelRenderer fluxLightInput;
-    public ModelRenderer electicityNode;
-    public ModelRenderer fluxNode;
-    public ModelRenderer coil;
-    public ModelRenderer fluxFaceplate;
-    public ModelRenderer electricityLightInput;
-    public ModelRenderer electricityLightOutput;
+    public final ModelRenderer base;
+    public final ModelRenderer fluxLightOutput;
+    public final ModelRenderer fluxLightInput;
+    public final ModelRenderer electicityNode;
+    public final ModelRenderer fluxNode;
+    public final ModelRenderer coil;
+    public final ModelRenderer fluxFaceplate;
+    public final ModelRenderer electricityLightInput;
+    public final ModelRenderer electricityLightOutput;
 
     public ModelRedstoneFluxGenerator()
     {

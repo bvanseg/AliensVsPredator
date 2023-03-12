@@ -8,29 +8,29 @@ import org.avp.common.tile.TileEntityRepulsionGenerator;
 
 public class ModelRepulsionGenerator extends Model<TileEntityRepulsionGenerator>
 {
-    public ModelRenderer side1;
-    public ModelRenderer side3;
-    public ModelRenderer side5;
-    public ModelRenderer side7;
-    public ModelRenderer side6;
-    public ModelRenderer side8;
-    public ModelRenderer side2;
-    public ModelRenderer side3_1;
-    public ModelRenderer rotor;
-    public ModelRenderer magnetbase;
-    public ModelRenderer wireframe3;
-    public ModelRenderer wireframe2;
-    public ModelRenderer wireframe1;
-    public ModelRenderer top;
-    public ModelRenderer base;
-    public ModelRenderer magnet1;
-    public ModelRenderer magnet2;
-    public ModelRenderer magnet3;
-    public ModelRenderer magnet4;
-    public ModelRenderer magnet5;
-    public ModelRenderer magnet6;
-    public ModelRenderer magnet7;
-    public ModelRenderer magnet8;
+    public final ModelRenderer side1;
+    public final ModelRenderer side3;
+    public final ModelRenderer side5;
+    public final ModelRenderer side7;
+    public final ModelRenderer side6;
+    public final ModelRenderer side8;
+    public final ModelRenderer side2;
+    public final ModelRenderer side3_1;
+    public final ModelRenderer rotor;
+    public final ModelRenderer magnetbase;
+    public final ModelRenderer wireframe3;
+    public final ModelRenderer wireframe2;
+    public final ModelRenderer wireframe1;
+    public final ModelRenderer top;
+    public final ModelRenderer base;
+    public final ModelRenderer magnet1;
+    public final ModelRenderer magnet2;
+    public final ModelRenderer magnet3;
+    public final ModelRenderer magnet4;
+    public final ModelRenderer magnet5;
+    public final ModelRenderer magnet6;
+    public final ModelRenderer magnet7;
+    public final ModelRenderer magnet8;
 
     public ModelRepulsionGenerator()
     {

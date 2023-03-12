@@ -6,23 +6,23 @@ import org.avp.common.api.client.render.IFirearmModel;
 
 public class ModelAK47 extends Model<Object> implements IFirearmModel
 {
-    public ModelRenderer handle;
-    public ModelRenderer clip;
-    public ModelRenderer barrel;
-    public ModelRenderer sight1;
-    public ModelRenderer sightBase;
-    public ModelRenderer rbody1;
-    public ModelRenderer lbody1;
-    public ModelRenderer stockEnd;
-    public ModelRenderer barrelBase;
-    public ModelRenderer rBarrelGrip;
-    public ModelRenderer lBarrelGrip;
-    public ModelRenderer stockAngle;
-    public ModelRenderer trigger;
-    public ModelRenderer triggerGuard;
-    public ModelRenderer sightBase1;
-    public ModelRenderer sight2;
-    public ModelRenderer stockBase;
+    public final ModelRenderer handle;
+    public final ModelRenderer clip;
+    public final ModelRenderer barrel;
+    public final ModelRenderer sight1;
+    public final ModelRenderer sightBase;
+    public final ModelRenderer rbody1;
+    public final ModelRenderer lbody1;
+    public final ModelRenderer stockEnd;
+    public final ModelRenderer barrelBase;
+    public final ModelRenderer rBarrelGrip;
+    public final ModelRenderer lBarrelGrip;
+    public final ModelRenderer stockAngle;
+    public final ModelRenderer trigger;
+    public final ModelRenderer triggerGuard;
+    public final ModelRenderer sightBase1;
+    public final ModelRenderer sight2;
+    public final ModelRenderer stockBase;
 
     public ModelAK47()
     {

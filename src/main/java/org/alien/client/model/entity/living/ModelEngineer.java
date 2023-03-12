@@ -10,31 +10,31 @@ import org.alien.common.entity.living.engineer.EntityEngineer;
 
 public class ModelEngineer extends Model<EntityEngineer>
 {
-    public ModelRenderer chest;
-    public ModelRenderer stomach;
-    public ModelRenderer lThigh;
-    public ModelRenderer rThigh;
-    public ModelRenderer lShin;
-    public ModelRenderer rShin;
-    public ModelRenderer lFoot;
-    public ModelRenderer rFoot;
-    public ModelRenderer lArmUpper;
-    public ModelRenderer lArmLower;
-    public ModelRenderer rArmUpper;
-    public ModelRenderer lArmLower_1;
-    public ModelRenderer neck;
-    public ModelRenderer head1;
-    public ModelRenderer head2;
-    public ModelRenderer nozzle1;
-    public ModelRenderer nozzle2;
-    public ModelRenderer nozzle3a;
-    public ModelRenderer nozzle3b;
-    public ModelRenderer nozzle3c;
-    public ModelRenderer nozzle3d;
-    public ModelRenderer hose;
-    public ModelRenderer rJaw;
-    public ModelRenderer lJaw;
-    public ModelRenderer sexyFace;
+    public final ModelRenderer chest;
+    public final ModelRenderer stomach;
+    public final ModelRenderer lThigh;
+    public final ModelRenderer rThigh;
+    public final ModelRenderer lShin;
+    public final ModelRenderer rShin;
+    public final ModelRenderer lFoot;
+    public final ModelRenderer rFoot;
+    public final ModelRenderer lArmUpper;
+    public final ModelRenderer lArmLower;
+    public final ModelRenderer rArmUpper;
+    public final ModelRenderer lArmLower_1;
+    public final ModelRenderer neck;
+    public final ModelRenderer head1;
+    public final ModelRenderer head2;
+    public final ModelRenderer nozzle1;
+    public final ModelRenderer nozzle2;
+    public final ModelRenderer nozzle3a;
+    public final ModelRenderer nozzle3b;
+    public final ModelRenderer nozzle3c;
+    public final ModelRenderer nozzle3d;
+    public final ModelRenderer hose;
+    public final ModelRenderer rJaw;
+    public final ModelRenderer lJaw;
+    public final ModelRenderer sexyFace;
 
     public ModelEngineer()
     {

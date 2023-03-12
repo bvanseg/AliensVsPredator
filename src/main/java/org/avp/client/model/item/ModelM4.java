@@ -6,22 +6,22 @@ import org.avp.common.api.client.render.IFirearmModel;
 
 public class ModelM4 extends Model<Object> implements IFirearmModel
 {
-    public ModelRenderer barrel;
-    public ModelRenderer clip;
-    public ModelRenderer stock1;
-    public ModelRenderer stock2;
-    public ModelRenderer stock3;
-    public ModelRenderer handle;
-    public ModelRenderer mainBody1;
-    public ModelRenderer mainBody2;
-    public ModelRenderer mainBody3;
-    public ModelRenderer triggerGuard;
-    public ModelRenderer barrelGuard;
-    public ModelRenderer sightBase1;
-    public ModelRenderer sightBase2;
-    public ModelRenderer sightBase3;
-    public ModelRenderer sight1;
-    public ModelRenderer sight2;
+    public final ModelRenderer barrel;
+    public final ModelRenderer clip;
+    public final ModelRenderer stock1;
+    public final ModelRenderer stock2;
+    public final ModelRenderer stock3;
+    public final ModelRenderer handle;
+    public final ModelRenderer mainBody1;
+    public final ModelRenderer mainBody2;
+    public final ModelRenderer mainBody3;
+    public final ModelRenderer triggerGuard;
+    public final ModelRenderer barrelGuard;
+    public final ModelRenderer sightBase1;
+    public final ModelRenderer sightBase2;
+    public final ModelRenderer sightBase3;
+    public final ModelRenderer sight1;
+    public final ModelRenderer sight2;
 
     public ModelM4()
     {

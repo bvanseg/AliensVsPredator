@@ -9,33 +9,33 @@ import net.minecraft.client.renderer.GlStateManager;
  */
 public class ModelStunBaton extends Model<Object>
 {
-    public ModelRenderer centralRod;
-    public ModelRenderer grip;
-    public ModelRenderer rodTip;
-    public ModelRenderer rodCone01;
-    public ModelRenderer rodCone02;
-    public ModelRenderer rodCone03;
-    public ModelRenderer coilBase;
-    public ModelRenderer handGuard;
-    public ModelRenderer handGuardU;
-    public ModelRenderer lateralRod010;
-    public ModelRenderer lateralRod020;
-    public ModelRenderer coil01;
-    public ModelRenderer coil02;
-    public ModelRenderer coil03;
-    public ModelRenderer coil04;
-    public ModelRenderer coil05;
-    public ModelRenderer coil06;
-    public ModelRenderer coil07;
-    public ModelRenderer coil08;
-    public ModelRenderer handGuardLower;
-    public ModelRenderer handGuardLowerU;
-    public ModelRenderer lateralRod01A;
-    public ModelRenderer lateralRod01B;
-    public ModelRenderer lateralRod01C;
-    public ModelRenderer lateralRod02A;
-    public ModelRenderer lateralRod02B;
-    public ModelRenderer lateralRod02C;
+    public final ModelRenderer centralRod;
+    public final ModelRenderer grip;
+    public final ModelRenderer rodTip;
+    public final ModelRenderer rodCone01;
+    public final ModelRenderer rodCone02;
+    public final ModelRenderer rodCone03;
+    public final ModelRenderer coilBase;
+    public final ModelRenderer handGuard;
+    public final ModelRenderer handGuardU;
+    public final ModelRenderer lateralRod010;
+    public final ModelRenderer lateralRod020;
+    public final ModelRenderer coil01;
+    public final ModelRenderer coil02;
+    public final ModelRenderer coil03;
+    public final ModelRenderer coil04;
+    public final ModelRenderer coil05;
+    public final ModelRenderer coil06;
+    public final ModelRenderer coil07;
+    public final ModelRenderer coil08;
+    public final ModelRenderer handGuardLower;
+    public final ModelRenderer handGuardLowerU;
+    public final ModelRenderer lateralRod01A;
+    public final ModelRenderer lateralRod01B;
+    public final ModelRenderer lateralRod01C;
+    public final ModelRenderer lateralRod02A;
+    public final ModelRenderer lateralRod02B;
+    public final ModelRenderer lateralRod02C;
 
     // TODO: Something appears to be goin wrong with the renderin of this model,
     // duplicates one of the handles

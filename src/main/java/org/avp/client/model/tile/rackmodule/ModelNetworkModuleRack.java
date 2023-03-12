@@ -7,26 +7,26 @@ import org.avp.common.tile.TileEntityNetworkRack;
 
 public class ModelNetworkModuleRack extends Model<TileEntityNetworkRack>
 {
-    public ModelRenderer frame1;
-    public ModelRenderer frame2;
-    public ModelRenderer frame3;
-    public ModelRenderer frame4;
-    public ModelRenderer rLattice;
-    public ModelRenderer lLattice;
-    public ModelRenderer upperFrameF;
-    public ModelRenderer upperFrameB;
-    public ModelRenderer upperFrameR;
-    public ModelRenderer upperFrameL;
-    public ModelRenderer lowerFrameR;
-    public ModelRenderer LowerFrameL;
-    public ModelRenderer lowerFrameF;
-    public ModelRenderer lowerFrameB;
-    public ModelRenderer light1;
-    public ModelRenderer light2;
-    public ModelRenderer shelf1;
-    public ModelRenderer shelf2;
-    public ModelRenderer shelf3;
-    public ModelRenderer shelf4;
+    public final ModelRenderer frame1;
+    public final ModelRenderer frame2;
+    public final ModelRenderer frame3;
+    public final ModelRenderer frame4;
+    public final ModelRenderer rLattice;
+    public final ModelRenderer lLattice;
+    public final ModelRenderer upperFrameF;
+    public final ModelRenderer upperFrameB;
+    public final ModelRenderer upperFrameR;
+    public final ModelRenderer upperFrameL;
+    public final ModelRenderer lowerFrameR;
+    public final ModelRenderer LowerFrameL;
+    public final ModelRenderer lowerFrameF;
+    public final ModelRenderer lowerFrameB;
+    public final ModelRenderer light1;
+    public final ModelRenderer light2;
+    public final ModelRenderer shelf1;
+    public final ModelRenderer shelf2;
+    public final ModelRenderer shelf3;
+    public final ModelRenderer shelf4;
 
     public ModelNetworkModuleRack()
     {

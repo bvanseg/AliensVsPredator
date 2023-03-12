@@ -8,7 +8,7 @@ import org.alien.common.entity.living.xenomorph.EntityCrusher;
 
 public class ModelCrusher extends Model<EntityCrusher>
 {
-    public ModelRenderer sTorso, sTorso2, sRightThigh, sLeftThigh, sLeftShin, sRightShin, sLeftShin2, sRightShin2, sLeftFoot, sRightFoot, sLeftArm, sRightArm, sLeftClaw, sRightArm2, sNeck, sHead, sHead2, sJaw1, sLeftArm2, sRightClaw, sLeftClaw2, sRightClaw2, sVertibrae1, sTail1, sTail2, sTail3, sStabber, sTail4, sTail5, sVertibrae2, sSpike3, sSpike4, sSpike2, sSpike5, sHead4, crest0, crest1, crest2, crest3, crest4, crest5, sArmCrusher1, sArmCrusher;
+    public final ModelRenderer sTorso, sTorso2, sRightThigh, sLeftThigh, sLeftShin, sRightShin, sLeftShin2, sRightShin2, sLeftFoot, sRightFoot, sLeftArm, sRightArm, sLeftClaw, sRightArm2, sNeck, sHead, sHead2, sJaw1, sLeftArm2, sRightClaw, sLeftClaw2, sRightClaw2, sVertibrae1, sTail1, sTail2, sTail3, sStabber, sTail4, sTail5, sVertibrae2, sSpike3, sSpike4, sSpike2, sSpike5, sHead4, crest0, crest1, crest2, crest3, crest4, crest5, sArmCrusher1, sArmCrusher;
 
     public ModelCrusher()
     {

@@ -14,13 +14,13 @@ import org.avp.common.entity.living.EntityMarine;
 
 public class ModelMarine extends Model<EntityMarine>
 {
-    public ModelRenderer      bipedHead;
-    public ModelRenderer      bipedHeadwear;
-    public ModelRenderer      bipedBody;
-    public ModelRenderer      bipedRightArm;
-    public ModelRenderer      bipedLeftArm;
-    public ModelRenderer      bipedRightLeg;
-    public ModelRenderer      bipedLeftLeg;
+    public final ModelRenderer      bipedHead;
+    public final ModelRenderer      bipedHeadwear;
+    public final ModelRenderer      bipedBody;
+    public final ModelRenderer      bipedRightArm;
+    public final ModelRenderer      bipedLeftArm;
+    public final ModelRenderer      bipedRightLeg;
+    public final ModelRenderer      bipedLeftLeg;
     public ModelBiped.ArmPose leftArmPose;
     public ModelBiped.ArmPose rightArmPose;
     public boolean            isSneak;

@@ -6,28 +6,28 @@ import org.alien.common.entity.living.EntityDracoEgg;
 
 public class ModelDracoOvamorph extends Model<EntityDracoEgg>
 {
-    public ModelRenderer lFrontLobe2;
-    public ModelRenderer center;
-    public ModelRenderer lBackLobe2;
-    public ModelRenderer rBackLobe2;
-    public ModelRenderer base;
-    public ModelRenderer rFrontLobe2;
-    public ModelRenderer lFrontLobe2Child;
-    public ModelRenderer sideSpikes1;
-    public ModelRenderer sideSpikes2;
-    public ModelRenderer sideSpikes3;
-    public ModelRenderer sideSpikes4;
-    public ModelRenderer webbing1;
-    public ModelRenderer webbing2;
-    public ModelRenderer webbing3;
-    public ModelRenderer webbing4;
-    public ModelRenderer webbing1b;
-    public ModelRenderer webbing2b;
-    public ModelRenderer webbing3b;
-    public ModelRenderer webbing4b;
-    public ModelRenderer lBackLobe2Child;
-    public ModelRenderer rBackLobe2Child;
-    public ModelRenderer rFrontLobe2Child;
+    public final ModelRenderer lFrontLobe2;
+    public final ModelRenderer center;
+    public final ModelRenderer lBackLobe2;
+    public final ModelRenderer rBackLobe2;
+    public final ModelRenderer base;
+    public final ModelRenderer rFrontLobe2;
+    public final ModelRenderer lFrontLobe2Child;
+    public final ModelRenderer sideSpikes1;
+    public final ModelRenderer sideSpikes2;
+    public final ModelRenderer sideSpikes3;
+    public final ModelRenderer sideSpikes4;
+    public final ModelRenderer webbing1;
+    public final ModelRenderer webbing2;
+    public final ModelRenderer webbing3;
+    public final ModelRenderer webbing4;
+    public final ModelRenderer webbing1b;
+    public final ModelRenderer webbing2b;
+    public final ModelRenderer webbing3b;
+    public final ModelRenderer webbing4b;
+    public final ModelRenderer lBackLobe2Child;
+    public final ModelRenderer rBackLobe2Child;
+    public final ModelRenderer rFrontLobe2Child;
 
     public ModelDracoOvamorph()
     {

@@ -6,25 +6,25 @@ import org.avp.common.api.client.render.IFirearmModel;
 
 public class ModelM56SG extends Model<Object> implements IFirearmModel
 {
-    public ModelRenderer handleBase;
-    public ModelRenderer base;
-    public ModelRenderer ammoHolder;
-    public ModelRenderer handleWire;
-    public ModelRenderer autoTargetEye;
-    public ModelRenderer baseUnder;
-    public ModelRenderer topHandle;
-    public ModelRenderer topHandleBase;
-    public ModelRenderer barrelHolderBase;
-    public ModelRenderer barrelSupportLeft;
-    public ModelRenderer barrelSupportRight;
-    public ModelRenderer autoTargetControl;
-    public ModelRenderer barrel;
-    public ModelRenderer handle;
-    public ModelRenderer base2;
-    public ModelRenderer base3;
-    public ModelRenderer baseUnder2;
-    public ModelRenderer handleTop;
-    public ModelRenderer topHandleBase2;
+    public final ModelRenderer handleBase;
+    public final ModelRenderer base;
+    public final ModelRenderer ammoHolder;
+    public final ModelRenderer handleWire;
+    public final ModelRenderer autoTargetEye;
+    public final ModelRenderer baseUnder;
+    public final ModelRenderer topHandle;
+    public final ModelRenderer topHandleBase;
+    public final ModelRenderer barrelHolderBase;
+    public final ModelRenderer barrelSupportLeft;
+    public final ModelRenderer barrelSupportRight;
+    public final ModelRenderer autoTargetControl;
+    public final ModelRenderer barrel;
+    public final ModelRenderer handle;
+    public final ModelRenderer base2;
+    public final ModelRenderer base3;
+    public final ModelRenderer baseUnder2;
+    public final ModelRenderer handleTop;
+    public final ModelRenderer topHandleBase2;
 
     public ModelM56SG()
     {

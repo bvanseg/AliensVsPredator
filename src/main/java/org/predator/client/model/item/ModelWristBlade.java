@@ -5,20 +5,20 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelWristBlade extends Model<Object>
 {
-    public ModelRenderer bBase;
-    public ModelRenderer b1;
-    public ModelRenderer b2;
-    public ModelRenderer b3;
-    public ModelRenderer b4;
-    public ModelRenderer b5;
-    public ModelRenderer b6;
-    public ModelRenderer bladeLeft;
-    public ModelRenderer b7;
-    public ModelRenderer b8;
-    public ModelRenderer b9;
-    public ModelRenderer b10;
-    public ModelRenderer b11;
-    public ModelRenderer bladeRight;
+    public final ModelRenderer bBase;
+    public final ModelRenderer b1;
+    public final ModelRenderer b2;
+    public final ModelRenderer b3;
+    public final ModelRenderer b4;
+    public final ModelRenderer b5;
+    public final ModelRenderer b6;
+    public final ModelRenderer bladeLeft;
+    public final ModelRenderer b7;
+    public final ModelRenderer b8;
+    public final ModelRenderer b9;
+    public final ModelRenderer b10;
+    public final ModelRenderer b11;
+    public final ModelRenderer bladeRight;
 
     public ModelWristBlade()
     {

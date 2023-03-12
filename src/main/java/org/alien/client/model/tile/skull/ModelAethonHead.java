@@ -6,17 +6,17 @@ import org.avp.common.tile.TileEntitySkull;
 
 public class ModelAethonHead extends Model<TileEntitySkull>
 {
-    public ModelRenderer head;
-    public ModelRenderer beakMouthSlope;
-    public ModelRenderer headSlope;
-    public ModelRenderer beakLower;
-    public ModelRenderer beak01;
-    public ModelRenderer beak02;
-    public ModelRenderer beak03;
-    public ModelRenderer beak04;
-    public ModelRenderer beakLower02;
-    public ModelRenderer rbeakLower;
-    public ModelRenderer rbeakLower02;
+    public final ModelRenderer head;
+    public final ModelRenderer beakMouthSlope;
+    public final ModelRenderer headSlope;
+    public final ModelRenderer beakLower;
+    public final ModelRenderer beak01;
+    public final ModelRenderer beak02;
+    public final ModelRenderer beak03;
+    public final ModelRenderer beak04;
+    public final ModelRenderer beakLower02;
+    public final ModelRenderer rbeakLower;
+    public final ModelRenderer rbeakLower02;
 
     public ModelAethonHead()
     {

@@ -7,11 +7,11 @@ import org.avp.common.tile.TileEntityCCFLTube;
 
 public class ModelCCFL extends Model<TileEntityCCFLTube>
 {
-    public ModelRenderer middleRod;
-    public ModelRenderer lightAura;
-    public ModelRenderer lightTube;
-    public ModelRenderer lCap;
-    public ModelRenderer rCap;
+    public final ModelRenderer middleRod;
+    public final ModelRenderer lightAura;
+    public final ModelRenderer lightTube;
+    public final ModelRenderer lCap;
+    public final ModelRenderer rCap;
 
     public ModelCCFL()
     {

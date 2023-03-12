@@ -8,16 +8,16 @@ import net.minecraft.util.math.MathHelper;
 
 public class ModelPlasmaCannon extends Model<Object>
 {
-    public ModelRenderer supportBar;
-    public ModelRenderer swivelHinge;
-    public ModelRenderer supportBarTop;
-    public ModelRenderer top;
-    public ModelRenderer lTop;
-    public ModelRenderer rTop;
-    public ModelRenderer lBottom;
-    public ModelRenderer rBottom;
-    public ModelRenderer bottom;
-    public ModelRenderer barrel;
+    public final ModelRenderer supportBar;
+    public final ModelRenderer swivelHinge;
+    public final ModelRenderer supportBarTop;
+    public final ModelRenderer top;
+    public final ModelRenderer lTop;
+    public final ModelRenderer rTop;
+    public final ModelRenderer lBottom;
+    public final ModelRenderer rBottom;
+    public final ModelRenderer bottom;
+    public final ModelRenderer barrel;
 
     public ModelPlasmaCannon()
     {

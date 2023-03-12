@@ -5,16 +5,16 @@ import net.minecraft.client.model.ModelRenderer;
 
 public class ModelSupplyChute extends Model<Object>
 {
-    public ModelRenderer casing;
-    public ModelRenderer lid;
-    public ModelRenderer rHinge;
-    public ModelRenderer lHinge;
-    public ModelRenderer wire1;
-    public ModelRenderer wire2;
-    public ModelRenderer wire3;
-    public ModelRenderer wire4;
-    public ModelRenderer chute;
-    public ModelRenderer chuteTop;
+    public final ModelRenderer casing;
+    public final ModelRenderer lid;
+    public final ModelRenderer rHinge;
+    public final ModelRenderer lHinge;
+    public final ModelRenderer wire1;
+    public final ModelRenderer wire2;
+    public final ModelRenderer wire3;
+    public final ModelRenderer wire4;
+    public final ModelRenderer chute;
+    public final ModelRenderer chuteTop;
 
     public ModelSupplyChute()
     {

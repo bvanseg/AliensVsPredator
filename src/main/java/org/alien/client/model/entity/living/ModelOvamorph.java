@@ -9,16 +9,16 @@ import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 
 public class ModelOvamorph extends Model<EntityOvamorph>
 {
-    public ModelRenderer base;
-    public ModelRenderer center;
-    public ModelRenderer lFrontLobe2;
-    public ModelRenderer rFrontLobe2;
-    public ModelRenderer rBackLobe2;
-    public ModelRenderer lBackLobe2;
-    public ModelRenderer lFrontLobe;
-    public ModelRenderer rFrontLobe;
-    public ModelRenderer rBackLobe;
-    public ModelRenderer lBackLobe;
+    public final ModelRenderer base;
+    public final ModelRenderer center;
+    public final ModelRenderer lFrontLobe2;
+    public final ModelRenderer rFrontLobe2;
+    public final ModelRenderer rBackLobe2;
+    public final ModelRenderer lBackLobe2;
+    public final ModelRenderer lFrontLobe;
+    public final ModelRenderer rFrontLobe;
+    public final ModelRenderer rBackLobe;
+    public final ModelRenderer lBackLobe;
 
     public ModelOvamorph()
     {

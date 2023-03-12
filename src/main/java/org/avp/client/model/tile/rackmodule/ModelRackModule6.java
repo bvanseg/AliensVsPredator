@@ -6,16 +6,16 @@ import net.minecraft.client.model.ModelRenderer;
 //TODO: Use a better type than Object for Model.
 public class ModelRackModule6 extends Model<Object>
 {
-    public ModelRenderer frame;
-    public ModelRenderer base;
-    public ModelRenderer plate;
-    public ModelRenderer light01;
-    public ModelRenderer light02;
-    public ModelRenderer light03;
-    public ModelRenderer light04;
-    public ModelRenderer light05;
-    public ModelRenderer light06;
-    public ModelRenderer toggle;
+    public final ModelRenderer frame;
+    public final ModelRenderer base;
+    public final ModelRenderer plate;
+    public final ModelRenderer light01;
+    public final ModelRenderer light02;
+    public final ModelRenderer light03;
+    public final ModelRenderer light04;
+    public final ModelRenderer light05;
+    public final ModelRenderer light06;
+    public final ModelRenderer toggle;
 
     public ModelRackModule6()
     {

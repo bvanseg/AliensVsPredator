@@ -6,16 +6,16 @@ import org.avp.common.api.client.render.IFirearmModel;
 
 public class Model88MOD4 extends Model<Object> implements IFirearmModel
 {
-    public ModelRenderer barrelRight;
-    public ModelRenderer underGrip;
-    public ModelRenderer barrelLeft;
-    public ModelRenderer rack;
-    public ModelRenderer trigger;
-    public ModelRenderer handleGrip;
-    public ModelRenderer butt1;
-    public ModelRenderer barrelNose;
-    public ModelRenderer barrelSupport;
-    public ModelRenderer gripSupport;
+    public final ModelRenderer barrelRight;
+    public final ModelRenderer underGrip;
+    public final ModelRenderer barrelLeft;
+    public final ModelRenderer rack;
+    public final ModelRenderer trigger;
+    public final ModelRenderer handleGrip;
+    public final ModelRenderer butt1;
+    public final ModelRenderer barrelNose;
+    public final ModelRenderer barrelSupport;
+    public final ModelRenderer gripSupport;
 
     public Model88MOD4()
     {

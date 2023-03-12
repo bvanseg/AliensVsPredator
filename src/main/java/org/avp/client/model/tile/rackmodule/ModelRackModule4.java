@@ -7,19 +7,19 @@ import net.minecraft.client.renderer.GlStateManager;
 //TODO: Use a better type than Object for Model.
 public class ModelRackModule4 extends Model<Object>
 {
-    public ModelRenderer chassis;
-    public ModelRenderer light01;
-    public ModelRenderer light02;
-    public ModelRenderer light03;
-    public ModelRenderer screen;
-    public ModelRenderer hinge;
-    public ModelRenderer plate;
-    public ModelRenderer faceplate;
-    public ModelRenderer light04;
-    public ModelRenderer light05;
-    public ModelRenderer light06;
-    public ModelRenderer light08;
-    public ModelRenderer light07;
+    public final ModelRenderer chassis;
+    public final ModelRenderer light01;
+    public final ModelRenderer light02;
+    public final ModelRenderer light03;
+    public final ModelRenderer screen;
+    public final ModelRenderer hinge;
+    public final ModelRenderer plate;
+    public final ModelRenderer faceplate;
+    public final ModelRenderer light04;
+    public final ModelRenderer light05;
+    public final ModelRenderer light06;
+    public final ModelRenderer light08;
+    public final ModelRenderer light07;
 
     public ModelRackModule4()
     {

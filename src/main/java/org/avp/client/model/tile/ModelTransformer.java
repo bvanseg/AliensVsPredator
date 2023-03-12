@@ -6,13 +6,13 @@ import org.avp.common.tile.TileEntityTransformer;
 
 public class ModelTransformer extends Model<TileEntityTransformer>
 {
-    public ModelRenderer powerOutput;
-    public ModelRenderer rightSupport;
-    public ModelRenderer leftSupport;
-    public ModelRenderer base;
-    public ModelRenderer topSupport;
-    public ModelRenderer core;
-    public ModelRenderer powerInput;
+    public final ModelRenderer powerOutput;
+    public final ModelRenderer rightSupport;
+    public final ModelRenderer leftSupport;
+    public final ModelRenderer base;
+    public final ModelRenderer topSupport;
+    public final ModelRenderer core;
+    public final ModelRenderer powerInput;
 
     public ModelTransformer()
     {

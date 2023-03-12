@@ -6,18 +6,18 @@ import org.avp.common.tile.TileEntitySkull;
 
 public class ModelGigerAlienHead extends Model<TileEntitySkull>
 {
-    public ModelRenderer head;
-    public ModelRenderer head2;
-    public ModelRenderer upperJaw;
-    public ModelRenderer lowerJaw1;
-    public ModelRenderer face;
-    public ModelRenderer innerJaw;
-    public ModelRenderer upperTeeth01;
-    public ModelRenderer upperTeeth02;
-    public ModelRenderer lowerJaw2;
-    public ModelRenderer lowerTeeth;
-    public ModelRenderer face2;
-    public ModelRenderer face3;
+    public final ModelRenderer head;
+    public final ModelRenderer head2;
+    public final ModelRenderer upperJaw;
+    public final ModelRenderer lowerJaw1;
+    public final ModelRenderer face;
+    public final ModelRenderer innerJaw;
+    public final ModelRenderer upperTeeth01;
+    public final ModelRenderer upperTeeth02;
+    public final ModelRenderer lowerJaw2;
+    public final ModelRenderer lowerTeeth;
+    public final ModelRenderer face2;
+    public final ModelRenderer face3;
 
     public ModelGigerAlienHead()
     {

@@ -9,35 +9,35 @@ import org.alien.common.entity.living.vardic.EntityDeaconShark;
 
 public class ModelDeaconShark extends Model<EntityDeaconShark>
 {
-    public ModelRenderer body1;
-    public ModelRenderer body2;
-    public ModelRenderer lFrontFin;
-    public ModelRenderer rFrontFin;
-    public ModelRenderer dorsalFin;
-    public ModelRenderer muzzle1;
-    public ModelRenderer body3;
-    public ModelRenderer rHindFin;
-    public ModelRenderer lHindFin;
-    public ModelRenderer tail1;
-    public ModelRenderer tail2;
-    public ModelRenderer rTailFin;
-    public ModelRenderer lTailFin;
-    public ModelRenderer tail3;
-    public ModelRenderer tail4;
-    public ModelRenderer tailSpines;
-    public ModelRenderer tailSpinesLower;
-    public ModelRenderer tailFin;
-    public ModelRenderer rHindFlipper;
-    public ModelRenderer lHindFlipper;
-    public ModelRenderer lFrontFlipper;
-    public ModelRenderer rFrontFlipper;
-    public ModelRenderer jawUpper2;
-    public ModelRenderer jawLower2;
-    public ModelRenderer muzzleSlope;
-    public ModelRenderer jawUpper;
-    public ModelRenderer jawInnerUpper;
-    public ModelRenderer jawLower;
-    public ModelRenderer jawInnerLower;
+    public final ModelRenderer body1;
+    public final ModelRenderer body2;
+    public final ModelRenderer lFrontFin;
+    public final ModelRenderer rFrontFin;
+    public final ModelRenderer dorsalFin;
+    public final ModelRenderer muzzle1;
+    public final ModelRenderer body3;
+    public final ModelRenderer rHindFin;
+    public final ModelRenderer lHindFin;
+    public final ModelRenderer tail1;
+    public final ModelRenderer tail2;
+    public final ModelRenderer rTailFin;
+    public final ModelRenderer lTailFin;
+    public final ModelRenderer tail3;
+    public final ModelRenderer tail4;
+    public final ModelRenderer tailSpines;
+    public final ModelRenderer tailSpinesLower;
+    public final ModelRenderer tailFin;
+    public final ModelRenderer rHindFlipper;
+    public final ModelRenderer lHindFlipper;
+    public final ModelRenderer lFrontFlipper;
+    public final ModelRenderer rFrontFlipper;
+    public final ModelRenderer jawUpper2;
+    public final ModelRenderer jawLower2;
+    public final ModelRenderer muzzleSlope;
+    public final ModelRenderer jawUpper;
+    public final ModelRenderer jawInnerUpper;
+    public final ModelRenderer jawLower;
+    public final ModelRenderer jawInnerLower;
 
     public ModelDeaconShark()
     {
