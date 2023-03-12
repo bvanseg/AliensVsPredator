@@ -4,7 +4,6 @@ import org.avp.entities.living.EntityMarine;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.SpeciesEngineer;
 import org.avp.item.ItemDisc;
-import org.avp.item.ItemFirearm;
 import org.avp.item.ItemPlasmaCannon;
 import org.avp.item.ItemShuriken;
 import org.avp.item.ItemWristbracer;
@@ -17,6 +16,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBow;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import org.avp.item.firearms.ItemFirearm;
 
 public class EntitySelectorYautja implements Predicate<EntityLivingBase>
 {
