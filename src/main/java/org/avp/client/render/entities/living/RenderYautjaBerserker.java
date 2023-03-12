@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
-import org.avp.client.model.entities.living.ModelYautja;
+import org.predator.client.model.entity.living.ModelYautja;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
 
 public class RenderYautjaBerserker extends RenderYautja<EntityYautjaBerserker, ModelYautja>

@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import org.avp.AVP;
 import org.avp.client.input.handlers.InputHandlerPlasmaCannon;
-import org.avp.client.model.entities.ModelPlasma;
+import org.predator.client.model.entity.ModelPlasma;
 import org.avp.client.model.items.ModelPlasmaCannon;
 import org.avp.common.api.client.render.IEventRenderer;
 import org.avp.common.api.client.render.IFirstPersonRenderer;

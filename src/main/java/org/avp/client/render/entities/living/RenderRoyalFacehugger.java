@@ -3,7 +3,7 @@ package org.avp.client.render.entities.living;
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
-import org.avp.client.model.entities.living.ModelRoyalFacehugger;
+import org.alien.client.model.entity.living.ModelRoyalFacehugger;
 import org.alien.common.entity.living.xenomorphs.parasites.EntityFacehugger;
 import org.alien.common.entity.living.xenomorphs.parasites.EntityRoyalFacehugger;
 

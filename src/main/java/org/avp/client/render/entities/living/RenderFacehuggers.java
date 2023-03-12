@@ -6,7 +6,7 @@ import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import org.avp.client.model.entities.living.ModelFacehugger;
+import org.alien.client.model.entity.living.ModelFacehugger;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entities.EntityMedpod;

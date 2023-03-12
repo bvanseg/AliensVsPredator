@@ -2,7 +2,7 @@ package org.avp.client.render.entities.living;
 
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
-import org.avp.client.model.entities.living.ModelBatXenomorph;
+import org.alien.client.model.entity.living.ModelBatXenomorph;
 import org.alien.common.entity.living.xenomorphs.EntityBatXeno;
 
 public class RenderBatXenomorph extends RenderXenomorph<EntityBatXeno, ModelBatXenomorph>

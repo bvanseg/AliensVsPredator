@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
-import org.avp.client.model.entities.living.ModelAethon;
+import org.alien.client.model.entity.living.ModelAethon;
 import org.alien.common.entity.living.EntityAethon;
 
 public class RenderAethon extends RenderLivingWrapper<EntityAethon, ModelAethon>

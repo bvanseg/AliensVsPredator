@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.model.entities.living.ModelYautja;
+import org.predator.client.model.entity.living.ModelYautja;
 import org.avp.client.render.entities.living.RenderYautja;
 import org.predator.common.entity.living.SpeciesYautja;
 import org.predator.common.entity.state.CloakState;

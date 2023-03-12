@@ -8,6 +8,8 @@ import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.client.util.models.wavefront.TriangulatedWavefrontModel;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.alien.client.model.entity.ModelSporePod;
+import org.alien.client.model.entity.living.*;
 import org.avp.AVP;
 import org.avp.client.model.entities.*;
 import org.avp.client.model.entities.living.*;
@@ -17,6 +19,10 @@ import org.avp.client.model.tile.plants.ModelGroundFern;
 import org.avp.client.model.tile.plants.ModelTreeFern;
 import org.avp.client.model.tile.rackmodules.*;
 import org.avp.client.model.tile.skulls.*;
+import org.predator.client.model.entity.ModelLaserMine;
+import org.predator.client.model.entity.ModelSpear;
+import org.predator.client.model.entity.living.ModelPredatorHound;
+import org.predator.client.model.entity.living.ModelYautja;
 
 @SideOnly(Side.CLIENT)
 public class Resources

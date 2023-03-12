@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
-import org.avp.client.model.entities.living.ModelPredalien;
+import org.alien.client.model.entity.living.ModelPredalien;
 import org.alien.common.entity.living.xenomorphs.EntityPredalien;
 
 public class RenderPredalien extends RenderLivingWrapper<EntityPredalien, ModelPredalien>

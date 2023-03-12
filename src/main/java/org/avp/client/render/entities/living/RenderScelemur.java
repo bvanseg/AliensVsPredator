@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.avp.AVP;
-import org.avp.client.model.entities.living.ModelVardaMonkey;
+import org.alien.client.model.entity.living.ModelVardaMonkey;
 import org.alien.common.entity.living.vardic.EntityScelemur;
 
 public class RenderScelemur extends RenderLivingWrapper<EntityScelemur, ModelVardaMonkey>
