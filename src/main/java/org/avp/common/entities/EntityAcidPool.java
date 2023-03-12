@@ -3,6 +3,7 @@ package org.avp.common.entities;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import org.alien.AlienBlocks;
 import org.avp.common.AVPBlocks;
 import org.avp.common.DamageSources;
 import org.avp.common.api.blocks.IAcidResistant;
@@ -44,26 +45,26 @@ public class EntityAcidPool extends EntityLiquidPool
         blockBlacklist.add(AVPBlocks.PLASTIC_CIRCLE);
         blockBlacklist.add(AVPBlocks.PLASTIC_TILE);
         blockBlacklist.add(AVPBlocks.PLASTIC_TRI);
-        blockBlacklist.add(AVPBlocks.ENGINEER_BRICK_0);
-        blockBlacklist.add(AVPBlocks.ENGINEER_BRICK_1);
-        blockBlacklist.add(AVPBlocks.ENGINEER_BRICK_2);
-        blockBlacklist.add(AVPBlocks.ENGINEER_BRICK_3);
-        blockBlacklist.add(AVPBlocks.ENGINEER_COLUMN_1);
-        blockBlacklist.add(AVPBlocks.ENGINEER_COLUMN_2);
-        blockBlacklist.add(AVPBlocks.ENGINEER_FLOOR);
-        blockBlacklist.add(AVPBlocks.ENGINEER_GRAVEL);
-        blockBlacklist.add(AVPBlocks.ENGINEER_MATERIAL_0);
-        blockBlacklist.add(AVPBlocks.ENGINEER_MATERIAL_1);
-        blockBlacklist.add(AVPBlocks.ENGINEER_MATERIAL_2);
-        blockBlacklist.add(AVPBlocks.ENGINEER_ROCK_0);
-        blockBlacklist.add(AVPBlocks.ENGINEER_ROCK_1);
-        blockBlacklist.add(AVPBlocks.ENGINEER_ROCK_2);
-        blockBlacklist.add(AVPBlocks.ENGINEER_ROCK_3);
-        blockBlacklist.add(AVPBlocks.ENGINEER_WALL_0);
-        blockBlacklist.add(AVPBlocks.ENGINEER_WALL_1);
-        blockBlacklist.add(AVPBlocks.ENGINEER_WALL_2);
-        blockBlacklist.add(AVPBlocks.ENGINEER_WALL_3);
-        blockBlacklist.add(AVPBlocks.ENGINEER_WALL_4);
+        blockBlacklist.add(AlienBlocks.ENGINEER_BRICK_0);
+        blockBlacklist.add(AlienBlocks.ENGINEER_BRICK_1);
+        blockBlacklist.add(AlienBlocks.ENGINEER_BRICK_2);
+        blockBlacklist.add(AlienBlocks.ENGINEER_BRICK_3);
+        blockBlacklist.add(AlienBlocks.ENGINEER_COLUMN_1);
+        blockBlacklist.add(AlienBlocks.ENGINEER_COLUMN_2);
+        blockBlacklist.add(AlienBlocks.ENGINEER_FLOOR);
+        blockBlacklist.add(AlienBlocks.ENGINEER_GRAVEL);
+        blockBlacklist.add(AlienBlocks.ENGINEER_MATERIAL_0);
+        blockBlacklist.add(AlienBlocks.ENGINEER_MATERIAL_1);
+        blockBlacklist.add(AlienBlocks.ENGINEER_MATERIAL_2);
+        blockBlacklist.add(AlienBlocks.ENGINEER_ROCK_0);
+        blockBlacklist.add(AlienBlocks.ENGINEER_ROCK_1);
+        blockBlacklist.add(AlienBlocks.ENGINEER_ROCK_2);
+        blockBlacklist.add(AlienBlocks.ENGINEER_ROCK_3);
+        blockBlacklist.add(AlienBlocks.ENGINEER_WALL_0);
+        blockBlacklist.add(AlienBlocks.ENGINEER_WALL_1);
+        blockBlacklist.add(AlienBlocks.ENGINEER_WALL_2);
+        blockBlacklist.add(AlienBlocks.ENGINEER_WALL_3);
+        blockBlacklist.add(AlienBlocks.ENGINEER_WALL_4);
     }
 
     public EntityAcidPool(World world)
@@ -104,7 +105,7 @@ public class EntityAcidPool extends EntityLiquidPool
 	private void breakBlock() {
 		if (this.world.getGameRules().getBoolean("mobGriefing"))
         {
-            if ((this.world.getDifficulty() == EnumDifficulty.NORMAL || this.world.getDifficulty() == EnumDifficulty.HARD) && this.getDistanceSq((int) this.posX, (int) this.posY + yOffset, (int) this.posZ) < 4.0D && block != Blocks.AIR && block != AVPBlocks.NATURAL_RESIN && block != Blocks.BEDROCK)
+            if ((this.world.getDifficulty() == EnumDifficulty.NORMAL || this.world.getDifficulty() == EnumDifficulty.HARD) && this.getDistanceSq((int) this.posX, (int) this.posY + yOffset, (int) this.posZ) < 4.0D && block != Blocks.AIR && block != AlienBlocks.NATURAL_RESIN && block != Blocks.BEDROCK)
             {
                 BlockPos pos = new BlockPos((int) Math.floor(this.posX), (int) this.posY - 1, (int) Math.floor(this.posZ));
                 IBlockState blockstate = this.world.getBlockState(pos);

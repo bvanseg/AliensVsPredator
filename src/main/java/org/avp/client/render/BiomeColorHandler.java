@@ -4,6 +4,7 @@ import java.util.Random;
 
 import javax.annotation.Nullable;
 
+import org.alien.AlienBlocks;
 import org.avp.AliensVsPredator;
 import org.avp.common.AVPBlocks;
 
@@ -47,9 +48,9 @@ public class BiomeColorHandler implements IInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
-        registerFoliageColorHandler(AVPBlocks.PARADISE_LEAVES_SMALL);
-        registerFoliageColorHandler(AVPBlocks.PARADISE_LEAVES_MED);
-        registerFoliageColorHandler(AVPBlocks.PARADISE_LEAVES_LARGE);
+        registerFoliageColorHandler(AlienBlocks.PARADISE_LEAVES_SMALL);
+        registerFoliageColorHandler(AlienBlocks.PARADISE_LEAVES_MED);
+        registerFoliageColorHandler(AlienBlocks.PARADISE_LEAVES_LARGE);
     }
 
     public static void registerFoliageColorHandler(Block block)

@@ -2,6 +2,7 @@ package org.avp.common.world.dimension.varda;
 
 import java.util.Random;
 
+import org.alien.AlienBlocks;
 import org.avp.common.AVPBlocks;
 import org.avp.AliensVsPredator;
 import org.avp.common.entities.living.vardic.EntityDeaconShark;
@@ -117,7 +118,7 @@ public class BiomeVarda extends BiomeGenLV
 
         private void generateForest(Biome biome, World world, Random seed)
         {
-            WorldGenerator saplings = new WorldGenSustainableOnDirt(AVPBlocks.GIGER_SAPLING.getDefaultState());
+            WorldGenerator saplings = new WorldGenSustainableOnDirt(AlienBlocks.GIGER_SAPLING.getDefaultState());
             WorldGenerator tree1 = new VardaTreeGenerator(true);
             WorldGenerator tree2 = new VardaTree2Generator(true);
             WorldGenerator tree3 = new VardaTree3Generator(true);

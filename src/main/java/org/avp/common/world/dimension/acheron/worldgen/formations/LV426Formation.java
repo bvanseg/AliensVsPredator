@@ -3,6 +3,7 @@ package org.avp.common.world.dimension.acheron.worldgen.formations;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.alien.AlienBlocks;
 import org.avp.common.AVPBlocks;
 import org.avp.common.world.worldgen.TerrainGenVariant;
 
@@ -21,7 +22,7 @@ public class LV426Formation extends TerrainGenVariant<LV426Formation>
     @Override
     public IBlockState getBlock()
     {
-        return AVPBlocks.LV_426_ROCK.getDefaultState();
+        return AlienBlocks.LV_426_ROCK.getDefaultState();
     }
 
     @Override

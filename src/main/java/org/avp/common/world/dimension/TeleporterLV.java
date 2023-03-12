@@ -2,6 +2,7 @@ package org.avp.common.world.dimension;
 
 import java.util.Random;
 
+import org.alien.AlienBlocks;
 import org.avp.common.AVPBlocks;
 import org.avp.AliensVsPredator;
 
@@ -29,7 +30,7 @@ public class TeleporterLV extends Teleporter
     @Override
     public void placeInPortal(Entity entity, float yaw)
     {
-        portal = this.worldServer.provider.getDimension() == AliensVsPredator.dimensions().VARDA.getId() ? AVPBlocks.PORTAL_VARDA : AVPBlocks.PORTAL_ACHERON;
+        portal = this.worldServer.provider.getDimension() == AliensVsPredator.dimensions().VARDA.getId() ? AlienBlocks.PORTAL_VARDA : AlienBlocks.PORTAL_ACHERON;
 
         if (this.worldServer.provider.getDimension() != 1)
         {
@@ -56,7 +57,7 @@ public class TeleporterLV extends Teleporter
                         int bX = x + i1 * b0 + l * b1;
                         int bY = y + j1;
                         int bZ = z + i1 * b1 - l * b0;
-                        this.worldServer.setBlockState(new BlockPos(bX, bY, bZ), AVPBlocks.ENGINEER_FLOOR.getDefaultState());
+                        this.worldServer.setBlockState(new BlockPos(bX, bY, bZ), AlienBlocks.ENGINEER_FLOOR.getDefaultState());
                     }
                 }
             }
@@ -257,7 +258,7 @@ public class TeleporterLV extends Teleporter
                         i4 = j2 + k3;
                         j4 = z + (j3 - 1) * l2 - y * l5;
                         flag = k3 < 0;
-                        this.worldServer.setBlockState(new BlockPos(l3, i4, j4), flag ? AVPBlocks.ENGINEER_FLOOR.getDefaultState() : Blocks.AIR.getDefaultState());
+                        this.worldServer.setBlockState(new BlockPos(l3, i4, j4), flag ? AlienBlocks.ENGINEER_FLOOR.getDefaultState() : Blocks.AIR.getDefaultState());
                     }
                 }
             }
@@ -273,7 +274,7 @@ public class TeleporterLV extends Teleporter
                     i4 = j2 + k3;
                     j4 = z + (j3 - 1) * l2;
                     flag = j3 == 0 || j3 == 3 || k3 == -1 || k3 == 3;
-                    this.worldServer.setBlockState(new BlockPos(l3, i4, j4), (flag ? AVPBlocks.ENGINEER_FLOOR.getDefaultState() : portal.getDefaultState()));
+                    this.worldServer.setBlockState(new BlockPos(l3, i4, j4), (flag ? AlienBlocks.ENGINEER_FLOOR.getDefaultState() : portal.getDefaultState()));
                 }
             }
 

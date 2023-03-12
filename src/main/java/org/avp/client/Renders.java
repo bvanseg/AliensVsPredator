@@ -2,6 +2,7 @@ package org.avp.client;
 
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 
+import org.alien.AlienBlocks;
 import org.avp.common.AVPBlocks;
 import org.avp.AliensVsPredator;
 import org.avp.common.ItemHandler;
@@ -299,6 +300,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lib.BlockRegistryUtil;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(Side.CLIENT)
@@ -334,7 +336,7 @@ public class Renders implements IInitEvent, IPreInitEvent
 
     private static void registerFluidModels()
     {
-        for (BlockFluidBase block : AVPBlocks.getFluids())
+        for (BlockFluidBase block : BlockRegistryUtil.getFluids())
         {
             final Item item = Item.getItemFromBlock(block);
             final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(AliensVsPredator.Properties.DOMAIN + block.getFluid().getName(), "fluid");
@@ -445,7 +447,7 @@ public class Renders implements IInitEvent, IPreInitEvent
             BlockSkull skull = (BlockSkull) block;
             RenderItemSkull render =  new RenderItemSkull(skull);
             
-            Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(skull), render);
+            Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(skull), render);
         } 
         else
         {
@@ -469,34 +471,34 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renders.registerSkullRenderer(AVPBlocks.BIOMASK_TRACKER);
         Renders.registerSkullRenderer(AVPBlocks.HEAD_AETHON);
         Renders.registerSkullRenderer(AVPBlocks.HEAD_GIGER_ALIEN);
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.TURRET), new RenderItemTurret());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.TERMINAL), new RenderItemWorkstation());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.STASIS_MECHANISM), new RenderItemStasisMechanism());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.CRYO_TUBE), new RenderItemCryostasisTube());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.REPULSION_GENERATOR), new RenderItemRepulsionGenerator());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.BLAST_DOOR), new RenderItemBlastDoor());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.LIGHT_PANEL), new RenderItemLightPanel());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.CCFL_TUBE), new RenderItemCCFLTube());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.TESLA_COIL), new RenderItemTeslaCoil());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.POWERLINE), new RenderItemPowerline());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.SOLAR_PANEL), new RenderItemSolarPanel());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.POWERCELL), new RenderItemPowercell());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.TRANSFORMER), new RenderItemTransformer());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.STEPDOWN_TRANSFORMER), new RenderItemTransformer());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.UNIVERSAL_GENERATOR), new RenderItemRedstoneFluxGenerator());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.AMPULE), new RenderItemAmpule());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.LOCKER), new RenderItemLocker());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.GUN_LOCKER), new RenderItemGunLocker());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.MEDPOD), new RenderItemMedpod());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.SATELLITE_DISH), new RenderItemSatelliteDish());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.SEVASTOPOL_BLAST_DOOR), new RenderItemSevastopolBlastdoor());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.TURRET), new RenderItemTurret());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.TERMINAL), new RenderItemWorkstation());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.STASIS_MECHANISM), new RenderItemStasisMechanism());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.CRYO_TUBE), new RenderItemCryostasisTube());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.REPULSION_GENERATOR), new RenderItemRepulsionGenerator());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.BLAST_DOOR), new RenderItemBlastDoor());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.LIGHT_PANEL), new RenderItemLightPanel());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.CCFL_TUBE), new RenderItemCCFLTube());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.TESLA_COIL), new RenderItemTeslaCoil());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.POWERLINE), new RenderItemPowerline());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.SOLAR_PANEL), new RenderItemSolarPanel());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.POWERCELL), new RenderItemPowercell());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.TRANSFORMER), new RenderItemTransformer());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.STEPDOWN_TRANSFORMER), new RenderItemTransformer());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.UNIVERSAL_GENERATOR), new RenderItemRedstoneFluxGenerator());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.AMPULE), new RenderItemAmpule());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.LOCKER), new RenderItemLocker());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.GUN_LOCKER), new RenderItemGunLocker());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.MEDPOD), new RenderItemMedpod());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.SATELLITE_DISH), new RenderItemSatelliteDish());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.SEVASTOPOL_BLAST_DOOR), new RenderItemSevastopolBlastdoor());
 
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.SUPPLY_CRATE), new RenderItemSupplyCrate());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.CRATE_MARINES), new RenderItemSupplyCrate());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.CRATE_SEEGSON), new RenderItemSupplyCrate());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.NETWORK_RACK), new RenderItemNetworkRack());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.GROUND_FERN), new RenderItemGroundFern());
-        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.TREE_FERN), new RenderItemTreeFern());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.SUPPLY_CRATE), new RenderItemSupplyCrate());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.CRATE_MARINES), new RenderItemSupplyCrate());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.CRATE_SEEGSON), new RenderItemSupplyCrate());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.NETWORK_RACK), new RenderItemNetworkRack());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AlienBlocks.GROUND_FERN), new RenderItemGroundFern());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AlienBlocks.TREE_FERN), new RenderItemTreeFern());
     }
 
     private void registerItemRenderers()

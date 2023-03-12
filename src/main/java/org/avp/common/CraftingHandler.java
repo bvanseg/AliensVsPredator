@@ -2,6 +2,7 @@ package org.avp.common;
 
 import java.util.Arrays;
 
+import org.alien.AlienBlocks;
 import org.apache.commons.lang3.StringUtils;
 import org.avp.AliensVsPredator;
 import org.avp.common.item.crafting.AssemblyManager;
@@ -61,7 +62,7 @@ public class CraftingHandler
         registerOreDict("cobalt", AVPBlocks.ORE_COBALT, "ore");
 
         
-        registerOreDict("wood", AVPBlocks.GIGER_LOG, "log");
+        registerOreDict("wood", AlienBlocks.GIGER_LOG, "log");
     }
     
     public static void registerOreDict(String name, Item item, String... prefixes)
@@ -111,7 +112,7 @@ public class CraftingHandler
         GameRegistry.addSmelting(AVPBlocks.ORE_BAUXITE, new ItemStack(ItemHandler.itemIngotAluminum), 1.0F);
         GameRegistry.addSmelting(AVPBlocks.ORE_SILICON, new ItemStack(ItemHandler.itemSilicon), 1.0F);
         GameRegistry.addSmelting(ItemHandler.itemRawTentacle, new ItemStack(ItemHandler.itemTriloBite), 2.0F);
-        GameRegistry.addSmelting(AVPBlocks.GIGER_LOG, CHARCOAL, 1.0F);
+        GameRegistry.addSmelting(AlienBlocks.GIGER_LOG, CHARCOAL, 1.0F);
     }
 
     private static void addSchematics()

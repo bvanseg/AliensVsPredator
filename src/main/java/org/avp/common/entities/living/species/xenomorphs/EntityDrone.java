@@ -1,19 +1,7 @@
 package org.avp.common.entities.living.species.xenomorphs;
 
-import java.util.ArrayList;
-
-import org.avp.common.AVPBlocks;
-import org.avp.common.ItemHandler;
-import org.avp.common.api.parasitoidic.IMaturable;
-import org.avp.common.block.BlockHiveResin;
-import org.avp.client.Sounds;
-import org.avp.common.entities.living.species.SpeciesXenomorph;
-import org.avp.common.tile.TileEntityHiveResin;
-import org.avp.common.world.hives.rework.HiveMember;
-
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -29,6 +17,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.alien.AlienBlocks;
+import org.avp.client.Sounds;
+import org.avp.common.AVPBlocks;
+import org.avp.common.ItemHandler;
+import org.avp.common.api.parasitoidic.IMaturable;
+import org.avp.common.block.BlockHiveResin;
+import org.avp.common.entities.living.species.SpeciesXenomorph;
+import org.avp.common.tile.TileEntityHiveResin;
+import org.avp.common.world.hives.rework.HiveMember;
+
+import java.util.ArrayList;
 
 public class EntityDrone extends SpeciesXenomorph implements IMaturable, HiveMember
 {
@@ -45,8 +44,8 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable, HiveMem
         this.mobType = this.rand.nextInt(2);
         blockBlacklist.add(Blocks.BEDROCK);
         blockBlacklist.add(Blocks.AIR);
-        blockBlacklist.add(AVPBlocks.RESIN);
-        blockBlacklist.add(AVPBlocks.NATURAL_RESIN);
+        blockBlacklist.add(AlienBlocks.RESIN);
+        blockBlacklist.add(AlienBlocks.NATURAL_RESIN);
     }
 
     @Override
@@ -190,8 +189,8 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable, HiveMem
                                 }
 
                                 this.getNavigator().setPath(path, 0.8D);
-                                this.world.setBlockState(pos, AVPBlocks.NATURAL_RESIN.getDefaultState());
-                                ((BlockHiveResin) AVPBlocks.NATURAL_RESIN).evaluateNeighbors(world, pos);
+                                this.world.setBlockState(pos, AlienBlocks.NATURAL_RESIN.getDefaultState());
+                                ((BlockHiveResin) AlienBlocks.NATURAL_RESIN).evaluateNeighbors(world, pos);
 
                                 TileEntity tileEntity = this.world.getTileEntity(pos);
 

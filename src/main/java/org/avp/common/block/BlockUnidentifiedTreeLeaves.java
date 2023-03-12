@@ -3,6 +3,7 @@ package org.avp.common.block;
 import java.util.List;
 import java.util.Random;
 
+import org.alien.AlienBlocks;
 import org.avp.common.AVPBlocks;
 
 import net.minecraft.block.Block;
@@ -46,11 +47,11 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
                 IBlockState above = world.getBlockState(pos.up());
                 if (this.type == Type.MIDDLE)
                 {
-                    return above.getBlock() == AVPBlocks.GIGER_LEAVES || above.getBlock() == AVPBlocks.GIGER_LEAVES_M;
+                    return above.getBlock() == AlienBlocks.GIGER_LEAVES || above.getBlock() == AlienBlocks.GIGER_LEAVES_M;
                 }
                 else
                 {
-                    return above.getBlock() == AVPBlocks.GIGER_LEAVES_M;
+                    return above.getBlock() == AlienBlocks.GIGER_LEAVES_M;
                 }
             default:
                 return true;
@@ -101,7 +102,7 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(AVPBlocks.GIGER_SAPLING);
+        return Item.getItemFromBlock(AlienBlocks.GIGER_SAPLING);
     }
 
     @Override

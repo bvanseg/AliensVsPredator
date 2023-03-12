@@ -1,6 +1,7 @@
 /** AliensVsPredator Minecraft Mod - Copyright (C) 2012-2019 ASX **/
 package org.avp;
 
+import org.alien.AlienBlocks;
 import org.apache.logging.log4j.Logger;
 import org.avp.common.*;
 import org.avp.client.KeybindHandler;
@@ -67,6 +68,7 @@ public class AliensVsPredator implements IMod
     {
         console().init(event);
         network().init(event);
+        AlienBlocks.instance.init(event);
         AVPBlocks.instance.init(event);
         dimensions().init(event);
         materials().init(event);

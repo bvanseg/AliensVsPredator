@@ -16,6 +16,7 @@ import org.avp.common.item.ItemBlockSkull;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * @author Ri5ux
@@ -23,7 +24,6 @@ import java.util.HashMap;
  */
 public class BlockRegistryUtil
 {
-
     public static final HashMap<Block, ItemBlock> ITEM_BLOCKS = new HashMap<>();
 
     public static final ArrayList<BlockFluidBase> FLUIDS = new ArrayList<>();
@@ -105,5 +105,15 @@ public class BlockRegistryUtil
             ModelLoader.setCustomModelResourceLocation(item, 0, modelResource);
         }
 
+    }
+
+    public static ItemBlock getItemFromBlock(Block block)
+    {
+        return BlockRegistryUtil.ITEM_BLOCKS.get(block);
+    }
+
+    public static List<BlockFluidBase> getFluids()
+    {
+        return BlockRegistryUtil.FLUIDS;
     }
 }

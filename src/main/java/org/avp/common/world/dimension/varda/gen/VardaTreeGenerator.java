@@ -2,6 +2,7 @@ package org.avp.common.world.dimension.varda.gen;
 
 import java.util.Random;
 
+import org.alien.AlienBlocks;
 import org.avp.common.AVPBlocks;
 import org.avp.common.block.BlockUnidentifiedLog;
 
@@ -18,9 +19,9 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerator
 {
-    public static final IBlockState TREE_TENDONS = AVPBlocks.GIGER_TENDONS.getDefaultState();
-    public static final IBlockState TREE_LOGS = AVPBlocks.GIGER_LOG.getDefaultState().withProperty(BlockUnidentifiedLog.LOG_AXIS, EnumAxis.Y);
-    public static final IBlockState TREE_LEAVES = AVPBlocks.GIGER_LEAVES.getDefaultState();
+    public static final IBlockState TREE_TENDONS = AlienBlocks.GIGER_TENDONS.getDefaultState();
+    public static final IBlockState TREE_LOGS = AlienBlocks.GIGER_LOG.getDefaultState().withProperty(BlockUnidentifiedLog.LOG_AXIS, EnumAxis.Y);
+    public static final IBlockState TREE_LEAVES = AlienBlocks.GIGER_LEAVES.getDefaultState();
     
     public VardaTreeGenerator(boolean doBlockNotify)
     {
@@ -29,7 +30,7 @@ public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerato
     
     protected Block[] getValidTargetBlocks()
     {
-        return new Block[] { AVPBlocks.UNIDIRT, AVPBlocks.GIGER_SAPLING};
+        return new Block[] { AVPBlocks.UNIDIRT, AlienBlocks.GIGER_SAPLING};
     }
     
     public boolean isLocationValid(World world, BlockPos pos)

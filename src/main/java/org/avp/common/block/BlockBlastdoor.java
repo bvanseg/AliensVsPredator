@@ -31,6 +31,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lib.BlockRegistryUtil;
 
 public class BlockBlastdoor extends Block
 {
@@ -288,7 +289,7 @@ public class BlockBlastdoor extends Block
 
                     if (parentBlock != null)
                     {
-                        Item itemblock = AVPBlocks.getItemFromBlock(parentBlock);
+                        Item itemblock = BlockRegistryUtil.getItemFromBlock(parentBlock);
 
                         if (itemblock != null)
                         {
@@ -301,7 +302,7 @@ public class BlockBlastdoor extends Block
             {
                 BlockPos parentPos = door.getPos();
                 IBlockState parentState = world.getBlockState(parentPos);
-                return new ItemStack(AVPBlocks.getItemFromBlock(parentState.getBlock()));
+                return new ItemStack(BlockRegistryUtil.getItemFromBlock(parentState.getBlock()));
             }
         }
         
