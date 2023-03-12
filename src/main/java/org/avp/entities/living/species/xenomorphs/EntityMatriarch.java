@@ -9,7 +9,6 @@ import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.PatchedEntityAIWander;
-import org.avp.entities.ai.alien.EntityAIConstructHive;
 import org.avp.entities.ai.alien.EntityAIFindJelly;
 import org.avp.entities.ai.alien.EntityAIPathFindToHive;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
@@ -98,6 +97,15 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
     }
 
+    private void removeAI()
+    {
+        if (!this.tasks.taskEntries.isEmpty() || !this.targetTasks.taskEntries.isEmpty())
+        {
+            this.tasks.taskEntries.clear();
+            this.targetTasks.taskEntries.clear();
+        }
+    }
+
     @Override
     protected void addStandardXenomorphAISet()
     {
@@ -106,7 +114,6 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
             this.tasks.taskEntries.clear();
             this.targetTasks.taskEntries.clear();
             this.tasks.addTask(0, new EntityAISwimming(this));
-            this.tasks.addTask(0, new EntityAIConstructHive(this));
             this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 10F));
             this.tasks.addTask(0, new EntityAISwimming(this));
             this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.8D));
@@ -160,7 +167,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
                         this.setJellyLevel(this.getJellyLevel() - OVIPOSITOR_JELLYLEVEL_GROWTH_USE);
                     }
 
-//                    this.removeAI();
+                    this.removeAI();
                 }
             }
             else if (!ovipositorHealthy)
