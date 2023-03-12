@@ -1,10 +1,12 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.EntityPredatorHound;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelPredatorHound extends Model
+public class ModelPredatorHound extends Model<EntityPredatorHound>
 {
     public ModelRenderer chest;
     public ModelRenderer stomach;
@@ -456,7 +458,7 @@ public class ModelPredatorHound extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityPredatorHound obj)
     {
         draw(chest);
     }

@@ -1,5 +1,7 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.vardic.EntityGooMutant;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -7,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelGooMutant extends Model
+public class ModelGooMutant extends Model<EntityGooMutant>
 {
     public ModelRenderer headOverlay;
     public ModelRenderer rArm;
@@ -80,7 +82,7 @@ public class ModelGooMutant extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityGooMutant obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;
 

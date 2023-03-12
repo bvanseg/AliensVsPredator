@@ -34,7 +34,7 @@ public class RenderLaserMine extends Render<EntityLaserMine>
             OpenGL.scale(2F, -2F, 2F);
             OpenGL.translate(0.004F, -0.74F, 0.06F);
 
-            boolean active = laserMine.getLaserHit() != null && laserMine.getLaserHit().entityHit != null;
+            boolean active = laserMine.hasBeenTripped();
 
             this.renderBeam(0, 0, Math.abs(laserMine.getLaserHitDistanceFromMine() * 2), -1, 0, 100, active ? 0x8800FF00 : 0x88FF0000, active ? 0x8800FF00 : 0x88FF0000, 90, 0, -1);
         }

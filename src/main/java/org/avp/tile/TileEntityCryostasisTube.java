@@ -11,6 +11,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -31,7 +32,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         super(false);
         this.setThresholdVoltage(90);
     }
-    
+
     @Override
     public void update()
     {
@@ -52,25 +53,25 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
             this.stasisEntity = null;
         	return;
         }
-        
+
         // There is nothing more this machine can do if the stasis itemstack is null.
         if (this.stasisItemstack == null) {
         	return;
         }
-        
+
         // If no stasis entity is present, try setting one.
         if (this.stasisEntity == null)
         {
             this.stasisEntity = ((ItemEntitySummoner) this.stasisItemstack.getItem()).createNewEntity(this.world);
         }
-        
-        
+
+
         if (this.stasisEntity != null) {
             if (world.isRemote)
             {
                 stasisEntity.onUpdate();
             }
-            
+
             if (!this.world.isRemote && !this.isOperational())
             {
             	if (this.world.getTotalWorldTime() % 100 == 0)
@@ -81,7 +82,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
                         {
                             this.setShattered(true);
                         }
-                        
+
                         this.setCracked(true);
                     }
                 }
@@ -130,12 +131,12 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         }
 
         NBTTagCompound nbtStack = nbt.getCompoundTag("StasisItemstack");
-        
+
         if (nbtStack != null && !nbtStack.isEmpty() && nbtStack.hasKey("StasisItemstack")) {
             this.stasisItemstack = new ItemStack(nbtStack);
         }
 
-        if (this.stasisEntity == null && this.stasisItemstack != ItemStack.EMPTY && stasisItemstack != null)
+        if (this.stasisEntity == null && this.stasisItemstack != ItemStack.EMPTY && this.stasisItemstack.getItem() != Items.AIR && stasisItemstack != null)
         {
             Item summoner = this.stasisItemstack.getItem();
             
@@ -149,7 +150,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
     public void setCracked(boolean cracked)
     {
         this.cracked = cracked;
-        
+
         if (!this.world.isRemote) {
             AliensVsPredator.network().sendToAll(new PacketCryostasisStateUpdate(this));
         }
@@ -158,7 +159,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
     public void setShattered(boolean shattered)
     {
         this.shattered = shattered;
-        
+
         if (!this.world.isRemote) {
             AliensVsPredator.network().sendToAll(new PacketCryostasisStateUpdate(this));
         }

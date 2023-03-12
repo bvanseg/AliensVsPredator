@@ -1,4 +1,4 @@
-package org.avp.item;
+package org.avp.item.firearms;
 
 import net.minecraft.item.Item;
 

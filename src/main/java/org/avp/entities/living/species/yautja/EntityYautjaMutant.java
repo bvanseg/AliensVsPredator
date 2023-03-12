@@ -3,6 +3,7 @@ package org.avp.entities.living.species.yautja;
 import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntitySelectorYautjaMutant;
 import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.vardic.EntityGooMutant;
@@ -10,7 +11,6 @@ import org.avp.entities.living.vardic.EntityGooMutant;
 import com.google.common.base.Predicate;
 
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -30,31 +30,16 @@ import net.minecraft.world.World;
 
 public class EntityYautjaMutant extends EntityMob implements IMob, IHost
 {
-    Predicate<EntityLivingBase> mobSelector = new Predicate<EntityLivingBase>()
-    {
-        @Override
-        public boolean apply(EntityLivingBase target)
-        {
-            if (target instanceof EntityGooMutant)
-            {
-                return false;
-            }
-            
-            if (target instanceof SpeciesAlien)
-            {
-                return false;
-            }
-            
-            return true;
-        }
-    };
     
     public EntityYautjaMutant(World world)
     {
         super(world);
         this.setSize(1.25F, 2.75F);
         this.experienceValue = 150;
-        
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityCreature.class, 1.0D, false));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
@@ -64,8 +49,8 @@ public class EntityYautjaMutant extends EntityMob implements IMob, IHost
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityCreature>(this, EntityCreature.class, 0, true, false, mobSelector));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, true, false, mobSelector));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityCreature>(this, EntityCreature.class, 0, true, false, EntitySelectorYautjaMutant.instance));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, true, false, EntitySelectorYautjaMutant.instance));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package org.avp.packets.server;
 
-import org.avp.item.ItemFirearm;
+import org.avp.item.firearms.ItemFirearm;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;

@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelMotionTracker extends Model
+public class ModelMotionTracker extends Model<Object>
 {
     ModelRenderer handleBottom;
     ModelRenderer handle;

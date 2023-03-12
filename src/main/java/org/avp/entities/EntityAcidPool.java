@@ -1,13 +1,12 @@
 package org.avp.entities;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
-import javax.annotation.Nullable;
+import java.util.HashSet;
 
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 import org.avp.api.blocks.IAcidResistant;
+import org.avp.entities.ai.EntitySelectorAcidPool;
 import org.avp.entities.living.species.SpeciesAlien;
 
 import com.google.common.base.Predicate;
@@ -32,40 +31,40 @@ public class EntityAcidPool extends EntityLiquidPool
     protected int                         yOffset;
     protected Block                       block;
 
-    private static final ArrayList<Block> blockBlacklist = new ArrayList<Block>();
+    private static final HashSet<Block> blockBlacklist = new HashSet<>();
 
     static
     {
-        blacklist(Blocks.OBSIDIAN);
-        blacklist(Blocks.BEDROCK);
-        blacklist(Blocks.END_PORTAL_FRAME);
-        blacklist(AliensVsPredator.blocks().industrialglass);
-        blacklist(AliensVsPredator.blocks().industrialGlassSlab);
-        blacklist(AliensVsPredator.blocks().industrialGlassStairs);
-        blacklist(AliensVsPredator.blocks().plastic);
-        blacklist(AliensVsPredator.blocks().plasticcircle);
-        blacklist(AliensVsPredator.blocks().plastictile);
-        blacklist(AliensVsPredator.blocks().plastictri);
-        blacklist(AliensVsPredator.blocks().engineerbrick0);
-        blacklist(AliensVsPredator.blocks().engineerbrick1);
-        blacklist(AliensVsPredator.blocks().engineerbrick2);
-        blacklist(AliensVsPredator.blocks().engineerbrick3);
-        blacklist(AliensVsPredator.blocks().engineercolumn1);
-        blacklist(AliensVsPredator.blocks().engineercolumn2);
-        blacklist(AliensVsPredator.blocks().engineerfloor);
-        blacklist(AliensVsPredator.blocks().engineergravel);
-        blacklist(AliensVsPredator.blocks().engineermaterial0);
-        blacklist(AliensVsPredator.blocks().engineermaterial1);
-        blacklist(AliensVsPredator.blocks().engineermaterial2);
-        blacklist(AliensVsPredator.blocks().engineerrock0);
-        blacklist(AliensVsPredator.blocks().engineerrock1);
-        blacklist(AliensVsPredator.blocks().engineerrock2);
-        blacklist(AliensVsPredator.blocks().engineerrock3);
-        blacklist(AliensVsPredator.blocks().engineerwall0);
-        blacklist(AliensVsPredator.blocks().engineerwall1);
-        blacklist(AliensVsPredator.blocks().engineerwall2);
-        blacklist(AliensVsPredator.blocks().engineerwall3);
-        blacklist(AliensVsPredator.blocks().engineerwall4);
+    	blockBlacklist.add(Blocks.OBSIDIAN);
+    	blockBlacklist.add(Blocks.BEDROCK);
+    	blockBlacklist.add(Blocks.END_PORTAL_FRAME);
+    	blockBlacklist.add(AliensVsPredator.blocks().industrialglass);
+    	blockBlacklist.add(AliensVsPredator.blocks().industrialGlassSlab);
+    	blockBlacklist.add(AliensVsPredator.blocks().industrialGlassStairs);
+        blockBlacklist.add(AliensVsPredator.blocks().plastic);
+        blockBlacklist.add(AliensVsPredator.blocks().plasticcircle);
+        blockBlacklist.add(AliensVsPredator.blocks().plastictile);
+        blockBlacklist.add(AliensVsPredator.blocks().plastictri);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerbrick0);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerbrick1);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerbrick2);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerbrick3);
+        blockBlacklist.add(AliensVsPredator.blocks().engineercolumn1);
+        blockBlacklist.add(AliensVsPredator.blocks().engineercolumn2);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerfloor);
+        blockBlacklist.add(AliensVsPredator.blocks().engineergravel);
+        blockBlacklist.add(AliensVsPredator.blocks().engineermaterial0);
+        blockBlacklist.add(AliensVsPredator.blocks().engineermaterial1);
+        blockBlacklist.add(AliensVsPredator.blocks().engineermaterial2);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerrock0);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerrock1);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerrock2);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerrock3);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerwall0);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerwall1);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerwall2);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerwall3);
+        blockBlacklist.add(AliensVsPredator.blocks().engineerwall4);
     }
 
     public EntityAcidPool(World world)
@@ -74,75 +73,25 @@ public class EntityAcidPool extends EntityLiquidPool
         this.isImmuneToFire = false;
         this.ignoreFrustumCheck = true;
         this.setSize(1.65F, 0.09F);
-
     }
 
-    public static Block blacklist(Block block)
-    {
-        blockBlacklist.add(block);
-        return block;
-    }
+    private static final Predicate<EntityLivingBase> SELECTOR = (EntityLivingBase living) -> {
+	    if (living instanceof SpeciesAlien)
+	    	return false;
+	    if (living instanceof EntityPlayer && ((EntityPlayer)living).capabilities.isCreativeMode)
+	    	return false;
 
-    public static Block[] blacklist(Block[] blocks)
-    {
-        for (Block block : new ArrayList<Block>(Arrays.asList(blocks)))
-        {
-            blockBlacklist.add(block);
-
-        }
-        return blocks;
-    }
-
-    private static final Predicate<EntityLivingBase> SELECTOR = new Predicate<EntityLivingBase>() {
-        @Override
-        public boolean apply(@Nullable EntityLivingBase living)
-        {
-            if (living instanceof EntityPlayer && ((EntityPlayer)living).capabilities.isCreativeMode)
-            {
-                return false;
-            }
-            else if (living instanceof SpeciesAlien)
-            {
-                return false;
-            }
-
-            return true;
-        }
-    };
-
-    @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-    }
-
-    @Override
-    public boolean isInRangeToRenderDist(double range)
-    {
         return true;
-    }
-    
-    public float getAcidIntensity()
-    {
-        return 1F - (1F / this.getLifetime() / (1F / this.ticksExisted));
-    }
+    };
 
     @Override
     public void onUpdate()
     {
         super.onUpdate();
         
-        ArrayList<EntityLivingBase> entityItemList = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - 1, this.posY, this.posZ - 1, this.posX + 1, this.posY + 1, this.posZ + 1));
-
-        if (!this.world.isRemote && !entityItemList.isEmpty())
+        if (!this.world.isRemote)
         {
-            entityItemList.forEach(e -> {
-                if(SELECTOR.apply(e))
-                {
-                    e.addPotionEffect(new PotionEffect(MobEffects.POISON, (14 * 20), 0));
-                    e.attackEntityFrom(DamageSources.acid, 4f);
-                }
-            });
+            damageNearbyEntities();
         }
 
         if (world.isRemote && world.getTotalWorldTime() % 10 <= 0)
@@ -150,7 +99,11 @@ public class EntityAcidPool extends EntityLiquidPool
             this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX + this.rand.nextDouble(), this.posY + this.rand.nextDouble(), this.posZ + this.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
         }
         
-        if (this.world.getGameRules().getBoolean("mobGriefing"))
+        breakBlock();
+    }
+
+	private void breakBlock() {
+		if (this.world.getGameRules().getBoolean("mobGriefing"))
         {
             if ((this.world.getDifficulty() == EnumDifficulty.NORMAL || this.world.getDifficulty() == EnumDifficulty.HARD) && this.getDistanceSq((int) this.posX, (int) this.posY + yOffset, (int) this.posZ) < 4.0D && block != Blocks.AIR && block != AliensVsPredator.blocks().naturalResin && block != Blocks.BEDROCK)
             {
@@ -172,20 +125,24 @@ public class EntityAcidPool extends EntityLiquidPool
 
                 this.breakProgress += hardness;
 
-                if (this.breakProgress >= 1F)
+                if (this.breakProgress >= 1F && block != Blocks.AIR)
                 {
-                    if (block != Blocks.AIR)
-                    {
-                        this.world.destroyBlock(pos, true);
-                        this.breakProgress = 0;
-                    }
+                    this.world.destroyBlock(pos, true);
+                    this.breakProgress = 0;
                 }
             }
         }
-    }
+	}
 
-    public int getLifetime()
-    {
-        return lifetime;
-    }
+	private void damageNearbyEntities() {
+		ArrayList<EntityLivingBase> entityItemList = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - 1, this.posY, this.posZ - 1, this.posX + 1, this.posY + 1, this.posZ + 1));
+
+		entityItemList.forEach(e -> {
+		    if(SELECTOR.apply(e))
+		    {
+		        e.addPotionEffect(new PotionEffect(MobEffects.POISON, (14 * 20), 0));
+		        e.attackEntityFrom(DamageSources.acid, 4f);
+		    }
+		});
+	}
 }

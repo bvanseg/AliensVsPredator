@@ -72,7 +72,8 @@ public class RenderItemNetworkRackModule extends ItemRenderer<Model>
         if (this.getModel() == null && itemstack != null && itemstack.getItem() instanceof ItemNetworkRackModule)
         {
             ItemNetworkRackModule module = (ItemNetworkRackModule) itemstack.getItem();
-            this.model = module.getModel();
+            // FIXME: Uncontrollable super typing, big no no.
+//            this.model = module.getModel();
         }
 
         if (this.getModel() != null)
