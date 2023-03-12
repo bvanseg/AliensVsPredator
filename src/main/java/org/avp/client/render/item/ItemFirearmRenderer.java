@@ -7,7 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import org.avp.common.item.firearm.ItemFirearm;
 
-abstract class ItemFirearmRenderer<T extends Model> extends ItemRenderer<T>
+public abstract class ItemFirearmRenderer<T extends Model> extends ItemRenderer<T>
 {
 	public ItemFirearmRenderer(MapModelTexture<T> model)
 	{
