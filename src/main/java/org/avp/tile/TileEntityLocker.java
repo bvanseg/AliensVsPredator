@@ -3,7 +3,7 @@ package org.avp.tile;
 import org.avp.AliensVsPredator;
 import org.avp.api.machines.IOpenable;
 import org.avp.inventory.ContainerLocker;
-import org.avp.item.ItemFirearm;
+import org.avp.item.firearms.ItemFirearm;
 import org.avp.packets.client.PacketOpenable;
 
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;

@@ -2,7 +2,8 @@ package org.avp.item.crafting;
 
 import java.util.ArrayList;
 
-import com.asx.mdx.MDX;
+import org.avp.AliensVsPredator;
+
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 
 import net.minecraft.entity.item.EntityItem;
@@ -75,7 +76,7 @@ public class AssemblyManager
         }
         else
         {
-            MDX.log().warn(String.format("[AVP/API/Assembler] Schematic for id '%s' is already registered.", schematic.getName()));
+        	AliensVsPredator.log().warn(String.format("[AVP/API/Assembler] Schematic for id '%s' is already registered.", schematic.getName()));
         }
     }
 
@@ -133,6 +134,33 @@ public class AssemblyManager
         int amount = 0;
 
         for (int i = 0; i < count; i++)
+        {
+            if (AssemblyManager.handleAssembly(schematic, player, simulate))
+            {
+                amount++;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        return amount;
+    }
+
+    /**
+     * Try to assemble the specified schematic, for the specified player, the specified amount of times. Simulate if specified.
+     * 
+     * @param player - The player whose resources will be used to assemble the schematic.
+     * @param schematic - The schematic to be assembled.
+     * @param simulate - Set to true if the assembly should only be simulated.
+     * @return - The maximum amount of items that can possibly be assembled.
+     */
+    public static int tryAssemblyMax(EntityPlayer player, Schematic schematic, boolean simulate)
+    {
+        int amount = 0;
+
+        for (int i = 0; i < 64; i++)
         {
             if (AssemblyManager.handleAssembly(schematic, player, simulate))
             {

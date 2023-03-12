@@ -1,6 +1,6 @@
 package org.avp.client.model.items;
 
-import org.avp.item.ItemFlamethrower;
+import org.avp.item.firearms.ItemFlamethrower;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class ModelSevastopolFlamethrower extends Model
+public class ModelSevastopolFlamethrower extends Model<Object>
 {
     public ModelRenderer nozzle01;
     public ModelRenderer nozzle02;

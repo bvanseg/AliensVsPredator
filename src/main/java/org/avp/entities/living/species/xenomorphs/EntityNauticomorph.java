@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import org.avp.ItemHandler;
 import org.avp.client.Sounds;
-import org.avp.entities.living.species.SpeciesAlien;
+import org.avp.entities.ai.alien.EntitySelectorNauticomorph;
 import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.world.hives.rework.HiveMember;
 
@@ -12,7 +12,6 @@ import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.block.Blocks;
 import com.asx.mdx.lib.world.entity.Entities;
-import com.google.common.base.Predicate;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -48,14 +47,6 @@ public class EntityNauticomorph extends SpeciesXenomorph implements HiveMember
         this.getDataManager().register(PHOSPHORESCENCE_LEVEL, 0F);
     }
 
-    public static Predicate<EntityLivingBase> entitySelector = new Predicate<EntityLivingBase>() {
-        @Override
-        public boolean apply(EntityLivingBase entity)
-        {
-            return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityNauticomorph);
-        }
-    };
-
     @Override
     public void onUpdate()
     {
@@ -70,7 +61,7 @@ public class EntityNauticomorph extends SpeciesXenomorph implements HiveMember
 
             for (EntityLivingBase entity : entities)
             {
-                if (entitySelector.apply(entity) && Entities.canEntityBeSeenBy(entity, this) && (!entitySelector.apply(entity.getLastAttackedEntity()) && (entity.ticksExisted - entity.getLastAttackedEntityTime() > 150)))
+                if (EntitySelectorNauticomorph.instance.apply(entity) && Entities.canEntityBeSeenBy(entity, this) && (!EntitySelectorNauticomorph.instance.apply(entity.getLastAttackedEntity()) && (entity.ticksExisted - entity.getLastAttackedEntityTime() > 150)))
                 {
                     if (entity instanceof EntityPlayer && !((EntityPlayer) entity).capabilities.isCreativeMode)
                     {

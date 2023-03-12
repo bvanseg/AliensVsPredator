@@ -1,11 +1,13 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityBatXeno;
+
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelBatXenomorph extends Model
+public class ModelBatXenomorph extends Model<EntityBatXeno>
 {
     public ModelRenderer chest;
     public ModelRenderer lArmUpper;
@@ -264,7 +266,7 @@ public class ModelBatXenomorph extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityBatXeno obj)
     {
         OpenGL.pushMatrix();
         OpenGL.translate(this.rArmUpper.offsetX, this.rArmUpper.offsetY, this.rArmUpper.offsetZ);

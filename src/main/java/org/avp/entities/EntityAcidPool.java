@@ -6,6 +6,7 @@ import java.util.HashSet;
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 import org.avp.api.blocks.IAcidResistant;
+import org.avp.entities.ai.EntitySelectorAcidPool;
 import org.avp.entities.living.species.SpeciesAlien;
 
 import com.google.common.base.Predicate;

@@ -1,10 +1,12 @@
 package org.avp.client.model.tile.plants;
 
+import org.avp.tile.plants.TileEntityGroundFern;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelGroundFern extends Model
+public class ModelGroundFern extends Model<TileEntityGroundFern>
 {
     public ModelRenderer crown01;
     public ModelRenderer crown02;
@@ -209,7 +211,7 @@ public class ModelGroundFern extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityGroundFern obj)
     {
         draw(crown02);
         draw(crown01);

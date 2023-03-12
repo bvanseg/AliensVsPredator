@@ -1,13 +1,14 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityPraetorian;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelPraetorian extends Model
+public class ModelPraetorian extends Model<EntityPraetorian>
 {
     public ModelRenderer torso, stomache, rThigh, lThigh, lShin, rShin, lShin1, rShin1, lFoot, rFoot, lArm, rArm, lClaw, rArm2, neck, headBase, face1, jaw1, jaw2, head2, lArm2, rClaw, lClaw2, rClaw2, vertibrae1, vertibrae2, tailspines1, tail2, tail3, stabber, tail4, tail5, face2, tailspines5, tailspikes5, tailspikes4, tailspines4, tailspines3, tailspikes3, tailspines2, tailspikes2, tail1, tailspikes1, backStabber1, backStabber2, backStabber3, backStabber4, headSide1, headSide2, backStabber5, backStabber6;
     private float wingspeed = 0.0F;
@@ -326,10 +327,8 @@ public class ModelPraetorian extends Model
     }
 
     @Override
-    public void render(Object obj)
-    {
-        EntityLivingBase base = (EntityLivingBase) obj;;
-        
+    public void render(EntityPraetorian obj)
+    {   
         float newangle = MathHelper.cos(idleProgress(obj) * 4.0F * this.wingspeed) * (float) Math.PI * 0.5F * swingProgressPrev(obj);
         this.doTail(newangle);
         this.lThigh.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6662F) * 1.4F * swingProgressPrev(obj) - 0.8028515F;

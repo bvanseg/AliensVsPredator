@@ -5,7 +5,8 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 
-public class ModelRackModule7 extends Model
+//TODO: Use a better type than Object for Model.
+public class ModelRackModule7 extends Model<Object>
 {
     public ModelRenderer faceplate;
     public ModelRenderer light01;

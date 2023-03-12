@@ -102,9 +102,6 @@ public class CachedModelReflectiveShape implements IBakedModel
 
             switch (alignment)
             {
-                case BOTTOM:
-                    x = 0;
-                    break;
                 case TOP:
                     x = 180;
                     break;
@@ -126,9 +123,6 @@ public class CachedModelReflectiveShape implements IBakedModel
 
             switch (facing)
             {
-                case NORTH:
-                    y = 0;
-                    break;
                 case EAST:
                     y = 90;
                     break;

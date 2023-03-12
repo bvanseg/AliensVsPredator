@@ -9,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelFacehugger extends Model
+public class ModelFacehugger extends Model<EntityFacehugger>
 {
     public ModelRenderer spine;
     public ModelRenderer spine2;
@@ -381,7 +381,7 @@ public class ModelFacehugger extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityFacehugger obj)
     {
         draw(bodyMain);
         draw(lAirSac);

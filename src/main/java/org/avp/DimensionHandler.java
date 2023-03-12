@@ -43,8 +43,8 @@ public class DimensionHandler implements IInitEvent
         }
     }
 
-    public final Dimension ACHERON                   = new Dimension("Acheron", "_acheron", WorldProviderAcheron.class, true);
-    public final Dimension VARDA                     = new Dimension("Varda", "_varda", WorldProviderVarda.class, true);
+    public final Dimension ACHERON                   = new Dimension("Acheron", "_acheron", WorldProviderAcheron.class, false);
+    public final Dimension VARDA                     = new Dimension("Varda", "_varda", WorldProviderVarda.class, false);
 
     public boolean         initialized;
 
@@ -110,7 +110,7 @@ public class DimensionHandler implements IInitEvent
     public static void teleportPlayerToDimension(EntityPlayerMP player, int dimensionId)
     {
         PlayerList players = player.getServer().getPlayerList();
-        MDX.log().info("Attempting to teleport player to dimension with id " + dimensionId);
+        AliensVsPredator.log().info("Attempting to teleport player to dimension with id " + dimensionId);
 
         if (player.dimension == 0 || player.dimension != dimensionId)
         {

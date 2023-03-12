@@ -58,7 +58,7 @@ public interface IParasitoid
 
     public int getDetachTime();
 
-    public Predicate<EntityLivingBase> getImpregnationEntitiySelector();
+    public Predicate<EntityLivingBase> getImpregnationEntitySelector();
 
     public static void readFromNBT(IParasitoid parasitoid, NBTTagCompound nbt)
     {

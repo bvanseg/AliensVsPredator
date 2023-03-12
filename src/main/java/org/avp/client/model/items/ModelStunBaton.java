@@ -8,7 +8,7 @@ import net.minecraft.client.renderer.GlStateManager;
 /**
  * stunBaton - cybercat5555
  */
-public class ModelStunBaton extends Model
+public class ModelStunBaton extends Model<Object>
 {
     public ModelRenderer centralRod;
     public ModelRenderer grip;

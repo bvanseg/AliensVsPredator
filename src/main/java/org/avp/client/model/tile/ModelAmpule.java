@@ -1,10 +1,12 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntityAmpule;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelAmpule extends Model
+public class ModelAmpule extends Model<TileEntityAmpule>
 {
     public ModelRenderer canisterBase2;
     public ModelRenderer canisterMiddle1;
@@ -98,7 +100,7 @@ public class ModelAmpule extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityAmpule obj)
     {
         draw(phialStem3);
         draw(phialTip4);
