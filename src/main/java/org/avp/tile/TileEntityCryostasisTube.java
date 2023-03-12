@@ -8,6 +8,7 @@ import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -146,7 +147,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         NBTTagCompound nbtStack = nbt.getCompoundTag("StasisItemstack");
         this.stasisItemstack = new ItemStack(nbtStack);
 
-        if (this.stasisEntity == null && this.stasisItemstack != ItemStack.EMPTY && stasisItemstack != null)
+        if (this.stasisEntity == null && this.stasisItemstack != ItemStack.EMPTY && this.stasisItemstack.getItem() != Items.AIR && stasisItemstack != null)
         {
             ItemEntitySummoner summoner = ((ItemEntitySummoner) this.stasisItemstack.getItem());
             
