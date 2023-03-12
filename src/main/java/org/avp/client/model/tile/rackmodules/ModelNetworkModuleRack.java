@@ -1,11 +1,13 @@
 package org.avp.client.model.tile.rackmodules;
 
+import org.avp.tile.TileEntityNetworkRack;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 
-public class ModelNetworkModuleRack extends Model
+public class ModelNetworkModuleRack extends Model<TileEntityNetworkRack>
 {
     public ModelRenderer frame1;
     public ModelRenderer frame2;
@@ -99,7 +101,7 @@ public class ModelNetworkModuleRack extends Model
     }
     
     @Override
-    public void render(Object obj)
+    public void render(TileEntityNetworkRack obj)
     {
         this.LowerFrameL.render(DEFAULT_SCALE);
         this.lLattice.render(DEFAULT_SCALE);

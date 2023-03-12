@@ -9,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelOvamorph extends Model
+public class ModelOvamorph extends Model<EntityOvamorph>
 {
     public ModelRenderer base;
     public ModelRenderer center;
@@ -63,7 +63,7 @@ public class ModelOvamorph extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityOvamorph obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;
 

@@ -2,6 +2,7 @@ package org.avp.client.model.entities.living;
 
 import org.avp.client.render.XenomorphJawState;
 import org.avp.entities.living.species.SpeciesXenomorph;
+import org.avp.entities.living.vardic.EntityBelugamorph;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
@@ -10,7 +11,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelBelugamorph extends Model
+public class ModelBelugamorph extends Model<EntityBelugamorph>
 {
     public ModelRenderer chest;
     public ModelRenderer quill2A;
@@ -451,7 +452,7 @@ public class ModelBelugamorph extends Model
     }
     
     @Override
-    public void render(Object obj)
+    public void render(EntityBelugamorph obj)
     {
         SpeciesXenomorph xenomorph = (SpeciesXenomorph) obj;
         float swingProgress = swingProgress(obj);

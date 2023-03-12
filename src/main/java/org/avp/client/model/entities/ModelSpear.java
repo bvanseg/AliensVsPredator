@@ -7,7 +7,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.gui.Gui;
 
-public class ModelSpear extends Model
+public class ModelSpear extends Model<Object>
 {
     private final float scale = 0.08F;
 

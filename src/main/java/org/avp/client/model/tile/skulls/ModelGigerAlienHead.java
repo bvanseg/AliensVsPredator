@@ -1,10 +1,12 @@
 package org.avp.client.model.tile.skulls;
 
+import org.avp.tile.TileEntitySkull;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelGigerAlienHead extends Model
+public class ModelGigerAlienHead extends Model<TileEntitySkull>
 {
     public ModelRenderer head;
     public ModelRenderer head2;
@@ -79,7 +81,7 @@ public class ModelGigerAlienHead extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntitySkull obj)
     {
         draw(head);
     }

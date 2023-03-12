@@ -4,7 +4,8 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelDNASynthesizer extends Model
+//TODO: Use a better type than Object for Model.
+public class ModelDNASynthesizer extends Model<Object>
 {
     public ModelRenderer tankFloor;
     public ModelRenderer supportBar;

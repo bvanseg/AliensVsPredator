@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelPlasmaCannon extends Model
+public class ModelPlasmaCannon extends Model<Object>
 {
     public ModelRenderer supportBar;
     public ModelRenderer swivelHinge;

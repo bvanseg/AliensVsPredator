@@ -5,7 +5,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelM240ICU extends Model
+public class ModelM240ICU extends Model<Object>
 {
     ModelRenderer canister;
     ModelRenderer canisterSealTop;
