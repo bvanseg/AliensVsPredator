@@ -30,7 +30,6 @@ public class BlockAssembler extends Block
 
             if (tile != null)
             {
-                tile.player = player;
                 tile.openGui(player);
             }
         }

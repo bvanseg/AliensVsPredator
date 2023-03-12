@@ -18,19 +18,32 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityAssembler>
 {
+    // TODO: Move this to a helper class.
+	private float lerp(float pointA, float pointB, float percentage) {
+        return (pointA * (1.0f - percentage)) + (pointB * percentage);
+    }
+	
     @Override
     public void render(TileEntityAssembler tile, double posX, double posY, double posZ, float renderPartialTicks, int destroy, float alpha)
     {
+    	tile.rotateProgress = MathHelper.clamp(tile.rotateProgress + 0.01F, 0F, 1F);
+    	
+    	// Once a full rotation is done, we can safely reset back to 0.
+    	if (tile.rotateProgress == 1F) {
+    		tile.rotateProgress = 0F;
+    	}
+    	
         OpenGL.pushMatrix();
         {
             OpenGL.disable(GL_CULL_FACE);
             OpenGL.enable(GL_BLEND);
             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             OpenGL.translate(posX + 0.5F, posY + 0.95F, posZ + 0.5F);
-            OpenGL.rotate(tile.getWorld().getTotalWorldTime() % 360 * 12, 0, 1, 0);
+            OpenGL.rotate(360 * this.lerp(0F, 1F, tile.rotateProgress), 0, 1, 0);
 
             OpenGL.pushMatrix();
             {
