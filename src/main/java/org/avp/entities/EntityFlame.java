@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
-import org.avp.item.ItemFlamethrower;
-import org.avp.item.ItemM240IncineratorUnit;
-import org.avp.item.ItemSevastopolFlamethrower;
+import org.avp.item.firearms.ItemFlamethrower;
+import org.avp.item.firearms.ItemM240IncineratorUnit;
+import org.avp.item.firearms.ItemSevastopolFlamethrower;
 import org.avp.tile.TileEntityCryostasisTube;
 
 import com.asx.mdx.lib.util.Game;

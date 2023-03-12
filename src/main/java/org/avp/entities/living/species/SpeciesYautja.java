@@ -10,10 +10,10 @@ import org.avp.entities.ai.alien.EntitySelectorYautja;
 import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.EntityMarine;
 import org.avp.item.ItemDisc;
-import org.avp.item.ItemFirearm;
 import org.avp.item.ItemPlasmaCannon;
 import org.avp.item.ItemShuriken;
 import org.avp.item.ItemWristbracer;
+import org.avp.item.firearms.ItemFirearm;
 
 import com.google.common.base.Predicate;
 
