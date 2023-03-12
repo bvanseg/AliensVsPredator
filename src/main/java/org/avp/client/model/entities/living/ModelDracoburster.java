@@ -1,10 +1,12 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityDracoburster;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelDracoburster extends Model
+public class ModelDracoburster extends Model<EntityDracoburster>
 {
     public ModelRenderer chest;
     public ModelRenderer abdomen;
@@ -293,7 +295,7 @@ public class ModelDracoburster extends Model
     }
     
     @Override
-    public void render(Object obj)
+    public void render(EntityDracoburster obj)
     {
         draw(chest);
     }

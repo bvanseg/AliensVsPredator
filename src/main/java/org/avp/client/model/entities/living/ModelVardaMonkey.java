@@ -5,7 +5,8 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelVardaMonkey extends Model
+// TODO: Needs entity type.
+public class ModelVardaMonkey extends Model<Object>
 {
     public ModelRenderer chest;
     public ModelRenderer tail3;

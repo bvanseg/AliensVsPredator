@@ -1,10 +1,12 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntityPowercell;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelPowercell extends Model
+public class ModelPowercell extends Model<TileEntityPowercell>
 {
     private ModelRenderer cell;
     private ModelRenderer connector1;
@@ -50,7 +52,7 @@ public class ModelPowercell extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityPowercell obj)
     {
         cell.render(DEFAULT_SCALE);
         connector1.render(DEFAULT_SCALE);

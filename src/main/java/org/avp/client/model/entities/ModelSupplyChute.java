@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelSupplyChute extends Model
+public class ModelSupplyChute extends Model<Object>
 {
     public ModelRenderer casing;
     public ModelRenderer lid;

@@ -11,7 +11,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
-public class ModelMatriarch extends Model
+public class ModelMatriarch extends Model<EntityMatriarch>
 {
     public ModelRenderer sack0,
             torso0,
@@ -454,7 +454,7 @@ public class ModelMatriarch extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityMatriarch obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;
 
