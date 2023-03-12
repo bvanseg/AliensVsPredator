@@ -1,10 +1,12 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntityLocker;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelLocker extends Model
+public class ModelLocker extends Model<TileEntityLocker>
 {
     public ModelRenderer wallLeft;
     public ModelRenderer wallRight;
@@ -38,7 +40,7 @@ public class ModelLocker extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityLocker obj)
     {
         draw(top);
         draw(back);

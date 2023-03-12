@@ -1,10 +1,12 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.vardic.EntityUrsuidae;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelUrsuidae extends Model
+public class ModelUrsuidae extends Model<EntityUrsuidae>
 {
     public ModelRenderer chest;
     public ModelRenderer stomach;
@@ -242,7 +244,7 @@ public class ModelUrsuidae extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityUrsuidae obj)
     {
         draw(chest);
     }

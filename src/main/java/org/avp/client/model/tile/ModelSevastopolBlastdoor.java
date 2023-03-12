@@ -1,13 +1,14 @@
 package org.avp.client.model.tile;
 
 import org.avp.tile.TileEntityBlastdoor;
+import org.avp.tile.TileEntitySevastopolBlastDoor;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelSevastopolBlastdoor extends Model
+public class ModelSevastopolBlastdoor extends Model<TileEntitySevastopolBlastDoor>
 {
     public ModelRenderer frameL;
     public ModelRenderer doorMain;
@@ -145,7 +146,7 @@ public class ModelSevastopolBlastdoor extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntitySevastopolBlastDoor obj)
     {
         TileEntityBlastdoor tile = (TileEntityBlastdoor) obj;
         

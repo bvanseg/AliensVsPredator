@@ -39,6 +39,7 @@ public class ItemLaserMine extends Item
     @Override
     public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
-        tooltip.add("Right click to place on wall (Explodes when entities pass through laser)");
+        tooltip.add("Right click to place on wall.");
+        tooltip.add("Laser contact triggers explosion.");
     }
 }

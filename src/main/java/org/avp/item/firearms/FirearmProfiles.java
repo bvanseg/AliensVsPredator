@@ -1,8 +1,6 @@
 package org.avp.item.firearms;
 
 import org.avp.client.Sounds;
-import org.avp.item.ItemFirearm.Classification;
-import org.avp.item.ItemFirearm.FirearmProfile;
 
 public class FirearmProfiles
 {

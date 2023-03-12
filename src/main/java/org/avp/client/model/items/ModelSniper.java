@@ -6,7 +6,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelSniper extends Model implements IFirearmModel
+public class ModelSniper extends Model<Object> implements IFirearmModel
 {
     private boolean firstPerson;
 

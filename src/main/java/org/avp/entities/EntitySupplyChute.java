@@ -3,7 +3,7 @@ package org.avp.entities;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.avp.item.ItemSupplyChute.SupplyChuteType;
+import org.avp.item.supply.chute.SupplyChuteType;
 import org.avp.tile.TileEntitySupplyCrate;
 
 import com.asx.mdx.lib.world.entity.Entities;

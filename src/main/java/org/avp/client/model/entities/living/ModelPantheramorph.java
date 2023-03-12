@@ -1,10 +1,12 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityPantheramorph;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelPantheramorph extends Model
+public class ModelPantheramorph extends Model<EntityPantheramorph>
 {
     public ModelRenderer chest;
     public ModelRenderer abdomen;
@@ -258,7 +260,7 @@ public class ModelPantheramorph extends Model
     }
     
     @Override
-    public void render(Object obj)
+    public void render(EntityPantheramorph obj)
     {
         draw(chest);
     }

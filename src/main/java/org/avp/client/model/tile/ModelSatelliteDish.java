@@ -1,10 +1,12 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntitySatelliteDish;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelSatelliteDish extends Model
+public class ModelSatelliteDish extends Model<TileEntitySatelliteDish>
 {
     public ModelRenderer discBaseN;
     public ModelRenderer swivelJoint;
@@ -237,7 +239,7 @@ public class ModelSatelliteDish extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntitySatelliteDish obj)
     {
         draw(discBaseN);
         draw(base);

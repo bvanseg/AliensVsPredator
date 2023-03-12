@@ -1,10 +1,12 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntityHiveResin;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelHiveResin extends Model
+public class ModelHiveResin extends Model<TileEntityHiveResin>
 {
     public ModelRenderer nResinRipCenter;
     public ModelRenderer sResinRipCenter;
@@ -388,7 +390,7 @@ public class ModelHiveResin extends Model
     }
     
     @Override
-    public void render(Object obj)
+    public void render(TileEntityHiveResin obj)
     {
         //BOTTOM
         draw(bResinRibCenter);

@@ -4,14 +4,13 @@ import org.avp.EntityItemDrops;
 import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IHost;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.entities.ai.alien.EntitySelectorDracomorph;
 import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.species.SpeciesAlien;
 
 import com.asx.mdx.lib.world.Pos;
-import com.google.common.base.Predicate;
 
 import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -38,25 +37,6 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
     private static final DataParameter<Integer> FLYING = EntityDataManager.createKey(EntityDracomorph.class, DataSerializers.VARINT);
     private BlockPos flyToPosition;
 
-    Predicate<EntityLivingBase>         mobSelector           = new Predicate<EntityLivingBase>()
-                                                  {
-                                                      @Override
-                                                      public boolean apply(EntityLivingBase target)
-                                                      {
-                                                          if (target instanceof EntityMatriarch)
-                                                          {
-                                                              return true;
-                                                          }
-                                                          
-                                                          if (target instanceof SpeciesAlien)
-                                                          {
-                                                              return false;
-                                                          }
-
-                                                          return true;
-                                                      }
-                                                  };
-
     public EntityDracomorph(World world)
     {
         super(world);
@@ -72,8 +52,8 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
         this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
         this.tasks.addTask(8, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityCreature.class, 0, true, false, mobSelector));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 0, true, false, mobSelector));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityCreature.class, 0, true, false, EntitySelectorDracomorph.instance));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 0, true, false, EntitySelectorDracomorph.instance));
 
         this.getDataManager().register(FLYING, 0);
     }
@@ -211,7 +191,7 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
                 EntityItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
         }
     }
-    
+
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {

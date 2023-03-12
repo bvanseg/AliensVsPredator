@@ -1,11 +1,13 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.yautja.EntityYautjaMutant;
+
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelMutantYautja extends Model
+public class ModelMutantYautja extends Model<EntityYautjaMutant>
 {
     public ModelRenderer body;
     public ModelRenderer rArmUpper;
@@ -529,7 +531,7 @@ public class ModelMutantYautja extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityYautjaMutant obj)
     {
         OpenGL.pushMatrix();
         OpenGL.translate(this.lThigh.offsetX, this.lThigh.offsetY, this.lThigh.offsetZ);

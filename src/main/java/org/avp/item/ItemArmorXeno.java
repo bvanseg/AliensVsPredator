@@ -32,17 +32,10 @@ public class ItemArmorXeno extends ItemArmor
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-        switch (slot)
-        {
-        case FEET:
-            return Draw.getPath(AliensVsPredator.resources().XENO1);
-        case LEGS:
+        if (slot == EntityEquipmentSlot.LEGS) {
             return Draw.getPath(AliensVsPredator.resources().XENO2);
-        case CHEST:
-            return Draw.getPath(AliensVsPredator.resources().XENO1);
-        default:
-            return Draw.getPath(AliensVsPredator.resources().XENO1);
         }
+        return Draw.getPath(AliensVsPredator.resources().XENO1);
     }
 
     @Override

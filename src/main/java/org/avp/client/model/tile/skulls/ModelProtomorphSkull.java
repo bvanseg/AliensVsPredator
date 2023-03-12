@@ -1,11 +1,13 @@
 package org.avp.client.model.tile.skulls;
 
+import org.avp.tile.TileEntitySkull;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 
-public class ModelProtomorphSkull extends Model
+public class ModelProtomorphSkull extends Model<TileEntitySkull>
 {
     public ModelRenderer head1;
     public ModelRenderer head2;
@@ -59,7 +61,7 @@ public class ModelProtomorphSkull extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntitySkull obj)
     {
         GlStateManager.pushMatrix();
         GlStateManager.translate(this.head1.offsetX, this.head1.offsetY, this.head1.offsetZ);

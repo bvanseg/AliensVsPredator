@@ -1,15 +1,18 @@
 package org.avp.client.gui;
 
 import java.io.IOException;
-import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.avp.AliensVsPredator;
-import org.avp.packets.server.PacketAddTurretPlayerTarget;
 import org.avp.packets.server.PacketAddTurretTarget;
 import org.avp.packets.server.PacketReadFromDataDevice;
-import org.avp.packets.server.PacketRemoveTurretPlayerTarget;
 import org.avp.packets.server.PacketRemoveTurretTarget;
+import org.avp.packets.server.PacketToggleTurretPlayerTarget;
 import org.avp.packets.server.PacketWriteToDataDevice;
 import org.avp.tile.TileEntityTurret;
 import org.lwjgl.input.Keyboard;
@@ -20,7 +23,6 @@ import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
 import com.asx.mdx.lib.client.gui.IAction;
 import com.asx.mdx.lib.client.gui.IGuiElement;
 import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -38,16 +40,88 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiTurret extends GuiContainer
 {
-    private TileEntityTurret                   tile;
-    private GuiCustomButton                    buttonScrollUp;
-    private GuiCustomButton                    buttonScrollDown;
-    private GuiCustomButton                    buttonAddAsTarget;
-    private GuiCustomButton                    buttonSave;
-    private GuiCustomButton                    buttonLoad;
-    private GuiCustomTextbox                   playerNameInput;
-    private int                                scroll        = 0;
-    private ArrayList<Class<? extends Entity>> entityList;
-    private ArrayList<EntityLiving>            entityLivingList;
+    private static ArrayList<Pair<EntityEntry, String>> entityListSortedByName;
+    private static List<Pair<EntityEntry, String>> entityList;
+	
+	private static final Comparator<Pair<EntityEntry, String>> ALPHABETICAL_COMPARATOR = Comparator.comparing((entry) -> entry.getRight());
+	
+    private final TileEntityTurret             tile;
+    private static final GuiCustomButton       buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "\u21e7");
+    private static final GuiCustomButton       buttonScrollDown = new GuiCustomButton(1, 0, 0, 20, 20, "\u21e9");
+    private static final GuiCustomButton       buttonAddAsTarget = new GuiCustomButton(2, 0, 0, 50, 20, "");
+    private static final GuiCustomButton       buttonSave = new GuiCustomButton(3, 0, 0, 35, 20, "S");
+    private static final GuiCustomButton       buttonLoad = new GuiCustomButton(4, 0, 0, 35, 20, "L");
+    private static final GuiCustomTextbox      playerNameInput = new GuiCustomTextbox(0, 0, 200, 20);
+    private static int                         scroll        = 0;
+    private static boolean                     searchRequiresUpdate = false;
+    
+    private static IAction scrollDownAction = (IGuiElement element) -> { scrollDown(); };
+    private static IAction scrollUpAction = (IGuiElement element) -> { scrollUp(); };
+    
+    private IAction saveAction = new IAction() {
+        @Override
+        public void perform(IGuiElement element)
+        {
+            AliensVsPredator.network().sendToServer(new PacketWriteToDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
+            tile.writeToOtherDevice(0);
+        }
+    };
+    
+    private IAction loadAction = new IAction() {
+        @Override
+        public void perform(IGuiElement element)
+        {
+            tile.getTargetHelper().getDangerousTargets().clear();
+            AliensVsPredator.network().sendToServer(new PacketReadFromDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
+            tile.readFromOtherDevice(0);
+        }
+    };
+    
+    private IAction addAsTargetAction = new IAction() {
+        @Override
+        public void perform(IGuiElement element)
+        {
+            if (tile != null)
+            {
+            	EntityEntry currentlySelectedEntityEntry = getCurrentSelectedEntity();
+                if (currentlySelectedEntityEntry != null)
+                {
+                	Class<? extends Entity> entityClass = currentlySelectedEntityEntry.getEntityClass();
+                    if (!tile.getTargetHelper().canTargetType(entityClass))
+                    {
+                        tile.getTargetHelper().addTargetType(entityClass);
+                        
+                        AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
+                    }
+                    else
+                    {
+                        tile.getTargetHelper().removeTargetType(entityClass);
+                        AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
+                    }
+                }
+            }
+        }
+    };
+    
+    static {
+        playerNameInput.setFocused(true);
+        playerNameInput.setWidth(225);
+        playerNameInput.setHeight(16);
+        playerNameInput.setBackgroundColor(0xFF000000);
+        playerNameInput.setTextColor(0xFF99FF55);
+        playerNameInput.setBorderColor(0xFF555555);
+        
+        buttonScrollUp.setAction(scrollUpAction);
+        
+        buttonScrollDown.setAction(scrollDownAction);
+        
+        buttonAddAsTarget.width = 20;
+        
+        buttonSave.width = 14;
+        
+        buttonLoad.width = 14;
+    }
+    
 
     public GuiTurret(EntityPlayer player, TileEntityTurret turret, World world, int x, int y, int z)
     {
@@ -55,31 +129,21 @@ public class GuiTurret extends GuiContainer
         this.xSize = 225;
         this.ySize = 200;
         this.tile = turret;
-        this.entityList = new ArrayList<Class<? extends Entity>>();
-        for (EntityEntry e : ForgeRegistries.ENTITIES.getValuesCollection())
-        {
-            this.entityList.add(e.getEntityClass());
+        
+        if (entityListSortedByName == null) {
+            entityListSortedByName = new ArrayList<>();
+            
+            for (EntityEntry entry: ForgeRegistries.ENTITIES.getValuesCollection()) {
+            	Entity instance = entry.newInstance(world);
+            	if (instance instanceof EntityLiving) {
+            		entityListSortedByName.add(Pair.of(entry, instance.getName()));
+            	}
+            }
+            
+            entityListSortedByName.sort(ALPHABETICAL_COMPARATOR);
         }
-        this.entityLivingList = new ArrayList<EntityLiving>();
-
-        for (Class<?> c : this.entityList)
-        {
-            Entity entity = null;
-            try
-            {
-                Constructor<?> ctor = c.getConstructor(new Class[] { World.class });
-                entity = (Entity) ctor.newInstance(new Object[] { Game.minecraft().world });
-            }
-            catch (Exception e)
-            {
-                ;
-            }
-
-            if (entity != null && entity instanceof EntityLiving)
-            {
-                this.entityLivingList.add((EntityLiving) entity);
-            }
-        }
+        
+        entityList = entityListSortedByName;
     }
 
     @Override
@@ -87,14 +151,31 @@ public class GuiTurret extends GuiContainer
     {
         super.initGui();
 
-        this.buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "");
-        this.buttonScrollDown = new GuiCustomButton(1, 0, 0, 20, 20, "");
-        this.buttonAddAsTarget = new GuiCustomButton(2, 0, 0, 50, 20, "");
-        this.buttonSave = new GuiCustomButton(3, 0, 0, 35, 20, "");
-        this.buttonLoad = new GuiCustomButton(4, 0, 0, 35, 20, "");
+        searchRequiresUpdate = false;
+        scroll = 0;
+        playerNameInput.setText("");
+        
+        playerNameInput.setX(guiLeft);
+        playerNameInput.setY(guiTop + ySize - 34);
 
-        this.playerNameInput = new GuiCustomTextbox(0, 0, 200, 20);
-        this.playerNameInput.setFocused(true);
+        buttonScrollUp.x = this.guiLeft + xSize + 5;
+        buttonScrollUp.y = this.guiTop + 42;
+
+        buttonScrollDown.x = this.guiLeft + this.xSize + 5;
+        buttonScrollDown.y = this.guiTop + 88;
+
+        buttonAddAsTarget.x = (this.guiLeft + this.xSize + 5);
+        buttonAddAsTarget.y = this.guiTop + 65;
+        buttonAddAsTarget.setAction(addAsTargetAction);
+
+        buttonSave.x = (this.guiLeft + this.xSize - 38);
+        buttonSave.y = (this.guiTop + 19);
+        buttonSave.setAction(saveAction);
+
+        buttonLoad.x = (this.guiLeft + this.xSize - 21);
+        buttonLoad.y = (this.guiTop + 19);
+        
+        buttonLoad.setAction(loadAction);
     }
 
     @Override
@@ -104,16 +185,15 @@ public class GuiTurret extends GuiContainer
 
         tile.applyUpgrades();
 
-        for (Class<? extends Entity> c : this.tile.getDangerousTargets())
-        {
-            AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), Entities.getEntityRegistrationId(c)));
-        }
+    	Collection<String> entityIdentifiers = tile.getTargetHelper().getDangerousTargets().stream().map((e) -> Entities.getEntityRegistrationId(e)).collect(Collectors.toList());
+        AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), entityIdentifiers));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY)
     {
+    	this.drawDefaultBackground();
         AliensVsPredator.resources().GUI_TURRET.bind();
         drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
@@ -124,29 +204,36 @@ public class GuiTurret extends GuiContainer
         {
             ItemStack stack = this.tile.getContainer(this.mc.player).getAmmoBay().getStackInSlot(i);
 
-            if ((stack == null) || (stack.getItem() != this.tile.getItemAmmo()))
+            if ((stack == null) || (stack.getItem() != this.tile.getAmmoHelper().getItemAmmo()))
                 continue;
             stacksCurrent += stack.getCount();
         }
 
-        Draw.drawProgressBar("Magazine " + (this.tile.getCurAmmo() <= 0 ? 0 : this.tile.getCurAmmo()) + "/" + this.tile.getMaxAmmo(), this.tile.getMaxAmmo(), this.tile.getCurAmmo() < 0 ? 1 : this.tile.getCurAmmo(), this.guiLeft + 7, this.guiTop + 20, this.xSize - 100, 3, 1, this.tile.getCurAmmo() < this.tile.getMaxAmmo() / 2 ? -22016 : this.tile.getCurAmmo() < this.tile.getMaxAmmo() / 6 ? -65536 : -16733441, false);
+        Draw.drawProgressBar("Magazine " + (this.tile.getAmmoHelper().getCurrentAmmo() <= 0 ? 0 : this.tile.getAmmoHelper().getCurrentAmmo()) + "/" + this.tile.getAmmoHelper().getMaxAmmo(), this.tile.getAmmoHelper().getMaxAmmo(), this.tile.getAmmoHelper().getCurrentAmmo() < 0 ? 1 : this.tile.getAmmoHelper().getCurrentAmmo(), this.guiLeft + 7, this.guiTop + 20, this.xSize - 100, 3, 1, this.tile.getAmmoHelper().getCurrentAmmo() < this.tile.getAmmoHelper().getMaxAmmo() / 2 ? -22016 : this.tile.getAmmoHelper().getCurrentAmmo() < this.tile.getAmmoHelper().getMaxAmmo() / 6 ? -65536 : -16733441, false);
         Draw.drawProgressBar("Total " + stacksCurrent + "/" + stacksTotal, stacksTotal, stacksCurrent, this.guiLeft + 7, this.guiTop + 30, this.xSize - 100, 3, 1, stacksCurrent < stacksTotal / 2 ? -22016 : stacksCurrent < stacksTotal / 6 ? -65536 : -16733441, false);
     }
 
     @Override
     public void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        for (int x = 0; x < this.entityLivingList.size(); x++)
+        for (int x = 0; x < entityList.size(); x++)
         {
             int yPos = 56;
             int yEntryPos = yPos + 11 * x;
 
-            Entity entity = x + this.scroll < this.entityLivingList.size() ? (EntityLiving) this.entityLivingList.get(x + this.scroll) : null;
+            Pair<EntityEntry, String> entityData = x + scroll < entityList.size() ? entityList.get(x + scroll) : null;
+            
+            if (entityData == null) {
+            	continue;
+            }
+            
+            EntityEntry entity = entityData.getLeft();
+            String entityName = entityData.getRight();
 
-            if (entity != null && yEntryPos <= yPos + 50)
-            {
+            if (yEntryPos <= yPos + 50) {
+            	Class<? extends Entity> entityClass = entity.getEntityClass();
                 Draw.drawRectWithOutline(3, yEntryPos - 4, 134, 12, 1, 0x00000000, 0xFF444444);
-                Draw.drawString(entity.getName(), 6, yEntryPos - 2, this.tile.canTargetType(entity.getClass()) ? (getCurrentSelectedEntity() == entity ? 0xFFFF8800 : 0xFFFF0000) : (getCurrentSelectedEntity() == entity ? 0xFFFFFFFF : 0xFF444444), false);
+                Draw.drawString(entityName, 6, yEntryPos - 2, this.tile.getTargetHelper().canTargetType(entityClass) ? (getCurrentSelectedEntity() == entity ? 0xFFFF8800 : 0xFFFF0000) : (getCurrentSelectedEntity() == entity ? 0xFFFFFFFF : 0xFF444444), false);
             }
         }
 
@@ -158,122 +245,33 @@ public class GuiTurret extends GuiContainer
     {
         super.drawScreen(mouseX, mouseY, p_73863_3_);
 
-        this.playerNameInput.setX(guiLeft);
-        this.playerNameInput.setY(guiTop + ySize - 34);
-        this.playerNameInput.setWidth(225);
-        this.playerNameInput.setHeight(16);
-        this.playerNameInput.setBackgroundColor(0xFF000000);
-        this.playerNameInput.setTextColor(0xFF99FF55);
-        this.playerNameInput.setBorderColor(0xFF555555);
-        this.playerNameInput.drawTextBox();
-
-        this.buttonScrollUp.x = this.guiLeft + xSize + 5;
-        this.buttonScrollUp.y = this.guiTop + 42;
-        this.buttonScrollUp.displayString = "\u21e7";
-        this.buttonScrollUp.baseColor = this.getScroll() == 0 ? 0x22000000 : 0xAA000000;
-        this.buttonScrollUp.drawButton();
-        this.buttonScrollUp.setAction(new IAction() {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                scrollDown();
-            }
-        });
-
-        this.buttonScrollDown.x = this.guiLeft + this.xSize + 5;
-        this.buttonScrollDown.y = this.guiTop + 88;
-        this.buttonScrollDown.displayString = "\u21e9";
-        this.buttonScrollDown.baseColor = this.getScroll() >= this.entityLivingList.size() - 1 ? 0x22000000 : 0xAA000000;
-        this.buttonScrollDown.drawButton();
-        this.buttonScrollDown.setAction(new IAction() {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                scrollUp();
-            }
-        });
-
-        this.buttonAddAsTarget.x = (this.guiLeft + this.xSize + 5);
-        this.buttonAddAsTarget.y = this.guiTop + 65;
-        this.buttonAddAsTarget.width = 20;
-        this.buttonAddAsTarget.drawButton();
-        this.buttonAddAsTarget.setAction(new IAction() {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                if (tile != null)
-                {
-                    if (playerNameInput != null && playerNameInput.getText().isEmpty() || playerNameInput == null)
-                    {
-                        if (!tile.canTargetType(getCurrentSelectedEntity().getClass()))
-                        {
-                            tile.addTargetType(getCurrentSelectedEntity().getClass());
-                            AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity())));
-                        }
-                        else
-                        {
-                            tile.removeTargetType(getCurrentSelectedEntity().getClass());
-                            AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(getCurrentSelectedEntity())));
-                        }
-                    }
-                    else
-                    {
-                        if (!tile.getTargetPlayers().contains(playerNameInput.getText()))
-                        {
-                            Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' added to turret player target list.");
-                            tile.addTargetPlayer(playerNameInput.getText());
-                            AliensVsPredator.network().sendToServer(new PacketAddTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
-                        }
-                        else
-                        {
-                            Game.minecraft().player.sendChatMessage("'" + playerNameInput.getText() + "' removed from turret player target list.");
-                            tile.removeTargetPlayer(playerNameInput.getText());
-                            AliensVsPredator.network().sendToServer(new PacketRemoveTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
-                        }
-                    }
-                }
-            }
-        });
-
-        this.buttonSave.x = (this.guiLeft + this.xSize - 38);
-        this.buttonSave.y = (this.guiTop + 19);
-        this.buttonSave.displayString = "S";
-        this.buttonSave.width = 14;
-        this.buttonSave.drawButton();
-        this.buttonSave.setAction(new IAction() {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                AliensVsPredator.network().sendToServer(new PacketWriteToDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
-                tile.writeToOtherDevice(0);
-            }
-        });
-
-        this.buttonLoad.x = (this.guiLeft + this.xSize - 21);
-        this.buttonLoad.y = (this.guiTop + 19);
-        this.buttonLoad.displayString = "L";
-        this.buttonLoad.width = 14;
-        this.buttonLoad.drawButton();
-        this.buttonLoad.setAction(new IAction() {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                tile.getDangerousTargets().clear();
-                AliensVsPredator.network().sendToServer(new PacketReadFromDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
-                tile.readFromOtherDevice(0);
-            }
-        });
-
-        if (!this.tile.canTargetType(getCurrentSelectedEntity().getClass()))
+        // Update
+        EntityEntry currentSelectedEntityEntry = getCurrentSelectedEntity();
+        
+        if (currentSelectedEntityEntry != null && !this.tile.getTargetHelper().canTargetType(currentSelectedEntityEntry.getEntityClass()))
         {
-            this.buttonAddAsTarget.displayString = "+";
-            this.buttonAddAsTarget.overlayColorHover = 0xFF00FF77;
+            buttonAddAsTarget.displayString = "+";
+            buttonAddAsTarget.overlayColorHover = 0xFF00FF77;
         }
         else
         {
-            this.buttonAddAsTarget.displayString = "-";
-            this.buttonAddAsTarget.overlayColorHover = 0xFFFF0033;
+            buttonAddAsTarget.displayString = "-";
+            buttonAddAsTarget.overlayColorHover = 0xFFFF0033;
         }
+        
+        // Draw
+
+        playerNameInput.drawTextBox();
+
+        buttonScrollUp.baseColor = scroll == 0 ? 0x22000000 : 0xAA000000;
+        buttonScrollUp.drawButton();
+        
+        buttonScrollDown.baseColor = scroll >= entityList.size() - 1 ? 0x22000000 : 0xAA000000;
+        buttonScrollDown.drawButton();
+        
+        buttonAddAsTarget.drawButton();
+        buttonSave.drawButton();
+        buttonLoad.drawButton();
     }
 
     @Override
@@ -285,11 +283,11 @@ public class GuiTurret extends GuiContainer
 
         if (dWheel > 0)
         {
-            scrollDown();
+            scrollUp();
         }
         else if (dWheel < 0)
         {
-            scrollUp();
+            scrollDown();
         }
 
         if (Keyboard.isKeyDown(Keyboard.KEY_DOWN))
@@ -301,109 +299,114 @@ public class GuiTurret extends GuiContainer
         {
             scrollUp();
         }
-    }
-
-    public EntityLiving getCurrentSelectedEntity()
-    {
-        return this.entityLivingList.get(getScroll());
-    }
-
-    public void scrollDown()
-    {
-        if (this.scroll > 0)
-        {
-            this.scroll -= 1;
+        
+        if (searchRequiresUpdate) {
+        	searchRequiresUpdate = false;
+        	entityList = entityListSortedByName.stream()
+        			.filter(entry -> entry.getRight().toLowerCase().contains(playerNameInput.getText().toLowerCase())).collect(Collectors.toList());
         }
     }
 
-    public void scrollUp()
+    public EntityEntry getCurrentSelectedEntity()
     {
-        if (this.scroll < this.entityLivingList.size() - 1)
+        return !entityList.isEmpty() ? entityList.get(scroll).getLeft() : null;
+    }
+
+    public static void scrollUp()
+    {
+        if (scroll > 0)
         {
-            this.scroll += 1;
+            scroll -= 1;
         }
     }
 
-    public int getScroll()
+    public static void scrollDown()
     {
-        return this.scroll;
+        if (scroll < entityList.size() - 1)
+        {
+            scroll += 1;
+        }
     }
 
     @Override
     protected void keyTyped(char typedChar, int keyCode) throws IOException
     {
-        if (this.playerNameInput.isEnabled() && this.playerNameInput.isFocused() && keyCode != Keyboard.KEY_ESCAPE)
+        if (playerNameInput.isEnabled() && playerNameInput.isFocused() && keyCode != Keyboard.KEY_ESCAPE)
         {
             if (keyCode == Keyboard.KEY_RETURN)
             {
-                String commandLineText = this.playerNameInput.getText();
+                String commandLineText = playerNameInput.getText();
 
                 if (commandLineText.startsWith("/"))
                 {
-                    String command = commandLineText.substring(1, commandLineText.length());
-                    String[] args = command.split(" ");
-
-                    if (args.length > 0 && !args[0].equalsIgnoreCase(""))
-                    {
-                        if (args[0].equalsIgnoreCase("lasercolor"))
-                        {
-                            if (args.length == 2)
-                            {
-                                try
-                                {
-                                    if (args[1].contains("0x"))
-                                    {
-                                        args[1] = args[1].replace("0x", "");
-                                    }
-
-                                    int color = (int) Long.parseLong(args[1], 16);
-                                    String hexString = "0x" + Integer.toHexString(color).toUpperCase();
-                                    this.tile.beamColor = color;
-                                    mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Set turret laser beam color to " + hexString));
-                                }
-                                catch (Exception e)
-                                {
-                                    mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Invalid hexadecimal color string '" + args[1] + "'"));
-                                }
-                            }
-                            else
-                            {
-                                mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Invalid amount of arguments provided."));
-                            }
-                        }
-                        else if (args[0].equalsIgnoreCase("test"))
-                        {
-                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("0 argument command executed."));
-                        }
-                        else if (args[0].equalsIgnoreCase("help"))
-                        {
-                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("lasercolor <hex> - Set the laser beam color"));
-                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("help - Shows this command list."));
-                        }
-                        else
-                        {
-                            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString(String.format("Command '%s' not recognized. See '/help'.", args[0])));
-                        }
-                    }
-                    else
-                    {
-                        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("No command provided."));
-                    }
-
-                    this.playerNameInput.setText("");
+                    handlePlayerCommand(commandLineText);
+                    playerNameInput.setText("");
                     return;
                 }
-                else
+                else if (playerNameInput != null && !playerNameInput.getText().isEmpty())
                 {
-                    this.buttonAddAsTarget.getAction().perform(this.buttonAddAsTarget);
+                	AliensVsPredator.network().sendToServer(new PacketToggleTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
                     return;
                 }
             }
 
-            this.playerNameInput.textboxKeyTyped(typedChar, keyCode);
+            playerNameInput.textboxKeyTyped(typedChar, keyCode);
+            searchRequiresUpdate = true;
             return;
         }
 
         super.keyTyped(typedChar, keyCode);
     }
+
+	private void handlePlayerCommand(String commandLineText) {
+		String command = commandLineText.substring(1, commandLineText.length());
+		String[] args = command.split(" ");
+
+		if (args.length > 0 && !args[0].equalsIgnoreCase(""))
+		{
+		    if (args[0].equalsIgnoreCase("lasercolor"))
+		    {
+		        if (args.length == 2)
+		        {
+		            try
+		            {
+		                if (args[1].contains("0x"))
+		                {
+		                    args[1] = args[1].replace("0x", "");
+		                }
+
+		                int color = (int) Long.parseLong(args[1], 16);
+		                String hexString = "0x" + Integer.toHexString(color).toUpperCase();
+		                this.tile.beamColor = color;
+		                mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Set turret laser beam color to " + hexString));
+		            }
+		            catch (Exception e)
+		            {
+		                mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Invalid hexadecimal color string '" + args[1] + "'"));
+		            }
+		        }
+		        else
+		        {
+		            mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("Invalid amount of arguments provided."));
+		        }
+		    }
+		    else if (args[0].equalsIgnoreCase("test"))
+		    {
+		        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("0 argument command executed."));
+		    }
+		    else if (args[0].equalsIgnoreCase("help"))
+		    {
+		        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("lasercolor <hex> - Set the laser beam color"));
+		        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("help - Shows this command list."));
+		    }
+		    else
+		    {
+		        mc.player.getCommandSenderEntity().sendMessage(new TextComponentString(String.format("Command '%s' not recognized. See '/help'.", args[0])));
+		    }
+		}
+		else
+		{
+		    mc.player.getCommandSenderEntity().sendMessage(new TextComponentString("No command provided."));
+		}
+	}
 }

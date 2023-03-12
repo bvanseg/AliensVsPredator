@@ -13,6 +13,7 @@ import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.entities.living.species.SpeciesYautja;
 
 import com.google.common.base.Predicate;
+import org.avp.entities.ai.EntitySelectorCombatSynthetic;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -25,8 +26,6 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
-import net.minecraft.entity.monster.EntityGolem;
-import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -40,7 +39,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 
-public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost, Predicate<EntityLivingBase>
+public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost
 {
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     
@@ -51,6 +50,10 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
         super(word);
         this.setSize(1, 2);
         this.experienceValue = 40;
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.aiRangedAttack = new EntityAIAttackRanged(this, 0.4D, 20, 24);
         this.tasks.addTask(1, this.aiRangedAttack);
         this.tasks.addTask(2, new PatchedEntityAIWander(this, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
@@ -58,7 +61,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
         this.tasks.addTask(5, new EntityAILookIdle(this));
         this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, /** targetChance **/ 0, /** shouldCheckSight **/ true, /** nearbyOnly **/ false, this));
+        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, 0, true, false, EntitySelectorCombatSynthetic.instance));
     }
 
     @Override
@@ -160,36 +163,6 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
             pool.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
             this.world.spawnEntity(pool);
         }
-    }
-
-    @Override
-    public boolean apply(EntityLivingBase entity)
-    {
-        if (entity instanceof SpeciesAlien)
-            return true;
-
-        if (entity instanceof EntityMob)
-            return true;
-
-        if (entity instanceof SpeciesYautja)
-            return true;
-
-        if (entity instanceof EntityGolem)
-            return true;
-
-        if (entity instanceof SpeciesXenomorph)
-            return true;
-
-        if (entity instanceof EntityPlayer)
-            return false;
-
-        if (entity instanceof EntityMarine)
-            return false;
-
-        if (entity instanceof EntityCombatSynthetic)
-            return false;
-        
-        return false;
     }
 
     @Override

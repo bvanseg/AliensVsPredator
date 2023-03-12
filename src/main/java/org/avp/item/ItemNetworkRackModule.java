@@ -45,11 +45,11 @@ public abstract class ItemNetworkRackModule extends HookedItem
     }
 
     @SideOnly(Side.CLIENT)
-    public abstract MapModelTexture<Model> getModel();
+    public abstract MapModelTexture<Model<?>> getModel();
 
     @SideOnly(Side.CLIENT)
-    public abstract MapModelTexture<Model> getModelOn();
+    public abstract MapModelTexture<Model<?>> getModelOn();
 
     @SideOnly(Side.CLIENT)
-    public abstract MapModelTexture<Model> getModelOff();
+    public abstract MapModelTexture<Model<?>> getModelOff();
 }

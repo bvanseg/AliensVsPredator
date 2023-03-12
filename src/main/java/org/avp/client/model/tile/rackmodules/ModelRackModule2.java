@@ -4,7 +4,8 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelRackModule2 extends Model
+//TODO: Use a better type than Object for Model.
+public class ModelRackModule2 extends Model<Object>
 {
     public ModelRenderer monitor;
     public ModelRenderer light01;

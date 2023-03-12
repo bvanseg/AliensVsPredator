@@ -70,7 +70,7 @@ public class PacketRemoveTurretTarget implements IMessage, IMessageHandler<Packe
                             break;
                         }
                     }
-                    tile.removeTargetType((Class<? extends Entity>) e.getEntityClass());
+                    tile.getTargetHelper().removeTargetType((Class<? extends Entity>) e.getEntityClass());
                 }
             }
         });

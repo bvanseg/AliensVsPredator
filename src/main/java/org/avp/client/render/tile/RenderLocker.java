@@ -16,9 +16,15 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.MathHelper;
 
 public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
 {
+	// TODO: This should be in a util or helper class in the future.
+	private float lerp(float pointA, float pointB, float percentage) {
+        return (pointA * (1.0f - percentage)) + (pointB * percentage);
+    }
+	
     @Override
     public void render(TileEntityLocker tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
@@ -31,7 +37,13 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
             OpenGL.enable(GL11.GL_ALPHA_TEST);
             OpenGL.disableCullFace();
             OpenGL.rotate(tile);
-            ((ModelLocker) AliensVsPredator.resources().models().LOCKER.getModel()).door.rotateAngleY = !tile.isOpen() ? 0 : -1.5F;
+            
+            float openSpeed = 0.06F;
+            tile.openProgress = MathHelper.clamp(tile.openProgress + (!tile.isOpen() ? -openSpeed : openSpeed), 0.0F, 1.0F);
+            float lerpProgress = !tile.isOpen() ? tile.openProgress : 1 - tile.openProgress;
+            float openProgress = lerp(tile.isOpen() ? -1.5F : 0F, tile.isOpen() ? 0F : -1.5F, lerpProgress);
+            
+            ((ModelLocker) AliensVsPredator.resources().models().LOCKER.getModel()).door.rotateAngleY = openProgress;
             AliensVsPredator.resources().models().LOCKER.draw(tile);
 
             if (tile != null)
