@@ -1,5 +1,7 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.vardic.EntityDeaconShark;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -7,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelDeaconShark extends Model
+public class ModelDeaconShark extends Model<EntityDeaconShark>
 {
     public ModelRenderer body1;
     public ModelRenderer body2;
@@ -176,7 +178,7 @@ public class ModelDeaconShark extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityDeaconShark obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;;
         

@@ -1,10 +1,12 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityMyceliomorph;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelMyceliomorph extends Model
+public class ModelMyceliomorph extends Model<EntityMyceliomorph>
 {
     public ModelRenderer chest;
     public ModelRenderer abdomen;
@@ -337,7 +339,7 @@ public class ModelMyceliomorph extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityMyceliomorph obj)
     {
         draw(chest);
     }

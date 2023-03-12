@@ -70,7 +70,7 @@ import org.avp.block.skulls.BlockSkullXenomorph;
 import org.avp.block.skulls.BlockSkullXenomorphWarrior;
 import org.avp.block.skulls.BlockSkullYautja;
 import org.avp.item.ItemBlockSkull;
-import org.avp.item.ItemSupplyChute.SupplyChuteType;
+import org.avp.item.supply.chute.SupplyChuteType;
 
 import com.asx.mdx.core.mods.IInitEvent;
 import com.asx.mdx.lib.world.block.BlockMaterial;

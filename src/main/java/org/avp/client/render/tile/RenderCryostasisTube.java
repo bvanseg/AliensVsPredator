@@ -119,31 +119,18 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
 
             if (tile != null && tile.stasisEntity != null)
             {
-                for (CryostasisEntityRenderer renderer : renderers)
-                {
-                    if (renderer.isApplicable(tile.stasisEntity))
-                    {
-                        cachedRenderer = renderer;
-                        break;
-                    }
-                }
+            	cachedRenderer = renderers.stream().filter((r) -> r.isApplicable(tile.stasisEntity)).findFirst().orElse(renderer);
+            } else {
+            	cachedRenderer = renderer;
             }
 
-            if (cachedRenderer == null)
-            {
-                cachedRenderer = renderer;
-            }
-
-            if (cachedRenderer != null)
-            {
-                cachedRenderer.renderChassis(this, tile, posX, posY, posZ);
-                OpenGL.pushMatrix();
-                OpenGL.disableCullFace();
-                cachedRenderer.renderEntity(this, tile, posX, posY, posZ);
-                OpenGL.enableCullFace();
-                OpenGL.popMatrix();
-                cachedRenderer.renderTube(this, tile, posX, posY, posZ);
-            }
+            cachedRenderer.renderChassis(this, tile, posX, posY, posZ);
+            OpenGL.pushMatrix();
+            OpenGL.disableCullFace();
+            cachedRenderer.renderEntity(this, tile, posX, posY, posZ);
+            OpenGL.enableCullFace();
+            OpenGL.popMatrix();
+            cachedRenderer.renderTube(this, tile, posX, posY, posZ);
 
             OpenGL.disableBlend();
             OpenGL.enableLight();

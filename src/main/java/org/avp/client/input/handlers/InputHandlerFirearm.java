@@ -2,7 +2,7 @@ package org.avp.client.input.handlers;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.input.IInputHandler;
-import org.avp.item.ItemFirearm;
+import org.avp.item.firearms.ItemFirearm;
 import org.avp.packets.server.PacketReloadFirearm;
 
 import com.asx.mdx.lib.util.Game;

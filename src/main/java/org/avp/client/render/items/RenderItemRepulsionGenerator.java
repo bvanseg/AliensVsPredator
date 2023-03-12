@@ -5,7 +5,6 @@ import org.avp.client.model.tile.ModelRepulsionGenerator;
 
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;

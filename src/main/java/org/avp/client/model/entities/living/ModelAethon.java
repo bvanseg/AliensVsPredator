@@ -10,7 +10,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelAethon extends Model
+public class ModelAethon extends Model<EntityAethon>
 {
     public ModelRenderer chest;
     public ModelRenderer lArm;
@@ -459,11 +459,11 @@ public class ModelAethon extends Model
     }
 
     @Override
-    public void render(Object o)
+    public void render(EntityAethon o)
     {
         if (o != null && o instanceof EntityAethon)
         {
-            EntityAethon aethon = (EntityAethon) o;
+            EntityAethon aethon = o;
 
             boolean isFlying = aethon.isFlying();
             float swingProgress = swingProgress(aethon);

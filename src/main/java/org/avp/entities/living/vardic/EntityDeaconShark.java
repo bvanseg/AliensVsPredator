@@ -51,6 +51,10 @@ public class EntityDeaconShark extends SpeciesAlien
         super(worldIn);
         this.experienceValue = 10;
         this.setSize(2F, 1F);
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.8D, true));
         this.tasks.addTask(5, moveTowardsRestriction = new EntityAIMoveTowardsRestriction(this, 1.0D));
         this.tasks.addTask(7, this.wander = new PatchedEntityAIWander(this, 1.0D));

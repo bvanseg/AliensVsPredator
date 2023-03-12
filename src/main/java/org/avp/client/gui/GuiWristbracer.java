@@ -24,8 +24,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class GuiWristbracer extends GuiContainer
 {
-    private HashMap<GuiButton, Integer> displays   = new HashMap<GuiButton, Integer>();
-    protected List<GuiButton>           buttons = new ArrayList<GuiButton>();
+    private final HashMap<GuiButton, Integer> displays   = new HashMap<>();
+    protected List<GuiButton>           buttons = new ArrayList<>();
     public ContainerWristbracer         container;
 
     public GuiWristbracer(EntityPlayer player, ContainerWristbracer container)
@@ -67,6 +67,7 @@ public class GuiWristbracer extends GuiContainer
     {
         this.guiLeft = this.width / 2 - xSize / 2;
         this.guiTop = this.height / 2 - ySize / 2;
+    	this.drawDefaultBackground();
         AliensVsPredator.resources().GUI_WRISTBRACER.bind();
         Draw.drawQuad(guiLeft, guiTop, xSize, ySize - 30, 0, 0, 0);
 

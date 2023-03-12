@@ -14,19 +14,19 @@ public class ItemNetworkRackModule5 extends ItemNetworkRackModule
     }
     
     @Override
-    public MapModelTexture<Model> getModel()
+    public MapModelTexture<Model<?>> getModel()
     {
         return AliensVsPredator.resources().models().RACKMODULE5;
     }
 
     @Override
-    public MapModelTexture<Model> getModelOn()
+    public MapModelTexture<Model<?>> getModelOn()
     {
         return AliensVsPredator.resources().models().RACKMODULE5_ON;
     }
 
     @Override
-    public MapModelTexture<Model> getModelOff()
+    public MapModelTexture<Model<?>> getModelOff()
     {
         return AliensVsPredator.resources().models().RACKMODULE5_OFF;
     }

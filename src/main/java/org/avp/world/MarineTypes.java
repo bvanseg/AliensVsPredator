@@ -1,7 +1,7 @@
 package org.avp.world;
 
 import org.avp.AliensVsPredator;
-import org.avp.item.ItemFirearm;
+import org.avp.item.firearms.ItemFirearm;
 
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.client.util.models.Model;

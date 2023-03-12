@@ -1,17 +1,19 @@
 package org.avp.tile;
 
+import org.avp.AliensVsPredator;
 import org.avp.api.power.IVoltageReceiver;
 import org.avp.item.ItemEntitySummoner;
+import org.avp.packets.server.PacketCryostasisStateUpdate;
 
 import com.asx.mdx.lib.world.tile.IRotatableYAxis;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 
@@ -38,50 +40,53 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         super.update();
         this.updateEnergyAsReceiver();
         
-        if (this.stasisEntity != null && !this.isOperational())
-        {
-            if (this.world.getTotalWorldTime() % 100 == 0)
+        // If the machine is shattered, it can no longer support an entity. Nothing more to update.
+        if (this.isShattered()) {
+            if (!this.world.isRemote && stasisEntity != null)
             {
-                if (this.world.rand.nextInt(8) == 0)
-                {
-                    if (this.isCracked())
-                    {
-                        this.setShattered(true);
-                    }
-
-                    this.setCracked(true);
-                }
+            	stasisEntity.setLocationAndAngles(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 0F, 0F);
+                this.world.spawnEntity(stasisEntity);
             }
+
+            // Set these to null, as the stasis tube can no longer support a specimen, anyways.
+            this.stasisItemstack = null;
+            this.stasisEntity = null;
+        	return;
         }
 
-        if (this.stasisItemstack != null && this.stasisItemstack.getItem() instanceof ItemEntitySummoner)
-        {
-            ItemEntitySummoner item = (ItemEntitySummoner) this.stasisItemstack.getItem();
-            Entity entity = item.createNewEntity(world);
-
-            if (entity != null)
-            {
-                if (this.isShattered())
-                {
-                    if (!this.world.isRemote)
-                    {
-                        entity.setLocationAndAngles(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ(), 0F, 0F);
-                        this.world.spawnEntity(entity);
-                    }
-
-                    this.stasisItemstack = null;
-                    this.stasisEntity = null;
-                }
-            }
-            else
-            {
-                this.stasisEntity = ((ItemEntitySummoner) this.stasisItemstack.getItem()).createNewEntity(this.world);
-            }
+        // There is nothing more this machine can do if the stasis itemstack is null.
+        if (this.stasisItemstack == null) {
+        	return;
         }
 
-        if (stasisEntity != null && world.isRemote)
+        // If no stasis entity is present, try setting one.
+        if (this.stasisEntity == null)
         {
-            stasisEntity.onUpdate();
+            this.stasisEntity = ((ItemEntitySummoner) this.stasisItemstack.getItem()).createNewEntity(this.world);
+        }
+
+
+        if (this.stasisEntity != null) {
+            if (world.isRemote)
+            {
+                stasisEntity.onUpdate();
+            }
+
+            if (!this.world.isRemote && !this.isOperational())
+            {
+            	if (this.world.getTotalWorldTime() % 100 == 0)
+                {
+                    if (this.world.rand.nextInt(8) == 0)
+                    {
+                        if (this.isCracked())
+                        {
+                            this.setShattered(true);
+                        }
+
+                        this.setCracked(true);
+                    }
+                }
+            }
         }
     }
 
@@ -89,24 +94,6 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
     public Block getBlockType()
     {
         return Blocks.BEACON;
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(this.getPos(), 1, this.getUpdateTag());
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
-    {
-        this.readFromNBT(packet.getNbtCompound());
     }
 
     @Override
@@ -144,15 +131,18 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
         }
 
         NBTTagCompound nbtStack = nbt.getCompoundTag("StasisItemstack");
-        this.stasisItemstack = new ItemStack(nbtStack);
 
-        if (this.stasisEntity == null && this.stasisItemstack != ItemStack.EMPTY && stasisItemstack != null)
+        if (nbtStack != null && !nbtStack.isEmpty() && nbtStack.hasKey("StasisItemstack")) {
+            this.stasisItemstack = new ItemStack(nbtStack);
+        }
+
+        if (this.stasisEntity == null && this.stasisItemstack != ItemStack.EMPTY && this.stasisItemstack.getItem() != Items.AIR && stasisItemstack != null)
         {
-            ItemEntitySummoner summoner = ((ItemEntitySummoner) this.stasisItemstack.getItem());
+            Item summoner = this.stasisItemstack.getItem();
             
-            if (summoner != null)
+            if (summoner != null && summoner instanceof ItemEntitySummoner)
             {
-                this.stasisEntity = summoner.createNewEntity(this.world);
+                this.stasisEntity = ((ItemEntitySummoner)summoner).createNewEntity(this.world);
             }
         }
     }
@@ -160,11 +150,19 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements IV
     public void setCracked(boolean cracked)
     {
         this.cracked = cracked;
+
+        if (!this.world.isRemote) {
+            AliensVsPredator.network().sendToAll(new PacketCryostasisStateUpdate(this));
+        }
     }
 
     public void setShattered(boolean shattered)
     {
         this.shattered = shattered;
+
+        if (!this.world.isRemote) {
+            AliensVsPredator.network().sendToAll(new PacketCryostasisStateUpdate(this));
+        }
     }
 
     public boolean isCracked()

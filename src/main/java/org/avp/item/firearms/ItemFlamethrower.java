@@ -1,4 +1,4 @@
-package org.avp.item;
+package org.avp.item.firearms;
 
 import java.util.List;
 

@@ -6,7 +6,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelAK47 extends Model implements IFirearmModel
+public class ModelAK47 extends Model<Object> implements IFirearmModel
 {
     public ModelRenderer handle;
     public ModelRenderer clip;

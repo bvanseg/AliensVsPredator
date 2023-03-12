@@ -21,7 +21,7 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
     public EntityMechanism dummyEntity;
     private Entity         stasisEntity;
     public ItemStack       itemstack;
-    private String         readOnlyDmmyEntityUUID;
+    private String         readOnlyDummyEntityUUID;
     private int            readOnlyStasisEntityID;
 
     public TileEntityStasisMechanism()
@@ -32,54 +32,51 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
     @Override
     public void update()
     {
-        if (this.dummyEntity == null && this.world.getTotalWorldTime() % 20 == 0)
+        
+        if (!this.world.isRemote)
         {
-            this.dummyEntity = (EntityMechanism) getEntityForUUID(this.world, this.readOnlyDmmyEntityUUID);
+			if (this.dummyEntity == null)
+			{
+			    this.dummyEntity = (EntityMechanism) getEntityForUUID(this.world, this.readOnlyDummyEntityUUID);
+			    
+			    if (this.dummyEntity == null)
+			    {
+			    	this.dummyEntity = new EntityMechanism(this.world);
+			        this.dummyEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
+			        this.world.spawnEntity(this.dummyEntity);
+			    }
+			}
+			
+			if (this.dummyEntity != null)
+			{
+				if (this.itemstack != null && this.stasisEntity == null && this.itemstack.getItem() instanceof ItemEntitySummoner)
+				{
+			        ItemEntitySummoner summoner = (ItemEntitySummoner) this.itemstack.getItem();
+			        this.stasisEntity = summoner.createNewEntity(this.world);
+			        this.stasisEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
+			        this.world.spawnEntity(this.stasisEntity);
+			    }
+				
+				this.dummyEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
 
-            if (this.dummyEntity != null)
-            {
-                this.stasisEntity = Entities.getEntityRiddenBy(this.dummyEntity);
-            }
-        }
+	        	// TODO: The riding entity automatically dismounts the very next tick... not sure why, need to fix.
+	            if (this.stasisEntity != null && !this.stasisEntity.isRiding())
+	            {
+	                this.stasisEntity.startRiding(this.dummyEntity, true);
+	            }
 
-        if (this.dummyEntity == null && !this.world.isRemote)
-        {
-            this.dummyEntity = new EntityMechanism(this.world);
-            this.dummyEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
-            this.world.spawnEntity(this.dummyEntity);
-        }
+	            Entity riddenBy = Entities.getEntityRiddenBy(this.dummyEntity);
 
-        if (this.dummyEntity != null && this.itemstack != null && this.stasisEntity == null && !this.world.isRemote)
-        {
-            if (this.itemstack.getItem() instanceof ItemEntitySummoner)
-            {
-                ItemEntitySummoner summoner = (ItemEntitySummoner) this.itemstack.getItem();
-                this.stasisEntity = summoner.createNewEntity(this.world);
-                this.stasisEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
-                this.world.spawnEntity(this.stasisEntity);
-            }
-        }
+	            if (riddenBy == null)
+	            {
+	                this.itemstack = null;
+	            }
 
-        if (this.dummyEntity != null)
-        {
-            this.dummyEntity.setLocationAndAngles(this.getPos().getX() + 0.5, this.getPos().getY(), this.getPos().getZ() + 0.5, 0, 0);
-
-            Entity riddenBy = Entities.getEntityRiddenBy(this.dummyEntity);
-
-            if (riddenBy == null)
-            {
-                this.itemstack = null;
-            }
-
-            if (riddenBy != null && riddenBy instanceof EntityLivingBase)
-            {
-                ((EntityLivingBase) riddenBy).rotationYawHead = direction * 90;
-            }
-        }
-
-        if (this.stasisEntity != null)
-        {
-            this.stasisEntity.startRiding(this.dummyEntity);
+	            if (riddenBy != null && riddenBy instanceof EntityLivingBase)
+	            {
+	                ((EntityLivingBase) riddenBy).rotationYawHead = direction * 90;
+	            }
+			}
         }
     }
 
@@ -90,25 +87,7 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
 
     public int getDirection()
     {
-        return direction;
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
-        return new SPacketUpdateTileEntity(this.getPos(), 1, this.getUpdateTag());
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag()
-    {
-        return this.writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
-    {
-        this.readFromNBT(packet.getNbtCompound());
+        return this.direction;
     }
 
     @Override
@@ -144,7 +123,7 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
     {
         super.readFromNBT(nbt);
         this.direction = nbt.getInteger("Direction");
-        this.readOnlyDmmyEntityUUID = nbt.getString("DummyEntity");
+        this.readOnlyDummyEntityUUID = nbt.getString("DummyEntity");
         this.readOnlyStasisEntityID = nbt.getInteger("StasisEntity");
         this.itemstack = new ItemStack(nbt.getCompoundTag("StasisItemstack"));
     }
@@ -171,7 +150,7 @@ public class TileEntityStasisMechanism extends TileEntity implements ITickable
 
     public String getReadOnlyDmmyEntityUUID()
     {
-        return readOnlyDmmyEntityUUID;
+        return readOnlyDummyEntityUUID;
     }
 
     public int getReadOnlyStasisEntityID()

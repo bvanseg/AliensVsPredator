@@ -1,5 +1,7 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.vardic.EntityBelugaburster;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -7,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelBelugaburster extends Model
+public class ModelBelugaburster extends Model<EntityBelugaburster>
 {
     public ModelRenderer bodyMid;
     public ModelRenderer body2;
@@ -219,7 +221,7 @@ public class ModelBelugaburster extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityBelugaburster obj)
     {
         draw(bodyMid);
 

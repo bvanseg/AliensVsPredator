@@ -29,14 +29,6 @@ import net.minecraft.world.World;
 
 public class EntityHammerpede extends SpeciesAlien implements IMob
 {
-    public static Predicate<EntityLivingBase> entitySelector = new Predicate<EntityLivingBase>()
-    {
-        @Override
-        public boolean apply(EntityLivingBase entity)
-        {
-            return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityHammerpede);
-        }
-    };
 
     public EntityHammerpede(World par1World)
     {
@@ -44,11 +36,14 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
 
         this.setSize(0.5F, 0.5F);
         this.experienceValue = 16;
-        
-        
+    }
+    
+    @Override
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.8D, true));
         this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
+        // TODO: Re-implement this
 //        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, Entity.class, 10 /** targetChance **/
 //            , false /** checkSight **/
 //            , false /** nearbyOnly **/

@@ -1,5 +1,7 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityChestburster;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -7,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelChestburster extends Model
+public class ModelChestburster extends Model<EntityChestburster>
 {
     public ModelRenderer body1, body2, body3, body4, body5, body7, mouth, body8, body9, body10, body11, body12, body13, body14, body15, body16, tail1, tail2, tail3, tail4, tail5, tail6, tail7, body17;
 
@@ -111,7 +113,7 @@ public class ModelChestburster extends Model
     }
     
     @Override
-    public void render(Object obj)
+    public void render(EntityChestburster obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;
         float newangle = MathHelper.cos(idleProgress(obj) * 4.0F * 0.1F) * (float) Math.PI * 0.9F * swingProgressPrev(obj);

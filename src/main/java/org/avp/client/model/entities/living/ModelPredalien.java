@@ -1,5 +1,7 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityPredalien;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -7,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelPredalien extends Model
+public class ModelPredalien extends Model<EntityPredalien>
 {
     public ModelRenderer RightThigh;
     public ModelRenderer leftThigh;
@@ -465,7 +467,7 @@ public class ModelPredalien extends Model
     }
     
     @Override
-    public void render(Object obj)
+    public void render(EntityPredalien obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;;
 
