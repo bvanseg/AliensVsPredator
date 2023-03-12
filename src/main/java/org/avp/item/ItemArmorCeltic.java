@@ -29,16 +29,9 @@ public class ItemArmorCeltic extends ItemArmor
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-        switch (slot)
-        {
-            case FEET:
-                return Draw.getPath(AliensVsPredator.resources().CELTIC1);
+        switch (slot) {
             case LEGS:
                 return Draw.getPath(AliensVsPredator.resources().CELTIC2);
-            case CHEST:
-                return Draw.getPath(AliensVsPredator.resources().CELTIC1);
-            case HEAD:
-                return Draw.getPath(AliensVsPredator.resources().CELTIC1);
             default:
                 return Draw.getPath(AliensVsPredator.resources().CELTIC1);
         }
