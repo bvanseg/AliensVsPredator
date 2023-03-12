@@ -2,7 +2,7 @@ package org.avp.world.dimension.varda.gen;
 
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -176,12 +176,12 @@ public class VardaGenCaves extends MapGenBase
                         {
                             Block ceilBlock = primer.getBlockState(somethingX, somethingY, somethingZ).getBlock();
 
-                            if (ceilBlock == AliensVsPredator.blocks().unidirt)
+                            if (ceilBlock == AVPBlocks.UNIDIRT)
                             {
                                 atSurface = true;
                             }
 
-                            if ((ceilBlock != AliensVsPredator.blocks().unistone) || (ceilBlock != AliensVsPredator.blocks().unidirt) || (ceilBlock != AliensVsPredator.blocks().unidirt))
+                            if ((ceilBlock != AVPBlocks.UNISTONE) || (ceilBlock != AVPBlocks.UNIDIRT) || (ceilBlock != AVPBlocks.UNIDIRT))
                             {
                                 if (somethingY < 10)
                                 {
@@ -191,7 +191,7 @@ public class VardaGenCaves extends MapGenBase
                                 {
                                     primer.setBlockState(somethingX, somethingY, somethingZ, Blocks.AIR.getDefaultState());
 
-                                    if (atSurface && primer.getBlockState(somethingX, somethingY - 1, somethingZ) == AliensVsPredator.blocks().unidirt)
+                                    if (atSurface && primer.getBlockState(somethingX, somethingY - 1, somethingZ) == AVPBlocks.UNIDIRT)
                                     {
                                         primer.setBlockState(somethingX, somethingY - 1, somethingZ, this.world.getBiome(new BlockPos(somethingX + chunkX * 16, 0, somethingZ + chunkZ * 16)).topBlock);
                                     }

@@ -3,7 +3,7 @@ package org.avp.world.dimension.acheron;
 import java.util.List;
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSand;
@@ -236,7 +236,7 @@ public class ChunkProviderAcheron implements IChunkGenerator
                             {
                                 if ((lvt_45_1_ += d16) > 0.0D)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, AliensVsPredator.blocks().unistone.getDefaultState());
+                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, AVPBlocks.UNISTONE.getDefaultState());
                                 }
                                 else if (i2 * 8 + j2 < 60)
                                 {
@@ -297,7 +297,7 @@ public class ChunkProviderAcheron implements IChunkGenerator
                                 if (var12 <= 0)
                                 {
                                     top = Blocks.AIR;
-                                    filler = AliensVsPredator.blocks().unistone;
+                                    filler = AVPBlocks.UNISTONE;
                                 }
                                 else if ((blockY >= var5 - 4) && (blockY <= var5 + 1))
                                 {

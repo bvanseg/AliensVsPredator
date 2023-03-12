@@ -2,7 +2,7 @@ package org.avp.world.dimension.varda.gen;
 
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 import org.avp.block.BlockUnidentifiedLog;
 
 import net.minecraft.block.Block;
@@ -18,9 +18,9 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 
 public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerator
 {
-    public static final IBlockState TREE_TENDONS = AliensVsPredator.blocks().gigerTendons.getDefaultState();
-    public static final IBlockState TREE_LOGS = AliensVsPredator.blocks().gigerLog.getDefaultState().withProperty(BlockUnidentifiedLog.LOG_AXIS, EnumAxis.Y);
-    public static final IBlockState TREE_LEAVES = AliensVsPredator.blocks().gigerLeaves.getDefaultState();
+    public static final IBlockState TREE_TENDONS = AVPBlocks.GIGER_TENDONS.getDefaultState();
+    public static final IBlockState TREE_LOGS = AVPBlocks.GIGER_LOG.getDefaultState().withProperty(BlockUnidentifiedLog.LOG_AXIS, EnumAxis.Y);
+    public static final IBlockState TREE_LEAVES = AVPBlocks.GIGER_LEAVES.getDefaultState();
     
     public VardaTreeGenerator(boolean doBlockNotify)
     {
@@ -29,7 +29,7 @@ public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerato
     
     protected Block[] getValidTargetBlocks()
     {
-        return new Block[] { AliensVsPredator.blocks().unidirt, AliensVsPredator.blocks().gigerSapling };
+        return new Block[] { AVPBlocks.UNIDIRT, AVPBlocks.GIGER_SAPLING};
     }
     
     public boolean isLocationValid(World world, BlockPos pos)

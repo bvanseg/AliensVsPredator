@@ -3,7 +3,7 @@ package org.avp.block;
 import java.util.List;
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -50,7 +50,7 @@ public class BlockParadiseTreeLeaves extends BlockLeaves
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(AliensVsPredator.blocks().gigerSapling);
+        return Item.getItemFromBlock(AVPBlocks.GIGER_SAPLING);
     }
 
     @Override

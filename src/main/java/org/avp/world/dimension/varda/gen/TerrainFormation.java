@@ -2,7 +2,7 @@ package org.avp.world.dimension.varda.gen;
 
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -13,8 +13,8 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class TerrainFormation extends WorldGenerator
 {
-    private static final IBlockState block       = AliensVsPredator.blocks().unidirt.getDefaultState();
-    Block[]                          validBlocks = new Block[] { AliensVsPredator.blocks().unidirt
+    private static final IBlockState block       = AVPBlocks.UNIDIRT.getDefaultState();
+    Block[]                          validBlocks = new Block[] { AVPBlocks.UNIDIRT
     };
 
     public boolean isLocationValid(World world, BlockPos pos)

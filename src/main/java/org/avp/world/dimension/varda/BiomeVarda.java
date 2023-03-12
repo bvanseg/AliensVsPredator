@@ -2,6 +2,7 @@ package org.avp.world.dimension.varda;
 
 import java.util.Random;
 
+import org.avp.AVPBlocks;
 import org.avp.AliensVsPredator;
 import org.avp.entities.living.vardic.EntityDeaconShark;
 import org.avp.world.dimension.BiomeGenLV;
@@ -35,8 +36,8 @@ public class BiomeVarda extends BiomeGenLV
     public BiomeVarda(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = AliensVsPredator.blocks().unidirt.getDefaultState();
-        this.fillerBlock = AliensVsPredator.blocks().unistone.getDefaultState();
+        this.topBlock = AVPBlocks.UNIDIRT.getDefaultState();
+        this.fillerBlock = AVPBlocks.UNISTONE.getDefaultState();
         this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntityDeaconShark.class, 1, 0, 1));
     }
 
@@ -68,7 +69,7 @@ public class BiomeVarda extends BiomeGenLV
         @Override
         protected void genDecorations(Biome biome, World world, Random seed)
         {
-            WorldGenerator stalagmites = new WorldGenSurfaceBlock(AliensVsPredator.blocks().stalagmite.getDefaultState());
+            WorldGenerator stalagmites = new WorldGenSurfaceBlock(AVPBlocks.STALAGMITE.getDefaultState());
             WorldGenerator formation1 = new TerrainFormation();
             WorldGenerator formation2 = new TerrainFormation1();
             
@@ -103,12 +104,12 @@ public class BiomeVarda extends BiomeGenLV
         @Override
         protected void generateOres(World world, Random seed)
         {
-            Worlds.generateInChunk(world, new WorldGenMinable(AliensVsPredator.blocks().unidirt.getDefaultState(), 32, GenerationFilters.STONE), seed, 20, 0, 4, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AliensVsPredator.blocks().unisand.getDefaultState(), 32, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AliensVsPredator.blocks().oreBauxite.getDefaultState(), 4, GenerationFilters.STONE), seed, 20, 16, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AliensVsPredator.blocks().oreCopper.getDefaultState(), 4, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AliensVsPredator.blocks().oreSilicon.getDefaultState(), 4, GenerationFilters.STONE), seed, 15, 0, 64, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AliensVsPredator.blocks().oreLithium.getDefaultState(), 3, GenerationFilters.STONE), seed, 1, 1, 48, this.chunkPos);
+            Worlds.generateInChunk(world, new WorldGenMinable(AVPBlocks.UNIDIRT.getDefaultState(), 32, GenerationFilters.STONE), seed, 20, 0, 4, this.chunkPos);
+            Worlds.generateInChunk(world, new WorldGenMinable(AVPBlocks.UNISAND.getDefaultState(), 32, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
+            Worlds.generateInChunk(world, new WorldGenMinable(AVPBlocks.ORE_BAUXITE.getDefaultState(), 4, GenerationFilters.STONE), seed, 20, 16, 128, this.chunkPos);
+            Worlds.generateInChunk(world, new WorldGenMinable(AVPBlocks.ORE_COPPER.getDefaultState(), 4, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
+            Worlds.generateInChunk(world, new WorldGenMinable(AVPBlocks.ORE_SILICON.getDefaultState(), 4, GenerationFilters.STONE), seed, 15, 0, 64, this.chunkPos);
+            Worlds.generateInChunk(world, new WorldGenMinable(AVPBlocks.ORE_LITHIUM.getDefaultState(), 3, GenerationFilters.STONE), seed, 1, 1, 48, this.chunkPos);
             Worlds.generateInChunk(world, new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), 16, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
             Worlds.generateInChunk(world, new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), 8, GenerationFilters.STONE), seed, 20, 0, 64, this.chunkPos);
             Worlds.generateInChunk(world, new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), 3, GenerationFilters.STONE), seed, 1, 0, 16, this.chunkPos);
@@ -116,12 +117,12 @@ public class BiomeVarda extends BiomeGenLV
 
         private void generateForest(Biome biome, World world, Random seed)
         {
-            WorldGenerator saplings = new WorldGenSustainableOnDirt(AliensVsPredator.blocks().gigerSapling.getDefaultState());
+            WorldGenerator saplings = new WorldGenSustainableOnDirt(AVPBlocks.GIGER_SAPLING.getDefaultState());
             WorldGenerator tree1 = new VardaTreeGenerator(true);
             WorldGenerator tree2 = new VardaTree2Generator(true);
             WorldGenerator tree3 = new VardaTree3Generator(true);
             WorldGenerator treeTall = new VardaTallTreeGenerator(true);
-            WorldGenerator gooPools = new WorldGenLakes(AliensVsPredator.blocks().blackgoo);
+            WorldGenerator gooPools = new WorldGenLakes(AVPBlocks.BLACK_GOO);
             
             for (int i = 0; i < 2; i++)
             {

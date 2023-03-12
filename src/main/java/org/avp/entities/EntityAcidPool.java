@@ -3,10 +3,9 @@ package org.avp.entities;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 import org.avp.DamageSources;
 import org.avp.api.blocks.IAcidResistant;
-import org.avp.entities.ai.EntitySelectorAcidPool;
 import org.avp.entities.living.species.SpeciesAlien;
 
 import com.google.common.base.Predicate;
@@ -38,33 +37,33 @@ public class EntityAcidPool extends EntityLiquidPool
     	blockBlacklist.add(Blocks.OBSIDIAN);
     	blockBlacklist.add(Blocks.BEDROCK);
     	blockBlacklist.add(Blocks.END_PORTAL_FRAME);
-    	blockBlacklist.add(AliensVsPredator.blocks().industrialglass);
-    	blockBlacklist.add(AliensVsPredator.blocks().industrialGlassSlab);
-    	blockBlacklist.add(AliensVsPredator.blocks().industrialGlassStairs);
-        blockBlacklist.add(AliensVsPredator.blocks().plastic);
-        blockBlacklist.add(AliensVsPredator.blocks().plasticcircle);
-        blockBlacklist.add(AliensVsPredator.blocks().plastictile);
-        blockBlacklist.add(AliensVsPredator.blocks().plastictri);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerbrick0);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerbrick1);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerbrick2);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerbrick3);
-        blockBlacklist.add(AliensVsPredator.blocks().engineercolumn1);
-        blockBlacklist.add(AliensVsPredator.blocks().engineercolumn2);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerfloor);
-        blockBlacklist.add(AliensVsPredator.blocks().engineergravel);
-        blockBlacklist.add(AliensVsPredator.blocks().engineermaterial0);
-        blockBlacklist.add(AliensVsPredator.blocks().engineermaterial1);
-        blockBlacklist.add(AliensVsPredator.blocks().engineermaterial2);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerrock0);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerrock1);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerrock2);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerrock3);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerwall0);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerwall1);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerwall2);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerwall3);
-        blockBlacklist.add(AliensVsPredator.blocks().engineerwall4);
+    	blockBlacklist.add(AVPBlocks.INDUSTRIAL_GLASS);
+    	blockBlacklist.add(AVPBlocks.INDUSTRIAL_GLASS_SLAB);
+    	blockBlacklist.add(AVPBlocks.INDUSTRIAL_GLASS_STAIRS);
+        blockBlacklist.add(AVPBlocks.PLASTIC);
+        blockBlacklist.add(AVPBlocks.PLASTIC_CIRCLE);
+        blockBlacklist.add(AVPBlocks.PLASTIC_TILE);
+        blockBlacklist.add(AVPBlocks.PLASTIC_TRI);
+        blockBlacklist.add(AVPBlocks.ENGINEER_BRICK_0);
+        blockBlacklist.add(AVPBlocks.ENGINEER_BRICK_1);
+        blockBlacklist.add(AVPBlocks.ENGINEER_BRICK_2);
+        blockBlacklist.add(AVPBlocks.ENGINEER_BRICK_3);
+        blockBlacklist.add(AVPBlocks.ENGINEER_COLUMN_1);
+        blockBlacklist.add(AVPBlocks.ENGINEER_COLUMN_2);
+        blockBlacklist.add(AVPBlocks.ENGINEER_FLOOR);
+        blockBlacklist.add(AVPBlocks.ENGINEER_GRAVEL);
+        blockBlacklist.add(AVPBlocks.ENGINEER_MATERIAL_0);
+        blockBlacklist.add(AVPBlocks.ENGINEER_MATERIAL_1);
+        blockBlacklist.add(AVPBlocks.ENGINEER_MATERIAL_2);
+        blockBlacklist.add(AVPBlocks.ENGINEER_ROCK_0);
+        blockBlacklist.add(AVPBlocks.ENGINEER_ROCK_1);
+        blockBlacklist.add(AVPBlocks.ENGINEER_ROCK_2);
+        blockBlacklist.add(AVPBlocks.ENGINEER_ROCK_3);
+        blockBlacklist.add(AVPBlocks.ENGINEER_WALL_0);
+        blockBlacklist.add(AVPBlocks.ENGINEER_WALL_1);
+        blockBlacklist.add(AVPBlocks.ENGINEER_WALL_2);
+        blockBlacklist.add(AVPBlocks.ENGINEER_WALL_3);
+        blockBlacklist.add(AVPBlocks.ENGINEER_WALL_4);
     }
 
     public EntityAcidPool(World world)
@@ -105,7 +104,7 @@ public class EntityAcidPool extends EntityLiquidPool
 	private void breakBlock() {
 		if (this.world.getGameRules().getBoolean("mobGriefing"))
         {
-            if ((this.world.getDifficulty() == EnumDifficulty.NORMAL || this.world.getDifficulty() == EnumDifficulty.HARD) && this.getDistanceSq((int) this.posX, (int) this.posY + yOffset, (int) this.posZ) < 4.0D && block != Blocks.AIR && block != AliensVsPredator.blocks().naturalResin && block != Blocks.BEDROCK)
+            if ((this.world.getDifficulty() == EnumDifficulty.NORMAL || this.world.getDifficulty() == EnumDifficulty.HARD) && this.getDistanceSq((int) this.posX, (int) this.posY + yOffset, (int) this.posZ) < 4.0D && block != Blocks.AIR && block != AVPBlocks.NATURAL_RESIN && block != Blocks.BEDROCK)
             {
                 BlockPos pos = new BlockPos((int) Math.floor(this.posX), (int) this.posY - 1, (int) Math.floor(this.posZ));
                 IBlockState blockstate = this.world.getBlockState(pos);

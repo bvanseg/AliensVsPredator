@@ -37,7 +37,6 @@ public class AliensVsPredator implements IMod
     @Mod.Instance(AliensVsPredator.Properties.ID)
     private static AliensVsPredator instance;
 
-    private static BlockHandler     blocks;
     private static ItemHandler      items;
 
     @Override
@@ -67,6 +66,7 @@ public class AliensVsPredator implements IMod
     {
         console().init(event);
         network().init(event);
+        AVPBlocks.instance.init(event);
         dimensions().init(event);
         materials().init(event);
         world().init(event);
@@ -124,11 +124,6 @@ public class AliensVsPredator implements IMod
     public static ItemHandler items()
     {
         return items == null ? items = new ItemHandler() : items;
-    }
-
-    public static BlockHandler blocks()
-    {
-        return blocks == null ? blocks = new BlockHandler() : blocks;
     }
     
     @SideOnly(Side.CLIENT)

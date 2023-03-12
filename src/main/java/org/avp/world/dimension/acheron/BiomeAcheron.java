@@ -2,6 +2,7 @@ package org.avp.world.dimension.acheron;
 
 import java.util.Random;
 
+import org.avp.AVPBlocks;
 import org.avp.AliensVsPredator;
 import org.avp.world.dimension.BiomeGenLV;
 
@@ -21,8 +22,8 @@ public class BiomeAcheron extends BiomeGenLV
     public BiomeAcheron(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = AliensVsPredator.blocks().unidirt.getDefaultState();
-        this.fillerBlock = AliensVsPredator.blocks().unistone.getDefaultState();
+        this.topBlock = AVPBlocks.UNIDIRT.getDefaultState();
+        this.fillerBlock = AVPBlocks.UNISTONE.getDefaultState();
     }
     
     @Override
@@ -60,7 +61,7 @@ public class BiomeAcheron extends BiomeGenLV
         @Override
         protected void generateOres(World world, Random random)
         {
-            Worlds.generateInChunk(world, new WorldGenMinable(AliensVsPredator.blocks().unidirt.getDefaultState(), 32), random, 20, 0, 128, chunkPos);
+            Worlds.generateInChunk(world, new WorldGenMinable(AVPBlocks.UNIDIRT.getDefaultState(), 32), random, 20, 0, 128, chunkPos);
         }
     }
 }

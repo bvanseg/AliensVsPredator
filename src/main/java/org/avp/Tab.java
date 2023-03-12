@@ -27,7 +27,7 @@ public class Tab implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(Game.getItem(BlockHandler.ship5));
+                                                                return new ItemStack(Game.getItem(AVPBlocks.SHIP_5));
                                                             }
 
                                                             public String getTranslationKey()

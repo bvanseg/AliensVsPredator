@@ -2,7 +2,7 @@ package org.avp.entities.living.species.xenomorphs;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 import org.avp.ItemHandler;
 import org.avp.api.parasitoidic.IMaturable;
 import org.avp.block.BlockHiveResin;
@@ -45,8 +45,8 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable, HiveMem
         this.mobType = this.rand.nextInt(2);
         blockBlacklist.add(Blocks.BEDROCK);
         blockBlacklist.add(Blocks.AIR);
-        blockBlacklist.add(AliensVsPredator.blocks().resin);
-        blockBlacklist.add(AliensVsPredator.blocks().naturalResin);
+        blockBlacklist.add(AVPBlocks.RESIN);
+        blockBlacklist.add(AVPBlocks.NATURAL_RESIN);
     }
 
     @Override
@@ -190,8 +190,8 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable, HiveMem
                                 }
 
                                 this.getNavigator().setPath(path, 0.8D);
-                                this.world.setBlockState(pos, AliensVsPredator.blocks().naturalResin.getDefaultState());
-                                ((BlockHiveResin) AliensVsPredator.blocks().naturalResin).evaluateNeighbors(world, pos);
+                                this.world.setBlockState(pos, AVPBlocks.NATURAL_RESIN.getDefaultState());
+                                ((BlockHiveResin) AVPBlocks.NATURAL_RESIN).evaluateNeighbors(world, pos);
 
                                 TileEntity tileEntity = this.world.getTileEntity(pos);
 

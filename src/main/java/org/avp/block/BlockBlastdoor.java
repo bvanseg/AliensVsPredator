@@ -1,6 +1,6 @@
 package org.avp.block;
 
-import org.avp.BlockHandler;
+import org.avp.AVPBlocks;
 import org.avp.ItemHandler;
 import org.avp.client.gui.GuiBlastdoor;
 import org.avp.item.ItemMaintenanceJack;
@@ -288,7 +288,7 @@ public class BlockBlastdoor extends Block
 
                     if (parentBlock != null)
                     {
-                        Item itemblock = BlockHandler.getItemFromBlock(parentBlock);
+                        Item itemblock = AVPBlocks.getItemFromBlock(parentBlock);
 
                         if (itemblock != null)
                         {
@@ -301,7 +301,7 @@ public class BlockBlastdoor extends Block
             {
                 BlockPos parentPos = door.getPos();
                 IBlockState parentState = world.getBlockState(parentPos);
-                return new ItemStack(BlockHandler.getItemFromBlock(parentState.getBlock()));
+                return new ItemStack(AVPBlocks.getItemFromBlock(parentState.getBlock()));
             }
         }
         

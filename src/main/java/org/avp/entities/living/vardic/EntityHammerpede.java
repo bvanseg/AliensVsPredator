@@ -2,7 +2,7 @@ package org.avp.entities.living.vardic;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 import org.avp.ItemHandler;
 import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
@@ -10,9 +10,7 @@ import org.avp.entities.living.species.SpeciesAlien;
 
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.block.Blocks;
-import com.google.common.base.Predicate;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -86,9 +84,9 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
         {
             if (this.world.getTotalWorldTime() % 40 == 0 && this.rand.nextInt(4) == 0)
             {
-                if (this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)).getBlock() != AliensVsPredator.blocks().blackgoo)
+                if (this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)).getBlock() != AVPBlocks.BLACK_GOO)
                 {
-                    ArrayList<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) 10, this.world, AliensVsPredator.blocks().blackgoo);
+                    ArrayList<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) 10, this.world, AVPBlocks.BLACK_GOO);
 
                     if (locations.size() > 0)
                     {

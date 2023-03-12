@@ -3,8 +3,7 @@ package org.avp.world.dimension.acheron.worldgen.formations;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.avp.AliensVsPredator;
-import org.avp.BlockHandler;
+import org.avp.AVPBlocks;
 import org.avp.world.worldgen.TerrainGenVariant;
 
 import com.asx.mdx.lib.world.Pos;
@@ -22,13 +21,13 @@ public class LV426Formation extends TerrainGenVariant<LV426Formation>
     @Override
     public IBlockState getBlock()
     {
-        return BlockHandler.lv426rock.getDefaultState();
+        return AVPBlocks.LV_426_ROCK.getDefaultState();
     }
 
     @Override
     public Block[] getValidLocations()
     {
-        return new Block[] { AliensVsPredator.blocks().unidirt, AliensVsPredator.blocks().unistone
+        return new Block[] { AVPBlocks.UNIDIRT, AVPBlocks.UNISTONE
         };
     }
 

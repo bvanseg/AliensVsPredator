@@ -30,7 +30,7 @@ public class WorldGeneratorAcheron implements IWorldGenerator
             formation.generate(world, random, new BlockPos(chunkX + random.nextInt(16), random.nextInt(128), chunkZ + random.nextInt(16)));
         }
 
-//        Worlds.generateInChunk(world, new WorldGenSurfaceBlock(AliensVsPredator.blocks().terrainStalagmite.getDefaultState()), random, 10, new BlockPos(chunkX, 0, chunkZ));
+//        Worlds.generateInChunk(world, new WorldGenSurfaceBlock(AVPBlocks.terrainStalagmite.getDefaultState()), random, 10, new BlockPos(chunkX, 0, chunkZ));
     }
 
     @Override

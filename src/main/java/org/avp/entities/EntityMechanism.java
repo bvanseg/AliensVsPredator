@@ -1,6 +1,6 @@
 package org.avp.entities;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -36,7 +36,7 @@ public class EntityMechanism extends Entity
         {
             Block block = this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ - 1)).getBlock();
 
-            if (block != AliensVsPredator.blocks().stasisMechanism)
+            if (block != AVPBlocks.STASIS_MECHANISM)
             {
                 this.setDead();
             }

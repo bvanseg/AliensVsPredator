@@ -2,6 +2,7 @@ package org.avp.entities;
 
 import java.util.ArrayList;
 
+import org.avp.AVPBlocks;
 import org.avp.AliensVsPredator;
 import org.avp.DamageSources;
 import org.avp.item.firearms.ItemFlamethrower;
@@ -188,7 +189,7 @@ public class EntityFlame extends EntityThrowable
 
         if (rand.nextInt(10) == 0)
         {
-            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int) result.hitVec.x, (int) result.hitVec.y, (int) result.hitVec.z, 1, this.world, AliensVsPredator.blocks().cryoTube);
+            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int) result.hitVec.x, (int) result.hitVec.y, (int) result.hitVec.z, 1, this.world, AVPBlocks.CRYO_TUBE);
 
             for (Pos coord : list)
             {

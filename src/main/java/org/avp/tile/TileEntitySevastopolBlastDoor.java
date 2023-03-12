@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import org.avp.AliensVsPredator;
-import org.avp.BlockHandler;
+import org.avp.AVPBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
@@ -54,6 +54,6 @@ public class TileEntitySevastopolBlastDoor extends TileEntityBlastdoor
     @Override
     public Block getMultiBlockType()
     {
-        return BlockHandler.sevastopolBlastDoor;
+        return AVPBlocks.SEVASTOPOL_BLAST_DOOR;
     }
 }

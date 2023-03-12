@@ -1,6 +1,6 @@
 package org.avp.world.dimension;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 
 import com.google.common.base.Predicate;
 
@@ -14,7 +14,7 @@ public class GenerationFilters
         @Override
         public boolean apply(IBlockState state)
         {
-            if (state.getBlock() == AliensVsPredator.blocks().unistone)
+            if (state.getBlock() == AVPBlocks.UNISTONE)
             {
                 return true;
             }
@@ -33,7 +33,7 @@ public class GenerationFilters
         @Override
         public boolean apply(IBlockState state)
         {
-            if (state.getBlock() == AliensVsPredator.blocks().unidirt)
+            if (state.getBlock() == AVPBlocks.UNIDIRT)
             {
                 return true;
             }
@@ -52,7 +52,7 @@ public class GenerationFilters
         @Override
         public boolean apply(IBlockState state)
         {
-            if (state.getBlock() == AliensVsPredator.blocks().unisand)
+            if (state.getBlock() == AVPBlocks.UNISAND)
             {
                 return true;
             }

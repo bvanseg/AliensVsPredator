@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
+import org.avp.AVPBlocks;
 import org.avp.AliensVsPredator;
 import org.avp.api.machines.IOpenable;
 import org.avp.api.power.IVoltageReceiver;
@@ -317,7 +318,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     @Override
     public Block getMultiBlockType()
     {
-        return AliensVsPredator.blocks().blastDoor;
+        return AVPBlocks.BLAST_DOOR;
     }
     
     @Override

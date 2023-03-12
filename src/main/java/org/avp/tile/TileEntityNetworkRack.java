@@ -3,7 +3,7 @@ package org.avp.tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 import org.avp.api.power.IVoltageReceiver;
 import org.avp.inventory.ContainerNetworkRack;
 
@@ -301,7 +301,7 @@ public class TileEntityNetworkRack extends TileEntityElectrical implements IRota
     @Override
     public Block getMultiBlockType()
     {
-        return AliensVsPredator.blocks().networkRack;
+        return AVPBlocks.NETWORK_RACK;
     }
     
     @Override

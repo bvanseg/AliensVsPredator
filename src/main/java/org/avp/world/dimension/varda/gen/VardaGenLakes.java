@@ -2,7 +2,7 @@ package org.avp.world.dimension.varda.gen;
 
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -128,7 +128,7 @@ public class VardaGenLakes extends WorldGenerator
                     if ((var6[((rX * 16 + rZ) * 8 + rY)] == false) || (world.getBlockState(rPosBelow) != Blocks.DIRT.getDefaultState()) || (world.getLightFor(EnumSkyBlock.SKY, rPos) <= 0))
                         continue;
                     
-                    world.setBlockState(rPosBelow, AliensVsPredator.blocks().unidirt.getDefaultState());
+                    world.setBlockState(rPosBelow, AVPBlocks.UNIDIRT.getDefaultState());
                 }
             }
 
@@ -147,7 +147,7 @@ public class VardaGenLakes extends WorldGenerator
 
                         if ((!flag) || ((rY >= 4) && (rand.nextInt(2) == 0)) || (!world.getBlockState(rPos).getMaterial().isSolid()))
                             continue;
-                        world.setBlockState(rPos, AliensVsPredator.blocks().unistone.getDefaultState());
+                        world.setBlockState(rPos, AVPBlocks.UNISTONE.getDefaultState());
                     }
                 }
             }

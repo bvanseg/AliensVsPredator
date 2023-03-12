@@ -3,7 +3,7 @@ package org.avp.world.dimension.varda;
 import java.util.List;
 import java.util.Random;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 import org.avp.world.dimension.varda.gen.VardaGenCaves;
 
 import net.minecraft.block.Block;
@@ -240,7 +240,7 @@ public class ChunkProviderVarda implements IChunkGenerator
                             {
                                 if ((var49 += var47) > 0.0D)
                                 {
-                                    primer.setBlockState(cX * 4 + eX, cY * 8 + eY, cZ * 4 + eZ, AliensVsPredator.blocks().unistone.getDefaultState());
+                                    primer.setBlockState(cX * 4 + eX, cY * 8 + eY, cZ * 4 + eZ, AVPBlocks.UNISTONE.getDefaultState());
                                 }
                                 else if (cY * 8 + eY < midHeight)
                                 {
@@ -307,7 +307,7 @@ public class ChunkProviderVarda implements IChunkGenerator
                                 if (var12 <= 0)
                                 {
                                     top = Blocks.AIR;
-                                    fill = AliensVsPredator.blocks().unistone;
+                                    fill = AVPBlocks.UNISTONE;
                                 }
                                 else if ((y >= var5 - 4) && (y <= var5 + 1))
                                 {

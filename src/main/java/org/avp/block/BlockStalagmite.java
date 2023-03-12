@@ -2,7 +2,7 @@ package org.avp.block;
 
 import java.util.Random;
 
-import org.avp.BlockHandler;
+import org.avp.AVPBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -29,7 +29,7 @@ public class BlockStalagmite extends Block
 
     protected boolean canThisPlantGrowOn(IBlockState state)
     {
-        return state.getBlock() == BlockHandler.unidirt || state.getBlock() == BlockHandler.unistone || state.getMaterial() == Material.GROUND || state.getMaterial() == Material.ROCK;
+        return state.getBlock() == AVPBlocks.UNIDIRT || state.getBlock() == AVPBlocks.UNISTONE || state.getMaterial() == Material.GROUND || state.getMaterial() == Material.ROCK;
     }
 
     @Override

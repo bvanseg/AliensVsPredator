@@ -2,8 +2,8 @@ package org.avp.client;
 
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 
+import org.avp.AVPBlocks;
 import org.avp.AliensVsPredator;
-import org.avp.BlockHandler;
 import org.avp.ItemHandler;
 import org.avp.block.BlockSkull;
 import org.avp.client.model.items.Model88MOD4;
@@ -334,7 +334,7 @@ public class Renders implements IInitEvent, IPreInitEvent
 
     private static void registerFluidModels()
     {
-        for (BlockFluidBase block : BlockHandler.getFluids())
+        for (BlockFluidBase block : AVPBlocks.getFluids())
         {
             final Item item = Item.getItemFromBlock(block);
             final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(AliensVsPredator.Properties.DOMAIN + block.getFluid().getName(), "fluid");
@@ -445,7 +445,7 @@ public class Renders implements IInitEvent, IPreInitEvent
             BlockSkull skull = (BlockSkull) block;
             RenderItemSkull render =  new RenderItemSkull(skull);
             
-            Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(skull), render);
+            Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(skull), render);
         } 
         else
         {
@@ -455,48 +455,48 @@ public class Renders implements IInitEvent, IPreInitEvent
     
     private void registerBlockItemRenderers()
     {
-        Renders.registerSkullRenderer(BlockHandler.skullEngineer);
-        Renders.registerSkullRenderer(BlockHandler.skullJockey);
-        Renders.registerSkullRenderer(BlockHandler.skullXeno);
-        Renders.registerSkullRenderer(BlockHandler.skullXenoWarrior);
-        Renders.registerSkullRenderer(BlockHandler.skullYautja);
-        Renders.registerSkullRenderer(BlockHandler.skullMatriarch);
-        Renders.registerSkullRenderer(BlockHandler.skullProtomorph);
-        Renders.registerSkullRenderer(BlockHandler.skullNeomorph);
-        Renders.registerSkullRenderer(BlockHandler.biomaskClassic);
-        Renders.registerSkullRenderer(BlockHandler.biomaskBerserker);
-        Renders.registerSkullRenderer(BlockHandler.biomaskFalconer);
-        Renders.registerSkullRenderer(BlockHandler.biomaskTracker);
-        Renders.registerSkullRenderer(BlockHandler.headAethon);
-        Renders.registerSkullRenderer(BlockHandler.headGigerAlien);
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.turret), new RenderItemTurret());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.terminal), new RenderItemWorkstation());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.stasisMechanism), new RenderItemStasisMechanism());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.cryoTube), new RenderItemCryostasisTube());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.repulsionGenerator), new RenderItemRepulsionGenerator());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.blastDoor), new RenderItemBlastDoor());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.lightPanel), new RenderItemLightPanel());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.ccflTube), new RenderItemCCFLTube());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.teslaCoil), new RenderItemTeslaCoil());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.powerline), new RenderItemPowerline());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.solarPanel), new RenderItemSolarPanel());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.powercell), new RenderItemPowercell());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.transformer), new RenderItemTransformer());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.stepdownTransformer), new RenderItemTransformer());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.universalGenerator), new RenderItemRedstoneFluxGenerator());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.ampule), new RenderItemAmpule());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.locker), new RenderItemLocker());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.gunLocker), new RenderItemGunLocker());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.medpod), new RenderItemMedpod());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.satelliteDish), new RenderItemSatelliteDish());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.sevastopolBlastDoor), new RenderItemSevastopolBlastdoor());
+        Renders.registerSkullRenderer(AVPBlocks.SKULL_ENGINEER);
+        Renders.registerSkullRenderer(AVPBlocks.SKULL_JOCKEY);
+        Renders.registerSkullRenderer(AVPBlocks.SKULL_XENO);
+        Renders.registerSkullRenderer(AVPBlocks.SKULL_XENO_WARRIOR);
+        Renders.registerSkullRenderer(AVPBlocks.SKULL_YAUTJA);
+        Renders.registerSkullRenderer(AVPBlocks.SKULL_MATRIARCH);
+        Renders.registerSkullRenderer(AVPBlocks.SKULL_PROTOMORPH);
+        Renders.registerSkullRenderer(AVPBlocks.SKULL_NEOMORPH);
+        Renders.registerSkullRenderer(AVPBlocks.BIOMASK_CLASSIC);
+        Renders.registerSkullRenderer(AVPBlocks.BIOMASK_BERSERKER);
+        Renders.registerSkullRenderer(AVPBlocks.BIOMASK_FALCONER);
+        Renders.registerSkullRenderer(AVPBlocks.BIOMASK_TRACKER);
+        Renders.registerSkullRenderer(AVPBlocks.HEAD_AETHON);
+        Renders.registerSkullRenderer(AVPBlocks.HEAD_GIGER_ALIEN);
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.TURRET), new RenderItemTurret());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.TERMINAL), new RenderItemWorkstation());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.STASIS_MECHANISM), new RenderItemStasisMechanism());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.CRYO_TUBE), new RenderItemCryostasisTube());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.REPULSION_GENERATOR), new RenderItemRepulsionGenerator());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.BLAST_DOOR), new RenderItemBlastDoor());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.LIGHT_PANEL), new RenderItemLightPanel());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.CCFL_TUBE), new RenderItemCCFLTube());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.TESLA_COIL), new RenderItemTeslaCoil());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.POWERLINE), new RenderItemPowerline());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.SOLAR_PANEL), new RenderItemSolarPanel());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.POWERCELL), new RenderItemPowercell());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.TRANSFORMER), new RenderItemTransformer());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.STEPDOWN_TRANSFORMER), new RenderItemTransformer());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.UNIVERSAL_GENERATOR), new RenderItemRedstoneFluxGenerator());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.AMPULE), new RenderItemAmpule());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.LOCKER), new RenderItemLocker());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.GUN_LOCKER), new RenderItemGunLocker());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.MEDPOD), new RenderItemMedpod());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.SATELLITE_DISH), new RenderItemSatelliteDish());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.SEVASTOPOL_BLAST_DOOR), new RenderItemSevastopolBlastdoor());
 
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.supplyCrate), new RenderItemSupplyCrate());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.crateMarines), new RenderItemSupplyCrate());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.crateSeegson), new RenderItemSupplyCrate());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.networkRack), new RenderItemNetworkRack());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.groundFern), new RenderItemGroundFern());
-        Renderers.registerBlockItemRenderer(BlockHandler.getItemFromBlock(BlockHandler.treeFern), new RenderItemTreeFern());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.SUPPLY_CRATE), new RenderItemSupplyCrate());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.CRATE_MARINES), new RenderItemSupplyCrate());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.CRATE_SEEGSON), new RenderItemSupplyCrate());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.NETWORK_RACK), new RenderItemNetworkRack());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.GROUND_FERN), new RenderItemGroundFern());
+        Renderers.registerBlockItemRenderer(AVPBlocks.getItemFromBlock(AVPBlocks.TREE_FERN), new RenderItemTreeFern());
     }
 
     private void registerItemRenderers()

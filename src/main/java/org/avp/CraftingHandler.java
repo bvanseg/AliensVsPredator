@@ -51,16 +51,16 @@ public class CraftingHandler
         registerOreDict("magnet", ItemHandler.neodymiumMagnet, "", "material");
         registerOreDict("carbon", ItemHandler.itemCarbon, "", "material");
 
-        registerOreDict("copper", BlockHandler.oreCopper, "ore");
-        registerOreDict("lithium", BlockHandler.oreLithium, "ore"); 
-        registerOreDict("aluminum", BlockHandler.oreBauxite, "ore");
-        registerOreDict("aluminium", BlockHandler.oreBauxite, "ore");
-        registerOreDict("silicon", BlockHandler.oreSilicon, "ore");
-        registerOreDict("monazite", BlockHandler.oreMonazite, "ore");
-        registerOreDict("cobalt", BlockHandler.oreCobalt, "ore");
+        registerOreDict("copper", AVPBlocks.ORE_COPPER, "ore");
+        registerOreDict("lithium", AVPBlocks.ORE_LITHIUM, "ore");
+        registerOreDict("aluminum", AVPBlocks.ORE_BAUXITE, "ore");
+        registerOreDict("aluminium", AVPBlocks.ORE_BAUXITE, "ore");
+        registerOreDict("silicon", AVPBlocks.ORE_SILICON, "ore");
+        registerOreDict("monazite", AVPBlocks.ORE_MONAZITE, "ore");
+        registerOreDict("cobalt", AVPBlocks.ORE_COBALT, "ore");
 
         
-        registerOreDict("wood", BlockHandler.gigerLog, "log");
+        registerOreDict("wood", AVPBlocks.GIGER_LOG, "log");
     }
     
     public static void registerOreDict(String name, Item item, String... prefixes)
@@ -105,40 +105,40 @@ public class CraftingHandler
 
     private static void addSmelting()
     {
-        GameRegistry.addSmelting(BlockHandler.oreCopper, new ItemStack(ItemHandler.itemIngotCopper), 1.0F);
-        GameRegistry.addSmelting(BlockHandler.oreLithium, new ItemStack(ItemHandler.itemIngotLithium), 1.0F);
-        GameRegistry.addSmelting(BlockHandler.oreBauxite, new ItemStack(ItemHandler.itemIngotAluminum), 1.0F);
-        GameRegistry.addSmelting(BlockHandler.oreSilicon, new ItemStack(ItemHandler.itemSilicon), 1.0F);
+        GameRegistry.addSmelting(AVPBlocks.ORE_COPPER, new ItemStack(ItemHandler.itemIngotCopper), 1.0F);
+        GameRegistry.addSmelting(AVPBlocks.ORE_LITHIUM, new ItemStack(ItemHandler.itemIngotLithium), 1.0F);
+        GameRegistry.addSmelting(AVPBlocks.ORE_BAUXITE, new ItemStack(ItemHandler.itemIngotAluminum), 1.0F);
+        GameRegistry.addSmelting(AVPBlocks.ORE_SILICON, new ItemStack(ItemHandler.itemSilicon), 1.0F);
         GameRegistry.addSmelting(ItemHandler.itemRawTentacle, new ItemStack(ItemHandler.itemTriloBite), 2.0F);
-        GameRegistry.addSmelting(BlockHandler.gigerLog, CHARCOAL, 1.0F);
+        GameRegistry.addSmelting(AVPBlocks.GIGER_LOG, CHARCOAL, 1.0F);
     }
 
     private static void addSchematics()
     {
-        AssemblyManager.register(new Schematic("teslacoil", new ItemStack(BlockHandler.teslaCoil, 1)) {
+        AssemblyManager.register(new Schematic("teslacoil", new ItemStack(AVPBlocks.TESLA_COIL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
                         new ItemStack(ItemHandler.itemIngotCopper, 9),
                         new ItemStack(ItemHandler.itemIngotAluminum, 9),
-                        new ItemStack(BlockHandler.transformer, 2),
+                        new ItemStack(AVPBlocks.TRANSFORMER, 2),
                         new ItemStack(Blocks.IRON_BLOCK, 1),
-                        new ItemStack(BlockHandler.powerline, 2),
+                        new ItemStack(AVPBlocks.POWERLINE, 2),
                         new ItemStack(ItemHandler.itemCapacitor, 6),
                         new ItemStack(ItemHandler.itemPowerSupply, 1),
                 };
             }
         });
-        AssemblyManager.register(new Schematic("terminal", new ItemStack(BlockHandler.terminal, 1)) {
+        AssemblyManager.register(new Schematic("terminal", new ItemStack(AVPBlocks.TERMINAL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
                         new ItemStack(ItemHandler.itemLedDisplay, 3),
-                        new ItemStack(BlockHandler.transformer, 1),
-                        new ItemStack(BlockHandler.muthurPanel1, 3),
-                        new ItemStack(BlockHandler.muthurPanel2, 3),
+                        new ItemStack(AVPBlocks.TRANSFORMER, 1),
+                        new ItemStack(AVPBlocks.MUTHUR_PANEL_1, 3),
+                        new ItemStack(AVPBlocks.MUTHUR_PANEL_2, 3),
                         new ItemStack(ItemHandler.itemPowerSupply, 1),
                         new ItemStack(ItemHandler.itemRAM, 6),
                         new ItemStack(ItemHandler.itemProcessor, 6),
@@ -149,7 +149,7 @@ public class CraftingHandler
                 };
             }
         });
-        AssemblyManager.register(new Schematic("reflective_slope", new ItemStack(BlockHandler.slope, 1)) {
+        AssemblyManager.register(new Schematic("reflective_slope", new ItemStack(AVPBlocks.SLOPE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -160,7 +160,7 @@ public class CraftingHandler
                 };
             }
         });
-        AssemblyManager.register(new Schematic("reflective_corner", new ItemStack(BlockHandler.corner, 1)) {
+        AssemblyManager.register(new Schematic("reflective_corner", new ItemStack(AVPBlocks.CORNER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -171,7 +171,7 @@ public class CraftingHandler
                 };
             }
         });
-        AssemblyManager.register(new Schematic("reflective_inverter_corner", new ItemStack(BlockHandler.invertedCorner, 1)) {
+        AssemblyManager.register(new Schematic("reflective_inverter_corner", new ItemStack(AVPBlocks.INVERTED_CORNER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -182,7 +182,7 @@ public class CraftingHandler
                 };
             }
         });
-        AssemblyManager.register(new Schematic("reflective_ridge", new ItemStack(BlockHandler.ridge, 1)) {
+        AssemblyManager.register(new Schematic("reflective_ridge", new ItemStack(AVPBlocks.RIDGE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -193,7 +193,7 @@ public class CraftingHandler
                 };
             }
         });
-        AssemblyManager.register(new Schematic("reflective_pyramid", new ItemStack(BlockHandler.pyramid, 1)) {
+        AssemblyManager.register(new Schematic("reflective_pyramid", new ItemStack(AVPBlocks.PYRAMID, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -204,7 +204,7 @@ public class CraftingHandler
                 };
             }
         });
-        AssemblyManager.register(new Schematic("reflective_inverted_ridge", new ItemStack(BlockHandler.invertedRidge, 1)) {
+        AssemblyManager.register(new Schematic("reflective_inverted_ridge", new ItemStack(AVPBlocks.INVERTED_RIDGE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -215,7 +215,7 @@ public class CraftingHandler
                 };
             }
         });
-        AssemblyManager.register(new Schematic("reflective_inverted_pyramid", new ItemStack(BlockHandler.invertedPyramid, 1)) {
+        AssemblyManager.register(new Schematic("reflective_inverted_pyramid", new ItemStack(AVPBlocks.INVERTED_PYRAMID, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -226,24 +226,24 @@ public class CraftingHandler
                 };
             }
         });
-        AssemblyManager.register(new Schematic("medpod", new ItemStack(BlockHandler.medpod, 1)) {
+        AssemblyManager.register(new Schematic("medpod", new ItemStack(AVPBlocks.MEDPOD, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(BlockHandler.terminal, 1),
-                        new ItemStack(BlockHandler.lightPanel, 2),
-                        new ItemStack(BlockHandler.industrialglass, 4),
+                        new ItemStack(AVPBlocks.TERMINAL, 1),
+                        new ItemStack(AVPBlocks.LIGHT_PANEL, 2),
+                        new ItemStack(AVPBlocks.INDUSTRIAL_GLASS, 4),
                         new ItemStack(Blocks.IRON_BLOCK, 1),
-                        new ItemStack(BlockHandler.paddingSquareWhite, 3),
-                        new ItemStack(BlockHandler.transformer, 1),
+                        new ItemStack(AVPBlocks.PADDING_SQUARE_WHITE, 3),
+                        new ItemStack(AVPBlocks.TRANSFORMER, 1),
                         new ItemStack(ItemHandler.itemChargePack, 1),
                         new ItemStack(ItemHandler.itemIngotAluminum, 8),
                         PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.HEALING)
                 };
             }
         });
-        AssemblyManager.register(new Schematic("turret", new ItemStack(BlockHandler.turret, 1)) {
+        AssemblyManager.register(new Schematic("turret", new ItemStack(AVPBlocks.TURRET, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -256,37 +256,37 @@ public class CraftingHandler
                 };
             }
         });
-        AssemblyManager.register(new Schematic("redstonefluxGenerator", new ItemStack(BlockHandler.universalGenerator, 1)) {
+        AssemblyManager.register(new Schematic("redstonefluxGenerator", new ItemStack(AVPBlocks.UNIVERSAL_GENERATOR, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(BlockHandler.transformer, 4),
-                        new ItemStack(BlockHandler.stepdownTransformer, 4),
+                        new ItemStack(AVPBlocks.TRANSFORMER, 4),
+                        new ItemStack(AVPBlocks.STEPDOWN_TRANSFORMER, 4),
                         new ItemStack(ItemHandler.itemPolycarbonate, 4),
                         new ItemStack(ItemHandler.itemIngotAluminum, 4),
                         new ItemStack(Items.DIAMOND, 4) };
             }
         });
-        AssemblyManager.register(new Schematic("cryostasisTube", new ItemStack(BlockHandler.cryoTube, 1)) {
+        AssemblyManager.register(new Schematic("cryostasisTube", new ItemStack(AVPBlocks.CRYO_TUBE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
                         new ItemStack(ItemHandler.itemPolycarbonate, 4),
                         new ItemStack(ItemHandler.itemIngotAluminum, 4),
-                        new ItemStack(BlockHandler.industrialglass, 4),
-                        new ItemStack(BlockHandler.lightPanel, 1) };
+                        new ItemStack(AVPBlocks.INDUSTRIAL_GLASS, 4),
+                        new ItemStack(AVPBlocks.LIGHT_PANEL, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("lightPanel", new ItemStack(BlockHandler.lightPanel, 1)) {
+        AssemblyManager.register(new Schematic("lightPanel", new ItemStack(AVPBlocks.LIGHT_PANEL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
                         new ItemStack(ItemHandler.itemPolycarbonate, 2),
                         new ItemStack(ItemHandler.itemIngotAluminum, 2),
-                        new ItemStack(BlockHandler.industrialglass, 2),
+                        new ItemStack(AVPBlocks.INDUSTRIAL_GLASS, 2),
                         new ItemStack(Items.GLOWSTONE_DUST, 2) };
             }
         });
@@ -792,7 +792,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemDiode, 1) };
             }
         });
-        AssemblyManager.register(new Schematic("powerline", new ItemStack(BlockHandler.powerline, 4)) {
+        AssemblyManager.register(new Schematic("powerline", new ItemStack(AVPBlocks.POWERLINE, 4)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -809,7 +809,7 @@ public class CraftingHandler
                         new ItemStack(ItemHandler.itemDiode, 1),
                         new ItemStack(ItemHandler.itemVoltageRegulator, 1),
                         new ItemStack(ItemHandler.itemIngotAluminum, 2),
-                        new ItemStack(BlockHandler.transformer, 1) };
+                        new ItemStack(AVPBlocks.TRANSFORMER, 1) };
             }
         });
         AssemblyManager.register(new Schematic("ledDisplay", new ItemStack(ItemHandler.itemLedDisplay, 2)) {

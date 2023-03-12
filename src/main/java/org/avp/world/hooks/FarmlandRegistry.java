@@ -2,7 +2,7 @@ package org.avp.world.hooks;
 
 import java.util.ArrayList;
 
-import org.avp.AliensVsPredator;
+import org.avp.AVPBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -22,7 +22,7 @@ public class FarmlandRegistry
     {
         this.farmlandRegistry.add(Blocks.DIRT);
         this.farmlandRegistry.add(Blocks.GRASS);
-        this.farmlandRegistry.add(AliensVsPredator.blocks().unidirt);
+        this.farmlandRegistry.add(AVPBlocks.UNIDIRT);
     }
     
     @SubscribeEvent
