@@ -65,8 +65,6 @@ import org.avp.item.ItemSpear;
 import org.avp.item.ItemSporePod;
 import org.avp.item.ItemStorageDevice;
 import org.avp.item.ItemStunBaton;
-import org.avp.item.ItemSupplyChute;
-import org.avp.item.ItemSupplyChute.SupplyChuteType;
 import org.avp.item.ItemWristbracer;
 import org.avp.item.expansion.ItemLedDisplay;
 import org.avp.item.expansion.ItemProcessor;
@@ -85,6 +83,8 @@ import org.avp.item.rackmodules.ItemNetworkRackModule5;
 import org.avp.item.rackmodules.ItemNetworkRackModule6;
 import org.avp.item.rackmodules.ItemNetworkRackModule7;
 import org.avp.item.rackmodules.ItemNetworkRackModule8;
+import org.avp.item.supply.chute.ItemSupplyChute;
+import org.avp.item.supply.chute.SupplyChuteType;
 
 import com.asx.mdx.lib.client.Renderers;
 import com.asx.mdx.lib.world.item.HookedItem;
