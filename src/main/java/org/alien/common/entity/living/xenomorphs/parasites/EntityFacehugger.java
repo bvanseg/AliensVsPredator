@@ -13,6 +13,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.ai.EntityAIFacehuggerLeap;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.avp.client.AVPSounds;
@@ -99,7 +100,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     @Override
     protected SoundEvent getDeathSound()
     {
-        return this.isFertile() ? AVPSounds.FACEHUGGER_DEATH.event() : super.getDeathSound();
+        return this.isFertile() ? AlienSounds.FACEHUGGER_DEATH.event() : super.getDeathSound();
     }
     
     @Override
@@ -111,7 +112,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     @Override
     public SoundEvent getImplantSound()
     {
-        return AVPSounds.FACEHUGGER_IMPLANT.event();
+        return AlienSounds.FACEHUGGER_IMPLANT.event();
     }
     
     @Override

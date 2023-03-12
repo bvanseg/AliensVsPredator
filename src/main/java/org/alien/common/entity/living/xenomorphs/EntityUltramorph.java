@@ -8,6 +8,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
@@ -37,19 +38,19 @@ public class EntityUltramorph extends SpeciesXenomorph implements IMob
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.ALIEN_HURT.event();
+        return AlienSounds.ALIEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return AVPSounds.ALIEN_LIVING.event();
+        return AlienSounds.ALIEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.ALIEN_DEATH.event();
+        return AlienSounds.ALIEN_DEATH.event();
     }
 
     @Override

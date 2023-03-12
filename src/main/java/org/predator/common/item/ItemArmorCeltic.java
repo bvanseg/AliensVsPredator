@@ -15,6 +15,7 @@ import org.avp.AVP;
 import org.avp.client.AVPSounds;
 import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.input.Keyboard;
+import org.predator.client.PredatorSounds;
 import org.predator.client.render.VisionModeRenderEvent;
 
 public class ItemArmorCeltic extends ItemArmor
@@ -59,7 +60,7 @@ public class ItemArmorCeltic extends ItemArmor
 
             if (helmSlot != null && helmSlot.getItem() == AVP.items().biomaskCeltic && AVP.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
             {
-                AVPSounds.YAUTJA_VISION_SWITCH.playSound(Game.minecraft().player, 1F, 1F);
+                PredatorSounds.YAUTJA_VISION_SWITCH.playSound(Game.minecraft().player, 1F, 1F);
                 VisionModeRenderEvent.instance.switchMode();
             }
         }

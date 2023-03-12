@@ -25,7 +25,7 @@ import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
 public class EntityBelugaburster extends EntityChestburster implements IMob, INascentic
 {
-    private Class<? extends Entity> matureState;
+    private final Class<? extends Entity> matureState;
 
     public EntityBelugaburster(World world)
     {
@@ -56,24 +56,6 @@ public class EntityBelugaburster extends EntityChestburster implements IMob, INa
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6499999761581421D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-    }
-
-    @Override
-    protected SoundEvent getDeathSound()
-    {
-        return AVPSounds.CHESTBURSTER_DEATH.event();
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return AVPSounds.CHESTBURSTER_HURT.event();
     }
 
     @Override

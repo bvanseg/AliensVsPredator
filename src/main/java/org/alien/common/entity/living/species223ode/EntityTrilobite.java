@@ -26,6 +26,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.Species223ODe;
 import org.avp.AVP;
@@ -175,7 +176,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         
         if(this.getActiveAnimation() == IMPREGNATION_ANIMATION && this.getAnimationTick() == 95)
         {
-            AVPSounds.FACEHUGGER_IMPLANT.playSound(this, 1F, 1F);
+            AlienSounds.FACEHUGGER_IMPLANT.playSound(this, 1F, 1F);
         }
 
         if (this.getRidingEntity() == null && this.getActiveAnimation() == IMPREGNATION_ANIMATION)
@@ -335,19 +336,19 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.FACEHUGGER_HURT.event();
+        return AlienSounds.FACEHUGGER_HURT.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.CHESTBURSTER_BURST.event();
+        return AlienSounds.CHESTBURSTER_BURST.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return AVPSounds.FACEHUGGER_LIVING.event();
+        return AlienSounds.FACEHUGGER_LIVING.event();
     }
 
     @Override
@@ -640,6 +641,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     
     public SoundEvent getImplantSound()
     {
-        return AVPSounds.FACEHUGGER_IMPLANT.event();
+        return AlienSounds.FACEHUGGER_IMPLANT.event();
     }
 }

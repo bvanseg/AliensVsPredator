@@ -15,6 +15,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.client.AVPSounds;
@@ -101,13 +102,13 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.CHESTBURSTER_ATTACK.event();
+        return AlienSounds.CHESTBURSTER_ATTACK.event();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.CHESTBURSTER_HURT.event();
+        return AlienSounds.CHESTBURSTER_HURT.event();
     }
 
     @Override

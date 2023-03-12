@@ -21,6 +21,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.avp.client.AVPSounds;
@@ -258,7 +259,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.FACEHUGGER_DEATH.event();
+        return AlienSounds.FACEHUGGER_DEATH.event();
     }
 
     @Override
@@ -302,6 +303,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     @Override
     public SoundEvent getImplantSound()
     {
-        return AVPSounds.FACEHUGGER_IMPLANT.event();
+        return AlienSounds.FACEHUGGER_IMPLANT.event();
     }
 }

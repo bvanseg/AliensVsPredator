@@ -9,6 +9,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
@@ -38,25 +39,25 @@ public class EntityBelugamorph extends SpeciesXenomorph implements IMob
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.PREQUELMORPH_HURT.event();
+        return AlienSounds.PREQUELMORPH_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return AVPSounds.PREQUELMORPH_LIVING.event();
+        return AlienSounds.PREQUELMORPH_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.PREQUELMORPH_DEATH.event();
+        return AlienSounds.PREQUELMORPH_DEATH.event();
     }
     
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        AVPSounds.PREQUELMORPH_ATTACK.playSound(this, 1F, 1F);
+        AlienSounds.PREQUELMORPH_ATTACK.playSound(this, 1F, 1F);
         return super.attackEntityAsMob(entity);
     }
 

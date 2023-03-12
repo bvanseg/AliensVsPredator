@@ -20,6 +20,7 @@ import org.avp.client.AVPSounds;
 import org.avp.common.DamageSources;
 import org.avp.common.inventory.ContainerWristbracer;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
+import org.predator.client.PredatorSounds;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -78,7 +79,7 @@ public class ItemWristbracer extends HookedItem
     {
         if (equippedHasBlades(player))
         {
-            AVPSounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F);
+            PredatorSounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F);
             entity.attackEntityFrom(DamageSources.causeWristbracerDamage(player), getDamageToApply());
 
             if (!player.world.isRemote && !player.capabilities.isCreativeMode)

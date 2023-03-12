@@ -18,6 +18,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.ai.selector.EntitySelectorAvoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
@@ -139,13 +140,13 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.CHESTBURSTER_DEATH.event();
+        return AlienSounds.CHESTBURSTER_DEATH.event();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.CHESTBURSTER_HURT.event();
+        return AlienSounds.CHESTBURSTER_HURT.event();
     }
 
     @Override

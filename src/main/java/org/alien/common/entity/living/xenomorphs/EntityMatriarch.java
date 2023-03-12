@@ -18,6 +18,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.ai.EntityAIFindJelly;
 import org.alien.common.entity.ai.EntityAIPathFindToHive;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
@@ -269,19 +270,19 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.QUEEN_HURT.event();
+        return AlienSounds.QUEEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return this.getHealth() > this.getMaxHealth() / 4 ? AVPSounds.QUEEN_LIVING_CONSTANT.event() : AVPSounds.QUEEN_LIVING.event();
+        return this.getHealth() > this.getMaxHealth() / 4 ? AlienSounds.QUEEN_LIVING_CONSTANT.event() : AlienSounds.QUEEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.QUEEN_DEATH.event();
+        return AlienSounds.QUEEN_DEATH.event();
     }
 
     private static final String alienHiveNbtKey = "AlienHive";

@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.client.AVPSounds;
@@ -59,19 +60,19 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable, HiveMem
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.ALIEN_HURT.event();
+        return AlienSounds.ALIEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return AVPSounds.ALIEN_LIVING.event();
+        return AlienSounds.ALIEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.ALIEN_DEATH.event();
+        return AlienSounds.ALIEN_DEATH.event();
     }
 
     @Override

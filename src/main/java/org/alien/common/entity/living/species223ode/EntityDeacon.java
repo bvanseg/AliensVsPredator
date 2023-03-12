@@ -14,6 +14,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.Species223ODe;
 import org.avp.client.AVPSounds;
@@ -62,19 +63,19 @@ public class EntityDeacon extends Species223ODe implements INascentic
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.PREQUELMORPH_HURT.event();
+        return AlienSounds.PREQUELMORPH_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return AVPSounds.PREQUELMORPH_LIVING.event();
+        return AlienSounds.PREQUELMORPH_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.PREQUELMORPH_DEATH.event();
+        return AlienSounds.PREQUELMORPH_DEATH.event();
     }
 
     @Override

@@ -7,6 +7,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
@@ -35,19 +36,19 @@ public class EntityPraetorian extends SpeciesXenomorph implements IMaturable, Hi
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.PRAETORIAN_HURT.event();
+        return AlienSounds.PRAETORIAN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return AVPSounds.PRAETORIAN_LIVING.event();
+        return AlienSounds.PRAETORIAN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.PRAETORIAN_DEATH.event();
+        return AlienSounds.PRAETORIAN_DEATH.event();
     }
 
     @Override

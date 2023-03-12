@@ -30,6 +30,7 @@ import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.network.AvpDataSerializers;
+import org.predator.client.PredatorSounds;
 import org.predator.common.entity.ai.EntityAISuperjump;
 import org.predator.common.entity.ai.selector.EntitySelectorYautja;
 import org.predator.common.entity.state.CloakState;
@@ -152,7 +153,7 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     private void handleCloak() {
         if (this.cloakProgress < MAX_CLOAK) {
             if (this.getCloakState() != CloakState.CLOAKING) {
-                AVPSounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);;
+                PredatorSounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);;
             }
 
             this.setCloakState(CloakState.CLOAKING);
@@ -165,7 +166,7 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
         CloakState decloakType = this.getAttackTarget() != null ? CloakState.DECLOAKING_MANUAL : CloakState.DECLOAKING_FORCED;
         if (this.cloakProgress > MIN_CLOAK) {
             if (this.getCloakState() != CloakState.DECLOAKING_FORCED && this.getCloakState() != CloakState.DECLOAKING_MANUAL) {
-                AVPSounds.YAUTJA_DECLOAK.playSound(this, 0.6F, 1.0F);
+                PredatorSounds.YAUTJA_DECLOAK.playSound(this, 0.6F, 1.0F);
             }
 
             this.setCloakState(decloakType);
@@ -257,19 +258,19 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return AVPSounds.YAUTJA_LIVING.event();
+        return PredatorSounds.YAUTJA_LIVING.event();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.YAUTJA_HURT.event();
+        return PredatorSounds.YAUTJA_HURT.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.YAUTJA_DEATH.event();
+        return PredatorSounds.YAUTJA_DEATH.event();
     }
 
     @Override

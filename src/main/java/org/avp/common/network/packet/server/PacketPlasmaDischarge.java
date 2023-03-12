@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.avp.client.AVPSounds;
+import org.predator.client.PredatorSounds;
 import org.predator.common.entity.EntityPlasma;
 
 public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPlasmaDischarge, PacketPlasmaDischarge>
@@ -65,7 +66,7 @@ public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPl
                         plasma.motionZ = MathHelper.cos(plasma.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(plasma.rotationPitch / 180.0F * (float) Math.PI) * speed;
                         plasma.motionY = -MathHelper.sin((plasma.rotationPitch) / 180.0F * (float) Math.PI) * speed;
                         player.world.spawnEntity(plasma);
-                        AVPSounds.WEAPON_PLASMACASTER.playSound(plasma, 0.1F, 1.0F);
+                        PredatorSounds.WEAPON_PLASMACASTER.playSound(plasma, 0.1F, 1.0F);
                     }
                 }
             }

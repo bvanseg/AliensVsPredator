@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.client.AVPSounds;
+import org.predator.client.PredatorSounds;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,7 +79,7 @@ public class EntityWristbracer extends EntityThrowable
 
         if (this.world.getTotalWorldTime() % 20 == 0)
         {
-            AVPSounds.FX_WRISTBRACER_ALARM.playSound(this, 15F, 1F);
+            PredatorSounds.FX_WRISTBRACER_ALARM.playSound(this, 15F, 1F);
         }
 
         if (this.preInitTicks >= this.getPreInitTicksMax())

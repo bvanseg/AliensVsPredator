@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
@@ -22,6 +23,7 @@ import org.avp.client.render.BiomeColorHandler;
 import org.avp.common.*;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
+import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorBlocks;
 
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
@@ -49,10 +51,16 @@ public class AVP implements IMod
     @Mod.EventHandler
     public void pre(FMLPreInitializationEvent event)
     {
+        // Blocks
         AlienBlocks.instance.pre(event);
         PredatorBlocks.instance.pre(event);
         AVPBlocks.instance.pre(event);
+
+        // Sounds
+        AlienSounds.instance.pre(event);
+        PredatorSounds.instance.pre(event);
         AVPSounds.instance.pre(event);
+
         console().pre(event);
         settings().pre(event);
         capabilities().pre(event);

@@ -57,24 +57,6 @@ public class EntityPredalienChestburster extends EntityChestburster implements I
     }
 
     @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-    }
-
-    @Override
-    protected SoundEvent getDeathSound()
-    {
-        return AVPSounds.CHESTBURSTER_DEATH.event();
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return AVPSounds.CHESTBURSTER_HURT.event();
-    }
-
-    @Override
     public Class<? extends Entity> getMatureState()
     {
         return this.matureState;

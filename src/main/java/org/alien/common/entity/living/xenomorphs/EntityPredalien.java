@@ -8,6 +8,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.client.AVPSounds;
 import org.avp.common.EntityItemDrops;
@@ -38,25 +39,25 @@ public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMembe
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return AVPSounds.PREDALIEN_HURT.event();
+        return AlienSounds.PREDALIEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return AVPSounds.PREDALIEN_LIVING.event();
+        return AlienSounds.PREDALIEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return AVPSounds.PREDALIEN_DEATH.event();
+        return AlienSounds.PREDALIEN_DEATH.event();
     }
     
     @Override
     public boolean attackEntityAsMob(Entity entity)
     {
-        AVPSounds.PREDALIEN_ATTACK.playSound(this, 1F, 1F);
+        AlienSounds.PREDALIEN_ATTACK.playSound(this, 1F, 1F);
         return super.attackEntityAsMob(entity);
     }
 
