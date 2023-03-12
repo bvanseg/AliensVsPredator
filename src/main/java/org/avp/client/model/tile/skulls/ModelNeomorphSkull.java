@@ -1,10 +1,12 @@
 package org.avp.client.model.tile.skulls;
 
+import org.avp.tile.TileEntitySkull;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelNeomorphSkull extends Model
+public class ModelNeomorphSkull extends Model<TileEntitySkull>
 {
     public ModelRenderer head;
     public ModelRenderer muzzle01;
@@ -122,7 +124,7 @@ public class ModelNeomorphSkull extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntitySkull obj)
     {
         draw(head);
     }

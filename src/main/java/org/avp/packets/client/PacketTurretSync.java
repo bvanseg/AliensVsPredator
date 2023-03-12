@@ -29,8 +29,8 @@ public class PacketTurretSync implements IMessage, IMessageHandler<PacketTurretS
         this.x = turret.getPos().getX();
         this.y = turret.getPos().getY();
         this.z = turret.getPos().getZ();
-        this.targets = turret.getTargetListTag();
-        this.rotation = turret.getRotation();
+        this.targets = turret.getTargetHelper().getTargetListTag();
+        this.rotation = turret.getLookHelper().getRotation();
     }
 
     @Override

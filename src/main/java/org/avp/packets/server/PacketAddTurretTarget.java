@@ -1,5 +1,10 @@
 package org.avp.packets.server;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.HashMap;
+
 import org.avp.tile.TileEntityTurret;
 
 import io.netty.buffer.ByteBuf;
@@ -14,20 +19,26 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 public class PacketAddTurretTarget implements IMessage, IMessageHandler<PacketAddTurretTarget, PacketAddTurretTarget>
 {
-    public int    x, y, z;
-    public String entityIdentifier;
+    // TODO: Move this somewhere more appropriate.
+    private static final HashMap<String, EntityEntry> forgeEntityEntriesByRegistryName = new HashMap<>();
 
-    public PacketAddTurretTarget()
-    {
-        ;
+    private int    x, y, z;
+    private int    size;
+    private Collection<String> entityIdentifiers;
+
+    public PacketAddTurretTarget() {}
+
+    public PacketAddTurretTarget(int x, int y, int z, String globalID) {
+        this(x, y, z, Arrays.asList(globalID));
     }
-
-    public PacketAddTurretTarget(int x, int y, int z, String globalID)
+    
+    public PacketAddTurretTarget(int x, int y, int z, Collection<String> globalIDs)
     {
         this.x = x;
         this.y = y;
         this.z = z;
-        this.entityIdentifier = globalID;
+        this.size = globalIDs.size();
+        this.entityIdentifiers = globalIDs;
     }
 
     @Override
@@ -36,7 +47,14 @@ public class PacketAddTurretTarget implements IMessage, IMessageHandler<PacketAd
         this.x = buf.readInt();
         this.y = buf.readInt();
         this.z = buf.readInt();
-        this.entityIdentifier = ByteBufUtils.readUTF8String(buf);
+        this.size = buf.readInt();
+        this.entityIdentifiers = new ArrayList<>();
+        
+        
+        for (int i = 0; i < this.size; i++) {
+        	String identifier = ByteBufUtils.readUTF8String(buf);
+        	this.entityIdentifiers.add(identifier);
+        }
     }
 
     @Override
@@ -45,36 +63,33 @@ public class PacketAddTurretTarget implements IMessage, IMessageHandler<PacketAd
         buf.writeInt(x);
         buf.writeInt(y);
         buf.writeInt(z);
-        ByteBufUtils.writeUTF8String(buf, this.entityIdentifier);
+        buf.writeInt(size); 
+        this.entityIdentifiers.forEach((e) -> ByteBufUtils.writeUTF8String(buf, e));
     }
 
-    @Override
-    public PacketAddTurretTarget onMessage(PacketAddTurretTarget packet, MessageContext ctx)
-    {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                TileEntityTurret tile = (TileEntityTurret) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+	@Override
+	public PacketAddTurretTarget onMessage(PacketAddTurretTarget packet, MessageContext ctx) {
+		BlockPos tilePos = new BlockPos(packet.x, packet.y, packet.z);
+		TileEntityTurret tile = (TileEntityTurret) ctx.getServerHandler().player.world.getTileEntity(tilePos);
 
-                if (tile != null)
-                {
-                    EntityEntry e = null;
-                    
-                    for (EntityEntry ee : ForgeRegistries.ENTITIES)
-                    {
-                        if (ee.getRegistryName().toString().equalsIgnoreCase(packet.entityIdentifier))
-                        {
-                            e = ee;
-                            break;
-                        }
-                    }
-                    tile.addTargetType((Class<? extends Entity>) e.getEntityClass());
-                }
-            }
-        });
+		if (tile != null) {
+			// If the forge entity entries have yet to be computed, compute them.
+			if (forgeEntityEntriesByRegistryName.isEmpty()) {
+				for (EntityEntry entityEntry : ForgeRegistries.ENTITIES) {
+					String entityRegistryName = entityEntry.getRegistryName().toString().toLowerCase();
+					forgeEntityEntriesByRegistryName.put(entityRegistryName, entityEntry);
+				}
+			}
 
-        return null;
-    }
+			for (String identifier : packet.entityIdentifiers) {
+				EntityEntry currentEntityEntry = forgeEntityEntriesByRegistryName.get(identifier.toLowerCase());
+
+				if (currentEntityEntry != null) {
+					tile.getTargetHelper().addTargetType((Class<? extends Entity>) currentEntityEntry.getEntityClass());
+				}
+			}
+		}
+
+		return null;
+	}
 }

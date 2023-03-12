@@ -1,5 +1,7 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityQueenChestburster;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
@@ -7,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelChestbursterQueen extends Model
+public class ModelChestbursterQueen extends Model<EntityQueenChestburster>
 {
     public ModelRenderer chest;
     public ModelRenderer abdomen;
@@ -306,7 +308,7 @@ public class ModelChestbursterQueen extends Model
     }
     
     @Override
-    public void render(Object obj)
+    public void render(EntityQueenChestburster obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;;
 

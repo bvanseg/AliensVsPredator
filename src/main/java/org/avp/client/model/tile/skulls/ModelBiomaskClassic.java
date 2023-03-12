@@ -1,10 +1,12 @@
 package org.avp.client.model.tile.skulls;
 
+import org.avp.tile.TileEntitySkull;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelBiomaskClassic extends Model
+public class ModelBiomaskClassic extends Model<TileEntitySkull>
 {
     public ModelRenderer biomaskMouth;
     public ModelRenderer biomaskVisor;
@@ -126,7 +128,7 @@ public class ModelBiomaskClassic extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntitySkull obj)
     {
         draw(biomaskMouth);
     }
