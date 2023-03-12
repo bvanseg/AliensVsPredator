@@ -1,7 +1,5 @@
 package org.avp.item;
 
-import java.util.Random;
-
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Worlds;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
@@ -14,50 +12,31 @@ import net.minecraft.world.World;
 
 public class ItemIngotLithium extends HookedItem
 {
-    public ItemIngotLithium()
-    {
-        ;
-    }
+    public ItemIngotLithium() {}
 
     @Override
     public void onUpdate(ItemStack itemstack, World world, Entity entity, int slot, boolean selected)
     {
         super.onUpdate(itemstack, world, entity, slot, selected);
-
-        if (entity.isInWater())
-        {
-            Worlds.createExplosion(entity, world, new Pos(entity), 1F, true, true, !world.isRemote);
-            Inventories.consumeItem((EntityPlayer) entity, this, true);
+        
+        if (entity.isInWater()) {
+        	this.explode(entity);
         }
-
-        if (world.isRaining() && world.canSeeSky(entity.getPosition()))
-        {
-            if (world.getTotalWorldTime() % 20 == 0)
-            {
-                if (new Random().nextInt(5) == 0)
-                {
-                    Worlds.createExplosion(entity, world, new Pos(entity), 1F, true, true, !world.isRemote);
-                    Inventories.consumeItem((EntityPlayer) entity, this, true);
-                }
-            }
+        
+        // Only explode with survival mode players.
+        if (!(entity instanceof EntityPlayer) || (entity instanceof EntityPlayer) && ((EntityPlayer)entity).isCreative())
+        	return;
+        
+        boolean isTouchingRain = world.isRainingAt(entity.getPosition()) && world.canSeeSky(entity.getPosition());
+        boolean isHighHumidityBiome = world.getBiome(entity.getPosition()).isHighHumidity();
+        
+        if ((isTouchingRain || isHighHumidityBiome) && world.getTotalWorldTime() % 20 == 0 && world.rand.nextInt(5) == 0) {
+        	this.explode(entity);
         }
-
-        if (world.getBiome(entity.getPosition()).isHighHumidity())
-        {
-            if (world.getTotalWorldTime() % 20 == 0)
-            {
-                if (new Random().nextInt(5) == 0)
-                {
-                    if (world.getTotalWorldTime() % 20 == 0)
-                    {
-                        if (new Random().nextInt(30) == 0)
-                        {
-                            Worlds.createExplosion(entity, world, new Pos(entity), 1F, true, true, !world.isRemote);
-                            Inventories.consumeItem((EntityPlayer) entity, this, true);
-                        }
-                    }
-                }
-            }
-        }
+    }
+    
+    private void explode(Entity entity) {
+        Worlds.createExplosion(entity, entity.world, new Pos(entity), 1F, true, true, !entity.world.isRemote);
+        Inventories.consumeItem((EntityPlayer) entity, this, true);
     }
 }
