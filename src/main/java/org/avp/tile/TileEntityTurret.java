@@ -13,6 +13,9 @@ import org.avp.tile.helpers.TileEntityTurretLookHelper;
 import org.avp.tile.helpers.TileEntityTurretTargetHelper;
 
 import com.asx.mdx.MDX;
+import com.asx.mdx.lib.client.util.Rotation;
+import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.storage.NBTStorage;
@@ -38,7 +41,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 /**
- * 
+ *
  * @author Ri5ux
  * @author Boston Vanseghi
  *
@@ -50,7 +53,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     private ContainerTurret                     container;
     private Pos                                 pos;
 	public int                                  beamColor;
-	
+
     private final TileEntityTurretAmmoHelper    ammoHelper;
     private final TileEntityTurretTargetHelper  targetHelper;
     private final TileEntityTurretLookHelper    lookHelper;
@@ -62,13 +65,13 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         this.inventoryExpansion = new InventoryBasic("TurretExpansionBay", true, 3);
         this.inventoryDrive = new InventoryBasic("TurretDriveBay", true, 1);
         this.beamColor = 0xFFFF0000;
-        
+
         this.ammoHelper = new TileEntityTurretAmmoHelper();
         this.targetHelper = new TileEntityTurretTargetHelper();
         this.lookHelper = new TileEntityTurretLookHelper(targetHelper);
         this.attackHelper = new TileEntityTurretAttackHelper(ammoHelper, lookHelper, targetHelper);
     }
-    
+
     @Override
     public void onLoad() {
     	super.onLoad();
@@ -80,8 +83,8 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void update()
     {
         super.update();
-        super.updateEnergyAsReceiver(); 
-        
+        super.updateEnergyAsReceiver();
+
         // Don't do anything yet until the tile entity is aware of its world and position.
         if (this.world == null || this.pos == null) {
         	return;
@@ -100,11 +103,11 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        
+
         this.getLookHelper().readFromNBT(nbt);
         this.getTargetHelper().readFromNBT(nbt);
         this.getAmmoHelper().readFromNBT(nbt);
-        
+
         this.readInventoryFromNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.readInventoryFromNBT(nbt, this.inventoryExpansion);
         this.readInventoryFromNBT(nbt, this.inventoryDrive);
@@ -114,11 +117,11 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        
+
         this.getLookHelper().writeToNBT(nbt);
         this.getTargetHelper().writeToNBT(nbt);
         this.getAmmoHelper().writeToNBT(nbt);
-        
+
         this.saveInventoryToNBT(nbt, this.getAmmoHelper().inventoryAmmo);
         this.saveInventoryToNBT(nbt, this.inventoryExpansion);
         this.saveInventoryToNBT(nbt, this.inventoryDrive);
@@ -157,7 +160,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                 this.getAmmoHelper().setAmmoDisplayEnabled(true);
             }
         }
-        
+
         this.getLookHelper().setTurretRotateSpeed(turretRotateSpeed);
     }
 
@@ -235,7 +238,7 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
                         Class<? extends Entity> c = entityEntry.getEntityClass();
                         this.getTargetHelper().addTargetType(c);
                     } else {
-                        MDX.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
+                        AliensVsPredator.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
                     }
                 }
             }

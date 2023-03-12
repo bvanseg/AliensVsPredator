@@ -110,7 +110,7 @@ public class DimensionHandler implements IInitEvent
     public static void teleportPlayerToDimension(EntityPlayerMP player, int dimensionId)
     {
         PlayerList players = player.getServer().getPlayerList();
-        MDX.log().info("Attempting to teleport player to dimension with id " + dimensionId);
+        AliensVsPredator.log().info("Attempting to teleport player to dimension with id " + dimensionId);
 
         if (player.dimension == 0 || player.dimension != dimensionId)
         {
