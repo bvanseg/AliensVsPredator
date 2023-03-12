@@ -1,7 +1,7 @@
 package org.avp.common.item.firearm;
 
 import com.asx.mdx.lib.util.Sound;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 
 import java.util.ArrayList;
 
@@ -47,7 +47,7 @@ public class FirearmProfile
         this.reloadTime = 6 * 20;
         this.ammoConsumptionRate = 1;
         this.soundLength = 0;
-        this.sound = Sounds.fxWeaponPistol;
+        this.sound = AVPSounds.FX_WEAPON_PISTOL;
         this.register();
     }
 

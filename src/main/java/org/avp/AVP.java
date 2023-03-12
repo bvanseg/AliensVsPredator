@@ -14,10 +14,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.AlienBlocks;
 import org.apache.logging.log4j.Logger;
+import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
 import org.avp.client.Resources;
-import org.avp.client.Sounds;
 import org.avp.client.render.BiomeColorHandler;
 import org.avp.common.*;
 import org.avp.common.network.AvpDataSerializers;
@@ -52,6 +52,7 @@ public class AVP implements IMod
         AlienBlocks.instance.pre(event);
         PredatorBlocks.instance.pre(event);
         AVPBlocks.instance.pre(event);
+        AVPSounds.instance.pre(event);
         console().pre(event);
         settings().pre(event);
         capabilities().pre(event);
@@ -191,11 +192,6 @@ public class AVP implements IMod
     public static Resources resources()
     {
         return Resources.instance;
-    }
-
-    public static Sounds sounds()
-    {
-        return Sounds.instance;
     }
 
     public static GuiHandler interfaces()

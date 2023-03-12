@@ -24,7 +24,7 @@ import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.AVP;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
@@ -269,19 +269,19 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.QUEEN_HURT.event();
+        return AVPSounds.QUEEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return this.getHealth() > this.getMaxHealth() / 4 ? Sounds.QUEEN_LIVING_CONSTANT.event() : Sounds.QUEEN_LIVING.event();
+        return this.getHealth() > this.getMaxHealth() / 4 ? AVPSounds.QUEEN_LIVING_CONSTANT.event() : AVPSounds.QUEEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.QUEEN_DEATH.event();
+        return AVPSounds.QUEEN_DEATH.event();
     }
 
     private static final String alienHiveNbtKey = "AlienHive";

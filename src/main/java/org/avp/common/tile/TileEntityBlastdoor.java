@@ -15,6 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import org.avp.AVP;
+import org.avp.client.AVPSounds;
 import org.avp.common.AVPBlocks;
 import org.avp.common.api.machines.IOpenable;
 import org.avp.common.api.power.IVoltageReceiver;
@@ -532,27 +533,27 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
     public void playOpenSound()
     {
-        AVP.sounds().BLASTDOOR_OPEN.playSound(world, pos, 1F, 1F);
+        AVPSounds.BLASTDOOR_OPEN.playSound(world, pos, 1F, 1F);
     }
 
     public void playCloseSound()
     {
-        AVP.sounds().BLASTDOOR_CLOSE.playSound(world, pos, 1F, 1F);
+        AVPSounds.BLASTDOOR_CLOSE.playSound(world, pos, 1F, 1F);
     }
 
     public void playUnlockSound()
     {
-        AVP.sounds().BLASTDOOR_UNLOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
+        AVPSounds.BLASTDOOR_UNLOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
 
     public void playLockSound()
     {
-        AVP.sounds().BLASTDOOR_LOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
+        AVPSounds.BLASTDOOR_LOCK.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
 
     public void playIncorrectPasswordSound()
     {
-        AVP.sounds().BLASTDOOR_PASSWORD_DENIED.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
+        AVPSounds.BLASTDOOR_PASSWORD_DENIED.playSound(world, pos.getX(), pos.getY(), pos.getZ(), 1F, 1F, false);
     }
 
     public boolean authenticate(String key)

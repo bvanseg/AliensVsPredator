@@ -16,7 +16,7 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.DamageSources;
 import org.avp.common.inventory.ContainerWristbracer;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
@@ -78,7 +78,7 @@ public class ItemWristbracer extends HookedItem
     {
         if (equippedHasBlades(player))
         {
-            Sounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F);
+            AVPSounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F);
             entity.attackEntityFrom(DamageSources.causeWristbracerDamage(player), getDamageToApply());
 
             if (!player.world.isRemote && !player.capabilities.isCreativeMode)

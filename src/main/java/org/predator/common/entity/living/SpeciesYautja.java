@@ -23,7 +23,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.DamageSources;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.api.parasitoidic.IHost;
@@ -152,7 +152,7 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     private void handleCloak() {
         if (this.cloakProgress < MAX_CLOAK) {
             if (this.getCloakState() != CloakState.CLOAKING) {
-                Sounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);;
+                AVPSounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);;
             }
 
             this.setCloakState(CloakState.CLOAKING);
@@ -165,7 +165,7 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
         CloakState decloakType = this.getAttackTarget() != null ? CloakState.DECLOAKING_MANUAL : CloakState.DECLOAKING_FORCED;
         if (this.cloakProgress > MIN_CLOAK) {
             if (this.getCloakState() != CloakState.DECLOAKING_FORCED && this.getCloakState() != CloakState.DECLOAKING_MANUAL) {
-                Sounds.YAUTJA_DECLOAK.playSound(this, 0.6F, 1.0F);
+                AVPSounds.YAUTJA_DECLOAK.playSound(this, 0.6F, 1.0F);
             }
 
             this.setCloakState(decloakType);
@@ -257,19 +257,19 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.YAUTJA_LIVING.event();
+        return AVPSounds.YAUTJA_LIVING.event();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.YAUTJA_HURT.event();
+        return AVPSounds.YAUTJA_HURT.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.YAUTJA_DEATH.event();
+        return AVPSounds.YAUTJA_DEATH.event();
     }
 
     @Override

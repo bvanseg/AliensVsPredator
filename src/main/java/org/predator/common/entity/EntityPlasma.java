@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.DamageSources;
 import org.avp.common.Settings;
 
@@ -138,7 +138,7 @@ public class EntityPlasma extends EntityThrowable
                 Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, AVP.settings().areExplosionsEnabled());
             }
 
-            Sounds.WEAPON_PLASMA_EXPLOSION.playSound(this, 7F, 1.0F);
+            AVPSounds.WEAPON_PLASMA_EXPLOSION.playSound(this, 7F, 1.0F);
 
             @SuppressWarnings("unchecked")
             List<Entity> entities = (List<Entity>) Entities.getEntitiesInCoordsRange(world, Entity.class, new Pos(this.posX, this.posY, this.posZ), (int) Math.ceil(this.getPlasmaSize()));

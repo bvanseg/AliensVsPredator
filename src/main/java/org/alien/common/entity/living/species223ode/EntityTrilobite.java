@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.Species223ODe;
 import org.avp.AVP;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
@@ -175,7 +175,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         
         if(this.getActiveAnimation() == IMPREGNATION_ANIMATION && this.getAnimationTick() == 95)
         {
-            Sounds.FACEHUGGER_IMPLANT.playSound(this, 1F, 1F);
+            AVPSounds.FACEHUGGER_IMPLANT.playSound(this, 1F, 1F);
         }
 
         if (this.getRidingEntity() == null && this.getActiveAnimation() == IMPREGNATION_ANIMATION)
@@ -335,19 +335,19 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.FACEHUGGER_HURT.event();
+        return AVPSounds.FACEHUGGER_HURT.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.CHESTBURSTER_BURST.event();
+        return AVPSounds.CHESTBURSTER_BURST.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.FACEHUGGER_LIVING.event();
+        return AVPSounds.FACEHUGGER_LIVING.event();
     }
 
     @Override
@@ -640,6 +640,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     
     public SoundEvent getImplantSound()
     {
-        return Sounds.FACEHUGGER_IMPLANT.event();
+        return AVPSounds.FACEHUGGER_IMPLANT.event();
     }
 }

@@ -13,7 +13,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
 
 import java.util.Random;
@@ -40,7 +40,7 @@ public class ItemStunBaton extends ItemSword
             if(player.world.isRemote)
                 addArcEffect(player, entity);
             
-            Sounds.WEAPON_STUNBATON.playSound(entity);
+            AVPSounds.WEAPON_STUNBATON.playSound(entity);
 
             if (entity instanceof EntityLiving)
             {

@@ -15,7 +15,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.entity.ai.EntityAIFacehuggerLeap;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
@@ -99,7 +99,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     @Override
     protected SoundEvent getDeathSound()
     {
-        return this.isFertile() ? Sounds.FACEHUGGER_DEATH.event() : super.getDeathSound();
+        return this.isFertile() ? AVPSounds.FACEHUGGER_DEATH.event() : super.getDeathSound();
     }
     
     @Override
@@ -111,7 +111,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     @Override
     public SoundEvent getImplantSound()
     {
-        return Sounds.FACEHUGGER_IMPLANT.event();
+        return AVPSounds.FACEHUGGER_IMPLANT.event();
     }
     
     @Override

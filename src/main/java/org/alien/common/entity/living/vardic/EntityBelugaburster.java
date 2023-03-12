@@ -15,7 +15,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.engineer.EntityEngineer;
 import org.alien.common.entity.living.xenomorphs.EntityChestburster;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.INascentic;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
@@ -67,13 +67,13 @@ public class EntityBelugaburster extends EntityChestburster implements IMob, INa
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.CHESTBURSTER_DEATH.event();
+        return AVPSounds.CHESTBURSTER_DEATH.event();
     }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.CHESTBURSTER_HURT.event();
+        return AVPSounds.CHESTBURSTER_HURT.event();
     }
 
     @Override

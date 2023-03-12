@@ -17,7 +17,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.entity.ai.selector.EntitySelectorNauticomorph;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.ItemHandler;
 import org.avp.common.world.hive.HiveMember;
 
@@ -171,19 +171,19 @@ public class EntityNauticomorph extends SpeciesXenomorph implements HiveMember
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.ALIEN_HURT.event();
+        return AVPSounds.ALIEN_HURT.event();
     }
 
     @Override
     protected SoundEvent getAmbientSound()
     {
-        return Sounds.ALIEN_LIVING.event();
+        return AVPSounds.ALIEN_LIVING.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.ALIEN_DEATH.event();
+        return AVPSounds.ALIEN_DEATH.event();
     }
 
     @Override

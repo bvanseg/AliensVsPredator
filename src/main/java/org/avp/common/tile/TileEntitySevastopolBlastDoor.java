@@ -3,6 +3,7 @@ package org.avp.common.tile;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import org.avp.AVP;
+import org.avp.client.AVPSounds;
 import org.avp.common.AVPBlocks;
 
 import java.util.ArrayList;
@@ -41,13 +42,13 @@ public class TileEntitySevastopolBlastDoor extends TileEntityBlastdoor
     @Override
     public void playOpenSound()
     {
-        AVP.sounds().BLASTDOOR_SEVASTOPOL_OPEN.playSound(world, pos, 1F, 1F);
+        AVPSounds.BLASTDOOR_SEVASTOPOL_OPEN.playSound(world, pos, 1F, 1F);
     }
     
     @Override
     public void playCloseSound()
     {
-        AVP.sounds().BLASTDOOR_SEVASTOPOL_CLOSE.playSound(world, pos, 1F, 1F);
+        AVPSounds.BLASTDOOR_SEVASTOPOL_CLOSE.playSound(world, pos, 1F, 1F);
     }
     
     @Override

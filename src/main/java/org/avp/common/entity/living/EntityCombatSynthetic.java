@@ -18,7 +18,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.AVP;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.ItemHandler;
 import org.avp.common.api.parasitoidic.IHost;
@@ -76,13 +76,13 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.MARINE_HURT.event();
+        return AVPSounds.MARINE_HURT.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.MARINE_DEATH.event();
+        return AVPSounds.MARINE_DEATH.event();
     }
 
     @Override
@@ -130,7 +130,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     {
         if (this.getAttackTarget() != null)
         {
-            Sounds.WEAPON_PULSERIFLE.playSound(this);
+            AVPSounds.WEAPON_PULSERIFLE.playSound(this);
             EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.5F);
             entityBullet.setLocationAndAngles(this.posX, this.posY, this.posZ, this.rotationYaw, this.rotationPitch);
             this.world.spawnEntity(entityBullet);

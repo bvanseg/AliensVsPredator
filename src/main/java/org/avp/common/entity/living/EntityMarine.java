@@ -16,7 +16,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.ItemHandler;
 import org.avp.common.entity.EntityBullet;
@@ -93,13 +93,13 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
-        return Sounds.MARINE_HURT.event();
+        return AVPSounds.MARINE_HURT.event();
     }
 
     @Override
     protected SoundEvent getDeathSound()
     {
-        return Sounds.MARINE_DEATH.event();
+        return AVPSounds.MARINE_DEATH.event();
     }
 
     @Override

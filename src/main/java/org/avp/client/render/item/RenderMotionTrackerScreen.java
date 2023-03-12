@@ -6,7 +6,7 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import org.avp.AVP;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -155,7 +155,7 @@ public class RenderMotionTrackerScreen
         else if (this.shouldPing)
         {
             this.shouldPing = false;
-            Sounds.MOTIONTRACKER_PING.playSound(Game.minecraft().player);
+            AVPSounds.MOTIONTRACKER_PING.playSound(Game.minecraft().player);
         }
 
         if (pingTime != 0)
@@ -195,7 +195,7 @@ public class RenderMotionTrackerScreen
 
             if (this.pingCount > 0)
             {
-                Sounds.MOTIONTRACKER_PONG.playSound(Game.minecraft().player, 1F, this.pitch[this.minDistance]);
+                AVPSounds.MOTIONTRACKER_PONG.playSound(Game.minecraft().player, 1F, this.pitch[this.minDistance]);
             }
         }
     }

@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.Sounds;
+import org.avp.client.AVPSounds;
 import org.avp.common.entity.EntityFlame;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public abstract class ItemFlamethrower extends HookedItem
                 world.spawnEntity(entity);
             }
 
-            Sounds.WEAPON_FLAMETHROWER.playSound(player);
+            AVPSounds.WEAPON_FLAMETHROWER.playSound(player);
         }
         return super.onItemRightClick(world, player, hand);
     }

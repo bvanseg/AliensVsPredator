@@ -23,20 +23,21 @@ import org.predator.client.render.RenderPlayerPlasmaCannon;
 
 public class RenderLivingHook
 {
-    public static final RenderLivingHook instance           = new RenderLivingHook();
-    public RenderLiving                  renderer           = new RenderLiving();
-    public RenderPlayerPlasmaCannon renderplasmacannon = new RenderPlayerPlasmaCannon();
+    public static final RenderLivingHook instance = new RenderLivingHook();
+    public static final RenderPlayerPlasmaCannon renderPlasmaCannon = new RenderPlayerPlasmaCannon();
+
+    public static final RenderLiving renderer = new RenderLiving();
 
     @SubscribeEvent
     public void update(ClientTickEvent event)
     {
-        renderplasmacannon.update(event, Game.minecraft(), Game.minecraft().world);
+        renderPlasmaCannon.update(event, Game.minecraft(), Game.minecraft().world);
     }
 
     @SubscribeEvent
     public void renderHand(RenderHandEvent event)
     {
-        renderplasmacannon.renderFirstPerson(event, event.getPartialTicks());
+        renderPlasmaCannon.renderFirstPerson(event, event.getPartialTicks());
     }
 
     @SubscribeEvent
@@ -46,7 +47,7 @@ public class RenderLivingHook
         {
             if (event.getEntity() instanceof EntityPlayer)
             {
-                renderplasmacannon.render(event, Game.partialTicks());
+                renderPlasmaCannon.render(event, Game.partialTicks());
             }
 
             if (event.getEntity().getRidingEntity() instanceof EntityMedpod)
@@ -64,7 +65,7 @@ public class RenderLivingHook
         {
             if (event.getEntity() instanceof EntityPlayer)
             {
-                renderplasmacannon.render(event, Game.partialTicks());
+                renderPlasmaCannon.render(event, Game.partialTicks());
             }
 
             if (event.getEntity().getRidingEntity() instanceof EntityMedpod)
@@ -79,7 +80,7 @@ public class RenderLivingHook
         return renderer;
     }
 
-    public class RenderLiving extends RenderLivingBase<EntityLivingBase>
+    public static class RenderLiving extends RenderLivingBase<EntityLivingBase>
     {
         private RenderLivingBase<EntityLivingBase> cache;
 
@@ -154,7 +155,7 @@ public class RenderLivingHook
 
         public void transformEntity(EntityMedpod medpod, Entity inMedpod, float partialTicks)
         {
-            float rotation = (float) medpod.getTileEntity().getDoorProgress() * 45 / medpod.getTileEntity().getMaxDoorProgress();
+            float rotation = medpod.getTileEntity().getDoorProgress() * 45 / medpod.getTileEntity().getMaxDoorProgress();
 
             OpenGL.rotate(medpod.getTileEntity());
             OpenGL.scale(-1.0F, -1.0F, 1.0F);
