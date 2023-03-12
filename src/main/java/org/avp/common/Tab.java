@@ -7,6 +7,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
+import org.predator.PredatorBlocks;
 
 public class Tab implements IPreInitEvent
 {
@@ -28,7 +29,7 @@ public class Tab implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(Game.getItem(AVPBlocks.SHIP_5));
+                                                                return new ItemStack(Game.getItem(PredatorBlocks.SHIP_5));
                                                             }
 
                                                             public String getTranslationKey()

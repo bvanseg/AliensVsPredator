@@ -1,16 +1,7 @@
 package org.avp.common.entities.living.vardic;
 
-import java.util.ArrayList;
-
-import org.avp.common.AVPBlocks;
-import org.avp.common.ItemHandler;
-import org.avp.client.Sounds;
-import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entities.living.species.SpeciesAlien;
-
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.block.Blocks;
-
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -24,6 +15,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.AlienBlocks;
+import org.avp.client.Sounds;
+import org.avp.common.ItemHandler;
+import org.avp.common.entities.ai.EntityAICustomAttackOnCollide;
+import org.avp.common.entities.living.species.SpeciesAlien;
+
+import java.util.ArrayList;
 
 public class EntityHammerpede extends SpeciesAlien implements IMob
 {
@@ -84,9 +82,9 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
         {
             if (this.world.getTotalWorldTime() % 40 == 0 && this.rand.nextInt(4) == 0)
             {
-                if (this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)).getBlock() != AVPBlocks.BLACK_GOO)
+                if (this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)).getBlock() != AlienBlocks.BLACK_GOO)
                 {
-                    ArrayList<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) 10, this.world, AVPBlocks.BLACK_GOO);
+                    ArrayList<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) 10, this.world, AlienBlocks.BLACK_GOO);
 
                     if (locations.size() > 0)
                     {

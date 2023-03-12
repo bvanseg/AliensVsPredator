@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.fml.relauncher.Side;
+import org.alien.AlienBlocks;
 import org.avp.AVP;
 import org.avp.common.entities.living.*;
 import org.avp.common.entities.living.species.engineer.EntityEngineer;
@@ -148,8 +149,8 @@ public class ItemHandler
     public static final Item itemPhialEmpty             = new HookedItem().setCreativeTab(Tab.MAIN).setRegistryName("phial.empty");
     public static final Item itemChargePack             = new HookedItem().setMaxDamage(64).setMaxStackSize(1).setCreativeTab(Tab.MAIN).setRegistryName("chargepack");
     public static final Item itemMaintenanceJack        = new ItemMaintenanceJack().setCreativeTab(Tab.MAIN).setRegistryName("tool.maintenancejack");
-    public static final Item blackGooBucket             = new ItemBucket(AVPBlocks.BLACK_GOO).setCreativeTab(Tab.MAIN).setRegistryName("bucket.blackgoo");
-    public static final Item mistBucket                 = new ItemBucket(AVPBlocks.MIST).setCreativeTab(Tab.MAIN).setRegistryName("bucket.mist");
+    public static final Item blackGooBucket             = new ItemBucket(AlienBlocks.BLACK_GOO).setCreativeTab(Tab.MAIN).setRegistryName("bucket.blackgoo");
+    public static final Item mistBucket                 = new ItemBucket(AlienBlocks.MIST).setCreativeTab(Tab.MAIN).setRegistryName("bucket.mist");
     public static final Item securityTuner              = new HookedItem().setMaxStackSize(1).setCreativeTab(Tab.MAIN).setRegistryName("tool.securitytuner");
     public static final Item rackModule1                = new ItemNetworkRackModule1().setCreativeTab(Tab.MAIN).setRegistryName("rackmodule1");
     public static final Item rackModule2                = new ItemNetworkRackModule2().setCreativeTab(Tab.MAIN).setRegistryName("rackmodule2");

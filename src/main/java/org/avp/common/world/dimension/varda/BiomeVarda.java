@@ -123,7 +123,7 @@ public class BiomeVarda extends BiomeGenLV
             WorldGenerator tree2 = new VardaTree2Generator(true);
             WorldGenerator tree3 = new VardaTree3Generator(true);
             WorldGenerator treeTall = new VardaTallTreeGenerator(true);
-            WorldGenerator gooPools = new WorldGenLakes(AVPBlocks.BLACK_GOO);
+            WorldGenerator gooPools = new WorldGenLakes(AlienBlocks.BLACK_GOO);
             
             for (int i = 0; i < 2; i++)
             {

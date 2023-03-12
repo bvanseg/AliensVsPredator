@@ -301,6 +301,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lib.BlockRegistryUtil;
+import org.predator.PredatorBlocks;
 
 @SideOnly(Side.CLIENT)
 @Mod.EventBusSubscriber(Side.CLIENT)
@@ -457,23 +458,23 @@ public class Renders implements IInitEvent, IPreInitEvent
     
     private void registerBlockItemRenderers()
     {
-        Renders.registerSkullRenderer(AVPBlocks.SKULL_ENGINEER);
-        Renders.registerSkullRenderer(AVPBlocks.SKULL_JOCKEY);
-        Renders.registerSkullRenderer(AVPBlocks.SKULL_XENO);
-        Renders.registerSkullRenderer(AVPBlocks.SKULL_XENO_WARRIOR);
-        Renders.registerSkullRenderer(AVPBlocks.SKULL_YAUTJA);
-        Renders.registerSkullRenderer(AVPBlocks.SKULL_MATRIARCH);
-        Renders.registerSkullRenderer(AVPBlocks.SKULL_PROTOMORPH);
-        Renders.registerSkullRenderer(AVPBlocks.SKULL_NEOMORPH);
-        Renders.registerSkullRenderer(AVPBlocks.BIOMASK_CLASSIC);
-        Renders.registerSkullRenderer(AVPBlocks.BIOMASK_BERSERKER);
-        Renders.registerSkullRenderer(AVPBlocks.BIOMASK_FALCONER);
-        Renders.registerSkullRenderer(AVPBlocks.BIOMASK_TRACKER);
-        Renders.registerSkullRenderer(AVPBlocks.HEAD_AETHON);
-        Renders.registerSkullRenderer(AVPBlocks.HEAD_GIGER_ALIEN);
+        Renders.registerSkullRenderer(AlienBlocks.SKULL_ENGINEER);
+        Renders.registerSkullRenderer(AlienBlocks.SKULL_JOCKEY);
+        Renders.registerSkullRenderer(AlienBlocks.SKULL_XENO);
+        Renders.registerSkullRenderer(AlienBlocks.SKULL_XENO_WARRIOR);
+        Renders.registerSkullRenderer(PredatorBlocks.SKULL_YAUTJA);
+        Renders.registerSkullRenderer(AlienBlocks.SKULL_MATRIARCH);
+        Renders.registerSkullRenderer(AlienBlocks.SKULL_PROTOMORPH);
+        Renders.registerSkullRenderer(AlienBlocks.SKULL_NEOMORPH);
+        Renders.registerSkullRenderer(PredatorBlocks.BIOMASK_CLASSIC);
+        Renders.registerSkullRenderer(PredatorBlocks.BIOMASK_BERSERKER);
+        Renders.registerSkullRenderer(PredatorBlocks.BIOMASK_FALCONER);
+        Renders.registerSkullRenderer(PredatorBlocks.BIOMASK_TRACKER);
+        Renders.registerSkullRenderer(AlienBlocks.HEAD_AETHON);
+        Renders.registerSkullRenderer(AlienBlocks.HEAD_GIGER_ALIEN);
         Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.TURRET), new RenderItemTurret());
         Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.TERMINAL), new RenderItemWorkstation());
-        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.STASIS_MECHANISM), new RenderItemStasisMechanism());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(PredatorBlocks.STASIS_MECHANISM), new RenderItemStasisMechanism());
         Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.CRYO_TUBE), new RenderItemCryostasisTube());
         Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.REPULSION_GENERATOR), new RenderItemRepulsionGenerator());
         Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AVPBlocks.BLAST_DOOR), new RenderItemBlastDoor());

@@ -1,7 +1,5 @@
 package org.avp.common.entities;
 
-import org.avp.common.AVPBlocks;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,6 +8,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import org.predator.PredatorBlocks;
 
 public class EntityMechanism extends Entity
 {
@@ -36,7 +35,7 @@ public class EntityMechanism extends Entity
         {
             Block block = this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ - 1)).getBlock();
 
-            if (block != AVPBlocks.STASIS_MECHANISM)
+            if (block != PredatorBlocks.STASIS_MECHANISM)
             {
                 this.setDead();
             }
