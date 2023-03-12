@@ -25,7 +25,7 @@ public class EntityAIShareJelly extends EntityAIBase
     	if (xenomorph instanceof HiveMember)
     		return false;
     	HiveMember hiveMember = (HiveMember)xenomorph;
-    	
+
         return this.xenomorph.getJellyLevel() > 0 && hiveMember.getAlienHive() != null && xenomorph.getAttackTarget() == null;
     }
 
@@ -33,16 +33,16 @@ public class EntityAIShareJelly extends EntityAIBase
     public void updateTask()
     {
         super.updateTask();
-        
+
         HiveMember hiveMember = (HiveMember) this.xenomorph;
     	HiveOwner hiveOwner = hiveMember.getAlienHive().getHiveOwner();
-    	
+
     	if (hiveOwner instanceof EntityMatriarch) {
     		EntityMatriarch queen = (EntityMatriarch) hiveOwner;
-        	
+
             if (hiveMember.getAlienHive() != null && !(this.xenomorph instanceof EntityMatriarch))
             {
-                if (queen.getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || queen.reproducing)
+                if (queen.getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || queen.isReproducing())
                 {
                     if (queen.getJellyLevel() < EntityMatriarch.OVIPOSITOR_JELLYLEVEL_THRESHOLD * 2 && this.xenomorph.getJellyLevel() >= 80)
                     {
