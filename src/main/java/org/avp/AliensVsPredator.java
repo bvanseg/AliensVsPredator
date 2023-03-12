@@ -24,6 +24,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.predator.PredatorBlocks;
 
 @Mod(name = AliensVsPredator.Properties.NAME, modid = AliensVsPredator.Properties.ID, dependencies = AliensVsPredator.Properties.DEPENDENCIES)
 public class AliensVsPredator implements IMod
@@ -51,6 +52,7 @@ public class AliensVsPredator implements IMod
     public void pre(FMLPreInitializationEvent event)
     {
         AlienBlocks.instance.pre(event);
+        PredatorBlocks.instance.pre(event);
         AVPBlocks.instance.pre(event);
         console().pre(event);
         settings().pre(event);

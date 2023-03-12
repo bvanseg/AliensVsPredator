@@ -21,19 +21,6 @@ public class AVPBlocks implements IPreInitEvent
     public static final AVPBlocks instance = new AVPBlocks();
 
     private AVPBlocks() {}
-    public static final Block METAL_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shippanel");
-    public static final Block METAL_2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shippannelyautja");
-    public static final Block SHIP_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipwallbase");
-    public static final Block SHIP_2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipsupportpillar");
-    public static final Block SHIP_3 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipdecor1");
-    public static final Block SHIP_4 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipbrick");
-    public static final Block SHIP_5 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipdecor2");
-    public static final Block SHIP_6 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipdecor3");
-    public static final Block TEMPLE_TILES_SINGLE = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("templebricksingle");
-    public static final Block TEMPLE_BRICK = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("templebrick");
-    public static final Block TEMPLE_TILE = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("templetile");
-    public static final Block TEMPLE_WALL_1 = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("templewallbase");
-    public static final Block TEMPLE_WALL_2 = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("templefloor");
     public static final Block INDUSTRIAL_WALL = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("industrialwall");
     public static final Block INDUSTRIAL_WALL_STRIPED = new BlockWall(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialwall2");
     public static final Block CEILING = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("ceilingpanel");
@@ -91,11 +78,8 @@ public class AVPBlocks implements IPreInitEvent
     public static final Block WALL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialslab");
     public static final Block IRON_BRICKS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickslab");
     public static final Block INDUSTRIAL_GLASS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassslab");
-    public static final Block BLACK_GOO = BlockRegistryUtil.createFluidBlock(BlockBlackGoo.fluid, BlockBlackGoo.class, "blackgoo");
-    public static final Block MIST = BlockRegistryUtil.createFluidBlock(BlockMist.fluid, BlockMist.class, "mist");
     public static final Block TURRET = new BlockTurret(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("turret");
     public static final Block TERMINAL = new BlockWorkstation(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("terminal");
-    public static final Block STASIS_MECHANISM = new BlockStasisMechanism(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("stasismechanism");
     public static final Block REPULSION_GENERATOR = new BlockGenerator(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("generator");
     public static final Block POWERLINE = new BlockPowerline(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(Tab.MAIN).setRegistryName("powerline");
     public static final Block BLAST_DOOR = new BlockBlastdoor(Material.IRON).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setCreativeTab(Tab.MAIN).setRegistryName("blastdoor");
@@ -119,20 +103,6 @@ public class AVPBlocks implements IPreInitEvent
     public static final Block MEDPOD = new BlockMedpod(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("medpod");
     public static final Block GUN_LOCKER = new BlockGunLocker(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("gunlocker");
     public static final Block AMPULE = new BlockAmpule().setHardness(5.0F).setResistance(10.0F).setCreativeTab(Tab.MAIN).setRegistryName("engineership.ampule");
-    public static final Block SKULL_ENGINEER = new BlockSkullEngineer().setCreativeTab(Tab.MAIN).setRegistryName("skull.engineer");
-    public static final Block SKULL_JOCKEY = new BlockSkullSpaceJockey().setCreativeTab(Tab.MAIN).setRegistryName("skull.spacejockey");
-    public static final Block SKULL_XENO = new BlockSkullXenomorph().setCreativeTab(Tab.MAIN).setRegistryName("skull.xenomorph");
-    public static final Block SKULL_XENO_WARRIOR = new BlockSkullXenomorphWarrior().setCreativeTab(Tab.MAIN).setRegistryName("skull.xenomorph.warrior");
-    public static final Block SKULL_YAUTJA = new BlockSkullYautja().setCreativeTab(Tab.MAIN).setRegistryName("skull.yautja");
-    public static final Block SKULL_MATRIARCH = new BlockSkullMatriarch().setCreativeTab(Tab.MAIN).setRegistryName("skull.matriarch");
-    public static final Block SKULL_PROTOMORPH = new BlockSkullProtomorph().setCreativeTab(Tab.MAIN).setRegistryName("skull.protomorph");
-    public static final Block SKULL_NEOMORPH = new BlockSkullNeomorph().setCreativeTab(Tab.MAIN).setRegistryName("skull.neomorph");
-    public static final Block BIOMASK_CLASSIC = new BlockBiomaskClassic().setCreativeTab(Tab.MAIN).setRegistryName("biomask.classic");
-    public static final Block BIOMASK_BERSERKER = new BlockBiomaskBerserker().setCreativeTab(Tab.MAIN).setRegistryName("biomask.berserker");
-    public static final Block BIOMASK_FALCONER = new BlockBiomaskFalconer().setCreativeTab(Tab.MAIN).setRegistryName("biomask.falconer");
-    public static final Block BIOMASK_TRACKER = new BlockBiomaskTracker().setCreativeTab(Tab.MAIN).setRegistryName("biomask.tracker");
-    public static final Block HEAD_AETHON = new BlockHeadAethon().setCreativeTab(Tab.MAIN).setRegistryName("head.aethon");
-    public static final Block HEAD_GIGER_ALIEN = new BlockHeadGigerAlien().setCreativeTab(Tab.MAIN).setRegistryName("head.gigeralien");
     public static final Block SLOPE = new BlockReflective(Material.CIRCUITS).setRegistryName("slope");
     public static final Block CORNER = new BlockReflective(Material.CIRCUITS).setRegistryName("corner");
     public static final Block INVERTED_CORNER = new BlockReflective(Material.CIRCUITS).setRegistryName("invertedcorner");
@@ -144,22 +114,6 @@ public class AVPBlocks implements IPreInitEvent
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         AliensVsPredator.log().info("Registering Blocks");
-
-        BlockRegistryUtil.registerBlock(METAL_1);
-        BlockRegistryUtil.registerBlock(METAL_2);
-
-        BlockRegistryUtil.registerBlock(SHIP_1);
-        BlockRegistryUtil.registerBlock(SHIP_2);
-        BlockRegistryUtil.registerBlock(SHIP_3);
-        BlockRegistryUtil.registerBlock(SHIP_4);
-        BlockRegistryUtil.registerBlock(SHIP_5);
-        BlockRegistryUtil.registerBlock(SHIP_6);
-
-        BlockRegistryUtil.registerBlock(TEMPLE_TILES_SINGLE);
-        BlockRegistryUtil.registerBlock(TEMPLE_BRICK);
-        BlockRegistryUtil.registerBlock(TEMPLE_TILE);
-        BlockRegistryUtil.registerBlock(TEMPLE_WALL_1);
-        BlockRegistryUtil.registerBlock(TEMPLE_WALL_2);
 
         BlockRegistryUtil.registerBlock(INDUSTRIAL_WALL);
         BlockRegistryUtil.registerBlock(INDUSTRIAL_WALL_STRIPED);
@@ -228,11 +182,8 @@ public class AVPBlocks implements IPreInitEvent
         BlockRegistryUtil.registerBlock(WALL_SLAB);
         BlockRegistryUtil.registerBlock(IRON_BRICKS_SLAB);
         BlockRegistryUtil.registerBlock(INDUSTRIAL_GLASS_SLAB);
-        BlockRegistryUtil.registerBlock(BLACK_GOO);
-        BlockRegistryUtil.registerBlock(MIST);
         BlockRegistryUtil.registerBlock(TURRET);
         BlockRegistryUtil.registerBlock(TERMINAL);
-        BlockRegistryUtil.registerBlock(STASIS_MECHANISM);
         BlockRegistryUtil.registerBlock(REPULSION_GENERATOR);
         BlockRegistryUtil.registerBlock(POWERLINE);
         BlockRegistryUtil.registerBlock(BLAST_DOOR);
@@ -256,20 +207,6 @@ public class AVPBlocks implements IPreInitEvent
         BlockRegistryUtil.registerBlock(MEDPOD);
         BlockRegistryUtil.registerBlock(GUN_LOCKER);
         BlockRegistryUtil.registerBlock(AMPULE);
-        BlockRegistryUtil.registerBlock(SKULL_ENGINEER);
-        BlockRegistryUtil.registerBlock(SKULL_JOCKEY);
-        BlockRegistryUtil.registerBlock(SKULL_XENO);
-        BlockRegistryUtil.registerBlock(SKULL_XENO_WARRIOR);
-        BlockRegistryUtil.registerBlock(SKULL_YAUTJA);
-        BlockRegistryUtil.registerBlock(SKULL_MATRIARCH);
-        BlockRegistryUtil.registerBlock(SKULL_PROTOMORPH);
-        BlockRegistryUtil.registerBlock(SKULL_NEOMORPH);
-        BlockRegistryUtil.registerBlock(BIOMASK_CLASSIC);
-        BlockRegistryUtil.registerBlock(BIOMASK_BERSERKER);
-        BlockRegistryUtil.registerBlock(BIOMASK_FALCONER);
-        BlockRegistryUtil.registerBlock(BIOMASK_TRACKER);
-        BlockRegistryUtil.registerBlock(HEAD_AETHON);
-        BlockRegistryUtil.registerBlock(HEAD_GIGER_ALIEN);
 
         BlockRegistryUtil.registerBlock(SLOPE);
         BlockRegistryUtil.registerBlock(CORNER);

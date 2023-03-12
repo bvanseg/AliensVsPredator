@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AliensVsPredator;
 import org.avp.common.Tab;
 import org.avp.common.block.*;
+import org.avp.common.block.skulls.*;
 import org.lib.BlockRegistryUtil;
 
 /**
@@ -76,6 +77,18 @@ public class AlienBlocks implements IPreInitEvent {
     public static final Block PORTAL_VARDA = new BlockPortal(AliensVsPredator.dimensions().VARDA).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(Tab.MAIN).setRegistryName("portal.varda");
     public static final Block PORTAL_ACHERON = new BlockPortal(AliensVsPredator.dimensions().ACHERON).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(Tab.MAIN).setRegistryName("portal.acheron");
 
+    public static final Block SKULL_ENGINEER = new BlockSkullEngineer().setCreativeTab(Tab.MAIN).setRegistryName("skull.engineer");
+    public static final Block SKULL_JOCKEY = new BlockSkullSpaceJockey().setCreativeTab(Tab.MAIN).setRegistryName("skull.spacejockey");
+    public static final Block SKULL_XENO = new BlockSkullXenomorph().setCreativeTab(Tab.MAIN).setRegistryName("skull.xenomorph");
+    public static final Block SKULL_XENO_WARRIOR = new BlockSkullXenomorphWarrior().setCreativeTab(Tab.MAIN).setRegistryName("skull.xenomorph.warrior");
+    public static final Block SKULL_MATRIARCH = new BlockSkullMatriarch().setCreativeTab(Tab.MAIN).setRegistryName("skull.matriarch");
+    public static final Block SKULL_PROTOMORPH = new BlockSkullProtomorph().setCreativeTab(Tab.MAIN).setRegistryName("skull.protomorph");
+    public static final Block SKULL_NEOMORPH = new BlockSkullNeomorph().setCreativeTab(Tab.MAIN).setRegistryName("skull.neomorph");
+    public static final Block HEAD_AETHON = new BlockHeadAethon().setCreativeTab(Tab.MAIN).setRegistryName("head.aethon");
+    public static final Block HEAD_GIGER_ALIEN = new BlockHeadGigerAlien().setCreativeTab(Tab.MAIN).setRegistryName("head.gigeralien");
+    public static final Block BLACK_GOO = BlockRegistryUtil.createFluidBlock(BlockBlackGoo.fluid, BlockBlackGoo.class, "blackgoo");
+    public static final Block MIST = BlockRegistryUtil.createFluidBlock(BlockMist.fluid, BlockMist.class, "mist");
+
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         BlockRegistryUtil.registerBlock(NATURAL_RESIN);
@@ -137,5 +150,18 @@ public class AlienBlocks implements IPreInitEvent {
 
         BlockRegistryUtil.registerBlock(PORTAL_VARDA);
         BlockRegistryUtil.registerBlock(PORTAL_ACHERON);
+
+        BlockRegistryUtil.registerBlock(SKULL_ENGINEER);
+        BlockRegistryUtil.registerBlock(SKULL_JOCKEY);
+        BlockRegistryUtil.registerBlock(SKULL_XENO);
+        BlockRegistryUtil.registerBlock(SKULL_XENO_WARRIOR);
+        BlockRegistryUtil.registerBlock(SKULL_MATRIARCH);
+        BlockRegistryUtil.registerBlock(SKULL_PROTOMORPH);
+        BlockRegistryUtil.registerBlock(SKULL_NEOMORPH);
+        BlockRegistryUtil.registerBlock(HEAD_AETHON);
+        BlockRegistryUtil.registerBlock(HEAD_GIGER_ALIEN);
+        
+        BlockRegistryUtil.registerBlock(BLACK_GOO);
+        BlockRegistryUtil.registerBlock(MIST);
     }
 }
