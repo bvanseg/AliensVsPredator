@@ -7,7 +7,7 @@ import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelBlastdoor extends Model
+public class ModelBlastdoor extends Model<TileEntityBlastdoor>
 {
     ModelRenderer doorLeftCorner1;
     ModelRenderer doorLeftCorner2;
@@ -123,7 +123,7 @@ public class ModelBlastdoor extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityBlastdoor obj)
     {
         TileEntityBlastdoor tile = (TileEntityBlastdoor) obj;
         

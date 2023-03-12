@@ -7,7 +7,6 @@ import org.avp.tile.TileEntitySkull.EnumOrientation;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.Texture;
-import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
 
 import net.minecraft.block.Block;

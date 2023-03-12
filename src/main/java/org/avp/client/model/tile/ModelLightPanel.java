@@ -1,10 +1,12 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntityLightPanel;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelLightPanel extends Model
+public class ModelLightPanel extends Model<TileEntityLightPanel>
 {
     ModelRenderer side0;
     ModelRenderer side1;
@@ -99,7 +101,7 @@ public class ModelLightPanel extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityLightPanel obj)
     {
         side0.render(DEFAULT_SCALE);
         side1.render(DEFAULT_SCALE);

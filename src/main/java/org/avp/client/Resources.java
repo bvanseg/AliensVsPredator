@@ -271,37 +271,37 @@ public class Resources
         public final MapModelTexture<ModelNetworkModuleRack>      NETWORKMODULERACK_ON           = new MapModelTexture(new ModelNetworkModuleRack(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/networkmodulerack_on.png"));
         public final MapModelTexture<ModelNetworkModuleRack>      NETWORKMODULERACK_OFF          = new MapModelTexture(new ModelNetworkModuleRack(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/networkmodulerack_off.png"));
 
-        public final MapModelTexture<Model>                       RACKMODULE1                    = new MapModelTexture(new ModelRackModule1(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent01.png"));
-        public final MapModelTexture<Model>                       RACKMODULE1_ON                 = new MapModelTexture(new ModelRackModule1(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent01_on.png"));
-        public final MapModelTexture<Model>                       RACKMODULE1_OFF                = new MapModelTexture(new ModelRackModule1(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent01_off.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE1                    = new MapModelTexture(new ModelRackModule1(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent01.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE1_ON                 = new MapModelTexture(new ModelRackModule1(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent01_on.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE1_OFF                = new MapModelTexture(new ModelRackModule1(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent01_off.png"));
 
-        public final MapModelTexture<Model>                       RACKMODULE2                    = new MapModelTexture(new ModelRackModule2(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent02.png"));
-        public final MapModelTexture<Model>                       RACKMODULE2_ON                 = new MapModelTexture(new ModelRackModule2(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent02_on.png"));
-        public final MapModelTexture<Model>                       RACKMODULE2_OFF                = new MapModelTexture(new ModelRackModule2(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent02_off.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE2                    = new MapModelTexture(new ModelRackModule2(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent02.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE2_ON                 = new MapModelTexture(new ModelRackModule2(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent02_on.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE2_OFF                = new MapModelTexture(new ModelRackModule2(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent02_off.png"));
 
-        public final MapModelTexture<Model>                       RACKMODULE3                    = new MapModelTexture(new ModelRackModule3(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent03.png"));
-        public final MapModelTexture<Model>                       RACKMODULE3_ON                 = new MapModelTexture(new ModelRackModule3(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent03_on.png"));
-        public final MapModelTexture<Model>                       RACKMODULE3_OFF                = new MapModelTexture(new ModelRackModule3(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent03_off.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE3                    = new MapModelTexture(new ModelRackModule3(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent03.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE3_ON                 = new MapModelTexture(new ModelRackModule3(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent03_on.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE3_OFF                = new MapModelTexture(new ModelRackModule3(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent03_off.png"));
 
-        public final MapModelTexture<Model>                       RACKMODULE4                    = new MapModelTexture(new ModelRackModule4(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent04.png"));
-        public final MapModelTexture<Model>                       RACKMODULE4_ON                 = new MapModelTexture(new ModelRackModule4(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent04_on.png"));
-        public final MapModelTexture<Model>                       RACKMODULE4_OFF                = new MapModelTexture(new ModelRackModule4(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent04_off.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE4                    = new MapModelTexture(new ModelRackModule4(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent04.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE4_ON                 = new MapModelTexture(new ModelRackModule4(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent04_on.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE4_OFF                = new MapModelTexture(new ModelRackModule4(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent04_off.png"));
 
-        public final MapModelTexture<Model>                       RACKMODULE5                    = new MapModelTexture(new ModelRackModule5(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent05.png"));
-        public final MapModelTexture<Model>                       RACKMODULE5_ON                 = new MapModelTexture(new ModelRackModule5(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent05_on.png"));
-        public final MapModelTexture<Model>                       RACKMODULE5_OFF                = new MapModelTexture(new ModelRackModule5(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent05_off.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE5                    = new MapModelTexture(new ModelRackModule5(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent05.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE5_ON                 = new MapModelTexture(new ModelRackModule5(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent05_on.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE5_OFF                = new MapModelTexture(new ModelRackModule5(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent05_off.png"));
 
-        public final MapModelTexture<Model>                       RACKMODULE6                    = new MapModelTexture(new ModelRackModule6(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent06.png"));
-        public final MapModelTexture<Model>                       RACKMODULE6_ON                 = new MapModelTexture(new ModelRackModule6(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent06_on.png"));
-        public final MapModelTexture<Model>                       RACKMODULE6_OFF                = new MapModelTexture(new ModelRackModule6(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent06_off.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE6                    = new MapModelTexture(new ModelRackModule6(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent06.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE6_ON                 = new MapModelTexture(new ModelRackModule6(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent06_on.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE6_OFF                = new MapModelTexture(new ModelRackModule6(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent06_off.png"));
 
-        public final MapModelTexture<Model>                       RACKMODULE7                    = new MapModelTexture(new ModelRackModule7(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent07.png"));
-        public final MapModelTexture<Model>                       RACKMODULE7_ON                 = new MapModelTexture(new ModelRackModule7(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent07_on.png"));
-        public final MapModelTexture<Model>                       RACKMODULE7_OFF                = new MapModelTexture(new ModelRackModule7(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent07_off.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE7                    = new MapModelTexture(new ModelRackModule7(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent07.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE7_ON                 = new MapModelTexture(new ModelRackModule7(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent07_on.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE7_OFF                = new MapModelTexture(new ModelRackModule7(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent07_off.png"));
 
-        public final MapModelTexture<Model>                       RACKMODULE8                    = new MapModelTexture(new ModelRackModule8(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent08.png"));
-        public final MapModelTexture<Model>                       RACKMODULE8_ON                 = new MapModelTexture(new ModelRackModule8(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent08_on.png"));
-        public final MapModelTexture<Model>                       RACKMODULE8_OFF                = new MapModelTexture(new ModelRackModule8(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent08_off.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE8                    = new MapModelTexture(new ModelRackModule8(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent08.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE8_ON                 = new MapModelTexture(new ModelRackModule8(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent08_on.png"));
+        public final MapModelTexture<Model<?>>                    RACKMODULE8_OFF                = new MapModelTexture(new ModelRackModule8(), new Texture(AliensVsPredator.Properties.ID, "textures/tile/rackmodules/servercomponent08_off.png"));
     }
 
     public final Texture SKY_VARDA_CLOUDS         = new Texture(AliensVsPredator.Properties.ID, "textures/misc/varda-clouds.png");

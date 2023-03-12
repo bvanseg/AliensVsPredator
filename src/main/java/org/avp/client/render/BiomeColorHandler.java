@@ -69,8 +69,6 @@ public class BiomeColorHandler implements IInitEvent
                 {
                     switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
                     {
-                        case 0:
-                            return 0xAA6644; //Brown
                         case 1:
                             return 0xF1CC0C; //Yellow
                         case 2:

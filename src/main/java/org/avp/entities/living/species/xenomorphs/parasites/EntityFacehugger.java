@@ -33,10 +33,9 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
         this.experienceValue = 10;
         this.jumpMovementFactor = 0.3F;
     }
-
+    
     @Override
-    protected void addTasks()
-    {
+    protected void initEntityAI() {
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.55D, true));
         this.tasks.addTask(8, new PatchedEntityAIWander(this, 0.55D));

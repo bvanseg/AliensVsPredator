@@ -2,8 +2,6 @@ package org.avp.client;
 
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 
-import java.util.ArrayList;
-
 import org.avp.AliensVsPredator;
 import org.avp.BlockHandler;
 import org.avp.ItemHandler;
@@ -279,7 +277,6 @@ import org.avp.tile.plants.TileEntityGroundFern;
 import org.avp.tile.plants.TileEntityTreeFern;
 
 import com.asx.mdx.core.mods.IInitEvent;
-import com.asx.mdx.core.mods.IPostInitEvent;
 import com.asx.mdx.core.mods.IPreInitEvent;
 import com.asx.mdx.lib.client.Renderers;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
@@ -298,7 +295,6 @@ import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
