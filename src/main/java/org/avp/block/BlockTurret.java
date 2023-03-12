@@ -93,7 +93,7 @@ public class BlockTurret extends Block
         		if (!activeHandStack.hasTagCompound()) {
             		TileEntityTurret turretTileEntity = (TileEntityTurret) world.getTileEntity(pos);
         			NBTTagCompound nbt = new NBTTagCompound();
-        			NBTTagList targetListTag = turretTileEntity.getTargetListTag();
+        			NBTTagList targetListTag = turretTileEntity.getTargetHelper().getTargetListTag();
         			nbt.setTag("Targets", targetListTag);
         			activeHandStack.setTagCompound(nbt);
                     activeHandStack.setStackDisplayName("NBT Drive - " + "TURRET (" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")");
@@ -101,7 +101,7 @@ public class BlockTurret extends Block
         		} else {
                     NBTTagList targetList = activeHandStack.getTagCompound().getTagList("Targets", NBT.TAG_STRING);
             		TileEntityTurret turretTileEntity = (TileEntityTurret) world.getTileEntity(pos);
-            		turretTileEntity.readTargetList(targetList);
+            		turretTileEntity.getTargetHelper().readTargetList(targetList);
             		player.sendMessage(new TextComponentString("Successfully loaded NBT data to turret (" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")."));
         		}
         	}
