@@ -16,11 +16,17 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockCryostasisTube extends Block
 {
+
+    private static final AxisAlignedBB BOUNDING_BOX_INTACT = new AxisAlignedBB(0.1D, 0D, 0.1D, 0.9D, 2.0D, 0.9D);
+    private static final AxisAlignedBB BOUNDING_BOX_SHATTERED = new AxisAlignedBB(0.1D, 0D, 0.1D, 0.9D, 0.7D, 0.9D);
+    
     public BlockCryostasisTube(Material material)
     {
         super(material);
@@ -78,7 +84,7 @@ public class BlockCryostasisTube extends Block
 
         if (tile != null)
         {
-            tile.setRotationYAxis(Entities.getEntityFacingRotY(placer));
+            tile.setRotationYAxis(Entities.getEntityFacingRotY(placer).getOpposite());
             world.markBlockRangeForRenderUpdate(pos, pos);
         }
     }
@@ -93,5 +99,19 @@ public class BlockCryostasisTube extends Block
     public boolean isOpaqueCube(IBlockState state)
     {
         return false;
+    }
+    
+    @Override
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
+        TileEntityCryostasisTube tile = (TileEntityCryostasisTube) worldIn.getTileEntity(pos);
+        AxisAlignedBB box = tile != null ? tile.isShattered() ? BOUNDING_BOX_SHATTERED : BOUNDING_BOX_INTACT : BOUNDING_BOX_INTACT;
+    	return box.offset(pos);
+    }
+    
+    @Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+        TileEntityCryostasisTube tile = (TileEntityCryostasisTube) worldIn.getTileEntity(pos);
+        AxisAlignedBB box = tile != null ? tile.isShattered() ? BOUNDING_BOX_SHATTERED : BOUNDING_BOX_INTACT : BOUNDING_BOX_INTACT;
+    	return box.offset(pos);
     }
 }
