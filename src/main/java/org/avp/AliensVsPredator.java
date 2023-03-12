@@ -7,6 +7,7 @@ import org.avp.client.Renders;
 import org.avp.client.Resources;
 import org.avp.client.Sounds;
 import org.avp.client.render.BiomeColorHandler;
+import org.avp.network.AvpDataSerializers;
 import org.avp.world.CapabilityHandler;
 
 import com.asx.mdx.core.mods.IMod;
@@ -74,6 +75,7 @@ public class AliensVsPredator implements IMod
         commands().init(event);
         playermodehandler().init(event);
         schematics().init(event);
+        AvpDataSerializers.init();
         entities().init(event);
     }
 

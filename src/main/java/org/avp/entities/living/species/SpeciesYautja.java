@@ -1,5 +1,6 @@
 package org.avp.entities.living.species;
 
+import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import org.avp.DamageSources;
 import org.avp.EntityItemDrops;
 import org.avp.api.parasitoidic.IHost;
@@ -9,10 +10,12 @@ import org.avp.entities.ai.EntityAISuperjump;
 import org.avp.entities.ai.alien.EntitySelectorYautja;
 import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.EntityMarine;
+import org.avp.entities.state.CloakState;
 import org.avp.item.ItemDisc;
 import org.avp.item.ItemPlasmaCannon;
 import org.avp.item.ItemShuriken;
 import org.avp.item.ItemWristbracer;
+import org.avp.network.AvpDataSerializers;
 import org.avp.item.firearms.ItemFirearm;
 
 import com.google.common.base.Predicate;
@@ -24,9 +27,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
@@ -47,10 +48,20 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> DUCKING = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
 
+    private static final DataParameter<CloakState> CLOAK_STATE = EntityDataManager.createKey(SpeciesYautja.class, AvpDataSerializers.CLOAK_STATE);
+    private static final DataParameter<Integer> CLOAK_PROGRESS = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.VARINT);
+
+    public static int MAX_CLOAK = 20 * 2;
+    private static int MIN_CLOAK = 0;
+    private static int CLOAK_PROGRESS_SPEED = 1;
+
+    public int cloakProgress;
+
     public SpeciesYautja(World world)
     {
         super(world);
         this.experienceValue = 250;
+        this.cloakProgress = MIN_CLOAK;
         this.setSize(1.0F, 2.5F);
         this.jumpMovementFactor = 0.1F;
     }
@@ -84,6 +95,8 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
         super.entityInit();
         this.getDataManager().register(WEARING_MASK, this.rand.nextBoolean());
         this.getDataManager().register(DUCKING, false);
+        this.getDataManager().register(CLOAK_STATE, CloakState.DECLOAKED);
+        this.getDataManager().register(CLOAK_PROGRESS, MIN_CLOAK);
     }
     
     @Override
@@ -105,8 +118,78 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
                 this.setSize(1.0F,  2.5F);
             }
         }
+
+        this.tickCloakingLogic();
     }
     
+    private void tickCloakingLogic() {
+		if (!this.world.isRemote) {
+            // Yautja should only force de-cloak in water, snow doesn't count.
+            boolean isInRain = this.world.isRainingAt(this.getPosition()) && !this.world.getBiome(this.getPosition()).getEnableSnow();
+        	if (this.isInWater() || isInRain || this.getAttackTarget() != null) {
+                handleDecloak();
+            } else {
+                handleCloak();
+            }
+        }
+
+        updateCloakingProgress();
+    }
+
+    private void updateCloakingProgress() {
+        switch (this.getCloakState()) {
+            case CLOAKED:
+                this.cloakProgress = MAX_CLOAK;
+                break;
+            case CLOAKING:
+                this.cloakProgress += CLOAK_PROGRESS_SPEED;
+                break;
+            case DECLOAKING_FORCED:
+                this.cloakProgress -= CLOAK_PROGRESS_SPEED;
+                break;
+            case DECLOAKING_MANUAL:
+                this.cloakProgress -= CLOAK_PROGRESS_SPEED * 3;
+                break;
+            default:
+                this.cloakProgress = MIN_CLOAK;
+                break;
+        }
+
+        this.cloakProgress = MathHelper.clamp(cloakProgress, MIN_CLOAK, MAX_CLOAK);
+    }
+
+    private void handleCloak() {
+        if (this.cloakProgress < MAX_CLOAK) {
+            if (this.getCloakState() != CloakState.CLOAKING) {
+                Sounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);;
+            }
+
+            this.setCloakState(CloakState.CLOAKING);
+        } else if (this.cloakProgress == MAX_CLOAK) {
+            this.setCloakState(CloakState.CLOAKED);
+        }
+    }
+
+    private void handleDecloak() {
+        CloakState decloakType = this.getAttackTarget() != null ? CloakState.DECLOAKING_MANUAL : CloakState.DECLOAKING_FORCED;
+        if (this.cloakProgress > MIN_CLOAK) {
+            if (this.getCloakState() != CloakState.DECLOAKING_FORCED && this.getCloakState() != CloakState.DECLOAKING_MANUAL) {
+                Sounds.YAUTJA_DECLOAK.playSound(this, 0.6F, 1.0F);
+            }
+
+            this.setCloakState(decloakType);
+        } else if (this.cloakProgress == MIN_CLOAK) {
+            this.setCloakState(CloakState.DECLOAKED);
+        }
+    }
+
+    // This method allows us to cancel the hurt animation, but it looks as if it may be responsible for other things.
+    @Override
+    public void handleStatusUpdate(byte id) {
+        if (this.getCloakState() == CloakState.CLOAKED) return;
+        super.handleStatusUpdate(id);
+    }
+
     @Override
     public int getMaxFallHeight()
     {
@@ -238,6 +321,8 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     {
         super.readEntityFromNBT(tag);
         this.setWearingMask(tag.getBoolean("WearingMask"));
+        this.setCloakState(CloakState.getValuesByIdMap().get((int)tag.getByte("CloakState")));
+        this.cloakProgress = tag.getInteger("CloakProgress");
     }
 
     @Override
@@ -245,6 +330,8 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     {
         super.writeEntityToNBT(tag);
         tag.setBoolean("WearingMask", this.isWearingMask());
+        tag.setByte("CloakState", (byte)this.getCloakState().id);
+        tag.setInteger("CloakProgress", this.cloakProgress);
     }
 
     public boolean isWearingMask()
@@ -255,6 +342,16 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     public boolean isDucking()
     {
         return this.getDataManager().get(DUCKING);
+    }
+
+    public void setCloakState(CloakState cloakState) {
+    	if (!this.world.isRemote) {
+    		this.getDataManager().set(CLOAK_STATE, cloakState);
+    	}
+    }
+
+    public CloakState getCloakState() {
+    	return this.getDataManager().get(CLOAK_STATE);
     }
 
     public void setWearingMask(boolean wearingMask)
