@@ -32,7 +32,8 @@ public class ItemEntitySummoner extends HookedItem
     {
         Inventories.consumeItem(player, this);
 
-        if (world.isRemote) {
+        if (world.isRemote)
+        {
             RayTraceResult ray = player.rayTrace(50D, 1F);
             
             if(player.isSneaking() && player.isCreative()) {
