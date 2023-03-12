@@ -9,7 +9,7 @@ import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.SpeciesXenomorph;
 import org.avp.entities.living.species.yautja.EntityYautjaWarrior;
-import org.avp.item.ItemFirearm.FirearmProfile;
+import org.avp.item.firearms.FirearmProfile;
 import org.avp.world.MarineTypes;
 
 import com.asx.mdx.lib.world.Worlds;
