@@ -24,16 +24,10 @@ public class ItemArmorMarine extends ItemArmor
     @Override
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
-        switch (slot)
-        {
+        switch (slot) {
             case FEET:
-                return Draw.getPath(AliensVsPredator.resources().MARINE2);
             case LEGS:
                 return Draw.getPath(AliensVsPredator.resources().MARINE2);
-            case CHEST:
-                return Draw.getPath(AliensVsPredator.resources().MARINE1);
-            case HEAD:
-                return Draw.getPath(AliensVsPredator.resources().MARINE1);
             default:
                 return Draw.getPath(AliensVsPredator.resources().MARINE1);
         }

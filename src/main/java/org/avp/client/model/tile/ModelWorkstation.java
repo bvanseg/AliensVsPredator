@@ -1,10 +1,12 @@
 package org.avp.client.model.tile;
 
+import org.avp.tile.TileEntityWorkstation;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelWorkstation extends Model
+public class ModelWorkstation extends Model<TileEntityWorkstation>
 {
     ModelRenderer stand;
     ModelRenderer standBase;
@@ -99,7 +101,7 @@ public class ModelWorkstation extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(TileEntityWorkstation obj)
     {
         stand.render(DEFAULT_SCALE);
         standBase.render(DEFAULT_SCALE);

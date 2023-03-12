@@ -10,6 +10,7 @@ import org.avp.client.Sounds;
 import org.avp.entities.ai.EntityAICustomAttackOnCollide;
 import org.avp.entities.ai.PatchedEntityAIWander;
 import org.avp.entities.ai.alien.EntityAIFindJelly;
+import org.avp.entities.ai.alien.EntityAIPathFindToHive;
 import org.avp.entities.ai.alien.EntitySelectorXenomorph;
 import org.avp.entities.living.species.SpeciesAlien;
 import org.avp.entities.living.species.SpeciesXenomorph;
@@ -53,10 +54,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     private static final DataParameter<Float> OVIPOSITOR_SIZE                    = EntityDataManager.createKey(EntityMatriarch.class, DataSerializers.FLOAT);
 
     public boolean                            growingOvipositor;
-    public boolean                            reproducing;
 
-    private ArrayList<Pos>                    pathPoints                         = new ArrayList<Pos>();
-    
     private AlienHive                         alienHive;
 
     public EntityMatriarch(World world)
@@ -115,12 +113,15 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         {
             this.tasks.taskEntries.clear();
             this.targetTasks.taskEntries.clear();
+            this.tasks.addTask(0, new EntityAISwimming(this));
             this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 10F));
             this.tasks.addTask(0, new EntityAISwimming(this));
             this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.8D));
+            this.tasks.addTask(1, new EntityAIPathFindToHive(this));
             this.tasks.addTask(2, new EntityAIFindJelly(this));
             this.tasks.addTask(4, new EntityAICustomAttackOnCollide(this, 0.6D, true));
-            this.targetTasks.addTask(0, new EntityAINearestAttackableTarget(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
+
+            this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<EntityLiving>(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
             this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
             this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 1.6F));
         }
@@ -128,7 +129,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 
     private void reproduce()
     {
-        if (this.reproducing)
+        if (this.isReproducing())
         {
             if (this.world.getTotalWorldTime() % (20 * 120) == 0 && this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD)
             {
@@ -188,53 +189,6 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         }
     }
 
-    private void pathfindToHive()
-    {
-        if (this.getAlienHive() != null && !this.reproducing)
-        {
-            Pos coordQueen = new Pos(this);
-            Pos coordHive = new Pos(this.getAlienHive().getCoreBlockPos());
-
-            int hiveDist = (int) this.getDistance(coordHive.x, coordHive.y, coordHive.z);
-
-            if (hiveDist > this.getAlienHive().getMaxHiveRadius() * 0.5 && this.getAttackTarget() == null)
-            {
-                this.pathPoints = Pos.getPointsBetween(coordQueen, coordHive, hiveDist / 12);
-
-                if (this.pathPoints != null && !this.pathPoints.isEmpty())
-                {
-                    Pos closestPoint = this.pathPoints.get(0);
-
-                    for (Pos point : this.pathPoints)
-                    {
-                        if (closestPoint != null && point.distanceFrom(this) < closestPoint.distanceFrom(this))
-                        {
-                            closestPoint = point;
-                        }
-                    }
-
-                    if (!this.getNavigator().tryMoveToXYZ(closestPoint.x, closestPoint.y, closestPoint.z, 1.55D))
-                    {
-
-                        if (Game.isDevEnvironment() && this.world.getTotalWorldTime() % (20 * 3) == 0)
-                        {
-                            // System.out.println("Unable to pathfind to closest point, too far: " + this.pathPoints.size() + " Points, " + ((int) closestPoint.distanceFrom(this)) + " Meters, " + closestPoint);
-                            // System.out.println(this.pathPoints);
-                        }
-                    }
-                    else
-                    {
-                        if (this.getDistance(closestPoint.x, closestPoint.y, closestPoint.z) < 1.0D)
-                        {
-                            System.out.println(String.format(this.getName() + " %s Returning to hive center.", this.getUniqueID()));
-                            this.pathPoints.remove(closestPoint);
-                        }
-                    }
-                }
-            }
-        }
-    }
-
     private void heal()
     {
         if (!this.world.isRemote)
@@ -253,23 +207,15 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     public void onUpdate()
     {
         super.onUpdate();
-        
-//        if (this.world.getWorldTime() % 20 == 0)
-//        System.out.println(this.getName() + " : " + this.getUniqueID().toString() + " : " + this.targetTasks.taskEntries);
-        
-        this.reproducing = this.getOvipositorSize() >= 1.3F;
-        this.reproduce();
+
         this.handleOvipositorGrowth();
+        this.reproduce();
         this.jumpBoost();
-        this.pathfindToHive(); //causes queen to glitch out ... detect if close enough
         this.heal();
-        
+
         if (!this.world.isRemote && this.alienHive != null) {
         	this.alienHive.update();
         }
-
-        // this.getHive().destroy();
-        // this.setDead();
 
         if (!this.world.isRemote)
         {
@@ -311,7 +257,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
                             if (alien != null && alien instanceof HiveMember)
                             {
                             	HiveMember hiveMember = ((HiveMember) alien);
-                            	
+
                             	if (hiveMember.getAlienHive() == null) {
                             		this.getAlienHive().addHiveMember(hiveMember.getHiveMemberID());
                             	}
@@ -323,16 +269,8 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         }
     }
 
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float damage)
-    {
-        return super.attackEntityFrom(source, damage);
-    }
-
-    @Override
-    public boolean attackEntityAsMob(Entity entity)
-    {
-        return super.attackEntityAsMob(entity);
+    public boolean isReproducing() {
+    	return this.getOvipositorSize() >= 1.3F;
     }
 
     @Override
@@ -360,7 +298,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     {
         super.readEntityFromNBT(nbt);
         this.setOvipositorSize(nbt.getFloat("ovipositorSize"));
-        
+
         if (nbt.hasKey(alienHiveNbtKey, NBT.TAG_COMPOUND)) {
         	this.alienHive = this.createNewAlienHive();
         	NBTTagCompound hiveData = nbt.getCompoundTag("AlienHive");
@@ -373,7 +311,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     {
         super.writeEntityToNBT(nbt);
         nbt.setFloat("ovipositorSize", this.getOvipositorSize());
-        
+
         if (this.alienHive != null) {
         	NBTTagCompound hiveData = new NBTTagCompound();
         	this.alienHive.writeToNBT(hiveData);
@@ -414,7 +352,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 	public AlienHive createNewAlienHive() {
 		return new AlienHive(this);
 	}
-	
+
 	@Override
 	public UUID getHiveMemberID() {
 		return this.entityUniqueID;

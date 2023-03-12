@@ -1,13 +1,14 @@
 package org.avp.client.model.entities.living;
 
+import org.avp.entities.living.species.xenomorphs.EntityDrone;
+
 import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelDrone extends Model
+public class ModelDrone extends Model<EntityDrone>
 {
     public ModelRenderer body1, body2, rightleg1, leftleg1, leftleg2, rightleg2, leftleg3, rightleg3, leftleg4, rightleg4, leftarm1, rightarm1, leftarm2, rightarm2, neck, head1, head2, head3, head4, head5, leftarm3, rightarm3, leftarm4, rightarm4, back1, back2, tail2, tail3, stabber, tail4, tail5, head6, tailSpikes5, tailSpikes4, tailSpikes3, tailSpikes2, tail1, tailSpikes1, backhorn1, backhorn2, backhorn3, backhorn4;
 
@@ -270,9 +271,9 @@ public class ModelDrone extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityDrone obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;
+    	EntityDrone base = obj;
         
         float newangle = MathHelper.cos(idleProgress(obj) * 4.0F * 0.1F) * (float) Math.PI * 0.5F * swingProgressPrev(obj);
         float distMult = 0.25F;

@@ -10,7 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 
 
-public class ModelHammerpede extends Model
+public class ModelHammerpede extends Model<EntityHammerpede>
 {
     ModelRenderer body2;
     ModelRenderer body1;
@@ -168,7 +168,7 @@ public class ModelHammerpede extends Model
     }
 
     @Override
-    public void render(Object obj)
+    public void render(EntityHammerpede obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;;
         

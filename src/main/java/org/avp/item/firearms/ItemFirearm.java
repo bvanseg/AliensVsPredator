@@ -1,15 +1,12 @@
-package org.avp.item;
+package org.avp.item.firearms;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.avp.AliensVsPredator;
-import org.avp.client.Sounds;
 import org.avp.packets.server.PacketFirearmSync;
 import org.avp.packets.server.PacketReloadFirearm;
 
 import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.util.Sound;
 import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.asx.mdx.lib.world.item.HookedItem;
@@ -22,6 +19,7 @@ import net.minecraft.item.EnumAction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -30,206 +28,15 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-@SuppressWarnings("unchecked")
 public class ItemFirearm extends HookedItem
 {
-    private static final ArrayList<FirearmProfile> FIREARMS         = new ArrayList<FirearmProfile>();
-    private static int                             lastRegisteredId = 0;
-
-    public static FirearmProfile getFirearmForGlobalId(int globalId)
-    {
-        for (FirearmProfile firearm : FIREARMS)
-        {
-            if (firearm.getGlobalId() == globalId)
-            {
-                return firearm;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * An enum of the different firearm classifications used to mix and match firearms with different types of ammo.
-     */
-    public static enum Classification
-    {
-        SUB_MACHINE_GUN(1.0F),
-        LIGHT_MACHINE_GUN(1.2F),
-        RIFLE(1.8F),
-        ASSAULT_RIFLE(1.0F),
-        SHOTGUN(2.0F),
-        PISTOL(1.0F);
-
-        private float baseDamage;
-
-        private Classification(float baseDamage)
-        {
-            this.baseDamage = baseDamage;
-        }
-
-        public float getBaseDamage()
-        {
-            return this.baseDamage;
-        }
-    }
-
-    /**
-     * A singleton used to register types of firearms.
-     */
-    public static class FirearmProfile
-    {
-        private Classification classification;
-        private int            ammoMax;
-        private int            ammoConsumptionRate;
-        private float          recoil;
-        private double         rpm;
-        private int            reloadTime;
-        private double         soundLength;
-        private Sound          sound;
-
-        private int            globalId;
-
-        public FirearmProfile(Classification classification)
-        {
-            this.globalId = -1;
-            this.classification = classification;
-            this.ammoMax = 128;
-            this.recoil = 0.2F;
-            this.rpm = 400;
-            this.reloadTime = 6 * 20;
-            this.ammoConsumptionRate = 1;
-            this.soundLength = 0;
-            this.sound = Sounds.fxWeaponPistol;
-            this.register();
-        }
-
-        public FirearmProfile register()
-        {
-            if (this.globalId == -1)
-            {
-                FIREARMS.add(this);
-                this.globalId = ItemFirearm.lastRegisteredId++;
-            }
-
-            return this;
-        }
-
-        public int getGlobalId()
-        {
-            return globalId;
-        }
-
-        public Classification getClassification()
-        {
-            return classification;
-        }
-
-        public FirearmProfile setAmmoMax(int ammoMax)
-        {
-            this.ammoMax = ammoMax;
-            return this;
-        }
-
-        public int getAmmoMax()
-        {
-            return ammoMax;
-        }
-
-        public FirearmProfile setRecoil(float recoil)
-        {
-            this.recoil = recoil;
-            return this;
-        }
-
-        public float getRecoil()
-        {
-            return recoil;
-        }
-
-        public FirearmProfile setRoundsPerMinute(double rpm)
-        {
-            this.rpm = rpm;
-            return this;
-        }
-
-        public double getRoundsPerMinute()
-        {
-            return rpm;
-        }
-        
-        public int getShotsPerTick()
-        {
-            return (int) Math.round(this.rpm / 20);
-        }
-
-        public FirearmProfile setReloadTime(int reloadTime)
-        {
-            this.reloadTime = reloadTime;
-            return this;
-        }
-
-        public int getReloadTime()
-        {
-            return reloadTime;
-        }
-
-        public FirearmProfile setSound(Sound sound)
-        {
-            this.sound = sound;
-            return this;
-        }
-
-        public Sound getSound()
-        {
-            return sound;
-        }
-
-        public FirearmProfile setAmmoConsumptionRate(int ammoConsumptionRate)
-        {
-            this.ammoConsumptionRate = ammoConsumptionRate;
-            return this;
-        }
-
-        public int getAmmoConsumptionRate()
-        {
-            return ammoConsumptionRate;
-        }
-
-        public FirearmProfile setSoundLength(double seconds)
-        {
-            this.soundLength = seconds;
-            return this;
-        }
-
-        public double getSoundLength()
-        {
-            return this.soundLength;
-        }
-    }
-
-    public static class ItemAmmunition extends HookedItem
-    {
-        protected Classification ammoClass;
-
-        public ItemAmmunition(Classification ammoClass)
-        {
-            super();
-            this.ammoClass = ammoClass;
-        }
-
-        public Classification getClassification()
-        {
-            return ammoClass;
-        }
-    }
-
-    private FirearmProfile profile;
-    private int            ammo;
-    private int            reloadTimer;
-    private long           lastSoundPlayed;
-    private float          breakProgress;
-    private int            breakingIndex;
+    
+    private final FirearmProfile profile;
+    private int                  ammo;
+    private int                  reloadTimer;
+    private long                 lastSoundPlayed;
+    private float                breakProgress;
+    private int                  breakingIndex;
 
     public ItemFirearm(FirearmProfile profile)
     {
@@ -265,12 +72,13 @@ public class ItemFirearm extends HookedItem
                     this.setLastSoundPlayed(System.currentTimeMillis());
                 }
 
-
+                // TODO: The client shouldn't tell the server what it hit.
                 if (trace != null && trace.typeOfHit == Type.BLOCK)
                 {
                     AliensVsPredator.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.x, (int) trace.hitVec.y, (int) trace.hitVec.z, this.profile));
                 }
 
+                // TODO: The client shouldn't tell the server what it hit.
                 if (trace != null && trace.typeOfHit == Type.ENTITY)
                 {
                     AliensVsPredator.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, 0, 0, 0, this.profile));
@@ -295,11 +103,13 @@ public class ItemFirearm extends HookedItem
         return true;
     }
 
+    // TODO: Instead of iterating twice (once for simulation and once for consumption), just return a result data type and then consume on that result type if needed.
     public static boolean hasAmmunitionFor(FirearmProfile firearm, EntityPlayer player)
     {
         return consumeAmmunition(firearm, player, true);
     }
 
+    // TODO: Instead of iterating twice (once for simulation and once for consumption), just return a result data type and then consume on that result type if needed.
     public static boolean consumeAmmunition(FirearmProfile firearm, EntityPlayer player)
     {
         return consumeAmmunition(firearm, player, false);
@@ -307,43 +117,38 @@ public class ItemFirearm extends HookedItem
 
     public static boolean consumeAmmunition(FirearmProfile firearm, EntityPlayer player, boolean simulate)
     {
-        for (ItemStack itemstack : player.inventory.mainInventory)
-        {
-            if (itemstack != null && itemstack.getItem() instanceof ItemAmmunition)
-            {
-                ItemAmmunition ammunition = (ItemAmmunition) itemstack.getItem();
-
-                if (ammunition.getClassification() == firearm.getClassification())
-                {
-                    if (!simulate)
-                    {
-                        Inventories.consumeItem(player, ammunition);
-                    }
-
-                    return true;
-                }
-            }
-        }
-        
-        for (ItemStack itemstack : player.inventory.offHandInventory)
-        {
-            if (itemstack != null && itemstack.getItem() instanceof ItemAmmunition)
-            {
-                ItemAmmunition ammunition = (ItemAmmunition) itemstack.getItem();
-
-                if (ammunition.getClassification() == firearm.getClassification())
-                {
-                    if (!simulate)
-                    {
-                        Inventories.consumeItem(player, ammunition);
-                    }
-
-                    return true;
-                }
-            }
-        }
+    	// Main-hand inventory.
+    	if (tryConsumeAmmoForFirearm(player, firearm, player.inventory.mainInventory, simulate)) {
+    		return true;
+    	}
+    	// Off-hand inventory.
+    	else if (tryConsumeAmmoForFirearm(player, firearm, player.inventory.offHandInventory, simulate)) {
+    		return true;
+    	}
 
         return false;
+    }
+    
+    private static boolean tryConsumeAmmoForFirearm(EntityPlayer player, FirearmProfile firearm, NonNullList<ItemStack> inventory, Boolean simulate) {
+    	for (ItemStack itemstack : inventory)
+        {
+            if (itemstack != null && itemstack.getItem() instanceof ItemAmmunition)
+            {
+                ItemAmmunition ammunition = (ItemAmmunition) itemstack.getItem();
+
+                if (ammunition.getClassification() == firearm.getClassification())
+                {
+                    if (!simulate)
+                    {
+                        Inventories.consumeItem(player, ammunition);
+                    }
+
+                    return true;
+                }
+            }
+        }
+    	
+    	return false;
     }
 
     public void reload(EntityPlayer player)
@@ -352,9 +157,8 @@ public class ItemFirearm extends HookedItem
         {
             consumeAmmunition(this.profile, player);
         }
-
-        if (player.world.isRemote)
-        {
+        else {
+        	// TODO: Try and avoid the client telling the server what to do.
             AliensVsPredator.network().sendToServer(new PacketReloadFirearm());
         }
 
@@ -365,8 +169,9 @@ public class ItemFirearm extends HookedItem
     {
         long major = System.currentTimeMillis() / 1000 - this.getLastSoundPlayTime() / 1000;
         long minor = Math.abs((System.currentTimeMillis() - this.getLastSoundPlayTime()) - (major * 1000));
-        double time = Double.valueOf(String.format("%s.%s", major, minor));
-        return this.getLastSoundPlayTime() == 0 ? true : (time >= this.getProfile().getSoundLength());
+        // TODO: We can just do bit manipulation instead of whatever this is. Also use ticks instead of system time.
+        double time = Double.parseDouble(String.format("%s.%s", major, minor));
+        return this.getLastSoundPlayTime() == 0 || (time >= this.getProfile().getSoundLength());
     }
 
     public void setAmmoCount(int ammoCount)

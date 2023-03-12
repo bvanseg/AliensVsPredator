@@ -116,7 +116,7 @@ public class Sounds
                     {
                         try
                         {
-                            MDX.log().info(String.format("Failed to register sound %s: %s", ((Sound) field.get(AliensVsPredator.sounds())).getLocation(), e1));
+                        	AliensVsPredator.log().info(String.format("Failed to register sound %s: %s", ((Sound) field.get(AliensVsPredator.sounds())).getLocation(), e1));
                         }
                         catch (Exception e2)
                         {

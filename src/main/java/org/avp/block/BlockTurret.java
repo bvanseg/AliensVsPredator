@@ -1,5 +1,8 @@
 package org.avp.block;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import org.avp.AliensVsPredator;
 import org.avp.packets.server.PacketAddTurretTarget;
 import org.avp.tile.TileEntityTurret;
@@ -19,7 +22,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -54,26 +56,15 @@ public class BlockTurret extends Block
     @Override
     public TileEntity createTileEntity(World world, IBlockState state)
     {
-        return new TileEntityTurret();
+    	TileEntity tileEntity = new TileEntityTurret();
+    	tileEntity.setWorld(world);
+        return tileEntity;
     }
 
     @Override
     public boolean hasTileEntity(IBlockState state)
     {
         return true;
-    }
-
-    @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-    {
-        super.onBlockPlacedBy(world, pos, state, placer, stack);
-
-        TileEntityTurret tile = (TileEntityTurret) world.getTileEntity(pos);
-
-        if (tile != null)
-        {
-            tile.setDirection(MathHelper.floor(((placer.rotationYaw * 4F) / 360F) + 0.5D) & 3);
-        }
     }
 
     @Override
@@ -85,13 +76,8 @@ public class BlockTurret extends Block
         {
             if (!world.isRemote)
             {
-                for (int i = 0; i < tile.getDangerousTargets().size(); i++)
-                {
-                    if (tile.getDangerousTargets().get(i) != null)
-                    {
-                        AliensVsPredator.network().sendToAll(new PacketAddTurretTarget(pos.getX(), pos.getY(), pos.getZ(), Entities.getEntityRegistrationId(tile.getDangerousTargets().get(i))));
-                    }
-                }
+            	Collection<String> entityIdentifiers = tile.getTargetHelper().getDangerousTargets().stream().map((e) -> Entities.getEntityRegistrationId(e)).collect(Collectors.toList());
+                AliensVsPredator.network().sendToAll(new PacketAddTurretTarget(pos.getX(), pos.getY(), pos.getZ(), entityIdentifiers));
             }
         }
 
@@ -111,9 +97,9 @@ public class BlockTurret extends Block
         {
             if (!world.isRemote)
             {
-                for (int i = 0; i < tile.inventoryAmmo.getSizeInventory(); i++)
+                for (int i = 0; i < tile.getAmmoHelper().inventoryAmmo.getSizeInventory(); i++)
                 {
-                    ItemStack stack = tile.inventoryAmmo.getStackInSlot(i);
+                    ItemStack stack = tile.getAmmoHelper().inventoryAmmo.getStackInSlot(i);
 
                     if (stack != null)
                     {
@@ -135,11 +121,20 @@ public class BlockTurret extends Block
                     }
                 }
             }
+        }
+    }
+    
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        super.onBlockPlacedBy(world, pos, state, placer, stack);
 
-            // if (tile.getEntity() != null)
-            // {
-            // tile.getEntity().setDead();
-            // }
+        TileEntityTurret tile = (TileEntityTurret) world.getTileEntity(pos);
+
+        if (tile != null)
+        {
+            tile.setRotationYAxis(Entities.getEntityFacingRotY(placer).getOpposite());
+            world.markBlockRangeForRenderUpdate(pos, pos);
         }
     }
     

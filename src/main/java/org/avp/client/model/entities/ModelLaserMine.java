@@ -4,7 +4,7 @@ import com.asx.mdx.lib.client.util.models.Model;
 
 import net.minecraft.client.model.ModelRenderer;
 
-public class ModelLaserMine extends Model
+public class ModelLaserMine extends Model<Object>
 {
     ModelRenderer lSupport;
     ModelRenderer rSupport;

@@ -183,7 +183,7 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
                 
                 for (Biome b : EntityHandler.getOverworldBiomeList())
                 {
-                    MDX.log().info(b.getBiomeName() + " : " + b.getRegistryName());
+                	AliensVsPredator.log().info(b.getBiomeName() + " : " + b.getRegistryName());
                 }
             }
 

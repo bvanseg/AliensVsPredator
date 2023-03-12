@@ -2,7 +2,7 @@ package org.avp.client.render.items;
 
 import org.avp.AliensVsPredator;
 import org.avp.client.model.items.ModelM240ICU;
-import org.avp.item.ItemFirearm;
+import org.avp.item.firearms.ItemFirearm;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 

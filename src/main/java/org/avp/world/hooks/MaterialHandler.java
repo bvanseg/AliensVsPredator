@@ -1,9 +1,9 @@
 package org.avp.world.hooks;
 
+import org.avp.AliensVsPredator;
 import org.avp.api.blocks.material.IMaterialPhysics;
 import org.avp.api.blocks.material.IMaterialRenderer;
 
-import com.asx.mdx.MDX;
 import com.asx.mdx.lib.util.Game;
 
 import net.minecraft.block.BlockLiquid;
@@ -85,7 +85,7 @@ public class MaterialHandler
             }
             catch (Exception e)
             {
-                MDX.log().warn("Error handling fluid physics update for entity: " + e);
+            	AliensVsPredator.log().warn("Error handling fluid physics update for entity: " + e);
             }
         }
     }
