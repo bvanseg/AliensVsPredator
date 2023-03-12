@@ -29,6 +29,7 @@ public class TileEntityLocker extends TileEntity implements IOpenable, IRotatabl
     private EnumFacing direction;
     public Container container;
     private boolean isOpen;
+    public float openProgress;
 
     public TileEntityLocker()
     {
