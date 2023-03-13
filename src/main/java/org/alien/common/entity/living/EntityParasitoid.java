@@ -1,11 +1,9 @@
 package org.alien.common.entity.living;
 
 import com.asx.mdx.lib.world.entity.Entities;
-import com.google.common.base.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.MoverType;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -96,12 +94,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
     public boolean canProduceJelly()
     {
         return this.world.getTotalWorldTime() % this.getJellyProductionRate() == 0 && this.isFertile() && this.getJellyLevel() <= 256;
-    }
-
-    @Override
-    public Predicate<EntityLivingBase> getImpregnationEntitySelector()
-    {
-        return EntitySelectorParasitoid.instance;
     }
 
     @Override

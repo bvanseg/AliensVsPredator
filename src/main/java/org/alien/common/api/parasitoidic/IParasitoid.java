@@ -1,6 +1,5 @@
 package org.alien.common.api.parasitoidic;
 
-import com.google.common.base.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityWither;
@@ -33,8 +32,6 @@ public interface IParasitoid
     int getTicksOnHost();
 
     int getDetachTime();
-
-    Predicate<EntityLivingBase> getImpregnationEntitySelector();
 
     static void readFromNBT(IParasitoid parasitoid, NBTTagCompound nbt)
     {

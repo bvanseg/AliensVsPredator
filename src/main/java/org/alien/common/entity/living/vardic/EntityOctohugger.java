@@ -56,7 +56,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         this.tasks.addTask(1, new EntityAICustomAttackOnCollide(this, 0.55D, true));
         this.tasks.addTask(2, new PatchedEntityAIWander(this, 0.55D));
         this.targetTasks.addTask(0, new EntityAILeapAtTarget(this, 0.8F));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getImpregnationEntitySelector()));
+        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, 0, false, false, EntitySelectorParasitoid.instance));
     }
 
     @Override

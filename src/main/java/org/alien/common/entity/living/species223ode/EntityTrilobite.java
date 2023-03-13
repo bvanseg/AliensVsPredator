@@ -5,7 +5,6 @@ import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.animations.Animation;
 import com.asx.mdx.lib.world.entity.animations.AnimationHandler;
 import com.asx.mdx.lib.world.entity.animations.IAnimated;
-import com.google.common.base.Predicate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityLookHelper;
@@ -190,7 +189,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         {
             if (this.world.getTotalWorldTime() % 5 == 0)
             {
-                if (!this.getImpregnationEntitySelector().apply(this.getAttackTarget()))
+                if (!EntitySelectorTrilobite.instance.apply(this.getAttackTarget()))
                 {
                     this.setAttackTarget(null);
                 }
@@ -584,12 +583,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     public boolean canAttach(Entity entity)
     {
-        if (entity instanceof EntityLivingBase)
-        {
-            return getImpregnationEntitySelector().apply((EntityLivingBase) entity);
-        }
-
-        return false;
+        return (entity instanceof EntityLivingBase) && EntitySelectorTrilobite.instance.apply((EntityLivingBase) entity);
     }
 
     @Override
@@ -602,12 +596,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     public int getDetachTime()
     {
         return (2 * 60) * 20;
-    }
-
-    @Override
-    public Predicate<EntityLivingBase> getImpregnationEntitySelector()
-    {
-        return EntitySelectorTrilobite.instance;
     }
 
     @Override
