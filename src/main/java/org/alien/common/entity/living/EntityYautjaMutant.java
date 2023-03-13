@@ -1,4 +1,4 @@
-package org.predator.common.entity.living.yautja;
+package org.alien.common.entity.living;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;

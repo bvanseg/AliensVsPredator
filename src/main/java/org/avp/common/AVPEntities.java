@@ -40,7 +40,7 @@ import org.avp.common.tile.plant.TileEntityTreeFern;
 import org.predator.common.entity.*;
 import org.predator.common.entity.living.EntityPredatorHound;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
-import org.predator.common.entity.living.yautja.EntityYautjaMutant;
+import org.alien.common.entity.living.EntityYautjaMutant;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
 import java.lang.reflect.Field;

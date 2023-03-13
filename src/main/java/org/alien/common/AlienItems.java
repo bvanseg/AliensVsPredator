@@ -23,7 +23,7 @@ import org.alien.common.item.ItemSporePod;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.item.ItemEntitySummoner;
 import org.lib.registry.ItemRegistryUtil;
-import org.predator.common.entity.living.yautja.EntityYautjaMutant;
+import org.alien.common.entity.living.EntityYautjaMutant;
 
 public class AlienItems implements IPreInitEvent {
     public static final AlienItems instance = new AlienItems();
