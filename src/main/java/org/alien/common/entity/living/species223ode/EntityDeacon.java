@@ -20,7 +20,7 @@ import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.Species223ODe;
 import org.alien.common.world.capability.IOrganism.Organism;
 import org.alien.common.world.capability.IOrganism.Provider;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 
@@ -115,7 +115,7 @@ public class EntityDeacon extends Species223ODe implements INascentic
         host.world.spawnEntity(this);
         organism.removeEmbryo();
         host.getActivePotionEffects().clear();
-        host.attackEntityFrom(DamageSources.causeDeaconBursterDamage(this, host), 100000F);
+        host.attackEntityFrom(AVPDamageSources.causeDeaconBursterDamage(this, host), 100000F);
     }
 
     @Override

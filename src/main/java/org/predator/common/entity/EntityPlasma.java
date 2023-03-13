@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.Settings;
 import org.predator.client.PredatorSounds;
 
@@ -147,7 +147,7 @@ public class EntityPlasma extends EntityThrowable
             {
                 if (entity != this.getThrower())
                 {
-                    entity.attackEntityFrom(DamageSources.plasmacaster, 20F * this.getPlasmaSize());
+                    entity.attackEntityFrom(AVPDamageSources.PLASMA_CASTER, 20F * this.getPlasmaSize());
                     entity.hurtResistantTime = 0;
                 }
             }

@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.entity.living.ModelDrone;
 import org.alien.common.AlienItems;
 import org.avp.AVP;
+import org.avp.common.AVPMaterials;
 import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 
 public class ItemArmorXeno extends ItemArmor
@@ -25,7 +26,7 @@ public class ItemArmorXeno extends ItemArmor
 
     public ItemArmorXeno(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(AVP.materials().armors().chitin, renderIndex, armorType);
+        super(AVPMaterials.Armors.CHITIN, renderIndex, armorType);
     }
 
     @Override

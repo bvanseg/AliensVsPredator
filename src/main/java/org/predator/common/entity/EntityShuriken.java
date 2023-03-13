@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.entity.EntityItemStackProjectile;
 import org.avp.common.entity.EntityProjectile;
 import org.predator.common.PredatorItems;
@@ -79,11 +79,11 @@ public class EntityShuriken extends EntityItemStackProjectile
 
             if (shootingEntity == null)
             {
-                damagesource = DamageSources.causeShurikenDamage(this);
+                damagesource = AVPDamageSources.causeShurikenDamage(this);
             }
             else
             {
-                damagesource = DamageSources.causeShurikenDamage(this.shootingEntity);
+                damagesource = AVPDamageSources.causeShurikenDamage(this.shootingEntity);
             }
 
             if (entity.attackEntityFrom(damagesource, damage + 1))

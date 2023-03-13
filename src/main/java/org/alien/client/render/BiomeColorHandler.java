@@ -1,4 +1,4 @@
-package org.avp.client.render;
+package org.alien.client.render;
 
 import com.asx.mdx.core.mods.IInitEvent;
 import com.asx.mdx.lib.util.Game;

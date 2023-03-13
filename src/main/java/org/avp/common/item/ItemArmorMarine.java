@@ -12,12 +12,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import org.avp.AVP;
 import org.avp.common.AVPItems;
+import org.avp.common.AVPMaterials;
 
 public class ItemArmorMarine extends ItemArmor
 {
     public ItemArmorMarine(int renderIndex, EntityEquipmentSlot slot)
     {
-        super(AVP.materials().armors().kevlar, renderIndex, slot);
+        super(AVPMaterials.Armors.KEVLAR, renderIndex, slot);
     }
     
     @Override

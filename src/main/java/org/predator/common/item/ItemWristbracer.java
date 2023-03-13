@@ -16,7 +16,8 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
+import org.avp.common.AVPMaterials;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorItems;
@@ -80,7 +81,7 @@ public class ItemWristbracer extends HookedItem
         if (equippedHasBlades(player))
         {
             PredatorSounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F);
-            entity.attackEntityFrom(DamageSources.causeWristbracerDamage(player), getDamageToApply());
+            entity.attackEntityFrom(AVPDamageSources.causeWristbracerDamage(player), getDamageToApply());
 
             if (!player.world.isRemote && !player.capabilities.isCreativeMode)
             {
@@ -123,7 +124,7 @@ public class ItemWristbracer extends HookedItem
 
     public static float getDamageToApply()
     {
-        return AVP.materials().tools().celtic.getAttackDamage() * 1.5F;
+        return AVPMaterials.Tools.CELTIC.getAttackDamage() * 1.5F;
     }
 
     public static ItemStack getBlades(ItemStack wristbracer)

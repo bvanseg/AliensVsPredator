@@ -8,7 +8,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.EntityItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
@@ -232,7 +232,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
         EntityItemDrops.XENO_LEGS.tryDrop(this);
         EntityItemDrops.XENO_TORSO.tryDrop(this);
 
-        if (damagesource == DamageSources.wristbracer)
+        if (damagesource == AVPDamageSources.WRISTBRACER)
         {
             EntityItemDrops.SKULLS_XENO.tryDrop(this, 25);
         }

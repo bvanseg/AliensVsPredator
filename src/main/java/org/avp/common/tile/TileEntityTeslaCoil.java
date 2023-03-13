@@ -17,7 +17,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.api.power.IVoltageProvider;
 import org.avp.common.api.power.IVoltageReceiver;
 
@@ -245,7 +245,7 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltag
                     m = 8F;
                     dist = distE;
 
-                    target.attackEntityFrom(DamageSources.electricity, damageMult);
+                    target.attackEntityFrom(AVPDamageSources.ELECTRICITY, damageMult);
                     target.setFire(3);
                 }
             }

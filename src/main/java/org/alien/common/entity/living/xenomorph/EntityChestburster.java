@@ -29,7 +29,7 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.IOrganism.Organism;
 import org.alien.common.world.capability.IOrganism.Provider;
 import org.alien.common.world.hive.HiveMember;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 
@@ -223,7 +223,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
         host.world.spawnEntity(this);
         organism.removeEmbryo();
         host.getActivePotionEffects().clear();
-        host.attackEntityFrom(DamageSources.causeChestbursterDamage(this, host), 100000F);
+        host.attackEntityFrom(AVPDamageSources.causeChestbursterDamage(this, host), 100000F);
         if(!host.isDead)
             host.setHealth(0);
     }

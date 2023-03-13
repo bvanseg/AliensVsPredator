@@ -18,7 +18,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.predator.common.PredatorItems;
 
 import java.util.List;
@@ -210,7 +210,7 @@ public class EntityLaserMine extends Entity
     {
         Explosion explosion = new Explosion(world, this, this.posX, this.posY, this.posZ, 4F, false, false);
         explosion.doExplosionB(true);
-        entityHit.attackEntityFrom(DamageSources.causeLaserMineDamage(this, entityHit), 15F);
+        entityHit.attackEntityFrom(AVPDamageSources.causeLaserMineDamage(this, entityHit), 15F);
         entityHit.hurtResistantTime = 0;
         this.setDead();
     }

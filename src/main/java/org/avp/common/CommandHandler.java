@@ -11,8 +11,8 @@ import org.avp.common.command.CommandSettings;
 public class CommandHandler implements IInitEvent
 {
     public static final CommandHandler instance = new CommandHandler();
-    public CommandPlayerMode commandPlayerMode;
-    public CommandSettings commandSettings;
+    private CommandPlayerMode commandPlayerMode;
+    private CommandSettings commandSettings;
 
     @Override
     public void init(FMLInitializationEvent event)

@@ -5,7 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import org.avp.AVP;
 import org.avp.client.AVPSounds;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.network.packet.server.PacketTurretAmmoSync;
 
 /**
@@ -55,7 +55,7 @@ public class TileEntityTurretAttackHelper {
 
     public void fire(World world, Pos pos) {
         this.isFiring = true;
-        this.targetHelper.getTargetEntity().attackEntityFrom(DamageSources.bullet, 1F);
+        this.targetHelper.getTargetEntity().attackEntityFrom(AVPDamageSources.BULLET, 1F);
         this.targetHelper.getTargetEntity().hurtResistantTime = 0;
         // this.world.spawnParticle(EnumParticleTypes.CLOUD, this.pos.x, this.pos.y,
         // this.pos.z, 0, 10, 0);

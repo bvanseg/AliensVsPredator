@@ -5,7 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 
 public class PacketDamageEntity implements IMessage, IMessageHandler<PacketDamageEntity, PacketDamageEntity>
 {
@@ -56,7 +56,7 @@ public class PacketDamageEntity implements IMessage, IMessageHandler<PacketDamag
                     if (entity != null)
                     {
                         entity.hurtResistantTime = 0;
-                        entity.attackEntityFrom(DamageSources.causeLaserMineDamage(entitySource, entitySource), packet.damage);
+                        entity.attackEntityFrom(AVPDamageSources.causeLaserMineDamage(entitySource, entitySource), packet.damage);
                     }
                 }
             }

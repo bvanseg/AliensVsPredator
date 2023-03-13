@@ -22,6 +22,7 @@ import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.AVP;
+import org.avp.common.AVPMaterials;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.network.packet.client.PacketOvamorphContainsFacehugger;
 
@@ -137,7 +138,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
 
         if (this.containsFacehugger)
         {
-            if (this.world.getBlockState(this.getPosition()).getMaterial() != AVP.materials().mist || this.acceleratedHatching)
+            if (this.world.getBlockState(this.getPosition()).getMaterial() != AVPMaterials.MIST || this.acceleratedHatching)
             {
                 int hatchAcceleration = this.acceleratedHatching ? 20 : 1;
                 List<EntityLivingBase> potentialHosts = Entities.getEntitiesInCoordsRange(this.world, EntityLivingBase.class, new Pos(this), 8);

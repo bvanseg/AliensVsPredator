@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.entity.EntityProjectile;
 import org.predator.common.PredatorItems;
 
@@ -141,11 +141,11 @@ public class EntitySmartDisc extends EntityProjectile
 
                 if (this.shootingEntity == null)
                 {
-                    damagesource = DamageSources.causeSmartDiscDamage(this);
+                    damagesource = AVPDamageSources.causeSmartDiscDamage(this);
                 }
                 else
                 {
-                    damagesource = DamageSources.causeSmartDiscDamage(this.shootingEntity);
+                    damagesource = AVPDamageSources.causeSmartDiscDamage(this.shootingEntity);
                 }
 
                 if (entity.attackEntityFrom(damagesource, 5.0F))

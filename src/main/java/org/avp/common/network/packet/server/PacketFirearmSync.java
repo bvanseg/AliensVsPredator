@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.alien.common.world.hive.AlienHiveHandler;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.block.BlockHiveResin;
 import org.avp.common.item.firearm.FirearmProfile;
 import org.avp.common.item.firearm.ItemFirearm;
@@ -102,7 +102,7 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
                             if (entity != null)
                             {
                                 entity.hurtResistantTime = 0;
-                                entity.attackEntityFrom(DamageSources.causeBulletDamage(ctx.getServerHandler().player), firearm.getClassification().getBaseDamage());
+                                entity.attackEntityFrom(AVPDamageSources.causeBulletDamage(ctx.getServerHandler().player), firearm.getClassification().getBaseDamage());
                             }
                         }
                     }

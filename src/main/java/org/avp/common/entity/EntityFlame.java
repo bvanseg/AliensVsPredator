@@ -20,8 +20,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPBlocks;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItems;
-import org.avp.common.DamageSources;
 import org.avp.common.item.firearm.ItemFlamethrower;
 import org.avp.common.item.firearm.ItemM240IncineratorUnit;
 import org.avp.common.item.firearm.ItemSevastopolFlamethrower;
@@ -110,7 +110,7 @@ public class EntityFlame extends EntityThrowable
             if (entityHit != null && !entityHit.isImmuneToFire())
             {
                 entityHit.setFire(10);
-                entityHit.attackEntityFrom(DamageSources.causeFlamethrowerDamage(this), 4F);
+                entityHit.attackEntityFrom(AVPDamageSources.causeFlamethrowerDamage(this), 4F);
             }
         }
 

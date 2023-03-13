@@ -24,7 +24,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.IHost;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
@@ -289,7 +289,7 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     
     protected void dropBiomaskAndSkull(DamageSource damagesource)
     {
-        if (damagesource == DamageSources.wristbracer)
+        if (damagesource == AVPDamageSources.WRISTBRACER)
         {
             EntityItemDrops.SKULL_PREDATOR.tryDrop(this, 25);
             EntityItemDrops.BIOMASK.tryDrop(this, 25);

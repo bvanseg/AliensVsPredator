@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.entity.EntityItemStackProjectile;
 import org.avp.common.entity.EntityProjectile;
 import org.predator.common.PredatorItems;
@@ -56,11 +56,11 @@ public class EntitySpear extends EntityItemStackProjectile
 
             if (shootingEntity == null)
             {
-                damagesource = DamageSources.causeSpearDamage(this);
+                damagesource = AVPDamageSources.causeSpearDamage(this);
             }
             else
             {
-                damagesource = DamageSources.causeSpearDamage(this.shootingEntity);
+                damagesource = AVPDamageSources.causeSpearDamage(this.shootingEntity);
             }
 
             if (entity.attackEntityFrom(damagesource, damage + 1))

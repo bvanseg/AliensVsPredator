@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import org.alien.common.world.fluid.FluidBlackGoo;
-import org.avp.AVP;
+import org.avp.common.AVPMaterials;
 
 public class BlockBlackGoo extends BlockFluidClassic
 {
@@ -14,7 +14,7 @@ public class BlockBlackGoo extends BlockFluidClassic
     
     public BlockBlackGoo()
     {
-        super(fluid, AVP.materials().blackgoo);
+        super(fluid, AVPMaterials.BLACK_GOO);
     }
     
     @Override

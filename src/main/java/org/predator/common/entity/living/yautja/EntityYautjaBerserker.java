@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.EntityItemDrops;
 import org.predator.common.PredatorItems;
 import org.predator.common.entity.living.SpeciesYautja;
@@ -38,7 +38,7 @@ public class EntityYautjaBerserker extends SpeciesYautja
     @Override
     protected void dropBiomaskAndSkull(DamageSource damagesource)
     {
-        if (damagesource == DamageSources.wristbracer)
+        if (damagesource == AVPDamageSources.WRISTBRACER)
         {
             EntityItemDrops.SKULL_PREDATOR.tryDrop(this, 25);
             EntityItemDrops.BIOMASK_BERSERKER.tryDrop(this, 25);

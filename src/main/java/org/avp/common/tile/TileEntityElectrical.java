@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.api.power.IPowerConnection;
 import org.avp.common.api.power.IVoltageProvider;
 import org.avp.common.api.power.IVoltageReceiver;
@@ -432,7 +432,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
                     t = p;
                     m = 8F;
                     dist = distE;
-                    target.attackEntityFrom(DamageSources.electricity, damageMult);
+                    target.attackEntityFrom(AVPDamageSources.ELECTRICITY, damageMult);
                     target.setFire(3);
                 }
             }

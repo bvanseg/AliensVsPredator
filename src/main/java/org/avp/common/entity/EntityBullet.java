@@ -13,7 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.*;
 import net.minecraft.world.World;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.entity.living.EntityMarine;
 
 import java.util.List;
@@ -355,7 +355,7 @@ public class EntityBullet extends Entity
                         attackDamage += this.rand.nextInt(attackDamage / 2 + 2);
                     }
 
-                    DamageSource damagesource = this.shootingEntity == null ? DamageSources.causeBulletDamage(this) : DamageSources.bullet;
+                    DamageSource damagesource = this.shootingEntity == null ? AVPDamageSources.causeBulletDamage(this) : AVPDamageSources.BULLET;
                     result.entityHit.hurtResistantTime = 0;
 
                     if (result.entityHit instanceof EntityLivingBase)

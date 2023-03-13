@@ -8,7 +8,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesEngineer;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.EntityItemDrops;
 
 public class EntitySpaceJockey extends SpeciesEngineer
@@ -34,7 +34,7 @@ public class EntitySpaceJockey extends SpeciesEngineer
     {
         super.onDeath(damagesource);
 
-        if (damagesource == DamageSources.wristbracer)
+        if (damagesource == AVPDamageSources.WRISTBRACER)
         {
             EntityItemDrops.SKULL_SPACEJOCKEY.tryDrop(this, 25);
         }

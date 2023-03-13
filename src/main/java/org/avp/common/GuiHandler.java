@@ -19,16 +19,16 @@ import org.predator.common.item.ItemWristbracer;
 
 public class GuiHandler implements IGuiHandler, IInitEvent
 {
-    public static final GuiHandler instance                = new GuiHandler();
-    public final int               GUI_ASSEMBLER           = 0;
-    public final int               GUI_TURRET              = 1;
-    public final int               GUI_WRISTBRACER         = 2;
-    public final int               GUI_LOCKER              = 3;
-    public final int               GUI_SUPPLYCRATE         = 4;
-    public final int               GUI_GRAPHICSSETTINGS    = 5;
-    public final int               GUI_BLASTDOOR_PSWD      = 6;
-    public final int               GUI_NETWORK_RACK        = 7;
-    public final int               GUI_REPULSION_GENERATOR = 8;
+    public static final GuiHandler        instance                = new GuiHandler();
+    public static final int               GUI_ASSEMBLER           = 0;
+    public static final int               GUI_TURRET              = 1;
+    public static final int               GUI_WRISTBRACER         = 2;
+    public static final int               GUI_LOCKER              = 3;
+    public static final int               GUI_SUPPLYCRATE         = 4;
+    public static final int               GUI_GRAPHICSSETTINGS    = 5;
+    public static final int               GUI_BLASTDOOR_PSWD      = 6;
+    public static final int               GUI_NETWORK_RACK        = 7;
+    public static final int               GUI_REPULSION_GENERATOR = 8;
 
     @Override
     public void init(FMLInitializationEvent event)

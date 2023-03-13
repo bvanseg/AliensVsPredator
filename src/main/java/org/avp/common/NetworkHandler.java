@@ -15,7 +15,7 @@ import org.avp.common.network.packet.server.PacketBlastdoorCommon.PacketBlastdoo
 public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
 {
     public static final NetworkHandler instance = new NetworkHandler();
-    private int descriminator = 0;
+    private int discriminator = 0;
 
     public NetworkHandler()
     {
@@ -71,6 +71,6 @@ public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
     @SuppressWarnings("unchecked")
     private <REQ extends IMessage, REPLY extends IMessage> void registerMessage(Side side, Class<?> packet)
     {
-        this.registerMessage((Class<? extends IMessageHandler<REQ, REPLY>>) packet, (Class<REQ>) packet, descriminator++, side);
+        this.registerMessage((Class<? extends IMessageHandler<REQ, REPLY>>) packet, (Class<REQ>) packet, discriminator++, side);
     }
 }

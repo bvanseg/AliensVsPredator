@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.AlienSounds;
+import org.alien.client.render.BiomeColorHandler;
 import org.alien.common.AlienBlocks;
 import org.alien.common.AlienItems;
 import org.alien.common.DimensionHandler;
@@ -22,7 +23,6 @@ import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
 import org.avp.client.Resources;
-import org.avp.client.render.BiomeColorHandler;
 import org.avp.common.*;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
@@ -88,7 +88,7 @@ public class AVP implements IMod
         console().init(event);
         network().init(event);
         dimensions().init(event);
-        materials().init(event);
+        AVPMaterials.instance.init(event);
         world().init(event);
         interfaces().init(event);
         events().init(event);
@@ -150,11 +150,6 @@ public class AVP implements IMod
     public static CraftingHandler crafting()
     {
         return CraftingHandler.instance;
-    }
-
-    public static MaterialHandler materials()
-    {
-        return MaterialHandler.instance;
     }
 
     public static EventHandlers events()

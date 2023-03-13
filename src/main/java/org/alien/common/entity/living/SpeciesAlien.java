@@ -22,7 +22,7 @@ import org.alien.common.api.parasitoidic.IMaturable;
 import org.alien.common.api.parasitoidic.IRoyalOrganism;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 
 import java.util.UUID;
 
@@ -120,7 +120,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
 
         if (!this.world.isRemote)
         {
-            if (damagesource != DamageSource.ON_FIRE && damagesource != DamageSource.IN_FIRE && damagesource != DamageSources.flamethrower)
+            if (damagesource != DamageSource.ON_FIRE && damagesource != DamageSource.IN_FIRE && damagesource != AVPDamageSources.FLAMETHROWER)
             {
                 this.spawnAcidPool();
             }

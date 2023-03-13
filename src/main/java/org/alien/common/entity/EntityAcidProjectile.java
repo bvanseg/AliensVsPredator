@@ -21,7 +21,7 @@ import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 
 import java.util.List;
 
@@ -278,11 +278,11 @@ public class EntityAcidProjectile extends Entity implements IProjectile
 
                     if (this.shootingEntity == null)
                     {
-                        damagesource = DamageSources.acidProjectile;
+                        damagesource = AVPDamageSources.ACID_PROJECTILE;
                     }
                     else
                     {
-                        damagesource = DamageSources.causeAcidicProjectileDamage(this, this.shootingEntity);
+                        damagesource = AVPDamageSources.causeAcidicProjectileDamage(this, this.shootingEntity);
                     }
 
                     if (this.isBurning() && !(result.entityHit instanceof EntityEnderman))

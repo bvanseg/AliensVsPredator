@@ -16,7 +16,7 @@ import net.minecraft.world.World;
 import org.alien.common.AlienBlocks;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.AVPBlocks;
-import org.avp.common.DamageSources;
+import org.avp.common.AVPDamageSources;
 import org.avp.common.api.blocks.IAcidResistant;
 import org.avp.common.entity.EntityLiquidPool;
 
@@ -140,7 +140,7 @@ public class EntityAcidPool extends EntityLiquidPool
 		    if(SELECTOR.apply(e))
 		    {
 		        e.addPotionEffect(new PotionEffect(MobEffects.POISON, (14 * 20), 0));
-		        e.attackEntityFrom(DamageSources.acid, 4f);
+		        e.attackEntityFrom(AVPDamageSources.ACID, 4f);
 		    }
 		});
 	}
