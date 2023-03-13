@@ -139,8 +139,6 @@ public class ModelEngineer extends Model<SpeciesEngineer>
     @Override
     public void render(SpeciesEngineer obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
-        
         this.lShin.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6662F) * 1.0F * swingProgressPrev(obj);
         this.lThigh.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6662F) * 1.0F * swingProgressPrev(obj) - 0.2014257F;
         this.lFoot.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6662F) * 1.0F * swingProgressPrev(obj);
@@ -169,9 +167,7 @@ public class ModelEngineer extends Model<SpeciesEngineer>
         draw(lArmLower_1);
         draw(neck);
 
-        SpeciesEngineer engineer = (SpeciesEngineer) base;
-
-        if (engineer != null && engineer.isWearingMask() || engineer == null)
+        if (obj != null && obj.isWearingMask() || obj == null)
         {
             draw(nozzle3c);
             draw(head1);
