@@ -5,10 +5,9 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 import org.alien.common.entity.living.SpeciesEngineer;
-import org.alien.common.entity.living.engineer.EntityEngineer;
 
 
-public class ModelEngineer extends Model<EntityEngineer>
+public class ModelEngineer extends Model<SpeciesEngineer>
 {
     public final ModelRenderer chest;
     public final ModelRenderer stomach;
@@ -138,7 +137,7 @@ public class ModelEngineer extends Model<EntityEngineer>
     }
 
     @Override
-    public void render(EntityEngineer obj)
+    public void render(SpeciesEngineer obj)
     {
         EntityLivingBase base = (EntityLivingBase) obj;;
         
