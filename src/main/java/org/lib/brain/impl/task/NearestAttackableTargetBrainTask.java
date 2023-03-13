@@ -40,11 +40,8 @@ public class NearestAttackableTargetBrainTask extends AbstractBrainTask<EntityBr
     		EntityLivingBase nearestAttackTarget = optional.get();
     		nearestAttackTargetCondition = !nearestAttackTarget.isDead;
     	}
-
-    	EntityLivingBase attackTarget = ctx.getEntity().getAttackTarget();
-    	boolean currentAttackTargetCondition = attackTarget == null || attackTarget.isDead;
     	
-		return currentAttackTargetCondition && nearestAttackTargetCondition;
+		return nearestAttackTargetCondition;
 	}
 	
     @Override
