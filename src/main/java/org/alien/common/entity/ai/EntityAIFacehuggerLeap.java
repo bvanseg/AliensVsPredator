@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 
+@Deprecated
 public class EntityAIFacehuggerLeap extends EntityAIBase
 {
     /** The entity that is leaping. */
