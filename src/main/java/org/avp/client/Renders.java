@@ -48,8 +48,8 @@ import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.AVP;
 import org.avp.client.model.item.*;
-import org.avp.client.model.loader.CustomBlockModelLoader;
-import org.avp.client.model.loader.ReflectiveModelLoader;
+import org.alien.client.model.loader.CustomBlockModelLoader;
+import org.lib.model.loader.ReflectiveModelLoader;
 import org.avp.client.render.entity.*;
 import org.avp.client.render.entity.living.RenderCombatSynthetic;
 import org.avp.client.render.entity.living.RenderMarine;
@@ -144,7 +144,7 @@ public class Renders implements IInitEvent, IPreInitEvent
     {
         OBJLoader.INSTANCE.addDomain(AVP.Properties.ID);
         ModelLoaderRegistry.registerLoader(ReflectiveModelLoader.INSTANCE);
-        ModelLoaderRegistry.registerLoader(CustomBlockModelLoader.INSTANCE);
+        ModelLoaderRegistry.registerLoader(CustomBlockModelLoader.instance);
     }
 
     private void registerLivingEntityRenderers()

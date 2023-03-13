@@ -1,4 +1,4 @@
-package org.avp.client.model.loader;
+package org.alien.client.model.loader;
 
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
@@ -8,13 +8,14 @@ import org.alien.client.model.tile.ModelResin;
 import org.avp.AVP;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class CustomBlockModelLoader implements ICustomModelLoader
 {
-    public static final CustomBlockModelLoader INSTANCE = new CustomBlockModelLoader();
-    private HashMap<String, IModel> models = new HashMap<String, IModel>();
+    public static final CustomBlockModelLoader instance = new CustomBlockModelLoader();
+    private final HashMap<String, IModel> models = new HashMap<>();
 
-    public CustomBlockModelLoader()
+    private CustomBlockModelLoader()
     {
         this.register();
     }
@@ -35,29 +36,15 @@ public class CustomBlockModelLoader implements ICustomModelLoader
     @Override
     public boolean accepts(ResourceLocation modelLocation)
     {
-        if (modelLocation.getNamespace().equals(AVP.Properties.ID))
-        {
-            if (models.containsKey(modelLocation.getPath()))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return modelLocation.getNamespace().equals(AVP.Properties.ID) && models.containsKey(modelLocation.getPath());
     }
 
     @Override
-    public IModel loadModel(ResourceLocation modelLocation) throws Exception
-    {
-        if (models.containsKey(modelLocation.getPath()))
-        {
-            return models.get(modelLocation.getPath());
-        }
-
-        return null;
+    public IModel loadModel(ResourceLocation modelLocation) {
+        return models.get(modelLocation.getPath());
     }
 
-    public HashMap<String, IModel> getModels()
+    public Map<String, IModel> getModels()
     {
         return models;
     }

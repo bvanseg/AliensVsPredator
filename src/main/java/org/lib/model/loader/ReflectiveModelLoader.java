@@ -1,4 +1,4 @@
-package org.avp.client.model.loader;
+package org.lib.model.loader;
 
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;
@@ -9,16 +9,17 @@ import org.avp.client.model.tile.ModelReflectiveShape;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ReflectiveModelLoader implements ICustomModelLoader
 {
     public static final ReflectiveModelLoader INSTANCE = new ReflectiveModelLoader();
-    private HashMap<String, IModel> models = new HashMap<String, IModel>();
-    private ArrayList<String> dummyIDs = new ArrayList<String>();
+    private final HashMap<String, IModel> models = new HashMap<>();
+    private final ArrayList<String> dummyIDs = new ArrayList<>();
 
     public static final ResourceLocation REFLECTION = new ResourceLocation(AVP.Properties.ID, "blocks/reflection");
 
-    public ReflectiveModelLoader()
+    private ReflectiveModelLoader()
     {
         this.register();
     }
@@ -56,29 +57,15 @@ public class ReflectiveModelLoader implements ICustomModelLoader
     @Override
     public boolean accepts(ResourceLocation modelLocation)
     {
-        if (modelLocation.getNamespace().equals(AVP.Properties.ID))
-        {
-            if (models.containsKey(modelLocation.getPath()))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return modelLocation.getNamespace().equals(AVP.Properties.ID) && models.containsKey(modelLocation.getPath());
     }
 
     @Override
-    public IModel loadModel(ResourceLocation modelLocation) throws Exception
-    {
-        if (models.containsKey(modelLocation.getPath()))
-        {
-            return models.get(modelLocation.getPath());
-        }
-
-        return null;
+    public IModel loadModel(ResourceLocation modelLocation) {
+        return models.get(modelLocation.getPath());
     }
 
-    public HashMap<String, IModel> getModels()
+    public Map<String, IModel> getModels()
     {
         return models;
     }

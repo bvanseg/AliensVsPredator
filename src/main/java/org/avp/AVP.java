@@ -15,8 +15,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.AlienSounds;
 import org.alien.client.render.BiomeColorHandler;
 import org.alien.common.AlienBlocks;
+import org.alien.common.AlienDimensions;
 import org.alien.common.AlienItems;
-import org.alien.common.DimensionHandler;
 import org.alien.common.WorldHandler;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
@@ -162,9 +162,9 @@ public class AVP implements IMod
         return AVPNetworking.instance;
     }
 
-    public static DimensionHandler dimensions()
+    public static AlienDimensions dimensions()
     {
-        return DimensionHandler.instance;
+        return AlienDimensions.instance;
     }
 
     public static WorldHandler world()

@@ -25,13 +25,15 @@ import org.alien.common.world.dimension.varda.BiomeVarda;
 import org.alien.common.world.dimension.varda.WorldProviderVarda;
 import org.avp.AVP;
 
-public class DimensionHandler implements IInitEvent
+public class AlienDimensions implements IInitEvent
 {
-    public static final DimensionHandler instance = new DimensionHandler();
+    public static final AlienDimensions instance = new AlienDimensions();
 
     @Mod.EventBusSubscriber(modid = AVP.Properties.ID)
     public static class RegistrationHandler
     {
+        private RegistrationHandler() {}
+
         @SubscribeEvent
         public static void registerBiomes(final RegistryEvent.Register<Biome> event)
         {
@@ -41,22 +43,22 @@ public class DimensionHandler implements IInitEvent
         }
     }
 
-    public final Dimension ACHERON                   = new Dimension("Acheron", "_acheron", WorldProviderAcheron.class, false);
-    public final Dimension VARDA                     = new Dimension("Varda", "_varda", WorldProviderVarda.class, false);
+    public static final Dimension ACHERON                   = new Dimension("Acheron", "_acheron", WorldProviderAcheron.class, false);
+    public static final Dimension VARDA                     = new Dimension("Varda", "_varda", WorldProviderVarda.class, false);
 
     public boolean         initialized;
 
-    public final String    DIMENSION_NAME_ACHERON    = "LV-426 (Acheron)";
+    public static final String    DIMENSION_NAME_ACHERON    = "LV-426 (Acheron)";
 
-    public final String    DIMENSION_ID_ACHERON      = "DIM_LV426";
+    public static final String    DIMENSION_ID_ACHERON      = "DIM_LV426";
 
-    public final String    DIMENSION_NAME_VARDA      = "LV-223 (Varda)";
+    public static final String    DIMENSION_NAME_VARDA      = "LV-223 (Varda)";
 
-    public final String    DIMENSION_ID_VARDA        = "DIM_LV223";
+    public static final String    DIMENSION_ID_VARDA        = "DIM_LV223";
 
-    public final String    BIOME_NAME_VARDA_BADLANDS = "LV-223.B.1 (Varda Badlands)";
+    public static final String    BIOME_NAME_VARDA_BADLANDS = "LV-223.B.1 (Varda Badlands)";
 
-    public final String    BIOME_NAME_VARDA_FOREST   = "LV-223.B.2 (Anomalistic Forest)";
+    public static final String    BIOME_NAME_VARDA_FOREST   = "LV-223.B.2 (Anomalistic Forest)";
 
     @Override
     public void init(FMLInitializationEvent event)
@@ -108,7 +110,7 @@ public class DimensionHandler implements IInitEvent
     public static void teleportPlayerToDimension(EntityPlayerMP player, int dimensionId)
     {
         PlayerList players = player.getServer().getPlayerList();
-        AVP.log().info("Attempting to teleport player to dimension with id " + dimensionId);
+        AVP.log().info("Attempting to teleport player to dimension with id {}", dimensionId);
 
         if (player.dimension == 0 || player.dimension != dimensionId)
         {

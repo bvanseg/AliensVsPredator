@@ -12,7 +12,7 @@ import org.avp.common.SaveHandler;
 public class WorldHandler implements IInitEvent
 {
     public static final WorldHandler instance = new WorldHandler();
-    private SaveHandler saveHandler;
+    private final SaveHandler saveHandler;
     private IWorldGenerator worldGeneratorAcheron;
     private IWorldGenerator worldGeneratorDerelict;
 
