@@ -21,13 +21,14 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	public void runTask(T ctx) {
 		boolean shouldExecute = this.shouldExecute(ctx);
 		if (shouldExecute) {
-			this.isExecuting = true;
 			this.execute(ctx);
+			// Update isExecuting state after execute so that isExecuting is false for the first execution.
+			this.isExecuting = true;
 		}
 		
 		if (this.isExecuting && !shouldExecute) {
-			this.isExecuting = false;
 			this.finish(ctx);
+			this.isExecuting = false;
 		}
 	}
 	
