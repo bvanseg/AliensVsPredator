@@ -6,7 +6,7 @@ import net.minecraft.world.World;
 @Deprecated
 public abstract class Species223ODe extends SpeciesAlien
 {
-    public Species223ODe(World world)
+    protected Species223ODe(World world)
     {
         super(world);
     }
