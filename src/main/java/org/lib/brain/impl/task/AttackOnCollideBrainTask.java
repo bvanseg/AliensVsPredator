@@ -50,11 +50,12 @@ public class AttackOnCollideBrainTask extends AbstractBrainTask<EntityBrainConte
 		EntityLivingBase nearestAttackTarget = (EntityLivingBase) ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET).get();
         Path pathToNearestAttackTarget = ctx.getEntity().getNavigator().getPathToEntityLiving(nearestAttackTarget);
         ctx.getEntity().getNavigator().setPath(pathToNearestAttackTarget, this.speedTowardsTarget);
-        
-        boolean isTargetInRange = ctx.getEntity().getDistanceSq(ctx.getEntity().getAttackTarget()) < 2.0D;
-        
+
+		double targetDistance = ctx.getEntity().getDistanceSq(nearestAttackTarget);
+        boolean isTargetInRange = targetDistance < 2.0D;
+
         if (isTargetInRange) {
-        	ctx.getEntity().attackEntityAsMob(ctx.getEntity().getAttackTarget());
+        	ctx.getEntity().attackEntityAsMob(nearestAttackTarget);
         }
     }
 	
