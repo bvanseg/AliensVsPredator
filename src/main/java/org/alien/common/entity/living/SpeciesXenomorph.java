@@ -8,11 +8,11 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import org.alien.common.entity.ai.brain.XenomorphBrain;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
-import org.alien.common.entity.ai.brain.XenomorphBrain;
 
 public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Brainiac<XenomorphBrain>
 {
