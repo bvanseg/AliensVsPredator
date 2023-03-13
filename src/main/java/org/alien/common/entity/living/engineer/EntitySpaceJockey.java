@@ -6,10 +6,11 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesEngineer;
+import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
 
 public class EntitySpaceJockey extends SpeciesEngineer
 {
@@ -83,6 +84,6 @@ public class EntitySpaceJockey extends SpeciesEngineer
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerSpaceJockey);
+        return new ItemStack(AlienItems.SUMMONER_SPACE_JOCKEY);
     }
 }

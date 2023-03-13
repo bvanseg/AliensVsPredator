@@ -9,7 +9,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.entity.living.EntityMarine;
 
 public class ModelMarine extends Model<EntityMarine>
@@ -66,7 +66,7 @@ public class ModelMarine extends Model<EntityMarine>
         this.bipedLeftLeg.setRotationPoint(1.9F, 12.0F + p_i1149_2_, 0.0F);
     }
 
-    @SuppressWarnings("incomplete-switch")
+    @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn)
     {
         boolean flag = entityIn instanceof EntityLivingBase && ((EntityLivingBase) entityIn).getTicksElytraFlying() > 4;
@@ -138,6 +138,9 @@ public class ModelMarine extends Model<EntityMarine>
             case ITEM:
                 this.bipedLeftArm.rotateAngleX = this.bipedLeftArm.rotateAngleX * 0.5F - ((float) Math.PI / 10F);
                 this.bipedLeftArm.rotateAngleY = 0.0F;
+                break;
+            default:
+                break;
         }
 
         switch (this.rightArmPose)
@@ -152,6 +155,9 @@ public class ModelMarine extends Model<EntityMarine>
             case ITEM:
                 this.bipedRightArm.rotateAngleX = this.bipedRightArm.rotateAngleX * 0.5F - ((float) Math.PI / 10F);
                 this.bipedRightArm.rotateAngleY = 0.0F;
+                break;
+            default:
+                break;
         }
 
         if (this.swingProgress > 0.0F)
@@ -211,7 +217,7 @@ public class ModelMarine extends Model<EntityMarine>
         this.bipedLeftArm.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
 
         // Because the smart gun is a relatively large weapon, the marine needs two hands to hold it at all times.
-        if (entityIn instanceof EntityMarine && ((EntityMarine)entityIn).getHeldItemMainhand().getItem() == AVP.items().itemM56SG)
+        if (entityIn instanceof EntityMarine && ((EntityMarine)entityIn).getHeldItemMainhand().getItem() == AVPItems.ITEM_M56SG)
         {
             this.bipedRightArm.rotateAngleY = -0.4F + this.bipedHead.rotateAngleY;
             this.bipedLeftArm.rotateAngleY = 0.1F + this.bipedHead.rotateAngleY + 1.4F;

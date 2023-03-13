@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import org.avp.AVP;
+import org.avp.common.AVPItems;
 
 public class ItemArmorMarine extends ItemArmor
 {
@@ -34,10 +35,10 @@ public class ItemArmorMarine extends ItemArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AVP.items().helmMarine &&
-                Inventories.getChestSlotItemStack(player) != null && Inventories.getChestSlotItemStack(player).getItem() == AVP.items().plateMarine &&
-                Inventories.getLegsSlotItemStack(player) != null && Inventories.getLegsSlotItemStack(player).getItem() == AVP.items().legsMarine &&
-                Inventories.getBootSlotItemStack(player) != null && Inventories.getBootSlotItemStack(player).getItem() == AVP.items().bootsMarine)
+        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AVPItems.HELM_MARINE &&
+                Inventories.getChestSlotItemStack(player) != null && Inventories.getChestSlotItemStack(player).getItem() == AVPItems.PLATE_MARINE &&
+                Inventories.getLegsSlotItemStack(player) != null && Inventories.getLegsSlotItemStack(player).getItem() == AVPItems.LEGS_MARINE &&
+                Inventories.getBootSlotItemStack(player) != null && Inventories.getBootSlotItemStack(player).getItem() == AVPItems.BOOTS_MARINE)
         {
             player.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 1, 1));
             player.addPotionEffect(new PotionEffect(MobEffects.STRENGTH, 1, 1));

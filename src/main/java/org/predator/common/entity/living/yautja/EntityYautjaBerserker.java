@@ -7,7 +7,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.common.DamageSources;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
+import org.predator.common.PredatorItems;
 import org.predator.common.entity.living.SpeciesYautja;
 
 public class EntityYautjaBerserker extends SpeciesYautja
@@ -57,6 +58,6 @@ public class EntityYautjaBerserker extends SpeciesYautja
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerYautjaBerserker);
+        return new ItemStack(PredatorItems.SUMMONER_YAUTJA_BERSERKER);
     }
 }

@@ -27,10 +27,11 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.Species223ODe;
 import org.avp.AVP;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
@@ -501,7 +502,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
 
     public void dropTentacle()
     {
-        this.dropItem(ItemHandler.itemRawTentacle, 1);
+        this.dropItem(AlienItems.ITEM_RAW_TENTACLE, 1);
     }
 
     public int getAmountOfTentacles()
@@ -635,7 +636,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerTrilobite);
+        return new ItemStack(AlienItems.SUMMONER_TRILOBITE);
     }
     
     public SoundEvent getImplantSound()

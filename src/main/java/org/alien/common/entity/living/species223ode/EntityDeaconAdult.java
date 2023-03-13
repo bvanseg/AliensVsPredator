@@ -12,9 +12,10 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.Species223ODe;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 
@@ -91,6 +92,6 @@ public class EntityDeaconAdult extends Species223ODe
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerDeaconAdult);
+        return new ItemStack(AlienItems.SUMMONER_DEACON_ADULT);
     }
 }

@@ -23,6 +23,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.api.machines.IDataDevice;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.inventory.ContainerTurret;
@@ -144,12 +145,12 @@ public class TileEntityTurret extends TileEntityElectrical implements IDataDevic
         {
             ItemStack pciSlot = this.inventoryExpansion.getStackInSlot(i);
 
-            if (pciSlot.getItem() == AVP.items().itemProcessor)
+            if (pciSlot.getItem() == AVPItems.ITEM_PROCESSOR)
             {
                 turretRotateSpeed += pciSlot.getCount() * (this.getLookHelper().getTurretRotateSpeed() / 64f);
             }
 
-            if (pciSlot.getItem() == AVP.items().itemLedDisplay)
+            if (pciSlot.getItem() == AVPItems.ITEM_LED_DISPLAY)
             {
                 this.getAmmoHelper().setAmmoDisplayEnabled(true);
             }

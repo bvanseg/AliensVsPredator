@@ -10,7 +10,8 @@ import net.minecraft.item.ItemSword;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
+import org.predator.common.PredatorItems;
 import org.predator.common.entity.EntitySpear;
 
 public class ItemSpear extends ItemSword
@@ -29,7 +30,7 @@ public class ItemSpear extends ItemSword
         {
             EntityPlayer player = (EntityPlayer) entityLiving;
 
-            if (Inventories.playerHas(AVP.items().itemSpear, player))
+            if (Inventories.playerHas(PredatorItems.ITEM_SPEAR, player))
             {
                 float charge = (this.getMaxItemUseDuration(itemstack) - timeLeft * 1F) / 9F;
                 float maxCharge = 3.5F;
@@ -47,7 +48,7 @@ public class ItemSpear extends ItemSword
                     entityspear.shoot(entityspear.motionX, entityspear.motionY, entityspear.motionZ, 0.9F * charge, 0.1F);
                     GameSounds.fxPop.playSound(player, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
                     world.spawnEntity(entityspear);
-                    Inventories.consumeItem(player, AVP.items().itemSpear, true);
+                    Inventories.consumeItem(player, PredatorItems.ITEM_SPEAR, true);
                 }
             }
         }
@@ -68,7 +69,7 @@ public class ItemSpear extends ItemSword
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        if (Inventories.playerHas(AVP.items().itemSpear, player))
+        if (Inventories.playerHas(PredatorItems.ITEM_SPEAR, player))
         {
             player.setActiveHand(hand);
         }

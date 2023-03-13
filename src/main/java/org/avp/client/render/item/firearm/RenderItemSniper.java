@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import org.avp.AVP;
 import org.avp.client.model.item.ModelSniper;
 import org.avp.client.render.item.ItemFirearmRenderer;
+import org.avp.common.AVPItems;
 import org.lwjgl.input.Mouse;
 
 public class RenderItemSniper extends ItemFirearmRenderer<ModelSniper>
@@ -34,7 +35,7 @@ public class RenderItemSniper extends ItemFirearmRenderer<ModelSniper>
     {
         if (Game.minecraft().gameSettings.thirdPersonView == 0 && Game.minecraft().player.getHeldItemMainhand() != null)
         {
-            if (Game.minecraft().player.getHeldItemMainhand().getItem() == AVP.items().itemSniper)
+            if (Game.minecraft().player.getHeldItemMainhand().getItem() == AVPItems.ITEM_SNIPER)
             {
                 if (!Game.minecraft().inGameHasFocus)
                 {

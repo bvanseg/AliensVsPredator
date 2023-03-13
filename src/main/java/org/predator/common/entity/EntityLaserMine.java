@@ -18,8 +18,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
+import org.predator.common.PredatorItems;
 
 import java.util.List;
 
@@ -202,7 +203,7 @@ public class EntityLaserMine extends Entity
 
     private void drop()
     {
-        this.world.spawnEntity(new EntityItem(this.world, this.posX, this.posY, this.posZ, new ItemStack(AVP.items().itemProximityMine)));
+        this.world.spawnEntity(new EntityItem(this.world, this.posX, this.posY, this.posZ, new ItemStack(PredatorItems.ITEM_PROXIMITY_MINE)));
         this.setDead();
     }
 

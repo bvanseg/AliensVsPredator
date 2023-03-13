@@ -6,7 +6,8 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.common.ItemHandler;
+import org.alien.common.AlienItems;
+import org.avp.common.AVPItems;
 import org.avp.common.world.Embryo;
 import org.avp.common.world.capability.IOrganism.Organism;
 import org.avp.common.world.capability.IOrganism.Provider;
@@ -65,6 +66,6 @@ public class EntityRoyalFacehugger extends EntityFacehugger
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerRoyalFacehugger);
+        return new ItemStack(AlienItems.SUMMONER_ROYAL_FACEHUGGER);
     }
 }

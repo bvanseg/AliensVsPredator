@@ -6,11 +6,9 @@ import com.asx.mdx.lib.client.Renderers;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
@@ -33,6 +31,7 @@ import org.alien.client.render.tile.RenderHiveResin;
 import org.alien.client.render.tile.plant.RenderGroundFern;
 import org.alien.client.render.tile.plant.RenderTreeFern;
 import org.alien.common.AlienBlocks;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.EntityAcidProjectile;
 import org.alien.common.entity.living.EntityAethon;
@@ -63,7 +62,7 @@ import org.avp.client.render.transform.FaceLocationTransforms;
 import org.avp.client.render.transform.MedpodTransforms;
 import org.avp.client.render.transform.VanillaFaceLocationTransforms;
 import org.avp.common.AVPBlocks;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.block.BlockSkull;
 import org.avp.common.entity.*;
 import org.avp.common.entity.living.EntityCombatSynthetic;
@@ -79,6 +78,7 @@ import org.predator.client.render.entity.living.RenderYautjaWarrior;
 import org.predator.client.render.item.*;
 import org.predator.client.render.tile.RenderStasisMechanism;
 import org.predator.common.PredatorBlocks;
+import org.predator.common.PredatorItems;
 import org.predator.common.entity.*;
 import org.predator.common.entity.living.EntityPredatorHound;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
@@ -91,7 +91,9 @@ import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEnti
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class Renders implements IInitEvent, IPreInitEvent
 {
-    public static Renders instance = new Renders();
+    public static final Renders instance = new Renders();
+
+    private Renders() {}
 
     @Override
     public void pre(FMLPreInitializationEvent event)
@@ -126,13 +128,7 @@ public class Renders implements IInitEvent, IPreInitEvent
             final Item item = Item.getItemFromBlock(block);
             final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(AVP.Properties.DOMAIN + block.getFluid().getName(), "fluid");
 
-            ModelLoader.setCustomMeshDefinition(item, new ItemMeshDefinition() {
-                @Override
-                public ModelResourceLocation getModelLocation(ItemStack stack)
-                {
-                    return modelResourceLocation;
-                }
-            });
+            ModelLoader.setCustomMeshDefinition(item, stack -> modelResourceLocation);
 
             ModelLoader.setCustomStateMapper(block, new StateMapperBase() {
                 @Override
@@ -236,7 +232,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         } 
         else
         {
-            AVP.log().error("Error registerring skull block renderer. Type mismatch: " + block.getTranslationKey());
+            AVP.log().error("Error registering skull block renderer. Type mismatch: {}", block.getTranslationKey());
         }
     }
     
@@ -288,119 +284,119 @@ public class Renders implements IInitEvent, IPreInitEvent
 
     private void registerItemRenderers()
     {
-        Renderers.registerItemRenderer(ItemHandler.itemWristbracer, new RenderItemWristbracer());
-        Renderers.registerItemRenderer(ItemHandler.itemStunBaton, new RenderItemStunBaton());
-        Renderers.registerItemRenderer(ItemHandler.itemWristbracerBlades, new RenderItemWristbracerBlades());
-        Renderers.registerItemRenderer(ItemHandler.itemPlasmaCannon, new RenderItemPlasmaCannon());
-        Renderers.registerItemRenderer(ItemHandler.itemSpear, new RenderItemSpear());
-        Renderers.registerItemRenderer(ItemHandler.itemM240ICU, new RenderItemM240ICU());
-        Renderers.registerItemRenderer(ItemHandler.itemSevastopolFlamethrower, new RenderItemNostromoFlamethrower());
-        Renderers.registerItemRenderer(ItemHandler.itemM41A, new RenderItemM41A());
-        Renderers.registerItemRenderer(ItemHandler.itemM56SG, new RenderItemM56SG());
-        Renderers.registerItemRenderer(ItemHandler.itemAK47, new RenderItemAK47());
-        Renderers.registerItemRenderer(ItemHandler.itemM4, new RenderItemM4());
-        Renderers.registerItemRenderer(ItemHandler.itemPistol, new RenderItem88MOD4());
-        Renderers.registerItemRenderer(ItemHandler.itemSniper, new RenderItemSniper());
-        Renderers.registerItemRenderer(ItemHandler.itemMotionTracker, new RenderItemMotionTracker());
-        Renderers.registerItemRenderer(ItemHandler.itemAPC, new RenderItemAPC());
-        Renderers.registerItemRenderer(ItemHandler.itemGrenade, new RenderItemM40(AVP.resources().models().M40GRENADE));
-        Renderers.registerItemRenderer(ItemHandler.itemIncendiaryGrenade, new RenderItemM40(AVP.resources().models().M40GRENADE_INCENDIARY));
-        Renderers.registerItemRenderer(ItemHandler.summonerSporePod, new RenderItemSporePod());
+        Renderers.registerItemRenderer(PredatorItems.ITEM_WRISTBRACER, new RenderItemWristbracer());
+        Renderers.registerItemRenderer(AVPItems.ITEM_STUN_BATON, new RenderItemStunBaton());
+        Renderers.registerItemRenderer(PredatorItems.ITEM_WRISTBRACER_BLADES, new RenderItemWristbracerBlades());
+        Renderers.registerItemRenderer(PredatorItems.ITEM_PLASMA_CANNON, new RenderItemPlasmaCannon());
+        Renderers.registerItemRenderer(PredatorItems.ITEM_SPEAR, new RenderItemSpear());
+        Renderers.registerItemRenderer(AVPItems.ITEM_M_240_ICU, new RenderItemM240ICU());
+        Renderers.registerItemRenderer(AVPItems.ITEM_SEVASTOPOL_FLAMETHROWER, new RenderItemNostromoFlamethrower());
+        Renderers.registerItemRenderer(AVPItems.ITEM_M41A, new RenderItemM41A());
+        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG, new RenderItemM56SG());
+        Renderers.registerItemRenderer(AVPItems.ITEM_AK47, new RenderItemAK47());
+        Renderers.registerItemRenderer(AVPItems.ITEM_M4, new RenderItemM4());
+        Renderers.registerItemRenderer(AVPItems.ITEM_PISTOL, new RenderItem88MOD4());
+        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER, new RenderItemSniper());
+        Renderers.registerItemRenderer(AVPItems.ITEM_MOTION_TRACKER, new RenderItemMotionTracker());
+        Renderers.registerItemRenderer(AVPItems.ITEM_APC, new RenderItemAPC());
+        Renderers.registerItemRenderer(AVPItems.ITEM_GRENADE, new RenderItemM40(AVP.resources().models().M40GRENADE));
+        Renderers.registerItemRenderer(AVPItems.ITEM_INCENDIARY_GRENADE, new RenderItemM40(AVP.resources().models().M40GRENADE_INCENDIARY));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_SPORE_POD, new RenderItemSporePod());
         
-        Renderers.registerItemRenderer(ItemHandler.itemSupplyChute, new RenderItemSupplyChute());
-        Renderers.registerItemRenderer(ItemHandler.itemSupplyChuteMarines, new RenderItemSupplyChute());
-        Renderers.registerItemRenderer(ItemHandler.itemSupplyChuteSeegson, new RenderItemSupplyChute());
-        Renderers.registerItemRenderer(ItemHandler.rackModule1, new RenderItemNetworkRackModule());
-        Renderers.registerItemRenderer(ItemHandler.rackModule2, new RenderItemNetworkRackModule());
-        Renderers.registerItemRenderer(ItemHandler.rackModule3, new RenderItemNetworkRackModule());
-        Renderers.registerItemRenderer(ItemHandler.rackModule4, new RenderItemNetworkRackModule());
-        Renderers.registerItemRenderer(ItemHandler.rackModule5, new RenderItemNetworkRackModule());
-        Renderers.registerItemRenderer(ItemHandler.rackModule6, new RenderItemNetworkRackModule());
-        Renderers.registerItemRenderer(ItemHandler.rackModule7, new RenderItemNetworkRackModule());
-        Renderers.registerItemRenderer(ItemHandler.rackModule8, new RenderItemNetworkRackModule());
+        Renderers.registerItemRenderer(AVPItems.ITEM_SUPPLY_CHUTE, new RenderItemSupplyChute());
+        Renderers.registerItemRenderer(AVPItems.ITEM_SUPPLY_CHUTE_MARINES, new RenderItemSupplyChute());
+        Renderers.registerItemRenderer(AVPItems.ITEM_SUPPLY_CHUTE_SEEGSON, new RenderItemSupplyChute());
+        Renderers.registerItemRenderer(AVPItems.RACK_MODULE_1, new RenderItemNetworkRackModule());
+        Renderers.registerItemRenderer(AVPItems.RACK_MODULE_2, new RenderItemNetworkRackModule());
+        Renderers.registerItemRenderer(AVPItems.RACK_MODULE_3, new RenderItemNetworkRackModule());
+        Renderers.registerItemRenderer(AVPItems.RACK_MODULE_4, new RenderItemNetworkRackModule());
+        Renderers.registerItemRenderer(AVPItems.RACK_MODULE_5, new RenderItemNetworkRackModule());
+        Renderers.registerItemRenderer(AVPItems.RACK_MODULE_6, new RenderItemNetworkRackModule());
+        Renderers.registerItemRenderer(AVPItems.RACK_MODULE_7, new RenderItemNetworkRackModule());
+        Renderers.registerItemRenderer(AVPItems.RACK_MODULE_8, new RenderItemNetworkRackModule());
 
-        Renderers.registerItemRenderer(ItemHandler.summonerDrone, (new RenderItemSummoner(AVP.resources().models().DRONE_ADVANCED)).setScale(7.5F).setY(6F));
-        Renderers.registerItemRenderer(ItemHandler.summonerDeacon, (new RenderItemSummoner(AVP.resources().models().DEACON)).setScale(7F).setY(4F));
-        Renderers.registerItemRenderer(ItemHandler.summonerDeaconAdult, (new RenderItemSummoner(AVP.resources().models().DEACON_ADULT)).setScale(7F).setY(4F));
-        Renderers.registerItemRenderer(ItemHandler.summonerWarrior, (new RenderItemSummoner(AVP.resources().models().WARRIOR)).setScale(7.5F).setY(9F));
-        Renderers.registerItemRenderer(ItemHandler.summonerRunnerDrone, (new RenderItemSummoner(AVP.resources().models().RUNNER_DRONE)).setScale(7.5F).setY(6F));
-        Renderers.registerItemRenderer(ItemHandler.summonerRunnerWarrior, (new RenderItemSummoner(AVP.resources().models().RUNNER_WARRIOR)).setScale(7.5F).setY(9F));
-        Renderers.registerItemRenderer(ItemHandler.summonerPraetorian, (new RenderItemSummoner(AVP.resources().models().PRAETORIAN)).setScale(7.5F).setY(7.5F));
-        Renderers.registerItemRenderer(ItemHandler.summonerSpitter, (new RenderItemSummoner(AVP.resources().models().SPITTER)).setScale(7.5F).setY(9F));
-        Renderers.registerItemRenderer(ItemHandler.summonerCrusher, (new RenderItemSummoner(AVP.resources().models().CRUSHER)).setScale(7.5F).setY(9.5F));
-        Renderers.registerItemRenderer(ItemHandler.summonerQueen, (new RenderItemSummoner(AVP.resources().models().MATRIARCH)).setScale(7.5F).setY(8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerOvamorph, (new RenderItemSummoner(AVP.resources().models().OVAMORPH)).setScale(20F).setY(-16F));
-        Renderers.registerItemRenderer(ItemHandler.summonerOvamorphGiger, (new RenderItemSummoner(AVP.resources().models().OVAMORPH_GIGER)).setScale(10F).setY(0F));
-        Renderers.registerItemRenderer(ItemHandler.summonerChestburster, (new RenderItemSummoner(AVP.resources().models().CHESTBUSTER)).setScale(9F).setY(3F).setX(5F));
-        Renderers.registerItemRenderer(ItemHandler.summonerFacehugger, (new RenderItemSummoner(AVP.resources().models().FACEHUGGER)).setScale(15F).setY(-8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerRoyalFacehugger, (new RenderItemSummoner(AVP.resources().models().ROYALFACEHUGGER)).setScale(15F).setY(-8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerMarine, (new RenderItemSummoner(AVP.resources().models().MARINE)).setScale(16F).setY(-8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerYautjaWarrior, (new RenderItemSummoner(AVP.resources().models().YAUTJA_WARRIOR)).setScale(7.5F).setY(8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerPredalien, (new RenderItemSummoner(AVP.resources().models().PREDALIEN)).setScale(8F).setY(6F));
-        Renderers.registerItemRenderer(ItemHandler.summonerAqua, (new RenderItemSummoner(AVP.resources().models().NAUTICOMORPH_XENOMORPH)).setScale(7.5F).setY(8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerCombatSynthetic, (new RenderItemSummoner(AVP.resources().models().COMBAT_SYNTHETIC)).setScale(16F).setY(-8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerHammerpede, (new RenderItemSummoner(AVP.resources().models().HAMMERPEDE)).setScale(10.5F).setX(3F));
-        Renderers.registerItemRenderer(ItemHandler.summonerTrilobite, (new RenderItemSummoner(AVP.resources().models().TRILOBITE)).setScale(8F).setY(4F));
-        Renderers.registerItemRenderer(ItemHandler.summonerSpaceJockey, (new RenderItemSummoner(AVP.resources().models().SPACE_JOCKEY)).setScale(10F).setY(0F));
-        Renderers.registerItemRenderer(ItemHandler.summonerEngineer, (new RenderItemSummoner(AVP.resources().models().ENGINEER)).setScale(10F).setY(0F));
-        Renderers.registerItemRenderer(ItemHandler.summonerYautjaBerserker, (new RenderItemSummoner(AVP.resources().models().YAUTJA_BERSERKER)).setScale(7.5F).setY(8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerDeaconShark, (new RenderItemSummoner(AVP.resources().models().DEACON_SHARK)).setScale(7.5F).setY(8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerUltramorph, (new RenderItemSummoner(AVP.resources().models().ULTRAMORPH)).setScale(7.5F).setY(6F));
-        Renderers.registerItemRenderer(ItemHandler.summonerGooMutant, (new RenderItemSummoner(AVP.resources().models().GOO_MUTANT)).setScale(10F).setY(3F));
-        Renderers.registerItemRenderer(ItemHandler.summonerAethon, (new RenderItemSummoner(AVP.resources().models().AETHON)).setScale(7.5F).setY(6F));
-        Renderers.registerItemRenderer(ItemHandler.summonerOctohugger, (new RenderItemSummoner(AVP.resources().models().OCTOHUGGER)).setScale(24F).setY(-4F));
-        Renderers.registerItemRenderer(ItemHandler.summonerBelugaburster, (new RenderItemSummoner(AVP.resources().models().BELUGABURSTER)).setScale(9F).setY(0F).setX(2F));
-        Renderers.registerItemRenderer(ItemHandler.summonerBelugamorph, (new RenderItemSummoner(AVP.resources().models().BELUGAMORPH)).setScale(7.5F).setY(8F));
-        Renderers.registerItemRenderer(ItemHandler.summonerPredalienBurster, (new RenderItemSummoner(AVP.resources().models().CHESTBUSTER_PREDALIEN)).setScale(9F).setY(3F).setX(5F));
-        Renderers.registerItemRenderer(ItemHandler.summonerQueenBurster, (new RenderItemSummoner(AVP.resources().models().CHESTBUSTER_QUEEN)).setScale(9F).setY(5F).setX(5F));
-        Renderers.registerItemRenderer(ItemHandler.summonerRunnerBurster, (new RenderItemSummoner(AVP.resources().models().CHESTBUSTER_RUNNER)).setScale(9F).setY(5F).setX(5F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerBabyhead, (new RenderItemSummoner(AVP.resources().models().BABYHEAD)).setScale(9F).setY(1F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerBatXeno, (new RenderItemSummoner(AVP.resources().models().BAT_XENO)).setScale(7.5F).setY(1F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerBoiler, (new RenderItemSummoner(AVP.resources().models().BOILER)).setScale(9F).setY(1F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerDracoburster, (new RenderItemSummoner(AVP.resources().models().DRACOBURSTER)).setScale(7.5F).setY(6F).setX(3F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerDracoEgg, (new RenderItemSummoner(AVP.resources().models().DRACO_OVAMORPH)).setScale(20F).setY(-18F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerDracomorph, (new RenderItemSummoner(AVP.resources().models().DRACOMORPH)).setScale(6F).setY(10F).setX(3F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerMyceliomorph, (new RenderItemSummoner(AVP.resources().models().MYCELIOMORPH)).setScale(9F).setY(4F).setX(3F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerPantheramorph, (new RenderItemSummoner(AVP.resources().models().PANTHERAMORPH)).setScale(7.5F).setY(4F).setX(3F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerPredatorHound, (new RenderItemSummoner(AVP.resources().models().PREDATOR_HOUND)).setScale(12F).setY(-3F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerUrsuidae, (new RenderItemSummoner(AVP.resources().models().URSUIDAE)).setScale(14F).setY(-8F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerVardaMonkey, (new RenderItemSummoner(AVP.resources().models().VARDA_MONKEY)).setScale(16F).setY(-14F));
-        Renderers.registerItemRenderer(ItemHandler.Experimental.summonerYautjaMutant, (new RenderItemSummoner(AVP.resources().models().MUTANT_YAUTJA)).setScale(9F).setY(6F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_DRONE, (new RenderItemSummoner(AVP.resources().models().DRONE_ADVANCED)).setScale(7.5F).setY(6F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_DEACON, (new RenderItemSummoner(AVP.resources().models().DEACON)).setScale(7F).setY(4F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_DEACON_ADULT, (new RenderItemSummoner(AVP.resources().models().DEACON_ADULT)).setScale(7F).setY(4F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_WARRIOR, (new RenderItemSummoner(AVP.resources().models().WARRIOR)).setScale(7.5F).setY(9F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_RUNNER_DRONE, (new RenderItemSummoner(AVP.resources().models().RUNNER_DRONE)).setScale(7.5F).setY(6F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_RUNNER_WARRIOR, (new RenderItemSummoner(AVP.resources().models().RUNNER_WARRIOR)).setScale(7.5F).setY(9F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_PRAETORIAN, (new RenderItemSummoner(AVP.resources().models().PRAETORIAN)).setScale(7.5F).setY(7.5F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_SPITTER, (new RenderItemSummoner(AVP.resources().models().SPITTER)).setScale(7.5F).setY(9F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_CRUSHER, (new RenderItemSummoner(AVP.resources().models().CRUSHER)).setScale(7.5F).setY(9.5F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_QUEEN, (new RenderItemSummoner(AVP.resources().models().MATRIARCH)).setScale(7.5F).setY(8F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_OVAMORPH, (new RenderItemSummoner(AVP.resources().models().OVAMORPH)).setScale(20F).setY(-16F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_OVAMORPH_GIGER, (new RenderItemSummoner(AVP.resources().models().OVAMORPH_GIGER)).setScale(10F).setY(0F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_CHESTBURSTER, (new RenderItemSummoner(AVP.resources().models().CHESTBUSTER)).setScale(9F).setY(3F).setX(5F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_FACEHUGGER, (new RenderItemSummoner(AVP.resources().models().FACEHUGGER)).setScale(15F).setY(-8F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_ROYAL_FACEHUGGER, (new RenderItemSummoner(AVP.resources().models().ROYALFACEHUGGER)).setScale(15F).setY(-8F));
+        Renderers.registerItemRenderer(AVPItems.SUMMONER_MARINE, (new RenderItemSummoner(AVP.resources().models().MARINE)).setScale(16F).setY(-8F));
+        Renderers.registerItemRenderer(PredatorItems.SUMMONER_YAUTJA_WARRIOR, (new RenderItemSummoner(AVP.resources().models().YAUTJA_WARRIOR)).setScale(7.5F).setY(8F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_PREDALIEN, (new RenderItemSummoner(AVP.resources().models().PREDALIEN)).setScale(8F).setY(6F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_AQUA, (new RenderItemSummoner(AVP.resources().models().NAUTICOMORPH_XENOMORPH)).setScale(7.5F).setY(8F));
+        Renderers.registerItemRenderer(AVPItems.SUMMONER_COMBAT_SYNTHETIC, (new RenderItemSummoner(AVP.resources().models().COMBAT_SYNTHETIC)).setScale(16F).setY(-8F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_HAMMERPEDE, (new RenderItemSummoner(AVP.resources().models().HAMMERPEDE)).setScale(10.5F).setX(3F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_TRILOBITE, (new RenderItemSummoner(AVP.resources().models().TRILOBITE)).setScale(8F).setY(4F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_SPACE_JOCKEY, (new RenderItemSummoner(AVP.resources().models().SPACE_JOCKEY)).setScale(10F).setY(0F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_ENGINEER, (new RenderItemSummoner(AVP.resources().models().ENGINEER)).setScale(10F).setY(0F));
+        Renderers.registerItemRenderer(PredatorItems.SUMMONER_YAUTJA_BERSERKER, (new RenderItemSummoner(AVP.resources().models().YAUTJA_BERSERKER)).setScale(7.5F).setY(8F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_DEACON_SHARK, (new RenderItemSummoner(AVP.resources().models().DEACON_SHARK)).setScale(7.5F).setY(8F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_ULTRAMORPH, (new RenderItemSummoner(AVP.resources().models().ULTRAMORPH)).setScale(7.5F).setY(6F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_GOO_MUTANT, (new RenderItemSummoner(AVP.resources().models().GOO_MUTANT)).setScale(10F).setY(3F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_AETHON, (new RenderItemSummoner(AVP.resources().models().AETHON)).setScale(7.5F).setY(6F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_OCTOHUGGER, (new RenderItemSummoner(AVP.resources().models().OCTOHUGGER)).setScale(24F).setY(-4F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_BELUGABURSTER, (new RenderItemSummoner(AVP.resources().models().BELUGABURSTER)).setScale(9F).setY(0F).setX(2F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_BELUGAMORPH, (new RenderItemSummoner(AVP.resources().models().BELUGAMORPH)).setScale(7.5F).setY(8F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_PREDALIEN_BURSTER, (new RenderItemSummoner(AVP.resources().models().CHESTBUSTER_PREDALIEN)).setScale(9F).setY(3F).setX(5F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_QUEEN_BURSTER, (new RenderItemSummoner(AVP.resources().models().CHESTBUSTER_QUEEN)).setScale(9F).setY(5F).setX(5F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_RUNNER_BURSTER, (new RenderItemSummoner(AVP.resources().models().CHESTBUSTER_RUNNER)).setScale(9F).setY(5F).setX(5F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_BABYHEAD, (new RenderItemSummoner(AVP.resources().models().BABYHEAD)).setScale(9F).setY(1F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_BAT_XENO, (new RenderItemSummoner(AVP.resources().models().BAT_XENO)).setScale(7.5F).setY(1F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_BOILER, (new RenderItemSummoner(AVP.resources().models().BOILER)).setScale(9F).setY(1F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_DRACOBURSTER, (new RenderItemSummoner(AVP.resources().models().DRACOBURSTER)).setScale(7.5F).setY(6F).setX(3F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_DRACO_EGG, (new RenderItemSummoner(AVP.resources().models().DRACO_OVAMORPH)).setScale(20F).setY(-18F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_DRACOMORPH, (new RenderItemSummoner(AVP.resources().models().DRACOMORPH)).setScale(6F).setY(10F).setX(3F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_MYCELIOMORPH, (new RenderItemSummoner(AVP.resources().models().MYCELIOMORPH)).setScale(9F).setY(4F).setX(3F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_PANTHERAMORPH, (new RenderItemSummoner(AVP.resources().models().PANTHERAMORPH)).setScale(7.5F).setY(4F).setX(3F));
+        Renderers.registerItemRenderer(PredatorItems.SUMMONER_PREDATOR_HOUND, (new RenderItemSummoner(AVP.resources().models().PREDATOR_HOUND)).setScale(12F).setY(-3F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_URSUIDAE, (new RenderItemSummoner(AVP.resources().models().URSUIDAE)).setScale(14F).setY(-8F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_VARDA_MONKEY, (new RenderItemSummoner(AVP.resources().models().VARDA_MONKEY)).setScale(16F).setY(-14F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_YAUTJA_MUTANT, (new RenderItemSummoner(AVP.resources().models().MUTANT_YAUTJA)).setScale(9F).setY(6F));
 
         MapModelTexture<Model88MOD4> _88MOD4 = AVP.resources().models()._88MOD4;
-        Renderers.registerItemRenderer(ItemHandler.itemPistolBarrel, new RenderItem88Mod4Barrel(_88MOD4, _88MOD4.getModel().getBarrel()));
-        Renderers.registerItemRenderer(ItemHandler.itemPistolAction, new RenderItem88Mod4Action(_88MOD4, _88MOD4.getModel().getAction()));
-        Renderers.registerItemRenderer(ItemHandler.itemPistolStock, new RenderItem88Mod4Stock(_88MOD4, _88MOD4.getModel().getStock()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_PISTOL_BARREL, new RenderItem88Mod4Barrel(_88MOD4, _88MOD4.getModel().getBarrel()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_PISTOL_ACTION, new RenderItem88Mod4Action(_88MOD4, _88MOD4.getModel().getAction()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_PISTOL_STOCK, new RenderItem88Mod4Stock(_88MOD4, _88MOD4.getModel().getStock()));
 
         MapModelTexture<ModelAK47> AK47 = AVP.resources().models().AK47;
-        Renderers.registerItemRenderer(ItemHandler.itemAK47Barrel, new RenderItemAK47Barrel(AK47, AK47.getModel().getBarrel()));
-        Renderers.registerItemRenderer(ItemHandler.itemAK47Action, new RenderItemAK47Action(AK47, AK47.getModel().getAction()));
-        Renderers.registerItemRenderer(ItemHandler.itemAK47Stock, new RenderItemAK47Stock(AK47, AK47.getModel().getStock()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_AK47_BARREL, new RenderItemAK47Barrel(AK47, AK47.getModel().getBarrel()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_AK47_ACTION, new RenderItemAK47Action(AK47, AK47.getModel().getAction()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_AK47_STOCK, new RenderItemAK47Stock(AK47, AK47.getModel().getStock()));
 
         MapModelTexture<ModelM4> M4 = AVP.resources().models().M4;
-        Renderers.registerItemRenderer(ItemHandler.itemM4Barrel, new RenderItemM4Barrel(M4, M4.getModel().getBarrel()));
-        Renderers.registerItemRenderer(ItemHandler.itemM4Action, new RenderItemM4Action(M4, M4.getModel().getAction()));
-        Renderers.registerItemRenderer(ItemHandler.itemM4Stock, new RenderItemM4Stock(M4, M4.getModel().getStock()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M4_BARREL, new RenderItemM4Barrel(M4, M4.getModel().getBarrel()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M4_ACTION, new RenderItemM4Action(M4, M4.getModel().getAction()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M4_STOCK, new RenderItemM4Stock(M4, M4.getModel().getStock()));
 
         MapModelTexture<ModelM56SG> M56SG = AVP.resources().models().M56SG;
-        Renderers.registerItemRenderer(ItemHandler.itemM56SGAction, new RenderItemM56SGAction(M56SG, M56SG.getModel().getAction()));
-        Renderers.registerItemRenderer(ItemHandler.itemM56SGAimingModule, new RenderItemM56SGAimingModule(M56SG, M56SG.getModel().getAccessories()));
-        Renderers.registerItemRenderer(ItemHandler.itemM56SGBarrel, new RenderItemM56SGBarrel(M56SG, M56SG.getModel().getBarrel()));
-        Renderers.registerItemRenderer(ItemHandler.itemM56SGStock, new RenderItemM56SGStock(M56SG, M56SG.getModel().getStock()));
-        Renderers.registerItemRenderer(ItemHandler.itemM56SGSupportFrame, new RenderItemM56SGSupportFrame(M56SG, M56SG.getModel().getPeripherals()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG_ACTION, new RenderItemM56SGAction(M56SG, M56SG.getModel().getAction()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG_AIMING_MODULE, new RenderItemM56SGAimingModule(M56SG, M56SG.getModel().getAccessories()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG_BARREL, new RenderItemM56SGBarrel(M56SG, M56SG.getModel().getBarrel()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG_STOCK, new RenderItemM56SGStock(M56SG, M56SG.getModel().getStock()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG_SUPPORT_FRAME, new RenderItemM56SGSupportFrame(M56SG, M56SG.getModel().getPeripherals()));
 
         MapModelTexture<ModelM41A> M41A = AVP.resources().models().M41A;
-        Renderers.registerItemRenderer(ItemHandler.itemM41AAction, new RenderItemM41AAction(M41A, M41A.getModel().getAction()));
-        Renderers.registerItemRenderer(ItemHandler.itemM41ABarrel, new RenderItemM41ABarrel(M41A, M41A.getModel().getBarrel()));
-        Renderers.registerItemRenderer(ItemHandler.itemM41AStock, new RenderItemM41AStock(M41A, M41A.getModel().getStock()));
-        Renderers.registerItemRenderer(ItemHandler.itemM41APeripherals, new RenderItemM41APeripherals(M41A, M41A.getModel().getPeripherals()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M41A_ACTION, new RenderItemM41AAction(M41A, M41A.getModel().getAction()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M41A_BARREL, new RenderItemM41ABarrel(M41A, M41A.getModel().getBarrel()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M41A_STOCK, new RenderItemM41AStock(M41A, M41A.getModel().getStock()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_M41A_PERIPHERALS, new RenderItemM41APeripherals(M41A, M41A.getModel().getPeripherals()));
 
         MapModelTexture<ModelSniper> SNIPER = AVP.resources().models().SNIPER;
-        Renderers.registerItemRenderer(ItemHandler.itemSniperBarrel, new RenderItemSniperBarrel(SNIPER, SNIPER.getModel().getBarrel()));
-        Renderers.registerItemRenderer(ItemHandler.itemSniperAction, new RenderItemSniperAction(SNIPER, SNIPER.getModel().getAction()));
-        Renderers.registerItemRenderer(ItemHandler.itemSniperScope, new RenderItemSniperScope(SNIPER, SNIPER.getModel().getScope()));
-        Renderers.registerItemRenderer(ItemHandler.itemSniperStock, new RenderItemSniperStock(SNIPER, SNIPER.getModel().getStock()));
-        Renderers.registerItemRenderer(ItemHandler.itemSniperPeripherals, new RenderItemSniperPeripherals(SNIPER, SNIPER.getModel().getPeripherals()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER_BARREL, new RenderItemSniperBarrel(SNIPER, SNIPER.getModel().getBarrel()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER_ACTION, new RenderItemSniperAction(SNIPER, SNIPER.getModel().getAction()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER_SCOPE, new RenderItemSniperScope(SNIPER, SNIPER.getModel().getScope()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER_STOCK, new RenderItemSniperStock(SNIPER, SNIPER.getModel().getStock()));
+        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER_PERIPHERALS, new RenderItemSniperPeripherals(SNIPER, SNIPER.getModel().getPeripherals()));
     }
 
     private void registerTileEntitySpecialRenderers()

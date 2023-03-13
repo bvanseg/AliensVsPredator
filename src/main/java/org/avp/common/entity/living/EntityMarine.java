@@ -17,8 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.client.AVPSounds;
+import org.avp.common.AVPItems;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
 import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
@@ -174,7 +174,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerMarine);
+        return new ItemStack(AVPItems.SUMMONER_MARINE);
     }
 
     @Override

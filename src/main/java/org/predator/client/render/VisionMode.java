@@ -25,18 +25,6 @@ public enum VisionMode
             LightmapUpdateEvent.instance.gammaValue = 0F;
             Draw.drawOverlay(AVP.resources().BLUR_CELTIC_HUD, 1F, 0F, 0F, 1F);
         }
-
-        @Override
-        public void renderEntityPre(RenderLivingEvent.Pre event)
-        {
-            ;
-        }
-
-        @Override
-        public void renderEntityPost(RenderLivingEvent.Post event)
-        {
-            ;
-        }
     },
     ELECTROMAGNETIC(1, "Electromagnetic", 0xFF00FF00)
     {
@@ -149,7 +137,7 @@ public enum VisionMode
         }
     };
 
-    public int id, color;
+    protected int id, color;
     public String modeName;
 
     VisionMode(int id, String modeName, int statusColor)
@@ -166,7 +154,7 @@ public enum VisionMode
 
     public abstract void render(Object... data);
 
-    public abstract void renderEntityPre(RenderLivingEvent.Pre event);
+    public void renderEntityPre(RenderLivingEvent.Pre event) { /* Do nothing */ }
 
-    public abstract void renderEntityPost(RenderLivingEvent.Post event);
+    public void renderEntityPost(RenderLivingEvent.Post event) { /* Do nothing */ }
 }

@@ -12,7 +12,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.util.Constants;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.api.power.IVoltageProvider;
 import org.avp.common.inventory.ContainerRepulsionGenerator;
 
@@ -26,7 +26,7 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
     public float                                   speed;
     public static final float                      MAX_SPEED        = 10F;
     private static final float                     SPEED_MULTIPLIER = 0.05F;
-    private final Item                             magnet           = AVP.items().neodymiumMagnet;
+    private final Item                             magnet           = AVPItems.ITEM_NEODYMIUM_MAGNET;
     private ArrayList<HashMap<Integer, ItemStack>> sets             = new ArrayList<HashMap<Integer, ItemStack>>();
     private int                                    fullSets;
     private int                                    emptySets;

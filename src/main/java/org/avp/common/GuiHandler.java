@@ -14,6 +14,7 @@ import org.avp.client.gui.*;
 import org.avp.common.inventory.ContainerWristbracer;
 import org.avp.common.tile.*;
 import org.predator.client.gui.GuiWristbracer;
+import org.predator.common.PredatorItems;
 import org.predator.common.item.ItemWristbracer;
 
 public class GuiHandler implements IGuiHandler, IInitEvent
@@ -102,7 +103,7 @@ public class GuiHandler implements IGuiHandler, IInitEvent
         {
             Item item = player.getHeldItemMainhand().getItem();
 
-            if (item == AVP.items().itemWristbracer)
+            if (item == PredatorItems.ITEM_WRISTBRACER)
             {
                 return new GuiWristbracer(player, (ContainerWristbracer) ((ItemWristbracer) item).getNewContainer(player));
             }

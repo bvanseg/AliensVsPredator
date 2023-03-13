@@ -80,7 +80,7 @@ public class VardaGenLakes extends WorldGenerator
             {
                 for (int rY = 0; rY < 8; rY++)
                 {
-                    boolean var33 = (var6[((rX * 16 + rZ) * 8 + rY)] == false) && (((rX < 15) && (var6[(((rX + 1) * 16 + rZ) * 8 + rY)] != false)) || ((rX > 0) && (var6[(((rX - 1) * 16 + rZ) * 8 + rY)] != false)) || ((rZ < 15) && (var6[((rX * 16 + rZ + 1) * 8 + rY)] != false)) || ((rZ > 0) && (var6[((rX * 16 + (rZ - 1)) * 8 + rY)] != false)) || ((rY < 7) && (var6[((rX * 16 + rZ) * 8 + rY + 1)] != false)) || ((rY > 0) && (var6[((rX * 16 + rZ) * 8 + (rY - 1))] != false)));
+                    boolean var33 = (!var6[((rX * 16 + rZ) * 8 + rY)]) && (((rX < 15) && (var6[(((rX + 1) * 16 + rZ) * 8 + rY)])) || ((rX > 0) && (var6[(((rX - 1) * 16 + rZ) * 8 + rY)])) || ((rZ < 15) && (var6[((rX * 16 + rZ + 1) * 8 + rY)])) || ((rZ > 0) && (var6[((rX * 16 + (rZ - 1)) * 8 + rY)])) || ((rY < 7) && (var6[((rX * 16 + rZ) * 8 + rY + 1)])) || ((rY > 0) && (var6[((rX * 16 + rZ) * 8 + (rY - 1))])));
 
                     if (!var33)
                         continue;
@@ -107,7 +107,7 @@ public class VardaGenLakes extends WorldGenerator
             {
                 for (int rY = 0; rY < 8; rY++)
                 {
-                    if (var6[((rX * 16 + rZ) * 8 + rY)] == false)
+                    if (!var6[((rX * 16 + rZ) * 8 + rY)])
                         continue;
                     world.setBlockState(position.add(rX, rY, rZ), rY >= 4 ? Blocks.AIR.getDefaultState() : this.state);
                 }
@@ -124,7 +124,7 @@ public class VardaGenLakes extends WorldGenerator
                     BlockPos rPos = position.add(rX, rY, rZ);
                     BlockPos rPosBelow = rPos.add(0, -1, 0);
                     
-                    if ((var6[((rX * 16 + rZ) * 8 + rY)] == false) || (world.getBlockState(rPosBelow) != Blocks.DIRT.getDefaultState()) || (world.getLightFor(EnumSkyBlock.SKY, rPos) <= 0))
+                    if ((!var6[((rX * 16 + rZ) * 8 + rY)]) || (world.getBlockState(rPosBelow) != Blocks.DIRT.getDefaultState()) || (world.getLightFor(EnumSkyBlock.SKY, rPos) <= 0))
                         continue;
                     
                     world.setBlockState(rPosBelow, AVPBlocks.UNIDIRT.getDefaultState());
@@ -142,7 +142,7 @@ public class VardaGenLakes extends WorldGenerator
                     for (int rY = 0; rY < 8; rY++)
                     {
                         BlockPos rPos = position.add(rX, rY, rZ);
-                        boolean flag = (var6[((rX * 16 + rZ) * 8 + rY)] == false) && (((rX < 15) && (var6[(((rX + 1) * 16 + rZ) * 8 + rY)] != false)) || ((rX > 0) && (var6[(((rX - 1) * 16 + rZ) * 8 + rY)] != false)) || ((rZ < 15) && (var6[((rX * 16 + rZ + 1) * 8 + rY)] != false)) || ((rZ > 0) && (var6[((rX * 16 + (rZ - 1)) * 8 + rY)] != false)) || ((rY < 7) && (var6[((rX * 16 + rZ) * 8 + rY + 1)] != false)) || ((rY > 0) && (var6[((rX * 16 + rZ) * 8 + (rY - 1))] != false)));
+                        boolean flag = (!var6[((rX * 16 + rZ) * 8 + rY)]) && (((rX < 15) && (var6[(((rX + 1) * 16 + rZ) * 8 + rY)])) || ((rX > 0) && (var6[(((rX - 1) * 16 + rZ) * 8 + rY)])) || ((rZ < 15) && (var6[((rX * 16 + rZ + 1) * 8 + rY)])) || ((rZ > 0) && (var6[((rX * 16 + (rZ - 1)) * 8 + rY)])) || ((rY < 7) && (var6[((rX * 16 + rZ) * 8 + rY + 1)])) || ((rY > 0) && (var6[((rX * 16 + rZ) * 8 + (rY - 1))])));
 
                         if ((!flag) || ((rY >= 4) && (rand.nextInt(2) == 0)) || (!world.getBlockState(rPos).getMaterial().isSolid()))
                             continue;

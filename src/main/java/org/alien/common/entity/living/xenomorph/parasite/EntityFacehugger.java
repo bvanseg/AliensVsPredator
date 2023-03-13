@@ -14,9 +14,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.EntityAIFacehuggerLeap;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
@@ -105,7 +106,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerFacehugger);
+        return new ItemStack(AlienItems.SUMMONER_FACEHUGGER);
     }
     
     @Override

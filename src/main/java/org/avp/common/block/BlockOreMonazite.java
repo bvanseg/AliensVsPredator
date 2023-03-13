@@ -4,7 +4,7 @@ import com.asx.mdx.lib.world.block.BlockMaterial;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
 
 import java.util.Random;
 
@@ -20,7 +20,7 @@ public class BlockOreMonazite extends BlockMaterial
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return AVP.items().neodymium;
+        return AVPItems.ITEM_NEODYMIUM;
     }
     
     @Override

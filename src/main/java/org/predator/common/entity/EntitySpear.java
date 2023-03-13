@@ -8,10 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.avp.common.entity.EntityItemStackProjectile;
 import org.avp.common.entity.EntityProjectile;
+import org.predator.common.PredatorItems;
 
 public class EntitySpear extends EntityItemStackProjectile
 {
@@ -32,7 +33,7 @@ public class EntitySpear extends EntityItemStackProjectile
     {
         this(world);
         this.shootingEntity = entityliving;
-        this.setItemstack(new ItemStack(AVP.items().itemSpear));
+        this.setItemstack(new ItemStack(PredatorItems.ITEM_SPEAR));
         this.setLocationAndAngles(entityliving.posX, entityliving.posY + entityliving.getEyeHeight(), entityliving.posZ, entityliving.rotationYaw, entityliving.rotationPitch);
         this.posX -= MathHelper.cos((rotationYaw / 180F) * 3.141593F) * 0.16F;
         this.posY -= 0.1D;

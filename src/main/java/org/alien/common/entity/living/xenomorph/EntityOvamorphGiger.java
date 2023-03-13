@@ -9,8 +9,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 
 public class EntityOvamorphGiger extends EntityOvamorph
 {
@@ -93,7 +94,7 @@ public class EntityOvamorphGiger extends EntityOvamorph
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerOvamorph);
+        return new ItemStack(AlienItems.SUMMONER_OVAMORPH);
     }
 
     @Override

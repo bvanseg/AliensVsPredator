@@ -7,8 +7,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 
 public class EntityBoiler extends SpeciesXenomorph
 {
@@ -61,6 +62,6 @@ public class EntityBoiler extends SpeciesXenomorph
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.Experimental.summonerBoiler);
+        return new ItemStack(AlienItems.SUMMONER_BOILER);
     }
 }

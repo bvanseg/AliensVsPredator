@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.gui.GuiBlastdoor;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.item.ItemMaintenanceJack;
 import org.avp.common.tile.TileEntityBlastdoor;
 import org.lib.BlockRegistryUtil;
@@ -61,7 +61,7 @@ public class BlockBlastdoor extends Block
 
             if (blastdoor != null)
             {
-                if (blastdoor.isOperational() && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == ItemHandler.securityTuner)
+                if (blastdoor.isOperational() && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() == AVPItems.SECURITY_TUNER)
                 {
                     if (blastdoor.playerHoldingRequiredSecurityTuner(player))
                     {

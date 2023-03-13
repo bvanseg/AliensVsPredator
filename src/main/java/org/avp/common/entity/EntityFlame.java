@@ -19,8 +19,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.avp.common.AVPBlocks;
+import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.avp.common.item.firearm.ItemFlamethrower;
 import org.avp.common.item.firearm.ItemM240IncineratorUnit;
@@ -77,7 +77,7 @@ public class EntityFlame extends EntityThrowable
 
         if (this.getThrower() != null && this.getThrower().getHeldItemMainhand() != null)
         {
-            if (this.getThrower().getHeldItemMainhand().getItem() == AVP.items().itemM240ICU || this.getThrower().getHeldItemMainhand().getItem() == AVP.items().itemSevastopolFlamethrower)
+            if (this.getThrower().getHeldItemMainhand().getItem() == AVPItems.ITEM_M_240_ICU || this.getThrower().getHeldItemMainhand().getItem() == AVPItems.ITEM_SEVASTOPOL_FLAMETHROWER)
             {
                 ItemFlamethrower flamethrower = (ItemFlamethrower) this.getThrower().getHeldItemMainhand().getItem();
 

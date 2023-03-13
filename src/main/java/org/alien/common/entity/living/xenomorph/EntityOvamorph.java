@@ -15,13 +15,14 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
 import org.avp.common.network.packet.client.PacketOvamorphContainsFacehugger;
 import org.avp.common.world.hive.HiveMember;
 
@@ -268,6 +269,6 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerOvamorph);
+        return new ItemStack(AlienItems.SUMMONER_OVAMORPH);
     }
 }

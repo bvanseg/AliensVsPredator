@@ -10,7 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
+import org.predator.common.PredatorItems;
 import org.predator.common.entity.EntityShuriken;
 
 public class ItemShuriken extends HookedItem
@@ -22,7 +23,7 @@ public class ItemShuriken extends HookedItem
         {
             EntityPlayer player = (EntityPlayer) entityLiving;
             
-            if (player.inventory.hasItemStack(new ItemStack(AVP.items().itemShuriken)))
+            if (player.inventory.hasItemStack(new ItemStack(PredatorItems.ITEM_SHURIKEN)))
             {
                 int remainingCount = this.getMaxItemUseDuration(itemstack) - timeLeft;
                 float velocity = remainingCount / 20.0F;
@@ -60,7 +61,7 @@ public class ItemShuriken extends HookedItem
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        if (player.inventory.hasItemStack(new ItemStack(AVP.items().itemShuriken)))
+        if (player.inventory.hasItemStack(new ItemStack(PredatorItems.ITEM_SHURIKEN)))
         {
             player.setActiveHand(hand);
         }

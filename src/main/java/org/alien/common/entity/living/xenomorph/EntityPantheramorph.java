@@ -4,8 +4,9 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.world.hive.HiveMember;
 
 public class EntityPantheramorph extends SpeciesXenomorph implements HiveMember
@@ -27,6 +28,6 @@ public class EntityPantheramorph extends SpeciesXenomorph implements HiveMember
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.Experimental.summonerPantheramorph);
+        return new ItemStack(AlienItems.SUMMONER_PANTHERAMORPH);
     }
 }

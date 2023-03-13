@@ -5,8 +5,10 @@ import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.network.packet.server.PacketOpenContainer;
 import org.predator.client.gui.GuiWristbracer;
+import org.predator.common.PredatorItems;
 
 public class InputHandlerWristbracer implements IInputHandler
 {
@@ -19,7 +21,7 @@ public class InputHandlerWristbracer implements IInputHandler
         {
             if (!(Game.minecraft().currentScreen instanceof GuiWristbracer))
             {
-                if (Game.minecraft().player.getHeldItemMainhand() != null && Game.minecraft().player.getHeldItemMainhand().getItem() == AVP.items().itemWristbracer)
+                if (Game.minecraft().player.getHeldItemMainhand() != null && Game.minecraft().player.getHeldItemMainhand().getItem() == PredatorItems.ITEM_WRISTBRACER)
                 {
                     AVP.network().sendToServer(new PacketOpenContainer(AVP.interfaces().GUI_WRISTBRACER));
                 }

@@ -10,7 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
+import org.predator.common.PredatorItems;
 import org.predator.common.entity.EntitySmartDisc;
 
 public class ItemDisc extends HookedItem
@@ -22,7 +23,7 @@ public class ItemDisc extends HookedItem
         {
             EntityPlayer player = (EntityPlayer) living;
 
-            if (player.inventory.hasItemStack(new ItemStack(AVP.items().itemDisc)))
+            if (player.inventory.hasItemStack(new ItemStack(PredatorItems.ITEM_DISC)))
             {
                 int remainingCount = this.getMaxItemUseDuration(itemstack) - itemInUseCount;
                 float charge = remainingCount / 20.0F;
@@ -63,7 +64,7 @@ public class ItemDisc extends HookedItem
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        if (playerIn.inventory.hasItemStack(new ItemStack(AVP.items().itemDisc)))
+        if (playerIn.inventory.hasItemStack(new ItemStack(PredatorItems.ITEM_DISC)))
         {
             playerIn.setActiveHand(hand);
         }

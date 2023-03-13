@@ -14,8 +14,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.entity.ai.helpers.EntityExtendedLookHelper;
@@ -336,6 +337,6 @@ public class EntityDeaconShark extends SpeciesAlien
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerDeaconShark);
+        return new ItemStack(AlienItems.SUMMONER_DEACON_SHARK);
     }
 }

@@ -17,8 +17,9 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 
 import java.util.ArrayList;
@@ -154,6 +155,6 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerHammerpede);
+        return new ItemStack(AlienItems.SUMMONER_HAMMERPEDE);
     }
 }

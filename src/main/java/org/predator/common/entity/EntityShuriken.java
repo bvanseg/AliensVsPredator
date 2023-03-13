@@ -8,10 +8,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.avp.common.entity.EntityItemStackProjectile;
 import org.avp.common.entity.EntityProjectile;
+import org.predator.common.PredatorItems;
 
 public class EntityShuriken extends EntityItemStackProjectile
 {
@@ -21,7 +22,7 @@ public class EntityShuriken extends EntityItemStackProjectile
     {
         super(world);
         this.setSize(0.5F, 0.5F);
-        this.setItemstack(new ItemStack(AVP.items().itemShuriken));
+        this.setItemstack(new ItemStack(PredatorItems.ITEM_SHURIKEN));
     }
 
     public EntityShuriken(World world, double posX, double posY, double posZ)

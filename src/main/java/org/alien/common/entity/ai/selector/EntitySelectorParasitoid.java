@@ -8,11 +8,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.world.capability.IOrganism.Organism;
 import org.avp.common.world.capability.IOrganism.Provider;
+import org.predator.common.PredatorItems;
 
 import java.util.ArrayList;
 
@@ -24,8 +25,8 @@ public class EntitySelectorParasitoid implements Predicate<EntityLivingBase>
 
     static
     {
-        blacklistedHelmets.add(ItemHandler.biomaskCeltic);
-        blacklistedHelmets.add(ItemHandler.mk50helmet);
+        blacklistedHelmets.add(PredatorItems.BIOMASK_CELTIC);
+        blacklistedHelmets.add(AVPItems.MK_50_HELMET);
     }
 
     @Override

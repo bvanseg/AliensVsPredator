@@ -8,7 +8,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
-import org.avp.common.ItemHandler;
+import org.alien.common.AlienItems;
+import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.world.hive.HiveMember;
 
@@ -69,6 +70,6 @@ public class EntityCrusher extends EntityPraetorian implements IMaturable, HiveM
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerCrusher);
+        return new ItemStack(AlienItems.SUMMONER_CRUSHER);
     }
 }

@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.AVPSounds;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 
 import java.util.Random;
 
@@ -60,9 +60,9 @@ public class ItemStunBaton extends ItemSword
             return true;
         }
 
-        if (Inventories.playerHas(ItemHandler.itemChargePack, player))
+        if (Inventories.playerHas(AVPItems.ITEM_CHARGE_PACK, player))
         {
-            ItemStack ammoStack = player.inventory.getStackInSlot(Inventories.getSlotForItemIn(ItemHandler.itemChargePack, player.inventory));
+            ItemStack ammoStack = player.inventory.getStackInSlot(Inventories.getSlotForItemIn(AVPItems.ITEM_CHARGE_PACK, player.inventory));
 
             if (ammoStack != null && ammoStack.getItem() != null)
             {

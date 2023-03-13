@@ -5,8 +5,9 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
 
 import java.util.ArrayList;
 
@@ -66,7 +67,7 @@ public class EntityAIFindJelly extends EntityAIBase
             {
                 ItemStack stack = randomJelly.getItem();
 
-                if (stack.getItem() == AVP.items().itemRoyalJelly)
+                if (stack.getItem() == AlienItems.ITEM_ROYAL_JELLY)
                 {
                     if (this.xenomorph.canMoveToJelly() && this.xenomorph.isDependantOnHive())
                     {

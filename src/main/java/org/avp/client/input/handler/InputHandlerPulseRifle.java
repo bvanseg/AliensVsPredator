@@ -4,6 +4,7 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.network.packet.server.PacketLaunchGrenade;
 
 public class InputHandlerPulseRifle implements IInputHandler
@@ -15,7 +16,7 @@ public class InputHandlerPulseRifle implements IInputHandler
     {
         ItemStack current = Game.minecraft().player.getHeldItemMainhand();
 
-        if (current != null && current.getItem() == AVP.items().itemM41A)
+        if (current != null && current.getItem() == AVPItems.ITEM_M41A)
         {
             if (AVP.keybinds().specialPrimary.isPressed())
             {

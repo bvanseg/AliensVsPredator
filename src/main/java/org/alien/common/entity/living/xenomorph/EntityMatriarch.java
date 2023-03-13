@@ -19,13 +19,14 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 import org.alien.client.AlienSounds;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.EntityAIFindJelly;
 import org.alien.common.entity.ai.EntityAIPathFindToHive;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.AVP;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.network.packet.server.PacketSpawnEntity;
@@ -338,7 +339,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerQueen);
+        return new ItemStack(AlienItems.SUMMONER_QUEEN);
     }
 
 	@Override

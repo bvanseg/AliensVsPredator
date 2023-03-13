@@ -14,12 +14,14 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.inventory.ContainerAssembler;
 import org.avp.common.item.crafting.AssemblyManager;
+import org.predator.common.PredatorItems;
 
 public class TileEntityAssembler extends TileEntity implements IInventory, ITickable
 {
-    private Item               randomItem  = AVP.items().biomaskCeltic;
+    private Item               randomItem  = PredatorItems.BIOMASK_CELTIC;
     private ItemStack[]        items       = new ItemStack[28];
     private ItemStack          previousTickStack;
     public int                 clickAmount = 0;

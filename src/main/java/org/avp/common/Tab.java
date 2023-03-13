@@ -5,8 +5,10 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.alien.common.AlienItems;
 import org.avp.AVP;
 import org.predator.common.PredatorBlocks;
+import org.predator.common.PredatorItems;
 
 public class Tab implements IPreInitEvent
 {
@@ -16,7 +18,7 @@ public class Tab implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(ItemHandler.biomaskCeltic);
+                                                                return new ItemStack(PredatorItems.BIOMASK_CELTIC);
                                                             }
 
                                                             public String getTranslationKey()
@@ -40,7 +42,7 @@ public class Tab implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(ItemHandler.summonerFacehugger);
+                                                                return new ItemStack(AlienItems.SUMMONER_FACEHUGGER);
                                                             }
 
                                                             public String getTranslationKey()
@@ -53,7 +55,7 @@ public class Tab implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(ItemHandler.itemM56SGStock);
+                                                                return new ItemStack(AVPItems.ITEM_M56SG_STOCK);
                                                             }
 
                                                             public String getTranslationKey()
@@ -65,7 +67,7 @@ public class Tab implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(ItemHandler.itemLedDisplay);
+                                                                return new ItemStack(AVPItems.ITEM_LED_DISPLAY);
                                                             }
 
                                                             public String getTranslationKey()
@@ -83,7 +85,7 @@ public class Tab implements IPreInitEvent
                 @Override
                 public ItemStack createIcon()
                 {
-                    return new ItemStack(ItemHandler.Experimental.summonerBabyhead);
+                    return new ItemStack(AlienItems.SUMMONER_BABYHEAD);
                 }
 
                 public String getTranslationKey()

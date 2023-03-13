@@ -8,7 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
 
 import java.util.ArrayList;
 
@@ -29,7 +29,7 @@ public class TileEntityTurretAmmoHelper {
     
     public TileEntityTurretAmmoHelper() {
         this.inventoryAmmo = new InventoryBasic("TurretAmmoBay", true, 9);
-        this.itemAmmo = AVP.items().itemAmmoSMG;
+        this.itemAmmo = AVPItems.ITEM_AMMO_SMG;
         this.currentAmmoCount = 0;
         this.ammoDisplayEnabled = false;
     }

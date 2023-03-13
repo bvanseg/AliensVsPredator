@@ -17,9 +17,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.selector.EntitySelectorAethon;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
@@ -197,6 +198,6 @@ public class EntityAethon extends EntityMob implements IMob, IHost
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerAethon);
+        return new ItemStack(AlienItems.SUMMONER_AETHON);
     }
 }

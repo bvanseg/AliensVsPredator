@@ -17,6 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import org.avp.AVP;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPBlocks;
+import org.avp.common.AVPItems;
 import org.avp.common.api.machines.IOpenable;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.network.packet.client.PacketOpenBlastdoor;
@@ -574,7 +575,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
 
     public void bindToSecurityTuner(EntityPlayer playerEntity, ItemStack itemstack)
     {
-        if (itemstack.getItem() == AVP.items().securityTuner)
+        if (itemstack.getItem() == AVPItems.SECURITY_TUNER)
         {
             NBTTagCompound tag = itemstack.getTagCompound() != null ? itemstack.getTagCompound() : new NBTTagCompound();
             String tunerBindKey = tag.getString("BindKey");
@@ -599,7 +600,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     {
         ItemStack itemstack = player.getHeldItemMainhand();
 
-        if (itemstack != null && itemstack.getItem() == AVP.items().securityTuner)
+        if (itemstack != null && itemstack.getItem() == AVPItems.SECURITY_TUNER)
         {
             NBTTagCompound tag = itemstack.getTagCompound() != null ? itemstack.getTagCompound() : new NBTTagCompound();
             return tag.getString("BindKey").equals(this.bindKey) || this.bindKey.isEmpty();

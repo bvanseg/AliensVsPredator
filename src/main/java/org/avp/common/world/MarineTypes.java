@@ -6,11 +6,12 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.item.firearm.ItemFirearm;
 
 public enum MarineTypes
 {
-    M4(0, (ItemFirearm) AVP.items().itemM4), AK47(1, (ItemFirearm) AVP.items().itemAK47), M41A(2, (ItemFirearm) AVP.items().itemM41A), SNIPER(3, (ItemFirearm) AVP.items().itemSniper), M56SG(4, (ItemFirearm) AVP.items().itemM56SG);
+    M4(0, (ItemFirearm) AVPItems.ITEM_M4), AK47(1, (ItemFirearm) AVPItems.ITEM_AK47), M41A(2, (ItemFirearm) AVPItems.ITEM_M41A), SNIPER(3, (ItemFirearm) AVPItems.ITEM_SNIPER), M56SG(4, (ItemFirearm) AVPItems.ITEM_M56SG);
 
     private int id;
     private ItemFirearm itemFirearm;

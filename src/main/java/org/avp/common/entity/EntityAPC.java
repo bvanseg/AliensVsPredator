@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.network.packet.server.PacketFireAPC;
 
 import java.util.List;
@@ -134,7 +135,7 @@ public class EntityAPC extends Entity
 
                 if (!flag)
                 {
-                    this.dropItemWithOffset(AVP.items().itemAPC, 1, 0.0F);
+                    this.dropItemWithOffset(AVPItems.ITEM_APC, 1, 0.0F);
                 }
 
                 this.setDead();

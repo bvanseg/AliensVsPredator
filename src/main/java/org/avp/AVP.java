@@ -40,8 +40,6 @@ public class AVP implements IMod
     @Mod.Instance(AVP.Properties.ID)
     private static AVP instance;
 
-    private static ItemHandler      items;
-
     @Override
     public ModContainer container()
     {
@@ -51,10 +49,15 @@ public class AVP implements IMod
     @Mod.EventHandler
     public void pre(FMLPreInitializationEvent event)
     {
+        settings().pre(event);
+
         // Blocks
         AlienBlocks.instance.pre(event);
         PredatorBlocks.instance.pre(event);
         AVPBlocks.instance.pre(event);
+
+        // Items
+        AVPItems.instance.pre(event);
 
         // Sounds
         AlienSounds.instance.pre(event);
@@ -62,7 +65,6 @@ public class AVP implements IMod
         AVPSounds.instance.pre(event);
 
         console().pre(event);
-        settings().pre(event);
         capabilities().pre(event);
         tabs().pre(event);
     }
@@ -131,11 +133,6 @@ public class AVP implements IMod
     public static Logger log()
     {
         return Console.logger;
-    }
-    
-    public static ItemHandler items()
-    {
-        return items == null ? items = new ItemHandler() : items;
     }
     
     @SideOnly(Side.CLIENT)

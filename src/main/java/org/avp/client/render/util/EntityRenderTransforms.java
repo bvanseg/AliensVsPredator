@@ -61,7 +61,7 @@ public abstract class EntityRenderTransforms
         return list;
     }
 
-    public abstract void pre(Entity entity, float partialTicks);
+    public void pre(Entity entity, float partialTicks) { /* Do nothing */ }
 
-    public abstract void post(Entity entity, float partialTicks);
+    public void post(Entity entity, float partialTicks) { /* Do nothing */ }
 }

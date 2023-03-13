@@ -17,10 +17,9 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.AVP;
 import org.avp.client.AVPSounds;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.EntityLiquidLatexPool;
@@ -88,7 +87,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     @Override
     public ItemStack getHeldItemMainhand()
     {
-        return new ItemStack(AVP.items().itemM41A);
+        return new ItemStack(AVPItems.ITEM_M41A);
     }
 
     @Override
@@ -174,6 +173,6 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerCombatSynthetic);
+        return new ItemStack(AVPItems.SUMMONER_COMBAT_SYNTHETIC);
     }
 }

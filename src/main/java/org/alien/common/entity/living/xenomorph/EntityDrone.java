@@ -19,8 +19,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.block.BlockHiveResin;
 import org.avp.common.tile.TileEntityHiveResin;
@@ -284,6 +285,6 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable, HiveMem
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.summonerDrone);
+        return new ItemStack(AlienItems.SUMMONER_DRONE);
     }
 }

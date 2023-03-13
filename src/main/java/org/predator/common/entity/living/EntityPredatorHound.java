@@ -10,9 +10,10 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.predator.common.PredatorItems;
 
 public class EntityPredatorHound extends EntityMob implements IMob, IHost
 {
@@ -88,6 +89,6 @@ public class EntityPredatorHound extends EntityMob implements IMob, IHost
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.Experimental.summonerPredatorHound);
+        return new ItemStack(PredatorItems.SUMMONER_PREDATOR_HOUND);
     }
 }

@@ -13,10 +13,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.AVP;
 import org.avp.common.DamageSources;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityProjectile;
+import org.predator.common.PredatorItems;
 
 public class EntitySmartDisc extends EntityProjectile
 {
@@ -30,7 +30,7 @@ public class EntitySmartDisc extends EntityProjectile
     public EntitySmartDisc(World world)
     {
         super(world);
-        this.thrownItem = AVP.items().itemDisc;
+        this.thrownItem = PredatorItems.ITEM_DISC;
     }
 
     public EntitySmartDisc(World world, double posX, double posY, double posZ)
@@ -173,7 +173,7 @@ public class EntitySmartDisc extends EntityProjectile
                     this.onItemPickup(player);
 
                     if (!player.capabilities.isCreativeMode)
-                        player.inventory.add(-1, stack == null ? new ItemStack(ItemHandler.itemDisc) : stack);
+                        player.inventory.add(-1, stack == null ? new ItemStack(PredatorItems.ITEM_DISC) : stack);
                     
                     this.setDead();
                     return;
@@ -265,7 +265,7 @@ public class EntitySmartDisc extends EntityProjectile
         {
             if (this.inGround && entityplayer == this.shootingEntity && this.arrowShake <= 0)
             {
-                if (entityplayer.inventory.addItemStackToInventory(new ItemStack(AVP.items().itemDisc, 1)))
+                if (entityplayer.inventory.addItemStackToInventory(new ItemStack(PredatorItems.ITEM_DISC, 1)))
                 {
                     GameSounds.fxPop.playSound(this, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);;
                     entityplayer.onItemPickup(this, 1);

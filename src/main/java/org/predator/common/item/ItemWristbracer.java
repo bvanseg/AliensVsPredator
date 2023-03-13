@@ -16,10 +16,12 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.avp.common.inventory.ContainerWristbracer;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.predator.client.PredatorSounds;
+import org.predator.common.PredatorItems;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -94,7 +96,7 @@ public class ItemWristbracer extends HookedItem
                         NBTTagCompound slot = wristbracerContents.getCompoundTagAt(s);
                         ItemStack slotstack = new ItemStack(slot);
 
-                        if (slotstack != null && slotstack.getItem() == AVP.items().itemWristbracerBlades)
+                        if (slotstack != null && slotstack.getItem() == PredatorItems.ITEM_WRISTBRACER_BLADES)
                         {
                             wristbracerContents.removeTag(s);
                             bladesStack.writeToNBT(slot);
@@ -127,12 +129,12 @@ public class ItemWristbracer extends HookedItem
 
     public static ItemStack getBlades(ItemStack wristbracer)
     {
-        return get(wristbracer, AVP.items().itemWristbracerBlades);
+        return get(wristbracer, PredatorItems.ITEM_WRISTBRACER_BLADES);
     }
 
     public static ItemStack getPlasmaCannon(ItemStack wristbracer)
     {
-        return get(wristbracer, AVP.items().itemPlasmaCannon);
+        return get(wristbracer, PredatorItems.ITEM_PLASMA_CANNON);
     }
 
     public static ItemStack get(ItemStack wristbracer, Item item)

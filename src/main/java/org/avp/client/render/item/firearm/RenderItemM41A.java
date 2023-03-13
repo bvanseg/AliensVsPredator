@@ -15,7 +15,7 @@ import org.avp.AVP;
 import org.avp.client.model.item.ModelM41A;
 import org.avp.client.render.item.ItemFirearmRenderer;
 import org.avp.client.render.item.RenderMotionTrackerScreen;
-import org.avp.common.ItemHandler;
+import org.avp.common.AVPItems;
 import org.avp.common.URLs;
 import org.avp.common.item.firearm.ItemFirearm;
 import org.lwjgl.input.Mouse;
@@ -80,7 +80,7 @@ public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
                 OpenGL.color(1F, 1F, 1F, 1F);
             }
             
-            if (Inventories.getAmountOfItemPlayerHas(ItemHandler.itemMotionTracker, (EntityPlayer) entity) > 0)
+            if (Inventories.getAmountOfItemPlayerHas(AVPItems.ITEM_MOTION_TRACKER, (EntityPlayer) entity) > 0)
             {
                 OpenGL.translate(-50F, -20F, -50F);
                 OpenGL.rotate(-90F, 0F, 1F, 0F);

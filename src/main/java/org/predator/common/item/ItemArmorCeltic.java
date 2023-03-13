@@ -12,10 +12,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.input.Keyboard;
 import org.predator.client.PredatorSounds;
 import org.predator.client.render.VisionModeRenderEvent;
+import org.predator.common.PredatorItems;
 
 public class ItemArmorCeltic extends ItemArmor
 {
@@ -38,7 +40,7 @@ public class ItemArmorCeltic extends ItemArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AVP.items().biomaskCeltic)
+        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == PredatorItems.BIOMASK_CELTIC)
         {
             SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
             player.fallDistance = 0.0F;
@@ -57,7 +59,7 @@ public class ItemArmorCeltic extends ItemArmor
         {
             ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
 
-            if (helmSlot != null && helmSlot.getItem() == AVP.items().biomaskCeltic && AVP.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
+            if (helmSlot != null && helmSlot.getItem() == PredatorItems.BIOMASK_CELTIC && AVP.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
             {
                 PredatorSounds.YAUTJA_VISION_SWITCH.playSound(Game.minecraft().player, 1F, 1F);
                 VisionModeRenderEvent.instance.switchMode();

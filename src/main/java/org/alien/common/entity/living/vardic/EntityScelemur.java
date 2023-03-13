@@ -10,7 +10,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.common.ItemHandler;
+import org.alien.common.AlienItems;
+import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
@@ -90,6 +91,6 @@ public class EntityScelemur extends EntityMob implements IMob, IHost
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(ItemHandler.Experimental.summonerVardaMonkey);
+        return new ItemStack(AlienItems.SUMMONER_VARDA_MONKEY);
     }
 }

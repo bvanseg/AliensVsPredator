@@ -14,7 +14,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.entity.living.ModelDrone;
+import org.alien.common.AlienItems;
 import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 
 public class ItemArmorXeno extends ItemArmor
@@ -51,7 +53,7 @@ public class ItemArmorXeno extends ItemArmor
             ItemStack chest = Inventories.getChestSlotItemStack(player);
             ItemStack legs = Inventories.getLegsSlotItemStack(player);
             ItemStack boots = Inventories.getBootSlotItemStack(player);
-            return (helm != null && chest != null && legs != null && boots != null && (helm.getItem() == AVP.items().helmXeno && chest.getItem() == AVP.items().plateXeno && legs.getItem() == AVP.items().legsXeno && boots.getItem() == AVP.items().bootsXeno));
+            return (helm != null && chest != null && legs != null && boots != null && (helm.getItem() == AlienItems.HELM_XENO && chest.getItem() == AlienItems.PLATE_XENO && legs.getItem() == AlienItems.LEGS_XENO && boots.getItem() == AlienItems.BOOTS_XENO));
         }
 
         return false;

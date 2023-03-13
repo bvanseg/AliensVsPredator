@@ -1,8 +1,9 @@
 package org.avp.common.brain.impl.task;
 
 import net.minecraft.entity.item.EntityItem;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.AVP;
+import org.avp.common.AVPItems;
 import org.avp.common.brain.flag.AbstractBrainFlag;
 import org.avp.common.brain.flag.BrainFlagState;
 import org.avp.common.brain.impl.BrainFlags;
@@ -58,7 +59,7 @@ public class FindJellyBrainTask extends AbstractBrainTask<EntityBrainContext> {
 			SpeciesXenomorph xenomorph = (SpeciesXenomorph)ctx.getEntity();
 			
 			List<EntityItem> entityItemList = itemEntities.get().stream().filter(
-					(e) -> e.getItem().getItem() == AVP.items().itemRoyalJelly).collect(Collectors.toList());
+					(e) -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY).collect(Collectors.toList());
 			
 			if (!entityItemList.isEmpty()) {
 	            EntityItem closestJelly = entityItemList.get(0);
