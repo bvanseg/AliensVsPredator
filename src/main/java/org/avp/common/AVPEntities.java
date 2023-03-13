@@ -1,6 +1,8 @@
 package org.avp.common;
 
 import com.asx.mdx.core.mods.IInitEvent;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.ResourceLocation;
@@ -127,78 +129,89 @@ public class AVPEntities implements IInitEvent
 
         static
         {
-            entities.add(EntityEntryBuilder.create().entity(EntitySpear.class).id("Spear", entityId++).name("Spear").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityLaserMine.class).id("ProximityMine", entityId++).name("ProximityMine").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityPlasma.class).id("Plasma", entityId++).name("Plasma").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityGrenade.class).id("Grenade", entityId++).name("Grenade").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityFlame.class).id("Flamethrower", entityId++).name("Flamethrower").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityAcidPool.class).id("AcidPool", entityId++).name("AcidPool").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityLiquidLatexPool.class).id("LiquidLatexPool", entityId++).name("LiquidLatexPool").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityAcidProjectile.class).id("AcidSpit", entityId++).name("AcidSpit").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntitySmartDisc.class).id("EntityDisc", entityId++).name("EntityDisc").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityShuriken.class).id("EntityShuriken", entityId++).name("EntityShuriken").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityTurret.class).id("EntityTurret", entityId++).name("EntityTurret").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityWristbracer.class).id("Nuke", entityId++).name("Nuke").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityAPC.class).id("APC", entityId++).name("APC").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityMechanism.class).id("MECHANISM", entityId++).name("MECHANISM").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntityMedpod.class).id("Medpod", entityId++).name("Medpod").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntitySupplyChute.class).id("SupplyChute", entityId++).name("SupplyChute").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntitySupplyChuteMarines.class).id("SupplyChuteMarines", entityId++).name("SupplyChuteMarines").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntitySupplyChuteSeegson.class).id("SupplyChuteSeegson", entityId++).name("SupplyChuteSeegson").tracker(128, 4, true).build());
-            entities.add(EntityEntryBuilder.create().entity(EntitySporePod.class).id("SporePod", entityId++).name("SporePod").tracker(128, 4, true).build());
+            registerEntityEntry(EntitySpear.class, "Spear");
+            registerEntityEntry(EntityLaserMine.class, "ProximityMine");
+            registerEntityEntry(EntityPlasma.class, "Plasma");
+            registerEntityEntry(EntityGrenade.class, "Grenade");
+            registerEntityEntry(EntityFlame.class, "Flamethrower");
+            registerEntityEntry(EntityAcidPool.class, "AcidPool");
+            registerEntityEntry(EntityLiquidLatexPool.class, "LiquidLatexPool");
+            registerEntityEntry(EntityAcidProjectile.class, "AcidSpit");
+            registerEntityEntry(EntitySmartDisc.class, "EntityDisc");
+            registerEntityEntry(EntityShuriken.class, "EntityShuriken");
+            registerEntityEntry(EntityTurret.class, "EntityTurret");
+            registerEntityEntry(EntityWristbracer.class, "Nuke");
+            registerEntityEntry(EntityAPC.class, "APC");
+            registerEntityEntry(EntityMechanism.class, "MECHANISM");
+            registerEntityEntry(EntityMedpod.class, "Medpod");
+            registerEntityEntry(EntitySupplyChute.class, "SupplyChute");
+            registerEntityEntry(EntitySupplyChuteMarines.class, "SupplyChuteMarines");
+            registerEntityEntry(EntitySupplyChuteSeegson.class, "SupplyChuteSeegson");
+            registerEntityEntry(EntitySporePod.class, "SporePod");
 
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityRunnerDrone.class).id("RunnerDrone", entityId++).name("RunnerDrone").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityRunnerWarrior.class).id("RunnerWarrior", entityId++).name("RunnerWarrior").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityDrone.class).id("Drone", entityId++).name("Drone").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityWarrior.class).id("Warrior", entityId++).name("Warrior").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntitySpitter.class).id("Spitter", entityId++).name("Spitter").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityCrusher.class).id("Crusher", entityId++).name("Crusher").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityPraetorian.class).id("Praetorian", entityId++).name("Praetorian").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityMarine.class).id("Marine", entityId++).name("Marine").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityYautjaWarrior.class).id("Yautja", entityId++).name("Yautja").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityMatriarch.class).id("Queen", entityId++).name("Queen").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityFacehugger.class).id("Facehugger", entityId++).name("Facehugger").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityChestburster.class).id("Chestbuster", entityId++).name("Chestbuster").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityOvamorph.class).id("Ovamorph", entityId++).name("Ovamorph").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityRoyalFacehugger.class).id("RoyalFacehugger", entityId++).name("RoyalFacehugger").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityNauticomorph.class).id("AquaAlien", entityId++).name("AquaAlien").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityPredalien.class).id("Predalien", entityId++).name("Predalien").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityCombatSynthetic.class).id("CombatSynthetic", entityId++).name("CombatSynthetic").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityDeacon.class).id("Deacon", entityId++).name("Deacon").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityHammerpede.class).id("Hammerpede", entityId++).name("Hammerpede").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityTrilobite.class).id("Trilobite", entityId++).name("Trilobite").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntitySpaceJockey.class).id("SpaceJockey", entityId++).name("SpaceJockey").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityEngineer.class).id("Engineer", entityId++).name("Engineer").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityYautjaBerserker.class).id("YautjaBerserker", entityId++).name("YautjaBerserker").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityDeaconShark.class).id("DeaconShark", entityId++).name("DeaconShark").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityUltramorph.class).id("Ultramorph", entityId++).name("Ultramorph").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityGooMutant.class).id("GooMutant", entityId++).name("GooMutant").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityAethon.class).id("Aethon", entityId++).name("Aethon").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityOctohugger.class).id("Octohugger", entityId++).name("Octohugger").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityBelugaburster.class).id("Belugaburster", entityId++).name("Belugaburster").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityBelugamorph.class).id("Belugamorph", entityId++).name("Belugamorph").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityPredalienChestburster.class).id("PredalienChestburster", entityId++).name("PredalienChestburster").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityQueenChestburster.class).id("QueenChestburster", entityId++).name("QueenChestburster").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityRunnerChestburster.class).id("RunnerChestburster", entityId++).name("RunnerChestburster").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityDeaconAdult.class).id("DeaconAdult", entityId++).name("DeaconAdult").tracker(128, 4, true).build());
-            livingEntities.add(EntityEntryBuilder.create().entity(EntityOvamorphGiger.class).id("OvamorphGiger", entityId++).name("OvamorphGiger").tracker(128, 4, true).build());
+            registerLivingEntityEntry(EntityRunnerDrone.class, "RunnerDrone");
+            registerLivingEntityEntry(EntityRunnerWarrior.class, "RunnerWarrior");
+            registerLivingEntityEntry(EntityDrone.class, "Drone");
+            registerLivingEntityEntry(EntityWarrior.class, "Warrior");
+            registerLivingEntityEntry(EntitySpitter.class, "Spitter");
+            registerLivingEntityEntry(EntityCrusher.class, "Crusher");
+            registerLivingEntityEntry(EntityPraetorian.class, "Praetorian");
+            registerLivingEntityEntry(EntityMarine.class, "Marine");
+            registerLivingEntityEntry(EntityYautjaWarrior.class, "Yautja");
+            registerLivingEntityEntry(EntityMatriarch.class, "Queen");
+            registerLivingEntityEntry(EntityFacehugger.class, "Facehugger");
+            registerLivingEntityEntry(EntityChestburster.class, "Chestbuster");
+            registerLivingEntityEntry(EntityOvamorph.class, "Ovamorph");
+            registerLivingEntityEntry(EntityRoyalFacehugger.class, "RoyalFacehugger");
+            registerLivingEntityEntry(EntityNauticomorph.class, "AquaAlien");
+            registerLivingEntityEntry(EntityPredalien.class, "Predalien");
+            registerLivingEntityEntry(EntityCombatSynthetic.class, "CombatSynthetic");
+            registerLivingEntityEntry(EntityDeacon.class, "Deacon");
+            registerLivingEntityEntry(EntityHammerpede.class, "Hammerpede");
+            registerLivingEntityEntry(EntityTrilobite.class, "Trilobite");
+            registerLivingEntityEntry(EntitySpaceJockey.class, "SpaceJockey");
+            registerLivingEntityEntry(EntityEngineer.class, "Engineer");
+            registerLivingEntityEntry(EntityYautjaBerserker.class, "YautjaBerserker");
+            registerLivingEntityEntry(EntityDeaconShark.class, "DeaconShark");
+            registerLivingEntityEntry(EntityUltramorph.class, "Ultramorph");
+            registerLivingEntityEntry(EntityGooMutant.class, "GooMutant");
+            registerLivingEntityEntry(EntityAethon.class, "Aethon");
+            registerLivingEntityEntry(EntityOctohugger.class, "Octohugger");
+            registerLivingEntityEntry(EntityBelugaburster.class, "Belugaburster");
+            registerLivingEntityEntry(EntityBelugamorph.class, "Belugamorph");
+            registerLivingEntityEntry(EntityPredalienChestburster.class, "PredalienChestburster");
+            registerLivingEntityEntry(EntityQueenChestburster.class, "QueenChestburster");
+            registerLivingEntityEntry(EntityRunnerChestburster.class, "RunnerChestburster");
+            registerLivingEntityEntry(EntityDeaconAdult.class, "DeaconAdult");
+            registerLivingEntityEntry(EntityOvamorphGiger.class, "OvamorphGiger");
 
             if (AVP.settings().areExperimentalFeaturesEnabled())
             {
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityBabyhead.class).id("Babyhead", entityId++).name("Babyhead").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityBatXeno.class).id("BatXeno", entityId++).name("BatXeno").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityBoiler.class).id("Boiler", entityId++).name("Boiler").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityDracoburster.class).id("Dracoburster", entityId++).name("Dracoburster").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityDracoEgg.class).id("DracoOvamorph", entityId++).name("DracoOvamorph").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityDracomorph.class).id("Dracomorph", entityId++).name("Dracomorph").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityMyceliomorph.class).id("Myceliomorph", entityId++).name("Myceliomorph").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityPantheramorph.class).id("Pantheramorph", entityId++).name("Pantheramorph").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityPredatorHound.class).id("HellHound", entityId++).name("HellHound").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityUrsuidae.class).id("Ursuidae", entityId++).name("Ursuidae").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityScelemur.class).id("VardaMonkey", entityId++).name("VardaMonkey").tracker(128, 4, true).build());
-                livingEntities.add(EntityEntryBuilder.create().entity(EntityYautjaMutant.class).id("YautjaMutant", entityId++).name("YautjaMutant").tracker(128, 4, true).build());
+                registerLivingEntityEntry(EntityBabyhead.class, "Babyhead");
+                registerLivingEntityEntry(EntityBatXeno.class, "BatXeno");
+                registerLivingEntityEntry(EntityBoiler.class, "Boiler");
+                registerLivingEntityEntry(EntityDracoburster.class, "Dracoburster");
+                registerLivingEntityEntry(EntityDracoEgg.class, "DracoOvamorph");
+                registerLivingEntityEntry(EntityDracomorph.class, "Dracomorph");
+                registerLivingEntityEntry(EntityMyceliomorph.class, "Myceliomorph");
+                registerLivingEntityEntry(EntityPantheramorph.class, "Pantheramorph");
+                registerLivingEntityEntry(EntityPredatorHound.class, "HellHound");
+                registerLivingEntityEntry(EntityUrsuidae.class, "Ursuidae");
+                registerLivingEntityEntry(EntityScelemur.class, "VardaMonkey");
+                registerLivingEntityEntry(EntityYautjaMutant.class, "YautjaMutant");
             }
+        }
 
+        private static void registerEntityEntryToCollection(Class<? extends Entity> entityClass, String id, ArrayList<EntityEntry> collection) {
+            collection.add(EntityEntryBuilder.create().entity(entityClass).id(id, entityId++).name(id).tracker(128, 4, true).build());
+        }
+
+        private static void registerEntityEntry(Class<? extends Entity> entityClass, String id) {
+            registerEntityEntryToCollection(entityClass, id, entities);
+        }
+
+        private static void registerLivingEntityEntry(Class<? extends EntityLivingBase> entityClass, String id) {
+            registerEntityEntryToCollection(entityClass, id, livingEntities);
         }
 
         @SubscribeEvent
@@ -297,15 +310,15 @@ public class AVPEntities implements IInitEvent
         }
     }
 
-    public ArrayList<Biome> filterOverworldBiomes(String listName, ArrayList<Biome> biomes)
+    public List<Biome> filterOverworldBiomes(String listName, List<Biome> biomes)
     {
         Iterator<Biome> iter = biomes.iterator();
-        ArrayList<Biome> overworldBiomes = getOverworldBiomeList();
+        List<Biome> overworldBiomes = getOverworldBiomeList();
 
         while (iter.hasNext())
         {
             Biome biome = iter.next();
-            
+
             if (!AVP.settings().areOverworldSpawnsEnabled() && overworldBiomes.contains(biome))
             {
                 iter.remove();
@@ -317,9 +330,9 @@ public class AVPEntities implements IInitEvent
         return biomes;
     }
 
-    public static ArrayList<Biome> getOverworldBiomeList()
+    public static List<Biome> getOverworldBiomeList()
     {
-        ArrayList<Biome> overworldBiomes = new ArrayList<Biome>();
+        ArrayList<Biome> overworldBiomes = new ArrayList<>();
 
         for (Field field : Biomes.class.getDeclaredFields())
         {
