@@ -22,6 +22,7 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.INascentic;
 import org.alien.common.api.parasitoidic.IRoyalOrganism;
+import org.alien.common.entity.ai.brain.ChestbursterBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorAvoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
@@ -31,10 +32,14 @@ import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityChestburster extends SpeciesAlien implements IMob, INascentic, HiveMember
+public class EntityChestburster extends SpeciesAlien implements IMob, INascentic, HiveMember, Brainiac<ChestbursterBrain>
 {
     private Class<? extends Entity> matureState;
+
+    private ChestbursterBrain brain;
 
     public EntityChestburster(World world)
     {
@@ -42,14 +47,19 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
         this.matureState = EntityDrone.class;
         this.setSize(1.0F, 0.4F);
         this.experienceValue = 16;
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAvoidEntity<EntityLivingBase>(this, EntityLivingBase.class, EntitySelectorAvoid.instance, 8.0F, 0.4F, 0.7F));
-        this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
-        this.tasks.addTask(4, new PatchedEntityAIWander(this, 0.800000011920929D));
-        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, EntitySelectorParasitoid.instance));
-        this.targetTasks.addTask(1, new EntityAIAttackMelee(this, 0.8F, false));
-        this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.8F));
+    }
+
+    @Override
+    public ChestbursterBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new ChestbursterBrain(this);
+        }
+        return this.brain;
+    }
+
+    @Override
+    protected void initEntityAI() {
+        this.getBrain().init();
     }
 
     @Override
@@ -72,6 +82,10 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     public void onUpdate()
     {
         super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
         
         if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.apply(this.getAttackTarget()))
             this.setAttackTarget(null);
