@@ -1,4 +1,4 @@
-package org.lib.brain.impl.task;
+package org.alien.common.entity.ai.brain.task;
 
 import net.minecraft.entity.item.EntityItem;
 import org.alien.common.AlienItems;
