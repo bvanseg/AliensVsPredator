@@ -6,6 +6,7 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.world.capability.IOrganism;
+import org.lib.brain.Brainiac;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.BrainFlags;
@@ -48,8 +49,11 @@ public class AttachedToHostTask extends AbstractBrainTask<EntityBrainContext> {
         parasite.ticksOnHost++;
 
         if (host instanceof EntityLiving) {
-
             ((EntityLiving)host).setNoAI(true);
+
+            if (host instanceof Brainiac) {
+                ((Brainiac<?>)host).setBrainDisabled(true);
+            }
         }
 
         host.motionY -= 0.05F;
