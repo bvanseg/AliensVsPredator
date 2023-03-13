@@ -1,25 +1,20 @@
 package org.avp.client.render.tile;
 
-import static org.lwjgl.opengl.GL11.GL_ALPHA_TEST;
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-
-import java.util.ArrayList;
-
-import org.avp.AliensVsPredator;
-import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.tile.TileEntityCryostasisTube;
-import org.lwjgl.opengl.GL12;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.avp.AVP;
+import org.avp.client.render.util.EntityRenderTransforms;
+import org.avp.common.tile.TileEntityCryostasisTube;
+import org.lwjgl.opengl.GL12;
+
+import java.util.ArrayList;
+
+import static org.lwjgl.opengl.GL11.*;
 
 @SideOnly(Side.CLIENT)
 public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCryostasisTube>
@@ -62,7 +57,7 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
             OpenGL.scale(0.75F, -0.75F, 0.75F);
             OpenGL.enable(GL_ALPHA_TEST);
             OpenGL.disableCullFace();
-            AliensVsPredator.resources().models().CRYOSTASIS_TUBE.draw(tile);
+            AVP.resources().models().CRYOSTASIS_TUBE.draw(tile);
             OpenGL.enableCullFace();
         }
 
@@ -72,15 +67,15 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
 
             if (tile.isShattered())
             {
-                mask = AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK_SHATTERED;
+                mask = AVP.resources().models().CRYOSTASIS_TUBE_MASK_SHATTERED;
             }
             else if (tile.isCracked())
             {
-                mask = AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK_CRACKED;
+                mask = AVP.resources().models().CRYOSTASIS_TUBE_MASK_CRACKED;
             }
             else
             {
-                mask = AliensVsPredator.resources().models().CRYOSTASIS_TUBE_MASK;
+                mask = AVP.resources().models().CRYOSTASIS_TUBE_MASK;
             }
 
             if (tile.getVoltage() > 0)

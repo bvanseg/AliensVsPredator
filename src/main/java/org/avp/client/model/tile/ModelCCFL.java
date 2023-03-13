@@ -1,19 +1,17 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityCCFLTube;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import org.avp.common.tile.TileEntityCCFLTube;
 
 public class ModelCCFL extends Model<TileEntityCCFLTube>
 {
-    public ModelRenderer middleRod;
-    public ModelRenderer lightAura;
-    public ModelRenderer lightTube;
-    public ModelRenderer lCap;
-    public ModelRenderer rCap;
+    public final ModelRenderer middleRod;
+    public final ModelRenderer lightAura;
+    public final ModelRenderer lightTube;
+    public final ModelRenderer lCap;
+    public final ModelRenderer rCap;
 
     public ModelCCFL()
     {

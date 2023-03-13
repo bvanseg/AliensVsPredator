@@ -1,10 +1,9 @@
 package org.avp.client.gui;
 
-import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityLocker;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityLocker;
 
 public class GuiLocker extends GuiContainer
 {
@@ -19,7 +18,7 @@ public class GuiLocker extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
     	this.drawDefaultBackground();
-        AliensVsPredator.resources().GUI_LOCKER.bind();
+        AVP.resources().GUI_LOCKER.bind();
         drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
     }
 }

@@ -1,12 +1,10 @@
 package org.avp.client;
 
-import org.lwjgl.input.Keyboard;
-
 import com.asx.mdx.core.mods.IPostInitEvent;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import org.lwjgl.input.Keyboard;
 
 public class KeybindHandler implements IPostInitEvent
 {

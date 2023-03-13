@@ -1,18 +1,14 @@
 package org.avp.client.render.wavegraph;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import org.avp.client.render.wavegraph.DataEntry.DisplayData;
-import org.avp.client.render.wavegraph.DataEntry.Interval;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.Random;
 
 @SideOnly(Side.CLIENT)
 public class Wavegraph
@@ -63,7 +59,7 @@ public class Wavegraph
 
             pri = (int) Math.floor(pri / ((float) this.rate / this.refRate));
 
-            Interval interval = new Interval(start, start + pri, 0F, new Random().nextFloat() / 2, -(new Random().nextFloat() / 2));
+            DataEntry.Interval interval = new DataEntry.Interval(start, start + pri, 0F, new Random().nextFloat() / 2, -(new Random().nextFloat() / 2));
 
             this.data.add(new DataEntry(this, interval));
         }
@@ -100,7 +96,7 @@ public class Wavegraph
 
         for (DataEntry r : new ArrayList<DataEntry>(this.data))
         {
-            DisplayData data = r.displaydata();
+            DataEntry.DisplayData data = r.displaydata();
             data.update(System.currentTimeMillis(), x, y, width, height, widthScale, heightScale);
 
             if (data.iEndX >= x)

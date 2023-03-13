@@ -1,14 +1,12 @@
 package org.avp.client.gui;
 
-import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityNetworkRack;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityNetworkRack;
 
 public class GuiNetworkRack extends GuiContainer
 {
@@ -26,7 +24,7 @@ public class GuiNetworkRack extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
     	this.drawDefaultBackground();
-        Draw.drawResource(AliensVsPredator.resources().GUI_NETWORK_RACK, this.guiLeft, this.guiTop, 256, 256);
+        Draw.drawResource(AVP.resources().GUI_NETWORK_RACK, this.guiLeft, this.guiTop, 256, 256);
 
         for (int idx = 3; idx >= 0; idx--)
         {

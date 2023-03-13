@@ -1,20 +1,17 @@
 package org.avp.client.render.wavegraph.ekg;
 
-import java.util.ArrayList;
-
+import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.lib.util.Game;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.render.wavegraph.DataEntry;
 import org.avp.client.render.wavegraph.DataEntry.Interval;
 import org.avp.client.render.wavegraph.DataEntry.Segment;
 import org.avp.client.render.wavegraph.Wavegraph;
-import org.avp.client.render.wavegraph.ekg.DataEntryEKG.DisplayDataEKG;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
-
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import java.util.ArrayList;
 
 @SideOnly(Side.CLIENT)
 public class Electrocardiogram extends Wavegraph
@@ -104,7 +101,7 @@ public class Electrocardiogram extends Wavegraph
 
         for (DataEntryEKG r : new ArrayList<DataEntryEKG>(this.data))
         {
-            DisplayDataEKG data = r.displaydata();
+            DataEntryEKG.DisplayDataEKG data = r.displaydata();
             data.update(System.currentTimeMillis(), x, y, width, height, widthScale, heightScale);
 
             if (data.teX >= x)

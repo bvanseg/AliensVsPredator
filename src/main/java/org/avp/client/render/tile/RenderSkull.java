@@ -1,15 +1,13 @@
 package org.avp.client.render.tile;
 
-import org.avp.block.BlockSkull;
-import org.avp.tile.TileEntitySkull;
-import org.avp.tile.TileEntitySkull.EnumOrientation;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import org.avp.common.block.BlockSkull;
+import org.avp.common.tile.TileEntitySkull;
+import org.avp.common.tile.TileEntitySkull.EnumOrientation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderSkull extends TileEntitySpecialRenderer<TileEntitySkull>
 {

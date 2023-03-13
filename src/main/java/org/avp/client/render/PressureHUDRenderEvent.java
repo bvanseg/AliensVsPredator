@@ -1,23 +1,5 @@
 package org.avp.client.render;
 
-import static org.lwjgl.opengl.GL11.GL_ALPHA_TEST;
-import static org.lwjgl.opengl.GL11.GL_BLEND;
-import static org.lwjgl.opengl.GL11.GL_DEPTH_TEST;
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_CONSTANT_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.glDepthMask;
-
-import org.avp.AliensVsPredator;
-import org.avp.api.power.IVoltageReceiver;
-import org.avp.entities.living.EntityMarine;
-import org.avp.entities.living.species.SpeciesAlien;
-import org.avp.tile.TileEntityPowercell;
-import org.avp.tile.TileEntityStasisMechanism;
-import org.avp.world.capabilities.IOrganism.Organism;
-import org.avp.world.capabilities.IOrganism.Provider;
-import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
-import org.avp.world.dimension.varda.WorldProviderVarda;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.ScaledResolution;
@@ -25,7 +7,6 @@ import com.asx.mdx.lib.client.util.Screen;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.block.Blocks;
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
@@ -45,6 +26,19 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
+import org.alien.common.entity.living.SpeciesAlien;
+import org.alien.common.world.capability.IOrganism.Organism;
+import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.dimension.varda.WorldProviderVarda;
+import org.avp.AVP;
+import org.avp.common.AVPItems;
+import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.entity.living.EntityMarine;
+import org.avp.common.tile.TileEntityPowercell;
+import org.avp.common.tile.TileEntityStasisMechanism;
+import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+
+import static org.lwjgl.opengl.GL11.*;
 
 public class PressureHUDRenderEvent
 {
@@ -64,7 +58,7 @@ public class PressureHUDRenderEvent
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
             {
-                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().pressureMask)
+                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
                 {
                     SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
 
@@ -112,7 +106,7 @@ public class PressureHUDRenderEvent
 
     public void renderInventoryElements()
     {
-        if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AliensVsPredator.items().pressureMask)
+        if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
         {
             ;
         }
@@ -418,7 +412,7 @@ public class PressureHUDRenderEvent
                 }
 
                 OpenGL.color4i(0xFFFFAA00);
-                AliensVsPredator.resources().INFECTION_INDICATOR.bind();
+                AVP.resources().INFECTION_INDICATOR.bind();
                 Draw.drawQuad(res.getScaledWidth() - iconSize, 0, iconSize, iconSize);
             }
         }

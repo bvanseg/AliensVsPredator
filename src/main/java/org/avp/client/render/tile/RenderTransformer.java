@@ -1,16 +1,14 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityTransformer;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityTransformer;
 
 
 public class RenderTransformer extends TileEntitySpecialRenderer<TileEntityTransformer>
@@ -49,7 +47,7 @@ public class RenderTransformer extends TileEntitySpecialRenderer<TileEntityTrans
                     OpenGL.rotate(0F, 0F, 1F, 0F);
                 }
 
-                AliensVsPredator.resources().models().TRANSFORMER.draw(transformer);
+                AVP.resources().models().TRANSFORMER.draw(transformer);
             }
             OpenGL.popMatrix();
 

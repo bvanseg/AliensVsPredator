@@ -1,11 +1,9 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityRedstoneFluxGenerator;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityRedstoneFluxGenerator;
 
 public class RenderRedstoneFluxGenerator extends TileEntitySpecialRenderer<TileEntityRedstoneFluxGenerator>
 {
@@ -18,7 +16,7 @@ public class RenderRedstoneFluxGenerator extends TileEntitySpecialRenderer<TileE
         OpenGL.scale(1F, -1F, 1F);
         OpenGL.translate(0.5F, -1.5F, 0.5F);
         OpenGL.rotate(tile);
-        AliensVsPredator.resources().models().RFGENERATOR.draw();
+        AVP.resources().models().RFGENERATOR.draw();
         OpenGL.enableCullFace();
         OpenGL.popMatrix();
     }

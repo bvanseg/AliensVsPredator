@@ -1,34 +1,32 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityAmpule;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.tile.TileEntityAmpule;
 
 public class ModelAmpule extends Model<TileEntityAmpule>
 {
-    public ModelRenderer canisterBase2;
-    public ModelRenderer canisterMiddle1;
-    public ModelRenderer canisterLid1;
-    public ModelRenderer canisterBase1;
-    public ModelRenderer canisterLid2;
-    public ModelRenderer phialTop1;
-    public ModelRenderer phialTip1;
-    public ModelRenderer phialStem1;
-    public ModelRenderer phailBase;
-    public ModelRenderer phialTop2;
-    public ModelRenderer phialTip2;
-    public ModelRenderer phialStem2;
-    public ModelRenderer phailBase2;
-    public ModelRenderer phialTop3;
-    public ModelRenderer phialTip3;
-    public ModelRenderer phialStem3;
-    public ModelRenderer phailBase3;
-    public ModelRenderer phialTop4;
-    public ModelRenderer phialTip4;
-    public ModelRenderer phialStem4;
-    public ModelRenderer phailBase4;
+    public final ModelRenderer canisterBase2;
+    public final ModelRenderer canisterMiddle1;
+    public final ModelRenderer canisterLid1;
+    public final ModelRenderer canisterBase1;
+    public final ModelRenderer canisterLid2;
+    public final ModelRenderer phialTop1;
+    public final ModelRenderer phialTip1;
+    public final ModelRenderer phialStem1;
+    public final ModelRenderer phailBase;
+    public final ModelRenderer phialTop2;
+    public final ModelRenderer phialTip2;
+    public final ModelRenderer phialStem2;
+    public final ModelRenderer phailBase2;
+    public final ModelRenderer phialTop3;
+    public final ModelRenderer phialTip3;
+    public final ModelRenderer phialStem3;
+    public final ModelRenderer phailBase3;
+    public final ModelRenderer phialTop4;
+    public final ModelRenderer phialTip4;
+    public final ModelRenderer phialStem4;
+    public final ModelRenderer phailBase4;
 
     public ModelAmpule()
     {

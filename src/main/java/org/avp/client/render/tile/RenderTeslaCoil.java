@@ -1,15 +1,13 @@
 package org.avp.client.render.tile;
 
-import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
-
-import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityTeslaCoil;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityTeslaCoil;
+
+import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 
 public class RenderTeslaCoil extends TileEntitySpecialRenderer<TileEntityTeslaCoil>
 {
@@ -28,7 +26,7 @@ public class RenderTeslaCoil extends TileEntitySpecialRenderer<TileEntityTeslaCo
         }
         
         OpenGL.translate(0, -1F, 0);
-        AliensVsPredator.resources().models().TESLA_COIL.draw(teslaCoil);
+        AVP.resources().models().TESLA_COIL.draw(teslaCoil);
         GlStateManager.popMatrix();
     }
 }

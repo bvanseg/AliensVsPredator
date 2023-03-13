@@ -1,33 +1,27 @@
 package org.avp.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
-import org.apache.commons.lang3.text.WordUtils;
-import org.avp.AliensVsPredator;
-import org.avp.Settings;
-import org.avp.Settings.ClientSettings;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
 import com.asx.mdx.config.ConfigSetting;
 import com.asx.mdx.config.ConfigSettingBoolean;
 import com.asx.mdx.config.ConfigSettingGraphics;
 import com.asx.mdx.config.ConfigSettingInteger;
-import com.asx.mdx.lib.client.gui.GuiCustomButton;
-import com.asx.mdx.lib.client.gui.GuiCustomScreen;
-import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
-import com.asx.mdx.lib.client.gui.IAction;
-import com.asx.mdx.lib.client.gui.IGuiElement;
+import com.asx.mdx.lib.client.gui.*;
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.ScaledResolution;
 import com.asx.mdx.lib.client.util.Screen;
 import com.asx.mdx.lib.util.Chat;
 import com.asx.mdx.lib.util.system.SystemInfo;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
+import org.apache.commons.lang3.text.WordUtils;
+import org.avp.AVP;
+import org.avp.common.AVPSettings;
+import org.avp.common.AVPSettings.ClientSettings;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class GuiModSettings extends GuiCustomScreen
 {
@@ -149,7 +143,7 @@ public class GuiModSettings extends GuiCustomScreen
         header.fontShadow = false;
         this.elements.add(header);
 
-        for (ConfigSetting setting : AliensVsPredator.settings().allSettings())
+        for (ConfigSetting setting : AVP.settings().allSettings())
         {
             if (setting instanceof ConfigSettingBoolean)
             {
@@ -257,7 +251,7 @@ public class GuiModSettings extends GuiCustomScreen
 
     private void saveSettings()
     {
-        Settings.instance.saveSettings();
+        AVPSettings.instance.saveSettings();
         ClientSettings.instance.saveSettings();
     }
 

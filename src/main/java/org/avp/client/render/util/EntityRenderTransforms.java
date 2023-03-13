@@ -1,11 +1,11 @@
 package org.avp.client.render.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @SideOnly(Side.CLIENT)
 public abstract class EntityRenderTransforms
@@ -61,7 +61,7 @@ public abstract class EntityRenderTransforms
         return list;
     }
 
-    public abstract void pre(Entity entity, float partialTicks);
+    public void pre(Entity entity, float partialTicks) { /* Do nothing */ }
 
-    public abstract void post(Entity entity, float partialTicks);
+    public void post(Entity entity, float partialTicks) { /* Do nothing */ }
 }

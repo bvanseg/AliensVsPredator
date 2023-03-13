@@ -1,14 +1,12 @@
 package org.avp.client.render.tile;
 
-import java.util.ArrayList;
-
-import org.avp.AliensVsPredator;
-import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.tile.TileEntityMedpod;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import org.avp.AVP;
+import org.avp.client.render.util.EntityRenderTransforms;
+import org.avp.common.tile.TileEntityMedpod;
+
+import java.util.ArrayList;
 
 public class RenderMedpod extends TileEntitySpecialRenderer<TileEntityMedpod>
 {
@@ -26,7 +24,7 @@ public class RenderMedpod extends TileEntitySpecialRenderer<TileEntityMedpod>
             OpenGL.scale(newScale, newScale, newScale);
             OpenGL.disableCullFace();
             OpenGL.rotateOpposite(tile);
-            AliensVsPredator.resources().models().MEDPOD.draw(tile);
+            AVP.resources().models().MEDPOD.draw(tile);
 
             OpenGL.enableBlend();
             OpenGL.blendClear();
@@ -37,7 +35,7 @@ public class RenderMedpod extends TileEntitySpecialRenderer<TileEntityMedpod>
                 OpenGL.disableLightMapping();
             }
 
-            AliensVsPredator.resources().models().MEDPOD_MASK.draw(tile);
+            AVP.resources().models().MEDPOD_MASK.draw(tile);
             OpenGL.enableLight();
             OpenGL.enableLightMapping();
             OpenGL.blendClear();

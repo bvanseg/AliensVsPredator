@@ -1,38 +1,36 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityBlastdoor;
-import org.avp.tile.TileEntitySevastopolBlastDoor;
-
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.tile.TileEntityBlastdoor;
+import org.avp.common.tile.TileEntitySevastopolBlastDoor;
 
 public class ModelSevastopolBlastdoor extends Model<TileEntitySevastopolBlastDoor>
 {
-    public ModelRenderer frameL;
-    public ModelRenderer doorMain;
-    public ModelRenderer frameR;
-    public ModelRenderer frameT;
-    public ModelRenderer frameB;
-    public ModelRenderer frameTL;
-    public ModelRenderer frameTR;
-    public ModelRenderer frameTL2;
-    public ModelRenderer frameTR2;
-    public ModelRenderer frameBL;
-    public ModelRenderer frameBR;
-    public ModelRenderer frameBR2;
-    public ModelRenderer frameBL2;
-    public ModelRenderer doorTop;
-    public ModelRenderer doorBotton;
-    public ModelRenderer keypadF;
-    public ModelRenderer doorTopL;
-    public ModelRenderer doorTopR;
-    public ModelRenderer doorBottomL;
-    public ModelRenderer doorBottomR;
-    public ModelRenderer keypadB;
-    public ModelRenderer indicatorLightF;
-    public ModelRenderer indicatorLightB;
+    public final ModelRenderer frameL;
+    public final ModelRenderer doorMain;
+    public final ModelRenderer frameR;
+    public final ModelRenderer frameT;
+    public final ModelRenderer frameB;
+    public final ModelRenderer frameTL;
+    public final ModelRenderer frameTR;
+    public final ModelRenderer frameTL2;
+    public final ModelRenderer frameTR2;
+    public final ModelRenderer frameBL;
+    public final ModelRenderer frameBR;
+    public final ModelRenderer frameBR2;
+    public final ModelRenderer frameBL2;
+    public final ModelRenderer doorTop;
+    public final ModelRenderer doorBotton;
+    public final ModelRenderer keypadF;
+    public final ModelRenderer doorTopL;
+    public final ModelRenderer doorTopR;
+    public final ModelRenderer doorBottomL;
+    public final ModelRenderer doorBottomR;
+    public final ModelRenderer keypadB;
+    public final ModelRenderer indicatorLightF;
+    public final ModelRenderer indicatorLightB;
 
     public ModelSevastopolBlastdoor()
     {
