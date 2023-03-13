@@ -99,26 +99,27 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         }
     }
 
-    @Override
-    protected void addStandardXenomorphAISet()
-    {
-        if (this.tasks.taskEntries.isEmpty() && this.targetTasks.taskEntries.isEmpty())
-        {
-            this.tasks.taskEntries.clear();
-            this.targetTasks.taskEntries.clear();
-            this.tasks.addTask(0, new EntityAISwimming(this));
-            this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 10F));
-            this.tasks.addTask(0, new EntityAISwimming(this));
-            this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.8D));
-            this.tasks.addTask(1, new EntityAIPathFindToHive(this));
-            this.tasks.addTask(2, new EntityAIFindJelly(this));
-            this.tasks.addTask(4, new EntityAICustomAttackOnCollide(this, 0.6D, true));
-
-            this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<EntityLiving>(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
-            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-            this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 1.6F));
-        }
-    }
+    // TODO:
+//    @Override
+//    protected void addStandardXenomorphAISet()
+//    {
+//        if (this.tasks.taskEntries.isEmpty() && this.targetTasks.taskEntries.isEmpty())
+//        {
+//            this.tasks.taskEntries.clear();
+//            this.targetTasks.taskEntries.clear();
+//            this.tasks.addTask(0, new EntityAISwimming(this));
+//            this.tasks.addTask(1, new EntityAIWatchClosest(this, EntityLivingBase.class, 10F));
+//            this.tasks.addTask(0, new EntityAISwimming(this));
+//            this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.8D));
+//            this.tasks.addTask(1, new EntityAIPathFindToHive(this));
+//            this.tasks.addTask(2, new EntityAIFindJelly(this));
+//            this.tasks.addTask(4, new EntityAICustomAttackOnCollide(this, 0.6D, true));
+//
+//            this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<EntityLiving>(this, EntityLiving.class, 0, false, false, EntitySelectorXenomorph.instance));
+//            this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
+//            this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 1.6F));
+//        }
+//    }
 
     private void reproduce()
     {
@@ -166,7 +167,6 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
             else if (!ovipositorHealthy)
             {
                 this.setOvipositorSize(0F);
-                this.addStandardXenomorphAISet();
             }
         }
     }

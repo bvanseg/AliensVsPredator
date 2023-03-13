@@ -31,12 +31,6 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob,
         this.experienceValue = 275;
         this.setSize(1.0F, 3.0F);
     }
-    
-    @Override
-    protected void addStandardXenomorphAISet() {
-        this.tasks.addTask(1, rangedAttackAI);
-    	super.addStandardXenomorphAISet();
-    }
 
     @Override
     protected void applyEntityAttributes()

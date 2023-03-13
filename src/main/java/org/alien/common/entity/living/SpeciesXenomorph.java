@@ -32,7 +32,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
 
     private              XenomorphBrain         brain;
 
-    public SpeciesXenomorph(World world)
+    protected SpeciesXenomorph(World world)
     {
         super(world);
         this.jumpMovementFactor = 0.045F;
@@ -52,9 +52,6 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     protected void initEntityAI() {
     	this.getBrain().init();
     }
-
-    @Deprecated
-    protected void addStandardXenomorphAISet() {}
 
     @Override
     protected void entityInit()
