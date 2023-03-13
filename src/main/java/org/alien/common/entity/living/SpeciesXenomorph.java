@@ -30,7 +30,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     private boolean                             retractMouth        = false;
     protected boolean                           ableToClimb;
 
-    private              XenomorphBrain         brain;
+    protected              XenomorphBrain       brain;
 
     protected SpeciesXenomorph(World world)
     {
