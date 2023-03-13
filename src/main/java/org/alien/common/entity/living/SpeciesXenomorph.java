@@ -10,9 +10,9 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.avp.common.DamageSources;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.brain.Brainiac;
-import org.avp.common.brain.impl.EntityBrainContext;
-import org.avp.common.brain.impl.XenomorphBrain;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
+import org.lib.brain.impl.XenomorphBrain;
 
 public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Brainiac<XenomorphBrain>
 {
