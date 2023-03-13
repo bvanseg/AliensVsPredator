@@ -73,6 +73,7 @@ public class PatchedEntityAIWander extends EntityAIBase
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
      */
+    @Override
     public boolean shouldContinueExecuting()
     {
         return !this.entity.getNavigator().noPath();
@@ -81,24 +82,9 @@ public class PatchedEntityAIWander extends EntityAIBase
     /**
      * Execute a one shot task or start executing a continuous task
      */
+    @Override
     public void startExecuting()
     {
         this.entity.getNavigator().tryMoveToXYZ(this.x, this.y, this.z, this.speed);
-    }
-
-    /**
-     * Makes task to bypass chance
-     */
-    public void makeUpdate()
-    {
-        this.mustUpdate = true;
-    }
-
-    /**
-     * Changes task random possibility for execution
-     */
-    public void setExecutionChance(int newchance)
-    {
-        this.executionChance = newchance;
     }
 }
