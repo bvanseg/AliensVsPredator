@@ -6,10 +6,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAIMoveTowardsTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.Blocks;
@@ -26,15 +22,14 @@ import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.IHost;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.network.AvpDataSerializers;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 import org.predator.client.PredatorSounds;
-import org.predator.common.entity.ai.EntityAISuperjump;
-import org.predator.common.entity.ai.selector.EntitySelectorYautja;
+import org.predator.common.entity.ai.brain.YautjaBrain;
 import org.predator.common.entity.state.CloakState;
 
-public abstract class SpeciesYautja extends EntityMob implements IHost
+public abstract class SpeciesYautja extends EntityMob implements IHost, Brainiac<YautjaBrain>
 {
     private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> DUCKING = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
@@ -48,6 +43,8 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
 
     public int cloakProgress;
 
+    private YautjaBrain brain;
+
     public SpeciesYautja(World world)
     {
         super(world);
@@ -58,15 +55,16 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     }
 
     @Override
+    public YautjaBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new YautjaBrain(this);
+        }
+        return this.brain;
+    }
+
+    @Override
     protected void initEntityAI() {
-//      this.tasks.addTask(0, new EntityAISwimming(this));
-      this.tasks.addTask(0, new EntityAICustomAttackOnCollide(this, EntityLivingBase.class, 0.9D, true));
-      this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.6D));
-      this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
-      this.targetTasks.addTask(0, new EntityAISuperjump(this, 1.0F));
-      this.targetTasks.addTask(1, new EntityAIMoveTowardsTarget(this, 0.9D, 48));
-      this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-      this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, EntitySelectorYautja.instance));
+        this.getBrain().init();
     }
 
     @Override
@@ -94,6 +92,10 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     public void onUpdate()
     {
         super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
         
         if (this.world.getTotalWorldTime() % 10 == 0)
         {
