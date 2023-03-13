@@ -1,10 +1,7 @@
 package org.alien.common.entity.living.xenomorph.parasite;
 
 import net.minecraft.block.Block;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.SoundEvents;
@@ -16,10 +13,9 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.IParasitoid;
-import org.alien.common.entity.ai.EntityAIFacehuggerLeap;
+import org.alien.common.entity.ai.brain.FacehuggerBrain;
+import org.alien.common.entity.ai.brain.ParasitoidBrain;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
 
 public class EntityFacehugger extends EntityParasitoid implements IMob, IParasitoid
 {
@@ -32,14 +28,13 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
         this.experienceValue = 10;
         this.jumpMovementFactor = 0.3F;
     }
-    
+
     @Override
-    protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.55D, true));
-        this.tasks.addTask(8, new PatchedEntityAIWander(this, 0.55D));
-        this.targetTasks.addTask(2, new EntityAIFacehuggerLeap(this));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getImpregnationEntitySelector()));
+    public ParasitoidBrain getBrain() {
+        if (!this.world.isRemote && this.brain ==  null) {
+            this.brain = new FacehuggerBrain(this);
+        }
+        return this.brain;
     }
 
     @Override
