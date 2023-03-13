@@ -4,9 +4,7 @@ import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -23,12 +21,16 @@ import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.EntityLiquidLatexPool;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
-import org.avp.common.entity.ai.selector.EntitySelectorCombatSynthetic;
+import org.avp.common.entity.ai.brain.CombatSyntheticBrain;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost
+public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost, Brainiac<CombatSyntheticBrain>
 {
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
+
+    private CombatSyntheticBrain brain;
+
 
     public EntityCombatSynthetic(World word)
     {
@@ -36,16 +38,18 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
         this.setSize(1, 2);
         this.experienceValue = 40;
     }
-    
+
+    @Override
+    public CombatSyntheticBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new CombatSyntheticBrain(this);
+        }
+        return this.brain;
+    }
+
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(1, new EntityAIAttackRanged(this, 0.4D, 20, 24));
-        this.tasks.addTask(2, new PatchedEntityAIWander(this, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
-        this.tasks.addTask(3, new EntityAISwimming(this));
-        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-        this.tasks.addTask(5, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, 0, true, false, EntitySelectorCombatSynthetic.instance));
+        this.getBrain().init();
     }
 
     @Override
@@ -97,6 +101,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
 
         if (!this.world.isRemote)
         {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
             this.getDataManager().set(AIMING, this.getAttackTarget() != null);
         }
     }
