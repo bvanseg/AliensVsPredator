@@ -20,7 +20,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.IHost;
 import org.alien.common.entity.ai.selector.EntitySelectorDracomorph;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.avp.common.EntityItemDrops;
+import org.avp.common.AVPItemDrops;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 
@@ -172,15 +172,15 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
         switch (this.rand.nextInt(4))
         {
             case 0:
-                EntityItemDrops.SKULL_ENGINEER.tryDrop(this);
+                AVPItemDrops.SKULL_ENGINEER.tryDrop(this);
             case 1:
-                EntityItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
+                AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
             case 2:
-                EntityItemDrops.SKULL_PREDATOR.tryDrop(this);
+                AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
             case 3:
-                EntityItemDrops.SKULL_XENO_DRONE.tryDrop(this);
+                AVPItemDrops.SKULL_XENO_DRONE.tryDrop(this);
             case 4:
-                EntityItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
+                AVPItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
         }
     }
 

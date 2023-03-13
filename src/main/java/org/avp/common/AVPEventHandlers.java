@@ -23,10 +23,12 @@ import org.predator.client.render.VisionModeRenderEvent;
 import java.util.ArrayList;
 
 
-public class EventHandlers implements IInitEvent
+public class AVPEventHandlers implements IInitEvent
 {
-    public static final EventHandlers instance = new EventHandlers();
-    public ArrayList<Object>          events   = new ArrayList<Object>();
+    public static final AVPEventHandlers instance = new AVPEventHandlers();
+    protected static final ArrayList<Object> events = new ArrayList<>();
+
+    private AVPEventHandlers() {}
 
     @Override
     public void init(FMLInitializationEvent event)
@@ -67,7 +69,7 @@ public class EventHandlers implements IInitEvent
 
     public void registerEvent(Object event)
     {
-        this.events.add(event);
+        events.add(event);
         Game.registerEventHandler(event);
     }
 }

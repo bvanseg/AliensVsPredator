@@ -1,4 +1,4 @@
-package org.lib;
+package org.lib.registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -10,7 +10,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
-import org.avp.common.Tab;
+import org.avp.common.AVPCreativeTabs;
 import org.avp.common.block.BlockSkull;
 import org.avp.common.item.ItemBlockSkull;
 
@@ -49,7 +49,7 @@ public class BlockRegistryUtil
 
         if (block.getCreativeTab() == null)
         {
-            block.setCreativeTab(Tab.BLOCKS);
+            block.setCreativeTab(AVPCreativeTabs.BLOCKS);
         }
         registerModel(itemblock);
 
@@ -57,7 +57,7 @@ public class BlockRegistryUtil
         ForgeRegistries.ITEMS.register(itemblock);
         registerModel(itemblock);
 
-        itemblock.setCreativeTab(Tab.BLOCKS);
+        itemblock.setCreativeTab(AVPCreativeTabs.BLOCKS);
 
         if (block.getCreativeTab() != null)
         {
@@ -65,7 +65,7 @@ public class BlockRegistryUtil
         }
         else
         {
-            itemblock.setCreativeTab(Tab.BLOCKS);
+            itemblock.setCreativeTab(AVPCreativeTabs.BLOCKS);
         }
 
         // Register fluid

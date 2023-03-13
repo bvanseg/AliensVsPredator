@@ -147,19 +147,19 @@ public class AVP implements IMod
         return BiomeColorHandler.instance;
     }
     
-    public static CraftingHandler crafting()
+    public static AVPRecipes crafting()
     {
-        return CraftingHandler.instance;
+        return AVPRecipes.instance;
     }
 
-    public static EventHandlers events()
+    public static AVPEventHandlers events()
     {
-        return EventHandlers.instance;
+        return AVPEventHandlers.instance;
     }
 
-    public static NetworkHandler network()
+    public static AVPNetworking network()
     {
-        return NetworkHandler.instance;
+        return AVPNetworking.instance;
     }
 
     public static DimensionHandler dimensions()
@@ -172,14 +172,14 @@ public class AVP implements IMod
         return WorldHandler.instance;
     }
 
-    public static EntityHandler entities()
+    public static AVPEntities entities()
     {
-        return EntityHandler.instance;
+        return AVPEntities.instance;
     }
 
-    public static Tab tabs()
+    public static AVPCreativeTabs tabs()
     {
-        return Tab.instance;
+        return AVPCreativeTabs.instance;
     }
 
     @SideOnly(Side.CLIENT)
@@ -200,9 +200,9 @@ public class AVP implements IMod
         return Resources.instance;
     }
 
-    public static GuiHandler interfaces()
+    public static AVPGui interfaces()
     {
-        return GuiHandler.instance;
+        return AVPGui.instance;
     }
 
     public static CapabilityHandler capabilities()
@@ -220,13 +220,13 @@ public class AVP implements IMod
         return Schematics.instance;
     }
 
-    public static CommandHandler commands()
+    public static AVPCommands commands()
     {
-        return CommandHandler.instance;
+        return AVPCommands.instance;
     }
 
-    public static Settings settings()
+    public static AVPSettings settings()
     {
-        return Settings.instance;
+        return AVPSettings.instance;
     }
 }

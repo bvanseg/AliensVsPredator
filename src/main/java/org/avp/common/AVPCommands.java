@@ -8,11 +8,13 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.avp.common.command.CommandPlayerMode;
 import org.avp.common.command.CommandSettings;
 
-public class CommandHandler implements IInitEvent
+public class AVPCommands implements IInitEvent
 {
-    public static final CommandHandler instance = new CommandHandler();
+    public static final AVPCommands instance = new AVPCommands();
     private CommandPlayerMode commandPlayerMode;
     private CommandSettings commandSettings;
+
+    private AVPCommands() {}
 
     @Override
     public void init(FMLInitializationEvent event)

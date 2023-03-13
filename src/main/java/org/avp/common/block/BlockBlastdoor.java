@@ -28,7 +28,7 @@ import org.avp.client.gui.GuiBlastdoor;
 import org.avp.common.AVPItems;
 import org.avp.common.item.ItemMaintenanceJack;
 import org.avp.common.tile.TileEntityBlastdoor;
-import org.lib.BlockRegistryUtil;
+import org.lib.registry.BlockRegistryUtil;
 
 public class BlockBlastdoor extends Block
 {

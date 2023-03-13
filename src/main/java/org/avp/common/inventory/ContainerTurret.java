@@ -1,28 +1,21 @@
 package org.avp.common.inventory;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import org.avp.common.item.ItemStorageDevice;
+import org.avp.common.AVPItems;
 import org.avp.common.tile.TileEntityTurret;
 
 public class ContainerTurret extends Container
 {
-    private TileEntityTurret tile;
+    private final TileEntityTurret tile;
     
-    public static interface ITurretUpgrade
-    {
-        ;
-    }
+    public interface ITurretUpgrade {}
     
-    public static interface ITurretAmmunition
-    {
-        ;
-    }
+    public interface ITurretAmmunition {}
 
     public static class SlotDigitalStorage extends Slot
     {
@@ -34,7 +27,7 @@ public class ContainerTurret extends Container
         @Override
         public boolean isItemValid(ItemStack stack)
         {
-            if (stack.getItem() instanceof ItemStorageDevice)
+            if (stack.getItem() == AVPItems.ITEM_FLASH_DRIVE)
             {
                 return true;
             }
@@ -153,7 +146,7 @@ public class ContainerTurret extends Container
                         return ItemStack.EMPTY;
                     }
                 }
-                else if (itemstack.getItem() instanceof ItemStorageDevice)
+                else if (itemstack.getItem() == AVPItems.ITEM_FLASH_DRIVE)
                 {
                     if (!this.mergeItemStack(itemstack, 9, 10, false))
                     {
@@ -191,12 +184,6 @@ public class ContainerTurret extends Container
         }
 
         return ItemStack.EMPTY;
-    }
-
-    @Override
-    public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player)
-    {
-        return super.slotClick(slotId, dragType, clickTypeIn, player);
     }
 
     @Override

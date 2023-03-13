@@ -26,7 +26,7 @@ import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import org.apache.commons.lang3.tuple.Pair;
-import org.avp.common.Settings.ClientSettings;
+import org.avp.common.AVPSettings.ClientSettings;
 import org.avp.common.block.BlockHiveResin;
 
 import javax.vecmath.Matrix4f;

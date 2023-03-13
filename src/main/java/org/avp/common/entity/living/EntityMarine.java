@@ -17,8 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.client.AVPSounds;
+import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
-import org.avp.common.EntityItemDrops;
 import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
@@ -135,7 +135,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     public void onDeath(DamageSource source)
     {
         super.onDeath(source);
-        EntityItemDrops.AMMUNITION.tryDrop(this);
+        AVPItemDrops.AMMUNITION.tryDrop(this);
     }
 
     @Override

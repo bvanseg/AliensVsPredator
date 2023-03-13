@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.world.capability.IOrganism.Organism;
 import org.alien.common.world.capability.IOrganism.Provider;
-import org.avp.common.Settings.ClientSettings;
+import org.avp.common.AVPSettings.ClientSettings;
 import org.predator.common.entity.living.SpeciesYautja;
 
 public class EntityImpregnationHandler

@@ -25,7 +25,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.IHost;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.EntityItemDrops;
+import org.avp.common.AVPItemDrops;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.network.AvpDataSerializers;
@@ -277,12 +277,12 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     {
         super.onDeath(damagesource);
 
-        EntityItemDrops.PREDATOR_ARTIFACT.tryDrop(this);
-        EntityItemDrops.PLASMACANNON.tryDrop(this);
-        EntityItemDrops.WRISTBRACER.tryDrop(this);
-        EntityItemDrops.SHURIKEN.tryDrop(this);
-        EntityItemDrops.SILICON.tryDrop(this);
-        EntityItemDrops.WRISTBRACER_BLADES.tryDrop(this);
+        AVPItemDrops.PREDATOR_ARTIFACT.tryDrop(this);
+        AVPItemDrops.PLASMACANNON.tryDrop(this);
+        AVPItemDrops.WRISTBRACER.tryDrop(this);
+        AVPItemDrops.SHURIKEN.tryDrop(this);
+        AVPItemDrops.SILICON.tryDrop(this);
+        AVPItemDrops.WRISTBRACER_BLADES.tryDrop(this);
         
         dropBiomaskAndSkull(damagesource);
     }
@@ -291,13 +291,13 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     {
         if (damagesource == AVPDamageSources.WRISTBRACER)
         {
-            EntityItemDrops.SKULL_PREDATOR.tryDrop(this, 25);
-            EntityItemDrops.BIOMASK.tryDrop(this, 25);
+            AVPItemDrops.SKULL_PREDATOR.tryDrop(this, 25);
+            AVPItemDrops.BIOMASK.tryDrop(this, 25);
         }
         else
         {
-            EntityItemDrops.SKULL_PREDATOR.tryDrop(this);
-            EntityItemDrops.BIOMASK.tryDrop(this);
+            AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
+            AVPItemDrops.BIOMASK.tryDrop(this);
         }
     }
     

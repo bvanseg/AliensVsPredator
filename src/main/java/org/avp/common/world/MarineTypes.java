@@ -11,7 +11,11 @@ import org.avp.common.item.firearm.ItemFirearm;
 
 public enum MarineTypes
 {
-    M4(0, (ItemFirearm) AVPItems.ITEM_M4), AK47(1, (ItemFirearm) AVPItems.ITEM_AK47), M41A(2, (ItemFirearm) AVPItems.ITEM_M41A), SNIPER(3, (ItemFirearm) AVPItems.ITEM_SNIPER), M56SG(4, (ItemFirearm) AVPItems.ITEM_M56SG);
+    M4(0, (ItemFirearm) AVPItems.ITEM_M4),
+    AK47(1, (ItemFirearm) AVPItems.ITEM_AK47),
+    M41A(2, (ItemFirearm) AVPItems.ITEM_M41A),
+    SNIPER(3, (ItemFirearm) AVPItems.ITEM_SNIPER),
+    M56SG(4, (ItemFirearm) AVPItems.ITEM_M56SG);
 
     private final int id;
     private final ItemFirearm itemFirearm;

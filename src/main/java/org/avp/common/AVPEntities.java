@@ -46,19 +46,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
-public class EntityHandler implements IInitEvent
+public class AVPEntities implements IInitEvent
 {
-    public static final EntityHandler     instance                  = new EntityHandler();
+    public static final AVPEntities instance                  = new AVPEntities();
     private static int                    entityId                  = 0;
 
-    private static ArrayList<EntityEntry> entities                  = new ArrayList<EntityEntry>();
-    private static ArrayList<EntityEntry> livingEntities            = new ArrayList<EntityEntry>();
+    private static final ArrayList<EntityEntry> entities                  = new ArrayList<>();
+    private static final ArrayList<EntityEntry> livingEntities            = new ArrayList<>();
 
-    public static ArrayList<Biome>        DEFAULT_ALIEN_SPAWNS      = new ArrayList<Biome>();
-    public static ArrayList<Biome>        DEFAULT_AQUA_ALIEN_SPAWNS = new ArrayList<Biome>();
-    public static ArrayList<Biome>        DEFAULT_PREDATOR_SPAWNS   = new ArrayList<Biome>();
-    public static ArrayList<Biome>        DEFAULT_VARDA_LIFE_SPAWNS = new ArrayList<Biome>();
-    public static ArrayList<Biome>        DEFAULT_MARINE_SPAWNS     = new ArrayList<Biome>();
+    protected static final ArrayList<Biome>        DEFAULT_ALIEN_SPAWNS      = new ArrayList<>();
+    protected static final ArrayList<Biome>        DEFAULT_AQUA_ALIEN_SPAWNS = new ArrayList<>();
+    protected static final ArrayList<Biome>        DEFAULT_PREDATOR_SPAWNS   = new ArrayList<>();
+    protected static final ArrayList<Biome>        DEFAULT_VARDA_LIFE_SPAWNS = new ArrayList<>();
+    protected static final ArrayList<Biome>        DEFAULT_MARINE_SPAWNS     = new ArrayList<>();
+
+    private AVPEntities() {}
 
     static
     {

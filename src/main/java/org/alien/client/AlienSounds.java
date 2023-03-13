@@ -3,7 +3,7 @@ package org.alien.client;
 import com.asx.mdx.core.mods.IPreInitEvent;
 import com.asx.mdx.lib.util.Sound;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.lib.SoundRegistryUtil;
+import org.lib.registry.SoundRegistryUtil;
 
 /**
  * @author Ri5ux

@@ -12,7 +12,7 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
-import org.avp.common.EntityItemDrops;
+import org.avp.common.AVPItemDrops;
 
 public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMember
 {
@@ -64,7 +64,7 @@ public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMembe
     public void onDeath(DamageSource damageSource)
     {
         super.onDeath(damageSource);
-        EntityItemDrops.SKULL_PREDATOR.tryDrop(this);
+        AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
     }
     
     @Override

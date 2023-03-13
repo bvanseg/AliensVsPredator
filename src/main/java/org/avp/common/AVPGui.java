@@ -17,9 +17,9 @@ import org.predator.common.PredatorItems;
 import org.predator.common.inventory.ContainerWristbracer;
 import org.predator.common.item.ItemWristbracer;
 
-public class GuiHandler implements IGuiHandler, IInitEvent
+public class AVPGui implements IGuiHandler, IInitEvent
 {
-    public static final GuiHandler        instance                = new GuiHandler();
+    public static final AVPGui            instance                = new AVPGui();
     public static final int               GUI_ASSEMBLER           = 0;
     public static final int               GUI_TURRET              = 1;
     public static final int               GUI_WRISTBRACER         = 2;
@@ -29,6 +29,8 @@ public class GuiHandler implements IGuiHandler, IInitEvent
     public static final int               GUI_BLASTDOOR_PSWD      = 6;
     public static final int               GUI_NETWORK_RACK        = 7;
     public static final int               GUI_REPULSION_GENERATOR = 8;
+
+    private AVPGui() {}
 
     @Override
     public void init(FMLInitializationEvent event)

@@ -12,12 +12,12 @@ import org.avp.common.network.packet.server.*;
 import org.avp.common.network.packet.server.PacketBlastdoorCommon.PacketBlastdoorClient;
 
 
-public class NetworkHandler extends SimpleNetworkWrapper implements IInitEvent
+public class AVPNetworking extends SimpleNetworkWrapper implements IInitEvent
 {
-    public static final NetworkHandler instance = new NetworkHandler();
+    public static final AVPNetworking instance = new AVPNetworking();
     private int discriminator = 0;
 
-    public NetworkHandler()
+    private AVPNetworking()
     {
         super(AVP.Properties.ID.toUpperCase());
     }

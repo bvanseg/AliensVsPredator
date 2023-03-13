@@ -22,8 +22,8 @@ import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.AVP;
+import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPMaterials;
-import org.avp.common.EntityItemDrops;
 import org.avp.common.network.packet.client.PacketOvamorphContainsFacehugger;
 
 import java.util.ArrayList;
@@ -100,7 +100,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
     {
         super.onDeath(damagesource);
 
-        EntityItemDrops.ROYAL_JELLY_GENERIC.tryDrop(this);
+        AVPItemDrops.ROYAL_JELLY_GENERIC.tryDrop(this);
     }
 
     @Override
@@ -194,7 +194,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
     {
         super.damageEntity(source, amount);
 
-        EntityItemDrops.ROYAL_JELLY_SINGLE.tryDrop(this);
+        AVPItemDrops.ROYAL_JELLY_SINGLE.tryDrop(this);
     }
 
     protected void hatch()

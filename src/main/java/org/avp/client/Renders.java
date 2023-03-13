@@ -70,7 +70,7 @@ import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.tile.*;
 import org.avp.common.tile.plant.TileEntityGroundFern;
 import org.avp.common.tile.plant.TileEntityTreeFern;
-import org.lib.BlockRegistryUtil;
+import org.lib.registry.BlockRegistryUtil;
 import org.predator.client.render.entity.*;
 import org.predator.client.render.entity.living.RenderPredatorHound;
 import org.predator.client.render.entity.living.RenderYautjaBerserker;

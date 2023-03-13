@@ -9,7 +9,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.EntityItemDrops;
+import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.impl.XenomorphBrain;
@@ -227,18 +227,18 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     {
         super.onDeath(damagesource);
 
-        EntityItemDrops.XENO_FEET.tryDrop(this);
-        EntityItemDrops.XENO_HELM.tryDrop(this);
-        EntityItemDrops.XENO_LEGS.tryDrop(this);
-        EntityItemDrops.XENO_TORSO.tryDrop(this);
+        AVPItemDrops.XENO_FEET.tryDrop(this);
+        AVPItemDrops.XENO_HELM.tryDrop(this);
+        AVPItemDrops.XENO_LEGS.tryDrop(this);
+        AVPItemDrops.XENO_TORSO.tryDrop(this);
 
         if (damagesource == AVPDamageSources.WRISTBRACER)
         {
-            EntityItemDrops.SKULLS_XENO.tryDrop(this, 25);
+            AVPItemDrops.SKULLS_XENO.tryDrop(this, 25);
         }
         else
         {
-            EntityItemDrops.SKULLS_XENO.tryDrop(this);
+            AVPItemDrops.SKULLS_XENO.tryDrop(this);
         }
     }
 

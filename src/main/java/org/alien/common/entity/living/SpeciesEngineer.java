@@ -19,7 +19,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import org.avp.common.EntityItemDrops;
+import org.avp.common.AVPItemDrops;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.entity.living.EntityMarine;
@@ -54,9 +54,9 @@ public abstract class SpeciesEngineer extends EntityMob
     {
         super.onDeath(damagesource);
 
-        EntityItemDrops.NBT_DRIVE.tryDrop(this);
-        EntityItemDrops.PHIAL.tryDrop(this);
-        EntityItemDrops.PHIAL_EMPTY.tryDrop(this);
+        AVPItemDrops.NBT_DRIVE.tryDrop(this);
+        AVPItemDrops.PHIAL.tryDrop(this);
+        AVPItemDrops.PHIAL_EMPTY.tryDrop(this);
     }
     
 

@@ -9,7 +9,7 @@ import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesEngineer;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.EntityItemDrops;
+import org.avp.common.AVPItemDrops;
 
 public class EntitySpaceJockey extends SpeciesEngineer
 {
@@ -36,11 +36,11 @@ public class EntitySpaceJockey extends SpeciesEngineer
 
         if (damagesource == AVPDamageSources.WRISTBRACER)
         {
-            EntityItemDrops.SKULL_SPACEJOCKEY.tryDrop(this, 25);
+            AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this, 25);
         }
         else
         {
-            EntityItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
+            AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
         }
     }
 

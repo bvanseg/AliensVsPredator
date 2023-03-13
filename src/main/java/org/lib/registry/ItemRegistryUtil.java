@@ -1,4 +1,4 @@
-package org.lib;
+package org.lib.registry;
 
 import com.asx.mdx.lib.client.Renderers;
 import net.minecraft.item.Item;
@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import org.avp.AVP;
-import org.avp.common.Tab;
+import org.avp.common.AVPCreativeTabs;
 
 /**
  * @author Boston Vanseghi
@@ -24,7 +24,7 @@ public class ItemRegistryUtil {
             if (!AVP.settings().areExperimentalFeaturesEnabled()) {
                 return;
             } else {
-                item.setCreativeTab(Tab.ENTITIES_WIP);
+                item.setCreativeTab(AVPCreativeTabs.ENTITIES_WIP);
             }
         }
 

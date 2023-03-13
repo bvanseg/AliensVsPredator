@@ -10,11 +10,13 @@ import org.avp.AVP;
 import org.predator.common.PredatorBlocks;
 import org.predator.common.PredatorItems;
 
-public class Tab implements IPreInitEvent
+public class AVPCreativeTabs implements IPreInitEvent
 {
-    public static Tab instance = new Tab();
+    public static final AVPCreativeTabs instance = new AVPCreativeTabs();
+
+    private AVPCreativeTabs() {}
     
-    public static CreativeTabs MAIN               = new CreativeTabs("main") {
+    public static final CreativeTabs MAIN               = new CreativeTabs("main") {
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
@@ -26,7 +28,7 @@ public class Tab implements IPreInitEvent
                                                                 return "Main";
                                                             }
                                                         };
-    public static CreativeTabs BLOCKS             = new CreativeTabs("blocks") {
+    public static final CreativeTabs BLOCKS             = new CreativeTabs("blocks") {
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
@@ -38,7 +40,7 @@ public class Tab implements IPreInitEvent
                                                                 return "Blocks";
                                                             }
                                                         };
-    public static CreativeTabs ENTITIES           = new CreativeTabs("summoners") {
+    public static final CreativeTabs ENTITIES           = new CreativeTabs("summoners") {
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
@@ -51,7 +53,7 @@ public class Tab implements IPreInitEvent
                                                             }
                                                         };
     public static CreativeTabs ENTITIES_WIP;
-    public static CreativeTabs GUN_PARTS      = new CreativeTabs("gunparts") {
+    public static final CreativeTabs GUN_PARTS      = new CreativeTabs("gunparts") {
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
@@ -63,7 +65,7 @@ public class Tab implements IPreInitEvent
                                                                 return "Gun Parts";
                                                             }
                                                         };
-    public static CreativeTabs CRAFTING        = new CreativeTabs("crafting") {
+    public static final CreativeTabs CRAFTING        = new CreativeTabs("crafting") {
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {

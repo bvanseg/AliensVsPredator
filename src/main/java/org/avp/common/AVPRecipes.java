@@ -24,10 +24,12 @@ import org.predator.common.PredatorItems;
 import java.util.Arrays;
 
 @EventBusSubscriber
-public class CraftingHandler
+public class AVPRecipes
 {
-    public static final CraftingHandler instance = new CraftingHandler();
+    public static final AVPRecipes instance = new AVPRecipes();
     private static final ItemStack      CHARCOAL = new ItemStack(Items.COAL, 1, 1);
+
+    private AVPRecipes() {}
 
     @SubscribeEvent
     public static void registerRecipes(RegistryEvent.Register<IRecipe> event)

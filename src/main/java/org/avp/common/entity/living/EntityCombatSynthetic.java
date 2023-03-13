@@ -19,8 +19,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.IHost;
 import org.avp.client.AVPSounds;
+import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
-import org.avp.common.EntityItemDrops;
 import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.EntityLiquidLatexPool;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
@@ -29,8 +29,6 @@ import org.avp.common.entity.ai.selector.EntitySelectorCombatSynthetic;
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost
 {
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
-    
-    private EntityAIBase                        aiRangedAttack;
 
     public EntityCombatSynthetic(World word)
     {
@@ -41,8 +39,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     
     @Override
     protected void initEntityAI() {
-        this.aiRangedAttack = new EntityAIAttackRanged(this, 0.4D, 20, 24);
-        this.tasks.addTask(1, this.aiRangedAttack);
+        this.tasks.addTask(1, new EntityAIAttackRanged(this, 0.4D, 20, 24));
         this.tasks.addTask(2, new PatchedEntityAIWander(this, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
         this.tasks.addTask(3, new EntityAISwimming(this));
         this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
@@ -67,10 +64,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     }
     
     @Override
-    protected void despawnEntity()
-    {
-        ;
-    }
+    protected void despawnEntity() { /* Do Nothing */ }
 
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
@@ -88,12 +82,6 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     public ItemStack getHeldItemMainhand()
     {
         return new ItemStack(AVPItems.ITEM_M41A);
-    }
-
-    @Override
-    public void onLivingUpdate()
-    {
-        super.onLivingUpdate();
     }
 
     @Override
@@ -142,7 +130,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     {
         super.onDeath(damagesource);
         
-        EntityItemDrops.AMMUNITION.tryDrop(this);
+        AVPItemDrops.AMMUNITION.tryDrop(this);
 
         if (!this.world.isRemote)
         {
@@ -165,10 +153,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     }
 
     @Override
-    public void setSwingingArms(boolean swingingArms)
-    {
-        ;
-    }
+    public void setSwingingArms(boolean swingingArms) { /* Do Nothing */ }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)

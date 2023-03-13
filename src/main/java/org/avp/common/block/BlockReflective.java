@@ -271,12 +271,6 @@ public class BlockReflective extends Block implements ITileEntityProvider
     }
 
     @Override
-    public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
-    {
-        super.getDrops(drops, world, pos, state, fortune);
-    }
-
-    @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
         return new TileEntityReflective();

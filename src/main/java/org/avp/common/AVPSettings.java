@@ -17,12 +17,12 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Settings implements IPreInitEvent, IFlexibleConfiguration
+public class AVPSettings implements IPreInitEvent, IFlexibleConfiguration
 {
-    public static final Settings           instance          = new Settings();
+    public static final AVPSettings instance          = new AVPSettings();
 
     private Configuration                  configuration;
-    private final ArrayList<ConfigSetting> allSettings       = new ArrayList<ConfigSetting>();
+    private final ArrayList<ConfigSetting> allSettings       = new ArrayList<>();
 
     private final String                   CATEGORY_OTHER    = "general";
     private final String                   CATEGORY_BIOMES   = "biomes";
@@ -174,17 +174,17 @@ public class Settings implements IPreInitEvent, IFlexibleConfiguration
             {
                 System.out.println("Listing Overworld Biome IDs for configuration settings...");
                 
-                for (Biome b : EntityHandler.getOverworldBiomeList())
+                for (Biome b : AVPEntities.getOverworldBiomeList())
                 {
                 	AVP.log().info(b.getBiomeName() + " : " + b.getRegistryName());
                 }
             }
 
-            spawnsAlien = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "alien_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_ALIEN_SPAWNS), "List of biomes for aliens to spawn in.")).setRequiresRestart();
-            spawnsAquaticAlien = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "aquatic_alien_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_AQUA_ALIEN_SPAWNS), "List of biomes for aquatic aliens to spawn in.")).setRequiresRestart();
-            spawnsPredator = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "predator_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_PREDATOR_SPAWNS), "List of biomes for predators to spawn in.")).setRequiresRestart();
-            spawnsMarine = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "marine_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_MARINE_SPAWNS), "List of biomes for marines to spawn in.")).setRequiresRestart();
-            spawnsVarda = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "varda_biomes", ConfigSettingBiomeList.biomeIdListForConfig(EntityHandler.DEFAULT_VARDA_LIFE_SPAWNS), "List of biomes for varda wildlife to spawn in.")).setRequiresRestart();
+            spawnsAlien = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "alien_biomes", ConfigSettingBiomeList.biomeIdListForConfig(AVPEntities.DEFAULT_ALIEN_SPAWNS), "List of biomes for aliens to spawn in.")).setRequiresRestart();
+            spawnsAquaticAlien = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "aquatic_alien_biomes", ConfigSettingBiomeList.biomeIdListForConfig(AVPEntities.DEFAULT_AQUA_ALIEN_SPAWNS), "List of biomes for aquatic aliens to spawn in.")).setRequiresRestart();
+            spawnsPredator = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "predator_biomes", ConfigSettingBiomeList.biomeIdListForConfig(AVPEntities.DEFAULT_PREDATOR_SPAWNS), "List of biomes for predators to spawn in.")).setRequiresRestart();
+            spawnsMarine = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "marine_biomes", ConfigSettingBiomeList.biomeIdListForConfig(AVPEntities.DEFAULT_MARINE_SPAWNS), "List of biomes for marines to spawn in.")).setRequiresRestart();
+            spawnsVarda = new ConfigSettingBiomeList(this, configuration.get(CATEGORY_SPAWNING, "varda_biomes", ConfigSettingBiomeList.biomeIdListForConfig(AVPEntities.DEFAULT_VARDA_LIFE_SPAWNS), "List of biomes for varda wildlife to spawn in.")).setRequiresRestart();
         }
         finally
         {

@@ -2,7 +2,9 @@ package org.avp.common;
 
 public class URLs
 {
-    public static final String DOMAIN              = "http://aliensvspredator.org";
+    private URLs() {}
+
+    public static final String DOMAIN              = "https://aliensvspredator.org";
     public static final String UPDATER             = DOMAIN + "/page/beta/aliensvspredator/latest.php";
     public static final String SUBMIT_FEEDBACK     = DOMAIN + "/page/beta/submit.php?user=%s&uuid=%s&info=%s";
     public static final String FEEDBACK_VALIDATION = DOMAIN + "/page/beta/validate.php?uuid=%s";

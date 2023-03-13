@@ -1,4 +1,4 @@
-package org.lib;
+package org.lib.registry;
 
 import com.asx.mdx.lib.util.Sound;
 import net.minecraft.util.ResourceLocation;

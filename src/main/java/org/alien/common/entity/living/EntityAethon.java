@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.IHost;
 import org.alien.common.entity.ai.selector.EntitySelectorAethon;
-import org.avp.common.EntityItemDrops;
+import org.avp.common.AVPItemDrops;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 
@@ -185,13 +185,13 @@ public class EntityAethon extends EntityMob implements IMob, IHost
     {
         super.onDeath(source);
         
-        EntityItemDrops.SKULL_ENGINEER.tryDrop(this);
-        EntityItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
-        EntityItemDrops.SKULL_PREDATOR.tryDrop(this);
-        EntityItemDrops.SKULL_XENO_DRONE.tryDrop(this);
-        EntityItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
-        EntityItemDrops.SKULL_AETHON.tryDrop(this);
-        EntityItemDrops.HEAD_GIGER.tryDrop(this);
+        AVPItemDrops.SKULL_ENGINEER.tryDrop(this);
+        AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
+        AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
+        AVPItemDrops.SKULL_XENO_DRONE.tryDrop(this);
+        AVPItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
+        AVPItemDrops.SKULL_AETHON.tryDrop(this);
+        AVPItemDrops.HEAD_GIGER.tryDrop(this);
     }
     
     @Override

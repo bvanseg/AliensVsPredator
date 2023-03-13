@@ -11,19 +11,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.avp.common.tile.TileEntityPowerline;
 
-import java.util.Random;
-
 public class BlockPowerline extends Block
 {
     public BlockPowerline(Material material)
     {
         super(material);
-    }
-    
-    @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        super.updateTick(worldIn, pos, state, rand);
     }
     
     @Override

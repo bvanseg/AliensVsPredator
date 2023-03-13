@@ -8,8 +8,10 @@ import org.alien.common.AlienItems;
 import org.predator.common.PredatorBlocks;
 import org.predator.common.PredatorItems;
 
-public class EntityItemDrops
+public class AVPItemDrops
 {
+    private AVPItemDrops() {}
+
     public static final ItemDrop ROYAL_JELLY_GENERIC = new ItemDrop(100, new ItemStack(AlienItems.ITEM_ROYAL_JELLY, 4));
     public static final ItemDrop ROYAL_JELLY_SINGLE = new ItemDrop(100, new ItemStack(AlienItems.ITEM_ROYAL_JELLY, 1));
     public static final ItemDrop NBT_DRIVE = new ItemDrop(50, new ItemStack(AVPItems.ITEM_FLASH_DRIVE));
