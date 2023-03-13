@@ -45,6 +45,7 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 public class AVPEntities implements IInitEvent
 {
@@ -122,6 +123,8 @@ public class AVPEntities implements IInitEvent
     @Mod.EventBusSubscriber(modid = AVP.Properties.ID)
     public static class RegistrationHandler
     {
+        private RegistrationHandler() {}
+
         static
         {
             entities.add(EntityEntryBuilder.create().entity(EntitySpear.class).id("Spear", entityId++).name("Spear").tracker(250, 4, true).build());
@@ -201,14 +204,14 @@ public class AVPEntities implements IInitEvent
         @SubscribeEvent
         public static void registerEntities(final RegistryEvent.Register<EntityEntry> event)
         {
-            for (EntityEntry ee : entities)
+            for (EntityEntry entityEntry : entities)
             {
-                event.getRegistry().register(ee);
+                event.getRegistry().register(entityEntry);
             }
 
-            for (EntityEntry ee : livingEntities)
+            for (EntityEntry entityEntry : livingEntities)
             {
-                event.getRegistry().register(ee);
+                event.getRegistry().register(entityEntry);
             }
         }
     }
@@ -259,11 +262,11 @@ public class AVPEntities implements IInitEvent
     {
         if (AVP.settings().areAutoSpawnsEnabled())
         {
-            ArrayList<Biome> alienSpawns = filterOverworldBiomes("Alien", AVP.settings().getSpawnsAlien().value());
-            ArrayList<Biome> aquaAlienSpawns = filterOverworldBiomes("AlienAquatic", AVP.settings().getSpawnsAquaticAlien().value());
-            ArrayList<Biome> predatorSpawns = filterOverworldBiomes("Predator", AVP.settings().getSpawnsPredator().value());
-            ArrayList<Biome> marineSpawns = AVP.settings().getSpawnsMarine().value();
-            ArrayList<Biome> vardaSpawns = filterOverworldBiomes("Varda", AVP.settings().getSpawnsVarda().value());
+            List<Biome> alienSpawns = filterOverworldBiomes("Alien", AVP.settings().getSpawnsAlien().value());
+            List<Biome> aquaAlienSpawns = filterOverworldBiomes("AlienAquatic", AVP.settings().getSpawnsAquaticAlien().value());
+            List<Biome> predatorSpawns = filterOverworldBiomes("Predator", AVP.settings().getSpawnsPredator().value());
+            List<Biome> marineSpawns = AVP.settings().getSpawnsMarine().value();
+            List<Biome> vardaSpawns = filterOverworldBiomes("Varda", AVP.settings().getSpawnsVarda().value());
 
             if (AVP.settings().shouldEvolvedXenomorphsSpawn())
             {
@@ -342,7 +345,7 @@ public class AVPEntities implements IInitEvent
         return overworldBiomes;
     }
 
-    private static Biome[] array(ArrayList<Biome> biomes)
+    private static Biome[] array(List<Biome> biomes)
     {
         return Arrays.copyOf(biomes.toArray(), biomes.toArray().length, Biome[].class);
     }
