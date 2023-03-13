@@ -160,11 +160,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
         this.setDead();
     }
 
-    public boolean canMoveToJelly()
-    {
-        return !(this instanceof EntityOvamorph);
-    }
-
     protected void onPickupJelly(EntityItem entityItem)
     {
         this.setJellyLevel(this.getJellyLevel() + (entityItem.getItem().getCount() * 100));

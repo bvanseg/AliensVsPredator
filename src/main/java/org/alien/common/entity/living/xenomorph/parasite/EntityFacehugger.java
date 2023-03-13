@@ -64,12 +64,6 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, Parasito
     protected void despawnEntity() { /* Do Nothing */ }
 
     @Override
-    public boolean canMoveToJelly()
-    {
-        return super.canMoveToJelly() && this.isFertile();
-    }
-
-    @Override
     protected void onPickupJelly(EntityItem entityItem)
     {
         super.onPickupJelly(entityItem);

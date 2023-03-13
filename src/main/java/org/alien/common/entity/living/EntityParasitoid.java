@@ -125,12 +125,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
     }
 
     @Override
-    public boolean canMoveToJelly()
-    {
-        return false;
-    }
-
-    @Override
     protected void collideWithNearbyEntities()
     {
         if(this.isFertile()) 

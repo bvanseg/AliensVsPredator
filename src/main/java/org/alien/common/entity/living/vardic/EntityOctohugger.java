@@ -240,12 +240,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, Parasito
     }
 
     @Override
-    public boolean canMoveToJelly()
-    {
-        return super.canMoveToJelly() && this.isFertile();
-    }
-
-    @Override
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.FACEHUGGER_DEATH.event();

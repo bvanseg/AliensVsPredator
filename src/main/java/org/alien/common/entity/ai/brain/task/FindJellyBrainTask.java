@@ -63,7 +63,7 @@ public class FindJellyBrainTask extends AbstractBrainTask<EntityBrainContext> {
 			if (!entityItemList.isEmpty()) {
 	            EntityItem closestJelly = entityItemList.get(0);
 
-	            if (xenomorph.canMoveToJelly() && xenomorph.isDependantOnHive() && !this.hasJellyTarget) {
+	            if (xenomorph.isDependantOnHive() && !this.hasJellyTarget) {
                     xenomorph.getNavigator().setPath(xenomorph.getNavigator().getPathToEntityLiving(closestJelly), 1);
                     this.hasJellyTarget = true;
                 }
