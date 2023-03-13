@@ -28,6 +28,10 @@ public class EntitySelectorYautja implements Predicate<EntityLivingBase>
             EntityPlayer player = (EntityPlayer) entity;
             ItemStack stack = player.getHeldItemMainhand();
 
+            if (player.isCreative()) {
+                return false;
+            }
+
             if (stack != null)
             {
                 Item item = stack.getItem();
