@@ -25,13 +25,13 @@ import org.alien.common.entity.ai.EntityAIPathFindToHive;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
+import org.alien.common.world.hive.AlienHive;
+import org.alien.common.world.hive.HiveMember;
+import org.alien.common.world.hive.HiveOwner;
 import org.avp.AVP;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.network.packet.server.PacketSpawnEntity;
-import org.avp.common.world.hive.AlienHive;
-import org.avp.common.world.hive.HiveMember;
-import org.avp.common.world.hive.HiveOwner;
 
 import java.util.ArrayList;
 import java.util.UUID;

@@ -12,12 +12,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
+import org.alien.common.api.parasitoidic.INascentic;
 import org.alien.common.entity.living.engineer.EntityEngineer;
-import org.avp.common.api.parasitoidic.INascentic;
+import org.alien.common.world.hive.HiveMember;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.entity.living.EntityMarine;
-import org.avp.common.world.hive.HiveMember;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
 public class EntityRunnerChestburster extends EntityChestburster implements IMob, INascentic, HiveMember

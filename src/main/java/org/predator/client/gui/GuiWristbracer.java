@@ -12,8 +12,8 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.common.inventory.ContainerWristbracer;
 import org.lwjgl.opengl.GL11;
+import org.predator.common.inventory.ContainerWristbracer;
 import org.predator.common.item.ItemWristbracer;
 
 import java.util.ArrayList;

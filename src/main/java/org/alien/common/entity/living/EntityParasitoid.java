@@ -20,14 +20,14 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import org.alien.common.api.parasitoidic.IParasitoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
+import org.alien.common.world.capability.IOrganism.Organism;
+import org.alien.common.world.capability.IOrganism.Provider;
 import org.avp.AVP;
-import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
-import org.avp.common.world.capability.IOrganism.Organism;
-import org.avp.common.world.capability.IOrganism.Provider;
 
 import java.util.ArrayList;
 import java.util.Collections;

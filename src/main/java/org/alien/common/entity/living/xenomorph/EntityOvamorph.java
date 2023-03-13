@@ -20,10 +20,10 @@ import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
+import org.alien.common.world.hive.HiveMember;
 import org.avp.AVP;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.network.packet.client.PacketOvamorphContainsFacehugger;
-import org.avp.common.world.hive.HiveMember;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -20,18 +20,18 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
+import org.alien.common.api.parasitoidic.IMaturable;
+import org.alien.common.api.parasitoidic.INascentic;
+import org.alien.common.api.parasitoidic.IRoyalOrganism;
 import org.alien.common.entity.ai.selector.EntitySelectorAvoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
+import org.alien.common.world.capability.IOrganism.Organism;
+import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.hive.HiveMember;
 import org.avp.common.DamageSources;
-import org.avp.common.api.parasitoidic.IMaturable;
-import org.avp.common.api.parasitoidic.INascentic;
-import org.avp.common.api.parasitoidic.IRoyalOrganism;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
-import org.avp.common.world.capability.IOrganism.Organism;
-import org.avp.common.world.capability.IOrganism.Provider;
-import org.avp.common.world.hive.HiveMember;
 
 public class EntityChestburster extends SpeciesAlien implements IMob, INascentic, HiveMember
 {

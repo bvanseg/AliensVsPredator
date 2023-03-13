@@ -5,8 +5,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
+import org.alien.common.world.fluid.FluidBlackGoo;
 import org.avp.AVP;
-import org.avp.common.world.fluids.FluidBlackGoo;
 
 public class BlockBlackGoo extends BlockFluidClassic
 {

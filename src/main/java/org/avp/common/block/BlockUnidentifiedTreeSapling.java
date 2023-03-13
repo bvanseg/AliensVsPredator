@@ -17,10 +17,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.common.IPlantable;
-import org.avp.common.world.dimension.varda.gen.VardaTallTreeGenerator;
-import org.avp.common.world.dimension.varda.gen.VardaTree2Generator;
-import org.avp.common.world.dimension.varda.gen.VardaTree3Generator;
-import org.avp.common.world.dimension.varda.gen.VardaTreeGenerator;
+import org.alien.common.world.dimension.varda.gen.VardaTallTreeGenerator;
+import org.alien.common.world.dimension.varda.gen.VardaTree2Generator;
+import org.alien.common.world.dimension.varda.gen.VardaTree3Generator;
+import org.alien.common.world.dimension.varda.gen.VardaTreeGenerator;
 
 import java.util.Random;
 

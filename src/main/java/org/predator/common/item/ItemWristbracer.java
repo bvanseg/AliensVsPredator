@@ -17,10 +17,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.common.DamageSources;
-import org.avp.common.inventory.ContainerWristbracer;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorItems;
+import org.predator.common.inventory.ContainerWristbracer;
 
 import java.util.ArrayList;
 import java.util.HashMap;

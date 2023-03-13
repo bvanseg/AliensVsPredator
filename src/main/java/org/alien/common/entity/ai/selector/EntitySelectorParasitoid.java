@@ -8,11 +8,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import org.alien.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.IParasitoid;
+import org.alien.common.world.capability.IOrganism.Organism;
+import org.alien.common.world.capability.IOrganism.Provider;
 import org.avp.common.AVPItems;
-import org.avp.common.api.parasitoidic.IHost;
-import org.avp.common.api.parasitoidic.IParasitoid;
-import org.avp.common.world.capability.IOrganism.Organism;
-import org.avp.common.world.capability.IOrganism.Provider;
 import org.predator.common.PredatorItems;
 
 import java.util.ArrayList;

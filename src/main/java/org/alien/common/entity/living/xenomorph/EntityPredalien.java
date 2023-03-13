@@ -11,8 +11,8 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
+import org.alien.common.world.hive.HiveMember;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.world.hive.HiveMember;
 
 public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMember
 {

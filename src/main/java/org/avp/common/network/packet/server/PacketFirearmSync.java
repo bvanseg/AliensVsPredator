@@ -13,11 +13,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.alien.common.world.hive.AlienHiveHandler;
 import org.avp.common.DamageSources;
 import org.avp.common.block.BlockHiveResin;
 import org.avp.common.item.firearm.FirearmProfile;
 import org.avp.common.item.firearm.ItemFirearm;
-import org.avp.common.world.hive.AlienHiveHandler;
 
 public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirearmSync, PacketFirearmSync>
 {

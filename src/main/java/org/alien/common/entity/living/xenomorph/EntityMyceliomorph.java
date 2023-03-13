@@ -6,7 +6,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.world.hive.HiveMember;
+import org.alien.common.world.hive.HiveMember;
 
 public class EntityMyceliomorph extends SpeciesXenomorph implements HiveMember
 {

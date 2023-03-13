@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.avp.common.world.Embryo;
-import org.avp.common.world.capability.IOrganism.Organism;
-import org.avp.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.Embryo;
+import org.alien.common.world.capability.IOrganism.Organism;
+import org.alien.common.world.capability.IOrganism.Provider;
 
 public class EntityRoyalFacehugger extends EntityFacehugger
 {

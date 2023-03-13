@@ -6,8 +6,8 @@ import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.avp.common.world.capability.IOrganism.Organism;
-import org.avp.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.IOrganism.Organism;
+import org.alien.common.world.capability.IOrganism.Provider;
 
 public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
 {

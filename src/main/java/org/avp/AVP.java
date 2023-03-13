@@ -15,6 +15,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
 import org.alien.common.AlienItems;
+import org.alien.common.DimensionHandler;
+import org.alien.common.WorldHandler;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;

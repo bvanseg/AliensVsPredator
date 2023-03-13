@@ -20,11 +20,11 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
 import org.alien.common.AlienItems;
+import org.alien.common.api.parasitoidic.IMaturable;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.api.parasitoidic.IMaturable;
+import org.alien.common.world.hive.HiveMember;
 import org.avp.common.block.BlockHiveResin;
 import org.avp.common.tile.TileEntityHiveResin;
-import org.avp.common.world.hive.HiveMember;
 
 import java.util.ArrayList;
 

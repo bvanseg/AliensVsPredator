@@ -6,8 +6,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import org.alien.common.world.fluid.FluidMist;
 import org.avp.AVP;
-import org.avp.common.world.fluids.FluidMist;
 
 public class BlockMist extends BlockFluidClassic
 {

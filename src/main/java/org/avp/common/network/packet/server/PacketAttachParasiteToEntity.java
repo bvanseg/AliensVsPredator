@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.api.parasitoidic.IParasitoid;
+import org.alien.common.api.parasitoidic.IParasitoid;
 
 public class PacketAttachParasiteToEntity implements IMessage, IMessageHandler<PacketAttachParasiteToEntity, PacketAttachParasiteToEntity>
 {

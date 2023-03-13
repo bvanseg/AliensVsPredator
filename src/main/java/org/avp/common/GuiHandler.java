@@ -11,10 +11,10 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import org.avp.AVP;
 import org.avp.client.gui.*;
-import org.avp.common.inventory.ContainerWristbracer;
 import org.avp.common.tile.*;
 import org.predator.client.gui.GuiWristbracer;
 import org.predator.common.PredatorItems;
+import org.predator.common.inventory.ContainerWristbracer;
 import org.predator.common.item.ItemWristbracer;
 
 public class GuiHandler implements IGuiHandler, IInitEvent

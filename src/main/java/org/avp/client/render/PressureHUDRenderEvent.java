@@ -27,16 +27,16 @@ import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import org.alien.common.entity.living.SpeciesAlien;
+import org.alien.common.world.capability.IOrganism.Organism;
+import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.dimension.varda.WorldProviderVarda;
 import org.avp.AVP;
 import org.avp.common.AVPItems;
 import org.avp.common.api.power.IVoltageReceiver;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.tile.TileEntityPowercell;
 import org.avp.common.tile.TileEntityStasisMechanism;
-import org.avp.common.world.capability.IOrganism.Organism;
-import org.avp.common.world.capability.IOrganism.Provider;
 import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
-import org.avp.common.world.dimension.varda.WorldProviderVarda;
 
 import static org.lwjgl.opengl.GL11.*;
 

@@ -25,14 +25,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import org.alien.common.entity.living.EntityParasitoid;
+import org.alien.common.world.capability.IOrganism.Organism;
+import org.alien.common.world.capability.IOrganism.Provider;
 import org.avp.AVP;
 import org.avp.client.gui.GuiTacticalHUDSettings;
 import org.avp.client.render.wavegraph.Wavegraph;
 import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
 import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityAPC;
-import org.avp.common.world.capability.IOrganism.Organism;
-import org.avp.common.world.capability.IOrganism.Provider;
 import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.opengl.GL11;
 

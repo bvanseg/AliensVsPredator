@@ -10,7 +10,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.avp.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.IHost;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.predator.common.PredatorItems;
 

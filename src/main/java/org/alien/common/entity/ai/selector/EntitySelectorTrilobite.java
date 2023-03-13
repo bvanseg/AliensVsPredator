@@ -7,10 +7,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import org.avp.common.api.parasitoidic.IHost;
-import org.avp.common.api.parasitoidic.IParasitoid;
-import org.avp.common.world.capability.IOrganism.Organism;
-import org.avp.common.world.capability.IOrganism.Provider;
+import org.alien.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.IParasitoid;
+import org.alien.common.world.capability.IOrganism.Organism;
+import org.alien.common.world.capability.IOrganism.Provider;
 
 import java.util.ArrayList;
 
