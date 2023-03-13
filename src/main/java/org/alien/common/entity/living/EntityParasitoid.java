@@ -32,6 +32,7 @@ import java.util.List;
 public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid, Brainiac<ParasitoidBrain>
 {
     private static final DataParameter<Boolean> FERTILE            = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ATTACHED_TO_HOST   = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
     private int                                 timeSinceInfertile = 0;
     public int                                  ticksOnHost        = 0;
 
@@ -60,6 +61,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
     {
         super.entityInit();
         this.getDataManager().register(FERTILE, true);
+        this.getDataManager().register(ATTACHED_TO_HOST, false);
     }
 
     @Override
@@ -75,27 +77,35 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
 
         if (!this.world.isRemote) {
             this.brain.update(new EntityBrainContext(this.getBrain(), this));
+
+            if (!this.isFertile())
+            {
+                if (!this.isAttachedToHost()) {
+                    this.setNoAI(true);
+                    this.setBrainDisabled(true);
+                }
+
+                this.motionY -= 0.05F;
+                this.motionY *= 0.98F;
+                this.move(MoverType.SELF, 0, this.motionY, 0);
+
+
+                this.timeSinceInfertile++;
+
+                if(this.timeSinceInfertile >= 20 * 60 *  5)
+                    this.setDead();
+            }
+
+            this.negateFallDamage();
+
+            if (this.getTicksOnHost() > this.getDetachTime())
+            {
+                this.detachFromHost();
+            }
         }
-        
-        if (!this.isFertile())
-        {
-            this.setNoAI(true);
 
-            this.motionY -= 0.05F;
-            this.motionY *= 0.98F;
-            this.move(MoverType.SELF, 0, this.motionY, 0);
-            
-
-            this.timeSinceInfertile++;
-            
-            if(this.timeSinceInfertile >= 20 * 60 *  5)
-                this.setDead();
-        }
-
-        this.negateFallDamage();
-
-        if (this.getTicksOnHost() > this.getDetachTime())
-        {
+        // left client-side so the facehugger can stop riding if ATTACHED_TO_HOST is false.
+        if (!this.isAttachedToHost() && this.isRiding()) {
             this.detachFromHost();
         }
     }
@@ -127,10 +137,17 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
     @Override
     public void detachFromHost()
     {
-        if(!(this.getRidingEntity() instanceof EntityPlayer) && this.getRidingEntity() instanceof EntityLivingBase)
+        if(!(this.getRidingEntity() instanceof EntityPlayer) && this.getRidingEntity() instanceof EntityLivingBase) {
             ((EntityLiving) this.getRidingEntity()).setNoAI(false);
+
+            if (this.getRidingEntity() instanceof Brainiac) {
+                ((Brainiac<?>)this.getRidingEntity()).setBrainDisabled(false);
+            }
+        }
         this.dismountRidingEntity();
         this.setNoAI(true);
+        this.setBrainDisabled(true);
+        this.dataManager.set(ATTACHED_TO_HOST, false);
     }
 
     @Override
@@ -164,7 +181,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
     @Override
     public boolean isAttachedToHost()
     {
-        return this.isRiding();
+        return this.dataManager.get(ATTACHED_TO_HOST);
     }
 
     @Override
@@ -181,6 +198,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
             EntityLivingBase living = (EntityLivingBase) target;
 
             this.startRiding(living);
+            this.dataManager.set(ATTACHED_TO_HOST, true);
             this.implantEmbryo(living);
         }
     }
@@ -241,6 +259,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
         super.readFromNBT(nbt);
         IParasitoid.readFromNBT(this, nbt);
         this.timeSinceInfertile = nbt.getInteger("timeOfInfertility");
+        this.dataManager.set(ATTACHED_TO_HOST, nbt.getBoolean("isAttachedToHost"));
     }
 
     @Override
@@ -248,6 +267,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
     {
         IParasitoid.writeToNBT(this, nbt);
         nbt.setInteger("timeOfInfertility", this.timeSinceInfertile);
+        nbt.setBoolean("isAttachedToHost", this.isAttachedToHost());
         return super.writeToNBT(nbt);
     }
     
