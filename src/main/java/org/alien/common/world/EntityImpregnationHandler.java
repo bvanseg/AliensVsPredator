@@ -39,13 +39,18 @@ public class EntityImpregnationHandler
     {
     	Entity entity =  event.getEntity();
     	
-    	if (!this.canTickHost(entity))
-    		return;
-    	
         World world = entity.getEntityWorld();
         
         EntityLivingBase host = (EntityLivingBase) entity;
         Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
+
+        // If the host can't be ticked, remove its embryo and return.
+        if (!this.canTickHost(entity)) {
+            if (organism != null && organism.hasEmbryo()) {
+                organism.removeEmbryo();
+            }
+            return;
+        }
 
         organism.onTick(host, organism);
         
@@ -95,10 +100,6 @@ public class EntityImpregnationHandler
     	// If the entity is in an invalid state
     	if (entity == null || entity.isDead || entity.world == null || !(entity instanceof EntityLivingBase))
     		return false;
-        
-        // If the entity has not spawned in a world yet
-        if (entity.world == null)
-        	return false;
         
         Organism organism = (Organism) entity.getCapability(Provider.CAPABILITY, null);
         
