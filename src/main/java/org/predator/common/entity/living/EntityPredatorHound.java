@@ -1,8 +1,6 @@
 package org.predator.common.entity.living;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
@@ -11,26 +9,33 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.IHost;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 import org.predator.common.PredatorItems;
+import org.predator.common.entity.ai.brain.HoundBrain;
 
-public class EntityPredatorHound extends EntityMob implements IMob, IHost
+public class EntityPredatorHound extends EntityMob implements IMob, IHost, Brainiac<HoundBrain>
 {
+    private HoundBrain brain;
+
     public EntityPredatorHound(World world)
     {
         super(world);
         this.setSize(1.5F, 1.75F);
         this.experienceValue = 0;
     }
-    
+
+    @Override
+    public HoundBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new HoundBrain(this);
+        }
+        return this.brain;
+    }
+
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIMoveTowardsRestriction(this, 5.5D));
-        this.tasks.addTask(2, new EntityAIMoveThroughVillage(this, 5.5D, false));
-        this.tasks.addTask(3, new PatchedEntityAIWander(this, 1.0D));
-        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
-        this.tasks.addTask(5, new EntityAILookIdle(this));
+        this.getBrain().init();
     }
 
     @Override
@@ -42,7 +47,16 @@ public class EntityPredatorHound extends EntityMob implements IMob, IHost
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.3D);
     }
-    
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
+    }
+
     @Override
     public int getTotalArmorValue()
     {
