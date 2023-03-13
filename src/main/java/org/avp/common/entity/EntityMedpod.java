@@ -10,8 +10,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.tile.TileEntityMedpod;
 
 import java.util.List;
@@ -95,7 +95,7 @@ public class EntityMedpod extends Entity
             if (this.getTileEntity().getVoltage() > 0 && this.getTileEntity().getDoorProgress() <= 0 && !this.getTileEntity().isOpen() && Entities.getEntityRiddenBy(this) instanceof EntityLivingBase)
             {
                 EntityLivingBase living = (EntityLivingBase) Entities.getEntityRiddenBy(this);
-                Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+                OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
                 
                 organism.heal(living);
             }

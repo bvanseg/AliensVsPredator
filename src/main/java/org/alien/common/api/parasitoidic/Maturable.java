@@ -2,13 +2,13 @@ package org.alien.common.api.parasitoidic;
 
 import net.minecraft.entity.Entity;
 
-public interface IMaturable
+public interface Maturable
 {
     Class<? extends Entity> getMatureState();
     
     void mature();
     
-    boolean isReadyToMature(IRoyalOrganism ro);
+    boolean isReadyToMature(RoyalOrganism ro);
     
     int getMaturityLevel();
     

@@ -9,11 +9,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IMaturable;
+import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityPraetorian extends SpeciesXenomorph implements IMaturable, HiveMember
+public class EntityPraetorian extends SpeciesXenomorph implements Maturable, HiveMember
 {
     public EntityPraetorian(World world)
     {

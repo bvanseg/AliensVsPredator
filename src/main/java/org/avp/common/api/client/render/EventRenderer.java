@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.Event;
 
-public interface IEventRenderer
+public interface EventRenderer
 {
     void update(Event event, Minecraft game, World world);
     

@@ -5,7 +5,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.common.api.machines.IDataDevice;
+import org.avp.common.api.machines.DataDevice;
 import org.avp.common.tile.TileEntityTurret;
 
 public class PacketReadFromDataDevice implements IMessage, IMessageHandler<PacketReadFromDataDevice, PacketReadFromDataDevice>
@@ -54,7 +54,7 @@ public class PacketReadFromDataDevice implements IMessage, IMessageHandler<Packe
             @Override
             public void run()
             {
-                IDataDevice device = (TileEntityTurret) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+                DataDevice device = (TileEntityTurret) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
                 if (device != null)
                 {

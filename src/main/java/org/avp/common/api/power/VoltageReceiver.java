@@ -2,7 +2,7 @@ package org.avp.common.api.power;
 
 import net.minecraft.util.EnumFacing;
 
-public interface IVoltageReceiver extends IPowerConnection
+public interface VoltageReceiver extends PowerConnection
 {
     /**
      * Add energy to an IEnergyReceiver, internal distribution is left entirely to the IEnergyReceiver.

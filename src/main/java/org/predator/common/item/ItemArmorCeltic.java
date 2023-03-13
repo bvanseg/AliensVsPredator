@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.common.AVPMaterials;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.lwjgl.input.Keyboard;
 import org.predator.client.PredatorSounds;
 import org.predator.client.render.VisionModeRenderEvent;
@@ -42,7 +42,7 @@ public class ItemArmorCeltic extends ItemArmor
     {
         if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == PredatorItems.BIOMASK_CELTIC)
         {
-            SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+            SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
             player.fallDistance = 0.0F;
 
             if (world.isRemote)
@@ -53,7 +53,7 @@ public class ItemArmorCeltic extends ItemArmor
     }
 
     @SideOnly(Side.CLIENT)
-    public void controlledAbility(SpecialPlayer specialPlayer)
+    public void controlledAbility(SpecialPlayerImpl specialPlayer)
     {
         if (Game.minecraft().inGameHasFocus)
         {

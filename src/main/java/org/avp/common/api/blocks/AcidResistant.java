@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public interface IAcidResistant
+public interface AcidResistant
 {
     boolean canAcidDestroy(World world, BlockPos posBelow, Entity acid);
 }

@@ -7,10 +7,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.INascentic;
+import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityQueenChestburster extends EntityChestburster implements IMob, INascentic, HiveMember
+public class EntityQueenChestburster extends EntityChestburster implements IMob, Nascentic, HiveMember
 {
     private final Class<? extends Entity> matureState;
 

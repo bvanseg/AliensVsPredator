@@ -12,12 +12,12 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.selector.EntitySelectorGooMutant;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 
-public class EntityGooMutant extends EntityMob implements IMob, IHost
+public class EntityGooMutant extends EntityMob implements IMob, Host
 {
     
     public EntityGooMutant(World world)

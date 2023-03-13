@@ -23,7 +23,7 @@ import org.avp.common.network.packet.server.OrganismServerSync;
 
 import java.util.concurrent.Callable;
 
-public interface IOrganism
+public interface Organism
 {
     int getHeartRate();
 
@@ -41,10 +41,10 @@ public interface IOrganism
 
     class Provider implements ICapabilitySerializable<NBTBase>
     {
-        @CapabilityInject(IOrganism.class)
-        public static final Capability<IOrganism> CAPABILITY = null;
+        @CapabilityInject(Organism.class)
+        public static final Capability<Organism> CAPABILITY = null;
 
-        private final IOrganism                         instance   = CAPABILITY.getDefaultInstance();
+        private final Organism instance   = CAPABILITY.getDefaultInstance();
 
         @Override
         public boolean hasCapability(Capability<?> capability, EnumFacing facing)
@@ -98,21 +98,21 @@ public interface IOrganism
         }
     }
 
-    class Organism implements IOrganism, IStorage<IOrganism>
+    class OrganismImpl implements Organism, IStorage<Organism>
     {
-        public static class Factory implements Callable<IOrganism>
+        public static class Factory implements Callable<Organism>
         {
             @Override
-            public IOrganism call() throws Exception
+            public Organism call() throws Exception
             {
-                return new Organism();
+                return new OrganismImpl();
             }
         }
 
         private Embryo embryo;
         private int    heartRate;
 
-        public Organism()
+        public OrganismImpl()
         {
             this.embryo = null;
             this.heartRate = 60;
@@ -175,7 +175,7 @@ public interface IOrganism
             }
         }
 
-        public void onTick(EntityLivingBase living, IOrganism organism)
+        public void onTick(EntityLivingBase living, Organism organism)
         {
             World world = living.world;
 
@@ -240,7 +240,7 @@ public interface IOrganism
         }
 
         @Override
-        public NBTBase writeNBT(Capability<IOrganism> capability, IOrganism instance, EnumFacing side)
+        public NBTBase writeNBT(Capability<Organism> capability, Organism instance, EnumFacing side)
         {
             NBTTagCompound tag = new NBTTagCompound();
 
@@ -251,7 +251,7 @@ public interface IOrganism
         }
 
         @Override
-        public void readNBT(Capability<IOrganism> capability, IOrganism instance, EnumFacing side, NBTBase nbt)
+        public void readNBT(Capability<Organism> capability, Organism instance, EnumFacing side, NBTBase nbt)
         {
             if (nbt instanceof NBTTagCompound)
             {

@@ -2,7 +2,7 @@ package org.alien.common.api.parasitoidic;
 
 import net.minecraft.entity.EntityLivingBase;
 
-public interface INascentic extends IMaturable
+public interface Nascentic extends Maturable
 {
     void vitalize(EntityLivingBase host);
     

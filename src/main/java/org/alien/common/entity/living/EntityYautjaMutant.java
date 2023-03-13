@@ -9,12 +9,12 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.YautjaMutantBrain;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityYautjaMutant extends EntityMob implements IMob, IHost, Brainiac<YautjaMutantBrain>
+public class EntityYautjaMutant extends EntityMob implements IMob, Host, Brainiac<YautjaMutantBrain>
 {
 
     private YautjaMutantBrain brain;

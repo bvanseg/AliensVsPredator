@@ -28,13 +28,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IParasitoid;
+import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.brain.TrilobiteBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.Species223ODe;
 import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.AVP;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;
@@ -43,7 +43,7 @@ import org.predator.common.item.ItemWristbracer;
 
 import java.util.List;
 
-public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnimated, Brainiac<TrilobiteBrain>
+public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnimated, Brainiac<TrilobiteBrain>
 {
     public static final Animation                      IMPREGNATION_ANIMATION = Animation.create(0);
     public static final Animation                      ANIMATION_HUG_WALL     = Animation.create(20 * 5);
@@ -400,7 +400,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        IParasitoid.readFromNBT(this, nbt);
+        Parasitoid.readFromNBT(this, nbt);
 
         this.setDetachedTentacles(nbt.getIntArray("Tentacles"));
     }
@@ -410,7 +410,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     {
         nbt.setTag("Tentacles", new NBTTagIntArray(this.getDetachedTentacles()));
 
-        IParasitoid.writeToNBT(this, nbt);
+        Parasitoid.writeToNBT(this, nbt);
         return super.writeToNBT(nbt);
     }
 
@@ -432,7 +432,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     public void implantEmbryo(EntityLivingBase target)
     {
-        Organism organism = (Organism) target.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(Embryo.DEACON);
         organism.syncWithClients(target);
         this.setFertility(false);

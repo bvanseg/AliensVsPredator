@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.avp.common.PlayerModeHandler;
 import org.avp.common.item.firearm.ItemFirearm;
 import org.avp.common.item.firearm.ItemFlamethrower;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.avp.common.world.playermode.PlayerMode;
 
 public class PlayerModeRenderEvent
@@ -54,7 +54,7 @@ public class PlayerModeRenderEvent
     @SubscribeEvent
     public void renderEntityTick(RenderPlayerEvent.Pre event)
     {
-        SpecialPlayer specialPlayer = (SpecialPlayer) event.getEntityPlayer().getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+        SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) event.getEntityPlayer().getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
         ItemStack itemstack = event.getEntityPlayer().inventory.getCurrentItem();
 
         if (itemstack != null && (itemstack.getItem() instanceof ItemFirearm || itemstack.getItem() instanceof ItemFlamethrower))

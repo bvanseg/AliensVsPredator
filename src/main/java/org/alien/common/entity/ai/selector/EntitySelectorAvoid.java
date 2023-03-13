@@ -6,10 +6,10 @@ import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntityZombieHorse;
-import org.alien.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.living.SpeciesEngineer;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.entity.living.EntityMarine;
 import org.predator.common.entity.living.SpeciesYautja;
 
@@ -66,11 +66,11 @@ public class EntitySelectorAvoid implements Predicate<EntityLivingBase>
             return true;
         }
 
-        Organism organism = (Organism) potentialTarget.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) potentialTarget.getCapability(Provider.CAPABILITY, null);
 
-        if (potentialTarget instanceof IHost)
+        if (potentialTarget instanceof Host)
         {
-            IHost host = (IHost) potentialTarget;
+            Host host = (Host) potentialTarget;
 
             if (!host.canHostParasite() || !host.canParasiteAttach())
             {

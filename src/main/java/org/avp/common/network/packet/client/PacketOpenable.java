@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.common.api.machines.IOpenable;
+import org.avp.common.api.machines.Openable;
 
 public class PacketOpenable implements IMessage, IMessageHandler<PacketOpenable, PacketOpenable>
 {
@@ -59,9 +59,9 @@ public class PacketOpenable implements IMessage, IMessageHandler<PacketOpenable,
                 World world = Game.minecraft().player.world;
                 TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
-                if (world != null && tile != null && tile instanceof IOpenable)
+                if (world != null && tile != null && tile instanceof Openable)
                 {
-                    IOpenable openable = (IOpenable) tile;
+                    Openable openable = (Openable) tile;
 
                     if (openable != null)
                     {

@@ -14,14 +14,14 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.DracomorphBrain;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityDracomorph extends SpeciesAlien implements IMob, IHost, Brainiac<DracomorphBrain>
+public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Brainiac<DracomorphBrain>
 {
     private static final DataParameter<Integer> FLYING = EntityDataManager.createKey(EntityDracomorph.class, DataSerializers.VARINT);
     private BlockPos flyToPosition;

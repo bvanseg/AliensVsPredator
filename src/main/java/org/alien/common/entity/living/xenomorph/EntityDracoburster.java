@@ -7,9 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.INascentic;
+import org.alien.common.api.parasitoidic.Nascentic;
 
-public class EntityDracoburster extends EntityChestburster implements IMob, INascentic
+public class EntityDracoburster extends EntityChestburster implements IMob, Nascentic
 {
     private final Class<? extends Entity> matureState;
 

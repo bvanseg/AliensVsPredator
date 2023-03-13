@@ -24,8 +24,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.common.AVPItems;
-import org.avp.common.api.machines.IDataDevice;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.machines.DataDevice;
+import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.inventory.ContainerTurret;
 import org.avp.common.network.packet.client.PacketTurretSync;
 import org.avp.common.tile.helper.TileEntityTurretAmmoHelper;
@@ -41,7 +41,7 @@ import java.util.ArrayList;
  * @author Boston Vanseghi
  *
  */
-public class TileEntityTurret extends TileEntityElectrical implements IDataDevice, IVoltageReceiver, IRotatableYAxis
+public class TileEntityTurret extends TileEntityElectrical implements DataDevice, VoltageReceiver, IRotatableYAxis
 {
     public InventoryBasic                       inventoryExpansion;
     public InventoryBasic                       inventoryDrive;

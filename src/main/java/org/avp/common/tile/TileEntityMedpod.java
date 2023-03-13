@@ -8,13 +8,13 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import org.avp.AVP;
-import org.avp.common.api.machines.IOpenable;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.machines.Openable;
+import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.entity.EntityMedpod;
 import org.avp.common.network.packet.client.PacketOpenable;
 
 
-public class TileEntityMedpod extends TileEntityElectrical implements IOpenable, IVoltageReceiver, IRotatableYAxis
+public class TileEntityMedpod extends TileEntityElectrical implements Openable, VoltageReceiver, IRotatableYAxis
 {
     private EnumFacing direction;
     private boolean        isOpen;

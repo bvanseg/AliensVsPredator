@@ -5,9 +5,9 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import org.avp.common.api.machines.INetworkDevice;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.power.VoltageReceiver;
 
-public class TileEntityWorkstation extends TileEntityElectrical implements INetworkDevice, IVoltageReceiver
+public class TileEntityWorkstation extends TileEntityElectrical implements INetworkDevice, VoltageReceiver
 {
     public int rotation;
 

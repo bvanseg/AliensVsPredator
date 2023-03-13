@@ -17,7 +17,7 @@ import org.alien.client.model.entity.living.ModelDrone;
 import org.alien.common.AlienItems;
 import org.avp.AVP;
 import org.avp.common.AVPMaterials;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 
 public class ItemArmorXeno extends ItemArmor
 {
@@ -64,7 +64,7 @@ public class ItemArmorXeno extends ItemArmor
     {
         if (isPlayerWearingXenoArmorSet(player))
         {
-            SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+            SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
             if (world.isRemote)
             {
@@ -81,7 +81,7 @@ public class ItemArmorXeno extends ItemArmor
     }
 
     @SideOnly(Side.CLIENT)
-    public void controlledAbility(EntityPlayer player, SpecialPlayer specialPlayer)
+    public void controlledAbility(EntityPlayer player, SpecialPlayerImpl specialPlayer)
     {
         boolean canClimbPrev = specialPlayer.canClimb();
 

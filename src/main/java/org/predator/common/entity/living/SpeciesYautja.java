@@ -19,7 +19,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.alien.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.Host;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.network.AvpDataSerializers;
@@ -29,7 +29,7 @@ import org.predator.client.PredatorSounds;
 import org.predator.common.entity.ai.brain.YautjaBrain;
 import org.predator.common.entity.state.CloakState;
 
-public abstract class SpeciesYautja extends EntityMob implements IHost, Brainiac<YautjaBrain>
+public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<YautjaBrain>
 {
     private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> DUCKING = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);

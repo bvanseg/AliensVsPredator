@@ -2,9 +2,9 @@ package org.avp.client.model.item;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.avp.common.api.client.render.IFirearmModel;
+import org.avp.common.api.client.render.FirearmModel;
 
-public class ModelSniper extends Model<Object> implements IFirearmModel
+public class ModelSniper extends Model<Object> implements FirearmModel
 {
     private boolean firstPerson;
 

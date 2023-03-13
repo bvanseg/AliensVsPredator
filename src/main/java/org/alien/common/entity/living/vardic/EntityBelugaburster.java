@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.INascentic;
+import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.living.engineer.EntityEngineer;
 import org.alien.common.entity.living.xenomorph.EntityChestburster;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
@@ -20,7 +20,7 @@ import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.entity.living.EntityMarine;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
-public class EntityBelugaburster extends EntityChestburster implements IMob, INascentic
+public class EntityBelugaburster extends EntityChestburster implements IMob, Nascentic
 {
     private final Class<? extends Entity> matureState;
 

@@ -7,13 +7,13 @@ import com.asx.mdx.lib.client.util.Screen;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.gui.GuiScreen;
 import org.avp.client.render.TacticalHUDRenderEvent;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 
 import java.io.IOException;
 
 public class GuiTacticalHUDSettings extends GuiCustomScreen
 {
-    protected final SpecialPlayer player;
+    protected final SpecialPlayerImpl player;
     private final GuiCustomTextbox channel;
     private final GuiCustomButton save;
     private final GuiCustomButton nightvision;
@@ -23,7 +23,7 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
 
     public GuiTacticalHUDSettings(GuiScreen parent)
     {
-        this.player = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+        this.player = (SpecialPlayerImpl) Game.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
         this.channel = new GuiCustomTextbox(this, 0, 0, 100, 15);
         this.save = new GuiCustomButton(0, 0, 0, 100, 15, "");
         this.nightvision = new GuiCustomButton(0, 0, 0, 100, 15, "");

@@ -1,6 +1,6 @@
 package org.alien.common.api.parasitoidic;
 
-public interface IRoyalOrganism
+public interface RoyalOrganism
 {
     void setJellyLevel(int level);
     

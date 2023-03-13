@@ -23,18 +23,18 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IParasitoid;
+import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 
 import java.util.ArrayList;
 
-public class EntityOctohugger extends EntityParasitoid implements IMob, IParasitoid
+public class EntityOctohugger extends EntityParasitoid implements IMob, Parasitoid
 {
     private static final DataParameter<BlockPos> HANGING_POSITION = EntityDataManager.createKey(EntityOctohugger.class, DataSerializers.BLOCK_POS);
     private static final DataParameter<Boolean>  HANGING          = EntityDataManager.createKey(EntityOctohugger.class, DataSerializers.BOOLEAN);
@@ -252,7 +252,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     @Override
     public void implantEmbryo(EntityLivingBase living)
     {
-        Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(Embryo.BELUGA);
         organism.syncWithClients(living);
         this.setFertility(false);

@@ -27,16 +27,16 @@ import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.dimension.varda.WorldProviderVarda;
 import org.avp.AVP;
 import org.avp.common.AVPItems;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.tile.TileEntityPowercell;
 import org.avp.common.tile.TileEntityStasisMechanism;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 
 import static org.lwjgl.opengl.GL11.*;
 
@@ -60,7 +60,7 @@ public class PressureHUDRenderEvent
             {
                 if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
                 {
-                    SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+                    SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) Game.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
                     this.gammaRestored = false;
                     LightmapUpdateEvent.instance.gammaValue = specialPlayer.isNightvisionEnabled() ? 8F : 0F;
@@ -112,9 +112,9 @@ public class PressureHUDRenderEvent
         }
     }
 
-    public SpecialPlayer getProperties()
+    public SpecialPlayerImpl getProperties()
     {
-        return Game.minecraft() != null ? Game.minecraft().player != null ? (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null) : null : null;
+        return Game.minecraft() != null ? Game.minecraft().player != null ? (SpecialPlayerImpl) Game.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null) : null : null;
     }
 
     public void drawInfoBar()
@@ -344,9 +344,9 @@ public class PressureHUDRenderEvent
                             fontrenderer.drawString("Tile Entity: " + true, subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0xFFAA00);
                         }
 
-                        if (tile instanceof IVoltageReceiver)
+                        if (tile instanceof VoltageReceiver)
                         {
-                            IVoltageReceiver poweredTile = (IVoltageReceiver) tile;
+                            VoltageReceiver poweredTile = (VoltageReceiver) tile;
                             fontrenderer.drawString("Voltage: " + ((float) poweredTile.getCurrentVoltage(EnumFacing.SOUTH)) + "V", subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0xFFAA00);
                         }
 
@@ -380,12 +380,12 @@ public class PressureHUDRenderEvent
         OpenGL.popMatrix();
     }
 
-    public void drawImpregnationIndicator(EntityLivingBase living, SpecialPlayer playerProperties)
+    public void drawImpregnationIndicator(EntityLivingBase living, SpecialPlayerImpl playerProperties)
     {
         if (playerProperties != null)
         {
             EntityPlayer player = (EntityPlayer) living;
-            Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+            OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
 
             if (organism.hasEmbryo() && living.world.getTotalWorldTime() % 20 <= 10)
             {

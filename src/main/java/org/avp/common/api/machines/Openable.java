@@ -1,6 +1,6 @@
 package org.avp.common.api.machines;
 
-public interface IOpenable
+public interface Openable
 {
     boolean isOpen();
 

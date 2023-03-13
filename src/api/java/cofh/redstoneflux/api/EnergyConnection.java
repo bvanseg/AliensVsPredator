@@ -10,11 +10,11 @@ import net.minecraft.util.EnumFacing;
  * Implement this interface on TileEntities which should connect to energy transportation blocks. This is intended for blocks which generate energy but do not
  * accept it; otherwise just use IEnergyHandler.
  *
- * Note that {@link IEnergyHandler} is an extension of this.
+ * Note that {@link EnergyHandler} is an extension of this.
  *
  * @author King Lemming
  */
-public interface IEnergyConnection {
+public interface EnergyConnection {
 
 	/**
 	 * Returns TRUE if the TileEntity can connect on a given side.

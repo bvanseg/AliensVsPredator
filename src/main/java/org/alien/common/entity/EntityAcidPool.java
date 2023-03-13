@@ -17,7 +17,7 @@ import org.alien.common.AlienBlocks;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.AVPBlocks;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.api.blocks.IAcidResistant;
+import org.avp.common.api.blocks.AcidResistant;
 import org.avp.common.entity.EntityLiquidPool;
 
 import java.util.ArrayList;
@@ -117,7 +117,7 @@ public class EntityAcidPool extends EntityLiquidPool
                     // FIXME: This crashes the game, we can't access sounds through raw resource locations.
                 }
 
-                if (blockBlacklist.contains(destroy) || destroy instanceof IAcidResistant && ((IAcidResistant) destroy).canAcidDestroy(this.world, pos, this))
+                if (blockBlacklist.contains(destroy) || destroy instanceof AcidResistant && ((AcidResistant) destroy).canAcidDestroy(this.world, pos, this))
                 {
                     return;
                 }

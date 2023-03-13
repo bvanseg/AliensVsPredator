@@ -2,9 +2,9 @@ package org.avp.common.tile;
 
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.EnumSkyBlock;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.power.VoltageReceiver;
 
-public class TileEntityLightPanel extends TileEntityElectrical implements IVoltageReceiver
+public class TileEntityLightPanel extends TileEntityElectrical implements VoltageReceiver
 {
     public TileEntityLightPanel()
     {

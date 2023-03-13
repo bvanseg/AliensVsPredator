@@ -12,7 +12,7 @@ import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 
-public interface IMaterialRenderer
+public interface MaterialRenderer
 {
     default void renderMaterialOverlay(Material material)
     {

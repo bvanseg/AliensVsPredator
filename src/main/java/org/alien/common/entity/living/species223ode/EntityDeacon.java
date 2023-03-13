@@ -12,16 +12,16 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.INascentic;
+import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.ai.brain.DeaconBrain;
 import org.alien.common.entity.living.Species223ODe;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPDamageSources;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityDeacon extends Species223ODe implements INascentic, Brainiac<DeaconBrain>
+public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<DeaconBrain>
 {
     private DeaconBrain brain;
 
@@ -105,13 +105,13 @@ public class EntityDeacon extends Species223ODe implements INascentic, Brainiac<
     @Override
     public void grow(EntityLivingBase host)
     {
-        Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
     }
 
     @Override
     public void vitalize(EntityLivingBase host)
     {
-        Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
         Pos safeLocation = Entities.getSafeLocationAround(this, new Pos((int) host.posX, (int) host.posY, (int) host.posZ));
 
         if (safeLocation == null)

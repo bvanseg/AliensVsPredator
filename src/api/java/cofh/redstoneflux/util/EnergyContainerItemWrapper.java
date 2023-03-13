@@ -4,7 +4,7 @@
  */
 package cofh.redstoneflux.util;
 
-import cofh.redstoneflux.api.IEnergyContainerItem;
+import cofh.redstoneflux.api.EnergyContainerItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
@@ -19,14 +19,14 @@ import net.minecraftforge.energy.CapabilityEnergy;
 public class EnergyContainerItemWrapper implements ICapabilityProvider {
 
 	final ItemStack stack;
-	final IEnergyContainerItem container;
+	final EnergyContainerItem container;
 
 	final boolean canExtract;
 	final boolean canReceive;
 
 	final net.minecraftforge.energy.IEnergyStorage energyCap;
 
-	public EnergyContainerItemWrapper(ItemStack stackIn, IEnergyContainerItem containerIn, boolean extractIn, boolean receiveIn) {
+	public EnergyContainerItemWrapper(ItemStack stackIn, EnergyContainerItem containerIn, boolean extractIn, boolean receiveIn) {
 
 		this.stack = stackIn;
 		this.container = containerIn;
@@ -74,7 +74,7 @@ public class EnergyContainerItemWrapper implements ICapabilityProvider {
 		};
 	}
 
-	public EnergyContainerItemWrapper(ItemStack stackIn, IEnergyContainerItem containerIn) {
+	public EnergyContainerItemWrapper(ItemStack stackIn, EnergyContainerItem containerIn) {
 
 		this(stackIn, containerIn, true, true);
 	}

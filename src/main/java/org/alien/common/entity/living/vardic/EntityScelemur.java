@@ -11,11 +11,11 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.Host;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 
-public class EntityScelemur extends EntityMob implements IMob, IHost
+public class EntityScelemur extends EntityMob implements IMob, Host
 {
     public EntityScelemur(World world)
     {

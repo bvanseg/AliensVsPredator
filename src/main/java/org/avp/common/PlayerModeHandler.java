@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.avp.common.world.playermode.LevelData;
 import org.avp.common.world.playermode.PlayerMode;
 
@@ -60,7 +60,7 @@ public class PlayerModeHandler implements IInitEvent
         if (event.getEntity() instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) event.getEntity();
-            SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+            SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
             specialPlayer.setPlayerMode(PlayerMode.NORMAL);
             {
@@ -92,7 +92,7 @@ public class PlayerModeHandler implements IInitEvent
 
     public static boolean isPlayerInMode(EntityPlayer player, PlayerMode playerMode)
     {
-        SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+        SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
         return specialPlayer.getPlayerMode() == playerMode;
     }
 
@@ -118,7 +118,7 @@ public class PlayerModeHandler implements IInitEvent
 
     public PlayerMode getPlayerModeForPlayer(EntityPlayer player)
     {
-        SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+        SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
         return specialPlayer.getPlayerMode();
     }
 

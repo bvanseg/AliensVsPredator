@@ -2,7 +2,7 @@ package org.avp.common.api.power;
 
 import net.minecraft.util.EnumFacing;
 
-public interface IVoltageProvider extends IPowerConnection
+public interface VoltageProvider extends PowerConnection
 {
 
     /**

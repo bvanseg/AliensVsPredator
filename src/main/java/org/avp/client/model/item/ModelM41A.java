@@ -2,9 +2,9 @@ package org.avp.client.model.item;
 
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.avp.common.api.client.render.IFirearmModel;
+import org.avp.common.api.client.render.FirearmModel;
 
-public class ModelM41A extends Model<Object> implements IFirearmModel
+public class ModelM41A extends Model<Object> implements FirearmModel
 {
     public final ModelRenderer stockEnd;
     public final ModelRenderer stock1;

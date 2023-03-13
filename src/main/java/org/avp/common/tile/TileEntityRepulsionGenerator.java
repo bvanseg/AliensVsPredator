@@ -13,13 +13,13 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.util.Constants;
 import org.avp.common.AVPItems;
-import org.avp.common.api.power.IVoltageProvider;
+import org.avp.common.api.power.VoltageProvider;
 import org.avp.common.inventory.ContainerRepulsionGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TileEntityRepulsionGenerator extends TileEntityElectrical implements IVoltageProvider
+public class TileEntityRepulsionGenerator extends TileEntityElectrical implements VoltageProvider
 {
     public Container                               container;
     public InventoryBasic                          inventory;

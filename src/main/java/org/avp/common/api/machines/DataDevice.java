@@ -1,6 +1,6 @@
 package org.avp.common.api.machines;
 
-public interface IDataDevice
+public interface DataDevice
 {
     /** Read data from another device with specified ID implementing this interface **/
     void readFromOtherDevice(int ID);

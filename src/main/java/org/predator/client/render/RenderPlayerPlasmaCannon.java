@@ -19,10 +19,10 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import org.avp.AVP;
-import org.avp.common.api.client.render.IEventRenderer;
-import org.avp.common.api.client.render.IFirstPersonRenderer;
+import org.avp.common.api.client.render.EventRenderer;
+import org.avp.common.api.client.render.FirstPersonRenderer;
 import org.avp.common.entity.EntityMedpod;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.lwjgl.util.glu.Project;
@@ -31,7 +31,7 @@ import org.predator.client.model.entity.ModelPlasma;
 import org.predator.client.model.item.ModelPlasmaCannon;
 import org.predator.common.item.ItemWristbracer;
 
-public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRenderer
+public class RenderPlayerPlasmaCannon implements EventRenderer, FirstPersonRenderer
 {
     private static final MapModelTexture<ModelPlasmaCannon> MODEL              = AVP.resources().models().PLASMACANNON.clone();
     private static final MapModelTexture<ModelPlasmaCannon> MODEL_FIRST_PERSON = MODEL.clone();
@@ -66,7 +66,7 @@ public class RenderPlayerPlasmaCannon implements IEventRenderer, IFirstPersonRen
             if (pre.getEntity() instanceof EntityPlayer)
             {
                 EntityPlayer player = (EntityPlayer) pre.getEntity();
-                SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+                SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
                 if (!(player.getRidingEntity() instanceof EntityMedpod))
                 {

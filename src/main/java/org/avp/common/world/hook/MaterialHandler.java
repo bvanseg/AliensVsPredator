@@ -18,8 +18,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.common.api.blocks.material.IMaterialPhysics;
-import org.avp.common.api.blocks.material.IMaterialRenderer;
+import org.avp.common.api.blocks.material.MaterialPhysics;
+import org.avp.common.api.blocks.material.MaterialRenderer;
 
 public class MaterialHandler
 {
@@ -33,10 +33,10 @@ public class MaterialHandler
         {
             Material materialInside = getMaterialInside(Game.minecraft().player);
 
-            if (materialInside != null && materialInside instanceof IMaterialPhysics)
+            if (materialInside != null && materialInside instanceof MaterialPhysics)
             {
-                IMaterialPhysics physics = (IMaterialPhysics) materialInside;
-                IMaterialRenderer renderer = physics.getMaterialRenderer();
+                MaterialPhysics physics = (MaterialPhysics) materialInside;
+                MaterialRenderer renderer = physics.getMaterialRenderer();
 
                 if (renderer != null)
                 {
@@ -63,9 +63,9 @@ public class MaterialHandler
             {
                 Material material = getMaterialInside(entity);
 
-                if (material instanceof IMaterialPhysics)
+                if (material instanceof MaterialPhysics)
                 {
-                    IMaterialPhysics physics = (IMaterialPhysics) material;
+                    MaterialPhysics physics = (MaterialPhysics) material;
                     Vec3d motion = MaterialHandler.instance.handleMaterialAcceleration(entity, material, physics);
 
                     if (motion != null)
@@ -96,10 +96,10 @@ public class MaterialHandler
         {
             Material material = getMaterialInside(Game.minecraft().player);
 
-            if (material instanceof IMaterialPhysics && Game.minecraft().player.isInsideOfMaterial(material))
+            if (material instanceof MaterialPhysics && Game.minecraft().player.isInsideOfMaterial(material))
             {
-                IMaterialPhysics physics = (IMaterialPhysics) material;
-                IMaterialRenderer renderer = physics.getMaterialRenderer();
+                MaterialPhysics physics = (MaterialPhysics) material;
+                MaterialRenderer renderer = physics.getMaterialRenderer();
 
                 if (renderer != null)
                 {
@@ -117,12 +117,12 @@ public class MaterialHandler
         {
             Material material = getMaterialInside(Game.minecraft().player);
 
-            if (material instanceof IMaterialPhysics)
+            if (material instanceof MaterialPhysics)
             {
                 if (Game.minecraft().player.isInsideOfMaterial(material))
                 {
-                    IMaterialPhysics physics = (IMaterialPhysics) material;
-                    IMaterialRenderer renderer = physics.getMaterialRenderer();
+                    MaterialPhysics physics = (MaterialPhysics) material;
+                    MaterialRenderer renderer = physics.getMaterialRenderer();
 
                     if (renderer != null)
                     {
@@ -173,7 +173,7 @@ public class MaterialHandler
         return null;
     }
 
-    public Vec3d handleMaterialAcceleration(Entity entity, Material material, IMaterialPhysics physics)
+    public Vec3d handleMaterialAcceleration(Entity entity, Material material, MaterialPhysics physics)
     {
         AxisAlignedBB box = entity.getEntityBoundingBox().expand(0.0D, -0.4D, 0.0D).contract(0.001D, 0.001D, 0.001D);
 

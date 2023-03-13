@@ -3,11 +3,11 @@ package org.alien.client.render.material;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
-import org.avp.common.api.blocks.material.IMaterialRenderer;
+import org.avp.common.api.blocks.material.MaterialRenderer;
 import org.lwjgl.opengl.GL11;
 
 
-public class RenderMaterialMist implements IMaterialRenderer
+public class RenderMaterialMist implements MaterialRenderer
 {
     @Override
     public void renderMaterialOverlay(Material material)

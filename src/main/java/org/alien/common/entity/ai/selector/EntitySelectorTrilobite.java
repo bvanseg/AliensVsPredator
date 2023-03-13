@@ -7,10 +7,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import org.alien.common.api.parasitoidic.IHost;
-import org.alien.common.api.parasitoidic.IParasitoid;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.api.parasitoidic.Host;
+import org.alien.common.api.parasitoidic.Parasitoid;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class EntitySelectorTrilobite implements Predicate<EntityLivingBase>
     @Override
     public boolean apply(EntityLivingBase target)
     {
-        ArrayList<Class<?>> blacklist = IParasitoid.getDefaultEntityBlacklist();
+        ArrayList<Class<?>> blacklist = Parasitoid.getDefaultEntityBlacklist();
 
         for (Class<?> c : blacklist)
         {
@@ -31,11 +31,11 @@ public class EntitySelectorTrilobite implements Predicate<EntityLivingBase>
             }
         }
 
-        Organism organism = (Organism) target.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
 
-        if (target instanceof IHost)
+        if (target instanceof Host)
         {
-            IHost host = (IHost) target;
+            Host host = (Host) target;
 
             if (!host.canHostParasite() || !host.canParasiteAttach())
             {

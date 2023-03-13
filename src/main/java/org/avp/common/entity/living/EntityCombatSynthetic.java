@@ -15,7 +15,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.alien.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.Host;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
@@ -25,7 +25,7 @@ import org.avp.common.entity.ai.brain.CombatSyntheticBrain;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, IHost, Brainiac<CombatSyntheticBrain>
+public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, Host, Brainiac<CombatSyntheticBrain>
 {
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
 

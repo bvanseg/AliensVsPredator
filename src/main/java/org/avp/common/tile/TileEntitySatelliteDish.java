@@ -1,11 +1,11 @@
 package org.avp.common.tile;
 
 import net.minecraft.util.EnumFacing;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.power.VoltageReceiver;
 
 
 
-public class TileEntitySatelliteDish extends TileEntityElectrical implements IVoltageReceiver
+public class TileEntitySatelliteDish extends TileEntityElectrical implements VoltageReceiver
 {
     public TileEntitySatelliteDish()
     {

@@ -15,11 +15,11 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
-import org.alien.common.api.parasitoidic.IParasitoid;
+import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.brain.ParasitoidBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.AVP;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;
@@ -27,7 +27,7 @@ import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 
-public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid, Brainiac<ParasitoidBrain>
+public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, Brainiac<ParasitoidBrain>
 {
     private static final DataParameter<Boolean> FERTILE            = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> ATTACHED_TO_HOST   = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
@@ -180,7 +180,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
     @Override
     public void implantEmbryo(EntityLivingBase living)
     {
-        Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(living);
         if(this.getImplantSound() != null)
             this.playSound(this.getImplantSound(), 0.5F, 1F);
@@ -231,7 +231,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        IParasitoid.readFromNBT(this, nbt);
+        Parasitoid.readFromNBT(this, nbt);
         this.timeSinceInfertile = nbt.getInteger("timeOfInfertility");
         this.dataManager.set(ATTACHED_TO_HOST, nbt.getBoolean("isAttachedToHost"));
     }
@@ -239,7 +239,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
-        IParasitoid.writeToNBT(this, nbt);
+        Parasitoid.writeToNBT(this, nbt);
         nbt.setInteger("timeOfInfertility", this.timeSinceInfertile);
         nbt.setBoolean("isAttachedToHost", this.isAttachedToHost());
         return super.writeToNBT(nbt);

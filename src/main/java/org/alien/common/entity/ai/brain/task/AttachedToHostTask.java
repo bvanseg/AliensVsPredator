@@ -5,7 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.alien.common.world.capability.IOrganism;
+import org.alien.common.world.capability.Organism;
 import org.lib.brain.Brainiac;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
@@ -67,7 +67,7 @@ public class AttachedToHostTask extends AbstractBrainTask<EntityBrainContext> {
 
         if(host instanceof EntityPlayer && ((EntityPlayer)host).capabilities.isCreativeMode)
         {
-            IOrganism.Organism organism = (IOrganism.Organism) host.getCapability(IOrganism.Provider.CAPABILITY, null);
+            Organism.OrganismImpl organism = (Organism.OrganismImpl) host.getCapability(Organism.Provider.CAPABILITY, null);
             organism.removeEmbryo();
             parasite.detachFromHost();
         }

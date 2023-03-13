@@ -32,9 +32,9 @@ public class ItemWristbracer extends HookedItem
     public static final String TAG_WRISTBRACER_ITEMS = "WristbracerItems";
     public static final String TAG_WRISTBRACER_ITEMS_SLOT = "Slot";
 
-    private static final HashMap<String, IActionCode> codes = new HashMap<String, IActionCode>();
+    private static final HashMap<String, ActionCode> codes = new HashMap<String, ActionCode>();
 
-    public interface IActionCode
+    public interface ActionCode
     {
         void onAction(String combonation, Object... args);
     }
@@ -44,7 +44,7 @@ public class ItemWristbracer extends HookedItem
         return String.format("%s%s%s%s%s%s", d1, d2, d3, d4, d5, d6);
     }
 
-    public static IActionCode getAction(String combonation)
+    public static ActionCode getAction(String combonation)
     {
         return codes.get(combonation);
     }
@@ -54,7 +54,7 @@ public class ItemWristbracer extends HookedItem
         return codes.get(combonation) != null;
     }
 
-    public static void addCode(String combonation, IActionCode action)
+    public static void addCode(String combonation, ActionCode action)
     {
         if (!isCodeValid(combonation))
         {
@@ -64,7 +64,7 @@ public class ItemWristbracer extends HookedItem
     
     static
     {
-        addCode("009001", new IActionCode()
+        addCode("009001", new ActionCode()
         {
             @Override
             public void onAction(String combonation, Object... args)

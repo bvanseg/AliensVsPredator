@@ -15,13 +15,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
-import org.avp.common.api.machines.IOpenable;
+import org.avp.common.api.machines.Openable;
 import org.avp.common.inventory.ContainerLocker;
 import org.avp.common.item.firearm.ItemFirearm;
 import org.avp.common.network.packet.client.PacketOpenable;
 
 
-public class TileEntityLocker extends TileEntity implements IOpenable, IRotatableYAxis
+public class TileEntityLocker extends TileEntity implements Openable, IRotatableYAxis
 {
     public IInventory inventory;
     private EnumFacing direction;

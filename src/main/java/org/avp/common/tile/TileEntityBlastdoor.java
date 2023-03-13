@@ -18,8 +18,8 @@ import org.avp.AVP;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPBlocks;
 import org.avp.common.AVPItems;
-import org.avp.common.api.machines.IOpenable;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.machines.Openable;
+import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.network.packet.client.PacketOpenBlastdoor;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltageReceiver, IRotatableYAxis, IOpenable, IMultiBlock
+public class TileEntityBlastdoor extends TileEntityElectrical implements VoltageReceiver, IRotatableYAxis, Openable, IMultiBlock
 {
     private boolean               isParent;
     private boolean               placedByPlayer;

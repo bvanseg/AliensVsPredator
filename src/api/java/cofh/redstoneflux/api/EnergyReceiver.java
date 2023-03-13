@@ -8,13 +8,13 @@ import cofh.redstoneflux.impl.TileEnergyHandler;
 import net.minecraft.util.EnumFacing;
 
 /**
- * Implement this interface on Tile Entities which should receive energy, generally storing it in one or more internal {@link IEnergyStorage} objects.
+ * Implement this interface on Tile Entities which should receive energy, generally storing it in one or more internal {@link EnergyStorage} objects.
  *
  * A reference implementation is provided {@link TileEnergyHandler}.
  *
  * @author King Lemming
  */
-public interface IEnergyReceiver extends IEnergyHandler {
+public interface EnergyReceiver extends EnergyHandler {
 
 	/**
 	 * Add energy to an IEnergyReceiver, internal distribution is left entirely to the IEnergyReceiver.

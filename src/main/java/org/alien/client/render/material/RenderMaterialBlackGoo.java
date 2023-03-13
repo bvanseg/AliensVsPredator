@@ -7,11 +7,11 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
 import org.avp.AVP;
-import org.avp.common.api.blocks.material.IMaterialRenderer;
+import org.avp.common.api.blocks.material.MaterialRenderer;
 import org.lwjgl.opengl.GL11;
 
 
-public class RenderMaterialBlackGoo implements IMaterialRenderer
+public class RenderMaterialBlackGoo implements MaterialRenderer
 {
     @Override
     public void renderMaterialOverlay(Material material)

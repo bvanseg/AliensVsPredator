@@ -15,13 +15,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IHost;
+import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.AethonBrain;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityAethon extends EntityMob implements IMob, IHost, Brainiac<AethonBrain>
+public class EntityAethon extends EntityMob implements IMob, Host, Brainiac<AethonBrain>
 {
     private static final DataParameter<Integer> FLYING = EntityDataManager.createKey(EntityAethon.class, DataSerializers.VARINT);
 

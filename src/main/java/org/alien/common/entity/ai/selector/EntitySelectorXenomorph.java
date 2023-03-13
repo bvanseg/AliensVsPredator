@@ -6,8 +6,8 @@ import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 
 public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
 {
@@ -22,7 +22,7 @@ public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
         if (target instanceof EntityLivingBase)
         {
             EntityLivingBase livingBase = (EntityLivingBase) target;
-            Organism organism = (Organism) livingBase.getCapability(Provider.CAPABILITY, null);
+            OrganismImpl organism = (OrganismImpl) livingBase.getCapability(Provider.CAPABILITY, null);
             
             if (organism.hasEmbryo())
             {

@@ -15,7 +15,7 @@ import org.avp.common.world.playermode.PlayerMode;
 
 import java.util.concurrent.Callable;
 
-public interface ISpecialPlayer
+public interface SpecialPlayer
 {
     String getBroadcastChannel();
 
@@ -43,10 +43,10 @@ public interface ISpecialPlayer
 
     class Provider implements ICapabilitySerializable<NBTBase>
     {
-        @CapabilityInject(ISpecialPlayer.class)
-        public static final Capability<ISpecialPlayer> CAPABILITY = null;
+        @CapabilityInject(SpecialPlayer.class)
+        public static final Capability<SpecialPlayer> CAPABILITY = null;
 
-        private final ISpecialPlayer                         instance   = CAPABILITY.getDefaultInstance();
+        private final SpecialPlayer instance   = CAPABILITY.getDefaultInstance();
 
         @Override
         public boolean hasCapability(Capability<?> capability, EnumFacing facing)
@@ -73,14 +73,14 @@ public interface ISpecialPlayer
         }
     }
 
-    class SpecialPlayer implements ISpecialPlayer, IStorage<ISpecialPlayer>
+    class SpecialPlayerImpl implements SpecialPlayer, IStorage<SpecialPlayer>
     {
-        public static class Factory implements Callable<ISpecialPlayer>
+        public static class Factory implements Callable<SpecialPlayer>
         {
             @Override
-            public ISpecialPlayer call() throws Exception
+            public SpecialPlayer call() throws Exception
             {
-                return new SpecialPlayer();
+                return new SpecialPlayerImpl();
             }
         }
 
@@ -98,7 +98,7 @@ public interface ISpecialPlayer
         private boolean             canClimb;
         private PlayerMode          playerMode                  = PlayerMode.NORMAL;
 
-        public SpecialPlayer()
+        public SpecialPlayerImpl()
         {
             this.broadcastChannel = "Default";
         }
@@ -174,7 +174,7 @@ public interface ISpecialPlayer
         }
 
         @Override
-        public NBTBase writeNBT(Capability<ISpecialPlayer> capability, ISpecialPlayer instance, EnumFacing side)
+        public NBTBase writeNBT(Capability<SpecialPlayer> capability, SpecialPlayer instance, EnumFacing side)
         {
             NBTTagCompound tag = new NBTTagCompound();
 
@@ -188,7 +188,7 @@ public interface ISpecialPlayer
         }
 
         @Override
-        public void readNBT(Capability<ISpecialPlayer> capability, ISpecialPlayer instance, EnumFacing side, NBTBase nbt)
+        public void readNBT(Capability<SpecialPlayer> capability, SpecialPlayer instance, EnumFacing side, NBTBase nbt)
         {
             if (nbt instanceof NBTTagCompound)
             {

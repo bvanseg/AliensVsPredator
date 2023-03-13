@@ -8,10 +8,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import org.alien.common.api.parasitoidic.IHost;
-import org.alien.common.api.parasitoidic.IParasitoid;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.api.parasitoidic.Host;
+import org.alien.common.api.parasitoidic.Parasitoid;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPItems;
 import org.predator.common.PredatorItems;
 
@@ -32,7 +32,7 @@ public class EntitySelectorParasitoid implements Predicate<EntityLivingBase>
     @Override
     public boolean apply(EntityLivingBase potentialTarget)
     {
-        ArrayList<Class<?>> blacklist = IParasitoid.getDefaultEntityBlacklist();
+        ArrayList<Class<?>> blacklist = Parasitoid.getDefaultEntityBlacklist();
 
         for (Class<?> c : blacklist)
         {
@@ -42,11 +42,11 @@ public class EntitySelectorParasitoid implements Predicate<EntityLivingBase>
             }
         }
 
-        Organism organism = (Organism) potentialTarget.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) potentialTarget.getCapability(Provider.CAPABILITY, null);
 
-        if (potentialTarget instanceof IHost)
+        if (potentialTarget instanceof Host)
         {
-            IHost host = (IHost) potentialTarget;
+            Host host = (Host) potentialTarget;
 
             if (!host.canHostParasite() || !host.canParasiteAttach())
             {

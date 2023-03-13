@@ -19,19 +19,19 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.INascentic;
-import org.alien.common.api.parasitoidic.IRoyalOrganism;
+import org.alien.common.api.parasitoidic.Nascentic;
+import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.ai.brain.ChestbursterBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPDamageSources;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityChestburster extends SpeciesAlien implements IMob, INascentic, HiveMember, Brainiac<ChestbursterBrain>
+public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic, HiveMember, Brainiac<ChestbursterBrain>
 {
     private Class<? extends Entity> matureState;
 
@@ -88,7 +88,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     }
 
     @Override
-    public boolean isReadyToMature(IRoyalOrganism jellyProducer)
+    public boolean isReadyToMature(RoyalOrganism jellyProducer)
     {
         return this.ticksExisted >= this.getMaturityTime() || this.getJellyLevel() >= this.getMaturityLevel();
     }
@@ -198,13 +198,13 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     @Override
     public void grow(EntityLivingBase host)
     {
-        Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
     }
 
     @Override
     public void vitalize(EntityLivingBase host)
     {
-        Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
         this.matureState = organism.getEmbryo().getResultingOrganism();
         
         Pos safeLocation = Entities.getSafeLocationAround(this, new Pos((int)host.posX, (int)host.posY, (int)host.posZ));

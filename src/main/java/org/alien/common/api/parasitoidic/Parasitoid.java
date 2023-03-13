@@ -13,7 +13,7 @@ import org.avp.common.entity.EntityLiquidPool;
 
 import java.util.ArrayList;
 
-public interface IParasitoid
+public interface Parasitoid
 {
     void attachToEntity(Entity target);
 
@@ -33,13 +33,13 @@ public interface IParasitoid
 
     int getDetachTime();
 
-    static void readFromNBT(IParasitoid parasitoid, NBTTagCompound nbt)
+    static void readFromNBT(Parasitoid parasitoid, NBTTagCompound nbt)
     {
         boolean isFertile = nbt.getInteger("IsFertile") == 0;
         parasitoid.setFertility(isFertile);
     }
 
-    static NBTTagCompound writeToNBT(IParasitoid parasitoid, NBTTagCompound nbt)
+    static NBTTagCompound writeToNBT(Parasitoid parasitoid, NBTTagCompound nbt)
     {
         nbt.setInteger("IsFertile", parasitoid.isFertile() ? 0 : 1);
         return nbt;
@@ -52,7 +52,7 @@ public interface IParasitoid
         blacklist.add(EntityArmorStand.class);
         blacklist.add(SpeciesAlien.class);
         blacklist.add(EntityLiquidPool.class);
-        blacklist.add(IParasitoid.class);
+        blacklist.add(Parasitoid.class);
         blacklist.add(Species223ODe.class);
         blacklist.add(EntitySnowman.class);
         blacklist.add(EntityGolem.class);

@@ -4,17 +4,15 @@
  */
 package cofh.redstoneflux.api;
 
-import cofh.redstoneflux.impl.EnergyStorage;
-
 /**
  * An energy storage is the unit of interaction with Energy inventories.<br>
  * This is not to be implemented on TileEntities. This is for internal use only.
  *
- * A reference implementation can be found at {@link EnergyStorage}.
+ * A reference implementation can be found at {@link cofh.redstoneflux.impl.EnergyStorage}.
  *
  * @author King Lemming
  */
-public interface IEnergyStorage {
+public interface EnergyStorage {
 
 	/**
 	 * Adds energy to the storage. Returns quantity of energy that was accepted.

@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 
-public interface IMaterialPhysics
+public interface MaterialPhysics
 {
     default void onCollision(Entity entity)
     {
@@ -71,5 +71,5 @@ public interface IMaterialPhysics
     }
     
     @SideOnly(Side.CLIENT)
-    IMaterialRenderer getMaterialRenderer();
+    MaterialRenderer getMaterialRenderer();
 }
