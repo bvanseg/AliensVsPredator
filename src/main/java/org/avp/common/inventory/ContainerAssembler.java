@@ -10,7 +10,7 @@ import org.avp.common.tile.TileEntityAssembler;
 
 public class ContainerAssembler extends Container
 {
-    private TileEntityAssembler tile;
+    private final TileEntityAssembler tile;
 
     public ContainerAssembler(InventoryPlayer invPlayer, TileEntityAssembler assembler, int posX, int posY, int posZ)
     {

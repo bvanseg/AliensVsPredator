@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class AssemblyManager
 {
     public static final AssemblyManager instance   = new AssemblyManager();
-    private ArrayList<Schematic>        schematics = new ArrayList<Schematic>();
+    private final ArrayList<Schematic>        schematics = new ArrayList<Schematic>();
 
     public ArrayList<Schematic> schematics()
     {

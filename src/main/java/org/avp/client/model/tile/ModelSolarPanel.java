@@ -6,7 +6,7 @@ import org.avp.common.tile.TileEntitySolarPanel;
 
 public class ModelSolarPanel extends Model<TileEntitySolarPanel>
 {
-    private ModelRenderer panel;
+    private final ModelRenderer panel;
 
     public ModelSolarPanel()
     {

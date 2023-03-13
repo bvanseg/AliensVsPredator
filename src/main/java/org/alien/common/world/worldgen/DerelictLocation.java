@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class DerelictLocation
 {
-    private Random rand;
+    private final Random rand;
     private Pos coord;
     private boolean generated;
     private int index;

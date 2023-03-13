@@ -46,7 +46,7 @@ public interface ISpecialPlayer
         @CapabilityInject(ISpecialPlayer.class)
         public static final Capability<ISpecialPlayer> CAPABILITY = null;
 
-        private ISpecialPlayer                         instance   = CAPABILITY.getDefaultInstance();
+        private final ISpecialPlayer                         instance   = CAPABILITY.getDefaultInstance();
 
         @Override
         public boolean hasCapability(Capability<?> capability, EnumFacing facing)

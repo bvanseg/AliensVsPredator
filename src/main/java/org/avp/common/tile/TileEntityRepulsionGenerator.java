@@ -27,7 +27,7 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
     public static final float                      MAX_SPEED        = 10F;
     private static final float                     SPEED_MULTIPLIER = 0.05F;
     private final Item                             magnet           = AVPItems.ITEM_NEODYMIUM_MAGNET;
-    private ArrayList<HashMap<Integer, ItemStack>> sets             = new ArrayList<HashMap<Integer, ItemStack>>();
+    private final ArrayList<HashMap<Integer, ItemStack>> sets             = new ArrayList<HashMap<Integer, ItemStack>>();
     private int                                    fullSets;
     private int                                    emptySets;
     private int                                    unstableSets;

@@ -13,7 +13,7 @@ public class RenderItemSummoner extends ItemRenderer<Model>
     private float            scale;
     private float            x;
     private float            y;
-    private MapModelTexture<?> model;
+    private final MapModelTexture<?> model;
 
     @SuppressWarnings("all")
     public RenderItemSummoner(MapModelTexture<?> model)

@@ -5,9 +5,9 @@ import net.minecraft.item.ItemStack;
 
 public class Schematic implements ISchematic
 {
-    private String      id;
-    private ItemStack   item;
-    private ItemStack[] items;
+    private final String      id;
+    private final ItemStack   item;
+    private final ItemStack[] items;
 
     public Schematic(String id, ItemStack item, ItemStack... items)
     {

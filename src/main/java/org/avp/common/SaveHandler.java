@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class SaveHandler
 {
     public static SaveHandler           instance = new SaveHandler();
-    private ArrayList<IWorldSaveHandler> dataHandlers;
+    private final ArrayList<IWorldSaveHandler> dataHandlers;
 
     public SaveHandler()
     {

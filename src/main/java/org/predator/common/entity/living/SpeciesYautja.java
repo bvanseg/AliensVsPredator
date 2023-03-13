@@ -38,8 +38,8 @@ public abstract class SpeciesYautja extends EntityMob implements IHost, Brainiac
     private static final DataParameter<Integer> CLOAK_PROGRESS = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.VARINT);
 
     public static int MAX_CLOAK = 20 * 2;
-    private static int MIN_CLOAK = 0;
-    private static int CLOAK_PROGRESS_SPEED = 1;
+    private static final int MIN_CLOAK = 0;
+    private static final int CLOAK_PROGRESS_SPEED = 1;
 
     public int cloakProgress;
 

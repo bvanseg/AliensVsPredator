@@ -29,9 +29,9 @@ public class TileEntityPlant extends TileEntity implements IRotatableYAxis
     
     public static class PlantColor
     {
-        private double r;
-        private double g;
-        private double b;
+        private final double r;
+        private final double g;
+        private final double b;
         
         public PlantColor(double r, double g, double b)
         {
@@ -74,9 +74,9 @@ public class TileEntityPlant extends TileEntity implements IRotatableYAxis
     {
         SMALL(0, 0.4F, 7), MEDIUM(1, 0.6F, 2), LARGE(3, 1.0F, 1);
         
-        private int idx;
-        private float scale;
-        private int rarity;
+        private final int idx;
+        private final float scale;
+        private final int rarity;
         
         PlantSize(int idx, float scale, int rarity)
         {

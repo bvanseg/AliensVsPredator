@@ -9,10 +9,10 @@ import net.minecraft.pathfinding.PathPoint;
 
 public class EntityAICustomAttackOnCollide extends EntityAIBase
 {
-    private EntityCreature          attacker;
+    private final EntityCreature          attacker;
     private int                     attackTick;
-    private double                  speedTowardsTarget;
-    private boolean                 longMemory;
+    private final double                  speedTowardsTarget;
+    private final boolean                 longMemory;
     private Path                    entityPathEntity;
     private Class<? extends Entity> classTarget;
     private int                     damage;

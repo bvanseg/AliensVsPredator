@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class WorldGenSustainableOnDirt extends WorldGenerator
 {
-    private IBlockState state;
+    private final IBlockState state;
 
     public WorldGenSustainableOnDirt(IBlockState block)
     {

@@ -29,7 +29,7 @@ public class TileEntityNetworkRack extends TileEntityElectrical implements IRota
     private boolean               isParent;
     private boolean               placedByPlayer;
     private TileEntity            parent;
-    private ArrayList<TileEntity> children;
+    private final ArrayList<TileEntity> children;
     private int                   ticksExisted;
     private EnumFacing            direction;
     public InventoryBasic         inventory;

@@ -26,7 +26,7 @@ public class FirearmProfile
         return null;
     }
     
-    private Classification classification;
+    private final Classification classification;
     private int            ammoMax;
     private int            ammoConsumptionRate;
     private float          recoil;

@@ -10,7 +10,7 @@ import org.predator.client.model.entity.ModelPlasma;
 
 public class RenderAcidProjectile extends Render<EntityAcidProjectile>
 {
-    private ModelPlasma model = new ModelPlasma();
+    private final ModelPlasma model = new ModelPlasma();
 
     public RenderAcidProjectile(RenderManager m)
     {

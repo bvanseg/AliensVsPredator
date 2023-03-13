@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class FarmlandRegistry
 {
     public static FarmlandRegistry instance = new FarmlandRegistry();
-    private ArrayList<Block> farmlandRegistry = new ArrayList<Block>();
+    private final ArrayList<Block> farmlandRegistry = new ArrayList<Block>();
 
     private FarmlandRegistry()
     {

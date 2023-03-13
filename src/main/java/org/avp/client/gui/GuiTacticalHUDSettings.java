@@ -14,12 +14,12 @@ import java.io.IOException;
 public class GuiTacticalHUDSettings extends GuiCustomScreen
 {
     protected final SpecialPlayer player;
-    private GuiCustomTextbox channel;
-    private GuiCustomButton save;
-    private GuiCustomButton nightvision;
-    private GuiCustomButton entityCulling;
-    private GuiCustomSlider txPower;
-    private GuiCustomSlider viewportThreshold;
+    private final GuiCustomTextbox channel;
+    private final GuiCustomButton save;
+    private final GuiCustomButton nightvision;
+    private final GuiCustomButton entityCulling;
+    private final GuiCustomSlider txPower;
+    private final GuiCustomSlider viewportThreshold;
 
     public GuiTacticalHUDSettings(GuiScreen parent)
     {

@@ -49,10 +49,10 @@ public class GuiTurret extends GuiContainer
     private static int                         scroll        = 0;
     private static boolean                     searchRequiresUpdate = false;
     
-    private static IAction scrollDownAction = (IGuiElement element) -> { scrollDown(); };
-    private static IAction scrollUpAction = (IGuiElement element) -> { scrollUp(); };
+    private static final IAction scrollDownAction = (IGuiElement element) -> { scrollDown(); };
+    private static final IAction scrollUpAction = (IGuiElement element) -> { scrollUp(); };
     
-    private IAction saveAction = new IAction() {
+    private final IAction saveAction = new IAction() {
         @Override
         public void perform(IGuiElement element)
         {
@@ -61,7 +61,7 @@ public class GuiTurret extends GuiContainer
         }
     };
     
-    private IAction loadAction = new IAction() {
+    private final IAction loadAction = new IAction() {
         @Override
         public void perform(IGuiElement element)
         {
@@ -71,7 +71,7 @@ public class GuiTurret extends GuiContainer
         }
     };
     
-    private IAction addAsTargetAction = new IAction() {
+    private final IAction addAsTargetAction = new IAction() {
         @Override
         public void perform(IGuiElement element)
         {

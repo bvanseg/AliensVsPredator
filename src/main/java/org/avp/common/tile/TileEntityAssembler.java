@@ -21,7 +21,7 @@ import org.predator.common.PredatorItems;
 public class TileEntityAssembler extends TileEntity implements IInventory, ITickable
 {
     private Item               randomItem  = PredatorItems.BIOMASK_CELTIC;
-    private ItemStack[]        items       = new ItemStack[28];
+    private final ItemStack[]        items       = new ItemStack[28];
     private ItemStack          previousTickStack;
     public int                 clickAmount = 0;
     private ContainerAssembler container;

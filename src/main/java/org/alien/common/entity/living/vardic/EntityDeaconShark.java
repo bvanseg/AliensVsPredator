@@ -27,7 +27,7 @@ public class EntityDeaconShark extends SpeciesAlien
     private PatchedEntityAIWander          wander;
     private EntityAIMoveTowardsRestriction moveTowardsRestriction;
     private double                         distanceToTargetLastTick;
-    private Predicate<EntityLivingBase>                entitySelector = new Predicate<EntityLivingBase>()
+    private final Predicate<EntityLivingBase>                entitySelector = new Predicate<EntityLivingBase>()
                                                           {
                                                               @Override
                                                               public boolean apply(EntityLivingBase target)
@@ -246,7 +246,7 @@ public class EntityDeaconShark extends SpeciesAlien
 
     class DeaconSharkMoveHelper extends EntityMoveHelper
     {
-        private EntityDeaconShark shark = EntityDeaconShark.this;
+        private final EntityDeaconShark shark = EntityDeaconShark.this;
         private double            posX;
         private double            posY;
         private double            posZ;

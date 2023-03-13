@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class BlockPortal extends Block
 {
-    private Dimension dimension;
+    private final Dimension dimension;
 
     public BlockPortal(Dimension dimension)
     {

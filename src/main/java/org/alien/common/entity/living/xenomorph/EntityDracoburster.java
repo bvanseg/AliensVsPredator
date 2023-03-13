@@ -11,7 +11,7 @@ import org.alien.common.api.parasitoidic.INascentic;
 
 public class EntityDracoburster extends EntityChestburster implements IMob, INascentic
 {
-    private Class<? extends Entity> matureState;
+    private final Class<? extends Entity> matureState;
 
     public EntityDracoburster(World world)
     {

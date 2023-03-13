@@ -23,7 +23,7 @@ import java.util.Random;
 
 public class BlockSupplyCrate extends BlockFalling
 {
-    private SupplyChuteType type;
+    private final SupplyChuteType type;
     
     public BlockSupplyCrate(SupplyChuteType type)
     {

@@ -46,7 +46,7 @@ public class BrainTaskAdapter extends AbstractBrainTask<EntityBrainContext> {
 	}
 	
 	private final EntityAIBase minecraftAITask;
-	private Map<AbstractBrainFlag, BrainFlagState> flags;
+	private final Map<AbstractBrainFlag, BrainFlagState> flags;
 	
 	public BrainTaskAdapter(EntityAIBase minecraftAITask) {
 		this.minecraftAITask = minecraftAITask;

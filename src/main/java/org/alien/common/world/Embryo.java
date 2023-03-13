@@ -50,9 +50,9 @@ public class Embryo implements Cloneable
     private int                         id;
     private int                         age;
     private int                         gestationPeriod;
-    private Class<? extends INascentic> nascenticType;
-    private Class<? extends Entity>     result;
-    private Class<? extends Entity>[]   hosts;
+    private final Class<? extends INascentic> nascenticType;
+    private final Class<? extends Entity>     result;
+    private final Class<? extends Entity>[]   hosts;
     private INascentic                  nascenticOrganism;
 
     public Embryo(Class<?> nascenticType, Class<?> result, Class<?>... hosts)

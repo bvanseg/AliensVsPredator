@@ -44,16 +44,16 @@ public class TacticalHUDRenderEvent
 {
     public static final TacticalHUDRenderEvent instance          = new TacticalHUDRenderEvent();
     private GuiTacticalHUDSettings             guiSettings;
-    private ArrayList<EntityPlayer>            playersInHUD      = new ArrayList<EntityPlayer>();
+    private final ArrayList<EntityPlayer>            playersInHUD      = new ArrayList<EntityPlayer>();
     private SpecialPlayer                      specialPlayer;
     private Organism                           playerOrganism;
-    private GuiCustomButton                    buttonMarineHelmConfig;
+    private final GuiCustomButton                    buttonMarineHelmConfig;
     private boolean                            gammaRestored     = true;
     private int                                viewportThreshold = 20;
     private ArrayList<EntityLivingBase>        trackedEntities;
-    private Electrocardiogram electrocardiogram;
-    private Wavegraph wavegraph1;
-    private Wavegraph                          wavegraph2;
+    private final Electrocardiogram electrocardiogram;
+    private final Wavegraph wavegraph1;
+    private final Wavegraph                          wavegraph2;
 
     public TacticalHUDRenderEvent()
     {

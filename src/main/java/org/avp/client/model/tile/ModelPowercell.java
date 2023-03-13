@@ -6,11 +6,11 @@ import org.avp.common.tile.TileEntityPowercell;
 
 public class ModelPowercell extends Model<TileEntityPowercell>
 {
-    private ModelRenderer cell;
-    private ModelRenderer connector1;
-    private ModelRenderer connector2;
-    private ModelRenderer connector3;
-    private ModelRenderer connector4;
+    private final ModelRenderer cell;
+    private final ModelRenderer connector1;
+    private final ModelRenderer connector2;
+    private final ModelRenderer connector3;
+    private final ModelRenderer connector4;
 
     public ModelPowercell()
     {

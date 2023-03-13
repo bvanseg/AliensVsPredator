@@ -13,7 +13,7 @@ import java.util.Random;
 
 public class VardaGenLakes extends WorldGenerator
 {
-    private IBlockState state;
+    private final IBlockState state;
 
     public VardaGenLakes(IBlockState state)
     {

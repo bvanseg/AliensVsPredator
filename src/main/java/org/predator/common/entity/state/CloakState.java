@@ -22,7 +22,7 @@ public enum CloakState {
 		this.id = id;
 	}
 	
-	private static HashMap<Integer, CloakState> valuesById = new HashMap<>();
+	private static final HashMap<Integer, CloakState> valuesById = new HashMap<>();
 	
 	static {
 		for (CloakState value: CloakState.values()) {

@@ -32,7 +32,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     private boolean               isParent;
     private boolean               placedByPlayer;
     private TileEntity            parent;
-    private ArrayList<TileEntity> children;
+    private final ArrayList<TileEntity> children;
     private int                   ticksExisted;
     private EnumFacing            direction;
     private float                 doorProgress;

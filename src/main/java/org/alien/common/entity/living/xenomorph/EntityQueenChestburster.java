@@ -12,7 +12,7 @@ import org.alien.common.world.hive.HiveMember;
 
 public class EntityQueenChestburster extends EntityChestburster implements IMob, INascentic, HiveMember
 {
-    private Class<? extends Entity> matureState;
+    private final Class<? extends Entity> matureState;
 
     public EntityQueenChestburster(World world)
     {

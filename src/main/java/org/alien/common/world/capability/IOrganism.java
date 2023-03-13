@@ -44,7 +44,7 @@ public interface IOrganism
         @CapabilityInject(IOrganism.class)
         public static final Capability<IOrganism> CAPABILITY = null;
 
-        private IOrganism                         instance   = CAPABILITY.getDefaultInstance();
+        private final IOrganism                         instance   = CAPABILITY.getDefaultInstance();
 
         @Override
         public boolean hasCapability(Capability<?> capability, EnumFacing facing)

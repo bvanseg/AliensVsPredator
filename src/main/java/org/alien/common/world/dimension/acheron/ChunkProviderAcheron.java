@@ -22,25 +22,25 @@ import java.util.Random;
 
 public class ChunkProviderAcheron implements IChunkGenerator
 {
-    private Random                seed;
-    private World                 world;
+    private final Random                seed;
+    private final World                 world;
     private double[]              heightMap;
     private double[]              depthBuffer;
     private Biome[]               biomes;
-    private float[]               biomeWeights;
+    private final float[]               biomeWeights;
 
-    private NoiseGeneratorOctaves surfaceNoise;
-    private NoiseGeneratorOctaves minLimitPerlinNoise;
-    private NoiseGeneratorOctaves maxLimitPerlinNoise;
-    private NoiseGeneratorOctaves mainPerlinNoise;
-    private NoiseGeneratorOctaves depthNoise;
+    private final NoiseGeneratorOctaves surfaceNoise;
+    private final NoiseGeneratorOctaves minLimitPerlinNoise;
+    private final NoiseGeneratorOctaves maxLimitPerlinNoise;
+    private final NoiseGeneratorOctaves mainPerlinNoise;
+    private final NoiseGeneratorOctaves depthNoise;
 
     double[]                      mainRegion;
     double[]                      minRegion;
     double[]                      maxRegion;
     double[]                      depthRegion;
 
-    private IBlockState           oceanBlock;
+    private final IBlockState           oceanBlock;
     
     public ChunkProviderAcheron(World world)
     {

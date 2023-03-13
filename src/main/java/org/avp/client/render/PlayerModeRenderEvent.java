@@ -20,7 +20,7 @@ import org.avp.common.world.playermode.PlayerMode;
 public class PlayerModeRenderEvent
 {
     public static final PlayerModeRenderEvent instance = new PlayerModeRenderEvent();
-    private RenderPlayer2 renderLiving = new RenderPlayer2();
+    private final RenderPlayer2 renderLiving = new RenderPlayer2();
 
     private class RenderPlayer2 extends RenderLivingBase<EntityLivingBase>
     {

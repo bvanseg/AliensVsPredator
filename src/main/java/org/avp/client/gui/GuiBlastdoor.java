@@ -13,12 +13,12 @@ import java.io.IOException;
 
 public class GuiBlastdoor extends GuiCustomScreen
 {
-    private TileEntityBlastdoor door;
-    private GuiCustomTextbox    password;
+    private final TileEntityBlastdoor door;
+    private final GuiCustomTextbox    password;
     private GuiCustomButton     autolock;
     private GuiCustomButton     bindTuner;
     private String              status;
-    private boolean             frontEnd;
+    private final boolean             frontEnd;
 
     public GuiBlastdoor(TileEntityBlastdoor door)
     {

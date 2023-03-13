@@ -7,24 +7,24 @@ import org.avp.common.tile.TileEntityTurret;
 
 public class ModelTurret extends Model<TileEntityTurret>
 {
-    private ModelRenderer barrel,
-        supportLeft,
-        headBase2,
-        neckBase,
-        headBase3,
-        headBase,
-        barrelGuard,
-        sightBase3,
-        rightFoot,
-        supportRight,
-        supportCenter,
-        centerFoot,
-        legHub,
-        LeftFoot,
-        neck,
-        leftLeg,
-        rightLeg,
-        centerLeg;
+    private final ModelRenderer barrel;
+    private final ModelRenderer supportLeft;
+    private final ModelRenderer headBase2;
+    private final ModelRenderer neckBase;
+    private final ModelRenderer headBase3;
+    private final ModelRenderer headBase;
+    private final ModelRenderer barrelGuard;
+    private final ModelRenderer sightBase3;
+    private final ModelRenderer rightFoot;
+    private final ModelRenderer supportRight;
+    private final ModelRenderer supportCenter;
+    private final ModelRenderer centerFoot;
+    private final ModelRenderer legHub;
+    private final ModelRenderer LeftFoot;
+    private final ModelRenderer neck;
+    private final ModelRenderer leftLeg;
+    private final ModelRenderer rightLeg;
+    private final ModelRenderer centerLeg;
 
     public ModelTurret()
     {

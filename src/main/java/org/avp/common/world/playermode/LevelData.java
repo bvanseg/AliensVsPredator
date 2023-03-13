@@ -8,7 +8,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class LevelData
 {
-    private int level;
+    private final int level;
 //    private Achievement achievement;
 
     @SideOnly(Side.CLIENT)

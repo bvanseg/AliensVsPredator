@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class SkyProviderVarda extends IRenderHandler
 {
-    private Color   skyColor       = new Color(0.11F, 0.225F, 0.265F, 1F);
+    private final Color   skyColor       = new Color(0.11F, 0.225F, 0.265F, 1F);
     public int      starGLCallList = GLAllocation.generateDisplayLists(3);
 
     public SkyProviderVarda()

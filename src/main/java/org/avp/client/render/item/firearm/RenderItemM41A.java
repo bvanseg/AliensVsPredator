@@ -22,7 +22,7 @@ import org.lwjgl.input.Mouse;
 
 public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
 {
-    private RenderMotionTrackerScreen motionTracker = new RenderMotionTrackerScreen();
+    private final RenderMotionTrackerScreen motionTracker = new RenderMotionTrackerScreen();
 
     public RenderItemM41A()
     {

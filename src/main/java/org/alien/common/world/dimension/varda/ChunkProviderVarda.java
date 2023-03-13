@@ -23,25 +23,25 @@ import java.util.Random;
 
 public class ChunkProviderVarda implements IChunkGenerator
 {
-    private Random                seed;
-    private World                 world;
+    private final Random                seed;
+    private final World                 world;
     private double[]              heightMap;
     private double[]              depthBuffer;
     private Biome[]               biomes;
-    private float[]               biomeWeights;
+    private final float[]               biomeWeights;
 
-    private NoiseGeneratorOctaves surfaceNoise;
-    private NoiseGeneratorOctaves minLimitPerlinNoise;
-    private NoiseGeneratorOctaves maxLimitPerlinNoise;
-    private NoiseGeneratorOctaves mainPerlinNoise;
-    private NoiseGeneratorOctaves depthNoise;
+    private final NoiseGeneratorOctaves surfaceNoise;
+    private final NoiseGeneratorOctaves minLimitPerlinNoise;
+    private final NoiseGeneratorOctaves maxLimitPerlinNoise;
+    private final NoiseGeneratorOctaves mainPerlinNoise;
+    private final NoiseGeneratorOctaves depthNoise;
 
     private double[]              mainRegion;
     private double[]              minRegion;
     private double[]              maxRegion;
     private double[]              depthRegion;
 
-    private MapGenBase            caveGenerator = new VardaGenCaves();
+    private final MapGenBase            caveGenerator = new VardaGenCaves();
 
     public ChunkProviderVarda(World world)
     {

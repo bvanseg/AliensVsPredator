@@ -32,7 +32,7 @@ import org.lib.registry.BlockRegistryUtil;
 
 public class BlockBlastdoor extends Block
 {
-    private DynamicNotification notification = new DynamicNotification();
+    private final DynamicNotification notification = new DynamicNotification();
 
     public BlockBlastdoor(Material material)
     {
