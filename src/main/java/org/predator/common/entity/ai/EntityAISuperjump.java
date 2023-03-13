@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.MathHelper;
 
+@Deprecated
 public class EntityAISuperjump extends EntityAIBase
 {
     /** The entity that is leaping. */
