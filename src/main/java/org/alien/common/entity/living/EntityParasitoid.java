@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -28,15 +27,13 @@ import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid, Brainiac<ParasitoidBrain>
 {
     private static final DataParameter<Boolean> FERTILE            = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
     private int                                 timeSinceInfertile = 0;
-    private int                                 ticksOnHost        = 0;
+    public int                                  ticksOnHost        = 0;
 
     protected ParasitoidBrain brain;
 
@@ -80,9 +77,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
             this.brain.update(new EntityBrainContext(this.getBrain(), this));
         }
         
-        if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.apply(this.getAttackTarget()))
-            this.setAttackTarget(null);
-        
         if (!this.isFertile())
         {
             this.setNoAI(true);
@@ -98,56 +92,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
                 this.setDead();
         }
 
-        if (this.world.getTotalWorldTime() % 20 == 0)
-        {
-            if (isFertile())
-            {
-                ArrayList<EntityLivingBase> targetHosts = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1.0D, 16.0D, 1.0D), this.getImpregnationEntitySelector());
-
-                if (targetHosts != null && targetHosts.size() > 0)
-                {
-                    Collections.sort(targetHosts, new EntityAINearestAttackableTarget.Sorter(this));
-
-                    EntityLivingBase targetHost = targetHosts.get(0);
-                    this.setAttackTarget(targetHost);
-
-                    if (!targetHosts.contains(this.getAttackTarget()))
-                    {
-                        this.setAttackTarget(null);
-                    }
-                }
-            }
-        }
-
         this.negateFallDamage();
-
-        if (this.isAttachedToHost())
-        {
-            this.ticksOnHost++;
-
-            if (this.getRidingEntity() instanceof EntityLiving)
-            {
-                EntityLiving living = (EntityLiving) this.getRidingEntity();
-
-                living.setNoAI(true);
-                
-                living.motionY -= 0.05F;
-                living.motionY *= 0.98F;
-                living.move(MoverType.SELF, 0, living.motionY, 0);
-
-                this.rotationYawHead = living.rotationYawHead;
-                this.rotationYaw = living.rotationYaw;
-                this.prevRotationYawHead = living.prevRotationYawHead;
-                this.prevRotationYaw = living.prevRotationYaw;
-            }
-            
-            if(this.getRidingEntity() instanceof EntityPlayer && ((EntityPlayer)this.getRidingEntity()).capabilities.isCreativeMode)
-            {
-                Organism organism = (Organism) this.getRidingEntity().getCapability(Provider.CAPABILITY, null);
-                organism.removeEmbryo();
-                this.detachFromHost();
-            }
-        }
 
         if (this.getTicksOnHost() > this.getDetachTime())
         {
@@ -200,16 +145,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
         if(this.isFertile()) 
         {
             List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
-    
-            if (list != null && !list.isEmpty())
-            {
-                for (int i = 0; i < list.size(); ++i)
-                {
-                    Entity entity = list.get(i);
-    
-                    this.collideWithEntity(entity);
-                }
-            }
+            list.forEach(this::collideWithEntity);
         }
     }
 
@@ -234,12 +170,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
     @Override
     public boolean canAttach(Entity entity)
     {
-        if (entity instanceof EntityLivingBase)
-        {
-            return EntitySelectorParasitoid.instance.apply((EntityLivingBase) entity);
-        }
-
-        return false;
+        return (entity instanceof EntityLivingBase) && EntitySelectorParasitoid.instance.apply((EntityLivingBase) entity);
     }
 
     @Override
@@ -301,7 +232,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
     @Override
     public boolean isPotionApplicable(PotionEffect effect)
     {
-        return effect.getPotion() == MobEffects.POISON ? false : super.isPotionApplicable(effect);
+        return effect.getPotion() != MobEffects.POISON && super.isPotionApplicable(effect);
     }
 
     @Override
