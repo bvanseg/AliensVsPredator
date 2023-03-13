@@ -25,21 +25,21 @@ import java.util.concurrent.Callable;
 
 public interface IOrganism
 {
-    public int getHeartRate();
+    int getHeartRate();
 
-    public void setHeartRate(int rate);
+    void setHeartRate(int rate);
 
-    public boolean hasEmbryo();
+    boolean hasEmbryo();
 
-    public Embryo getEmbryo();
+    Embryo getEmbryo();
 
-    public void impregnate(Embryo embryo);
+    void impregnate(Embryo embryo);
 
-    public void removeEmbryo();
+    void removeEmbryo();
 
-    public void gestate(EntityLivingBase in);
+    void gestate(EntityLivingBase in);
 
-    public class Provider implements ICapabilitySerializable<NBTBase>
+    class Provider implements ICapabilitySerializable<NBTBase>
     {
         @CapabilityInject(IOrganism.class)
         public static final Capability<IOrganism> CAPABILITY = null;
@@ -71,7 +71,7 @@ public interface IOrganism
         }
     }
 
-    public default void heal(EntityLivingBase living)
+    default void heal(EntityLivingBase living)
     {
         living.setHealth(living.getMaxHealth());
 
@@ -98,7 +98,7 @@ public interface IOrganism
         }
     }
 
-    public static class Organism implements IOrganism, IStorage<IOrganism>
+    class Organism implements IOrganism, IStorage<IOrganism>
     {
         public static class Factory implements Callable<IOrganism>
         {

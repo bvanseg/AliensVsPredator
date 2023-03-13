@@ -3,8 +3,8 @@ package org.avp.common.api.machines;
 public interface IDataDevice
 {
     /** Read data from another device with specified ID implementing this interface **/
-    public void readFromOtherDevice(int ID);
+    void readFromOtherDevice(int ID);
 
     /** Write data to another device with specified ID implementing this interface **/
-    public void writeToOtherDevice(int ID);
+    void writeToOtherDevice(int ID);
 }

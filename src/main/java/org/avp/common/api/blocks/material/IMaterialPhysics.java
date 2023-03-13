@@ -10,13 +10,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IMaterialPhysics
 {
-    public default void onCollision(Entity entity)
+    default void onCollision(Entity entity)
     {
         entity.fallDistance = 0.0F;
         entity.extinguish();
     }
 
-    public default void handleForce(Entity entity, Vec3d motion)
+    default void handleForce(Entity entity, Vec3d motion)
     {
         if (this.getForceVelocity() == 0D)
         {
@@ -28,7 +28,7 @@ public interface IMaterialPhysics
         entity.motionZ += motion.z * this.getForceVelocity();
     }
 
-    public default void handleMovement(Entity entity)
+    default void handleMovement(Entity entity)
     {
         if (this.getVelocity() == 0D)
         {
@@ -45,31 +45,31 @@ public interface IMaterialPhysics
         }
     }
 
-    public default double getForceVelocity()
+    default double getForceVelocity()
     {
         return 0.014D;
     }
 
-    public default double getVelocity()
+    default double getVelocity()
     {
         return 0.4D;
     }
     
-    public default double getSinkMultiplier()
+    default double getSinkMultiplier()
     {
         return 2.25F;
     }
     
-    public default double getJumpOffset()
+    default double getJumpOffset()
     {
         return 0.30000001192092896D;
     }
     
-    public default boolean ignoresPushableCheck()
+    default boolean ignoresPushableCheck()
     {
         return false;
     }
     
     @SideOnly(Side.CLIENT)
-    public IMaterialRenderer getMaterialRenderer();
+    IMaterialRenderer getMaterialRenderer();
 }

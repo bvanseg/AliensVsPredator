@@ -76,13 +76,13 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
         }
     }
 
-    public static enum PacketMode
+    public enum PacketMode
     {
         NONE(0), AUTH(1), SETPSWD(2), SETAUTOLOCK(3), BIND(4);
 
         public int id;
 
-        private PacketMode(int id)
+        PacketMode(int id)
         {
             this.id = id;
         }

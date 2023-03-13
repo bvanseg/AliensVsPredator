@@ -209,7 +209,7 @@ public class EntityAPC extends Entity
         }
     }
 
-    public static enum Gear
+    public enum Gear
     {
         GEAR1(0.15D), GEAR2(0.2D), GEAR3(0.3D), GEAR4(0.45D);
 

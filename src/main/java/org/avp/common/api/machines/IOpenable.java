@@ -2,7 +2,7 @@ package org.avp.common.api.machines;
 
 public interface IOpenable
 {
-    public boolean isOpen();
+    boolean isOpen();
 
-    public void setOpen(boolean isOpen);
+    void setOpen(boolean isOpen);
 }

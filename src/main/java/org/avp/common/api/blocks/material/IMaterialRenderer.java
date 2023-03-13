@@ -14,7 +14,7 @@ import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 public interface IMaterialRenderer
 {
-    public default void renderMaterialOverlay(Material material)
+    default void renderMaterialOverlay(Material material)
     {
         OpenGL.pushMatrix();
         OpenGL.enableBlend();
@@ -33,12 +33,12 @@ public interface IMaterialRenderer
         OpenGL.popMatrix();
     }
     
-    public default Vec3d getFogColor()
+    default Vec3d getFogColor()
     {
         return new Vec3d(1.0, 1.0, 1.0);
     }
     
-    public default void renderFog(Material material)
+    default void renderFog(Material material)
     {
         GlStateManager.setFog(GlStateManager.FogMode.EXP);
         GlStateManager.setFogDensity(0.25F);

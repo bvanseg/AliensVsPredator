@@ -7,5 +7,5 @@ package org.alien.common.world.hive;
  *
  */
 public interface HiveOwner extends HiveMember {
-	public AlienHive createNewAlienHive();
+	AlienHive createNewAlienHive();
 }

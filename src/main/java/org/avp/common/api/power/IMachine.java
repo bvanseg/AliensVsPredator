@@ -2,11 +2,11 @@ package org.avp.common.api.power;
 
 public interface IMachine
 {
-    public int getMachineDamage();
+    int getMachineDamage();
 
-    public int getMaxMachineDamage();
+    int getMaxMachineDamage();
 
-    public void damageMachine(int amount);
+    void damageMachine(int amount);
     
-    public int repairMachine(int amount);
+    int repairMachine(int amount);
 }

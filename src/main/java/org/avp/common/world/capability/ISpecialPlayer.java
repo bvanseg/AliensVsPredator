@@ -17,31 +17,31 @@ import java.util.concurrent.Callable;
 
 public interface ISpecialPlayer
 {
-    public String getBroadcastChannel();
+    String getBroadcastChannel();
 
-    public void setBroadcastChannel(String broadcastChannel);
+    void setBroadcastChannel(String broadcastChannel);
 
-    public int getBroadcastRadius();
+    int getBroadcastRadius();
 
-    public void setBroadcastRadius(int broadcastRadius);
+    void setBroadcastRadius(int broadcastRadius);
 
-    public void setPlayerMode(PlayerMode playerMode);
+    void setPlayerMode(PlayerMode playerMode);
 
-    public PlayerMode getPlayerMode();
+    PlayerMode getPlayerMode();
 
-    public boolean isEntityCullingEnabled();
+    boolean isEntityCullingEnabled();
 
-    public void setEntityCullingEnabled(boolean concelationToggle);
+    void setEntityCullingEnabled(boolean concelationToggle);
 
-    public boolean isNightvisionEnabled();
+    boolean isNightvisionEnabled();
 
-    public void setNightvisionEnabled(boolean nightvisionEnabled);
+    void setNightvisionEnabled(boolean nightvisionEnabled);
 
-    public boolean canClimb();
+    boolean canClimb();
 
-    public void setCanClimb(boolean canClimb);
+    void setCanClimb(boolean canClimb);
 
-    public class Provider implements ICapabilitySerializable<NBTBase>
+    class Provider implements ICapabilitySerializable<NBTBase>
     {
         @CapabilityInject(ISpecialPlayer.class)
         public static final Capability<ISpecialPlayer> CAPABILITY = null;
@@ -73,7 +73,7 @@ public interface ISpecialPlayer
         }
     }
 
-    public static class SpecialPlayer implements ISpecialPlayer, IStorage<ISpecialPlayer>
+    class SpecialPlayer implements ISpecialPlayer, IStorage<ISpecialPlayer>
     {
         public static class Factory implements Callable<ISpecialPlayer>
         {

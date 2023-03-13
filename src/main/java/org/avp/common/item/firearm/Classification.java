@@ -12,7 +12,7 @@ public enum Classification {
 
 	private float baseDamage;
 
-	private Classification(float baseDamage) {
+	Classification(float baseDamage) {
 		this.baseDamage = baseDamage;
 	}
 

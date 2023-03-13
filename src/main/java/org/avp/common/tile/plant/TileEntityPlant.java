@@ -70,7 +70,7 @@ public class TileEntityPlant extends TileEntity implements IRotatableYAxis
         }
     }
     
-    public static enum PlantSize
+    public enum PlantSize
     {
         SMALL(0, 0.4F, 7), MEDIUM(1, 0.6F, 2), LARGE(3, 1.0F, 1);
         

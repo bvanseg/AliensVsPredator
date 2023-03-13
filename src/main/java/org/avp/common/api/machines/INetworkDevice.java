@@ -2,11 +2,11 @@ package org.avp.common.api.machines;
 
 public interface INetworkDevice
 {
-    public void sendData();
+    void sendData();
 
-    public void receiveData();
+    void receiveData();
 
-    public INetworkDevice getHostDevice();
+    INetworkDevice getHostDevice();
 
-    public String getChannel();
+    String getChannel();
 }

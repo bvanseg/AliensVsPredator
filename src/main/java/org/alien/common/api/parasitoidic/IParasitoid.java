@@ -16,39 +16,39 @@ import java.util.ArrayList;
 
 public interface IParasitoid
 {
-    public void attachToEntity(Entity target);
+    void attachToEntity(Entity target);
 
-    public void implantEmbryo(EntityLivingBase target);
+    void implantEmbryo(EntityLivingBase target);
 
-    public void detachFromHost();
+    void detachFromHost();
 
-    public void setFertility(boolean fertility);
+    void setFertility(boolean fertility);
 
-    public boolean isFertile();
+    boolean isFertile();
 
-    public boolean isAttachedToHost();
+    boolean isAttachedToHost();
 
-    public boolean canAttach(Entity entity);
+    boolean canAttach(Entity entity);
 
-    public int getTicksOnHost();
+    int getTicksOnHost();
 
-    public int getDetachTime();
+    int getDetachTime();
 
-    public Predicate<EntityLivingBase> getImpregnationEntitySelector();
+    Predicate<EntityLivingBase> getImpregnationEntitySelector();
 
-    public static void readFromNBT(IParasitoid parasitoid, NBTTagCompound nbt)
+    static void readFromNBT(IParasitoid parasitoid, NBTTagCompound nbt)
     {
         boolean isFertile = nbt.getInteger("IsFertile") == 0;
         parasitoid.setFertility(isFertile);
     }
 
-    public static NBTTagCompound writeToNBT(IParasitoid parasitoid, NBTTagCompound nbt)
+    static NBTTagCompound writeToNBT(IParasitoid parasitoid, NBTTagCompound nbt)
     {
         nbt.setInteger("IsFertile", parasitoid.isFertile() ? 0 : 1);
         return nbt;
     }
 
-    public static ArrayList<Class<?>> getDefaultEntityBlacklist()
+    static ArrayList<Class<?>> getDefaultEntityBlacklist()
     {
         ArrayList<Class<?>> blacklist = new ArrayList<Class<?>>();
 

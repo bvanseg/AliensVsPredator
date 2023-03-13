@@ -6,5 +6,5 @@ import net.minecraft.world.World;
 
 public interface IAcidResistant
 {
-    public boolean canAcidDestroy(World world, BlockPos posBelow, Entity acid);
+    boolean canAcidDestroy(World world, BlockPos posBelow, Entity acid);
 }

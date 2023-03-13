@@ -2,13 +2,13 @@ package org.alien.common.api.parasitoidic;
 
 public interface IRoyalOrganism
 {
-    public void setJellyLevel(int level);
+    void setJellyLevel(int level);
     
-    public void produceJelly();
+    void produceJelly();
     
-    public boolean canProduceJelly();
+    boolean canProduceJelly();
     
-    public int getJellyLevel();
+    int getJellyLevel();
     
-    public int getJellyProductionRate();
+    int getJellyProductionRate();
 }

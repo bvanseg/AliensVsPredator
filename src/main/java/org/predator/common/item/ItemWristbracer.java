@@ -34,9 +34,9 @@ public class ItemWristbracer extends HookedItem
 
     private static final HashMap<String, IActionCode> codes = new HashMap<String, IActionCode>();
 
-    public static interface IActionCode
+    public interface IActionCode
     {
-        public void onAction(String combonation, Object... args);
+        void onAction(String combonation, Object... args);
     }
 
     public static String code(int d1, int d2, int d3, int d4, int d5, int d6)

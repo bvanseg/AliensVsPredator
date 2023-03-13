@@ -9,15 +9,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public interface IFirearmModel
 {
-    public ModelRenderer[] getBarrel();
+    ModelRenderer[] getBarrel();
     
-    public ModelRenderer[] getAction();
+    ModelRenderer[] getAction();
     
-    public ModelRenderer[] getStock();
+    ModelRenderer[] getStock();
     
-    public ModelRenderer[] getScope();
+    ModelRenderer[] getScope();
     
-    public ModelRenderer[] getPeripherals();
+    ModelRenderer[] getPeripherals();
     
-    public ModelRenderer[] getAccessories();
+    ModelRenderer[] getAccessories();
 }

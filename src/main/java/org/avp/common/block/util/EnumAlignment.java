@@ -8,7 +8,7 @@ public enum EnumAlignment implements IStringSerializable
 
     private final String name;
 
-    private EnumAlignment(String name)
+    EnumAlignment(String name)
     {
         this.name = name;
     }

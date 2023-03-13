@@ -6,7 +6,7 @@ package org.alien.common.api.parasitoidic;
  */
 public interface IHost
 {
-    public boolean canParasiteAttach();
+    boolean canParasiteAttach();
     
-    public boolean canHostParasite();
+    boolean canHostParasite();
 }

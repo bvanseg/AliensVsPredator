@@ -4,13 +4,13 @@ import net.minecraft.entity.Entity;
 
 public interface IMaturable
 {
-    public Class<? extends Entity> getMatureState();
+    Class<? extends Entity> getMatureState();
     
-    public void mature();
+    void mature();
     
-    public boolean isReadyToMature(IRoyalOrganism ro);
+    boolean isReadyToMature(IRoyalOrganism ro);
     
-    public int getMaturityLevel();
+    int getMaturityLevel();
     
-    public int getMaturityTime();
+    int getMaturityTime();
 }
