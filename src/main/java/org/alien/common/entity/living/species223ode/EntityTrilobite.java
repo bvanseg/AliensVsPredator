@@ -8,7 +8,8 @@ import com.asx.mdx.lib.world.entity.animations.IAnimated;
 import com.google.common.base.Predicate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityLookHelper;
+import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemAxe;
@@ -29,20 +30,21 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.IParasitoid;
+import org.alien.common.entity.ai.brain.TrilobiteBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.Species223ODe;
 import org.alien.common.world.Embryo;
 import org.alien.common.world.capability.IOrganism.Organism;
 import org.alien.common.world.capability.IOrganism.Provider;
 import org.avp.AVP;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 import org.predator.common.item.ItemWristbracer;
 
 import java.util.List;
 
-public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnimated
+public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnimated, Brainiac<TrilobiteBrain>
 {
     public static final Animation                      IMPREGNATION_ANIMATION = Animation.create(0);
     public static final Animation                      ANIMATION_HUG_WALL     = Animation.create(20 * 5);
@@ -51,6 +53,8 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     private static final DataParameter<NBTTagCompound> DETACHED_TENTACLES     = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.COMPOUND_TAG);
     private int                                        ticksOnHost            = 0;
 
+    private TrilobiteBrain brain;
+
     public EntityTrilobite(World world)
     {
         super(world);
@@ -58,15 +62,18 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         this.experienceValue = 32;
         this.jumpMovementFactor = 1.0F;
     }
-    
+
+    @Override
+    public TrilobiteBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new TrilobiteBrain(this);
+        }
+        return this.brain;
+    }
+
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
-        this.tasks.addTask(8, new PatchedEntityAIWander(this, 0.800000011920929D));
-        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.85F));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, EntitySelectorTrilobite.instance));
+        this.getBrain().init();
     }
 
     @Override
@@ -170,6 +177,10 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     public void onUpdate()
     {
         super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
 
         this.updateHitbox();
         this.negateFallDamage();
