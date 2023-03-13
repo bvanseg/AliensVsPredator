@@ -41,6 +41,8 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	private final ArrayList<AbstractBrainSensor<T>> sensors;
 	private final ArrayList<AbstractBrainTask<T>> tasks;
 	private final HashMap<AbstractBrainFlag, BrainFlagState> brainFlagStates;
+
+	private boolean isDisabled = false;
 	
 	protected AbstractBrain() {
 		this.memoryManager = new BrainMemoryMap();
@@ -52,6 +54,9 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	public void init() {}
 	
 	public final void update(T ctx) {
+		if (isDisabled)
+			return;
+
 		sensors.forEach(sensor -> sensor.sense(ctx));
 		tasks.forEach(task -> {
 			if (this.canRunTask(task)) {
@@ -124,5 +129,9 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		if (flag != null) {
 			this.brainFlagStates.put(flag, BrainFlagState.ABSENT);
 		}
+	}
+
+	public void setDisabled(boolean disabled) {
+		this.isDisabled = disabled;
 	}
 }
