@@ -1,6 +1,8 @@
 package org.lib.brain.impl.task;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.BrainMemoryKeys;
@@ -31,7 +33,17 @@ public class HurtByTargetBrainTask extends AbstractBrainTask<EntityBrainContext>
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
-		return entity.getRevengeTarget() != null;
+		EntityLivingBase target = entity.getRevengeTarget();
+
+		if (target == null) {
+			return false;
+		}
+
+		if (target instanceof EntityPlayer && ((EntityPlayer)target).isCreative()) {
+			return false;
+		}
+
+		return true;
 	}
 	
     @Override
