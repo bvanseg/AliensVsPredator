@@ -34,22 +34,24 @@ public class NearestAttackableTargetBrainTask extends AbstractBrainTask<EntityBr
 	
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
-		boolean nearestAttackTargetCondition = false;
-    	Optional<EntityLivingBase> optional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
-    	if (optional.isPresent()) {
-    		EntityLivingBase nearestAttackTarget = optional.get();
-    		nearestAttackTargetCondition = !nearestAttackTarget.isDead;
-    	}
-    	
-		return nearestAttackTargetCondition;
+		return true;
 	}
 	
     @Override
 	protected void execute(EntityBrainContext ctx) {
     	Optional<EntityLivingBase> optional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
+
     	if (optional.isPresent()) {
     		EntityLivingBase nearestAttackTarget = optional.get();
-    		ctx.getEntity().setAttackTarget(nearestAttackTarget);
-    	}
+
+			if (!nearestAttackTarget.isDead) {
+				ctx.getEntity().setAttackTarget(nearestAttackTarget);
+			} else {
+				ctx.getBrain().forget(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
+				ctx.getEntity().setAttackTarget(null);
+			}
+    	} else {
+			ctx.getEntity().setAttackTarget(null);
+		}
     }
 }

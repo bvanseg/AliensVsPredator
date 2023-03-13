@@ -34,15 +34,13 @@ public class NearestAttackableTargetBrainSensor extends AbstractBrainSensor<Enti
 		}
 		
 		Optional<List<EntityLivingBase>> livingEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);
-		
+
 		if (livingEntitiesOptional.isPresent()) {
 			List<EntityLivingBase> livingEntities = livingEntitiesOptional.get();
 			List<EntityLivingBase> targets = livingEntities.stream().filter(targetPredicate::apply).collect(Collectors.toList());
 
 			if (!targets.isEmpty()) {
 		        ctx.getBrain().remember(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET, targets.get(0));
-			} else {
-				ctx.getBrain().forget(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
 			}
 		}
 	}
