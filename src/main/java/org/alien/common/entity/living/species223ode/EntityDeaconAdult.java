@@ -1,10 +1,6 @@
 package org.alien.common.entity.living.species223ode;
 
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -12,13 +8,15 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
+import org.alien.common.entity.ai.brain.DeaconAdultBrain;
 import org.alien.common.entity.living.Species223ODe;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityDeaconAdult extends Species223ODe
+public class EntityDeaconAdult extends Species223ODe implements Brainiac<DeaconAdultBrain>
 {
+    private DeaconAdultBrain brain;
+
     public EntityDeaconAdult(World world)
     {
         super(world);
@@ -28,18 +26,18 @@ public class EntityDeaconAdult extends Species223ODe
         this.setSize(0.8F, 3.2F);
         this.isDependant = false;
     }
-    
+
+    @Override
+    public DeaconAdultBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new DeaconAdultBrain(this);
+        }
+        return this.brain;
+    }
+
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new PatchedEntityAIWander(this, 0.8D));
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityCreature.class, 1.0D, false));
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-        this.tasks.addTask(2, new EntityAIWatchClosest(this, EntityLivingBase.class, 16F));
-        this.tasks.addTask(3, new EntityAILeapAtTarget(this, 0.6F));
-        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityCreature>(this, EntityCreature.class, 0, false, false, EntitySelectorXenomorph.instance));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityPlayer>(this, EntityPlayer.class, 0, false, false, EntitySelectorXenomorph.instance));
+        this.getBrain().init();
     }
 
     @Override
@@ -50,7 +48,16 @@ public class EntityDeaconAdult extends Species223ODe
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4700000238418579D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3D);
     }
-    
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
+    }
+
     @Override
     protected SoundEvent getHurtSound(DamageSource damageSourceIn)
     {
