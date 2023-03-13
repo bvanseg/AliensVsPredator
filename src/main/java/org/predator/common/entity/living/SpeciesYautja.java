@@ -302,10 +302,7 @@ public abstract class SpeciesYautja extends EntityMob implements IHost
     }
     
     @Override
-    protected void despawnEntity()
-    {
-        ;
-    }
+    protected void despawnEntity() { /* Do Nothing */ }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound tag)

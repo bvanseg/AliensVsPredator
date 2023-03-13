@@ -10,7 +10,6 @@ import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -104,8 +103,8 @@ public class EntityDeaconShark extends SpeciesAlien
     public EntityLivingBase findTarget()
     {
         List<? extends EntityLivingBase> targets =  world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(24, 32, 24));
-        Entity attackTarget = null;
-    
+        EntityLivingBase attackTarget = null;
+
         for (EntityLivingBase target : targets)
         {
             if (this.entitySelector.apply(target) && this.canEntityBeSeen(target))
@@ -115,9 +114,8 @@ public class EntityDeaconShark extends SpeciesAlien
         }
         
         targets.clear();
-        targets = null;
 
-        return (EntityLivingBase) attackTarget;
+        return attackTarget;
     }
 
     @Override
@@ -158,8 +156,8 @@ public class EntityDeaconShark extends SpeciesAlien
         else if (this.onGround)
         {
             this.motionY += 0.5D;
-            this.motionX += (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
-            this.motionZ += (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
+            this.motionX += ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
+            this.motionZ += ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
             this.rotationYaw = this.rand.nextFloat() * 360.0F;
             this.onGround = false;
             this.isAirBorne = true;
@@ -171,12 +169,6 @@ public class EntityDeaconShark extends SpeciesAlien
         }
         
         super.onLivingUpdate();
-    }
-
-    @Override
-    protected void collideWithNearbyEntities()
-    {
-        super.collideWithNearbyEntities();
     }
 
     @Override
@@ -203,12 +195,6 @@ public class EntityDeaconShark extends SpeciesAlien
         {
             super.despawnEntity();
         }
-    }
-
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float damage)
-    {
-        return super.attackEntityFrom(source, damage);
     }
 
     @Override
@@ -290,22 +276,22 @@ public class EntityDeaconShark extends SpeciesAlien
                 double posY = this.posY - this.shark.posY;
                 double posZ = this.posZ - this.shark.posZ;
                 double velocity = posX * posX + posY * posY + posZ * posZ;
-                velocity = (double) MathHelper.sqrt(velocity);
+                velocity = MathHelper.sqrt(velocity);
                 posY /= velocity;
                 this.shark.rotationYaw = EntityExtendedLookHelper.updateRotationNew(this.shark.rotationYaw, (float) (Math.atan2(posZ, posX) * 180.0D / Math.PI) - 90.0F, 5.0F);
                 this.shark.renderYawOffset = this.shark.rotationYaw;
                 float speed = (float) (this.speed * this.shark.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
                 this.shark.setAIMoveSpeed(this.shark.getAIMoveSpeed() + (speed - this.shark.getAIMoveSpeed()) * 0.125F);
-                double waveX = Math.sin((double) (this.shark.ticksExisted + this.shark.getEntityId()) * 0.5D) * 0.05D;
-                double waveY = Math.cos((double) (this.shark.rotationYaw * (float) Math.PI / 180.0F));
-                double waveZ = Math.sin((double) (this.shark.rotationYaw * (float) Math.PI / 180.0F));
+                double waveX = Math.sin((this.shark.ticksExisted + this.shark.getEntityId()) * 0.5D) * 0.05D;
+                double waveY = Math.cos((this.shark.rotationYaw * (float) Math.PI / 180.0F));
+                double waveZ = Math.sin((this.shark.rotationYaw * (float) Math.PI / 180.0F));
                 this.shark.motionX += waveX * waveY;
                 this.shark.motionZ += waveX * waveZ;
-                waveX = Math.sin((double) (this.shark.ticksExisted + this.shark.getEntityId()) * 0.75D) * 0.05D;
+                waveX = Math.sin((this.shark.ticksExisted + this.shark.getEntityId()) * 0.75D) * 0.05D;
                 this.shark.motionY += waveX * (waveZ + waveY) * 0.25D;
-                this.shark.motionY += (double) this.shark.getAIMoveSpeed() * posY * 0.1D;
+                this.shark.motionY += this.shark.getAIMoveSpeed() * posY * 0.1D;
                 double offsetX = this.shark.posX + posX / velocity * 2.0D;
-                double offsetY = (double) this.shark.getEyeHeight() + this.shark.posY + posY / velocity * 1.0D;
+                double offsetY = this.shark.getEyeHeight() + this.shark.posY + posY / velocity * 1.0D;
                 double offsetZ = this.shark.posZ + posZ / velocity * 2.0D;
                 EntityLookHelper lookHelper = this.shark.getLookHelper();
 

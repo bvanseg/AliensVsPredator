@@ -20,7 +20,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IMaturable;
 import org.alien.common.api.parasitoidic.INascentic;
 import org.alien.common.api.parasitoidic.IRoyalOrganism;
 import org.alien.common.entity.ai.selector.EntitySelectorAvoid;
@@ -64,12 +63,6 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     }
 
     @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-    }
-
-    @Override
     public boolean canBreatheUnderwater()
     {
         return true;
@@ -87,10 +80,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     @Override
     public boolean isReadyToMature(IRoyalOrganism jellyProducer)
     {
-        IMaturable maturable = (IMaturable) this;
-        IRoyalOrganism ro = (IRoyalOrganism) this;
-        
-        return this.ticksExisted >= maturable.getMaturityTime() || ro.getJellyLevel() >= maturable.getMaturityLevel();
+        return this.ticksExisted >= this.getMaturityTime() || this.getJellyLevel() >= this.getMaturityLevel();
     }
 
     @Override
@@ -164,12 +154,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     {
         return this.isOnLadder() && this.motionY > 1.0099999997764826D;
     }
-    
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        return super.attackEntityFrom(source, amount);
-    }
+
 
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect)

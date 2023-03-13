@@ -70,10 +70,7 @@ public class EntityScelemur extends EntityMob implements IMob, IHost
     }
     
     @Override
-    protected void despawnEntity()
-    {
-        ;
-    }
+    protected void despawnEntity() { /* Do Nothing */ }
 
     @Override
     public boolean canParasiteAttach()

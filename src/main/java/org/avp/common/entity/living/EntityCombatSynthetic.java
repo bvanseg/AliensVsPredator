@@ -126,9 +126,9 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     }
 
     @Override
-    public void onDeath(DamageSource damagesource)
+    public void onDeath(DamageSource damageSource)
     {
-        super.onDeath(damagesource);
+        super.onDeath(damageSource);
         
         AVPItemDrops.AMMUNITION.tryDrop(this);
 

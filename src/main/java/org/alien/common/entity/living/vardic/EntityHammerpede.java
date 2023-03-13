@@ -8,11 +8,9 @@ import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
@@ -21,7 +19,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class EntityHammerpede extends SpeciesAlien implements IMob
 {
@@ -63,12 +61,6 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
     }
 
     @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-    }
-
-    @Override
     public void onUpdate()
     {
         super.onUpdate();
@@ -78,23 +70,19 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
 
     public void lurkInBlackGoo()
     {
-        if (this.getAttackTarget() == null)
-        {
-            if (this.world.getTotalWorldTime() % 40 == 0 && this.rand.nextInt(4) == 0)
-            {
-                if (this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)).getBlock() != AlienBlocks.BLACK_GOO)
-                {
-                    ArrayList<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) 10, this.world, AlienBlocks.BLACK_GOO);
+        if (this.getAttackTarget() != null)
+            return;
+        if (this.world.getTotalWorldTime() % 40 != 0 && this.rand.nextInt(4) != 0)
+            return;
+        if (this.world.getBlockState(this.getPosition()).getBlock() == AlienBlocks.BLACK_GOO)
+            return;
 
-                    if (locations.size() > 0)
-                    {
-                        Pos selectedCoord = locations.get(this.rand.nextInt(locations.size()));
-                        this.getNavigator().tryMoveToXYZ((double) selectedCoord.x, (double) selectedCoord.y, (double) selectedCoord.z, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
-                    }
-                    locations.clear();
-                    locations = null;
-                }
-            }
+        List<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, 10, this.world, AlienBlocks.BLACK_GOO);
+
+        if (!locations.isEmpty())
+        {
+            Pos selectedCoord = locations.get(this.rand.nextInt(locations.size()));
+            this.getNavigator().tryMoveToXYZ(selectedCoord.x, selectedCoord.y, selectedCoord.z, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
         }
     }
 
@@ -128,27 +116,9 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource source, float damage)
-    {
-        return super.attackEntityFrom(source, damage);
-    }
-
-    @Override
     public boolean isPotionApplicable(PotionEffect potionEffect)
     {
-        return potionEffect.getPotion() == MobEffects.POISON ? false : super.isPotionApplicable(potionEffect);
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound nbt)
-    {
-        super.readEntityFromNBT(nbt);
-    }
-
-    @Override
-    public void writeEntityToNBT(NBTTagCompound nbt)
-    {
-        super.writeEntityToNBT(nbt);
+        return potionEffect.getPotion() != MobEffects.POISON && super.isPotionApplicable(potionEffect);
     }
     
     @Override

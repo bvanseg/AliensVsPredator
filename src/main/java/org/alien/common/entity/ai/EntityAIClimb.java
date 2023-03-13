@@ -22,21 +22,9 @@ public class EntityAIClimb extends EntityAIBase
     }
 
     @Override
-    public void startExecuting()
-    {
-        super.startExecuting();
-    }
-
-    @Override
     public boolean shouldContinueExecuting()
     {
         return xenomorph.isAbleToClimb() && xenomorph.collidedHorizontally;
-    }
-
-    @Override
-    public void resetTask()
-    {
-        super.resetTask();
     }
 
     @Override

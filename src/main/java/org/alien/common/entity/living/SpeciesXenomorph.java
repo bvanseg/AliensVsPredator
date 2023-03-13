@@ -220,16 +220,16 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     }
 
     @Override
-    public void onDeath(DamageSource damagesource)
+    public void onDeath(DamageSource damageSource)
     {
-        super.onDeath(damagesource);
+        super.onDeath(damageSource);
 
         AVPItemDrops.XENO_FEET.tryDrop(this);
         AVPItemDrops.XENO_HELM.tryDrop(this);
         AVPItemDrops.XENO_LEGS.tryDrop(this);
         AVPItemDrops.XENO_TORSO.tryDrop(this);
 
-        if (damagesource == AVPDamageSources.WRISTBRACER)
+        if (damageSource == AVPDamageSources.WRISTBRACER)
         {
             AVPItemDrops.SKULLS_XENO.tryDrop(this, 25);
         }

@@ -66,10 +66,7 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
     }
     
     @Override
-    protected void despawnEntity()
-    {
-        ;
-    }
+    protected void despawnEntity() { /* Do Nothing */ }
 
     @Override
     public boolean canMoveToJelly()

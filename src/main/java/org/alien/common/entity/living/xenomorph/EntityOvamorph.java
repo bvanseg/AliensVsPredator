@@ -26,7 +26,6 @@ import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPMaterials;
 import org.avp.common.network.packet.client.PacketOvamorphContainsFacehugger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
@@ -90,12 +89,6 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
     }
 
     @Override
-    public void onLivingUpdate()
-    {
-        super.onLivingUpdate();
-    }
-
-    @Override
     public void onDeath(DamageSource damagesource)
     {
         super.onDeath(damagesource);
@@ -125,17 +118,12 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
             this.acceleratedHatching = true;
         }
 
-        if (!this.containsFacehugger)
-        {
-            this.setOpenProgress(this.getMaxOpenProgress());
-            this.hasHatched = true;
+        tickEggOpenProgress();
 
-            this.timeSinceHatched++;
+        tickEggHatch();
+    }
 
-            if (this.timeSinceHatched >= 20 * 60 * 5)
-                this.setDead();
-        }
-
+    private void tickEggHatch() {
         if (this.containsFacehugger)
         {
             if (this.world.getBlockState(this.getPosition()).getMaterial() != AVPMaterials.MIST || this.acceleratedHatching)
@@ -143,15 +131,9 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
                 int hatchAcceleration = this.acceleratedHatching ? 20 : 1;
                 List<EntityLivingBase> potentialHosts = Entities.getEntitiesInCoordsRange(this.world, EntityLivingBase.class, new Pos(this), 8);
 
-                for (EntityLivingBase living : new ArrayList<EntityLivingBase>(potentialHosts))
-                {
-                    if (!EntitySelectorParasitoid.instance.apply(living))
-                    {
-                        potentialHosts.remove(living);
-                    }
-                }
+                potentialHosts.removeIf(living -> !EntitySelectorParasitoid.instance.apply(living));
 
-                if (this.hasHatched || potentialHosts.size() > 0)
+                if (this.hasHatched || !potentialHosts.isEmpty())
                 {
                     if (this.acceleratedHatching || this.getHatchingTime() <= 0)
                     {
@@ -179,6 +161,19 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
         }
     }
 
+    private void tickEggOpenProgress() {
+        if (!this.containsFacehugger)
+        {
+            this.setOpenProgress(this.getMaxOpenProgress());
+            this.hasHatched = true;
+
+            this.timeSinceHatched++;
+
+            if (this.timeSinceHatched >= 20 * 60 * 5)
+                this.setDead();
+        }
+    }
+
     @Override
     protected void collideWithEntity(Entity entity)
     {
@@ -201,16 +196,22 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
     {
         if (!this.world.isRemote)
         {
-            EntityFacehugger facehugger = new EntityFacehugger(this.world);
-            ;
+            EntityFacehugger facehugger = null;
             Pos pos = new Pos(this).findSafePosAround(this.world);
 
-            if (Entities.getEntitiesInCoordsRange(this.world, EntityMatriarch.class, pos, 50, 50).size() == 0 && Entities.getEntitiesInCoordsRange(this.world, EntityRoyalFacehugger.class, pos, 50, 50).size() == 0 && Entities.getEntitiesInCoordsRange(this.world, EntityQueenChestburster.class, pos, 50, 50).size() == 0)
+            // TODO: Access hive members directly and make these checks.
+            if (Entities.getEntitiesInCoordsRange(this.world, EntityMatriarch.class, pos, 50, 50).isEmpty() &&
+                    Entities.getEntitiesInCoordsRange(this.world, EntityRoyalFacehugger.class, pos, 50, 50).isEmpty() &&
+                    Entities.getEntitiesInCoordsRange(this.world, EntityQueenChestburster.class, pos, 50, 50).isEmpty())
             {
                 if (this.rand.nextInt(3) == 0)
                 {
                     facehugger = new EntityRoyalFacehugger(this.world);
                 }
+            }
+
+            if (facehugger == null) {
+                facehugger = new EntityFacehugger(this.world);
             }
 
             facehugger.setLocationAndAngles(pos.x, pos.y, pos.z, 0F, 0F);

@@ -26,7 +26,8 @@ import java.util.List;
 public class EntityLaserMine extends Entity
 {
     private static final DataParameter<Boolean> TRIPPED = EntityDataManager.createKey(EntityLaserMine.class, DataSerializers.BOOLEAN);
-    
+
+    private static final int TIME_TO_DETONATE_IN_TICKS = 10;
     private String ownerUUID;
     public int direction;
     public BlockPos parentBlockPos;
@@ -37,7 +38,6 @@ public class EntityLaserMine extends Entity
 	private double blockDistance;
 	
 	private long charge;
-	private static final int timeToDetonateInTicks = 10;
 
     public EntityLaserMine(World world)
     {
@@ -66,7 +66,7 @@ public class EntityLaserMine extends Entity
     
     public boolean canStay()
     {
-    	boolean flag = parentBlockPos != null && (world.getBlockState(parentBlockPos) == null || world.getBlockState(parentBlockPos) == Blocks.AIR.getDefaultState());
+    	boolean flag = parentBlockPos != null && world.getBlockState(parentBlockPos) == Blocks.AIR.getDefaultState();
         return !flag;
     }
 
@@ -121,7 +121,7 @@ public class EntityLaserMine extends Entity
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource damagesource, float damage)
+    public boolean attackEntityFrom(DamageSource damageSource, float damage)
     {
         if (!this.world.isRemote)
         {
@@ -167,7 +167,7 @@ public class EntityLaserMine extends Entity
     }
 
 	private boolean isCharged() {
-		return this.charge >= timeToDetonateInTicks;
+		return this.charge >= TIME_TO_DETONATE_IN_TICKS;
 	}
 
 	private boolean isTargetEntityVisible() {
@@ -247,6 +247,8 @@ public class EntityLaserMine extends Entity
             case 3:
                 xPos += 0.06f;
                 zPos -= f6;
+                break;
+            default:
                 break;
         }
 

@@ -115,9 +115,9 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
 
             if (this.isFlying())
             {
-                double d0 = (double) this.flyToPosition.getX() + 0.5D - this.posX;
-                double d1 = (double) this.flyToPosition.getY() + 0.1D - this.posY;
-                double d2 = (double) this.flyToPosition.getZ() + 0.5D - this.posZ;
+                double d0 = this.flyToPosition.getX() + 0.5D - this.posX;
+                double d1 = this.flyToPosition.getY() + 0.1D - this.posY;
+                double d2 = this.flyToPosition.getZ() + 0.5D - this.posZ;
                 this.motionX += (Math.signum(d0) * 0.65D - this.motionX) * 0.10000000149011612D;
                 this.motionY += (Math.signum(d1) * 2.199999988079071D - this.motionY) * 0.10000000149011612D;
                 this.motionZ += (Math.signum(d2) * 0.65D - this.motionZ) * 0.10000000149011612D;
@@ -131,7 +131,7 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
 
     public boolean isFlying()
     {
-        return this.getDataManager().get(FLYING) == 0 ? false : true;
+        return this.getDataManager().get(FLYING) != 0;
     }
 
     @Override
@@ -159,28 +159,32 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
     }
     
     @Override
-    protected void despawnEntity()
-    {
-        ;
-    }
+    protected void despawnEntity() { /* Do Nothing */ }
 
     @Override
     public void onDeath(DamageSource source)
     {
         super.onDeath(source);
 
-        switch (this.rand.nextInt(4))
+        switch (this.rand.nextInt(5))
         {
             case 0:
                 AVPItemDrops.SKULL_ENGINEER.tryDrop(this);
+                break;
             case 1:
                 AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
+                break;
             case 2:
                 AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
+                break;
             case 3:
                 AVPItemDrops.SKULL_XENO_DRONE.tryDrop(this);
+                break;
             case 4:
                 AVPItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
+                break;
+            default:
+                break;
         }
     }
 

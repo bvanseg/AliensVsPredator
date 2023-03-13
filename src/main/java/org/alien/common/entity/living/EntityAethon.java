@@ -26,7 +26,7 @@ import org.avp.common.entity.ai.PatchedEntityAIWander;
 
 public class EntityAethon extends EntityMob implements IMob, IHost
 {
-    private static final DataParameter<Integer> FLYING = EntityDataManager.<Integer> createKey(EntityAethon.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> FLYING = EntityDataManager.createKey(EntityAethon.class, DataSerializers.VARINT);
 
     private BlockPos    flyToPosition;
 

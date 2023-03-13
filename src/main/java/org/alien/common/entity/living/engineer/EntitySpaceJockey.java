@@ -34,14 +34,12 @@ public class EntitySpaceJockey extends SpeciesEngineer
     {
         super.onDeath(damagesource);
 
-        if (damagesource == AVPDamageSources.WRISTBRACER)
-        {
+        if (damagesource == AVPDamageSources.WRISTBRACER) {
             AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this, 25);
+            return;
         }
-        else
-        {
-            AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
-        }
+
+        AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
     }
 
     @Override
@@ -69,10 +67,7 @@ public class EntitySpaceJockey extends SpeciesEngineer
     }
     
     @Override
-    protected void despawnEntity()
-    {
-        ;
-    }
+    protected void despawnEntity() { /* Do Nothing */ }
 
     @Override
     public boolean isWearingMask()

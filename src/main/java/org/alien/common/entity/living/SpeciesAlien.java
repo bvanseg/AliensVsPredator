@@ -29,7 +29,6 @@ import java.util.UUID;
 public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrganism, IAnimated
 {
     private static final DataParameter<Integer> JELLY_LEVEL       = EntityDataManager.createKey(SpeciesAlien.class, DataSerializers.VARINT);
-//    protected XenomorphHive                     hive;
     private UUID                                signature;
     protected boolean                           jellyLimitOverride;
     protected boolean                           isDependant       = false;

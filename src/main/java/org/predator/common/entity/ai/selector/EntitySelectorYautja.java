@@ -32,7 +32,7 @@ public class EntitySelectorYautja implements Predicate<EntityLivingBase>
             {
                 Item item = stack.getItem();
 
-                if (stack != null)
+                if (item != null)
                 {
                     if (item instanceof ItemSword || item instanceof ItemFirearm || item instanceof ItemWristbracer || item instanceof ItemPlasmaCannon || item instanceof ItemBow || item instanceof ItemDisc || item instanceof ItemShuriken)
                     {

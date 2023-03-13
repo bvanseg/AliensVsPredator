@@ -8,7 +8,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -94,18 +93,6 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable, HiveMem
                 }
             }
         }
-    }
-
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float damage)
-    {
-        return super.attackEntityFrom(source, damage);
-    }
-
-    @Override
-    public boolean attackEntityAsMob(Entity entity)
-    {
-        return super.attackEntityAsMob(entity);
     }
 
     public void tickRepurposingAI()
@@ -243,24 +230,12 @@ public class EntityDrone extends SpeciesXenomorph implements IMaturable, HiveMem
             }
         }
 
-        return data.size() > 0 ? data.get(this.rand.nextInt(data.size())) : null;
+        return !data.isEmpty() ? data.get(this.rand.nextInt(data.size())) : null;
     }
 
-    protected boolean canReplaceWithResin(IBlockState blockstate)
+    protected boolean canReplaceWithResin(IBlockState blockState)
     {
-    	return (!blockBlacklist.contains(blockstate.getBlock()) && blockstate.isOpaqueCube());
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound nbt)
-    {
-        super.readEntityFromNBT(nbt);
-    }
-
-    @Override
-    public void writeEntityToNBT(NBTTagCompound nbt)
-    {
-        super.writeEntityToNBT(nbt);
+    	return (!blockBlacklist.contains(blockState.getBlock()) && blockState.isOpaqueCube());
     }
 
     @Override

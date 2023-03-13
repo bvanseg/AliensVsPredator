@@ -122,10 +122,7 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob,
     }
 
     @Override
-    public void setSwingingArms(boolean swingingArms)
-    {
-        ;
-    }
+    public void setSwingingArms(boolean swingingArms) { /* Do Nothing */ }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)

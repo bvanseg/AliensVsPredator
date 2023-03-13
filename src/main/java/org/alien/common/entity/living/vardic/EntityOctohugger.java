@@ -125,7 +125,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
 
                 if (state.getBlock() != net.minecraft.init.Blocks.AIR)
                 {
-                    ArrayList<IBlockState> check = new ArrayList<IBlockState>();
+                    ArrayList<IBlockState> check = new ArrayList<>();
                     BlockPos locBelow = pos.add(0, -1, 0);
 
                     check.add(this.world.getBlockState(locBelow));
@@ -145,7 +145,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
                         }
                     }
 
-                    RayTraceResult trace = this.world.rayTraceBlocks(new Vec3d(this.posX, this.posY + (double)this.getEyeHeight(), this.posZ), new Vec3d(pos.getX(), pos.getY(), pos.getZ()), false, true, false);
+                    RayTraceResult trace = this.world.rayTraceBlocks(new Vec3d(this.posX, this.posY + this.getEyeHeight(), this.posZ), new Vec3d(pos.getX(), pos.getY(), pos.getZ()), false, true, false);
                     boolean canSeeLocation = trace == null;
 
                     if (validPosition && canSeeLocation)
@@ -164,25 +164,13 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         {
             ArrayList<EntityLivingBase> entities = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1, -8, 1));
 
-            if (entities != null)
+            entities.removeIf(entity -> !EntitySelectorParasitoid.instance.apply(entity) || entity instanceof EntityParasitoid);
+
+            Entity target = !entities.isEmpty() ? entities.get(world.rand.nextInt(entities.size())) : null;
+
+            if (target != null && this.getDistanceSq(target) > 0)
             {
-                for (EntityLivingBase entity : new ArrayList<EntityLivingBase>(entities))
-                {
-                    if (!EntitySelectorParasitoid.instance.apply(entity) || entity instanceof EntityParasitoid)
-                    {
-                        entities.remove(entity);
-                    }
-                }
-
-                Entity target = entities.size() >= 1 ? (Entity) entities.get(world.rand.nextInt(entities.size())) : null;
-
-                if (target != null)
-                {
-                    if (this.getDistanceSq(target) > 0)
-                    {
-                        stringStrength = 0.0F;
-                    }
-                }
+                stringStrength = 0.0F;
             }
         }
 

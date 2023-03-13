@@ -90,24 +90,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         tagDetachedTentacles.setIntArray("Tentacles", new int[this.getAmountOfTentacles()]);
         this.getDataManager().register(DETACHED_TENTACLES, tagDetachedTentacles);
     }
-
-    @Override
-    public void onLivingUpdate()
-    {
-        super.onLivingUpdate();
-    }
-
-    @Override
-    protected void updateAITasks()
-    {
-        super.updateAITasks();
-    }
-
-    @Override
-    public void onEntityUpdate()
-    {
-        super.onEntityUpdate();
-    }
     
     @Override
     public void updatePassenger(Entity passenger)
@@ -389,16 +371,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     protected void collideWithNearbyEntities()
     {
         List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
-
-        if (list != null && !list.isEmpty())
-        {
-            for (int i = 0; i < list.size(); ++i)
-            {
-                Entity entity = (Entity) list.get(i);
-
-                this.collideWithEntity(entity);
-            }
-        }
+        list.forEach(this::collideWithEntity);
     }
 
     @Override
