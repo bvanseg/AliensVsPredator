@@ -14,6 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
+import org.alien.common.AlienItems;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;
@@ -25,6 +26,7 @@ import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
 import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorBlocks;
+import org.predator.common.PredatorItems;
 
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
 public class AVP implements IMod
@@ -57,6 +59,8 @@ public class AVP implements IMod
         AVPBlocks.instance.pre(event);
 
         // Items
+        AlienItems.instance.pre(event);
+        PredatorItems.instance.pre(event);
         AVPItems.instance.pre(event);
 
         // Sounds
