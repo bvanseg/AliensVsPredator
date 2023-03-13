@@ -39,7 +39,8 @@ public class WanderBrainTask extends AbstractBrainTask<EntityBrainContext> {
     protected double z;
     protected final double speed;
     protected int executionChance;
-    protected boolean mustUpdate;
+
+    private int idleTime;
     
     public WanderBrainTask(double speed) {
     	this(speed, 120);
@@ -55,15 +56,14 @@ public class WanderBrainTask extends AbstractBrainTask<EntityBrainContext> {
 		if (!ctx.getEntity().getNavigator().noPath()) {
 			return false;
 		}
-		
-		if (!this.mustUpdate) {
-            if (ctx.getEntity().getIdleTime() <= 100) {
-                return false;
-            }
 
-            if (ctx.getEntity().getRNG().nextInt(this.executionChance) != 0) {
-                return false;
-            }
+        if (this.idleTime <= 100) {
+            this.idleTime++;
+            return false;
+        }
+
+        if (ctx.getEntity().getRNG().nextInt(this.executionChance) != 0) {
+            return false;
         }
 
         Vec3d vec3d = this.getPosition(ctx);
@@ -74,7 +74,7 @@ public class WanderBrainTask extends AbstractBrainTask<EntityBrainContext> {
             this.x = vec3d.x;
             this.y = vec3d.y;
             this.z = vec3d.z;
-            this.mustUpdate = false;
+            this.idleTime = 0;
             return true;
         }
 	}
