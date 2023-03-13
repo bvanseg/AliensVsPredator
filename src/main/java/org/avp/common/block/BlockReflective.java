@@ -88,12 +88,6 @@ public class BlockReflective extends Block implements ITileEntityProvider
     }
     
     @Override
-    public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn)
-    {
-        super.onBlockClicked(worldIn, pos, playerIn);
-    }
-    
-    @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         TileEntity tile = worldIn.getTileEntity(pos);

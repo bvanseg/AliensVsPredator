@@ -8,7 +8,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesEngineer;
-import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.avp.common.EntityItemDrops;
 

@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.avp.common.entity.EntityItemStackProjectile;
 import org.avp.common.entity.EntityProjectile;
@@ -66,12 +65,6 @@ public class EntityShuriken extends EntityItemStackProjectile
         this.prevRotationYaw = this.rotationYaw = (float) (Math.atan2(motionX, motionZ) * 180.0D / Math.PI);
         this.prevRotationPitch = this.rotationPitch = (float) (Math.atan2(motionY, f3) * 180.0D / Math.PI);
         this.ticksInGround = 0;
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
     }
 
     @Override

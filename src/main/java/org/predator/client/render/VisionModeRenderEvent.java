@@ -11,7 +11,6 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.avp.common.AVPItems;
 import org.predator.common.PredatorItems;
 
 public class VisionModeRenderEvent

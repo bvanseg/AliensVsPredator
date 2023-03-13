@@ -21,7 +21,6 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.AVP;
-import org.avp.common.AVPItems;
 import org.avp.common.EntityItemDrops;
 import org.avp.common.network.packet.client.PacketOvamorphContainsFacehugger;
 import org.avp.common.world.hive.HiveMember;

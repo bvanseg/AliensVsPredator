@@ -40,12 +40,6 @@ public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implem
     }
 
     @Override
-    public double extractVoltage(EnumFacing from, double maxExtract, boolean simulate)
-    {
-        return super.extractVoltage(from, maxExtract, simulate);
-    }
-
-    @Override
     public double getCurrentVoltage(EnumFacing from)
     {
         return this.voltage;

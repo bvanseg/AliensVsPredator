@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
-import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.api.parasitoidic.IRoyalOrganism;

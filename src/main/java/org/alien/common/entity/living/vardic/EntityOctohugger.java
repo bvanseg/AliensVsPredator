@@ -25,7 +25,6 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;

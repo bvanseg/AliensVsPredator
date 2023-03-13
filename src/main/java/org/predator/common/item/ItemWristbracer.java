@@ -16,7 +16,6 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.avp.common.inventory.ContainerWristbracer;
 import org.avp.common.network.packet.server.PacketSpawnNuke;

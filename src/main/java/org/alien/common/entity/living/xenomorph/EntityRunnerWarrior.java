@@ -6,7 +6,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.world.hive.HiveMember;
 

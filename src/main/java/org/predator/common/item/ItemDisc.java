@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
-import org.avp.common.AVPItems;
 import org.predator.common.PredatorItems;
 import org.predator.common.entity.EntitySmartDisc;
 

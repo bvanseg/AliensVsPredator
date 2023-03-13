@@ -5,7 +5,6 @@ import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
 import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
-import org.avp.common.AVPItems;
 import org.avp.common.network.packet.server.PacketOpenContainer;
 import org.predator.client.gui.GuiWristbracer;
 import org.predator.common.PredatorItems;

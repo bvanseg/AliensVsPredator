@@ -8,7 +8,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.avp.common.entity.EntityItemStackProjectile;
 import org.avp.common.entity.EntityProjectile;
@@ -43,12 +42,6 @@ public class EntitySpear extends EntityItemStackProjectile
         this.motionY = -MathHelper.sin((rotationPitch / 180F) * 3.141593F);
         this.motionZ = MathHelper.cos((rotationYaw / 180F) * 3.141593F) * MathHelper.cos((rotationPitch / 180F) * 3.141593F);
         this.shoot(motionX, motionY, motionZ, 1.8F, 1.0F);
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
     }
 
     @Override

@@ -19,7 +19,6 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.avp.common.AVPItems;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 
 import java.util.ArrayList;

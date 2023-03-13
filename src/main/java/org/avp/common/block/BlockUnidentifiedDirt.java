@@ -8,7 +8,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 import net.minecraftforge.common.IPlantable;
 
 public class BlockUnidentifiedDirt extends BlockDirt
@@ -22,12 +21,6 @@ public class BlockUnidentifiedDirt extends BlockDirt
     public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable)
     {
         return true;
-    }
-    
-    @Override
-    public void onPlayerDestroy(World worldIn, BlockPos pos, IBlockState state)
-    {
-        super.onPlayerDestroy(worldIn, pos, state);
     }
     
     @Override

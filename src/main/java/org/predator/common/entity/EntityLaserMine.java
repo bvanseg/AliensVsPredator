@@ -18,7 +18,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import org.avp.common.AVPItems;
 import org.avp.common.DamageSources;
 import org.predator.common.PredatorItems;
 

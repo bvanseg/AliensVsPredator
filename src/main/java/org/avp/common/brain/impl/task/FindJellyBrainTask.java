@@ -3,7 +3,6 @@ package org.avp.common.brain.impl.task;
 import net.minecraft.entity.item.EntityItem;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.AVPItems;
 import org.avp.common.brain.flag.AbstractBrainFlag;
 import org.avp.common.brain.flag.BrainFlagState;
 import org.avp.common.brain.impl.BrainFlags;

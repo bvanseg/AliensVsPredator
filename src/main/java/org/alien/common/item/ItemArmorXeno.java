@@ -16,7 +16,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.entity.living.ModelDrone;
 import org.alien.common.AlienItems;
 import org.avp.AVP;
-import org.avp.common.AVPItems;
 import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 
 public class ItemArmorXeno extends ItemArmor

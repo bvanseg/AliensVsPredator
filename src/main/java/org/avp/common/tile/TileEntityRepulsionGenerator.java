@@ -202,12 +202,6 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
     }
 
     @Override
-    public double extractVoltage(EnumFacing from, double maxExtract, boolean simulate)
-    {
-        return super.extractVoltage(from, maxExtract, simulate);
-    }
-
-    @Override
     public double getCurrentVoltage(EnumFacing from)
     {
         return this.voltage;

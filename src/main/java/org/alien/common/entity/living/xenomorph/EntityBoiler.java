@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.AVPItems;
 
 public class EntityBoiler extends SpeciesXenomorph
 {
@@ -51,12 +50,6 @@ public class EntityBoiler extends SpeciesXenomorph
     public int getTotalArmorValue()
     {
         return 2;
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
     }
     
     @Override

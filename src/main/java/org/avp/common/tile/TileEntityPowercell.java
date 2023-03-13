@@ -88,12 +88,6 @@ public class TileEntityPowercell extends TileEntityElectrical implements IVoltag
     }
 
     @Override
-    public double receiveVoltage(EnumFacing from, double maxReceive, boolean simulate)
-    {
-        return super.receiveVoltage(from, maxReceive, simulate);
-    }
-
-    @Override
     public double getCurrentVoltage(EnumFacing from)
     {
         return this.voltage;

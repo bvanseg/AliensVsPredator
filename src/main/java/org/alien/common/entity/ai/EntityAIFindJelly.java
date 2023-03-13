@@ -7,7 +7,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.AVPItems;
 
 import java.util.ArrayList;
 

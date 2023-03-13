@@ -78,12 +78,6 @@ public class TileEntityHiveResin extends TileEntity implements ITickable
     }
 
     @Override
-    public void onLoad()
-    {
-        super.onLoad();
-    }
-
-    @Override
     public SPacketUpdateTileEntity getUpdatePacket()
     {
         return new SPacketUpdateTileEntity(this.getPos(), 1, this.getUpdateTag());

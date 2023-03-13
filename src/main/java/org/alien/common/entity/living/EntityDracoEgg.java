@@ -9,7 +9,6 @@ import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
-import org.avp.common.AVPItems;
 
 public class EntityDracoEgg extends EntityOvamorph
 {

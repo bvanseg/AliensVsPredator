@@ -10,7 +10,6 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.world.hive.HiveMember;
 
@@ -49,12 +48,6 @@ public class EntityPraetorian extends SpeciesXenomorph implements IMaturable, Hi
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.PRAETORIAN_DEATH.event();
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
     }
 
     @Override

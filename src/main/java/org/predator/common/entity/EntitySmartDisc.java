@@ -14,7 +14,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.common.DamageSources;
-import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityProjectile;
 import org.predator.common.PredatorItems;
 

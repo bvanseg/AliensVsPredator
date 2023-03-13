@@ -24,7 +24,6 @@ import org.alien.common.entity.ai.selector.EntitySelectorAvoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.DamageSources;
-import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IMaturable;
 import org.avp.common.api.parasitoidic.INascentic;
 import org.avp.common.api.parasitoidic.IRoyalOrganism;

@@ -7,7 +7,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.common.DamageSources;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.AVPItems;
 import org.predator.common.PredatorItems;
 import org.predator.common.entity.living.SpeciesYautja;
 

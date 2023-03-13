@@ -20,7 +20,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.selector.EntitySelectorDracomorph;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.EntityItemDrops;
-import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IHost;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;

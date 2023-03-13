@@ -36,12 +36,6 @@ public class EntityTurret extends EntityLiving
     }
 
     @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-    }
-
-    @Override
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();

@@ -17,7 +17,6 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.EntityAIFacehuggerLeap;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.avp.common.AVPItems;
 import org.avp.common.api.parasitoidic.IParasitoid;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
@@ -52,12 +51,6 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, IParasit
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.55D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.50D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
     }
 
     @Override

@@ -3,7 +3,6 @@ package org.alien.common.entity.living.xenomorph;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
@@ -11,7 +10,6 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.AVPItems;
 
 public class EntityUltramorph extends SpeciesXenomorph implements IMob
 {
@@ -51,24 +49,6 @@ public class EntityUltramorph extends SpeciesXenomorph implements IMob
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.ALIEN_DEATH.event();
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound nbt)
-    {
-        super.readEntityFromNBT(nbt);
-    }
-
-    @Override
-    public void writeEntityToNBT(NBTTagCompound nbt)
-    {
-        super.writeEntityToNBT(nbt);
     }
     
     @Override

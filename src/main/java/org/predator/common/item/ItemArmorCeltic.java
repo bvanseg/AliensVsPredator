@@ -12,7 +12,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.common.AVPItems;
 import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
 import org.lwjgl.input.Keyboard;
 import org.predator.client.PredatorSounds;

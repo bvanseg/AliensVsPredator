@@ -62,12 +62,6 @@ public class TileEntityCCFLTube extends TileEntityLightPanel implements IVoltage
     {
         return canProvideEnergyToReceiver(from);
     }
-    
-    @Override
-    public void update()
-    {
-        super.update();
-    }
 
     @Override
     public EnumFacing getRotationYAxis()
