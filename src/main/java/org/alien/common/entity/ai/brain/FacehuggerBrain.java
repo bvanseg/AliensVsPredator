@@ -31,6 +31,7 @@ public class FacehuggerBrain extends ParasitoidBrain {
 		this.addTask(new SwimBrainTask(this.getEntity()));
 		this.addTask(new AttackOnCollideBrainTask(0.55D));
 		this.addTask(new WanderBrainTask(0.55D));
+		// TODO:
 		this.addTask(new BrainTaskAdapter(new EntityAIFacehuggerLeap(this.getEntity())));
 		this.addTask(new NearestAttackableTargetBrainTask());
 	}

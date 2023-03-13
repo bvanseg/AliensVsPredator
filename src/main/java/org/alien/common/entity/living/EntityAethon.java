@@ -1,12 +1,9 @@
 package org.alien.common.entity.living;
 
 import com.asx.mdx.lib.world.Pos;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -20,10 +17,7 @@ import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.IHost;
 import org.alien.common.entity.ai.brain.AethonBrain;
-import org.alien.common.entity.ai.selector.EntitySelectorAethon;
 import org.avp.common.AVPItemDrops;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
 

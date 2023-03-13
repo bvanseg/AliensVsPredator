@@ -4,8 +4,8 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelMutantYautja;
-import org.avp.AVP;
 import org.alien.common.entity.living.EntityYautjaMutant;
+import org.avp.AVP;
 
 public class RenderYautjaMutant extends RenderLivingWrapper<EntityYautjaMutant, ModelMutantYautja>
 {

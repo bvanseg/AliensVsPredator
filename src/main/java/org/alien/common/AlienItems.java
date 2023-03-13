@@ -9,6 +9,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.alien.common.entity.living.EntityAethon;
 import org.alien.common.entity.living.EntityDracoEgg;
+import org.alien.common.entity.living.EntityYautjaMutant;
 import org.alien.common.entity.living.engineer.EntityEngineer;
 import org.alien.common.entity.living.engineer.EntitySpaceJockey;
 import org.alien.common.entity.living.species223ode.EntityDeacon;
@@ -23,7 +24,6 @@ import org.alien.common.item.ItemSporePod;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.item.ItemEntitySummoner;
 import org.lib.registry.ItemRegistryUtil;
-import org.alien.common.entity.living.EntityYautjaMutant;
 
 public class AlienItems implements IPreInitEvent {
     public static final AlienItems instance = new AlienItems();
