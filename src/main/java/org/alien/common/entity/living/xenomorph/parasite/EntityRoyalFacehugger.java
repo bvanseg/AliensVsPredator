@@ -1,6 +1,5 @@
 package org.alien.common.entity.living.xenomorph.parasite;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
@@ -37,12 +36,6 @@ public class EntityRoyalFacehugger extends EntityFacehugger
 
     @Override
     protected boolean canTriggerWalking()
-    {
-        return false;
-    }
-    
-    @Override
-    public boolean attackEntityAsMob(Entity entity)
     {
         return false;
     }
