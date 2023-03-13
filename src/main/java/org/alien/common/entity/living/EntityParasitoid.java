@@ -33,7 +33,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
 {
     private static final DataParameter<Boolean> FERTILE            = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> ATTACHED_TO_HOST   = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
-    private int                                 timeSinceInfertile = 0;
+    public int                                 timeSinceInfertile = 0;
     public int                                  ticksOnHost        = 0;
 
     protected ParasitoidBrain brain;
@@ -77,24 +77,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, IParasitoid,
 
         if (!this.world.isRemote) {
             this.brain.update(new EntityBrainContext(this.getBrain(), this));
-
-            if (!this.isFertile())
-            {
-                if (!this.isAttachedToHost()) {
-                    this.setNoAI(true);
-                    this.setBrainDisabled(true);
-                }
-
-                this.motionY -= 0.05F;
-                this.motionY *= 0.98F;
-                this.move(MoverType.SELF, 0, this.motionY, 0);
-
-
-                this.timeSinceInfertile++;
-
-                if(this.timeSinceInfertile >= 20 * 60 *  5)
-                    this.setDead();
-            }
 
             this.negateFallDamage();
 

@@ -1,6 +1,7 @@
 package org.alien.common.entity.ai.brain;
 
 import org.alien.common.entity.ai.brain.task.AttachedToHostTask;
+import org.alien.common.entity.ai.brain.task.UpdateInfertileStateTask;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.lib.brain.impl.AbstractEntityBrain;
@@ -30,6 +31,7 @@ public class ParasitoidBrain extends AbstractEntityBrain<EntityParasitoid> {
 		this.addTask(new WanderBrainTask(0.55D));
 		this.addTask(new NearestAttackableTargetBrainTask());
 		this.addTask(new AttachedToHostTask());
+		this.addTask(new UpdateInfertileStateTask());
 
 		this.initParasiteTasks();
 	}
