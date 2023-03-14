@@ -47,15 +47,17 @@ public class GrowOvipositorBrainTask extends AbstractBrainTask<EntityBrainContex
 	
     @Override
 	protected void execute(EntityBrainContext ctx) {
+
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
+
+		matriarchEntity.getBrain().getTasks().forEach(task -> task.setDisabled(!(task instanceof GrowOvipositorBrainTask)));
 
 		// If the queen does not have a hive, create one.
 		if (matriarchEntity.getAlienHive() == null) {
 			matriarchEntity.alienHive = matriarchEntity.createNewAlienHive();
-			matriarchEntity.getBrain().getTasks().forEach(task -> task.setDisabled(!(task instanceof GrowOvipositorBrainTask)));
 		}
 
-		//
+		// Grow ovipositor if it is not fully grown.
 		if (matriarchEntity.getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE)
 		{
 			matriarchEntity.setOvipositorSize(matriarchEntity.getOvipositorSize() + EntityMatriarch.OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE);
