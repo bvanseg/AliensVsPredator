@@ -74,58 +74,14 @@ public class EntityDrone extends SpeciesXenomorph implements Maturable, HiveMemb
     {
         super.onUpdate();
 
-        this.tickRepurposingAI();
+        if (this.getAlienHive() == null) return;
+        if (this.getAlienHive().isEntityWithinRange(this)) return;
 
-        if (this.getAlienHive() != null)
-        {
-            if (!this.getAlienHive().isEntityWithinRange(this))
-            {
-                Path path = this.getNavigator().getPathToPos(this.getAlienHive().getCoreBlockPos());
+        Path path = this.getNavigator().getPathToPos(this.getAlienHive().getCoreBlockPos());
 
-                if (path != null)
-                {
-                    this.getNavigator().setPath(path, 0.8D);
-                }
-            }
-        }
-    }
+        if (path == null) return;
 
-    public void tickRepurposingAI()
-    {
-        if (!this.world.isRemote)
-        {
-            if (this.world.getTotalWorldTime() % 20 == 0)
-            {
-                if (this.rand.nextInt(3) == 0)
-                {
-                    ArrayList<EntityOvamorph> ovamorphs = (ArrayList<EntityOvamorph>) Entities.getEntitiesInCoordsRange(this.world, EntityOvamorph.class, new Pos(this), 16);
-
-                    if (this.getAlienHive() != null)
-                    {
-                        for (EntityOvamorph ovamorph : ovamorphs)
-                        {
-                            if (!ovamorph.containsFacehugger)
-                            {
-                                targetOvamorph = ovamorph;
-                                this.getNavigator().tryMoveToEntityLiving(ovamorph, this.getMoveHelper().getSpeed());
-                            }
-                        }
-                    }
-                }
-
-                if (this.targetOvamorph != null)
-                {
-                    double distance = this.getDistanceSq(targetOvamorph);
-
-                    if (distance <= 2)
-                    {
-                        this.setJellyLevel(this.getJellyLevel() + targetOvamorph.getJellyLevel());
-                        this.targetOvamorph.setDead();
-                        this.targetOvamorph = null;
-                    }
-                }
-            }
-        }
+        this.getNavigator().setPath(path, 0.8D);
     }
 
     @Override

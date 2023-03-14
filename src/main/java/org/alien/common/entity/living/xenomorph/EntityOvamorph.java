@@ -34,7 +34,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
     protected boolean                           acceleratedHatching;
     protected int                               hatchWaitTimer;
     protected final int                         maxOpenProgress  = 21;
-    protected boolean                           containsFacehugger;
+    public boolean                              containsFacehugger;
     protected boolean                           sendUpdates;
 
     private static final DataParameter<Byte>    OPEN_PROGRESS    = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);
