@@ -16,7 +16,7 @@ import java.util.List;
 
 public class ItemGrenade extends HookedItem
 {
-    private boolean isFlaming;
+    private final boolean isFlaming;
 
     public ItemGrenade(boolean isFlaming)
     {

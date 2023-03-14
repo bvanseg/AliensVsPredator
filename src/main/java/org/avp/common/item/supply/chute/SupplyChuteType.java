@@ -15,8 +15,8 @@ import org.avp.common.entity.EntitySupplyChuteSeegson;
 public enum SupplyChuteType {
         UNBRANDED(0, EntitySupplyChute.class), MARINES(1, EntitySupplyChuteMarines.class), SEEGSON(2, EntitySupplyChuteSeegson.class);
 
-        private int                                id;
-        private Class<? extends EntitySupplyChute> entityType;
+        private final int                                id;
+        private final Class<? extends EntitySupplyChute> entityType;
 
         SupplyChuteType(int id, Class<? extends EntitySupplyChute> entityType)
         {

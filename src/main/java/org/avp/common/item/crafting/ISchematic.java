@@ -4,9 +4,9 @@ import net.minecraft.item.ItemStack;
 
 public interface ISchematic
 {
-    public String getName();
+    String getName();
     
-    public ItemStack getItemStackAssembled();
+    ItemStack getItemStackAssembled();
     
-    public ItemStack[] getItemsRequired();
+    ItemStack[] getItemsRequired();
 }

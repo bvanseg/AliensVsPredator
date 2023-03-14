@@ -15,8 +15,8 @@ import java.util.Collection;
 
 public class ModelReflectiveShape implements IModel
 {
-    private ResourceLocation modelResource;
-    private ResourceLocation textureResource;
+    private final ResourceLocation modelResource;
+    private final ResourceLocation textureResource;
     
     public ModelReflectiveShape(ResourceLocation modelResource, ResourceLocation textureResource)
     {

@@ -3,11 +3,11 @@ package org.avp.common.tile;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import org.avp.common.api.power.IVoltageProvider;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.power.VoltageProvider;
+import org.avp.common.api.power.VoltageReceiver;
 
 
-public class TileEntityPowercell extends TileEntityElectrical implements IVoltageReceiver, IVoltageProvider
+public class TileEntityPowercell extends TileEntityElectrical implements VoltageReceiver, VoltageProvider
 {
     public long energyStored;
     public double voltageCapacity;
@@ -41,9 +41,9 @@ public class TileEntityPowercell extends TileEntityElectrical implements IVoltag
                     this.voltageCapacity = electrical.getVoltage();
                 }
 
-                if (electrical instanceof IVoltageProvider)
+                if (electrical instanceof VoltageProvider)
                 {
-                    IVoltageProvider provider = (IVoltageProvider) electrical;
+                    VoltageProvider provider = (VoltageProvider) electrical;
 
                     if (provider.getCurrentVoltage(direction.getOpposite()) > 0)
                     {

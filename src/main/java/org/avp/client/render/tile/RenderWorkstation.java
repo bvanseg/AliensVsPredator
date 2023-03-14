@@ -13,8 +13,8 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class RenderWorkstation extends TileEntitySpecialRenderer<TileEntityWorkstation>
 {
-    private int lines = 12;
-    private String[] displayText = new String[lines];
+    private final int lines = 12;
+    private final String[] displayText = new String[lines];
 
     @Override
     public void render(TileEntityWorkstation tile, double posX, double posY, double posZ, float partialTicks, int destroyStage, float alpha)

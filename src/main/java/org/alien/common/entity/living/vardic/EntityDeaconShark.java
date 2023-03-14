@@ -6,60 +6,52 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityLookHelper;
+import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
+import org.alien.common.entity.ai.brain.DeaconSharkBrain;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.entity.ai.helpers.EntityExtendedLookHelper;
 import org.avp.common.entity.ai.pathfinding.PathNavigateSwimmer;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 
-public class EntityDeaconShark extends SpeciesAlien
+public class EntityDeaconShark extends SpeciesAlien implements Brainiac<DeaconSharkBrain>
 {
-    private PatchedEntityAIWander          wander;
-    private EntityAIMoveTowardsRestriction moveTowardsRestriction;
+    @Deprecated
+    private final Predicate<EntityLivingBase> entitySelector = target -> !(target instanceof EntityDeaconShark) && EntityDeaconShark.this.canEntityBeSeen(target);
     private double                         distanceToTargetLastTick;
-    private Predicate<EntityLivingBase>                entitySelector = new Predicate<EntityLivingBase>()
-                                                          {
-                                                              @Override
-                                                              public boolean apply(EntityLivingBase target)
-                                                              {
-                                                                  return  !(target instanceof EntityDeaconShark) && EntityDeaconShark.this.canEntityBeSeen(target);
-                                                              }
-                                                          };
+
+    private DeaconSharkBrain brain;
 
     public EntityDeaconShark(World worldIn)
     {
         super(worldIn);
         this.experienceValue = 10;
         this.setSize(2F, 1F);
-    }
-    
-    @Override
-    protected void initEntityAI() {
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.8D, true));
-        this.tasks.addTask(5, moveTowardsRestriction = new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(7, this.wander = new PatchedEntityAIWander(this, 1.0D));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityDeaconShark.class, 12.0F, 0.01F));
-        this.tasks.addTask(9, new EntityAILookIdle(this));
-        this.moveTowardsRestriction.setMutexBits(3);
-        this.wander.setMutexBits(3);
-//        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, Entity.class, 10, true, false, entitySelector));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
         Entities.setMoveHelper(this, new EntityDeaconShark.DeaconSharkMoveHelper());
         Entities.setNavigator(this, new PathNavigateSwimmer(this, this.world));
         Entities.setLookHelper(this, new EntityExtendedLookHelper(this));
+    }
+
+    @Override
+    public DeaconSharkBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new DeaconSharkBrain(this);
+        }
+        return this.brain;
+    }
+
+    @Override
+    protected void initEntityAI() {
+        this.getBrain().init();
     }
 
     @Override
@@ -70,6 +62,15 @@ public class EntityDeaconShark extends SpeciesAlien
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(16.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
     }
 
     @Override
@@ -104,8 +105,8 @@ public class EntityDeaconShark extends SpeciesAlien
     public EntityLivingBase findTarget()
     {
         List<? extends EntityLivingBase> targets =  world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(24, 32, 24));
-        Entity attackTarget = null;
-    
+        EntityLivingBase attackTarget = null;
+
         for (EntityLivingBase target : targets)
         {
             if (this.entitySelector.apply(target) && this.canEntityBeSeen(target))
@@ -115,9 +116,8 @@ public class EntityDeaconShark extends SpeciesAlien
         }
         
         targets.clear();
-        targets = null;
 
-        return (EntityLivingBase) attackTarget;
+        return attackTarget;
     }
 
     @Override
@@ -158,8 +158,8 @@ public class EntityDeaconShark extends SpeciesAlien
         else if (this.onGround)
         {
             this.motionY += 0.5D;
-            this.motionX += (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
-            this.motionZ += (double) ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
+            this.motionX += ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
+            this.motionZ += ((this.rand.nextFloat() * 2.0F - 1.0F) * 0.4F);
             this.rotationYaw = this.rand.nextFloat() * 360.0F;
             this.onGround = false;
             this.isAirBorne = true;
@@ -171,12 +171,6 @@ public class EntityDeaconShark extends SpeciesAlien
         }
         
         super.onLivingUpdate();
-    }
-
-    @Override
-    protected void collideWithNearbyEntities()
-    {
-        super.collideWithNearbyEntities();
     }
 
     @Override
@@ -203,12 +197,6 @@ public class EntityDeaconShark extends SpeciesAlien
         {
             super.despawnEntity();
         }
-    }
-
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float damage)
-    {
-        return super.attackEntityFrom(source, damage);
     }
 
     @Override
@@ -260,7 +248,7 @@ public class EntityDeaconShark extends SpeciesAlien
 
     class DeaconSharkMoveHelper extends EntityMoveHelper
     {
-        private EntityDeaconShark shark = EntityDeaconShark.this;
+        private final EntityDeaconShark shark = EntityDeaconShark.this;
         private double            posX;
         private double            posY;
         private double            posZ;
@@ -290,22 +278,22 @@ public class EntityDeaconShark extends SpeciesAlien
                 double posY = this.posY - this.shark.posY;
                 double posZ = this.posZ - this.shark.posZ;
                 double velocity = posX * posX + posY * posY + posZ * posZ;
-                velocity = (double) MathHelper.sqrt(velocity);
+                velocity = MathHelper.sqrt(velocity);
                 posY /= velocity;
                 this.shark.rotationYaw = EntityExtendedLookHelper.updateRotationNew(this.shark.rotationYaw, (float) (Math.atan2(posZ, posX) * 180.0D / Math.PI) - 90.0F, 5.0F);
                 this.shark.renderYawOffset = this.shark.rotationYaw;
                 float speed = (float) (this.speed * this.shark.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
                 this.shark.setAIMoveSpeed(this.shark.getAIMoveSpeed() + (speed - this.shark.getAIMoveSpeed()) * 0.125F);
-                double waveX = Math.sin((double) (this.shark.ticksExisted + this.shark.getEntityId()) * 0.5D) * 0.05D;
-                double waveY = Math.cos((double) (this.shark.rotationYaw * (float) Math.PI / 180.0F));
-                double waveZ = Math.sin((double) (this.shark.rotationYaw * (float) Math.PI / 180.0F));
+                double waveX = Math.sin((this.shark.ticksExisted + this.shark.getEntityId()) * 0.5D) * 0.05D;
+                double waveY = Math.cos((this.shark.rotationYaw * (float) Math.PI / 180.0F));
+                double waveZ = Math.sin((this.shark.rotationYaw * (float) Math.PI / 180.0F));
                 this.shark.motionX += waveX * waveY;
                 this.shark.motionZ += waveX * waveZ;
-                waveX = Math.sin((double) (this.shark.ticksExisted + this.shark.getEntityId()) * 0.75D) * 0.05D;
+                waveX = Math.sin((this.shark.ticksExisted + this.shark.getEntityId()) * 0.75D) * 0.05D;
                 this.shark.motionY += waveX * (waveZ + waveY) * 0.25D;
-                this.shark.motionY += (double) this.shark.getAIMoveSpeed() * posY * 0.1D;
+                this.shark.motionY += this.shark.getAIMoveSpeed() * posY * 0.1D;
                 double offsetX = this.shark.posX + posX / velocity * 2.0D;
-                double offsetY = (double) this.shark.getEyeHeight() + this.shark.posY + posY / velocity * 1.0D;
+                double offsetY = this.shark.getEyeHeight() + this.shark.posY + posY / velocity * 1.0D;
                 double offsetZ = this.shark.posZ + posZ / velocity * 2.0D;
                 EntityLookHelper lookHelper = this.shark.getLookHelper();
 

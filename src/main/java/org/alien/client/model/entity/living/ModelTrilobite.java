@@ -873,7 +873,7 @@ public class ModelTrilobite extends Model<EntityTrilobite>
 
                 if (tentacle != null)
                 {
-                    boolean hidden = tentacles[i] == 1 ? true : false;
+                    boolean hidden = tentacles[i] == 1;
                     tentacle.isHidden = hidden;
                 }
             }

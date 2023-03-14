@@ -31,12 +31,6 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob,
         this.experienceValue = 275;
         this.setSize(1.0F, 3.0F);
     }
-    
-    @Override
-    protected void addStandardXenomorphAISet() {
-        this.tasks.addTask(1, rangedAttackAI);
-    	super.addStandardXenomorphAISet();
-    }
 
     @Override
     protected void applyEntityAttributes()
@@ -128,10 +122,7 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob,
     }
 
     @Override
-    public void setSwingingArms(boolean swingingArms)
-    {
-        ;
-    }
+    public void setSwingingArms(boolean swingingArms) { /* Do Nothing */ }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)

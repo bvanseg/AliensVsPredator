@@ -6,10 +6,10 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import org.avp.common.api.power.IVoltageProvider;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.power.VoltageProvider;
+import org.avp.common.api.power.VoltageReceiver;
 
-public class TileEntityTransformer extends TileEntityElectrical implements IVoltageProvider, IVoltageReceiver, IRotatableYAxis
+public class TileEntityTransformer extends TileEntityElectrical implements VoltageProvider, VoltageReceiver, IRotatableYAxis
 {
     private EnumFacing direction;
 
@@ -73,7 +73,7 @@ public class TileEntityTransformer extends TileEntityElectrical implements IVolt
             {
                 TileEntityElectrical electrical = (TileEntityElectrical) tile;
 
-                if (electrical instanceof IVoltageProvider)
+                if (electrical instanceof VoltageProvider)
                 {
                     if (electrical.getVoltage() == 0)
                     {

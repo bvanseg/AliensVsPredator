@@ -13,6 +13,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
@@ -125,14 +126,7 @@ public class EntityNauticomorph extends SpeciesXenomorph implements HiveMember
                 newLevel -= downMult;
             }
 
-            if (newLevel > 1F)
-            {
-                newLevel = 1F;
-            }
-            else if (newLevel < 0.1F)
-            {
-                newLevel = 0.1F;
-            }
+            newLevel = MathHelper.clamp(newLevel, 0.1F, 1F);
 
             this.setPhosphorescenceLevel(newLevel);
         }
@@ -149,10 +143,10 @@ public class EntityNauticomorph extends SpeciesXenomorph implements HiveMember
                     double range = this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).getAttributeValue() / 2;
                     ArrayList<Pos> coordData = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) range, this.world, net.minecraft.init.Blocks.WATER);
 
-                    if (coordData.size() > 0)
+                    if (!coordData.isEmpty())
                     {
                         Pos selectedCoord = coordData.get(this.rand.nextInt(coordData.size()));
-                        this.getNavigator().tryMoveToXYZ((double) selectedCoord.x, (double) selectedCoord.y, (double) selectedCoord.z, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
+                        this.getNavigator().tryMoveToXYZ(selectedCoord.x, selectedCoord.y, selectedCoord.z, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
                     }
                 }
             }

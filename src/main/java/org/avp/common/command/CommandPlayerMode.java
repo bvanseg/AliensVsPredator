@@ -10,7 +10,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
 import org.avp.AVP;
 import org.avp.common.network.packet.client.PacketPlayerModeUpdate;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.avp.common.world.playermode.PlayerMode;
 
 public class CommandPlayerMode extends CommandBase
@@ -31,7 +31,7 @@ public class CommandPlayerMode extends CommandBase
     public void execute(MinecraftServer server, ICommandSender sender, String[] args) throws CommandException
     {
         EntityPlayer player = Players.getPlayerForCommandSender(sender);
-        SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+        SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
         PlayerMode playerMode = PlayerMode.get(Integer.valueOf(args[0]));
 
         specialPlayer.setPlayerMode(playerMode);

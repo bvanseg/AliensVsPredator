@@ -14,12 +14,11 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.alien.common.world.capability.IOrganism;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.AVP;
-import org.avp.common.world.capability.ISpecialPlayer;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 
 public class CapabilityHandler implements IPreInitEvent
 {
@@ -31,8 +30,8 @@ public class CapabilityHandler implements IPreInitEvent
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
-        CapabilityManager.INSTANCE.register(IOrganism.class, new Organism(), new Organism.Factory());
-        CapabilityManager.INSTANCE.register(ISpecialPlayer.class, new SpecialPlayer(), new SpecialPlayer.Factory());
+        CapabilityManager.INSTANCE.register(Organism.class, new Organism.OrganismImpl(), new Organism.OrganismImpl.Factory());
+        CapabilityManager.INSTANCE.register(SpecialPlayer.class, new SpecialPlayerImpl(), new SpecialPlayerImpl.Factory());
     }
     
     @SubscribeEvent
@@ -44,7 +43,7 @@ public class CapabilityHandler implements IPreInitEvent
         }
         if (event.getObject() instanceof EntityPlayer)
         {
-            event.addCapability(SPECIAL_PLAYER, new ISpecialPlayer.Provider());
+            event.addCapability(SPECIAL_PLAYER, new SpecialPlayer.Provider());
         }
     }
     
@@ -81,7 +80,7 @@ public class CapabilityHandler implements IPreInitEvent
             {
                 if (target instanceof EntityLivingBase)
                 {
-                    Organism organism = (Organism) target.getCapability(Provider.CAPABILITY, null);
+                    Organism.OrganismImpl organism = (Organism.OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
 
                     if (organism != null)
                     {
@@ -96,7 +95,7 @@ public class CapabilityHandler implements IPreInitEvent
                 if (target instanceof EntityPlayer)
                 {
                     EntityPlayer player = (EntityPlayer) target;
-                    SpecialPlayer specialPlayer = (SpecialPlayer) target.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+                    SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) target.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
                     if (specialPlayer != null)
                     {

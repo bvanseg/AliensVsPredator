@@ -184,7 +184,7 @@ public class GuiAssembler extends GuiContainer
 	        currentStack++;
 	        int amountOfStack = AssemblyManager.amountForMatchingStack(Game.minecraft().player, stack);
 	        int stackY = 15 + (currentStack * 8);
-	        int currentStackSize = (amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack);
+	        int currentStackSize = (Math.min(amountOfStack, stack.getCount()));
 	        Draw.drawRect(assemblerSidePanelX, stackY - 2, assemblerSidePanelWidth, 8, 0xDD000000);
 
 	        OpenGL.pushMatrix();
@@ -204,7 +204,7 @@ public class GuiAssembler extends GuiContainer
 
 	        if (amountOfStack > 0)
 	        {
-	            progress += amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack;
+	            progress += Math.min(amountOfStack, stack.getCount());
 	        }
 	    }
 

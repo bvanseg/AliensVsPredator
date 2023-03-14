@@ -18,18 +18,17 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IMaturable;
-import org.alien.common.api.parasitoidic.IRoyalOrganism;
+import org.alien.common.api.parasitoidic.Maturable;
+import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.avp.common.AVPDamageSources;
 
 import java.util.UUID;
 
-public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrganism, IAnimated
+public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrganism, IAnimated
 {
     private static final DataParameter<Integer> JELLY_LEVEL       = EntityDataManager.createKey(SpeciesAlien.class, DataSerializers.VARINT);
-//    protected XenomorphHive                     hive;
     private UUID                                signature;
     protected boolean                           jellyLimitOverride;
     protected boolean                           isDependant       = false;
@@ -129,7 +128,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
 
             if (!this.jellyLimitOverride)
             {
-                adjustedLevel = adjustedLevel < 64 ? adjustedLevel : 64;
+                adjustedLevel = Math.min(adjustedLevel, 64);
             }
 
             if (this.isDependant)
@@ -139,16 +138,16 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
         }
     }
 
-    public boolean isReadyToMature(IRoyalOrganism jellyProducer)
+    public boolean isReadyToMature(RoyalOrganism jellyProducer)
     {
-        IMaturable maturable = (IMaturable) this;
-        IRoyalOrganism ro = this;
+        Maturable maturable = (Maturable) this;
+        RoyalOrganism ro = this;
         return maturable.getMatureState() != null && maturable.getMaturityLevel() > 0 && ro.getJellyLevel() >= maturable.getMaturityLevel();
     }
 
     public void mature()
     {
-        IMaturable maturable = (IMaturable) this;
+        Maturable maturable = (Maturable) this;
         SpeciesAlien alien = (SpeciesAlien) Entities.constructEntity(this.world, maturable.getMatureState());
         NBTTagCompound tag = new NBTTagCompound();
 
@@ -159,11 +158,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
         alien.setJellyLevel(this.getJellyLevel() - maturable.getMaturityLevel());
         // TODO: Create a shell of the original entity.
         this.setDead();
-    }
-
-    public boolean canMoveToJelly()
-    {
-        return !(this instanceof EntityOvamorph);
     }
 
     protected void onPickupJelly(EntityItem entityItem)
@@ -201,9 +195,9 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
             this.produceJelly();
         }
 
-        if (this instanceof IMaturable)
+        if (this instanceof Maturable)
         {
-            IMaturable maturable = (IMaturable) this;
+            Maturable maturable = (Maturable) this;
 
             if (!this.world.isRemote)
             {
@@ -257,7 +251,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, IRoyalOrga
     @Override
     public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount)
     {
-        return type == EnumCreatureType.MONSTER ? true : false;
+        return type == EnumCreatureType.MONSTER;
     }
 
     protected void negateFallDamage()

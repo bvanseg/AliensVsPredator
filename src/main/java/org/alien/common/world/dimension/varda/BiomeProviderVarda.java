@@ -25,8 +25,8 @@ public class BiomeProviderVarda extends BiomeProvider
     public static ArrayList<BiomeVarda> allowedBiomes = new ArrayList<BiomeVarda>(Arrays.asList(BiomeVarda.vardaBadlands, BiomeVarda.vardaForest));
     private GenLayer                    genBiomes;
     private GenLayer                    biomeIndexLayer;
-    private BiomeCache                  biomeCache;
-    private List<BiomeVarda>            biomesToSpawnIn;
+    private final BiomeCache                  biomeCache;
+    private final List<BiomeVarda>            biomesToSpawnIn;
 
     protected BiomeProviderVarda()
     {

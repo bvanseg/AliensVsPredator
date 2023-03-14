@@ -44,9 +44,9 @@ public class CachedModelReflectiveShape implements IBakedModel
                                                                                                                       }
                                                                                                                   };
 
-    private IModel                                                                         model;
+    private final IModel                                                                         model;
     private TextureAtlasSprite                                                             sprite;
-    private ShapeRenderList                                                                overrides;
+    private final ShapeRenderList                                                                overrides;
     private final Pair<? extends IBakedModel, Matrix4f>                                    selfPair;
     protected ItemStack                                                                    stack;
     protected EntityLivingBase                                                             entity;

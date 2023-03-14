@@ -1,10 +1,10 @@
 package org.avp.common.entity.living;
 
-import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
-import net.minecraft.entity.monster.EntityZombie;
+import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.IRangedAttackMob;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -20,51 +20,36 @@ import org.avp.client.AVPSounds;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityBullet;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
-import org.avp.common.entity.ai.selector.EntitySelectorMarine;
-import org.avp.common.item.firearm.FirearmProfile;
+import org.avp.common.entity.ai.brain.MarineBrain;
 import org.avp.common.world.MarineTypes;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.BrainMemoryKeys;
+import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob
+public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Brainiac<MarineBrain>
 {
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
-    private EntityAIBase                        rangedAttackAI;
+
+    protected MarineBrain brain;
 
     public EntityMarine(World world)
     {
         super(world);
         this.experienceValue = 5;
+    }
 
+    @Override
+    public MarineBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new MarineBrain(this);
+        }
+        return this.brain;
     }
 
     @Override
     protected void initEntityAI() {
-        this.rangedAttackAI = new EntityAIAttackRanged(this, 0.4D, getAttackDelayBasedOnFirearm(), 24);
-
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, this.rangedAttackAI);
-        this.tasks.addTask(1, new EntityAIAvoidEntity<>(this, EntityZombie.class, 8.0F, 0.6D, 0.6D));
-        this.tasks.addTask(2, new EntityAIMoveIndoors(this));
-        this.tasks.addTask(3, new EntityAIRestrictOpenDoor(this));
-        this.tasks.addTask(4, new EntityAIOpenDoor(this, true));
-        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 0.6D));
-        this.tasks.addTask(9, new EntityAIWatchClosest2(this, EntityPlayer.class, 3.0F, 1.0F));
-        this.tasks.addTask(9, new PatchedEntityAIWander(this, 0.6D));
-        this.tasks.addTask(10, new EntityAIWatchClosest(this, EntityLiving.class, 8.0F));
-        this.targetTasks.addTask(1, new EntityAIMoveIndoors(this));
-
-        this.targetTasks.addTask(2, new EntityAIOpenDoor(this, true));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, true, false, EntitySelectorMarine.instance));
-    }
-
-    private int getAttackDelayBasedOnFirearm() {
-        FirearmProfile firearmProfile = getMarineType().getFirearmItem().getProfile();
-        double rpm = firearmProfile.getRoundsPerMinute();
-        double rps = rpm / 60; // Rounds per second
-        double rpt = rps / 20; // Rounds per tick
-        return (int) (1 / rpt); // How many ticks (x) must the entity wait until they can fire once (1 = rpt * x)
+        this.getBrain().init();
     }
 
     @Override
@@ -109,32 +94,21 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     }
 
     @Override
-    protected void updateAITasks()
-    {
-        super.updateAITasks();
-    }
-
-    @Override
-    public void onLivingUpdate()
-    {
-        super.onLivingUpdate();
-    }
-
-    @Override
     public void onUpdate()
     {
         super.onUpdate();
 
         if (!this.world.isRemote)
         {
-            this.getDataManager().set(AIMING, this.getAttackTarget() != null);
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.getDataManager().set(AIMING, this.getAttackTarget() != null || this.getBrain().hasMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET));
         }
     }
 
     @Override
-    public void onDeath(DamageSource source)
+    public void onDeath(DamageSource damageSource)
     {
-        super.onDeath(source);
+        super.onDeath(damageSource);
         AVPItemDrops.AMMUNITION.tryDrop(this);
     }
 
@@ -152,12 +126,9 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
     public MarineTypes getMarineType()
     {
-        if (TYPE != null)
-        {
-            return MarineTypes.getTypeForId(this.getDataManager().get(TYPE));
-        }
-
-        return MarineTypes.M41A;
+        Integer marineTypeInteger = this.getDataManager().get(TYPE);
+        MarineTypes marineType = MarineTypes.getTypeForId(marineTypeInteger);
+        return marineType != null ? marineType : MarineTypes.M41A;
     }
 
     public boolean isAiming()
@@ -166,10 +137,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     }
 
     @Override
-    public void setSwingingArms(boolean swingingArms)
-    {
-        ;
-    }
+    public void setSwingingArms(boolean swingingArms) { /* Do Nothing */ }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)

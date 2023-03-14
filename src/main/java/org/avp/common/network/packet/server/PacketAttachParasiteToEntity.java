@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.alien.common.api.parasitoidic.IParasitoid;
+import org.alien.common.api.parasitoidic.Parasitoid;
 
 public class PacketAttachParasiteToEntity implements IMessage, IMessageHandler<PacketAttachParasiteToEntity, PacketAttachParasiteToEntity>
 {
@@ -54,9 +54,9 @@ public class PacketAttachParasiteToEntity implements IMessage, IMessageHandler<P
                 Entity e = Game.minecraft().world.getEntityByID(packet.parasiteId);
                 Entity e2 = Game.minecraft().world.getEntityByID(packet.targetId);
                 
-                if (e instanceof IParasitoid)
+                if (e instanceof Parasitoid)
                 {
-                    IParasitoid parasite = (IParasitoid) e;
+                    Parasitoid parasite = (Parasitoid) e;
                     
                     if (e2 instanceof EntityLivingBase)
                     {

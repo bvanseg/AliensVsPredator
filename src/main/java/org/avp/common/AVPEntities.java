@@ -20,6 +20,7 @@ import org.alien.common.entity.EntityAcidProjectile;
 import org.alien.common.entity.living.EntityAethon;
 import org.alien.common.entity.living.EntityDracoEgg;
 import org.alien.common.entity.living.EntitySporePod;
+import org.alien.common.entity.living.EntityYautjaMutant;
 import org.alien.common.entity.living.engineer.EntityEngineer;
 import org.alien.common.entity.living.engineer.EntitySpaceJockey;
 import org.alien.common.entity.living.species223ode.EntityDeacon;
@@ -40,7 +41,6 @@ import org.avp.common.tile.plant.TileEntityTreeFern;
 import org.predator.common.entity.*;
 import org.predator.common.entity.living.EntityPredatorHound;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
-import org.predator.common.entity.living.yautja.EntityYautjaMutant;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
 import java.lang.reflect.Field;

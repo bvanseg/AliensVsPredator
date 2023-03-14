@@ -18,8 +18,8 @@ import org.avp.AVP;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPBlocks;
 import org.avp.common.AVPItems;
-import org.avp.common.api.machines.IOpenable;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.machines.Openable;
+import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.network.packet.client.PacketOpenBlastdoor;
 
 import java.util.ArrayList;
@@ -27,12 +27,12 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 
-public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltageReceiver, IRotatableYAxis, IOpenable, IMultiBlock
+public class TileEntityBlastdoor extends TileEntityElectrical implements VoltageReceiver, IRotatableYAxis, Openable, IMultiBlock
 {
     private boolean               isParent;
     private boolean               placedByPlayer;
     private TileEntity            parent;
-    private ArrayList<TileEntity> children;
+    private final ArrayList<TileEntity> children;
     private int                   ticksExisted;
     private EnumFacing            direction;
     private float                 doorProgress;
@@ -405,7 +405,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements IVoltag
     @Override
     public boolean isOpen()
     {
-        return this.isChild() ? (this.getParent() != null ? this.getParent().isOpen() : false) : doorOpen;
+        return this.isChild() ? (this.getParent() != null && this.getParent().isOpen()) : doorOpen;
     }
 
     @Override

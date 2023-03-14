@@ -10,7 +10,7 @@ import java.util.Optional;
  *
  */
 public class BrainMemoryMap {
-	private HashMap<BrainMemoryKey<?>, Optional<?>> memories = new HashMap<>();
+	private final HashMap<BrainMemoryKey<?>, Optional<?>> memories = new HashMap<>();
 	
 	@SuppressWarnings("unchecked")
 	public <T> Optional<T> getMemory(BrainMemoryKey<? super T> memoryKey) {

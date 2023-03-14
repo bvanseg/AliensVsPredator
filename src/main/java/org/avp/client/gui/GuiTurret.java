@@ -49,10 +49,10 @@ public class GuiTurret extends GuiContainer
     private static int                         scroll        = 0;
     private static boolean                     searchRequiresUpdate = false;
     
-    private static IAction scrollDownAction = (IGuiElement element) -> { scrollDown(); };
-    private static IAction scrollUpAction = (IGuiElement element) -> { scrollUp(); };
+    private static final IAction scrollDownAction = (IGuiElement element) -> { scrollDown(); };
+    private static final IAction scrollUpAction = (IGuiElement element) -> { scrollUp(); };
     
-    private IAction saveAction = new IAction() {
+    private final IAction saveAction = new IAction() {
         @Override
         public void perform(IGuiElement element)
         {
@@ -61,7 +61,7 @@ public class GuiTurret extends GuiContainer
         }
     };
     
-    private IAction loadAction = new IAction() {
+    private final IAction loadAction = new IAction() {
         @Override
         public void perform(IGuiElement element)
         {
@@ -71,7 +71,7 @@ public class GuiTurret extends GuiContainer
         }
     };
     
-    private IAction addAsTargetAction = new IAction() {
+    private final IAction addAsTargetAction = new IAction() {
         @Override
         public void perform(IGuiElement element)
         {
@@ -203,7 +203,7 @@ public class GuiTurret extends GuiContainer
             stacksCurrent += stack.getCount();
         }
 
-        Draw.drawProgressBar("Magazine " + (this.tile.getAmmoHelper().getCurrentAmmo() <= 0 ? 0 : this.tile.getAmmoHelper().getCurrentAmmo()) + "/" + this.tile.getAmmoHelper().getMaxAmmo(), this.tile.getAmmoHelper().getMaxAmmo(), this.tile.getAmmoHelper().getCurrentAmmo() < 0 ? 1 : this.tile.getAmmoHelper().getCurrentAmmo(), this.guiLeft + 7, this.guiTop + 20, this.xSize - 100, 3, 1, this.tile.getAmmoHelper().getCurrentAmmo() < this.tile.getAmmoHelper().getMaxAmmo() / 2 ? -22016 : this.tile.getAmmoHelper().getCurrentAmmo() < this.tile.getAmmoHelper().getMaxAmmo() / 6 ? -65536 : -16733441, false);
+        Draw.drawProgressBar("Magazine " + (Math.max(this.tile.getAmmoHelper().getCurrentAmmo(), 0)) + "/" + this.tile.getAmmoHelper().getMaxAmmo(), this.tile.getAmmoHelper().getMaxAmmo(), this.tile.getAmmoHelper().getCurrentAmmo() < 0 ? 1 : this.tile.getAmmoHelper().getCurrentAmmo(), this.guiLeft + 7, this.guiTop + 20, this.xSize - 100, 3, 1, this.tile.getAmmoHelper().getCurrentAmmo() < this.tile.getAmmoHelper().getMaxAmmo() / 2 ? -22016 : this.tile.getAmmoHelper().getCurrentAmmo() < this.tile.getAmmoHelper().getMaxAmmo() / 6 ? -65536 : -16733441, false);
         Draw.drawProgressBar("Total " + stacksCurrent + "/" + stacksTotal, stacksTotal, stacksCurrent, this.guiLeft + 7, this.guiTop + 30, this.xSize - 100, 3, 1, stacksCurrent < stacksTotal / 2 ? -22016 : stacksCurrent < stacksTotal / 6 ? -65536 : -16733441, false);
     }
 

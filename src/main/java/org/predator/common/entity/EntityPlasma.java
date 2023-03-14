@@ -28,8 +28,8 @@ import java.util.List;
 
 public class EntityPlasma extends EntityThrowable
 {
-    private static final DataParameter<Float> PLASMA_SIZE = EntityDataManager.<Float> createKey(EntityPlasma.class, DataSerializers.FLOAT);
-    private static final DataParameter<Integer> IMPACT_TIMER = EntityDataManager.<Integer> createKey(EntityPlasma.class, DataSerializers.VARINT);
+    private static final DataParameter<Float> PLASMA_SIZE = EntityDataManager.createKey(EntityPlasma.class, DataSerializers.FLOAT);
+    private static final DataParameter<Integer> IMPACT_TIMER = EntityDataManager.createKey(EntityPlasma.class, DataSerializers.VARINT);
     public float    syncSize;
     public boolean  synced;
     private boolean impacted;
@@ -123,12 +123,6 @@ public class EntityPlasma extends EntityThrowable
     }
 
     @Override
-    protected void doBlockCollisions()
-    {
-        super.doBlockCollisions();
-    }
-
-    @Override
     public void onImpact(RayTraceResult RayTraceResult)
     {
         if (!this.world.isRemote)
@@ -140,17 +134,12 @@ public class EntityPlasma extends EntityThrowable
 
             PredatorSounds.WEAPON_PLASMA_EXPLOSION.playSound(this, 7F, 1.0F);
 
-            @SuppressWarnings("unchecked")
-            List<Entity> entities = (List<Entity>) Entities.getEntitiesInCoordsRange(world, Entity.class, new Pos(this.posX, this.posY, this.posZ), (int) Math.ceil(this.getPlasmaSize()));
+            List<Entity> entities = Entities.getEntitiesInCoordsRange(world, Entity.class, new Pos(this.posX, this.posY, this.posZ), (int) Math.ceil(this.getPlasmaSize()));
 
-            for (Entity entity : entities)
-            {
-                if (entity != this.getThrower())
-                {
-                    entity.attackEntityFrom(AVPDamageSources.PLASMA_CASTER, 20F * this.getPlasmaSize());
-                    entity.hurtResistantTime = 0;
-                }
-            }
+            entities.stream().filter(entity -> entity != this.getThrower()).forEach(entity -> {
+                entity.attackEntityFrom(AVPDamageSources.PLASMA_CASTER, 20F * this.getPlasmaSize());
+                entity.hurtResistantTime = 0;
+            });
 
             if (!this.impacted)
             {
@@ -174,7 +163,7 @@ public class EntityPlasma extends EntityThrowable
     {
         float spread = this.getPlasmaSize() * 5F;
 
-        for (int i = (int) Math.round(spread); i > 0; i--)
+        for (int i = Math.round(spread); i > 0; i--)
         {
             double pX = this.posX + (this.rand.nextDouble() * spread) - (this.rand.nextDouble() * spread);
             double pY = this.posY + (this.rand.nextDouble() * spread) - (this.rand.nextDouble() * spread);

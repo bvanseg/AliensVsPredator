@@ -19,13 +19,13 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.api.power.IPowerConnection;
-import org.avp.common.api.power.IVoltageProvider;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.power.PowerConnection;
+import org.avp.common.api.power.VoltageProvider;
+import org.avp.common.api.power.VoltageReceiver;
 
 import java.util.Random;
 
-public abstract class TileEntityElectrical extends TileEntity implements ITickable, IPowerConnection
+public abstract class TileEntityElectrical extends TileEntity implements ITickable, PowerConnection
 {
     protected double  voltage;
     protected double  voltagePrev;
@@ -255,9 +255,9 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
             {
                 TileEntityElectrical e = (TileEntityElectrical) t;
 
-                if (e instanceof IVoltageProvider)
+                if (e instanceof VoltageProvider)
                 {
-                    IVoltageProvider provider = (IVoltageProvider) e;
+                    VoltageProvider provider = (VoltageProvider) e;
 
                     /** Check if we can pull power from surrounding providers **/
                     if (e.canProvideEnergyToReceiver(direction) && provider.canConnectPower(direction))
@@ -275,7 +275,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
                     }
                 }
 
-                if (e.getBoost() == 0 && e.getVoltage() > this.getVoltage() && t instanceof IVoltageProvider)
+                if (e.getBoost() == 0 && e.getVoltage() > this.getVoltage() && t instanceof VoltageProvider)
                 {
                     surroundingTile = t;
                 }
@@ -367,9 +367,9 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
             {
                 TileEntityElectrical electrical = (TileEntityElectrical) tile;
 
-                if (electrical instanceof IVoltageProvider)
+                if (electrical instanceof VoltageProvider)
                 {
-                    IVoltageProvider provider = (IVoltageProvider) electrical;
+                    VoltageProvider provider = (VoltageProvider) electrical;
 
                     if (electrical.canProvideEnergyToReceiver(direction) && provider.canConnectPower(direction))
                     {
@@ -377,7 +377,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
                     }
                 }
 
-                if (electrical instanceof IVoltageReceiver)
+                if (electrical instanceof VoltageReceiver)
                 {
                     if (electrical.getVoltage() < this.getVoltage())
                     {

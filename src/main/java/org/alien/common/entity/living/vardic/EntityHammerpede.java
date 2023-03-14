@@ -3,28 +3,28 @@ package org.alien.common.entity.living.vardic;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.block.Blocks;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
 import org.alien.common.AlienItems;
+import org.alien.common.entity.ai.brain.HammerpedeBrain;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
-import java.util.ArrayList;
+import java.util.List;
 
-public class EntityHammerpede extends SpeciesAlien implements IMob
+public class EntityHammerpede extends SpeciesAlien implements IMob, Brainiac<HammerpedeBrain>
 {
+
+    private HammerpedeBrain brain;
 
     public EntityHammerpede(World par1World)
     {
@@ -33,17 +33,18 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
         this.setSize(0.5F, 0.5F);
         this.experienceValue = 16;
     }
-    
+
+    @Override
+    public HammerpedeBrain getBrain() {
+        if (!this.world.isRemote) {
+            this.brain = new HammerpedeBrain(this);
+        }
+        return this.brain;
+    }
+
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.8D, true));
-        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        // TODO: Re-implement this
-//        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, Entity.class, 10 /** targetChance **/
-//            , false /** checkSight **/
-//            , false /** nearbyOnly **/
-//            , entitySelector));
+        this.getBrain().init();
     }
 
     @Override
@@ -63,38 +64,32 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
     }
 
     @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-    }
-
-    @Override
     public void onUpdate()
     {
         super.onUpdate();
         this.fallDistance = 0F;
         this.lurkInBlackGoo();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
     }
 
     public void lurkInBlackGoo()
     {
-        if (this.getAttackTarget() == null)
-        {
-            if (this.world.getTotalWorldTime() % 40 == 0 && this.rand.nextInt(4) == 0)
-            {
-                if (this.world.getBlockState(new BlockPos((int) this.posX, (int) this.posY, (int) this.posZ)).getBlock() != AlienBlocks.BLACK_GOO)
-                {
-                    ArrayList<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, (int) 10, this.world, AlienBlocks.BLACK_GOO);
+        if (this.getAttackTarget() != null)
+            return;
+        if (this.world.getTotalWorldTime() % 40 != 0 && this.rand.nextInt(4) != 0)
+            return;
+        if (this.world.getBlockState(this.getPosition()).getBlock() == AlienBlocks.BLACK_GOO)
+            return;
 
-                    if (locations.size() > 0)
-                    {
-                        Pos selectedCoord = locations.get(this.rand.nextInt(locations.size()));
-                        this.getNavigator().tryMoveToXYZ((double) selectedCoord.x, (double) selectedCoord.y, (double) selectedCoord.z, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
-                    }
-                    locations.clear();
-                    locations = null;
-                }
-            }
+        List<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, 10, this.world, AlienBlocks.BLACK_GOO);
+
+        if (!locations.isEmpty())
+        {
+            Pos selectedCoord = locations.get(this.rand.nextInt(locations.size()));
+            this.getNavigator().tryMoveToXYZ(selectedCoord.x, selectedCoord.y, selectedCoord.z, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
         }
     }
 
@@ -128,27 +123,9 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
     }
 
     @Override
-    public boolean attackEntityFrom(DamageSource source, float damage)
-    {
-        return super.attackEntityFrom(source, damage);
-    }
-
-    @Override
     public boolean isPotionApplicable(PotionEffect potionEffect)
     {
-        return potionEffect.getPotion() == MobEffects.POISON ? false : super.isPotionApplicable(potionEffect);
-    }
-
-    @Override
-    public void readEntityFromNBT(NBTTagCompound nbt)
-    {
-        super.readEntityFromNBT(nbt);
-    }
-
-    @Override
-    public void writeEntityToNBT(NBTTagCompound nbt)
-    {
-        super.writeEntityToNBT(nbt);
+        return potionEffect.getPotion() != MobEffects.POISON && super.isPotionApplicable(potionEffect);
     }
     
     @Override

@@ -24,16 +24,7 @@ public class EntitySporePod extends Entity
     }
 
     @Override
-    protected void entityInit()
-    {
-        ;
-    }
-
-    @Override
-    public void onEntityUpdate()
-    {
-        super.onEntityUpdate();
-    }
+    protected void entityInit() { /* Do Nothing */ }
 
     public boolean canStay()
     {

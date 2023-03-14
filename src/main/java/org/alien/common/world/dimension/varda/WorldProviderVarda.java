@@ -18,8 +18,8 @@ import org.avp.AVP;
 
 public class WorldProviderVarda extends WorldProvider implements IClimateProvider
 {
-    private StormProviderVarda storm = new StormProviderVarda();
-    private CloudProviderVarda clouds = new CloudProviderVarda();
+    private final StormProviderVarda storm = new StormProviderVarda();
+    private final CloudProviderVarda clouds = new CloudProviderVarda();
     private SkyProviderVarda sky;
     
     @Override

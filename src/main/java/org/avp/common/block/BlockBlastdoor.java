@@ -32,7 +32,7 @@ import org.lib.registry.BlockRegistryUtil;
 
 public class BlockBlastdoor extends Block
 {
-    private DynamicNotification notification = new DynamicNotification();
+    private final DynamicNotification notification = new DynamicNotification();
 
     public BlockBlastdoor(Material material)
     {
@@ -102,7 +102,7 @@ public class BlockBlastdoor extends Block
         {
             blastdoor.setBeingPryedOpen(true);
             blastdoor.setDoorProgress(blastdoor.getDoorProgress() + 0.05F);
-            int percentOpen = (int) (((blastdoor.getDoorProgress() >= blastdoor.getMaxDoorPryProgress() ? blastdoor.getMaxDoorPryProgress() : blastdoor.getDoorProgress()) * 100) / blastdoor.getMaxDoorPryProgress());
+            int percentOpen = (int) (((Math.min(blastdoor.getDoorProgress(), blastdoor.getMaxDoorPryProgress())) * 100) / blastdoor.getMaxDoorPryProgress());
 
             ItemMaintenanceJack jack = (ItemMaintenanceJack) player.getHeldItemMainhand().getItem();
             jack.onPryBlastDoor(player, player.getHeldItemMainhand());

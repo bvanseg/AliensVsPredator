@@ -3,7 +3,7 @@ package org.alien.client.model.entity.living;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.predator.common.entity.living.yautja.EntityYautjaMutant;
+import org.alien.common.entity.living.EntityYautjaMutant;
 
 public class ModelMutantYautja extends Model<EntityYautjaMutant>
 {

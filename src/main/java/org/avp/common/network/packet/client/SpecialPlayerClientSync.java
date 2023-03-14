@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 
 public class SpecialPlayerClientSync implements IMessage, IMessageHandler<SpecialPlayerClientSync, SpecialPlayerClientSync>
 {
@@ -53,11 +53,11 @@ public class SpecialPlayerClientSync implements IMessage, IMessageHandler<Specia
 
                 if (entity != null)
                 {
-                    SpecialPlayer specialPlayer = (SpecialPlayer) entity.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+                    SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) entity.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
                     if (specialPlayer != null)
                     {
-                        specialPlayer.readNBT(SpecialPlayer.Provider.CAPABILITY, specialPlayer, null, packet.tag);
+                        specialPlayer.readNBT(SpecialPlayerImpl.Provider.CAPABILITY, specialPlayer, null, packet.tag);
                     }
                 }
             }

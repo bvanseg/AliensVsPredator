@@ -5,10 +5,9 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 import org.alien.common.entity.living.SpeciesEngineer;
-import org.alien.common.entity.living.engineer.EntityEngineer;
 
 
-public class ModelEngineer extends Model<EntityEngineer>
+public class ModelEngineer extends Model<SpeciesEngineer>
 {
     public final ModelRenderer chest;
     public final ModelRenderer stomach;
@@ -138,10 +137,8 @@ public class ModelEngineer extends Model<EntityEngineer>
     }
 
     @Override
-    public void render(EntityEngineer obj)
+    public void render(SpeciesEngineer obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
-        
         this.lShin.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6662F) * 1.0F * swingProgressPrev(obj);
         this.lThigh.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6662F) * 1.0F * swingProgressPrev(obj) - 0.2014257F;
         this.lFoot.rotateAngleX = MathHelper.cos(swingProgress(obj) * 0.6662F) * 1.0F * swingProgressPrev(obj);
@@ -170,9 +167,7 @@ public class ModelEngineer extends Model<EntityEngineer>
         draw(lArmLower_1);
         draw(neck);
 
-        SpeciesEngineer engineer = (SpeciesEngineer) base;
-
-        if (engineer != null && engineer.isWearingMask() || engineer == null)
+        if (obj != null && obj.isWearingMask() || obj == null)
         {
             draw(nozzle3c);
             draw(head1);

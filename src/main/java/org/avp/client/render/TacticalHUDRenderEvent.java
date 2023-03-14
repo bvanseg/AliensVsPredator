@@ -25,15 +25,15 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.AVP;
 import org.avp.client.gui.GuiTacticalHUDSettings;
 import org.avp.client.render.wavegraph.Wavegraph;
 import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
 import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityAPC;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -44,16 +44,16 @@ public class TacticalHUDRenderEvent
 {
     public static final TacticalHUDRenderEvent instance          = new TacticalHUDRenderEvent();
     private GuiTacticalHUDSettings             guiSettings;
-    private ArrayList<EntityPlayer>            playersInHUD      = new ArrayList<EntityPlayer>();
-    private SpecialPlayer                      specialPlayer;
-    private Organism                           playerOrganism;
-    private GuiCustomButton                    buttonMarineHelmConfig;
+    private final ArrayList<EntityPlayer>            playersInHUD      = new ArrayList<EntityPlayer>();
+    private SpecialPlayerImpl specialPlayer;
+    private OrganismImpl playerOrganism;
+    private final GuiCustomButton                    buttonMarineHelmConfig;
     private boolean                            gammaRestored     = true;
     private int                                viewportThreshold = 20;
     private ArrayList<EntityLivingBase>        trackedEntities;
-    private Electrocardiogram electrocardiogram;
-    private Wavegraph wavegraph1;
-    private Wavegraph                          wavegraph2;
+    private final Electrocardiogram electrocardiogram;
+    private final Wavegraph wavegraph1;
+    private final Wavegraph                          wavegraph2;
 
     public TacticalHUDRenderEvent()
     {
@@ -103,7 +103,7 @@ public class TacticalHUDRenderEvent
                                 {
                                     if (living != null && (Entities.canEntityBeSeenBy(living, Game.minecraft().player) || !specialPlayer.isEntityCullingEnabled()) && living instanceof EntityLivingBase)
                                     {
-                                        Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+                                        OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
                                         Entity rve = Game.minecraft().getRenderViewEntity();
 
                                         Vec3d lPos = new Vec3d(living.posX, living.posY, living.posZ).add(0, living.getEyeHeight() / 2, 0);
@@ -192,7 +192,7 @@ public class TacticalHUDRenderEvent
             {
                 if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVPItems.HELM_MARINE)
                 {
-                    SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+                    SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) Game.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
                     this.gammaRestored = false;
                     LightmapUpdateEvent.instance.gammaValue = specialPlayer.isNightvisionEnabled() ? 8F : 0F;
@@ -284,14 +284,14 @@ public class TacticalHUDRenderEvent
         }
     }
 
-    public SpecialPlayer getSpecialPlayer()
+    public SpecialPlayerImpl getSpecialPlayer()
     {
-        return Game.minecraft() != null ? Game.minecraft().player != null ? this.specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null) : null : null;
+        return Game.minecraft() != null ? Game.minecraft().player != null ? this.specialPlayer = (SpecialPlayerImpl) Game.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null) : null : null;
     }
 
-    public Organism getPlayerOrganism()
+    public OrganismImpl getPlayerOrganism()
     {
-        return Game.minecraft() != null ? Game.minecraft().player != null ? this.playerOrganism = (Organism) Game.minecraft().player.getCapability(Provider.CAPABILITY, null) : null : null;
+        return Game.minecraft() != null ? Game.minecraft().player != null ? this.playerOrganism = (OrganismImpl) Game.minecraft().player.getCapability(Provider.CAPABILITY, null) : null : null;
     }
 
     public void changeChannel(String channel)
@@ -425,7 +425,7 @@ public class TacticalHUDRenderEvent
         OpenGL.popMatrix();
     }
 
-    public void drawImpregnationIndicator(Organism organism)
+    public void drawImpregnationIndicator(OrganismImpl organism)
     {
         // if (organism.hasEmbryo() && organism.getEntity().world.getWorldTime() % 20 <=
         // 10)
@@ -471,7 +471,7 @@ public class TacticalHUDRenderEvent
 
         if (playerFound != null)
         {
-            SpecialPlayer specialPlayer = (SpecialPlayer) playerFound.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+            SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) playerFound.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
             if (!isPlayerInHUD(playerFound) && specialPlayer.getBroadcastChannel().equalsIgnoreCase(this.specialPlayer.getBroadcastChannel()))
             {
@@ -485,7 +485,7 @@ public class TacticalHUDRenderEvent
         for (int x = 0; x < playersInHUD.size(); x++)
         {
             EntityPlayer player = playersInHUD.get(x);
-            SpecialPlayer specialPlayer = (SpecialPlayer) player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+            SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
             if (player != null || player != null && !specialPlayer.getBroadcastChannel().equalsIgnoreCase(this.specialPlayer.getBroadcastChannel()))
             {
@@ -496,7 +496,7 @@ public class TacticalHUDRenderEvent
             {
                 int barSpace = 15;
                 int signal = (int) Game.minecraft().player.getDistanceSq(player);
-                int maxSignal = specialPlayer.getBroadcastRadius() <= this.specialPlayer.getBroadcastRadius() ? specialPlayer.getBroadcastRadius() : this.specialPlayer.getBroadcastRadius();
+                int maxSignal = Math.min(specialPlayer.getBroadcastRadius(), this.specialPlayer.getBroadcastRadius());
                 int pxMultiplier = signal >= maxSignal / 1.3 ? 5 : signal >= maxSignal / 2 ? 4 : signal >= maxSignal / 3 ? 3 : signal >= maxSignal / 4 ? 2 : signal >= maxSignal / 5 ? 1 : signal >= maxSignal / 6 ? 0 : 0;
 
                 Draw.drawRect(Screen.scaledDisplayResolution().getScaledWidth() - 111, 40 + barSpace * x - 5, 120, 2, 0xAA00AAFF);

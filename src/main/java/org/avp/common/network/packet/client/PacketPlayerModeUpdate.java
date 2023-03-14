@@ -5,7 +5,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.avp.common.world.playermode.PlayerMode;
 
 public class PacketPlayerModeUpdate implements IMessage, IMessageHandler<PacketPlayerModeUpdate, PacketPlayerModeUpdate>
@@ -42,7 +42,7 @@ public class PacketPlayerModeUpdate implements IMessage, IMessageHandler<PacketP
             @Override
             public void run()
             {
-                SpecialPlayer specialPlayer = (SpecialPlayer) Game.minecraft().player.getCapability(SpecialPlayer.Provider.CAPABILITY, null);
+                SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) Game.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
                 specialPlayer.setPlayerMode(PlayerMode.get(packet.mode));
             }
         });

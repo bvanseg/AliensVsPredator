@@ -8,4 +8,9 @@ package org.lib.brain;
  */
 public interface Brainiac<T extends AbstractBrain<?>> {
 	T getBrain();
+
+	default void setBrainDisabled(boolean isDisabled) {
+		if (getBrain() == null) return;
+		getBrain().setDisabled(isDisabled);
+	}
 }

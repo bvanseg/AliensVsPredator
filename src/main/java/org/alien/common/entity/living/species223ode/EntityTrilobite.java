@@ -5,10 +5,10 @@ import com.asx.mdx.lib.world.entity.Entities;
 import com.asx.mdx.lib.world.entity.animations.Animation;
 import com.asx.mdx.lib.world.entity.animations.AnimationHandler;
 import com.asx.mdx.lib.world.entity.animations.IAnimated;
-import com.google.common.base.Predicate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityLookHelper;
+import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemAxe;
@@ -28,21 +28,22 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IParasitoid;
+import org.alien.common.api.parasitoidic.Parasitoid;
+import org.alien.common.entity.ai.brain.TrilobiteBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.Species223ODe;
 import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.AVP;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 import org.predator.common.item.ItemWristbracer;
 
 import java.util.List;
 
-public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnimated
+public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnimated, Brainiac<TrilobiteBrain>
 {
     public static final Animation                      IMPREGNATION_ANIMATION = Animation.create(0);
     public static final Animation                      ANIMATION_HUG_WALL     = Animation.create(20 * 5);
@@ -51,6 +52,8 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     private static final DataParameter<NBTTagCompound> DETACHED_TENTACLES     = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.COMPOUND_TAG);
     private int                                        ticksOnHost            = 0;
 
+    private TrilobiteBrain brain;
+
     public EntityTrilobite(World world)
     {
         super(world);
@@ -58,15 +61,18 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         this.experienceValue = 32;
         this.jumpMovementFactor = 1.0F;
     }
-    
+
+    @Override
+    public TrilobiteBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new TrilobiteBrain(this);
+        }
+        return this.brain;
+    }
+
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
-        this.tasks.addTask(8, new PatchedEntityAIWander(this, 0.800000011920929D));
-        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.85F));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, EntitySelectorTrilobite.instance));
+        this.getBrain().init();
     }
 
     @Override
@@ -89,24 +95,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         NBTTagCompound tagDetachedTentacles = new NBTTagCompound();
         tagDetachedTentacles.setIntArray("Tentacles", new int[this.getAmountOfTentacles()]);
         this.getDataManager().register(DETACHED_TENTACLES, tagDetachedTentacles);
-    }
-
-    @Override
-    public void onLivingUpdate()
-    {
-        super.onLivingUpdate();
-    }
-
-    @Override
-    protected void updateAITasks()
-    {
-        super.updateAITasks();
-    }
-
-    @Override
-    public void onEntityUpdate()
-    {
-        super.onEntityUpdate();
     }
     
     @Override
@@ -189,6 +177,10 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     {
         super.onUpdate();
 
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
+
         this.updateHitbox();
         this.negateFallDamage();
         this.slideUpSurface();
@@ -197,7 +189,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
         {
             if (this.world.getTotalWorldTime() % 5 == 0)
             {
-                if (!this.getImpregnationEntitySelector().apply(this.getAttackTarget()))
+                if (!EntitySelectorTrilobite.instance.apply(this.getAttackTarget()))
                 {
                     this.setAttackTarget(null);
                 }
@@ -370,7 +362,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect)
     {
-        return potionEffect.getPotion() == MobEffects.POISON ? false : super.isPotionApplicable(potionEffect);
+        return potionEffect.getPotion() != MobEffects.POISON && super.isPotionApplicable(potionEffect);
     }
 
     @Override
@@ -389,16 +381,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     protected void collideWithNearbyEntities()
     {
         List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox());
-
-        if (list != null && !list.isEmpty())
-        {
-            for (int i = 0; i < list.size(); ++i)
-            {
-                Entity entity = (Entity) list.get(i);
-
-                this.collideWithEntity(entity);
-            }
-        }
+        list.forEach(this::collideWithEntity);
     }
 
     @Override
@@ -417,7 +400,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        IParasitoid.readFromNBT(this, nbt);
+        Parasitoid.readFromNBT(this, nbt);
 
         this.setDetachedTentacles(nbt.getIntArray("Tentacles"));
     }
@@ -427,7 +410,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     {
         nbt.setTag("Tentacles", new NBTTagIntArray(this.getDetachedTentacles()));
 
-        IParasitoid.writeToNBT(this, nbt);
+        Parasitoid.writeToNBT(this, nbt);
         return super.writeToNBT(nbt);
     }
 
@@ -449,7 +432,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     public void implantEmbryo(EntityLivingBase target)
     {
-        Organism organism = (Organism) target.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(Embryo.DEACON);
         organism.syncWithClients(target);
         this.setFertility(false);
@@ -600,12 +583,7 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     @Override
     public boolean canAttach(Entity entity)
     {
-        if (entity instanceof EntityLivingBase)
-        {
-            return getImpregnationEntitySelector().apply((EntityLivingBase) entity);
-        }
-
-        return false;
+        return (entity instanceof EntityLivingBase) && EntitySelectorTrilobite.instance.apply((EntityLivingBase) entity);
     }
 
     @Override
@@ -618,12 +596,6 @@ public class EntityTrilobite extends Species223ODe implements IParasitoid, IAnim
     public int getDetachTime()
     {
         return (2 * 60) * 20;
-    }
-
-    @Override
-    public Predicate<EntityLivingBase> getImpregnationEntitySelector()
-    {
-        return EntitySelectorTrilobite.instance;
     }
 
     @Override

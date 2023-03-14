@@ -15,7 +15,7 @@ public class RenderItemSporePod extends ItemRenderer<ModelSporePod>
     private float              scale;
     private float              x;
     private float              y;
-    private MapModelTexture<?> model;
+    private final MapModelTexture<?> model;
 
     @SuppressWarnings("all")
     public RenderItemSporePod()

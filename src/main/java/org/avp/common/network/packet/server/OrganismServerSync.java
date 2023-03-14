@@ -7,8 +7,8 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 
 public class OrganismServerSync implements IMessage, IMessageHandler<OrganismServerSync, OrganismServerSync>
 {
@@ -52,7 +52,7 @@ public class OrganismServerSync implements IMessage, IMessageHandler<OrganismSer
 
                 if (entity != null)
                 {
-                    Organism organism = (Organism) entity.getCapability(Provider.CAPABILITY, null);
+                    OrganismImpl organism = (OrganismImpl) entity.getCapability(Provider.CAPABILITY, null);
 
                     if (organism != null)
                     {

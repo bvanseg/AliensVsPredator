@@ -5,11 +5,9 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.MathHelper;
 
-import java.util.Random;
-
+@Deprecated
 public class EntityAISuperjump extends EntityAIBase
 {
-    private Random random;
     /** The entity that is leaping. */
     EntityLiving leaper;
     /** The entity that the leaper is leaping towards. */
@@ -22,7 +20,6 @@ public class EntityAISuperjump extends EntityAIBase
         this.leaper = leapingEntity;
         this.leapMotionY = leapMotionYIn;
         this.setMutexBits(5);
-        this.random = new Random();
     }
 
     /**
@@ -61,6 +58,7 @@ public class EntityAISuperjump extends EntityAIBase
     /**
      * Returns whether an in-progress EntityAIBase should continue executing
      */
+    @Override
     public boolean shouldContinueExecuting()
     {
         return !this.leaper.onGround;
@@ -69,18 +67,19 @@ public class EntityAISuperjump extends EntityAIBase
     /**
      * Execute a one shot task or start executing a continuous task
      */
+    @Override
     public void startExecuting()
     {
         double distX = this.leapTarget.posX - this.leaper.posX;
         double distZ = this.leapTarget.posZ - this.leaper.posZ;
         float distance = MathHelper.sqrt(distX * distX + distZ * distZ);
 
-        if ((double)distance >= 1.0E-4D)
+        if (distance >= 1.0E-4D)
         {
-            this.leaper.motionX += distX / (double)distance + this.leaper.motionX;
-            this.leaper.motionZ += distZ / (double)distance + this.leaper.motionZ;
+            this.leaper.motionX += distX / distance + this.leaper.motionX;
+            this.leaper.motionZ += distZ / distance + this.leaper.motionZ;
         }
 
-        this.leaper.motionY = (double)this.leapMotionY + (0.3F / (1 + random.nextInt(2)));
+        this.leaper.motionY = (double)this.leapMotionY + (0.3F / (1 + this.leaper.getRNG().nextInt(2)));
     }
 }

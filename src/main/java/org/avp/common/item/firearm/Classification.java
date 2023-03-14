@@ -10,9 +10,9 @@ public enum Classification {
 	SHOTGUN(2.0F),
 	PISTOL(1.0F);
 
-	private float baseDamage;
+	private final float baseDamage;
 
-	private Classification(float baseDamage) {
+	Classification(float baseDamage) {
 		this.baseDamage = baseDamage;
 	}
 

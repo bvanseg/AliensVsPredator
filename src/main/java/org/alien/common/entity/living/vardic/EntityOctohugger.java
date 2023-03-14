@@ -6,9 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -23,18 +20,16 @@ import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IParasitoid;
+import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 
 import java.util.ArrayList;
 
-public class EntityOctohugger extends EntityParasitoid implements IMob, IParasitoid
+public class EntityOctohugger extends EntityParasitoid implements IMob, Parasitoid
 {
     private static final DataParameter<BlockPos> HANGING_POSITION = EntityDataManager.createKey(EntityOctohugger.class, DataSerializers.BLOCK_POS);
     private static final DataParameter<Boolean>  HANGING          = EntityDataManager.createKey(EntityOctohugger.class, DataSerializers.BOOLEAN);
@@ -48,15 +43,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         this.experienceValue = 10;
         this.ignoreFrustumCheck = true;
         this.jumpMovementFactor = 0.3F;
-    }
-    
-    @Override
-    protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAICustomAttackOnCollide(this, 0.55D, true));
-        this.tasks.addTask(2, new PatchedEntityAIWander(this, 0.55D));
-        this.targetTasks.addTask(0, new EntityAILeapAtTarget(this, 0.8F));
-        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, this.getImpregnationEntitySelector()));
     }
 
     @Override
@@ -125,7 +111,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
 
                 if (state.getBlock() != net.minecraft.init.Blocks.AIR)
                 {
-                    ArrayList<IBlockState> check = new ArrayList<IBlockState>();
+                    ArrayList<IBlockState> check = new ArrayList<>();
                     BlockPos locBelow = pos.add(0, -1, 0);
 
                     check.add(this.world.getBlockState(locBelow));
@@ -145,7 +131,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
                         }
                     }
 
-                    RayTraceResult trace = this.world.rayTraceBlocks(new Vec3d(this.posX, this.posY + (double)this.getEyeHeight(), this.posZ), new Vec3d(pos.getX(), pos.getY(), pos.getZ()), false, true, false);
+                    RayTraceResult trace = this.world.rayTraceBlocks(new Vec3d(this.posX, this.posY + this.getEyeHeight(), this.posZ), new Vec3d(pos.getX(), pos.getY(), pos.getZ()), false, true, false);
                     boolean canSeeLocation = trace == null;
 
                     if (validPosition && canSeeLocation)
@@ -164,25 +150,13 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
         {
             ArrayList<EntityLivingBase> entities = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1, -8, 1));
 
-            if (entities != null)
+            entities.removeIf(entity -> !EntitySelectorParasitoid.instance.apply(entity) || entity instanceof EntityParasitoid);
+
+            Entity target = !entities.isEmpty() ? entities.get(world.rand.nextInt(entities.size())) : null;
+
+            if (target != null && this.getDistanceSq(target) > 0)
             {
-                for (EntityLivingBase entity : new ArrayList<EntityLivingBase>(entities))
-                {
-                    if (!EntitySelectorParasitoid.instance.apply(entity) || entity instanceof EntityParasitoid)
-                    {
-                        entities.remove(entity);
-                    }
-                }
-
-                Entity target = entities.size() >= 1 ? (Entity) entities.get(world.rand.nextInt(entities.size())) : null;
-
-                if (target != null)
-                {
-                    if (this.getDistanceSq(target) > 0)
-                    {
-                        stringStrength = 0.0F;
-                    }
-                }
+                stringStrength = 0.0F;
             }
         }
 
@@ -250,12 +224,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     }
 
     @Override
-    public boolean canMoveToJelly()
-    {
-        return super.canMoveToJelly() && this.isFertile();
-    }
-
-    @Override
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.FACEHUGGER_DEATH.event();
@@ -264,7 +232,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, IParasit
     @Override
     public void implantEmbryo(EntityLivingBase living)
     {
-        Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(Embryo.BELUGA);
         organism.syncWithClients(living);
         this.setFertility(false);

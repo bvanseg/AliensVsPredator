@@ -14,7 +14,7 @@ public class InventoryCustomPlayer implements IInventory
     private final String name = "Inventory";
     private final String tagName = "InventoryNBTTagName";
     public static final int INV_SIZE = 2;
-    private ItemStack[] inventory = new ItemStack[INV_SIZE];
+    private final ItemStack[] inventory = new ItemStack[INV_SIZE];
 
     public InventoryCustomPlayer()
     {

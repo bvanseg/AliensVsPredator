@@ -1,11 +1,8 @@
 package org.alien.common.entity.living.xenomorph;
 
 import com.asx.mdx.lib.world.Pos;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -17,37 +14,40 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IHost;
-import org.alien.common.entity.ai.selector.EntitySelectorDracomorph;
+import org.alien.common.api.parasitoidic.Host;
+import org.alien.common.entity.ai.brain.DracomorphBrain;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.AVPItemDrops;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
+public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Brainiac<DracomorphBrain>
 {
     private static final DataParameter<Integer> FLYING = EntityDataManager.createKey(EntityDracomorph.class, DataSerializers.VARINT);
     private BlockPos flyToPosition;
+
+    private DracomorphBrain brain;
 
     public EntityDracomorph(World world)
     {
         super(world);
         this.experienceValue = 150;
         this.setSize(4, 7);
-        
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityCreature.class, 1.0D, false));
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, EntityPlayer.class, 1.0D, false));
-        this.tasks.addTask(5, new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(6, new EntityAIMoveThroughVillage(this, 1.0D, false));
-        this.tasks.addTask(7, new PatchedEntityAIWander(this, 1.0D));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(8, new EntityAILookIdle(this));
-        this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityCreature.class, 0, true, false, EntitySelectorDracomorph.instance));
-        this.targetTasks.addTask(2, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, 0, true, false, EntitySelectorDracomorph.instance));
 
         this.getDataManager().register(FLYING, 0);
+    }
+
+    @Override
+    public DracomorphBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new DracomorphBrain(this);
+        }
+        return this.brain;
+    }
+
+    @Override
+    protected void initEntityAI() {
+        this.getBrain().init();
     }
 
     @Override
@@ -82,6 +82,8 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
 
         if (!this.world.isRemote)
         {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+
             if (isFlying())
             {
                 this.motionY *= 0.5000000238418579D;
@@ -115,9 +117,9 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
 
             if (this.isFlying())
             {
-                double d0 = (double) this.flyToPosition.getX() + 0.5D - this.posX;
-                double d1 = (double) this.flyToPosition.getY() + 0.1D - this.posY;
-                double d2 = (double) this.flyToPosition.getZ() + 0.5D - this.posZ;
+                double d0 = this.flyToPosition.getX() + 0.5D - this.posX;
+                double d1 = this.flyToPosition.getY() + 0.1D - this.posY;
+                double d2 = this.flyToPosition.getZ() + 0.5D - this.posZ;
                 this.motionX += (Math.signum(d0) * 0.65D - this.motionX) * 0.10000000149011612D;
                 this.motionY += (Math.signum(d1) * 2.199999988079071D - this.motionY) * 0.10000000149011612D;
                 this.motionZ += (Math.signum(d2) * 0.65D - this.motionZ) * 0.10000000149011612D;
@@ -131,7 +133,7 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
 
     public boolean isFlying()
     {
-        return this.getDataManager().get(FLYING) == 0 ? false : true;
+        return this.getDataManager().get(FLYING) != 0;
     }
 
     @Override
@@ -159,28 +161,32 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, IHost
     }
     
     @Override
-    protected void despawnEntity()
-    {
-        ;
-    }
+    protected void despawnEntity() { /* Do Nothing */ }
 
     @Override
     public void onDeath(DamageSource source)
     {
         super.onDeath(source);
 
-        switch (this.rand.nextInt(4))
+        switch (this.rand.nextInt(5))
         {
             case 0:
                 AVPItemDrops.SKULL_ENGINEER.tryDrop(this);
+                break;
             case 1:
                 AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
+                break;
             case 2:
                 AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
+                break;
             case 3:
                 AVPItemDrops.SKULL_XENO_DRONE.tryDrop(this);
+                break;
             case 4:
                 AVPItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
+                break;
+            default:
+                break;
         }
     }
 

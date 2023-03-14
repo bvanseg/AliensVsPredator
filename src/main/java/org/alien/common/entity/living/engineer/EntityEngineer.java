@@ -34,14 +34,12 @@ public class EntityEngineer extends SpeciesEngineer
     {
         super.onDeath(damagesource);
         
-        if (damagesource == AVPDamageSources.WRISTBRACER)
-        {
+        if (damagesource == AVPDamageSources.WRISTBRACER) {
             AVPItemDrops.SKULL_ENGINEER.tryDrop(this, 25);
+            return;
         }
-        else
-        {
-            AVPItemDrops.SKULL_ENGINEER.tryDrop(this);
-        }
+
+        AVPItemDrops.SKULL_ENGINEER.tryDrop(this);
     }
 
     @Override
@@ -69,10 +67,7 @@ public class EntityEngineer extends SpeciesEngineer
     }
     
     @Override
-    protected void despawnEntity()
-    {
-        ;
-    }
+    protected void despawnEntity() { /* Do Nothing */ }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)

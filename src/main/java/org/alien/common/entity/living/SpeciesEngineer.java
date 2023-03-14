@@ -4,13 +4,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -19,15 +14,16 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import org.alien.common.entity.ai.brain.EngineerBrain;
 import org.avp.common.AVPItemDrops;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
-import org.avp.common.entity.living.EntityMarine;
-import org.predator.common.entity.living.SpeciesYautja;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
-public abstract class SpeciesEngineer extends EntityMob
+public abstract class SpeciesEngineer extends EntityMob implements Brainiac<EngineerBrain>
 {
     private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(SpeciesEngineer.class, DataSerializers.BOOLEAN);
+
+    private EngineerBrain brain;
     
     public SpeciesEngineer(World world)
     {
@@ -35,18 +31,18 @@ public abstract class SpeciesEngineer extends EntityMob
         this.experienceValue = 250;
         this.setSize(1.0F, 2.5F);
     }
-    
+
+    @Override
+    public EngineerBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new EngineerBrain(this);
+        }
+        return this.brain;
+    }
+
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
-        this.tasks.addTask(8, new PatchedEntityAIWander(this, 0.800000011920929D));
-        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.4F));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, SpeciesAlien.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, SpeciesYautja.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityMarine.class, true));
-        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, EntityPlayer.class, true));
+        this.getBrain().init();
     }
 
     @Override
@@ -65,6 +61,15 @@ public abstract class SpeciesEngineer extends EntityMob
     {
         super.entityInit();
         this.getDataManager().register(WEARING_MASK, this.rand.nextBoolean());
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
     }
 
     @Override

@@ -23,8 +23,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPSettings.ClientSettings;
 import org.predator.common.entity.living.SpeciesYautja;
 
@@ -39,13 +39,18 @@ public class EntityImpregnationHandler
     {
     	Entity entity =  event.getEntity();
     	
-    	if (!this.canTickHost(entity))
-    		return;
-    	
         World world = entity.getEntityWorld();
         
         EntityLivingBase host = (EntityLivingBase) entity;
-        Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
+
+        // If the host can't be ticked, remove its embryo and return.
+        if (!this.canTickHost(entity)) {
+            if (organism != null && organism.hasEmbryo()) {
+                organism.removeEmbryo();
+            }
+            return;
+        }
 
         organism.onTick(host, organism);
         
@@ -96,11 +101,7 @@ public class EntityImpregnationHandler
     	if (entity == null || entity.isDead || entity.world == null || !(entity instanceof EntityLivingBase))
     		return false;
         
-        // If the entity has not spawned in a world yet
-        if (entity.world == null)
-        	return false;
-        
-        Organism organism = (Organism) entity.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) entity.getCapability(Provider.CAPABILITY, null);
         
         // If the organism does not have an embryo
         if (!organism.hasEmbryo())
@@ -220,14 +221,14 @@ public class EntityImpregnationHandler
     @SubscribeEvent
     public void respawnEvent(PlayerRespawnEvent event)
     {
-        Organism organism = (Organism) event.player.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) event.player.getCapability(Provider.CAPABILITY, null);
         organism.removeEmbryo();
     }
 
     @SubscribeEvent
     public void despawnEvent(LivingSpawnEvent.AllowDespawn event)
     {
-        Organism organism = (Organism) event.getEntityLiving().getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) event.getEntityLiving().getCapability(Provider.CAPABILITY, null);
 
         if (organism.hasEmbryo())
         {

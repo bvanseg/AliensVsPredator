@@ -5,8 +5,8 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.AVP;
 
 public class ChestbursterOverlayEvent
@@ -20,7 +20,7 @@ public class ChestbursterOverlayEvent
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
             {
-                Organism organism = (Organism) Game.minecraft().player.getCapability(Provider.CAPABILITY, null);
+                OrganismImpl organism = (OrganismImpl) Game.minecraft().player.getCapability(Provider.CAPABILITY, null);
 
                 if (organism.hasEmbryo())
                 {

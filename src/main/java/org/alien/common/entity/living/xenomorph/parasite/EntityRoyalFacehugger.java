@@ -1,6 +1,5 @@
 package org.alien.common.entity.living.xenomorph.parasite;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
@@ -8,8 +7,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 
 public class EntityRoyalFacehugger extends EntityFacehugger
 {
@@ -40,17 +39,11 @@ public class EntityRoyalFacehugger extends EntityFacehugger
     {
         return false;
     }
-    
-    @Override
-    public boolean attackEntityAsMob(Entity entity)
-    {
-        return false;
-    }
 
     @Override
     public void implantEmbryo(EntityLivingBase living)
     {
-        Organism organism = (Organism) living.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(Embryo.QUEEN);
         organism.syncWithClients(living);
         this.setFertility(false);

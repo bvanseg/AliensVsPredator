@@ -36,22 +36,21 @@ public class EntityYautjaBerserker extends SpeciesYautja
     }
     
     @Override
-    protected void dropBiomaskAndSkull(DamageSource damagesource)
+    protected void dropBiomaskAndSkull(DamageSource damageSource)
     {
-        if (damagesource == AVPDamageSources.WRISTBRACER)
+        if (damageSource == AVPDamageSources.WRISTBRACER)
         {
             AVPItemDrops.SKULL_PREDATOR.tryDrop(this, 25);
             AVPItemDrops.BIOMASK_BERSERKER.tryDrop(this, 25);
             AVPItemDrops.BIOMASK_FALCONER.tryDrop(this, 25);
             AVPItemDrops.BIOMASK_TRACKER.tryDrop(this, 25);
+            return;
         }
-        else
-        {
-            AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
-            AVPItemDrops.BIOMASK_BERSERKER.tryDrop(this);
-            AVPItemDrops.BIOMASK_FALCONER.tryDrop(this);
-            AVPItemDrops.BIOMASK_TRACKER.tryDrop(this);
-        }
+
+        AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
+        AVPItemDrops.BIOMASK_BERSERKER.tryDrop(this);
+        AVPItemDrops.BIOMASK_FALCONER.tryDrop(this);
+        AVPItemDrops.BIOMASK_TRACKER.tryDrop(this);
     }
     
     @Override

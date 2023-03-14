@@ -6,7 +6,6 @@ import com.asx.mdx.lib.world.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -20,22 +19,23 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IMaturable;
-import org.alien.common.api.parasitoidic.INascentic;
-import org.alien.common.api.parasitoidic.IRoyalOrganism;
-import org.alien.common.entity.ai.selector.EntitySelectorAvoid;
+import org.alien.common.api.parasitoidic.Nascentic;
+import org.alien.common.api.parasitoidic.RoyalOrganism;
+import org.alien.common.entity.ai.brain.ChestbursterBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityChestburster extends SpeciesAlien implements IMob, INascentic, HiveMember
+public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic, HiveMember, Brainiac<ChestbursterBrain>
 {
     private Class<? extends Entity> matureState;
+
+    private ChestbursterBrain brain;
 
     public EntityChestburster(World world)
     {
@@ -43,14 +43,19 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
         this.matureState = EntityDrone.class;
         this.setSize(1.0F, 0.4F);
         this.experienceValue = 16;
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIAvoidEntity<EntityLivingBase>(this, EntityLivingBase.class, EntitySelectorAvoid.instance, 8.0F, 0.4F, 0.7F));
-        this.tasks.addTask(3, new EntityAICustomAttackOnCollide(this, 0.800000011920929D, true));
-        this.tasks.addTask(4, new PatchedEntityAIWander(this, 0.800000011920929D));
-        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(0, new EntityAINearestAttackableTarget<EntityLivingBase>(this, EntityLivingBase.class, 0, false, false, EntitySelectorParasitoid.instance));
-        this.targetTasks.addTask(1, new EntityAIAttackMelee(this, 0.8F, false));
-        this.targetTasks.addTask(2, new EntityAILeapAtTarget(this, 0.8F));
+    }
+
+    @Override
+    public ChestbursterBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new ChestbursterBrain(this);
+        }
+        return this.brain;
+    }
+
+    @Override
+    protected void initEntityAI() {
+        this.getBrain().init();
     }
 
     @Override
@@ -64,12 +69,6 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     }
 
     @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-    }
-
-    @Override
     public boolean canBreatheUnderwater()
     {
         return true;
@@ -79,18 +78,19 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     public void onUpdate()
     {
         super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
         
         if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.apply(this.getAttackTarget()))
             this.setAttackTarget(null);
     }
 
     @Override
-    public boolean isReadyToMature(IRoyalOrganism jellyProducer)
+    public boolean isReadyToMature(RoyalOrganism jellyProducer)
     {
-        IMaturable maturable = (IMaturable) this;
-        IRoyalOrganism ro = (IRoyalOrganism) this;
-        
-        return this.ticksExisted >= maturable.getMaturityTime() || ro.getJellyLevel() >= maturable.getMaturityLevel();
+        return this.ticksExisted >= this.getMaturityTime() || this.getJellyLevel() >= this.getMaturityLevel();
     }
 
     @Override
@@ -164,17 +164,12 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     {
         return this.isOnLadder() && this.motionY > 1.0099999997764826D;
     }
-    
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        return super.attackEntityFrom(source, amount);
-    }
+
 
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect)
     {
-        return potionEffect.getPotion() == MobEffects.POISON ? false : super.isPotionApplicable(potionEffect);
+        return potionEffect.getPotion() != MobEffects.POISON && super.isPotionApplicable(potionEffect);
     }
 
     @Override
@@ -203,13 +198,13 @@ public class EntityChestburster extends SpeciesAlien implements IMob, INascentic
     @Override
     public void grow(EntityLivingBase host)
     {
-        Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
     }
 
     @Override
     public void vitalize(EntityLivingBase host)
     {
-        Organism organism = (Organism) host.getCapability(Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
         this.matureState = organism.getEmbryo().getResultingOrganism();
         
         Pos safeLocation = Entities.getSafeLocationAround(this, new Pos((int)host.posX, (int)host.posY, (int)host.posZ));

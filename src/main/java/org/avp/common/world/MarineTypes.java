@@ -20,7 +20,7 @@ public enum MarineTypes
     private final int id;
     private final ItemFirearm itemFirearm;
 
-    private MarineTypes(int id, ItemFirearm itemFirearm)
+    MarineTypes(int id, ItemFirearm itemFirearm)
     {
         this.id = id;
         this.itemFirearm = itemFirearm;

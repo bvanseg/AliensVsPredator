@@ -5,7 +5,7 @@ import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import org.avp.common.api.power.IPowerConnection;
+import org.avp.common.api.power.PowerConnection;
 import org.avp.common.tile.TileEntityElectrical;
 
 //TODO: Use a better type than TileEntity for Model.
@@ -59,7 +59,7 @@ public class ModelCable extends Model<TileEntity>
     {
         TileEntity side = tile.getWorld().getTileEntity(pos);
         boolean canProvideToReceiver = (side instanceof TileEntityElectrical && ((TileEntityElectrical) side).canProvideEnergyToReceiver(facing));
-        boolean canAcceptFromSide = (side instanceof IPowerConnection && ((IPowerConnection) side).canConnectPower(facing));
+        boolean canAcceptFromSide = (side instanceof PowerConnection && ((PowerConnection) side).canConnectPower(facing));
         
         return !(canProvideToReceiver || canAcceptFromSide);
     }

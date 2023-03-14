@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 
 public class ItemSupplyChute extends HookedItem
 {
-    private SupplyChuteType type;
+    private final SupplyChuteType type;
 
     public ItemSupplyChute(SupplyChuteType type)
     {

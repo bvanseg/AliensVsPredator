@@ -2,26 +2,25 @@ package org.alien.common.entity.ai.selector;
 
 import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
 import com.google.common.base.Predicate;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import org.alien.common.api.parasitoidic.IHost;
-import org.alien.common.api.parasitoidic.IParasitoid;
-import org.alien.common.world.capability.IOrganism.Organism;
-import org.alien.common.world.capability.IOrganism.Provider;
+import org.alien.common.api.parasitoidic.Host;
+import org.alien.common.api.parasitoidic.Parasitoid;
+import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPItems;
 import org.predator.common.PredatorItems;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class EntitySelectorParasitoid implements Predicate<EntityLivingBase>
 {
-    public static final EntitySelectorParasitoid instance           = new EntitySelectorParasitoid();
-
-    public static       ArrayList<Item>          blacklistedHelmets = new ArrayList<>();
+    public static final EntitySelectorParasitoid instance = new EntitySelectorParasitoid();
+    private static final List<Item> blacklistedHelmets = new ArrayList<>();
 
     static
     {
@@ -32,59 +31,51 @@ public class EntitySelectorParasitoid implements Predicate<EntityLivingBase>
     @Override
     public boolean apply(EntityLivingBase potentialTarget)
     {
-        ArrayList<Class<?>> blacklist = IParasitoid.getDefaultEntityBlacklist();
+        if (isTargetBlacklistedType(potentialTarget)) return false;
+        if (isNonHostOrCarryingEmbryo(potentialTarget)) return false;
+        if (isTargetWearingProtectiveHeadgear(potentialTarget)) return false;
+        if (potentialTarget.isChild()) return false;
 
-        for (Class<?> c : blacklist)
-        {
-            if (c.isInstance(potentialTarget))
-            {
-                return false;
-            }
-        }
+        return true;
+    }
 
-        Organism organism = (Organism) potentialTarget.getCapability(Provider.CAPABILITY, null);
-
-        if (potentialTarget instanceof IHost)
-        {
-            IHost host = (IHost) potentialTarget;
-
-            if (!host.canHostParasite() || !host.canParasiteAttach())
-            {
-                return false;
-            }
-        }
-
-        if (organism != null && organism.hasEmbryo())
-        {
-            return false;
-        }
-
+    private static boolean isTargetWearingProtectiveHeadgear(EntityLivingBase potentialTarget) {
         if (potentialTarget instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) potentialTarget;
             ItemStack headwear = Inventories.getHelmSlotItemStack(player);
 
-            if (headwear != null && blacklistedHelmets.contains(headwear.getItem()) && headwear.getItem() != Items.AIR  || ((EntityPlayer) potentialTarget).capabilities.isCreativeMode)
-            {
-                return false;
-            }
+            return headwear != null && blacklistedHelmets.contains(headwear.getItem()) && headwear.getItem() != Items.AIR || ((EntityPlayer) potentialTarget).capabilities.isCreativeMode;
         }
-        
-        if (!(potentialTarget instanceof EntityLivingBase))
-        {
-            return false;
-        }
+        return false;
+    }
 
-        if (potentialTarget instanceof EntityLiving)
-        {
-            EntityLiving living = (EntityLiving) potentialTarget;
+    private static boolean isNonHostOrCarryingEmbryo(EntityLivingBase potentialTarget) {
+        OrganismImpl organism = (OrganismImpl) potentialTarget.getCapability(Provider.CAPABILITY, null);
 
-            if (living.isChild())
+        if (potentialTarget instanceof Host)
+        {
+            Host host = (Host) potentialTarget;
+
+            if (!host.canHostParasite() || !host.canParasiteAttach())
             {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return organism != null && organism.hasEmbryo();
+    }
+
+    private static boolean isTargetBlacklistedType(EntityLivingBase potentialTarget) {
+        ArrayList<Class<?>> blacklist = Parasitoid.getDefaultEntityBlacklist();
+
+        for (Class<?> c : blacklist)
+        {
+            if (c.isInstance(potentialTarget))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

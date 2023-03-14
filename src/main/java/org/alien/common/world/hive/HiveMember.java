@@ -11,9 +11,9 @@ import java.util.UUID;
  *
  */
 public interface HiveMember {
-	static final UUID EMPTY_HIVE_ID = new UUID(0, 0);
+	UUID EMPTY_HIVE_ID = new UUID(0, 0);
 	
-	public default UUID getHiveMemberID() {
+	default UUID getHiveMemberID() {
 		if (this instanceof Entity) {
 			return ((Entity)this).getUniqueID();
 		}
@@ -21,11 +21,11 @@ public interface HiveMember {
 		return EMPTY_HIVE_ID;
 	}
 	
-	public default boolean canBecomeHiveMember() {
+	default boolean canBecomeHiveMember() {
 		return this.getHiveMemberID() != EMPTY_HIVE_ID;
 	}
 	
-	public default AlienHive getAlienHive() {
+	default AlienHive getAlienHive() {
 		return AlienHiveHandler.instance.getHiveForEntityID(this.getHiveMemberID());
 	}
 }

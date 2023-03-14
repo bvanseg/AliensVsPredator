@@ -18,7 +18,7 @@ import org.avp.common.block.skull.*;
 
 public class RenderItemSkull extends ItemRenderer<Model>
 {
-    private BlockSkull skull;
+    private final BlockSkull skull;
 
     public RenderItemSkull(BlockSkull skull)
     {

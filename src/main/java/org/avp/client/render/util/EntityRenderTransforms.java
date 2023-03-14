@@ -10,7 +10,7 @@ import java.util.Arrays;
 @SideOnly(Side.CLIENT)
 public abstract class EntityRenderTransforms
 {
-    private ArrayList<Class<? extends Entity>> entities;
+    private final ArrayList<Class<? extends Entity>> entities;
 
     @SuppressWarnings("all")
     public EntityRenderTransforms(Class<?>... entities)

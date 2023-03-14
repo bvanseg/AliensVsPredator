@@ -9,7 +9,7 @@ import java.util.Random;
 
 public class WorldGenSurfaceBlock extends WorldGenerator
 {
-    private IBlockState state;
+    private final IBlockState state;
 
     public WorldGenSurfaceBlock(IBlockState state)
     {

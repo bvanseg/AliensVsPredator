@@ -18,12 +18,12 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.api.power.IVoltageProvider;
-import org.avp.common.api.power.IVoltageReceiver;
+import org.avp.common.api.power.VoltageProvider;
+import org.avp.common.api.power.VoltageReceiver;
 
 import java.util.Random;
 
-public class TileEntityTeslaCoil extends TileEntityElectrical implements IVoltageProvider, IVoltageReceiver, IRotatableYAxis, IRotatableXAxis
+public class TileEntityTeslaCoil extends TileEntityElectrical implements VoltageProvider, VoltageReceiver, IRotatableYAxis, IRotatableXAxis
 {
     private EnumFacing       rotationX;
     private EnumFacing       rotationY;

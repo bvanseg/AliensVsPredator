@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class BlockUnidentifiedTreeLeaves extends BlockLeaves
 {
-    public static enum Type
+    public enum Type
     {
         TOP, MIDDLE, BOTTOM
     }

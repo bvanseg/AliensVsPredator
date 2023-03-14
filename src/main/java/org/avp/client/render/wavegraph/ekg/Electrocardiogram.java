@@ -16,7 +16,7 @@ import java.util.ArrayList;
 @SideOnly(Side.CLIENT)
 public class Electrocardiogram extends Wavegraph
 {
-    private ArrayList<DataEntryEKG> data;
+    private final ArrayList<DataEntryEKG> data;
 
     public Electrocardiogram()
     {

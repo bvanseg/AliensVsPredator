@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 
 public class EntityExtendedLookHelper extends EntityLookHelper
 {
-    private EntityLiving entity;
+    private final EntityLiving entity;
     public double posX;
     public double posY;
     public double posZ;

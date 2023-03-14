@@ -23,7 +23,6 @@ import org.predator.client.PredatorSounds;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class EntityWristbracer extends EntityThrowable
 {
@@ -85,7 +84,7 @@ public class EntityWristbracer extends EntityThrowable
         {
             float explosionWidthMax = 80F;
             float explosionHeightMax = explosionWidthMax / 2;
-            float explosionWidth = (float) (this.getInitTicks() * explosionWidthMax / this.getInitTicksMax());
+            float explosionWidth = (this.getInitTicks() * explosionWidthMax / this.getInitTicksMax());
 
             double pX = this.posX + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
             double pY = this.posY + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
@@ -107,23 +106,18 @@ public class EntityWristbracer extends EntityThrowable
                 {
                     if (AVP.settings().areExplosionsEnabled())
                     {
-                        ArrayList<Block> excludedBlocks = new ArrayList<Block>();
+                        ArrayList<Block> excludedBlocks = new ArrayList<>();
                         excludedBlocks.add(Blocks.BEDROCK);
-                        ArrayList<Material> excludedMaterials = new ArrayList<Material>();
+                        ArrayList<Material> excludedMaterials = new ArrayList<>();
                         excludedMaterials.add(Material.ROCK);
-                        LargeExplosion explosion = new LargeExplosion(world, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1000F, new Random().nextLong(), excludedBlocks, excludedMaterials, 0, 2);
+                        LargeExplosion explosion = new LargeExplosion(world, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1000F, this.world.rand.nextLong(), excludedBlocks, excludedMaterials, 0, 2);
                         explosion.start();
 
                         List<Entity> entities = Entities.getEntitiesInCoordsRange(world, Entity.class, new Pos(this.getPosition()), (int) explosionWidthMax, (int) explosionHeightMax);
-                        
-                        for (int idx = 0; idx < entities.size(); ++idx)
-                        {
-                            if (entities.get(idx) instanceof EntityLivingBase)
-                            {
-                                EntityLivingBase living = (EntityLivingBase) entities.get(idx);
-                                living.attackEntityFrom(DamageSource.causeExplosionDamage(living), 1000000);
-                            }
-                        }
+
+                        entities.stream().filter(EntityLivingBase.class::isInstance).forEach(
+                            living -> living.attackEntityFrom(DamageSource.causeExplosionDamage((EntityLivingBase) living), 1000000)
+                        );
                     }
 
                     this.setDead();
@@ -181,8 +175,5 @@ public class EntityWristbracer extends EntityThrowable
     }
 
     @Override
-    protected void onImpact(RayTraceResult RayTraceResult)
-    {
-        ;
-    }
+    protected void onImpact(RayTraceResult RayTraceResult) { /* Do Nothing */ }
 }

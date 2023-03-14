@@ -11,11 +11,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IMaturable;
+import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityWarrior extends SpeciesXenomorph implements IMob, IMaturable, HiveMember
+public class EntityWarrior extends SpeciesXenomorph implements IMob, Maturable, HiveMember
 {
     public EntityWarrior(World world)
     {

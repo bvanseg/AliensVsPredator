@@ -13,21 +13,21 @@ public class ModelPlasma extends Model<Object>
     private float  scale;
     public boolean drawInternalVertices = true;
 
-    private Vertex t1                   = new Vertex(1.0F, 0.0F, 0.0F).normalize();
-    private Vertex t2                   = new Vertex(0.0F, 1.0F, 0.0F).normalize();
-    private Vertex t3                   = new Vertex(0.0F, 0.0F, 1.0F).normalize();
-    private Vertex t4                   = new Vertex(0.5F, 0.5F, 0.0F).normalize();
-    private Vertex t5                   = new Vertex(0.0F, 0.5F, 0.5F).normalize();
-    private Vertex t6                   = new Vertex(0.5F, 0.0F, 0.5F).normalize();
-    private Vertex t7                   = new Vertex(0.75F, 0.25F, 0.0F).normalize();
-    private Vertex t8                   = new Vertex(0.5F, 0.25F, 0.25F).normalize();
-    private Vertex t9                   = new Vertex(0.75F, 0.0F, 0.25F).normalize();
-    private Vertex t10                  = new Vertex(0.0F, 0.75F, 0.25F).normalize();
-    private Vertex t11                  = new Vertex(0.25F, 0.5F, 0.25F).normalize();
-    private Vertex t12                  = new Vertex(0.25F, 0.75F, 0.0F).normalize();
-    private Vertex t13                  = new Vertex(0.25F, 0.0F, 0.75F).normalize();
-    private Vertex t14                  = new Vertex(0.25F, 0.25F, 0.5F).normalize();
-    private Vertex t15                  = new Vertex(0.0F, 0.25F, 0.75F).normalize();
+    private final Vertex t1                   = new Vertex(1.0F, 0.0F, 0.0F).normalize();
+    private final Vertex t2                   = new Vertex(0.0F, 1.0F, 0.0F).normalize();
+    private final Vertex t3                   = new Vertex(0.0F, 0.0F, 1.0F).normalize();
+    private final Vertex t4                   = new Vertex(0.5F, 0.5F, 0.0F).normalize();
+    private final Vertex t5                   = new Vertex(0.0F, 0.5F, 0.5F).normalize();
+    private final Vertex t6                   = new Vertex(0.5F, 0.0F, 0.5F).normalize();
+    private final Vertex t7                   = new Vertex(0.75F, 0.25F, 0.0F).normalize();
+    private final Vertex t8                   = new Vertex(0.5F, 0.25F, 0.25F).normalize();
+    private final Vertex t9                   = new Vertex(0.75F, 0.0F, 0.25F).normalize();
+    private final Vertex t10                  = new Vertex(0.0F, 0.75F, 0.25F).normalize();
+    private final Vertex t11                  = new Vertex(0.25F, 0.5F, 0.25F).normalize();
+    private final Vertex t12                  = new Vertex(0.25F, 0.75F, 0.0F).normalize();
+    private final Vertex t13                  = new Vertex(0.25F, 0.0F, 0.75F).normalize();
+    private final Vertex t14                  = new Vertex(0.25F, 0.25F, 0.5F).normalize();
+    private final Vertex t15                  = new Vertex(0.0F, 0.25F, 0.75F).normalize();
 
     private void triangle(Vertex vertex1, Vertex vertex2, Vertex vertex3)
     {

@@ -6,10 +6,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.IMaturable;
+import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityRunnerDrone extends EntityDrone implements IMaturable, HiveMember
+public class EntityRunnerDrone extends EntityDrone implements Maturable, HiveMember
 {
     public EntityRunnerDrone(World world)
     {

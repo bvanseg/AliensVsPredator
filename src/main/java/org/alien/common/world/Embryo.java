@@ -9,7 +9,7 @@ import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import org.alien.common.api.parasitoidic.INascentic;
+import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.living.engineer.EntityEngineer;
 import org.alien.common.entity.living.engineer.EntitySpaceJockey;
 import org.alien.common.entity.living.species223ode.EntityDeacon;
@@ -17,7 +17,7 @@ import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
 import org.alien.common.entity.living.vardic.EntityBelugaburster;
 import org.alien.common.entity.living.vardic.EntityBelugamorph;
 import org.alien.common.entity.living.xenomorph.*;
-import org.alien.common.world.capability.IOrganism.Organism;
+import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
@@ -50,14 +50,14 @@ public class Embryo implements Cloneable
     private int                         id;
     private int                         age;
     private int                         gestationPeriod;
-    private Class<? extends INascentic> nascenticType;
-    private Class<? extends Entity>     result;
-    private Class<? extends Entity>[]   hosts;
-    private INascentic                  nascenticOrganism;
+    private final Class<? extends Nascentic> nascenticType;
+    private final Class<? extends Entity>     result;
+    private final Class<? extends Entity>[]   hosts;
+    private Nascentic nascenticOrganism;
 
     public Embryo(Class<?> nascenticType, Class<?> result, Class<?>... hosts)
     {
-        this.nascenticType = (Class<? extends INascentic>) nascenticType;
+        this.nascenticType = (Class<? extends Nascentic>) nascenticType;
         this.result = (Class<? extends Entity>) result;
         this.hosts = (Class<? extends Entity>[]) hosts;
         this.gestationPeriod = 6000;
@@ -74,7 +74,7 @@ public class Embryo implements Cloneable
         return this;
     }
 
-    public void grow(EntityLivingBase host, Organism hostOrganism)
+    public void grow(EntityLivingBase host, OrganismImpl hostOrganism)
     {
         this.age++;
 
@@ -118,17 +118,17 @@ public class Embryo implements Cloneable
         return result;
     }
 
-    public INascentic createNasenticOrganism(World world)
+    public Nascentic createNasenticOrganism(World world)
     {
         if (this.nascenticOrganism == null)
         {
-            return this.nascenticOrganism = (INascentic) Entities.constructEntity(world, (Class<? extends Entity>) this.nascenticType);
+            return this.nascenticOrganism = (Nascentic) Entities.constructEntity(world, (Class<? extends Entity>) this.nascenticType);
         }
 
         return this.nascenticOrganism;
     }
 
-    public INascentic getNascenticOrganism()
+    public Nascentic getNascenticOrganism()
     {
         return nascenticOrganism;
     }

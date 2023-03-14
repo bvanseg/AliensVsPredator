@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ItemEntitySummoner extends HookedItem
 {
-    private Class<? extends Entity> c;
+    private final Class<? extends Entity> c;
 
     public ItemEntitySummoner(Class<? extends Entity> c)
     {

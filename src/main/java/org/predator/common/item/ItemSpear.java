@@ -34,7 +34,7 @@ public class ItemSpear extends ItemSword
                 float charge = (this.getMaxItemUseDuration(itemstack) - timeLeft * 1F) / 9F;
                 float maxCharge = 3.5F;
 
-                charge = charge >= maxCharge ? maxCharge : charge;
+                charge = Math.min(charge, maxCharge);
 
                 if (charge < 0.1D)
                 {

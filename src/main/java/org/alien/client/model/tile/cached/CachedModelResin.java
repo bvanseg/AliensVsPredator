@@ -47,9 +47,9 @@ public class CachedModelResin implements IBakedModel
                                                                                                                       }
                                                                                                                   };
 
-    private IModel                                                                         model;
+    private final IModel                                                                         model;
     private TextureAtlasSprite                                                             sprite;
-    private RenderList                                                                     overrides;
+    private final RenderList                                                                     overrides;
     private final Pair<? extends IBakedModel, Matrix4f>                                    selfPair;
     protected ItemStack                                                                    stack;
     protected EntityLivingBase                                                             entity;

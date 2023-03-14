@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class GuiModSettings extends GuiCustomScreen
 {
-    private ArrayList<IGuiElement> elements = new ArrayList<IGuiElement>();
+    private final ArrayList<IGuiElement> elements = new ArrayList<IGuiElement>();
     private int                    scroll   = 0;
     private long                   lastApplyTime;
 

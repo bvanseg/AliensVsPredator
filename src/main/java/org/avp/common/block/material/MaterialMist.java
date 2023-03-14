@@ -5,12 +5,12 @@ import net.minecraft.block.material.MaterialTransparent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.render.material.RenderMaterialMist;
-import org.avp.common.api.blocks.material.IMaterialPhysics;
-import org.avp.common.api.blocks.material.IMaterialRenderer;
+import org.avp.common.api.blocks.material.MaterialPhysics;
+import org.avp.common.api.blocks.material.MaterialRenderer;
 
-public class MaterialMist extends MaterialTransparent implements IMaterialPhysics
+public class MaterialMist extends MaterialTransparent implements MaterialPhysics
 {
-    private static final IMaterialRenderer renderer = new RenderMaterialMist();
+    private static final MaterialRenderer renderer = new RenderMaterialMist();
 
     public MaterialMist()
     {
@@ -31,7 +31,7 @@ public class MaterialMist extends MaterialTransparent implements IMaterialPhysic
 
     @SideOnly(Side.CLIENT)
     @Override
-    public IMaterialRenderer getMaterialRenderer()
+    public MaterialRenderer getMaterialRenderer()
     {
         return renderer;
     }

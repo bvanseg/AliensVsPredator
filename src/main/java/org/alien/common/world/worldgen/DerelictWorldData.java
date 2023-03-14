@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class DerelictWorldData implements IWorldSaveHandler
 {
     public static final DerelictWorldData instance = new DerelictWorldData();
-    private ArrayList<DerelictLocation> derelictLocations;
+    private final ArrayList<DerelictLocation> derelictLocations;
 
     public DerelictWorldData()
     {

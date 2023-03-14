@@ -16,7 +16,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.avp.common.api.machines.IOpenable;
+import org.avp.common.api.machines.Openable;
 import org.avp.common.tile.TileEntityMedpod;
 
 
@@ -51,9 +51,9 @@ public class BlockMedpod extends Block
     {
         TileEntity tileEntity = world.getTileEntity(pos);
 
-        if (tileEntity != null && tileEntity instanceof IOpenable)
+        if (tileEntity != null && tileEntity instanceof Openable)
         {
-            IOpenable openable = (IOpenable) tileEntity;
+            Openable openable = (Openable) tileEntity;
             openable.setOpen(!openable.isOpen());
         }
 

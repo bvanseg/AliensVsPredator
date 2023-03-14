@@ -8,11 +8,11 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import org.alien.common.entity.ai.brain.XenomorphBrain;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.impl.XenomorphBrain;
 
 public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Brainiac<XenomorphBrain>
 {
@@ -30,9 +30,9 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     private boolean                             retractMouth        = false;
     protected boolean                           ableToClimb;
 
-    private              XenomorphBrain         brain;
+    protected              XenomorphBrain       brain;
 
-    public SpeciesXenomorph(World world)
+    protected SpeciesXenomorph(World world)
     {
         super(world);
         this.jumpMovementFactor = 0.045F;
@@ -52,9 +52,6 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     protected void initEntityAI() {
     	this.getBrain().init();
     }
-
-    @Deprecated
-    protected void addStandardXenomorphAISet() {}
 
     @Override
     protected void entityInit()
@@ -223,16 +220,16 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     }
 
     @Override
-    public void onDeath(DamageSource damagesource)
+    public void onDeath(DamageSource damageSource)
     {
-        super.onDeath(damagesource);
+        super.onDeath(damageSource);
 
         AVPItemDrops.XENO_FEET.tryDrop(this);
         AVPItemDrops.XENO_HELM.tryDrop(this);
         AVPItemDrops.XENO_LEGS.tryDrop(this);
         AVPItemDrops.XENO_TORSO.tryDrop(this);
 
-        if (damagesource == AVPDamageSources.WRISTBRACER)
+        if (damageSource == AVPDamageSources.WRISTBRACER)
         {
             AVPItemDrops.SKULLS_XENO.tryDrop(this, 25);
         }

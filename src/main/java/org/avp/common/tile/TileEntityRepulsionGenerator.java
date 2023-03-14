@@ -13,13 +13,13 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.util.Constants;
 import org.avp.common.AVPItems;
-import org.avp.common.api.power.IVoltageProvider;
+import org.avp.common.api.power.VoltageProvider;
 import org.avp.common.inventory.ContainerRepulsionGenerator;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class TileEntityRepulsionGenerator extends TileEntityElectrical implements IVoltageProvider
+public class TileEntityRepulsionGenerator extends TileEntityElectrical implements VoltageProvider
 {
     public Container                               container;
     public InventoryBasic                          inventory;
@@ -27,7 +27,7 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
     public static final float                      MAX_SPEED        = 10F;
     private static final float                     SPEED_MULTIPLIER = 0.05F;
     private final Item                             magnet           = AVPItems.ITEM_NEODYMIUM_MAGNET;
-    private ArrayList<HashMap<Integer, ItemStack>> sets             = new ArrayList<HashMap<Integer, ItemStack>>();
+    private final ArrayList<HashMap<Integer, ItemStack>> sets             = new ArrayList<HashMap<Integer, ItemStack>>();
     private int                                    fullSets;
     private int                                    emptySets;
     private int                                    unstableSets;

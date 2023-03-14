@@ -29,18 +29,6 @@ public class EntityOvamorphGiger extends EntityOvamorph
     }
 
     @Override
-    protected void entityInit()
-    {
-        super.entityInit();
-    }
-
-    @Override
-    public void onLivingUpdate()
-    {
-        super.onLivingUpdate();
-    }
-
-    @Override
     public boolean canBreatheUnderwater()
     {
         return true;

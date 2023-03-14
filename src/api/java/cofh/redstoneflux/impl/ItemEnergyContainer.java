@@ -4,17 +4,17 @@
  */
 package cofh.redstoneflux.impl;
 
-import cofh.redstoneflux.api.IEnergyContainerItem;
+import cofh.redstoneflux.api.EnergyContainerItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
 /**
- * Reference implementation of {@link IEnergyContainerItem}. Use/extend this or implement your own.
+ * Reference implementation of {@link EnergyContainerItem}. Use/extend this or implement your own.
  *
  * @author King Lemming
  */
-public class ItemEnergyContainer extends Item implements IEnergyContainerItem {
+public class ItemEnergyContainer extends Item implements EnergyContainerItem {
 
 	public static final String ENERGY = "Energy";
 
