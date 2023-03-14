@@ -8,61 +8,55 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.avp.common.item.crafting.AssemblyManager;
+import org.avp.common.item.crafting.AssemblyResult;
 import org.avp.common.item.crafting.Schematic;
 
+/**
+ * @author Ri5ux
+ */
 public class PacketAssemble implements IMessage, IMessageHandler<PacketAssemble, PacketAssemble>
 {
-    public String id;
-    public int    count;
+    private String name;
+    private int    count;
 
-    public PacketAssemble()
-    {
-        ;
-    }
+    public PacketAssemble() {}
 
-    public PacketAssemble(String id, int count)
+    public PacketAssemble(String name, int count)
     {
-        this.id = id;
+        this.name = name;
         this.count = count;
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
-        this.id = ByteBufUtils.readUTF8String(buf);
+        this.name = ByteBufUtils.readUTF8String(buf);
         this.count = buf.readInt();
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
-        ByteBufUtils.writeUTF8String(buf, this.id);
+        ByteBufUtils.writeUTF8String(buf, this.name);
         buf.writeInt(this.count);
     }
 
     @Override
     public PacketAssemble onMessage(PacketAssemble packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            EntityPlayer player = ctx.getServerHandler().player;
+
+            if (player != null)
             {
-                EntityPlayer player = ctx.getServerHandler().player;
+                Schematic schematic = AssemblyManager.instance.getSchematicByName(packet.name);
+                AssemblyResult result = AssemblyResult.getResult(player, schematic, packet.count);
 
-                if (player != null)
-                {
-                    Schematic schematic = AssemblyManager.instance.getSchematic(packet.id);
-                    int qtyAssembled = AssemblyManager.tryAssembly(player, schematic, packet.count);
-
-                    if (qtyAssembled > 0)
-                    {
-                        player.sendMessage(new TextComponentString(String.format("Assembled %sx %s", qtyAssembled, schematic.getItemStackAssembled().getDisplayName())));
-                    }
-                    else if (qtyAssembled == 0)
-                    {
-                        player.sendMessage(new TextComponentString(String.format("Not enough materials to assemble %sx %s", packet.count, schematic.getItemStackAssembled().getDisplayName())));
-                    }
+                if (result.canAssembleSchematic()) {
+                    result.assemble();
+                    player.sendMessage(new TextComponentString(String.format("Assembled %sx %s", packet.count, schematic.getItemStackAssembled().getDisplayName())));
+                } else {
+                    player.sendMessage(new TextComponentString(String.format("Not enough materials to assemble %sx %s", packet.count, schematic.getItemStackAssembled().getDisplayName())));
                 }
             }
         });

@@ -17,6 +17,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.common.item.crafting.AssemblyManager;
+import org.avp.common.item.crafting.AssemblyResult;
 import org.avp.common.item.crafting.Schematic;
 import org.avp.common.network.packet.server.PacketAssemble;
 import org.avp.common.tile.TileEntityAssembler;
@@ -27,6 +28,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Ri5ux
+ */
 public class GuiAssembler extends GuiContainer
 {
 	private static final List<Schematic> sortedSchematics = new ArrayList<>(AssemblyManager.instance.schematics());
@@ -52,11 +56,10 @@ public class GuiAssembler extends GuiContainer
     private static boolean assemblyRequiresUpdate = true;
     
     private static final IAction assembleAction = (IGuiElement element) -> {
-    	Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+    	Schematic selectedSchematic = !schematics.isEmpty() ? schematics.get(getScroll()) : null;
 
         if (selectedSchematic != null)
         {
-            AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
             AVP.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), requestedAmount));
         }
     };
@@ -102,7 +105,7 @@ public class GuiAssembler extends GuiContainer
         button.displayString = "\u2692 x" + count;
         button.width = buttonWidth;
         button.fontShadow = false;
-        button.setAction((e) -> {
+        button.setAction(e -> {
         	requestedAmount = count;
         	assembleAction.perform(e);
         });
@@ -264,8 +267,12 @@ public class GuiAssembler extends GuiContainer
         buttonScrollUp.drawButton();
 
         if (assemblyRequiresUpdate) {
-        	maxAssemblyAmount = AssemblyManager.tryAssemblyMax(Game.minecraft().player, schematics.size() > 0 ? schematics.size() > 0 ? schematics.get(getScroll()) : null : null, true);
-        	assemblyRequiresUpdate = false;
+            Schematic itemSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+
+            if (itemSchematic != null) {
+                maxAssemblyAmount = AssemblyResult.getMaximumPossibleAssembleCount(Game.minecraft().player, itemSchematic);
+                assemblyRequiresUpdate = false;
+            }
         }
         
         this.drawAssembleButton(buttonAssemble, maxAssemblyAmount >= 1);
