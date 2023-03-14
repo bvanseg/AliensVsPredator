@@ -405,7 +405,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements Voltage
     @Override
     public boolean isOpen()
     {
-        return this.isChild() ? (this.getParent() != null ? this.getParent().isOpen() : false) : doorOpen;
+        return this.isChild() ? (this.getParent() != null && this.getParent().isOpen()) : doorOpen;
     }
 
     @Override

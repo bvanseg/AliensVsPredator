@@ -362,7 +362,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect)
     {
-        return potionEffect.getPotion() == MobEffects.POISON ? false : super.isPotionApplicable(potionEffect);
+        return potionEffect.getPotion() != MobEffects.POISON && super.isPotionApplicable(potionEffect);
     }
 
     @Override

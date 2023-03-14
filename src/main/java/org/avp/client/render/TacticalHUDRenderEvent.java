@@ -496,7 +496,7 @@ public class TacticalHUDRenderEvent
             {
                 int barSpace = 15;
                 int signal = (int) Game.minecraft().player.getDistanceSq(player);
-                int maxSignal = specialPlayer.getBroadcastRadius() <= this.specialPlayer.getBroadcastRadius() ? specialPlayer.getBroadcastRadius() : this.specialPlayer.getBroadcastRadius();
+                int maxSignal = Math.min(specialPlayer.getBroadcastRadius(), this.specialPlayer.getBroadcastRadius());
                 int pxMultiplier = signal >= maxSignal / 1.3 ? 5 : signal >= maxSignal / 2 ? 4 : signal >= maxSignal / 3 ? 3 : signal >= maxSignal / 4 ? 2 : signal >= maxSignal / 5 ? 1 : signal >= maxSignal / 6 ? 0 : 0;
 
                 Draw.drawRect(Screen.scaledDisplayResolution().getScaledWidth() - 111, 40 + barSpace * x - 5, 120, 2, 0xAA00AAFF);

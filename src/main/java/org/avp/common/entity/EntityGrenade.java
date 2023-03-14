@@ -73,7 +73,7 @@ public class EntityGrenade extends EntityThrowable
 
     public boolean isFlaming()
     {
-        return this.getDataManager().get(FLAMING) == 1 ? true : false;
+        return this.getDataManager().get(FLAMING) == 1;
     }
 
     @Override

@@ -30,8 +30,8 @@ public class ItemDisc extends HookedItem
 
                 if (charge >= 0.1F)
                 {
-                    boolean crit = charge > 1.5F ? true : false;
-                    charge = charge > 1.5F ? 1.5F : charge;
+                    boolean crit = charge > 1.5F;
+                    charge = Math.min(charge, 1.5F);
                     charge *= 1.5F;
 
                     if (!world.isRemote)

@@ -169,7 +169,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect)
     {
-        return potionEffect.getPotion() == MobEffects.POISON ? false : super.isPotionApplicable(potionEffect);
+        return potionEffect.getPotion() != MobEffects.POISON && super.isPotionApplicable(potionEffect);
     }
 
     @Override

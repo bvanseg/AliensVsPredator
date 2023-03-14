@@ -284,7 +284,7 @@ public class EntitySupplyChute extends Entity
         else
         {
             Material material = blockstate.getMaterial();
-            return material == Material.WATER ? true : material == Material.LAVA;
+            return material == Material.WATER || material == Material.LAVA;
         }
     }
 

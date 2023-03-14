@@ -21,7 +21,7 @@ public class InputHandlerPlasmaCannon implements IInputHandler
     {
         if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(Game.minecraft().player)))
         {
-            float potentialChargeSize = this.chargeSize >= this.getMaxChargeSize() ? this.getMaxChargeSize() : this.chargeSize;
+            float potentialChargeSize = Math.min(this.chargeSize, this.getMaxChargeSize());
             float potentialEnergyUsed = this.getMaxStoredEnergy() * potentialChargeSize / this.getMaxChargeSize();
             
             if (this.energy <= this.getMaxStoredEnergy() / 20)

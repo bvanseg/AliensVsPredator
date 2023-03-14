@@ -30,7 +30,7 @@ public class ItemShuriken extends HookedItem
 
                 if (velocity >= 0.1F)
                 {
-                    velocity = velocity > 1.5F ? 1.5F : velocity;
+                    velocity = Math.min(velocity, 1.5F);
                     velocity *= 1.5F;
 
                     if (!world.isRemote)

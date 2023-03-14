@@ -144,7 +144,7 @@ public class RenderAPC extends Render<EntityAPC>
         float tireRotation = apc.getTireRotation();
         float time = (float) apc.getTimeSinceHit() - partialTicks;
         float damage = apc.getDamageTaken() - partialTicks;
-        damage = damage < 0.0F ? 0.0F : damage;
+        damage = Math.max(damage, 0.0F);
 
         OpenGL.pushMatrix();
         GlStateManager.disableCull();

@@ -43,7 +43,7 @@ public class Schematic implements ISchematic
 
             if (amountOfStack > 0)
             {
-                progress += amountOfStack > stack.getCount() ? stack.getCount() : amountOfStack;
+                progress += Math.min(amountOfStack, stack.getCount());
             }
         }
 

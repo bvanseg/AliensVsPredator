@@ -39,7 +39,7 @@ public class TileEntityLocker extends TileEntity implements Openable, IRotatable
             @Override
             public boolean isItemValidForSlot(int slot, ItemStack stack)
             {
-                return locker instanceof TileEntityGunLocker ? (stack.getItem() instanceof ItemFirearm) : (true);
+                return !(locker instanceof TileEntityGunLocker) || (stack.getItem() instanceof ItemFirearm);
             }
         };
     }

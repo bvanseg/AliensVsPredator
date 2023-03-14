@@ -128,7 +128,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
 
             if (!this.jellyLimitOverride)
             {
-                adjustedLevel = adjustedLevel < 64 ? adjustedLevel : 64;
+                adjustedLevel = Math.min(adjustedLevel, 64);
             }
 
             if (this.isDependant)
@@ -251,7 +251,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     @Override
     public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount)
     {
-        return type == EnumCreatureType.MONSTER ? true : false;
+        return type == EnumCreatureType.MONSTER;
     }
 
     protected void negateFallDamage()
