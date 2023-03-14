@@ -9,10 +9,7 @@ import org.lib.brain.memory.BrainMemoryMap;
 import org.lib.brain.sensor.AbstractBrainSensor;
 import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * A logical processor with input (sensors) and output/results (tasks). The processing pipeline is as follows:
@@ -129,6 +126,14 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		if (flag != null) {
 			this.brainFlagStates.put(flag, BrainFlagState.ABSENT);
 		}
+	}
+
+	public List<AbstractBrainSensor<T>> getSensors() {
+		return sensors;
+	}
+
+	public List<AbstractBrainTask<T>> getTasks() {
+		return tasks;
 	}
 
 	public void setDisabled(boolean disabled) {
