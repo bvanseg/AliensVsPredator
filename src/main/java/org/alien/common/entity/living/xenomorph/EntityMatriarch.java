@@ -35,9 +35,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     public static final int                   OVIPOSITOR_JELLYLEVEL_THRESHOLD    = 1000;
     public static final int                   OVIPOSITOR_JELLYLEVEL_GROWTH_USE   = 1;
 
-    private static final DataParameter<Float> OVIPOSITOR_SIZE                    = EntityDataManager.createKey(EntityMatriarch.class, DataSerializers.FLOAT);
-
-    public boolean                            growingOvipositor;
+    private static final DataParameter<Float> OVIPOSITOR_SIZE = EntityDataManager.createKey(EntityMatriarch.class, DataSerializers.FLOAT);
 
     public AlienHive                         alienHive;
 
@@ -45,7 +43,6 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     {
         super(world);
         this.setSize(2.0F, 5.0F);
-        this.growingOvipositor = false;
         this.experienceValue = 40000;
         this.jumpMovementFactor = 0.2F;
         this.hurtResistantTime = 0;
@@ -79,18 +76,6 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
     }
 
-    private void jumpBoost() {
-        if (isJumping) {
-            this.addVelocity(0, 0.2D, 0);
-        }
-    }
-
-    private void heal() {
-        if (this.world.getTotalWorldTime() % 20 == 0 && this.getHealth() > this.getMaxHealth() / 4) {
-            this.heal(1F);
-        }
-    }
-
     @Override
     public void onUpdate()
     {
@@ -109,51 +94,17 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
                 this.setDead();
             }
         }
+    }
 
-        if (!this.world.isRemote)
-        {
-            if (this.world.getTotalWorldTime() % 20 == 0)
-            {
-                ArrayList<SpeciesAlien> aliens = (ArrayList<SpeciesAlien>) Entities.getEntitiesInCoordsRange(this.world, SpeciesAlien.class, new Pos(this), 16);
+    private void jumpBoost() {
+        if (isJumping) {
+            this.addVelocity(0, 0.2D, 0);
+        }
+    }
 
-                if (this.getAlienHive() != null)
-                {
-                    for (SpeciesAlien alien : aliens)
-                    {
-                        if (this.rand.nextInt(3) == 0)
-                        {
-                            // if (alien != null && alien.getHive() != null && !(alien instanceof EntityQueen) && alien.getHive() == this.getHive())
-                            // {
-                            // if ((this.getAttackTarget() != null || this.getLastAttackedEntity() != null))
-                            // {
-                            // if (this.rand.nextInt(6) == 0)
-                            // {
-                            // if (alien instanceof EntityOvamorph)
-                            // {
-                            // EntityOvamorph ovamorph = (EntityOvamorph) alien;
-                            // ovamorph.setHatched(true);
-                            // }
-                            // }
-                            //
-                            // EntityLivingBase target = this.getAttackTarget() != null ? this.getAttackTarget() : this.getLastAttackedEntity();
-                            //
-                            // alien.setAttackTarget(target);
-                            // alien.getNavigator().tryMoveToEntityLiving(target, alien.getMoveHelper().getSpeed());
-                            // }
-                            // }
-
-                            if (alien != null && alien instanceof HiveMember)
-                            {
-                            	HiveMember hiveMember = ((HiveMember) alien);
-
-                            	if (hiveMember.getAlienHive() == null) {
-                            		this.getAlienHive().addHiveMember(hiveMember.getHiveMemberID());
-                            	}
-                            }
-                        }
-                    }
-                }
-            }
+    private void heal() {
+        if (this.world.getTotalWorldTime() % 20 == 0 && this.getHealth() > this.getMaxHealth() / 4) {
+            this.heal(1F);
         }
     }
 

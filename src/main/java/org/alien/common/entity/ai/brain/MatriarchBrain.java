@@ -1,6 +1,7 @@
 package org.alien.common.entity.ai.brain;
 
 import org.alien.common.entity.ai.brain.task.GrowOvipositorBrainTask;
+import org.alien.common.entity.ai.brain.task.MatriarchEnthrallAlienBrainTask;
 import org.alien.common.entity.ai.brain.task.MatriarchMoveToHiveCoreBrainTask;
 import org.alien.common.entity.ai.brain.task.MatriarchReproduceBrainTask;
 import org.alien.common.entity.living.SpeciesXenomorph;
@@ -21,5 +22,6 @@ public class MatriarchBrain extends XenomorphBrain {
 		this.addTask(new MatriarchMoveToHiveCoreBrainTask());
 		this.addTask(new GrowOvipositorBrainTask());
 		this.addTask(new MatriarchReproduceBrainTask());
+		this.addTask(new MatriarchEnthrallAlienBrainTask());
 	}
 }
