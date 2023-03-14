@@ -23,8 +23,6 @@ import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.AlienHive;
 import org.alien.common.world.hive.HiveMember;
 import org.alien.common.world.hive.HiveOwner;
-import org.avp.AVP;
-import org.avp.common.network.packet.server.PacketSpawnEntity;
 
 import java.util.ArrayList;
 import java.util.UUID;
@@ -81,26 +79,6 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
     }
 
-    private void reproduce()
-    {
-        if (!this.isReproducing()) return;
-        if (this.world.getTotalWorldTime() % (20 * 120) != 0) return;
-        if (this.getJellyLevel() < OVIPOSITOR_UNHEALTHY_THRESHOLD) return;
-
-        int ovipositorDist = 10;
-        double rotationYawRadians = Math.toRadians(this.rotationYawHead - 90);
-        double ovamorphX = (this.posX + (ovipositorDist * (Math.cos(rotationYawRadians))));
-        double ovamorphZ = (this.posZ + (ovipositorDist * (Math.sin(rotationYawRadians))));
-
-        // this.world.playSound(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), AliensVsPredator.sounds().SOUND_QUEEN_HURT, SoundCategory.HOSTILE, 1F, this.rand.nextInt(10) / 100, true);
-
-        if (this.world.isRemote)
-        {
-            AVP.network().sendToServer(new PacketSpawnEntity(ovamorphX, this.posY, ovamorphZ, Entities.getEntityRegistrationId(EntityOvamorph.class)));
-        }
-        this.setJellyLevel(this.getJellyLevel() - 100);
-    }
-
     private void jumpBoost() {
         if (isJumping) {
             this.addVelocity(0, 0.2D, 0);
@@ -118,22 +96,22 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     {
         super.onUpdate();
 
-        this.reproduce();
-
-        if (!this.world.isRemote && this.alienHive != null) {
+        if (!this.world.isRemote) {
             this.jumpBoost();
             this.heal();
 
-        	this.alienHive.update();
-        }
+            if (this.alienHive != null) {
+                this.alienHive.update();
+            }
 
-        if (!this.world.isRemote)
-        {
             if (this.posY < -32)
             {
                 this.setDead();
             }
+        }
 
+        if (!this.world.isRemote)
+        {
             if (this.world.getTotalWorldTime() % 20 == 0)
             {
                 ArrayList<SpeciesAlien> aliens = (ArrayList<SpeciesAlien>) Entities.getEntitiesInCoordsRange(this.world, SpeciesAlien.class, new Pos(this), 16);
