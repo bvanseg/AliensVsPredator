@@ -60,7 +60,7 @@ public class AttackOnCollideBrainTask extends AbstractBrainTask<EntityBrainConte
     }
 	
 	@Override
-	protected void finish(EntityBrainContext ctx) {
+	public void finish(EntityBrainContext ctx) {
 		ctx.getBrain().forget(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
 	}
 }
