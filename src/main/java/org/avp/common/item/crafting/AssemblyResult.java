@@ -14,12 +14,12 @@ import java.util.Objects;
 public class AssemblyResult {
 
     private final EntityPlayer player;
-    private final Schematic schematic;
+    private final ItemSchematic schematic;
     private final boolean canAssemble;
 
     private final int desiredAmount;
 
-    private AssemblyResult(EntityPlayer player, Schematic schematic, boolean canAssemble, int desiredAmount) {
+    private AssemblyResult(EntityPlayer player, ItemSchematic schematic, boolean canAssemble, int desiredAmount) {
         this.player = player;
         this.schematic = schematic;
         this.canAssemble = canAssemble;
@@ -43,7 +43,7 @@ public class AssemblyResult {
         return canAssemble;
     }
 
-    public static AssemblyResult getResult(EntityPlayer player, Schematic schematic, int desiredAmount) {
+    public static AssemblyResult getResult(EntityPlayer player, ItemSchematic schematic, int desiredAmount) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(schematic);
 
@@ -71,7 +71,7 @@ public class AssemblyResult {
         return new AssemblyResult(player, schematic, true, desiredAmount);
     }
 
-    public static int getMaximumPossibleAssembleCount(EntityPlayer player, Schematic schematic) {
+    public static int getMaximumPossibleAssembleCount(EntityPlayer player, ItemSchematic schematic) {
         Objects.requireNonNull(player);
         Objects.requireNonNull(schematic);
 

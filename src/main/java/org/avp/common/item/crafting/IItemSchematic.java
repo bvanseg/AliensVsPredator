@@ -2,7 +2,7 @@ package org.avp.common.item.crafting;
 
 import net.minecraft.item.ItemStack;
 
-public interface ISchematic
+public interface IItemSchematic
 {
     String getName();
     

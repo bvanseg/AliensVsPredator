@@ -14,14 +14,14 @@ import java.util.*;
 public class AssemblyManager
 {
     public static final AssemblyManager instance = new AssemblyManager();
-    private final HashMap<String, Schematic> schematicsByName = new HashMap<>();
+    private final HashMap<String, ItemSchematic> schematicsByName = new HashMap<>();
 
-    public List<Schematic> schematics()
+    public List<ItemSchematic> schematics()
     {
         return new ArrayList<>(this.schematicsByName.values());
     }
 
-    public static void register(Schematic schematic)
+    public static void register(ItemSchematic schematic)
     {
         Objects.requireNonNull(schematic);
 
@@ -34,7 +34,7 @@ public class AssemblyManager
         });
     }
 
-    public Schematic getSchematicByName(String name)
+    public ItemSchematic getSchematicByName(String name)
     {
         return schematicsByName.get(name.toLowerCase(Locale.US));
     }
