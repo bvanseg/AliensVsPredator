@@ -6,9 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILeapAtTarget;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -29,8 +26,6 @@ import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.world.Embryo;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
 
 import java.util.ArrayList;
 
@@ -48,17 +43,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, Parasito
         this.experienceValue = 10;
         this.ignoreFrustumCheck = true;
         this.jumpMovementFactor = 0.3F;
-    }
-    
-    @Override
-    protected void initEntityAI() {
-        // TODO:
-        super.initEntityAI();
-//        this.tasks.addTask(0, new EntityAISwimming(this));
-//        this.tasks.addTask(1, new EntityAICustomAttackOnCollide(this, 0.55D, true));
-//        this.tasks.addTask(2, new PatchedEntityAIWander(this, 0.55D));
-//        this.targetTasks.addTask(0, new EntityAILeapAtTarget(this, 0.8F));
-//        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, EntityLivingBase.class, 0, false, false, EntitySelectorParasitoid.instance));
     }
 
     @Override
