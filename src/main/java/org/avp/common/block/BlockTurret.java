@@ -2,7 +2,6 @@ package org.avp.common.block;
 
 import com.asx.mdx.lib.world.entity.Entities;
 import net.minecraft.block.Block;
-import org.avp.item.ItemStorageDevice;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -24,6 +23,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
+import org.avp.common.AVPGui;
+import org.avp.common.AVPItems;
 import org.avp.common.network.packet.server.PacketAddTurretTarget;
 import org.avp.common.tile.TileEntityTurret;
 
@@ -86,28 +87,26 @@ public class BlockTurret extends Block
 
         ItemStack activeHandStack = player.getHeldItem(hand);
 
-        if (activeHandStack.getItem() instanceof ItemStorageDevice) {
-        	if (!world.isRemote && player.isSneaking()) {
-        		if (!activeHandStack.hasTagCompound()) {
-            		TileEntityTurret turretTileEntity = (TileEntityTurret) world.getTileEntity(pos);
-        			NBTTagCompound nbt = new NBTTagCompound();
-        			NBTTagList targetListTag = turretTileEntity.getTargetHelper().getTargetListTag();
-        			nbt.setTag("Targets", targetListTag);
-        			activeHandStack.setTagCompound(nbt);
-                    activeHandStack.setStackDisplayName("NBT Drive - " + "TURRET (" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")");
-            		player.sendMessage(new TextComponentString("Successfully wrote data to NBT Drive."));
-        		} else {
-                    NBTTagList targetList = activeHandStack.getTagCompound().getTagList("Targets", NBT.TAG_STRING);
-            		TileEntityTurret turretTileEntity = (TileEntityTurret) world.getTileEntity(pos);
-            		turretTileEntity.getTargetHelper().readTargetList(targetList);
-            		player.sendMessage(new TextComponentString("Successfully loaded NBT data to turret (" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")."));
-        		}
-        	}
+        if (!world.isRemote && activeHandStack.getItem() == AVPItems.ITEM_FLASH_DRIVE) {
+            if (!activeHandStack.hasTagCompound()) {
+                TileEntityTurret turretTileEntity = (TileEntityTurret) world.getTileEntity(pos);
+                NBTTagCompound nbt = new NBTTagCompound();
+                NBTTagList targetListTag = turretTileEntity.getTargetHelper().getTargetListTag();
+                nbt.setTag("Targets", targetListTag);
+                activeHandStack.setTagCompound(nbt);
+                activeHandStack.setStackDisplayName("NBT Drive - " + "TURRET (" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")");
+                player.sendMessage(new TextComponentString("Successfully wrote data to NBT Drive."));
+            } else {
+                NBTTagList targetList = activeHandStack.getTagCompound().getTagList("Targets", NBT.TAG_STRING);
+                TileEntityTurret turretTileEntity = (TileEntityTurret) world.getTileEntity(pos);
+                turretTileEntity.getTargetHelper().readTargetList(targetList);
+                player.sendMessage(new TextComponentString("Successfully loaded NBT data to turret (" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")."));
+            }
 
         	return true;
         }
 
-        FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_TURRET, world, pos.getX(), pos.getY(), pos.getZ());
+        FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_TURRET, world, pos.getX(), pos.getY(), pos.getZ());
 
         return true;
     }
