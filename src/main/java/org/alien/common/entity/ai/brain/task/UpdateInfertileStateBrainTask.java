@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * @author Boston Vanseghi
  */
-public class UpdateInfertileStateTask extends AbstractBrainTask<EntityBrainContext> {
+public class UpdateInfertileStateBrainTask extends AbstractBrainTask<EntityBrainContext> {
 
     @Override
     public Map<AbstractBrainFlag, BrainFlagState> getFlags() {

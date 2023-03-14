@@ -19,7 +19,7 @@ import java.util.Map;
 /**
  * @author Boston Vanseghi
  */
-public class AttachedToHostTask extends AbstractBrainTask<EntityBrainContext> {
+public class AttachedToHostBrainTask extends AbstractBrainTask<EntityBrainContext> {
 
     private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
 
