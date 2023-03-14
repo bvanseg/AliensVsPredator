@@ -41,7 +41,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 
     public boolean                            growingOvipositor;
 
-    private AlienHive                         alienHive;
+    public AlienHive                         alienHive;
 
     public EntityMatriarch(World world)
     {
@@ -81,87 +81,35 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
     }
 
-    private void removeAI()
-    {
-        if (!this.tasks.taskEntries.isEmpty() || !this.targetTasks.taskEntries.isEmpty())
-        {
-            this.tasks.taskEntries.clear();
-            this.targetTasks.taskEntries.clear();
-        }
-    }
-
     private void reproduce()
     {
-        if (this.isReproducing())
+        if (!this.isReproducing()) return;
+        if (this.world.getTotalWorldTime() % (20 * 120) != 0) return;
+        if (this.getJellyLevel() < OVIPOSITOR_UNHEALTHY_THRESHOLD) return;
+
+        int ovipositorDist = 10;
+        double rotationYawRadians = Math.toRadians(this.rotationYawHead - 90);
+        double ovamorphX = (this.posX + (ovipositorDist * (Math.cos(rotationYawRadians))));
+        double ovamorphZ = (this.posZ + (ovipositorDist * (Math.sin(rotationYawRadians))));
+
+        // this.world.playSound(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), AliensVsPredator.sounds().SOUND_QUEEN_HURT, SoundCategory.HOSTILE, 1F, this.rand.nextInt(10) / 100, true);
+
+        if (this.world.isRemote)
         {
-            if (this.world.getTotalWorldTime() % (20 * 120) == 0 && this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD)
-            {
-                int ovipositorDist = 10;
-                double rotationYawRadians = Math.toRadians(this.rotationYawHead - 90);
-                double ovamorphX = (this.posX + (ovipositorDist * (Math.cos(rotationYawRadians))));
-                double ovamorphZ = (this.posZ + (ovipositorDist * (Math.sin(rotationYawRadians))));
+            AVP.network().sendToServer(new PacketSpawnEntity(ovamorphX, this.posY, ovamorphZ, Entities.getEntityRegistrationId(EntityOvamorph.class)));
+        }
+        this.setJellyLevel(this.getJellyLevel() - 100);
+    }
 
-                // this.world.playSound(this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), AliensVsPredator.sounds().SOUND_QUEEN_HURT, SoundCategory.HOSTILE, 1F, this.rand.nextInt(10) / 100, true);
-
-                if (this.world.isRemote)
-                {
-                    AVP.network().sendToServer(new PacketSpawnEntity(ovamorphX, this.posY, ovamorphZ, Entities.getEntityRegistrationId(EntityOvamorph.class)));
-                }
-                this.setJellyLevel(this.getJellyLevel() - 100);
-            }
+    private void jumpBoost() {
+        if (isJumping) {
+            this.addVelocity(0, 0.2D, 0);
         }
     }
 
-    private void handleOvipositorGrowth()
-    {
-        if (!this.world.isRemote)
-        {
-            boolean ovipositorHealthy = this.getJellyLevel() >= OVIPOSITOR_UNHEALTHY_THRESHOLD;
-
-            if (ovipositorHealthy)
-            {
-                if (this.getAlienHive() == null && !this.world.canSeeSky(this.getPosition()))
-                {
-                    this.alienHive = this.createNewAlienHive();
-
-                    if (this.getOvipositorSize() < OVIPOSITOR_THRESHOLD_SIZE)
-                    {
-                        this.setOvipositorSize(this.getOvipositorSize() + OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE);
-                        this.setJellyLevel(this.getJellyLevel() - OVIPOSITOR_JELLYLEVEL_GROWTH_USE);
-                    }
-
-                    this.removeAI();
-                }
-            }
-            else if (!ovipositorHealthy)
-            {
-                this.setOvipositorSize(0F);
-            }
-        }
-    }
-
-    private void jumpBoost()
-    {
-        if (!this.world.isRemote)
-        {
-            if (isJumping)
-            {
-                this.addVelocity(0, 0.2D, 0);
-            }
-        }
-    }
-
-    private void heal()
-    {
-        if (!this.world.isRemote)
-        {
-            if (this.world.getTotalWorldTime() % 20 == 0)
-            {
-                if (this.getHealth() > this.getMaxHealth() / 4)
-                {
-                    this.heal(1F);
-                }
-            }
+    private void heal() {
+        if (this.world.getTotalWorldTime() % 20 == 0 && this.getHealth() > this.getMaxHealth() / 4) {
+            this.heal(1F);
         }
     }
 
@@ -170,12 +118,12 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     {
         super.onUpdate();
 
-        this.handleOvipositorGrowth();
         this.reproduce();
-        this.jumpBoost();
-        this.heal();
 
         if (!this.world.isRemote && this.alienHive != null) {
+            this.jumpBoost();
+            this.heal();
+
         	this.alienHive.update();
         }
 
@@ -253,7 +201,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         return AlienSounds.QUEEN_DEATH.event();
     }
 
-    private static final String alienHiveNbtKey = "AlienHive";
+    private static final String ALIEN_HIVE_NBT_KEY = "AlienHive";
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt)
@@ -261,9 +209,9 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         super.readEntityFromNBT(nbt);
         this.setOvipositorSize(nbt.getFloat("ovipositorSize"));
 
-        if (nbt.hasKey(alienHiveNbtKey, NBT.TAG_COMPOUND)) {
+        if (nbt.hasKey(ALIEN_HIVE_NBT_KEY, NBT.TAG_COMPOUND)) {
         	this.alienHive = this.createNewAlienHive();
-        	NBTTagCompound hiveData = nbt.getCompoundTag("AlienHive");
+        	NBTTagCompound hiveData = nbt.getCompoundTag(ALIEN_HIVE_NBT_KEY);
         	this.alienHive.readFromNBT(hiveData);
         }
     }
@@ -277,7 +225,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         if (this.alienHive != null) {
         	NBTTagCompound hiveData = new NBTTagCompound();
         	this.alienHive.writeToNBT(hiveData);
-        	nbt.setTag(alienHiveNbtKey, hiveData);
+        	nbt.setTag(ALIEN_HIVE_NBT_KEY, hiveData);
         }
     }
     
