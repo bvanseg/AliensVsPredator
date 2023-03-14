@@ -41,6 +41,8 @@ public class NearestAvoidTargetBrainSensor extends AbstractBrainSensor<EntityBra
 
 			if (!targets.isEmpty()) {
 		        ctx.getBrain().remember(BrainMemoryKeys.NEAREST_AVOID_TARGET, targets.get(0));
+			} else {
+				ctx.getBrain().forget(BrainMemoryKeys.NEAREST_AVOID_TARGET);
 			}
 		}
 	}
