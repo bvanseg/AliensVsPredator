@@ -17,8 +17,6 @@ import org.alien.common.world.hive.HiveMember;
 
 public class EntityDrone extends SpeciesXenomorph implements Maturable, HiveMember
 {
-    public EntityOvamorph 					targetOvamorph;
-    
     public EntityDrone(World world)
     {
         super(world);

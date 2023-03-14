@@ -66,7 +66,6 @@ public class BuildHiveBrainTask extends AbstractBrainTask<EntityBrainContext> {
 
 		EntityDrone droneEntity = (EntityDrone) entity;
 
-		if (droneEntity.targetOvamorph != null) return false;
 		if (droneEntity.getAlienHive() == null) return false;
 		if (droneEntity.world.getTotalWorldTime() % 10 != 0) return false;
 		if (droneEntity.getRNG().nextInt(3) != 0) return false;

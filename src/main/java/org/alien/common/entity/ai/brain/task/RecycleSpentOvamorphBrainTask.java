@@ -38,6 +38,8 @@ public class RecycleSpentOvamorphBrainTask extends AbstractBrainTask<EntityBrain
 		return FLAGS;
 	}
 
+	private EntityOvamorph targetOvamorph;
+
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
@@ -57,23 +59,23 @@ public class RecycleSpentOvamorphBrainTask extends AbstractBrainTask<EntityBrain
 	protected void execute(EntityBrainContext ctx) {
 		EntityDrone entityDrone = (EntityDrone) ctx.getEntity();
 
-		if (entityDrone.targetOvamorph == null) {
-			findOvamorphTarget(entityDrone, ctx);
+		if (this.targetOvamorph == null) {
+			findOvamorphTarget(ctx);
 			return;
 		}
 
-		entityDrone.getNavigator().tryMoveToEntityLiving(entityDrone.targetOvamorph, entityDrone.getMoveHelper().getSpeed());
-		double distance = entityDrone.getDistanceSq(entityDrone.targetOvamorph);
+		entityDrone.getNavigator().tryMoveToEntityLiving(this.targetOvamorph, entityDrone.getMoveHelper().getSpeed());
+		double distance = entityDrone.getDistanceSq(this.targetOvamorph);
 
 		if (distance <= 2)
 		{
-			entityDrone.setJellyLevel(entityDrone.getJellyLevel() + entityDrone.targetOvamorph.getJellyLevel());
-			entityDrone.targetOvamorph.setDead();
-			entityDrone.targetOvamorph = null;
+			entityDrone.setJellyLevel(entityDrone.getJellyLevel() + this.targetOvamorph.getJellyLevel());
+			this.targetOvamorph.setDead();
+			this.targetOvamorph = null;
 		}
 	}
 
-	private static void findOvamorphTarget(EntityDrone entityDrone, EntityBrainContext ctx) {
+	private void findOvamorphTarget(EntityBrainContext ctx) {
 		Optional<List<EntityLivingBase>> livingEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);
 		if (!livingEntitiesOptional.isPresent()) return;
 
@@ -87,7 +89,7 @@ public class RecycleSpentOvamorphBrainTask extends AbstractBrainTask<EntityBrain
 		for (EntityOvamorph ovamorph: ovamorphs) {
 			if (!ovamorph.containsFacehugger)
 			{
-				entityDrone.targetOvamorph = ovamorph;
+				this.targetOvamorph = ovamorph;
 				break;
 			}
 		}
