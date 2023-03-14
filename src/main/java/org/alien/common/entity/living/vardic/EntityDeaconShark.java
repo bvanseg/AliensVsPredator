@@ -14,51 +14,46 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
+import org.alien.common.entity.ai.brain.DeaconSharkBrain;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
 import org.avp.common.entity.ai.PatchedEntityAIWander;
 import org.avp.common.entity.ai.helpers.EntityExtendedLookHelper;
 import org.avp.common.entity.ai.pathfinding.PathNavigateSwimmer;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 
-public class EntityDeaconShark extends SpeciesAlien
+public class EntityDeaconShark extends SpeciesAlien implements Brainiac<DeaconSharkBrain>
 {
-    private PatchedEntityAIWander          wander;
-    private EntityAIMoveTowardsRestriction moveTowardsRestriction;
+    @Deprecated
+    private final Predicate<EntityLivingBase> entitySelector = target -> !(target instanceof EntityDeaconShark) && EntityDeaconShark.this.canEntityBeSeen(target);
     private double                         distanceToTargetLastTick;
-    private final Predicate<EntityLivingBase>                entitySelector = new Predicate<EntityLivingBase>()
-                                                          {
-                                                              @Override
-                                                              public boolean apply(EntityLivingBase target)
-                                                              {
-                                                                  return  !(target instanceof EntityDeaconShark) && EntityDeaconShark.this.canEntityBeSeen(target);
-                                                              }
-                                                          };
+
+    private DeaconSharkBrain brain;
 
     public EntityDeaconShark(World worldIn)
     {
         super(worldIn);
         this.experienceValue = 10;
         this.setSize(2F, 1F);
-    }
-    
-    @Override
-    protected void initEntityAI() {
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.8D, true));
-        this.tasks.addTask(5, moveTowardsRestriction = new EntityAIMoveTowardsRestriction(this, 1.0D));
-        this.tasks.addTask(7, this.wander = new PatchedEntityAIWander(this, 1.0D));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-        this.tasks.addTask(8, new EntityAIWatchClosest(this, EntityDeaconShark.class, 12.0F, 0.01F));
-        this.tasks.addTask(9, new EntityAILookIdle(this));
-        this.moveTowardsRestriction.setMutexBits(3);
-        this.wander.setMutexBits(3);
-//        this.targetTasks.addTask(1, new EntityAINearestAttackableTarget<>(this, Entity.class, 10, true, false, entitySelector));
-        this.targetTasks.addTask(2, new EntityAIHurtByTarget(this, true));
-        this.targetTasks.addTask(3, new EntityAILeapAtTarget(this, 0.4F));
         Entities.setMoveHelper(this, new EntityDeaconShark.DeaconSharkMoveHelper());
         Entities.setNavigator(this, new PathNavigateSwimmer(this, this.world));
         Entities.setLookHelper(this, new EntityExtendedLookHelper(this));
+    }
+
+    @Override
+    public DeaconSharkBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new DeaconSharkBrain(this);
+        }
+        return this.brain;
+    }
+
+    @Override
+    protected void initEntityAI() {
+        this.getBrain().init();
     }
 
     @Override
@@ -69,6 +64,15 @@ public class EntityDeaconShark extends SpeciesAlien
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(16.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
     }
 
     @Override
