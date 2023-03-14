@@ -3,8 +3,6 @@ package org.alien.common.entity.living.vardic;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.block.Blocks;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
-import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -16,13 +14,17 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienBlocks;
 import org.alien.common.AlienItems;
+import org.alien.common.entity.ai.brain.HammerpedeBrain;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 
-public class EntityHammerpede extends SpeciesAlien implements IMob
+public class EntityHammerpede extends SpeciesAlien implements IMob, Brainiac<HammerpedeBrain>
 {
+
+    private HammerpedeBrain brain;
 
     public EntityHammerpede(World par1World)
     {
@@ -31,17 +33,18 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
         this.setSize(0.5F, 0.5F);
         this.experienceValue = 16;
     }
-    
+
+    @Override
+    public HammerpedeBrain getBrain() {
+        if (!this.world.isRemote) {
+            this.brain = new HammerpedeBrain(this);
+        }
+        return this.brain;
+    }
+
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(2, new EntityAICustomAttackOnCollide(this, 0.8D, true));
-        this.targetTasks.addTask(0, new EntityAIHurtByTarget(this, true));
-        // TODO: Re-implement this
-//        this.targetTasks.addTask(3, new EntityAINearestAttackableTarget<>(this, Entity.class, 10 /** targetChance **/
-//            , false /** checkSight **/
-//            , false /** nearbyOnly **/
-//            , entitySelector));
+        this.getBrain().init();
     }
 
     @Override
@@ -66,6 +69,10 @@ public class EntityHammerpede extends SpeciesAlien implements IMob
         super.onUpdate();
         this.fallDistance = 0F;
         this.lurkInBlackGoo();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
     }
 
     public void lurkInBlackGoo()
