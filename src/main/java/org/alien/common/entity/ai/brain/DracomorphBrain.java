@@ -39,8 +39,7 @@ public class DracomorphBrain extends AbstractEntityBrain<EntityDracomorph> {
 
 		this.addTask(new WanderBrainTask(1.0D));
 		this.addTask(new WatchClosestBrainTask(EntityPlayer.class, 8.0F));
-		// TODO:
-		this.addTask(new BrainTaskAdapter(new EntityAILookIdle(entity)));
+		this.addTask(new LookIdleBrainTask());
 
 		this.addTask(new HurtByTargetBrainTask());
 		this.addTask(new NearestAttackableTargetBrainTask());

@@ -36,7 +36,7 @@ public class AethonBrain extends AbstractEntityBrain<EntityAethon> {
 		this.addTask(new BrainTaskAdapter(new EntityAIMoveThroughVillage(entity, 1.0D, false)));
 		this.addTask(new WanderBrainTask(1.0D));
 		this.addTask(new WatchClosestBrainTask(EntityPlayer.class, 8.0F));
-		this.addTask(new BrainTaskAdapter(new EntityAILookIdle(entity)));
+		this.addTask(new LookIdleBrainTask());
 		this.addTask(new HurtByTargetBrainTask());
 		this.addTask(new NearestAttackableTargetBrainTask());
 	}
