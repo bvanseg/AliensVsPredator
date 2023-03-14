@@ -89,17 +89,20 @@ public class EntityAcidPool extends EntityLiquidPool
     {
         super.onUpdate();
 
-        if (!this.world.isRemote && this.isPushing) {
-            damageNearbyEntities();
-            this.isPushing = false;
+        if (!this.world.isRemote) {
+            if (this.isPushing) {
+                damageNearbyEntities();
+                this.isPushing = false;
+            }
+
+            breakBlock();
         }
 
         if (world.isRemote && world.getTotalWorldTime() % 10 <= 0)
         {
             this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX + this.rand.nextDouble(), this.posY + this.rand.nextDouble(), this.posZ + this.rand.nextDouble(), 0.0D, 0.0D, 0.0D);
         }
-        
-        breakBlock();
+
     }
 
     private void breakBlock() {
