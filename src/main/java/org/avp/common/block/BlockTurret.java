@@ -8,17 +8,23 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
+import org.avp.common.AVPGui;
+import org.avp.common.AVPItems;
 import org.avp.common.network.packet.server.PacketAddTurretTarget;
 import org.avp.common.tile.TileEntityTurret;
 
@@ -79,7 +85,28 @@ public class BlockTurret extends Block
             }
         }
 
-        FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_TURRET, world, pos.getX(), pos.getY(), pos.getZ());
+        ItemStack activeHandStack = player.getHeldItem(hand);
+
+        if (!world.isRemote && activeHandStack.getItem() == AVPItems.ITEM_FLASH_DRIVE) {
+            if (!activeHandStack.hasTagCompound()) {
+                TileEntityTurret turretTileEntity = (TileEntityTurret) world.getTileEntity(pos);
+                NBTTagCompound nbt = new NBTTagCompound();
+                NBTTagList targetListTag = turretTileEntity.getTargetHelper().getTargetListTag();
+                nbt.setTag("Targets", targetListTag);
+                activeHandStack.setTagCompound(nbt);
+                activeHandStack.setStackDisplayName("NBT Drive - " + "TURRET (" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")");
+                player.sendMessage(new TextComponentString("Successfully wrote data to NBT Drive."));
+            } else {
+                NBTTagList targetList = activeHandStack.getTagCompound().getTagList("Targets", NBT.TAG_STRING);
+                TileEntityTurret turretTileEntity = (TileEntityTurret) world.getTileEntity(pos);
+                turretTileEntity.getTargetHelper().readTargetList(targetList);
+                player.sendMessage(new TextComponentString("Successfully loaded NBT data to turret (" + pos.getX() + ", " + pos.getY() + ", " + pos.getZ() + ")."));
+            }
+
+        	return true;
+        }
+
+        FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_TURRET, world, pos.getX(), pos.getY(), pos.getZ());
 
         return true;
     }
@@ -121,7 +148,7 @@ public class BlockTurret extends Block
             }
         }
     }
-    
+
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
