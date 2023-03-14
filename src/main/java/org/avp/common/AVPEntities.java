@@ -11,10 +11,7 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.*;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.EntityAcidProjectile;
 import org.alien.common.entity.living.EntityAethon;
@@ -43,11 +40,8 @@ import org.predator.common.entity.living.EntityPredatorHound;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
-import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class AVPEntities implements IInitEvent
 {
@@ -313,7 +307,7 @@ public class AVPEntities implements IInitEvent
     public List<Biome> filterOverworldBiomes(String listName, List<Biome> biomes)
     {
         Iterator<Biome> iter = biomes.iterator();
-        List<Biome> overworldBiomes = getOverworldBiomeList();
+        Set<Biome> overworldBiomes = getOverworldBiomeList();
 
         while (iter.hasNext())
         {
@@ -330,32 +324,15 @@ public class AVPEntities implements IInitEvent
         return biomes;
     }
 
-    public static List<Biome> getOverworldBiomeList()
+    public static Set<Biome> getOverworldBiomeList()
     {
-        ArrayList<Biome> overworldBiomes = new ArrayList<>();
-
-        for (Field field : Biomes.class.getDeclaredFields())
-        {
-            if (field.getType() == Biome.class)
-            {
-                try
-                {
-                    field.setAccessible(true);
-                    Biome b = (Biome) field.get(null);
-
-                    if (b != Biomes.HELL)
-                    {
-                        overworldBiomes.add(b);
-                    }
-                }
-                catch (Exception e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        return overworldBiomes;
+        return ForgeRegistries.BIOMES.getValuesCollection().stream().filter(biome -> {
+            if (biome.getRegistryName() == null)
+                return false;
+            boolean isMinecraftBiome = biome.getRegistryName().getNamespace().equalsIgnoreCase("minecraft");
+            boolean isOverworldBiome = biome != Biomes.HELL && biome != Biomes.VOID && biome != Biomes.SKY;
+            return isMinecraftBiome && isOverworldBiome;
+        }).collect(Collectors.toSet());
     }
 
     private static Biome[] array(List<Biome> biomes)
