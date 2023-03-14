@@ -6,6 +6,7 @@ import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntityZombieHorse;
+import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.living.SpeciesEngineer;
 import org.alien.common.world.capability.Organism.OrganismImpl;
@@ -59,6 +60,11 @@ public class EntitySelectorAvoid implements Predicate<EntityLivingBase>
             {
                 return true;
             }
+        }
+
+        if (potentialTarget instanceof EntityPlayer && ((EntityPlayer)potentialTarget).isCreative())
+        {
+            return false;
         }
         
         if (potentialTarget.height > 1.5F)
