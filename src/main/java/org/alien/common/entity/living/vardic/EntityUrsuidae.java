@@ -1,8 +1,6 @@
 package org.alien.common.entity.living.vardic;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
@@ -12,27 +10,32 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Host;
-import org.avp.common.entity.ai.EntityAICustomAttackOnCollide;
-import org.avp.common.entity.ai.PatchedEntityAIWander;
+import org.alien.common.entity.ai.brain.UrsuidaeBrain;
+import org.lib.brain.Brainiac;
+import org.lib.brain.impl.EntityBrainContext;
 
-public class EntityUrsuidae extends EntityMob implements IMob, Host
+public class EntityUrsuidae extends EntityMob implements IMob, Host, Brainiac<UrsuidaeBrain>
 {
+    private UrsuidaeBrain brain;
+
     public EntityUrsuidae(World world)
     {
         super(world);
         this.setSize(1.5F, 1.75F);
         this.experienceValue = 0;
     }
-    
+
+    @Override
+    public UrsuidaeBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new UrsuidaeBrain(this);
+        }
+        return this.brain;
+    }
+
     @Override
     protected void initEntityAI() {
-        this.tasks.addTask(0, new EntityAISwimming(this));
-        this.tasks.addTask(1, new EntityAIMoveTowardsRestriction(this, 0.55D));
-        this.tasks.addTask(2, new EntityAIMoveThroughVillage(this, 0.55D, false));
-        this.tasks.addTask(3, new PatchedEntityAIWander(this, 1.0D));
-        this.tasks.addTask(4, new EntityAIWatchClosest(this, EntityLivingBase.class, 16.0F));
-        this.tasks.addTask(5, new EntityAILookIdle(this));
-        this.tasks.addTask(6, new EntityAICustomAttackOnCollide(this, EntityLivingBase.class, 0.6D, true));
+        this.getBrain().init();
     }
 
     @Override
@@ -44,7 +47,16 @@ public class EntityUrsuidae extends EntityMob implements IMob, Host
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.3D);
     }
-    
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+        }
+    }
+
     @Override
     public int getTotalArmorValue()
     {
