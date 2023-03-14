@@ -16,11 +16,6 @@ public class MatriarchBrain extends XenomorphBrain {
 	@Override
 	public void init() {
 		super.init();
-
-		// Brain Senses
-
-
-		// Brain Tasks
 		this.addTask(new MatriarchMoveToHiveCoreBrainTask());
 	}
 }

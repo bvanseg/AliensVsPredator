@@ -1,14 +1,14 @@
 package org.alien.common.entity.ai.brain.task;
 
-import com.asx.mdx.lib.world.Pos;
-import org.alien.common.entity.living.xenomorph.EntityMatriarch;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.pathfinding.Path;
+import org.alien.common.world.hive.HiveMember;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,45 +32,30 @@ public class MoveToHiveCoreBrainTask extends AbstractBrainTask<EntityBrainContex
 	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
 		return FLAGS;
 	}
-
-	private ArrayList<Pos> pathPoints = new ArrayList<>();
 	
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
-		if (!(ctx.getEntity() instanceof EntityMatriarch))
-			return false;
+		EntityLiving entity = ctx.getEntity();
 
-		EntityMatriarch matriarch = (EntityMatriarch) ctx.getEntity();
-		return matriarch.getAlienHive() != null && !matriarch.isReproducing();
+		if (!(entity instanceof HiveMember)) return false;
+
+		HiveMember hiveMember = (HiveMember) entity;
+
+		if (hiveMember.getAlienHive() == null) return false;
+		if (hiveMember.getAlienHive().isEntityWithinRange(entity)) return false;
+
+		return true;
 	}
 	
     @Override
 	protected void execute(EntityBrainContext ctx) {
-		EntityMatriarch matriarch = (EntityMatriarch) ctx.getEntity();
+		EntityLiving entity = ctx.getEntity();
+		HiveMember hiveMember = (HiveMember) entity;
 
-		Pos coordQueen = new Pos(matriarch);
-		Pos coordHive = new Pos(matriarch.getAlienHive().getCoreBlockPos().getX(), matriarch.getAlienHive().getCoreBlockPos().getY(),
-				matriarch.getAlienHive().getCoreBlockPos().getZ());
+		Path path = entity.getNavigator().getPathToPos(hiveMember.getAlienHive().getCoreBlockPos());
 
-		int hiveDist = (int) matriarch.getDistance(coordHive.x, coordHive.y, coordHive.z);
+		if (path == null) return;
 
-		if (hiveDist > matriarch.getAlienHive().getMaxHiveRadius() * 0.5 && matriarch.getAttackTarget() == null) {
-			this.pathPoints = Pos.getPointsBetween(coordQueen, coordHive, hiveDist / 12);
-
-			if (!this.pathPoints.isEmpty()) {
-				Pos closestPoint = this.pathPoints.get(0);
-
-				// TODO: This for loop may not be necessary, since the closest pos returned from Pos.getPointsBetween should always be the first pos in the collection.
-				for (Pos point : this.pathPoints) {
-					if (closestPoint != null && point.distanceFrom(matriarch) < closestPoint.distanceFrom(matriarch)) {
-						closestPoint = point;
-					}
-				}
-
-				if (matriarch.getDistance(closestPoint.x, closestPoint.y, closestPoint.z) < 1.0D) {
-					this.pathPoints.remove(closestPoint);
-				}
-			}
-		}
+		entity.getNavigator().setPath(path, 0.8D);
 	}
 }

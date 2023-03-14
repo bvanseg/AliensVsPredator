@@ -1,11 +1,8 @@
 package org.alien.common.entity.living.xenomorph;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
-import net.minecraft.pathfinding.Path;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
@@ -18,20 +15,15 @@ import org.alien.common.entity.ai.brain.XenomorphBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 
-import java.util.ArrayList;
-
 public class EntityDrone extends SpeciesXenomorph implements Maturable, HiveMember
 {
-    public int             					mobType;
     public EntityOvamorph 					targetOvamorph;
     
     public EntityDrone(World world)
     {
         super(world);
-
         this.experienceValue = 100;
         this.setSize(0.8F, 1.8F);
-        this.mobType = this.rand.nextInt(2);
     }
 
     @Override
@@ -49,39 +41,6 @@ public class EntityDrone extends SpeciesXenomorph implements Maturable, HiveMemb
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.53D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
-    }
-
-    @Override
-    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
-    {
-        return AlienSounds.ALIEN_HURT.event();
-    }
-
-    @Override
-    protected SoundEvent getAmbientSound()
-    {
-        return AlienSounds.ALIEN_LIVING.event();
-    }
-
-    @Override
-    protected SoundEvent getDeathSound()
-    {
-        return AlienSounds.ALIEN_DEATH.event();
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-
-        if (this.getAlienHive() == null) return;
-        if (this.getAlienHive().isEntityWithinRange(this)) return;
-
-        Path path = this.getNavigator().getPathToPos(this.getAlienHive().getCoreBlockPos());
-
-        if (path == null) return;
-
-        this.getNavigator().setPath(path, 0.8D);
     }
 
     @Override
@@ -116,5 +75,23 @@ public class EntityDrone extends SpeciesXenomorph implements Maturable, HiveMemb
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(AlienItems.SUMMONER_DRONE);
+    }
+
+    @Override
+    protected SoundEvent getHurtSound(DamageSource damageSourceIn)
+    {
+        return AlienSounds.ALIEN_HURT.event();
+    }
+
+    @Override
+    protected SoundEvent getAmbientSound()
+    {
+        return AlienSounds.ALIEN_LIVING.event();
+    }
+
+    @Override
+    protected SoundEvent getDeathSound()
+    {
+        return AlienSounds.ALIEN_DEATH.event();
     }
 }
