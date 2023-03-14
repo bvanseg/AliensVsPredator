@@ -1,14 +1,12 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityCryostasisTube;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.tile.TileEntityCryostasisTube;
 
 public class ModelCryostasisTube extends Model<TileEntityCryostasisTube>
 {
-    public ModelRenderer cap,
+    public final ModelRenderer cap,
         capN,
         glassN,
         capNE,

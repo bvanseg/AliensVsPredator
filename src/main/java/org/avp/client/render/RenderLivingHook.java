@@ -1,16 +1,11 @@
 package org.avp.client.render;
 
-import org.avp.client.render.tile.RenderMedpod;
-import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.entities.EntityMedpod;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.models.Model;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.util.MDXMath;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.Entity;
@@ -21,23 +16,28 @@ import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import org.avp.client.render.tile.RenderMedpod;
+import org.avp.client.render.util.EntityRenderTransforms;
+import org.avp.common.entity.EntityMedpod;
+import org.predator.client.render.RenderPlayerPlasmaCannon;
 
 public class RenderLivingHook
 {
-    public static final RenderLivingHook instance           = new RenderLivingHook();
-    public RenderLiving                  renderer           = new RenderLiving();
-    public RenderPlayerPlasmaCannon      renderplasmacannon = new RenderPlayerPlasmaCannon();
+    public static final RenderLivingHook instance = new RenderLivingHook();
+    public static final RenderPlayerPlasmaCannon renderPlasmaCannon = new RenderPlayerPlasmaCannon();
+
+    public static final RenderLiving renderer = new RenderLiving();
 
     @SubscribeEvent
     public void update(ClientTickEvent event)
     {
-        renderplasmacannon.update(event, Game.minecraft(), Game.minecraft().world);
+        renderPlasmaCannon.update(event, Game.minecraft(), Game.minecraft().world);
     }
 
     @SubscribeEvent
     public void renderHand(RenderHandEvent event)
     {
-        renderplasmacannon.renderFirstPerson(event, event.getPartialTicks());
+        renderPlasmaCannon.renderFirstPerson(event, event.getPartialTicks());
     }
 
     @SubscribeEvent
@@ -47,7 +47,7 @@ public class RenderLivingHook
         {
             if (event.getEntity() instanceof EntityPlayer)
             {
-                renderplasmacannon.render(event, Game.partialTicks());
+                renderPlasmaCannon.render(event, Game.partialTicks());
             }
 
             if (event.getEntity().getRidingEntity() instanceof EntityMedpod)
@@ -65,7 +65,7 @@ public class RenderLivingHook
         {
             if (event.getEntity() instanceof EntityPlayer)
             {
-                renderplasmacannon.render(event, Game.partialTicks());
+                renderPlasmaCannon.render(event, Game.partialTicks());
             }
 
             if (event.getEntity().getRidingEntity() instanceof EntityMedpod)
@@ -80,7 +80,7 @@ public class RenderLivingHook
         return renderer;
     }
 
-    public class RenderLiving extends RenderLivingBase<EntityLivingBase>
+    public static class RenderLiving extends RenderLivingBase<EntityLivingBase>
     {
         private RenderLivingBase<EntityLivingBase> cache;
 
@@ -155,7 +155,7 @@ public class RenderLivingHook
 
         public void transformEntity(EntityMedpod medpod, Entity inMedpod, float partialTicks)
         {
-            float rotation = (float) medpod.getTileEntity().getDoorProgress() * 45 / medpod.getTileEntity().getMaxDoorProgress();
+            float rotation = medpod.getTileEntity().getDoorProgress() * 45 / medpod.getTileEntity().getMaxDoorProgress();
 
             OpenGL.rotate(medpod.getTileEntity());
             OpenGL.scale(-1.0F, -1.0F, 1.0F);

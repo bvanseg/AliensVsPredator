@@ -1,14 +1,12 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
-import org.avp.tile.TileEntityAmpule;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL12;
-
 import com.asx.mdx.lib.client.util.OpenGL;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import org.avp.AVP;
+import org.avp.common.tile.TileEntityAmpule;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL12;
 
 public class RenderAmpule extends TileEntitySpecialRenderer<TileEntityAmpule>
 {
@@ -25,7 +23,7 @@ public class RenderAmpule extends TileEntitySpecialRenderer<TileEntityAmpule>
             OpenGL.enable(GL11.GL_ALPHA_TEST);
             OpenGL.disableCullFace();
             OpenGL.rotate(tile);
-            AliensVsPredator.resources().models().AMPULE.draw(tile);
+            AVP.resources().models().AMPULE.draw(tile);
             OpenGL.enableCullFace();
         }
         OpenGL.popMatrix();

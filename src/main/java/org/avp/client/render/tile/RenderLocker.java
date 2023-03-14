@@ -1,22 +1,20 @@
 package org.avp.client.render.tile;
 
-import org.avp.AliensVsPredator;
-import org.avp.client.model.tile.ModelLocker;
-import org.avp.tile.TileEntityLocker;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.Renderers;
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.ItemRenderer;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
+import org.avp.AVP;
+import org.avp.client.model.tile.ModelLocker;
+import org.avp.common.tile.TileEntityLocker;
+import org.lwjgl.opengl.GL11;
 
 public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
 {
@@ -43,8 +41,8 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
             float lerpProgress = !tile.isOpen() ? tile.openProgress : 1 - tile.openProgress;
             float openProgress = lerp(tile.isOpen() ? -1.5F : 0F, tile.isOpen() ? 0F : -1.5F, lerpProgress);
             
-            ((ModelLocker) AliensVsPredator.resources().models().LOCKER.getModel()).door.rotateAngleY = openProgress;
-            AliensVsPredator.resources().models().LOCKER.draw(tile);
+            ((ModelLocker) AVP.resources().models().LOCKER.getModel()).door.rotateAngleY = openProgress;
+            AVP.resources().models().LOCKER.draw(tile);
 
             if (tile != null)
             {

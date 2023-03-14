@@ -1,14 +1,7 @@
 package org.avp.client.render;
 
-import org.avp.PlayerModeHandler;
-import org.avp.item.firearms.ItemFirearm;
-import org.avp.item.firearms.ItemFlamethrower;
-import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
-import org.avp.world.playermode.PlayerMode;
-
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
@@ -18,6 +11,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.avp.common.PlayerModeHandler;
+import org.avp.common.item.firearm.ItemFirearm;
+import org.avp.common.item.firearm.ItemFlamethrower;
+import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+import org.avp.common.world.playermode.PlayerMode;
 
 public class PlayerModeRenderEvent
 {

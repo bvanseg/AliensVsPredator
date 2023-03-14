@@ -1,7 +1,6 @@
 package org.avp.client.render;
 
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.player.EntityPlayer;

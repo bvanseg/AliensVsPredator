@@ -1,22 +1,15 @@
 package org.avp.client.gui;
 
-import java.io.IOException;
-
-import org.avp.client.render.TacticalHUDRenderEvent;
-import org.avp.world.capabilities.ISpecialPlayer.SpecialPlayer;
-
-import com.asx.mdx.lib.client.gui.GuiCustomButton;
-import com.asx.mdx.lib.client.gui.GuiCustomScreen;
-import com.asx.mdx.lib.client.gui.GuiCustomSlider;
-import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
-import com.asx.mdx.lib.client.gui.IAction;
-import com.asx.mdx.lib.client.gui.IGuiElement;
+import com.asx.mdx.lib.client.gui.*;
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.ScaledResolution;
 import com.asx.mdx.lib.client.util.Screen;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.client.gui.GuiScreen;
+import org.avp.client.render.TacticalHUDRenderEvent;
+import org.avp.common.world.capability.ISpecialPlayer.SpecialPlayer;
+
+import java.io.IOException;
 
 public class GuiTacticalHUDSettings extends GuiCustomScreen
 {

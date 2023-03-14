@@ -1,30 +1,11 @@
 package org.avp.client.gui;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
-import org.apache.commons.lang3.tuple.Pair;
-import org.avp.AliensVsPredator;
-import org.avp.packets.server.PacketAddTurretTarget;
-import org.avp.packets.server.PacketReadFromDataDevice;
-import org.avp.packets.server.PacketRemoveTurretTarget;
-import org.avp.packets.server.PacketToggleTurretPlayerTarget;
-import org.avp.packets.server.PacketWriteToDataDevice;
-import org.avp.tile.TileEntityTurret;
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-
 import com.asx.mdx.lib.client.gui.GuiCustomButton;
 import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
 import com.asx.mdx.lib.client.gui.IAction;
 import com.asx.mdx.lib.client.gui.IGuiElement;
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.world.entity.Entities;
-
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -36,6 +17,19 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.tuple.Pair;
+import org.avp.AVP;
+import org.avp.common.network.packet.server.*;
+import org.avp.common.tile.TileEntityTurret;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @SideOnly(Side.CLIENT)
 public class GuiTurret extends GuiContainer
@@ -62,7 +56,7 @@ public class GuiTurret extends GuiContainer
         @Override
         public void perform(IGuiElement element)
         {
-            AliensVsPredator.network().sendToServer(new PacketWriteToDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
+            AVP.network().sendToServer(new PacketWriteToDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
             tile.writeToOtherDevice(0);
         }
     };
@@ -72,7 +66,7 @@ public class GuiTurret extends GuiContainer
         public void perform(IGuiElement element)
         {
             tile.getTargetHelper().getDangerousTargets().clear();
-            AliensVsPredator.network().sendToServer(new PacketReadFromDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
+            AVP.network().sendToServer(new PacketReadFromDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
             tile.readFromOtherDevice(0);
         }
     };
@@ -91,12 +85,12 @@ public class GuiTurret extends GuiContainer
                     {
                         tile.getTargetHelper().addTargetType(entityClass);
                         
-                        AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
+                        AVP.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
                     }
                     else
                     {
                         tile.getTargetHelper().removeTargetType(entityClass);
-                        AliensVsPredator.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
+                        AVP.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
                     }
                 }
             }
@@ -186,7 +180,7 @@ public class GuiTurret extends GuiContainer
         tile.applyUpgrades();
 
     	Collection<String> entityIdentifiers = tile.getTargetHelper().getDangerousTargets().stream().map((e) -> Entities.getEntityRegistrationId(e)).collect(Collectors.toList());
-        AliensVsPredator.network().sendToServer(new PacketAddTurretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), entityIdentifiers));
+        AVP.network().sendToServer(new PacketAddTurretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), entityIdentifiers));
     }
 
     @Override
@@ -194,7 +188,7 @@ public class GuiTurret extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY)
     {
     	this.drawDefaultBackground();
-        AliensVsPredator.resources().GUI_TURRET.bind();
+        AVP.resources().GUI_TURRET.bind();
         drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
         int stacksTotal = this.tile.getContainer(this.mc.player).getAmmoBay().getSizeInventory() * this.tile.getContainer(this.mc.player).getAmmoBay().getInventoryStackLimit();
@@ -345,7 +339,7 @@ public class GuiTurret extends GuiContainer
                 }
                 else if (playerNameInput != null && !playerNameInput.getText().isEmpty())
                 {
-                	AliensVsPredator.network().sendToServer(new PacketToggleTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
+                	AVP.network().sendToServer(new PacketToggleTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
                     return;
                 }
             }

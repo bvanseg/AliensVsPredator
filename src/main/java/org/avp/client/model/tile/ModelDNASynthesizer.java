@@ -1,54 +1,53 @@
 package org.avp.client.model.tile;
 
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 
 //TODO: Use a better type than Object for Model.
 public class ModelDNASynthesizer extends Model<Object>
 {
-    public ModelRenderer tankFloor;
-    public ModelRenderer supportBar;
-    public ModelRenderer baseN;
-    public ModelRenderer glassN;
-    public ModelRenderer capN;
-    public ModelRenderer tankLid;
-    public ModelRenderer base;
-    public ModelRenderer frame;
-    public ModelRenderer lFrameSupport;
-    public ModelRenderer rFrameSupport;
-    public ModelRenderer vial1;
-    public ModelRenderer vial2;
-    public ModelRenderer vial3;
-    public ModelRenderer injector;
-    public ModelRenderer injectorNeedle;
-    public ModelRenderer injectorFluid;
-    public ModelRenderer tube1;
-    public ModelRenderer tube2;
-    public ModelRenderer tube3;
-    public ModelRenderer tube4;
-    public ModelRenderer tube5;
-    public ModelRenderer vial1Fluid;
-    public ModelRenderer vial2Fluid;
-    public ModelRenderer vial3Fluid;
-    public ModelRenderer baseNE;
-    public ModelRenderer baseE;
-    public ModelRenderer baseSE;
-    public ModelRenderer baseNW;
-    public ModelRenderer baseW;
-    public ModelRenderer baseSW;
-    public ModelRenderer glassNE;
-    public ModelRenderer glassE;
-    public ModelRenderer glassSE;
-    public ModelRenderer glassNW;
-    public ModelRenderer glassW;
-    public ModelRenderer glassSW;
-    public ModelRenderer capNE;
-    public ModelRenderer capE;
-    public ModelRenderer capSE;
-    public ModelRenderer capNW;
-    public ModelRenderer capW;
-    public ModelRenderer capSW;
+    public final ModelRenderer tankFloor;
+    public final ModelRenderer supportBar;
+    public final ModelRenderer baseN;
+    public final ModelRenderer glassN;
+    public final ModelRenderer capN;
+    public final ModelRenderer tankLid;
+    public final ModelRenderer base;
+    public final ModelRenderer frame;
+    public final ModelRenderer lFrameSupport;
+    public final ModelRenderer rFrameSupport;
+    public final ModelRenderer vial1;
+    public final ModelRenderer vial2;
+    public final ModelRenderer vial3;
+    public final ModelRenderer injector;
+    public final ModelRenderer injectorNeedle;
+    public final ModelRenderer injectorFluid;
+    public final ModelRenderer tube1;
+    public final ModelRenderer tube2;
+    public final ModelRenderer tube3;
+    public final ModelRenderer tube4;
+    public final ModelRenderer tube5;
+    public final ModelRenderer vial1Fluid;
+    public final ModelRenderer vial2Fluid;
+    public final ModelRenderer vial3Fluid;
+    public final ModelRenderer baseNE;
+    public final ModelRenderer baseE;
+    public final ModelRenderer baseSE;
+    public final ModelRenderer baseNW;
+    public final ModelRenderer baseW;
+    public final ModelRenderer baseSW;
+    public final ModelRenderer glassNE;
+    public final ModelRenderer glassE;
+    public final ModelRenderer glassSE;
+    public final ModelRenderer glassNW;
+    public final ModelRenderer glassW;
+    public final ModelRenderer glassSW;
+    public final ModelRenderer capNE;
+    public final ModelRenderer capE;
+    public final ModelRenderer capSE;
+    public final ModelRenderer capNW;
+    public final ModelRenderer capW;
+    public final ModelRenderer capSW;
 
     public ModelDNASynthesizer()
     {

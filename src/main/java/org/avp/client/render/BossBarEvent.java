@@ -1,24 +1,22 @@
 package org.avp.client.render;
 
-import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
-import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
-
-import java.util.ArrayList;
-
-import org.avp.AliensVsPredator;
-import org.avp.entities.living.species.xenomorphs.EntityMatriarch;
-import org.lwjgl.opengl.GL11;
-
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
-
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
+import org.alien.common.entity.living.xenomorph.EntityMatriarch;
+import org.avp.AVP;
+import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
+
+import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
+import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
 
 public class BossBarEvent
 {
@@ -99,7 +97,7 @@ public class BossBarEvent
             OpenGL.enable(GL11.GL_BLEND);
             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             OpenGL.color4i(0xFFFFFFFF);
-            AliensVsPredator.resources().QUEEN_BOSS_BAR.bind();
+            AVP.resources().QUEEN_BOSS_BAR.bind();
             posX = posX + (index * (tW));
             OpenGL.color4i(color);
             Draw.drawQuad(posX + (offset / 2), posY, (tW - offset) * health / 100, tH, 0, 0.15F, 0.85F, 0F, 0.5F);

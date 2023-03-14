@@ -1,19 +1,17 @@
 package org.avp.client.model.tile;
 
-import org.avp.tile.TileEntityLocker;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
+import org.avp.common.tile.TileEntityLocker;
 
 public class ModelLocker extends Model<TileEntityLocker>
 {
-    public ModelRenderer wallLeft;
-    public ModelRenderer wallRight;
-    public ModelRenderer back;
-    public ModelRenderer top;
-    public ModelRenderer floor;
-    public ModelRenderer door;
+    public final ModelRenderer wallLeft;
+    public final ModelRenderer wallRight;
+    public final ModelRenderer back;
+    public final ModelRenderer top;
+    public final ModelRenderer floor;
+    public final ModelRenderer door;
 
     public ModelLocker()
     {

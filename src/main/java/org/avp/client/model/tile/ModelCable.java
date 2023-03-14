@@ -1,27 +1,25 @@
 package org.avp.client.model.tile;
 
-import org.avp.api.power.IPowerConnection;
-import org.avp.tile.TileEntityElectrical;
-
 import com.asx.mdx.lib.client.util.models.Model;
-
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import org.avp.common.api.power.IPowerConnection;
+import org.avp.common.tile.TileEntityElectrical;
 
 //TODO: Use a better type than TileEntity for Model.
 public class ModelCable extends Model<TileEntity>
 {
-    public ModelRenderer cableWest;
-    public ModelRenderer cableEast;
-    public ModelRenderer cableSouth;
-    public ModelRenderer cableNorth;
-    public ModelRenderer cableBottom;
-    public ModelRenderer cableTop;
-    public ModelRenderer nodeX;
-    public ModelRenderer nodeY;
-    public ModelRenderer nodeZ;
+    public final ModelRenderer cableWest;
+    public final ModelRenderer cableEast;
+    public final ModelRenderer cableSouth;
+    public final ModelRenderer cableNorth;
+    public final ModelRenderer cableBottom;
+    public final ModelRenderer cableTop;
+    public final ModelRenderer nodeX;
+    public final ModelRenderer nodeY;
+    public final ModelRenderer nodeZ;
 
     public ModelCable()
     {
