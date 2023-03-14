@@ -1,4 +1,4 @@
-package org.avp.common;
+package org.predator.common;
 
 import com.asx.mdx.core.mods.IInitEvent;
 import net.minecraft.entity.Entity;
@@ -8,40 +8,39 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.avp.AVP;
-import org.avp.common.entity.*;
-import org.avp.common.entity.living.EntityCombatSynthetic;
-import org.avp.common.entity.living.EntityMarine;
+import org.predator.common.entity.*;
+import org.predator.common.entity.living.EntityPredatorHound;
+import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
+import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
 import java.util.ArrayList;
 
-public class AVPEntities implements IInitEvent
+public class PredatorEntities implements IInitEvent
 {
-    public static final AVPEntities instance                  = new AVPEntities();
+    public static final PredatorEntities instance                  = new PredatorEntities();
     private static int                    entityId                  = 0;
 
     private static final ArrayList<EntityEntry> entities                  = new ArrayList<>();
     private static final ArrayList<EntityEntry> livingEntities            = new ArrayList<>();
 
-    private AVPEntities() {}
+    private PredatorEntities() {}
 
     static
     {
-        registerEntityEntry(EntityGrenade.class, "Grenade");
-        registerEntityEntry(EntityFlame.class, "Flamethrower");
-        registerEntityEntry(EntityLiquidLatexPool.class, "LiquidLatexPool");
-        registerEntityEntry(EntityTurret.class, "EntityTurret");
-        registerEntityEntry(EntityAPC.class, "APC");
-        registerEntityEntry(EntityMedpod.class, "Medpod");
-        registerEntityEntry(EntitySupplyChute.class, "SupplyChute");
-        registerEntityEntry(EntitySupplyChuteMarines.class, "SupplyChuteMarines");
-        registerEntityEntry(EntitySupplyChuteSeegson.class, "SupplyChuteSeegson");
+        registerEntityEntry(EntitySpear.class, "Spear");
+        registerEntityEntry(EntityLaserMine.class, "ProximityMine");
+        registerEntityEntry(EntityPlasma.class, "Plasma");
+        registerEntityEntry(EntitySmartDisc.class, "EntityDisc");
+        registerEntityEntry(EntityShuriken.class, "EntityShuriken");
+        registerEntityEntry(EntityWristbracer.class, "Nuke");
+        registerEntityEntry(EntityMechanism.class, "MECHANISM");
 
-        registerLivingEntityEntry(EntityMarine.class, "Marine");
-        registerLivingEntityEntry(EntityCombatSynthetic.class, "CombatSynthetic");
+        registerLivingEntityEntry(EntityYautjaWarrior.class, "Yautja");
+        registerLivingEntityEntry(EntityYautjaBerserker.class, "YautjaBerserker");
 
         if (AVP.settings().areExperimentalFeaturesEnabled())
         {
-            // Left blank for experimental marine/weyland-yutani entities.
+            registerLivingEntityEntry(EntityPredatorHound.class, "HellHound");
         }
     }
 

@@ -14,10 +14,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.AlienSounds;
 import org.alien.client.render.BiomeColorHandler;
-import org.alien.common.AlienBlocks;
-import org.alien.common.AlienDimensions;
-import org.alien.common.AlienItems;
-import org.alien.common.WorldHandler;
+import org.alien.common.*;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;
@@ -28,6 +25,7 @@ import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
 import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorBlocks;
+import org.predator.common.PredatorEntities;
 import org.predator.common.PredatorItems;
 
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
@@ -96,8 +94,16 @@ public class AVP implements IMod
         playermodehandler().init(event);
         schematics().init(event);
         AvpDataSerializers.init();
+
+        // Entities
+        AlienEntities.instance.init(event);
+        PredatorEntities.instance.init(event);
         AVPEntities.instance.init(event);
+
+        // Entity Spawns
         AVPEntitySpawns.instance.init(event);
+
+        // Tile Entities
         AVPTileEntities.instance.init(event);
     }
 
