@@ -15,10 +15,13 @@ import java.util.Map;
  *
  */
 public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
-	
+
+	private boolean isDisabled = false;
 	private boolean isExecuting = false;
 	
 	public void runTask(T ctx) {
+		if (this.isDisabled) return;
+
 		boolean shouldExecute = this.shouldExecute(ctx);
 		if (shouldExecute) {
 			this.execute(ctx);
@@ -38,4 +41,8 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	protected void finish(T ctx) {}
 
 	public boolean isExecuting() { return this.isExecuting; }
+
+	public void setDisabled(boolean disabled) {
+		isDisabled = disabled;
+	}
 }
