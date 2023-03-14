@@ -96,7 +96,9 @@ public class AVP implements IMod
         playermodehandler().init(event);
         schematics().init(event);
         AvpDataSerializers.init();
-        entities().init(event);
+        AVPEntities.instance.init(event);
+        AVPEntitySpawns.instance.init(event);
+        AVPTileEntities.instance.init(event);
     }
 
     @SideOnly(Side.CLIENT)
@@ -170,11 +172,6 @@ public class AVP implements IMod
     public static WorldHandler world()
     {
         return WorldHandler.instance;
-    }
-
-    public static AVPEntities entities()
-    {
-        return AVPEntities.instance;
     }
 
     public static AVPCreativeTabs tabs()
