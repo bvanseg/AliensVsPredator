@@ -41,6 +41,8 @@ public class AlienHive {
 		// If the matriarch is dead, the hive is dead. Update hives state.
 		if (this.matriarch.isDead) {
 			this.destroy();
+
+			// TODO: Pass on hive to a royal hive member if one is available.
 		}
 	}
 	
