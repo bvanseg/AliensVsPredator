@@ -3,7 +3,6 @@ package org.alien.common.entity.ai.brain.task;
 import com.asx.mdx.lib.world.Pos;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.Path;
@@ -57,6 +56,7 @@ public class BuildHiveBrainTask extends AbstractBrainTask<EntityBrainContext> {
 		return FLAGS;
 	}
 
+	private ArrayList<BlockPos> positionsOfInterest = new ArrayList<>();
 	
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
@@ -104,8 +104,14 @@ public class BuildHiveBrainTask extends AbstractBrainTask<EntityBrainContext> {
 		entity.setJellyLevel(entity.getJellyLevel() - 16);
 	}
 
-	private BlockPos findNextSuitableResinLocation(Entity entity, int range)
+	private BlockPos findNextSuitableResinLocation(EntityLiving entity, int range)
 	{
+		// Read a random block pos from cache.
+		if (!positionsOfInterest.isEmpty()) {
+			int randomIndex = entity.getRNG().nextInt(positionsOfInterest.size());
+			return positionsOfInterest.remove(randomIndex);
+		}
+
 		World world = entity.world;
 		double posX = entity.posX;
 		double posY = entity.posY;
@@ -140,10 +146,20 @@ public class BuildHiveBrainTask extends AbstractBrainTask<EntityBrainContext> {
 			}
 		}
 
-		return !data.isEmpty() ? data.get(entity.world.rand.nextInt(data.size())) : null;
+		// Cache data.
+		positionsOfInterest = data;
+
+		// Return block from cache, if possible.
+		if (!positionsOfInterest.isEmpty()) {
+			int randomIndex = entity.getRNG().nextInt(positionsOfInterest.size());
+			return positionsOfInterest.remove(randomIndex);
+		}
+
+		// Otherwise just return null, no pos found or cached.
+		return null;
 	}
 
-	protected boolean canReplaceWithResin(IBlockState blockState) {
+	private boolean canReplaceWithResin(IBlockState blockState) {
 		return (!BLOCK_DENYLIST.contains(blockState.getBlock()) && blockState.isOpaqueCube());
 	}
 }
