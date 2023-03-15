@@ -12,6 +12,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.entity.EntityLiquidLatexPool;
 
 public class RenderLiquidLatexPool extends Render<EntityLiquidLatexPool>
@@ -34,7 +35,7 @@ public class RenderLiquidLatexPool extends Render<EntityLiquidLatexPool>
             double partialY = posY - renderY;
             double partialZ = posZ - renderZ;
 
-            AVP.resources().LIQUID_POOL.bind();
+            Resources.instance.LIQUID_POOL.bind();
             Draw.startQuads();
             OpenGL.color(1F, 1F, 1F, 1F);
 

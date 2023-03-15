@@ -3,6 +3,7 @@ package org.avp.client.render.tile;
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntitySatelliteDish;
 
 public class RenderSatelliteDish extends TileEntitySpecialRenderer<TileEntitySatelliteDish>
@@ -16,7 +17,7 @@ public class RenderSatelliteDish extends TileEntitySpecialRenderer<TileEntitySat
             OpenGL.scale(1F, -1F, 1F);
             OpenGL.translate(0.5F, -1.525F, 0.5F);
             OpenGL.disableCullFace();
-            AVP.resources().models().SATELLITE_DISH.draw(tile);
+            Resources.instance.models().SATELLITE_DISH.draw(tile);
             OpenGL.enableCullFace();
         }
         OpenGL.popMatrix();

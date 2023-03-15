@@ -9,21 +9,19 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 import org.predator.client.model.tile.skull.ModelBiomaskFalconer;
 
 public class BlockBiomaskFalconer extends BlockSkull
 {
     @SideOnly(Side.CLIENT)
-    private static class Resources
-    {
-        private static final MapModelTexture<ModelBiomaskFalconer> model = AVP.resources().models().BIOMASK_FALCONER;
-    }
+    private static final MapModelTexture<ModelBiomaskFalconer> model = Resources.instance.models().BIOMASK_FALCONER;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelBiomaskFalconer m = Resources.model.getModel();
+        ModelBiomaskFalconer m = model.getModel();
         return new ModelRenderer[] { m.biomaskMouth };
     }
 
@@ -38,7 +36,7 @@ public class BlockBiomaskFalconer extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.model.getTexture();
+        return model.getTexture();
     }
     
     @Override

@@ -7,13 +7,14 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelPowercell;
 
 public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
 {
     public RenderItemPowercell()
     {
-        super(AVP.resources().models().POWERCELL);
+        super(Resources.instance.models().POWERCELL);
     }
 
     @Override
@@ -23,7 +24,7 @@ public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
         OpenGL.scale(glScale, glScale, glScale);
         OpenGL.translate(0F, -1.1F, -0.5F);
         this.getModel().draw();
-        AVP.resources().models().POWERCELL_LIQUID.draw();
+        Resources.instance.models().POWERCELL_LIQUID.draw();
     }
 
     @Override
@@ -35,7 +36,7 @@ public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
         OpenGL.rotate(45.0F, 0.0F, 0.0F, 1.0F);
         GlStateManager.disableCull();
         this.getModel().draw();
-        AVP.resources().models().POWERCELL_LIQUID.draw();
+        Resources.instance.models().POWERCELL_LIQUID.draw();
     }
 
     @Override
@@ -48,7 +49,7 @@ public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
         OpenGL.rotate(45F, 0F, 0F, 1F);
         OpenGL.rotate(90F + this.getIconRotation(), 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
-        AVP.resources().models().POWERCELL_LIQUID.draw();
+        Resources.instance.models().POWERCELL_LIQUID.draw();
     }
 
     @Override
@@ -56,6 +57,6 @@ public class RenderItemPowercell extends ItemRenderer<ModelPowercell>
     {
         GlStateManager.disableCull();
         this.getModel().draw();
-        AVP.resources().models().POWERCELL_LIQUID.draw();
+        Resources.instance.models().POWERCELL_LIQUID.draw();
     }
 }

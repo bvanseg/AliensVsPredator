@@ -12,11 +12,12 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.entity.EntityAPC;
 
 public class RenderAPC extends Render<EntityAPC>
 {
-    private final TriangulatedWavefrontModel model      = AVP.resources().models().M577_APC;
+    private final TriangulatedWavefrontModel model      = Resources.instance.models().M577_APC;
     
     private final Part                             tire0      = model.getPart("Mesh75_APCTire1_4_Group10_Model");
     private final Part                             tire0Rim   = model.getPart("Mesh76_APCWhAmr4_Group10_Model");

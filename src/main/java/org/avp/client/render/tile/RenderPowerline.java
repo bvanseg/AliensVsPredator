@@ -6,6 +6,7 @@ import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityPowerline;
 
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
@@ -23,7 +24,7 @@ public class RenderPowerline extends TileEntitySpecialRenderer<TileEntityPowerli
             {
                 OpenGL.translate(posX + 0.5F, posY + 0.5F, posZ + 0.5F);
                 OpenGL.scale(1.0F, -1.0F, 1.0F);
-                AVP.resources().models().CABLE.draw(tile);
+                Resources.instance.models().CABLE.draw(tile);
             }
             OpenGL.popMatrix();
 

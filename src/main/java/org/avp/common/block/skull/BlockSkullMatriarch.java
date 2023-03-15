@@ -14,22 +14,20 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.tile.skull.ModelQueenSkull;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 
 public class BlockSkullMatriarch extends BlockSkull
 {
     @SideOnly(Side.CLIENT)
-    private static class Resources
-    {
-        private static final MapModelTexture<ModelQueenSkull> model = AVP.resources().models().MATRIARCH_SKULL;
-    }
+    private static final MapModelTexture<ModelQueenSkull> model = Resources.instance.models().MATRIARCH_SKULL;
 
     public static final AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 2.0D, 1.0D);
     
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelQueenSkull m = Resources.model.getModel();
+        ModelQueenSkull m = model.getModel();
         return new ModelRenderer[] { m.head0 };
     }
 
@@ -44,7 +42,7 @@ public class BlockSkullMatriarch extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.model.getTexture();
+        return model.getTexture();
     }
     
     @Override

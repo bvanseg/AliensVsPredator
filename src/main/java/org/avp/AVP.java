@@ -129,13 +129,6 @@ public class AVP implements IMod
     }
 
     @Deprecated
-    @SideOnly(Side.CLIENT)
-    public static Resources resources()
-    {
-        return Resources.instance;
-    }
-
-    @Deprecated
     public static AVPGui interfaces()
     {
         return AVPGui.instance;

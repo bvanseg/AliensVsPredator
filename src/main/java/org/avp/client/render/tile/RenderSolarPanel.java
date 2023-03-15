@@ -4,6 +4,7 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntitySolarPanel;
 
 public class RenderSolarPanel extends TileEntitySpecialRenderer<TileEntitySolarPanel>
@@ -23,7 +24,7 @@ public class RenderSolarPanel extends TileEntitySpecialRenderer<TileEntitySolarP
                 OpenGL.translate(0F, -1.4F, 0F);
             }
 
-            AVP.resources().models().SOLAR_PANEL.draw(tile);
+            Resources.instance.models().SOLAR_PANEL.draw(tile);
         }
         OpenGL.popMatrix();
     }

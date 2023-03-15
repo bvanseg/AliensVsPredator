@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.item.ModelAK47;
 import org.avp.client.render.item.ItemFirearmRenderer;
 import org.avp.common.URLs;
@@ -18,7 +19,7 @@ public class RenderItemAK47 extends ItemFirearmRenderer<ModelAK47>
 {
     public RenderItemAK47()
     {
-        super(AVP.resources().models().AK47);
+        super(Resources.instance.models().AK47);
     }
 
     @Override

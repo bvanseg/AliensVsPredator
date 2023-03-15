@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import org.alien.client.model.entity.living.ModelOctohugger;
 import org.alien.common.entity.living.vardic.EntityOctohugger;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entity.EntityMedpod;
@@ -18,11 +19,9 @@ import java.util.ArrayList;
 
 public class RenderOctohugger extends RenderLivingWrapper<EntityOctohugger, ModelOctohugger>
 {
-    public static ArrayList<EntityRenderTransforms> transforms = new ArrayList<EntityRenderTransforms>();
-
     public RenderOctohugger(RenderManager m)
     {
-        super(m, AVP.resources().models().OCTOHUGGER);
+        super(m, Resources.instance.models().OCTOHUGGER);
     }
 
     @Override

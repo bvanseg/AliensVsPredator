@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.item.ModelM56SG;
 import org.avp.client.render.item.ItemFirearmRenderer;
 import org.avp.common.entity.living.EntityMarine;
@@ -14,7 +15,7 @@ public class RenderItemM56SG extends ItemFirearmRenderer<ModelM56SG>
 {
     public RenderItemM56SG()
     {
-        super(AVP.resources().models().M56SG);
+        super(Resources.instance.models().M56SG);
     }
 
     @Override

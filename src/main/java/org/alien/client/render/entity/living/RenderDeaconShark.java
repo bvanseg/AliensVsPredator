@@ -6,12 +6,13 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelDeaconShark;
 import org.alien.common.entity.living.vardic.EntityDeaconShark;
 import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderDeaconShark extends RenderLivingWrapper<EntityDeaconShark, ModelDeaconShark>
 {
     public RenderDeaconShark(RenderManager m)
     {
-        super(m, AVP.resources().models().DEACON_SHARK);
+        super(m, Resources.instance.models().DEACON_SHARK);
     }
 
     @Override

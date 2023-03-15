@@ -3,6 +3,7 @@ package org.avp.client.render.tile;
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityBlastdoor;
 
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
@@ -20,7 +21,7 @@ public class RenderBlastdoor extends TileEntitySpecialRenderer<TileEntityBlastdo
                 OpenGL.translate(x + 0.5F, y + 1.5F, z + 0.5F);
                 OpenGL.scale(1.0F, -1.0F, 1.0F);
                 OpenGL.rotate(tile);
-                AVP.resources().models().BLASTDOOR.draw(tile);
+                Resources.instance.models().BLASTDOOR.draw(tile);
             }
             OpenGL.popMatrix();
         }

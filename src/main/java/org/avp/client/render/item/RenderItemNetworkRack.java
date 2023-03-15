@@ -7,13 +7,14 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.rackmodule.ModelNetworkModuleRack;
 
 public class RenderItemNetworkRack extends ItemRenderer<ModelNetworkModuleRack>
 {
     public RenderItemNetworkRack()
     {
-        super(AVP.resources().models().NETWORKMODULERACK);
+        super(Resources.instance.models().NETWORKMODULERACK);
     }
 
     @Override

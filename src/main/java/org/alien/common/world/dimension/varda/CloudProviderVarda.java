@@ -9,6 +9,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class CloudProviderVarda extends CloudProvider
 {
@@ -16,7 +17,7 @@ public class CloudProviderVarda extends CloudProvider
     @Override
     public Texture getCloudTexture()
     {
-        return AVP.resources().SKY_VARDA_CLOUDS;
+        return Resources.instance.SKY_VARDA_CLOUDS;
     }
 
     @Override

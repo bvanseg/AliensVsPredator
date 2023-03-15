@@ -7,13 +7,14 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelTurret;
 
 public class RenderItemTurret extends ItemRenderer<ModelTurret>
 {
     public RenderItemTurret()
     {
-        super(AVP.resources().models().TURRET);
+        super(Resources.instance.models().TURRET);
     }
 
     @Override

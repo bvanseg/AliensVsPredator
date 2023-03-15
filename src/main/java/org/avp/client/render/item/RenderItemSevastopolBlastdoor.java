@@ -7,13 +7,14 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelSevastopolBlastdoor;
 
 public class RenderItemSevastopolBlastdoor extends ItemRenderer<ModelSevastopolBlastdoor>
 {
     public RenderItemSevastopolBlastdoor()
     {
-        super(AVP.resources().models().BLASTDOOR_SEVASTOPOL);
+        super(Resources.instance.models().BLASTDOOR_SEVASTOPOL);
     }
 
     @Override

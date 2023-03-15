@@ -8,13 +8,14 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.predator.client.model.item.ModelWristBlade;
 
 public class RenderItemWristbracerBlades extends ItemRenderer<ModelWristBlade>
 {
     public RenderItemWristbracerBlades()
     {
-        super(AVP.resources().models().WRISTBLADES);
+        super(Resources.instance.models().WRISTBLADES);
     }
 
     @Override

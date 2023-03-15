@@ -10,20 +10,18 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.tile.skull.ModelProtomorphSkull;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 
 public class BlockSkullProtomorph extends BlockSkull
 {
     @SideOnly(Side.CLIENT)
-    private static class Resources
-    {
-        private static final MapModelTexture<ModelProtomorphSkull> model = AVP.resources().models().PROTOMORPH_SKULL;
-    }
+    private static final MapModelTexture<ModelProtomorphSkull> model = Resources.instance.models().PROTOMORPH_SKULL;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelProtomorphSkull m = Resources.model.getModel();
+        ModelProtomorphSkull m = model.getModel();
         return new ModelRenderer[] { m.head1 };
     }
 
@@ -38,7 +36,7 @@ public class BlockSkullProtomorph extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.model.getTexture();
+        return model.getTexture();
     }
     
     @Override

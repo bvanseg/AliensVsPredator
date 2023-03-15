@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 import org.predator.common.entity.EntityLaserMine;
 
@@ -27,7 +28,7 @@ public class RenderLaserMine extends Render<EntityLaserMine>
             OpenGL.rotate(yaw, 0.0F, 1.0F, 0.0F);
             OpenGL.rotate(180.0F, 0.0F, 0.0F, 1.0F);
             GL11.glScaled(0.5F, 0.5F, 0.5F);
-            AVP.resources().models().LASER_MINE.draw();
+            Resources.instance.models().LASER_MINE.draw();
             GlStateManager.disableCull();
             OpenGL.scale(2F, -2F, 2F);
             OpenGL.translate(0.004F, -0.74F, 0.06F);

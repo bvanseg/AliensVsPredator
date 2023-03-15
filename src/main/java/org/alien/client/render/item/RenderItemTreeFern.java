@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.alien.client.model.tile.plant.ModelTreeFern;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.plant.TileEntityGroundFern;
 import org.lwjgl.opengl.GL11;
 
@@ -15,7 +16,7 @@ public class RenderItemTreeFern extends ItemRenderer<ModelTreeFern>
 {
     public RenderItemTreeFern()
     {
-        super(AVP.resources().models().TREE_FERN);
+        super(Resources.instance.models().TREE_FERN);
     }
 
     @Override

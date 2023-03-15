@@ -5,10 +5,9 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
 import com.asx.mdx.lib.world.entity.Entities;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class FacehuggerRenderEvent
 {
@@ -25,23 +24,11 @@ public class FacehuggerRenderEvent
                 {
                     OpenGL.pushMatrix();
                     {
-                        Draw.drawOverlay(AVP.resources().BLUR_FACEHUGGER);
+                        Draw.drawOverlay(Resources.instance.BLUR_FACEHUGGER);
                     }
                     OpenGL.popMatrix();
                 }
             }
         }
-    }
-    
-    @SubscribeEvent
-    public void entityRenderEvent(RenderLivingEvent.Pre event)
-    {
-        ;
-    }
-
-    @SubscribeEvent
-    public void entityRenderEvent(RenderLivingEvent.Post event)
-    {
-        ;
     }
 }

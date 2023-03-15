@@ -14,6 +14,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 
 public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynthetic, SpecialModelBiped>
@@ -88,14 +89,8 @@ public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynth
     
     public RenderCombatSynthetic(RenderManager m)
     {
-        super(m, AVP.resources().models().COMBAT_SYNTHETIC);
+        super(m, Resources.instance.models().COMBAT_SYNTHETIC);
         this.addLayer(new LayerHeldGun(this));
-    }
-
-    @Override
-    protected void preRenderCallback(EntityCombatSynthetic base, float partialTicks)
-    {
-        super.preRenderCallback(base, partialTicks);
     }
     
     //TODO: FIX
@@ -119,7 +114,7 @@ public class RenderCombatSynthetic extends RenderLivingWrapper<EntityCombatSynth
                 OpenGL.rotate(180.0F, 0.0F, 0.0F, 1.0F);
                 GlStateManager.disableCull();
                 OpenGL.scale(glScale, glScale, glScale);
-                AVP.resources().models().M41A.draw();
+                Resources.instance.models().M41A.draw();
             }
             OpenGL.popMatrix();
         }

@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.*;
 import org.avp.common.tile.TileEntityTurret;
@@ -189,7 +190,7 @@ public class GuiTurret extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int mouseX, int mouseY)
     {
     	this.drawDefaultBackground();
-        AVP.resources().GUI_TURRET.bind();
+        Resources.instance.GUI_TURRET.bind();
         drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
         int stacksTotal = this.tile.getContainer(this.mc.player).getAmmoBay().getSizeInventory() * this.tile.getContainer(this.mc.player).getAmmoBay().getInventoryStackLimit();

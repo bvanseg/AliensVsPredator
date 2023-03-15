@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityTransformer;
 
 
@@ -47,7 +48,7 @@ public class RenderTransformer extends TileEntitySpecialRenderer<TileEntityTrans
                     OpenGL.rotate(0F, 0F, 1F, 0F);
                 }
 
-                AVP.resources().models().TRANSFORMER.draw(transformer);
+                Resources.instance.models().TRANSFORMER.draw(transformer);
             }
             OpenGL.popMatrix();
 

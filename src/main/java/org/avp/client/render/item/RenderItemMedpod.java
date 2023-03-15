@@ -7,13 +7,14 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelMedpod;
 
 public class RenderItemMedpod extends ItemRenderer<ModelMedpod>
 {
     public RenderItemMedpod()
     {
-        super(AVP.resources().models().MEDPOD);
+        super(Resources.instance.models().MEDPOD);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class RenderItemMedpod extends ItemRenderer<ModelMedpod>
 
         OpenGL.pushMatrix();
         {
-            AVP.resources().models().MEDPOD_MASK.draw();
+            Resources.instance.models().MEDPOD_MASK.draw();
         }
         OpenGL.popMatrix();
     }
@@ -45,7 +46,7 @@ public class RenderItemMedpod extends ItemRenderer<ModelMedpod>
 
         OpenGL.pushMatrix();
         {
-            AVP.resources().models().MEDPOD_MASK.draw();
+            Resources.instance.models().MEDPOD_MASK.draw();
         }
         OpenGL.popMatrix();
     }
@@ -60,7 +61,7 @@ public class RenderItemMedpod extends ItemRenderer<ModelMedpod>
         OpenGL.rotate(45F, 0.0F, 0.0F, 1.0F);
         OpenGL.rotate(90F + this.getIconRotation(), 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
-        AVP.resources().models().MEDPOD_MASK.draw();
+        Resources.instance.models().MEDPOD_MASK.draw();
     }
 
     @Override

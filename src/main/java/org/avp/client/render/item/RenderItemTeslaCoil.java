@@ -7,13 +7,14 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelTeslaCoil;
 
 public class RenderItemTeslaCoil extends ItemRenderer<ModelTeslaCoil>
 {
     public RenderItemTeslaCoil()
     {
-        super(AVP.resources().models().TESLA_COIL);
+        super(Resources.instance.models().TESLA_COIL);
     }
 
     @Override

@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.predator.client.model.item.ModelWristBlade;
 import org.predator.common.item.ItemWristbracer;
 
@@ -16,7 +17,7 @@ public class RenderItemWristbracer extends ItemRenderer<ModelWristBlade>
 {
     public RenderItemWristbracer()
     {
-        super(AVP.resources().models().WRISTBLADES);
+        super(Resources.instance.models().WRISTBLADES);
     }
 
     @Override

@@ -6,12 +6,13 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelChestbursterQueen;
 import org.alien.common.entity.living.xenomorph.EntityQueenChestburster;
 import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderQueenChestburster extends RenderLivingWrapper<EntityQueenChestburster, ModelChestbursterQueen>
 {
     public RenderQueenChestburster(RenderManager m)
     {
-        super(m, AVP.resources().models().CHESTBUSTER_QUEEN);
+        super(m, Resources.instance.models().CHESTBUSTER_QUEEN);
     }
 
     @Override

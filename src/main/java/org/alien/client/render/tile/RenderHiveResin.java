@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
 import org.alien.client.model.tile.ModelHiveResin;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.AVPSettings.ClientSettings;
 import org.avp.common.tile.TileEntityHiveResin;
 
@@ -25,8 +26,8 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
             {
                 OpenGL.translate(posX + 0.5, posY - 0.5, posZ + 0.5);
 
-                AVP.resources().models().HIVE_RESIN.bindTexture();
-                ModelHiveResin model = AVP.resources().models().HIVE_RESIN.getModel();
+                Resources.instance.models().HIVE_RESIN.bindTexture();
+                ModelHiveResin model = Resources.instance.models().HIVE_RESIN.getModel();
                 OpenGL.enableCullFace();
 
                 /** TOP **/

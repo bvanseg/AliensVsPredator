@@ -3,6 +3,7 @@ package org.avp.client.render.tile;
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityRedstoneFluxGenerator;
 
 public class RenderRedstoneFluxGenerator extends TileEntitySpecialRenderer<TileEntityRedstoneFluxGenerator>
@@ -16,7 +17,7 @@ public class RenderRedstoneFluxGenerator extends TileEntitySpecialRenderer<TileE
         OpenGL.scale(1F, -1F, 1F);
         OpenGL.translate(0.5F, -1.5F, 0.5F);
         OpenGL.rotate(tile);
-        AVP.resources().models().RFGENERATOR.draw();
+        Resources.instance.models().RFGENERATOR.draw();
         OpenGL.enableCullFace();
         OpenGL.popMatrix();
     }

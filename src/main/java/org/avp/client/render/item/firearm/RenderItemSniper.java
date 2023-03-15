@@ -8,6 +8,7 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.item.ModelSniper;
 import org.avp.client.render.item.ItemFirearmRenderer;
 import org.avp.common.AVPItems;
@@ -19,7 +20,7 @@ public class RenderItemSniper extends ItemFirearmRenderer<ModelSniper>
 
     public RenderItemSniper()
     {
-        super(AVP.resources().models().SNIPER);
+        super(Resources.instance.models().SNIPER);
     }
 
     @Override

@@ -24,12 +24,6 @@ public class RenderFacehuggers<FACEHUGGER extends EntityFacehugger, MODEL extend
     }
 
     @Override
-    public void doRender(FACEHUGGER entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
-    {
-        super.doRender(entity, posX, posY, posZ, yaw, renderPartialTicks);
-    }
-
-    @Override
     protected void preRenderCallback(FACEHUGGER facehugger, float partialTicks)
     {
         this.scale(facehugger, 0.9F);

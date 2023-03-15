@@ -11,6 +11,7 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.render.LightmapUpdateEvent;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -23,7 +24,7 @@ public enum VisionMode
         public void render(Object... data)
         {
             LightmapUpdateEvent.instance.gammaValue = 0F;
-            Draw.drawOverlay(AVP.resources().BLUR_CELTIC_HUD, 1F, 0F, 0F, 1F);
+            Draw.drawOverlay(Resources.instance.BLUR_CELTIC_HUD, 1F, 0F, 0F, 1F);
         }
     },
     ELECTROMAGNETIC(1, "Electromagnetic", 0xFF00FF00)
@@ -37,7 +38,7 @@ public enum VisionMode
                 OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 OpenGL.blendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);
                 OpenGL.disable(GL_ALPHA_TEST);
-                AVP.resources().BLUR_CELTIC_HUD.bind();
+                Resources.instance.BLUR_CELTIC_HUD.bind();
                 OpenGL.color(0F, 1F, 0.1F, 0F);
                 Draw.drawQuad(0, 0, Screen.scaledDisplayResolution().getScaledWidth(), Screen.scaledDisplayResolution().getScaledHeight(), 0, 0, 0, 0);
                 OpenGL.color(0F, 1F, 0F, 1F);
@@ -49,7 +50,7 @@ public enum VisionMode
             OpenGL.popMatrix();
 
             LightmapUpdateEvent.instance.gammaValue = LightmapUpdateEvent.instance.gammaValue < 0F ? LightmapUpdateEvent.instance.gammaValue + 0.03F : LightmapUpdateEvent.instance.gammaValue;
-            Draw.drawOverlay(AVP.resources().BLUR_CELTIC_HUD, 1F, 1F, 1F, 1F);
+            Draw.drawOverlay(Resources.instance.BLUR_CELTIC_HUD, 1F, 1F, 1F, 1F);
         }
 
         @Override
@@ -99,7 +100,7 @@ public enum VisionMode
                 OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
                 OpenGL.blendFunc(GL_ONE_MINUS_DST_COLOR, GL_ZERO);
                 OpenGL.disable(GL_ALPHA_TEST);
-                AVP.resources().BLUR_CELTIC_HUD.bind();
+                Resources.instance.BLUR_CELTIC_HUD.bind();
                 OpenGL.color(1F, 1F, 0F, 0F);
                 Draw.drawQuad(0, 0, Screen.scaledDisplayResolution().getScaledWidth(), Screen.scaledDisplayResolution().getScaledHeight(), 0, 0, 0, 0);
                 OpenGL.color(1F, 1F, 0.45F, 0F);
@@ -111,7 +112,7 @@ public enum VisionMode
             OpenGL.popMatrix();
 
             LightmapUpdateEvent.instance.gammaValue = LightmapUpdateEvent.instance.gammaValue < 0F ? LightmapUpdateEvent.instance.gammaValue + 0.03F : LightmapUpdateEvent.instance.gammaValue;
-            Draw.drawOverlay(AVP.resources().BLUR_CELTIC_HUD, 0F, 0.8F, 0.1F, 1F);
+            Draw.drawOverlay(Resources.instance.BLUR_CELTIC_HUD, 0F, 0.8F, 0.1F, 1F);
         }
 
         @Override

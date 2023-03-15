@@ -12,6 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.AVPMaterials;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.lwjgl.input.Keyboard;
@@ -31,9 +32,9 @@ public class ItemArmorCeltic extends ItemArmor
     {
         switch (slot) {
             case LEGS:
-                return Draw.getPath(AVP.resources().CELTIC2);
+                return Draw.getPath(Resources.instance.CELTIC2);
             default:
-                return Draw.getPath(AVP.resources().CELTIC1);
+                return Draw.getPath(Resources.instance.CELTIC1);
         }
     }
 

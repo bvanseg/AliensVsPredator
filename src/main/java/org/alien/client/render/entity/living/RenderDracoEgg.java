@@ -6,12 +6,13 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelDracoOvamorph;
 import org.alien.common.entity.living.EntityDracoEgg;
 import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderDracoEgg extends RenderLivingWrapper<EntityDracoEgg, ModelDracoOvamorph>
 {
     public RenderDracoEgg(RenderManager m)
     {
-        super(m, AVP.resources().models().DRACO_OVAMORPH);
+        super(m, Resources.instance.models().DRACO_OVAMORPH);
     }
 
     @Override

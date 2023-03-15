@@ -3,6 +3,7 @@ package org.avp.common.item.rackmodule;
 import com.asx.mdx.lib.client.util.models.MapModelTexture;
 import com.asx.mdx.lib.client.util.models.Model;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.item.ItemNetworkRackModule;
 
 public class ItemNetworkRackModule3 extends ItemNetworkRackModule
@@ -15,18 +16,18 @@ public class ItemNetworkRackModule3 extends ItemNetworkRackModule
     @Override
     public MapModelTexture<Model<?>> getModel()
     {
-        return AVP.resources().models().RACKMODULE3;
+        return Resources.instance.models().RACKMODULE3;
     }
 
     @Override
     public MapModelTexture<Model<?>> getModelOn()
     {
-        return AVP.resources().models().RACKMODULE3_ON;
+        return Resources.instance.models().RACKMODULE3_ON;
     }
 
     @Override
     public MapModelTexture<Model<?>> getModelOff()
     {
-        return AVP.resources().models().RACKMODULE3_OFF;
+        return Resources.instance.models().RACKMODULE3_OFF;
     }
 }

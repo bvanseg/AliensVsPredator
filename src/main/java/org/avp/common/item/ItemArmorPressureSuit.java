@@ -10,6 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.AVPItems;
 import org.avp.common.AVPMaterials;
 
@@ -28,9 +29,9 @@ public class ItemArmorPressureSuit extends ItemAntiVacuumArmor
             case FEET:
             case CHEST:
             case HEAD:
-                return Draw.getPath(AVP.resources().PRESSURESUIT1);
+                return Draw.getPath(Resources.instance.PRESSURESUIT1);
             default:
-                return Draw.getPath(AVP.resources().PRESSURESUIT2);
+                return Draw.getPath(Resources.instance.PRESSURESUIT2);
         }
     }
 

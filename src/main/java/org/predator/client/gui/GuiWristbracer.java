@@ -12,6 +12,7 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 import org.predator.common.inventory.ContainerWristbracer;
 import org.predator.common.item.ItemWristbracer;
@@ -66,7 +67,7 @@ public class GuiWristbracer extends GuiContainer
         this.guiLeft = this.width / 2 - xSize / 2;
         this.guiTop = this.height / 2 - ySize / 2;
     	this.drawDefaultBackground();
-        AVP.resources().GUI_WRISTBRACER.bind();
+        Resources.instance.GUI_WRISTBRACER.bind();
         Draw.drawQuad(guiLeft, guiTop, xSize, ySize - 30, 0, 0, 0);
 
         for (byte s = 0; s < 9; s++)
@@ -146,7 +147,7 @@ public class GuiWristbracer extends GuiContainer
             if (x == number)
             {
                 OpenGL.enable(GL11.GL_BLEND);
-                AVP.resources().GUI_WRISTBRACER.bind();
+                Resources.instance.GUI_WRISTBRACER.bind();
                 Draw.drawQuad(xPos, yPos, 28, 50, 0, (27 * (x - 1)), 126);
             }
         }

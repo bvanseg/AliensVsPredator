@@ -6,18 +6,13 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelMatriarch;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderMatriarch extends RenderLivingWrapper<EntityMatriarch, ModelMatriarch>
 {
     public RenderMatriarch(RenderManager m)
     {
-        super(m, AVP.resources().models().MATRIARCH);
-    }
-
-    @Override
-    public void doRender(EntityMatriarch entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
-    {
-        super.doRender(entity, posX, posY, posZ, yaw, renderPartialTicks);
+        super(m, Resources.instance.models().MATRIARCH);
     }
 
     @Override

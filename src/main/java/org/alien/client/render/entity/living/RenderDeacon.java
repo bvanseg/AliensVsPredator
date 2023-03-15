@@ -7,6 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import org.alien.client.model.entity.living.ModelDeacon;
 import org.alien.common.entity.living.species223ode.EntityDeacon;
 import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderDeacon extends RenderLivingWrapper<EntityDeacon, ModelDeacon>
 {
@@ -14,7 +15,7 @@ public class RenderDeacon extends RenderLivingWrapper<EntityDeacon, ModelDeacon>
 
     public RenderDeacon(RenderManager m)
     {
-        super(m, AVP.resources().models().DEACON);
+        super(m, Resources.instance.models().DEACON);
         this.scale = 1.0F;
     }
 

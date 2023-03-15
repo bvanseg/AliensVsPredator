@@ -4,6 +4,7 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityPowercell;
 
 public class RenderPowercell extends TileEntitySpecialRenderer<TileEntityPowercell>
@@ -15,9 +16,9 @@ public class RenderPowercell extends TileEntitySpecialRenderer<TileEntityPowerce
         {
             GlStateManager.disableCull();
             OpenGL.translate(x + 0.5, y - 0.5, z + 0.5);
-            AVP.resources().models().POWERCELL.draw(tile);
+            Resources.instance.models().POWERCELL.draw(tile);
             OpenGL.disableLight();
-            AVP.resources().models().POWERCELL_LIQUID.draw(tile);
+            Resources.instance.models().POWERCELL_LIQUID.draw(tile);
             OpenGL.enableLight();
         }
         OpenGL.popMatrix();

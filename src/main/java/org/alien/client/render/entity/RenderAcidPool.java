@@ -14,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import org.alien.common.entity.EntityAcidPool;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 public class RenderAcidPool extends Render<EntityAcidPool>
@@ -46,8 +47,8 @@ public class RenderAcidPool extends Render<EntityAcidPool>
             // OpenGL.enableLighting();
             // OpenGL.enableLight();
             // OpenGL.enableLightMapping();
-            this.bindTexture(AVP.resources().LIQUID_POOL);
-            AVP.resources().LIQUID_POOL.bind();
+            this.bindTexture(Resources.instance.LIQUID_POOL);
+            Resources.instance.LIQUID_POOL.bind();
             Draw.startQuads();
             OpenGL.color(1F, 1F, 0F, 1F);
 
@@ -58,11 +59,11 @@ public class RenderAcidPool extends Render<EntityAcidPool>
                     for (int blockZ = MathHelper.floor(renderZ - cover); blockZ <= MathHelper.floor(renderZ + cover); ++blockZ)
                     {
                         BlockPos pos = new BlockPos(blockX, blockY - 1, blockZ);
-                        IBlockState blockstate = Game.minecraft().player.world.getBlockState(pos);
+                        IBlockState blockState = Game.minecraft().player.world.getBlockState(pos);
 
-                        if (blockstate.getBlock() != Blocks.AIR)
+                        if (blockState.getBlock() != Blocks.AIR)
                         {
-                            this.drawOnBlock(blockstate, posX, posY + entity.getCollisionBorderSize(), posZ, pos, yaw, scale, partialX, partialY + entity.getCollisionBorderSize(), partialZ, entity.ticksExisted);
+                            this.drawOnBlock(blockState, posX, posY + entity.getCollisionBorderSize(), posZ, pos, yaw, scale, partialX, partialY + entity.getCollisionBorderSize(), partialZ, entity.ticksExisted);
                         }
                     }
                 }

@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityTeslaCoil;
 
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
@@ -26,7 +27,7 @@ public class RenderTeslaCoil extends TileEntitySpecialRenderer<TileEntityTeslaCo
         }
         
         OpenGL.translate(0, -1F, 0);
-        AVP.resources().models().TESLA_COIL.draw(teslaCoil);
+        Resources.instance.models().TESLA_COIL.draw(teslaCoil);
         GlStateManager.popMatrix();
     }
 }

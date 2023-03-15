@@ -7,6 +7,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import org.avp.AVP;
 import org.avp.client.AVPSounds;
+import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -80,7 +81,7 @@ public class RenderMotionTrackerScreen
                     OpenGL.translate(0.0D, hypot, 0.0D);
                     OpenGL.translate(-32.0F, -37.0F, 0.0F);
                     OpenGL.translate(0.0D, -hypot, 0.0D);
-                    AVP.resources().MOTIONTRACKER_PING.bind();
+                    Resources.instance.MOTIONTRACKER_PING.bind();
                     OpenGL.antiAlias2d();
                     Draw.drawQuad(x * 2, y * 2, 128, 128);
                 }
@@ -101,7 +102,7 @@ public class RenderMotionTrackerScreen
             OpenGL.translate(0.5F, 0.5F, 0.0F);
             OpenGL.rotate(-this.direction, 0.0F, 0.0F, 1.0F);
             OpenGL.translate(-0.5F, -0.5F, 0.0F);
-            AVP.resources().MOTIONTRACKER_BG.bind();
+            Resources.instance.MOTIONTRACKER_BG.bind();
             OpenGL.antiAlias2d();
             Draw.drawQuad(x, y, 128, 76, 64, 64);
 
@@ -109,27 +110,27 @@ public class RenderMotionTrackerScreen
             {
                 if (time >= 14)
                 {
-                    AVP.resources().MOTIONTRACKER_S6.bind();
+                    Resources.instance.MOTIONTRACKER_S6.bind();
                 }
                 else if (time >= 13)
                 {
-                    AVP.resources().MOTIONTRACKER_S5.bind();
+                    Resources.instance.MOTIONTRACKER_S5.bind();
                 }
                 else if (time >= 12)
                 {
-                    AVP.resources().MOTIONTRACKER_S4.bind();
+                    Resources.instance.MOTIONTRACKER_S4.bind();
                 }
                 else if (time >= 11)
                 {
-                    AVP.resources().MOTIONTRACKER_S3.bind();
+                    Resources.instance.MOTIONTRACKER_S3.bind();
                 }
                 else if (time >= 10)
                 {
-                    AVP.resources().MOTIONTRACKER_S2.bind();
+                    Resources.instance.MOTIONTRACKER_S2.bind();
                 }
                 else if (time >= 9)
                 {
-                    AVP.resources().MOTIONTRACKER_S1.bind();
+                    Resources.instance.MOTIONTRACKER_S1.bind();
                 }
 
                 OpenGL.antiAlias2d();
@@ -139,7 +140,7 @@ public class RenderMotionTrackerScreen
         OpenGL.popMatrix();
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
-        AVP.resources().MOTIONTRACKER_FG.bind();
+        Resources.instance.MOTIONTRACKER_FG.bind();
         OpenGL.antiAlias2d();
         OpenGL.translate(0, 0, -0.0002F);
         Draw.drawQuad(x, y, 128, 128, 64, 64);

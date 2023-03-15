@@ -4,11 +4,12 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelDrone;
 import org.alien.common.entity.living.xenomorph.EntityDrone;
 import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderDrone extends RenderXenomorph<EntityDrone, ModelDrone>
 {
     public RenderDrone(RenderManager m)
     {
-        super(m, AVP.resources().models().DRONE_ADVANCED, 0.9F);
+        super(m, Resources.instance.models().DRONE_ADVANCED, 0.9F);
     }
 }

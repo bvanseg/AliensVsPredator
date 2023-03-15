@@ -8,13 +8,14 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelLocker;
 
 public class RenderItemGunLocker extends ItemRenderer<ModelLocker>
 {
     public RenderItemGunLocker()
     {
-        super(AVP.resources().models().GUN_LOCKER);
+        super(Resources.instance.models().GUN_LOCKER);
     }
 
     @Override

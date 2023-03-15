@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class ChestbursterOverlayEvent
 {
@@ -26,7 +27,7 @@ public class ChestbursterOverlayEvent
                 {
                     if (organism.hasEmbryo() && Game.minecraft().player.isDead && organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod() - 80)
                     {
-                        Draw.drawOverlay(AVP.resources().BLUR_CHESTBURSTER_EMERGE, 1F, 0F, 0F, 1F);
+                        Draw.drawOverlay(Resources.instance.BLUR_CHESTBURSTER_EMERGE, 1F, 0F, 0F, 1F);
                     }
                 }
             }

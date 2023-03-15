@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 import org.predator.common.entity.EntitySmartDisc;
 
@@ -29,7 +30,7 @@ public class RenderDisc extends Render<EntitySmartDisc>
             OpenGL.translate(-0.5F, 0.0F, -0.5F);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             OpenGL.rotate(90F, 1F, 0F, 0F);
-            AVP.resources().DISC.bind();
+            Resources.instance.DISC.bind();
             Draw.drawQuad(0, 0, 1, 1, 0, 0.5F, 0F, 0F, 0.5F);
             OpenGL.enable(GL11.GL_CULL_FACE);
         }

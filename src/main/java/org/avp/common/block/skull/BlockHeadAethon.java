@@ -10,20 +10,18 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.tile.skull.ModelAethonHead;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 
 public class BlockHeadAethon extends BlockSkull
 {
     @SideOnly(Side.CLIENT)
-    private static class Resources
-    {
-        private static final MapModelTexture<ModelAethonHead> model = AVP.resources().models().HEAD_AETHON;
-    }
+    private static final MapModelTexture<ModelAethonHead> model = Resources.instance.models().HEAD_AETHON;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelAethonHead m = Resources.model.getModel();
+        ModelAethonHead m = model.getModel();
         return new ModelRenderer[] { m.head };
     }
 
@@ -38,7 +36,7 @@ public class BlockHeadAethon extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.model.getTexture();
+        return model.getTexture();
     }
     
     @Override

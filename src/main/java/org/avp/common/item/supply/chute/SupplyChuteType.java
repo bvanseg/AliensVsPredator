@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.entity.ModelSupplyChute;
 import org.avp.common.AVPBlocks;
 import org.avp.common.entity.EntitySupplyChute;
@@ -80,13 +81,13 @@ public enum SupplyChuteType {
             switch (type)
             {
                 case MARINES:
-                    return AVP.resources().models().SUPPLY_CHUTE_MARINES;
+                    return Resources.instance.models().SUPPLY_CHUTE_MARINES;
 
                 case SEEGSON:
-                    return AVP.resources().models().SUPPLY_CHUTE_SEEGSON;
+                    return Resources.instance.models().SUPPLY_CHUTE_SEEGSON;
 
                 default:
-                    return AVP.resources().models().SUPPLY_CHUTE;
+                    return Resources.instance.models().SUPPLY_CHUTE;
 
             }
         }

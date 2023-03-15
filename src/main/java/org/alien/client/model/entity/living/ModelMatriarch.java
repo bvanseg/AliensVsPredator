@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 public class ModelMatriarch extends Model<EntityMatriarch>
@@ -518,7 +519,7 @@ public class ModelMatriarch extends Model<EntityMatriarch>
                     OpenGL.blendClear();
                     OpenGL.disableCullFace();
                     OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_COLOR);
-                    AVP.resources().models().MATRIARCH_MASK.getTexture().bind();
+                    Resources.instance.models().MATRIARCH_MASK.getTexture().bind();
                     draw(sack0);
                     OpenGL.enableCullFace();
                     OpenGL.blendClear();

@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.AVPNetworking;
 import org.avp.common.item.crafting.AssemblyManager;
 import org.avp.common.item.crafting.AssemblyResult;
@@ -253,7 +254,7 @@ public class GuiAssembler extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
     	this.drawDefaultBackground();
-        AVP.resources().GUI_ASSEMBLER.bind();
+        Resources.instance.GUI_ASSEMBLER.bind();
         drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
     }
 

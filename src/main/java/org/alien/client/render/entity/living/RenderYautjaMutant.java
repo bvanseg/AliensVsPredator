@@ -6,18 +6,13 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelMutantYautja;
 import org.alien.common.entity.living.EntityYautjaMutant;
 import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderYautjaMutant extends RenderLivingWrapper<EntityYautjaMutant, ModelMutantYautja>
 {
     public RenderYautjaMutant(RenderManager m)
     {
-        super(m, AVP.resources().models().MUTANT_YAUTJA);
-    }
-
-    @Override
-    public void doRender(EntityYautjaMutant entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
-    {
-        super.doRender(entity, posX, posY, posZ, yaw, renderPartialTicks);
+        super(m, Resources.instance.models().MUTANT_YAUTJA);
     }
 
     @Override
