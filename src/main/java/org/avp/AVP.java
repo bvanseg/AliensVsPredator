@@ -122,12 +122,6 @@ public class AVP implements IMod
     }
 
     @Deprecated
-    public static AlienDimensions dimensions()
-    {
-        return AlienDimensions.instance;
-    }
-
-    @Deprecated
     @SideOnly(Side.CLIENT)
     public static KeybindHandler keybinds()
     {

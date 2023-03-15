@@ -9,6 +9,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.alien.common.AlienDimensions;
 import org.avp.AVP;
 
 public class WorldProviderAcheron extends WorldProvider
@@ -57,7 +58,7 @@ public class WorldProviderAcheron extends WorldProvider
     @Override
     public String getSaveFolder()
     {
-        return AVP.dimensions().DIMENSION_ID_ACHERON;
+        return AlienDimensions.DIMENSION_ID_ACHERON;
     }
 
     @Override
@@ -140,6 +141,6 @@ public class WorldProviderAcheron extends WorldProvider
     @Override
     public DimensionType getDimensionType()
     {
-        return AVP.dimensions().ACHERON.getType();
+        return AlienDimensions.instance.ACHERON.getType();
     }
 }

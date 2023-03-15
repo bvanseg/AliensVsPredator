@@ -14,6 +14,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.alien.common.AlienDimensions;
 import org.avp.AVP;
 
 public class WorldProviderVarda extends WorldProvider implements IClimateProvider
@@ -84,7 +85,7 @@ public class WorldProviderVarda extends WorldProvider implements IClimateProvide
     @Override
     public String getSaveFolder()
     {
-        return AVP.dimensions().DIMENSION_ID_VARDA;
+        return AlienDimensions.DIMENSION_ID_VARDA;
     }
     
     @Override
@@ -173,6 +174,6 @@ public class WorldProviderVarda extends WorldProvider implements IClimateProvide
     @Override
     public DimensionType getDimensionType()
     {
-        return AVP.dimensions().VARDA.getType();
+        return AlienDimensions.instance.VARDA.getType();
     }
 }
