@@ -215,7 +215,7 @@ public class EntityImpregnationHandler
         		break;
         }
 
-        Game.minecraft().effectRenderer.addEffect(new EntityBloodFX(host.world, pX, pY, pZ, particleColor, maxAge, glow));
+        //Game.minecraft().effectRenderer.addEffect(new EntityBloodFX(host.world, pX, pY, pZ, particleColor, maxAge, glow));
     }
 
     @SubscribeEvent
