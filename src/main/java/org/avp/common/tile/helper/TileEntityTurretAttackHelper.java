@@ -47,9 +47,11 @@ public class TileEntityTurretAttackHelper {
                     }
                 }
             }
-        } else if (!world.isRemote && this.isFiring) {
+        } else if (this.isFiring) {
             this.isFiring = false;
-        	AVP.network().sendToAll(new PacketTurretAmmoSync(pos.blockPos(), this.ammoHelper.getCurrentAmmo()));
+            if (!world.isRemote) {
+                AVP.network().sendToAll(new PacketTurretAmmoSync(pos.blockPos(), this.ammoHelper.getCurrentAmmo()));
+            }
         }
 	}
 
