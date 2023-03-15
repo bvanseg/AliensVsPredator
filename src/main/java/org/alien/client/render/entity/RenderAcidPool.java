@@ -60,7 +60,7 @@ public class RenderAcidPool extends Render<EntityAcidPool>
                         BlockPos pos = new BlockPos(blockX, blockY - 1, blockZ);
                         IBlockState blockstate = Game.minecraft().player.world.getBlockState(pos);
 
-                        if (pos != null && blockstate != null && blockstate.getBlock() != Blocks.AIR)
+                        if (blockstate.getBlock() != Blocks.AIR)
                         {
                             this.drawOnBlock(blockstate, posX, posY + entity.getCollisionBorderSize(), posZ, pos, yaw, scale, partialX, partialY + entity.getCollisionBorderSize(), partialZ, entity.ticksExisted);
                         }
