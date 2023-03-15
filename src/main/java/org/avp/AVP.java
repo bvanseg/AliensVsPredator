@@ -26,6 +26,7 @@ import org.avp.common.world.CapabilityHandler;
 import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorBlocks;
 import org.predator.common.PredatorEntities;
+import org.predator.common.PredatorEntitySpawns;
 import org.predator.common.PredatorItems;
 
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
@@ -101,6 +102,8 @@ public class AVP implements IMod
         AVPEntities.instance.init(event);
 
         // Entity Spawns
+        AlienEntitySpawns.instance.init(event);
+        PredatorEntitySpawns.instance.init(event);
         AVPEntitySpawns.instance.init(event);
 
         // Tile Entities
