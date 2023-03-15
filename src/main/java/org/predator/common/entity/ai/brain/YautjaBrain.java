@@ -1,9 +1,11 @@
 package org.predator.common.entity.ai.brain;
 
 import net.minecraft.entity.EntityLivingBase;
+import org.alien.common.entity.EntityAcidPool;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
+import org.lib.brain.impl.sensor.NearestAvoidTargetBrainSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
 import org.predator.common.entity.ai.EntityAISuperjump;
@@ -25,6 +27,7 @@ public class YautjaBrain extends AbstractEntityBrain<SpeciesYautja> {
 		// Brain Senses
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorYautja.instance));
+		this.addSense(new NearestAvoidTargetBrainSensor(1, EntityAcidPool.class::isInstance));
 
 		// Brain Tasks
 		SpeciesYautja entity = this.getEntity();
@@ -38,5 +41,6 @@ public class YautjaBrain extends AbstractEntityBrain<SpeciesYautja> {
 //		this.addTask(new BrainTaskAdapter(new EntityAIMoveTowardsTarget(entity, 0.9D, 48)));
 		this.addTask(new HurtByTargetBrainTask());
 		this.addTask(new NearestAttackableTargetBrainTask());
+		this.addTask(new AvoidNearestAvoidTargetBrainTask(3.0F, 0.9F, 0.9F));
 	}
 }
