@@ -2,6 +2,7 @@ package org.lib.brain.impl.task;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.Vec3d;
@@ -41,6 +42,8 @@ public class AvoidNearestAvoidTargetBrainTask extends AbstractBrainTask<EntityBr
 	private final float farSpeed;
 	private final float nearSpeed;
 
+	private Path path;
+
 	public AvoidNearestAvoidTargetBrainTask(float avoidDistance, float avoidFarSpeed, float avoidNearSpeed) {
 		this.avoidDistance = avoidDistance;
 		this.farSpeed = avoidFarSpeed;
@@ -49,18 +52,34 @@ public class AvoidNearestAvoidTargetBrainTask extends AbstractBrainTask<EntityBr
 	
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
+		EntityLiving entity = ctx.getEntity();
+		// If already executing, check if the entity has no path.
 		if (this.isExecuting()) {
-			return !ctx.getEntity().getNavigator().noPath();
+			return !entity.getNavigator().noPath();
 		}
 
-		if (!(ctx.getEntity() instanceof EntityCreature))
+		if (!(entity instanceof EntityCreature))
 			return false;
+		EntityCreature entityCreature = (EntityCreature) ctx.getEntity();
 
 		Optional<Entity> nearestAvoidTargetOptional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_AVOID_TARGET);
 		if (!nearestAvoidTargetOptional.isPresent())
 			return false;
 
 		Entity avoidEntity = nearestAvoidTargetOptional.get();
+
+		// Find random position away from avoid target.
+		Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockAwayFrom(entityCreature, (int)this.avoidDistance, 7, new Vec3d(avoidEntity.posX, avoidEntity.posY, avoidEntity.posZ));
+		if (vec3d == null)
+			return false;
+
+		if (avoidEntity.getDistanceSq(vec3d.x, vec3d.y, vec3d.z) < avoidEntity.getDistanceSq(entity))
+			return false;
+
+		this.path = entity.getNavigator().getPathToXYZ(vec3d.x, vec3d.y, vec3d.z);
+
+		if (this.path == null)
+			return false;
 
 		double distanceToAvoidEntity = ctx.getEntity().getDistance(avoidEntity);
 
@@ -70,33 +89,25 @@ public class AvoidNearestAvoidTargetBrainTask extends AbstractBrainTask<EntityBr
     @Override
 	protected void execute(EntityBrainContext ctx) {
 		EntityCreature entity = (EntityCreature) ctx.getEntity();
-
 		Optional<Entity> avoidEntityOptional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_AVOID_TARGET);
 		Entity avoidEntity = avoidEntityOptional.get();
 
 		// Init execution task.
 		if (!this.isExecuting()) {
-			// Find random position away from avoid target.
-			Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockAwayFrom(entity, 16, 7, new Vec3d(avoidEntity.posX, avoidEntity.posY, avoidEntity.posZ));
-			if (vec3d == null)
-				return;
-
-			if (avoidEntity.getDistanceSq(vec3d.x, vec3d.y, vec3d.z) < avoidEntity.getDistanceSq(entity))
-				return;
-
-			Path path = entity.getNavigator().getPathToXYZ(vec3d.x, vec3d.y, vec3d.z);
-
-			if (path == null)
-				return;
-
 			entity.getNavigator().setPath(path, this.farSpeed);
 		}
 
 		// Continued execution.
-		if (entity.getDistanceSq(avoidEntity) < 49.0) {
+		if (entity.getDistance(avoidEntity) < this.avoidDistance * 0.75) {
 			entity.getNavigator().setSpeed(this.nearSpeed);
 		} else {
 			entity.getNavigator().setSpeed(this.farSpeed);
 		}
     }
+
+	@Override
+	public void finish(EntityBrainContext ctx) {
+		super.finish(ctx);
+		this.path = null;
+	}
 }

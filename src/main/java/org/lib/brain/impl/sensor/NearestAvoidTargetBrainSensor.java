@@ -1,7 +1,7 @@
 package org.lib.brain.impl.sensor;
 
 import com.google.common.base.Predicate;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.sensor.AbstractBrainSensor;
@@ -18,9 +18,9 @@ import java.util.stream.Collectors;
 public class NearestAvoidTargetBrainSensor extends AbstractBrainSensor<EntityBrainContext> {
 
 	private final int cooldownInTicks;
-    private final Predicate<EntityLivingBase> avoidTargetPredicate;
+    private final Predicate<Entity> avoidTargetPredicate;
 
-	public NearestAvoidTargetBrainSensor(int cooldownInTicks, Predicate<EntityLivingBase> avoidTargetPredicate) {
+	public NearestAvoidTargetBrainSensor(int cooldownInTicks, Predicate<Entity> avoidTargetPredicate) {
 		this.cooldownInTicks = cooldownInTicks;
     	this.avoidTargetPredicate = avoidTargetPredicate;
 	}
@@ -33,11 +33,11 @@ public class NearestAvoidTargetBrainSensor extends AbstractBrainSensor<EntityBra
 			return;
 		}
 		
-		Optional<List<EntityLivingBase>> livingEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);
+		Optional<List<Entity>> entitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.ENTITIES);
 
-		if (livingEntitiesOptional.isPresent()) {
-			List<EntityLivingBase> livingEntities = livingEntitiesOptional.get();
-			List<EntityLivingBase> targets = livingEntities.stream().filter(avoidTargetPredicate::apply).collect(Collectors.toList());
+		if (entitiesOptional.isPresent()) {
+			List<Entity> entities = entitiesOptional.get();
+			List<Entity> targets = entities.stream().filter(avoidTargetPredicate::apply).collect(Collectors.toList());
 
 			if (!targets.isEmpty()) {
 		        ctx.getBrain().remember(BrainMemoryKeys.NEAREST_AVOID_TARGET, targets.get(0));

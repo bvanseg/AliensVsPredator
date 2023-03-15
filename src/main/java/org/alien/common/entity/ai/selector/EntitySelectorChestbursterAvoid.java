@@ -1,7 +1,7 @@
 package org.alien.common.entity.ai.selector;
 
 import com.google.common.base.Predicate;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntitySkeletonHorse;
@@ -14,7 +14,7 @@ import org.predator.common.entity.living.SpeciesYautja;
 
 import java.util.ArrayList;
 
-public class EntitySelectorChestbursterAvoid implements Predicate<EntityLivingBase>
+public class EntitySelectorChestbursterAvoid implements Predicate<Entity>
 {
     public static final EntitySelectorChestbursterAvoid instance = new EntitySelectorChestbursterAvoid();
 
@@ -45,7 +45,7 @@ public class EntitySelectorChestbursterAvoid implements Predicate<EntityLivingBa
     }
 
     @Override
-    public boolean apply(EntityLivingBase potentialTarget)
+    public boolean apply(Entity potentialTarget)
     {
         // If the target is a player, return depending on if they're in creative mode or not.
         if (potentialTarget instanceof EntityPlayer)
