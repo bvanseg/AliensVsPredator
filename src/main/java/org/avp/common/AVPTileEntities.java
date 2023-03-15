@@ -6,8 +6,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.avp.AVP;
 import org.avp.common.tile.*;
-import org.avp.common.tile.plant.TileEntityGroundFern;
-import org.avp.common.tile.plant.TileEntityTreeFern;
 
 public class AVPTileEntities implements IInitEvent {
     public static final AVPTileEntities instance = new AVPTileEntities();

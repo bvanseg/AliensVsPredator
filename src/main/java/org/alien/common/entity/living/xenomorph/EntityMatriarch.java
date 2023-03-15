@@ -1,7 +1,5 @@
 package org.alien.common.entity.living.xenomorph;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
@@ -18,13 +16,10 @@ import net.minecraftforge.common.util.Constants.NBT;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.MatriarchBrain;
-import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.AlienHive;
-import org.alien.common.world.hive.HiveMember;
 import org.alien.common.world.hive.HiveOwner;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
 public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
