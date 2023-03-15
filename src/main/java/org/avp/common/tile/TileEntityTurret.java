@@ -24,6 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.common.AVPItems;
+import org.avp.common.AVPNetworking;
 import org.avp.common.api.machines.DataDevice;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.inventory.ContainerTurret;
@@ -126,7 +127,7 @@ public class TileEntityTurret extends TileEntityElectrical implements DataDevice
 
     private void sendSyncPacket()
     {
-        AVP.network().sendToAll(new PacketTurretSync(this));
+        AVPNetworking.instance.sendToAll(new PacketTurretSync(this));
     }
 
     @SideOnly(Side.CLIENT)

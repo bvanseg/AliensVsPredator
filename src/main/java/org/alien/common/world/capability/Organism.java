@@ -18,6 +18,7 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.Embryo;
 import org.avp.AVP;
 import org.avp.client.render.TacticalHUDRenderEvent;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.OrganismClientSync;
 import org.avp.common.network.packet.server.OrganismServerSync;
 
@@ -230,13 +231,13 @@ public interface Organism
         public void syncWithServer(EntityLivingBase living)
         {
             if (living != null)
-                AVP.network().sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+                AVPNetworking.instance.sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         public void syncWithClients(EntityLivingBase living)
         {
             if (living != null && !living.world.isRemote)
-                AVP.network().sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+                AVPNetworking.instance.sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         @Override

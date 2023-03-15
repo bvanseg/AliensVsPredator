@@ -36,6 +36,7 @@ import org.alien.common.world.Embryo;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
@@ -391,7 +392,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
 
         if (!this.world.isRemote && this.isFertile() && this.canAttach(entity))
         {
-            AVP.network().sendToAll(new PacketAttachParasiteToEntity(this.getEntityId(), entity.getEntityId()));
+            AVPNetworking.instance.sendToAll(new PacketAttachParasiteToEntity(this.getEntityId(), entity.getEntityId()));
             this.attachToEntity(entity);
         }
     }

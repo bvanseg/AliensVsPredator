@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.AVPItems;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketLaunchGrenade;
 
 public class InputHandlerPulseRifle implements IInputHandler
@@ -21,7 +22,7 @@ public class InputHandlerPulseRifle implements IInputHandler
             if (AVP.keybinds().specialPrimary.isPressed())
             {
                 Game.setRightClickDelayTimer(20);
-                AVP.network().sendToServer(new PacketLaunchGrenade());
+                AVPNetworking.instance.sendToServer(new PacketLaunchGrenade());
             }
         }
     }

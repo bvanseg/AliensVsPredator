@@ -9,6 +9,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketOpenGui;
 
 public class CommandSettings extends CommandBase
@@ -30,7 +31,7 @@ public class CommandSettings extends CommandBase
     {
         if (FMLCommonHandler.instance().getSide() == Side.SERVER)
         {
-            AVP.network().sendTo(new PacketOpenGui(AVP.interfaces().GUI_GRAPHICSSETTINGS), (EntityPlayerMP) sender);
+            AVPNetworking.instance.sendTo(new PacketOpenGui(AVP.interfaces().GUI_GRAPHICSSETTINGS), (EntityPlayerMP) sender);
             return;
         }
 

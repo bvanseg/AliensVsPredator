@@ -15,6 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.api.machines.Openable;
 import org.avp.common.inventory.ContainerSupplyCrate;
 import org.avp.common.item.supply.chute.SupplyChuteType;
@@ -160,7 +161,7 @@ public class TileEntitySupplyCrate extends TileEntity implements Openable, IRota
 
 		if (!this.world.isRemote)
 		{
-			AVP.network().sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
+			AVPNetworking.instance.sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
 		}
 	}
 

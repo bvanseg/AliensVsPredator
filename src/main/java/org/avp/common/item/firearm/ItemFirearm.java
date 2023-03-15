@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketFirearmSync;
 import org.avp.common.network.packet.server.PacketReloadFirearm;
 
@@ -73,13 +74,13 @@ public class ItemFirearm extends HookedItem
                 // TODO: The client shouldn't tell the server what it hit.
                 if (trace != null && trace.typeOfHit == Type.BLOCK)
                 {
-                    AVP.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.x, (int) trace.hitVec.y, (int) trace.hitVec.z, this.profile));
+                    AVPNetworking.instance.sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.x, (int) trace.hitVec.y, (int) trace.hitVec.z, this.profile));
                 }
 
                 // TODO: The client shouldn't tell the server what it hit.
                 if (trace != null && trace.typeOfHit == Type.ENTITY)
                 {
-                    AVP.network().sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, 0, 0, 0, this.profile));
+                    AVPNetworking.instance.sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, 0, 0, 0, this.profile));
                 }
 
                 if (!player.capabilities.isCreativeMode)
@@ -157,7 +158,7 @@ public class ItemFirearm extends HookedItem
         }
         else {
         	// TODO: Try and avoid the client telling the server what to do.
-            AVP.network().sendToServer(new PacketReloadFirearm());
+            AVPNetworking.instance.sendToServer(new PacketReloadFirearm());
         }
 
         this.ammo = this.profile.getAmmoMax();

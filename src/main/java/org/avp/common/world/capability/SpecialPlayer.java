@@ -9,6 +9,7 @@ import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.OrganismClientSync;
 import org.avp.common.network.packet.server.OrganismServerSync;
 import org.avp.common.world.playermode.PlayerMode;
@@ -165,12 +166,12 @@ public interface SpecialPlayer
 
         public void syncWithServer(EntityLivingBase living)
         {
-            AVP.network().sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+            AVPNetworking.instance.sendToServer(new OrganismServerSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         public void syncWithClients(EntityLivingBase living)
         {
-            AVP.network().sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+            AVPNetworking.instance.sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
         }
 
         @Override

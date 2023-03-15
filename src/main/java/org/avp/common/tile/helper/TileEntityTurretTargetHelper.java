@@ -29,6 +29,7 @@ import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketTurretTargetUpdate;
 
 import java.util.*;
@@ -198,7 +199,7 @@ public class TileEntityTurretTargetHelper {
 		
 		if (this.targetEntity != targetEntity && this.pos != null) {
 			int entityId = targetEntity != null ? targetEntity.getEntityId() : Integer.MIN_VALUE;
-            AVP.network().sendToAll(new PacketTurretTargetUpdate(pos.blockPos(), entityId));
+            AVPNetworking.instance.sendToAll(new PacketTurretTargetUpdate(pos.blockPos(), entityId));
     		this.targetEntity = targetEntity;
 			this.targetEntityId = entityId;
 		}

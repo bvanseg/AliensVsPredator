@@ -11,6 +11,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.PacketRotateRotatable;
 import org.avp.common.tile.TileEntityRedstoneFluxGenerator;
 
@@ -72,7 +73,7 @@ public class BlockRedstoneFluxGenerator extends Block
 
                 if (!world.isRemote)
                 {
-                    AVP.network().sendToAll(new PacketRotateRotatable(generator.getRotationYAxis().ordinal(), generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ()));
+                    AVPNetworking.instance.sendToAll(new PacketRotateRotatable(generator.getRotationYAxis().ordinal(), generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ()));
                 }
             }
 

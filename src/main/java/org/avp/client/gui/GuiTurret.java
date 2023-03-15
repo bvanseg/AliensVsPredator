@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.lang3.tuple.Pair;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.*;
 import org.avp.common.tile.TileEntityTurret;
 import org.lwjgl.input.Keyboard;
@@ -56,7 +57,7 @@ public class GuiTurret extends GuiContainer
         @Override
         public void perform(IGuiElement element)
         {
-            AVP.network().sendToServer(new PacketWriteToDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
+            AVPNetworking.instance.sendToServer(new PacketWriteToDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
             tile.writeToOtherDevice(0);
         }
     };
@@ -66,7 +67,7 @@ public class GuiTurret extends GuiContainer
         public void perform(IGuiElement element)
         {
             tile.getTargetHelper().getDangerousTargets().clear();
-            AVP.network().sendToServer(new PacketReadFromDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
+            AVPNetworking.instance.sendToServer(new PacketReadFromDataDevice(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), 0));
             tile.readFromOtherDevice(0);
         }
     };
@@ -85,12 +86,12 @@ public class GuiTurret extends GuiContainer
                     {
                         tile.getTargetHelper().addTargetType(entityClass);
                         
-                        AVP.network().sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
+                        AVPNetworking.instance.sendToServer(new PacketAddTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
                     }
                     else
                     {
                         tile.getTargetHelper().removeTargetType(entityClass);
-                        AVP.network().sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
+                        AVPNetworking.instance.sendToServer(new PacketRemoveTurretTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), Entities.getEntityRegistrationId(entityClass)));
                     }
                 }
             }
@@ -180,7 +181,7 @@ public class GuiTurret extends GuiContainer
         tile.applyUpgrades();
 
     	Collection<String> entityIdentifiers = tile.getTargetHelper().getDangerousTargets().stream().map((e) -> Entities.getEntityRegistrationId(e)).collect(Collectors.toList());
-        AVP.network().sendToServer(new PacketAddTurretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), entityIdentifiers));
+        AVPNetworking.instance.sendToServer(new PacketAddTurretTarget(this.tile.getPos().getX(), this.tile.getPos().getY(), this.tile.getPos().getZ(), entityIdentifiers));
     }
 
     @Override
@@ -339,7 +340,7 @@ public class GuiTurret extends GuiContainer
                 }
                 else if (playerNameInput != null && !playerNameInput.getText().isEmpty())
                 {
-                	AVP.network().sendToServer(new PacketToggleTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
+                	AVPNetworking.instance.sendToServer(new PacketToggleTurretPlayerTarget(tile.getPos().getX(), tile.getPos().getY(), tile.getPos().getZ(), playerNameInput.getText()));
                     return;
                 }
             }

@@ -22,6 +22,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.common.AVPItems;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketFireAPC;
 
 import java.util.List;
@@ -203,7 +204,7 @@ public class EntityAPC extends Entity
             {
                 if (AVP.keybinds().specialPrimary.isPressed())
                 {
-                    AVP.network().sendToServer(new PacketFireAPC());
+                    AVPNetworking.instance.sendToServer(new PacketFireAPC());
                 }
             }
         }

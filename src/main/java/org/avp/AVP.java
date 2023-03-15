@@ -122,12 +122,6 @@ public class AVP implements IMod
     }
 
     @Deprecated
-    public static AVPNetworking network()
-    {
-        return AVPNetworking.instance;
-    }
-
-    @Deprecated
     public static AlienDimensions dimensions()
     {
         return AlienDimensions.instance;

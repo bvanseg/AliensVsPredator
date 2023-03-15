@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 import org.avp.AVP;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPDamageSources;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketTurretAmmoSync;
 
 /**
@@ -50,7 +51,7 @@ public class TileEntityTurretAttackHelper {
         } else if (this.isFiring) {
             this.isFiring = false;
             if (!world.isRemote) {
-                AVP.network().sendToAll(new PacketTurretAmmoSync(pos.blockPos(), this.ammoHelper.getCurrentAmmo()));
+                AVPNetworking.instance.sendToAll(new PacketTurretAmmoSync(pos.blockPos(), this.ammoHelper.getCurrentAmmo()));
             }
         }
 	}

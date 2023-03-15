@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.item.crafting.AssemblyManager;
 import org.avp.common.item.crafting.AssemblyResult;
 import org.avp.common.item.crafting.ItemSchematic;
@@ -60,7 +61,7 @@ public class GuiAssembler extends GuiContainer
 
         if (selectedSchematic != null)
         {
-            AVP.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), requestedAmount));
+            AVPNetworking.instance.sendToServer(new PacketAssemble(selectedSchematic.getName(), requestedAmount));
         }
     };
     

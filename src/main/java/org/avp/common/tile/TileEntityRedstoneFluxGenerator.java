@@ -7,6 +7,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.api.power.VoltageProvider;
 import org.avp.common.network.packet.client.PacketSyncRF;
 
@@ -70,7 +71,7 @@ public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implem
 
         if (!this.world.isRemote && this.world.getTotalWorldTime() % 20 == 0)
         {
-            AVP.network().sendToAll(new PacketSyncRF(this.getEnergyStored(null), this.pos.getX(), this.pos.getY(), this.pos.getZ()));
+            AVPNetworking.instance.sendToAll(new PacketSyncRF(this.getEnergyStored(null), this.pos.getX(), this.pos.getY(), this.pos.getZ()));
         }
     }
 

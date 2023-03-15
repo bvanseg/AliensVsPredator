@@ -24,6 +24,7 @@ import org.alien.common.world.hive.HiveMember;
 import org.avp.AVP;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPMaterials;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.PacketOvamorphContainsFacehugger;
 
 import java.util.List;
@@ -109,7 +110,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember
 
         if (!this.world.isRemote && this.ticksExisted >= 20 && this.sendUpdates)
         {
-            AVP.network().sendToAll(new PacketOvamorphContainsFacehugger(this.containsFacehugger, this.getEntityId()));
+            AVPNetworking.instance.sendToAll(new PacketOvamorphContainsFacehugger(this.containsFacehugger, this.getEntityId()));
             this.sendUpdates = false;
         }
 

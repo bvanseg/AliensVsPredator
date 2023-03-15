@@ -13,6 +13,7 @@ import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.EntitySporePod;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketSpawnEntity;
 
 public class ItemSporePod extends HookedItem
@@ -30,7 +31,7 @@ public class ItemSporePod extends HookedItem
             if (world.isRemote && entity != null && ray.typeOfHit == Type.BLOCK)
             {
                 
-                AVP.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x, ray.hitVec.y + 0.5D, ray.hitVec.z, Entities.getEntityRegistrationId(EntitySporePod.class)));
+                AVPNetworking.instance.sendToServer(new PacketSpawnEntity(ray.hitVec.x, ray.hitVec.y + 0.5D, ray.hitVec.z, Entities.getEntityRegistrationId(EntitySporePod.class)));
             }
         }
 

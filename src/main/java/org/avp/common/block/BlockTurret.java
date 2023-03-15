@@ -25,6 +25,7 @@ import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
 import org.avp.common.AVPGui;
 import org.avp.common.AVPItems;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketAddTurretTarget;
 import org.avp.common.tile.TileEntityTurret;
 
@@ -81,7 +82,7 @@ public class BlockTurret extends Block
             if (!world.isRemote)
             {
             	Collection<String> entityIdentifiers = tile.getTargetHelper().getDangerousTargets().stream().map((e) -> Entities.getEntityRegistrationId(e)).collect(Collectors.toList());
-                AVP.network().sendToAll(new PacketAddTurretTarget(pos.getX(), pos.getY(), pos.getZ(), entityIdentifiers));
+                AVPNetworking.instance.sendToAll(new PacketAddTurretTarget(pos.getX(), pos.getY(), pos.getZ(), entityIdentifiers));
             }
         }
 
