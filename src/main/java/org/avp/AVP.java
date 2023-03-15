@@ -37,7 +37,7 @@ public class AVP implements IMod
     }
 
     @Mod.Instance(AVP.Properties.ID)
-    private static AVP instance;
+    public static AVP instance;
 
     public static final Logger logger = LogManager.getLogger("AVP");
 
@@ -113,12 +113,6 @@ public class AVP implements IMod
     public void onServerStarting(FMLServerStartingEvent event)
     {
         AVPCommands.instance.onServerStarting(event);
-    }
-
-    @Deprecated
-    public static AVP instance()
-    {
-        return AVP.instance;
     }
 
     @Deprecated

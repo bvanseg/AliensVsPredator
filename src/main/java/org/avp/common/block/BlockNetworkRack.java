@@ -125,7 +125,7 @@ public class BlockNetworkRack extends Block
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_NETWORK_RACK, player.world, rack.getPos().getX(), rack.getPos().getY(), rack.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance, AVPGui.GUI_NETWORK_RACK, player.world, rack.getPos().getX(), rack.getPos().getY(), rack.getPos().getZ());
         }
     }
 }

@@ -241,7 +241,7 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_ASSEMBLER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance, AVPGui.GUI_ASSEMBLER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
         }
     }
 

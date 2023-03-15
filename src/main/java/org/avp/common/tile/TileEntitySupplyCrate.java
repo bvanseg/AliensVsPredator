@@ -134,7 +134,7 @@ public class TileEntitySupplyCrate extends TileEntity implements Openable, IRota
 	{
 		if (!player.world.isRemote)
 		{
-			FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_SUPPLYCRATE, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+			FMLNetworkHandler.openGui(player, AVP.instance, AVPGui.GUI_SUPPLYCRATE, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
 		}
 	}
 

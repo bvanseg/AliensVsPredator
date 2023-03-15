@@ -107,7 +107,7 @@ public class BlockTurret extends Block
         	return true;
         }
 
-        FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_TURRET, world, pos.getX(), pos.getY(), pos.getZ());
+        FMLNetworkHandler.openGui(player, AVP.instance, AVPGui.GUI_TURRET, world, pos.getX(), pos.getY(), pos.getZ());
 
         return true;
     }

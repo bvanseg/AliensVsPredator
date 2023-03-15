@@ -35,7 +35,7 @@ public class AVPGui implements IGuiHandler, IInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
-        NetworkRegistry.INSTANCE.registerGuiHandler(AVP.instance(), this);
+        NetworkRegistry.INSTANCE.registerGuiHandler(AVP.instance, this);
     }
 
     @Override

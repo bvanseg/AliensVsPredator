@@ -43,7 +43,7 @@ public class PacketOpenContainer implements IMessage, IMessageHandler<PacketOpen
             public void run()
             {
                 EntityPlayer player = ctx.getServerHandler().player;
-                FMLNetworkHandler.openGui(player, AVP.instance(), packet.guiIdentifier, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
+                FMLNetworkHandler.openGui(player, AVP.instance, packet.guiIdentifier, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
             }
         });
         return null;

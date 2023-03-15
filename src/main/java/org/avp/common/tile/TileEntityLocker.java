@@ -141,7 +141,7 @@ public class TileEntityLocker extends TileEntity implements Openable, IRotatable
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_LOCKER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance, AVPGui.GUI_LOCKER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
         }
     }
     

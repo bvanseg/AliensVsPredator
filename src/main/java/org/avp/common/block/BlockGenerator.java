@@ -66,7 +66,7 @@ public class BlockGenerator extends Block
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_REPULSION_GENERATOR, player.world, generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance, AVPGui.GUI_REPULSION_GENERATOR, player.world, generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ());
         }
     }
 }
