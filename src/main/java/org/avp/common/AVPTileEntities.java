@@ -24,9 +24,7 @@ public class AVPTileEntities implements IInitEvent {
     {
         GameRegistry.registerTileEntity(TileEntityTurret.class, new ResourceLocation(AVP.Properties.ID, "tileEntityTurret"));
         GameRegistry.registerTileEntity(TileEntityWorkstation.class, new ResourceLocation(AVP.Properties.ID, "tileEntityWorkstation"));
-        GameRegistry.registerTileEntity(TileEntityHiveResin.class, new ResourceLocation(AVP.Properties.ID, "tileEntityBlockHive"));
         GameRegistry.registerTileEntity(TileEntityAssembler.class, new ResourceLocation(AVP.Properties.ID, "tileEntityAssembler"));
-        GameRegistry.registerTileEntity(TileEntityStasisMechanism.class, new ResourceLocation(AVP.Properties.ID, "tileStasisMechanism"));
         GameRegistry.registerTileEntity(TileEntityRepulsionGenerator.class, new ResourceLocation(AVP.Properties.ID, "tileEntityGenerator"));
         GameRegistry.registerTileEntity(TileEntityPowerline.class, new ResourceLocation(AVP.Properties.ID, "tileEntityPowerline"));
         GameRegistry.registerTileEntity(TileEntityBlastdoor.class, new ResourceLocation(AVP.Properties.ID, "tileEntityBlastdoor"));
@@ -50,8 +48,6 @@ public class AVPTileEntities implements IInitEvent {
         GameRegistry.registerTileEntity(TileEntitySkull.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.skull"));
         GameRegistry.registerTileEntity(TileEntityRedstoneFluxGenerator.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.redstonefluxgenerator"));
         GameRegistry.registerTileEntity(TileEntityReflective.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.reflective"));
-        GameRegistry.registerTileEntity(TileEntityGroundFern.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.groundfern"));
-        GameRegistry.registerTileEntity(TileEntityTreeFern.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.treefern"));
         GameRegistry.registerTileEntity(TileEntityTeslaCoil.class, new ResourceLocation(AVP.Properties.ID, "tile.avp.tesacoil"));
     }
 }

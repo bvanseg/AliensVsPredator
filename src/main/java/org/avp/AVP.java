@@ -25,10 +25,7 @@ import org.avp.common.*;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
 import org.predator.client.PredatorSounds;
-import org.predator.common.PredatorBlocks;
-import org.predator.common.PredatorEntities;
-import org.predator.common.PredatorEntitySpawns;
-import org.predator.common.PredatorItems;
+import org.predator.common.*;
 
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
 public class AVP implements IMod
@@ -94,7 +91,7 @@ public class AVP implements IMod
         AVPCommands.instance.init(event);
         PlayerModeHandler.instance.init(event);
         StructureSchematics.instance.init(event);
-        AvpDataSerializers.init();
+        AvpDataSerializers.instance.init(event);
 
         // Entities
         AlienEntities.instance.init(event);
@@ -107,6 +104,8 @@ public class AVP implements IMod
         AVPEntitySpawns.instance.init(event);
 
         // Tile Entities
+        AlienTileEntities.instance.init(event);
+        PredatorTileEntities.instance.init(event);
         AVPTileEntities.instance.init(event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
