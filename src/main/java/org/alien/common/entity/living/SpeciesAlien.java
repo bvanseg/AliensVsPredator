@@ -21,7 +21,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.EntityAcidPool;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.avp.common.AVPDamageSources;
 
 import java.util.UUID;

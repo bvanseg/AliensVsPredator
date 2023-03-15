@@ -1,6 +1,5 @@
 package org.alien.common.entity.ai.brain;
 
-import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.player.EntityPlayer;
