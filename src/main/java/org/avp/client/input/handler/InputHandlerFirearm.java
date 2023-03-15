@@ -3,6 +3,7 @@ package org.avp.client.input.handler;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.item.Item;
 import org.avp.AVP;
+import org.avp.client.KeybindHandler;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.AVPNetworking;
 import org.avp.common.item.firearm.ItemFirearm;
@@ -27,7 +28,7 @@ public class InputHandlerFirearm implements IInputHandler
             {
                 ItemFirearm fireArm = (ItemFirearm) mainHand;
 
-                if (AVP.keybinds().specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
+                if (KeybindHandler.instance.specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
                 {
                     this.lastReload = 0;
                     AVPNetworking.instance.sendToServer(new PacketReloadFirearm());
@@ -37,7 +38,7 @@ public class InputHandlerFirearm implements IInputHandler
             {
             	ItemFirearm fireArm = (ItemFirearm) offHand;
 
-                if (AVP.keybinds().specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
+                if (KeybindHandler.instance.specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
                 {
                     this.lastReload = 0;
                     AVPNetworking.instance.sendToServer(new PacketReloadFirearm());

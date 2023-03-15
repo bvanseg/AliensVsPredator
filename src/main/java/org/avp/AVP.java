@@ -122,19 +122,6 @@ public class AVP implements IMod
     }
 
     @Deprecated
-    @SideOnly(Side.CLIENT)
-    public static KeybindHandler keybinds()
-    {
-        return KeybindHandler.instance;
-    }
-
-    @Deprecated
-    public static AVPGui interfaces()
-    {
-        return AVPGui.instance;
-    }
-
-    @Deprecated
     public static PlayerModeHandler playermodehandler()
     {
         return PlayerModeHandler.instance;

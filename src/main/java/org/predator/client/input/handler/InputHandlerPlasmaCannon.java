@@ -2,6 +2,7 @@ package org.predator.client.input.handler;
 
 import com.asx.mdx.lib.util.Game;
 import org.avp.AVP;
+import org.avp.client.KeybindHandler;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketPlasmaDischarge;
@@ -39,7 +40,7 @@ public class InputHandlerPlasmaCannon implements IInputHandler
                 this.recharging = false;
             }
 
-            if (AVP.keybinds().specialSecondary.isKeyDown())
+            if (KeybindHandler.instance.specialSecondary.isKeyDown())
             {
                 if (this.energy >= potentialEnergyUsed && !this.recharging)
                 {
