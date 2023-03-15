@@ -11,13 +11,13 @@ import org.avp.AVP;
 import org.avp.common.entity.*;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
+import org.lib.registry.EntityRegistryUtil;
 
 import java.util.ArrayList;
 
 public class AVPEntities implements IInitEvent
 {
     public static final AVPEntities instance                  = new AVPEntities();
-    private static int                    entityId                  = 0;
 
     private static final ArrayList<EntityEntry> entities                  = new ArrayList<>();
     private static final ArrayList<EntityEntry> livingEntities            = new ArrayList<>();
@@ -46,7 +46,7 @@ public class AVPEntities implements IInitEvent
     }
 
     private static void registerEntityEntryToCollection(Class<? extends Entity> entityClass, String id, ArrayList<EntityEntry> collection) {
-        collection.add(EntityEntryBuilder.create().entity(entityClass).id(id, entityId++).name(id).tracker(128, 4, true).build());
+        collection.add(EntityEntryBuilder.create().entity(entityClass).id(id, EntityRegistryUtil.getNextEntityID()).name(id).tracker(128, 4, true).build());
     }
 
     private static void registerEntityEntry(Class<? extends Entity> entityClass, String id) {

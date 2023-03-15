@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.avp.AVP;
+import org.lib.registry.EntityRegistryUtil;
 import org.predator.common.entity.*;
 import org.predator.common.entity.living.EntityPredatorHound;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
@@ -18,7 +19,6 @@ import java.util.ArrayList;
 public class PredatorEntities implements IInitEvent
 {
     public static final PredatorEntities instance                  = new PredatorEntities();
-    private static int                    entityId                  = 0;
 
     private static final ArrayList<EntityEntry> entities                  = new ArrayList<>();
     private static final ArrayList<EntityEntry> livingEntities            = new ArrayList<>();
@@ -45,7 +45,7 @@ public class PredatorEntities implements IInitEvent
     }
 
     private static void registerEntityEntryToCollection(Class<? extends Entity> entityClass, String id, ArrayList<EntityEntry> collection) {
-        collection.add(EntityEntryBuilder.create().entity(entityClass).id(id, entityId++).name(id).tracker(128, 4, true).build());
+        collection.add(EntityEntryBuilder.create().entity(entityClass).id(id, EntityRegistryUtil.getNextEntityID()).name(id).tracker(128, 4, true).build());
     }
 
     private static void registerEntityEntry(Class<? extends Entity> entityClass, String id) {
