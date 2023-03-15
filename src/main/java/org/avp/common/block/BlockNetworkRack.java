@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
+import org.avp.common.AVPGui;
 import org.avp.common.tile.TileEntityNetworkRack;
 
 public class BlockNetworkRack extends Block
@@ -124,7 +125,7 @@ public class BlockNetworkRack extends Block
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_NETWORK_RACK, player.world, rack.getPos().getX(), rack.getPos().getY(), rack.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_NETWORK_RACK, player.world, rack.getPos().getX(), rack.getPos().getY(), rack.getPos().getZ());
         }
     }
 }

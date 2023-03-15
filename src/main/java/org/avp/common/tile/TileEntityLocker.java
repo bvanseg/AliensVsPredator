@@ -15,6 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
+import org.avp.common.AVPGui;
 import org.avp.common.AVPNetworking;
 import org.avp.common.api.machines.Openable;
 import org.avp.common.inventory.ContainerLocker;
@@ -140,7 +141,7 @@ public class TileEntityLocker extends TileEntity implements Openable, IRotatable
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_LOCKER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_LOCKER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
         }
     }
     

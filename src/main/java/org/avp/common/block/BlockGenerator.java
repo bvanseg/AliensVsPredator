@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
+import org.avp.common.AVPGui;
 import org.avp.common.tile.TileEntityRepulsionGenerator;
 
 public class BlockGenerator extends Block
@@ -65,7 +66,7 @@ public class BlockGenerator extends Block
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_REPULSION_GENERATOR, player.world, generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_REPULSION_GENERATOR, player.world, generator.getPos().getX(), generator.getPos().getY(), generator.getPos().getZ());
         }
     }
 }

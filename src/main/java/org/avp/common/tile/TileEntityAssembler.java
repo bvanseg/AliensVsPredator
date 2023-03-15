@@ -14,6 +14,7 @@ import net.minecraft.util.ITickable;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
+import org.avp.common.AVPGui;
 import org.avp.common.inventory.ContainerAssembler;
 import org.avp.common.item.crafting.AssemblyManager;
 import org.predator.common.PredatorItems;
@@ -240,7 +241,7 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     {
         if (!player.world.isRemote)
         {
-            FMLNetworkHandler.openGui(player, AVP.instance(), AVP.interfaces().GUI_ASSEMBLER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
+            FMLNetworkHandler.openGui(player, AVP.instance(), AVPGui.GUI_ASSEMBLER, player.world, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
         }
     }
 
