@@ -316,8 +316,8 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(AVPItems.RACK_MODULE_8, new RenderItemNetworkRackModule());
 
         Renderers.registerItemRenderer(AlienItems.SUMMONER_DRONE, (new RenderItemSummoner(Resources.instance.models().DRONE_ADVANCED)).setScale(7.5F).setY(6F));
-        Renderers.registerItemRenderer(AlienItems.SUMMONER_DEACON, (new RenderItemSummoner(Resources.instance.models().DEACON)).setScale(7F).setY(4F));
-        Renderers.registerItemRenderer(AlienItems.SUMMONER_DEACON_ADULT, (new RenderItemSummoner(Resources.instance.models().DEACON_ADULT)).setScale(7F).setY(4F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_DEACON, (new RenderItemSummoner(Resources.instance.models().DEACON)).setScale(7F).setY(7F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_DEACON_ADULT, (new RenderItemSummoner(Resources.instance.models().DEACON_ADULT)).setScale(7F).setY(7F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_WARRIOR, (new RenderItemSummoner(Resources.instance.models().WARRIOR)).setScale(7.5F).setY(9F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_RUNNER_DRONE, (new RenderItemSummoner(Resources.instance.models().RUNNER_DRONE)).setScale(7.5F).setY(6F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_RUNNER_WARRIOR, (new RenderItemSummoner(Resources.instance.models().RUNNER_WARRIOR)).setScale(7.5F).setY(9F));
