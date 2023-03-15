@@ -3,6 +3,7 @@ package org.avp;
 
 import com.asx.mdx.core.mods.IMod;
 import com.asx.mdx.lib.util.Game;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.ModContainer;
@@ -72,13 +73,10 @@ public class AVP implements IMod
         console().pre(event);
         capabilities().pre(event);
         tabs().pre(event);
-    }
 
-    @SideOnly(Side.CLIENT)
-    @Mod.EventHandler
-    public void preClient(FMLPreInitializationEvent event)
-    {
-        renderers().pre(event);
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+            renderers().pre(event);
+        }
     }
 
     @Mod.EventHandler
@@ -108,27 +106,21 @@ public class AVP implements IMod
 
         // Tile Entities
         AVPTileEntities.instance.init(event);
-    }
 
-    @SideOnly(Side.CLIENT)
-    @Mod.EventHandler
-    public void initClient(FMLInitializationEvent event)
-    {
-        renderers().init(event);
-        biomeColors().init(event);
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+            renderers().init(event);
+            biomeColors().init(event);
+        }
     }
 
     @Mod.EventHandler
     public void post(FMLPostInitializationEvent event)
     {
         console().post(event);
-    }
 
-    @SideOnly(Side.CLIENT)
-    @Mod.EventHandler
-    public void postClient(FMLPostInitializationEvent event)
-    {
-        keybinds().post(event);
+        if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
+            keybinds().post(event);
+        }
     }
 
     @EventHandler
