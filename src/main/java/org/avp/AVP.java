@@ -117,10 +117,4 @@ public class AVP implements IMod
     {
         return Console.logger;
     }
-
-    @Deprecated
-    public static PlayerModeHandler playermodehandler()
-    {
-        return PlayerModeHandler.instance;
-    }
 }

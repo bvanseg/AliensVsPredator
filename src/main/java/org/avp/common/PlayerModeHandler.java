@@ -88,7 +88,7 @@ public class PlayerModeHandler implements IInitEvent
 
     public static final PlayerModeHandler instance()
     {
-        return AVP.playermodehandler();
+        return PlayerModeHandler.instance;
     }
 
     public static boolean isPlayerInMode(EntityPlayer player, PlayerMode playerMode)
