@@ -24,9 +24,9 @@ import java.util.List;
  */
 public class BlockRegistryUtil
 {
-    public static final HashMap<Block, ItemBlock> ITEM_BLOCKS = new HashMap<>();
+    private static final HashMap<Block, ItemBlock> ITEM_BLOCKS = new HashMap<>();
 
-    public static final ArrayList<BlockFluidBase> FLUIDS = new ArrayList<>();
+    private static final ArrayList<BlockFluidBase> FLUIDS = new ArrayList<>();
 
     private BlockRegistryUtil() {}
 
