@@ -13,9 +13,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.alien.client.AlienSounds;
-import org.alien.client.render.BiomeColorHandler;
-import org.alien.common.*;
+import org.alien.Aliens;
+import org.alien.common.AlienDimensions;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;
@@ -24,8 +23,7 @@ import org.avp.client.Resources;
 import org.avp.common.*;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
-import org.predator.client.PredatorSounds;
-import org.predator.common.*;
+import org.predator.Predators;
 
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
 public class AVP implements IMod
@@ -53,19 +51,11 @@ public class AVP implements IMod
         // Config
         AVPSettings.instance.pre(event);
 
-        // Blocks
-        AlienBlocks.instance.pre(event);
-        PredatorBlocks.instance.pre(event);
+        Aliens.instance.pre(event);
+        Predators.instance.pre(event);
+
         AVPBlocks.instance.pre(event);
-
-        // Items
-        AlienItems.instance.pre(event);
-        PredatorItems.instance.pre(event);
         AVPItems.instance.pre(event);
-
-        // Sounds
-        AlienSounds.instance.pre(event);
-        PredatorSounds.instance.pre(event);
         AVPSounds.instance.pre(event);
 
         // Misc.
@@ -83,9 +73,7 @@ public class AVP implements IMod
     {
         Console.instance.init(event);
         AVPNetworking.instance.init(event);
-        AlienDimensions.instance.init(event);
         AVPMaterials.instance.init(event);
-        WorldHandler.instance.init(event);
         AVPGui.instance.init(event);
         AVPEventHandlers.instance.init(event);
         AVPCommands.instance.init(event);
@@ -93,24 +81,15 @@ public class AVP implements IMod
         StructureSchematics.instance.init(event);
         AvpDataSerializers.instance.init(event);
 
-        // Entities
-        AlienEntities.instance.init(event);
-        PredatorEntities.instance.init(event);
+        Aliens.instance.init(event);
+        Predators.instance.init(event);
+
         AVPEntities.instance.init(event);
-
-        // Entity Spawns
-        AlienEntitySpawns.instance.init(event);
-        PredatorEntitySpawns.instance.init(event);
         AVPEntitySpawns.instance.init(event);
-
-        // Tile Entities
-        AlienTileEntities.instance.init(event);
-        PredatorTileEntities.instance.init(event);
         AVPTileEntities.instance.init(event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             Renders.instance.init(event);
-            BiomeColorHandler.instance.init(event);
         }
     }
 
