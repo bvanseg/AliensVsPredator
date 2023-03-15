@@ -8,9 +8,9 @@ import org.avp.AVP;
 
 import java.io.File;
 
-public class Schematics implements IInitEvent
+public class StructureSchematics implements IInitEvent
 {
-    public static final Schematics instance         = new Schematics();
+    public static final StructureSchematics instance         = new StructureSchematics();
     public static final File       baseSchematicDir = new File("schematics/avp/");
     public Schematic               schematicTest;
     public Schematic               derelict;

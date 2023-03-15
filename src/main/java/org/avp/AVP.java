@@ -93,7 +93,7 @@ public class AVP implements IMod
         AVPEventHandlers.instance.init(event);
         AVPCommands.instance.init(event);
         PlayerModeHandler.instance.init(event);
-        Schematics.instance.init(event);
+        StructureSchematics.instance.init(event);
         AvpDataSerializers.init();
 
         // Entities
