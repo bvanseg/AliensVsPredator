@@ -1,6 +1,6 @@
 package org.alien.common.entity.ai.brain;
 
-import org.alien.common.entity.ai.selector.EntitySelectorAvoid;
+import org.alien.common.entity.ai.selector.EntitySelectorChestbursterAvoid;
 import org.alien.common.entity.living.xenomorph.EntityChestburster;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
@@ -23,7 +23,7 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 		this.addSense(new EntityBrainSensor(1));
 		// TODO:
 //		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorParasitoid.instance));
-		this.addSense(new NearestAvoidTargetBrainSensor(1, EntitySelectorAvoid.instance));
+		this.addSense(new NearestAvoidTargetBrainSensor(1, EntitySelectorChestbursterAvoid.instance));
 
 		// Brain Tasks
 		EntityChestburster entity = this.getEntity();
