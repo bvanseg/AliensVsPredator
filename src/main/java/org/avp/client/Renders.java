@@ -332,7 +332,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(AlienItems.SUMMONER_ROYAL_FACEHUGGER, (new RenderItemSummoner(Resources.instance.models().ROYALFACEHUGGER)).setScale(15F).setY(-8F));
         Renderers.registerItemRenderer(AVPItems.SUMMONER_MARINE, (new RenderItemSummoner(Resources.instance.models().MARINE)).setScale(16F).setY(-8F));
         Renderers.registerItemRenderer(PredatorItems.SUMMONER_YAUTJA_WARRIOR, (new RenderItemSummoner(Resources.instance.models().YAUTJA_WARRIOR)).setScale(7.5F).setY(8F));
-        Renderers.registerItemRenderer(AlienItems.SUMMONER_PREDALIEN, (new RenderItemSummoner(Resources.instance.models().PREDALIEN)).setScale(8F).setY(6F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_PREDALIEN, (new RenderItemSummoner(Resources.instance.models().PREDALIEN)).setScale(8F).setX(3F).setY(6F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_AQUA, (new RenderItemSummoner(Resources.instance.models().NAUTICOMORPH_XENOMORPH)).setScale(7.5F).setY(8F));
         Renderers.registerItemRenderer(AVPItems.SUMMONER_COMBAT_SYNTHETIC, (new RenderItemSummoner(Resources.instance.models().COMBAT_SYNTHETIC)).setScale(16F).setY(-8F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_HAMMERPEDE, (new RenderItemSummoner(Resources.instance.models().HAMMERPEDE)).setScale(10.5F).setX(3F));
