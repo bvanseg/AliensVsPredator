@@ -7,6 +7,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import org.avp.AVP;
 import org.avp.common.AVPCreativeTabs;
+import org.avp.common.AVPSettings;
 
 /**
  * @author Boston Vanseghi
@@ -21,7 +22,7 @@ public class ItemRegistryUtil {
 
     public static void registerItem(Item item, boolean isExperimental) {
         if (isExperimental) {
-            if (!AVP.settings().areExperimentalFeaturesEnabled()) {
+            if (!AVPSettings.instance.areExperimentalFeaturesEnabled()) {
                 return;
             } else {
                 item.setCreativeTab(AVPCreativeTabs.ENTITIES_WIP);

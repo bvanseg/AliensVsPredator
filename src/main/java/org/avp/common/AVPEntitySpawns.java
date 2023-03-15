@@ -41,11 +41,11 @@ public class AVPEntitySpawns implements IInitEvent {
 
     private void registerSpawns()
     {
-        if (AVP.settings().areAutoSpawnsEnabled())
+        if (AVPSettings.instance.areAutoSpawnsEnabled())
         {
-            List<Biome> marineSpawns = AVP.settings().getSpawnsMarine().value();
+            List<Biome> marineSpawns = AVPSettings.instance.getSpawnsMarine().value();
 
-            EntityRegistry.addSpawn(EntityMarine.class, (Integer) AVP.settings().spawnWeightEntityMarine.value(), 1, 1, EnumCreatureType.CREATURE, EntitySpawnRegistryUtil.array(marineSpawns));
+            EntityRegistry.addSpawn(EntityMarine.class, (Integer) AVPSettings.instance.spawnWeightEntityMarine.value(), 1, 1, EnumCreatureType.CREATURE, EntitySpawnRegistryUtil.array(marineSpawns));
         }
     }
 }

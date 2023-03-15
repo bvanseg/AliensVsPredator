@@ -143,7 +143,7 @@ public class GuiModSettings extends GuiCustomScreen
         header.fontShadow = false;
         this.elements.add(header);
 
-        for (ConfigSetting setting : AVP.settings().allSettings())
+        for (ConfigSetting setting : AVPSettings.instance.allSettings())
         {
             if (setting instanceof ConfigSettingBoolean)
             {

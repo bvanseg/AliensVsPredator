@@ -39,7 +39,7 @@ public class AVPEntities implements IInitEvent
         registerLivingEntityEntry(EntityMarine.class, "Marine");
         registerLivingEntityEntry(EntityCombatSynthetic.class, "CombatSynthetic");
 
-        if (AVP.settings().areExperimentalFeaturesEnabled())
+        if (AVPSettings.instance.areExperimentalFeaturesEnabled())
         {
             // Left blank for experimental marine/weyland-yutani entities.
         }

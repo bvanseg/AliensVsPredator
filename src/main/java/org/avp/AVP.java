@@ -12,14 +12,11 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.Aliens;
-import org.alien.common.AlienDimensions;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
-import org.avp.client.Resources;
 import org.avp.common.*;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
@@ -125,11 +122,5 @@ public class AVP implements IMod
     public static PlayerModeHandler playermodehandler()
     {
         return PlayerModeHandler.instance;
-    }
-
-    @Deprecated
-    public static AVPSettings settings()
-    {
-        return AVPSettings.instance;
     }
 }

@@ -81,7 +81,7 @@ public class AVPCreativeTabs implements IPreInitEvent
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
-        if (AVP.settings().areExperimentalFeaturesEnabled())
+        if (AVPSettings.instance.areExperimentalFeaturesEnabled())
         {
             ENTITIES_WIP = new CreativeTabs("summoners_wip") {
                 @Override

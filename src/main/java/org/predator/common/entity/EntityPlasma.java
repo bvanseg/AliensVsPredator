@@ -129,7 +129,7 @@ public class EntityPlasma extends EntityThrowable
         {
             if (AVPSettings.instance.arePlasmaCannonExplosionsEnabled())
             {
-                Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, AVP.settings().areExplosionsEnabled());
+                Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, AVPSettings.instance.areExplosionsEnabled());
             }
 
             PredatorSounds.WEAPON_PLASMA_EXPLOSION.playSound(this, 7F, 1.0F);

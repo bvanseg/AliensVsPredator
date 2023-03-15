@@ -17,6 +17,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.AlienBlocks;
 import org.avp.AVP;
+import org.avp.common.AVPSettings;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -62,7 +63,7 @@ public class BiomeColorHandler implements IInitEvent
         Game.minecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
             public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
             {
-                if (AVP.settings().isHalloweenEventEnabled())
+                if (AVPSettings.instance.isHalloweenEventEnabled())
                 {
                     switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
                     {
