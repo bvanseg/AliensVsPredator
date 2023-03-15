@@ -642,26 +642,16 @@ public class ModelYautja extends Model<SpeciesYautja>
         this.lArmLower.rotateAngleX = this.rThigh.rotateAngleX * 1.75F;
         this.rArmLower.rotateAngleX = this.lThigh.rotateAngleX * 1.75F;
 
+        // If we are rendering an item summoner, hide the yautja's mask.
+        if (base == null) {
+            hideMaskRender(true);
+        }
+
         if (base instanceof SpeciesYautja)
         {
             SpeciesYautja y = (SpeciesYautja) base;
-            
-            this.biomaskMouth.isHidden = false;
-            this.lMandibleLower1.isHidden = true;
-            this.rMandibleLower1.isHidden = true;
-            this.lMandibleUpper.isHidden = true;
-            this.rMandibleUpper.isHidden = true;
-            this.nose.isHidden = true;
 
-            if (!y.isWearingMask())
-            {
-                this.biomaskMouth.isHidden = true;
-                this.lMandibleLower1.isHidden = false;
-                this.rMandibleLower1.isHidden = false;
-                this.lMandibleUpper.isHidden = false;
-                this.rMandibleUpper.isHidden = false;
-                this.nose.isHidden = false;
-            }
+            hideMaskRender(!y.isWearingMask());
             
             if (Math.abs(base.motionY) > 0.1F)
             {
@@ -711,5 +701,14 @@ public class ModelYautja extends Model<SpeciesYautja>
         OpenGL.translate(-this.lThigh.rotationPointX * DEFAULT_SCALE, -this.lThigh.rotationPointY * DEFAULT_SCALE, -this.lThigh.rotationPointZ * DEFAULT_SCALE);
         draw(lThigh);
         OpenGL.popMatrix();
+    }
+
+    private void hideMaskRender(boolean isMaskHidden) {
+        this.biomaskMouth.isHidden = isMaskHidden;
+        this.lMandibleLower1.isHidden = !isMaskHidden;
+        this.rMandibleLower1.isHidden = !isMaskHidden;
+        this.lMandibleUpper.isHidden = !isMaskHidden;
+        this.rMandibleUpper.isHidden = !isMaskHidden;
+        this.nose.isHidden = !isMaskHidden;
     }
 }
