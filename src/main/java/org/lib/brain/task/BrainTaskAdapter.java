@@ -77,7 +77,7 @@ public class BrainTaskAdapter extends AbstractBrainTask<EntityBrainContext> {
 	}
 
 	@Override
-	protected void finish(EntityBrainContext ctx) {
+	public void finish(EntityBrainContext ctx) {
 		super.finish(ctx);
 		this.minecraftAITask.resetTask();
 	}

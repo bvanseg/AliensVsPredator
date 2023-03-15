@@ -68,7 +68,7 @@ public class GrowOvipositorBrainTask extends AbstractBrainTask<EntityBrainContex
 	}
 
 	@Override
-	protected void finish(EntityBrainContext ctx) {
+	public void finish(EntityBrainContext ctx) {
 		super.finish(ctx);
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 		matriarchEntity.getBrain().getTasks().forEach(task -> task.setDisabled(false));

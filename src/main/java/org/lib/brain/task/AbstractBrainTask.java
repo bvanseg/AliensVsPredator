@@ -38,9 +38,13 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	public abstract Map<AbstractBrainFlag, BrainFlagState> getFlags();
 	protected abstract boolean shouldExecute(T ctx);
 	protected abstract void execute(T ctx);
-	protected void finish(T ctx) {}
+	public void finish(T ctx) {}
 
 	public boolean isExecuting() { return this.isExecuting; }
+
+	public void setExecuting(boolean executing) {
+		isExecuting = executing;
+	}
 
 	public void setDisabled(boolean disabled) {
 		isDisabled = disabled;

@@ -23,6 +23,7 @@ public class BrainFlags {
 	private static final HashMap<BrainMemoryKey<?>, BrainMemoryFlag> memoryKeysToBrainFlags = new HashMap<>();
 	
 	public static final AbstractBrainFlag NEAREST_ATTACKABLE_TARGET = createMemoryFlag("nearest_attackable_target", BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
+	public static final AbstractBrainFlag NEAREST_AVOID_TARGET = createMemoryFlag("nearest_avoid_target", BrainMemoryKeys.NEAREST_AVOID_TARGET);
 	
 	private static BrainMemoryFlag createMemoryFlag(String identifier, BrainMemoryKey<?> memoryKey) {
 		BrainMemoryFlag flag = new BrainMemoryFlag(identifier, memoryKey);

@@ -51,13 +51,20 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	public void init() {}
 	
 	public final void update(T ctx) {
-		if (isDisabled)
+		if (this.isDisabled)
 			return;
 
 		sensors.forEach(sensor -> sensor.sense(ctx));
 		tasks.forEach(task -> {
-			if (this.canRunTask(task)) {
+			boolean canRunTask = this.canRunTask(task);
+
+			if (canRunTask) {
 				task.runTask(ctx);
+			}
+			// If the flag states change, and we weren't able to run the task, but the task is still executing, we need to finish the task.
+			else if (task.isExecuting()) {
+				task.finish(ctx);
+				task.setExecuting(false);
 			}
 		});
 	}

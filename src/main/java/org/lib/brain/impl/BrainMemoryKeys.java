@@ -24,4 +24,5 @@ public class BrainMemoryKeys {
 	
 	public static final BrainMemoryKey<? super Entity> NEAREST_ENTITY = BrainMemoryKey.create(AvpBrainMemoryTypes.ENTITY);
 	public static final BrainMemoryKey<? super Entity> NEAREST_ATTACKABLE_TARGET = BrainMemoryKey.create(AvpBrainMemoryTypes.ENTITY);
+	public static final BrainMemoryKey<? super Entity> NEAREST_AVOID_TARGET = BrainMemoryKey.create(AvpBrainMemoryTypes.ENTITY);
 }
