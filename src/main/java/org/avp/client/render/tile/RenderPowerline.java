@@ -5,7 +5,6 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityPowerline;
 

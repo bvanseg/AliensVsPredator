@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.alien.client.model.entity.living.ModelDeaconAdult;
 import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
-import org.avp.AVP;
 import org.avp.client.Resources;
 
 public class RenderDeaconAdult extends RenderLivingWrapper<EntityDeaconAdult, ModelDeaconAdult>

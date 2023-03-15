@@ -6,7 +6,6 @@ import com.asx.mdx.lib.client.util.Screen;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
-import org.avp.AVP;
 import org.avp.client.Resources;
 
 import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;

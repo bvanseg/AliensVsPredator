@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.tile.skull.ModelNeomorphSkull;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 

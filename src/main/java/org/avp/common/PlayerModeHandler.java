@@ -16,7 +16,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.avp.common.world.playermode.LevelData;

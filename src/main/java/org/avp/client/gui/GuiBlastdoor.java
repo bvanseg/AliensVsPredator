@@ -4,7 +4,6 @@ import com.asx.mdx.lib.client.gui.*;
 import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.renderer.GlStateManager;
-import org.avp.AVP;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketBlastdoorCommon;
 import org.avp.common.network.packet.server.PacketBlastdoorCommon.PacketMode;

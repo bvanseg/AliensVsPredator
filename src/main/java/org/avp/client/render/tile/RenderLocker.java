@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelLocker;
 import org.avp.common.tile.TileEntityLocker;

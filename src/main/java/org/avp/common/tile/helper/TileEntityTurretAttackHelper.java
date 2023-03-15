@@ -3,7 +3,6 @@ package org.avp.common.tile.helper;
 import com.asx.mdx.lib.world.Pos;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
-import org.avp.AVP;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPNetworking;

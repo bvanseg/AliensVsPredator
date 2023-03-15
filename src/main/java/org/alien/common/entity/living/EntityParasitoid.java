@@ -20,7 +20,6 @@ import org.alien.common.entity.ai.brain.ParasitoidBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
-import org.avp.AVP;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;

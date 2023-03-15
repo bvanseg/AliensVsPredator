@@ -8,7 +8,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.avp.client.Resources;
 
 public class CloudProviderVarda extends CloudProvider

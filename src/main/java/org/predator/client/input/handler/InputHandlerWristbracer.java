@@ -3,7 +3,6 @@ package org.predator.client.input.handler;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
-import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.AVPGui;
 import org.avp.common.AVPNetworking;

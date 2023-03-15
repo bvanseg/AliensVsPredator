@@ -14,7 +14,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import org.avp.AVP;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPBlocks;
 import org.avp.common.AVPItems;

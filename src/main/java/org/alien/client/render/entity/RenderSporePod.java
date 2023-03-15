@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.alien.common.entity.living.EntitySporePod;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 

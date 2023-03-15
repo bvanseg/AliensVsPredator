@@ -10,7 +10,6 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 

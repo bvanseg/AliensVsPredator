@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.entity.EntityAPC;
 

@@ -2,7 +2,6 @@ package org.alien.client.render.tile.plant;
 
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.tile.plant.TileEntityTreeFern;
 import org.lwjgl.opengl.GL12;

@@ -4,7 +4,6 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityTeslaCoil;
 

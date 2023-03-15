@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.tile.TileEntityCryostasisTube;

@@ -8,7 +8,6 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
-import org.avp.AVP;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.OrganismClientSync;
 import org.avp.common.network.packet.server.OrganismServerSync;

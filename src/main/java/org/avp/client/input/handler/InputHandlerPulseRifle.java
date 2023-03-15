@@ -2,7 +2,6 @@ package org.avp.client.input.handler;
 
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
 import org.avp.client.KeybindHandler;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.AVPItems;

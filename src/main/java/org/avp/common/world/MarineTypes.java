@@ -5,7 +5,6 @@ import com.asx.mdx.lib.client.util.models.Model;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.AVPItems;
 import org.avp.common.item.firearm.ItemFirearm;

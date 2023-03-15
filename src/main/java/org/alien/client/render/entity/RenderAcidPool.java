@@ -13,7 +13,6 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import org.alien.common.entity.EntityAcidPool;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 

@@ -16,7 +16,6 @@ import org.alien.common.entity.living.vardic.EntityOctohugger;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.world.dimension.varda.BiomeVarda;
-import org.avp.AVP;
 import org.avp.common.AVPSettings;
 import org.lib.registry.EntitySpawnRegistryUtil;
 

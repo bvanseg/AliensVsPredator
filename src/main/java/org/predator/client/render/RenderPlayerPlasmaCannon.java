@@ -18,7 +18,6 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.api.client.render.EventRenderer;
 import org.avp.common.api.client.render.FirstPersonRenderer;

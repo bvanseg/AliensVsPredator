@@ -6,7 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.AVPMaterials;
 

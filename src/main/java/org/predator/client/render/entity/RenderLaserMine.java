@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 import org.predator.common.entity.EntityLaserMine;

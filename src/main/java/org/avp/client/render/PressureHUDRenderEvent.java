@@ -30,7 +30,6 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.dimension.varda.WorldProviderVarda;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.AVPItems;
 import org.avp.common.api.power.VoltageReceiver;

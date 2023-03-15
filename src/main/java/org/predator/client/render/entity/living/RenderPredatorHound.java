@@ -3,7 +3,6 @@ package org.predator.client.render.entity.living;
 import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.predator.client.model.entity.living.ModelPredatorHound;
 import org.predator.common.entity.living.EntityPredatorHound;

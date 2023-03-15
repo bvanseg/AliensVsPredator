@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.alien.client.model.tile.plant.ModelGroundFern;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.tile.plant.TileEntityGroundFern;
 import org.lwjgl.opengl.GL11;

@@ -8,7 +8,6 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
-import org.avp.AVP;
 import org.avp.common.AVPGui;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketOpenGui;

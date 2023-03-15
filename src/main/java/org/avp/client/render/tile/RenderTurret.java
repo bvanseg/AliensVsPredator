@@ -4,7 +4,6 @@ import com.asx.mdx.lib.client.util.Draw;
 import com.asx.mdx.lib.client.util.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityTurret;
 import org.lwjgl.opengl.GL11;

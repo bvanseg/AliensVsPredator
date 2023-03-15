@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Resources;
 import org.avp.common.AVPMaterials;

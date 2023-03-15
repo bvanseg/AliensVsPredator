@@ -11,7 +11,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.entity.EntityLiquidLatexPool;
 

@@ -5,7 +5,6 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.client.model.item.ModelM56SG;
 import org.avp.client.render.item.ItemFirearmRenderer;

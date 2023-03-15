@@ -20,7 +20,6 @@ import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketFirearmSync;
 import org.avp.common.network.packet.server.PacketReloadFirearm;

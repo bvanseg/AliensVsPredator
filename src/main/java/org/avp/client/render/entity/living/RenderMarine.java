@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.client.model.entity.living.ModelMarine;
 import org.avp.common.entity.living.EntityMarine;

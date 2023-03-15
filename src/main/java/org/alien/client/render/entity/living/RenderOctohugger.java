@@ -8,14 +8,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.client.model.entity.living.ModelOctohugger;
 import org.alien.common.entity.living.vardic.EntityOctohugger;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entity.EntityMedpod;
 import org.lwjgl.opengl.GL11;
-
-import java.util.ArrayList;
 
 public class RenderOctohugger extends RenderLivingWrapper<EntityOctohugger, ModelOctohugger>
 {

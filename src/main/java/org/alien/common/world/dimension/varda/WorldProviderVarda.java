@@ -15,7 +15,6 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.AlienDimensions;
-import org.avp.AVP;
 
 public class WorldProviderVarda extends WorldProvider implements IClimateProvider
 {

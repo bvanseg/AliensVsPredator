@@ -14,7 +14,6 @@ import com.asx.mdx.lib.util.system.SystemInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import org.apache.commons.lang3.text.WordUtils;
-import org.avp.AVP;
 import org.avp.common.AVPSettings;
 import org.avp.common.AVPSettings.ClientSettings;
 import org.lwjgl.input.Keyboard;

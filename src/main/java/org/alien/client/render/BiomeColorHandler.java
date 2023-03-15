@@ -16,7 +16,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.AlienBlocks;
-import org.avp.AVP;
 import org.avp.common.AVPSettings;
 
 import javax.annotation.Nullable;

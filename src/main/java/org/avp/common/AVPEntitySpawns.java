@@ -7,7 +7,6 @@ import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import org.avp.AVP;
 import org.avp.common.entity.living.EntityMarine;
 import org.lib.registry.EntitySpawnRegistryUtil;
 

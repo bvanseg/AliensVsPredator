@@ -5,7 +5,6 @@ import com.asx.mdx.lib.world.block.BlockMaterial;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.avp.AVP;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.block.*;
 import org.avp.common.block.skull.*;

@@ -27,7 +27,6 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.client.gui.GuiTacticalHUDSettings;
 import org.avp.client.render.wavegraph.Wavegraph;

@@ -1,7 +1,6 @@
 package org.alien.common.world;
 
 import com.asx.mdx.config.GraphicsSetting;
-import com.asx.mdx.lib.client.entityfx.EntityBloodFX;
 import com.asx.mdx.lib.util.Game;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

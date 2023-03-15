@@ -16,7 +16,6 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.Embryo;
-import org.avp.AVP;
 import org.avp.client.render.TacticalHUDRenderEvent;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.OrganismClientSync;

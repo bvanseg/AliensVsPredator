@@ -2,7 +2,6 @@ package org.avp.client.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityLocker;
 

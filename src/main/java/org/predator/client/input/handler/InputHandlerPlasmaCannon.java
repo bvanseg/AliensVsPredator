@@ -1,7 +1,6 @@
 package org.predator.client.input.handler;
 
 import com.asx.mdx.lib.util.Game;
-import org.avp.AVP;
 import org.avp.client.KeybindHandler;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.AVPNetworking;

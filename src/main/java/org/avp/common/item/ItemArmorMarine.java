@@ -10,7 +10,6 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.AVPItems;
 import org.avp.common.AVPMaterials;

@@ -5,7 +5,6 @@ import com.asx.mdx.lib.client.util.OpenGL;
 import com.asx.mdx.lib.util.system.SystemInfo;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.apache.commons.lang3.SystemUtils;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityWorkstation;
 import org.lwjgl.opengl.GL12;

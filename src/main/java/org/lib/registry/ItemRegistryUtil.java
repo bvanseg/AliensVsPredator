@@ -5,7 +5,6 @@ import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
-import org.avp.AVP;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.AVPSettings;
 

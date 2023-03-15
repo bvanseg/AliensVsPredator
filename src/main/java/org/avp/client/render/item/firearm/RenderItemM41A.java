@@ -11,7 +11,6 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.client.model.item.ModelM41A;
 import org.avp.client.render.item.ItemFirearmRenderer;

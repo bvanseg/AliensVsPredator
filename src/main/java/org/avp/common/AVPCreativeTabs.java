@@ -6,7 +6,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.alien.common.AlienItems;
-import org.avp.AVP;
 import org.predator.common.PredatorBlocks;
 import org.predator.common.PredatorItems;
 

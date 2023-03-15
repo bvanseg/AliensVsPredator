@@ -6,7 +6,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import org.avp.AVP;
 import org.avp.common.AVPNetworking;
 import org.avp.common.api.power.VoltageProvider;
 import org.avp.common.network.packet.client.PacketSyncRF;

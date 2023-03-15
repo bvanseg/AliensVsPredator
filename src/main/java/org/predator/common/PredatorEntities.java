@@ -7,7 +7,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import org.avp.AVP;
 import org.avp.common.AVPSettings;
 import org.lib.registry.EntityRegistryUtil;
 import org.predator.common.entity.*;

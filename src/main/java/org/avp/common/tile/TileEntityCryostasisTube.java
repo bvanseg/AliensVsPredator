@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import org.avp.AVP;
 import org.avp.common.AVPNetworking;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.item.ItemEntitySummoner;

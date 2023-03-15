@@ -15,7 +15,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPMaterials;
 import org.avp.common.AVPNetworking;

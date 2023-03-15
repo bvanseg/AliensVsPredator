@@ -28,7 +28,6 @@ import org.alien.common.entity.living.vardic.*;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
-import org.avp.AVP;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketTurretTargetUpdate;
 

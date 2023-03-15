@@ -15,7 +15,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.entity.living.ModelDrone;
 import org.alien.common.AlienItems;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.common.AVPMaterials;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;

@@ -10,7 +10,6 @@ import net.minecraft.entity.monster.EntityEnderman;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.AVP;
 import org.avp.client.Resources;
 import org.avp.client.render.LightmapUpdateEvent;
 
