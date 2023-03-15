@@ -17,7 +17,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
 import org.avp.common.item.crafting.AssemblyManager;
-import org.avp.common.item.crafting.Schematic;
+import org.avp.common.item.crafting.AssemblyResult;
+import org.avp.common.item.crafting.ItemSchematic;
 import org.avp.common.network.packet.server.PacketAssemble;
 import org.avp.common.tile.TileEntityAssembler;
 import org.lwjgl.input.Keyboard;
@@ -27,9 +28,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Ri5ux
+ */
 public class GuiAssembler extends GuiContainer
 {
-	private static final List<Schematic> sortedSchematics = new ArrayList<>(AssemblyManager.instance.schematics());
+	private static final List<ItemSchematic> sortedSchematics = new ArrayList<>(AssemblyManager.instance.schematics());
     private static final GuiCustomButton  buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "");
     private static final GuiCustomButton  buttonScrollDown = new GuiCustomButton(1, 0, 0, 20, 20, "");
     private static final GuiCustomButton  buttonAssemble = new GuiCustomButton(2, 0, 0, 50, 20, "");
@@ -44,7 +48,7 @@ public class GuiAssembler extends GuiContainer
     private static final IAction scrollUpAction = (IGuiElement element) -> scrollUp();
     private static final IAction scrollDownAction = (IGuiElement element) -> scrollDown();
 
-    private static ArrayList<Schematic> schematics;
+    private static ArrayList<ItemSchematic> schematics;
     private static int requestedAmount = 1;
     private static int scroll = 0;
     private static int maxAssemblyAmount = 0;
@@ -52,11 +56,10 @@ public class GuiAssembler extends GuiContainer
     private static boolean assemblyRequiresUpdate = true;
     
     private static final IAction assembleAction = (IGuiElement element) -> {
-    	Schematic selectedSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+    	ItemSchematic selectedSchematic = !schematics.isEmpty() ? schematics.get(getScroll()) : null;
 
         if (selectedSchematic != null)
         {
-            AssemblyManager.handleAssembly(selectedSchematic, Game.minecraft().player);
             AVP.network().sendToServer(new PacketAssemble(selectedSchematic.getName(), requestedAmount));
         }
     };
@@ -102,7 +105,7 @@ public class GuiAssembler extends GuiContainer
         button.displayString = "\u2692 x" + count;
         button.width = buttonWidth;
         button.fontShadow = false;
-        button.setAction((e) -> {
+        button.setAction(e -> {
         	requestedAmount = count;
         	assembleAction.perform(e);
         });
@@ -170,7 +173,7 @@ public class GuiAssembler extends GuiContainer
 	private void drawMaterialsSidebar() {
 		if (schematics.isEmpty()) return;
 		
-		Schematic selectedSchematic = schematics.get(getScroll());
+		ItemSchematic selectedSchematic = schematics.get(getScroll());
 
 		int currentStack = -1;
 	    int progress = 0;
@@ -218,14 +221,14 @@ public class GuiAssembler extends GuiContainer
      * Draw the schematics in the assembler
      */
 	private void drawSchematicListItems() {
-		List<Schematic> visibleSchematics = schematics.subList(getScroll(), Math.min(getScroll() + 10, schematics.size()));
+		List<ItemSchematic> visibleSchematics = schematics.subList(getScroll(), Math.min(getScroll() + 10, schematics.size()));
 		
 		int i = getScroll();
         int entryHeight = 10;
         int entryX = 4;
 
         OpenGL.disableBlend();
-		for (Schematic schematic : visibleSchematics) {
+		for (ItemSchematic schematic : visibleSchematics) {
 			ItemStack itemStack = schematic.getItemStackAssembled();
 			Item item = itemStack.getItem();
 	        
@@ -264,8 +267,12 @@ public class GuiAssembler extends GuiContainer
         buttonScrollUp.drawButton();
 
         if (assemblyRequiresUpdate) {
-        	maxAssemblyAmount = AssemblyManager.tryAssemblyMax(Game.minecraft().player, schematics.size() > 0 ? schematics.size() > 0 ? schematics.get(getScroll()) : null : null, true);
-        	assemblyRequiresUpdate = false;
+            ItemSchematic itemSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+
+            if (itemSchematic != null) {
+                maxAssemblyAmount = AssemblyResult.getMaximumPossibleAssembleCount(Game.minecraft().player, itemSchematic);
+                assemblyRequiresUpdate = false;
+            }
         }
         
         this.drawAssembleButton(buttonAssemble, maxAssemblyAmount >= 1);
@@ -327,9 +334,9 @@ public class GuiAssembler extends GuiContainer
         }
 
         if (searchRequiresUpdate) {
-            ArrayList<Schematic> searchedSchematics = new ArrayList<Schematic>();
+            ArrayList<ItemSchematic> searchedSchematics = new ArrayList<ItemSchematic>();
 
-            for (Schematic schematic : sortedSchematics)
+            for (ItemSchematic schematic : sortedSchematics)
             {
                 if (schematic != null && schematic.getItemStackAssembled() != null)
                 {
