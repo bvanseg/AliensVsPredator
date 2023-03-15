@@ -53,7 +53,8 @@ public class AVP implements IMod
     @Mod.EventHandler
     public void pre(FMLPreInitializationEvent event)
     {
-        settings().pre(event);
+        // Config
+        AVPSettings.instance.pre(event);
 
         // Blocks
         AlienBlocks.instance.pre(event);
@@ -70,28 +71,29 @@ public class AVP implements IMod
         PredatorSounds.instance.pre(event);
         AVPSounds.instance.pre(event);
 
-        console().pre(event);
-        capabilities().pre(event);
-        tabs().pre(event);
+        // Misc.
+        Console.instance.pre(event);
+        CapabilityHandler.instance.pre(event);
+        AVPCreativeTabs.instance.pre(event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            renderers().pre(event);
+            Renders.instance.pre(event);
         }
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        console().init(event);
-        network().init(event);
-        dimensions().init(event);
+        Console.instance.init(event);
+        AVPNetworking.instance.init(event);
+        AlienDimensions.instance.init(event);
         AVPMaterials.instance.init(event);
-        world().init(event);
-        interfaces().init(event);
-        events().init(event);
-        commands().init(event);
-        playermodehandler().init(event);
-        schematics().init(event);
+        WorldHandler.instance.init(event);
+        AVPGui.instance.init(event);
+        AVPEventHandlers.instance.init(event);
+        AVPCommands.instance.init(event);
+        PlayerModeHandler.instance.init(event);
+        Schematics.instance.init(event);
         AvpDataSerializers.init();
 
         // Entities
@@ -108,121 +110,78 @@ public class AVP implements IMod
         AVPTileEntities.instance.init(event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            renderers().init(event);
-            biomeColors().init(event);
+            Renders.instance.init(event);
+            BiomeColorHandler.instance.init(event);
         }
     }
 
     @Mod.EventHandler
     public void post(FMLPostInitializationEvent event)
     {
-        console().post(event);
+        Console.instance.post(event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
-            keybinds().post(event);
+            KeybindHandler.instance.post(event);
         }
     }
 
     @EventHandler
     public void onServerStarting(FMLServerStartingEvent event)
     {
-        commands().onServerStarting(event);
+        AVPCommands.instance.onServerStarting(event);
     }
 
+    @Deprecated
     public static AVP instance()
     {
         return AVP.instance;
     }
 
-    public static Console console()
-    {
-        return Console.instance;
-    }
-
+    @Deprecated
     public static Logger log()
     {
         return Console.logger;
     }
-    
-    @SideOnly(Side.CLIENT)
-    public static BiomeColorHandler biomeColors()
-    {
-        return BiomeColorHandler.instance;
-    }
-    
-    public static AVPRecipes crafting()
-    {
-        return AVPRecipes.instance;
-    }
 
-    public static AVPEventHandlers events()
-    {
-        return AVPEventHandlers.instance;
-    }
-
+    @Deprecated
     public static AVPNetworking network()
     {
         return AVPNetworking.instance;
     }
 
+    @Deprecated
     public static AlienDimensions dimensions()
     {
         return AlienDimensions.instance;
     }
 
-    public static WorldHandler world()
-    {
-        return WorldHandler.instance;
-    }
-
-    public static AVPCreativeTabs tabs()
-    {
-        return AVPCreativeTabs.instance;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static Renders renderers()
-    {
-        return Renders.instance;
-    }
-
+    @Deprecated
     @SideOnly(Side.CLIENT)
     public static KeybindHandler keybinds()
     {
         return KeybindHandler.instance;
     }
 
+    @Deprecated
     @SideOnly(Side.CLIENT)
     public static Resources resources()
     {
         return Resources.instance;
     }
 
+    @Deprecated
     public static AVPGui interfaces()
     {
         return AVPGui.instance;
     }
 
-    public static CapabilityHandler capabilities()
-    {
-        return CapabilityHandler.instance;
-    }
-
+    @Deprecated
     public static PlayerModeHandler playermodehandler()
     {
         return PlayerModeHandler.instance;
     }
 
-    public static Schematics schematics()
-    {
-        return Schematics.instance;
-    }
-
-    public static AVPCommands commands()
-    {
-        return AVPCommands.instance;
-    }
-
+    @Deprecated
     public static AVPSettings settings()
     {
         return AVPSettings.instance;

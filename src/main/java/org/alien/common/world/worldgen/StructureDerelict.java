@@ -3,7 +3,7 @@ package org.alien.common.world.worldgen;
 import com.asx.mdx.lib.world.Pos;
 import com.asx.mdx.lib.world.Structure;
 import net.minecraft.world.WorldServer;
-import org.avp.AVP;
+import org.avp.common.Schematics;
 
 public class StructureDerelict extends Structure
 {
@@ -15,7 +15,7 @@ public class StructureDerelict extends Structure
 
     public StructureDerelict(WorldServer world, Pos data)
     {
-        super(AVP.schematics().derelict, world, data);
+        super(Schematics.instance.derelict, world, data);
     }
 
     @Override
