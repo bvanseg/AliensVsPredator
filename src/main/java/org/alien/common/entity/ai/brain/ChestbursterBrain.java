@@ -1,5 +1,6 @@
 package org.alien.common.entity.ai.brain;
 
+import org.alien.common.entity.ai.brain.task.FindFoodBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorChestbursterAvoid;
 import org.alien.common.entity.living.xenomorph.EntityChestburster;
 import org.lib.brain.impl.AbstractEntityBrain;
@@ -37,5 +38,6 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 		// TODO:
 //		this.addTask(new BrainTaskAdapter(new EntityAIAttackMelee(entity, 0.8F, false)));
 		this.addTask(new LeapAtTargetBrainTask(0.8F));
+		this.addTask(new FindFoodBrainTask());
 	}
 }
