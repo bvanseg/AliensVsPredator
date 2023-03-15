@@ -349,7 +349,7 @@ public class ModelUltramorph extends Model<EntityUltramorph>
         }
 
         /** Tail Idle Position **/
-        {
+        if (xenomorph != null) {
             float multiplier = 0.15F;
 
             this.tail1.rotateAngleX = (float) Math.toRadians(0);
