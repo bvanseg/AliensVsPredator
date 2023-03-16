@@ -2,7 +2,7 @@ package org.avp.client.render.tile;
 
 import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.tile.TileEntityMedpod;
 
@@ -24,7 +24,7 @@ public class RenderMedpod extends TileEntitySpecialRenderer<TileEntityMedpod>
             OpenGL.scale(newScale, newScale, newScale);
             OpenGL.disableCullFace();
             OpenGL.rotateOpposite(tile);
-            AVP.resources().models().MEDPOD.draw(tile);
+            Resources.instance.models().MEDPOD.draw(tile);
 
             OpenGL.enableBlend();
             OpenGL.blendClear();
@@ -35,7 +35,7 @@ public class RenderMedpod extends TileEntitySpecialRenderer<TileEntityMedpod>
                 OpenGL.disableLightMapping();
             }
 
-            AVP.resources().models().MEDPOD_MASK.draw(tile);
+            Resources.instance.models().MEDPOD_MASK.draw(tile);
             OpenGL.enableLight();
             OpenGL.enableLightMapping();
             OpenGL.blendClear();

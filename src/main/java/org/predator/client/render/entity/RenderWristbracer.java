@@ -6,14 +6,14 @@ import com.asx.mdx.client.render.model.MapModelTexture;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.predator.client.model.entity.ModelPlasma;
 import org.predator.client.model.item.ModelWristBlade;
 import org.predator.common.entity.EntityWristbracer;
 
 public class RenderWristbracer extends Render<EntityWristbracer>
 {
-    private final MapModelTexture<ModelWristBlade> wristbracer = AVP.resources().models().WRISTBLADES.clone();
+    private final MapModelTexture<ModelWristBlade> wristbracer = Resources.instance.models().WRISTBLADES.clone();
     private final ModelPlasma model       = new ModelPlasma();
     private float                                rotation;
     private float                                rotationPrev;

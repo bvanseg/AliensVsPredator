@@ -19,7 +19,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.AVP;
+import org.avp.common.AVPSettings;
 
 import java.util.List;
 
@@ -125,7 +125,7 @@ public class EntityGrenade extends EntityThrowable
         
         if (!this.world.isRemote)
         {
-        	Explosion explosion = Worlds.createExplosion(null, world, new Pos(this), 2F, isFlaming(), true, AVP.settings().areExplosionsEnabled());
+        	Explosion explosion = Worlds.createExplosion(null, world, new Pos(this), 2F, isFlaming(), true, AVPSettings.instance.areExplosionsEnabled());
 
             List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(4, 4, 4));
 

@@ -4,7 +4,7 @@ import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.item.ItemNetworkRackModule;
 import org.avp.common.tile.TileEntityNetworkRack;
 
@@ -26,17 +26,17 @@ public class RenderNetworkRack extends TileEntitySpecialRenderer<TileEntityNetwo
             OpenGL.rotate(rack);
             OpenGL.translate(-0.5F - 0.365F, 0F, 0F);
 
-            AVP.resources().models().NETWORKMODULERACK.draw();
+            Resources.instance.models().NETWORKMODULERACK.draw();
 
             if (rack.isOperational())
             {
                 OpenGL.disableLight();
-                AVP.resources().models().NETWORKMODULERACK_ON.draw();
+                Resources.instance.models().NETWORKMODULERACK_ON.draw();
                 OpenGL.enableLight();
             }
             else
             {
-                AVP.resources().models().NETWORKMODULERACK_OFF.draw();
+                Resources.instance.models().NETWORKMODULERACK_OFF.draw();
             }
 
             if (rack.inventory != null)

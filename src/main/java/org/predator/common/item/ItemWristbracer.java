@@ -15,9 +15,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPMaterials;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorItems;
@@ -69,7 +69,7 @@ public class ItemWristbracer extends HookedItem
             @Override
             public void onAction(String combonation, Object... args)
             {
-                AVP.network().sendToServer(new PacketSpawnNuke());
+                AVPNetworking.instance.sendToServer(new PacketSpawnNuke());
                 ClientGame.instance.minecraft().currentScreen = null;
             }
         });

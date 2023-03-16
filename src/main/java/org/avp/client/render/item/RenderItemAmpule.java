@@ -6,14 +6,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelAmpule;
 
 public class RenderItemAmpule extends ItemRenderer<ModelAmpule>
 {
     public RenderItemAmpule()
     {
-        super(AVP.resources().models().AMPULE);
+        super(Resources.instance.models().AMPULE);
     }
 
     @Override

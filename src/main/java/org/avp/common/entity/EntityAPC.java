@@ -20,8 +20,9 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
+import org.avp.client.KeybindHandler;
 import org.avp.common.AVPItems;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketFireAPC;
 
 import java.util.List;
@@ -201,9 +202,9 @@ public class EntityAPC extends Entity
         {
             if (ClientGame.instance.minecraft().player.isRiding() && ClientGame.instance.minecraft().player.getRidingEntity() instanceof EntityAPC)
             {
-                if (AVP.keybinds().specialPrimary.isPressed())
+                if (KeybindHandler.instance.specialPrimary.isPressed())
                 {
-                    AVP.network().sendToServer(new PacketFireAPC());
+                    AVPNetworking.instance.sendToServer(new PacketFireAPC());
                 }
             }
         }

@@ -5,7 +5,6 @@ import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.avp.AVP;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.block.*;
 import org.avp.common.block.skull.*;
@@ -74,8 +73,8 @@ public class AlienBlocks implements IPreInitEvent {
     public static final Block LV_426_ROCK = new BlockMaterial(Material.ROCK).setHardness(1.3F).setResistance(2.0F).setRegistryName("lv426rock");
 
     /* Misc */
-    public static final Block PORTAL_VARDA = new BlockPortal(AVP.dimensions().VARDA).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("portal.varda");
-    public static final Block PORTAL_ACHERON = new BlockPortal(AVP.dimensions().ACHERON).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("portal.acheron");
+    public static final Block PORTAL_VARDA = new BlockPortal(AlienDimensions.instance.VARDA).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("portal.varda");
+    public static final Block PORTAL_ACHERON = new BlockPortal(AlienDimensions.instance.ACHERON).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("portal.acheron");
 
     public static final Block SKULL_ENGINEER = new BlockSkullEngineer().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("skull.engineer");
     public static final Block SKULL_JOCKEY = new BlockSkullSpaceJockey().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("skull.spacejockey");

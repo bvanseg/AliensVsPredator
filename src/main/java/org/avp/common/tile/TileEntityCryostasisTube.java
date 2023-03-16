@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.item.ItemEntitySummoner;
 import org.avp.common.network.packet.server.PacketCryostasisStateUpdate;
@@ -150,7 +150,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements Vo
         this.cracked = cracked;
 
         if (!this.world.isRemote) {
-            AVP.network().sendToAll(new PacketCryostasisStateUpdate(this));
+            AVPNetworking.instance.sendToAll(new PacketCryostasisStateUpdate(this));
         }
     }
 
@@ -159,7 +159,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements Vo
         this.shattered = shattered;
 
         if (!this.world.isRemote) {
-            AVP.network().sendToAll(new PacketCryostasisStateUpdate(this));
+            AVPNetworking.instance.sendToAll(new PacketCryostasisStateUpdate(this));
         }
     }
 

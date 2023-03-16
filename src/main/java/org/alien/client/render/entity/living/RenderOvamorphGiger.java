@@ -6,13 +6,13 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.alien.client.model.entity.living.ModelOvamorphGiger;
 import org.alien.common.entity.living.xenomorph.EntityOvamorphGiger;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderOvamorphGiger extends RenderLivingWrapper<EntityOvamorphGiger, ModelOvamorphGiger>
 {
     public RenderOvamorphGiger(RenderManager m)
     {
-        super(m, AVP.resources().models().OVAMORPH_GIGER);
+        super(m, Resources.instance.models().OVAMORPH_GIGER);
     }
 
     @Override

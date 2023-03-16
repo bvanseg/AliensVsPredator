@@ -5,13 +5,13 @@ import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelChestburster;
 import org.alien.common.entity.living.xenomorph.EntityChestburster;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderChestburster extends RenderLivingWrapper<EntityChestburster, ModelChestburster>
 {
     public RenderChestburster(RenderManager m)
     {
-        super(m, AVP.resources().models().CHESTBUSTER);
+        super(m, Resources.instance.models().CHESTBUSTER);
     }
 
     @Override

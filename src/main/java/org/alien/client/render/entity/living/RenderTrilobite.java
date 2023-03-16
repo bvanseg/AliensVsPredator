@@ -5,13 +5,13 @@ import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelTrilobite;
 import org.alien.common.entity.living.species223ode.EntityTrilobite;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderTrilobite extends RenderLivingWrapper<EntityTrilobite, ModelTrilobite>
 {
     public RenderTrilobite(RenderManager m)
     {
-        super(m, AVP.resources().models().TRILOBITE);
+        super(m, Resources.instance.models().TRILOBITE);
     }
 
     @Override

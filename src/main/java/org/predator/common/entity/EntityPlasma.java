@@ -19,7 +19,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPSettings;
 import org.predator.client.PredatorSounds;
@@ -129,7 +128,7 @@ public class EntityPlasma extends EntityThrowable
         {
             if (AVPSettings.instance.arePlasmaCannonExplosionsEnabled())
             {
-                Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, AVP.settings().areExplosionsEnabled());
+                Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, AVPSettings.instance.areExplosionsEnabled());
             }
 
             PredatorSounds.WEAPON_PLASMA_EXPLOSION.playSound(this, 7F, 1.0F);

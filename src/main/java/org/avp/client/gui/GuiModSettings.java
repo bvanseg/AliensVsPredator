@@ -14,7 +14,6 @@ import com.asx.mdx.common.system.SystemInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import org.apache.commons.lang3.text.WordUtils;
-import org.avp.AVP;
 import org.avp.common.AVPSettings;
 import org.avp.common.AVPSettings.ClientSettings;
 import org.lwjgl.input.Keyboard;
@@ -143,7 +142,7 @@ public class GuiModSettings extends GuiCustomScreen
         header.fontShadow = false;
         this.elements.add(header);
 
-        for (ConfigSetting setting : AVP.settings().allSettings())
+        for (ConfigSetting setting : AVPSettings.instance.allSettings())
         {
             if (setting instanceof ConfigSettingBoolean)
             {

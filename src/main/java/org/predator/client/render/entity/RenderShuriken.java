@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 import org.predator.common.entity.EntityShuriken;
 
@@ -36,7 +36,7 @@ public class RenderShuriken extends Render<EntityShuriken>
             OpenGL.translate(-0.5F, 0.0F, -0.5F);
             GL11.glNormal3f(0.0F, 1.0F, 0.0F);
             OpenGL.rotate(90, 1, 0, 0);
-            AVP.resources().SHURIKEN.bind();
+            Resources.instance.SHURIKEN.bind();
             Draw.drawQuad(0, 0, 1, 1, 0, 0.5F, 0F, 0F, 0.5F);
             OpenGL.enable(GL11.GL_CULL_FACE);
         }

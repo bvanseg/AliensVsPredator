@@ -6,14 +6,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelCCFL;
 
 public class RenderItemCCFLTube extends ItemRenderer<ModelCCFL>
 {
     public RenderItemCCFLTube()
     {
-        super(AVP.resources().models().CCFL_BALLAST);
+        super(Resources.instance.models().CCFL_BALLAST);
     }
 
     @Override

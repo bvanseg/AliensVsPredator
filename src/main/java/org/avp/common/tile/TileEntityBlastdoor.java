@@ -14,10 +14,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import org.avp.AVP;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPBlocks;
 import org.avp.common.AVPItems;
+import org.avp.common.AVPNetworking;
 import org.avp.common.api.machines.Openable;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.network.packet.client.PacketOpenBlastdoor;
@@ -440,7 +440,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements Voltage
 
             if (this.world != null && !this.world.isRemote && sendPacket)
             {
-                AVP.network().sendToAll(new PacketOpenBlastdoor(doorOpen, this.getPos()));
+                AVPNetworking.instance.sendToAll(new PacketOpenBlastdoor(doorOpen, this.getPos()));
             }
         }
     }

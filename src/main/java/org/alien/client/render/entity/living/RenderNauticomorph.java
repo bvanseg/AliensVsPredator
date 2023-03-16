@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import org.alien.client.model.entity.living.ModelNauticomorph;
 import org.alien.common.entity.living.xenomorph.EntityNauticomorph;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderNauticomorph<N extends EntityNauticomorph> extends RenderLivingWrapper<N, ModelNauticomorph>
 {
@@ -71,8 +71,8 @@ public class RenderNauticomorph<N extends EntityNauticomorph> extends RenderLivi
 
     public RenderNauticomorph(RenderManager m)
     {
-        super(m, AVP.resources().models().NAUTICOMORPH_XENOMORPH);
-        this.addLayer(new LayerPhosphorescent<N>(this, AVP.resources().models().NAUTICOMORPH_XENOMORPH_MASK));
+        super(m, Resources.instance.models().NAUTICOMORPH_XENOMORPH);
+        this.addLayer(new LayerPhosphorescent<N>(this, Resources.instance.models().NAUTICOMORPH_XENOMORPH_MASK));
     }
 
     @Override

@@ -1,8 +1,9 @@
 package org.predator.client.input.handler;
 
 import com.asx.mdx.client.ClientGame;
-import org.avp.AVP;
+import org.avp.client.KeybindHandler;
 import org.avp.client.input.IInputHandler;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketPlasmaDischarge;
 import org.predator.client.PredatorSounds;
 import org.predator.common.item.ItemWristbracer;
@@ -38,7 +39,7 @@ public class InputHandlerPlasmaCannon implements IInputHandler
                 this.recharging = false;
             }
 
-            if (AVP.keybinds().specialSecondary.isKeyDown())
+            if (KeybindHandler.instance.specialSecondary.isKeyDown())
             {
                 if (this.energy >= potentialEnergyUsed && !this.recharging)
                 {
@@ -85,7 +86,7 @@ public class InputHandlerPlasmaCannon implements IInputHandler
     private void onChargeRelease(float chargeSize, float energyUsed)
     {
         this.energy -= energyUsed;
-        AVP.network().sendToServer(new PacketPlasmaDischarge(chargeSize));
+        AVPNetworking.instance.sendToServer(new PacketPlasmaDischarge(chargeSize));
     }
 
     public float getChargeSize()

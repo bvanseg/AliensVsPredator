@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.item.ModelM240ICU;
 import org.avp.client.render.item.ItemFirearmRenderer;
 import org.avp.common.item.firearm.ItemFirearm;
@@ -18,7 +18,7 @@ public class RenderItemM240ICU extends ItemFirearmRenderer<ModelM240ICU>
 {
     public RenderItemM240ICU()
     {
-        super(AVP.resources().models().M240ICU);
+        super(Resources.instance.models().M240ICU);
     }
 
     @Override

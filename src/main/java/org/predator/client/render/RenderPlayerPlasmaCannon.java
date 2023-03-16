@@ -18,7 +18,7 @@ import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.api.client.render.EventRenderer;
 import org.avp.common.api.client.render.FirstPersonRenderer;
 import org.avp.common.entity.EntityMedpod;
@@ -33,7 +33,7 @@ import org.predator.common.item.ItemWristbracer;
 
 public class RenderPlayerPlasmaCannon implements EventRenderer, FirstPersonRenderer
 {
-    private static final MapModelTexture<ModelPlasmaCannon> MODEL              = AVP.resources().models().PLASMACANNON.clone();
+    private static final MapModelTexture<ModelPlasmaCannon> MODEL              = Resources.instance.models().PLASMACANNON.clone();
     private static final MapModelTexture<ModelPlasmaCannon> MODEL_FIRST_PERSON = MODEL.clone();
     private static final ModelPlasma MODEL_PLASMA       = new ModelPlasma().setColor(new Color(0.3F, 0.6F, 1F, 0.7F));
 

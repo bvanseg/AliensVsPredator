@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.item.Model88MOD4;
 import org.avp.client.render.item.ItemFirearmRenderer;
 import org.lwjgl.input.Mouse;
@@ -15,7 +15,7 @@ public class RenderItem88MOD4 extends ItemFirearmRenderer<Model88MOD4>
 {
     public RenderItem88MOD4()
     {
-        super(AVP.resources().models()._88MOD4);
+        super(Resources.instance.models()._88MOD4);
     }
 
     @Override

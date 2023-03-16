@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.avp.common.world.playermode.LevelData;
 import org.avp.common.world.playermode.PlayerMode;
@@ -42,16 +42,16 @@ public class PlayerModeHandler implements IInitEvent
         ModelBiped modelBiped = new ModelBiped();
         modelBiped.isChild = false;
 
-        PlayerMode.NORMAL.getLevelMappingForLevel(0).setModelTexMap(AVP.resources().models().BIPED);
-        PlayerMode.MARINE.getLevelMappingForLevel(0).setModelTexMap(AVP.resources().models().MARINE);
-        PlayerMode.PREDATOR.getLevelMappingForLevel(0).setModelTexMap(AVP.resources().models().YAUTJA_WARRIOR);
-        PlayerMode.XENOMORPH.getLevelMappingForLevel(0).setModelTexMap(AVP.resources().models().OVAMORPH);
-        PlayerMode.XENOMORPH.getLevelMappingForLevel(1).setModelTexMap(AVP.resources().models().FACEHUGGER);
-        PlayerMode.XENOMORPH.getLevelMappingForLevel(10).setModelTexMap(AVP.resources().models().CHESTBUSTER);
-        PlayerMode.XENOMORPH.getLevelMappingForLevel(20).setModelTexMap(AVP.resources().models().DRONE_ADVANCED_BLOOD);
-        PlayerMode.XENOMORPH.getLevelMappingForLevel(45).setModelTexMap(AVP.resources().models().WARRIOR_BLOOD);
-        PlayerMode.XENOMORPH.getLevelMappingForLevel(65).setModelTexMap(AVP.resources().models().PRAETORIAN);
-        PlayerMode.XENOMORPH.getLevelMappingForLevel(90).setModelTexMap(AVP.resources().models().MATRIARCH);
+        PlayerMode.NORMAL.getLevelMappingForLevel(0).setModelTexMap(Resources.instance.models().BIPED);
+        PlayerMode.MARINE.getLevelMappingForLevel(0).setModelTexMap(Resources.instance.models().MARINE);
+        PlayerMode.PREDATOR.getLevelMappingForLevel(0).setModelTexMap(Resources.instance.models().YAUTJA_WARRIOR);
+        PlayerMode.XENOMORPH.getLevelMappingForLevel(0).setModelTexMap(Resources.instance.models().OVAMORPH);
+        PlayerMode.XENOMORPH.getLevelMappingForLevel(1).setModelTexMap(Resources.instance.models().FACEHUGGER);
+        PlayerMode.XENOMORPH.getLevelMappingForLevel(10).setModelTexMap(Resources.instance.models().CHESTBUSTER);
+        PlayerMode.XENOMORPH.getLevelMappingForLevel(20).setModelTexMap(Resources.instance.models().DRONE_ADVANCED_BLOOD);
+        PlayerMode.XENOMORPH.getLevelMappingForLevel(45).setModelTexMap(Resources.instance.models().WARRIOR_BLOOD);
+        PlayerMode.XENOMORPH.getLevelMappingForLevel(65).setModelTexMap(Resources.instance.models().PRAETORIAN);
+        PlayerMode.XENOMORPH.getLevelMappingForLevel(90).setModelTexMap(Resources.instance.models().MATRIARCH);
     }
 
     @SubscribeEvent
@@ -87,7 +87,7 @@ public class PlayerModeHandler implements IInitEvent
 
     public static final PlayerModeHandler instance()
     {
-        return AVP.playermodehandler();
+        return PlayerModeHandler.instance;
     }
 
     public static boolean isPlayerInMode(EntityPlayer player, PlayerMode playerMode)

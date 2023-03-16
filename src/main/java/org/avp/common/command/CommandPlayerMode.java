@@ -8,7 +8,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.text.TextComponentString;
-import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.PacketPlayerModeUpdate;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.avp.common.world.playermode.PlayerMode;
@@ -35,7 +35,7 @@ public class CommandPlayerMode extends CommandBase
         PlayerMode playerMode = PlayerMode.get(Integer.valueOf(args[0]));
 
         specialPlayer.setPlayerMode(playerMode);
-        AVP.network().sendTo(new PacketPlayerModeUpdate(playerMode.id), (EntityPlayerMP) Players.getPlayerForCommandSender(sender));
+        AVPNetworking.instance.sendTo(new PacketPlayerModeUpdate(playerMode.id), (EntityPlayerMP) Players.getPlayerForCommandSender(sender));
         sender.sendMessage(new TextComponentString("You have changed to the " + playerMode.toString().toLowerCase() + " player mode."));
     }
 }

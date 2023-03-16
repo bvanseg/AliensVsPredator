@@ -5,7 +5,7 @@ import com.asx.mdx.client.render.item.ItemRenderer;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelCryostasisTube;
 import org.lwjgl.opengl.GL11;
 
@@ -13,7 +13,7 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
 {
     public RenderItemCryostasisTube()
     {
-        super(AVP.resources().models().CRYOSTASIS_TUBE);
+        super(Resources.instance.models().CRYOSTASIS_TUBE);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
 
         OpenGL.pushMatrix();
         {
-            AVP.resources().models().CRYOSTASIS_TUBE_MASK.draw();
+            Resources.instance.models().CRYOSTASIS_TUBE_MASK.draw();
         }
         OpenGL.popMatrix();
         OpenGL.enableCullFace();
@@ -46,7 +46,7 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
 
         OpenGL.pushMatrix();
         {
-            AVP.resources().models().CRYOSTASIS_TUBE_MASK.draw();
+            Resources.instance.models().CRYOSTASIS_TUBE_MASK.draw();
         }
         OpenGL.popMatrix();
         OpenGL.enableCullFace();
@@ -63,7 +63,7 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
         OpenGL.rotate(90F + this.getIconRotation(), 0.0F, 1.0F, 0.0F);
         OpenGL.disableCullFace();
         this.getModel().draw();
-        AVP.resources().models().CRYOSTASIS_TUBE_MASK.draw();
+        Resources.instance.models().CRYOSTASIS_TUBE_MASK.draw();
         OpenGL.enableCullFace();
     }
 
@@ -78,7 +78,7 @@ public class RenderItemCryostasisTube extends ItemRenderer<ModelCryostasisTube>
         OpenGL.pushMatrix();
         {
             OpenGL.enable(GL11.GL_BLEND);
-            AVP.resources().models().CRYOSTASIS_TUBE_MASK.draw();
+            Resources.instance.models().CRYOSTASIS_TUBE_MASK.draw();
             OpenGL.disableBlend();
         }
         OpenGL.popMatrix();

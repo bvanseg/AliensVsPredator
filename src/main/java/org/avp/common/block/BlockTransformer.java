@@ -11,7 +11,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.PacketRotateRotatable;
 import org.avp.common.tile.TileEntityTransformer;
 
@@ -95,7 +95,7 @@ public class BlockTransformer extends Block
 
                         if (!world.isRemote)
                         {
-                            AVP.network().sendToAll(new PacketRotateRotatable(transformer.getRotationYAxis().ordinal(), transformer.getPos().getX(), transformer.getPos().getY(), transformer.getPos().getZ()));
+                            AVPNetworking.instance.sendToAll(new PacketRotateRotatable(transformer.getRotationYAxis().ordinal(), transformer.getPos().getX(), transformer.getPos().getY(), transformer.getPos().getZ()));
                         }
                     }
 

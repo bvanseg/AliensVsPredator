@@ -10,7 +10,7 @@ import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 import java.util.ArrayList;
@@ -97,7 +97,7 @@ public class BossBarEvent
             OpenGL.enable(GL11.GL_BLEND);
             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             OpenGL.color4i(0xFFFFFFFF);
-            AVP.resources().QUEEN_BOSS_BAR.bind();
+            Resources.instance.QUEEN_BOSS_BAR.bind();
             posX = posX + (index * (tW));
             OpenGL.color4i(color);
             Draw.drawQuad(posX + (offset / 2), posY, (tW - offset) * health / 100, tH, 0, 0.15F, 0.85F, 0F, 0.5F);

@@ -8,7 +8,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
-import org.avp.AVP;
+import org.avp.common.AVPGui;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketOpenGui;
 
 public class CommandSettings extends CommandBase
@@ -30,14 +31,14 @@ public class CommandSettings extends CommandBase
     {
         if (FMLCommonHandler.instance().getSide() == Side.SERVER)
         {
-            AVP.network().sendTo(new PacketOpenGui(AVP.interfaces().GUI_GRAPHICSSETTINGS), (EntityPlayerMP) sender);
+            AVPNetworking.instance.sendTo(new PacketOpenGui(AVPGui.GUI_GRAPHICSSETTINGS), (EntityPlayerMP) sender);
             return;
         }
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
             EntityPlayerMP player = (EntityPlayerMP) sender;
-            GuiScreen gui = (GuiScreen) AVP.interfaces().getClientGuiElement(AVP.interfaces().GUI_GRAPHICSSETTINGS, player, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
+            GuiScreen gui = (GuiScreen) AVPGui.instance.getClientGuiElement(AVPGui.GUI_GRAPHICSSETTINGS, player, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
             FMLCommonHandler.instance().showGuiScreen(gui);
         }
     }

@@ -5,13 +5,13 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelRoyalFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderRoyalFacehugger extends RenderFacehuggers<EntityRoyalFacehugger, ModelRoyalFacehugger>
 {
     public RenderRoyalFacehugger(RenderManager m)
     {
-        super(m, AVP.resources().models().ROYALFACEHUGGER);
+        super(m, Resources.instance.models().ROYALFACEHUGGER);
     }
 
     @Override

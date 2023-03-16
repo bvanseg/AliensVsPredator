@@ -6,14 +6,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelCable;
 
 public class RenderItemPowerline extends ItemRenderer<ModelCable>
 {
     public RenderItemPowerline()
     {
-        super(AVP.resources().models().CABLE);
+        super(Resources.instance.models().CABLE);
     }
 
     @Override

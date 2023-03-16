@@ -5,13 +5,13 @@ import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelBelugaburster;
 import org.alien.common.entity.living.vardic.EntityBelugaburster;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderBelugaburster extends RenderLivingWrapper<EntityBelugaburster, ModelBelugaburster>
 {
     public RenderBelugaburster(RenderManager m)
     {
-        super(m, AVP.resources().models().BELUGABURSTER);
+        super(m, Resources.instance.models().BELUGABURSTER);
     }
 
     @Override

@@ -7,7 +7,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import org.avp.AVP;
 import org.avp.common.entity.*;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
@@ -39,7 +38,7 @@ public class AVPEntities implements IInitEvent
         registerLivingEntityEntry(EntityMarine.class, "Marine");
         registerLivingEntityEntry(EntityCombatSynthetic.class, "CombatSynthetic");
 
-        if (AVP.settings().areExperimentalFeaturesEnabled())
+        if (AVPSettings.instance.areExperimentalFeaturesEnabled())
         {
             // Left blank for experimental marine/weyland-yutani entities.
         }

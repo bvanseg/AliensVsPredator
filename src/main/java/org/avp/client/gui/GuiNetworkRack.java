@@ -5,7 +5,7 @@ import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityNetworkRack;
 
 public class GuiNetworkRack extends GuiContainer
@@ -24,7 +24,7 @@ public class GuiNetworkRack extends GuiContainer
     protected void drawGuiContainerBackgroundLayer(float f, int x, int y)
     {
     	this.drawDefaultBackground();
-        Draw.drawResource(AVP.resources().GUI_NETWORK_RACK, this.guiLeft, this.guiTop, 256, 256);
+        Draw.drawResource(Resources.instance.GUI_NETWORK_RACK, this.guiLeft, this.guiTop, 256, 256);
 
         for (int idx = 3; idx >= 0; idx--)
         {

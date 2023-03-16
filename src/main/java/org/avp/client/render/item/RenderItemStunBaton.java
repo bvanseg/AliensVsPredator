@@ -6,14 +6,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.item.ModelStunBaton;
 
 public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
 {
     public RenderItemStunBaton()
     {
-        super(AVP.resources().models().STUNBATON);
+        super(Resources.instance.models().STUNBATON);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
         OpenGL.rotate(180.0F, 1.0F, 0.0F, 1.0F);
         OpenGL.rotate(-90.0F, 0.0F, 1.0F, 0.0F);
         this.getModel().draw();
-        AVP.resources().models().STUNBATON.draw();
+        Resources.instance.models().STUNBATON.draw();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
         OpenGL.rotate(-25.0F, 1.0F, 0F, 0F);
         GlStateManager.disableCull();
         this.getModel().draw();
-        AVP.resources().models().STUNBATON.draw();
+        Resources.instance.models().STUNBATON.draw();
     }
 
     @Override
@@ -51,7 +51,7 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
         OpenGL.rotate(180F, 1F, 0F, 0F);
         OpenGL.rotate(45F, 0F, 0F, 1F);
         this.getModel().draw();
-        AVP.resources().models().STUNBATON.draw();
+        Resources.instance.models().STUNBATON.draw();
     }
 
     @Override
@@ -59,6 +59,6 @@ public class RenderItemStunBaton extends ItemRenderer<ModelStunBaton>
     {
         GlStateManager.disableCull();
         this.getModel().draw();
-        AVP.resources().models().STUNBATON.draw();
+        Resources.instance.models().STUNBATON.draw();
     }
 }

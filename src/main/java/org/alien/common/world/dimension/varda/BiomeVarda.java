@@ -11,6 +11,7 @@ import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import org.alien.common.AlienBlocks;
+import org.alien.common.AlienDimensions;
 import org.alien.common.entity.living.vardic.EntityDeaconShark;
 import org.alien.common.world.dimension.BiomeGenLV;
 import org.alien.common.world.dimension.GenerationFilters;
@@ -23,8 +24,8 @@ import java.util.Random;
 
 public class BiomeVarda extends BiomeGenLV
 {
-    public static BiomeVarda vardaBadlands = (BiomeVarda) new BiomeVarda(new BiomeProperties(AVP.dimensions().BIOME_NAME_VARDA_BADLANDS).setBaseHeight(1.0F).setHeightVariation(2.0F).setRainDisabled().setWaterColor(0xFFFF66)).setRegistryName(AVP.Properties.ID, "vardabadlands");
-    public static BiomeVarda vardaForest   = (BiomeVarda) new BiomeVarda(new BiomeProperties(AVP.dimensions().BIOME_NAME_VARDA_FOREST).setBaseHeight(1.0F).setHeightVariation(8.0F).setTemperature(0.7F).setRainfall(0.1F).setWaterColor(0xFFFF66)).setRegistryName(AVP.Properties.ID, "vardaforest");
+    public static final BiomeVarda vardaBadlands = (BiomeVarda) new BiomeVarda(new BiomeProperties(AlienDimensions.BIOME_NAME_VARDA_BADLANDS).setBaseHeight(1.0F).setHeightVariation(2.0F).setRainDisabled().setWaterColor(0xFFFF66)).setRegistryName(AVP.Properties.ID, "vardabadlands");
+    public static final BiomeVarda vardaForest   = (BiomeVarda) new BiomeVarda(new BiomeProperties(AlienDimensions.BIOME_NAME_VARDA_FOREST).setBaseHeight(1.0F).setHeightVariation(8.0F).setTemperature(0.7F).setRainfall(0.1F).setWaterColor(0xFFFF66)).setRegistryName(AVP.Properties.ID, "vardaforest");
 
     public BiomeVarda(BiomeProperties properties)
     {

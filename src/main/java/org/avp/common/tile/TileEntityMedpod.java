@@ -7,7 +7,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.api.machines.Openable;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.entity.EntityMedpod;
@@ -149,7 +149,7 @@ public class TileEntityMedpod extends TileEntityElectrical implements Openable, 
 
             if (!this.world.isRemote)
             {
-                AVP.network().sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
+                AVPNetworking.instance.sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
             }
 
             if (this.getEntity() != null)

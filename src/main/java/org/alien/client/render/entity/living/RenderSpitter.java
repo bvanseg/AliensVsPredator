@@ -6,21 +6,15 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelSpitter;
 import org.alien.common.entity.living.xenomorph.EntitySpitter;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 public class RenderSpitter extends RenderLivingWrapper<EntitySpitter, ModelSpitter>
 {
     public RenderSpitter(RenderManager m)
     {
-        super(m, AVP.resources().models().SPITTER);
+        super(m, Resources.instance.models().SPITTER);
 //        this.setRenderPassModel(this.getModel().getModel());
-    }
-
-    @Override
-    protected void preRenderCallback(EntitySpitter entityLivingBase, float shadowSize)
-    {
-        super.preRenderCallback(entityLivingBase, shadowSize);
     }
 
     protected int shouldRenderPass(EntitySpitter entityLivingBase, int par2, float par3)
@@ -36,7 +30,7 @@ public class RenderSpitter extends RenderLivingWrapper<EntitySpitter, ModelSpitt
         }
         else
         {
-            AVP.resources().models().SPITTER.getTexture().bind();
+            Resources.instance.models().SPITTER.getTexture().bind();
             OpenGL.enable(GL11.GL_BLEND);
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
 

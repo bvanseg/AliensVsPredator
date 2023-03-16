@@ -8,22 +8,19 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 import org.predator.client.model.tile.skull.ModelBiomaskClassic;
 
 public class BlockBiomaskClassic extends BlockSkull
 {
     @SideOnly(Side.CLIENT)
-    private static class Resources
-    {
-        private static final MapModelTexture<ModelBiomaskClassic> model = AVP.resources().models().BIOMASK_CLASSIC;
-    }
+    private static final MapModelTexture<ModelBiomaskClassic> model = Resources.instance.models().BIOMASK_CLASSIC;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelBiomaskClassic m = Resources.model.getModel();
+        ModelBiomaskClassic m = model.getModel();
         return new ModelRenderer[] { m.biomaskMouth };
     }
 
@@ -38,7 +35,7 @@ public class BlockBiomaskClassic extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.model.getTexture();
+        return model.getTexture();
     }
     
     @Override

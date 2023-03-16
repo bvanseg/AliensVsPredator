@@ -9,21 +9,18 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.tile.skull.ModelGigerAlienHead;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 
 public class BlockHeadGigerAlien extends BlockSkull
 {
     @SideOnly(Side.CLIENT)
-    private static class Resources
-    {
-        private static final MapModelTexture<ModelGigerAlienHead> model = AVP.resources().models().GIGER_ALIEN_HEAD;
-    }
+    private static final MapModelTexture<ModelGigerAlienHead> model = Resources.instance.models().GIGER_ALIEN_HEAD;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelGigerAlienHead m = Resources.model.getModel();
+        ModelGigerAlienHead m = model.getModel();
         return new ModelRenderer[] { m.head };
     }
 
@@ -39,7 +36,7 @@ public class BlockHeadGigerAlien extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.model.getTexture();
+        return model.getTexture();
     }
     
     @Override

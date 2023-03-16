@@ -6,24 +6,18 @@ import com.asx.mdx.client.render.model.MapModelTexture;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelEngineer;
 import org.alien.common.entity.living.SpeciesEngineer;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderEngineer extends RenderLivingWrapper<SpeciesEngineer, ModelEngineer>
 {
     public RenderEngineer(RenderManager m)
     {
-        super(m, AVP.resources().models().ENGINEER);
+        super(m, Resources.instance.models().ENGINEER);
     }
     
     public RenderEngineer(RenderManager m, MapModelTexture<ModelEngineer> model)
     {
         super(m, model);
-    }
-
-    @Override
-    public void doRender(SpeciesEngineer entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
-    {
-        super.doRender(entity, posX, posY, posZ, yaw, renderPartialTicks);
     }
 
     @Override

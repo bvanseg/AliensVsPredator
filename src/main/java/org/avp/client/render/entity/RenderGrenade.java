@@ -4,7 +4,7 @@ import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.entity.EntityGrenade;
 import org.lwjgl.opengl.GL11;
 
@@ -28,11 +28,11 @@ public class RenderGrenade extends Render<EntityGrenade>
         
         if (!grenade.isFlaming())
         {
-            AVP.resources().models().M40GRENADE.draw();
+            Resources.instance.models().M40GRENADE.draw();
         }
         else
         {
-            AVP.resources().models().M40GRENADE_INCENDIARY.draw();
+            Resources.instance.models().M40GRENADE_INCENDIARY.draw();
         }
 
         GL11.glColor3f(1.0F, 1.0F, 1.0F);

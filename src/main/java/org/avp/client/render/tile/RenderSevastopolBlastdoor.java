@@ -2,7 +2,7 @@ package org.avp.client.render.tile;
 
 import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityBlastdoor;
 
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
@@ -20,26 +20,26 @@ public class RenderSevastopolBlastdoor extends TileEntitySpecialRenderer<TileEnt
                 OpenGL.translate(x + 0.5F, y + 1.5F, z + 0.5F);
                 OpenGL.scale(1.0F, -1.0F, 1.0F);
                 OpenGL.rotate(tile);
-                AVP.resources().models().BLASTDOOR_SEVASTOPOL.draw(tile);
+                Resources.instance.models().BLASTDOOR_SEVASTOPOL.draw(tile);
 
                 if (tile.isOperational())
                 {
                     OpenGL.disableLight();
-                    AVP.resources().models().BLASTDOOR_SEVASTOPOL_ENABLED.draw(tile);
+                    Resources.instance.models().BLASTDOOR_SEVASTOPOL_ENABLED.draw(tile);
 
                     if (!tile.isLocked())
                     {
-                        AVP.resources().models().BLASTDOOR_SEVASTOPOL_UNLOCKED.draw(tile);
+                        Resources.instance.models().BLASTDOOR_SEVASTOPOL_UNLOCKED.draw(tile);
                     }
                     else
                     {
-                        AVP.resources().models().BLASTDOOR_SEVASTOPOL_LOCKED.draw(tile);
+                        Resources.instance.models().BLASTDOOR_SEVASTOPOL_LOCKED.draw(tile);
                     }
                     OpenGL.enableLight();
                 }
                 else
                 {
-                    AVP.resources().models().BLASTDOOR_SEVASTOPOL_DISABLED.draw(tile);
+                    Resources.instance.models().BLASTDOOR_SEVASTOPOL_DISABLED.draw(tile);
                 }
             }
             OpenGL.popMatrix();

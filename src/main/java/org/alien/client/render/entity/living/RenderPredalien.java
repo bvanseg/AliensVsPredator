@@ -5,13 +5,13 @@ import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelPredalien;
 import org.alien.common.entity.living.xenomorph.EntityPredalien;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderPredalien extends RenderLivingWrapper<EntityPredalien, ModelPredalien>
 {
     public RenderPredalien(RenderManager m)
     {
-        super(m, AVP.resources().models().PREDALIEN);
+        super(m, Resources.instance.models().PREDALIEN);
     }
 
     @Override

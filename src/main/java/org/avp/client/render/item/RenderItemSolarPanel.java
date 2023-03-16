@@ -6,14 +6,14 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelSolarPanel;
 
 public class RenderItemSolarPanel extends ItemRenderer<ModelSolarPanel>
 {
     public RenderItemSolarPanel()
     {
-        super(AVP.resources().models().SOLAR_PANEL);
+        super(Resources.instance.models().SOLAR_PANEL);
     }
 
     @Override

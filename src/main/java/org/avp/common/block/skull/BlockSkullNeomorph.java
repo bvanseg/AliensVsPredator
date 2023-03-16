@@ -9,21 +9,18 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.tile.skull.ModelNeomorphSkull;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 
 public class BlockSkullNeomorph extends BlockSkull
 {
     @SideOnly(Side.CLIENT)
-    private static class Resources
-    {
-        private static final MapModelTexture<ModelNeomorphSkull> model = AVP.resources().models().NEOMORPH_SKULL;
-    }
+    private static final MapModelTexture<ModelNeomorphSkull> model = Resources.instance.models().NEOMORPH_SKULL;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelNeomorphSkull m = Resources.model.getModel();
+        ModelNeomorphSkull m = model.getModel();
         return new ModelRenderer[] { m.head };
     }
 
@@ -38,7 +35,7 @@ public class BlockSkullNeomorph extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.model.getTexture();
+        return model.getTexture();
     }
     
     @Override

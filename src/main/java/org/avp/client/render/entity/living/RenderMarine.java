@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.entity.layers.LayerHeldItem;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHandSide;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.entity.living.ModelMarine;
 import org.avp.common.entity.living.EntityMarine;
 
@@ -87,13 +87,7 @@ public class RenderMarine extends RenderLivingWrapper<EntityMarine, ModelMarine>
 
     public RenderMarine(RenderManager m)
     {
-        super(m, AVP.resources().models().MARINE);
+        super(m, Resources.instance.models().MARINE);
         this.addLayer(new LayerHeldGun(this));
-    }
-
-    @Override
-    protected void preRenderCallback(EntityMarine living, float partialTicks)
-    {
-        super.preRenderCallback(living, partialTicks);
     }
 }

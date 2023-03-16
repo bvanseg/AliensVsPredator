@@ -5,19 +5,13 @@ import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelUrsuidae;
 import org.alien.common.entity.living.vardic.EntityUrsuidae;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderUrsuidae extends RenderLivingWrapper<EntityUrsuidae, ModelUrsuidae>
 {
     public RenderUrsuidae(RenderManager m)
     {
-        super(m, AVP.resources().models().URSUIDAE);
-    }
-    
-    @Override
-    public void doRender(EntityUrsuidae entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
-    {
-        super.doRender(entity, posX, posY, posZ, yaw, renderPartialTicks);
+        super(m, Resources.instance.models().URSUIDAE);
     }
 
     @Override

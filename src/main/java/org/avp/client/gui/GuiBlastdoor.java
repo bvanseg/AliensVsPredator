@@ -4,7 +4,7 @@ import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.gui.*;
 import net.minecraft.client.renderer.GlStateManager;
-import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketBlastdoorCommon;
 import org.avp.common.network.packet.server.PacketBlastdoorCommon.PacketMode;
 import org.avp.common.tile.TileEntityBlastdoor;
@@ -45,7 +45,7 @@ public class GuiBlastdoor extends GuiCustomScreen
                     public void perform(IGuiElement element)
                     {
                         boolean value = !door.isAutolockEnabled();
-                        AVP.network().sendToServer(new PacketBlastdoorCommon(PacketMode.SETAUTOLOCK, door.getPos(), value));
+                        AVPNetworking.instance.sendToServer(new PacketBlastdoorCommon(PacketMode.SETAUTOLOCK, door.getPos(), value));
                         status = "Auto-Lock " + (door.isAutolockEnabled() ? "Disabled" : "Enabled");
                     }
                 });
@@ -54,7 +54,7 @@ public class GuiBlastdoor extends GuiCustomScreen
                     @Override
                     public void perform(IGuiElement element)
                     {
-                        AVP.network().sendToServer(new PacketBlastdoorCommon(PacketMode.BIND, door.getPos()));
+                        AVPNetworking.instance.sendToServer(new PacketBlastdoorCommon(PacketMode.BIND, door.getPos()));
                         status = String.format("Bound %s to security tuner.", door.getIdentifier());
                     }
                 });
@@ -172,7 +172,7 @@ public class GuiBlastdoor extends GuiCustomScreen
             {
                 if (!this.password.getText().isEmpty())
                 {
-                    AVP.network().sendToServer(new PacketBlastdoorCommon(PacketMode.AUTH, this.door.getPos(), this.password.getText()));
+                    AVPNetworking.instance.sendToServer(new PacketBlastdoorCommon(PacketMode.AUTH, this.door.getPos(), this.password.getText()));
                     ClientGame.instance.minecraft().displayGuiScreen(null);
                 }
                 else
@@ -182,7 +182,7 @@ public class GuiBlastdoor extends GuiCustomScreen
             }
             else
             {
-                AVP.network().sendToServer(new PacketBlastdoorCommon(PacketMode.SETPSWD, this.door.getPos(), this.password.getText()));
+                AVPNetworking.instance.sendToServer(new PacketBlastdoorCommon(PacketMode.SETPSWD, this.door.getPos(), this.password.getText()));
                 this.status = "PASSWORD SET";
             }
         }

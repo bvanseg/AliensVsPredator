@@ -11,7 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
+import org.avp.client.KeybindHandler;
+import org.avp.client.Resources;
 import org.avp.common.AVPMaterials;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.lwjgl.input.Keyboard;
@@ -31,9 +32,9 @@ public class ItemArmorCeltic extends ItemArmor
     {
         switch (slot) {
             case LEGS:
-                return Draw.getPath(AVP.resources().CELTIC2);
+                return Draw.getPath(Resources.instance.CELTIC2);
             default:
-                return Draw.getPath(AVP.resources().CELTIC1);
+                return Draw.getPath(Resources.instance.CELTIC1);
         }
     }
 
@@ -59,7 +60,7 @@ public class ItemArmorCeltic extends ItemArmor
         {
             ItemStack helmSlot = Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player);
 
-            if (helmSlot != null && helmSlot.getItem() == PredatorItems.BIOMASK_CELTIC && AVP.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
+            if (helmSlot != null && helmSlot.getItem() == PredatorItems.BIOMASK_CELTIC && KeybindHandler.instance.genericSpecial.isPressed() && Keyboard.getEventKeyState())
             {
                 PredatorSounds.YAUTJA_VISION_SWITCH.playSound(ClientGame.instance.minecraft().player, 1F, 1F);
                 VisionModeRenderEvent.instance.switchMode();

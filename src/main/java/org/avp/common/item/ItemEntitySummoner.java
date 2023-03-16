@@ -12,6 +12,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketSpawnEntity;
 
 import java.util.List;
@@ -38,9 +39,9 @@ public class ItemEntitySummoner extends HookedItem
             RayTraceResult ray = player.rayTrace(50D, 1F);
             
             if(player.isSneaking() && player.isCreative()) {
-                AVP.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 5));
+                AVPNetworking.instance.sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 5));
             } else {
-                AVP.network().sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 1));
+                AVPNetworking.instance.sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 1));
             }
         
         }

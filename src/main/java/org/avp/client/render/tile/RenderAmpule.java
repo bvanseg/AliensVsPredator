@@ -3,7 +3,7 @@ package org.avp.client.render.tile;
 import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityAmpule;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
@@ -23,7 +23,7 @@ public class RenderAmpule extends TileEntitySpecialRenderer<TileEntityAmpule>
             OpenGL.enable(GL11.GL_ALPHA_TEST);
             OpenGL.disableCullFace();
             OpenGL.rotate(tile);
-            AVP.resources().models().AMPULE.draw(tile);
+            Resources.instance.models().AMPULE.draw(tile);
             OpenGL.enableCullFace();
         }
         OpenGL.popMatrix();

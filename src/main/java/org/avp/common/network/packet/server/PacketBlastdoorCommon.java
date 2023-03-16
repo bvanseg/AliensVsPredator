@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.AVP;
+import org.avp.common.AVPNetworking;
 import org.avp.common.tile.TileEntityBlastdoor;
 
 public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBlastdoorCommon, PacketBlastdoorCommon>
@@ -232,7 +232,7 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
                                 break;
                         }
                         blastdoor.markDirty();
-                        AVP.network().sendToAll(new PacketBlastdoorClient(packet.mode, new BlockPos(packet.x, packet.y, packet.z), data));
+                        AVPNetworking.instance.sendToAll(new PacketBlastdoorClient(packet.mode, new BlockPos(packet.x, packet.y, packet.z), data));
                     }
                 }
             }

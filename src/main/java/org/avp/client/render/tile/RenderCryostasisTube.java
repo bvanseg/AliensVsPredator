@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.tile.TileEntityCryostasisTube;
 import org.lwjgl.opengl.GL12;
@@ -57,7 +57,7 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
             OpenGL.scale(0.75F, -0.75F, 0.75F);
             OpenGL.enable(GL_ALPHA_TEST);
             OpenGL.disableCullFace();
-            AVP.resources().models().CRYOSTASIS_TUBE.draw(tile);
+            Resources.instance.models().CRYOSTASIS_TUBE.draw(tile);
             OpenGL.enableCullFace();
         }
 
@@ -67,15 +67,15 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
 
             if (tile.isShattered())
             {
-                mask = AVP.resources().models().CRYOSTASIS_TUBE_MASK_SHATTERED;
+                mask = Resources.instance.models().CRYOSTASIS_TUBE_MASK_SHATTERED;
             }
             else if (tile.isCracked())
             {
-                mask = AVP.resources().models().CRYOSTASIS_TUBE_MASK_CRACKED;
+                mask = Resources.instance.models().CRYOSTASIS_TUBE_MASK_CRACKED;
             }
             else
             {
-                mask = AVP.resources().models().CRYOSTASIS_TUBE_MASK;
+                mask = Resources.instance.models().CRYOSTASIS_TUBE_MASK;
             }
 
             if (tile.getVoltage() > 0)

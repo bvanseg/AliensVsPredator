@@ -6,7 +6,7 @@ import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 import static org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA;
 import static org.lwjgl.opengl.GL11.GL_SRC_ALPHA;
@@ -23,7 +23,7 @@ public interface MaterialRenderer
         OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         OpenGL.color3i(material.getMaterialMapColor().colorValue);
         OpenGL.disableAlphaTest();
-        Draw.bindTexture(AVP.resources().RES_UNDERWATER_OVERLAY);
+        Draw.bindTexture(Resources.instance.RES_UNDERWATER_OVERLAY);
         Draw.drawQuad(0, 0, Screen.scaledDisplayResolution().getScaledWidth(), Screen.scaledDisplayResolution().getScaledHeight());
         OpenGL.depthMask(true);
         OpenGL.enableDepthTest();

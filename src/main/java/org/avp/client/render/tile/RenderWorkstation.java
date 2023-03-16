@@ -5,7 +5,7 @@ import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.common.system.SystemInfo;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.apache.commons.lang3.SystemUtils;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityWorkstation;
 import org.lwjgl.opengl.GL12;
 
@@ -30,7 +30,7 @@ public class RenderWorkstation extends TileEntitySpecialRenderer<TileEntityWorks
             OpenGL.enable(GL12.GL_RESCALE_NORMAL);
             OpenGL.scale(1.0F, -1.0F, 1.0F);
             OpenGL.enable(GL_ALPHA_TEST);
-            AVP.resources().models().WORKSTATION.draw(tile);
+            Resources.instance.models().WORKSTATION.draw(tile);
 
             if (tile.isOperational())
             {
@@ -38,7 +38,7 @@ public class RenderWorkstation extends TileEntitySpecialRenderer<TileEntityWorks
                 OpenGL.disableLight();
                 OpenGL.enable(GL_BLEND);
                 OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-                AVP.resources().models().WORKSTATION_MASK.draw(tile);
+                Resources.instance.models().WORKSTATION_MASK.draw(tile);
 
                 this.renderDisplay(tile);
 

@@ -5,7 +5,7 @@ import com.asx.mdx.client.render.model.Model;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.AVPItems;
 import org.avp.common.item.firearm.ItemFirearm;
 
@@ -60,15 +60,15 @@ public enum MarineTypes
         switch (this)
         {
             case M4:
-                return AVP.resources().models().M4;
+                return Resources.instance.models().M4;
             case AK47:
-                return AVP.resources().models().AK47;
+                return Resources.instance.models().AK47;
             case M41A:
-                return AVP.resources().models().M41A;
+                return Resources.instance.models().M41A;
             case SNIPER:
-                return AVP.resources().models().SNIPER;
+                return Resources.instance.models().SNIPER;
             case M56SG:
-                return AVP.resources().models().M56SG;
+                return Resources.instance.models().M56SG;
         }
 
         return null;

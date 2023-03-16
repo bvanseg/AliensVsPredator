@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.entity.living.ModelDrone;
 import org.alien.common.AlienItems;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.AVPMaterials;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 
@@ -33,9 +33,9 @@ public class ItemArmorXeno extends ItemArmor
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
         if (slot == EntityEquipmentSlot.LEGS) {
-            return Draw.getPath(AVP.resources().XENO2);
+            return Draw.getPath(Resources.instance.XENO2);
         }
-        return Draw.getPath(AVP.resources().XENO1);
+        return Draw.getPath(Resources.instance.XENO1);
     }
 
     @Override

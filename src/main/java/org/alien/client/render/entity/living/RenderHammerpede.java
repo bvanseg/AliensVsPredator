@@ -5,13 +5,13 @@ import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelHammerpede;
 import org.alien.common.entity.living.vardic.EntityHammerpede;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderHammerpede extends RenderLivingWrapper<EntityHammerpede, ModelHammerpede>
 {
     public RenderHammerpede(RenderManager m)
     {
-        super(m, AVP.resources().models().HAMMERPEDE);
+        super(m, Resources.instance.models().HAMMERPEDE);
     }
 
     @Override

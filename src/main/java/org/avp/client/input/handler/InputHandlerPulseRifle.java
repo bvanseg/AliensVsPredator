@@ -2,9 +2,10 @@ package org.avp.client.input.handler;
 
 import com.asx.mdx.client.ClientGame;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.KeybindHandler;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.AVPItems;
+import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketLaunchGrenade;
 
 public class InputHandlerPulseRifle implements IInputHandler
@@ -18,10 +19,10 @@ public class InputHandlerPulseRifle implements IInputHandler
 
         if (current != null && current.getItem() == AVPItems.ITEM_M41A)
         {
-            if (AVP.keybinds().specialPrimary.isPressed())
+            if (KeybindHandler.instance.specialPrimary.isPressed())
             {
                 ClientGame.instance.setRightClickDelayTimer(20);
-                AVP.network().sendToServer(new PacketLaunchGrenade());
+                AVPNetworking.instance.sendToServer(new PacketLaunchGrenade());
             }
         }
     }

@@ -5,19 +5,13 @@ import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelDracoburster;
 import org.alien.common.entity.living.xenomorph.EntityDracoburster;
-import org.avp.AVP;
+import org.avp.client.Resources;
 
 public class RenderDracoburster extends RenderLivingWrapper<EntityDracoburster, ModelDracoburster>
 {
     public RenderDracoburster(RenderManager m)
     {
-        super(m, AVP.resources().models().DRACOBURSTER);
-    }
-    
-    @Override
-    public void doRender(EntityDracoburster entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
-    {
-        super.doRender(entity, posX, posY, posZ, yaw, renderPartialTicks);
+        super(m, Resources.instance.models().DRACOBURSTER);
     }
 
     @Override

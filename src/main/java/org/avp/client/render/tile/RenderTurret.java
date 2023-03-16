@@ -4,7 +4,7 @@ import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityTurret;
 import org.lwjgl.opengl.GL11;
 
@@ -21,7 +21,7 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
 
             OpenGL.scale(1F, -1F, 1F);
             OpenGL.rotate(tile);
-            AVP.resources().models().TURRET.draw(tile);
+            Resources.instance.models().TURRET.draw(tile);
 
             if (tile.getVoltage() > 0)
             {

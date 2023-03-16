@@ -8,7 +8,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.Teleporter;
 import net.minecraft.world.WorldServer;
 import org.alien.common.AlienBlocks;
-import org.avp.AVP;
+import org.alien.common.AlienDimensions;
 
 import java.util.Random;
 
@@ -28,7 +28,7 @@ public class TeleporterLV extends Teleporter
     @Override
     public void placeInPortal(Entity entity, float yaw)
     {
-        portal = this.worldServer.provider.getDimension() == AVP.dimensions().VARDA.getId() ? AlienBlocks.PORTAL_VARDA : AlienBlocks.PORTAL_ACHERON;
+        portal = this.worldServer.provider.getDimension() == AlienDimensions.VARDA.getId() ? AlienBlocks.PORTAL_VARDA : AlienBlocks.PORTAL_ACHERON;
 
         if (this.worldServer.provider.getDimension() != 1)
         {

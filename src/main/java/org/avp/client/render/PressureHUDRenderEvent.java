@@ -31,7 +31,7 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.dimension.varda.WorldProviderVarda;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.AVPItems;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.entity.living.EntityMarine;
@@ -413,7 +413,7 @@ public class PressureHUDRenderEvent
                 }
 
                 OpenGL.color4i(0xFFFFAA00);
-                AVP.resources().INFECTION_INDICATOR.bind();
+                Resources.instance.INFECTION_INDICATOR.bind();
                 Draw.drawQuad(res.getScaledWidth() - iconSize, 0, iconSize, iconSize);
             }
         }

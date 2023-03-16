@@ -10,7 +10,7 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.AVPItems;
 import org.avp.common.AVPMaterials;
 
@@ -27,9 +27,9 @@ public class ItemArmorMarine extends ItemArmor
         switch (slot) {
             case FEET:
             case LEGS:
-                return Draw.getPath(AVP.resources().MARINE2);
+                return Draw.getPath(Resources.instance.MARINE2);
             default:
-                return Draw.getPath(AVP.resources().MARINE1);
+                return Draw.getPath(Resources.instance.MARINE1);
         }
     }
 

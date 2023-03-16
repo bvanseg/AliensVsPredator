@@ -6,20 +6,14 @@ import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelBoiler;
 import org.alien.common.entity.living.xenomorph.EntityBoiler;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 public class RenderBoiler extends RenderLivingWrapper<EntityBoiler, ModelBoiler>
 {
     public RenderBoiler(RenderManager m)
     {
-        super(m, AVP.resources().models().BOILER);
-    }
-
-    @Override
-    protected void preRenderCallback(EntityBoiler entityLivingBase, float shadowSize)
-    {
-        super.preRenderCallback(entityLivingBase, shadowSize);
+        super(m, Resources.instance.models().BOILER);
     }
 
     protected int setRenderPassModelBrightness(EntityBoiler entity, int brightness)
@@ -31,7 +25,7 @@ public class RenderBoiler extends RenderLivingWrapper<EntityBoiler, ModelBoiler>
         else
         {
             char light = 61680;
-            AVP.resources().models().BOILER_MASK.getTexture().bind();
+            Resources.instance.models().BOILER_MASK.getTexture().bind();
             OpenGL.enableBlend();
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
             GL11.glDepthMask(!entity.isInvisible());

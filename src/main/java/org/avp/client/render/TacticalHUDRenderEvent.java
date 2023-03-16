@@ -27,7 +27,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.gui.GuiTacticalHUDSettings;
 import org.avp.client.render.wavegraph.Wavegraph;
 import org.avp.client.render.wavegraph.ekg.Electrocardiogram;
@@ -138,7 +138,7 @@ public class TacticalHUDRenderEvent
                                                 if (organism.hasEmbryo())
                                                 {
                                                     OpenGL.color4i(0xFFFF0000);
-                                                    Draw.drawResourceCentered(AVP.resources().INFECTION_INDICATOR, 2, -1, 2, 2, 255, 0, 0, 255);
+                                                    Draw.drawResourceCentered(Resources.instance.INFECTION_INDICATOR, 2, -1, 2, 2, 255, 0, 0, 255);
                                                 }
 
                                                 int color = organism.hasEmbryo() || living instanceof IMob ? 0xFFFF0000 : 0xFF00AAFF;
@@ -202,7 +202,7 @@ public class TacticalHUDRenderEvent
                     OpenGL.blendClear();
                     OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
                     OpenGL.color(1F, 1F, 1F, 1F);
-                    AVP.resources().BLUR_TACTICAL_HUD.bind();
+                    Resources.instance.BLUR_TACTICAL_HUD.bind();
                     Draw.drawQuad(0, 0, Screen.scaledDisplayResolution().getScaledWidth(), Screen.scaledDisplayResolution().getScaledHeight());
                     OpenGL.color(1F, 1F, 1F, 1F);
                     OpenGL.blendClear();
@@ -374,7 +374,7 @@ public class TacticalHUDRenderEvent
                     OpenGL.rotate(25F, 0F, 1F, 0F);
 
                     OpenGL.color4i(0xFFFF0000);
-                    AVP.resources().INFECTION_INDICATOR.bind();
+                    Resources.instance.INFECTION_INDICATOR.bind();
                     Draw.drawQuad(30, 0, 64, 64);
 
                     OpenGL.rotate(180F, 0F, 0F, 1F);
@@ -416,7 +416,7 @@ public class TacticalHUDRenderEvent
                 int btHeight = 64;
                 int batteryWidth = btWidth / 2 * (batteryPercent + hOffset) / 100;
                 float maxU = (batteryPercent + hOffset) / 100F / 2F;
-                AVP.resources().BATTERY_INDICATOR.bind();
+                Resources.instance.BATTERY_INDICATOR.bind();
                 Draw.drawQuad(btX, btY, btWidth, btHeight, 0F, 1F, 0F, 0.5F);
                 Draw.drawQuad(btX, btY, batteryWidth, btHeight, 0F, maxU, 0.5F, 1F);
             }

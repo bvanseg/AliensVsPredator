@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.AVPMaterials;
 
 public class ItemArmorMK50 extends ItemAntiVacuumArmor
@@ -23,9 +23,9 @@ public class ItemArmorMK50 extends ItemAntiVacuumArmor
             case FEET:
             case LEGS:
             case HEAD:
-                return Draw.getPath(AVP.resources().MK501);
+                return Draw.getPath(Resources.instance.MK501);
             default:
-                return Draw.getPath(AVP.resources().MK502);
+                return Draw.getPath(Resources.instance.MK502);
         }
     }
     

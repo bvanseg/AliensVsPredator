@@ -18,7 +18,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
+import org.avp.common.AVPSettings;
 import org.predator.client.PredatorSounds;
 
 import java.util.ArrayList;
@@ -104,7 +104,7 @@ public class EntityWristbracer extends EntityThrowable
             {
                 if (this.getPostInitTicks() >= this.getPostInitTicksMax() * 2)
                 {
-                    if (AVP.settings().areExplosionsEnabled())
+                    if (AVPSettings.instance.areExplosionsEnabled())
                     {
                         ArrayList<Block> excludedBlocks = new ArrayList<>();
                         excludedBlocks.add(Blocks.BEDROCK);

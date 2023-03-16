@@ -11,7 +11,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelLocker;
 import org.avp.common.tile.TileEntityLocker;
 import org.lwjgl.opengl.GL11;
@@ -41,8 +41,8 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
             float lerpProgress = !tile.isOpen() ? tile.openProgress : 1 - tile.openProgress;
             float openProgress = lerp(tile.isOpen() ? -1.5F : 0F, tile.isOpen() ? 0F : -1.5F, lerpProgress);
             
-            ((ModelLocker) AVP.resources().models().LOCKER.getModel()).door.rotateAngleY = openProgress;
-            AVP.resources().models().LOCKER.draw(tile);
+            ((ModelLocker) Resources.instance.models().LOCKER.getModel()).door.rotateAngleY = openProgress;
+            Resources.instance.models().LOCKER.draw(tile);
 
             if (tile != null)
             {

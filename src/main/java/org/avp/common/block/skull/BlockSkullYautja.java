@@ -8,22 +8,19 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 import org.predator.client.model.entity.living.ModelYautja;
 
 public class BlockSkullYautja extends BlockSkull
 {
     @SideOnly(Side.CLIENT)
-    private static class Resources
-    {
-        private static final MapModelTexture<ModelYautja> model = AVP.resources().models().YAUTJA_SKULL;
-    }
+    private static final MapModelTexture<ModelYautja> model = Resources.instance.models().YAUTJA_SKULL;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelYautja m = Resources.model.getModel();
+        ModelYautja m = model.getModel();
         return new ModelRenderer[] { m.face };
     }
 
@@ -38,7 +35,7 @@ public class BlockSkullYautja extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.model.getTexture();
+        return model.getTexture();
     }
     
     @Override

@@ -12,18 +12,18 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.Aliens;
-import org.alien.common.AlienDimensions;
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
-import org.avp.client.Resources;
 import org.avp.common.*;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
 import org.predator.Predators;
+
+import java.time.LocalDate;
 
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
 public class AVP implements IMod
@@ -37,7 +37,9 @@ public class AVP implements IMod
     }
 
     @Mod.Instance(AVP.Properties.ID)
-    private static AVP instance;
+    public static AVP instance;
+
+    public static final Logger logger = LogManager.getLogger("AVP");
 
     @Override
     public ModContainer container()
@@ -48,6 +50,8 @@ public class AVP implements IMod
     @Mod.EventHandler
     public void pre(FMLPreInitializationEvent event)
     {
+        logger.info("Preparing...");
+
         // Config
         AVPSettings.instance.pre(event);
 
@@ -59,7 +63,6 @@ public class AVP implements IMod
         AVPSounds.instance.pre(event);
 
         // Misc.
-        Console.instance.pre(event);
         CapabilityHandler.instance.pre(event);
         AVPCreativeTabs.instance.pre(event);
 
@@ -71,7 +74,10 @@ public class AVP implements IMod
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-        Console.instance.init(event);
+        int currentYear = LocalDate.now().getYear();
+        logger.info("AliensVsPredator Minecraft Mod Copyright © 2012-{} ASX", currentYear);
+        logger.info("Initializing...");
+
         AVPNetworking.instance.init(event);
         AVPMaterials.instance.init(event);
         AVPGui.instance.init(event);
@@ -96,7 +102,7 @@ public class AVP implements IMod
     @Mod.EventHandler
     public void post(FMLPostInitializationEvent event)
     {
-        Console.instance.post(event);
+        logger.info("Initialized. Running post initialization tasks...");
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             KeybindHandler.instance.post(event);
@@ -110,58 +116,8 @@ public class AVP implements IMod
     }
 
     @Deprecated
-    public static AVP instance()
-    {
-        return AVP.instance;
-    }
-
-    @Deprecated
     public static Logger log()
     {
-        return Console.logger;
-    }
-
-    @Deprecated
-    public static AVPNetworking network()
-    {
-        return AVPNetworking.instance;
-    }
-
-    @Deprecated
-    public static AlienDimensions dimensions()
-    {
-        return AlienDimensions.instance;
-    }
-
-    @Deprecated
-    @SideOnly(Side.CLIENT)
-    public static KeybindHandler keybinds()
-    {
-        return KeybindHandler.instance;
-    }
-
-    @Deprecated
-    @SideOnly(Side.CLIENT)
-    public static Resources resources()
-    {
-        return Resources.instance;
-    }
-
-    @Deprecated
-    public static AVPGui interfaces()
-    {
-        return AVPGui.instance;
-    }
-
-    @Deprecated
-    public static PlayerModeHandler playermodehandler()
-    {
-        return PlayerModeHandler.instance;
-    }
-
-    @Deprecated
-    public static AVPSettings settings()
-    {
-        return AVPSettings.instance;
+        return logger;
     }
 }

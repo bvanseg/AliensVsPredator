@@ -4,7 +4,7 @@ import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityCCFLTube;
 
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
@@ -26,17 +26,17 @@ public class RenderCCFLTube extends TileEntitySpecialRenderer<TileEntityCCFLTube
         }
         
         OpenGL.translate(0, -0.1F, 0);
-        AVP.resources().models().CCFL_BALLAST.draw(ccfl);
+        Resources.instance.models().CCFL_BALLAST.draw(ccfl);
 
         if (ccfl.isOperational())
         {
             OpenGL.disableLight();
-            AVP.resources().models().CCFL_TUBE_ON.draw(ccfl);
+            Resources.instance.models().CCFL_TUBE_ON.draw(ccfl);
             OpenGL.enableLight();
         }
         else
         {
-            AVP.resources().models().CCFL_TUBE_OFF.draw(ccfl);
+            Resources.instance.models().CCFL_TUBE_OFF.draw(ccfl);
         }
         GlStateManager.popMatrix();
     }

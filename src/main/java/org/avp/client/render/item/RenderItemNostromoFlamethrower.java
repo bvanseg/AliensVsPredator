@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.client.model.item.ModelSevastopolFlamethrower;
 import org.avp.common.item.firearm.ItemFirearm;
 import org.lwjgl.input.Mouse;
@@ -15,7 +15,7 @@ public class RenderItemNostromoFlamethrower extends ItemFirearmRenderer<ModelSev
 {
     public RenderItemNostromoFlamethrower()
     {
-        super(AVP.resources().models().SEVASTOPOL_FLAMETHROWER);
+        super(Resources.instance.models().SEVASTOPOL_FLAMETHROWER);
     }
 
     @Override

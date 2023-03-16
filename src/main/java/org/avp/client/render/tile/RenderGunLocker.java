@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
-import org.avp.AVP;
+import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityGunLocker;
 import org.lwjgl.opengl.GL11;
 
@@ -38,8 +38,8 @@ public class RenderGunLocker extends TileEntitySpecialRenderer<TileEntityGunLock
             float lerpProgress = !tile.isOpen() ? tile.openProgress : 1 - tile.openProgress;
             float openProgress = lerp(tile.isOpen() ? -1.5F : 0F, tile.isOpen() ? 0F : -1.5F, lerpProgress);
             
-            AVP.resources().models().GUN_LOCKER.getModel().door.rotateAngleY = openProgress;
-            AVP.resources().models().GUN_LOCKER.draw(tile);
+            Resources.instance.models().GUN_LOCKER.getModel().door.rotateAngleY = openProgress;
+            Resources.instance.models().GUN_LOCKER.draw(tile);
 
             if (tile != null)
             {
