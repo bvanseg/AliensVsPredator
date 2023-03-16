@@ -1,13 +1,13 @@
 package org.alien.client.model.entity.living;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
 import org.alien.common.entity.living.species223ode.EntityTrilobite;
 
-import static com.asx.mdx.lib.client.model.animations.AnimationHelper.*;
+import static com.asx.mdx.client.render.model.animations.AnimationHelper.*;
 
 public class ModelTrilobite extends Model<EntityTrilobite>
 {
@@ -896,9 +896,9 @@ public class ModelTrilobite extends Model<EntityTrilobite>
                     EntityLivingBase riding = (EntityLivingBase) trilobite.getRidingEntity();
 
                     float maxRot = 100F;
-                    float offset = maxRot + -Game.minecraft().player.eyeHeight;
+                    float offset = maxRot + -ClientGame.instance.minecraft().player.eyeHeight;
 
-                    offset = offset + -(maxRot * riding.getEyeHeight() / Game.minecraft().player.getEyeHeight());
+                    offset = offset + -(maxRot * riding.getEyeHeight() / ClientGame.instance.minecraft().player.getEyeHeight());
                     offset = offset + 1.0F;
 
                     animator.rotateTo(tube01, offset, 0.0F, 0.0F, true);

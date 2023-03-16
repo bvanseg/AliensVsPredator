@@ -1,6 +1,6 @@
 package org.lib.registry;
 
-import com.asx.mdx.lib.util.Sound;
+import com.asx.mdx.client.sound.Sound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.avp.AVP;

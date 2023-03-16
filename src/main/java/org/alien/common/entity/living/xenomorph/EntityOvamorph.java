@@ -1,7 +1,7 @@
 package org.alien.common.entity.living.xenomorph;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;

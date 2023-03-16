@@ -1,8 +1,8 @@
 package org.avp.common.item;
 
-import com.asx.mdx.lib.world.entity.Entities;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-import com.asx.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.common.minecraft.entity.Entities;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
+import com.asx.mdx.common.minecraft.item.HookedItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

@@ -1,6 +1,6 @@
 package org.avp.common.block;
 
-import com.asx.mdx.lib.world.block.BlockMaterial;
+import com.asx.mdx.common.minecraft.block.BlockMaterial;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;

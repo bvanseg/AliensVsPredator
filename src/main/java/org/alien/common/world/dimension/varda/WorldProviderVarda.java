@@ -1,8 +1,8 @@
 package org.alien.common.world.dimension.varda;
 
-import com.asx.mdx.lib.client.world.IClimateProvider;
-import com.asx.mdx.lib.client.world.ICloudProvider;
-import com.asx.mdx.lib.client.world.IStormProvider;
+import com.asx.mdx.client.world.IClimateProvider;
+import com.asx.mdx.client.world.ICloudProvider;
+import com.asx.mdx.client.world.IStormProvider;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;

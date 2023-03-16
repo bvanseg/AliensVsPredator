@@ -1,6 +1,6 @@
 package org.lib.registry;
 
-import com.asx.mdx.lib.client.Renderers;
+import com.asx.mdx.client.render.Renderers;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;

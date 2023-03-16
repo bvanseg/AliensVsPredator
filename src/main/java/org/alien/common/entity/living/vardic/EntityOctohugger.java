@@ -1,6 +1,6 @@
 package org.alien.common.entity.living.vardic;
 
-import com.asx.mdx.lib.world.block.Blocks;
+import com.asx.mdx.common.minecraft.block.Blocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

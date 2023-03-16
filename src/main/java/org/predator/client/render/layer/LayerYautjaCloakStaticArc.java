@@ -1,8 +1,8 @@
 package org.predator.client.render.layer;
 
-import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.entity.fx.EntityFXElectricArc;
+import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -54,7 +54,7 @@ public class LayerYautjaCloakStaticArc implements LayerRenderer<SpeciesYautja> {
         		color
 		);
         
-        Game.minecraft().effectRenderer.addEffect(arc);
+        ClientGame.instance.minecraft().effectRenderer.addEffect(arc);
     }
 
     public boolean shouldCombineTextures() {

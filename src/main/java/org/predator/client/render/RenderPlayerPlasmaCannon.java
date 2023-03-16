@@ -1,11 +1,11 @@
 package org.predator.client.render;
 
-import com.asx.mdx.MDX;
-import com.asx.mdx.lib.client.util.Color;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.util.MDXMath;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.Color;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.MapModelTexture;
+import com.asx.mdx.common.math.MDXMath;
+import com.asx.mdx.internal.MDX;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.EntityRenderer;
@@ -73,7 +73,7 @@ public class RenderPlayerPlasmaCannon implements EventRenderer, FirstPersonRende
 
                     if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(player)))
                     {
-                        if (player.getName().equalsIgnoreCase(Game.minecraft().player.getName()))
+                        if (player.getName().equalsIgnoreCase(ClientGame.instance.minecraft().player.getName()))
                         {
                             float rotationYaw = MDXMath.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, partialTicks);
                             float rotationYawHead = MDXMath.interpolateRotation(player.prevRotationYawHead, player.rotationYawHead, partialTicks);
@@ -98,13 +98,13 @@ public class RenderPlayerPlasmaCannon implements EventRenderer, FirstPersonRende
                             float rotationYaw = MDXMath.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, partialTicks);
                             float scale = 0.5F;
 
-                            float offsetX = (float) player.posX - (float) Game.minecraft().player.posX;
-                            float offsetY = (float) player.posY - (float) Game.minecraft().player.posY;
-                            float offsetZ = (float) player.posZ - (float) Game.minecraft().player.posZ;
+                            float offsetX = (float) player.posX - (float) ClientGame.instance.minecraft().player.posX;
+                            float offsetY = (float) player.posY - (float) ClientGame.instance.minecraft().player.posY;
+                            float offsetZ = (float) player.posZ - (float) ClientGame.instance.minecraft().player.posZ;
 
-                            float offsetXPrev = (float) player.prevPosX - (float) Game.minecraft().player.prevPosX;
-                            float offsetYPrev = (float) player.prevPosY - (float) Game.minecraft().player.prevPosY;
-                            float offsetZPrev = (float) player.prevPosZ - (float) Game.minecraft().player.prevPosZ;
+                            float offsetXPrev = (float) player.prevPosX - (float) ClientGame.instance.minecraft().player.prevPosX;
+                            float offsetYPrev = (float) player.prevPosY - (float) ClientGame.instance.minecraft().player.prevPosY;
+                            float offsetZPrev = (float) player.prevPosZ - (float) ClientGame.instance.minecraft().player.prevPosZ;
 
                             double averageX = MDXMath.interpolateRotation(offsetXPrev, offsetX, partialTicks);
                             double averageY = MDXMath.interpolateRotation(offsetYPrev, offsetY, partialTicks);
@@ -130,16 +130,16 @@ public class RenderPlayerPlasmaCannon implements EventRenderer, FirstPersonRende
     public void renderFirstPerson(Event event, float partialTicks)
     {
         RenderHandEvent e = (RenderHandEvent) event;
-        EntityLivingBase entity = Game.minecraft().player;
-        EntityRenderer entityRenderer = Game.minecraft().entityRenderer;
-        ItemRenderer ir = Game.minecraft().entityRenderer.itemRenderer;
+        EntityLivingBase entity = ClientGame.instance.minecraft().player;
+        EntityRenderer entityRenderer = ClientGame.instance.minecraft().entityRenderer;
+        ItemRenderer ir = ClientGame.instance.minecraft().entityRenderer.itemRenderer;
         float rotationYawHead = MDXMath.interpolateRotation(entity.prevRotationYawHead, entity.rotationYawHead, partialTicks);
         float rotationPitch = entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks;
         float equippedProgress = MDX.access().getEquippedProgressPrev() + (MDX.access().getEquippedProgress() - MDX.access().getEquippedProgressPrev()) * partialTicks;
 
-        if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(Game.minecraft().player)))
+        if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(ClientGame.instance.minecraft().player)))
         {
-            if (Game.minecraft().gameSettings.thirdPersonView == 0)
+            if (ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0)
             {
                 if (MDX.access().getDebugViewDirection() <= 0)
                 {
@@ -153,12 +153,12 @@ public class RenderPlayerPlasmaCannon implements EventRenderer, FirstPersonRende
                         GL11.glScaled(MDX.access().getCameraZoom(), MDX.access().getCameraZoom(), 1.0D);
                     }
 
-                    Project.gluPerspective(MDX.access().getFOVModifier(partialTicks, false), (float) Game.minecraft().displayWidth / (float) Game.minecraft().displayHeight, 0.05F, MDX.access().getFarPlaneDistance() * 2.0F);
+                    Project.gluPerspective(MDX.access().getFOVModifier(partialTicks, false), (float) ClientGame.instance.minecraft().displayWidth / (float) ClientGame.instance.minecraft().displayHeight, 0.05F, MDX.access().getFarPlaneDistance() * 2.0F);
 
                     GL11.glMatrixMode(GL11.GL_MODELVIEW);
                     GL11.glLoadIdentity();
 
-                    if (Game.minecraft().gameSettings.viewBobbing)
+                    if (ClientGame.instance.minecraft().gameSettings.viewBobbing)
                     {
                         MDX.access().setupViewBobbing(partialTicks);
                     }

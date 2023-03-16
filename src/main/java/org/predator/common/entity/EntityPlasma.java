@@ -1,10 +1,10 @@
 package org.predator.common.entity;
 
-import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.Worlds;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.entity.fx.EntityFXElectricArc;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.Worlds;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
@@ -168,7 +168,7 @@ public class EntityPlasma extends EntityThrowable
             double pY = this.posY + (this.rand.nextDouble() * spread) - (this.rand.nextDouble() * spread);
             double pZ = this.posZ + (this.rand.nextDouble() * spread) - (this.rand.nextDouble() * spread);
 
-            Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, this.posX, this.posY, this.posZ, pX, pY, pZ, 10, 0xFF66AAFF));
+            ClientGame.instance.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, this.posX, this.posY, this.posZ, pX, pY, pZ, 10, 0xFF66AAFF));
         }
     }
 

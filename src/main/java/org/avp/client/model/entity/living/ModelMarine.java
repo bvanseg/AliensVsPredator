@@ -1,6 +1,6 @@
 package org.avp.client.model.entity.living;
 
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.model.ModelRenderer;

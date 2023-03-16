@@ -1,7 +1,7 @@
 package org.avp.client.render.item;
 
-import com.asx.mdx.lib.client.util.ItemRenderer;
-import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.item.ItemRenderer;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;

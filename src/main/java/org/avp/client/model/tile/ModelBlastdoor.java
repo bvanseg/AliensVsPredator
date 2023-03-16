@@ -1,7 +1,7 @@
 package org.avp.client.model.tile;
 
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 import org.avp.common.tile.TileEntityBlastdoor;
 
@@ -129,7 +129,7 @@ public class ModelBlastdoor extends Model<TileEntityBlastdoor>
         {
             float doorProgress = tile.getDoorProgress() * 2;
             float doorProgressPrev = tile.getDoorProgressPrev() * 2;
-            doorProgress = doorProgressPrev + (doorProgress - doorProgressPrev) * Game.partialTicks();
+            doorProgress = doorProgressPrev + (doorProgress - doorProgressPrev) * ClientGame.instance.partialTicks();
             
             float doorRight = doorProgress;
             float doorLeft = -doorProgress;

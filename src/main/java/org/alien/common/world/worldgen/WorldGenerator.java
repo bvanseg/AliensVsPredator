@@ -1,6 +1,6 @@
 package org.alien.common.world.worldgen;
 
-import com.asx.mdx.lib.world.Worlds;
+import com.asx.mdx.common.minecraft.Worlds;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

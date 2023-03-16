@@ -1,7 +1,7 @@
 package org.avp.client.render.item;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
@@ -45,7 +45,7 @@ public class RenderItemNostromoFlamethrower extends ItemFirearmRenderer<ModelSev
         {
             OpenGL.translate(0F, 0.35F, -0.9F);
 
-            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
             {
                 OpenGL.translate(-0.5595F, 0F, 0F);
             }
@@ -71,7 +71,7 @@ public class RenderItemNostromoFlamethrower extends ItemFirearmRenderer<ModelSev
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
+        int ammoCount = ((ItemFirearm) ClientGame.instance.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 }

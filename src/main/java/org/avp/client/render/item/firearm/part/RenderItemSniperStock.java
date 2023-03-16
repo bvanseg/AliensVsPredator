@@ -1,9 +1,9 @@
 package org.avp.client.render.item.firearm.part;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.MapModelTexture;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -38,7 +38,7 @@ public class RenderItemSniperStock extends ItemRendererGroup<ModelSniper>
     {
         OpenGL.pushMatrix();
         {
-            OpenGL.rotate((Game.minecraft().world.getTotalWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((ClientGame.instance.minecraft().world.getTotalWorldTime() + ClientGame.instance.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
             GlStateManager.disableCull();
             this.renderPart();
         }

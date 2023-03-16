@@ -1,6 +1,6 @@
 package org.avp.common.network.packet.server;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -47,8 +47,8 @@ public class PacketCryostasisStateUpdate implements IMessage, IMessageHandler<Pa
     @Override
     public PacketCryostasisStateUpdate onMessage(PacketCryostasisStateUpdate packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(() -> {
-        	TileEntityCryostasisTube tile = (TileEntityCryostasisTube) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+        	TileEntityCryostasisTube tile = (TileEntityCryostasisTube) ClientGame.instance.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
             if (tile != null)
             {

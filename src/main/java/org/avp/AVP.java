@@ -1,8 +1,8 @@
 /** AliensVsPredator Minecraft Mod - Copyright (C) 2012-2019 ASX **/
 package org.avp;
 
-import com.asx.mdx.core.mods.IMod;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.common.Game;
+import com.asx.mdx.common.mods.IMod;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -44,7 +44,7 @@ public class AVP implements IMod
     @Override
     public ModContainer container()
     {
-        return Game.getModContainer(AVP.Properties.ID);
+        return Game.instance.getModContainer(AVP.Properties.ID);
     }
 
     @Mod.EventHandler

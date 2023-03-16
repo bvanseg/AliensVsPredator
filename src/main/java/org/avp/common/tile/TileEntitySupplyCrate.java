@@ -1,6 +1,6 @@
 package org.avp.common.tile;
 
-import com.asx.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.common.minecraft.tile.IRotatableYAxis;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;

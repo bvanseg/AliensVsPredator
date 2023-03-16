@@ -24,7 +24,7 @@ plugins {
 
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'com.matthewprenger.cursegradle'
-apply plugin: 'maven-publish'
+apply plugin: 'maven'
 
 configurations {
     deployerJars
@@ -41,7 +41,7 @@ repositories {
 def version_minecraft="1.12.2"
 def version_forge="14.23.5.2847"
 def version_mappings="stable_39"
-def mdxversion="3.0.0.29"
+def mdxversion="4.0.0.35"
 def curseforge_id="221641"
 def curseforge_release_type="release"
 def curseforge_api_key=project.ext.properties.curseforge_api_key == null ? "00000-00000-00000-00000-00000" : project.ext.properties.curseforge_api_key
@@ -133,47 +133,47 @@ idea {
     }
 }
 
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-
-            pom {
-                properties = [
-                    forgeVersion: version_minecraft,
-                    mcVersion: minecraft.version
-                ]
-            }
-        }
-    }
-
-    repositories {
-        maven {
-            credentials {
-                username mavenUsername
-                password mavenPassword
-            }
-            url = "ftp://maven.aliensvspredator.org"
-        }
-    }
-}
-
-//task("publishToMaven", dependsOn:"build") {
-//    description = "Uploads the artifacts generated during the build process to the aliensvspredator maven repository"
+//publishing {
+//    publications {
+//        mavenJava(MavenPublication) {
+//            from components.java
 //
-//    uploadArchives {
-//        repositories.mavenDeployer {
-//            configuration = configurations.deployerJars
-//            repository(url: "ftp://maven.aliensvspredator.org") {
-//                authentication(userName: mavenUsername, password: mavenPassword)
-//            }
-//
-//            pom.project {
-//        		properties {
-//            		forgeVersion = version_minecraft
-//	            	mcVersion = minecraft.version
-//            	}
+//            pom {
+//                properties = [
+//                    forgeVersion: version_minecraft,
+//                    mcVersion: minecraft.version
+//                ]
 //            }
 //        }
 //    }
+//
+//    repositories {
+//        maven {
+//            credentials {
+//                username mavenUsername
+//                password mavenPassword
+//            }
+//            url = "ftp://maven.aliensvspredator.org"
+//        }
+//    }
 //}
+
+task("publishToMaven", dependsOn:"build") {
+    description = "Uploads the artifacts generated during the build process to the aliensvspredator maven repository"
+
+    uploadArchives {
+        repositories.mavenDeployer {
+            configuration = configurations.deployerJars
+            repository(url: "ftp://maven.aliensvspredator.org") {
+                authentication(userName: mavenUsername, password: mavenPassword)
+            }
+
+            pom.project {
+        		properties {
+            		forgeVersion = version_minecraft
+	            	mcVersion = minecraft.version
+            	}
+            }
+        }
+    }
+}

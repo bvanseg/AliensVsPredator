@@ -1,7 +1,7 @@
 package org.avp.common.network.packet.client;
 
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.minecraft.tile.IRotatableYAxis;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -52,12 +52,12 @@ public class PacketRotateRotatable implements IMessage, IMessageHandler<PacketRo
     @Override
     public PacketRotateRotatable onMessage(PacketRotateRotatable packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(new Runnable()
+        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                World world = Game.minecraft().player.world;
+                World world = ClientGame.instance.minecraft().player.world;
 
                 if (world != null)
                 {

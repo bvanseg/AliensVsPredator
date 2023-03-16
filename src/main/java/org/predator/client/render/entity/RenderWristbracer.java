@@ -1,8 +1,8 @@
 package org.predator.client.render.entity;
 
-import com.asx.mdx.lib.client.util.Color;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.client.Color;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.MapModelTexture;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;

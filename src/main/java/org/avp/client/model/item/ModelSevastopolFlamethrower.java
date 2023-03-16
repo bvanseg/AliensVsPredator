@@ -1,8 +1,8 @@
 package org.avp.client.model.item;
 
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.item.Item;
@@ -500,14 +500,14 @@ public class ModelSevastopolFlamethrower extends Model<Object>
         draw(this.propellantCanister);
         GlStateManager.popMatrix();
         
-        ItemStack currentItemStack = Game.minecraft().player.inventory.getCurrentItem();
+        ItemStack currentItemStack = ClientGame.instance.minecraft().player.inventory.getCurrentItem();
 
         if (currentItemStack != null && currentItemStack.getItem() instanceof ItemFlamethrower)
         {
             ItemFlamethrower currentFlamethrower = (ItemFlamethrower) currentItemStack.getItem();
             Item fuel = currentFlamethrower.getAmmo();
 
-            if (Inventories.getAmountOfItemPlayerHas(fuel, Game.minecraft().player) > 0)
+            if (Inventories.getAmountOfItemPlayerHas(fuel, ClientGame.instance.minecraft().player) > 0)
             {
                 GlStateManager.pushMatrix();
                 GlStateManager.translate(this.propaneCanister.offsetX, this.propaneCanister.offsetY, this.propaneCanister.offsetZ);

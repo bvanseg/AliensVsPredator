@@ -1,10 +1,10 @@
 package org.avp.client.render.item;
 
-import com.asx.mdx.lib.client.util.ItemRenderer;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.client.util.models.wavefront.Part;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.item.ItemRenderer;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.client.render.model.wavefront.Part;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
@@ -81,7 +81,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
         {
             OpenGL.scale(0.2F, 0.2F, 0.2F);
             OpenGL.translate(0, -1F, 0);
-            OpenGL.rotate((Game.minecraft().world.getTotalWorldTime() + Game.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
+            OpenGL.rotate((ClientGame.instance.minecraft().world.getTotalWorldTime() + ClientGame.instance.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
 
             for (Part p : Resources.instance.models().M577_APC.parts.values())
             {

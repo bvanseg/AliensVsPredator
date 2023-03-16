@@ -1,7 +1,7 @@
 package org.avp.common;
 
-import com.asx.mdx.core.mods.IPreInitEvent;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.common.Game;
+import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -31,7 +31,7 @@ public class AVPCreativeTabs implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(Game.getItem(PredatorBlocks.SHIP_5));
+                                                                return new ItemStack(Game.instance.getItem(PredatorBlocks.SHIP_5));
                                                             }
 
                                                             public String getTranslationKey()

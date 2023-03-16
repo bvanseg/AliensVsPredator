@@ -1,11 +1,11 @@
 package org.avp.client.render;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.util.MDXMath;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.common.math.MDXMath;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.Entity;
@@ -31,7 +31,7 @@ public class RenderLivingHook
     @SubscribeEvent
     public void update(ClientTickEvent event)
     {
-        renderPlasmaCannon.update(event, Game.minecraft(), Game.minecraft().world);
+        renderPlasmaCannon.update(event, ClientGame.instance.minecraft(), ClientGame.instance.minecraft().world);
     }
 
     @SubscribeEvent
@@ -47,13 +47,13 @@ public class RenderLivingHook
         {
             if (event.getEntity() instanceof EntityPlayer)
             {
-                renderPlasmaCannon.render(event, Game.partialTicks());
+                renderPlasmaCannon.render(event, ClientGame.instance.partialTicks());
             }
 
             if (event.getEntity().getRidingEntity() instanceof EntityMedpod)
             {
                 event.setCanceled(true);
-                renderer.render(event.getEntity(), event.getRenderer(), event.getX(), event.getY(), event.getZ(), Game.partialTicks());
+                renderer.render(event.getEntity(), event.getRenderer(), event.getX(), event.getY(), event.getZ(), ClientGame.instance.partialTicks());
             }
         }
     }
@@ -65,7 +65,7 @@ public class RenderLivingHook
         {
             if (event.getEntity() instanceof EntityPlayer)
             {
-                renderPlasmaCannon.render(event, Game.partialTicks());
+                renderPlasmaCannon.render(event, ClientGame.instance.partialTicks());
             }
 
             if (event.getEntity().getRidingEntity() instanceof EntityMedpod)
@@ -86,7 +86,7 @@ public class RenderLivingHook
 
         public RenderLiving()
         {
-            super(Game.renderManager(), null, 0F);
+            super(ClientGame.instance.renderManager(), null, 0F);
         }
 
         @Override

@@ -1,6 +1,6 @@
 package org.avp.client.render;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.entity.player.EntityPlayer;
@@ -40,7 +40,7 @@ public class LightmapUpdateEvent
 
     public void updateLightmap(float partialTicks)
     {
-        Minecraft mc = Game.minecraft();
+        Minecraft mc = ClientGame.instance.minecraft();
         WorldClient worldclient = mc.world;
 
         if (worldclient != null)
@@ -49,7 +49,7 @@ public class LightmapUpdateEvent
             {
                 float f1 = worldclient.getSunBrightness(1.0F) * 0.95F + 0.05F;
                 float f2 = worldclient.provider.getLightBrightnessTable()[i / 16] * f1;
-                float f3 = worldclient.provider.getLightBrightnessTable()[i % 16] * (Game.getTorchFlickerX() * 0.1F + 1.5F);
+                float f3 = worldclient.provider.getLightBrightnessTable()[i % 16] * (ClientGame.instance.getTorchFlickerX() * 0.1F + 1.5F);
 
                 if (worldclient.getLastLightningBolt() > 0)
                 {
@@ -68,9 +68,9 @@ public class LightmapUpdateEvent
                 f10 = f10 * 0.96F + 0.03F;
                 float gamma;
 
-                if (Game.getBossColorModifier() > 0.0F)
+                if (ClientGame.instance.getBossColorModifier() > 0.0F)
                 {
-                    gamma = Game.getBossColorModifierPrev() + (Game.getBossColorModifier() - Game.getBossColorModifierPrev()) * partialTicks;
+                    gamma = ClientGame.instance.getBossColorModifierPrev() + (ClientGame.instance.getBossColorModifier() - ClientGame.instance.getBossColorModifierPrev()) * partialTicks;
                     f8 = f8 * (1.0F - gamma) + f8 * 0.7F * gamma;
                     f9 = f9 * (1.0F - gamma) + f9 * 0.6F * gamma;
                     f10 = f10 * (1.0F - gamma) + f10 * 0.6F * gamma;
@@ -168,11 +168,11 @@ public class LightmapUpdateEvent
                 int j = (int) (f8 * 255.0F);
                 int k = (int) (f9 * 255.0F);
                 int l = (int) (f10 * 255.0F);
-                Game.getLightmapColors()[i] = short1 << 24 | j << 16 | k << 8 | l;
+                ClientGame.instance.getLightmapColors()[i] = short1 << 24 | j << 16 | k << 8 | l;
             }
 
-            Game.getLightmapTexture().updateDynamicTexture();
-            Game.setLightmapUpdateNeeded(false);
+            ClientGame.instance.getLightmapTexture().updateDynamicTexture();
+            ClientGame.instance.setLightmapUpdateNeeded(false);
         }
     }
 

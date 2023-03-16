@@ -1,7 +1,7 @@
 package org.avp.common.item;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;

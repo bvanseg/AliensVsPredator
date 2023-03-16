@@ -1,12 +1,12 @@
 package org.avp.client.gui;
 
-import com.asx.mdx.lib.client.gui.GuiCustomButton;
-import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
-import com.asx.mdx.lib.client.gui.IAction;
-import com.asx.mdx.lib.client.gui.IGuiElement;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.gui.GuiCustomButton;
+import com.asx.mdx.client.render.gui.GuiCustomTextbox;
+import com.asx.mdx.client.render.gui.IAction;
+import com.asx.mdx.client.render.gui.IGuiElement;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
@@ -35,7 +35,7 @@ import java.util.List;
 public class GuiAssembler extends GuiContainer
 {
 	private static final List<ItemSchematic> sortedSchematics = new ArrayList<>(AssemblyManager.instance.schematics());
-    private static final GuiCustomButton  buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "");
+    private static final GuiCustomButton buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "");
     private static final GuiCustomButton  buttonScrollDown = new GuiCustomButton(1, 0, 0, 20, 20, "");
     private static final GuiCustomButton  buttonAssemble = new GuiCustomButton(2, 0, 0, 50, 20, "");
     private static final GuiCustomButton  buttonAssemble4 = new GuiCustomButton(2, 0, 0, 50, 20, "");
@@ -186,7 +186,7 @@ public class GuiAssembler extends GuiContainer
 	    for (ItemStack stack : selectedSchematic.getItemsRequired())
 	    {
 	        currentStack++;
-	        int amountOfStack = AssemblyManager.amountForMatchingStack(Game.minecraft().player, stack);
+	        int amountOfStack = AssemblyManager.amountForMatchingStack(ClientGame.instance.minecraft().player, stack);
 	        int stackY = 15 + (currentStack * 8);
 	        int currentStackSize = (Math.min(amountOfStack, stack.getCount()));
 	        Draw.drawRect(assemblerSidePanelX, stackY - 2, assemblerSidePanelWidth, 8, 0xDD000000);
@@ -271,7 +271,7 @@ public class GuiAssembler extends GuiContainer
             ItemSchematic itemSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
 
             if (itemSchematic != null) {
-                maxAssemblyAmount = AssemblyResult.getMaximumPossibleAssembleCount(Game.minecraft().player, itemSchematic);
+                maxAssemblyAmount = AssemblyResult.getMaximumPossibleAssembleCount(ClientGame.instance.minecraft().player, itemSchematic);
                 assemblyRequiresUpdate = false;
             }
         }

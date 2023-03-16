@@ -1,7 +1,7 @@
 package org.avp.common;
 
-import com.asx.mdx.core.mods.IInitEvent;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.common.Game;
+import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -70,6 +70,6 @@ public class AVPEventHandlers implements IInitEvent
     public void registerEvent(Object event)
     {
         events.add(event);
-        Game.registerEventHandler(event);
+        Game.instance.registerEventHandler(event);
     }
 }

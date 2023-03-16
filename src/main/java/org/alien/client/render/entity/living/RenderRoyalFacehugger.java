@@ -1,6 +1,6 @@
 package org.alien.client.render.entity.living;
 
-import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.model.entity.living.ModelRoyalFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;

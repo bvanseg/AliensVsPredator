@@ -1,9 +1,9 @@
 package org.avp.client;
 
-import com.asx.mdx.core.mods.IInitEvent;
-import com.asx.mdx.core.mods.IPreInitEvent;
-import com.asx.mdx.lib.client.Renderers;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.client.render.Renderers;
+import com.asx.mdx.client.render.model.MapModelTexture;
+import com.asx.mdx.common.mods.IInitEvent;
+import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

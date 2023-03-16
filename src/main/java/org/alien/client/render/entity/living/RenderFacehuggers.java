@@ -1,8 +1,8 @@
 package org.alien.client.render.entity.living;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.entity.RenderLivingWrapper;
+import com.asx.mdx.client.render.model.MapModelTexture;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

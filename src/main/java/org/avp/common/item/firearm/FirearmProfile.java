@@ -1,6 +1,6 @@
 package org.avp.common.item.firearm;
 
-import com.asx.mdx.lib.util.Sound;
+import com.asx.mdx.client.sound.Sound;
 import org.avp.client.AVPSounds;
 
 import java.util.ArrayList;

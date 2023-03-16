@@ -1,9 +1,9 @@
 package org.alien.common.world.dimension.varda;
 
-import com.asx.mdx.lib.client.GameResources;
-import com.asx.mdx.lib.client.util.Color;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.client.Color;
+import com.asx.mdx.client.io.resource.GameResources;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.BufferBuilder;

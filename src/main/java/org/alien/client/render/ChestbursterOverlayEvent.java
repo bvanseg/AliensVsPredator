@@ -1,7 +1,7 @@
 package org.alien.client.render;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -16,15 +16,15 @@ public class ChestbursterOverlayEvent
     @SubscribeEvent
     public void renderTickOverlay(Pre event)
     {
-        if (Game.minecraft().player != null)
+        if (ClientGame.instance.minecraft().player != null)
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
             {
-                OrganismImpl organism = (OrganismImpl) Game.minecraft().player.getCapability(Provider.CAPABILITY, null);
+                OrganismImpl organism = (OrganismImpl) ClientGame.instance.minecraft().player.getCapability(Provider.CAPABILITY, null);
 
                 if (organism.hasEmbryo())
                 {
-                    if (organism.hasEmbryo() && Game.minecraft().player.isDead && organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod() - 80)
+                    if (organism.hasEmbryo() && ClientGame.instance.minecraft().player.isDead && organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod() - 80)
                     {
                         Draw.drawOverlay(Resources.instance.BLUR_CHESTBURSTER_EMERGE, 1F, 0F, 0F, 1F);
                     }

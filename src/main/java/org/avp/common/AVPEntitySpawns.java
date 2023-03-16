@@ -1,6 +1,6 @@
 package org.avp.common;
 
-import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.common.mods.IInitEvent;
 import com.google.common.collect.Lists;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;

@@ -1,6 +1,6 @@
 package org.alien.common;
 
-import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;

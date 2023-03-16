@@ -1,10 +1,10 @@
 package org.alien.common.entity.living.species223ode;
 
-import com.asx.mdx.MDX;
-import com.asx.mdx.lib.world.entity.Entities;
-import com.asx.mdx.lib.world.entity.animations.Animation;
-import com.asx.mdx.lib.world.entity.animations.AnimationHandler;
-import com.asx.mdx.lib.world.entity.animations.IAnimated;
+import com.asx.mdx.common.minecraft.entity.Entities;
+import com.asx.mdx.common.minecraft.entity.animations.Animation;
+import com.asx.mdx.common.minecraft.entity.animations.AnimationHandler;
+import com.asx.mdx.common.minecraft.entity.animations.IAnimated;
+import com.asx.mdx.internal.MDX;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityLookHelper;

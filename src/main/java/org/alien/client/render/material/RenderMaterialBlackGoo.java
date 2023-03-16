@@ -1,8 +1,8 @@
 package org.alien.client.render.material;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.Screen;
+import com.asx.mdx.client.Screen;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;

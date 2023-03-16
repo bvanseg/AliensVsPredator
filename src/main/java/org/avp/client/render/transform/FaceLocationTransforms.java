@@ -1,6 +1,6 @@
 package org.avp.client.render.transform;
 
-import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.entity.Entity;
 import org.alien.client.render.entity.living.RenderFacehuggers;
 import org.alien.common.entity.living.engineer.EntityEngineer;

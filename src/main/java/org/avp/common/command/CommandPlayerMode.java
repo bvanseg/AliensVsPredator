@@ -1,6 +1,6 @@
 package org.avp.common.command;
 
-import com.asx.mdx.lib.world.entity.player.Players;
+import com.asx.mdx.common.minecraft.entity.player.Players;
 import net.minecraft.command.CommandBase;
 import net.minecraft.command.CommandException;
 import net.minecraft.command.ICommandSender;

@@ -1,11 +1,11 @@
 package org.predator.client.render;
 
-import com.asx.mdx.lib.client.gui.IAction;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.Screen;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.Screen;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.gui.IAction;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
@@ -22,11 +22,11 @@ public class VisionModeRenderEvent
     @SubscribeEvent
     public void renderTickOverlay(Pre event)
     {
-        if (Game.minecraft().player != null)
+        if (ClientGame.instance.minecraft().player != null)
         {
-            if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR && Game.minecraft().gameSettings.thirdPersonView == 0)
+            if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR && ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0)
             {
-                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == PredatorItems.BIOMASK_CELTIC)
+                if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == PredatorItems.BIOMASK_CELTIC)
                 {
                     OpenGL.pushMatrix();
                     this.currentVisionMode.render();
@@ -41,11 +41,11 @@ public class VisionModeRenderEvent
     @SubscribeEvent
     public void entityRenderEvent(RenderLivingEvent.Pre event)
     {
-        ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
+        ItemStack helmSlot = Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player);
 
-        if (Game.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == PredatorItems.BIOMASK_CELTIC)
+        if (ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == PredatorItems.BIOMASK_CELTIC)
         {
-            if (event.getEntity() != Game.minecraft().player)
+            if (event.getEntity() != ClientGame.instance.minecraft().player)
             {
                 this.currentVisionMode.renderEntityPre(event);
             }
@@ -55,11 +55,11 @@ public class VisionModeRenderEvent
     @SubscribeEvent
     public void entityRenderEvent(RenderLivingEvent.Post event)
     {
-        ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
+        ItemStack helmSlot = Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player);
 
-        if (Game.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == PredatorItems.BIOMASK_CELTIC)
+        if (ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && helmSlot != null && helmSlot.getItem() == PredatorItems.BIOMASK_CELTIC)
         {
-            if (event.getEntity() != Game.minecraft().player)
+            if (event.getEntity() != ClientGame.instance.minecraft().player)
             {
                 this.currentVisionMode.renderEntityPost(event);
             }

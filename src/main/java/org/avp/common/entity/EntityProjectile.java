@@ -1,7 +1,7 @@
 package org.avp.common.entity;
 
-import com.asx.mdx.lib.util.GameSounds;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.sound.GameSounds;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;

@@ -1,6 +1,6 @@
 package org.alien.common.entity.living;
 
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;

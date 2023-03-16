@@ -1,7 +1,7 @@
 package org.avp.client.render.item.firearm;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
@@ -35,7 +35,7 @@ public class RenderItem88MOD4 extends ItemFirearmRenderer<Model88MOD4>
             float glScale = 1F;
             OpenGL.translate(0.25F, 0.16F, -0.5F);
 
-            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
             {
                 OpenGL.translate(-0.77F, 0.25F, 0.35F);
             }
