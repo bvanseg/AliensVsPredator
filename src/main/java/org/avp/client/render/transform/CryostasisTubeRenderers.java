@@ -1,9 +1,9 @@
 package org.avp.client.render.transform;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.MapModelTexture;
 import net.minecraft.entity.Entity;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.entity.living.xenomorph.*;
@@ -36,7 +36,7 @@ public class CryostasisTubeRenderers
                         OpenGL.disableLight();
                     OpenGL.translate(0F, -0.5F, 0F);
                     OpenGL.rotate(90F, 1F, 0F, 0F);
-                    Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+                    ClientGame.instance.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, ClientGame.instance.partialTicks(), false);
                 }
             }
         });
@@ -57,7 +57,7 @@ public class CryostasisTubeRenderers
                         OpenGL.disableLight();
                     OpenGL.translate(0F, -0.5F, 0F);
                     OpenGL.rotate(90F, 1F, 0F, 0F);
-                    Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+                    ClientGame.instance.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, ClientGame.instance.partialTicks(), false);
                 }
             }
         });
@@ -74,7 +74,7 @@ public class CryostasisTubeRenderers
                     OpenGL.translate(0F, 0.75F, 0F);
                     OpenGL.rotate(180F, 1F, 0F, 0F);
                     OpenGL.rotate(23.5F, 0F, 1F, 0F);
-                    Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+                    ClientGame.instance.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, ClientGame.instance.partialTicks(), false);
                 }
             }
         });
@@ -116,7 +116,7 @@ public class CryostasisTubeRenderers
                     OpenGL.translate(0F, -2.75F, depth);
                     OpenGL.translate(0F, 2F, 0F);
                     OpenGL.rotate(90F, 1F, 0F, 0F);
-                    Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+                    ClientGame.instance.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, ClientGame.instance.partialTicks(), false);
 
                 }
                 else if (tile.stasisEntity instanceof EntityMatriarch)

@@ -1,6 +1,6 @@
 package org.alien.common.entity.living.xenomorph;
 
-import com.asx.mdx.lib.world.entity.animations.Animation;
+import com.asx.mdx.common.minecraft.entity.animations.Animation;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;

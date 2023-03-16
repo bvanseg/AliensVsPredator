@@ -1,6 +1,6 @@
 package org.alien.common.entity.ai.brain.task;
 
-import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.common.minecraft.Pos;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;

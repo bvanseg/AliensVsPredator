@@ -1,11 +1,11 @@
 package org.avp.client;
 
-import com.asx.mdx.lib.client.model.SpecialModelBiped;
-import com.asx.mdx.lib.client.model.loaders.WavefrontModelLoader;
-import com.asx.mdx.lib.client.util.Texture;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.client.util.models.wavefront.TriangulatedWavefrontModel;
+import com.asx.mdx.client.io.loaders.WavefrontModelLoader;
+import com.asx.mdx.client.render.model.MapModelTexture;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.client.render.model.SpecialModelBiped;
+import com.asx.mdx.client.render.model.texture.Texture;
+import com.asx.mdx.client.render.model.wavefront.TriangulatedWavefrontModel;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.entity.ModelSporePod;
@@ -182,7 +182,7 @@ public class Resources
         public final MapModelTexture<ModelUltramorph>             ULTRAMORPH                     = new MapModelTexture(new ModelUltramorph(), new Texture(AVP.Properties.ID, "textures/mob/ultramorph.png"));
 
         /** Wavefront models **/
-        public final TriangulatedWavefrontModel                   M577_APC                       = WavefrontModelLoader.load(AVP.class, AVP.Properties.ID, "m577apc", "/assets/avp/models/m577apc");
+        public final TriangulatedWavefrontModel M577_APC                                         = WavefrontModelLoader.load(AVP.class, AVP.Properties.ID, "m577apc", "/assets/avp/models/m577apc");
 
         public final MapModelTexture<ModelNetworkModuleRack>      NETWORKMODULERACK              = new MapModelTexture(new ModelNetworkModuleRack(), new Texture(AVP.Properties.ID, "textures/tile/networkmodulerack.png"));
         public final MapModelTexture<ModelNetworkModuleRack>      NETWORKMODULERACK_ON           = new MapModelTexture(new ModelNetworkModuleRack(), new Texture(AVP.Properties.ID, "textures/tile/networkmodulerack_on.png"));

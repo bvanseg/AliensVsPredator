@@ -1,7 +1,7 @@
 package org.avp.common;
 
-import com.asx.mdx.config.*;
-import com.asx.mdx.core.mods.IPreInitEvent;
+import com.asx.mdx.common.io.config.*;
+import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.FMLCommonHandler;

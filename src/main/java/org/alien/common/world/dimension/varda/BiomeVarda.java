@@ -1,6 +1,6 @@
 package org.alien.common.world.dimension.varda;
 
-import com.asx.mdx.lib.world.Worlds;
+import com.asx.mdx.common.minecraft.Worlds;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

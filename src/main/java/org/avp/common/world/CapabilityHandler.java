@@ -1,6 +1,6 @@
 package org.avp.common.world;
 
-import com.asx.mdx.core.mods.IPreInitEvent;
+import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EntityTracker;

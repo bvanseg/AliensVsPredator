@@ -1,8 +1,8 @@
 package org.avp.client.render.tile;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.MapModelTexture;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraftforge.fml.relauncher.Side;
@@ -100,7 +100,7 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
                     OpenGL.disableLight();
                 }
 
-                Game.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, Game.partialTicks(), false);
+                ClientGame.instance.renderManager().renderEntity(tile.stasisEntity, 0, 0, 0, 0F, ClientGame.instance.partialTicks(), false);
             }
         }
     }

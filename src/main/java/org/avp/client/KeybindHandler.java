@@ -1,7 +1,7 @@
 package org.avp.client;
 
-import com.asx.mdx.core.mods.IPostInitEvent;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.common.Game;
+import com.asx.mdx.common.mods.IPostInitEvent;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import org.lwjgl.input.Keyboard;
@@ -18,8 +18,8 @@ public class KeybindHandler implements IPostInitEvent
     @Override
     public void post(FMLPostInitializationEvent event)
     {
-        specialSecondary = Game.registerKeybinding("item.special.secondary", Keyboard.KEY_R, KEYBIND_GROUP);
-        specialPrimary = Game.registerKeybinding("item.special.primary", Keyboard.KEY_F, KEYBIND_GROUP);
-        genericSpecial = Game.registerKeybinding("generic.special", Keyboard.KEY_V, KEYBIND_GROUP);
+        specialSecondary = Game.instance.registerKeybinding("item.special.secondary", Keyboard.KEY_R, KEYBIND_GROUP);
+        specialPrimary = Game.instance.registerKeybinding("item.special.primary", Keyboard.KEY_F, KEYBIND_GROUP);
+        genericSpecial = Game.instance.registerKeybinding("generic.special", Keyboard.KEY_V, KEYBIND_GROUP);
     }
 }

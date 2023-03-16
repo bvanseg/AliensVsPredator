@@ -1,6 +1,6 @@
 package org.avp.common.network.packet.server;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
@@ -41,12 +41,12 @@ public class PacketOpenGui implements IMessage, IMessageHandler<PacketOpenGui, P
     @SideOnly(Side.CLIENT)
     public PacketOpenGui onMessage(PacketOpenGui packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(new Runnable()
+        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                EntityPlayer player = Game.minecraft().player;
+                EntityPlayer player = ClientGame.instance.minecraft().player;
                 FMLNetworkHandler.openGui(player, AVP.instance, packet.guiIdentifier, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
             }
         });

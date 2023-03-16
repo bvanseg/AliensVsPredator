@@ -1,7 +1,7 @@
 package org.avp.client.model.tile;
 
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 import org.avp.common.tile.TileEntityTurret;
 
@@ -171,8 +171,8 @@ public class ModelTurret extends Model<TileEntityTurret>
             float rotationPitch = -obj.getLookHelper().getRotationPitch() / (180F / (float) Math.PI);
             float rotationPitchPrev = -obj.getLookHelper().getRotationPrev().pitch / (180F / (float) Math.PI);
 
-            rotationYaw = yawOffset + rotationYawPrev + (rotationYaw - rotationYawPrev) * Game.partialTicks();
-            rotationPitch = rotationPitchPrev + (rotationPitch - rotationPitchPrev) * Game.partialTicks();
+            rotationYaw = yawOffset + rotationYawPrev + (rotationYaw - rotationYawPrev) * ClientGame.instance.partialTicks();
+            rotationPitch = rotationPitchPrev + (rotationPitch - rotationPitchPrev) * ClientGame.instance.partialTicks();
 
             barrel.rotateAngleY = rotationYaw;
             barrel.rotateAngleX = rotationPitch;

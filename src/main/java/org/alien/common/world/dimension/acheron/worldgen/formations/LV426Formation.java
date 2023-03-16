@@ -1,6 +1,6 @@
 package org.alien.common.world.dimension.acheron.worldgen.formations;
 
-import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import org.alien.common.AlienBlocks;

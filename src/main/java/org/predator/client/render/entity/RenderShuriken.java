@@ -1,8 +1,8 @@
 package org.predator.client.render.entity;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -30,7 +30,7 @@ public class RenderShuriken extends Render<EntityShuriken>
             
             if (!entity.isInGround())
             {
-                OpenGL.rotate(360 - (entity.world.getTotalWorldTime() % 360 + Game.partialTicks()) * 60, 0, 1, 0);
+                OpenGL.rotate(360 - (entity.world.getTotalWorldTime() % 360 + ClientGame.instance.partialTicks()) * 60, 0, 1, 0);
             }
             
             OpenGL.translate(-0.5F, 0.0F, -0.5F);

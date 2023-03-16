@@ -1,7 +1,7 @@
 package org.avp.client.model.tile;
 
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import org.avp.common.tile.TileEntityRepulsionGenerator;
@@ -138,7 +138,7 @@ public class ModelRepulsionGenerator extends Model<TileEntityRepulsionGenerator>
         if (obj instanceof TileEntityRepulsionGenerator)
         {
             TileEntityRepulsionGenerator generator = (TileEntityRepulsionGenerator) obj;
-            this.rotor.rotateAngleY = ((Minecraft.getMinecraft().player.world.getTotalWorldTime() % 360) + Game.partialTicks()) * (generator.getRotationSpeed());
+            this.rotor.rotateAngleY = ((Minecraft.getMinecraft().player.world.getTotalWorldTime() % 360) + ClientGame.instance.partialTicks()) * (generator.getRotationSpeed());
         }
 
         this.wireframe2.render(DEFAULT_SCALE);

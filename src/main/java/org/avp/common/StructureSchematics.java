@@ -1,8 +1,8 @@
 package org.avp.common;
 
-import com.asx.mdx.core.mods.IInitEvent;
-import com.asx.mdx.lib.world.SchematicLoader;
-import com.asx.mdx.lib.world.storage.Schematic;
+import com.asx.mdx.common.minecraft.storage.Schematic;
+import com.asx.mdx.common.minecraft.structure.SchematicLoader;
+import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import org.avp.AVP;
 

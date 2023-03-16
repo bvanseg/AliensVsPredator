@@ -1,7 +1,7 @@
 package org.alien.common;
 
-import com.asx.mdx.core.mods.IPreInitEvent;
-import com.asx.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.common.minecraft.item.HookedItem;
+import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;

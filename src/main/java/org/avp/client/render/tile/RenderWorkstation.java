@@ -1,8 +1,8 @@
 package org.avp.client.render.tile;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.system.SystemInfo;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.common.system.SystemInfo;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.apache.commons.lang3.SystemUtils;
 import org.avp.client.Resources;

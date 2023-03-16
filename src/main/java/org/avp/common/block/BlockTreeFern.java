@@ -1,6 +1,6 @@
 package org.avp.common.block;
 
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;

@@ -1,6 +1,6 @@
 package org.avp.client.input;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,7 +30,7 @@ public class InputHandler
     @SubscribeEvent
     public void clientTick(ClientTickEvent event)
     {
-        if (Game.minecraft().player != null)
+        if (ClientGame.instance.minecraft().player != null)
         {
             for (IInputHandler ih : this.inputHandlers)
             {

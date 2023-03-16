@@ -1,6 +1,6 @@
 package org.avp.client.render;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -13,7 +13,7 @@ public class RenderPlayerHotbarAPCEvent
     @SubscribeEvent
     public void onRenderGameOverlayEvent(RenderGameOverlayEvent.Pre event)
     {
-        if (Game.minecraft().player.isRiding() && Game.minecraft().player.getRidingEntity()instanceof EntityAPC)
+        if (ClientGame.instance.minecraft().player.isRiding() && ClientGame.instance.minecraft().player.getRidingEntity()instanceof EntityAPC)
         {
             if (event.getType() == ElementType.HOTBAR)
             {

@@ -1,7 +1,7 @@
 package org.avp.client.render;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
@@ -26,7 +26,7 @@ public class PlayerModeRenderEvent
     {
         public RenderPlayer2()
         {
-            super(Game.renderManager(), new ModelBiped(), 0F);
+            super(ClientGame.instance.renderManager(), new ModelBiped(), 0F);
         }
         
         @Override

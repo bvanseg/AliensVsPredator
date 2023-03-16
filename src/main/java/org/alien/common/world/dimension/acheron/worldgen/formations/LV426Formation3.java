@@ -1,6 +1,6 @@
 package org.alien.common.world.dimension.acheron.worldgen.formations;
 
-import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.common.minecraft.Pos;
 
 import java.util.ArrayList;
 import java.util.List;

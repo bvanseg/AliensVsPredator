@@ -1,6 +1,6 @@
 package org.avp.common.entity;
 
-import com.asx.mdx.lib.util.GameSounds;
+import com.asx.mdx.client.sound.GameSounds;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

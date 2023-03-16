@@ -1,6 +1,6 @@
 package org.alien.client.model.entity.living;
 
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
 import org.alien.common.entity.living.xenomorph.EntityPraetorian;

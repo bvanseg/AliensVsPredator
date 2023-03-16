@@ -1,8 +1,8 @@
 package org.alien.client.render.entity;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
@@ -58,7 +58,7 @@ public class RenderAcidPool extends Render<EntityAcidPool>
                     for (int blockZ = MathHelper.floor(renderZ - cover); blockZ <= MathHelper.floor(renderZ + cover); ++blockZ)
                     {
                         BlockPos pos = new BlockPos(blockX, blockY - 1, blockZ);
-                        IBlockState blockState = Game.minecraft().player.world.getBlockState(pos);
+                        IBlockState blockState = ClientGame.instance.minecraft().player.world.getBlockState(pos);
 
                         if (blockState.getBlock() != Blocks.AIR)
                         {
@@ -79,7 +79,7 @@ public class RenderAcidPool extends Render<EntityAcidPool>
 
     private void drawOnBlock(IBlockState state, double posX, double posY, double posZ, BlockPos pos, float yaw, float scale, double partialX, double partialY, double partialZ, float opacity)
     {
-        AxisAlignedBB boundingbox = state.getCollisionBoundingBox(Game.minecraft().world, pos);
+        AxisAlignedBB boundingbox = state.getCollisionBoundingBox(ClientGame.instance.minecraft().world, pos);
 
         if (boundingbox != null)
         {

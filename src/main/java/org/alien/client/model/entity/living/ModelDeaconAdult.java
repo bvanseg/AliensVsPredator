@@ -1,9 +1,9 @@
 package org.alien.client.model.entity.living;
 
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.model.Model;
 import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
 
-import static com.asx.mdx.lib.client.model.animations.AnimationHelper.*;
+import static com.asx.mdx.client.render.model.animations.AnimationHelper.*;
 
 public class ModelDeaconAdult extends Model<EntityDeaconAdult>
 {

@@ -1,7 +1,7 @@
 package org.avp.common.tile;
 
-import com.asx.mdx.lib.world.entity.Entities;
-import com.asx.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.common.minecraft.entity.Entities;
+import com.asx.mdx.common.minecraft.tile.IRotatableYAxis;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;

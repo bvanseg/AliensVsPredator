@@ -1,7 +1,7 @@
 package org.avp.common.world;
 
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.model.MapModelTexture;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

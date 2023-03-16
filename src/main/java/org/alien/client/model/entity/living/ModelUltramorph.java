@@ -1,7 +1,7 @@
 package org.alien.client.model.entity.living;
 
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
@@ -315,7 +315,7 @@ public class ModelUltramorph extends Model<EntityUltramorph>
 
         float swingProgress = swingProgress(obj);
         float swingProgressPrev = swingProgressPrev(obj);
-        float tailAngle = MathHelper.cos((Minecraft.getMinecraft().world.getTotalWorldTime() % 360 + Game.partialTicks()) * (base != null && base.motionX + base.motionZ != 0 ? 0.67F : 0.07F));
+        float tailAngle = MathHelper.cos((Minecraft.getMinecraft().world.getTotalWorldTime() % 360 + ClientGame.instance.partialTicks()) * (base != null && base.motionX + base.motionZ != 0 ? 0.67F : 0.07F));
 
         if (xenomorph != null)
         {
@@ -323,11 +323,11 @@ public class ModelUltramorph extends Model<EntityUltramorph>
             float lowerJawAngle = XenomorphJawState.interpolateLowerJawAngle(xenomorph.getOuterJawProgress());
             float innerJawAngle = XenomorphJawState.interpolateInnerJawAngle(xenomorph.getInnerJawProgress());
 
-            this.jawLower.rotateAngleX = (float) Math.toRadians(lowerJawAngle * Game.partialTicks()) / Game.partialTicks();
+            this.jawLower.rotateAngleX = (float) Math.toRadians(lowerJawAngle * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
             this.innerJaw.rotationPointY = 3.725F;
-            this.innerJaw.rotateAngleX = (float) Math.toRadians((10 + innerJawAngle) * Game.partialTicks()) / Game.partialTicks();
-            this.innerJaw.offsetY = (0.15F * innerJawDistance * Game.partialTicks()) / Game.partialTicks();
-            this.innerJaw.offsetZ = (-0.1F * innerJawDistance * Game.partialTicks()) / Game.partialTicks();
+            this.innerJaw.rotateAngleX = (float) Math.toRadians((10 + innerJawAngle) * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
+            this.innerJaw.offsetY = (0.15F * innerJawDistance * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
+            this.innerJaw.offsetZ = (-0.1F * innerJawDistance * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
         }
 
         this.head1.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;

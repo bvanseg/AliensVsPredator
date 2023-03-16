@@ -1,10 +1,10 @@
 package org.avp.common.block;
 
-import com.asx.mdx.lib.client.gui.notifications.Notification;
-import com.asx.mdx.lib.client.gui.notifications.Notification.DynamicNotification;
-import com.asx.mdx.lib.client.gui.notifications.Notifications;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.gui.notifications.Notification;
+import com.asx.mdx.client.render.gui.notifications.Notification.DynamicNotification;
+import com.asx.mdx.client.render.gui.notifications.Notifications;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -65,7 +65,7 @@ public class BlockBlastdoor extends Block
                 {
                     if (blastdoor.playerHoldingRequiredSecurityTuner(player))
                     {
-                        if (FMLCommonHandler.instance().getSide() == Side.CLIENT && player.getName().equalsIgnoreCase(Game.minecraft().player.getName()))
+                        if (FMLCommonHandler.instance().getSide() == Side.CLIENT && player.getName().equalsIgnoreCase(ClientGame.instance.minecraft().player.getName()))
                             showAdministrationGUI(blastdoor);
                     }
                 }
@@ -75,7 +75,7 @@ public class BlockBlastdoor extends Block
                 }
                 else if (blastdoor.isLocked() && blastdoor.isOperational())
                 {
-                    if (FMLCommonHandler.instance().getSide() == Side.CLIENT && player.getName().equalsIgnoreCase(Game.minecraft().player.getName()))
+                    if (FMLCommonHandler.instance().getSide() == Side.CLIENT && player.getName().equalsIgnoreCase(ClientGame.instance.minecraft().player.getName()))
                         showUnlockGUI(blastdoor);
                 }
             }

@@ -1,12 +1,12 @@
 package org.avp.common.tile;
 
-import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.util.MDXMath;
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
-import com.asx.mdx.lib.world.tile.IRotatableXAxis;
-import com.asx.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.entity.fx.EntityFXElectricArc;
+import com.asx.mdx.common.math.MDXMath;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.entity.Entities;
+import com.asx.mdx.common.minecraft.tile.IRotatableXAxis;
+import com.asx.mdx.common.minecraft.tile.IRotatableYAxis;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -272,7 +272,7 @@ public class TileEntityTeslaCoil extends TileEntityElectrical implements Voltage
             if (this.world.isRemote)
             {
                 EntityFXElectricArc arc = new EntityFXElectricArc(world, origin.x, origin.y, origin.z, targetX, targetY, targetZ, age, 3F + rand.nextInt(7), 0.05F, (float) (rand.nextFloat() * 0.25F) + (float) arcWidth, color);
-                Game.minecraft().effectRenderer.addEffect(arc);
+                ClientGame.instance.minecraft().effectRenderer.addEffect(arc);
             }
         }
     }

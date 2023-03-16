@@ -1,8 +1,8 @@
 package org.alien.common.item;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -85,11 +85,11 @@ public class ItemArmorXeno extends ItemArmor
     {
         boolean canClimbPrev = specialPlayer.canClimb();
 
-        if (Game.minecraft().gameSettings.keyBindJump.isPressed())
+        if (ClientGame.instance.minecraft().gameSettings.keyBindJump.isPressed())
         {
             specialPlayer.setCanClimb(true);
         }
-        else if (!Game.minecraft().gameSettings.keyBindJump.isPressed())
+        else if (!ClientGame.instance.minecraft().gameSettings.keyBindJump.isPressed())
         {
             specialPlayer.setCanClimb(false);
         }

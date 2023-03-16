@@ -1,9 +1,9 @@
 package org.avp.common.item;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.Worlds;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-import com.asx.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.Worlds;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
+import com.asx.mdx.common.minecraft.item.HookedItem;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

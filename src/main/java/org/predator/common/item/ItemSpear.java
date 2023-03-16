@@ -1,7 +1,7 @@
 package org.predator.common.item;
 
-import com.asx.mdx.lib.util.GameSounds;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.client.sound.GameSounds;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;

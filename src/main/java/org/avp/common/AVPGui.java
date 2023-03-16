@@ -1,6 +1,6 @@
 package org.avp.common;
 
-import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

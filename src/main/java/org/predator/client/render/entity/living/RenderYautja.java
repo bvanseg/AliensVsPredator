@@ -1,8 +1,8 @@
 package org.predator.client.render.entity.living;
 
-import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.entity.RenderLivingWrapper;
+import com.asx.mdx.client.render.model.MapModelTexture;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.predator.client.render.layer.LayerYautjaCloakStaticArc;

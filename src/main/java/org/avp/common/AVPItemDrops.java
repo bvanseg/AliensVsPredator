@@ -1,7 +1,7 @@
 package org.avp.common;
 
-import com.asx.mdx.lib.world.entity.ItemDrop;
-import com.asx.mdx.lib.world.entity.ItemDrop.DropType;
+import com.asx.mdx.common.minecraft.entity.ItemDrop;
+import com.asx.mdx.common.minecraft.entity.ItemDrop.DropType;
 import net.minecraft.item.ItemStack;
 import org.alien.common.AlienBlocks;
 import org.alien.common.AlienItems;

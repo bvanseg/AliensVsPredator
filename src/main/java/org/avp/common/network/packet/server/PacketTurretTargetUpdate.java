@@ -1,6 +1,6 @@
 package org.avp.common.network.packet.server;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
@@ -44,8 +44,8 @@ public class PacketTurretTargetUpdate implements IMessage, IMessageHandler<Packe
     @Override
     public PacketTurretTargetUpdate onMessage(PacketTurretTargetUpdate packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(() -> {
-        	TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+        	TileEntityTurret tile = (TileEntityTurret) ClientGame.instance.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
             if (tile != null) {
                 tile.getTargetHelper().setTargetEntity(packet);

@@ -1,8 +1,8 @@
 package org.avp.client.render;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
@@ -37,11 +37,11 @@ public class BossBarEvent
     @SubscribeEvent
     public void clientTick(ClientTickEvent event)
     {
-        if (Game.minecraft().player != null)
+        if (ClientGame.instance.minecraft().player != null)
         {
-            if (Game.minecraft().player.world.getTotalWorldTime() % 40 == 0)
+            if (ClientGame.instance.minecraft().player.world.getTotalWorldTime() % 40 == 0)
             {
-                for (Object o : Game.minecraft().world.loadedEntityList)
+                for (Object o : ClientGame.instance.minecraft().world.loadedEntityList)
                 {
                     if (o instanceof EntityLivingBase)
                     {

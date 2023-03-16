@@ -1,9 +1,9 @@
 package org.alien.common;
 
-import com.asx.mdx.core.mods.IInitEvent;
-import com.asx.mdx.lib.world.Dimension;
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.common.minecraft.Dimension;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.entity.Entities;
+import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;

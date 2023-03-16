@@ -1,7 +1,7 @@
 package org.alien.client;
 
-import com.asx.mdx.core.mods.IPreInitEvent;
-import com.asx.mdx.lib.util.Sound;
+import com.asx.mdx.client.sound.Sound;
+import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.lib.registry.SoundRegistryUtil;
 
@@ -13,7 +13,7 @@ public class AlienSounds implements IPreInitEvent
     public static final AlienSounds instance = new AlienSounds();
 
     private AlienSounds() {}
-    public static final Sound  ALIEN_LIVING                 = SoundRegistryUtil.createSound("xeno.living");
+    public static final Sound ALIEN_LIVING                 = SoundRegistryUtil.createSound("xeno.living");
     public static final Sound  ALIEN_HURT                   = SoundRegistryUtil.createSound("xeno.hurt");
     public static final Sound  ALIEN_DEATH                  = SoundRegistryUtil.createSound("xeno.death");
     

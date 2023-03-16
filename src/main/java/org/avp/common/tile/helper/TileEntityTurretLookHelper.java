@@ -1,8 +1,8 @@
 package org.avp.common.tile.helper;
 
-import com.asx.mdx.lib.client.util.Rotation;
-import com.asx.mdx.lib.util.MDXMath;
-import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.common.math.MDXMath;
+import com.asx.mdx.common.math.Rotation;
+import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
