@@ -354,10 +354,6 @@ public class ModelOvamorphGiger extends Model<EntityOvamorphGiger>
     {
         updateAnimations(ovamorph);
         
-        if (ovamorph.hasHatched())
-        {
-        }
-        
         animator.setAnimation(EntityOvamorphGiger.HATCH_ANIMATION);
         {
             animator.startKeyframe(20 * 3);

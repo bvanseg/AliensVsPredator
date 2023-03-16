@@ -41,6 +41,8 @@ public class NearestAttackableTargetBrainSensor extends AbstractBrainSensor<Enti
 
 			if (!targets.isEmpty()) {
 		        ctx.getBrain().remember(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET, targets.get(0));
+			} else {
+				ctx.getBrain().forget(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
 			}
 		}
 	}
