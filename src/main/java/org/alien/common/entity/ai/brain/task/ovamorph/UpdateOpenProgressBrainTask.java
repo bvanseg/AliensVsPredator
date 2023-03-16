@@ -56,6 +56,5 @@ public class UpdateOpenProgressBrainTask extends AbstractBrainTask<EntityBrainCo
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
 		int newHatchProgress = MathHelper.clamp(ovamorph.getOpenProgress() + 1, -EntityOvamorph.MAX_OPEN_PROGRESS, EntityOvamorph.MAX_OPEN_PROGRESS);
 		ovamorph.setOpenProgress(newHatchProgress);
-		System.out.println("OPEN PROGRESS: " + ovamorph.getOpenProgress() + " / " + EntityOvamorph.MAX_OPEN_PROGRESS);
 	}
 }

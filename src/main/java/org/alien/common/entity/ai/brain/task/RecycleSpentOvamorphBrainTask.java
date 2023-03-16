@@ -87,7 +87,7 @@ public class RecycleSpentOvamorphBrainTask extends AbstractBrainTask<EntityBrain
 				.collect(Collectors.toList());
 
 		for (EntityOvamorph ovamorph: ovamorphs) {
-			if (!ovamorph.containsFacehugger)
+			if (!ovamorph.containsFacehugger())
 			{
 				this.targetOvamorph = ovamorph;
 				break;
