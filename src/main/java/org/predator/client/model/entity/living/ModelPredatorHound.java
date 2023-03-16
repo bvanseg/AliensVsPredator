@@ -1,6 +1,6 @@
 package org.predator.client.model.entity.living;
 
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 import org.predator.common.entity.living.EntityPredatorHound;
 

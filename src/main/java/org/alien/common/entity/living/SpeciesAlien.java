@@ -1,10 +1,10 @@
 package org.alien.common.entity.living;
 
-import com.asx.mdx.lib.world.Worlds;
-import com.asx.mdx.lib.world.entity.Entities;
-import com.asx.mdx.lib.world.entity.ItemDrop;
-import com.asx.mdx.lib.world.entity.animations.Animation;
-import com.asx.mdx.lib.world.entity.animations.IAnimated;
+import com.asx.mdx.common.minecraft.Worlds;
+import com.asx.mdx.common.minecraft.entity.Entities;
+import com.asx.mdx.common.minecraft.entity.ItemDrop;
+import com.asx.mdx.common.minecraft.entity.animations.Animation;
+import com.asx.mdx.common.minecraft.entity.animations.IAnimated;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityItem;
@@ -35,7 +35,7 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     /** Animations **/
     public int                                  frame;
     private int                                 animationTick;
-    protected Animation                         animation         = NO_ANIMATION;
+    protected Animation animation         =     NO_ANIMATION;
     protected boolean                           isAnimationPaused = false;
 
     public SpeciesAlien(World world)

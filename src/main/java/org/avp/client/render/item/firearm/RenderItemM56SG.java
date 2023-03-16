@@ -1,6 +1,6 @@
 package org.avp.client.render.item.firearm;
 
-import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;

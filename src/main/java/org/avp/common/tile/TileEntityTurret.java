@@ -1,9 +1,9 @@
 package org.avp.common.tile;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
-import com.asx.mdx.lib.world.storage.NBTStorage;
-import com.asx.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.entity.Entities;
+import com.asx.mdx.common.minecraft.storage.NBTStorage;
+import com.asx.mdx.common.minecraft.tile.IRotatableYAxis;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;

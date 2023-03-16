@@ -1,6 +1,6 @@
 package org.avp.common.network.packet.client;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -37,12 +37,12 @@ public class PacketPlayerModeUpdate implements IMessage, IMessageHandler<PacketP
     @Override
     public PacketPlayerModeUpdate onMessage(PacketPlayerModeUpdate packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(new Runnable()
+        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) Game.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
+                SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) ClientGame.instance.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
                 specialPlayer.setPlayerMode(PlayerMode.get(packet.mode));
             }
         });

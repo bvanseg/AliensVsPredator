@@ -1,6 +1,6 @@
 package org.avp.common.item.crafting;
 
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;

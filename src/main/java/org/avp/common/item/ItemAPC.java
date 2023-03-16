@@ -1,7 +1,7 @@
 package org.avp.common.item;
 
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.minecraft.item.HookedItem;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -25,7 +25,7 @@ public class ItemAPC extends HookedItem
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-        float partialTicks = Game.partialTicks();
+        float partialTicks = ClientGame.instance.partialTicks();
         float pitch = playerIn.prevRotationPitch + (playerIn.rotationPitch - playerIn.prevRotationPitch) * partialTicks;
         float yaw = playerIn.prevRotationYaw + (playerIn.rotationYaw - playerIn.prevRotationYaw) * partialTicks;
         double dX = playerIn.prevPosX + (playerIn.posX - playerIn.prevPosX) * (double) partialTicks;

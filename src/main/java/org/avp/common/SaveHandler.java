@@ -1,6 +1,6 @@
 package org.avp.common;
 
-import com.asx.mdx.lib.world.storage.NBTStorage;
+import com.asx.mdx.common.minecraft.storage.NBTStorage;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.WorldEvent;

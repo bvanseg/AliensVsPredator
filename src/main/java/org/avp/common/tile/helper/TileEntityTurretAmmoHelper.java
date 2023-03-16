@@ -1,7 +1,7 @@
 package org.avp.common.tile.helper;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.Item;

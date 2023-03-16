@@ -1,8 +1,8 @@
 package org.alien.common.entity.living.xenomorph;
 
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.common.Game;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -114,7 +114,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
             }
 
         }
-        else if (Game.isDevEnvironment())
+        else if (Game.instance.isDevEnvironment())
         {
             System.out.println("ERROR: NullPointerException during chestburster evolve state.");
             System.out.println("MATURE STATE: " + this.getMatureState());

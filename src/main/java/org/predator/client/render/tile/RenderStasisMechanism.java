@@ -1,7 +1,7 @@
 package org.predator.client.render.tile;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.client.Resources;
 import org.avp.common.tile.TileEntityStasisMechanism;
@@ -24,7 +24,7 @@ public class RenderStasisMechanism extends TileEntitySpecialRenderer<TileEntityS
 
             Resources.instance.models().STASIS_MECHANISM.draw(tile);
 
-            if (Game.minecraft().gameSettings.fancyGraphics)
+            if (ClientGame.instance.minecraft().gameSettings.fancyGraphics)
             {
                 OpenGL.disableLight();
                 Resources.instance.models().STASIS_MECHANISM_MASK.draw(tile);

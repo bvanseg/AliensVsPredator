@@ -1,6 +1,6 @@
 package org.avp.common.network.packet.server;
 
-import com.asx.mdx.lib.util.MDXMath;
+import com.asx.mdx.common.math.MDXMath;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.MathHelper;

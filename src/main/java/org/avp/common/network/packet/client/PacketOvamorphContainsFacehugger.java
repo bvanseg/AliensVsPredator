@@ -1,6 +1,6 @@
 package org.avp.common.network.packet.client;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
@@ -42,12 +42,12 @@ public class PacketOvamorphContainsFacehugger implements IMessage, IMessageHandl
     @Override
     public PacketOvamorphContainsFacehugger onMessage(PacketOvamorphContainsFacehugger packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(new Runnable()
+        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                World world = Game.minecraft().player.world;
+                World world = ClientGame.instance.minecraft().player.world;
                 Entity entity = world.getEntityByID(packet.entityId);
 
                 if (world != null && entity != null && entity instanceof EntityOvamorph)

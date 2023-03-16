@@ -1,6 +1,6 @@
 package org.avp.client.render.entity;
 
-import com.asx.mdx.lib.client.util.OpenGL;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;

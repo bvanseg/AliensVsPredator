@@ -1,7 +1,7 @@
 package org.avp.client.render.item.firearm;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.settings.GameSettings;
@@ -15,7 +15,7 @@ import org.lwjgl.input.Mouse;
 
 public class RenderItemSniper extends ItemFirearmRenderer<ModelSniper>
 {
-    private float defaultFOV = Game.minecraft().gameSettings.getOptionFloatValue(GameSettings.Options.FOV);
+    private float defaultFOV = ClientGame.instance.minecraft().gameSettings.getOptionFloatValue(GameSettings.Options.FOV);
 
     public RenderItemSniper()
     {
@@ -33,22 +33,22 @@ public class RenderItemSniper extends ItemFirearmRenderer<ModelSniper>
 
     public void renderZoom()
     {
-        if (Game.minecraft().gameSettings.thirdPersonView == 0 && Game.minecraft().player.getHeldItemMainhand() != null)
+        if (ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && ClientGame.instance.minecraft().player.getHeldItemMainhand() != null)
         {
-            if (Game.minecraft().player.getHeldItemMainhand().getItem() == AVPItems.ITEM_SNIPER)
+            if (ClientGame.instance.minecraft().player.getHeldItemMainhand().getItem() == AVPItems.ITEM_SNIPER)
             {
-                if (!Game.minecraft().inGameHasFocus)
+                if (!ClientGame.instance.minecraft().inGameHasFocus)
                 {
-                    this.defaultFOV = Game.minecraft().gameSettings.getOptionFloatValue(GameSettings.Options.FOV);
+                    this.defaultFOV = ClientGame.instance.minecraft().gameSettings.getOptionFloatValue(GameSettings.Options.FOV);
                 }
 
-                if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
+                if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
                 {
-                    Game.minecraft().gameSettings.setOptionFloatValue(GameSettings.Options.FOV, 9F);
+                    ClientGame.instance.minecraft().gameSettings.setOptionFloatValue(GameSettings.Options.FOV, 9F);
                 }
-                else if (Game.minecraft().inGameHasFocus)
+                else if (ClientGame.instance.minecraft().inGameHasFocus)
                 {
-                    Game.minecraft().gameSettings.setOptionFloatValue(GameSettings.Options.FOV, defaultFOV);
+                    ClientGame.instance.minecraft().gameSettings.setOptionFloatValue(GameSettings.Options.FOV, defaultFOV);
                 }
             }
         }
@@ -70,7 +70,7 @@ public class RenderItemSniper extends ItemFirearmRenderer<ModelSniper>
         float glScale = 1.5F;
         OpenGL.translate(0F, 0.35F, -0.3F);
 
-        if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
+        if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
         {
             this.getModel().getModel().setFirstPerson(true);
             OpenGL.translate(-0.5125F, 0.095F, 0.62F);

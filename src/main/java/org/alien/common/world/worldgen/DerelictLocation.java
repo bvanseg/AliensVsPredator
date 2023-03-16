@@ -1,7 +1,7 @@
 package org.alien.common.world.worldgen;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.StructureGenerationHandler;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.structure.StructureGenerationHandler;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 

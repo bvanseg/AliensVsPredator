@@ -1,8 +1,8 @@
 package org.alien;
 
-import com.asx.mdx.core.mods.IInitEvent;
-import com.asx.mdx.core.mods.IPostInitEvent;
-import com.asx.mdx.core.mods.IPreInitEvent;
+import com.asx.mdx.common.mods.IInitEvent;
+import com.asx.mdx.common.mods.IPostInitEvent;
+import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;

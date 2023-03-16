@@ -1,7 +1,7 @@
 package org.avp.common.entity;
 
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -200,7 +200,7 @@ public class EntityAPC extends Entity
     {
         if (this.world.isRemote)
         {
-            if (Game.minecraft().player.isRiding() && Game.minecraft().player.getRidingEntity() instanceof EntityAPC)
+            if (ClientGame.instance.minecraft().player.isRiding() && ClientGame.instance.minecraft().player.getRidingEntity() instanceof EntityAPC)
             {
                 if (KeybindHandler.instance.specialPrimary.isPressed())
                 {
@@ -486,11 +486,11 @@ public class EntityAPC extends Entity
 
             if (this.world.isRemote && Entities.getEntityRiddenBy(this) instanceof EntityPlayer)
             {
-                if (Game.minecraft().gameSettings.thirdPersonView == 0)
+                if (ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0)
                 {
-                    if (Game.minecraft().player == Entities.getEntityRiddenBy(this))
+                    if (ClientGame.instance.minecraft().player == Entities.getEntityRiddenBy(this))
                     {
-                        Game.minecraft().gameSettings.thirdPersonView = 1;
+                        ClientGame.instance.minecraft().gameSettings.thirdPersonView = 1;
                     }
                 }
             }

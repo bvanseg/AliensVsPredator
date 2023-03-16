@@ -1,15 +1,15 @@
 package org.predator.client.model.entity;
 
-import com.asx.mdx.lib.client.util.Color;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.Vertex;
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.Color;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.client.render.model.Vertex;
 import org.lwjgl.opengl.GL11;
 
 public class ModelPlasma extends Model<Object>
 {
-    private Color  color;
+    private Color color;
     private float  scale;
     public boolean drawInternalVertices = true;
 

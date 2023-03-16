@@ -1,6 +1,6 @@
 package org.alien.common.world.dimension;
 
-import com.asx.mdx.lib.client.util.Draw;
+import com.asx.mdx.client.render.Draw;
 
 import java.util.Random;
 

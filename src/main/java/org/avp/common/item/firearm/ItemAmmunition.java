@@ -1,6 +1,6 @@
 package org.avp.common.item.firearm;
 
-import com.asx.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.common.minecraft.item.HookedItem;
 
 public class ItemAmmunition extends HookedItem {
 	protected Classification ammoClass;

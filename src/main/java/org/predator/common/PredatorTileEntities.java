@@ -1,6 +1,6 @@
 package org.predator.common;
 
-import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;

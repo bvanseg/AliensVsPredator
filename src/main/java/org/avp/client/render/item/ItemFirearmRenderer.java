@@ -1,8 +1,8 @@
 package org.avp.client.render.item;
 
-import com.asx.mdx.lib.client.util.ItemRenderer;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.item.ItemRenderer;
+import com.asx.mdx.client.render.model.MapModelTexture;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import org.avp.common.item.firearm.ItemFirearm;

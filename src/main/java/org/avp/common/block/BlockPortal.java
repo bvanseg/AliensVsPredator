@@ -1,7 +1,7 @@
 package org.avp.common.block;
 
-import com.asx.mdx.lib.world.Dimension;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.common.minecraft.Dimension;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

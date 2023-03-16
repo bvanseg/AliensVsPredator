@@ -1,9 +1,9 @@
 package org.avp.client.render.entity.living;
 
-import com.asx.mdx.lib.client.model.SpecialModelBiped;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.entity.RenderLivingWrapper;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.client.render.model.SpecialModelBiped;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;

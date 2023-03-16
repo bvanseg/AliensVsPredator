@@ -1,7 +1,7 @@
 package org.alien.common.world.dimension.varda;
 
-import com.asx.mdx.lib.client.util.Texture;
-import com.asx.mdx.lib.client.world.StormProvider;
+import com.asx.mdx.client.render.model.texture.Texture;
+import com.asx.mdx.client.world.StormProvider;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProvider;

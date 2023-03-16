@@ -1,8 +1,8 @@
 package org.avp.client.render.tile;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.IBakedModel;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
@@ -80,8 +80,8 @@ public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityAssembl
         OpenGL.translate(0F, 0F, -100F);
 
         GlStateManager.pushMatrix();
-        Game.minecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-        Game.minecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
+        ClientGame.instance.minecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        ClientGame.instance.minecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).setBlurMipmap(false, false);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 
         GlStateManager.translate((float) x, (float) y, 100F);
@@ -89,14 +89,14 @@ public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityAssembl
         GlStateManager.scale(1.0F, -1.0F, 1.0F);
         GlStateManager.scale(16.0F, 16.0F, 16.0F);
 
-        IBakedModel ibakedmodel = Game.minecraft().getRenderItem().getItemModelMesher().getItemModel(stack);
-        ibakedmodel = ibakedmodel.getOverrides().handleItemState(ibakedmodel, stack, Game.minecraft().world, Game.minecraft().player);
+        IBakedModel ibakedmodel = ClientGame.instance.minecraft().getRenderItem().getItemModelMesher().getItemModel(stack);
+        ibakedmodel = ibakedmodel.getOverrides().handleItemState(ibakedmodel, stack, ClientGame.instance.minecraft().world, ClientGame.instance.minecraft().player);
         ibakedmodel = net.minecraftforge.client.ForgeHooksClient.handleCameraTransforms(ibakedmodel, ItemCameraTransforms.TransformType.GUI, false);
 
-        Game.minecraft().getRenderItem().renderItem(stack, ibakedmodel);
+        ClientGame.instance.minecraft().getRenderItem().renderItem(stack, ibakedmodel);
         GlStateManager.popMatrix();
-        Game.minecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-        Game.minecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).restoreLastBlurMipmap();
+        ClientGame.instance.minecraft().getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+        ClientGame.instance.minecraft().getTextureManager().getTexture(TextureMap.LOCATION_BLOCKS_TEXTURE).restoreLastBlurMipmap();
 
         OpenGL.popMatrix();
     }

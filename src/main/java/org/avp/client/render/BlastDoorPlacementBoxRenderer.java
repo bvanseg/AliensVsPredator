@@ -1,7 +1,7 @@
 package org.avp.client.render;
 
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -38,9 +38,9 @@ public class BlastDoorPlacementBoxRenderer
         Tessellator tess = Tessellator.getInstance();
         BufferBuilder buff = tess.getBuffer();
 
-        if (Game.minecraft().gameSettings.thirdPersonView == 0)
+        if (ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0)
         {
-            ItemStack stack = Game.minecraft().player.getHeldItemMainhand();
+            ItemStack stack = ClientGame.instance.minecraft().player.getHeldItemMainhand();
 
             if (stack != null)
             {
@@ -48,7 +48,7 @@ public class BlastDoorPlacementBoxRenderer
 
                 if (block != null && block.hasTileEntity(block.getDefaultState()))
                 {
-                    TileEntity t = block.createTileEntity(Game.minecraft().world, block.getDefaultState());
+                    TileEntity t = block.createTileEntity(ClientGame.instance.minecraft().world, block.getDefaultState());
 
                     if (t instanceof TileEntityBlastdoor)
                     {
@@ -56,7 +56,7 @@ public class BlastDoorPlacementBoxRenderer
                         List<BlockPos> blocks = new ArrayList<BlockPos>(Arrays.asList(bd.setFor(Entities.getEntityFacingRotY(p))));
                         blocks.add(new BlockPos(0, 0, 0));
 
-                        Vec3d hitVec = Game.minecraft().objectMouseOver.hitVec;
+                        Vec3d hitVec = ClientGame.instance.minecraft().objectMouseOver.hitVec;
 
                         double x = p.lastTickPosX + (p.posX - p.lastTickPosX) * (double) event.getPartialTicks();
                         double y = p.lastTickPosY + (p.posY - p.lastTickPosY) * (double) event.getPartialTicks();

@@ -1,8 +1,8 @@
 package org.avp.client.render.item;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import org.avp.client.AVPSounds;
@@ -34,13 +34,13 @@ public class RenderMotionTrackerScreen
 
     public void draw(int x, int y, int w, int h)
     {
-        if (Game.minecraft().isGamePaused())
+        if (ClientGame.instance.minecraft().isGamePaused())
         {
             this.updateTracker = false;
             this.shouldPing = false;
         }
 
-        this.direction = this.direction >= 360.0F ? this.direction -= 360.0F : this.direction < 0.0F ? this.direction += 360.0F : (-Game.minecraft().player.rotationYaw);
+        this.direction = this.direction >= 360.0F ? this.direction -= 360.0F : this.direction < 0.0F ? this.direction += 360.0F : (-ClientGame.instance.minecraft().player.rotationYaw);
         this.displayString = this.pingCount > 0 ? this.minDistance < 10 ? "0" + this.minDistance + "m" : this.minDistance + "m" : "00m";
         OpenGL.scale(w / 128F, h / 96F, 1F);
         OpenGL.enable(GL11.GL_BLEND);
@@ -155,7 +155,7 @@ public class RenderMotionTrackerScreen
         else if (this.shouldPing)
         {
             this.shouldPing = false;
-            AVPSounds.MOTIONTRACKER_PING.playSound(Game.minecraft().player);
+            AVPSounds.MOTIONTRACKER_PING.playSound(ClientGame.instance.minecraft().player);
         }
 
         if (pingTime != 0)
@@ -164,7 +164,7 @@ public class RenderMotionTrackerScreen
         }
         else if (this.updateTracker)
         {
-            ArrayList<Entity> entities = (ArrayList<Entity>) Game.minecraft().world.getLoadedEntityList();
+            ArrayList<Entity> entities = (ArrayList<Entity>) ClientGame.instance.minecraft().world.getLoadedEntityList();
             this.updateTracker = false;
             this.contactsAngle.clear();
             this.contactsDistance.clear();
@@ -173,7 +173,7 @@ public class RenderMotionTrackerScreen
 
             for (Entity entity : entities)
             {
-                if (entity != Game.minecraft().player && entity instanceof EntityLiving && (isMoving(Game.minecraft().player) || isMoving(entity) || entity.isInvisible()))
+                if (entity != ClientGame.instance.minecraft().player && entity instanceof EntityLiving && (isMoving(ClientGame.instance.minecraft().player) || isMoving(entity) || entity.isInvisible()))
                 {
                     int wayX = xCoord() - (int) entity.posX;
                     int wayY = zCoord() - (int) entity.posZ;
@@ -195,19 +195,19 @@ public class RenderMotionTrackerScreen
 
             if (this.pingCount > 0)
             {
-                AVPSounds.MOTIONTRACKER_PONG.playSound(Game.minecraft().player, 1F, this.pitch[this.minDistance]);
+                AVPSounds.MOTIONTRACKER_PONG.playSound(ClientGame.instance.minecraft().player, 1F, this.pitch[this.minDistance]);
             }
         }
     }
 
     private int xCoord()
     {
-        return (int) (Game.minecraft().player.posX < 0.0D ? Game.minecraft().player.posX - 1.0D : Game.minecraft().player.posX);
+        return (int) (ClientGame.instance.minecraft().player.posX < 0.0D ? ClientGame.instance.minecraft().player.posX - 1.0D : ClientGame.instance.minecraft().player.posX);
     }
 
     private int zCoord()
     {
-        return (int) (Game.minecraft().player.posZ < 0.0D ? Game.minecraft().player.posZ - 1.0D : Game.minecraft().player.posZ);
+        return (int) (ClientGame.instance.minecraft().player.posZ < 0.0D ? ClientGame.instance.minecraft().player.posZ - 1.0D : ClientGame.instance.minecraft().player.posZ);
     }
 
     public boolean isMoving(Entity entity)

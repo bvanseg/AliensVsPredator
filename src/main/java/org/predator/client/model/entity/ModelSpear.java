@@ -1,7 +1,7 @@
 package org.predator.client.model.entity;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.gui.Gui;
 import org.lwjgl.opengl.GL11;
 

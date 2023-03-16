@@ -1,6 +1,6 @@
 package org.alien.common.entity.ai.selector;
 
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import com.google.common.base.Predicate;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

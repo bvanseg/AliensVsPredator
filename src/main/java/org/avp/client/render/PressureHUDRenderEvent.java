@@ -1,12 +1,13 @@
 package org.avp.client.render;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.ScaledResolution;
-import com.asx.mdx.lib.client.util.Screen;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.block.Blocks;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.ScaledResolution;
+import com.asx.mdx.client.Screen;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.common.Game;
+import com.asx.mdx.common.minecraft.block.Blocks;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.FontRenderer;
@@ -54,13 +55,13 @@ public class PressureHUDRenderEvent
     @SubscribeEvent
     public void renderTickOverlay(RenderGameOverlayEvent.Pre event)
     {
-        if (Game.minecraft().player != null)
+        if (ClientGame.instance.minecraft().player != null)
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
             {
-                if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Game.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
+                if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
                 {
-                    SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) Game.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
+                    SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) ClientGame.instance.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
                     this.gammaRestored = false;
                     LightmapUpdateEvent.instance.gammaValue = specialPlayer.isNightvisionEnabled() ? 8F : 0F;
@@ -83,7 +84,7 @@ public class PressureHUDRenderEvent
                     OpenGL.disable(GL_BLEND);
 
                     this.drawInfoBar();
-                    this.drawImpregnationIndicator(Game.minecraft().player, getProperties());
+                    this.drawImpregnationIndicator(ClientGame.instance.minecraft().player, getProperties());
                 }
                 else if (!gammaRestored)
                 {
@@ -98,7 +99,7 @@ public class PressureHUDRenderEvent
     @SubscribeEvent
     public void renderTick(RenderTickEvent event)
     {
-        if (Game.minecraft().player != null)
+        if (ClientGame.instance.minecraft().player != null)
         {
             this.renderInventoryElements();
         }
@@ -106,7 +107,7 @@ public class PressureHUDRenderEvent
 
     public void renderInventoryElements()
     {
-        if (Inventories.getHelmSlotItemStack(Game.minecraft().player) != null && Inventories.getHelmSlotItemStack(Game.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
+        if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
         {
             ;
         }
@@ -114,26 +115,26 @@ public class PressureHUDRenderEvent
 
     public SpecialPlayerImpl getProperties()
     {
-        return Game.minecraft() != null ? Game.minecraft().player != null ? (SpecialPlayerImpl) Game.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null) : null : null;
+        return ClientGame.instance.minecraft() != null ? ClientGame.instance.minecraft().player != null ? (SpecialPlayerImpl) ClientGame.instance.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null) : null : null;
     }
 
     public void drawInfoBar()
     {
         ScaledResolution res = Screen.scaledDisplayResolution();
-        int guiScale = Game.minecraft().gameSettings.guiScale;
+        int guiScale = ClientGame.instance.minecraft().gameSettings.guiScale;
         float scale = guiScale == 0 ? res.getScaleFactor() * 0.25F : (guiScale == 1 ? res.getScaleFactor() * 1F : res.getScaleFactor() * 0.5F);
         int barPadding = 40;
 
-        int hourOfMinecraftDay = (int) (Math.floor(Game.minecraft().player.world.getWorldTime() / 1000 + 8) % 24);
-        int minuteOfMinecraftDay = (int) (60 * Math.floor(Game.minecraft().player.world.getWorldTime() % 1000) / 1000);
+        int hourOfMinecraftDay = (int) (Math.floor(ClientGame.instance.minecraft().player.world.getWorldTime() / 1000 + 8) % 24);
+        int minuteOfMinecraftDay = (int) (60 * Math.floor(ClientGame.instance.minecraft().player.world.getWorldTime() % 1000) / 1000);
 
         String timeString = String.format("%02dH%02dM", hourOfMinecraftDay, minuteOfMinecraftDay);
-        String fpsString = Game.minecraft().debug.substring(0, Game.minecraft().debug.indexOf(" fps")) + " FPS";
+        String fpsString = ClientGame.instance.minecraft().debug.substring(0, ClientGame.instance.minecraft().debug.indexOf(" fps")) + " FPS";
         String barString = timeString + " [" + fpsString + "]";
 
         OpenGL.pushMatrix();
         {
-            FontRenderer fontrenderer = Game.minecraft().fontRenderer;
+            FontRenderer fontrenderer = ClientGame.instance.minecraft().fontRenderer;
             OpenGL.scale(scale, scale, scale);
             OpenGL.enable(GL_BLEND);
             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_CONSTANT_ALPHA);
@@ -142,15 +143,15 @@ public class PressureHUDRenderEvent
             {
                 float nameScale = 1.5F;
                 OpenGL.scale(nameScale, nameScale, nameScale);
-                Draw.drawString("[" + 100 + "%%] " + Game.minecraft().player.getName(), (int) ((barPadding) / nameScale), (int) (10 / nameScale), 0xFFFFAA00, false);
+                Draw.drawString("[" + 100 + "%%] " + ClientGame.instance.minecraft().player.getName(), (int) ((barPadding) / nameScale), (int) (10 / nameScale), 0xFFFFAA00, false);
             }
             OpenGL.popMatrix();
             OpenGL.color4i(0xFFFFFFFF);
 
-            Draw.drawPlayerFace(Game.minecraft().player, 0, 0, 32, 32);
+            Draw.drawPlayerFace(ClientGame.instance.minecraft().player, 0, 0, 32, 32);
 
             /** Silica storm detection indicator **/
-            WorldProvider provider = Game.minecraft().world.provider;
+            WorldProvider provider = ClientGame.instance.minecraft().world.provider;
 
             if (provider instanceof WorldProviderVarda)
             {
@@ -181,7 +182,7 @@ public class PressureHUDRenderEvent
 //                        int actualHeight = (int) (indicatorHeight / nameScale);
 //                        fontrenderer.drawString("Storm Indicator for " + provider.getDimensionType().getName(), actualX + 7, actualY + 7, 0xFFAA00);
 //
-//                        if (Worlds.canSeeSky(new Pos(Game.minecraft().player), Game.minecraft().world))
+//                        if (Worlds.canSeeSky(new Pos(ClientGame.instance.minecraft().player), ClientGame.instance.minecraft().world))
 //                        {
 //                            Draw.drawStringAlignCenter("You are outdoors, take cover immediately!", (int) ((Screen.scaledDisplayResolution().getScaledWidth() / 2) / nameScale), actualY + 35, 0xFF0000);
 //                        }
@@ -200,9 +201,9 @@ public class PressureHUDRenderEvent
 //                }
             }
 
-            if (Game.minecraft().player != null)
+            if (ClientGame.instance.minecraft().player != null)
             {
-                if (Game.minecraft().objectMouseOver != null)
+                if (ClientGame.instance.minecraft().objectMouseOver != null)
                 {
                     /** GUI Drawing Information **/
                     int subMenuX = (int) (Screen.scaledDisplayResolution().getScaledWidth() - (200 * scale));
@@ -212,9 +213,9 @@ public class PressureHUDRenderEvent
                     int subEntrySpacing = 10;
                     int curEntry = 0;
 
-                    if (Game.minecraft().objectMouseOver.typeOfHit == RayTraceResult.Type.ENTITY)
+                    if (ClientGame.instance.minecraft().objectMouseOver.typeOfHit == RayTraceResult.Type.ENTITY)
                     {
-                        Entity entity = Game.minecraft().objectMouseOver.entityHit;
+                        Entity entity = ClientGame.instance.minecraft().objectMouseOver.entityHit;
 
                         if (entity != null)
                         {
@@ -312,14 +313,14 @@ public class PressureHUDRenderEvent
                         }
                     }
 
-                    if (Game.minecraft().objectMouseOver.typeOfHit == RayTraceResult.Type.BLOCK)
+                    if (ClientGame.instance.minecraft().objectMouseOver.typeOfHit == RayTraceResult.Type.BLOCK)
                     {
                         /** Block Information **/
-//                        Pos coord = new Pos(Game.minecraft().objectMouseOver.getBlockPos().getX(), Game.minecraft().objectMouseOver.getBlockPos().getY(), Game.minecraft().objectMouseOver.blockZ);
-                        BlockPos blockpos = Game.minecraft().objectMouseOver.getBlockPos();
-                        IBlockState blockstate = Game.minecraft().world.getBlockState(blockpos);
+//                        Pos coord = new Pos(ClientGame.instance.minecraft().objectMouseOver.getBlockPos().getX(), ClientGame.instance.minecraft().objectMouseOver.getBlockPos().getY(), ClientGame.instance.minecraft().objectMouseOver.blockZ);
+                        BlockPos blockpos = ClientGame.instance.minecraft().objectMouseOver.getBlockPos();
+                        IBlockState blockstate = ClientGame.instance.minecraft().world.getBlockState(blockpos);
                         Block block = blockstate.getBlock();
-                        TileEntity tile = Game.minecraft().player.world.getTileEntity(blockpos);
+                        TileEntity tile = ClientGame.instance.minecraft().player.world.getTileEntity(blockpos);
 
                         Draw.drawItem(new ItemStack(Item.getItemFromBlock(block), 1), subMenuX + subMenuPadding - 56, 0, 48, 48);
 
@@ -334,10 +335,10 @@ public class PressureHUDRenderEvent
                         subMenuStartY = subMenuStartY + 10;
 
                         String blockDomain = Blocks.getDomain(block);
-                        ModContainer modContainer = Game.getModContainer(blockDomain.replace(":", ""));
+                        ModContainer modContainer = Game.instance.getModContainer(blockDomain.replace(":", ""));
                         String mod = modContainer != null ? modContainer.getName() : "???";
                         fontrenderer.drawString("From " + mod, subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
-                        fontrenderer.drawString("Looking at " + (Game.minecraft().objectMouseOver.sideHit.name()) + " face", subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
+                        fontrenderer.drawString("Looking at " + (ClientGame.instance.minecraft().objectMouseOver.sideHit.name()) + " face", subMenuX + subMenuPadding, subMenuStartY + (curEntry++ * subEntrySpacing), 0x666666);
 
                         if (tile instanceof TileEntity)
                         {

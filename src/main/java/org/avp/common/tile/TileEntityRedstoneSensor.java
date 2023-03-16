@@ -1,6 +1,6 @@
 package org.avp.common.tile;
 
-import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;

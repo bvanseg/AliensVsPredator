@@ -1,6 +1,6 @@
 package org.avp.common.network.packet.client;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,14 +44,14 @@ public class OrganismClientSync implements IMessage, IMessageHandler<OrganismCli
     @Override
     public OrganismClientSync onMessage(OrganismClientSync packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(new Runnable()
+        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                if (Game.minecraft().player != null && Game.minecraft().player.world != null)
+                if (ClientGame.instance.minecraft().player != null && ClientGame.instance.minecraft().player.world != null)
                 {
-                    Entity entity = Game.minecraft().player.world.getEntityByID(packet.entityId);
+                    Entity entity = ClientGame.instance.minecraft().player.world.getEntityByID(packet.entityId);
 
                     if (entity != null)
                     {

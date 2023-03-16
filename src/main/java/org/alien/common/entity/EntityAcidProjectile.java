@@ -1,6 +1,6 @@
 package org.alien.common.entity;
 
-import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

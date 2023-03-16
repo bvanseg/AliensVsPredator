@@ -1,6 +1,6 @@
 package org.avp.client.model.entity;
 
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelSupplyChute extends Model<Object>

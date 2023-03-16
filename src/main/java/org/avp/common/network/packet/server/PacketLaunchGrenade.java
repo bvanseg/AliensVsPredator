@@ -1,6 +1,6 @@
 package org.avp.common.network.packet.server;
 
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;

@@ -1,7 +1,7 @@
 package org.alien.common.world.worldgen;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.Structure;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.structure.Structure;
 import net.minecraft.world.WorldServer;
 import org.avp.common.StructureSchematics;
 
