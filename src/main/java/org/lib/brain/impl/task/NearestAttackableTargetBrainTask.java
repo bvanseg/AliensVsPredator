@@ -54,4 +54,13 @@ public class NearestAttackableTargetBrainTask extends AbstractBrainTask<EntityBr
 			ctx.getEntity().setAttackTarget(null);
 		}
     }
+
+	@Override
+	public void finish(EntityBrainContext ctx) {
+		super.finish(ctx);
+
+		if (!ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET).isPresent()) {
+			ctx.getEntity().setAttackTarget(null);
+		}
+	}
 }
