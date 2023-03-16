@@ -342,7 +342,7 @@ public class ModelNauticomorph extends Model<EntityNauticomorph>
         }
 
         /** Tail Idle Position **/
-        {
+        if (e != null) {
             float multiplier = 0.15F;
 
             this.tail1.rotateAngleX = (float) Math.toRadians(0);
