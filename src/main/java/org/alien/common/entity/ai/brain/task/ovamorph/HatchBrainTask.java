@@ -1,7 +1,7 @@
 package org.alien.common.entity.ai.brain.task.ovamorph;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
