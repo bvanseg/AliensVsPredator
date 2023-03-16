@@ -1,9 +1,9 @@
 package org.avp.client.render.tile;
 
-import com.asx.mdx.lib.client.Renderers;
-import com.asx.mdx.lib.client.util.ItemRenderer;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.Renderers;
+import com.asx.mdx.client.render.item.ItemRenderer;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Items;
@@ -81,7 +81,7 @@ public class RenderGunLocker extends TileEntitySpecialRenderer<TileEntityGunLock
                                         OpenGL.enableBlend();
                                         OpenGL.scale(-1F, alternate ? -1F : 1F, -1F);
                                         OpenGL.rotate(-50F, 0F, 1F, 0F);
-                                        renderer.renderInInventory(stack, Game.minecraft().player, TransformType.GUI);
+                                        renderer.renderInInventory(stack, ClientGame.instance.minecraft().player, TransformType.GUI);
                                         OpenGL.enableLight();
                                     }
                                     OpenGL.popMatrix();

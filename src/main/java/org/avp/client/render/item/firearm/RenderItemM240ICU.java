@@ -1,8 +1,8 @@
 package org.avp.client.render.item.firearm;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
@@ -49,7 +49,7 @@ public class RenderItemM240ICU extends ItemFirearmRenderer<ModelM240ICU>
         {
             OpenGL.translate(0F, 0.15F, -0.4F);
 
-            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
             {
                 OpenGL.translate(-0.6495F, 0F, 0F);
             }
@@ -58,7 +58,7 @@ public class RenderItemM240ICU extends ItemFirearmRenderer<ModelM240ICU>
             OpenGL.scale(-glScale, -glScale, -glScale);
             this.getModel().draw();
 
-            if (Game.minecraft().player.getHeldItemMainhand() != null && Game.minecraft().player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
+            if (ClientGame.instance.minecraft().player.getHeldItemMainhand() != null && ClientGame.instance.minecraft().player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
             {
                 OpenGL.disable(GL11.GL_LIGHTING);
                 OpenGL.translate(-0.3439F, 0.6F, 0.04F);
@@ -88,7 +88,7 @@ public class RenderItemM240ICU extends ItemFirearmRenderer<ModelM240ICU>
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) Game.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
+        int ammoCount = ((ItemFirearm) ClientGame.instance.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 }

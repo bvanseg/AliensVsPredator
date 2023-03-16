@@ -1,7 +1,7 @@
 package org.avp.common.network.packet.server;
 
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -46,13 +46,13 @@ public class PacketAttachParasiteToEntity implements IMessage, IMessageHandler<P
     @SideOnly(Side.CLIENT)
     public PacketAttachParasiteToEntity onMessage(PacketAttachParasiteToEntity packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(new Runnable()
+        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                Entity e = Game.minecraft().world.getEntityByID(packet.parasiteId);
-                Entity e2 = Game.minecraft().world.getEntityByID(packet.targetId);
+                Entity e = ClientGame.instance.minecraft().world.getEntityByID(packet.parasiteId);
+                Entity e2 = ClientGame.instance.minecraft().world.getEntityByID(packet.targetId);
                 
                 if (e instanceof Parasitoid)
                 {

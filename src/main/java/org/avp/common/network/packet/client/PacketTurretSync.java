@@ -1,8 +1,8 @@
 package org.avp.common.network.packet.client;
 
-import com.asx.mdx.lib.client.util.Rotation;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.storage.NBTStorage;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.math.Rotation;
+import com.asx.mdx.common.minecraft.storage.NBTStorage;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.math.BlockPos;
@@ -15,7 +15,7 @@ public class PacketTurretSync implements IMessage, IMessageHandler<PacketTurretS
 {
     public int        x, y, z;
     public NBTTagList targets;
-    public Rotation   rotation;
+    public Rotation rotation;
 
     public PacketTurretSync()
     {
@@ -54,12 +54,12 @@ public class PacketTurretSync implements IMessage, IMessageHandler<PacketTurretS
     @Override
     public PacketTurretSync onMessage(PacketTurretSync packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(new Runnable()
+        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                TileEntityTurret tile = (TileEntityTurret) Game.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+                TileEntityTurret tile = (TileEntityTurret) ClientGame.instance.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
                 if (tile != null)
                 {

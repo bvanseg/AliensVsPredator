@@ -1,9 +1,10 @@
 package org.avp.client.render.item;
 
-import com.asx.mdx.lib.client.util.ItemRenderer;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.item.ItemRenderer;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.common.Game;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -24,7 +25,7 @@ public class RenderItemSkull extends ItemRenderer<Model>
     {
         super(null);
         this.skull = skull;
-        Game.registerEventHandler(this);
+        Game.instance.registerEventHandler(this);
     }
 
     @SubscribeEvent
@@ -77,7 +78,7 @@ public class RenderItemSkull extends ItemRenderer<Model>
     @Override
     public TextureAtlasSprite getParticleTexture()
     {
-        return this.skull.getParticleTexture(Game.minecraft().getTextureMapBlocks());
+        return this.skull.getParticleTexture(ClientGame.instance.minecraft().getTextureMapBlocks());
         //return this.sprite;
     }
 

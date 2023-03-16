@@ -1,8 +1,7 @@
 package org.alien.common.world;
 
-import com.asx.mdx.config.GraphicsSetting;
-import com.asx.mdx.lib.client.entityfx.EntityBloodFX;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.io.config.GraphicsSetting;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.boss.EntityDragon;
@@ -81,7 +80,7 @@ public class EntityImpregnationHandler
  		else // client world.
  		{
  	        // FIXME: Organism gestates server-side but not client-side when game is paused!
- 		    if (!Game.minecraft().isGamePaused())
+ 		    if (!ClientGame.instance.minecraft().isGamePaused())
  		    {
  		        organism.gestate(host);
  		    }
@@ -215,7 +214,7 @@ public class EntityImpregnationHandler
         		break;
         }
 
-        //Game.minecraft().effectRenderer.addEffect(new EntityBloodFX(host.world, pX, pY, pZ, particleColor, maxAge, glow));
+        //ClientGame.instance.minecraft().effectRenderer.addEffect(new EntityBloodFX(host.world, pX, pY, pZ, particleColor, maxAge, glow));
     }
 
     @SubscribeEvent

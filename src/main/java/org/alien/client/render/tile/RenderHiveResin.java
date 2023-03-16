@@ -1,8 +1,8 @@
 package org.alien.client.render.tile;
 
-import com.asx.mdx.config.GraphicsSetting;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.common.io.config.GraphicsSetting;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
 import org.alien.client.model.tile.ModelHiveResin;

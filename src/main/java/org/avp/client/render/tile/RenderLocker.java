@@ -1,10 +1,10 @@
 package org.avp.client.render.tile;
 
-import com.asx.mdx.lib.client.Renderers;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.ItemRenderer;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.Renderers;
+import com.asx.mdx.client.render.item.ItemRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
@@ -79,7 +79,7 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
                                         OpenGL.scale(s, s, s);
                                         OpenGL.enableBlend();
                                         OpenGL.scale(-1F, -1F, -1F);
-                                        renderer.renderInInventory(stack, Game.minecraft().player, TransformType.GUI);
+                                        renderer.renderInInventory(stack, ClientGame.instance.minecraft().player, TransformType.GUI);
                                         OpenGL.enableLight();
                                     }
                                     OpenGL.popMatrix();

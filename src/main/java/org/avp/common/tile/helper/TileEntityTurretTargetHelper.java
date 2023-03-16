@@ -1,9 +1,9 @@
 package org.avp.common.tile.helper;
 
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
-import com.asx.mdx.lib.world.storage.NBTStorage;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.entity.Entities;
+import com.asx.mdx.common.minecraft.storage.NBTStorage;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntitySlime;
@@ -185,7 +185,7 @@ public class TileEntityTurretTargetHelper {
 	// A packet is taken as a parameter here to help enforce this method being called only client-side.
 	@SideOnly(Side.CLIENT)
 	public void setTargetEntity(PacketTurretTargetUpdate packet) {
-        Entity entity = Game.minecraft().world.getEntityByID(packet.id);
+        Entity entity = ClientGame.instance.minecraft().world.getEntityByID(packet.id);
 		this.targetEntity = entity;
 	}
 	

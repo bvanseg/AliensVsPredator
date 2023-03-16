@@ -1,7 +1,7 @@
 package org.alien.client.render;
 
-import com.asx.mdx.core.mods.IInitEvent;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
@@ -29,7 +29,7 @@ public class BiomeColorHandler implements IInitEvent
     @SuppressWarnings("deprecation")
     private static final IItemColor       ITEMBLOCK = (stack, tintIndex) -> {
                                                         IBlockState iblockstate = ((ItemBlock) stack.getItem()).getBlock().getStateFromMeta(stack.getMetadata());
-                                                        return Game.minecraft().getBlockColors().colorMultiplier(iblockstate, null, null, tintIndex);
+                                                        return ClientGame.instance.minecraft().getBlockColors().colorMultiplier(iblockstate, null, null, tintIndex);
                                                     };
 
     private static final IBlockColor      GRASS     = (state, blockAccess, pos, tintIndex) -> {
@@ -51,7 +51,7 @@ public class BiomeColorHandler implements IInitEvent
 
     public static void registerFoliageColorHandler(Block block)
     {
-        Game.minecraft().getItemColors().registerItemColorHandler(new IItemColor() {
+        ClientGame.instance.minecraft().getItemColors().registerItemColorHandler(new IItemColor() {
             @Override
             public int colorMultiplier(ItemStack stack, int tintIndex)
             {
@@ -59,7 +59,7 @@ public class BiomeColorHandler implements IInitEvent
             }
         }, block);
 
-        Game.minecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
+        ClientGame.instance.minecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
             public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
             {
                 if (AVP.settings().isHalloweenEventEnabled())
@@ -85,7 +85,7 @@ public class BiomeColorHandler implements IInitEvent
 
     public static void registerGrassColorHandler(Block block)
     {
-        Game.minecraft().getBlockColors().registerBlockColorHandler(GRASS, block);
-        Game.minecraft().getItemColors().registerItemColorHandler(ITEMBLOCK, block);
+        ClientGame.instance.minecraft().getBlockColors().registerBlockColorHandler(GRASS, block);
+        ClientGame.instance.minecraft().getItemColors().registerItemColorHandler(ITEMBLOCK, block);
     }
 }

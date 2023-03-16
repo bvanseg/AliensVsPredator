@@ -1,8 +1,8 @@
 package org.avp.client.render.tile;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -52,9 +52,9 @@ public class RenderTransformer extends TileEntitySpecialRenderer<TileEntityTrans
             OpenGL.popMatrix();
 
             OpenGL.pushMatrix();
-            if (Game.minecraft().objectMouseOver != null && Game.minecraft().objectMouseOver.getBlockPos() != null)
+            if (ClientGame.instance.minecraft().objectMouseOver != null && ClientGame.instance.minecraft().objectMouseOver.getBlockPos() != null)
             {
-                TileEntity tileOver = Game.minecraft().player.world.getTileEntity(Game.minecraft().objectMouseOver.getBlockPos());
+                TileEntity tileOver = ClientGame.instance.minecraft().player.world.getTileEntity(ClientGame.instance.minecraft().objectMouseOver.getBlockPos());
                 OpenGL.translate(x+ 0.5F, y + 2F, z + 0.5F);
 
                 if (tileOver != null && tileOver == tile)
@@ -65,11 +65,11 @@ public class RenderTransformer extends TileEntitySpecialRenderer<TileEntityTrans
 
                     OpenGL.pushMatrix();
                     {
-                        OpenGL.rotate(Game.minecraft().player.rotationYaw + 180, 0F, -1F, 0F);
+                        OpenGL.rotate(ClientGame.instance.minecraft().player.rotationYaw + 180, 0F, -1F, 0F);
 
                         OpenGL.pushMatrix();
                         {
-                            OpenGL.rotate(Game.minecraft().player.rotationPitch + 180, -1F, 0F, 0F);
+                            OpenGL.rotate(ClientGame.instance.minecraft().player.rotationPitch + 180, -1F, 0F, 0F);
                             Draw.drawString(((float) tile.getVoltage()) + "V", -20, 30, tile.getVoltage() <= 0 ? 0xFFFF0000 : 0xFF00FF00);
                             scale = 0.5F;
                             OpenGL.scale(scale, scale, scale);

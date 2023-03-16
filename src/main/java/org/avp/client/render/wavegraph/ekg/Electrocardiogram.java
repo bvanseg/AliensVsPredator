@@ -1,8 +1,8 @@
 package org.avp.client.render.wavegraph.ekg;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -38,7 +38,7 @@ public class Electrocardiogram extends Wavegraph
     {
         this.newdata = false;
 
-        if (world.getTotalWorldTime() % Math.floor((60D / this.rate) * 20) == 0 && !Game.minecraft().isGamePaused())
+        if (world.getTotalWorldTime() % Math.floor((60D / this.rate) * 20) == 0 && !ClientGame.instance.minecraft().isGamePaused())
         {
             this.newdata = true;
             long start = System.currentTimeMillis();

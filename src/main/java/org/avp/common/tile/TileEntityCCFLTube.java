@@ -1,7 +1,7 @@
 package org.avp.common.tile;
 
-import com.asx.mdx.lib.world.tile.IRotatableXAxis;
-import com.asx.mdx.lib.world.tile.IRotatableYAxis;
+import com.asx.mdx.common.minecraft.tile.IRotatableXAxis;
+import com.asx.mdx.common.minecraft.tile.IRotatableYAxis;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import org.avp.common.api.power.VoltageProvider;

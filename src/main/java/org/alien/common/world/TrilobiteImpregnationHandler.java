@@ -1,6 +1,6 @@
 package org.alien.common.world;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import net.minecraftforge.client.event.InputUpdateEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -24,14 +24,14 @@ public class TrilobiteImpregnationHandler {
     @SubscribeEvent
     public void handlePlayerInput(InputUpdateEvent event)
     {
-        if (Game.minecraft().player != null && Game.minecraft().player.getPassengers() != null && Game.minecraft().player.getPassengers().size() >= 1 && Game.minecraft().player.getPassengers().get(0) instanceof EntityTrilobite)
+        if (ClientGame.instance.minecraft().player != null && ClientGame.instance.minecraft().player.getPassengers() != null && ClientGame.instance.minecraft().player.getPassengers().size() >= 1 && ClientGame.instance.minecraft().player.getPassengers().get(0) instanceof EntityTrilobite)
         {
-            EntityTrilobite trilobite = (EntityTrilobite) Game.minecraft().player.getPassengers().get(0);
+            EntityTrilobite trilobite = (EntityTrilobite) ClientGame.instance.minecraft().player.getPassengers().get(0);
 
             if (!rotationLocked)
             {
-                rotationYawLock = Game.minecraft().player.rotationYaw;
-                Game.minecraft().player.moveRelative(0F, 0F, 2F, 1.0F);
+                rotationYawLock = ClientGame.instance.minecraft().player.rotationYaw;
+                ClientGame.instance.minecraft().player.moveRelative(0F, 0F, 2F, 1.0F);
                 rotationLocked = true;
             }
 
@@ -39,10 +39,10 @@ public class TrilobiteImpregnationHandler {
             trilobite.rotationYaw = rotationYawLock;
             trilobite.prevRotationYawHead = rotationYawLock;
             trilobite.prevRotationYaw = rotationYawLock;
-            Game.minecraft().player.rotationPitch = -10F;
-            Game.minecraft().player.rotationYaw = rotationYawLock;
-            Game.minecraft().player.rotationYawHead = rotationYawLock;
-            Game.minecraft().player.moveStrafing = 0F;
+            ClientGame.instance.minecraft().player.rotationPitch = -10F;
+            ClientGame.instance.minecraft().player.rotationYaw = rotationYawLock;
+            ClientGame.instance.minecraft().player.rotationYawHead = rotationYawLock;
+            ClientGame.instance.minecraft().player.moveStrafing = 0F;
             event.getMovementInput().jump = false;
             event.getMovementInput().moveForward = event.getMovementInput().moveForward - event.getMovementInput().moveForward;
             event.getMovementInput().moveStrafe = event.getMovementInput().moveStrafe - event.getMovementInput().moveStrafe;

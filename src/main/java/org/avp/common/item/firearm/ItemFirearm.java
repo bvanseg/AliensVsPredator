@@ -1,9 +1,9 @@
 package org.avp.common.item.firearm;
 
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.Entities;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
-import com.asx.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.minecraft.entity.Entities;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
+import com.asx.mdx.common.minecraft.item.HookedItem;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -180,16 +180,16 @@ public class ItemFirearm extends HookedItem
     @SideOnly(Side.CLIENT)
     public void renderRecoil()
     {
-        Game.minecraft().player.renderArmPitch -= this.profile.getRecoil() * 40.0F;
-        Game.minecraft().player.renderArmYaw += this.profile.getRecoil() * 5.0F;
-        Game.minecraft().player.rotationPitch -= this.profile.getRecoil() * 1.4F;
+        ClientGame.instance.minecraft().player.renderArmPitch -= this.profile.getRecoil() * 40.0F;
+        ClientGame.instance.minecraft().player.renderArmYaw += this.profile.getRecoil() * 5.0F;
+        ClientGame.instance.minecraft().player.rotationPitch -= this.profile.getRecoil() * 1.4F;
     }
 
     @SideOnly(Side.CLIENT)
     public void fixDelay()
     {
-        Game.setEquippedProgress(0.85F);
-        Game.setRightClickDelayTimer((int) (60 /** seconds **/ / this.getProfile().getRoundsPerMinute() * 20 /** ticks **/));
+        ClientGame.instance.setEquippedProgress(0.85F);
+        ClientGame.instance.setRightClickDelayTimer((int) (60 /** seconds **/ / this.getProfile().getRoundsPerMinute() * 20 /** ticks **/));
     }
 
     @Override

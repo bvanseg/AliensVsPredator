@@ -1,6 +1,6 @@
 package org.predator.common.entity;
 
-import com.asx.mdx.lib.util.GameSounds;
+import com.asx.mdx.client.sound.GameSounds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;

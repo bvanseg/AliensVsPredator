@@ -1,6 +1,6 @@
 package org.avp.common.network.packet.server;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -30,11 +30,11 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
         @Override
         public PacketBlastdoorCommon onMessage(PacketBlastdoorCommon packet, MessageContext ctx)
         {
-            Game.minecraft().addScheduledTask(new Runnable() {
+            ClientGame.instance.minecraft().addScheduledTask(new Runnable() {
                 @Override
                 public void run()
                 {
-                    World world = Game.minecraft().world;
+                    World world = ClientGame.instance.minecraft().world;
                     TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
                     if (world != null && tile != null && tile instanceof TileEntityBlastdoor)
@@ -58,11 +58,11 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
                                     blastdoor.setAutolock(packet.autolock);
                                     break;
                                 case BIND:
-                                    ItemStack itemstack = Game.minecraft().player.getHeldItemMainhand();
+                                    ItemStack itemstack = ClientGame.instance.minecraft().player.getHeldItemMainhand();
 
                                     if (itemstack != null)
                                     {
-                                        blastdoor.bindToSecurityTuner(Game.minecraft().player, itemstack);
+                                        blastdoor.bindToSecurityTuner(ClientGame.instance.minecraft().player, itemstack);
                                     }
                                     break;
                                 default:

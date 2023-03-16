@@ -1,6 +1,6 @@
 package org.alien.client.model.entity.living;
 
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.model.Model;
 import org.alien.common.entity.living.xenomorph.EntityOvamorphGiger;
 
 public class ModelOvamorphGiger extends Model<EntityOvamorphGiger>

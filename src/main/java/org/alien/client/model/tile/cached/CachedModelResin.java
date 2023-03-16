@@ -1,9 +1,9 @@
 package org.alien.client.model.tile.cached;
 
-import com.asx.mdx.config.GraphicsSetting;
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.client.util.models.block.ModelRotationXYZ;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.client.render.model.block.ModelRotationXYZ;
+import com.asx.mdx.common.io.config.GraphicsSetting;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -43,7 +43,7 @@ public class CachedModelResin implements IBakedModel
     private static final Function<ResourceLocation, TextureAtlasSprite>                    DEFAULT_TEXTURE_GETTER = new Function<ResourceLocation, TextureAtlasSprite>() {
                                                                                                                       public TextureAtlasSprite apply(ResourceLocation location)
                                                                                                                       {
-                                                                                                                          return Game.minecraft().getTextureMapBlocks().getAtlasSprite("avp:blocks/hiveresin");
+                                                                                                                          return ClientGame.instance.minecraft().getTextureMapBlocks().getAtlasSprite("avp:blocks/hiveresin");
                                                                                                                       }
                                                                                                                   };
 
@@ -148,7 +148,7 @@ public class CachedModelResin implements IBakedModel
 
         if (side == null && transformType == null && model != null)
         {
-            TextureMap textureMap = Game.minecraft().getTextureMapBlocks();
+            TextureMap textureMap = ClientGame.instance.minecraft().getTextureMapBlocks();
             this.sprite = textureMap.getAtlasSprite(TEXTURE_LOCATION);
 
             if (state instanceof IExtendedBlockState)
@@ -158,7 +158,7 @@ public class CachedModelResin implements IBakedModel
 
                 if (parentState != null)
                 {
-                    this.sprite = Game.minecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(parentState);
+                    this.sprite = ClientGame.instance.minecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(parentState);
 
                     GraphicsSetting hiveTessellation = ClientSettings.instance.hiveTessellation().value();
 

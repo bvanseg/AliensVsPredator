@@ -1,8 +1,8 @@
 package org.avp.client.render.entity;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -45,7 +45,7 @@ public class RenderLiquidLatexPool extends Render<EntityLiquidLatexPool>
                     for (int blockZ = MathHelper.floor(renderZ - offset); blockZ <= MathHelper.floor(renderZ + offset); ++blockZ)
                     {
                         BlockPos pos = new BlockPos(blockX, blockY - 1, blockZ);
-                        IBlockState blockstate = Game.minecraft().player.world.getBlockState(pos);
+                        IBlockState blockstate = ClientGame.instance.minecraft().player.world.getBlockState(pos);
 
                         if (blockstate.getBlock() != Blocks.AIR)
                         {
@@ -65,7 +65,7 @@ public class RenderLiquidLatexPool extends Render<EntityLiquidLatexPool>
     {
         if (state.isNormalCube())
         {
-            AxisAlignedBB boundingbox = state.getCollisionBoundingBox(Game.minecraft().world, pos);
+            AxisAlignedBB boundingbox = state.getCollisionBoundingBox(ClientGame.instance.minecraft().world, pos);
             double x1 = pos.getX() + boundingbox.minX + partialX;
             double x2 = pos.getX() + boundingbox.maxX + partialX;
             double y = pos.getY() + boundingbox.minY + partialY + 0.015625D;

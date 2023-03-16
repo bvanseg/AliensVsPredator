@@ -1,10 +1,10 @@
 package org.avp.client.gui;
 
-import com.asx.mdx.lib.client.gui.*;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.ScaledResolution;
-import com.asx.mdx.lib.client.util.Screen;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.ScaledResolution;
+import com.asx.mdx.client.Screen;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.gui.*;
 import net.minecraft.client.gui.GuiScreen;
 import org.avp.client.render.TacticalHUDRenderEvent;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
@@ -23,7 +23,7 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
 
     public GuiTacticalHUDSettings(GuiScreen parent)
     {
-        this.player = (SpecialPlayerImpl) Game.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
+        this.player = (SpecialPlayerImpl) ClientGame.instance.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
         this.channel = new GuiCustomTextbox(this, 0, 0, 100, 15);
         this.save = new GuiCustomButton(0, 0, 0, 100, 15, "");
         this.nightvision = new GuiCustomButton(0, 0, 0, 100, 15, "");
@@ -51,7 +51,7 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
             public void perform(IGuiElement element)
             {
                 player.setNightvisionEnabled(!player.isNightvisionEnabled());
-                player.syncWithServer(Game.minecraft().player);
+                player.syncWithServer(ClientGame.instance.minecraft().player);
             }
         });
 
@@ -61,7 +61,7 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
             public void perform(IGuiElement element)
             {
                 player.setEntityCullingEnabled(!player.isEntityCullingEnabled());
-                player.syncWithServer(Game.minecraft().player);
+                player.syncWithServer(ClientGame.instance.minecraft().player);
             }
         });
 
@@ -79,7 +79,7 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
                     player.setBroadcastRadius(newRadius);
                     player.setBroadcastChannel(newChannel);
                     TacticalHUDRenderEvent.instance.setViewportThreshold(newThreshold);
-                    player.syncWithServer(Game.minecraft().player);
+                    player.syncWithServer(ClientGame.instance.minecraft().player);
                     channel.setText(newChannel);
                 }
 

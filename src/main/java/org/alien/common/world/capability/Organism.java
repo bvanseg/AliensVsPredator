@@ -1,7 +1,7 @@
 package org.alien.common.world.capability;
 
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -220,7 +220,7 @@ public interface Organism
 
             if (world.isRemote)
             {
-                if (living == Game.minecraft().player)
+                if (living == ClientGame.instance.minecraft().player)
                 {
                     TacticalHUDRenderEvent.instance.getElectrocardiogram().setRate(organism.getHeartRate());
                 }

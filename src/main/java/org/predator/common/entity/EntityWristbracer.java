@@ -1,10 +1,10 @@
 package org.predator.common.entity;
 
-import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.LargeExplosion;
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.entity.fx.EntityFXElectricArc;
+import com.asx.mdx.common.minecraft.LargeExplosion;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -141,7 +141,7 @@ public class EntityWristbracer extends EntityThrowable
         double arcComplexity = (1F / explosionWidth) * 2;
         float arcDensity = 0.7F * this.getInitTicks() / this.getInitTicksMax();
 
-        Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, sX, sY, sZ, pX, pY, pZ, 1, arcFluctuation, arcComplexity, arcDensity, 0xAA00CCFF));
+        ClientGame.instance.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(this.world, sX, sY, sZ, pX, pY, pZ, 1, arcFluctuation, arcComplexity, arcDensity, 0xAA00CCFF));
     }
 
     public int getInitTicksMax()

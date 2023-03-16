@@ -1,7 +1,7 @@
 package org.avp.common.block.skull;
 
-import com.asx.mdx.lib.client.util.Texture;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.client.render.model.MapModelTexture;
+import com.asx.mdx.client.render.model.texture.Texture;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;

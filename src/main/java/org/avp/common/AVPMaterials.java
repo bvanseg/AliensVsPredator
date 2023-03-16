@@ -1,6 +1,6 @@
 package org.avp.common;
 
-import com.asx.mdx.core.mods.IInitEvent;
+import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item.ToolMaterial;
 import net.minecraft.item.ItemArmor.ArmorMaterial;

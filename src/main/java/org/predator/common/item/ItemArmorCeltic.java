@@ -1,8 +1,8 @@
 package org.predator.common.item;
 
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -55,13 +55,13 @@ public class ItemArmorCeltic extends ItemArmor
     @SideOnly(Side.CLIENT)
     public void controlledAbility(SpecialPlayerImpl specialPlayer)
     {
-        if (Game.minecraft().inGameHasFocus)
+        if (ClientGame.instance.minecraft().inGameHasFocus)
         {
-            ItemStack helmSlot = Inventories.getHelmSlotItemStack(Game.minecraft().player);
+            ItemStack helmSlot = Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player);
 
             if (helmSlot != null && helmSlot.getItem() == PredatorItems.BIOMASK_CELTIC && AVP.keybinds().genericSpecial.isPressed() && Keyboard.getEventKeyState())
             {
-                PredatorSounds.YAUTJA_VISION_SWITCH.playSound(Game.minecraft().player, 1F, 1F);
+                PredatorSounds.YAUTJA_VISION_SWITCH.playSound(ClientGame.instance.minecraft().player, 1F, 1F);
                 VisionModeRenderEvent.instance.switchMode();
             }
         }

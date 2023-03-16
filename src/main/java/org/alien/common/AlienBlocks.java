@@ -1,7 +1,7 @@
 package org.alien.common;
 
-import com.asx.mdx.core.mods.IPreInitEvent;
-import com.asx.mdx.lib.world.block.BlockMaterial;
+import com.asx.mdx.common.minecraft.block.BlockMaterial;
+import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

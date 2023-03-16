@@ -1,8 +1,8 @@
 package org.avp.client.model.tile.cached;
 
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.client.util.models.block.ModelRotationXYZ;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.client.render.model.block.ModelRotationXYZ;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
@@ -40,7 +40,7 @@ public class CachedModelReflectiveShape implements IBakedModel
     private static final Function<ResourceLocation, TextureAtlasSprite>                    DEFAULT_TEXTURE_GETTER = new Function<ResourceLocation, TextureAtlasSprite>() {
                                                                                                                       public TextureAtlasSprite apply(ResourceLocation location)
                                                                                                                       {
-                                                                                                                          return Game.minecraft().getTextureMapBlocks().getAtlasSprite("avp:blocks/reflection");
+                                                                                                                          return ClientGame.instance.minecraft().getTextureMapBlocks().getAtlasSprite("avp:blocks/reflection");
                                                                                                                       }
                                                                                                                   };
 
@@ -144,8 +144,8 @@ public class CachedModelReflectiveShape implements IBakedModel
 
         if (side == null && transformType == null)
         {
-            TextureMap textureMap = Game.minecraft().getTextureMapBlocks();
-            BlockRendererDispatcher dispatcher = Game.minecraft().getBlockRendererDispatcher();
+            TextureMap textureMap = ClientGame.instance.minecraft().getTextureMapBlocks();
+            BlockRendererDispatcher dispatcher = ClientGame.instance.minecraft().getBlockRendererDispatcher();
             TRSRTransformation transformation = rotation(state);
             IModel retextured = model;
             IModel retexturable = model;

@@ -1,6 +1,6 @@
 package org.avp.common.item.supply.chute;
 
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
+import com.asx.mdx.client.render.model.MapModelTexture;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;

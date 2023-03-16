@@ -1,7 +1,7 @@
 package org.alien.common.entity.living.vardic;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.block.Blocks;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.block.Blocks;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.MobEffects;

@@ -1,9 +1,9 @@
 package org.avp.client.render.item.firearm;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.Texture;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.util.Networks;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.texture.Texture;
+import com.asx.mdx.common.net.Networks;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
@@ -46,7 +46,7 @@ public class RenderItemAK47 extends ItemFirearmRenderer<ModelAK47>
         {
             OpenGL.translate(1F, 0.2F, 0.2F);
 
-            if (Mouse.isButtonDown(0) && Game.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
             {
                 OpenGL.translate(-1.735F, 0.24F, 0.8F);
             }
@@ -65,7 +65,7 @@ public class RenderItemAK47 extends ItemFirearmRenderer<ModelAK47>
         OpenGL.rotate(-45F, 0F, 0F, 1F);
         OpenGL.rotate(90F, 0.0F, 1.0F, 0.0F);
         GlStateManager.disableCull();
-        new Texture(Networks.downloadResource(String.format(URLs.SKIN_AK47, Game.session().getPlayerID()), this.getModel().getTexture())).bind();
+        new Texture(Networks.downloadResource(String.format(URLs.SKIN_AK47, ClientGame.instance.session().getPlayerID()), this.getModel().getTexture())).bind();
         this.getModel().getModel().render();
     }
 }

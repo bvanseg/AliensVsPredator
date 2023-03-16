@@ -1,6 +1,6 @@
 package org.avp.client.render.entity.living;
 
-import com.asx.mdx.lib.client.util.entity.RenderLivingWrapper;
+import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBiped.ArmPose;
 import net.minecraft.client.renderer.GlStateManager;

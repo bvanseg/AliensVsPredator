@@ -1,6 +1,6 @@
 package org.alien.common.world.dimension.acheron;
 
-import com.asx.mdx.lib.world.Worlds;
+import com.asx.mdx.common.minecraft.Worlds;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;

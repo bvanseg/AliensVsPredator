@@ -1,6 +1,6 @@
 package org.avp.common.entity;
 
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;

@@ -1,9 +1,9 @@
 package org.avp.common.entity;
 
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.block.Blocks;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.block.Blocks;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -147,7 +147,7 @@ public class EntityFlame extends EntityThrowable
     @SideOnly(Side.CLIENT)
     public void spawnFlameParticle(double flameX, double flameY, double flameZ, float flameGravity)
     {
-        Game.minecraft().world.spawnParticle(EnumParticleTypes.FLAME, this.posX - (flameX / 2), this.posY - (flameY / 2), this.posZ - (flameZ / 2), this.rand.nextGaussian() * flameTailWidth, -this.motionY * (flameGravity * this.ticksExisted) - this.rand.nextGaussian() * flameTailWidth, this.rand.nextGaussian() * flameTailWidth);
+        ClientGame.instance.minecraft().world.spawnParticle(EnumParticleTypes.FLAME, this.posX - (flameX / 2), this.posY - (flameY / 2), this.posZ - (flameZ / 2), this.rand.nextGaussian() * flameTailWidth, -this.motionY * (flameGravity * this.ticksExisted) - this.rand.nextGaussian() * flameTailWidth, this.rand.nextGaussian() * flameTailWidth);
     }
 
     @Override

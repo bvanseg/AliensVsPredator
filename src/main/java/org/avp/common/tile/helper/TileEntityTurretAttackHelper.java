@@ -1,6 +1,6 @@
 package org.avp.common.tile.helper;
 
-import com.asx.mdx.lib.world.Pos;
+import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.entity.Entity;
 import net.minecraft.world.World;
 import org.avp.AVP;

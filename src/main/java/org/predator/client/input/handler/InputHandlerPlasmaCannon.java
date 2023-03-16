@@ -1,6 +1,6 @@
 package org.predator.client.input.handler;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
 import org.avp.common.network.packet.server.PacketPlasmaDischarge;
@@ -19,7 +19,7 @@ public class InputHandlerPlasmaCannon implements IInputHandler
     @Override
     public void handleInput()
     {
-        if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(Game.minecraft().player)))
+        if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(ClientGame.instance.minecraft().player)))
         {
             float potentialChargeSize = Math.min(this.chargeSize, this.getMaxChargeSize());
             float potentialEnergyUsed = this.getMaxStoredEnergy() * potentialChargeSize / this.getMaxChargeSize();
@@ -74,12 +74,12 @@ public class InputHandlerPlasmaCannon implements IInputHandler
 
     private void onNoEnergy()
     {
-        PredatorSounds.WEAPON_PLASMACASTER_NOENERGY.playSound(Game.minecraft().player, 0.6F, 1.0F);;
+        PredatorSounds.WEAPON_PLASMACASTER_NOENERGY.playSound(ClientGame.instance.minecraft().player, 0.6F, 1.0F);;
     }
 
     private void onChargeStart()
     {
-        PredatorSounds.WEAPON_PLASMACASTER_CHARGE.playSound(Game.minecraft().player, 0.6F, 1.0F);;
+        PredatorSounds.WEAPON_PLASMACASTER_CHARGE.playSound(ClientGame.instance.minecraft().player, 0.6F, 1.0F);;
     }
 
     private void onChargeRelease(float chargeSize, float energyUsed)

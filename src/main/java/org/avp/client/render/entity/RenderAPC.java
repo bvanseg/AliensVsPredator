@@ -1,10 +1,10 @@
 package org.avp.client.render.entity;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.wavefront.Part;
-import com.asx.mdx.lib.client.util.models.wavefront.TriangulatedWavefrontModel;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.wavefront.Part;
+import com.asx.mdx.client.render.model.wavefront.TriangulatedWavefrontModel;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -18,7 +18,7 @@ public class RenderAPC extends Render<EntityAPC>
 {
     private final TriangulatedWavefrontModel model      = AVP.resources().models().M577_APC;
     
-    private final Part                             tire0      = model.getPart("Mesh75_APCTire1_4_Group10_Model");
+    private final Part tire0      = model.getPart("Mesh75_APCTire1_4_Group10_Model");
     private final Part                             tire0Rim   = model.getPart("Mesh76_APCWhAmr4_Group10_Model");
     private final Part                             tire0Fin0  = model.getPart("Mesh77_APCWhPlt10_Group10_Model");
     private final Part                             tire0Fin1  = model.getPart("Mesh78_APCWhPlt10_Group10_Model");
@@ -151,7 +151,7 @@ public class RenderAPC extends Render<EntityAPC>
         GlStateManager.enableBlend();
         OpenGL.blendClear();
         OpenGL.translate((float) posX, (float) posY, (float) posZ);
-        OpenGL.rotate(-((apc.rotationYaw - apc.prevRotationYaw) * Game.partialTicks() + apc.prevRotationYaw + 180), 0, 1, 0);
+        OpenGL.rotate(-((apc.rotationYaw - apc.prevRotationYaw) * ClientGame.instance.partialTicks() + apc.prevRotationYaw + 180), 0, 1, 0);
         OpenGL.translate(3, 0, 0);
         
         if (time > 0.0F)
@@ -220,7 +220,7 @@ public class RenderAPC extends Render<EntityAPC>
                 if (Entities.isRiding(apc, EntityPlayer.class))
                 {
                     EntityPlayer playerIn = (EntityPlayer) apc.getPassengers().get(0);
-                    turretYaw = (((-playerIn.rotationYawHead - -playerIn.prevRotationYawHead) * Game.partialTicks() + -playerIn.rotationYawHead) - 72);
+                    turretYaw = (((-playerIn.rotationYawHead - -playerIn.prevRotationYawHead) * ClientGame.instance.partialTicks() + -playerIn.rotationYawHead) - 72);
                 }
                 
                 OpenGL.pushMatrix();

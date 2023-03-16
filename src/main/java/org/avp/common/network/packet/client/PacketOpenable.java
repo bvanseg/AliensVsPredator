@@ -1,6 +1,6 @@
 package org.avp.common.network.packet.client;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -51,12 +51,12 @@ public class PacketOpenable implements IMessage, IMessageHandler<PacketOpenable,
     @Override
     public PacketOpenable onMessage(PacketOpenable packet, MessageContext ctx)
     {
-        Game.minecraft().addScheduledTask(new Runnable()
+        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
         {
             @Override
             public void run()
             {
-                World world = Game.minecraft().player.world;
+                World world = ClientGame.instance.minecraft().player.world;
                 TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
                 if (world != null && tile != null && tile instanceof Openable)

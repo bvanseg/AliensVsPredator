@@ -1,7 +1,7 @@
 package org.avp.client;
 
-import com.asx.mdx.core.mods.IPreInitEvent;
-import com.asx.mdx.lib.util.Sound;
+import com.asx.mdx.client.sound.Sound;
+import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.lib.registry.SoundRegistryUtil;
 

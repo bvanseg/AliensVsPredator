@@ -1,8 +1,8 @@
 package org.avp.client.gui;
 
-import com.asx.mdx.lib.client.gui.*;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.gui.*;
 import net.minecraft.client.renderer.GlStateManager;
 import org.avp.AVP;
 import org.avp.common.network.packet.server.PacketBlastdoorCommon;
@@ -14,8 +14,8 @@ import java.io.IOException;
 public class GuiBlastdoor extends GuiCustomScreen
 {
     private final TileEntityBlastdoor door;
-    private final GuiCustomTextbox    password;
-    private GuiCustomButton     autolock;
+    private final GuiCustomTextbox password;
+    private GuiCustomButton autolock;
     private GuiCustomButton     bindTuner;
     private String              status;
     private final boolean             frontEnd;
@@ -111,7 +111,7 @@ public class GuiBlastdoor extends GuiCustomScreen
                 GlStateManager.enableBlend();
                 Draw.drawRect(screenX, screenY + headerHeight, guiWidth, 13, 0xEE000000);
 
-                if (Game.minecraft().world.getTotalWorldTime() % 20 <= 10)
+                if (ClientGame.instance.minecraft().world.getTotalWorldTime() % 20 <= 10)
                 {
                     Draw.drawString(status, screenX + padding, screenY + headerHeight + padding, 0xFFFF0000, false);
                 }
@@ -173,7 +173,7 @@ public class GuiBlastdoor extends GuiCustomScreen
                 if (!this.password.getText().isEmpty())
                 {
                     AVP.network().sendToServer(new PacketBlastdoorCommon(PacketMode.AUTH, this.door.getPos(), this.password.getText()));
-                    Game.minecraft().displayGuiScreen(null);
+                    ClientGame.instance.minecraft().displayGuiScreen(null);
                 }
                 else
                 {
@@ -189,7 +189,7 @@ public class GuiBlastdoor extends GuiCustomScreen
 
         if (key == 1)
         {
-            Game.minecraft().displayGuiScreen(null);
+            ClientGame.instance.minecraft().displayGuiScreen(null);
         }
     }
 }

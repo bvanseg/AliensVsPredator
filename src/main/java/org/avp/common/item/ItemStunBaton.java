@@ -1,8 +1,8 @@
 package org.avp.common.item;
 
-import com.asx.mdx.lib.client.entityfx.EntityFXElectricArc;
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.entity.fx.EntityFXElectricArc;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
@@ -93,6 +93,6 @@ public class ItemStunBaton extends ItemSword
         float targetY = (float) (targetYOrigin + (rand.nextInt(span) / mult) - (rand.nextInt(span) / mult));
         float targetZ = (float) (target.posZ + (rand.nextInt(span) / mult) - (rand.nextInt(span) / mult));
 
-        Game.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(player.world, target.posX, targetYOrigin, target.posZ, targetX, targetY, targetZ, 1, 1F, 0.1F, 0.05F, 0xFF8866CC));
+        ClientGame.instance.minecraft().effectRenderer.addEffect(new EntityFXElectricArc(player.world, target.posX, targetYOrigin, target.posZ, targetX, targetY, targetZ, 1, 1F, 0.1F, 0.05F, 0xFF8866CC));
     }
 }

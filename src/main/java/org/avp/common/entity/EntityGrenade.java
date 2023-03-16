@@ -1,7 +1,7 @@
 package org.avp.common.entity;
 
-import com.asx.mdx.lib.world.Pos;
-import com.asx.mdx.lib.world.Worlds;
+import com.asx.mdx.common.minecraft.Pos;
+import com.asx.mdx.common.minecraft.Worlds;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;

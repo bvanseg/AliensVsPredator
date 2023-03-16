@@ -1,7 +1,7 @@
 package org.alien.client.model.entity.living;
 
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.models.Model;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 import org.alien.common.entity.living.xenomorph.EntityBatXeno;
 

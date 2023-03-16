@@ -1,6 +1,6 @@
 package org.avp.common.block;
 
-import com.asx.mdx.lib.world.entity.player.inventory.Inventories;
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

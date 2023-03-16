@@ -1,6 +1,6 @@
 package org.alien.client.render;
 
-import com.asx.mdx.lib.util.MDXMath;
+import com.asx.mdx.common.math.MDXMath;
 
 public enum XenomorphJawState
 {

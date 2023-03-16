@@ -1,10 +1,10 @@
 package org.alien.common.world.dimension.acheron;
 
-import com.asx.mdx.lib.client.GameResources;
-import com.asx.mdx.lib.client.util.Color;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.Color;
+import com.asx.mdx.client.io.resource.GameResources;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.*;
@@ -25,9 +25,9 @@ public class SkyProviderAcheron extends IRenderHandler
 {
     public static final SkyProviderAcheron instance = new SkyProviderAcheron();
     
-    protected Color skyColor       = new com.asx.mdx.lib.client.util.Color(0.0F, 0.0F, 0.0F, 1F);
-    protected Color cloudColor     = new com.asx.mdx.lib.client.util.Color(0.03F, 0.03F, 0.05F, 0.8F);
-    protected Color starColor      = new com.asx.mdx.lib.client.util.Color(0.0F, 0.5F, 1.0F, 0.15F);
+    protected Color skyColor       = new com.asx.mdx.client.Color(0.0F, 0.0F, 0.0F, 1F);
+    protected Color cloudColor     = new com.asx.mdx.client.Color(0.03F, 0.03F, 0.05F, 0.8F);
+    protected Color starColor      = new com.asx.mdx.client.Color(0.0F, 0.5F, 1.0F, 0.15F);
     private int     starGLCallList = GLAllocation.generateDisplayLists(3);
 
     public SkyProviderAcheron()
@@ -45,9 +45,9 @@ public class SkyProviderAcheron extends IRenderHandler
     @SubscribeEvent
     public void fogRenderEvent(RenderFogEvent event)
     {
-        if (Game.minecraft().player.world.provider instanceof WorldProviderAcheron)
+        if (ClientGame.instance.minecraft().player.world.provider instanceof WorldProviderAcheron)
         {
-            if (Game.minecraft().player.world.canSeeSky(Game.minecraft().player.getPosition()))
+            if (ClientGame.instance.minecraft().player.world.canSeeSky(ClientGame.instance.minecraft().player.getPosition()))
             {
                 if (fogIntensity < 0.03F)
                 {
@@ -217,11 +217,11 @@ public class SkyProviderAcheron extends IRenderHandler
         OpenGL.enable(GL11.GL_TEXTURE_2D);
         GL11.glDepthMask(true);
 
-        if (Game.minecraft().gameSettings.shouldRenderClouds() >= 1)
+        if (ClientGame.instance.minecraft().gameSettings.shouldRenderClouds() >= 1)
         {
             OpenGL.pushMatrix();
             {
-                if (Game.minecraft().gameSettings.fancyGraphics)
+                if (ClientGame.instance.minecraft().gameSettings.fancyGraphics)
                 {
                     OpenGL.enable(GL11.GL_FOG);
                 }
@@ -238,20 +238,20 @@ public class SkyProviderAcheron extends IRenderHandler
     {
         for (int cloudPass = 1; cloudPass > 0; cloudPass--)
         {
-            float relativeHeight = (float) (Game.minecraft().getRenderViewEntity().lastTickPosY + (Game.minecraft().getRenderViewEntity().posY - Game.minecraft().getRenderViewEntity().lastTickPosY) * renderPartialTicks);
+            float relativeHeight = (float) (ClientGame.instance.minecraft().getRenderViewEntity().lastTickPosY + (ClientGame.instance.minecraft().getRenderViewEntity().posY - ClientGame.instance.minecraft().getRenderViewEntity().lastTickPosY) * renderPartialTicks);
             float cloudSpan = 10.0F;
             float cloudHeight = 12.0F * cloudPass;
             float cloudSpeed = 20;
-            double time = Game.minecraft().world.getWorldTime() * cloudSpeed + renderPartialTicks;
-            double viewX = (Game.minecraft().getRenderViewEntity().prevPosX + (Game.minecraft().getRenderViewEntity().posX - Game.minecraft().getRenderViewEntity().prevPosX) * renderPartialTicks + time * 0.029999999329447746D) / cloudSpan;
-            double viewZ = (Game.minecraft().getRenderViewEntity().prevPosZ + (Game.minecraft().getRenderViewEntity().posZ - Game.minecraft().getRenderViewEntity().prevPosZ) * renderPartialTicks) / cloudSpan + 0.33000001311302185D;
-            float cloudY = Game.minecraft().world.provider.getCloudHeight() - relativeHeight;
+            double time = ClientGame.instance.minecraft().world.getWorldTime() * cloudSpeed + renderPartialTicks;
+            double viewX = (ClientGame.instance.minecraft().getRenderViewEntity().prevPosX + (ClientGame.instance.minecraft().getRenderViewEntity().posX - ClientGame.instance.minecraft().getRenderViewEntity().prevPosX) * renderPartialTicks + time * 0.029999999329447746D) / cloudSpan;
+            double viewZ = (ClientGame.instance.minecraft().getRenderViewEntity().prevPosZ + (ClientGame.instance.minecraft().getRenderViewEntity().posZ - ClientGame.instance.minecraft().getRenderViewEntity().prevPosZ) * renderPartialTicks) / cloudSpan + 0.33000001311302185D;
+            float cloudY = ClientGame.instance.minecraft().world.provider.getCloudHeight() - relativeHeight;
             viewX -= (MathHelper.floor(viewX / 2048.0D)) * 2048;
             viewZ -= (MathHelper.floor(viewZ / 2048.0D)) * 2048;
             float scaleUV = 0.00390625F;
             float offsetU = MathHelper.floor(viewX) * scaleUV;
             float offsetV = MathHelper.floor(viewZ) * scaleUV;
-            byte dist = (byte) (Game.minecraft().gameSettings.renderDistanceChunks);
+            byte dist = (byte) (ClientGame.instance.minecraft().gameSettings.renderDistanceChunks);
             byte cloudSections = 2;
 
             OpenGL.disableCullFace();

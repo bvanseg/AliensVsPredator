@@ -1,16 +1,16 @@
 package org.avp.client.gui;
 
-import com.asx.mdx.config.ConfigSetting;
-import com.asx.mdx.config.ConfigSettingBoolean;
-import com.asx.mdx.config.ConfigSettingGraphics;
-import com.asx.mdx.config.ConfigSettingInteger;
-import com.asx.mdx.lib.client.gui.*;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.client.util.OpenGL;
-import com.asx.mdx.lib.client.util.ScaledResolution;
-import com.asx.mdx.lib.client.util.Screen;
-import com.asx.mdx.lib.util.Chat;
-import com.asx.mdx.lib.util.system.SystemInfo;
+import com.asx.mdx.client.ScaledResolution;
+import com.asx.mdx.client.Screen;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.OpenGL;
+import com.asx.mdx.client.render.gui.*;
+import com.asx.mdx.common.io.config.ConfigSetting;
+import com.asx.mdx.common.io.config.ConfigSettingBoolean;
+import com.asx.mdx.common.io.config.ConfigSettingGraphics;
+import com.asx.mdx.common.io.config.ConfigSettingInteger;
+import com.asx.mdx.common.minecraft.Chat;
+import com.asx.mdx.common.system.SystemInfo;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import org.apache.commons.lang3.text.WordUtils;

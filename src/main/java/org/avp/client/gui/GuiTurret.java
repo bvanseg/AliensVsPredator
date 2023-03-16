@@ -1,11 +1,11 @@
 package org.avp.client.gui;
 
-import com.asx.mdx.lib.client.gui.GuiCustomButton;
-import com.asx.mdx.lib.client.gui.GuiCustomTextbox;
-import com.asx.mdx.lib.client.gui.IAction;
-import com.asx.mdx.lib.client.gui.IGuiElement;
-import com.asx.mdx.lib.client.util.Draw;
-import com.asx.mdx.lib.world.entity.Entities;
+import com.asx.mdx.client.render.Draw;
+import com.asx.mdx.client.render.gui.GuiCustomButton;
+import com.asx.mdx.client.render.gui.GuiCustomTextbox;
+import com.asx.mdx.client.render.gui.IAction;
+import com.asx.mdx.client.render.gui.IGuiElement;
+import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

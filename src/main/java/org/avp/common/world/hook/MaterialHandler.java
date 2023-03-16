@@ -1,6 +1,6 @@
 package org.avp.common.world.hook;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -29,9 +29,9 @@ public class MaterialHandler
     @SubscribeEvent
     public void render(RenderGameOverlayEvent event)
     {
-        if (Game.minecraft().world != null)
+        if (ClientGame.instance.minecraft().world != null)
         {
-            Material materialInside = getMaterialInside(Game.minecraft().player);
+            Material materialInside = getMaterialInside(ClientGame.instance.minecraft().player);
 
             if (materialInside != null && materialInside instanceof MaterialPhysics)
             {
@@ -42,7 +42,7 @@ public class MaterialHandler
                 {
                     if (event.getType() == ElementType.HELMET)
                     {
-                        if (Game.minecraft().player.isInsideOfMaterial(materialInside))
+                        if (ClientGame.instance.minecraft().player.isInsideOfMaterial(materialInside))
                         {
                             renderer.renderMaterialOverlay(materialInside);
                         }
@@ -92,11 +92,11 @@ public class MaterialHandler
     @SubscribeEvent
     public void fogRenderEvent(RenderFogEvent event)
     {
-        if (Game.minecraft().world != null && !Game.minecraft().isGamePaused())
+        if (ClientGame.instance.minecraft().world != null && !ClientGame.instance.minecraft().isGamePaused())
         {
-            Material material = getMaterialInside(Game.minecraft().player);
+            Material material = getMaterialInside(ClientGame.instance.minecraft().player);
 
-            if (material instanceof MaterialPhysics && Game.minecraft().player.isInsideOfMaterial(material))
+            if (material instanceof MaterialPhysics && ClientGame.instance.minecraft().player.isInsideOfMaterial(material))
             {
                 MaterialPhysics physics = (MaterialPhysics) material;
                 MaterialRenderer renderer = physics.getMaterialRenderer();
@@ -113,13 +113,13 @@ public class MaterialHandler
     @SubscribeEvent
     public void fogColorUpdate(FogColors event)
     {
-        if (Game.minecraft().world != null && !Game.minecraft().isGamePaused())
+        if (ClientGame.instance.minecraft().world != null && !ClientGame.instance.minecraft().isGamePaused())
         {
-            Material material = getMaterialInside(Game.minecraft().player);
+            Material material = getMaterialInside(ClientGame.instance.minecraft().player);
 
             if (material instanceof MaterialPhysics)
             {
-                if (Game.minecraft().player.isInsideOfMaterial(material))
+                if (ClientGame.instance.minecraft().player.isInsideOfMaterial(material))
                 {
                     MaterialPhysics physics = (MaterialPhysics) material;
                     MaterialRenderer renderer = physics.getMaterialRenderer();

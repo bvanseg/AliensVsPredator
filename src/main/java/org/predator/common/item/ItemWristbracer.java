@@ -1,7 +1,7 @@
 package org.predator.common.item;
 
-import com.asx.mdx.lib.util.Game;
-import com.asx.mdx.lib.world.item.HookedItem;
+import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.common.minecraft.item.HookedItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
@@ -70,7 +70,7 @@ public class ItemWristbracer extends HookedItem
             public void onAction(String combonation, Object... args)
             {
                 AVP.network().sendToServer(new PacketSpawnNuke());
-                Game.minecraft().currentScreen = null;
+                ClientGame.instance.minecraft().currentScreen = null;
             }
         });
     }

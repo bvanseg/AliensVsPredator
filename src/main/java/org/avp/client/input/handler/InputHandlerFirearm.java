@@ -1,6 +1,6 @@
 package org.avp.client.input.handler;
 
-import com.asx.mdx.lib.util.Game;
+import com.asx.mdx.client.ClientGame;
 import net.minecraft.item.Item;
 import org.avp.AVP;
 import org.avp.client.input.IInputHandler;
@@ -15,14 +15,14 @@ public class InputHandlerFirearm implements IInputHandler
     @Override
     public void handleInput()
     {
-        if (Game.minecraft().player != null)
+        if (ClientGame.instance.minecraft().player != null)
         {
             this.lastReload++;
             
-            Item mainHand = Game.minecraft().player.getHeldItemMainhand().getItem();
-            Item offHand = Game.minecraft().player.getHeldItemOffhand().getItem();
+            Item mainHand = ClientGame.instance.minecraft().player.getHeldItemMainhand().getItem();
+            Item offHand = ClientGame.instance.minecraft().player.getHeldItemOffhand().getItem();
 
-            if (Game.minecraft().inGameHasFocus && mainHand != null && mainHand instanceof ItemFirearm)
+            if (ClientGame.instance.minecraft().inGameHasFocus && mainHand != null && mainHand instanceof ItemFirearm)
             {
                 ItemFirearm fireArm = (ItemFirearm) mainHand;
 
@@ -32,7 +32,7 @@ public class InputHandlerFirearm implements IInputHandler
                     AVP.network().sendToServer(new PacketReloadFirearm());
                 }
             }
-            else if (Game.minecraft().inGameHasFocus && offHand != null && offHand instanceof ItemFirearm)
+            else if (ClientGame.instance.minecraft().inGameHasFocus && offHand != null && offHand instanceof ItemFirearm)
             {
             	ItemFirearm fireArm = (ItemFirearm) offHand;
 

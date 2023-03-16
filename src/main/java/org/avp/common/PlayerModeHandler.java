@@ -1,11 +1,11 @@
 package org.avp.common;
 
 
-import com.asx.mdx.core.mods.IInitEvent;
-import com.asx.mdx.lib.client.util.Texture;
-import com.asx.mdx.lib.client.util.models.MapModelTexture;
-import com.asx.mdx.lib.client.util.models.Model;
-import com.asx.mdx.lib.world.entity.player.Players;
+import com.asx.mdx.client.render.model.MapModelTexture;
+import com.asx.mdx.client.render.model.Model;
+import com.asx.mdx.client.render.model.texture.Texture;
+import com.asx.mdx.common.minecraft.entity.player.Players;
+import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.common.MinecraftForge;
