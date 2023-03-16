@@ -21,15 +21,16 @@ import java.util.Map;
  */
 public class AttachedToHostBrainTask extends AbstractBrainTask<EntityBrainContext> {
 
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
+    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlagRequirements();
 
-    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
+    private static Map<AbstractBrainFlag, BrainFlagState> createFlagRequirements() {
         Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
         map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
         return map;
     }
+
     @Override
-    public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+    public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
         return FLAGS;
     }
 

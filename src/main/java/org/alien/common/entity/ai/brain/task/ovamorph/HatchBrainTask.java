@@ -26,7 +26,7 @@ public class HatchBrainTask extends AbstractBrainTask<EntityBrainContext> {
     private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = Collections.emptyMap();
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
 	

@@ -34,7 +34,7 @@ public class RecycleSpentOvamorphBrainTask extends AbstractBrainTask<EntityBrain
     }
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
 

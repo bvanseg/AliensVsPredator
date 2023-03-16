@@ -35,7 +35,7 @@ public class MatriarchEnthrallAlienBrainTask extends AbstractBrainTask<EntityBra
     }
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
 	

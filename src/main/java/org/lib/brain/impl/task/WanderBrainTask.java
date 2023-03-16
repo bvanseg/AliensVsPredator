@@ -30,7 +30,7 @@ public class WanderBrainTask extends AbstractBrainTask<EntityBrainContext> {
     }
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
     

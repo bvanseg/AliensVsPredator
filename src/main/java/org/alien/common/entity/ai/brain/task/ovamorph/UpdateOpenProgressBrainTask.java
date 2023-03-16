@@ -29,7 +29,7 @@ public class UpdateOpenProgressBrainTask extends AbstractBrainTask<EntityBrainCo
     }
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
 	

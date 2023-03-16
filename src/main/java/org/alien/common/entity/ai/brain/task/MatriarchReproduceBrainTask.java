@@ -28,7 +28,7 @@ public class MatriarchReproduceBrainTask extends AbstractBrainTask<EntityBrainCo
     }
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
 	

@@ -27,7 +27,7 @@ public class GrowOvipositorBrainTask extends AbstractBrainTask<EntityBrainContex
     }
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
 	

@@ -16,7 +16,7 @@ import java.util.Map;
 public class UpdateInfertileStateBrainTask extends AbstractBrainTask<EntityBrainContext> {
 
     @Override
-    public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+    public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
         return Collections.emptyMap();
     }
 

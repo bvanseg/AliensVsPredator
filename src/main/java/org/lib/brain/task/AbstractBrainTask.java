@@ -4,6 +4,7 @@ import org.lib.brain.AbstractBrainContext;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 
+import java.util.Collections;
 import java.util.Map;
 
 /**
@@ -32,10 +33,16 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 		if (this.isExecuting && !shouldExecute) {
 			this.finish(ctx);
 			this.isExecuting = false;
+
+			// Revert flag masks that the task used back to normal once the task is done.
+			if (!this.isExecuting()) {
+				ctx.getBrain().clearFlagMasksForTask(this);
+			}
 		}
 	}
 	
-	public abstract Map<AbstractBrainFlag, BrainFlagState> getFlags();
+	public abstract Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements();
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagMasks() { return Collections.emptyMap(); }
 	protected abstract boolean shouldExecute(T ctx);
 	protected abstract void execute(T ctx);
 	public void finish(T ctx) {}

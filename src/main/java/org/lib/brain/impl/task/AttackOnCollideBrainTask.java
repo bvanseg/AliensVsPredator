@@ -29,7 +29,7 @@ public class AttackOnCollideBrainTask extends AbstractBrainTask<EntityBrainConte
     }
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
     

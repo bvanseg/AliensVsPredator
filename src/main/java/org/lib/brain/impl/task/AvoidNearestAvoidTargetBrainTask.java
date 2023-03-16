@@ -34,7 +34,7 @@ public class AvoidNearestAvoidTargetBrainTask extends AbstractBrainTask<EntityBr
     }
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
 

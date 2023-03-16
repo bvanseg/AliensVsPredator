@@ -13,4 +13,10 @@ public enum BrainFlagState {
 	PRESENT,
 	ABSENT,
 	ANY;
+
+	public BrainFlagState inverse() {
+		if (this == PRESENT) return ABSENT;
+		if (this == ABSENT) return PRESENT;
+		return this;
+	}
 }

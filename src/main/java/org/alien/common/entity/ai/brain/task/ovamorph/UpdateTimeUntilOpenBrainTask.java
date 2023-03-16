@@ -29,7 +29,7 @@ public class UpdateTimeUntilOpenBrainTask extends AbstractBrainTask<EntityBrainC
     }
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
 	

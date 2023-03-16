@@ -6,4 +6,6 @@ package org.lib.brain;
  * @author Boston Vanseghi
  *
  */
-public interface AbstractBrainContext {}
+public interface AbstractBrainContext {
+    AbstractBrain<? extends AbstractBrainContext> getBrain();
+}

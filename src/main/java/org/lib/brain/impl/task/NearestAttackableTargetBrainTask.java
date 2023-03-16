@@ -28,7 +28,7 @@ public class NearestAttackableTargetBrainTask extends AbstractBrainTask<EntityBr
     }
     
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAGS;
 	}
 	
