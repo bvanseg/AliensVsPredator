@@ -9,29 +9,20 @@ import org.alien.common.world.capability.Organism;
 import org.lib.brain.Brainiac;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
  * @author Boston Vanseghi
  */
-public class AttachedToHostBrainTask extends AbstractBrainTask<EntityBrainContext> {
-
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlagRequirements();
-
-    private static Map<AbstractBrainFlag, BrainFlagState> createFlagRequirements() {
-        Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
-        map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
-        return map;
-    }
+public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
 
     @Override
-    public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
-        return FLAGS;
+    public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
+        map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
     }
 
     @Override

@@ -6,12 +6,11 @@ import org.alien.common.entity.living.xenomorph.EntityDrone;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -22,20 +21,12 @@ import java.util.stream.Collectors;
  * @author Boston Vanseghi
  *
  */
-public class RecycleSpentOvamorphBrainTask extends AbstractBrainTask<EntityBrainContext> {
-    
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
-    
-    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
-    	map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
-    	map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
-		return map;
-    }
-    
-    @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
-		return FLAGS;
+public class RecycleSpentOvamorphBrainTask extends AbstractEntityBrainTask {
+
+	@Override
+	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
+		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
 	}
 
 	private EntityOvamorph targetOvamorph;

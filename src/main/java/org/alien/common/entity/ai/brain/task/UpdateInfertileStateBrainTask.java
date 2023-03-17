@@ -2,23 +2,13 @@ package org.alien.common.entity.ai.brain.task;
 
 import net.minecraft.entity.MoverType;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.lib.brain.flag.AbstractBrainFlag;
-import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.task.AbstractBrainTask;
-
-import java.util.Collections;
-import java.util.Map;
 
 /**
  * @author Boston Vanseghi
  */
 public class UpdateInfertileStateBrainTask extends AbstractBrainTask<EntityBrainContext> {
-
-    @Override
-    public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
-        return Collections.emptyMap();
-    }
 
     @Override
     protected boolean shouldExecute(EntityBrainContext ctx) {

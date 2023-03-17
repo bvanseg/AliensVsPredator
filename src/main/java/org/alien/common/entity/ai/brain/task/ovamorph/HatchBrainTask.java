@@ -8,13 +8,8 @@ import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.alien.common.entity.living.xenomorph.EntityQueenChestburster;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
-import org.lib.brain.flag.AbstractBrainFlag;
-import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.task.AbstractBrainTask;
-
-import java.util.Collections;
-import java.util.Map;
 
 /**
  * 
@@ -22,14 +17,7 @@ import java.util.Map;
  *
  */
 public class HatchBrainTask extends AbstractBrainTask<EntityBrainContext> {
-    
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = Collections.emptyMap();
-    
-    @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
-		return FLAGS;
-	}
-	
+
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
 		if (!(ctx.getEntity() instanceof EntityOvamorph))

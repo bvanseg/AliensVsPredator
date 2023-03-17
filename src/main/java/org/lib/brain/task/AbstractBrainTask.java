@@ -41,7 +41,10 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 		}
 	}
 	
-	public abstract Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements();
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
+		return Collections.emptyMap();
+	}
+
 	public Map<AbstractBrainFlag, BrainFlagState> getFlagMasks() { return Collections.emptyMap(); }
 	protected abstract boolean shouldExecute(T ctx);
 	protected abstract void execute(T ctx);
