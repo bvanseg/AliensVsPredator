@@ -1,9 +1,9 @@
 package org.alien.common.entity.ai.brain;
 
-import org.alien.common.entity.ai.brain.task.GrowOvipositorBrainTask;
-import org.alien.common.entity.ai.brain.task.MatriarchEnthrallAlienBrainTask;
-import org.alien.common.entity.ai.brain.task.MatriarchMoveToHiveCoreBrainTask;
-import org.alien.common.entity.ai.brain.task.MatriarchReproduceBrainTask;
+import org.alien.common.entity.ai.brain.task.matriarch.GrowOvipositorBrainTask;
+import org.alien.common.entity.ai.brain.task.matriarch.MatriarchEnthrallAlienBrainTask;
+import org.alien.common.entity.ai.brain.task.matriarch.MatriarchMoveToHiveCoreBrainTask;
+import org.alien.common.entity.ai.brain.task.matriarch.MatriarchReproduceBrainTask;
 import org.alien.common.entity.living.SpeciesXenomorph;
 
 /**

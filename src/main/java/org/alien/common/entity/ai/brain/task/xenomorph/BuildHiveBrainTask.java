@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain.task;
+package org.alien.common.entity.ai.brain.task.xenomorph;
 
 import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.block.Block;

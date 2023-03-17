@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain.task;
+package org.alien.common.entity.ai.brain.task.matriarch;
 
 import com.asx.mdx.common.minecraft.Pos;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;

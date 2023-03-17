@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain.task;
+package org.alien.common.entity.ai.brain.task.xenomorph;
 
 import net.minecraft.entity.EntityLiving;
 import org.alien.common.entity.living.SpeciesXenomorph;

@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain.task;
+package org.alien.common.entity.ai.brain.task.parasitoid;
 
 import net.minecraft.entity.MoverType;
 import org.alien.common.entity.living.EntityParasitoid;

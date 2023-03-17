@@ -1,8 +1,8 @@
 package org.alien.common.entity.ai.brain;
 
 import net.minecraft.entity.EntityLivingBase;
-import org.alien.common.entity.ai.brain.task.FindJellyBrainTask;
-import org.alien.common.entity.ai.brain.task.ShareJellyBrainTask;
+import org.alien.common.entity.ai.brain.task.xenomorph.FindJellyBrainTask;
+import org.alien.common.entity.ai.brain.task.xenomorph.ShareJellyBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.lib.brain.impl.AbstractEntityBrain;

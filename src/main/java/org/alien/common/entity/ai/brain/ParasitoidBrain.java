@@ -1,7 +1,7 @@
 package org.alien.common.entity.ai.brain;
 
-import org.alien.common.entity.ai.brain.task.AttachedToHostBrainTask;
-import org.alien.common.entity.ai.brain.task.UpdateInfertileStateBrainTask;
+import org.alien.common.entity.ai.brain.task.parasitoid.AttachedToHostBrainTask;
+import org.alien.common.entity.ai.brain.task.parasitoid.UpdateInfertileStateBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.lib.brain.impl.AbstractEntityBrain;
