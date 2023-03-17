@@ -116,8 +116,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
         }
         else if (Game.instance.isDevEnvironment())
         {
-            System.out.println("ERROR: NullPointerException during chestburster evolve state.");
-            System.out.println("MATURE STATE: " + this.getMatureState());
+            // TODO:
         }
         this.setDead();
     }
@@ -184,7 +183,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
         }
         catch (ClassNotFoundException e)
         {
-            System.out.println("Unable to ready maturity state for chestburster: " + maturityState);
+            e.printStackTrace();
         }
     }
 

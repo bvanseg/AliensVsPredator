@@ -162,8 +162,7 @@ public class Embryo implements Cloneable
             }
             catch (Exception e)
             {
-                System.out.println("ERROR during embryo construction: " + e);
-                System.out.println("ID: " + id);
+                e.printStackTrace();
             }
         }
         return null;

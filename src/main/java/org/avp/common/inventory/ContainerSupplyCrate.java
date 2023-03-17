@@ -49,9 +49,6 @@ public class ContainerSupplyCrate extends Container
     public void onContainerClosed(EntityPlayer player)
     {
         super.onContainerClosed(player);
-        
-        System.out.println(this.supplyCrate.inventory.getStackInSlot(0));
-
         this.supplyCrate.setOpen(false);
     }
 
@@ -71,7 +68,6 @@ public class ContainerSupplyCrate extends Container
             {
                 if (!this.mergeItemStack(stack, inventoryLastSlot + 1, containerLastSlot + 1, false))
                 {
-                    System.out.println(1);
                     return ItemStack.EMPTY;
                 }
             }
@@ -79,7 +75,6 @@ public class ContainerSupplyCrate extends Container
             {
                 if (!this.mergeItemStack(stack, 0, inventoryLastSlot, false))
                 {
-                    System.out.println(1);
                     return ItemStack.EMPTY;
                 }
             }

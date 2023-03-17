@@ -588,7 +588,6 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements Voltage
                     tag.setString("BindKey", tunerBindKey);
                     itemstack.setTagCompound(tag);
                     itemstack.setStackDisplayName(tunerBindKey);
-                    System.out.println("created key: " + tunerBindKey);
                 }
             }
 

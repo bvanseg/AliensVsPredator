@@ -51,7 +51,6 @@ public class ContainerRepulsionGenerator extends Container
         {
             int tmp = 0;
             addSlotToContainer(new Slot(player.inventory, tmp = slot++, 8 + (18 * s), 142));
-            System.out.println(tmp);
         }
     }
 

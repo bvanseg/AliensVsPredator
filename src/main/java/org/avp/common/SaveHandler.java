@@ -98,7 +98,6 @@ public class SaveHandler
             }
             catch (FileNotFoundException f)
             {
-                System.out.println(String.format("Error loading data from: %s", worldSave.getAbsolutePath()));
                 f.printStackTrace();
             }
             catch (IOException io)

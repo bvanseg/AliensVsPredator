@@ -175,8 +175,8 @@ public class AVPSettings implements IPreInitEvent, IFlexibleConfiguration
 
             if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
             {
-                System.out.println("Listing Overworld Biome IDs for configuration settings...");
-                
+                AVP.log().info("Listing Overworld Biome IDs for configuration settings...");
+
                 for (Biome b : EntitySpawnRegistryUtil.getOverworldBiomeList())
                 {
                 	AVP.log().info("{} : {}", b.getBiomeName(), b.getRegistryName());

@@ -53,7 +53,6 @@ public class EntitySmartDisc extends EntityProjectile
         this.shoot(this.motionX, this.motionY, this.motionZ, velocity, 5.0F);
         this.soundTimer = 0.0F;
         this.floatStrength = Math.min(1.5F, velocity);
-        System.out.println(this.floatStrength);
         itemstack = stack;
     }
 
