@@ -4,7 +4,6 @@ import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 

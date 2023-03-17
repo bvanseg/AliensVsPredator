@@ -5,7 +5,6 @@ import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.flag.BrainMemoryFlag;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.profile.BrainProfiles;
-import org.lib.brain.impl.task.AvoidBlockBrainTask;
 import org.lib.brain.memory.BrainMemoryKey;
 import org.lib.brain.memory.BrainMemoryMap;
 import org.lib.brain.profile.BrainProfile;
