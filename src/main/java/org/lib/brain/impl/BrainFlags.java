@@ -24,7 +24,8 @@ public class BrainFlags {
 	
 	public static final AbstractBrainFlag NEAREST_ATTACKABLE_TARGET = createMemoryFlag("nearest_attackable_target", BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
 	public static final AbstractBrainFlag NEAREST_AVOID_TARGET = createMemoryFlag("nearest_avoid_target", BrainMemoryKeys.NEAREST_AVOID_TARGET);
-	
+	public static final AbstractBrainFlag BLOCK_POSITIONS_OF_INTEREST = createMemoryFlag("block_positions_of_interest", BrainMemoryKeys.BLOCK_POSITIONS_OF_INTEREST);
+
 	private static BrainMemoryFlag createMemoryFlag(String identifier, BrainMemoryKey<?> memoryKey) {
 		BrainMemoryFlag flag = new BrainMemoryFlag(identifier, memoryKey);
 		memoryKeysToBrainFlags.putIfAbsent(memoryKey, flag);
