@@ -14,6 +14,7 @@ import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;
 import org.lib.brain.impl.task.*;
 
+import java.util.Arrays;
 import java.util.HashSet;
 
 /**
@@ -26,18 +27,27 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 		super(entity);
 	}
 
+	private static final HashSet<Block> AVOID_BLOCKS = new HashSet<>();
 	private static final HashSet<Block> BLOCKS_OF_INTEREST = new HashSet<>();
+	private static final HashSet<Block> DESTROY_BLOCKS = new HashSet<>();
 
 	static  {
-		BLOCKS_OF_INTEREST.add(Blocks.FIRE);
+		addToSets(Blocks.FIRE, BLOCKS_OF_INTEREST, AVOID_BLOCKS);
 
-		BLOCKS_OF_INTEREST.add(Blocks.TORCH);
-		BLOCKS_OF_INTEREST.add(Blocks.REDSTONE_TORCH);
-		BLOCKS_OF_INTEREST.add(Blocks.LIT_REDSTONE_LAMP);
-		BLOCKS_OF_INTEREST.add(Blocks.SEA_LANTERN);
-		BLOCKS_OF_INTEREST.add(Blocks.GLOWSTONE);
+		addToSets(Blocks.TORCH, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
+		addToSets(Blocks.REDSTONE_TORCH, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
+		addToSets(Blocks.LIT_REDSTONE_LAMP, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
+		addToSets(Blocks.SEA_LANTERN, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
+		addToSets(Blocks.GLOWSTONE, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
+		addToSets(AVPBlocks.LIGHT_PANEL, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
 
-		BLOCKS_OF_INTEREST.add(AVPBlocks.POWERLINE);
+		addToSets(AVPBlocks.POWERLINE, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
+		addToSets(Blocks.REDSTONE_WIRE, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
+	}
+
+	@SafeVarargs
+	private static void addToSets(Block block, HashSet<Block>... sets) {
+		Arrays.stream(sets).forEach(set -> set.add(block));
 	}
 
 	@Override
@@ -55,7 +65,8 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 		this.addTask(new AttackOnCollideBrainTask(1.0D));
 		this.addTask(new HurtByTargetBrainTask());
 		this.addTask(new NearestAttackableTargetBrainTask());
-		this.addTask(new AvoidBlockBrainTask(3F, 1.0F, 1.0F, block -> block == Blocks.FIRE));
+		this.addTask(new AvoidBlockBrainTask(3F, 1.0F, 1.0F, AVOID_BLOCKS::contains));
+		this.addTask(new DestroyBlockBrainTask(1.0D, DESTROY_BLOCKS::contains));
 	}
 
 	public void initSenses() {
