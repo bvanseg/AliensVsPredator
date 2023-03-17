@@ -1,8 +1,6 @@
 package org.alien.common.entity.ai.brain.task.parasitoid;
 
 import net.minecraft.entity.MoverType;
-import org.alien.common.entity.ai.brain.task.matriarch.GrowOvipositorBrainTask;
-import org.alien.common.entity.ai.brain.task.matriarch.MatriarchEnthrallAlienBrainTask;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.task.AbstractBrainTask;
@@ -24,9 +22,6 @@ public class UpdateInfertileStateBrainTask extends AbstractBrainTask<EntityBrain
 
         if (!parasite.isAttachedToHost()) {
             parasite.setNoAI(true);
-            // TODO: Switch to infertile profile here, instead.
-            parasite.getBrain().getTasks()
-                    .forEach(task -> task.setDisabled(!(task instanceof UpdateInfertileStateBrainTask)));
         }
     }
 
@@ -36,7 +31,6 @@ public class UpdateInfertileStateBrainTask extends AbstractBrainTask<EntityBrain
         parasite.motionY -= 0.05F;
         parasite.motionY *= 0.98F;
         parasite.move(MoverType.SELF, 0, parasite.motionY, 0);
-
 
         parasite.timeSinceInfertile++;
 

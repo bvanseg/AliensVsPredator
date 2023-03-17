@@ -29,11 +29,6 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 			} else {
 				this.finish(ctx);
 				this.isExecuting = false;
-
-				// Revert flag masks that the task used back to normal once the task is done.
-				if (!this.isExecuting()) {
-					ctx.getBrain().clearFlagMasksForTask(this);
-				}
 			}
 		}
 

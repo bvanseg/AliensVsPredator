@@ -5,6 +5,7 @@ import org.alien.common.entity.ai.brain.task.parasitoid.UpdateInfertileStateBrai
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.lib.brain.impl.AbstractEntityBrain;
+import org.lib.brain.impl.profile.BrainProfiles;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.task.*;
@@ -30,8 +31,8 @@ public class ParasitoidBrain extends AbstractEntityBrain<EntityParasitoid> {
 		this.addTask(new AttackOnCollideBrainTask(0.55D));
 		this.addTask(new WanderBrainTask(0.55D));
 		this.addTask(new NearestAttackableTargetBrainTask());
-		this.addTask(new AttachedToHostBrainTask());
-		this.addTask(new UpdateInfertileStateBrainTask());
+		this.addTask(new AttachedToHostBrainTask(), BrainProfiles.PARASITOID_ATTACHED);
+		this.addTask(new UpdateInfertileStateBrainTask(), BrainProfiles.PARASITOID_INFERTILE);
 
 		this.initParasiteTasks();
 	}

@@ -4,13 +4,14 @@ import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.flag.BrainMemoryFlag;
 import org.lib.brain.impl.BrainFlags;
+import org.lib.brain.impl.profile.BrainProfiles;
 import org.lib.brain.memory.BrainMemoryKey;
 import org.lib.brain.memory.BrainMemoryMap;
+import org.lib.brain.profile.BrainProfile;
 import org.lib.brain.sensor.AbstractBrainSensor;
 import org.lib.brain.task.AbstractBrainTask;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * A logical processor with input (sensors) and output/results (tasks). The processing pipeline is as follows:
@@ -37,18 +38,19 @@ import java.util.stream.Collectors;
 public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	private final BrainMemoryMap memoryManager;
 	private final ArrayList<AbstractBrainSensor<T>> sensors;
-	private final ArrayList<AbstractBrainTask<T>> tasks;
+	private final HashMap<BrainProfile, ArrayList<AbstractBrainTask<T>>> profileTaskSets;
 	private final HashMap<AbstractBrainFlag, BrainFlagState> brainFlagStates;
-	private final HashMap<AbstractBrainFlag, AbstractBrainTask<T>> brainFlagUsers;
 
 	private boolean isDisabled = false;
+
+	private BrainProfile activeProfile;
 	
 	protected AbstractBrain() {
 		this.memoryManager = new BrainMemoryMap();
 		this.sensors = new ArrayList<>();
-		this.tasks = new ArrayList<>();
+		this.profileTaskSets = new HashMap<>();
 		this.brainFlagStates = new HashMap<>();
-		this.brainFlagUsers = new HashMap<>();
+		this.activeProfile = BrainProfiles.STANDARD;
 	}
 
 	public void init() {}
@@ -58,24 +60,15 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 			return;
 
 		sensors.forEach(sensor -> sensor.sense(ctx));
-		tasks.forEach(task -> {
+
+		profileTaskSets.computeIfAbsent(this.activeProfile, key -> new ArrayList<>()).forEach(task -> {
 			if (this.canRunTask(task)) {
 				task.runTask(ctx);
-
-				if (task.isExecuting()) {
-					// Tasks will reserve the flag under their hash so that they can still run while the flags are present.
-					this.setFlagMasksForTask(task);
-				}
 			}
 			// If the flag states change, and we weren't able to run the task, but the task is still executing, we need to finish the task.
 			else if (task.isExecuting()) {
 				task.finish(ctx);
 				task.setExecuting(false);
-
-				// Revert flag masks that the task used back to normal once the task is done.
-				if (!task.isExecuting()) {
-					this.clearFlagMasksForTask(task);
-				}
 			}
 		});
 	}
@@ -84,53 +77,40 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		sensors.add(brainSensor);
 	}
 	
-	public final void addTask(AbstractBrainTask<T> brainTask) {
-		tasks.add(brainTask);
+	public final void addTask(AbstractBrainTask<T> brainTask, BrainProfile... profiles) {
+		Arrays.stream(profiles).forEach(
+			profile -> profileTaskSets.computeIfAbsent(profile, key -> new ArrayList<>()).add(brainTask)
+		);
 	}
-	
+
+	public final void addTask(AbstractBrainTask<T> brainTask) {
+		this.addTask(brainTask, BrainProfiles.STANDARD);
+	}
+
 	public final boolean canRunTask(AbstractBrainTask<T> brainTask) {
 		Map<AbstractBrainFlag, BrainFlagState> requirements = brainTask.getFlagRequirements();
+		return requirements.entrySet().stream().allMatch(entry -> doesCurrentStateMatchRequirement(requirements, entry));
+	}
 
-		// Do not interrupt if the task is executing and masking all of its required flags.
-		if (brainTask.isExecuting()) {
-			return brainFlagUsers.entrySet().stream().filter(entry -> requirements.containsKey(entry.getKey())).noneMatch(entry -> brainTask != entry.getValue());
+	private boolean doesCurrentStateMatchRequirement(Map<AbstractBrainFlag, BrainFlagState> requirements, Map.Entry<AbstractBrainFlag, BrainFlagState> entry) {
+		boolean memoryPresent = true;
+		boolean memoryAbsent = true;
+
+		// If the flag type is derived from brain memory, we need to additionally check that the memory is present.
+		if (entry.getKey() instanceof BrainMemoryFlag) {
+			BrainMemoryFlag memoryFlag = (BrainMemoryFlag) entry.getKey();
+			memoryPresent = this.hasMemory(memoryFlag.getMemoryKey());
+			memoryAbsent = !memoryPresent;
 		}
 
-		return requirements.entrySet().stream().allMatch(entry -> {
-			// If the flag type is derived from brain memory, we need to additionally check that the memory is present.
-			boolean memoryPresent = !(entry.getKey() instanceof BrainMemoryFlag) || this.memoryManager.hasMemory(((BrainMemoryFlag) entry.getKey()).getMemoryKey());
-
-			// Same as before, but this time for memory absence.
-			boolean memoryAbsent = !(entry.getKey() instanceof BrainMemoryFlag) || !this.memoryManager.hasMemory(((BrainMemoryFlag) entry.getKey()).getMemoryKey());
-
-			switch (entry.getValue())  {
-				case PRESENT:
-					return this.brainFlagStates.get(entry.getKey()) == requirements.get(entry.getKey()) && memoryPresent;
-				case ABSENT:
-					return (!this.brainFlagStates.containsKey(entry.getKey()) || this.brainFlagStates.get(entry.getKey()) == BrainFlagState.ABSENT) && memoryAbsent;
-				default:
-					return true;
-			}
-		});
-	}
-
-	private void setFlagMasksForTask(AbstractBrainTask<T> brainTask) {
-		Map<AbstractBrainFlag, BrainFlagState> flagMasks = brainTask.getFlagMasks();
-
-		flagMasks.forEach((key, value) -> {
-			this.brainFlagStates.put(key, value);
-			this.brainFlagUsers.put(key, brainTask);
-		});
-	}
-
-	public void clearFlagMasksForTask(AbstractBrainTask<?> brainTask) {
-		Map<AbstractBrainFlag, BrainFlagState> flagMasks = brainTask.getFlagMasks().entrySet().stream()
-				.collect(Collectors.toMap(Map.Entry::getKey, e -> e.getValue().inverse()));
-
-		flagMasks.forEach((key, value) -> {
-			this.brainFlagStates.put(key, value);
-			this.brainFlagUsers.remove(key);
-		});
+		switch (entry.getValue())  {
+			case PRESENT:
+				return this.brainFlagStates.get(entry.getKey()) == requirements.get(entry.getKey()) && memoryPresent;
+			case ABSENT:
+				return (!this.brainFlagStates.containsKey(entry.getKey()) || this.brainFlagStates.get(entry.getKey()) == BrainFlagState.ABSENT) && memoryAbsent;
+			default:
+				return true;
+		}
 	}
 
 	public <U> Optional<U> getMemory(BrainMemoryKey<? super U> memoryKey) {
@@ -174,11 +154,19 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		return sensors;
 	}
 
-	public List<AbstractBrainTask<T>> getTasks() {
-		return tasks;
-	}
-
 	public void setDisabled(boolean disabled) {
 		this.isDisabled = disabled;
+	}
+
+	public final void setActiveProfile(BrainProfile profile) {
+		this.activeProfile = profile;
+	}
+
+	public BrainProfile getActiveProfile() {
+		return activeProfile;
+	}
+
+	public Map<BrainProfile, ArrayList<AbstractBrainTask<T>>> getProfileTaskSets() {
+		return profileTaskSets;
 	}
 }

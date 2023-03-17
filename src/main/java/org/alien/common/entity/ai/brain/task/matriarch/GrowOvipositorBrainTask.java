@@ -7,6 +7,7 @@ import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.EntityBrainContext;
+import org.lib.brain.impl.profile.BrainProfiles;
 
 import java.util.Map;
 
@@ -38,15 +39,9 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 	
     @Override
 	protected void startExecuting(EntityBrainContext ctx) {
-
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 
-		// TODO: Gotta do something better than this. Perhaps task profiles/groups are justified now?
-		matriarchEntity.getBrain().getTasks()
-				.forEach(task -> task.setDisabled(
-						!(task instanceof GrowOvipositorBrainTask) &&
-						!(task instanceof MatriarchEnthrallAlienBrainTask) &&
-						!(task instanceof MatriarchReproduceBrainTask)));
+		matriarchEntity.getBrain().setActiveProfile(BrainProfiles.MATRIARCH_REPRODUCING);
 
 		// If the queen does not have a hive, create one.
 		if (matriarchEntity.getAlienHive() == null) {
@@ -65,6 +60,7 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 	public void finish(EntityBrainContext ctx) {
 		super.finish(ctx);
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
-		matriarchEntity.getBrain().getTasks().forEach(task -> task.setDisabled(false));
+		matriarchEntity.setOvipositorSize(0);
+		matriarchEntity.getBrain().setActiveProfile(BrainProfiles.STANDARD);
 	}
 }

@@ -5,6 +5,7 @@ import org.alien.common.entity.ai.brain.task.matriarch.MatriarchEnthrallAlienBra
 import org.alien.common.entity.ai.brain.task.matriarch.MatriarchMoveToHiveCoreBrainTask;
 import org.alien.common.entity.ai.brain.task.matriarch.MatriarchReproduceBrainTask;
 import org.alien.common.entity.living.SpeciesXenomorph;
+import org.lib.brain.impl.profile.BrainProfiles;
 
 /**
  * 
@@ -20,8 +21,8 @@ public class MatriarchBrain extends XenomorphBrain {
 	public void init() {
 		super.init();
 		this.addTask(new MatriarchMoveToHiveCoreBrainTask());
-		this.addTask(new GrowOvipositorBrainTask());
-		this.addTask(new MatriarchReproduceBrainTask());
-		this.addTask(new MatriarchEnthrallAlienBrainTask());
+		this.addTask(new GrowOvipositorBrainTask(), BrainProfiles.STANDARD, BrainProfiles.MATRIARCH_REPRODUCING);
+		this.addTask(new MatriarchReproduceBrainTask(), BrainProfiles.MATRIARCH_REPRODUCING);
+		this.addTask(new MatriarchEnthrallAlienBrainTask(), BrainProfiles.MATRIARCH_REPRODUCING);
 	}
 }
