@@ -5,18 +5,27 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import net.minecraft.pathfinding.Path;
+import net.minecraft.pathfinding.PathPoint;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
+import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.brain.impl.EntityBrainContext;
+import org.lib.brain.impl.task.AttackOnCollideBrainTask;
+import org.lib.brain.memory.BrainMemoryKey;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * 
@@ -24,6 +33,8 @@ import java.util.Map;
  *
  */
 public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
+
+	private static final int COOLDOWN_MAX = 20 * 8;
 
 	@Override
 	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
@@ -37,7 +48,6 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
-
 		// If the entity is not on the ground, can't ram.
 		if (!ctx.getEntity().onGround) {
 			return false;
@@ -45,45 +55,92 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 
 		cooldown--;
 
-		EntityLiving leaper = ctx.getEntity();
-		Entity leapTarget = ctx.getEntity().getAttackTarget();
+		EntityLiving rammer = ctx.getEntity();
+		Entity target = ctx.getEntity().getAttackTarget();
 
-		if (leapTarget == null || leapTarget.isDead || cooldown > 0) {
+		if (target == null || target.isDead || cooldown > 20 * 3) {
 			return false;
 		}
 		else {
-			double d0 = leaper.getDistanceSq(leapTarget);
-			return d0 <= 49.0;
+			double d0 = rammer.getDistanceSq(target);
+			return (!this.canReachTarget(ctx) || rammer.getRNG().nextInt(5) == 0) && d0 <= 150.0;
 		}
 	}
 
 	@Override
 	protected void startExecuting(EntityBrainContext ctx) {
-		EntityLiving leaper = ctx.getEntity();
-		Entity leapTarget = ctx.getEntity().getAttackTarget();
-		double d0 = leapTarget.posX - leaper.posX;
-		double d1 = leapTarget.posZ - leaper.posZ;
+
+		EntityLiving rammer = ctx.getEntity();
+		Entity target = rammer.getAttackTarget();
+		double d0 = target.posX - rammer.posX;
+		double d1 = target.posZ - rammer.posZ;
 		float f = MathHelper.sqrt(d0 * d0 + d1 * d1);
 
-		if (f >= 1.0E-4) {
-			double distanceModifier = 5.0;
-			leaper.motionX += (d0 / f * 0.5 * 0.800000011920929 + leaper.motionX * 0.20000000298023224) * distanceModifier;
-			leaper.motionZ += (d1 / f * 0.5 * 0.800000011920929 + leaper.motionZ * 0.20000000298023224) * distanceModifier;
-			this.isRamming = true;
-			this.cooldown = 20 * 10;
+		// Back up during the last 2 seconds.
+		if (cooldown > 0 && cooldown < 20 * 2 && !this.canReachTarget(ctx)) {
+			ctx.getBrain().getProfileTaskSets().get(ctx.getBrain().getActiveProfile())
+					.forEach(task -> task.setDisabled(task instanceof AttackOnCollideBrainTask));
+			rammer.motionX -= (d0 / f * 0.5 * 0.800000011920929 + rammer.motionX * 0.20000000298023224) * 0.5;
+			rammer.motionZ -= (d1 / f * 0.5 * 0.800000011920929 + rammer.motionZ * 0.20000000298023224) * 0.5;
 		}
+		// Ram
+		else if (cooldown <= 0) {
+			if (f >= 1.0E-4) {
+				double distanceModifier = 5.0;
+				rammer.motionX += (d0 / f * 0.5 * 0.800000011920929 + rammer.motionX * 0.20000000298023224) * distanceModifier;
+				rammer.motionZ += (d1 / f * 0.5 * 0.800000011920929 + rammer.motionZ * 0.20000000298023224) * distanceModifier;
+				this.isRamming = true;
+			}
 
-		if (this.isRamming) {
-			this.destroyBlocksInAABB(ctx);
+			if (this.isRamming) {
+				this.destroyBlocksInAABB(ctx);
+
+				Optional<Entity> nearestOptional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
+				if (nearestOptional.isPresent()) {
+					Entity nearest = nearestOptional.get();
+
+					// Hurt the nearest target found while ramming.
+					if (nearest instanceof EntityLivingBase &&
+							EntitySelectorXenomorph.instance.apply((EntityLivingBase) nearest) &&
+							rammer.getDistanceSq(nearest) <= 2.0D
+					) {
+						nearest.attackEntityFrom(new EntityDamageSource("ram", rammer), 10.0F);
+					}
+				}
+			}
+
+			// This gives the crusher some extra time to ram through blocks and damage entities along the way.
+			// The lower the threshold on the right is, the more destruction.
+			if (this.cooldown < -1) {
+				this.cooldown = COOLDOWN_MAX;
+			}
 		}
-
-		// TODO: Disable attack on collide ai, back the crusher up a bit, launch forward, and then re-enable attack-on-collide ai.
 	}
 
 	@Override
 	public void finish(EntityBrainContext ctx) {
 		super.finish(ctx);
 		this.isRamming = false;
+		// Allow crusher to attack on collide, again.
+		ctx.getBrain().getProfileTaskSets().get(ctx.getBrain().getActiveProfile())
+				.forEach(task -> task.setDisabled(false));
+	}
+
+	// This is a naive method to check if the crusher can reach the target.
+	// It simply checks if the Crusher has a path to its target, and if it does, can the final path point fit the crusher.
+	// If false, the crusher can try ramming to create space to reach the target.
+	private boolean canReachTarget(EntityBrainContext ctx) {
+		Path path = ctx.getEntity().getNavigator().getPath();
+		if (path == null)
+			return false;
+
+		PathPoint finalPathPoint = path.getFinalPathPoint();
+
+		if (finalPathPoint == null)
+			return false;
+
+		BlockPos finalBlockPos = new BlockPos(finalPathPoint.x, finalPathPoint.y, finalPathPoint.z);
+		return ctx.getEntity().world.getBlockState(finalBlockPos.up().up()) == Blocks.AIR.getDefaultState();
 	}
 
 	// Generously provided by the ender dragon code, tweaked to work with the crusher.
