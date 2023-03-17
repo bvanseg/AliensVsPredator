@@ -1,5 +1,7 @@
 package org.lib.brain.impl.task;
 
+import com.google.common.base.Predicate;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.RandomPositionGenerator;
@@ -23,7 +25,7 @@ import java.util.Optional;
  * @author Boston Vanseghi
  *
  */
-public class AvoidFireBrainTask extends AbstractEntityBrainTask {
+public class AvoidBlockBrainTask extends AbstractEntityBrainTask {
 
 	@Override
 	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
@@ -39,13 +41,15 @@ public class AvoidFireBrainTask extends AbstractEntityBrainTask {
 	private final float avoidDistance;
 	private final float farSpeed;
 	private final float nearSpeed;
+	private final Predicate<Block> avoidPredicate;
 
 	private Path path;
 
-	public AvoidFireBrainTask(float avoidDistance, float avoidFarSpeed, float avoidNearSpeed) {
+	public AvoidBlockBrainTask(float avoidDistance, float avoidFarSpeed, float avoidNearSpeed, Predicate<Block> avoidPredicate) {
 		this.avoidDistance = avoidDistance;
 		this.farSpeed = avoidFarSpeed;
 		this.nearSpeed = avoidNearSpeed;
+		this.avoidPredicate = avoidPredicate;
 	}
 	
 	@Override
@@ -67,7 +71,7 @@ public class AvoidFireBrainTask extends AbstractEntityBrainTask {
 
 		BlockPos blockPos = blockPositions.get(0);
 
-		if (entity.world.getBlockState(blockPos) != Blocks.FIRE.getDefaultState())
+		if (!avoidPredicate.apply(entity.world.getBlockState(blockPos).getBlock()))
 			return false;
 
 		// Find random position away from avoid target block pos.
