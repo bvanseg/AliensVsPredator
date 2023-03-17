@@ -89,11 +89,12 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	}
 	
 	public final boolean canRunTask(AbstractBrainTask<T> brainTask) {
-		// Do not interrupt.
-		if (brainTask.isExecuting())
-			return true;
-
 		Map<AbstractBrainFlag, BrainFlagState> requirements = brainTask.getFlagRequirements();
+
+		// Do not interrupt if the task is executing and masking all of its required flags.
+		if (brainTask.isExecuting()) {
+			return brainFlagUsers.entrySet().stream().filter(entry -> requirements.containsKey(entry.getKey())).noneMatch(entry -> brainTask != entry.getValue());
+		}
 
 		return requirements.entrySet().stream().allMatch(entry -> {
 			// If the flag type is derived from brain memory, we need to additionally check that the memory is present.
