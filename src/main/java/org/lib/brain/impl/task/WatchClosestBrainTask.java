@@ -39,6 +39,7 @@ public class WatchClosestBrainTask extends AbstractEntityBrainTask {
     /** This is the Maximum distance that the AI will look for the Entity */
     protected float maxDistance;
     private final float chance;
+	private int lookTimeInTicks;
     protected Class <? extends Entity > watchedClass;
     
     public WatchClosestBrainTask(Class <? extends Entity > watchTargetClass, float maxDistance) {
@@ -82,10 +83,31 @@ public class WatchClosestBrainTask extends AbstractEntityBrainTask {
 			return this.closestEntity != null;
 		}
 	}
-	
-    @Override
+
+	@Override
 	protected void startExecuting(EntityBrainContext ctx) {
-    	EntityLiving entity = ctx.getEntity();
-        entity.getLookHelper().setLookPosition(this.closestEntity.posX, this.closestEntity.posY + this.closestEntity.getEyeHeight(), this.closestEntity.posZ, entity.getHorizontalFaceSpeed(), entity.getVerticalFaceSpeed());
+		this.lookTimeInTicks = 40 + ctx.getEntity().getRNG().nextInt(40);
+	}
+
+	@Override
+	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+		if (ctx.getEntity().getDistanceSq(this.closestEntity) > (this.maxDistance * this.maxDistance)) {
+			return false;
+		}
+
+		return this.closestEntity != null && !this.closestEntity.isDead && this.lookTimeInTicks > 0;
+	}
+
+	@Override
+	protected void continueExecuting(EntityBrainContext ctx) {
+		EntityLiving entity = ctx.getEntity();
+		entity.getLookHelper().setLookPosition(
+			this.closestEntity.posX,
+			this.closestEntity.posY + this.closestEntity.getEyeHeight(),
+			this.closestEntity.posZ,
+			entity.getHorizontalFaceSpeed(),
+			entity.getVerticalFaceSpeed()
+		);
+		this.lookTimeInTicks--;
 	}
 }
