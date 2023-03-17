@@ -158,19 +158,19 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 		for(int k1 = i; k1 <= l; ++k1) {
 			for(int l1 = j; l1 <= i1; ++l1) {
 				for(int i2 = k; i2 <= j1; ++i2) {
-					BlockPos blockpos = new BlockPos(k1, l1, i2);
-					IBlockState iblockstate = world.getBlockState(blockpos);
-					Block block = iblockstate.getBlock();
+					BlockPos blockPos = new BlockPos(k1, l1, i2);
+					IBlockState iBlockState = world.getBlockState(blockPos);
+					Block block = iBlockState.getBlock();
 
-					if (!block.isAir(iblockstate, world, blockpos) && iblockstate.getMaterial() != Material.FIRE) {
-						if (block.blockHardness <= 25.0F) {
+					if (!block.isAir(iBlockState, world, blockPos) && iBlockState.getMaterial() != Material.FIRE) {
+						if (iBlockState.getBlockHardness(world, blockPos) <= 25.0F) {
 							if (block != Blocks.COMMAND_BLOCK &&
 								block != Blocks.REPEATING_COMMAND_BLOCK &&
 								block != Blocks.CHAIN_COMMAND_BLOCK &&
 								block != Blocks.IRON_BARS &&
 								block != Blocks.END_GATEWAY
 							) {
-								world.destroyBlock(blockpos, true);
+								world.destroyBlock(blockPos, true);
 							}
 						}
 					}
