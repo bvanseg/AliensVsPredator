@@ -88,7 +88,7 @@ public class WatchClosestBrainTask extends AbstractBrainTask<EntityBrainContext>
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
     	EntityLiving entity = ctx.getEntity();
         entity.getLookHelper().setLookPosition(this.closestEntity.posX, this.closestEntity.posY + this.closestEntity.getEyeHeight(), this.closestEntity.posZ, entity.getHorizontalFaceSpeed(), entity.getVerticalFaceSpeed());
 	}

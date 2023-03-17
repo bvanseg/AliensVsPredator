@@ -47,7 +47,7 @@ public class HurtByTargetBrainTask extends AbstractBrainTask<EntityBrainContext>
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		ctx.getBrain().remember(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET, ctx.getEntity().getRevengeTarget());
 	}
 }

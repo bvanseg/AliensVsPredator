@@ -25,6 +25,11 @@ public class MoveToHiveCoreBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
+	public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.MOVE, BrainFlagState.PRESENT);
+	}
+
+	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
 
@@ -37,9 +42,14 @@ public class MoveToHiveCoreBrainTask extends AbstractEntityBrainTask {
 
 		return true;
 	}
-	
-    @Override
-	protected void execute(EntityBrainContext ctx) {
+
+	@Override
+	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+		return !ctx.getEntity().getNavigator().noPath();
+	}
+
+	@Override
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
 		HiveMember hiveMember = (HiveMember) entity;
 

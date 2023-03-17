@@ -29,10 +29,8 @@ public class HatchBrainTask extends AbstractBrainTask<EntityBrainContext> {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
-		if (!this.isExecuting()) {
-			this.hatch((EntityOvamorph) ctx.getEntity());
-		}
+	protected void startExecuting(EntityBrainContext ctx) {
+		this.hatch((EntityOvamorph) ctx.getEntity());
 	}
 
 	private void hatch(EntityOvamorph ovamorph)

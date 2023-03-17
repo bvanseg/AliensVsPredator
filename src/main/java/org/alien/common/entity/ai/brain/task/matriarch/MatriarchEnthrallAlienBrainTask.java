@@ -45,7 +45,7 @@ public class MatriarchEnthrallAlienBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 
 		Optional<List<EntityLivingBase>> livingEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);

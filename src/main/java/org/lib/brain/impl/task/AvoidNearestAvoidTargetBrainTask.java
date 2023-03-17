@@ -87,7 +87,7 @@ public class AvoidNearestAvoidTargetBrainTask extends AbstractBrainTask<EntityBr
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityCreature entity = (EntityCreature) ctx.getEntity();
 		Optional<Entity> avoidEntityOptional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_AVOID_TARGET);
 		Entity avoidEntity = avoidEntityOptional.get();

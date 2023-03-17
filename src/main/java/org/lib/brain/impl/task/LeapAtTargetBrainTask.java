@@ -62,7 +62,7 @@ public class LeapAtTargetBrainTask extends AbstractBrainTask<EntityBrainContext>
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
         EntityLiving leaper = ctx.getEntity();
         Entity leapTarget = ctx.getEntity().getAttackTarget();
         double d0 = leapTarget.posX - leaper.posX;

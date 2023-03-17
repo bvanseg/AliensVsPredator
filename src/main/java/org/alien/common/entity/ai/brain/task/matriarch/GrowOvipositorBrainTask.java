@@ -37,7 +37,7 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 

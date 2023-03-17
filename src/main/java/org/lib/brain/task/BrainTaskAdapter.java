@@ -68,7 +68,7 @@ public class BrainTaskAdapter extends AbstractBrainTask<EntityBrainContext> {
 	}
 
 	@Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		if (!this.isExecuting()) {
 			this.minecraftAITask.startExecuting();
 		} else {

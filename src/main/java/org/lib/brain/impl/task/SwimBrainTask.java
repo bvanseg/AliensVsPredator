@@ -47,7 +47,7 @@ public class SwimBrainTask extends AbstractBrainTask<EntityBrainContext> {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
         EntityLiving entity = ctx.getEntity();
         if (entity.getRNG().nextFloat() < 0.8F) {
             entity.getJumpHelper().setJumping();

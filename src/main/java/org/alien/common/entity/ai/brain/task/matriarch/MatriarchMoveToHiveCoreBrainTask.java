@@ -36,7 +36,7 @@ public class MatriarchMoveToHiveCoreBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityMatriarch matriarch = (EntityMatriarch) ctx.getEntity();
 
 		Pos coordQueen = new Pos(matriarch);

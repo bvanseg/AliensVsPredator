@@ -23,20 +23,23 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	public void runTask(T ctx) {
 		if (this.isDisabled) return;
 
-		boolean shouldExecute = this.shouldExecute(ctx);
-		if (shouldExecute) {
-			this.execute(ctx);
+		if (!this.isExecuting && this.shouldExecute(ctx)) {
+			this.startExecuting(ctx);
 			// Update isExecuting state after execute so that isExecuting is false for the first execution.
 			this.isExecuting = true;
 		}
-		
-		if (this.isExecuting && !shouldExecute) {
-			this.finish(ctx);
-			this.isExecuting = false;
 
-			// Revert flag masks that the task used back to normal once the task is done.
-			if (!this.isExecuting()) {
-				ctx.getBrain().clearFlagMasksForTask(this);
+		if (this.isExecuting) {
+			if (this.shouldContinueExecuting(ctx)) {
+				this.continueExecuting(ctx);
+			} else {
+				this.finish(ctx);
+				this.isExecuting = false;
+
+				// Revert flag masks that the task used back to normal once the task is done.
+				if (!this.isExecuting()) {
+					ctx.getBrain().clearFlagMasksForTask(this);
+				}
 			}
 		}
 	}
@@ -46,8 +49,11 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	}
 
 	public Map<AbstractBrainFlag, BrainFlagState> getFlagMasks() { return Collections.emptyMap(); }
+
 	protected abstract boolean shouldExecute(T ctx);
-	protected abstract void execute(T ctx);
+	protected boolean shouldContinueExecuting(T ctx) { return this.shouldExecute(ctx); }
+	protected abstract void startExecuting(T ctx);
+	protected void continueExecuting(T ctx) { this.startExecuting(ctx); }
 	public void finish(T ctx) {}
 
 	public boolean isExecuting() { return this.isExecuting; }

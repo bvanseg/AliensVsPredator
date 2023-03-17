@@ -42,7 +42,7 @@ public class ShareJellyBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
 		SpeciesXenomorph xenomorph = (SpeciesXenomorph)entity;
 		HiveMember hiveMember = (HiveMember) xenomorph;

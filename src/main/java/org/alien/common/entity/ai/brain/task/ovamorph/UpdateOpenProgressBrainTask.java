@@ -43,7 +43,7 @@ public class UpdateOpenProgressBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
 		int newHatchProgress = MathHelper.clamp(ovamorph.getOpenProgress() + 1, -EntityOvamorph.MAX_OPEN_PROGRESS, EntityOvamorph.MAX_OPEN_PROGRESS);
 		ovamorph.setOpenProgress(newHatchProgress);

@@ -45,7 +45,7 @@ public class UpdateTimeUntilOpenBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
 		// Update time until the egg starts to open.
 		ovamorph.setTimeLeftUntilOpen(ovamorph.getTimeLeftUntilOpen() - (ovamorph.acceleratedHatching ? 20 : 1));

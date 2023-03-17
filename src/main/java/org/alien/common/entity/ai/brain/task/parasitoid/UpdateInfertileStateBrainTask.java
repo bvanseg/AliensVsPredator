@@ -17,7 +17,7 @@ public class UpdateInfertileStateBrainTask extends AbstractBrainTask<EntityBrain
     }
 
     @Override
-    protected void execute(EntityBrainContext ctx) {
+    protected void startExecuting(EntityBrainContext ctx) {
         EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
 
         if (!parasite.isAttachedToHost()) {

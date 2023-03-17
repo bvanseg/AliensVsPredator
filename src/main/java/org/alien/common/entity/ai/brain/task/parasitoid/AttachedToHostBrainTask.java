@@ -34,7 +34,7 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
     }
 
     @Override
-    protected void execute(EntityBrainContext ctx) {
+    protected void startExecuting(EntityBrainContext ctx) {
         EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
         EntityLivingBase host = (EntityLivingBase) parasite.getRidingEntity();
 

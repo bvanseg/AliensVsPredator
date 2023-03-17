@@ -34,10 +34,17 @@ public class FindFoodBrainTask extends AbstractEntityBrainTask {
 		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
 	}
 
+	@Override
+	public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
+	}
+
 	private static final Predicate<EntityItem> foodPredicate = entityItem -> {
 		Item item = entityItem.getItem().getItem();
 		return item instanceof ItemFood;
 	};
+
+	private EntityItem closestFood;
 	
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
@@ -51,9 +58,14 @@ public class FindFoodBrainTask extends AbstractEntityBrainTask {
 		
 		return !this.hasPickedUpFood;
 	}
-	
-    @Override
-	protected void execute(EntityBrainContext ctx) {
+
+	@Override
+	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+		return this.closestFood != null && (!ctx.getEntity().getNavigator().noPath() || this.hasPickedUpFood);
+	}
+
+	@Override
+	protected void startExecuting(EntityBrainContext ctx) {
 		Optional<List<EntityItem>> itemEntities = ctx.getBrain().getMemory(BrainMemoryKeys.ITEM_ENTITIES);
 		
 		if (itemEntities.isPresent()) {
@@ -62,25 +74,30 @@ public class FindFoodBrainTask extends AbstractEntityBrainTask {
 			List<EntityItem> entityItemList = itemEntities.get().stream().filter(foodPredicate::apply).collect(Collectors.toList());
 			
 			if (!entityItemList.isEmpty()) {
-	            EntityItem closestFood = entityItemList.get(0);
+	            this.closestFood = entityItemList.get(0);
 
 	            if (!this.hasFoodTarget) {
 					entity.getNavigator().setPath(entity.getNavigator().getPathToEntityLiving(closestFood), 1);
                     this.hasFoodTarget = true;
                 }
-
-                if (entity.getDistanceSq(closestFood) <= 1) {
-                    this.onPickupFood(ctx, closestFood);
-                    this.hasPickedUpFood = true;
-                    this.hasFoodTarget = false;
-                }
 	        }
 		}
 	}
 
-    private void onPickupFood(EntityBrainContext ctx, EntityItem entityItem) {
+	@Override
+	protected void continueExecuting(EntityBrainContext ctx) {
+		EntityLiving entity = ctx.getEntity();
+		if (entity.getDistanceSq(closestFood) <= 1) {
+			this.onPickupFood(ctx, closestFood);
+			this.hasPickedUpFood = true;
+			this.hasFoodTarget = false;
+		}
+	}
+
+	private void onPickupFood(EntityBrainContext ctx, EntityItem entityItem) {
 		RoyalOrganism royalOrganism = (RoyalOrganism) ctx.getEntity();
         royalOrganism.setJellyLevel(royalOrganism.getJellyLevel() + (entityItem.getItem().getCount() * 50));
         entityItem.setDead();
+		this.closestFood = null;
     }
 }

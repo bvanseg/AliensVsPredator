@@ -66,7 +66,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityDrone entity = (EntityDrone) ctx.getEntity();
 
 		BlockPos pos = findNextSuitableResinLocation(entity, 3);

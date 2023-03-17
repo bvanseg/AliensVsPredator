@@ -45,7 +45,7 @@ public class LookIdleBrainTask extends AbstractBrainTask<EntityBrainContext> {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
 
 		// First execution pass.

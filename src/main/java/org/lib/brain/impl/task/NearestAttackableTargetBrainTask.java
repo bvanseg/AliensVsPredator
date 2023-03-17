@@ -38,7 +38,7 @@ public class NearestAttackableTargetBrainTask extends AbstractBrainTask<EntityBr
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
     	Optional<EntityLivingBase> optional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
 
     	if (optional.isPresent()) {

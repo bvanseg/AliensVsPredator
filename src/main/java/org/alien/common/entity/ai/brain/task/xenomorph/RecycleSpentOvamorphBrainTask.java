@@ -29,6 +29,11 @@ public class RecycleSpentOvamorphBrainTask extends AbstractEntityBrainTask {
 		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
 	}
 
+	@Override
+	public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.MOVE, BrainFlagState.PRESENT);
+	}
+
 	private EntityOvamorph targetOvamorph;
 
 	@Override
@@ -47,7 +52,7 @@ public class RecycleSpentOvamorphBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityDrone entityDrone = (EntityDrone) ctx.getEntity();
 
 		if (this.targetOvamorph == null) {
@@ -56,6 +61,11 @@ public class RecycleSpentOvamorphBrainTask extends AbstractEntityBrainTask {
 		}
 
 		entityDrone.getNavigator().tryMoveToEntityLiving(this.targetOvamorph, entityDrone.getMoveHelper().getSpeed());
+	}
+
+	@Override
+	protected void continueExecuting(EntityBrainContext ctx) {
+		EntityDrone entityDrone = (EntityDrone) ctx.getEntity();
 		double distance = entityDrone.getDistanceSq(this.targetOvamorph);
 
 		if (distance <= 2)
