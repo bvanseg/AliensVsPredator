@@ -28,7 +28,7 @@ public class BrainMemoryMap {
 	}
 	
 	public boolean hasMemory(BrainMemoryKey<?> memoryKey) {
-		return memories.containsKey(memoryKey);
+		return memories.containsKey(memoryKey) && memories.get(memoryKey).isPresent();
 	}
 	
 	public void forget(BrainMemoryKey<?> memoryKey) {
