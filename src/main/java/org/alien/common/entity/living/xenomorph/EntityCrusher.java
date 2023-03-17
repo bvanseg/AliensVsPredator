@@ -60,6 +60,11 @@ public class EntityCrusher extends EntityPraetorian implements Maturable, HiveMe
     }
 
     @Override
+    protected float getSoundPitch() {
+        return 0.2F;
+    }
+
+    @Override
     public int getTotalArmorValue()
     {
         return 5;
