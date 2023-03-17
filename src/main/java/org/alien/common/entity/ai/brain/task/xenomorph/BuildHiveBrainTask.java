@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain.task;
+package org.alien.common.entity.ai.brain.task.xenomorph;
 
 import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.block.Block;
@@ -17,12 +17,11 @@ import org.avp.common.block.BlockHiveResin;
 import org.avp.common.tile.TileEntityHiveResin;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.task.AbstractBrainTask;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 
@@ -31,9 +30,7 @@ import java.util.Map;
  * @author Boston Vanseghi
  *
  */
-public class BuildHiveBrainTask extends AbstractBrainTask<EntityBrainContext> {
-    
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
+public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 
 	private static final HashSet<Block> BLOCK_DENYLIST = new HashSet<>();
 
@@ -43,21 +40,15 @@ public class BuildHiveBrainTask extends AbstractBrainTask<EntityBrainContext> {
 		BLOCK_DENYLIST.add(AlienBlocks.RESIN);
 		BLOCK_DENYLIST.add(AlienBlocks.NATURAL_RESIN);
 	}
-    
-    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
-    	map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
-    	map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
-		return map;
-    }
-    
-    @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
-		return FLAGS;
-	}
 
 	private ArrayList<BlockPos> positionsOfInterest = new ArrayList<>();
-	
+
+	@Override
+	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
+		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
+	}
+
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
@@ -75,7 +66,7 @@ public class BuildHiveBrainTask extends AbstractBrainTask<EntityBrainContext> {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityDrone entity = (EntityDrone) ctx.getEntity();
 
 		BlockPos pos = findNextSuitableResinLocation(entity, 3);

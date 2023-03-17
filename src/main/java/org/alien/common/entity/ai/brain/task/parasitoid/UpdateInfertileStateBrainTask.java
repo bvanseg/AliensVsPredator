@@ -1,24 +1,14 @@
-package org.alien.common.entity.ai.brain.task;
+package org.alien.common.entity.ai.brain.task.parasitoid;
 
 import net.minecraft.entity.MoverType;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.lib.brain.flag.AbstractBrainFlag;
-import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.task.AbstractBrainTask;
-
-import java.util.Collections;
-import java.util.Map;
 
 /**
  * @author Boston Vanseghi
  */
 public class UpdateInfertileStateBrainTask extends AbstractBrainTask<EntityBrainContext> {
-
-    @Override
-    public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
-        return Collections.emptyMap();
-    }
 
     @Override
     protected boolean shouldExecute(EntityBrainContext ctx) {
@@ -27,18 +17,20 @@ public class UpdateInfertileStateBrainTask extends AbstractBrainTask<EntityBrain
     }
 
     @Override
-    protected void execute(EntityBrainContext ctx) {
+    protected void startExecuting(EntityBrainContext ctx) {
         EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
 
         if (!parasite.isAttachedToHost()) {
             parasite.setNoAI(true);
-            parasite.setBrainDisabled(true);
         }
+    }
 
+    @Override
+    protected void continueExecuting(EntityBrainContext ctx) {
+        EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
         parasite.motionY -= 0.05F;
         parasite.motionY *= 0.98F;
         parasite.move(MoverType.SELF, 0, parasite.motionY, 0);
-
 
         parasite.timeSinceInfertile++;
 

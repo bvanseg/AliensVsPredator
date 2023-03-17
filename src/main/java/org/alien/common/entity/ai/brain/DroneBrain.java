@@ -1,8 +1,8 @@
 package org.alien.common.entity.ai.brain;
 
-import org.alien.common.entity.ai.brain.task.BuildHiveBrainTask;
-import org.alien.common.entity.ai.brain.task.MoveToHiveCoreBrainTask;
-import org.alien.common.entity.ai.brain.task.RecycleSpentOvamorphBrainTask;
+import org.alien.common.entity.ai.brain.task.xenomorph.BuildHiveBrainTask;
+import org.alien.common.entity.ai.brain.task.xenomorph.MoveToHiveCoreBrainTask;
+import org.alien.common.entity.ai.brain.task.xenomorph.RecycleSpentOvamorphBrainTask;
 import org.alien.common.entity.living.SpeciesXenomorph;
 
 /**

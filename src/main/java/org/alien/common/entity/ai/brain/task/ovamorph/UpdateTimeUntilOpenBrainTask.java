@@ -1,16 +1,14 @@
 package org.alien.common.entity.ai.brain.task.ovamorph;
 
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.avp.common.AVPMaterials;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -18,19 +16,11 @@ import java.util.Map;
  * @author Boston Vanseghi
  *
  */
-public class UpdateTimeUntilOpenBrainTask extends AbstractBrainTask<EntityBrainContext> {
-    
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
-    
-    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
-    	map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
-		return map;
-    }
-    
-    @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
-		return FLAGS;
+public class UpdateTimeUntilOpenBrainTask extends AbstractEntityBrainTask {
+
+	@Override
+	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
 	}
 	
 	@Override
@@ -55,7 +45,7 @@ public class UpdateTimeUntilOpenBrainTask extends AbstractBrainTask<EntityBrainC
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
 		// Update time until the egg starts to open.
 		ovamorph.setTimeLeftUntilOpen(ovamorph.getTimeLeftUntilOpen() - (ovamorph.acceleratedHatching ? 20 : 1));

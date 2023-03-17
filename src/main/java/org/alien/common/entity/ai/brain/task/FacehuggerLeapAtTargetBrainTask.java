@@ -1,4 +1,4 @@
-package org.lib.brain.impl.task;
+package org.alien.common.entity.ai.brain.task;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -16,18 +16,12 @@ import java.util.Map;
  * @author Boston Vanseghi
  *
  */
-public class LeapAtTargetBrainTask extends AbstractEntityBrainTask {
+public class FacehuggerLeapAtTargetBrainTask extends AbstractEntityBrainTask {
 
     @Override
     public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
         map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
         map.put(BrainFlags.MINECRAFT_SWIM, BrainFlagState.ABSENT);
-    }
-
-    private final float leapMotionY;
-
-    public LeapAtTargetBrainTask(float leapMotionY) {
-    	this.leapMotionY = leapMotionY;
     }
 	
 	@Override
@@ -44,11 +38,7 @@ public class LeapAtTargetBrainTask extends AbstractEntityBrainTask {
             return false;
         } else {
             double d0 = leaper.getDistanceSq(leapTarget);
-            if (d0 >= 10.0 && d0 <= 16.0) {
-                return leaper.getRNG().nextInt(5) == 0;
-            } else {
-                return false;
-            }
+            return d0 >= 24.0 && d0 <= 58.0;
         }
 	}
 	
@@ -65,6 +55,6 @@ public class LeapAtTargetBrainTask extends AbstractEntityBrainTask {
             leaper.motionZ += (d1 / f * 0.5 * 0.800000011920929 + leaper.motionZ * 0.20000000298023224) * distanceModifier;
         }
 
-        leaper.motionY = this.leapMotionY;
-	}
+        leaper.motionY = Math.sqrt(leapTarget.getEyeHeight()) / 2F;
+    }
 }

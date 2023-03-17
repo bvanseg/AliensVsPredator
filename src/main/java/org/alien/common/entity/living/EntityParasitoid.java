@@ -24,6 +24,7 @@ import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
+import org.lib.brain.impl.profile.BrainProfiles;
 
 import java.util.List;
 
@@ -74,6 +75,12 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         super.onUpdate();
 
         if (!this.world.isRemote) {
+            if (this.isAttachedToHost()) {
+                this.brain.setActiveProfile(BrainProfiles.PARASITOID_ATTACHED);
+            } else if (!this.isFertile()) {
+                this.brain.setActiveProfile(BrainProfiles.PARASITOID_INFERTILE);
+            }
+
             this.brain.update(new EntityBrainContext(this.getBrain(), this));
 
             this.negateFallDamage();
@@ -120,7 +127,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         }
         this.dismountRidingEntity();
         this.setNoAI(true);
-        this.setBrainDisabled(true);
         this.dataManager.set(ATTACHED_TO_HOST, false);
     }
 

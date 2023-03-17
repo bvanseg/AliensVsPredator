@@ -1,15 +1,14 @@
-package org.alien.common.entity.ai.brain.task;
+package org.alien.common.entity.ai.brain.task.xenomorph;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.pathfinding.Path;
 import org.alien.common.world.hive.HiveMember;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,22 +16,19 @@ import java.util.Map;
  * @author Boston Vanseghi
  *
  */
-public class MoveToHiveCoreBrainTask extends AbstractBrainTask<EntityBrainContext> {
-    
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
-    
-    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
-    	map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
-    	map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
-		return map;
-    }
-    
-    @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
-		return FLAGS;
+public class MoveToHiveCoreBrainTask extends AbstractEntityBrainTask {
+
+	@Override
+	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
+		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
 	}
-	
+
+	@Override
+	public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.MOVE, BrainFlagState.PRESENT);
+	}
+
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
@@ -46,9 +42,14 @@ public class MoveToHiveCoreBrainTask extends AbstractBrainTask<EntityBrainContex
 
 		return true;
 	}
-	
-    @Override
-	protected void execute(EntityBrainContext ctx) {
+
+	@Override
+	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+		return !ctx.getEntity().getNavigator().noPath();
+	}
+
+	@Override
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
 		HiveMember hiveMember = (HiveMember) entity;
 

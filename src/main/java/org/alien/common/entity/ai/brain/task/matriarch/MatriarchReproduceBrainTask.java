@@ -1,15 +1,14 @@
-package org.alien.common.entity.ai.brain.task;
+package org.alien.common.entity.ai.brain.task.matriarch;
 
 import net.minecraft.entity.EntityLiving;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,19 +16,11 @@ import java.util.Map;
  * @author Boston Vanseghi
  *
  */
-public class MatriarchReproduceBrainTask extends AbstractBrainTask<EntityBrainContext> {
-    
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
-    
-    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
-    	map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
-		return map;
-    }
-    
-    @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
-		return FLAGS;
+public class MatriarchReproduceBrainTask extends AbstractEntityBrainTask {
+
+	@Override
+	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
 	}
 	
 	@Override
@@ -48,7 +39,7 @@ public class MatriarchReproduceBrainTask extends AbstractBrainTask<EntityBrainCo
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 
 		int ovipositorDist = 10;

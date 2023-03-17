@@ -3,11 +3,10 @@ package org.lib.brain.impl.task;
 import net.minecraft.entity.EntityLiving;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -15,20 +14,17 @@ import java.util.Map;
  * @author Boston Vanseghi
  *
  */
-public class LookIdleBrainTask extends AbstractBrainTask<EntityBrainContext> {
+public class LookIdleBrainTask extends AbstractEntityBrainTask {
 
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
-
-    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
+	@Override
+	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
 		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
-    	map.put(BrainFlags.LOOK, BrainFlagState.ABSENT);
-		return map;
-    }
+		map.put(BrainFlags.LOOK, BrainFlagState.ABSENT);
+	}
 
-    @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlags() {
-		return FLAGS;
+	@Override
+	public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.LOOK, BrainFlagState.PRESENT);
 	}
 
 	private double lookX;
@@ -45,7 +41,7 @@ public class LookIdleBrainTask extends AbstractBrainTask<EntityBrainContext> {
 	}
 	
     @Override
-	protected void execute(EntityBrainContext ctx) {
+	protected void startExecuting(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
 
 		// First execution pass.
