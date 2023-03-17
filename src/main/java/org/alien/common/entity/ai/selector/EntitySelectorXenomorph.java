@@ -18,16 +18,12 @@ public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
     {
         if (target instanceof SpeciesAlien)
             return false;
-        
-        if (target instanceof EntityLivingBase)
+
+        OrganismImpl organism = (OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
+
+        if (organism.hasEmbryo())
         {
-            EntityLivingBase livingBase = (EntityLivingBase) target;
-            OrganismImpl organism = (OrganismImpl) livingBase.getCapability(Provider.CAPABILITY, null);
-            
-            if (organism.hasEmbryo())
-            {
-                return false;
-            }
+            return false;
         }
         
         if (target instanceof EntityPlayer)
@@ -40,18 +36,12 @@ public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
             }
         }
         
-        if (!(target instanceof EntityLivingBase))
-        {
-            return false;
-        }
-        
         if (target instanceof EntityWaterMob) {
             return target.isInWater() || target.isOverWater();
         }
         
         if (target instanceof EntityBat) {
-        	EntityBat batTarget = (EntityBat) target;
-            return !batTarget.onGround || !batTarget.getIsBatHanging();
+        	return false;
         }
         
         return true;
