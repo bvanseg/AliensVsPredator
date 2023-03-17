@@ -38,15 +38,17 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
         EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
         EntityLivingBase host = (EntityLivingBase) parasite.getRidingEntity();
 
-        parasite.ticksOnHost++;
-
         if (host instanceof EntityLiving) {
             ((EntityLiving)host).setNoAI(true);
-
-            if (host instanceof Brainiac) {
-                ((Brainiac<?>)host).setBrainDisabled(true);
-            }
         }
+    }
+
+    @Override
+    protected void continueExecuting(EntityBrainContext ctx) {
+        EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
+        EntityLivingBase host = (EntityLivingBase) parasite.getRidingEntity();
+
+        parasite.ticksOnHost++;
 
         host.motionY -= 0.05F;
         host.motionY *= 0.98F;

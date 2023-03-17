@@ -74,6 +74,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         super.onUpdate();
 
         if (!this.world.isRemote) {
+            this.brain.setDisabled(false);
             this.brain.update(new EntityBrainContext(this.getBrain(), this));
 
             this.negateFallDamage();
@@ -120,7 +121,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         }
         this.dismountRidingEntity();
         this.setNoAI(true);
-        this.setBrainDisabled(true);
         this.dataManager.set(ATTACHED_TO_HOST, false);
     }
 
