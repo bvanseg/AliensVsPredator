@@ -5,11 +5,10 @@ import net.minecraft.pathfinding.PathNavigateFlying;
 import net.minecraft.pathfinding.PathNavigateGround;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,20 +16,17 @@ import java.util.Map;
  * @author Boston Vanseghi
  *
  */
-public class SwimBrainTask extends AbstractBrainTask<EntityBrainContext> {
+public class SwimBrainTask extends AbstractEntityBrainTask {
 
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
-
-    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
-    	map.put(BrainFlags.MINECRAFT_SWIM, BrainFlagState.ABSENT);
-		return map;
+    @Override
+    public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
+        map.put(BrainFlags.MINECRAFT_SWIM, BrainFlagState.ABSENT);
     }
 
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
-		return FLAGS;
-	}
+    public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {
+        map.put(BrainFlags.MINECRAFT_SWIM, BrainFlagState.PRESENT);
+    }
 
     public SwimBrainTask(EntityLiving entity) {
         if (entity.getNavigator() instanceof PathNavigateGround) {

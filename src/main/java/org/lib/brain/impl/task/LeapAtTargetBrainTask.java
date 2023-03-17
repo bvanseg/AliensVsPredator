@@ -5,11 +5,10 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.math.MathHelper;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,21 +16,13 @@ import java.util.Map;
  * @author Boston Vanseghi
  *
  */
-public class LeapAtTargetBrainTask extends AbstractBrainTask<EntityBrainContext> {
-
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
-
-    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
-        map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
-    	map.put(BrainFlags.MINECRAFT_SWIM, BrainFlagState.ABSENT);
-		return map;
-    }
+public class LeapAtTargetBrainTask extends AbstractEntityBrainTask {
 
     @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
-		return FLAGS;
-	}
+    public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
+        map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
+        map.put(BrainFlags.MINECRAFT_SWIM, BrainFlagState.ABSENT);
+    }
 
     private final float leapMotionY;
 

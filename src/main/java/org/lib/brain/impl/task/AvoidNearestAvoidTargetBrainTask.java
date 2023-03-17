@@ -8,12 +8,11 @@ import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.Vec3d;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.brain.impl.EntityBrainContext;
-import org.lib.brain.task.AbstractBrainTask;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -22,20 +21,17 @@ import java.util.Optional;
  * @author Boston Vanseghi
  *
  */
-public class AvoidNearestAvoidTargetBrainTask extends AbstractBrainTask<EntityBrainContext> {
-	
-    private static final Map<AbstractBrainFlag, BrainFlagState> FLAGS = createFlags();
-    
-    public static Map<AbstractBrainFlag, BrainFlagState> createFlags() {
-    	Map<AbstractBrainFlag, BrainFlagState> map = new HashMap<>();
+public class AvoidNearestAvoidTargetBrainTask extends AbstractEntityBrainTask {
+
+	@Override
+	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
 		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
-    	map.put(BrainFlags.NEAREST_AVOID_TARGET, BrainFlagState.PRESENT);
-		return map;
-    }
-    
-    @Override
-	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
-		return FLAGS;
+		map.put(BrainFlags.NEAREST_AVOID_TARGET, BrainFlagState.PRESENT);
+	}
+
+	@Override
+	public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.MOVE, BrainFlagState.PRESENT);
 	}
 
 	private final float avoidDistance;
