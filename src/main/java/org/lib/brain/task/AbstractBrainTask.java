@@ -20,8 +20,8 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	private boolean isDisabled = false;
 	private boolean isExecuting = false;
 	
-	public void runTask(T ctx) {
-		if (this.isDisabled) return;
+	public boolean runTask(T ctx) {
+		if (this.isDisabled) return false;
 
 		if (this.isExecuting) {
 			if (this.shouldContinueExecuting(ctx)) {
@@ -37,6 +37,8 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 			// Update isExecuting state after execute so that isExecuting is false for the first execution.
 			this.isExecuting = true;
 		}
+
+		return this.isExecuting;
 	}
 	
 	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {

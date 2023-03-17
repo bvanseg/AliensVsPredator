@@ -5,6 +5,7 @@ import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.flag.BrainMemoryFlag;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.profile.BrainProfiles;
+import org.lib.brain.impl.task.AvoidBlockBrainTask;
 import org.lib.brain.memory.BrainMemoryKey;
 import org.lib.brain.memory.BrainMemoryMap;
 import org.lib.brain.profile.BrainProfile;
@@ -12,6 +13,7 @@ import org.lib.brain.sensor.AbstractBrainSensor;
 import org.lib.brain.task.AbstractBrainTask;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * A logical processor with input (sensors) and output/results (tasks). The processing pipeline is as follows:
@@ -40,6 +42,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	private final HashMap<BrainProfile, ArrayList<AbstractBrainSensor<T>>> profileSensorSets;
 	private final HashMap<BrainProfile, ArrayList<AbstractBrainTask<T>>> profileTaskSets;
 	private final HashMap<AbstractBrainFlag, BrainFlagState> brainFlagStates;
+	private final HashSet<AbstractBrainTask<T>> executingTasks;
 
 	private boolean isDisabled = false;
 
@@ -50,6 +53,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		this.profileSensorSets = new HashMap<>();
 		this.profileTaskSets = new HashMap<>();
 		this.brainFlagStates = new HashMap<>();
+		this.executingTasks = new HashSet<>();
 		this.activeProfile = BrainProfiles.STANDARD;
 	}
 
@@ -63,12 +67,17 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 
 		profileTaskSets.computeIfAbsent(this.activeProfile, key -> new ArrayList<>()).forEach(task -> {
 			if (this.canRunTask(task)) {
-				task.runTask(ctx);
+				if (task.runTask(ctx)) {
+					this.setFlagMasksForTask(task);
+				} else {
+					this.clearFlagMasksForTask(task);
+				}
 			}
 			// If the flag states change, and we weren't able to run the task, but the task is still executing, we need to finish the task.
 			else if (task.isExecuting()) {
 				task.finish(ctx);
 				task.setExecuting(false);
+				this.clearFlagMasksForTask(task);
 			}
 		});
 	}
@@ -95,7 +104,27 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 
 	public final boolean canRunTask(AbstractBrainTask<T> brainTask) {
 		Map<AbstractBrainFlag, BrainFlagState> requirements = brainTask.getFlagRequirements();
+
+		if (brainTask.isExecuting() && this.executingTasks.contains(brainTask)) {
+			return requirements.entrySet().stream()
+					.filter(entry -> entry.getKey() instanceof BrainMemoryFlag)
+					.allMatch(entry -> doesCurrentStateMatchRequirement(requirements, entry));
+		}
+
 		return requirements.entrySet().stream().allMatch(entry -> doesCurrentStateMatchRequirement(requirements, entry));
+	}
+
+	private void setFlagMasksForTask(AbstractBrainTask<T> brainTask) {
+		this.executingTasks.add(brainTask);
+		this.brainFlagStates.putAll(brainTask.getFlagMasks());
+	}
+
+	private void clearFlagMasksForTask(AbstractBrainTask<T> brainTask) {
+		this.executingTasks.remove(brainTask);
+		Map<AbstractBrainFlag, BrainFlagState> inversedFlags = brainTask.getFlagMasks()
+				.entrySet().stream()
+				.collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().inverse()));
+		this.brainFlagStates.putAll(inversedFlags);
 	}
 
 	private boolean doesCurrentStateMatchRequirement(Map<AbstractBrainFlag, BrainFlagState> requirements, Map.Entry<AbstractBrainFlag, BrainFlagState> entry) {

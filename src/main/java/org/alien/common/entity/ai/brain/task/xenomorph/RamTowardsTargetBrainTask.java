@@ -22,7 +22,6 @@ import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.impl.task.AttackOnCollideBrainTask;
-import org.lib.brain.memory.BrainMemoryKey;
 
 import java.util.Map;
 import java.util.Optional;
