@@ -23,8 +23,7 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 	@Override
 	public void init() {
 		// Brain Senses
-		this.addSense(new EntityBrainSensor(1));
-		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorXenomorph.instance));
+		this.initSenses();
 
 		// Brain Tasks
 		this.addTask(new SwimBrainTask(this.getEntity()));
@@ -36,5 +35,10 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 		this.addTask(new AttackOnCollideBrainTask(1.0D));
 		this.addTask(new HurtByTargetBrainTask());
 		this.addTask(new NearestAttackableTargetBrainTask());
+	}
+
+	public void initSenses() {
+		this.addSense(new EntityBrainSensor(1));
+		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorXenomorph.instance));
 	}
 }

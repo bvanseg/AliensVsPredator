@@ -37,7 +37,7 @@ import java.util.*;
  */
 public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	private final BrainMemoryMap memoryManager;
-	private final ArrayList<AbstractBrainSensor<T>> sensors;
+	private final HashMap<BrainProfile, ArrayList<AbstractBrainSensor<T>>> profileSensorSets;
 	private final HashMap<BrainProfile, ArrayList<AbstractBrainTask<T>>> profileTaskSets;
 	private final HashMap<AbstractBrainFlag, BrainFlagState> brainFlagStates;
 
@@ -47,7 +47,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	
 	protected AbstractBrain() {
 		this.memoryManager = new BrainMemoryMap();
-		this.sensors = new ArrayList<>();
+		this.profileSensorSets = new HashMap<>();
 		this.profileTaskSets = new HashMap<>();
 		this.brainFlagStates = new HashMap<>();
 		this.activeProfile = BrainProfiles.STANDARD;
@@ -59,7 +59,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		if (this.isDisabled)
 			return;
 
-		sensors.forEach(sensor -> sensor.sense(ctx));
+		profileSensorSets.computeIfAbsent(this.activeProfile, key -> new ArrayList<>()).forEach(sensor -> sensor.sense(ctx));
 
 		profileTaskSets.computeIfAbsent(this.activeProfile, key -> new ArrayList<>()).forEach(task -> {
 			if (this.canRunTask(task)) {
@@ -73,8 +73,14 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		});
 	}
 
+	public final void addSense(AbstractBrainSensor<T> brainSensor, BrainProfile... profiles) {
+		Arrays.stream(profiles).forEach(
+			profile -> profileSensorSets.computeIfAbsent(profile, key -> new ArrayList<>()).add(brainSensor)
+		);
+	}
+
 	public final void addSense(AbstractBrainSensor<T> brainSensor) {
-		sensors.add(brainSensor);
+		this.addSense(brainSensor, BrainProfiles.STANDARD);
 	}
 	
 	public final void addTask(AbstractBrainTask<T> brainTask, BrainProfile... profiles) {
@@ -150,8 +156,8 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		}
 	}
 
-	public List<AbstractBrainSensor<T>> getSensors() {
-		return sensors;
+	public Map<BrainProfile, ArrayList<AbstractBrainSensor<T>>> getProfileSensorSets() {
+		return profileSensorSets;
 	}
 
 	public void setDisabled(boolean disabled) {
