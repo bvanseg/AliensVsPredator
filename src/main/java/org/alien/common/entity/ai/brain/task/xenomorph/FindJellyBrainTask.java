@@ -44,8 +44,17 @@ public class FindJellyBrainTask extends AbstractEntityBrainTask {
 			this.hasPickedUpJelly = false;
 			this.hasJellyTarget = false;
 		}
+
+		Optional<List<EntityItem>> itemEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.ITEM_ENTITIES);
+
+		if (itemEntitiesOptional.isPresent()) {
+			boolean isJellyNearby = itemEntitiesOptional.get().stream()
+					.anyMatch(entityItem -> entityItem.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY);
+
+			return isJellyNearby && !this.hasPickedUpJelly;
+		}
 		
-		return !this.hasPickedUpJelly;
+		return false;
 	}
 
 	@Override
@@ -79,16 +88,11 @@ public class FindJellyBrainTask extends AbstractEntityBrainTask {
 		SpeciesXenomorph xenomorph = (SpeciesXenomorph)ctx.getEntity();
 
 		if (xenomorph.getDistanceSq(this.closestJelly) <= 1) {
-			this.onPickupJelly(ctx, this.closestJelly);
+			xenomorph.setJellyLevel(xenomorph.getJellyLevel() + (this.closestJelly.getItem().getCount() * 100));
+			this.closestJelly.setDead();
+			this.closestJelly = null;
 			this.hasPickedUpJelly = true;
 			this.hasJellyTarget = false;
 		}
 	}
-
-	private void onPickupJelly(EntityBrainContext ctx, EntityItem entityItem) {
-    	SpeciesXenomorph xenomorph = (SpeciesXenomorph) ctx.getEntity();
-        xenomorph.setJellyLevel(xenomorph.getJellyLevel() + (entityItem.getItem().getCount() * 100));
-        entityItem.setDead();
-		this.closestJelly = null;
-    }
 }
