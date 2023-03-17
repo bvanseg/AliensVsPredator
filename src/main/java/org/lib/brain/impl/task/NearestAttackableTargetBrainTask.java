@@ -38,7 +38,6 @@ public class NearestAttackableTargetBrainTask extends AbstractEntityBrainTask {
 			if (!nearestAttackTarget.isDead) {
 				ctx.getEntity().setAttackTarget(nearestAttackTarget);
 			} else {
-				ctx.getBrain().forget(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
 				ctx.getEntity().setAttackTarget(null);
 			}
     	} else {
@@ -50,7 +49,7 @@ public class NearestAttackableTargetBrainTask extends AbstractEntityBrainTask {
 	public void finish(EntityBrainContext ctx) {
 		super.finish(ctx);
 
-		if (!ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET).isPresent()) {
+		if (!ctx.getBrain().hasMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET)) {
 			ctx.getEntity().setAttackTarget(null);
 		}
 	}
