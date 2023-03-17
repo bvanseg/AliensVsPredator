@@ -43,7 +43,10 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 
 		// TODO: Gotta do something better than this. Perhaps task profiles/groups are justified now?
 		matriarchEntity.getBrain().getTasks()
-				.forEach(task -> task.setDisabled(!(task instanceof GrowOvipositorBrainTask) && !(task instanceof MatriarchEnthrallAlienBrainTask)));
+				.forEach(task -> task.setDisabled(
+						!(task instanceof GrowOvipositorBrainTask) &&
+						!(task instanceof MatriarchEnthrallAlienBrainTask) &&
+						!(task instanceof MatriarchReproduceBrainTask)));
 
 		// If the queen does not have a hive, create one.
 		if (matriarchEntity.getAlienHive() == null) {

@@ -61,11 +61,7 @@ public class RecycleSpentOvamorphBrainTask extends AbstractEntityBrainTask {
 		}
 
 		entityDrone.getNavigator().tryMoveToEntityLiving(this.targetOvamorph, entityDrone.getMoveHelper().getSpeed());
-	}
 
-	@Override
-	protected void continueExecuting(EntityBrainContext ctx) {
-		EntityDrone entityDrone = (EntityDrone) ctx.getEntity();
 		double distance = entityDrone.getDistanceSq(this.targetOvamorph);
 
 		if (distance <= 2)
