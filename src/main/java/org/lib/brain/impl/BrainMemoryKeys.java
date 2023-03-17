@@ -3,6 +3,7 @@ package org.lib.brain.impl;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.util.math.BlockPos;
 import org.lib.brain.memory.BrainMemoryKey;
 
 import java.util.List;
@@ -25,4 +26,7 @@ public class BrainMemoryKeys {
 	public static final BrainMemoryKey<? super Entity> NEAREST_ENTITY = BrainMemoryKey.create(AvpBrainMemoryTypes.ENTITY);
 	public static final BrainMemoryKey<? super Entity> NEAREST_ATTACKABLE_TARGET = BrainMemoryKey.create(AvpBrainMemoryTypes.ENTITY);
 	public static final BrainMemoryKey<? super Entity> NEAREST_AVOID_TARGET = BrainMemoryKey.create(AvpBrainMemoryTypes.ENTITY);
+
+	public static final BrainMemoryKey<? super List<BlockPos>> BLOCK_POSITIONS_OF_INTEREST = BrainMemoryKey.create(AvpBrainMemoryTypes.BLOCK_POSITIONS);
+
 }
