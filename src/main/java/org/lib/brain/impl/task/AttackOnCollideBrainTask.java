@@ -33,12 +33,13 @@ public class AttackOnCollideBrainTask extends AbstractEntityBrainTask {
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
 		EntityLivingBase attackTarget = ctx.getEntity().getAttackTarget();
+		// TODO: remove redundant nearest attackable check.
 		return attackTarget != null && !attackTarget.isDead && ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET).isPresent();
 	}
 
 	@Override
 	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
-		return !ctx.getEntity().getNavigator().noPath();
+		return super.shouldContinueExecuting(ctx) && !ctx.getEntity().getNavigator().noPath();
 	}
 
 	@Override
