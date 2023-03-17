@@ -9,6 +9,8 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Maturable;
+import org.alien.common.entity.ai.brain.CrusherBrain;
+import org.alien.common.entity.ai.brain.XenomorphBrain;
 import org.alien.common.world.hive.HiveMember;
 
 public class EntityCrusher extends EntityPraetorian implements Maturable, HiveMember
@@ -18,7 +20,15 @@ public class EntityCrusher extends EntityPraetorian implements Maturable, HiveMe
         super(world);
         this.jumpMovementFactor = 0.2F;
         this.experienceValue = 300;
-        this.setSize(1.0F, 3.0F);
+        this.setSize(1.0F, 2.8F);
+    }
+
+    @Override
+    public XenomorphBrain getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = new CrusherBrain(this);
+        }
+        return this.brain;
     }
 
     @Override
@@ -26,7 +36,7 @@ public class EntityCrusher extends EntityPraetorian implements Maturable, HiveMe
     {
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(90.0D);
-        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5500000238418579D);
+        this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
     }
@@ -47,6 +57,11 @@ public class EntityCrusher extends EntityPraetorian implements Maturable, HiveMe
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.ALIEN_DEATH.event();
+    }
+
+    @Override
+    protected float getSoundPitch() {
+        return 0.2F;
     }
 
     @Override
