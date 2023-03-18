@@ -2,6 +2,7 @@ package org.alien.common.entity.ai.brain;
 
 import org.alien.common.entity.ai.brain.task.parasitoid.AttachedToHostBrainTask;
 import org.alien.common.entity.ai.brain.task.parasitoid.UpdateInfertileStateBrainTask;
+import org.alien.common.entity.ai.brain.task.xenomorph.ProduceJellyBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.lib.brain.impl.AbstractEntityBrain;
@@ -33,6 +34,7 @@ public class ParasitoidBrain extends AbstractEntityBrain<EntityParasitoid> {
 		this.addTask(new NearestAttackableTargetBrainTask());
 		this.addTask(new AttachedToHostBrainTask(), BrainProfiles.PARASITOID_ATTACHED);
 		this.addTask(new UpdateInfertileStateBrainTask(), BrainProfiles.PARASITOID_INFERTILE);
+		this.addTask(new ProduceJellyBrainTask<EntityParasitoid>(20, e -> e.isFertile() && e.getJellyLevel() <= 256));
 
 		this.initParasiteTasks();
 	}

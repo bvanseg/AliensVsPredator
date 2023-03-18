@@ -189,11 +189,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
         super.onUpdate();
         this.updateAnimations();
 
-        if (this.canProduceJelly())
-        {
-            this.produceJelly();
-        }
-
         if (this instanceof Maturable)
         {
             Maturable maturable = (Maturable) this;
@@ -212,27 +207,9 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     }
 
     @Override
-    public boolean canProduceJelly()
-    {
-        return this.world.getTotalWorldTime() % this.getJellyProductionRate() == 0;
-    }
-
-    @Override
     public int getJellyProductionRate()
     {
         return 8 * 20;
-    }
-
-    @Override
-    public void produceJelly()
-    {
-        if (!this.world.isRemote)
-        {
-            if (this.world.getTotalWorldTime() % 20 == 0)
-            {
-                // this.setJellyLevel(this.getJellyLevel() + 20);
-            }
-        }
     }
 
     @Override

@@ -125,15 +125,6 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
         host.getActivePotionEffects().clear();
         host.attackEntityFrom(AVPDamageSources.causeDeaconBursterDamage(this, host), 100000F);
     }
-
-    @Override
-    public void produceJelly()
-    {
-        if (!this.world.isRemote && this.world.getTotalWorldTime() % 20 == 0)
-        {
-            this.setJellyLevel(this.getJellyLevel() + 20);
-        }
-    }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)

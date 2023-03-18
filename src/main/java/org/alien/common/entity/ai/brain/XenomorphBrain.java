@@ -3,9 +3,12 @@ package org.alien.common.entity.ai.brain;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.entity.ai.brain.task.xenomorph.FindJellyBrainTask;
+import org.alien.common.entity.ai.brain.task.xenomorph.ProduceJellyBrainTask;
 import org.alien.common.entity.ai.brain.task.xenomorph.ShareJellyBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
+import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.common.AVPBlocks;
 import org.lib.brain.impl.AbstractEntityBrain;
@@ -67,6 +70,12 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 		this.addTask(new NearestAttackableTargetBrainTask());
 		this.addTask(new AvoidBlockBrainTask(3F, 1.0F, 1.0F, AVOID_BLOCKS::contains));
 		this.addTask(new DestroyBlockBrainTask(1.0D, DESTROY_BLOCKS::contains));
+		this.addTask(new ProduceJellyBrainTask<SpeciesXenomorph>(20, e -> {
+			if (e instanceof Maturable) {
+				return e.getJellyLevel() >= (((Maturable)e).getMaturityLevel() / 2);
+			}
+			return true;
+		}));
 	}
 
 	public void initSenses() {

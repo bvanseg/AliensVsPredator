@@ -42,16 +42,6 @@ public class EntityDrone extends SpeciesXenomorph implements Maturable, HiveMemb
     }
 
     @Override
-    public void produceJelly()
-    {
-        if (this.world.isRemote) return;
-        if (this.world.getTotalWorldTime() % 20 != 0) return;
-        if (this.getJellyLevel() >= (this.getMaturityLevel() / 2)) return;
-
-        this.setJellyLevel(this.getJellyLevel() + 20);
-    }
-
-    @Override
     public Class<? extends Entity> getMatureState()
     {
         return EntityWarrior.class;
