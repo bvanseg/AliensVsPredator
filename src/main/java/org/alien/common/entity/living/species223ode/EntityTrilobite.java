@@ -291,24 +291,6 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
     }
 
     @Override
-    protected boolean pushOutOfBlocks(double x, double y, double z)
-    {
-        return super.pushOutOfBlocks(x, y, z);
-    }
-
-    @Override
-    protected void onInsideBlock(IBlockState state)
-    {
-        super.onInsideBlock(state);
-    }
-
-    @Override
-    protected void onAnimationFinish(Animation animation)
-    {
-        super.onAnimationFinish(animation);
-    }
-
-    @Override
     public double getYOffset()
     {
         if (this.getRidingEntity() != null)
@@ -316,12 +298,6 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
             return -this.getRidingEntity().height;
         }
         return super.getYOffset();
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox()
-    {
-        return super.getCollisionBoundingBox();
     }
 
     @Override
@@ -354,11 +330,6 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
         return this.motionY > 1.0099999997764826D;
     }
 
-    public boolean isClimbing()
-    {
-        return false;
-    }
-
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect)
     {
@@ -369,12 +340,6 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
     public boolean attackEntityAsMob(Entity entityIn)
     {
         return false;
-    }
-
-    @Override
-    public boolean attackEntityFrom(DamageSource source, float amount)
-    {
-        return super.attackEntityFrom(source, amount);
     }
 
     @Override
@@ -608,10 +573,5 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(AlienItems.SUMMONER_TRILOBITE);
-    }
-    
-    public SoundEvent getImplantSound()
-    {
-        return AlienSounds.FACEHUGGER_IMPLANT.event();
     }
 }
