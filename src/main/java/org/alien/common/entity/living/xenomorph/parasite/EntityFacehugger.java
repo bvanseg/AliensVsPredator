@@ -1,6 +1,7 @@
 package org.alien.common.entity.living.xenomorph.parasite;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.IMob;
@@ -98,5 +99,12 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, Parasito
     protected void playStepSound(BlockPos pos, Block blockIn)
     {
         this.playSound(SoundEvents.ENTITY_SPIDER_STEP, 0.0575F, 3.0F);
+    }
+
+    @Override
+    public void knockBack(Entity entityIn, float strength, double xRatio, double zRatio) {
+        if (this.isFertile()) {
+            super.knockBack(entityIn, strength, xRatio, zRatio);
+        }
     }
 }
