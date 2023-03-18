@@ -19,6 +19,7 @@ import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
 import org.avp.common.*;
+import org.avp.common.config.ModelConfig;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
 import org.predator.Predators;
@@ -51,6 +52,8 @@ public class AVP implements IMod
     public void pre(FMLPreInitializationEvent event)
     {
         logger.info("Preparing...");
+        ModelConfig config = ModelConfig.getInstance();
+        config.write();
 
         // Config
         AVPSettings.instance.pre(event);
