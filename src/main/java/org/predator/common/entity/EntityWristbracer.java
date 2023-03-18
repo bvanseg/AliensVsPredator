@@ -26,6 +26,14 @@ import java.util.List;
 
 public class EntityWristbracer extends EntityThrowable
 {
+    private static final ArrayList<Block> excludedBlocks = new ArrayList<>();
+    private static final ArrayList<Material> excludedMaterials = new ArrayList<>();
+
+    static {
+        excludedBlocks.add(Blocks.BEDROCK);
+        excludedMaterials.add(Material.ROCK);
+    }
+
     private int preInitTicks;
     private int initTicks;
     private int postInitTicks;
@@ -52,6 +60,7 @@ public class EntityWristbracer extends EntityThrowable
         this.motionY *= 0.9800000190734863D;
         this.motionZ *= 0.9800000190734863D;
 
+        // FIXME: Seems to be a complicated timer system. Use ticksExisted, instead.
         if (this.preInitTicks < this.getPreInitTicksMax())
         {
             this.preInitTicks++;
@@ -68,6 +77,7 @@ public class EntityWristbracer extends EntityThrowable
             }
         }
 
+        // Update gravity and motion
         if (this.onGround)
         {
             this.motionX *= 0.699999988079071D;
@@ -75,6 +85,7 @@ public class EntityWristbracer extends EntityThrowable
             this.motionY *= -0.5D;
         }
 
+        // Countdown sound fx.
         if (this.world.getTotalWorldTime() % 20 == 0)
         {
             PredatorSounds.FX_WRISTBRACER_ALARM.playSound(this, 15F, 1F);
@@ -92,42 +103,42 @@ public class EntityWristbracer extends EntityThrowable
 
             if (this.world.isRemote)
             {
-                this.spawnElectricArc(explosionWidthMax, explosionHeightMax, explosionWidth);
+                this.spawnElectricArc(explosionWidthMax);
             }
 
             if (!this.world.isRemote)
             {
+                // Destroy random blocks around the wristbracer.
+                // FIXME: This doesn't check for bedrock or other blocks that shouldn't be destroyed.
                 this.world.setBlockToAir(new BlockPos((int) Math.round(pX), (int) Math.round(pY), (int) Math.round(pZ)));
-            }
 
-            if (!this.world.isRemote)
-            {
+                // If past threshold to explode, explode.
                 if (this.getPostInitTicks() >= this.getPostInitTicksMax() * 2)
                 {
-                    if (AVPSettings.instance.areExplosionsEnabled())
-                    {
-                        ArrayList<Block> excludedBlocks = new ArrayList<>();
-                        excludedBlocks.add(Blocks.BEDROCK);
-                        ArrayList<Material> excludedMaterials = new ArrayList<>();
-                        excludedMaterials.add(Material.ROCK);
-                        LargeExplosion explosion = new LargeExplosion(world, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1000F, this.world.rand.nextLong(), excludedBlocks, excludedMaterials, 0, 2);
-                        explosion.start();
-
-                        List<Entity> entities = Entities.getEntitiesInCoordsRange(world, Entity.class, new Pos(this.getPosition()), (int) explosionWidthMax, (int) explosionHeightMax);
-
-                        entities.stream().filter(EntityLivingBase.class::isInstance).forEach(
-                            living -> living.attackEntityFrom(DamageSource.causeExplosionDamage((EntityLivingBase) living), 1000000)
-                        );
-                    }
-
-                    this.setDead();
+                    this.explode(explosionWidthMax, explosionHeightMax);
                 }
             }
         }
     }
 
+    private void explode(float explosionWidthMax, float explosionHeightMax) {
+        if (AVPSettings.instance.areExplosionsEnabled())
+        {
+            LargeExplosion explosion = new LargeExplosion(world, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1000F, this.world.rand.nextLong(), excludedBlocks, excludedMaterials, 0, 2);
+            explosion.start();
+
+            List<Entity> entities = Entities.getEntitiesInCoordsRange(world, Entity.class, new Pos(this.getPosition()), (int) explosionWidthMax, (int) explosionHeightMax);
+
+            entities.stream().filter(EntityLivingBase.class::isInstance).forEach(
+                living -> living.attackEntityFrom(DamageSource.causeExplosionDamage((EntityLivingBase) living), 1000000)
+            );
+        }
+
+        this.setDead();
+    }
+
     @SideOnly(Side.CLIENT)
-    private void spawnElectricArc(float explosionWidthMax, float explosionHeightMax, float explosionWidth2)
+    private void spawnElectricArc(float explosionWidthMax)
     {
         float explosionWidth = explosionWidthMax * this.getInitTicks() / this.getInitTicksMax();
         float iS = 1F;
@@ -137,7 +148,7 @@ public class EntityWristbracer extends EntityThrowable
         double pX = this.posX + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
         double pY = this.posY + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
         double pZ = this.posZ + (this.rand.nextDouble() * explosionWidth) - (this.rand.nextDouble() * explosionWidth);
-        double arcFluctuation = 1 + (this.getInitTicks() * 40 / this.getInitTicksMax());
+        double arcFluctuation = 1 + (this.getInitTicks() * 40.0 / this.getInitTicksMax());
         double arcComplexity = (1F / explosionWidth) * 2;
         float arcDensity = 0.7F * this.getInitTicks() / this.getInitTicksMax();
 
@@ -157,11 +168,6 @@ public class EntityWristbracer extends EntityThrowable
     public int getPreInitTicksMax()
     {
         return 20 * 15;
-    }
-
-    public int getPreInitTicks()
-    {
-        return preInitTicks;
     }
 
     public int getPostInitTicksMax()
