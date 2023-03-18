@@ -1,6 +1,6 @@
 package org.lib.brain.impl.task;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -61,7 +61,7 @@ public class DestroyBlockBrainTask extends AbstractEntityBrainTask {
 
 		attemptTime--;
 
-		if (!destroyPredicate.apply(entity.world.getBlockState(blockPos).getBlock()))
+		if (!destroyPredicate.test(entity.world.getBlockState(blockPos).getBlock()))
 			return false;
 
 		return attemptTime <= 0;

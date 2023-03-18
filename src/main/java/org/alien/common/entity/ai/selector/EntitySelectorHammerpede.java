@@ -1,6 +1,6 @@
 package org.alien.common.entity.ai.selector;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.entity.EntityLivingBase;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.vardic.EntityHammerpede;
@@ -11,7 +11,7 @@ public class EntitySelectorHammerpede implements Predicate<EntityLivingBase>
     public static final EntitySelectorHammerpede instance = new EntitySelectorHammerpede();
 
     @Override
-    public boolean apply(EntityLivingBase entity)
+    public boolean test(EntityLivingBase entity)
     {
         return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityHammerpede);
     }

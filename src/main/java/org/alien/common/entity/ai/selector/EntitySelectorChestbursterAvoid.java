@@ -1,6 +1,6 @@
 package org.alien.common.entity.ai.selector;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.*;
@@ -45,7 +45,7 @@ public class EntitySelectorChestbursterAvoid implements Predicate<Entity>
     }
 
     @Override
-    public boolean apply(Entity potentialTarget)
+    public boolean test(Entity potentialTarget)
     {
         // If the target is a player, return depending on if they're in creative mode or not.
         if (potentialTarget instanceof EntityPlayer)
