@@ -1,12 +1,17 @@
 package org.alien.common.entity.ai.brain;
 
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import org.alien.common.entity.ai.brain.task.FindFoodBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorChestbursterAvoid;
 import org.alien.common.entity.living.xenomorph.EntityChestburster;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAvoidTargetBrainSensor;
+import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;
 import org.lib.brain.impl.task.*;
+
+import java.util.HashSet;
 
 /**
  * 
@@ -18,6 +23,14 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 		super(entity);
 	}
 
+	private static final HashSet<Block> AVOID_BLOCKS = new HashSet<>();
+	private static final HashSet<Block> BLOCKS_OF_INTEREST = new HashSet<>();
+
+	static  {
+		BLOCKS_OF_INTEREST.add(Blocks.FIRE);
+		AVOID_BLOCKS.add(Blocks.FIRE);
+	}
+
 	@Override
 	public void init() {
 		// Brain Senses
@@ -25,6 +38,7 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 		// TODO:
 //		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorParasitoid.instance));
 		this.addSense(new NearestAvoidTargetBrainSensor(1, EntitySelectorChestbursterAvoid.instance));
+		this.addSense(new NearestBlockPositionsOfInterestSensor(1, 6, BLOCKS_OF_INTEREST::contains));
 
 		// Brain Tasks
 		EntityChestburster entity = this.getEntity();
@@ -39,5 +53,6 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 //		this.addTask(new BrainTaskAdapter(new EntityAIAttackMelee(entity, 0.8F, false)));
 		this.addTask(new LeapAtTargetBrainTask(0.8F));
 		this.addTask(new FindFoodBrainTask());
+		this.addTask(new AvoidBlockBrainTask(6F, 0.7F, 0.7F, AVOID_BLOCKS::contains));
 	}
 }
