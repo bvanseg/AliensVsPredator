@@ -7,11 +7,12 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants.NBT;
-import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.avp.AVP;
+import org.avp.EntityAccessor;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.UUID;
 
 /**
@@ -21,28 +22,32 @@ import java.util.UUID;
  */
 public class AlienHive {
 
-	private final EntityMatriarch matriarch;
+	private final Entity ownerEntity;
 	private final HashSet<UUID> hiveMemberUUIDs;
     private final HashSet<BlockPos> resinInHive;
 
 	private BlockPos coreBlockPos;
+
+	// TODO: Store hive member UUIDs by their role (class).
 	
-	public AlienHive(EntityMatriarch matriarch) {
-		this.matriarch = matriarch;
+	public AlienHive(Entity ownerEntity) {
+		if (!(ownerEntity instanceof HiveOwner)) {
+			throw new IllegalStateException("Non-HiveOwner passed as owner of AlienHive!");
+		}
+
+		this.ownerEntity = ownerEntity;
 		this.hiveMemberUUIDs = new HashSet<>();
 		this.resinInHive = new HashSet<>();
-		this.coreBlockPos = this.matriarch.getPosition().toImmutable();
+		this.coreBlockPos = this.ownerEntity.getPosition().toImmutable();
 		
 		// Add the queen to the hive by default.
-		this.addHiveMember(matriarch.getHiveMemberID());
+		this.addHiveMember(this.getHiveOwner().getHiveMemberID());
 	}
 	
 	public void update() {
-		// If the matriarch is dead, the hive is dead. Update hives state.
-		if (this.matriarch.isDead) {
+		// TODO: Pass on hive to a royal hive member if one is available *before* destroying hive completely.
+		if (this.ownerEntity.isDead) {
 			this.destroy();
-
-			// TODO: Pass on hive to a royal hive member if one is available.
 		}
 	}
 	
@@ -56,6 +61,10 @@ public class AlienHive {
 		AlienHiveHandler.instance.addEntityAsMemberToHive(entityUUID, this);
 	}
 
+	public Optional<Entity> getHiveMember(UUID entityUUID) {
+		return EntityAccessor.instance.getEntityByUUID(entityUUID);
+	}
+
 	public void addResin(BlockPos pos) {
 		resinInHive.add(pos);
 	}
@@ -65,12 +74,12 @@ public class AlienHive {
 	}
 	
 	public HiveOwner getHiveOwner() {
-		return this.matriarch;
+		return (HiveOwner) this.ownerEntity;
 	}
 	
 	public boolean isQueenAtCore()
     {
-        return this.matriarch.getDistance(this.coreBlockPos.getX(), this.coreBlockPos.getY(), this.coreBlockPos.getZ()) < this.getCoreRange();
+        return this.ownerEntity.getDistance(this.coreBlockPos.getX(), this.coreBlockPos.getY(), this.coreBlockPos.getZ()) < this.getCoreRange();
     }
 
     public boolean isPointWithinHive(BlockPos coord)
@@ -85,7 +94,7 @@ public class AlienHive {
 
 	public double getDistanceFromHive(Entity entity)
     {
-        return this.matriarch.getDistance(entity.posX, entity.posY, entity.posZ);
+        return this.ownerEntity.getDistance(entity.posX, entity.posY, entity.posZ);
     }
 
     public boolean isEntityWithinRange(Entity entity)
@@ -110,7 +119,7 @@ public class AlienHive {
 
 	public void writeToNBT(NBTTagCompound nbt) {
 		// Write matriarch UUID.
-		nbt.setUniqueId(MATRIARCH_ID_NBT_KEY, this.matriarch.getHiveMemberID());
+		nbt.setUniqueId(MATRIARCH_ID_NBT_KEY, this.getHiveOwner().getHiveMemberID());
 
 		// Write core block position.
 		nbt.setIntArray(CORE_BLOCK_POS_NBT_KEY, new int[] { this.coreBlockPos.getX(), this.coreBlockPos.getY(), this.coreBlockPos.getZ() });
@@ -134,8 +143,8 @@ public class AlienHive {
 		// Sanity check.
 		UUID matriarchId = nbt.getUniqueId(MATRIARCH_ID_NBT_KEY);
 		
-		if (matriarchId == null || matriarchId != this.matriarch.getHiveMemberID()) {
-			AVP.log().warn("Loaded an invalid matriarch id '{}', expected '{}'!", matriarchId, this.matriarch.getHiveMemberID());
+		if (matriarchId == null || matriarchId != this.getHiveOwner().getHiveMemberID()) {
+			AVP.log().warn("Loaded an invalid matriarch id '{}', expected '{}'!", matriarchId, this.getHiveOwner().getHiveMemberID());
 		}
 		
 		// Read core block position.
