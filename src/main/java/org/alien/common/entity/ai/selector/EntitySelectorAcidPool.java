@@ -1,27 +1,21 @@
 package org.alien.common.entity.ai.selector;
 
-import java.util.function.Predicate;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import org.alien.common.entity.living.SpeciesAlien;
+import net.minecraft.entity.Entity;
+import org.lib.predicate.EntitySelectorBase;
+import org.lib.predicate.Predicates;
 
 import javax.annotation.Nullable;
 
-public class EntitySelectorAcidPool implements Predicate<EntityLivingBase>
+public class EntitySelectorAcidPool extends EntitySelectorBase
 {
     public static final EntitySelectorAcidPool instance = new EntitySelectorAcidPool();
 
     @Override
-    public boolean test(@Nullable EntityLivingBase living)
+    public boolean test(@Nullable Entity target)
     {
-        if (living instanceof EntityPlayer && ((EntityPlayer)living).capabilities.isCreativeMode)
-        {
-            return false;
-        }
-        else if (living instanceof SpeciesAlien)
-        {
-            return false;
-        }
+        if (!super.test(target)) return false;
+
+        if (Predicates.IS_ALIEN.test(target)) return false;
 
         return true;
     }

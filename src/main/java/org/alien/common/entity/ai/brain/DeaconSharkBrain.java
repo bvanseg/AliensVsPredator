@@ -1,9 +1,11 @@
 package org.alien.common.entity.ai.brain;
 
 import java.util.function.Predicate;
-import net.minecraft.entity.EntityLivingBase;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.player.EntityPlayer;
+import org.lib.predicate.EntitySelectorBase;
 import org.alien.common.entity.living.vardic.EntityDeaconShark;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
@@ -21,7 +23,10 @@ public class DeaconSharkBrain extends AbstractEntityBrain<EntityDeaconShark> {
 		super(entity);
 	}
 
-	private final Predicate<EntityLivingBase> entitySelector = target -> !(target instanceof EntityDeaconShark) && DeaconSharkBrain.this.getEntity().canEntityBeSeen(target);
+	private final Predicate<Entity> entitySelector = target -> {
+		if (!EntitySelectorBase.instance.test(target)) return false;
+		return !(target instanceof EntityDeaconShark) && DeaconSharkBrain.this.getEntity().canEntityBeSeen(target);
+	};
 
 	@Override
 	public void initSenses() {

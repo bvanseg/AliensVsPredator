@@ -1,20 +1,19 @@
 package org.alien.common.entity.ai.selector;
 
-import java.util.function.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntityZombieHorse;
-import net.minecraft.entity.player.EntityPlayer;
-import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesEngineer;
 import org.avp.common.entity.living.EntityMarine;
+import org.lib.predicate.EntitySelectorBase;
+import org.lib.predicate.Predicates;
 import org.predator.common.entity.living.SpeciesYautja;
 
 import java.util.ArrayList;
 
-public class EntitySelectorChestbursterAvoid implements Predicate<Entity>
+public class EntitySelectorChestbursterAvoid extends EntitySelectorBase
 {
     public static final EntitySelectorChestbursterAvoid instance = new EntitySelectorChestbursterAvoid();
 
@@ -47,16 +46,9 @@ public class EntitySelectorChestbursterAvoid implements Predicate<Entity>
     @Override
     public boolean test(Entity potentialTarget)
     {
-        // If the target is a player, return depending on if they're in creative mode or not.
-        if (potentialTarget instanceof EntityPlayer)
-        {
-            return !((EntityPlayer) potentialTarget).isCreative();
-        }
+        if (!super.test(potentialTarget)) return false;
 
-        // Do not run away from other aliens.
-        if (potentialTarget instanceof SpeciesAlien) {
-            return false;
-        }
+        if (Predicates.IS_ALIEN.test(potentialTarget)) return false;
 
         // If the target is any of these types, run.
         for (Class<?> c : ALLOW_LIST)

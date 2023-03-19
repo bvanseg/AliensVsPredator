@@ -1,74 +1,33 @@
 package org.alien.common.entity.ai.selector;
 
 import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
-import java.util.function.Predicate;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import org.alien.common.api.parasitoidic.Host;
-import org.alien.common.api.parasitoidic.Parasitoid;
-import org.alien.common.world.capability.Organism.OrganismImpl;
-import org.alien.common.world.capability.Organism.Provider;
+import org.lib.predicate.EntitySelectorBase;
+import org.lib.predicate.Predicates;
 
-import java.util.ArrayList;
-
-public class EntitySelectorTrilobite implements Predicate<EntityLivingBase>
+public class EntitySelectorTrilobite extends EntitySelectorBase
 {
     public static final EntitySelectorTrilobite instance = new EntitySelectorTrilobite();
 
     @Override
-    public boolean test(EntityLivingBase target)
+    public boolean test(Entity target)
     {
-        ArrayList<Class<?>> blacklist = Parasitoid.getDefaultEntityBlacklist();
+        if (!super.test(target)) return false;
 
-        for (Class<?> c : blacklist)
-        {
-            if (c.isInstance(target))
-            {
-                return false;
-            }
-        }
-
-        OrganismImpl organism = (OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
-
-        if (target instanceof Host)
-        {
-            Host host = (Host) target;
-
-            if (!host.canHostParasite() || !host.canParasiteAttach())
-            {
-                return false;
-            }
-        }
-
-        if (organism != null && organism.hasEmbryo())
-        {
-            return false;
-        }
+        if (!Predicates.IS_PARASITOID_TARGET.test(target)) return false;
+        if (!Predicates.IS_VALID_HOST.test(target)) return false;
+        if (Predicates.EMBRYO_CARRIER.test(target)) return false;
+        if (Predicates.IS_CHILD.test(target)) return false;
 
         if (target instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) target;
             ItemStack headwear = Inventories.getHelmSlotItemStack(player);
 
-            if (headwear != null && headwear.getItem() != Items.AIR || ((EntityPlayer) target).capabilities.isCreativeMode)
-            {
-                return false;
-            }
-        }
-
-        if (!(target instanceof EntityLivingBase))
-        {
-            return false;
-        }
-
-        if (target instanceof EntityLiving)
-        {
-            EntityLiving living = (EntityLiving) target;
-
-            if (living.isChild())
+            if (headwear != null && headwear.getItem() != Items.AIR)
             {
                 return false;
             }

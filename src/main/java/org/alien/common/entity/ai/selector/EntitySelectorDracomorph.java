@@ -1,26 +1,21 @@
 package org.alien.common.entity.ai.selector;
 
-import java.util.function.Predicate;
-import net.minecraft.entity.EntityLivingBase;
-import org.alien.common.entity.living.SpeciesAlien;
+import net.minecraft.entity.Entity;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
+import org.lib.predicate.EntitySelectorBase;
+import org.lib.predicate.Predicates;
 
-public class EntitySelectorDracomorph implements Predicate<EntityLivingBase>
+public class EntitySelectorDracomorph extends EntitySelectorBase
 {
     public static final EntitySelectorDracomorph instance = new EntitySelectorDracomorph();
 
     @Override
-    public boolean test(EntityLivingBase target)
+    public boolean test(Entity target)
     {
-        if (target instanceof EntityMatriarch)
-        {
-            return true;
-        }
-        
-        if (target instanceof SpeciesAlien)
-        {
-            return false;
-        }
+        if (!super.test(target)) return false;
+
+        if (target instanceof EntityMatriarch) return true;
+        if (Predicates.IS_ALIEN.test(target)) return false;
 
         return true;
     }

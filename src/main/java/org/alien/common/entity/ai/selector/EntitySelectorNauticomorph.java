@@ -1,17 +1,20 @@
 package org.alien.common.entity.ai.selector;
 
-import java.util.function.Predicate;
-import net.minecraft.entity.EntityLivingBase;
-import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.entity.living.xenomorph.EntityNauticomorph;
+import net.minecraft.entity.Entity;
+import org.lib.predicate.EntitySelectorBase;
+import org.lib.predicate.Predicates;
 
-public class EntitySelectorNauticomorph implements Predicate<EntityLivingBase>
+public class EntitySelectorNauticomorph extends EntitySelectorBase
 {
     public static final EntitySelectorNauticomorph instance = new EntitySelectorNauticomorph();
 
     @Override
-    public boolean test(EntityLivingBase entity)
+    public boolean test(Entity entity)
     {
-        return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityNauticomorph);
+        if (!super.test(entity)) return false;
+
+        if (Predicates.IS_ALIEN.test(entity)) return false;
+
+        return true;
     }
 }
