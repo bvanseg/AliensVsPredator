@@ -20,7 +20,7 @@ public class InputHandler
 
     public InputHandler()
     {
-        this.inputHandlers = new ArrayList<IInputHandler>();
+        this.inputHandlers = new ArrayList<>();
         this.inputHandlers.add(InputHandlerPlasmaCannon.instance);
         this.inputHandlers.add(InputHandlerFirearm.instance);
         this.inputHandlers.add(InputHandlerPulseRifle.instance);

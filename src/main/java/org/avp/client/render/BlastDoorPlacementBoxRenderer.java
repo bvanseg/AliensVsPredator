@@ -53,7 +53,7 @@ public class BlastDoorPlacementBoxRenderer
                     if (t instanceof TileEntityBlastdoor)
                     {
                         TileEntityBlastdoor bd = (TileEntityBlastdoor) t;
-                        List<BlockPos> blocks = new ArrayList<BlockPos>(Arrays.asList(bd.setFor(Entities.getEntityFacingRotY(p))));
+                        List<BlockPos> blocks = new ArrayList<>(Arrays.asList(bd.setFor(Entities.getEntityFacingRotY(p))));
                         blocks.add(new BlockPos(0, 0, 0));
 
                         Vec3d hitVec = ClientGame.instance.minecraft().objectMouseOver.hitVec;

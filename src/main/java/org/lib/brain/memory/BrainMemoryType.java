@@ -14,7 +14,7 @@ public class BrainMemoryType<T> {
 	}
 	
 	public static <M> BrainMemoryType<M> create(Class<M> clazz) {
-		return new BrainMemoryType<M>(clazz);
+		return new BrainMemoryType<>(clazz);
 	}
 	
 	public Class<T> getTypeClass() {

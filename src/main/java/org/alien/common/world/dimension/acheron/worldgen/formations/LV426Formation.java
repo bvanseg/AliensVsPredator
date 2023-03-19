@@ -32,7 +32,7 @@ public class LV426Formation extends TerrainGenVariant<LV426Formation>
 
     public Pos[] getOffsets()
     {
-        List<Pos> set = new ArrayList<Pos>();
+        List<Pos> set = new ArrayList<>();
 
         offset(set, 0, 9, 3);
         offset(set, 0, 9, 4);

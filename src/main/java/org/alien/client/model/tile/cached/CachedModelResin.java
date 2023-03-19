@@ -164,7 +164,7 @@ public class CachedModelResin implements IBakedModel
                 }
             }
 
-            List<BakedQuad> quads = new ArrayList<BakedQuad>();
+            List<BakedQuad> quads = new ArrayList<>();
 
             quads.add(createQuad(new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 0.0D), this.sprite));
             quads.add(createQuad(new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 0.0D), this.sprite));

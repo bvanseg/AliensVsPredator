@@ -10,7 +10,7 @@ import java.util.ArrayList;
  */
 public class FirearmProfile
 {
-    private static final ArrayList<FirearmProfile> FIREARMS         = new ArrayList<FirearmProfile>();
+    private static final ArrayList<FirearmProfile> FIREARMS         = new ArrayList<>();
     private static int                             lastRegisteredId = 0;
 
     public static FirearmProfile getFirearmForGlobalId(int globalId)

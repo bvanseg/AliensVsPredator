@@ -22,7 +22,7 @@ public class TerrainGenVariant<T> extends WorldGenerator implements IWorldGenera
 
     public TerrainGenVariant()
     {
-        this.variants = new ArrayList<TerrainGenVariant<T>>();
+        this.variants = new ArrayList<>();
     }
 
     @Override
@@ -129,7 +129,7 @@ public class TerrainGenVariant<T> extends WorldGenerator implements IWorldGenera
 
     public Pos[] getOffsets()
     {
-        List<Pos> set = new ArrayList<Pos>();
+        List<Pos> set = new ArrayList<>();
         return set.toArray(new Pos[set.size()]);
     }
 

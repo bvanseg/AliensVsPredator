@@ -38,7 +38,7 @@ public class TileEntityNetworkRack extends TileEntityElectrical implements IRota
     public TileEntityNetworkRack()
     {
         super(false);
-        this.children = new ArrayList<TileEntity>();
+        this.children = new ArrayList<>();
         this.inventory = new InventoryBasic("container.networkrack.slots", true, 4);
     }
     
@@ -223,7 +223,7 @@ public class TileEntityNetworkRack extends TileEntityElectrical implements IRota
     @Override
     public BlockPos[] defaultSet()
     {
-        List<BlockPos> set = new ArrayList<BlockPos>();
+        List<BlockPos> set = new ArrayList<>();
         BlockPos pos = new BlockPos(0, 0, 0);
 
         set.add(pos.add(0, 0, 0));

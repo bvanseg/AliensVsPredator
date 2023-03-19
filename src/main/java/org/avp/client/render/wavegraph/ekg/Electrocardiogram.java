@@ -20,7 +20,7 @@ public class Electrocardiogram extends Wavegraph
 
     public Electrocardiogram()
     {
-        this.data = new ArrayList<DataEntryEKG>();
+        this.data = new ArrayList<>();
         this.rate = 60;
         this.refRate = 80;
         this.width = 300;
@@ -99,7 +99,7 @@ public class Electrocardiogram extends Wavegraph
         float depth = 10F;
         DataEntryEKG previousRecord = null;
 
-        for (DataEntryEKG r : new ArrayList<DataEntryEKG>(this.data))
+        for (DataEntryEKG r : new ArrayList<>(this.data))
         {
             DataEntryEKG.DisplayDataEKG data = r.displaydata();
             data.update(System.currentTimeMillis(), x, y, width, height, widthScale, heightScale);

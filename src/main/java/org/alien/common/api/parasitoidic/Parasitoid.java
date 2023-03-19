@@ -47,7 +47,7 @@ public interface Parasitoid
 
     static ArrayList<Class<?>> getDefaultEntityBlacklist()
     {
-        ArrayList<Class<?>> blacklist = new ArrayList<Class<?>>();
+        ArrayList<Class<?>> blacklist = new ArrayList<>();
 
         blacklist.add(EntityArmorStand.class);
         blacklist.add(SpeciesAlien.class);

@@ -20,7 +20,7 @@ public class TileEntitySevastopolBlastDoor extends TileEntityBlastdoor
     @Override
     public BlockPos[] defaultSet()
     {
-        List<BlockPos> set = new ArrayList<BlockPos>();
+        List<BlockPos> set = new ArrayList<>();
         BlockPos pos = new BlockPos(0, 0, 0);
 
         set.add(pos.add(1, 0, 0));

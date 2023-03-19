@@ -42,7 +42,7 @@ public class TacticalHUDRenderEvent
 {
     public static final TacticalHUDRenderEvent instance          = new TacticalHUDRenderEvent();
     private GuiTacticalHUDSettings             guiSettings;
-    private final ArrayList<EntityPlayer>            playersInHUD      = new ArrayList<EntityPlayer>();
+    private final ArrayList<EntityPlayer>            playersInHUD      = new ArrayList<>();
     private SpecialPlayerImpl specialPlayer;
     private OrganismImpl playerOrganism;
     private final GuiCustomButton                    buttonMarineHelmConfig;

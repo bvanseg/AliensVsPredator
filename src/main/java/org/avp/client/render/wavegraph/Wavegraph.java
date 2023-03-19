@@ -33,7 +33,7 @@ public class Wavegraph
 
     public Wavegraph()
     {
-        this.data = new ArrayList<DataEntry>();
+        this.data = new ArrayList<>();
         this.rate = 60;
         this.refRate = 80;
         this.width = 300;
@@ -66,7 +66,7 @@ public class Wavegraph
 
         if (this.data.size() > 10)
         {
-            for (DataEntry r : new ArrayList<DataEntry>(this.data))
+            for (DataEntry r : new ArrayList<>(this.data))
             {
                 if (this.data.indexOf(r) < this.data.size() - 45)
                 {
@@ -94,7 +94,7 @@ public class Wavegraph
         float depth = 10F;
         DataEntry previousRecord = null;
 
-        for (DataEntry r : new ArrayList<DataEntry>(this.data))
+        for (DataEntry r : new ArrayList<>(this.data))
         {
             DataEntry.DisplayData data = r.displaydata();
             data.update(System.currentTimeMillis(), x, y, width, height, widthScale, heightScale);

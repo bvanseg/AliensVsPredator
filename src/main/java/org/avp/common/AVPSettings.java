@@ -85,7 +85,7 @@ public class AVPSettings implements IPreInitEvent, IFlexibleConfiguration
     {
         public static final ClientSettings     instance          = new ClientSettings();
         private Configuration                  configuration;
-        private final ArrayList<ConfigSetting> allSettings       = new ArrayList<ConfigSetting>();
+        private final ArrayList<ConfigSetting> allSettings       = new ArrayList<>();
 
         private final String                   CATEGORY_GRAPHICS = "graphics";
 
