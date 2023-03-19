@@ -22,12 +22,13 @@ public class GooMutantBrain extends AbstractEntityBrain<EntityGooMutant> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorGooMutant.instance));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		EntityGooMutant entity = this.getEntity();
 		this.addTask(new SwimBrainTask(entity));
 		this.addTask(new AttackOnCollideBrainTask(1.0D));

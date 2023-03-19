@@ -14,13 +14,11 @@ import org.avp.common.block.BlockSkull;
 
 public class BlockSkullXenomorph extends BlockSkull
 {
-    @SideOnly(Side.CLIENT)
-    private static final MapModelTexture<ModelWarrior> model = Resources.instance.models().DRONE_SKULL;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelWarrior m = model.getModel();
+        ModelWarrior m = Resources.instance.models().DRONE_SKULL.getModel();
         return new ModelRenderer[] { m.headBase, m.headSpine1, m.headSpine2, m.headTop, m.lHead, m.rHead, m.jaw, m.jaw2 };
     }
 
@@ -35,7 +33,7 @@ public class BlockSkullXenomorph extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return model.getTexture();
+        return Resources.instance.models().DRONE_SKULL.getTexture();
     }
     
     @Override

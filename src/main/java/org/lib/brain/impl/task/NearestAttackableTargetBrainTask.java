@@ -1,14 +1,10 @@
 package org.lib.brain.impl.task;
 
 import net.minecraft.entity.EntityLivingBase;
-import org.lib.brain.flag.AbstractBrainFlag;
-import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
-import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.brain.impl.EntityBrainContext;
 
-import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -17,12 +13,6 @@ import java.util.Optional;
  *
  */
 public class NearestAttackableTargetBrainTask extends AbstractEntityBrainTask {
-
-	@Override
-	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
-		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
-	}
-	
 	@Override
 	protected boolean shouldExecute(EntityBrainContext ctx) {
 		return true;

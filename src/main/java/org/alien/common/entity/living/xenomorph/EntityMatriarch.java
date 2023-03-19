@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.entity.ai.brain.MatriarchBrain;
+import org.alien.common.entity.ai.brain.xenomorph.MatriarchBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.AlienHive;
 import org.alien.common.world.hive.HiveOwner;

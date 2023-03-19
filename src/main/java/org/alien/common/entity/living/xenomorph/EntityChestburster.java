@@ -21,7 +21,7 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.api.parasitoidic.RoyalOrganism;
-import org.alien.common.entity.ai.brain.ChestbursterBrain;
+import org.alien.common.entity.ai.brain.xenomorph.ChestbursterBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.Organism.OrganismImpl;
@@ -83,7 +83,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
             this.brain.update(new EntityBrainContext(this.getBrain(), this));
         }
         
-        if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.apply(this.getAttackTarget()))
+        if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.test(this.getAttackTarget()))
             this.setAttackTarget(null);
     }
 

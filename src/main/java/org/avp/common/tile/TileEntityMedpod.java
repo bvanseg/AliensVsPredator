@@ -17,15 +17,14 @@ import org.avp.common.network.packet.client.PacketOpenable;
 public class TileEntityMedpod extends TileEntityElectrical implements Openable, VoltageReceiver, IRotatableYAxis
 {
     private EnumFacing direction;
-    private boolean        isOpen;
-    private EntityMedpod   medpodEntity;
-    private float          doorProgress;
+    private boolean isOpen;
+    private EntityMedpod medpodEntity;
+    public float doorProgress;
 
     public TileEntityMedpod()
     {
         super(false);
         this.isOpen = false;
-        this.doorProgress = -0.01F;
     }
 
     public EntityMedpod getEntity()
@@ -65,7 +64,6 @@ public class TileEntityMedpod extends TileEntityElectrical implements Openable, 
         {
             nbt.setInteger("Direction", this.direction.ordinal());
         }
-        nbt.setFloat("DoorProgress", this.doorProgress);
         nbt.setBoolean("Open", this.isOpen);
         
         return nbt;
@@ -80,7 +78,6 @@ public class TileEntityMedpod extends TileEntityElectrical implements Openable, 
         {
             this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
         }
-        this.doorProgress = nbt.getFloat("DoorProgress");
         this.isOpen = nbt.getBoolean("Open");
     }
 
@@ -116,16 +113,6 @@ public class TileEntityMedpod extends TileEntityElectrical implements Openable, 
 
             this.getEntity().setLocationAndAngles(this.getPos().getX() + getEntity().width / 2, this.getPos().getY(), this.getPos().getZ() + getEntity().width / 2, rotation, 0F);
         }
-
-        if (this.isOpen())
-        {
-            this.doorProgress = this.doorProgress < getMaxDoorProgress() ? this.doorProgress + 0.025F : this.doorProgress;
-        }
-
-        if (!this.isOpen())
-        {
-            this.doorProgress = this.doorProgress > 0.0F ? this.doorProgress - 0.025F : this.doorProgress;
-        }
     }
 
     @Override
@@ -143,27 +130,26 @@ public class TileEntityMedpod extends TileEntityElectrical implements Openable, 
     @Override
     public void setOpen(boolean isOpen)
     {
-        if (this.getVoltage() > 0)
-        {
-            this.isOpen = isOpen;
+        if (this.getVoltage() <= 0) return;
 
-            if (!this.world.isRemote)
+        this.isOpen = isOpen;
+
+        if (!this.world.isRemote)
+        {
+            AVPNetworking.instance.sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
+        }
+
+        if (this.getEntity() != null)
+        {
+            Entity riddenBy = Entities.getEntityRiddenBy(this.getEntity());
+            if (riddenBy == null)
             {
-                AVPNetworking.instance.sendToAll(new PacketOpenable(isOpen, this.getPos().getX(), this.getPos().getY(), this.getPos().getZ()));
+                this.getEntity().clearLastRidden();
             }
 
-            if (this.getEntity() != null)
+            if (isOpen && this.getEntity() != null && riddenBy != null)
             {
-                Entity riddenBy = Entities.getEntityRiddenBy(this.getEntity());
-                if (riddenBy == null)
-                {
-                    this.getEntity().clearLastRidden();
-                }
-
-                if (isOpen && this.getEntity() != null && riddenBy != null)
-                {
-                    riddenBy.dismountRidingEntity();
-                }
+                riddenBy.dismountRidingEntity();
             }
         }
     }

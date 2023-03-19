@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain;
+package org.alien.common.entity.ai.brain.parasitoid;
 
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.species223ode.EntityTrilobite;
@@ -18,12 +18,13 @@ public class TrilobiteBrain extends AbstractEntityBrain<EntityTrilobite> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorTrilobite.instance));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		EntityTrilobite entity = this.getEntity();
 		this.addTask(new SwimBrainTask(entity));
 		this.addTask(new AttackOnCollideBrainTask(0.800000011920929D));

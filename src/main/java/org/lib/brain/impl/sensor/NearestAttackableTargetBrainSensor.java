@@ -1,6 +1,8 @@
 package org.lib.brain.impl.sensor;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
+
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.brain.impl.EntityBrainContext;
@@ -18,9 +20,9 @@ import java.util.stream.Collectors;
 public class NearestAttackableTargetBrainSensor extends AbstractBrainSensor<EntityBrainContext> {
 	
 	private final int cooldownInTicks;
-    private final Predicate<EntityLivingBase> targetPredicate;
+    private final Predicate<Entity> targetPredicate;
 	
-	public NearestAttackableTargetBrainSensor(int cooldownInTicks, Predicate<EntityLivingBase> targetPredicate) {
+	public NearestAttackableTargetBrainSensor(int cooldownInTicks, Predicate<Entity> targetPredicate) {
 		this.cooldownInTicks = cooldownInTicks;
     	this.targetPredicate = targetPredicate;
 	}
@@ -37,7 +39,7 @@ public class NearestAttackableTargetBrainSensor extends AbstractBrainSensor<Enti
 
 		if (livingEntitiesOptional.isPresent()) {
 			List<EntityLivingBase> livingEntities = livingEntitiesOptional.get();
-			List<EntityLivingBase> targets = livingEntities.stream().filter(targetPredicate::apply).collect(Collectors.toList());
+			List<EntityLivingBase> targets = livingEntities.stream().filter(targetPredicate).collect(Collectors.toList());
 
 			if (!targets.isEmpty()) {
 		        ctx.getBrain().remember(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET, targets.get(0));

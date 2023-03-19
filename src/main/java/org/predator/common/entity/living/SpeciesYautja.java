@@ -371,4 +371,9 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     {
         return true;
     }
+
+    @Override
+    protected float getSoundVolume() {
+        return 1.1F - (this.cloakProgress / (float)MAX_CLOAK);
+    }
 }

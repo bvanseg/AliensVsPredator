@@ -14,13 +14,11 @@ import org.predator.client.model.tile.skull.ModelBiomaskFalconer;
 
 public class BlockBiomaskFalconer extends BlockSkull
 {
-    @SideOnly(Side.CLIENT)
-    private static final MapModelTexture<ModelBiomaskFalconer> model = Resources.instance.models().BIOMASK_FALCONER;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelBiomaskFalconer m = model.getModel();
+        ModelBiomaskFalconer m = Resources.instance.models().BIOMASK_FALCONER.getModel();
         return new ModelRenderer[] { m.biomaskMouth };
     }
 
@@ -35,7 +33,7 @@ public class BlockBiomaskFalconer extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return model.getTexture();
+        return Resources.instance.models().BIOMASK_FALCONER.getTexture();
     }
     
     @Override

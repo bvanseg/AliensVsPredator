@@ -1,20 +1,20 @@
 package org.alien.common.entity;
 
-import com.google.common.base.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import org.alien.common.AlienBlocks;
-import org.alien.common.entity.living.SpeciesAlien;
+import org.alien.common.entity.ai.selector.EntitySelectorAcidPool;
 import org.avp.common.AVPBlocks;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.api.blocks.AcidResistant;
@@ -75,15 +75,6 @@ public class EntityAcidPool extends EntityLiquidPool
         this.setSize(1.65F, 0.09F);
     }
 
-    private static final Predicate<EntityLivingBase> SELECTOR = (EntityLivingBase living) -> {
-	    if (living instanceof SpeciesAlien)
-	    	return false;
-	    if (living instanceof EntityPlayer && ((EntityPlayer)living).capabilities.isCreativeMode)
-	    	return false;
-
-        return true;
-    };
-
     @Override
     public void onUpdate()
     {
@@ -124,8 +115,7 @@ public class EntityAcidPool extends EntityLiquidPool
 
         if (this.rand.nextInt(20) == 0)
         {
-            //GameSounds.fxMinecraftFizz.playSound(this.world, this.getPosition(), 1F, 1F);
-            // FIXME: This crashes the game, we can't access sounds through raw resource locations.
+            this.world.playSound(null, this.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 1F, 1F);
         }
 
         if (BLOCK_DENYLIST.contains(destroy) || destroy instanceof AcidResistant && ((AcidResistant) destroy).canAcidDestroy(this.world, pos, this))
@@ -146,7 +136,7 @@ public class EntityAcidPool extends EntityLiquidPool
         ArrayList<EntityLivingBase> entityItemList = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - 1, this.posY, this.posZ - 1, this.posX + 1, this.posY + 1, this.posZ + 1));
 
         entityItemList.forEach(livingEntity -> {
-            if (SELECTOR.apply(livingEntity) && !livingEntity.isDead) {
+            if (EntitySelectorAcidPool.instance.test(livingEntity)) {
                 livingEntity.addPotionEffect(new PotionEffect(MobEffects.POISON, (14 * 20), 0));
                 livingEntity.attackEntityFrom(AVPDamageSources.ACID, 4f);
             }

@@ -100,7 +100,7 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 
 					// Hurt the nearest target found while ramming.
 					if (nearest instanceof EntityLivingBase &&
-							EntitySelectorXenomorph.instance.apply((EntityLivingBase) nearest) &&
+							EntitySelectorXenomorph.instance.test((EntityLivingBase) nearest) &&
 							rammer.getDistanceSq(nearest) <= 2.0D
 					) {
 						nearest.attackEntityFrom(new EntityDamageSource("ram", rammer), 10.0F);

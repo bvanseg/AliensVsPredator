@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain;
+package org.alien.common.entity.ai.brain.parasitoid;
 
 import org.alien.common.entity.ai.brain.task.parasitoid.AttachedToHostBrainTask;
 import org.alien.common.entity.ai.brain.task.parasitoid.UpdateInfertileStateBrainTask;
@@ -21,12 +21,13 @@ public class ParasitoidBrain extends AbstractEntityBrain<EntityParasitoid> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorParasitoid.instance));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		this.addTask(new SwimBrainTask(this.getEntity()));
 		this.addTask(new AttackOnCollideBrainTask(0.55D));
 		this.addTask(new WanderBrainTask(0.55D));

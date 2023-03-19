@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain;
+package org.alien.common.entity.ai.brain.xenomorph;
 
 import org.alien.common.entity.ai.brain.task.matriarch.GrowOvipositorBrainTask;
 import org.alien.common.entity.ai.brain.task.matriarch.MatriarchEnthrallAlienBrainTask;
@@ -21,17 +21,17 @@ public class MatriarchBrain extends XenomorphBrain {
 	}
 
 	@Override
-	public void init() {
-		super.init();
+	public void initSenses() {
+		this.addSense(new EntityBrainSensor(1), BrainProfiles.STANDARD, BrainProfiles.MATRIARCH_REPRODUCING);
+		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorXenomorph.instance));
+	}
+
+	@Override
+	public void initTasks() {
+		super.initTasks();
 		this.addTask(new MatriarchMoveToHiveCoreBrainTask());
 		this.addTask(new MatriarchEnthrallAlienBrainTask(), BrainProfiles.STANDARD, BrainProfiles.MATRIARCH_REPRODUCING);
 		this.addTask(new GrowOvipositorBrainTask(), BrainProfiles.STANDARD, BrainProfiles.MATRIARCH_REPRODUCING);
 		this.addTask(new MatriarchReproduceBrainTask(), BrainProfiles.MATRIARCH_REPRODUCING);
-	}
-
-	@Override
-	public void initSenses() {
-		this.addSense(new EntityBrainSensor(1), BrainProfiles.STANDARD, BrainProfiles.MATRIARCH_REPRODUCING);
-		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorXenomorph.instance));
 	}
 }

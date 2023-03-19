@@ -1,18 +1,18 @@
 package org.alien.common.entity.ai.selector;
 
-import com.google.common.base.Predicate;
-import net.minecraft.entity.EntityLivingBase;
-import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.entity.living.vardic.EntityHammerpede;
+import net.minecraft.entity.Entity;
+import org.lib.predicate.EntitySelectorBase;
+import org.lib.predicate.Predicates;
 
 // TODO: This class isn't yet used, do not delete
-public class EntitySelectorHammerpede implements Predicate<EntityLivingBase>
+public class EntitySelectorHammerpede extends EntitySelectorBase
 {
     public static final EntitySelectorHammerpede instance = new EntitySelectorHammerpede();
 
     @Override
-    public boolean apply(EntityLivingBase entity)
+    public boolean test(Entity target)
     {
-        return !(entity instanceof SpeciesAlien) && !(entity instanceof EntityHammerpede);
+        if (!super.test(target)) return false;
+        return !Predicates.IS_ALIEN.test(target);
     }
 }

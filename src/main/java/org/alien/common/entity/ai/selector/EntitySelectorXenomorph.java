@@ -1,49 +1,27 @@
 package org.alien.common.entity.ai.selector;
 
-import com.google.common.base.Predicate;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityWaterMob;
-import net.minecraft.entity.player.EntityPlayer;
-import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.Organism.OrganismImpl;
-import org.alien.common.world.capability.Organism.Provider;
+import org.lib.predicate.EntitySelectorBase;
+import org.lib.predicate.Predicates;
 
-public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
+public class EntitySelectorXenomorph extends EntitySelectorBase
 {
     public static final EntitySelectorXenomorph instance = new EntitySelectorXenomorph();
 
     @Override
-    public boolean apply(EntityLivingBase target)
+    public boolean test(Entity target)
     {
-        if (target instanceof SpeciesAlien)
-            return false;
+        if (!super.test(target)) return false;
 
-        OrganismImpl organism = (OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
-
-        if (organism.hasEmbryo())
-        {
-            return false;
-        }
-        
-        if (target instanceof EntityPlayer)
-        {
-            EntityPlayer player = (EntityPlayer) target;
-            
-            if (player.capabilities.isCreativeMode)
-            {
-                return false;
-            }
-        }
+        if (Predicates.IS_ALIEN.test(target)) return false;
+        if (Predicates.EMBRYO_CARRIER.test(target)) return false;
         
         if (target instanceof EntityWaterMob) {
             return target.isInWater() || target.isOverWater();
         }
-        
-        if (target instanceof EntityBat) {
-        	return false;
-        }
-        
-        return true;
+
+        return !(target instanceof EntityBat);
     }
 }
