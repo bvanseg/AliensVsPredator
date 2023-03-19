@@ -155,7 +155,7 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
 
         for (HashMap<Integer, ItemStack> set : sets)
         {
-            if (set.get(0) != null && set.get(1) != null && set.get(2) != null && set.get(3) != null && ((ItemStack) set.get(0)).getItem() == magnet && ((ItemStack) set.get(1)).getItem() == magnet && ((ItemStack) set.get(2)).getItem() == magnet && ((ItemStack) set.get(3)).getItem() == magnet)
+            if (set.get(0) != null && set.get(1) != null && set.get(2) != null && set.get(3) != null && (set.get(0)).getItem() == magnet && (set.get(1)).getItem() == magnet && (set.get(2)).getItem() == magnet && (set.get(3)).getItem() == magnet)
             {
                 fullSets++;
             }

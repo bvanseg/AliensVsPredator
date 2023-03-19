@@ -28,7 +28,7 @@ public class TerrainGenVariant<T> extends WorldGenerator implements IWorldGenera
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {
-        ;
+        // Do nothing.
     }
 
     @Override
@@ -39,7 +39,7 @@ public class TerrainGenVariant<T> extends WorldGenerator implements IWorldGenera
             return false;
         }
 
-        if (this.getVariants() != null && this.getVariants().size() > 0)
+        if (this.getVariants() != null && !this.getVariants().isEmpty())
         {
             ArrayList<TerrainGenVariant<T>> variants = this.getVariants();
             TerrainGenVariant<T> selected = variants.get(rand.nextInt(variants.size() - 1));

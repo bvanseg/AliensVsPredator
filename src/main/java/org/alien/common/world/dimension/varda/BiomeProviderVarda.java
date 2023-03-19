@@ -22,7 +22,7 @@ import java.util.Random;
 
 public class BiomeProviderVarda extends BiomeProvider
 {
-    public static ArrayList<BiomeVarda> allowedBiomes = new ArrayList<>(Arrays.asList(BiomeVarda.vardaBadlands, BiomeVarda.vardaForest));
+    public static final List<BiomeVarda> ALLOWED_BIOMES = Arrays.asList(BiomeVarda.vardaBadlands, BiomeVarda.vardaForest);
     private GenLayer                    genBiomes;
     private GenLayer                    biomeIndexLayer;
     private final BiomeCache                  biomeCache;
@@ -32,7 +32,7 @@ public class BiomeProviderVarda extends BiomeProvider
     {
         this.biomeCache = new BiomeCache(this);
         this.biomesToSpawnIn = new ArrayList<>();
-        this.biomesToSpawnIn.addAll(allowedBiomes);
+        this.biomesToSpawnIn.addAll(ALLOWED_BIOMES);
     }
 
     public BiomeProviderVarda(long seed, WorldType worldType)
