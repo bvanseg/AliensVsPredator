@@ -14,13 +14,11 @@ import org.avp.common.block.BlockSkull;
 
 public class BlockHeadGigerAlien extends BlockSkull
 {
-    @SideOnly(Side.CLIENT)
-    private static final MapModelTexture<ModelGigerAlienHead> model = Resources.instance.models().GIGER_ALIEN_HEAD;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelGigerAlienHead m = model.getModel();
+        ModelGigerAlienHead m = Resources.instance.models().GIGER_ALIEN_HEAD.getModel();
         return new ModelRenderer[] { m.head };
     }
 
@@ -36,7 +34,7 @@ public class BlockHeadGigerAlien extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return model.getTexture();
+        return Resources.instance.models().GIGER_ALIEN_HEAD.getTexture();
     }
     
     @Override

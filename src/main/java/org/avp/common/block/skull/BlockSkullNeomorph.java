@@ -14,13 +14,11 @@ import org.avp.common.block.BlockSkull;
 
 public class BlockSkullNeomorph extends BlockSkull
 {
-    @SideOnly(Side.CLIENT)
-    private static final MapModelTexture<ModelNeomorphSkull> model = Resources.instance.models().NEOMORPH_SKULL;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelNeomorphSkull m = model.getModel();
+        ModelNeomorphSkull m = Resources.instance.models().NEOMORPH_SKULL.getModel();
         return new ModelRenderer[] { m.head };
     }
 
@@ -35,7 +33,7 @@ public class BlockSkullNeomorph extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return model.getTexture();
+        return Resources.instance.models().NEOMORPH_SKULL.getTexture();
     }
     
     @Override
