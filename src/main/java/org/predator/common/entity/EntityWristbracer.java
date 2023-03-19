@@ -161,7 +161,7 @@ public class EntityWristbracer extends EntityThrowable
 
     public int getPostIntenseElectricArcTicks()
     {
-        return MathHelper.clamp((this.ticksExisted - ELECTRIC_ARC_INTENSE_START_TIME_IN_TICKS), 0, Integer.MAX_VALUE);
+        return MathHelper.clamp((this.ticksExisted - ELECTRIC_ARC_START_TIME_IN_TICKS), 0, Integer.MAX_VALUE);
     }
 
     public int getPostDetonateTicks()
