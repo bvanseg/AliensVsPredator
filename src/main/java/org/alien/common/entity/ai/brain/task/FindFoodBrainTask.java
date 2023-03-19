@@ -1,6 +1,5 @@
 package org.alien.common.entity.ai.brain.task;
 
-import java.util.function.Predicate;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
@@ -16,6 +15,7 @@ import org.lib.brain.impl.EntityBrainContext;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -36,7 +36,7 @@ public class FindFoodBrainTask extends AbstractEntityBrainTask {
 
 	@Override
 	public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {
-		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
+		map.put(BrainFlags.MOVE, BrainFlagState.PRESENT);
 	}
 
 	private static final Predicate<EntityItem> foodPredicate = entityItem -> {
@@ -55,13 +55,20 @@ public class FindFoodBrainTask extends AbstractEntityBrainTask {
 			this.hasPickedUpFood = false;
 			this.hasFoodTarget = false;
 		}
-		
-		return !this.hasPickedUpFood;
+
+		Optional<List<EntityItem>> itemEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.ITEM_ENTITIES);
+
+		if (itemEntitiesOptional.isPresent()) {
+			boolean isFoodNearby = itemEntitiesOptional.get().stream().anyMatch(foodPredicate);
+			return isFoodNearby && !this.hasPickedUpFood;
+		}
+
+		return false;
 	}
 
 	@Override
 	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
-		return this.closestFood != null && (!ctx.getEntity().getNavigator().noPath() || this.hasPickedUpFood);
+		return this.closestFood != null && !ctx.getEntity().getNavigator().noPath() && !this.hasPickedUpFood;
 	}
 
 	@Override
@@ -87,7 +94,7 @@ public class FindFoodBrainTask extends AbstractEntityBrainTask {
 	@Override
 	protected void continueExecuting(EntityBrainContext ctx) {
 		EntityLiving entity = ctx.getEntity();
-		if (entity.getDistanceSq(closestFood) <= 1) {
+		if (entity.getDistanceSq(closestFood) < 2) {
 			this.onPickupFood(ctx, closestFood);
 			this.hasPickedUpFood = true;
 			this.hasFoodTarget = false;
