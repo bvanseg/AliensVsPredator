@@ -2,7 +2,9 @@ package org.alien.common.entity.ai.brain;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
-import org.alien.common.entity.ai.brain.task.FindFoodBrainTask;
+import net.minecraft.item.ItemFood;
+import org.alien.common.AlienItems;
+import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorChestbursterAvoid;
 import org.alien.common.entity.living.xenomorph.EntityChestburster;
 import org.lib.brain.impl.AbstractEntityBrain;
@@ -35,8 +37,6 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 	public void init() {
 		// Brain Senses
 		this.addSense(new EntityBrainSensor(1));
-		// TODO:
-//		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorParasitoid.instance));
 		this.addSense(new NearestAvoidTargetBrainSensor(1, EntitySelectorChestbursterAvoid.instance));
 		this.addSense(new NearestBlockPositionsOfInterestSensor(1, 6, BLOCKS_OF_INTEREST::contains));
 
@@ -47,12 +47,9 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 		this.addTask(new AttackOnCollideBrainTask(0.800000011920929D));
 		this.addTask(new WanderBrainTask(0.800000011920929D));
 		this.addTask(new HurtByTargetBrainTask());
-		// TODO:
-//		this.addTask(new NearestAttackableTargetBrainTask());
-		// TODO:
-//		this.addTask(new BrainTaskAdapter(new EntityAIAttackMelee(entity, 0.8F, false)));
 		this.addTask(new LeapAtTargetBrainTask(0.8F));
-		this.addTask(new FindFoodBrainTask());
+		this.addTask(new FindItemBrainTask(50, e -> e.getItem().getItem() instanceof ItemFood));
+		this.addTask(new FindItemBrainTask(100, e -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY));
 		this.addTask(new AvoidBlockBrainTask(6F, 0.7F, 0.7F, AVOID_BLOCKS::contains));
 	}
 }
