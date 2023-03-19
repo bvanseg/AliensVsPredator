@@ -249,4 +249,9 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
     {
         return null;
     }
+
+    @Override
+    public boolean canBreatheUnderwater() {
+        return true;
+    }
 }
