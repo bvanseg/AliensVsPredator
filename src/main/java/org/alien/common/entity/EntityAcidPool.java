@@ -7,8 +7,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
@@ -124,8 +126,7 @@ public class EntityAcidPool extends EntityLiquidPool
 
         if (this.rand.nextInt(20) == 0)
         {
-            //GameSounds.fxMinecraftFizz.playSound(this.world, this.getPosition(), 1F, 1F);
-            // FIXME: This crashes the game, we can't access sounds through raw resource locations.
+            this.world.playSound(null, this.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 1F, 1F);
         }
 
         if (BLOCK_DENYLIST.contains(destroy) || destroy instanceof AcidResistant && ((AcidResistant) destroy).canAcidDestroy(this.world, pos, this))
