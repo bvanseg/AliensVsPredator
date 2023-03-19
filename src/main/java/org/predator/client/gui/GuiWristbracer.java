@@ -97,14 +97,7 @@ public class GuiWristbracer extends GuiContainer
             button.drawButton();
             button.drawTooltip();
 
-            button.setAction(new IAction()
-            {
-                @Override
-                public void perform(IGuiElement element)
-                {
-                    updateScreenDigit(button.id, displays.get(button) < 9 ? displays.get(button) + 1 : 0);
-                }
-            });
+            button.setAction(element -> updateScreenDigit(button.id, displays.get(button) < 9 ? displays.get(button) + 1 : 0));
 
             drawYautjaDigit(this.displays.get(button), guiLeft + 13 + 27 * (x1 - 1), guiTop + 49);
         }

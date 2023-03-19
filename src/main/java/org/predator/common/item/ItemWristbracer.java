@@ -64,14 +64,9 @@ public class ItemWristbracer extends HookedItem
     
     static
     {
-        addCode("009001", new ActionCode()
-        {
-            @Override
-            public void onAction(String combonation, Object... args)
-            {
-                AVPNetworking.instance.sendToServer(new PacketSpawnNuke());
-                ClientGame.instance.minecraft().currentScreen = null;
-            }
+        addCode("009001", (combonation, args) -> {
+            AVPNetworking.instance.sendToServer(new PacketSpawnNuke());
+            ClientGame.instance.minecraft().currentScreen = null;
         });
     }
     

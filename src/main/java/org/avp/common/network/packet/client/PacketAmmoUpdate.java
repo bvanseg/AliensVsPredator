@@ -37,21 +37,16 @@ public class PacketAmmoUpdate implements IMessage, IMessageHandler<PacketAmmoUpd
     @Override
     public PacketAmmoUpdate onMessage(PacketAmmoUpdate packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-            	EntityPlayer player = ctx.getServerHandler().player;
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            EntityPlayer player = ctx.getServerHandler().player;
 
-                if (player != null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
-                {
-                    ((ItemFirearm) player.getHeldItemMainhand().getItem()).setAmmoCount(packet.ammo);
-                }
-                else if (player != null && player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
-                {
-                	((ItemFirearm) player.getHeldItemOffhand().getItem()).setAmmoCount(packet.ammo);
-                }
+            if (player != null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
+            {
+                ((ItemFirearm) player.getHeldItemMainhand().getItem()).setAmmoCount(packet.ammo);
+            }
+            else if (player != null && player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
+            {
+                ((ItemFirearm) player.getHeldItemOffhand().getItem()).setAmmoCount(packet.ammo);
             }
         });
         return null;

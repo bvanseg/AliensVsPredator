@@ -44,22 +44,17 @@ public class SpecialPlayerServerSync implements IMessage, IMessageHandler<Specia
     @Override
     public SpecialPlayerServerSync onMessage(SpecialPlayerServerSync packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
+
+            if (entity != null)
             {
-                Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
+                SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) entity.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
-                if (entity != null)
+                if (specialPlayer != null)
                 {
-                    SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) entity.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
-
-                    if (specialPlayer != null)
-                    {
-                        specialPlayer.readNBT(SpecialPlayerImpl.Provider.CAPABILITY, specialPlayer, null, packet.tag);
-                        AVPNetworking.instance.sendToAll(new SpecialPlayerClientSync(entity.getEntityId(), (NBTTagCompound) specialPlayer.writeNBT(SpecialPlayerImpl.Provider.CAPABILITY, specialPlayer, null)));
-                    }
+                    specialPlayer.readNBT(SpecialPlayerImpl.Provider.CAPABILITY, specialPlayer, null, packet.tag);
+                    AVPNetworking.instance.sendToAll(new SpecialPlayerClientSync(entity.getEntityId(), (NBTTagCompound) specialPlayer.writeNBT(SpecialPlayerImpl.Provider.CAPABILITY, specialPlayer, null)));
                 }
             }
         });

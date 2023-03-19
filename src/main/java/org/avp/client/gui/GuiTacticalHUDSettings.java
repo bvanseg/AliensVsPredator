@@ -45,46 +45,31 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
         this.viewportThreshold.sliderValue = TacticalHUDRenderEvent.instance.getViewportThreshold() / viewportThreshold.sliderMaxValue;
         this.viewportThreshold.displayString = "Threshold: " + (int) (viewportThreshold.sliderValue * viewportThreshold.sliderMaxValue);
 
-        this.nightvision.setAction(new IAction()
-        {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                player.setNightvisionEnabled(!player.isNightvisionEnabled());
-                player.syncWithServer(ClientGame.instance.minecraft().player);
-            }
+        this.nightvision.setAction(element -> {
+            player.setNightvisionEnabled(!player.isNightvisionEnabled());
+            player.syncWithServer(ClientGame.instance.minecraft().player);
         });
 
-        this.entityCulling.setAction(new IAction()
-        {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                player.setEntityCullingEnabled(!player.isEntityCullingEnabled());
-                player.syncWithServer(ClientGame.instance.minecraft().player);
-            }
+        this.entityCulling.setAction(element -> {
+            player.setEntityCullingEnabled(!player.isEntityCullingEnabled());
+            player.syncWithServer(ClientGame.instance.minecraft().player);
         });
 
-        this.save.setAction(new IAction()
-        {
-            @Override
-            public void perform(IGuiElement element)
+        this.save.setAction(element -> {
+            String newChannel = channel.getText();
+            int newRadius = (int) (txPower.sliderValue * txPower.sliderMaxValue);
+            int newThreshold = (int) (viewportThreshold.sliderValue * viewportThreshold.sliderMaxValue);
+
+            if (player.getBroadcastChannel() != newChannel || player.getBroadcastRadius() != newRadius || TacticalHUDRenderEvent.instance.getViewportThreshold() != newThreshold)
             {
-                String newChannel = channel.getText();
-                int newRadius = (int) (txPower.sliderValue * txPower.sliderMaxValue);
-                int newThreshold = (int) (viewportThreshold.sliderValue * viewportThreshold.sliderMaxValue);
-
-                if (player.getBroadcastChannel() != newChannel || player.getBroadcastRadius() != newRadius || TacticalHUDRenderEvent.instance.getViewportThreshold() != newThreshold)
-                {
-                    player.setBroadcastRadius(newRadius);
-                    player.setBroadcastChannel(newChannel);
-                    TacticalHUDRenderEvent.instance.setViewportThreshold(newThreshold);
-                    player.syncWithServer(ClientGame.instance.minecraft().player);
-                    channel.setText(newChannel);
-                }
-
-                mc.displayGuiScreen(null);
+                player.setBroadcastRadius(newRadius);
+                player.setBroadcastChannel(newChannel);
+                TacticalHUDRenderEvent.instance.setViewportThreshold(newThreshold);
+                player.syncWithServer(ClientGame.instance.minecraft().player);
+                channel.setText(newChannel);
             }
+
+            mc.displayGuiScreen(null);
         });
     }
 

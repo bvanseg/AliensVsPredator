@@ -256,13 +256,7 @@ public class TacticalHUDRenderEvent
             if (buttonMarineHelmConfig.getAction() == null)
             {
                 guiSettings = new GuiTacticalHUDSettings(ClientGame.instance.minecraft().currentScreen);
-                buttonMarineHelmConfig.setAction(new IAction() {
-                    @Override
-                    public void perform(IGuiElement element)
-                    {
-                        ClientGame.instance.minecraft().displayGuiScreen(guiSettings);
-                    }
-                });
+                buttonMarineHelmConfig.setAction(element -> ClientGame.instance.minecraft().displayGuiScreen(guiSettings));
             }
         }
     }

@@ -37,14 +37,9 @@ public class PacketPlayerModeUpdate implements IMessage, IMessageHandler<PacketP
     @Override
     public PacketPlayerModeUpdate onMessage(PacketPlayerModeUpdate packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) ClientGame.instance.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
-                specialPlayer.setPlayerMode(PlayerMode.get(packet.mode));
-            }
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) ClientGame.instance.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
+            specialPlayer.setPlayerMode(PlayerMode.get(packet.mode));
         });
 
         return null;

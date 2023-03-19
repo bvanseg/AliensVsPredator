@@ -51,22 +51,17 @@ public class PacketSyncRF implements IMessage, IMessageHandler<PacketSyncRF, Pac
     @Override
     public PacketSyncRF onMessage(PacketSyncRF packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            World world = ClientGame.instance.minecraft().player.world;
+
+            if (world != null)
             {
-                World world = ClientGame.instance.minecraft().player.world;
+                TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
-                if (world != null)
+                if (tile != null && tile instanceof TileEntityRedstoneFluxGenerator)
                 {
-                    TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
-
-                    if (tile != null && tile instanceof TileEntityRedstoneFluxGenerator)
-                    {
-                        TileEntityRedstoneFluxGenerator receiver = (TileEntityRedstoneFluxGenerator) tile;
-                        receiver.setRfEnergy(packet.rf);
-                    }
+                    TileEntityRedstoneFluxGenerator receiver = (TileEntityRedstoneFluxGenerator) tile;
+                    receiver.setRfEnergy(packet.rf);
                 }
             }
         });

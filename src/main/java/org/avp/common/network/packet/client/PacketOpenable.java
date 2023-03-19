@@ -51,22 +51,17 @@ public class PacketOpenable implements IMessage, IMessageHandler<PacketOpenable,
     @Override
     public PacketOpenable onMessage(PacketOpenable packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            World world = ClientGame.instance.minecraft().player.world;
+            TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+            if (world != null && tile != null && tile instanceof Openable)
             {
-                World world = ClientGame.instance.minecraft().player.world;
-                TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+                Openable openable = (Openable) tile;
 
-                if (world != null && tile != null && tile instanceof Openable)
+                if (openable != null)
                 {
-                    Openable openable = (Openable) tile;
-
-                    if (openable != null)
-                    {
-                        openable.setOpen(packet.open);
-                    }
+                    openable.setOpen(packet.open);
                 }
             }
         });

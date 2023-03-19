@@ -51,35 +51,26 @@ public class BiomeColorHandler implements IInitEvent
 
     public static void registerFoliageColorHandler(Block block)
     {
-        ClientGame.instance.minecraft().getItemColors().registerItemColorHandler(new IItemColor() {
-            @Override
-            public int colorMultiplier(ItemStack stack, int tintIndex)
-            {
-                return 0x228833;
-            }
-        }, block);
+        ClientGame.instance.minecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> 0x228833, block);
 
-        ClientGame.instance.minecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
-            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
+        ClientGame.instance.minecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
+            if (AVPSettings.instance.isHalloweenEventEnabled())
             {
-                if (AVPSettings.instance.isHalloweenEventEnabled())
+                switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
                 {
-                    switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
-                    {
-                        case 1:
-                            return 0xF1CC0C; //Yellow
-                        case 2:
-                            return 0xF08C00; //Orange
-                        case 3:
-                            return 0xAA1111; //Red
+                    case 1:
+                        return 0xF1CC0C; //Yellow
+                    case 2:
+                        return 0xF08C00; //Orange
+                    case 3:
+                        return 0xAA1111; //Red
 
-                        default:
-                            return 0xAA6644; //Brown
-                    }
+                    default:
+                        return 0xAA6644; //Brown
                 }
-
-                return 0x228833; //Default
             }
+
+            return 0x228833; //Default
         }, block);
     }
 
