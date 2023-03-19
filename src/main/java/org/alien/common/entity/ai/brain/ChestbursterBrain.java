@@ -3,6 +3,7 @@ package org.alien.common.entity.ai.brain;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemFood;
+import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorChestbursterAvoid;
@@ -48,8 +49,12 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 		this.addTask(new WanderBrainTask(0.800000011920929D));
 		this.addTask(new HurtByTargetBrainTask());
 		this.addTask(new LeapAtTargetBrainTask(0.8F));
-		this.addTask(new FindItemBrainTask(50, e -> e.getItem().getItem() instanceof ItemFood));
-		this.addTask(new FindItemBrainTask(100, e -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY));
+
+		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() instanceof ItemFood)
+				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.FOOD_YIELD))));
+		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY)
+				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.RAW_YIELD))));
+
 		this.addTask(new AvoidBlockBrainTask(6F, 0.7F, 0.7F, AVOID_BLOCKS::contains));
 	}
 }

@@ -3,6 +3,7 @@ package org.alien.common.entity.ai.brain;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
+import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.alien.common.entity.ai.brain.task.xenomorph.ShareJellyBrainTask;
@@ -57,10 +58,12 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 		this.initSenses();
 
 		// Brain Tasks
+		SpeciesXenomorph entity = this.getEntity();
 		this.addTask(new SwimBrainTask(this.getEntity()));
 		this.addTask(new LeapAtTargetBrainTask(0.6F));
 		this.addTask(new WanderBrainTask(0.8D));
-		this.addTask(new FindItemBrainTask(100, e -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY));
+		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY)
+				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.RAW_YIELD))));
 		this.addTask(new ShareJellyBrainTask());
 		this.addTask(new WatchClosestBrainTask(EntityLivingBase.class, 16F));
 		this.addTask(new AttackOnCollideBrainTask(1.0D));

@@ -2,7 +2,6 @@ package org.alien.common.entity.ai.brain.task;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
-import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
@@ -13,6 +12,7 @@ import org.lib.brain.impl.EntityBrainContext;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -37,15 +37,19 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 		map.put(BrainFlags.MOVE, BrainFlagState.PRESENT);
 	}
 
-	private final int jellyValue;
 	private final Predicate<EntityItem> itemPredicate;
+	private Consumer<EntityItem> onUseItemCallback;
 
 
 	private EntityItem closestItemTarget;
 
-	public FindItemBrainTask(int jellyValue, Predicate<EntityItem> itemPredicate) {
-		this.jellyValue = jellyValue;
+	public FindItemBrainTask(Predicate<EntityItem> itemPredicate) {
 		this.itemPredicate = itemPredicate;
+	}
+
+	public FindItemBrainTask onUseItem(Consumer<EntityItem> onUseItemCallback) {
+		this.onUseItemCallback = onUseItemCallback;
+		return this;
 	}
 	
 	@Override
@@ -102,11 +106,9 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 	}
 
 	private void onPickupItem(EntityBrainContext ctx, EntityItem entityItem) {
-		if (ctx.getEntity() instanceof RoyalOrganism) {
-			RoyalOrganism royalOrganism = (RoyalOrganism) ctx.getEntity();
-			royalOrganism.setJellyLevel(royalOrganism.getJellyLevel() + (entityItem.getItem().getCount() * this.jellyValue));
+		if (this.onUseItemCallback != null) {
+			this.onUseItemCallback.accept(entityItem);
 		}
-
         entityItem.setDead();
 		this.closestItemTarget = null;
     }
