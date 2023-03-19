@@ -138,7 +138,11 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements Vo
             this.stasisItemstack = new ItemStack(nbtStack);
         }
 
-        if (this.stasisEntity == null && this.stasisItemstack != ItemStack.EMPTY && this.stasisItemstack.getItem() != Items.AIR && stasisItemstack != null)
+        if (this.stasisEntity == null &&
+            stasisItemstack != null &&
+            this.stasisItemstack != ItemStack.EMPTY &&
+            this.stasisItemstack.getItem() != Items.AIR
+        )
         {
             Item summoner = this.stasisItemstack.getItem();
             
