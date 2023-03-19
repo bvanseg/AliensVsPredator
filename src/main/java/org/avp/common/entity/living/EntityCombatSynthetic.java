@@ -27,7 +27,7 @@ import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, Host, Brainiac<CombatSyntheticBrain>
 {
-    private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityCombatSynthetic.class, DataSerializers.BOOLEAN);
 
     private CombatSyntheticBrain brain;
 
