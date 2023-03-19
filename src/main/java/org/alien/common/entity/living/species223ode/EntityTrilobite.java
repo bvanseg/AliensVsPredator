@@ -29,7 +29,7 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Parasitoid;
-import org.alien.common.entity.ai.brain.TrilobiteBrain;
+import org.alien.common.entity.ai.brain.parasitoid.TrilobiteBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.Species223ODe;
 import org.alien.common.world.Embryo;

@@ -16,7 +16,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.Parasitoid;
-import org.alien.common.entity.ai.brain.ParasitoidBrain;
+import org.alien.common.entity.ai.brain.parasitoid.ParasitoidBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;

@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain;
+package org.alien.common.entity.ai.brain.xenomorph;
 
 import org.alien.common.entity.ai.brain.task.matriarch.GrowOvipositorBrainTask;
 import org.alien.common.entity.ai.brain.task.matriarch.MatriarchEnthrallAlienBrainTask;

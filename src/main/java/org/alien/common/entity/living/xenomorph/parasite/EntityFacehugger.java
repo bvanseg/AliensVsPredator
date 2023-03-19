@@ -14,8 +14,8 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Parasitoid;
-import org.alien.common.entity.ai.brain.FacehuggerBrain;
-import org.alien.common.entity.ai.brain.ParasitoidBrain;
+import org.alien.common.entity.ai.brain.parasitoid.FacehuggerBrain;
+import org.alien.common.entity.ai.brain.parasitoid.ParasitoidBrain;
 import org.alien.common.entity.living.EntityParasitoid;
 
 public class EntityFacehugger extends EntityParasitoid implements IMob, Parasitoid

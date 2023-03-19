@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain;
+package org.alien.common.entity.ai.brain.xenomorph;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;

@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain;
+package org.alien.common.entity.ai.brain.parasitoid;
 
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.species223ode.EntityTrilobite;

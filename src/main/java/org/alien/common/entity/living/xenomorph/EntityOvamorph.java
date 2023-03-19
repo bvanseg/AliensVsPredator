@@ -13,7 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.entity.ai.brain.OvamorphBrain;
+import org.alien.common.entity.ai.brain.xenomorph.OvamorphBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.hive.HiveMember;

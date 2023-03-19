@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain;
+package org.alien.common.entity.ai.brain.xenomorph;
 
 import org.alien.common.entity.ai.brain.task.xenomorph.RamTowardsTargetBrainTask;
 import org.alien.common.entity.living.xenomorph.EntityCrusher;

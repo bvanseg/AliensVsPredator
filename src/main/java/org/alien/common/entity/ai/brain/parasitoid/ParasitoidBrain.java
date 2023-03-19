@@ -1,4 +1,4 @@
-package org.alien.common.entity.ai.brain;
+package org.alien.common.entity.ai.brain.parasitoid;
 
 import org.alien.common.entity.ai.brain.task.parasitoid.AttachedToHostBrainTask;
 import org.alien.common.entity.ai.brain.task.parasitoid.UpdateInfertileStateBrainTask;
