@@ -5,8 +5,6 @@ import com.asx.mdx.client.Screen;
 import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.gui.GuiCustomButton;
-import com.asx.mdx.client.render.gui.IAction;
-import com.asx.mdx.client.render.gui.IGuiElement;
 import com.asx.mdx.common.minecraft.Pos;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;

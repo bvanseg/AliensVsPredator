@@ -7,10 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,7 +15,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.AlienBlocks;
 import org.avp.common.AVPSettings;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 @SideOnly(Side.CLIENT)

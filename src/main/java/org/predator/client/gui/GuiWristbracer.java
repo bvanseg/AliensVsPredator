@@ -3,8 +3,6 @@ package org.predator.client.gui;
 import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.gui.GuiCustomButton;
-import com.asx.mdx.client.render.gui.IAction;
-import com.asx.mdx.client.render.gui.IGuiElement;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;

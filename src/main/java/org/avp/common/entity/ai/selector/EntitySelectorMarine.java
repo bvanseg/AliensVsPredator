@@ -4,11 +4,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.monster.EntityGolem;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.player.EntityPlayer;
-import org.lib.predicate.EntitySelectorBase;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
+import org.lib.predicate.EntitySelectorBase;
 import org.predator.common.entity.living.SpeciesYautja;
 
 public class EntitySelectorMarine extends EntitySelectorBase

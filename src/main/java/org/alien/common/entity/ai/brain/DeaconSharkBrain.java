@@ -1,17 +1,17 @@
 package org.alien.common.entity.ai.brain;
 
-import java.util.function.Predicate;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.player.EntityPlayer;
-import org.lib.predicate.EntitySelectorBase;
 import org.alien.common.entity.living.vardic.EntityDeaconShark;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
+import org.lib.predicate.EntitySelectorBase;
+
+import java.util.function.Predicate;
 
 /**
  * 
