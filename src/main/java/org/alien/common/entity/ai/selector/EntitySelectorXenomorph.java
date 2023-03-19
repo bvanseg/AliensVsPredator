@@ -1,6 +1,6 @@
 package org.alien.common.entity.ai.selector;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityWaterMob;
@@ -14,7 +14,7 @@ public class EntitySelectorXenomorph implements Predicate<EntityLivingBase>
     public static final EntitySelectorXenomorph instance = new EntitySelectorXenomorph();
 
     @Override
-    public boolean apply(EntityLivingBase target)
+    public boolean test(EntityLivingBase target)
     {
         if (target instanceof SpeciesAlien)
             return false;

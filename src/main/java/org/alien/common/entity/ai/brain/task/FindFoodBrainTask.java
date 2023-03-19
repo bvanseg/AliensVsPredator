@@ -1,6 +1,6 @@
 package org.alien.common.entity.ai.brain.task;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
@@ -71,7 +71,7 @@ public class FindFoodBrainTask extends AbstractEntityBrainTask {
 		if (itemEntities.isPresent()) {
 			EntityLiving entity = ctx.getEntity();
 			
-			List<EntityItem> entityItemList = itemEntities.get().stream().filter(foodPredicate::apply).collect(Collectors.toList());
+			List<EntityItem> entityItemList = itemEntities.get().stream().filter(foodPredicate).collect(Collectors.toList());
 			
 			if (!entityItemList.isEmpty()) {
 	            this.closestFood = entityItemList.get(0);

@@ -189,7 +189,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
         {
             if (this.world.getTotalWorldTime() % 5 == 0)
             {
-                if (!EntitySelectorTrilobite.instance.apply(this.getAttackTarget()))
+                if (!EntitySelectorTrilobite.instance.test(this.getAttackTarget()))
                 {
                     this.setAttackTarget(null);
                 }
@@ -583,7 +583,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
     @Override
     public boolean canAttach(Entity entity)
     {
-        return (entity instanceof EntityLivingBase) && EntitySelectorTrilobite.instance.apply((EntityLivingBase) entity);
+        return (entity instanceof EntityLivingBase) && EntitySelectorTrilobite.instance.test((EntityLivingBase) entity);
     }
 
     @Override

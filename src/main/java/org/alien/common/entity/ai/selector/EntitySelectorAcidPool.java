@@ -1,6 +1,6 @@
 package org.alien.common.entity.ai.selector;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.living.SpeciesAlien;
@@ -12,7 +12,7 @@ public class EntitySelectorAcidPool implements Predicate<EntityLivingBase>
     public static final EntitySelectorAcidPool instance = new EntitySelectorAcidPool();
 
     @Override
-    public boolean apply(@Nullable EntityLivingBase living)
+    public boolean test(@Nullable EntityLivingBase living)
     {
         if (living instanceof EntityPlayer && ((EntityPlayer)living).capabilities.isCreativeMode)
         {

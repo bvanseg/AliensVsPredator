@@ -1,6 +1,6 @@
 package org.alien.common.entity;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -146,7 +146,7 @@ public class EntityAcidPool extends EntityLiquidPool
         ArrayList<EntityLivingBase> entityItemList = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - 1, this.posY, this.posZ - 1, this.posX + 1, this.posY + 1, this.posZ + 1));
 
         entityItemList.forEach(livingEntity -> {
-            if (SELECTOR.apply(livingEntity) && !livingEntity.isDead) {
+            if (SELECTOR.test(livingEntity) && !livingEntity.isDead) {
                 livingEntity.addPotionEffect(new PotionEffect(MobEffects.POISON, (14 * 20), 0));
                 livingEntity.attackEntityFrom(AVPDamageSources.ACID, 4f);
             }

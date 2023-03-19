@@ -83,7 +83,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
             this.brain.update(new EntityBrainContext(this.getBrain(), this));
         }
         
-        if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.apply(this.getAttackTarget()))
+        if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.test(this.getAttackTarget()))
             this.setAttackTarget(null);
     }
 

@@ -1,6 +1,6 @@
 package org.predator.common.entity.ai.selector;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -21,7 +21,7 @@ public class EntitySelectorYautja implements Predicate<EntityLivingBase>
     public static final EntitySelectorYautja instance = new EntitySelectorYautja();
 
     @Override
-    public boolean apply(EntityLivingBase entity)
+    public boolean test(EntityLivingBase entity)
     {
         if (entity instanceof EntityPlayer)
         {
