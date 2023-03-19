@@ -134,7 +134,7 @@ public class AlienHive {
 		// Sanity check.
 		UUID matriarchId = nbt.getUniqueId(MATRIARCH_ID_NBT_KEY);
 		
-		if (matriarchId == null || matriarchId != this.matriarch.getHiveMemberID()) {
+		if (matriarchId == null || !matriarchId.equals(this.matriarch.getHiveMemberID())) {
 			AVP.log().warn("Loaded an invalid matriarch id '{}', expected '{}'!", matriarchId, this.matriarch.getHiveMemberID());
 		}
 		
