@@ -165,4 +165,9 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     {
         return new ItemStack(AVPItems.SUMMONER_COMBAT_SYNTHETIC);
     }
+
+    @Override
+    protected float getSoundPitch() {
+        return super.getSoundPitch() * 0.75F;
+    }
 }
