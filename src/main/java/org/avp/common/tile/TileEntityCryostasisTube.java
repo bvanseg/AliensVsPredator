@@ -5,11 +5,13 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.SoundCategory;
 import org.avp.common.AVPNetworking;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.item.ItemEntitySummoner;
@@ -79,9 +81,11 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements Vo
                         if (this.isCracked())
                         {
                             this.setShattered(true);
+                            this.world.playSound(null, this.pos, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 2.0F, 1.0F);
                         }
 
                         this.setCracked(true);
+                        this.world.playSound(null, this.pos, SoundEvents.BLOCK_GLASS_BREAK, SoundCategory.BLOCKS, 0.5F, 0.5F);
                     }
                 }
             }
