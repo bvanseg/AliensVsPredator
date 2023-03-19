@@ -26,7 +26,7 @@ public class EntityDrone extends SpeciesXenomorph implements Maturable, HiveMemb
 
     @Override
     public XenomorphBrain getBrain() {
-        if (this.brain == null) {
+        if (!this.world.isRemote && this.brain == null) {
             this.brain = new DroneBrain(this);
         }
         return this.brain;
