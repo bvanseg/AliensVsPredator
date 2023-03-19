@@ -2,8 +2,10 @@ package org.alien.common.entity.ai.brain;
 
 import org.alien.common.entity.ai.brain.task.xenomorph.BuildHiveBrainTask;
 import org.alien.common.entity.ai.brain.task.xenomorph.MoveToHiveCoreBrainTask;
-import org.alien.common.entity.ai.brain.task.xenomorph.RecycleSpentOvamorphBrainTask;
+import org.alien.common.entity.ai.brain.task.xenomorph.RecycleAlienBrainTask;
 import org.alien.common.entity.living.SpeciesXenomorph;
+import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 
 /**
  * 
@@ -21,7 +23,8 @@ public class DroneBrain extends XenomorphBrain {
 
 		// Drone-specific tasks.
 		this.addTask(new BuildHiveBrainTask());
-		this.addTask(new RecycleSpentOvamorphBrainTask());
+		this.addTask(new RecycleAlienBrainTask<>(EntityOvamorph.class, ovamorph -> !ovamorph.containsFacehugger()));
+		this.addTask(new RecycleAlienBrainTask<>(EntityFacehugger.class, facehugger -> !facehugger.isFertile() && !facehugger.isAttachedToHost()));
 		this.addTask(new MoveToHiveCoreBrainTask());
 	}
 }
