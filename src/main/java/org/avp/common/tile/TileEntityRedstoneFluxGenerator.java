@@ -1,6 +1,6 @@
 package org.avp.common.tile;
 
-import cofh.redstoneflux.api.EnergyReceiver;
+import cofh.redstoneflux.api.IEnergyReceiver;
 import com.asx.mdx.common.minecraft.tile.IRotatableYAxis;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -10,7 +10,7 @@ import org.avp.common.AVPNetworking;
 import org.avp.common.api.power.VoltageProvider;
 import org.avp.common.network.packet.client.PacketSyncRF;
 
-public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implements VoltageProvider, IRotatableYAxis, EnergyReceiver
+public class TileEntityRedstoneFluxGenerator extends TileEntityElectrical implements VoltageProvider, IRotatableYAxis, IEnergyReceiver
 {
     private EnumFacing direction;
     protected int rfEnergy;

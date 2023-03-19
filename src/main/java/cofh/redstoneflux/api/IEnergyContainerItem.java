@@ -14,7 +14,7 @@ import net.minecraft.item.ItemStack;
  *
  * @author King Lemming
  */
-public interface EnergyContainerItem {
+public interface IEnergyContainerItem {
 
 	/**
 	 * Adds energy to a container item. Returns the quantity of energy that was accepted. This should always return 0 if the item cannot be externally charged.
