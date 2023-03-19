@@ -35,13 +35,14 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAvoidTargetBrainSensor(1, EntitySelectorChestbursterAvoid.instance));
 		this.addSense(new NearestBlockPositionsOfInterestSensor(1, 6, BLOCKS_OF_INTEREST::contains));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		EntityChestburster entity = this.getEntity();
 		this.addTask(new SwimBrainTask(entity));
 		this.addTask(new AvoidNearestAvoidTargetBrainTask(8.0F, 0.4F, 0.7F));

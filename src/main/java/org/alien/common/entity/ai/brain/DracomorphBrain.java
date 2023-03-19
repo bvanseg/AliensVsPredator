@@ -22,12 +22,13 @@ public class DracomorphBrain extends AbstractEntityBrain<EntityDracomorph> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorDracomorph.instance));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		EntityDracomorph entity = this.getEntity();
 
 		this.addTask(new SwimBrainTask(entity));

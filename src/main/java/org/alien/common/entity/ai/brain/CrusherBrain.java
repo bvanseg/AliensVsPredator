@@ -14,10 +14,8 @@ public class CrusherBrain extends XenomorphBrain {
 	}
 
 	@Override
-	public void init() {
-		super.init();
-
-		// Brain Tasks
+	public void initTasks() {
+		super.initTasks();
 		this.addTask(new RamTowardsTargetBrainTask());
 	}
 }

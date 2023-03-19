@@ -53,11 +53,14 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
-		this.initSenses();
+	public void initSenses() {
+		this.addSense(new EntityBrainSensor(1));
+		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorXenomorph.instance));
+		this.addSense(new NearestBlockPositionsOfInterestSensor(1, 8, BLOCKS_OF_INTEREST::contains));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		SpeciesXenomorph entity = this.getEntity();
 		this.addTask(new SwimBrainTask(this.getEntity()));
 		this.addTask(new LeapAtTargetBrainTask(0.6F));
@@ -71,11 +74,5 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 		this.addTask(new NearestAttackableTargetBrainTask());
 		this.addTask(new AvoidBlockBrainTask(3F, 1.0F, 1.0F, AVOID_BLOCKS::contains));
 		this.addTask(new DestroyBlockBrainTask(1.0D, DESTROY_BLOCKS::contains));
-	}
-
-	public void initSenses() {
-		this.addSense(new EntityBrainSensor(1));
-		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorXenomorph.instance));
-		this.addSense(new NearestBlockPositionsOfInterestSensor(1, 8, BLOCKS_OF_INTEREST::contains));
 	}
 }

@@ -22,13 +22,14 @@ public class HoundBrain extends AbstractEntityBrain<EntityPredatorHound> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		// TODO: Use correct selector here.
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorYautja.instance));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		EntityPredatorHound entity = this.getEntity();
 		this.addTask(new SwimBrainTask(entity));
 		// TODO:

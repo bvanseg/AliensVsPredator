@@ -24,12 +24,13 @@ public class DeaconSharkBrain extends AbstractEntityBrain<EntityDeaconShark> {
 	private final Predicate<EntityLivingBase> entitySelector = target -> !(target instanceof EntityDeaconShark) && DeaconSharkBrain.this.getEntity().canEntityBeSeen(target);
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, entitySelector));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		EntityDeaconShark entity = this.getEntity();
 		this.addTask(new AttackOnCollideBrainTask(0.8D));
 		// TODO:

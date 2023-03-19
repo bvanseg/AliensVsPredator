@@ -19,12 +19,13 @@ public class DeaconBrain extends AbstractEntityBrain<EntityDeacon> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorXenomorph.instance));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		EntityDeacon entity = this.getEntity();
 		this.addTask(new SwimBrainTask(entity));
 		this.addTask(new WanderBrainTask(0.8D));

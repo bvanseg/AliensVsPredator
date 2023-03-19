@@ -18,10 +18,8 @@ public class DroneBrain extends XenomorphBrain {
 	}
 
 	@Override
-	public void init() {
-		super.init();
-
-		// Drone-specific tasks.
+	public void initTasks() {
+		super.initTasks();
 		this.addTask(new BuildHiveBrainTask());
 		this.addTask(new RecycleAlienBrainTask<>(EntityOvamorph.class, ovamorph -> !ovamorph.containsFacehugger()));
 		this.addTask(new RecycleAlienBrainTask<>(EntityFacehugger.class, facehugger -> !facehugger.isFertile() && !facehugger.isAttachedToHost()));

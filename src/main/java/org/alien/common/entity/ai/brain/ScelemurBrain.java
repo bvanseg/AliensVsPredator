@@ -21,13 +21,14 @@ public class ScelemurBrain extends AbstractEntityBrain<EntityScelemur> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		// TODO: Fix this predicate!
 		this.addSense(new NearestAttackableTargetBrainSensor(1, e -> true));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		EntityScelemur entity = this.getEntity();
 		this.addTask(new SwimBrainTask(entity));
 		// TODO:

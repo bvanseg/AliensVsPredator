@@ -21,13 +21,14 @@ public class OvamorphBrain extends AbstractEntityBrain<EntityOvamorph> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorParasitoid.instance));
+	}
 
-		// Brain Tasks
-
+	@Override
+	public void initTasks() {
+		super.initTasks();
 		// Egg pipeline: Find Target -> wait a bit until open -> open -> hatch
 		this.addTask(new NearestAttackableTargetBrainTask());
 		this.addTask(new UpdateTimeUntilOpenBrainTask());
