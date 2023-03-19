@@ -110,6 +110,7 @@ public class Resources
         public final MapModelTexture<ModelFacehugger>             FACEHUGGER                     = new MapModelTexture(new ModelFacehugger(), new Texture(AVP.Properties.ID, "textures/mob/facehugger.png"));
         public final MapModelTexture<ModelRoyalFacehugger>        ROYALFACEHUGGER                = new MapModelTexture(new ModelRoyalFacehugger(), new Texture(AVP.Properties.ID, "textures/mob/royalfacehugger.png"));
         public final MapModelTexture<ModelMarine>                 MARINE                         = new MapModelTexture(new ModelMarine(), new Texture(AVP.Properties.ID, "textures/mob/marine.png"));
+        public final MapModelTexture<ModelMarine>                 MARINE_SKIN                    = new MapModelTexture(new ModelMarine(), new Texture(AVP.Properties.ID, "textures/mob/marine_skin.png"));
         public final MapModelTexture<ModelOvamorph>               OVAMORPH                       = new MapModelTexture(new ModelOvamorph(), new Texture(AVP.Properties.ID, "textures/mob/alienegg.png"));
         public final MapModelTexture<ModelOvamorph>               OVAMORPH_JACKO                 = new MapModelTexture(new ModelOvamorph(), new Texture(AVP.Properties.ID, "textures/mob/alienegg_jack.png"));
         public final MapModelTexture<ModelOvamorphGiger>          OVAMORPH_GIGER                 = new MapModelTexture(new ModelOvamorphGiger(), new Texture(AVP.Properties.ID, "textures/mob/gigeregg.png"));
