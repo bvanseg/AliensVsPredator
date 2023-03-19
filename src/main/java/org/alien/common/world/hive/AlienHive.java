@@ -29,7 +29,7 @@ public class AlienHive {
 	private BlockPos coreBlockPos;
 
 	// TODO: Store hive member UUIDs by their role (class).
-	
+
 	public AlienHive(Entity ownerEntity) {
 		if (!(ownerEntity instanceof HiveOwner)) {
 			throw new IllegalStateException("Non-HiveOwner passed as owner of AlienHive!");
@@ -143,8 +143,8 @@ public class AlienHive {
 		// Sanity check.
 		UUID matriarchId = nbt.getUniqueId(MATRIARCH_ID_NBT_KEY);
 		
-		if (matriarchId == null || matriarchId != this.getHiveOwner().getHiveMemberID()) {
-			AVP.log().warn("Loaded an invalid matriarch id '{}', expected '{}'!", matriarchId, this.getHiveOwner().getHiveMemberID());
+		if (matriarchId == null || !matriarchId.equals(this.getHiveOwner().getHiveMemberID())) {
+			AVP.log().warn("Loaded an invalid matriarch id '{}', expected '{}'!", matriarchId, this.matriarch.getHiveMemberID());
 		}
 		
 		// Read core block position.

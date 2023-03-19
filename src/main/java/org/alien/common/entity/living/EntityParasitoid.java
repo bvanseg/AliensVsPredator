@@ -161,7 +161,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
     @Override
     public boolean canAttach(Entity entity)
     {
-        return (entity instanceof EntityLivingBase) && EntitySelectorParasitoid.instance.apply((EntityLivingBase) entity);
+        return (entity instanceof EntityLivingBase) && EntitySelectorParasitoid.instance.test((EntityLivingBase) entity);
     }
 
     @Override

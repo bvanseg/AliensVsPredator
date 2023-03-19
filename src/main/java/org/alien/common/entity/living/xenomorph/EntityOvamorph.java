@@ -136,7 +136,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     protected void collideWithEntity(Entity entity)
     {
         super.collideWithEntity(entity);
-        if (entity instanceof EntityLivingBase && EntitySelectorParasitoid.instance.apply((EntityLivingBase) entity))
+        if (entity instanceof EntityLivingBase && EntitySelectorParasitoid.instance.test((EntityLivingBase) entity))
             this.setTimeLeftUntilOpen(0);
     }
 

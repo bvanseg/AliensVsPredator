@@ -1,6 +1,6 @@
 package org.lib.brain.impl.task;
 
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -70,7 +70,7 @@ public class AvoidBlockBrainTask extends AbstractEntityBrainTask {
 
 		BlockPos blockPos = blockPositions.get(0);
 
-		if (!avoidPredicate.apply(entity.world.getBlockState(blockPos).getBlock()))
+		if (!avoidPredicate.test(entity.world.getBlockState(blockPos).getBlock()))
 			return false;
 
 		// Find random position away from avoid target block pos.

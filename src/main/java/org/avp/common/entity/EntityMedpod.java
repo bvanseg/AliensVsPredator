@@ -5,7 +5,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.SpeciesAlien;
@@ -36,23 +35,18 @@ public class EntityMedpod extends Entity
         super.onUpdate();
 
         BlockPos pos = new BlockPos((int) Math.floor(this.posX), ((int) this.posY), ((int) Math.floor(this.posZ)));
-
-        if (this.tile == null && this.world.isRemote)
-        {
-            TileEntity tile = this.world.getTileEntity(pos);
-
-            if (tile != null)
-            {
-                this.setTile((TileEntityMedpod) tile);
-            }
-        }
+        TileEntity localTileEntity = this.world.getTileEntity(pos);
+        this.setTile((TileEntityMedpod) localTileEntity);
 
         if (this.tile != null && this.tile.getEntity() == null)
         {
             this.tile.setEntity(this);
         }
 
-        if (this.getTileEntity() == null || this.getTileEntity() != null && this.getTileEntity().getEntity() != this)
+        if (this.getTileEntity() == null ||
+                localTileEntity == null ||
+                (this.getTileEntity() != null && this.getTileEntity().getEntity() != this)
+        )
         {
             this.setDead();
         }
@@ -102,12 +96,6 @@ public class EntityMedpod extends Entity
         }
     }
 
-    @Override
-    public AxisAlignedBB getCollisionBox(Entity entity)
-    {
-        return super.getCollisionBox(entity);
-    }
-
     public EntityMedpod setTile(TileEntityMedpod tile)
     {
         this.tile = tile;
@@ -116,7 +104,7 @@ public class EntityMedpod extends Entity
 
     public TileEntityMedpod getTileEntity()
     {
-        return tile;
+        return this.tile;
     }
 
     @Override
@@ -140,20 +128,7 @@ public class EntityMedpod extends Entity
     }
 
     @Override
-    protected void entityInit()
-    {
-        ;
-    }
-
-    public Entity getLastRiddenEntity()
-    {
-        return lastRiddenEntity;
-    }
-
-    public UUID getLastRiddenEntityUUID()
-    {
-        return lastRiddenEntityUUID;
-    }
+    protected void entityInit() { /* Do Nothing */ }
 
     public void clearLastRidden()
     {

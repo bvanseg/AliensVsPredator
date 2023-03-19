@@ -1,7 +1,7 @@
 package org.alien.common.entity.ai.selector;
 
 import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
@@ -29,7 +29,7 @@ public class EntitySelectorParasitoid implements Predicate<EntityLivingBase>
     }
 
     @Override
-    public boolean apply(EntityLivingBase potentialTarget)
+    public boolean test(EntityLivingBase potentialTarget)
     {
         if (isTargetBlacklistedType(potentialTarget)) return false;
         if (isNonHostOrCarryingEmbryo(potentialTarget)) return false;

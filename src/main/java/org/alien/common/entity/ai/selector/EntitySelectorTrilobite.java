@@ -1,7 +1,7 @@
 package org.alien.common.entity.ai.selector;
 
 import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
-import com.google.common.base.Predicate;
+import java.util.function.Predicate;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +19,7 @@ public class EntitySelectorTrilobite implements Predicate<EntityLivingBase>
     public static final EntitySelectorTrilobite instance = new EntitySelectorTrilobite();
 
     @Override
-    public boolean apply(EntityLivingBase target)
+    public boolean test(EntityLivingBase target)
     {
         ArrayList<Class<?>> blacklist = Parasitoid.getDefaultEntityBlacklist();
 

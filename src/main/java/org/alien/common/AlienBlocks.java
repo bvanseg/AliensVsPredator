@@ -62,7 +62,7 @@ public class AlienBlocks implements IPreInitEvent {
     public static final Block WHEAT_GRASS = new BlockWheatGrass().setHardness(5.0F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("paradisian_wheat_grass");
 
     /* Varda */
-    public static final Block GIGER_LOG = new BlockUnidentifiedLog().setHardness(5F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("unitree.wood");
+    public static final Block GIGER_LOG = new BlockUnidentifiedLog().setHardness(5F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("unitree.log");
     public static final Block GIGER_TENDONS = new BlockUnidentifiedTreeTendon().setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("unitree.tendons");
     public static final Block GIGER_LEAVES = new BlockUnidentifiedTreeLeaves(BlockUnidentifiedTreeLeaves.Type.TOP).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("unitree.leaves");
     public static final Block GIGER_LEAVES_M = new BlockUnidentifiedTreeLeaves(BlockUnidentifiedTreeLeaves.Type.MIDDLE).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("unitree.leaves.m");

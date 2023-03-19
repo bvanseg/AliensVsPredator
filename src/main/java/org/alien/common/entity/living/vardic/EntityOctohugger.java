@@ -150,7 +150,7 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, Parasito
         {
             ArrayList<EntityLivingBase> entities = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, this.getEntityBoundingBox().expand(1, -8, 1));
 
-            entities.removeIf(entity -> !EntitySelectorParasitoid.instance.apply(entity) || entity instanceof EntityParasitoid);
+            entities.removeIf(entity -> !EntitySelectorParasitoid.instance.test(entity) || entity instanceof EntityParasitoid);
 
             Entity target = !entities.isEmpty() ? entities.get(world.rand.nextInt(entities.size())) : null;
 
