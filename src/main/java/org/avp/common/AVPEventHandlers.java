@@ -11,6 +11,7 @@ import org.alien.common.AlienDimensions;
 import org.alien.common.world.EntityImpregnationHandler;
 import org.alien.common.world.TrilobiteImpregnationHandler;
 import org.alien.common.world.dimension.acheron.SkyProviderAcheron;
+import org.avp.EntityAccessor;
 import org.avp.client.input.InputHandler;
 import org.avp.client.render.*;
 import org.avp.client.render.item.RenderMotionTrackerScreen;
@@ -58,6 +59,7 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(AlienDimensions.instance);
         }
 
+        this.registerEvent(EntityAccessor.instance);
         this.registerEvent(EntityImpregnationHandler.instance);
         this.registerEvent(TrilobiteImpregnationHandler.instance);
         this.registerEvent(CapabilityHandler.instance);

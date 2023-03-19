@@ -5,7 +5,7 @@ import net.minecraft.world.World;
 import org.avp.common.tile.TileEntityHiveResin;
 
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -32,7 +32,11 @@ public class AlienHiveHandler {
 		return entityUUIDsToHive.get(hiveMemberID);
 	}
 
-	public void removeHiveMembers(HashSet<UUID> hiveMemberUUIDs) {
+	public void removeHiveMember(UUID hiveMemberUUID) {
+		this.entityUUIDsToHive.remove(hiveMemberUUID);
+	}
+
+	public void removeHiveMembers(Set<UUID> hiveMemberUUIDs) {
 		this.entityUUIDsToHive.keySet().removeAll(hiveMemberUUIDs);
 	}
 
@@ -48,7 +52,7 @@ public class AlienHiveHandler {
 		}
 	}
 
-	public void removeResinPositions(HashSet<BlockPos> resinPositions) {
+	public void removeResinPositions(Set<BlockPos> resinPositions) {
 		this.resinPositionsToHive.keySet().removeAll(resinPositions);
 	}
 }

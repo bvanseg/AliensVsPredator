@@ -1,6 +1,5 @@
 package org.avp.common.entity;
 
-import com.asx.mdx.common.minecraft.Worlds;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -11,6 +10,7 @@ import net.minecraft.world.World;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
+import org.avp.EntityAccessor;
 import org.avp.common.tile.TileEntityMedpod;
 
 import java.util.List;
@@ -80,7 +80,7 @@ public class EntityMedpod extends Entity
         {
             if (this.lastRiddenEntityUUID != null)
             {
-                this.lastRiddenEntity = Worlds.getEntityByUUID(this.world, this.lastRiddenEntityUUID);
+                this.lastRiddenEntity = EntityAccessor.instance.getEntityByUUID(this.lastRiddenEntityUUID).orElse(null);
             }
         }
 
