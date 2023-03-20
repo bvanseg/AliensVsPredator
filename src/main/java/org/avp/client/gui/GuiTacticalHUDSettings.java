@@ -9,7 +9,7 @@ import com.asx.mdx.client.render.gui.GuiCustomScreen;
 import com.asx.mdx.client.render.gui.GuiCustomSlider;
 import com.asx.mdx.client.render.gui.GuiCustomTextbox;
 import net.minecraft.client.gui.GuiScreen;
-import org.avp.client.render.TacticalHUDRenderEvent;
+import org.avp.client.render.tactical.TacticalHelmetHUDRenderEvent;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
         this.txPower.sliderValue = player.getBroadcastRadius() / txPower.sliderMaxValue;
         this.txPower.displayString = "Transmit Power: " + (int) (txPower.sliderValue * txPower.sliderMaxValue);
 
-        this.viewportThreshold.sliderValue = TacticalHUDRenderEvent.instance.getViewportThreshold() / viewportThreshold.sliderMaxValue;
+        this.viewportThreshold.sliderValue = TacticalHelmetHUDRenderEvent.instance.getViewportThreshold() / viewportThreshold.sliderMaxValue;
         this.viewportThreshold.displayString = "Threshold: " + (int) (viewportThreshold.sliderValue * viewportThreshold.sliderMaxValue);
 
         this.nightvision.setAction(element -> {
@@ -63,11 +63,11 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
             int newRadius = (int) (txPower.sliderValue * txPower.sliderMaxValue);
             int newThreshold = (int) (viewportThreshold.sliderValue * viewportThreshold.sliderMaxValue);
 
-            if (player.getBroadcastChannel() != newChannel || player.getBroadcastRadius() != newRadius || TacticalHUDRenderEvent.instance.getViewportThreshold() != newThreshold)
+            if (player.getBroadcastChannel() != newChannel || player.getBroadcastRadius() != newRadius || TacticalHelmetHUDRenderEvent.instance.getViewportThreshold() != newThreshold)
             {
                 player.setBroadcastRadius(newRadius);
                 player.setBroadcastChannel(newChannel);
-                TacticalHUDRenderEvent.instance.setViewportThreshold(newThreshold);
+                TacticalHelmetHUDRenderEvent.instance.setViewportThreshold(newThreshold);
                 player.syncWithServer(ClientGame.instance.minecraft().player);
                 channel.setText(newChannel);
             }

@@ -15,6 +15,10 @@ import org.avp.EntityAccessor;
 import org.avp.client.input.InputHandler;
 import org.avp.client.render.*;
 import org.avp.client.render.item.RenderMotionTrackerScreen;
+import org.avp.client.render.tactical.TacticalHelmetAPCGearRenderEvent;
+import org.avp.client.render.tactical.TacticalHelmetHUDRenderEvent;
+import org.avp.client.render.tactical.TacticalHelmetSettingsRenderEvent;
+import org.avp.client.render.tactical.TacticalHelmetTrackedEntityRenderEvent;
 import org.avp.common.world.CapabilityHandler;
 import org.avp.common.world.fluids.BucketHandlingEvent;
 import org.avp.common.world.hook.FarmlandRegistry;
@@ -41,7 +45,12 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(ChestbursterOverlayEvent.instance);
             this.registerEvent(PlayerModeRenderEvent.instance);
             this.registerEvent(AmmoIndicatorRenderEvent.instance);
-            this.registerEvent(TacticalHUDRenderEvent.instance);
+
+            this.registerEvent(TacticalHelmetHUDRenderEvent.instance);
+            this.registerEvent(TacticalHelmetTrackedEntityRenderEvent.instance);
+            this.registerEvent(TacticalHelmetAPCGearRenderEvent.instance);
+            this.registerEvent(TacticalHelmetSettingsRenderEvent.instance);
+
             this.registerEvent(PressureHUDRenderEvent.instance);
             this.registerEvent(FacehuggerRenderEvent.instance);
             this.registerEvent(VisionModeRenderEvent.instance);
