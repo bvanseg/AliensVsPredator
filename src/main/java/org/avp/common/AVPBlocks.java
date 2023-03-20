@@ -116,9 +116,9 @@ public class AVPBlocks implements IPreInitEvent
     public static final BlockCustomSlab INDUSTRIAL_SLAB_HALF = new BlockCustomSlab.Half("industrial_slab", WALL_PROPS);
     public static final BlockCustomSlab INDUSTRIAL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_industrial_slab", WALL_PROPS);
 
+    public static final BlockCustomSlab INDUSTRIAL_BRICK_SLAB_HALF = new BlockCustomSlab.Half("industrial_brick_slab", WALL_PROPS);
+    public static final BlockCustomSlab INDUSTRIAL_BRICK_SLAB_DOUBLE = new BlockCustomSlab.Double("double_industrial_brick_slab", WALL_PROPS);
 
-//    public static final BlockSlab WALL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialslab");
-//    public static final BlockSlab IRON_BRICKS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickslab");
 //    public static final BlockSlab INDUSTRIAL_GLASS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassslab");
 
     // Tile entities
@@ -237,6 +237,9 @@ public class AVPBlocks implements IPreInitEvent
 
         BlockRegistryUtil.registerBlock(INDUSTRIAL_SLAB_HALF);
         BlockRegistryUtil.registerBlock(INDUSTRIAL_SLAB_DOUBLE);
+
+        BlockRegistryUtil.registerBlock(INDUSTRIAL_BRICK_SLAB_HALF);
+        BlockRegistryUtil.registerBlock(INDUSTRIAL_BRICK_SLAB_DOUBLE);
 //        BlockRegistryUtil.registerBlock(CEILING_GRILL_SLAB);
 //        BlockRegistryUtil.registerBlock(WALL_SLAB);
 //        BlockRegistryUtil.registerBlock(IRON_BRICKS_SLAB);
@@ -345,6 +348,7 @@ public class AVPBlocks implements IPreInitEvent
         BlockRegistryUtil.registerItemBlock(FLOOR_GRILL_SLAB_HALF, new ItemSlab(FLOOR_GRILL_SLAB_HALF, FLOOR_GRILL_SLAB_HALF, FLOOR_GRILL_SLAB_DOUBLE));
         BlockRegistryUtil.registerItemBlock(CEILING_GRILL_SLAB_HALF, new ItemSlab(CEILING_GRILL_SLAB_HALF, CEILING_GRILL_SLAB_HALF, CEILING_GRILL_SLAB_DOUBLE));
         BlockRegistryUtil.registerItemBlock(INDUSTRIAL_SLAB_HALF, new ItemSlab(INDUSTRIAL_SLAB_HALF, INDUSTRIAL_SLAB_HALF, INDUSTRIAL_SLAB_DOUBLE));
+        BlockRegistryUtil.registerItemBlock(INDUSTRIAL_BRICK_SLAB_HALF, new ItemSlab(INDUSTRIAL_BRICK_SLAB_HALF, INDUSTRIAL_BRICK_SLAB_HALF, INDUSTRIAL_BRICK_SLAB_DOUBLE));
 //        BlockRegistryUtil.registerItemBlock(IRON_BRICKS_SLAB);
 //        BlockRegistryUtil.registerItemBlock(INDUSTRIAL_GLASS_SLAB);
 
