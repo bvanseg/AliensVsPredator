@@ -64,5 +64,9 @@ public class BlockProperties {
         block.setHardness(this.getHardness());
         block.setResistance(this.getResistance());
         block.setLightOpacity(this.getLightOpacity());
+
+        if (this.getCreativeTab() != null) {
+            block.setCreativeTab(this.getCreativeTab());
+        }
     }
 }
