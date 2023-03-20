@@ -14,10 +14,10 @@ import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.alien.common.world.capability.Organism;
 import org.avp.client.Resources;
 import org.avp.client.render.LightmapUpdateEvent;
-import org.lib.client.render.wavegraph.Wavegraph;
-import org.lib.client.render.wavegraph.ekg.Electrocardiogram;
 import org.avp.common.AVPItems;
 import org.avp.common.world.capability.SpecialPlayer;
+import org.lib.client.render.wavegraph.Wavegraph;
+import org.lib.client.render.wavegraph.ekg.Electrocardiogram;
 
 import java.util.ArrayList;
 

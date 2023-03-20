@@ -11,7 +11,6 @@ import org.alien.common.AlienDimensions;
 import org.alien.common.world.EntityImpregnationHandler;
 import org.alien.common.world.TrilobiteImpregnationHandler;
 import org.alien.common.world.dimension.acheron.SkyProviderAcheron;
-import org.lib.common.EntityAccessor;
 import org.avp.client.input.AVPInputEventHandler;
 import org.avp.client.render.*;
 import org.avp.client.render.item.RenderMotionTrackerScreen;
@@ -23,6 +22,7 @@ import org.avp.common.world.CapabilityHandler;
 import org.avp.common.world.fluids.BucketHandlingEvent;
 import org.avp.common.world.hook.FarmlandRegistry;
 import org.avp.common.world.hook.MaterialHandler;
+import org.lib.common.EntityAccessor;
 import org.predator.client.render.VisionModeRenderEvent;
 
 import java.util.ArrayList;
@@ -43,7 +43,6 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(AVPInputEventHandler.instance);
             this.registerEvent(RenderPlayerHotbarAPCEvent.instance);
             this.registerEvent(ChestbursterOverlayEvent.instance);
-            this.registerEvent(PlayerModeRenderEvent.instance);
             this.registerEvent(AmmoIndicatorRenderEvent.instance);
 
             this.registerEvent(TacticalHelmetHUDRenderEvent.instance);
