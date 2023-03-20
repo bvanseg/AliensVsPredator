@@ -28,8 +28,12 @@ import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Brainiac<MarineBrain>
 {
+
+    protected static final int[] SKIN_TONES = new int[] { 0xF1C381FF, 0xC58C85FF, 0xECBCB4FF, 0xD1A3A4FF, 0xA1665EFF, 0x503335FF, 0x592F2AFF };
+
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> SKIN_TONE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
 
     protected MarineBrain brain;
 
@@ -58,6 +62,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         super.entityInit();
         this.getDataManager().register(AIMING, false);
         this.getDataManager().register(TYPE, this.world.rand.nextInt(MarineTypes.values().length));
+        this.getDataManager().register(SKIN_TONE, SKIN_TONES[this.world.rand.nextInt(SKIN_TONES.length)]);
     }
 
     @Override
@@ -136,6 +141,11 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return this.getDataManager().get(AIMING);
     }
 
+    public int getSkinTone()
+    {
+        return this.dataManager.get(SKIN_TONE);
+    }
+
     @Override
     public void setSwingingArms(boolean swingingArms) { /* Do Nothing */ }
     
@@ -150,6 +160,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     {
         super.writeEntityToNBT(nbt);
         nbt.setInteger("WeaponType", this.dataManager.get(TYPE));
+        nbt.setInteger("SkinTone", this.getSkinTone());
     }
 
     @Override
@@ -157,5 +168,6 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     {
         super.readEntityFromNBT(nbt);
         this.dataManager.set(TYPE, nbt.getInteger("WeaponType"));
+        this.dataManager.set(SKIN_TONE, nbt.getInteger("SkinTone"));
     }
 }
