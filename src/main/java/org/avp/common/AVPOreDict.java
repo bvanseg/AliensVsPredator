@@ -19,8 +19,6 @@ import java.util.Arrays;
 @EventBusSubscriber
 public class AVPOreDict
 {
-    public static final AVPOreDict instance = new AVPOreDict();
-
     private AVPOreDict() {}
 
     @SubscribeEvent
