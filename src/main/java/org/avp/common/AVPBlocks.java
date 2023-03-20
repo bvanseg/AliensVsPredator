@@ -9,6 +9,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
 import org.avp.common.block.*;
 import org.avp.common.item.supply.chute.SupplyChuteType;
+import org.lib.common.block.BasicBlock;
+import org.lib.common.block.BlockProperties;
 import org.lib.common.registry.BlockRegistryUtil;
 
 /**
@@ -20,63 +22,97 @@ public class AVPBlocks implements IPreInitEvent
     public static final AVPBlocks instance = new AVPBlocks();
 
     private AVPBlocks() {}
-    public static final Block INDUSTRIAL_WALL = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("industrialwall");
-    public static final Block INDUSTRIAL_WALL_STRIPED = new BlockWall(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialwall2");
-    public static final Block CEILING = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("ceilingpanel");
-    public static final Block CEILING_FAN = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F).setRegistryName("ceilingfan");
-    public static final Block CEILING_VENT = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("ceilingvent");
-    public static final Block CEILING_GRILL = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("ceilinggrill");
-    public static final Block SKULLS = new BlockMaterial(Material.ROCK).setRegistryName("skulls");
-    public static final Block FLOOR_GRILL = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("floorgrill");
-    public static final Block INDUSTRIAL_GLASS = new BlockMaterial(Material.IRON).setLayer(BlockRenderLayer.TRANSLUCENT).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglass");
-    public static final Block INDUSTRIAL_BRICKS = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("industrialbricks");
-    public static final Block METAL_PANEL = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("metalpanel1");
-    public static final Block METAL_COLUMN_0 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("metalpanel2");
-    public static final Block METAL_COLUMN_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("metalpanel3");
-    public static final Block PLASTIC_CIRCLE = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("plastictilecircle");
-    public static final Block PLASTIC = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("plasticblock");
-    public static final Block PADDING_PANEL = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("paddingpanel");
-    public static final Block PLASTIC_TRI = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("plastictiletri");
-    public static final Block PLASTIC_TILE = new BlockMaterial(Material.CLAY).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("plastictile");
+
+    // Properties
+    public static final BlockProperties INDUSTRIAL_PROPS = new BlockProperties(Material.IRON)
+            .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(5F).setResistance(15F);
+    public static final BlockProperties PADDING_PROPS = new BlockProperties(Material.CLOTH)
+            .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+    public static final BlockProperties PLASTIC_PROPS = new BlockProperties(Material.CLAY)
+            .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+
+
+    // Ceiling
+    public static final Block CEILING = new BasicBlock("ceilingpanel", INDUSTRIAL_PROPS);
+    public static final Block CEILING_FAN = new BasicBlock("ceilingfan", INDUSTRIAL_PROPS).setLayer(BlockRenderLayer.TRANSLUCENT);
+    public static final Block CEILING_VENT = new BasicBlock("ceilingvent", INDUSTRIAL_PROPS);
+    public static final Block CEILING_GRILL = new BasicBlock("ceilinggrill", INDUSTRIAL_PROPS).setLayer(BlockRenderLayer.TRANSLUCENT).setLightOpacity(4);
+
+    // Industrial
+    public static final Block INDUSTRIAL_WALL = new BasicBlock("industrialwall", INDUSTRIAL_PROPS);
+    public static final Block INDUSTRIAL_WALL_STRIPED = new BasicBlock("industrialwall2", INDUSTRIAL_PROPS).setLightOpacity(255);
+    public static final Block INDUSTRIAL_GLASS = new BasicBlock("industrialglass", INDUSTRIAL_PROPS).setLayer(BlockRenderLayer.TRANSLUCENT);
+    public static final Block INDUSTRIAL_BRICKS = new BasicBlock("industrialbricks", INDUSTRIAL_PROPS);
+
+    // TODO: All of these ores can be combined into a single block.
+
+    // Ores
     public static final Block ORE_SILICON = new BlockOreSilicon().setHardness(2.2F).setResistance(1.4F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("oresilicon");
     public static final Block ORE_LITHIUM = new BlockMaterial(Material.IRON).setHardness(4.2F).setResistance(5.4F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("orelithium");
     public static final Block ORE_COPPER = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("orecopper");
     public static final Block ORE_BAUXITE = new BlockMaterial(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("orebauxite");
     public static final Block ORE_MONAZITE = new BlockOreMonazite().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("oremonazite");
     public static final Block ORE_COBALT = new BlockOreCobalt().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("orecobalt");
+
+    // Metal
+    public static final Block METAL_PANEL = new BasicBlock("metalpanel1", INDUSTRIAL_PROPS);
+    public static final Block METAL_COLUMN_0 = new BasicBlock("metalpanel2", INDUSTRIAL_PROPS);
+    public static final Block METAL_COLUMN_1 = new BasicBlock("metalpanel3", INDUSTRIAL_PROPS);
+
+    // Padding
+    public static final Block PADDING_PANEL = new BasicBlock("paddingpanel", PADDING_PROPS);
+    public static final Block PADDING_PANEL_ORANGE = new BasicBlock("paddingpanel_orange", PADDING_PROPS);
+    public static final Block PADDING_PIPES_ORANGE = new BasicBlock("padding_pipes_orange", PADDING_PROPS);
+    public static final Block PADDING_PIPES_WHITE = new BasicBlock("padding_pipes_white", PADDING_PROPS);
+    public static final Block PADDING_SQUARE_ORANGE = new BasicBlock("padding_square_orange", PADDING_PROPS);
+    public static final Block PADDING_SQUARE_WHITE = new BasicBlock("padding_square_white", PADDING_PROPS);
+    public static final Block PADDING_TILES_ORANGE = new BasicBlock("padding_tiles_orange", PADDING_PROPS);
+    public static final Block PADDING_TILES_WHITE = new BasicBlock("padding_tiles_white", PADDING_PROPS);
+
+    // Plastic
+    public static final Block PLASTIC_CIRCLE = new BasicBlock("plastictilecircle", PLASTIC_PROPS);
+    public static final Block PLASTIC = new BasicBlock("plasticblock", PLASTIC_PROPS);
+    public static final Block PLASTIC_TRI = new BasicBlock("plastictiletri", PLASTIC_PROPS);
+    public static final Block PLASTIC_TILE = new BasicBlock("plastictile", PLASTIC_PROPS);
+
+    // Vents
+    public static final Block VENT_0 = new BasicBlock("industrialvent", INDUSTRIAL_PROPS).setLightOpacity(0);
+    public static final Block VENT_1 = new BasicBlock("vent.wall", INDUSTRIAL_PROPS).setLightOpacity(0);
+    public static final Block VENT_2 = new BasicBlock("vent.ceiling", INDUSTRIAL_PROPS).setLightOpacity(0);
+
+    // TODO:
+    // Uncategorized
+    public static final Block SKULLS = new BlockMaterial(Material.ROCK).setRegistryName("skulls");
+    public static final Block FLOOR_GRILL = new BasicBlock("floorgrill", INDUSTRIAL_PROPS).setLayer(BlockRenderLayer.TRANSLUCENT).setLightOpacity(4);
     public static final Block MUTHUR_PANEL_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(1F).setLightLevel(0.5F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("mainframepanel.shimmer");
     public static final Block MUTHUR_PANEL_2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(10F).setLightLevel(0.5F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("mainframepanel.flicker");
-    public static final Block VENT_0 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialvent");
-    public static final Block VENT_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("vent.wall");
-    public static final Block VENT_2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("vent.ceiling");
-    public static final Block PADDING_PANEL_ORANGE = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("paddingpanel_orange");
-    public static final Block PADDING_PIPES_ORANGE = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("padding_pipes_orange");
-    public static final Block PADDING_PIPES_WHITE = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("padding_pipes_white");
-    public static final Block PADDING_SQUARE_ORANGE = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("padding_square_orange");
-    public static final Block PADDING_SQUARE_WHITE = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("padding_square_white");
-    public static final Block PADDING_TILES_ORANGE = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("padding_tiles_orange");
-    public static final Block PADDING_TILES_WHITE = new BlockMaterial(Material.CLOTH).setHardness(10F).setResistance(15.0F).setLightOpacity(0).setRegistryName("padding_tiles_white");
-    
-    /** Dimension Common **/
+
+    // Dimension-based
     public static final Block UNISTONE = new BlockMaterial(Material.ROCK).setHardness(1.3F).setResistance(2.0F).setRegistryName("unistone");
     public static final Block UNISAND = new BlockMaterial(Material.SAND).setHardness(3.5F).setResistance(2.0F).setRegistryName("unisand");
     public static final Block UNIGRAVEL = new BlockMaterial(Material.SAND).setHardness(3.0F).setLightOpacity(255).setRegistryName("unigravel");
     public static final Block UNIDIRT = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("unidirt").setCreativeTab(AVPCreativeTabs.BLOCKS);
     public static final Block STALAGMITE = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("stalagmite");
-    
-    public static final Block SATELLITE_DISH = new BlockSatelliteDish().setHardness(3.2F).setResistance(2.6F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("satellitedish");
-    public static final Block EGG_RECEPTACLE = new BlockTempleSpawner(Material.ROCK, false).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("spawner");
-    public static final Block ASSEMBLER = new BlockAssembler(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("assembler");
+
+
+    // Stairs
     public static final Block FLOOR_GRILL_STAIRS = new BlockCustomStairs(FLOOR_GRILL.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("floorgrillstairs");
     public static final Block CEILING_GRILL_STAIRS = new BlockCustomStairs(CEILING_GRILL.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("ceilinggrillstairs");
     public static final Block IRON_BRICKS_STAIRS = new BlockCustomStairs(INDUSTRIAL_BRICKS.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickstairs");
     public static final Block WALL_STAIRS = new BlockCustomStairs(INDUSTRIAL_WALL.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialwallstairs");
     public static final Block INDUSTRIAL_GLASS_STAIRS = new BlockCustomStairs(INDUSTRIAL_GLASS.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassstairs");
+
+    // Slabs
     public static final Block FLOOR_GRILL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("floorgrillslab");
     public static final Block CEILING_GRILL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("ceilinggrillslab");
     public static final Block WALL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialslab");
     public static final Block IRON_BRICKS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickslab");
     public static final Block INDUSTRIAL_GLASS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassslab");
+
+    // Tile entities
+    public static final Block SATELLITE_DISH = new BlockSatelliteDish().setHardness(3.2F).setResistance(2.6F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("satellitedish");
+    public static final Block EGG_RECEPTACLE = new BlockTempleSpawner(Material.ROCK, false).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("spawner");
+    public static final Block ASSEMBLER = new BlockAssembler(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("assembler");
     public static final Block TURRET = new BlockTurret(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("turret");
     public static final Block TERMINAL = new BlockWorkstation(Material.IRON).setHardness(3.2F).setResistance(2.6F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("terminal");
     public static final Block REPULSION_GENERATOR = new BlockGenerator(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("generator");
@@ -102,6 +138,8 @@ public class AVPBlocks implements IPreInitEvent
     public static final Block MEDPOD = new BlockMedpod(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("medpod");
     public static final Block GUN_LOCKER = new BlockGunLocker(Material.IRON).setHardness(1.5F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("gunlocker");
     public static final Block AMPULE = new BlockAmpule().setHardness(5.0F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("engineership.ampule");
+
+    // Reflective
     public static final Block SLOPE = new BlockReflective(Material.CIRCUITS).setRegistryName("slope");
     public static final Block CORNER = new BlockReflective(Material.CIRCUITS).setRegistryName("corner");
     public static final Block INVERTED_CORNER = new BlockReflective(Material.CIRCUITS).setRegistryName("invertedcorner");
