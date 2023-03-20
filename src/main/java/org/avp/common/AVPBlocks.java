@@ -4,6 +4,7 @@ import com.asx.mdx.common.minecraft.block.BlockMaterial;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.ItemSlab;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
@@ -102,12 +103,17 @@ public class AVPBlocks implements IPreInitEvent
     public static final Block WALL_STAIRS = new BlockCustomStairs(INDUSTRIAL_WALL.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialwallstairs");
     public static final Block INDUSTRIAL_GLASS_STAIRS = new BlockCustomStairs(INDUSTRIAL_GLASS.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassstairs");
 
+    public static final BlockProperties FLOOR_GRILL_PROPS = new BlockProperties(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
+
     // Slabs
-    public static final Block FLOOR_GRILL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("floorgrillslab");
-    public static final Block CEILING_GRILL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("ceilinggrillslab");
-    public static final Block WALL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialslab");
-    public static final Block IRON_BRICKS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickslab");
-    public static final Block INDUSTRIAL_GLASS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassslab");
+    public static final BlockCustomSlab FLOOR_GRILL_SLAB_HALF = new BlockCustomSlab.Half("floor_grill_slab", FLOOR_GRILL_PROPS);
+    public static final BlockCustomSlab FLOOR_GRILL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_floor_grill_slab", FLOOR_GRILL_PROPS);
+
+
+//    public static final BlockSlab CEILING_GRILL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("ceilinggrillslab");
+//    public static final BlockSlab WALL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialslab");
+//    public static final BlockSlab IRON_BRICKS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickslab");
+//    public static final BlockSlab INDUSTRIAL_GLASS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassslab");
 
     // Tile entities
     public static final Block SATELLITE_DISH = new BlockSatelliteDish().setHardness(3.2F).setResistance(2.6F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("satellitedish");
@@ -152,6 +158,11 @@ public class AVPBlocks implements IPreInitEvent
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         AVP.log().info("Registering Blocks");
 
+        this.registerBlocks();
+        this.registerItemBlocks();
+    }
+
+    private void registerBlocks() {
         BlockRegistryUtil.registerBlock(INDUSTRIAL_WALL);
         BlockRegistryUtil.registerBlock(INDUSTRIAL_WALL_STRIPED);
         BlockRegistryUtil.registerBlock(CEILING);
@@ -202,23 +213,27 @@ public class AVPBlocks implements IPreInitEvent
         BlockRegistryUtil.registerBlock(UNISAND);
         BlockRegistryUtil.registerBlock(UNIGRAVEL);
         BlockRegistryUtil.registerBlock(UNIDIRT);
-
         BlockRegistryUtil.registerBlock(STALAGMITE);
 
-        BlockRegistryUtil.registerBlock(SATELLITE_DISH);
-        BlockRegistryUtil.registerBlock(EGG_RECEPTACLE);
-
-        BlockRegistryUtil.registerBlock(ASSEMBLER);
+        // Stairs
         BlockRegistryUtil.registerBlock(FLOOR_GRILL_STAIRS);
         BlockRegistryUtil.registerBlock(CEILING_GRILL_STAIRS);
         BlockRegistryUtil.registerBlock(IRON_BRICKS_STAIRS);
         BlockRegistryUtil.registerBlock(WALL_STAIRS);
         BlockRegistryUtil.registerBlock(INDUSTRIAL_GLASS_STAIRS);
-        BlockRegistryUtil.registerBlock(FLOOR_GRILL_SLAB);
-        BlockRegistryUtil.registerBlock(CEILING_GRILL_SLAB);
-        BlockRegistryUtil.registerBlock(WALL_SLAB);
-        BlockRegistryUtil.registerBlock(IRON_BRICKS_SLAB);
-        BlockRegistryUtil.registerBlock(INDUSTRIAL_GLASS_SLAB);
+
+        // Slabs
+        BlockRegistryUtil.registerBlock(FLOOR_GRILL_SLAB_HALF);
+        BlockRegistryUtil.registerBlock(FLOOR_GRILL_SLAB_DOUBLE);
+//        BlockRegistryUtil.registerBlock(CEILING_GRILL_SLAB);
+//        BlockRegistryUtil.registerBlock(WALL_SLAB);
+//        BlockRegistryUtil.registerBlock(IRON_BRICKS_SLAB);
+//        BlockRegistryUtil.registerBlock(INDUSTRIAL_GLASS_SLAB);
+
+        // Tile entities
+        BlockRegistryUtil.registerBlock(SATELLITE_DISH);
+        BlockRegistryUtil.registerBlock(EGG_RECEPTACLE);
+        BlockRegistryUtil.registerBlock(ASSEMBLER);
         BlockRegistryUtil.registerBlock(TURRET);
         BlockRegistryUtil.registerBlock(TERMINAL);
         BlockRegistryUtil.registerBlock(REPULSION_GENERATOR);
@@ -252,5 +267,111 @@ public class AVPBlocks implements IPreInitEvent
         BlockRegistryUtil.registerBlock(PYRAMID);
         BlockRegistryUtil.registerBlock(INVERTED_RIDGE);
         BlockRegistryUtil.registerBlock(INVERTED_PYRAMID);
+    }
+
+    private void registerItemBlocks() {
+        BlockRegistryUtil.registerItemBlock(INDUSTRIAL_WALL);
+        BlockRegistryUtil.registerItemBlock(INDUSTRIAL_WALL_STRIPED);
+        BlockRegistryUtil.registerItemBlock(CEILING);
+        BlockRegistryUtil.registerItemBlock(CEILING_FAN);
+        BlockRegistryUtil.registerItemBlock(CEILING_VENT);
+        BlockRegistryUtil.registerItemBlock(CEILING_GRILL);
+
+        BlockRegistryUtil.registerItemBlock(SKULLS);
+        BlockRegistryUtil.registerItemBlock(FLOOR_GRILL);
+        BlockRegistryUtil.registerItemBlock(INDUSTRIAL_GLASS);
+        BlockRegistryUtil.registerItemBlock(INDUSTRIAL_BRICKS);
+
+        BlockRegistryUtil.registerItemBlock(METAL_PANEL);
+        BlockRegistryUtil.registerItemBlock(METAL_COLUMN_0);
+        BlockRegistryUtil.registerItemBlock(METAL_COLUMN_1);
+        BlockRegistryUtil.registerItemBlock(PLASTIC_CIRCLE);
+        BlockRegistryUtil.registerItemBlock(PLASTIC);
+
+        BlockRegistryUtil.registerItemBlock(PADDING_PANEL);
+        BlockRegistryUtil.registerItemBlock(PLASTIC_TRI);
+        BlockRegistryUtil.registerItemBlock(PLASTIC_TILE);
+
+        BlockRegistryUtil.registerItemBlock(ORE_BAUXITE);
+        BlockRegistryUtil.registerItemBlock(ORE_COBALT);
+        BlockRegistryUtil.registerItemBlock(ORE_COPPER);
+        BlockRegistryUtil.registerItemBlock(ORE_LITHIUM);
+        BlockRegistryUtil.registerItemBlock(ORE_MONAZITE);
+        BlockRegistryUtil.registerItemBlock(ORE_SILICON);
+
+        BlockRegistryUtil.registerItemBlock(MUTHUR_PANEL_1);
+        BlockRegistryUtil.registerItemBlock(MUTHUR_PANEL_2);
+
+        BlockRegistryUtil.registerItemBlock(VENT_0);
+        BlockRegistryUtil.registerItemBlock(VENT_1);
+        BlockRegistryUtil.registerItemBlock(VENT_2);
+
+        BlockRegistryUtil.registerItemBlock(PADDING_PANEL_ORANGE);
+        BlockRegistryUtil.registerItemBlock(PADDING_PIPES_ORANGE);
+
+        BlockRegistryUtil.registerItemBlock(PADDING_PIPES_WHITE);
+        BlockRegistryUtil.registerItemBlock(PADDING_SQUARE_ORANGE);
+
+        BlockRegistryUtil.registerItemBlock(PADDING_SQUARE_WHITE);
+        BlockRegistryUtil.registerItemBlock(PADDING_TILES_ORANGE);
+        BlockRegistryUtil.registerItemBlock(PADDING_TILES_WHITE);
+
+        BlockRegistryUtil.registerItemBlock(UNISTONE);
+        BlockRegistryUtil.registerItemBlock(UNISAND);
+        BlockRegistryUtil.registerItemBlock(UNIGRAVEL);
+        BlockRegistryUtil.registerItemBlock(UNIDIRT);
+        BlockRegistryUtil.registerItemBlock(STALAGMITE);
+
+        // Stairs
+        BlockRegistryUtil.registerItemBlock(FLOOR_GRILL_STAIRS);
+        BlockRegistryUtil.registerItemBlock(CEILING_GRILL_STAIRS);
+        BlockRegistryUtil.registerItemBlock(IRON_BRICKS_STAIRS);
+        BlockRegistryUtil.registerItemBlock(WALL_STAIRS);
+        BlockRegistryUtil.registerItemBlock(INDUSTRIAL_GLASS_STAIRS);
+
+        // Slabs
+        BlockRegistryUtil.registerItemBlock(FLOOR_GRILL_SLAB_HALF, new ItemSlab(FLOOR_GRILL_SLAB_HALF, FLOOR_GRILL_SLAB_HALF, FLOOR_GRILL_SLAB_DOUBLE));
+//        BlockRegistryUtil.registerItemBlock(CEILING_GRILL_SLAB);
+//        BlockRegistryUtil.registerItemBlock(WALL_SLAB);
+//        BlockRegistryUtil.registerItemBlock(IRON_BRICKS_SLAB);
+//        BlockRegistryUtil.registerItemBlock(INDUSTRIAL_GLASS_SLAB);
+
+        // Tile entities
+        BlockRegistryUtil.registerItemBlock(SATELLITE_DISH);
+        BlockRegistryUtil.registerItemBlock(EGG_RECEPTACLE);
+        BlockRegistryUtil.registerItemBlock(ASSEMBLER);
+        BlockRegistryUtil.registerItemBlock(TURRET);
+        BlockRegistryUtil.registerItemBlock(TERMINAL);
+        BlockRegistryUtil.registerItemBlock(REPULSION_GENERATOR);
+        BlockRegistryUtil.registerItemBlock(POWERLINE);
+        BlockRegistryUtil.registerItemBlock(BLAST_DOOR);
+        BlockRegistryUtil.registerItemBlock(SEVASTOPOL_BLAST_DOOR);
+        BlockRegistryUtil.registerItemBlock(CRYO_TUBE);
+        BlockRegistryUtil.registerItemBlock(LIGHT_PANEL);
+        BlockRegistryUtil.registerItemBlock(CCFL_TUBE);
+        BlockRegistryUtil.registerItemBlock(TESLA_COIL);
+        BlockRegistryUtil.registerItemBlock(NETWORK_RACK);
+        BlockRegistryUtil.registerItemBlock(POWERCELL);
+        BlockRegistryUtil.registerItemBlock(REDSTONE_SENSOR);
+        BlockRegistryUtil.registerItemBlock(REDSTONE_EMITTER);
+        BlockRegistryUtil.registerItemBlock(UNIVERSAL_GENERATOR);
+        BlockRegistryUtil.registerItemBlock(TRANSFORMER);
+        BlockRegistryUtil.registerItemBlock(STEPDOWN_TRANSFORMER);
+        BlockRegistryUtil.registerItemBlock(SUPPLY_CRATE);
+        BlockRegistryUtil.registerItemBlock(CRATE_MARINES);
+        BlockRegistryUtil.registerItemBlock(CRATE_SEEGSON);
+        BlockRegistryUtil.registerItemBlock(SOLAR_PANEL);
+        BlockRegistryUtil.registerItemBlock(LOCKER);
+        BlockRegistryUtil.registerItemBlock(MEDPOD);
+        BlockRegistryUtil.registerItemBlock(GUN_LOCKER);
+        BlockRegistryUtil.registerItemBlock(AMPULE);
+
+        BlockRegistryUtil.registerItemBlock(SLOPE);
+        BlockRegistryUtil.registerItemBlock(CORNER);
+        BlockRegistryUtil.registerItemBlock(INVERTED_CORNER);
+        BlockRegistryUtil.registerItemBlock(RIDGE);
+        BlockRegistryUtil.registerItemBlock(PYRAMID);
+        BlockRegistryUtil.registerItemBlock(INVERTED_RIDGE);
+        BlockRegistryUtil.registerItemBlock(INVERTED_PYRAMID);
     }
 }

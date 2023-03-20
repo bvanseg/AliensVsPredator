@@ -38,6 +38,11 @@ public class PredatorBlocks implements IPreInitEvent {
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
+        this.registerBlocks();
+        this.registerItemBlocks();
+    }
+
+    private void registerBlocks() {
         BlockRegistryUtil.registerBlock(METAL_1);
         BlockRegistryUtil.registerBlock(METAL_2);
 
@@ -61,5 +66,31 @@ public class PredatorBlocks implements IPreInitEvent {
         BlockRegistryUtil.registerBlock(BIOMASK_TRACKER);
 
         BlockRegistryUtil.registerBlock(STASIS_MECHANISM);
+    }
+
+    private void registerItemBlocks() {
+        BlockRegistryUtil.registerItemBlock(METAL_1);
+        BlockRegistryUtil.registerItemBlock(METAL_2);
+
+        BlockRegistryUtil.registerItemBlock(SHIP_1);
+        BlockRegistryUtil.registerItemBlock(SHIP_2);
+        BlockRegistryUtil.registerItemBlock(SHIP_3);
+        BlockRegistryUtil.registerItemBlock(SHIP_4);
+        BlockRegistryUtil.registerItemBlock(SHIP_5);
+        BlockRegistryUtil.registerItemBlock(SHIP_6);
+
+        BlockRegistryUtil.registerItemBlock(TEMPLE_TILES_SINGLE);
+        BlockRegistryUtil.registerItemBlock(TEMPLE_BRICK);
+        BlockRegistryUtil.registerItemBlock(TEMPLE_TILE);
+        BlockRegistryUtil.registerItemBlock(TEMPLE_WALL_1);
+        BlockRegistryUtil.registerItemBlock(TEMPLE_WALL_2);
+
+        BlockRegistryUtil.registerItemBlock(SKULL_YAUTJA);
+        BlockRegistryUtil.registerItemBlock(BIOMASK_CLASSIC);
+        BlockRegistryUtil.registerItemBlock(BIOMASK_BERSERKER);
+        BlockRegistryUtil.registerItemBlock(BIOMASK_FALCONER);
+        BlockRegistryUtil.registerItemBlock(BIOMASK_TRACKER);
+
+        BlockRegistryUtil.registerItemBlock(STASIS_MECHANISM);
     }
 }

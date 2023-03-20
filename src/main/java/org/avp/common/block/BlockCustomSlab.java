@@ -1,105 +1,130 @@
 package org.avp.common.block;
 
 import net.minecraft.block.BlockSlab;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import org.lib.common.block.BlockProperties;
 
-public class BlockCustomSlab extends BlockSlab
-{
-    public boolean isDouble;
+import java.util.Random;
 
-    public BlockCustomSlab(Material material, boolean isDouble)
-    {
-        super(material);
-        this.isDouble = isDouble;
-        this.setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
-    }
+public abstract class BlockCustomSlab extends BlockSlab {
 
-    @Override
-    protected BlockStateContainer createBlockState()
-    {
-        return this.isDouble() ? new BlockStateContainer(this) : new BlockStateContainer(this, new IProperty[] { HALF });
-    }
+    public static final PropertyEnum<Variant> VARIANT = PropertyEnum.create("variant", Variant.class);
 
-    @Override
-    public int getMetaFromState(IBlockState state)
-    {
-        int i = 0;
+    protected BlockCustomSlab(String registryName, BlockProperties properties) {
+        super(properties.getMaterial());
+        this.setRegistryName(registryName);
 
-        if (!this.isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
-        {
-            i |= 8;
+        IBlockState iblockstate = this.blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
+
+        if (!this.isDouble()) {
+            iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
         }
 
-        return i;
+        this.setDefaultState(iblockstate);
+        this.useNeighborBrightness = !this.isDouble();
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        IBlockState iblockstate = this.getDefaultState();
-
-        if (!this.isDouble())
-        {
-            iblockstate = iblockstate.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
-        }
-
-        return iblockstate;
-    }
-
-    @Override
-    public Comparable<?> getTypeForItem(ItemStack stack)
-    {
-        return null;
-    }
-
-    @Override
-    public String getTranslationKey(int meta)
-    {
+    public String getTranslationKey(int meta) {
         return this.getTranslationKey();
     }
 
     @Override
-    public IProperty<?> getVariantProperty()
-    {
+    public IProperty<?> getVariantProperty() {
+        return VARIANT;
+    }
+
+    @Override
+    public Comparable<?> getTypeForItem(ItemStack stack) {
+        return Variant.DEFAULT;
+    }
+
+    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+        if (this instanceof Half) {
+            return Item.getItemFromBlock(this);
+        }
+        return null;
+    }
+
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+        if (this instanceof Half) {
+            return new ItemStack(this);
+        }
         return null;
     }
 
     @Override
-    public boolean isDouble()
-    {
-        return isDouble;
+    public final IBlockState getStateFromMeta(final int meta) {
+        IBlockState blockstate = this.blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
+
+        if (!this.isDouble()) {
+            blockstate = blockstate.withProperty(HALF, ((meta & 8) != 0) ? EnumBlockHalf.TOP : EnumBlockHalf.BOTTOM);
+        }
+
+        return blockstate;
     }
-    
+
     @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.TRANSLUCENT;
+    public final int getMetaFromState(final IBlockState state) {
+        int meta = 0;
+
+        if (!this.isDouble() && state.getValue(HALF) == EnumBlockHalf.TOP) {
+            meta |= 8;
+        }
+
+        return meta;
     }
-    
+
     @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
+    protected BlockStateContainer createBlockState() {
+        if (!this.isDouble()) {
+            return new BlockStateContainer(this, VARIANT, HALF);
+        }
+        return new BlockStateContainer(this, VARIANT);
     }
-    
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
+
+    public static class Double extends BlockCustomSlab {
+        public Double(String name, BlockProperties properties) {
+            super(name, properties);
+            this.setHardness(properties.getHardness())
+                .setResistance(properties.getResistance())
+                .setLightOpacity(properties.getLightOpacity());
+        }
+
+        @Override
+        public boolean isDouble() {
+            return true;
+        }
     }
-    
-    @Override
-    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face)
-    {
-        return false;
+
+    public static class Half extends BlockCustomSlab {
+        public Half(String name, BlockProperties properties) {
+            super(name, properties);
+            this.setHardness(properties.getHardness())
+                    .setResistance(properties.getResistance())
+                    .setLightOpacity(properties.getLightOpacity());
+        }
+
+        @Override
+        public boolean isDouble() {
+            return false;
+        }
+    }
+
+    public enum Variant implements IStringSerializable {
+        DEFAULT;
+
+        @Override
+        public String getName() {
+            return "default";
+        }
     }
 }

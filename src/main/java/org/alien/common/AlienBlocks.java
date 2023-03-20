@@ -90,6 +90,11 @@ public class AlienBlocks implements IPreInitEvent {
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
+        this.registerBlocks();
+        this.registerItemBlocks();
+    }
+
+    private void registerBlocks() {
         BlockRegistryUtil.registerBlock(NATURAL_RESIN);
         BlockRegistryUtil.registerBlock(RESIN);
         BlockRegistryUtil.registerBlock(RELIC_OVAMORPH);
@@ -162,5 +167,80 @@ public class AlienBlocks implements IPreInitEvent {
 
         BlockRegistryUtil.registerBlock(BLACK_GOO);
         BlockRegistryUtil.registerBlock(MIST);
+    }
+
+    private void registerItemBlocks() {
+        BlockRegistryUtil.registerItemBlock(NATURAL_RESIN);
+        BlockRegistryUtil.registerItemBlock(RESIN);
+        BlockRegistryUtil.registerItemBlock(RELIC_OVAMORPH);
+
+        BlockRegistryUtil.registerItemBlock(RELIC_FACEHUGGER);
+        BlockRegistryUtil.registerItemBlock(RELIC_ALIEN);
+
+
+        BlockRegistryUtil.registerItemBlock(ENGINEER_FLOOR);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_BRICK_0);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_BRICK_1);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_BRICK_2);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_BRICK_3);
+
+        BlockRegistryUtil.registerItemBlock(ENGINEER_GRAVEL);
+
+        BlockRegistryUtil.registerItemBlock(ENGINEER_WALL_0);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_WALL_1);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_WALL_2);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_WALL_3);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_WALL_4);
+
+        BlockRegistryUtil.registerItemBlock(ENGINEER_ROCK_0);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_ROCK_1);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_ROCK_2);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_ROCK_3);
+
+        BlockRegistryUtil.registerItemBlock(ENGINEER_COLUMN_1);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_COLUMN_2);
+
+        BlockRegistryUtil.registerItemBlock(ENGINEER_MATERIAL_0);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_MATERIAL_1);
+        BlockRegistryUtil.registerItemBlock(ENGINEER_MATERIAL_2);
+
+        BlockRegistryUtil.registerItemBlock(PARADISE_DIRT);
+        BlockRegistryUtil.registerItemBlock(PARADISE_DIRT_MOSSY);
+        BlockRegistryUtil.registerItemBlock(PARADISE_DIRT_PODZOL);
+        BlockRegistryUtil.registerItemBlock(PARADISE_GRASS);
+        BlockRegistryUtil.registerItemBlock(PARADISE_LEAVES_LARGE);
+        BlockRegistryUtil.registerItemBlock(PARADISE_LOG_LARGE);
+        BlockRegistryUtil.registerItemBlock(PARADISE_LEAVES_MED);
+        BlockRegistryUtil.registerItemBlock(PARADISE_LOG_MED);
+        BlockRegistryUtil.registerItemBlock(PARADISE_LEAVES_SMALL);
+        BlockRegistryUtil.registerItemBlock(PARADISE_LOG_SMALL);
+        BlockRegistryUtil.registerItemBlock(GROUND_FERN);
+        BlockRegistryUtil.registerItemBlock(TREE_FERN);
+        BlockRegistryUtil.registerItemBlock(WHEAT_GRASS);
+
+        BlockRegistryUtil.registerItemBlock(GIGER_LOG);
+        BlockRegistryUtil.registerItemBlock(GIGER_TENDONS);
+        BlockRegistryUtil.registerItemBlock(GIGER_LEAVES);
+        BlockRegistryUtil.registerItemBlock(GIGER_LEAVES_M);
+        BlockRegistryUtil.registerItemBlock(GIGER_LEAVES_B);
+        BlockRegistryUtil.registerItemBlock(GIGER_SAPLING);
+
+        BlockRegistryUtil.registerItemBlock(LV_426_ROCK);
+
+        BlockRegistryUtil.registerItemBlock(PORTAL_VARDA);
+        BlockRegistryUtil.registerItemBlock(PORTAL_ACHERON);
+
+        BlockRegistryUtil.registerItemBlock(SKULL_ENGINEER);
+        BlockRegistryUtil.registerItemBlock(SKULL_JOCKEY);
+        BlockRegistryUtil.registerItemBlock(SKULL_XENO);
+        BlockRegistryUtil.registerItemBlock(SKULL_XENO_WARRIOR);
+        BlockRegistryUtil.registerItemBlock(SKULL_MATRIARCH);
+        BlockRegistryUtil.registerItemBlock(SKULL_PROTOMORPH);
+        BlockRegistryUtil.registerItemBlock(SKULL_NEOMORPH);
+        BlockRegistryUtil.registerItemBlock(HEAD_AETHON);
+        BlockRegistryUtil.registerItemBlock(HEAD_GIGER_ALIEN);
+
+        BlockRegistryUtil.registerItemBlock(BLACK_GOO);
+        BlockRegistryUtil.registerItemBlock(MIST);
     }
 }
