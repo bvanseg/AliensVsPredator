@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=bottom": { "model": "avp:ceilinggrillslab" },
-        "half=top": { "model": "avp:ceilinggrillslab_upper" }
-    }
-}

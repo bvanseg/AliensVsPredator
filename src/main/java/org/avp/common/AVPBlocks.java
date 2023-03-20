@@ -103,14 +103,16 @@ public class AVPBlocks implements IPreInitEvent
     public static final Block WALL_STAIRS = new BlockCustomStairs(INDUSTRIAL_WALL.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialwallstairs");
     public static final Block INDUSTRIAL_GLASS_STAIRS = new BlockCustomStairs(INDUSTRIAL_GLASS.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassstairs");
 
-    public static final BlockProperties FLOOR_GRILL_PROPS = new BlockProperties(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
+    public static final BlockProperties GRILL_PROPS = new BlockProperties(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
 
     // Slabs
-    public static final BlockCustomSlab FLOOR_GRILL_SLAB_HALF = new BlockCustomSlab.Half("floor_grill_slab", FLOOR_GRILL_PROPS);
-    public static final BlockCustomSlab FLOOR_GRILL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_floor_grill_slab", FLOOR_GRILL_PROPS);
+    public static final BlockCustomSlab FLOOR_GRILL_SLAB_HALF = new BlockCustomSlab.Half("floor_grill_slab", GRILL_PROPS);
+    public static final BlockCustomSlab FLOOR_GRILL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_floor_grill_slab", GRILL_PROPS);
+
+    public static final BlockCustomSlab CEILING_GRILL_SLAB_HALF = new BlockCustomSlab.Half("ceiling_grill_slab", GRILL_PROPS);
+    public static final BlockCustomSlab CEILING_GRILL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ceiling_grill_slab", GRILL_PROPS);
 
 
-//    public static final BlockSlab CEILING_GRILL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("ceilinggrillslab");
 //    public static final BlockSlab WALL_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialslab");
 //    public static final BlockSlab IRON_BRICKS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickslab");
 //    public static final BlockSlab INDUSTRIAL_GLASS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassslab");
@@ -225,6 +227,9 @@ public class AVPBlocks implements IPreInitEvent
         // Slabs
         BlockRegistryUtil.registerBlock(FLOOR_GRILL_SLAB_HALF);
         BlockRegistryUtil.registerBlock(FLOOR_GRILL_SLAB_DOUBLE);
+
+        BlockRegistryUtil.registerBlock(CEILING_GRILL_SLAB_HALF);
+        BlockRegistryUtil.registerBlock(CEILING_GRILL_SLAB_DOUBLE);
 //        BlockRegistryUtil.registerBlock(CEILING_GRILL_SLAB);
 //        BlockRegistryUtil.registerBlock(WALL_SLAB);
 //        BlockRegistryUtil.registerBlock(IRON_BRICKS_SLAB);
@@ -331,6 +336,7 @@ public class AVPBlocks implements IPreInitEvent
 
         // Slabs
         BlockRegistryUtil.registerItemBlock(FLOOR_GRILL_SLAB_HALF, new ItemSlab(FLOOR_GRILL_SLAB_HALF, FLOOR_GRILL_SLAB_HALF, FLOOR_GRILL_SLAB_DOUBLE));
+        BlockRegistryUtil.registerItemBlock(CEILING_GRILL_SLAB_HALF, new ItemSlab(CEILING_GRILL_SLAB_HALF, CEILING_GRILL_SLAB_HALF, CEILING_GRILL_SLAB_DOUBLE));
 //        BlockRegistryUtil.registerItemBlock(CEILING_GRILL_SLAB);
 //        BlockRegistryUtil.registerItemBlock(WALL_SLAB);
 //        BlockRegistryUtil.registerItemBlock(IRON_BRICKS_SLAB);
