@@ -3,14 +3,14 @@ package org.predator.client.input.handler;
 import com.asx.mdx.client.ClientGame;
 import net.minecraft.client.gui.inventory.GuiContainerCreative;
 import net.minecraft.client.gui.inventory.GuiInventory;
-import org.avp.client.input.IInputHandler;
+import org.avp.client.input.InputHandler;
 import org.avp.common.AVPGui;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketOpenContainer;
 import org.predator.client.gui.GuiWristbracer;
 import org.predator.common.PredatorItems;
 
-public class InputHandlerWristbracer implements IInputHandler
+public class InputHandlerWristbracer implements InputHandler
 {
     public static final InputHandlerWristbracer instance = new InputHandlerWristbracer();
 

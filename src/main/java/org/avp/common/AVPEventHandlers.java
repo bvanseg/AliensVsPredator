@@ -12,7 +12,7 @@ import org.alien.common.world.EntityImpregnationHandler;
 import org.alien.common.world.TrilobiteImpregnationHandler;
 import org.alien.common.world.dimension.acheron.SkyProviderAcheron;
 import org.lib.common.EntityAccessor;
-import org.avp.client.input.InputHandler;
+import org.avp.client.input.AVPInputEventHandler;
 import org.avp.client.render.*;
 import org.avp.client.render.item.RenderMotionTrackerScreen;
 import org.avp.client.render.tactical.TacticalHelmetAPCGearRenderEvent;
@@ -40,7 +40,7 @@ public class AVPEventHandlers implements IInitEvent
     {
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
         {
-            this.registerEvent(InputHandler.instance);
+            this.registerEvent(AVPInputEventHandler.instance);
             this.registerEvent(RenderPlayerHotbarAPCEvent.instance);
             this.registerEvent(ChestbursterOverlayEvent.instance);
             this.registerEvent(PlayerModeRenderEvent.instance);
