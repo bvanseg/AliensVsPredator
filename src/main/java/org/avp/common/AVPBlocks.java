@@ -106,6 +106,8 @@ public class AVPBlocks implements IPreInitEvent
     public static final BlockProperties GRILL_PROPS = new BlockProperties(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(4);
     public static final BlockProperties WALL_PROPS = new BlockProperties(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(255);
 
+    public static final BlockProperties INDUSTRIAL_GLASS_PROPS = new BlockProperties(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
+
     // Slabs
     public static final BlockCustomSlab FLOOR_GRILL_SLAB_HALF = new BlockCustomSlab.Half("floor_grill_slab", GRILL_PROPS);
     public static final BlockCustomSlab FLOOR_GRILL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_floor_grill_slab", GRILL_PROPS);
@@ -119,7 +121,8 @@ public class AVPBlocks implements IPreInitEvent
     public static final BlockCustomSlab INDUSTRIAL_BRICK_SLAB_HALF = new BlockCustomSlab.Half("industrial_brick_slab", WALL_PROPS);
     public static final BlockCustomSlab INDUSTRIAL_BRICK_SLAB_DOUBLE = new BlockCustomSlab.Double("double_industrial_brick_slab", WALL_PROPS);
 
-//    public static final BlockSlab INDUSTRIAL_GLASS_SLAB = new BlockCustomSlab(Material.IRON, false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassslab");
+    public static final BlockCustomSlab INDUSTRIAL_GLASS_SLAB_HALF = new BlockCustomSlab.Half("industrial_glass_slab", INDUSTRIAL_GLASS_PROPS);
+    public static final BlockCustomSlab INDUSTRIAL_GLASS_SLAB_DOUBLE = new BlockCustomSlab.Double("double_industrial_glass_slab", INDUSTRIAL_GLASS_PROPS);
 
     // Tile entities
     public static final Block SATELLITE_DISH = new BlockSatelliteDish().setHardness(3.2F).setResistance(2.6F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("satellitedish");
@@ -240,10 +243,9 @@ public class AVPBlocks implements IPreInitEvent
 
         BlockRegistryUtil.registerBlock(INDUSTRIAL_BRICK_SLAB_HALF);
         BlockRegistryUtil.registerBlock(INDUSTRIAL_BRICK_SLAB_DOUBLE);
-//        BlockRegistryUtil.registerBlock(CEILING_GRILL_SLAB);
-//        BlockRegistryUtil.registerBlock(WALL_SLAB);
-//        BlockRegistryUtil.registerBlock(IRON_BRICKS_SLAB);
-//        BlockRegistryUtil.registerBlock(INDUSTRIAL_GLASS_SLAB);
+
+        BlockRegistryUtil.registerBlock(INDUSTRIAL_GLASS_SLAB_HALF);
+        BlockRegistryUtil.registerBlock(INDUSTRIAL_GLASS_SLAB_DOUBLE);
 
         // Tile entities
         BlockRegistryUtil.registerBlock(SATELLITE_DISH);
@@ -349,6 +351,7 @@ public class AVPBlocks implements IPreInitEvent
         BlockRegistryUtil.registerItemBlock(CEILING_GRILL_SLAB_HALF, new ItemSlab(CEILING_GRILL_SLAB_HALF, CEILING_GRILL_SLAB_HALF, CEILING_GRILL_SLAB_DOUBLE));
         BlockRegistryUtil.registerItemBlock(INDUSTRIAL_SLAB_HALF, new ItemSlab(INDUSTRIAL_SLAB_HALF, INDUSTRIAL_SLAB_HALF, INDUSTRIAL_SLAB_DOUBLE));
         BlockRegistryUtil.registerItemBlock(INDUSTRIAL_BRICK_SLAB_HALF, new ItemSlab(INDUSTRIAL_BRICK_SLAB_HALF, INDUSTRIAL_BRICK_SLAB_HALF, INDUSTRIAL_BRICK_SLAB_DOUBLE));
+        BlockRegistryUtil.registerItemBlock(INDUSTRIAL_GLASS_SLAB_HALF, new ItemSlab(INDUSTRIAL_GLASS_SLAB_HALF, INDUSTRIAL_GLASS_SLAB_HALF, INDUSTRIAL_GLASS_SLAB_DOUBLE));
 //        BlockRegistryUtil.registerItemBlock(IRON_BRICKS_SLAB);
 //        BlockRegistryUtil.registerItemBlock(INDUSTRIAL_GLASS_SLAB);
 
