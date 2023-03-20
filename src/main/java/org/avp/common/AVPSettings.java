@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.AlienEntitySpawns;
 import org.avp.AVP;
-import org.lib.registry.EntitySpawnRegistryUtil;
+import org.lib.common.registry.EntitySpawnRegistryUtil;
 import org.predator.common.PredatorEntitySpawns;
 
 import java.io.File;

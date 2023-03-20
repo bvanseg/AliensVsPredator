@@ -17,7 +17,7 @@ import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.world.dimension.varda.BiomeVarda;
 import org.avp.common.AVPSettings;
-import org.lib.registry.EntitySpawnRegistryUtil;
+import org.lib.common.registry.EntitySpawnRegistryUtil;
 
 import java.util.ArrayList;
 import java.util.List;

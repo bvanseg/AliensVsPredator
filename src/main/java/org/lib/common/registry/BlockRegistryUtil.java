@@ -1,4 +1,4 @@
-package org.lib.registry;
+package org.lib.common.registry;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

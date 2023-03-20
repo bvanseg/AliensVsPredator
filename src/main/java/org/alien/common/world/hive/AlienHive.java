@@ -8,7 +8,7 @@ import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants.NBT;
 import org.avp.AVP;
-import org.avp.EntityAccessor;
+import org.lib.common.EntityAccessor;
 
 import java.util.ArrayList;
 import java.util.HashSet;

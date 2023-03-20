@@ -8,7 +8,7 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
-import org.lib.predicate.EntitySelectorBase;
+import org.lib.common.predicate.EntitySelectorBase;
 import org.predator.common.entity.living.SpeciesYautja;
 
 public class EntitySelectorMarine extends EntitySelectorBase

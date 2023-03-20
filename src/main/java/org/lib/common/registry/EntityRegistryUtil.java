@@ -1,4 +1,4 @@
-package org.lib.registry;
+package org.lib.common.registry;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

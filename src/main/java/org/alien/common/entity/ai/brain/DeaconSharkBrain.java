@@ -9,7 +9,7 @@ import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
-import org.lib.predicate.EntitySelectorBase;
+import org.lib.common.predicate.EntitySelectorBase;
 
 import java.util.function.Predicate;
 

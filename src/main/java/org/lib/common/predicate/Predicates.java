@@ -1,4 +1,4 @@
-package org.lib.predicate;
+package org.lib.common.predicate;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

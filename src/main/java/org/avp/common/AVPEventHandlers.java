@@ -11,7 +11,7 @@ import org.alien.common.AlienDimensions;
 import org.alien.common.world.EntityImpregnationHandler;
 import org.alien.common.world.TrilobiteImpregnationHandler;
 import org.alien.common.world.dimension.acheron.SkyProviderAcheron;
-import org.avp.EntityAccessor;
+import org.lib.common.EntityAccessor;
 import org.avp.client.input.InputHandler;
 import org.avp.client.render.*;
 import org.avp.client.render.item.RenderMotionTrackerScreen;

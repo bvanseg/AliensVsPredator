@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
-import org.avp.EntityAccessor;
+import org.lib.common.EntityAccessor;
 import org.avp.common.tile.TileEntityMedpod;
 
 import java.util.List;

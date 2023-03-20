@@ -1,4 +1,4 @@
-package org.avp.client.render.wavegraph.ekg;
+package org.lib.client.render.wavegraph.ekg;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.Draw;
@@ -6,10 +6,10 @@ import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.render.wavegraph.DataEntry;
-import org.avp.client.render.wavegraph.DataEntry.Interval;
-import org.avp.client.render.wavegraph.DataEntry.Segment;
-import org.avp.client.render.wavegraph.Wavegraph;
+import org.lib.client.render.wavegraph.DataEntry;
+import org.lib.client.render.wavegraph.DataEntry.Interval;
+import org.lib.client.render.wavegraph.DataEntry.Segment;
+import org.lib.client.render.wavegraph.Wavegraph;
 
 import java.util.ArrayList;
 

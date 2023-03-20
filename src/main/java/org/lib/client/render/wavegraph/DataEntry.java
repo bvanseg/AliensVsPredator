@@ -1,4 +1,4 @@
-package org.avp.client.render.wavegraph;
+package org.lib.client.render.wavegraph;
 
 public class DataEntry
 {

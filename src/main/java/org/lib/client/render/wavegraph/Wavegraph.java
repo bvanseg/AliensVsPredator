@@ -1,4 +1,4 @@
-package org.avp.client.render.wavegraph;
+package org.lib.client.render.wavegraph;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.Draw;
