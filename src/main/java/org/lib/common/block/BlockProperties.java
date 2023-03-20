@@ -1,5 +1,6 @@
 package org.lib.common.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 
@@ -57,5 +58,11 @@ public class BlockProperties {
 
     public int getLightOpacity() {
         return this.lightOpacity;
+    }
+
+    public void apply(Block block) {
+        block.setHardness(this.getHardness());
+        block.setResistance(this.getResistance());
+        block.setLightOpacity(this.getLightOpacity());
     }
 }

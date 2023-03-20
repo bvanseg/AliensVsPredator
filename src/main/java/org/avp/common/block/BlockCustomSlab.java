@@ -94,9 +94,7 @@ public abstract class BlockCustomSlab extends BlockSlab {
     public static class Double extends BlockCustomSlab {
         public Double(String name, BlockProperties properties) {
             super(name, properties);
-            this.setHardness(properties.getHardness())
-                .setResistance(properties.getResistance())
-                .setLightOpacity(properties.getLightOpacity());
+            properties.apply(this);
         }
 
         @Override
@@ -108,9 +106,7 @@ public abstract class BlockCustomSlab extends BlockSlab {
     public static class Half extends BlockCustomSlab {
         public Half(String name, BlockProperties properties) {
             super(name, properties);
-            this.setHardness(properties.getHardness())
-                    .setResistance(properties.getResistance())
-                    .setLightOpacity(properties.getLightOpacity());
+            properties.apply(this);
         }
 
         @Override
