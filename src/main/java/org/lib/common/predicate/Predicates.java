@@ -45,7 +45,7 @@ public class Predicates {
     public static final Predicate<Entity> IS_PARASITOID_TARGET = target -> {
         if (!(target instanceof EntityLivingBase)) return false;
 
-        ArrayList<Class<?>> denyList = Parasitoid.getDefaultEntityBlacklist();
+        ArrayList<Class<?>> denyList = Parasitoid.getDefaultEntityDenylist();
 
         for (Class<?> c : denyList) {
             if (c.isInstance(target))
