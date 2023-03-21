@@ -1,11 +1,9 @@
 package org.predator.common.block.init;
 
 import com.asx.mdx.common.mods.IPreInitEvent;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemSlab;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.common.block.BlockCustomSlab;
-import org.lib.common.block.BlockProperties;
 import org.lib.common.registry.BlockRegistryUtil;
 
 /**
@@ -14,40 +12,37 @@ import org.lib.common.registry.BlockRegistryUtil;
 public class PredatorSlabBlocks implements IPreInitEvent {
     public static final PredatorSlabBlocks instance = new PredatorSlabBlocks();
 
-    public static final BlockProperties YAUTJA_METAL_PROPS = new BlockProperties(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public static final BlockProperties TEMPLE_PROPS = new BlockProperties(Material.ROCK).setHardness(5F).setResistance(15.0F);
-
     // Ship
-    public static final BlockCustomSlab SHIP_PANEL_SLAB_HALF = new BlockCustomSlab.Half("ship_panel_slab", YAUTJA_METAL_PROPS);
-    public static final BlockCustomSlab SHIP_PANEL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ship_panel_slab", YAUTJA_METAL_PROPS);
+    public static final BlockCustomSlab SHIP_PANEL_SLAB_HALF = new BlockCustomSlab.Half("ship_panel_slab", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final BlockCustomSlab SHIP_PANEL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ship_panel_slab", PredatorBlockProperties.YAUTJA_METAL_PROPS);
 
-    public static final BlockCustomSlab SHIP_PANEL_YAUTJA_SLAB_HALF = new BlockCustomSlab.Half("ship_panel_yautja_slab", YAUTJA_METAL_PROPS);
-    public static final BlockCustomSlab SHIP_PANEL_YAUTJA_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ship_panel_yautja_slab", YAUTJA_METAL_PROPS);
+    public static final BlockCustomSlab SHIP_PANEL_YAUTJA_SLAB_HALF = new BlockCustomSlab.Half("ship_panel_yautja_slab", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final BlockCustomSlab SHIP_PANEL_YAUTJA_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ship_panel_yautja_slab", PredatorBlockProperties.YAUTJA_METAL_PROPS);
 
-    public static final BlockCustomSlab SHIP_BRICK_SLAB_HALF = new BlockCustomSlab.Half("ship_brick_slab", YAUTJA_METAL_PROPS);
-    public static final BlockCustomSlab SHIP_BRICK_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ship_brick_slab", YAUTJA_METAL_PROPS);
+    public static final BlockCustomSlab SHIP_BRICK_SLAB_HALF = new BlockCustomSlab.Half("ship_brick_slab", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final BlockCustomSlab SHIP_BRICK_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ship_brick_slab", PredatorBlockProperties.YAUTJA_METAL_PROPS);
 
-    public static final BlockCustomSlab SHIP_SUPPORT_PILLAR_SLAB_HALF = new BlockCustomSlab.Half("ship_support_pillar_slab", YAUTJA_METAL_PROPS);
-    public static final BlockCustomSlab SHIP_SUPPORT_PILLAR_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ship_support_pillar_slab", YAUTJA_METAL_PROPS);
+    public static final BlockCustomSlab SHIP_SUPPORT_PILLAR_SLAB_HALF = new BlockCustomSlab.Half("ship_support_pillar_slab", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final BlockCustomSlab SHIP_SUPPORT_PILLAR_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ship_support_pillar_slab", PredatorBlockProperties.YAUTJA_METAL_PROPS);
 
-    public static final BlockCustomSlab SHIP_DECOR_3_SLAB_HALF = new BlockCustomSlab.Half("ship_decor_3_slab", YAUTJA_METAL_PROPS);
-    public static final BlockCustomSlab SHIP_DECOR_3_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ship_decor_3_slab", YAUTJA_METAL_PROPS);
+    public static final BlockCustomSlab SHIP_DECOR_3_SLAB_HALF = new BlockCustomSlab.Half("ship_decor_3_slab", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final BlockCustomSlab SHIP_DECOR_3_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ship_decor_3_slab", PredatorBlockProperties.YAUTJA_METAL_PROPS);
 
     // Temple
-    public static final BlockCustomSlab TEMPLE_BRICK_SLAB_HALF = new BlockCustomSlab.Half("temple_brick_slab", TEMPLE_PROPS);
-    public static final BlockCustomSlab TEMPLE_BRICK_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_brick_slab", TEMPLE_PROPS);
+    public static final BlockCustomSlab TEMPLE_BRICK_SLAB_HALF = new BlockCustomSlab.Half("temple_brick_slab", PredatorBlockProperties.TEMPLE_PROPS);
+    public static final BlockCustomSlab TEMPLE_BRICK_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_brick_slab", PredatorBlockProperties.TEMPLE_PROPS);
 
-    public static final BlockCustomSlab TEMPLE_BRICK_SINGLE_SLAB_HALF = new BlockCustomSlab.Half("temple_brick_single_slab", TEMPLE_PROPS);
-    public static final BlockCustomSlab TEMPLE_BRICK_SINGLE_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_brick_single_slab", TEMPLE_PROPS);
+    public static final BlockCustomSlab TEMPLE_BRICK_SINGLE_SLAB_HALF = new BlockCustomSlab.Half("temple_brick_single_slab", PredatorBlockProperties.TEMPLE_PROPS);
+    public static final BlockCustomSlab TEMPLE_BRICK_SINGLE_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_brick_single_slab", PredatorBlockProperties.TEMPLE_PROPS);
 
-    public static final BlockCustomSlab TEMPLE_TILE_SLAB_HALF = new BlockCustomSlab.Half("temple_tile_slab", TEMPLE_PROPS);
-    public static final BlockCustomSlab TEMPLE_TILE_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_tile_slab", TEMPLE_PROPS);
+    public static final BlockCustomSlab TEMPLE_TILE_SLAB_HALF = new BlockCustomSlab.Half("temple_tile_slab", PredatorBlockProperties.TEMPLE_PROPS);
+    public static final BlockCustomSlab TEMPLE_TILE_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_tile_slab", PredatorBlockProperties.TEMPLE_PROPS);
 
-    public static final BlockCustomSlab TEMPLE_WALL_SLAB_HALF = new BlockCustomSlab.Half("temple_wall_slab", TEMPLE_PROPS);
-    public static final BlockCustomSlab TEMPLE_WALL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_wall_slab", TEMPLE_PROPS);
+    public static final BlockCustomSlab TEMPLE_WALL_SLAB_HALF = new BlockCustomSlab.Half("temple_wall_slab", PredatorBlockProperties.TEMPLE_PROPS);
+    public static final BlockCustomSlab TEMPLE_WALL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_wall_slab", PredatorBlockProperties.TEMPLE_PROPS);
 
-    public static final BlockCustomSlab TEMPLE_FLOOR_SLAB_HALF = new BlockCustomSlab.Half("temple_floor_slab", TEMPLE_PROPS);
-    public static final BlockCustomSlab TEMPLE_FLOOR_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_floor_slab", TEMPLE_PROPS);
+    public static final BlockCustomSlab TEMPLE_FLOOR_SLAB_HALF = new BlockCustomSlab.Half("temple_floor_slab", PredatorBlockProperties.TEMPLE_PROPS);
+    public static final BlockCustomSlab TEMPLE_FLOOR_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_floor_slab", PredatorBlockProperties.TEMPLE_PROPS);
 
     @Override
     public void pre(FMLPreInitializationEvent event) {

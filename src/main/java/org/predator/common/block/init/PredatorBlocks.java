@@ -17,22 +17,19 @@ import org.lib.common.registry.BlockRegistryUtil;
 public class PredatorBlocks implements IPreInitEvent {
     public static final PredatorBlocks instance = new PredatorBlocks();
 
-    public static final BlockProperties YAUTJA_METAL_PROPS = new BlockProperties(Material.IRON).setHardness(5F).setResistance(15.0F);
-    public static final BlockProperties TEMPLE_PROPS = new BlockProperties(Material.ROCK).setHardness(5F).setResistance(15.0F);
-
-    public static final Block SHIP_PANEL = new BasicBlock("shippanel", YAUTJA_METAL_PROPS);
-    public static final Block SHIP_PANEL_YAUTJA = new BasicBlock("shippannelyautja", YAUTJA_METAL_PROPS);
-    public static final Block SHIP_WALL_BASE = new BasicBlock("shipwallbase", YAUTJA_METAL_PROPS);
-    public static final Block SHIP_SUPPORT_PILLAR = new BasicBlock("shipsupportpillar", YAUTJA_METAL_PROPS);
-    public static final Block SHIP_BRICK = new BasicBlock("shipbrick", YAUTJA_METAL_PROPS);
-    public static final Block SHIP_DECOR_1 = new BasicBlock("shipdecor1", YAUTJA_METAL_PROPS);
-    public static final Block SHIP_DECOR_2 = new BasicBlock("shipdecor2", YAUTJA_METAL_PROPS);
-    public static final Block SHIP_DECOR_3 = new BasicBlock("shipdecor3", YAUTJA_METAL_PROPS);
-    public static final Block TEMPLE_TILES_SINGLE = new BasicBlock("templebricksingle", TEMPLE_PROPS);
-    public static final Block TEMPLE_BRICK = new BasicBlock("templebrick", TEMPLE_PROPS);
-    public static final Block TEMPLE_TILE = new BasicBlock("templetile", TEMPLE_PROPS);
-    public static final Block TEMPLE_WALL_BASE = new BasicBlock("templewallbase", TEMPLE_PROPS);
-    public static final Block TEMPLE_FLOOR = new BasicBlock("templefloor", TEMPLE_PROPS);
+    public static final Block SHIP_PANEL = new BasicBlock("shippanel", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final Block SHIP_PANEL_YAUTJA = new BasicBlock("shippannelyautja", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final Block SHIP_WALL_BASE = new BasicBlock("shipwallbase", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final Block SHIP_SUPPORT_PILLAR = new BasicBlock("shipsupportpillar", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final Block SHIP_BRICK = new BasicBlock("shipbrick", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final Block SHIP_DECOR_1 = new BasicBlock("shipdecor1", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final Block SHIP_DECOR_2 = new BasicBlock("shipdecor2", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final Block SHIP_DECOR_3 = new BasicBlock("shipdecor3", PredatorBlockProperties.YAUTJA_METAL_PROPS);
+    public static final Block TEMPLE_TILES_SINGLE = new BasicBlock("templebricksingle", PredatorBlockProperties.TEMPLE_PROPS);
+    public static final Block TEMPLE_BRICK = new BasicBlock("templebrick", PredatorBlockProperties.TEMPLE_PROPS);
+    public static final Block TEMPLE_TILE = new BasicBlock("templetile", PredatorBlockProperties.TEMPLE_PROPS);
+    public static final Block TEMPLE_WALL_BASE = new BasicBlock("templewallbase", PredatorBlockProperties.TEMPLE_PROPS);
+    public static final Block TEMPLE_FLOOR = new BasicBlock("templefloor", PredatorBlockProperties.TEMPLE_PROPS);
     public static final Block STASIS_MECHANISM = new BlockStasisMechanism(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("stasismechanism");
     public static final Block SKULL_YAUTJA = new BlockSkullYautja().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("skull.yautja");
     public static final Block BIOMASK_CLASSIC = new BlockBiomaskClassic().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("biomask.classic");
