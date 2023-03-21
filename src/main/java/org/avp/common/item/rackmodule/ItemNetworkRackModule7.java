@@ -13,19 +13,19 @@ public class ItemNetworkRackModule7 extends ItemNetworkRackModule
     }
     
     @Override
-    public MapModelTexture<Model<?>> getModel()
+    public MapModelTexture<Model> getModel()
     {
         return Resources.instance.models().RACKMODULE7;
     }
 
     @Override
-    public MapModelTexture<Model<?>> getModelOn()
+    public MapModelTexture<Model> getModelOn()
     {
         return Resources.instance.models().RACKMODULE7_ON;
     }
 
     @Override
-    public MapModelTexture<Model<?>> getModelOff()
+    public MapModelTexture<Model> getModelOff()
     {
         return Resources.instance.models().RACKMODULE7_OFF;
     }
