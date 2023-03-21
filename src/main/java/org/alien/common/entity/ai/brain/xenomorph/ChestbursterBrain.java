@@ -2,7 +2,9 @@ package org.alien.common.entity.ai.brain.xenomorph;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFood;
+import net.minecraft.util.SoundCategory;
 import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
@@ -52,7 +54,10 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 		this.addTask(new LeapAtTargetBrainTask(0.8F));
 
 		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() instanceof ItemFood)
-				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.FOOD_YIELD))));
+				.onUseItem(e -> {
+					entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.FOOD_YIELD));
+					entity.world.playSound(null, entity.getPosition(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.NEUTRAL, 1F, 1F);
+				}));
 		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY)
 				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.RAW_YIELD))));
 
