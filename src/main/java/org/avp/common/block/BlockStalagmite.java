@@ -8,7 +8,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.avp.common.AVPBlocks;
+import org.avp.common.block.init.AVPBlocks;
 
 import java.util.Random;
 

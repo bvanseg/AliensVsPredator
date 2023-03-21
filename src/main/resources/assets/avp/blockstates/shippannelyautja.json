@@ -2,7 +2,7 @@
     "forge_marker": 1,
     "defaults": {
         "textures": {
-            "all": "avp:blocks/shippannelyautja"
+            "all": "avp:blocks/shippanelyautja"
         }
     },
     "variants": {

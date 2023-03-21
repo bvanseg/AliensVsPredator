@@ -19,9 +19,9 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.AVPBlocks;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItems;
+import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.avp.common.item.firearm.ItemFlamethrower;
 import org.avp.common.item.firearm.ItemM240IncineratorUnit;
 import org.avp.common.item.firearm.ItemSevastopolFlamethrower;
@@ -187,7 +187,7 @@ public class EntityFlame extends EntityThrowable
 
         if (rand.nextInt(10) == 0)
         {
-            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int) result.hitVec.x, (int) result.hitVec.y, (int) result.hitVec.z, 1, this.world, AVPBlocks.CRYO_TUBE);
+            ArrayList<Pos> list = Blocks.getCoordDataInRangeIncluding((int) result.hitVec.x, (int) result.hitVec.y, (int) result.hitVec.z, 1, this.world, AVPTileEntityBlocks.CRYO_TUBE);
 
             for (Pos coord : list)
             {

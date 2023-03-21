@@ -1,0 +1,8 @@
+{
+    "parent": "block/stairs",
+    "textures": {
+        "bottom": "avp:blocks/shipsupportpillar",
+        "top": "avp:blocks/shipsupportpillar",
+        "side": "avp:blocks/shipsupportpillar"
+    }
+}

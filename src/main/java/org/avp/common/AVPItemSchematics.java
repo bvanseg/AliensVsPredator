@@ -10,6 +10,9 @@ import net.minecraft.potion.PotionUtils;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.avp.common.block.init.AVPBlocks;
+import org.avp.common.block.init.AVPReflectiveBlocks;
+import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.avp.common.item.crafting.AssemblyManager;
 import org.avp.common.item.crafting.ItemSchematic;
 import org.predator.common.PredatorItems;
@@ -30,28 +33,28 @@ public class AVPItemSchematics
 
     private static void addSchematics()
     {
-        AssemblyManager.register(new ItemSchematic("teslacoil", new ItemStack(AVPBlocks.TESLA_COIL, 1)) {
+        AssemblyManager.register(new ItemSchematic("teslacoil", new ItemStack(AVPTileEntityBlocks.TESLA_COIL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
                         new ItemStack(AVPItems.ITEM_INGOT_COPPER, 9),
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 9),
-                        new ItemStack(AVPBlocks.TRANSFORMER, 2),
+                        new ItemStack(AVPTileEntityBlocks.TRANSFORMER, 2),
                         new ItemStack(Blocks.IRON_BLOCK, 1),
-                        new ItemStack(AVPBlocks.POWERLINE, 2),
+                        new ItemStack(AVPTileEntityBlocks.POWERLINE, 2),
                         new ItemStack(AVPItems.ITEM_CAPACITOR, 6),
                         new ItemStack(AVPItems.ITEM_POWER_SUPPLY, 1),
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("terminal", new ItemStack(AVPBlocks.TERMINAL, 1)) {
+        AssemblyManager.register(new ItemSchematic("terminal", new ItemStack(AVPTileEntityBlocks.TERMINAL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
                         new ItemStack(AVPItems.ITEM_LED_DISPLAY, 3),
-                        new ItemStack(AVPBlocks.TRANSFORMER, 1),
+                        new ItemStack(AVPTileEntityBlocks.TRANSFORMER, 1),
                         new ItemStack(AVPBlocks.MUTHUR_PANEL_1, 3),
                         new ItemStack(AVPBlocks.MUTHUR_PANEL_2, 3),
                         new ItemStack(AVPItems.ITEM_POWER_SUPPLY, 1),
@@ -64,7 +67,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_slope", new ItemStack(AVPBlocks.SLOPE, 1)) {
+        AssemblyManager.register(new ItemSchematic("reflective_slope", new ItemStack(AVPReflectiveBlocks.SLOPE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -75,7 +78,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_corner", new ItemStack(AVPBlocks.CORNER, 1)) {
+        AssemblyManager.register(new ItemSchematic("reflective_corner", new ItemStack(AVPReflectiveBlocks.CORNER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -86,7 +89,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_inverter_corner", new ItemStack(AVPBlocks.INVERTED_CORNER, 1)) {
+        AssemblyManager.register(new ItemSchematic("reflective_inverter_corner", new ItemStack(AVPReflectiveBlocks.INVERTED_CORNER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -97,7 +100,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_ridge", new ItemStack(AVPBlocks.RIDGE, 1)) {
+        AssemblyManager.register(new ItemSchematic("reflective_ridge", new ItemStack(AVPReflectiveBlocks.RIDGE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -108,7 +111,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_pyramid", new ItemStack(AVPBlocks.PYRAMID, 1)) {
+        AssemblyManager.register(new ItemSchematic("reflective_pyramid", new ItemStack(AVPReflectiveBlocks.PYRAMID, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -119,7 +122,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_inverted_ridge", new ItemStack(AVPBlocks.INVERTED_RIDGE, 1)) {
+        AssemblyManager.register(new ItemSchematic("reflective_inverted_ridge", new ItemStack(AVPReflectiveBlocks.INVERTED_RIDGE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -130,7 +133,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_inverted_pyramid", new ItemStack(AVPBlocks.INVERTED_PYRAMID, 1)) {
+        AssemblyManager.register(new ItemSchematic("reflective_inverted_pyramid", new ItemStack(AVPReflectiveBlocks.INVERTED_PYRAMID, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -141,24 +144,24 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("medpod", new ItemStack(AVPBlocks.MEDPOD, 1)) {
+        AssemblyManager.register(new ItemSchematic("medpod", new ItemStack(AVPTileEntityBlocks.MEDPOD, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPBlocks.TERMINAL, 1),
-                        new ItemStack(AVPBlocks.LIGHT_PANEL, 2),
+                        new ItemStack(AVPTileEntityBlocks.TERMINAL, 1),
+                        new ItemStack(AVPTileEntityBlocks.LIGHT_PANEL, 2),
                         new ItemStack(AVPBlocks.INDUSTRIAL_GLASS, 4),
                         new ItemStack(Blocks.IRON_BLOCK, 1),
                         new ItemStack(AVPBlocks.PADDING_SQUARE_WHITE, 3),
-                        new ItemStack(AVPBlocks.TRANSFORMER, 1),
+                        new ItemStack(AVPTileEntityBlocks.TRANSFORMER, 1),
                         new ItemStack(AVPItems.ITEM_CHARGE_PACK, 1),
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 8),
                         PotionUtils.addPotionToItemStack(new ItemStack(Items.POTIONITEM), PotionTypes.HEALING)
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("turret", new ItemStack(AVPBlocks.TURRET, 1)) {
+        AssemblyManager.register(new ItemSchematic("turret", new ItemStack(AVPTileEntityBlocks.TURRET, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -171,19 +174,19 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("redstonefluxGenerator", new ItemStack(AVPBlocks.UNIVERSAL_GENERATOR, 1)) {
+        AssemblyManager.register(new ItemSchematic("redstonefluxGenerator", new ItemStack(AVPTileEntityBlocks.UNIVERSAL_GENERATOR, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPBlocks.TRANSFORMER, 4),
-                        new ItemStack(AVPBlocks.STEPDOWN_TRANSFORMER, 4),
+                        new ItemStack(AVPTileEntityBlocks.TRANSFORMER, 4),
+                        new ItemStack(AVPTileEntityBlocks.STEPDOWN_TRANSFORMER, 4),
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 4),
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 4),
                         new ItemStack(Items.DIAMOND, 4) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("cryostasisTube", new ItemStack(AVPBlocks.CRYO_TUBE, 1)) {
+        AssemblyManager.register(new ItemSchematic("cryostasisTube", new ItemStack(AVPTileEntityBlocks.CRYO_TUBE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -191,10 +194,10 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 4),
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 4),
                         new ItemStack(AVPBlocks.INDUSTRIAL_GLASS, 4),
-                        new ItemStack(AVPBlocks.LIGHT_PANEL, 1) };
+                        new ItemStack(AVPTileEntityBlocks.LIGHT_PANEL, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("lightPanel", new ItemStack(AVPBlocks.LIGHT_PANEL, 1)) {
+        AssemblyManager.register(new ItemSchematic("lightPanel", new ItemStack(AVPTileEntityBlocks.LIGHT_PANEL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -707,7 +710,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_DIODE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("powerline", new ItemStack(AVPBlocks.POWERLINE, 4)) {
+        AssemblyManager.register(new ItemSchematic("powerline", new ItemStack(AVPTileEntityBlocks.POWERLINE, 4)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -724,7 +727,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_DIODE, 1),
                         new ItemStack(AVPItems.ITEM_VOLTAGE_REGULATOR, 1),
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 2),
-                        new ItemStack(AVPBlocks.TRANSFORMER, 1) };
+                        new ItemStack(AVPTileEntityBlocks.TRANSFORMER, 1) };
             }
         });
         AssemblyManager.register(new ItemSchematic("ledDisplay", new ItemStack(AVPItems.ITEM_LED_DISPLAY, 2)) {

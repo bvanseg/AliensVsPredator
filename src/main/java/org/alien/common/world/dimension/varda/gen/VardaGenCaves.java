@@ -7,7 +7,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
-import org.avp.common.AVPBlocks;
+import org.avp.common.block.init.AVPBlocks;
 
 import java.util.Random;
 

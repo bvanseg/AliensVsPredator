@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import org.avp.common.AVPBlocks;
+import org.avp.common.block.init.AVPBlocks;
 
 import java.util.Random;
 

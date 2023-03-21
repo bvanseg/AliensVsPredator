@@ -3,7 +3,7 @@ package org.avp.common.tile;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import org.avp.client.AVPSounds;
-import org.avp.common.AVPBlocks;
+import org.avp.common.block.init.AVPTileEntityBlocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +53,6 @@ public class TileEntitySevastopolBlastDoor extends TileEntityBlastdoor
     @Override
     public Block getMultiBlockType()
     {
-        return AVPBlocks.SEVASTOPOL_BLAST_DOOR;
+        return AVPTileEntityBlocks.SEVASTOPOL_BLAST_DOOR;
     }
 }
