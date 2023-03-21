@@ -94,30 +94,6 @@ public abstract class BlockCustomSlab extends BlockSlab {
         return new BlockStateContainer(this, VARIANT);
     }
 
-    @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.TRANSLUCENT;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face)
-    {
-        return false;
-    }
-
     public static class Double extends BlockCustomSlab {
         public Double(String name, BlockProperties properties) {
             super(name, properties);
