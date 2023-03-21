@@ -17,7 +17,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants;
-import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.avp.common.inventory.ContainerNetworkRack;

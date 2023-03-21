@@ -61,7 +61,6 @@ import org.avp.client.render.transform.CryostasisTubeRenderers;
 import org.avp.client.render.transform.FaceLocationTransforms;
 import org.avp.client.render.transform.MedpodTransforms;
 import org.avp.client.render.transform.VanillaFaceLocationTransforms;
-import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.AVPItems;
 import org.avp.common.block.BlockSkull;
 import org.avp.common.block.init.AVPTileEntityBlocks;

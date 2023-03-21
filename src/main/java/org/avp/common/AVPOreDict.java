@@ -10,7 +10,6 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.alien.common.AlienBlocks;
 import org.apache.commons.lang3.StringUtils;
 import org.avp.AVP;
-import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.block.init.AVPOreBlocks;
 
 import java.util.Arrays;

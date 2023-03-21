@@ -4,12 +4,12 @@ import com.asx.mdx.common.minecraft.block.BlockMaterial;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
 import org.avp.common.AVPCreativeTabs;
-import org.avp.common.block.*;
-import org.lib.common.block.BasicBlock;
+import org.avp.common.block.BlockOreCobalt;
+import org.avp.common.block.BlockOreMonazite;
+import org.avp.common.block.BlockOreSilicon;
 import org.lib.common.block.BlockProperties;
 import org.lib.common.registry.BlockRegistryUtil;
 

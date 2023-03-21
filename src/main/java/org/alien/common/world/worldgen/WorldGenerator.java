@@ -9,7 +9,6 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.block.init.AVPOreBlocks;
 
 import java.util.Random;

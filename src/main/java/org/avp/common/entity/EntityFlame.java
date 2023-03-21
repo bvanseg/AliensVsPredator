@@ -19,7 +19,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItems;
 import org.avp.common.block.init.AVPTileEntityBlocks;

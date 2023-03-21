@@ -7,7 +7,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.Resources;
 import org.avp.client.model.entity.ModelSupplyChute;
-import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.avp.common.entity.EntitySupplyChute;
 import org.avp.common.entity.EntitySupplyChuteMarines;

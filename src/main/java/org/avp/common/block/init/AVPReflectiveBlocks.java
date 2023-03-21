@@ -1,17 +1,11 @@
 package org.avp.common.block.init;
 
-import com.asx.mdx.common.minecraft.block.BlockMaterial;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
-import org.avp.common.AVPCreativeTabs;
-import org.avp.common.block.*;
-import org.avp.common.item.supply.chute.SupplyChuteType;
-import org.lib.common.block.BasicBlock;
-import org.lib.common.block.BlockProperties;
+import org.avp.common.block.BlockReflective;
 import org.lib.common.registry.BlockRegistryUtil;
 
 /**

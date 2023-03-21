@@ -9,7 +9,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.alien.common.AlienBlocks;
 import org.alien.common.AlienItems;
-import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.block.init.AVPOreBlocks;
 
 /**
