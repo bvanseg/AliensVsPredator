@@ -126,12 +126,13 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     }
 
     private static final String ALIEN_HIVE_NBT_KEY = "AlienHive";
+    private static final String OVIPOSITOR_SIZE_NBT_KEY = "ovipositorSize";
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
-        this.setOvipositorSize(nbt.getFloat("ovipositorSize"));
+        this.setOvipositorSize(nbt.getFloat(OVIPOSITOR_SIZE_NBT_KEY));
 
         if (!this.world.isRemote && nbt.hasKey(ALIEN_HIVE_NBT_KEY, NBT.TAG_COMPOUND)) {
         	this.alienHive = this.createNewAlienHive();
@@ -144,7 +145,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
-        nbt.setFloat("ovipositorSize", this.getOvipositorSize());
+        nbt.setFloat(OVIPOSITOR_SIZE_NBT_KEY, this.getOvipositorSize());
 
         if (!this.world.isRemote && this.alienHive != null) {
         	NBTTagCompound hiveData = new NBTTagCompound();
@@ -152,7 +153,8 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         	nbt.setTag(ALIEN_HIVE_NBT_KEY, hiveData);
         }
     }
-    
+
+    @Override
     public boolean canBeCollidedWith()
     {
         return true;
@@ -165,10 +167,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     }
     
     @Override
-    protected void collideWithEntity(Entity entityIn)
-    {
-        ;
-    }
+    protected void collideWithEntity(Entity entityIn) { /* Do Nothing */ }
 
     public float getOvipositorSize()
     {

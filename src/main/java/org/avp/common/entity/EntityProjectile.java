@@ -475,27 +475,35 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         return false;
     }
 
+    private static final String X_TILE_NBT_KEY = "xTile";
+    private static final String Y_TILE_NBT_KEY = "yTile";
+    private static final String Z_TILE_NBT_KEY = "zTile";
+    private static final String IN_TILE_NBT_KEY = "inTile";
+    private static final String SHAKE_NBT_KEY = "shake";
+    private static final String IN_GROUND_NBT_KEY = "inGround";
+    private static final String BEEN_IN_GROUND_NBT_KEY = "beenInGround";
+
     @Override
     public void writeEntityToNBT(NBTTagCompound tag)
     {
-        tag.setShort("xTile", (short) this.xTile);
-        tag.setShort("yTile", (short) this.yTile);
-        tag.setShort("zTile", (short) this.zTile);
-        tag.setByte("inTile", (byte) Block.getIdFromBlock(this.inTile));
-        tag.setByte("shake", (byte) this.arrowShake);
-        tag.setBoolean("inGround", this.inGround);
-        tag.setBoolean("beenInGround", this.beenInGround);
+        tag.setShort(X_TILE_NBT_KEY, (short) this.xTile);
+        tag.setShort(Y_TILE_NBT_KEY, (short) this.yTile);
+        tag.setShort(Z_TILE_NBT_KEY, (short) this.zTile);
+        tag.setByte(IN_TILE_NBT_KEY, (byte) Block.getIdFromBlock(this.inTile));
+        tag.setByte(SHAKE_NBT_KEY, (byte) this.arrowShake);
+        tag.setBoolean(IN_GROUND_NBT_KEY, this.inGround);
+        tag.setBoolean(BEEN_IN_GROUND_NBT_KEY, this.beenInGround);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound tag)
     {
-        this.xTile = tag.getShort("xTile");
-        this.yTile = tag.getShort("yTile");
-        this.zTile = tag.getShort("zTile");
-        this.inTile = Block.getBlockById(tag.getByte("inTile") & 0xFF);
-        this.arrowShake = tag.getByte("shake") & 0xFF;
-        this.inGround = tag.getBoolean("inGround");
-        this.beenInGround = tag.getBoolean("beenInGrond");
+        this.xTile = tag.getShort(X_TILE_NBT_KEY);
+        this.yTile = tag.getShort(Y_TILE_NBT_KEY);
+        this.zTile = tag.getShort(Z_TILE_NBT_KEY);
+        this.inTile = Block.getBlockById(tag.getByte(IN_TILE_NBT_KEY) & 0xFF);
+        this.arrowShake = tag.getByte(SHAKE_NBT_KEY) & 0xFF;
+        this.inGround = tag.getBoolean(IN_GROUND_NBT_KEY);
+        this.beenInGround = tag.getBoolean(BEEN_IN_GROUND_NBT_KEY);
     }
 }

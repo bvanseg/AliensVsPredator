@@ -145,17 +145,19 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return new ItemStack(AVPItems.SUMMONER_MARINE);
     }
 
+    private static final String WEAPON_TYPE_NBT_KEY = "WeaponType";
+
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
-        nbt.setInteger("WeaponType", this.dataManager.get(TYPE));
+        nbt.setInteger(WEAPON_TYPE_NBT_KEY, this.dataManager.get(TYPE));
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
-        this.dataManager.set(TYPE, nbt.getInteger("WeaponType"));
+        this.dataManager.set(TYPE, nbt.getInteger(WEAPON_TYPE_NBT_KEY));
     }
 }
