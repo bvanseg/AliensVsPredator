@@ -44,23 +44,18 @@ public class OrganismClientSync implements IMessage, IMessageHandler<OrganismCli
     @Override
     public OrganismClientSync onMessage(OrganismClientSync packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            if (ClientGame.instance.minecraft().player != null && ClientGame.instance.minecraft().player.world != null)
             {
-                if (ClientGame.instance.minecraft().player != null && ClientGame.instance.minecraft().player.world != null)
+                Entity entity = ClientGame.instance.minecraft().player.world.getEntityByID(packet.entityId);
+
+                if (entity != null)
                 {
-                    Entity entity = ClientGame.instance.minecraft().player.world.getEntityByID(packet.entityId);
+                    OrganismImpl organism = (OrganismImpl) entity.getCapability(Provider.CAPABILITY, null);
 
-                    if (entity != null)
+                    if (organism != null)
                     {
-                        OrganismImpl organism = (OrganismImpl) entity.getCapability(Provider.CAPABILITY, null);
-
-                        if (organism != null)
-                        {
-                            Provider.CAPABILITY.getStorage().readNBT(Provider.CAPABILITY, organism, null, packet.tag);
-                        }
+                        Provider.CAPABILITY.getStorage().readNBT(Provider.CAPABILITY, organism, null, packet.tag);
                     }
                 }
             }

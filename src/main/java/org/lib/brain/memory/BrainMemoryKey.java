@@ -8,6 +8,6 @@ package org.lib.brain.memory;
  */
 public class BrainMemoryKey<T> {
 	public static <U> BrainMemoryKey<? super U> create(BrainMemoryType<? super U> memoryType) {
-		return new BrainMemoryKey<U>();
+		return new BrainMemoryKey<>();
 	}
 }

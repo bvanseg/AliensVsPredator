@@ -1,6 +1,5 @@
 package org.lib.brain.impl.sensor;
 
-import com.google.common.base.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import org.lib.brain.impl.BrainMemoryKeys;
@@ -8,6 +7,7 @@ import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.sensor.AbstractBrainSensor;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  * 
@@ -90,7 +90,7 @@ public class NearestBlockPositionsOfInterestSensor extends AbstractBrainSensor<E
 
 	private void validateBlock(EntityBrainContext ctx, BlockPos pos, ArrayList<BlockPos> positionsOfInterest) {
 		Block block = ctx.getEntity().world.getBlockState(pos).getBlock();
-		if (blockPredicate.apply(block)) {
+		if (blockPredicate.test(block)) {
 			positionsOfInterest.add(pos);
 		}
 	}

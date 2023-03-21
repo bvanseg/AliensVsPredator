@@ -20,4 +20,14 @@ public class AbstractEntityBrain<T extends Entity> extends AbstractBrain<EntityB
 	public T getEntity() {
 		return this.entity;
 	}
+
+	public void initSenses() { /* Do Nothing */ }
+
+	public void initTasks() { /* Do Nothing */ }
+
+	@Override
+	public final void init() {
+		this.initSenses();
+		this.initTasks();
+	}
 }

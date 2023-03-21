@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.predator.client.PredatorSounds;
 import org.predator.common.*;
+import org.predator.common.block.init.PredatorBlocks;
 
 /**
  * @author Boston Vanseghi

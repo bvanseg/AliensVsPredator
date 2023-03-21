@@ -49,17 +49,12 @@ public class PacketReadFromDataDevice implements IMessage, IMessageHandler<Packe
     @Override
     public PacketReadFromDataDevice onMessage(PacketReadFromDataDevice packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                DataDevice device = (TileEntityTurret) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            DataDevice device = (TileEntityTurret) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
-                if (device != null)
-                {
-                    device.readFromOtherDevice(packet.id);
-                }
+            if (device != null)
+            {
+                device.readFromOtherDevice(packet.id);
             }
         });
 

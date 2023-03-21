@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import org.avp.client.Resources;
+import org.avp.client.render.item.util.ModuleModelGroup;
 import org.avp.common.item.ItemNetworkRackModule;
 import org.avp.common.tile.TileEntityNetworkRack;
 
@@ -57,17 +58,18 @@ public class RenderNetworkRack extends TileEntitySpecialRenderer<TileEntityNetwo
                             OpenGL.pushMatrix();
                             OpenGL.translate(0, slotSpacing * (slot + 1), 0);
                             OpenGL.scale(moduleScale, moduleScale, moduleScale);
-                            module.getModel().draw();
+                            ModuleModelGroup moduleModelGroup = ModuleModelGroup.getModelsForVariant(module.variant);
+                            moduleModelGroup.getBaseModel().draw();
                             
                             if (rack.isOperational())
                             {
                                 OpenGL.disableLight();
-                                module.getModelOn().draw();
+                                moduleModelGroup.getOnModel().draw();
                                 OpenGL.enableLight();
                             }
                             else
                             {
-                                module.getModelOff().draw();
+                                moduleModelGroup.getOffModel().draw();
                             }
                             
                             OpenGL.popMatrix();

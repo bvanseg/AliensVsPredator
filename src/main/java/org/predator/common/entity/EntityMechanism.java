@@ -8,7 +8,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.predator.common.PredatorBlocks;
+import org.predator.common.block.init.PredatorBlocks;
 
 public class EntityMechanism extends Entity
 {
@@ -42,16 +42,18 @@ public class EntityMechanism extends Entity
         }
     }
 
+    private static final String ENTITY_CONTAINER_ID_NBT_KEY = "EntityContainedId";
+
     @Override
     protected void readEntityFromNBT(NBTTagCompound tag)
     {
-        this.getDataManager().set(CONTAINED_ID, tag.getInteger("EntityContainedId"));
+        this.getDataManager().set(CONTAINED_ID, tag.getInteger(ENTITY_CONTAINER_ID_NBT_KEY));
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound tag)
     {
-        tag.setInteger("EntityContainedId", this.getEntityContainedId());
+        tag.setInteger(ENTITY_CONTAINER_ID_NBT_KEY, this.getEntityContainedId());
     }
 
     public int getEntityContainedId()

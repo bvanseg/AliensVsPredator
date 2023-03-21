@@ -2,18 +2,18 @@ package org.avp.client.render.item;
 
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.item.ItemRenderer;
+import com.asx.mdx.client.render.model.MapModelTexture;
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.avp.common.item.ItemNetworkRackModule;
 
-public class RenderItemNetworkRackModule extends ItemRenderer<Model>
+public class RenderItemNetworkRackModule extends ItemRenderer<Model<?>>
 {
-    public RenderItemNetworkRackModule()
+    public RenderItemNetworkRackModule(MapModelTexture<Model<?>> model)
     {
-        super(null);
+        super(model);
     }
 
     @Override
@@ -26,7 +26,6 @@ public class RenderItemNetworkRackModule extends ItemRenderer<Model>
         OpenGL.translate(0.1F, -0.1F, 0F);
         GlStateManager.disableCull();
         OpenGL.scale(glScale, -glScale, glScale);
-        this.cacheModel(itemstack);
         this.getModel().draw();
     }
 
@@ -40,7 +39,6 @@ public class RenderItemNetworkRackModule extends ItemRenderer<Model>
         OpenGL.rotate(79.0F, 0.0F, 0.0F, 1.0F);
         GlStateManager.disableCull();
         OpenGL.scale(glScale, glScale, glScale);
-        this.cacheModel(itemstack);
         this.getModel().draw();
     }
 
@@ -52,7 +50,7 @@ public class RenderItemNetworkRackModule extends ItemRenderer<Model>
         OpenGL.rotate(200F, 1F, 0F, 0F);
         OpenGL.rotate(45F, 0F, 1F, 0F);
         OpenGL.translate(0F, -0.25F, -0.25F);
-        this.cacheModel(itemstack);
+        this.getModel().draw();
     }
 
     @Override
@@ -61,22 +59,6 @@ public class RenderItemNetworkRackModule extends ItemRenderer<Model>
         OpenGL.scale(1F, -1F, 1F);
         OpenGL.translate(0F, -1F, 0F);
         GlStateManager.disableCull();
-        this.cacheModel(itemstack);
         this.getModel().draw();
-    }
-
-    private void cacheModel(ItemStack itemstack)
-    {
-        if (this.getModel() == null && itemstack != null && itemstack.getItem() instanceof ItemNetworkRackModule)
-        {
-            ItemNetworkRackModule module = (ItemNetworkRackModule) itemstack.getItem();
-            // FIXME: Uncontrollable super typing, big no no.
-//            this.model = module.getModel();
-        }
-
-        if (this.getModel() != null)
-        {
-            this.getModel().draw();
-        }
     }
 }

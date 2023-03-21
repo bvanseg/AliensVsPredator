@@ -1,18 +1,17 @@
 package org.avp.common.entity;
 
-import com.asx.mdx.common.minecraft.Worlds;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.tile.TileEntityMedpod;
+import org.lib.common.EntityAccessor;
 
 import java.util.List;
 import java.util.UUID;
@@ -36,23 +35,18 @@ public class EntityMedpod extends Entity
         super.onUpdate();
 
         BlockPos pos = new BlockPos((int) Math.floor(this.posX), ((int) this.posY), ((int) Math.floor(this.posZ)));
-
-        if (this.tile == null && this.world.isRemote)
-        {
-            TileEntity tile = this.world.getTileEntity(pos);
-
-            if (tile != null)
-            {
-                this.setTile((TileEntityMedpod) tile);
-            }
-        }
+        TileEntity localTileEntity = this.world.getTileEntity(pos);
+        this.setTile((TileEntityMedpod) localTileEntity);
 
         if (this.tile != null && this.tile.getEntity() == null)
         {
             this.tile.setEntity(this);
         }
 
-        if (this.getTileEntity() == null || this.getTileEntity() != null && this.getTileEntity().getEntity() != this)
+        if (this.getTileEntity() == null ||
+                localTileEntity == null ||
+                (this.getTileEntity() != null && this.getTileEntity().getEntity() != this)
+        )
         {
             this.setDead();
         }
@@ -86,7 +80,7 @@ public class EntityMedpod extends Entity
         {
             if (this.lastRiddenEntityUUID != null)
             {
-                this.lastRiddenEntity = Worlds.getEntityByUUID(this.world, this.lastRiddenEntityUUID);
+                this.lastRiddenEntity = EntityAccessor.instance.getEntityByUUID(this.lastRiddenEntityUUID).orElse(null);
             }
         }
 
@@ -102,12 +96,6 @@ public class EntityMedpod extends Entity
         }
     }
 
-    @Override
-    public AxisAlignedBB getCollisionBox(Entity entity)
-    {
-        return super.getCollisionBox(entity);
-    }
-
     public EntityMedpod setTile(TileEntityMedpod tile)
     {
         this.tile = tile;
@@ -116,16 +104,19 @@ public class EntityMedpod extends Entity
 
     public TileEntityMedpod getTileEntity()
     {
-        return tile;
+        return this.tile;
     }
+
+    private static final String LAST_RIDDEN_ENTITY_UUID_NBT_KEY = "LastRiddenEntityUUID";
 
     @Override
     protected void readEntityFromNBT(NBTTagCompound nbt)
     {
-        String uuidString = nbt.getString("LastRiddenEntityUUID");
+        String uuidString = nbt.getString(LAST_RIDDEN_ENTITY_UUID_NBT_KEY);
 
         if (!uuidString.isEmpty())
         {
+            // TODO: Get from long bits here instead of string.
             this.lastRiddenEntityUUID = UUID.fromString(uuidString);
         }
     }
@@ -135,25 +126,13 @@ public class EntityMedpod extends Entity
     {
         if (this.lastRiddenEntityUUID != null)
         {
-            nbt.setString("LastRiddenEntityUUID", this.lastRiddenEntityUUID.toString());
+            // TODO: Set long bits here instead of string.
+            nbt.setString(LAST_RIDDEN_ENTITY_UUID_NBT_KEY, this.lastRiddenEntityUUID.toString());
         }
     }
 
     @Override
-    protected void entityInit()
-    {
-        ;
-    }
-
-    public Entity getLastRiddenEntity()
-    {
-        return lastRiddenEntity;
-    }
-
-    public UUID getLastRiddenEntityUUID()
-    {
-        return lastRiddenEntityUUID;
-    }
+    protected void entityInit() { /* Do Nothing */ }
 
     public void clearLastRidden()
     {

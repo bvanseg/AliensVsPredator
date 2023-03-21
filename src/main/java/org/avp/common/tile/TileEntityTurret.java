@@ -251,7 +251,7 @@ public class TileEntityTurret extends TileEntityElectrical implements DataDevice
             ItemStack devicePort = this.inventoryDrive.getStackInSlot(0);
 
             NBTTagCompound nbt = new NBTTagCompound();
-            ArrayList<String> entityIDs = new ArrayList<String>();
+            ArrayList<String> entityIDs = new ArrayList<>();
 
             for (Class<? extends Entity> c : this.getTargetHelper().getDangerousTargets())
             {

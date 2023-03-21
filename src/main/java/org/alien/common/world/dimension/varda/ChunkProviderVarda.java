@@ -16,7 +16,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import org.alien.common.world.dimension.varda.gen.VardaGenCaves;
-import org.avp.common.AVPBlocks;
+import org.avp.common.block.init.AVPBlocks;
 
 import java.util.List;
 import java.util.Random;

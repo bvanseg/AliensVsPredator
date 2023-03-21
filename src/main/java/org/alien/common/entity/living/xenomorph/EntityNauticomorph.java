@@ -59,7 +59,7 @@ public class EntityNauticomorph extends SpeciesXenomorph implements HiveMember
 
             for (EntityLivingBase entity : entities)
             {
-                if (EntitySelectorNauticomorph.instance.apply(entity) && Entities.canEntityBeSeenBy(entity, this) && (!EntitySelectorNauticomorph.instance.apply(entity.getLastAttackedEntity()) && (entity.ticksExisted - entity.getLastAttackedEntityTime() > 150)))
+                if (EntitySelectorNauticomorph.instance.test(entity) && Entities.canEntityBeSeenBy(entity, this) && (!EntitySelectorNauticomorph.instance.test(entity.getLastAttackedEntity()) && (entity.ticksExisted - entity.getLastAttackedEntityTime() > 150)))
                 {
                     if (entity instanceof EntityPlayer && !((EntityPlayer) entity).capabilities.isCreativeMode)
                     {

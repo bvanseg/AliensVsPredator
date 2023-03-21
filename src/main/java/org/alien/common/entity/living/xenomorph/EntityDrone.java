@@ -10,8 +10,8 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Maturable;
-import org.alien.common.entity.ai.brain.DroneBrain;
-import org.alien.common.entity.ai.brain.XenomorphBrain;
+import org.alien.common.entity.ai.brain.xenomorph.DroneBrain;
+import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 
@@ -26,7 +26,7 @@ public class EntityDrone extends SpeciesXenomorph implements Maturable, HiveMemb
 
     @Override
     public XenomorphBrain getBrain() {
-        if (this.brain == null) {
+        if (!this.world.isRemote && this.brain == null) {
             this.brain = new DroneBrain(this);
         }
         return this.brain;

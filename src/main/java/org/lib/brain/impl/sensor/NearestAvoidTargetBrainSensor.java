@@ -1,6 +1,5 @@
 package org.lib.brain.impl.sensor;
 
-import com.google.common.base.Predicate;
 import net.minecraft.entity.Entity;
 import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.brain.impl.EntityBrainContext;
@@ -8,6 +7,7 @@ import org.lib.brain.sensor.AbstractBrainSensor;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
@@ -37,7 +37,7 @@ public class NearestAvoidTargetBrainSensor extends AbstractBrainSensor<EntityBra
 
 		if (entitiesOptional.isPresent()) {
 			List<Entity> entities = entitiesOptional.get();
-			List<Entity> targets = entities.stream().filter(avoidTargetPredicate::apply).collect(Collectors.toList());
+			List<Entity> targets = entities.stream().filter(avoidTargetPredicate).collect(Collectors.toList());
 
 			if (!targets.isEmpty()) {
 		        ctx.getBrain().remember(BrainMemoryKeys.NEAREST_AVOID_TARGET, targets.get(0));
