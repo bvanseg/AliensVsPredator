@@ -272,6 +272,12 @@ tile.avp:ship_brick_slab.name=Ship Brick Slab
 tile.avp:ship_decor_3_slab.name=Ship Decor Slab
 tile.avp:ship_support_pillar_slab.name=Ship Support Pillar Slab
 
+tile.avp:ship_panel_stairs.name=Yautja Panel Stairs
+tile.avp:ship_panel_yautja_stairs.name=Yautja Ship Hieroglyphics Stairs
+tile.avp:ship_brick_stairs.name=Ship Brick Stairs
+tile.avp:ship_decor_3_stairs.name=Ship Decor Stairs
+tile.avp:ship_support_pillar_stairs.name=Ship Support Pillar Stairs
+
 tile.avp:templebricksingle.name=Temple Brick Single
 tile.avp:templebrick.name=Temple Brick 
 tile.avp:templetile.name=Temple Tile 
