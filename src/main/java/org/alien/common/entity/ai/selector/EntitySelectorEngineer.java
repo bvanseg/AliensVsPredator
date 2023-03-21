@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
-import org.lib.predicate.EntitySelectorBase;
+import org.lib.common.predicate.EntitySelectorBase;
 import org.predator.common.entity.living.SpeciesYautja;
 
 public class EntitySelectorEngineer extends EntitySelectorBase

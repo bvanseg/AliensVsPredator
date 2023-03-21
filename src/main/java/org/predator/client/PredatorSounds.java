@@ -3,7 +3,7 @@ package org.predator.client;
 import com.asx.mdx.client.sound.Sound;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.lib.registry.SoundRegistryUtil;
+import org.lib.common.registry.SoundRegistryUtil;
 
 /**
  * @author Ri5ux

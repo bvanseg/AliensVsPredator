@@ -51,22 +51,17 @@ public class PacketOpenBlastdoor implements IMessage, IMessageHandler<PacketOpen
     @Override
     public PacketOpenBlastdoor onMessage(PacketOpenBlastdoor packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            World world = ClientGame.instance.minecraft().player.world;
+            TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+            if (world != null && tile != null && tile instanceof TileEntityBlastdoor)
             {
-                World world = ClientGame.instance.minecraft().player.world;
-                TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+                TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
 
-                if (world != null && tile != null && tile instanceof TileEntityBlastdoor)
+                if (blastdoor != null)
                 {
-                    TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
-
-                    if (blastdoor != null)
-                    {
-                        blastdoor.setOpen(packet.open, false);
-                    }
+                    blastdoor.setOpen(packet.open, false);
                 }
             }
         });

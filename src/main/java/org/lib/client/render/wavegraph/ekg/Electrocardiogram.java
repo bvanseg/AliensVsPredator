@@ -1,4 +1,4 @@
-package org.avp.client.render.wavegraph.ekg;
+package org.lib.client.render.wavegraph.ekg;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.Draw;
@@ -6,10 +6,10 @@ import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.render.wavegraph.DataEntry;
-import org.avp.client.render.wavegraph.DataEntry.Interval;
-import org.avp.client.render.wavegraph.DataEntry.Segment;
-import org.avp.client.render.wavegraph.Wavegraph;
+import org.lib.client.render.wavegraph.DataEntry;
+import org.lib.client.render.wavegraph.DataEntry.Interval;
+import org.lib.client.render.wavegraph.DataEntry.Segment;
+import org.lib.client.render.wavegraph.Wavegraph;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public class Electrocardiogram extends Wavegraph
 
     public Electrocardiogram()
     {
-        this.data = new ArrayList<DataEntryEKG>();
+        this.data = new ArrayList<>();
         this.rate = 60;
         this.refRate = 80;
         this.width = 300;
@@ -99,7 +99,7 @@ public class Electrocardiogram extends Wavegraph
         float depth = 10F;
         DataEntryEKG previousRecord = null;
 
-        for (DataEntryEKG r : new ArrayList<DataEntryEKG>(this.data))
+        for (DataEntryEKG r : new ArrayList<>(this.data))
         {
             DataEntryEKG.DisplayDataEKG data = r.displaydata();
             data.update(System.currentTimeMillis(), x, y, width, height, widthScale, heightScale);

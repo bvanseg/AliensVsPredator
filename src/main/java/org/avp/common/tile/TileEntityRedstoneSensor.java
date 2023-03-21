@@ -57,7 +57,7 @@ public class TileEntityRedstoneSensor extends TileEntityElectrical implements Vo
         int y = this.getPos().getY();
         int z = this.getPos().getZ();
 
-        ArrayList<Pos> locations = new ArrayList<Pos>();
+        ArrayList<Pos> locations = new ArrayList<>();
         Pos loc = new Pos(x, y, z);
         Pos right = loc.add(1, 0, 0);
         Pos left = loc.add(-1, 0, 0);

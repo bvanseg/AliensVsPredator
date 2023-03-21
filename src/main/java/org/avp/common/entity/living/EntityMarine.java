@@ -173,21 +173,25 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return new ItemStack(AVPItems.SUMMONER_MARINE);
     }
 
+    private static final String WEAPON_TYPE_NBT_KEY = "WeaponType";
+    private static final String SKIN_TONE_NBT_KEY = "SkinTone";
+    private static final String EYE_COLOR_NBT_KEY = "EyeColor";
+
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
-        nbt.setInteger("WeaponType", this.dataManager.get(TYPE));
-        nbt.setInteger("SkinTone", this.getSkinTone());
-        nbt.setInteger("EyeColor", this.getEyeColor());
+        nbt.setInteger(WEAPON_TYPE_NBT_KEY, this.dataManager.get(TYPE));
+        nbt.setInteger(SKIN_TONE_NBT_KEY, this.getSkinTone());
+        nbt.setInteger(EYE_COLOR_NBT_KEY, this.getEyeColor());
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
-        this.dataManager.set(TYPE, nbt.getInteger("WeaponType"));
-        this.dataManager.set(SKIN_TONE, nbt.getInteger("SkinTone"));
-        this.dataManager.set(EYE_COLOR, nbt.getInteger("EyeColor"));
+        this.dataManager.set(TYPE, nbt.getInteger(WEAPON_TYPE_NBT_KEY));
+        this.dataManager.set(SKIN_TONE, nbt.getInteger(SKIN_TONE_NBT_KEY));
+        this.dataManager.set(EYE_COLOR, nbt.getInteger(EYE_COLOR_NBT_KEY));
     }
 }

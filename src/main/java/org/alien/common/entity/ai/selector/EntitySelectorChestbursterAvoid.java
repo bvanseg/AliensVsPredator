@@ -7,8 +7,8 @@ import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntityZombieHorse;
 import org.alien.common.entity.living.SpeciesEngineer;
 import org.avp.common.entity.living.EntityMarine;
-import org.lib.predicate.EntitySelectorBase;
-import org.lib.predicate.Predicates;
+import org.lib.common.predicate.EntitySelectorBase;
+import org.lib.common.predicate.Predicates;
 import org.predator.common.entity.living.SpeciesYautja;
 
 import java.util.ArrayList;

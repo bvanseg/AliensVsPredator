@@ -43,21 +43,16 @@ public class PacketDamageEntity implements IMessage, IMessageHandler<PacketDamag
     @Override
     public PacketDamageEntity onMessage(PacketDamageEntity packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            if (packet.entityId != -1)
             {
-                if (packet.entityId != -1)
-                {
-                    Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
-                    Entity entitySource = ctx.getServerHandler().player.world.getEntityByID(packet.entitySourceId);
+                Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
+                Entity entitySource = ctx.getServerHandler().player.world.getEntityByID(packet.entitySourceId);
 
-                    if (entity != null)
-                    {
-                        entity.hurtResistantTime = 0;
-                        entity.attackEntityFrom(AVPDamageSources.causeLaserMineDamage(entitySource, entitySource), packet.damage);
-                    }
+                if (entity != null)
+                {
+                    entity.hurtResistantTime = 0;
+                    entity.attackEntityFrom(AVPDamageSources.causeLaserMineDamage(entitySource, entitySource), packet.damage);
                 }
             }
         });

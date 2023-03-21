@@ -52,7 +52,6 @@ public class AVPNetworking extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.CLIENT, PacketAmmoUpdate.class);
         this.registerMessage(Side.CLIENT, PacketOpenBlastdoor.class);
         this.registerMessage(Side.CLIENT, PacketOpenable.class);
-        this.registerMessage(Side.CLIENT, PacketPlayerModeUpdate.class);
         this.registerMessage(Side.CLIENT, PacketTurretSync.class);
         this.registerMessage(Side.CLIENT, OrganismClientSync.class);
         this.registerMessage(Side.CLIENT, SpecialPlayerClientSync.class);

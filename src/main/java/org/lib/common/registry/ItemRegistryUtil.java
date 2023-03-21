@@ -1,4 +1,4 @@
-package org.lib.registry;
+package org.lib.common.registry;
 
 import com.asx.mdx.client.render.Renderers;
 import net.minecraft.item.Item;

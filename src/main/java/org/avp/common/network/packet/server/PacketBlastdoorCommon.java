@@ -30,44 +30,40 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
         @Override
         public PacketBlastdoorCommon onMessage(PacketBlastdoorCommon packet, MessageContext ctx)
         {
-            ClientGame.instance.minecraft().addScheduledTask(new Runnable() {
-                @Override
-                public void run()
+            ClientGame.instance.minecraft().addScheduledTask(() -> {
+                World world = ClientGame.instance.minecraft().world;
+                TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+                if (world != null && tile != null && tile instanceof TileEntityBlastdoor)
                 {
-                    World world = ClientGame.instance.minecraft().world;
-                    TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+                    TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
 
-                    if (world != null && tile != null && tile instanceof TileEntityBlastdoor)
+                    if (blastdoor != null)
                     {
-                        TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
-
-                        if (blastdoor != null)
+                        switch (packet.mode)
                         {
-                            switch (packet.mode)
-                            {
-                                case AUTH:
-                                    if (blastdoor.isLocked())
-                                    {
-                                        blastdoor.authenticate(packet.key);
-                                    }
-                                    break;
-                                case SETPSWD:
-                                    blastdoor.setPassword(packet.key);
-                                    break;
-                                case SETAUTOLOCK:
-                                    blastdoor.setAutolock(packet.autolock);
-                                    break;
-                                case BIND:
-                                    ItemStack itemstack = ClientGame.instance.minecraft().player.getHeldItemMainhand();
+                            case AUTH:
+                                if (blastdoor.isLocked())
+                                {
+                                    blastdoor.authenticate(packet.key);
+                                }
+                                break;
+                            case SETPSWD:
+                                blastdoor.setPassword(packet.key);
+                                break;
+                            case SETAUTOLOCK:
+                                blastdoor.setAutolock(packet.autolock);
+                                break;
+                            case BIND:
+                                ItemStack itemstack = ClientGame.instance.minecraft().player.getHeldItemMainhand();
 
-                                    if (itemstack != null)
-                                    {
-                                        blastdoor.bindToSecurityTuner(ClientGame.instance.minecraft().player, itemstack);
-                                    }
-                                    break;
-                                default:
-                                    break;
-                            }
+                                if (itemstack != null)
+                                {
+                                    blastdoor.bindToSecurityTuner(ClientGame.instance.minecraft().player, itemstack);
+                                }
+                                break;
+                            default:
+                                break;
                         }
                     }
                 }
@@ -188,52 +184,48 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
     @Override
     public PacketBlastdoorCommon onMessage(PacketBlastdoorCommon packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable() {
-            @Override
-            public void run()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            World world = ctx.getServerHandler().player.world;
+            TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+
+            if (world != null && tile != null && tile instanceof TileEntityBlastdoor)
             {
-                World world = ctx.getServerHandler().player.world;
-                TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+                TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
 
-                if (world != null && tile != null && tile instanceof TileEntityBlastdoor)
+                if (blastdoor != null)
                 {
-                    TileEntityBlastdoor blastdoor = (TileEntityBlastdoor) tile;
+                    Object[] data = new Object[4];
 
-                    if (blastdoor != null)
+                    switch (packet.mode)
                     {
-                        Object[] data = new Object[4];
+                        case AUTH:
+                            data[0] = packet.key;
+                            if (blastdoor.isLocked())
+                            {
+                                blastdoor.authenticate(packet.key);
+                            }
+                            break;
+                        case SETPSWD:
+                            data[0] = packet.key;
+                            blastdoor.setPassword(packet.key);
+                            break;
+                        case SETAUTOLOCK:
+                            data[0] = packet.autolock;
+                            blastdoor.setAutolock(packet.autolock);
+                            break;
+                        case BIND:
+                            ItemStack itemstack = ctx.getServerHandler().player.getHeldItemMainhand();
 
-                        switch (packet.mode)
-                        {
-                            case AUTH:
-                                data[0] = packet.key;
-                                if (blastdoor.isLocked())
-                                {
-                                    blastdoor.authenticate(packet.key);
-                                }
-                                break;
-                            case SETPSWD:
-                                data[0] = packet.key;
-                                blastdoor.setPassword(packet.key);
-                                break;
-                            case SETAUTOLOCK:
-                                data[0] = packet.autolock;
-                                blastdoor.setAutolock(packet.autolock);
-                                break;
-                            case BIND:
-                                ItemStack itemstack = ctx.getServerHandler().player.getHeldItemMainhand();
-
-                                if (itemstack != null)
-                                {
-                                    blastdoor.bindToSecurityTuner(ctx.getServerHandler().player, itemstack);
-                                }
-                                break;
-                            default:
-                                break;
-                        }
-                        blastdoor.markDirty();
-                        AVPNetworking.instance.sendToAll(new PacketBlastdoorClient(packet.mode, new BlockPos(packet.x, packet.y, packet.z), data));
+                            if (itemstack != null)
+                            {
+                                blastdoor.bindToSecurityTuner(ctx.getServerHandler().player, itemstack);
+                            }
+                            break;
+                        default:
+                            break;
                     }
+                    blastdoor.markDirty();
+                    AVPNetworking.instance.sendToAll(new PacketBlastdoorClient(packet.mode, new BlockPos(packet.x, packet.y, packet.z), data));
                 }
             }
         });

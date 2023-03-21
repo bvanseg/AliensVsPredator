@@ -43,21 +43,16 @@ public class OrganismServerSync implements IMessage, IMessageHandler<OrganismSer
     @Override
     public OrganismServerSync onMessage(OrganismServerSync packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
+
+            if (entity != null)
             {
-                Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
+                OrganismImpl organism = (OrganismImpl) entity.getCapability(Provider.CAPABILITY, null);
 
-                if (entity != null)
+                if (organism != null)
                 {
-                    OrganismImpl organism = (OrganismImpl) entity.getCapability(Provider.CAPABILITY, null);
-
-                    if (organism != null)
-                    {
-                        Provider.CAPABILITY.getStorage().readNBT(Provider.CAPABILITY, organism, null, packet.tag);
-                    }
+                    Provider.CAPABILITY.getStorage().readNBT(Provider.CAPABILITY, organism, null, packet.tag);
                 }
             }
         });

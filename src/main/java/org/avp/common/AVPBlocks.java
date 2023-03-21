@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
 import org.avp.common.block.*;
 import org.avp.common.item.supply.chute.SupplyChuteType;
-import org.lib.registry.BlockRegistryUtil;
+import org.lib.common.registry.BlockRegistryUtil;
 
 /**
  * @author Ri5ux

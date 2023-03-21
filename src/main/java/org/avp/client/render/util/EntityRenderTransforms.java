@@ -46,7 +46,7 @@ public abstract class EntityRenderTransforms
 
     public static ArrayList<Class<?>> getSuperClasses(Object o)
     {
-        ArrayList<Class<?>> list = new ArrayList<Class<?>>();
+        ArrayList<Class<?>> list = new ArrayList<>();
         Class<?> c = o.getClass();
         Class<?> superclass = c.getSuperclass();
         list.add(superclass);

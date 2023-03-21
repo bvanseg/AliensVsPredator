@@ -11,7 +11,6 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.OrganismClientSync;
 import org.avp.common.network.packet.server.OrganismServerSync;
-import org.avp.common.world.playermode.PlayerMode;
 
 import java.util.concurrent.Callable;
 
@@ -24,10 +23,6 @@ public interface SpecialPlayer
     int getBroadcastRadius();
 
     void setBroadcastRadius(int broadcastRadius);
-
-    void setPlayerMode(PlayerMode playerMode);
-
-    PlayerMode getPlayerMode();
 
     boolean isEntityCullingEnabled();
 
@@ -96,7 +91,6 @@ public interface SpecialPlayer
         private boolean             entityCulling;
         private boolean             nightvisionEnabled;
         private boolean             canClimb;
-        private PlayerMode          playerMode                  = PlayerMode.NORMAL;
 
         public SpecialPlayerImpl()
         {
@@ -121,16 +115,6 @@ public interface SpecialPlayer
         public void setBroadcastRadius(int broadcastRadius)
         {
             this.broadcastRadius = broadcastRadius;
-        }
-
-        public void setPlayerMode(PlayerMode playerMode)
-        {
-            this.playerMode = playerMode;
-        }
-
-        public PlayerMode getPlayerMode()
-        {
-            return this.playerMode;
         }
 
         public boolean isEntityCullingEnabled()

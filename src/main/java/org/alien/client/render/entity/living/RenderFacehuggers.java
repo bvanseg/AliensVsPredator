@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class RenderFacehuggers<FACEHUGGER extends EntityFacehugger, MODEL extends ModelFacehugger> extends RenderLivingWrapper<FACEHUGGER, MODEL>
 {
-    public static ArrayList<EntityRenderTransforms> transforms = new ArrayList<EntityRenderTransforms>();
+    public static ArrayList<EntityRenderTransforms> transforms = new ArrayList<>();
 
     public RenderFacehuggers(RenderManager m, MapModelTexture<MODEL> model)
     {

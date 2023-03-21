@@ -335,7 +335,7 @@ public class GuiAssembler extends GuiContainer
         }
 
         if (searchRequiresUpdate) {
-            ArrayList<ItemSchematic> searchedSchematics = new ArrayList<ItemSchematic>();
+            ArrayList<ItemSchematic> searchedSchematics = new ArrayList<>();
 
             for (ItemSchematic schematic : sortedSchematics)
             {

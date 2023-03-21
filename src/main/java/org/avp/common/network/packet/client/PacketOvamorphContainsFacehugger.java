@@ -42,19 +42,14 @@ public class PacketOvamorphContainsFacehugger implements IMessage, IMessageHandl
     @Override
     public PacketOvamorphContainsFacehugger onMessage(PacketOvamorphContainsFacehugger packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                World world = ClientGame.instance.minecraft().player.world;
-                Entity entity = world.getEntityByID(packet.entityId);
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            World world = ClientGame.instance.minecraft().player.world;
+            Entity entity = world.getEntityByID(packet.entityId);
 
-                if (world != null && entity != null && entity instanceof EntityOvamorph)
-                {
-                    EntityOvamorph ovamorph = (EntityOvamorph) entity;
-                    ovamorph.setContainsFacehugger(packet.containsFacehugger);
-                }
+            if (world != null && entity != null && entity instanceof EntityOvamorph)
+            {
+                EntityOvamorph ovamorph = (EntityOvamorph) entity;
+                ovamorph.setContainsFacehugger(packet.containsFacehugger);
             }
         });
 

@@ -8,7 +8,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.avp.common.entity.living.EntityMarine;
-import org.lib.registry.EntitySpawnRegistryUtil;
+import org.lib.common.registry.EntitySpawnRegistryUtil;
 
 import java.util.ArrayList;
 import java.util.List;

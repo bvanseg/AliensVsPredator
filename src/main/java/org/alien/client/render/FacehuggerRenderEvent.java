@@ -16,19 +16,13 @@ public class FacehuggerRenderEvent
     @SubscribeEvent
     public void renderTickOverlay(RenderGameOverlayEvent event)
     {
-        if (ClientGame.instance.minecraft().player != null)
-        {
-            if (event.getType() == RenderGameOverlayEvent.ElementType.AIR)
-            {
-                if (ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && Entities.isRiding(ClientGame.instance.minecraft().player, EntityFacehugger.class))
-                {
-                    OpenGL.pushMatrix();
-                    {
-                        Draw.drawOverlay(Resources.instance.BLUR_FACEHUGGER);
-                    }
-                    OpenGL.popMatrix();
-                }
-            }
-        }
+        if (ClientGame.instance.minecraft().player == null) return;
+        if (event.getType() != RenderGameOverlayEvent.ElementType.AIR) return;
+        if (ClientGame.instance.minecraft().gameSettings.thirdPersonView != 0) return;
+        if (!Entities.isRiding(ClientGame.instance.minecraft().player, EntityFacehugger.class)) return;
+
+        OpenGL.pushMatrix();
+        Draw.drawOverlay(Resources.instance.BLUR_FACEHUGGER);
+        OpenGL.popMatrix();
     }
 }

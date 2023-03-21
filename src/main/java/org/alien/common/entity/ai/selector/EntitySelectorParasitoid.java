@@ -7,8 +7,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import org.avp.common.AVPItems;
-import org.lib.predicate.EntitySelectorBase;
-import org.lib.predicate.Predicates;
+import org.lib.common.predicate.EntitySelectorBase;
+import org.lib.common.predicate.Predicates;
 import org.predator.common.PredatorItems;
 
 import java.util.ArrayList;
