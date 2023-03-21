@@ -31,7 +31,7 @@ public class AVPCreativeTabs implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(Game.instance.getItem(PredatorBlocks.SHIP_5));
+                                                                return new ItemStack(Game.instance.getItem(PredatorBlocks.SHIP_DECOR_2));
                                                             }
 
                                                             public String getTranslationKey()

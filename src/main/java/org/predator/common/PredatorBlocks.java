@@ -20,19 +20,19 @@ import org.lib.common.registry.BlockRegistryUtil;
 public class PredatorBlocks implements IPreInitEvent {
     public static final PredatorBlocks instance = new PredatorBlocks();
 
-    public static final Block METAL_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shippanel");
-    public static final Block METAL_2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shippannelyautja");
-    public static final Block SHIP_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipwallbase");
-    public static final Block SHIP_2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipsupportpillar");
-    public static final Block SHIP_3 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipdecor1");
-    public static final Block SHIP_4 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipbrick");
-    public static final Block SHIP_5 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipdecor2");
-    public static final Block SHIP_6 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipdecor3");
+    public static final Block SHIP_PANEL = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shippanel");
+    public static final Block SHIP_PANEL_YAUTJA = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shippannelyautja");
+    public static final Block SHIP_WALL_BASE = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipwallbase");
+    public static final Block SHIP_SUPPORT_PILLAR = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipsupportpillar");
+    public static final Block SHIP_BRICK = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipbrick");
+    public static final Block SHIP_DECOR_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipdecor1");
+    public static final Block SHIP_DECOR_2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipdecor2");
+    public static final Block SHIP_DECOR_3 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(15.0F).setRegistryName("shipdecor3");
     public static final Block TEMPLE_TILES_SINGLE = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("templebricksingle");
     public static final Block TEMPLE_BRICK = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("templebrick");
     public static final Block TEMPLE_TILE = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("templetile");
-    public static final Block TEMPLE_WALL_1 = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("templewallbase");
-    public static final Block TEMPLE_WALL_2 = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("templefloor");
+    public static final Block TEMPLE_WALL_BASE = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("templewallbase");
+    public static final Block TEMPLE_FLOOR = new BlockMaterial(Material.ROCK).setHardness(5F).setResistance(15.0F).setRegistryName("templefloor");
     public static final Block STASIS_MECHANISM = new BlockStasisMechanism(Material.IRON).setHardness(5.0F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("stasismechanism");
     public static final Block SKULL_YAUTJA = new BlockSkullYautja().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("skull.yautja");
     public static final Block BIOMASK_CLASSIC = new BlockBiomaskClassic().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("biomask.classic");
@@ -46,8 +46,8 @@ public class PredatorBlocks implements IPreInitEvent {
     public static final Block TEMPLE_BRICK_STAIRS = new BlockCustomStairs(TEMPLE_BRICK.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_brick_stairs");
     public static final Block TEMPLE_BRICK_SINGLE_STAIRS = new BlockCustomStairs(TEMPLE_TILES_SINGLE.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_brick_single_stairs");
     public static final Block TEMPLE_TILE_STAIRS = new BlockCustomStairs(TEMPLE_TILE.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_tile_stairs");
-    public static final Block TEMPLE_WALL_STAIRS = new BlockCustomStairs(TEMPLE_WALL_1.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_wall_stairs");
-    public static final Block TEMPLE_FLOOR_STAIRS = new BlockCustomStairs(TEMPLE_WALL_2.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_floor_stairs");
+    public static final Block TEMPLE_WALL_STAIRS = new BlockCustomStairs(TEMPLE_WALL_BASE.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_wall_stairs");
+    public static final Block TEMPLE_FLOOR_STAIRS = new BlockCustomStairs(TEMPLE_FLOOR.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_floor_stairs");
 
     // Slabs
     public static final BlockCustomSlab TEMPLE_BRICK_SLAB_HALF = new BlockCustomSlab.Half("temple_brick_slab", TEMPLE_PROPS);
@@ -72,21 +72,21 @@ public class PredatorBlocks implements IPreInitEvent {
     }
 
     private void registerBlocks() {
-        BlockRegistryUtil.registerStandardBlock(METAL_1);
-        BlockRegistryUtil.registerStandardBlock(METAL_2);
+        BlockRegistryUtil.registerStandardBlock(SHIP_PANEL);
+        BlockRegistryUtil.registerStandardBlock(SHIP_PANEL_YAUTJA);
 
-        BlockRegistryUtil.registerStandardBlock(SHIP_1);
-        BlockRegistryUtil.registerStandardBlock(SHIP_2);
-        BlockRegistryUtil.registerStandardBlock(SHIP_3);
-        BlockRegistryUtil.registerStandardBlock(SHIP_4);
-        BlockRegistryUtil.registerStandardBlock(SHIP_5);
-        BlockRegistryUtil.registerStandardBlock(SHIP_6);
+        BlockRegistryUtil.registerStandardBlock(SHIP_WALL_BASE);
+        BlockRegistryUtil.registerStandardBlock(SHIP_SUPPORT_PILLAR);
+        BlockRegistryUtil.registerStandardBlock(SHIP_DECOR_1);
+        BlockRegistryUtil.registerStandardBlock(SHIP_BRICK);
+        BlockRegistryUtil.registerStandardBlock(SHIP_DECOR_2);
+        BlockRegistryUtil.registerStandardBlock(SHIP_DECOR_3);
 
         BlockRegistryUtil.registerStandardBlock(TEMPLE_TILES_SINGLE);
         BlockRegistryUtil.registerStandardBlock(TEMPLE_BRICK);
         BlockRegistryUtil.registerStandardBlock(TEMPLE_TILE);
-        BlockRegistryUtil.registerStandardBlock(TEMPLE_WALL_1);
-        BlockRegistryUtil.registerStandardBlock(TEMPLE_WALL_2);
+        BlockRegistryUtil.registerStandardBlock(TEMPLE_WALL_BASE);
+        BlockRegistryUtil.registerStandardBlock(TEMPLE_FLOOR);
 
         BlockRegistryUtil.registerStandardBlock(SKULL_YAUTJA);
         BlockRegistryUtil.registerStandardBlock(BIOMASK_CLASSIC);
