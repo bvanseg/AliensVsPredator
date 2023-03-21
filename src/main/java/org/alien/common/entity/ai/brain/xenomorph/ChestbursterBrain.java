@@ -54,8 +54,11 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 		this.addTask(new LeapAtTargetBrainTask(0.8F));
 
 		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() instanceof ItemFood)
-				.onUseItem(e -> {
-					entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.FOOD_YIELD));
+				.onUseItem(entityItem -> {
+					ItemFood itemFood = (ItemFood) entityItem.getItem().getItem();
+					int foodGain = (int) (JellyConstants.BASE_FOOD_YIELD * itemFood.getSaturationModifier(entityItem.getItem()));
+					int jellyGain = (entityItem.getItem().getCount() * foodGain);
+					entity.setJellyLevel(entity.getJellyLevel() + jellyGain);
 					entity.world.playSound(null, entity.getPosition(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.NEUTRAL, 1F, 1F);
 				}));
 		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY)
