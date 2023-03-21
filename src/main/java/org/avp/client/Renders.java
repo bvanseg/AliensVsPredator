@@ -78,7 +78,7 @@ import org.predator.client.render.entity.living.RenderYautjaBerserker;
 import org.predator.client.render.entity.living.RenderYautjaWarrior;
 import org.predator.client.render.item.*;
 import org.predator.client.render.tile.RenderStasisMechanism;
-import org.predator.common.PredatorBlocks;
+import org.predator.common.block.init.PredatorBlocks;
 import org.predator.common.PredatorItems;
 import org.predator.common.entity.*;
 import org.predator.common.entity.living.EntityPredatorHound;
