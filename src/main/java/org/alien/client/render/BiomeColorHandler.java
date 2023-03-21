@@ -7,10 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.ColorizerGrass;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -18,7 +15,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.AlienBlocks;
 import org.avp.common.AVPSettings;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 @SideOnly(Side.CLIENT)
@@ -51,35 +47,26 @@ public class BiomeColorHandler implements IInitEvent
 
     public static void registerFoliageColorHandler(Block block)
     {
-        ClientGame.instance.minecraft().getItemColors().registerItemColorHandler(new IItemColor() {
-            @Override
-            public int colorMultiplier(ItemStack stack, int tintIndex)
-            {
-                return 0x228833;
-            }
-        }, block);
+        ClientGame.instance.minecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> 0x228833, block);
 
-        ClientGame.instance.minecraft().getBlockColors().registerBlockColorHandler(new IBlockColor() {
-            public int colorMultiplier(IBlockState state, @Nullable IBlockAccess worldIn, @Nullable BlockPos pos, int tintIndex)
+        ClientGame.instance.minecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
+            if (AVPSettings.instance.isHalloweenEventEnabled())
             {
-                if (AVPSettings.instance.isHalloweenEventEnabled())
+                switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
                 {
-                    switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
-                    {
-                        case 1:
-                            return 0xF1CC0C; //Yellow
-                        case 2:
-                            return 0xF08C00; //Orange
-                        case 3:
-                            return 0xAA1111; //Red
+                    case 1:
+                        return 0xF1CC0C; //Yellow
+                    case 2:
+                        return 0xF08C00; //Orange
+                    case 3:
+                        return 0xAA1111; //Red
 
-                        default:
-                            return 0xAA6644; //Brown
-                    }
+                    default:
+                        return 0xAA6644; //Brown
                 }
-
-                return 0x228833; //Default
             }
+
+            return 0x228833; //Default
         }, block);
     }
 

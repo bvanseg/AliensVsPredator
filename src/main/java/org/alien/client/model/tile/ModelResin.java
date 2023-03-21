@@ -12,6 +12,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import org.alien.client.model.tile.cached.CachedModelResin;
 
 import java.util.Collection;
+import java.util.function.Function;
 
 public class ModelResin implements IModel
 {
@@ -37,7 +38,7 @@ public class ModelResin implements IModel
     }
     
     @Override
-    public IBakedModel bake(IModelState state, VertexFormat format, java.util.function.Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
+    public IBakedModel bake(IModelState state, VertexFormat format, Function<ResourceLocation, TextureAtlasSprite> bakedTextureGetter)
     {
         IModel model = null;
         

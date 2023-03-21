@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.avp.common.AVPSettings;
-import org.lib.registry.EntityRegistryUtil;
+import org.lib.common.registry.EntityRegistryUtil;
 import org.predator.common.entity.*;
 import org.predator.common.entity.living.EntityPredatorHound;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;

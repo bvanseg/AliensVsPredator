@@ -28,18 +28,13 @@ public class PacketFireAPC implements IMessage, IMessageHandler<PacketFireAPC, P
     @Override
     public PacketFireAPC onMessage(PacketFireAPC packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            if (ctx.getServerHandler().player != null && ctx.getServerHandler().player.world != null)
             {
-                if (ctx.getServerHandler().player != null && ctx.getServerHandler().player.world != null)
-                {
-                    EntityGrenade grenade = new EntityGrenade(ctx.getServerHandler().player.world, ctx.getServerHandler().player);
-                    grenade.explodeOnImpact = true;
-                    grenade.velocity = 1D;
-                    ctx.getServerHandler().player.world.spawnEntity(grenade);
-                }
+                EntityGrenade grenade = new EntityGrenade(ctx.getServerHandler().player.world, ctx.getServerHandler().player);
+                grenade.explodeOnImpact = true;
+                grenade.velocity = 1D;
+                ctx.getServerHandler().player.world.spawnEntity(grenade);
             }
         });
         return null;

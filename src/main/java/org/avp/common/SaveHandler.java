@@ -20,7 +20,7 @@ public class SaveHandler
 
     public SaveHandler()
     {
-        this.dataHandlers = new ArrayList<IWorldSaveHandler>();
+        this.dataHandlers = new ArrayList<>();
         this.addDataHandlers();
     }
 

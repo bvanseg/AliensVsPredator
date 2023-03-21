@@ -8,14 +8,14 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.avp.common.AVPBlocks;
+import org.avp.common.block.init.AVPBlocks;
 
 import java.util.ArrayList;
 
 public class FarmlandRegistry
 {
     public static FarmlandRegistry instance = new FarmlandRegistry();
-    private final ArrayList<Block> farmlandRegistry = new ArrayList<Block>();
+    private final ArrayList<Block> farmlandRegistry = new ArrayList<>();
 
     private FarmlandRegistry()
     {

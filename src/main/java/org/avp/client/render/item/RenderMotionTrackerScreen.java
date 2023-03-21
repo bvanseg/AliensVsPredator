@@ -14,8 +14,8 @@ import java.util.ArrayList;
 public class RenderMotionTrackerScreen
 {
     public static final RenderMotionTrackerScreen instance         = new RenderMotionTrackerScreen();
-    private final ArrayList<Float>                      contactsAngle    = new ArrayList<Float>();
-    private final ArrayList<Double>                     contactsDistance = new ArrayList<Double>();
+    private final ArrayList<Float>                      contactsAngle    = new ArrayList<>();
+    private final ArrayList<Double>                     contactsDistance = new ArrayList<>();
     private String                                displayString;
     private final float[]                               pitch            = new float[31];
     private float                                 direction        = 0.0F;

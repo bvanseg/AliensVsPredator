@@ -1,7 +1,6 @@
 package org.alien.common.entity.living.vardic;
 
 import com.asx.mdx.common.minecraft.entity.Entities;
-import com.google.common.base.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
@@ -22,6 +21,7 @@ import org.lib.brain.Brainiac;
 import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class EntityDeaconShark extends SpeciesAlien implements Brainiac<DeaconSharkBrain>
 {
@@ -109,7 +109,7 @@ public class EntityDeaconShark extends SpeciesAlien implements Brainiac<DeaconSh
 
         for (EntityLivingBase target : targets)
         {
-            if (this.entitySelector.apply(target) && this.canEntityBeSeen(target))
+            if (this.entitySelector.test(target) && this.canEntityBeSeen(target))
             {
                 attackTarget = target;
             }

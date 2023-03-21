@@ -9,8 +9,8 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Maturable;
-import org.alien.common.entity.ai.brain.CrusherBrain;
-import org.alien.common.entity.ai.brain.XenomorphBrain;
+import org.alien.common.entity.ai.brain.xenomorph.CrusherBrain;
+import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.world.hive.HiveMember;
 
 public class EntityCrusher extends EntityPraetorian implements Maturable, HiveMember

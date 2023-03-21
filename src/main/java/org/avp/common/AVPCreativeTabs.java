@@ -6,7 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.alien.common.AlienItems;
-import org.predator.common.PredatorBlocks;
+import org.predator.common.block.init.PredatorBlocks;
 import org.predator.common.PredatorItems;
 
 public class AVPCreativeTabs implements IPreInitEvent
@@ -31,7 +31,7 @@ public class AVPCreativeTabs implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(Game.instance.getItem(PredatorBlocks.SHIP_5));
+                                                                return new ItemStack(Game.instance.getItem(PredatorBlocks.SHIP_DECOR_2));
                                                             }
 
                                                             public String getTranslationKey()

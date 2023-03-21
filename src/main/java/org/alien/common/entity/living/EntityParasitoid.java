@@ -16,7 +16,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.Parasitoid;
-import org.alien.common.entity.ai.brain.ParasitoidBrain;
+import org.alien.common.entity.ai.brain.parasitoid.ParasitoidBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
@@ -161,7 +161,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
     @Override
     public boolean canAttach(Entity entity)
     {
-        return (entity instanceof EntityLivingBase) && EntitySelectorParasitoid.instance.apply((EntityLivingBase) entity);
+        return (entity instanceof EntityLivingBase) && EntitySelectorParasitoid.instance.test((EntityLivingBase) entity);
     }
 
     @Override
@@ -248,5 +248,10 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
     public SoundEvent getImplantSound()
     {
         return null;
+    }
+
+    @Override
+    public boolean canBreatheUnderwater() {
+        return true;
     }
 }

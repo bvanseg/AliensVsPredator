@@ -27,7 +27,7 @@ import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, Host, Brainiac<CombatSyntheticBrain>
 {
-    private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityCombatSynthetic.class, DataSerializers.BOOLEAN);
 
     private CombatSyntheticBrain brain;
 
@@ -164,5 +164,10 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(AVPItems.SUMMONER_COMBAT_SYNTHETIC);
+    }
+
+    @Override
+    protected float getSoundPitch() {
+        return super.getSoundPitch() * 0.75F;
     }
 }

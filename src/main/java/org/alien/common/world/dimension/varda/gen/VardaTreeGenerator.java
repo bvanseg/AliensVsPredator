@@ -11,8 +11,8 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import org.alien.common.AlienBlocks;
-import org.avp.common.AVPBlocks;
 import org.avp.common.block.BlockUnidentifiedLog;
+import org.avp.common.block.init.AVPBlocks;
 
 import java.util.Random;
 

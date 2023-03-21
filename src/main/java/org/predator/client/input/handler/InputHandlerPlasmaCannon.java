@@ -2,13 +2,13 @@ package org.predator.client.input.handler;
 
 import com.asx.mdx.client.ClientGame;
 import org.avp.client.KeybindHandler;
-import org.avp.client.input.IInputHandler;
+import org.avp.client.input.InputHandler;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketPlasmaDischarge;
 import org.predator.client.PredatorSounds;
 import org.predator.common.item.ItemWristbracer;
 
-public class InputHandlerPlasmaCannon implements IInputHandler
+public class InputHandlerPlasmaCannon implements InputHandler
 {
     public static final InputHandlerPlasmaCannon instance = new InputHandlerPlasmaCannon();
 

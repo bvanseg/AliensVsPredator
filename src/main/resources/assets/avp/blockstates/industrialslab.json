@@ -1,6 +1,0 @@
-{
-    "variants": {
-        "half=bottom": { "model": "avp:industrialslab" },
-        "half=top": { "model": "avp:industrialslab_upper" }
-    }
-}

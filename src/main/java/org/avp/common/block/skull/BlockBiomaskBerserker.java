@@ -1,26 +1,21 @@
 package org.avp.common.block.skull;
 
 import com.asx.mdx.client.render.OpenGL;
-import com.asx.mdx.client.render.model.MapModelTexture;
 import com.asx.mdx.client.render.model.texture.Texture;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 import org.predator.client.model.tile.skull.ModelBiomaskBerserker;
 
 public class BlockBiomaskBerserker extends BlockSkull
 {
-    @SideOnly(Side.CLIENT)
-    private static final MapModelTexture<ModelBiomaskBerserker> model = Resources.instance.models().BIOMASK_BERSERKER;
 
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelBiomaskBerserker m = model.getModel();
+        ModelBiomaskBerserker m = Resources.instance.models().BIOMASK_BERSERKER.getModel();
         return new ModelRenderer[] { m.biomaskMouth };
     }
 
@@ -35,7 +30,7 @@ public class BlockBiomaskBerserker extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return model.getTexture();
+        return Resources.instance.models().BIOMASK_BERSERKER.getTexture();
     }
     
     @Override

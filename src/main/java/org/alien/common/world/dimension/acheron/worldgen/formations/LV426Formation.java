@@ -5,7 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import org.alien.common.AlienBlocks;
 import org.alien.common.world.worldgen.TerrainGenVariant;
-import org.avp.common.AVPBlocks;
+import org.avp.common.block.init.AVPBlocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +32,7 @@ public class LV426Formation extends TerrainGenVariant<LV426Formation>
 
     public Pos[] getOffsets()
     {
-        List<Pos> set = new ArrayList<Pos>();
+        List<Pos> set = new ArrayList<>();
 
         offset(set, 0, 9, 3);
         offset(set, 0, 9, 4);

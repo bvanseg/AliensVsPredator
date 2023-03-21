@@ -13,7 +13,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.entity.ai.brain.OvamorphBrain;
+import org.alien.common.entity.ai.brain.xenomorph.OvamorphBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.hive.HiveMember;
@@ -136,7 +136,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     protected void collideWithEntity(Entity entity)
     {
         super.collideWithEntity(entity);
-        if (entity instanceof EntityLivingBase && EntitySelectorParasitoid.instance.apply((EntityLivingBase) entity))
+        if (entity instanceof EntityLivingBase && EntitySelectorParasitoid.instance.test((EntityLivingBase) entity))
             this.setTimeLeftUntilOpen(0);
     }
 

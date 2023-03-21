@@ -207,32 +207,36 @@ tile.avp:unidirt.name=Unidentified dirt
 tile.avp:unistone.name=Unidentified stone
 tile.avp:unisand.name=Unidentified sand
 tile.avp:unigravel.name=Unidentified gravel
-tile.avp:unitree.wood.name=Unidentified Wood
+tile.avp:unitree.log.name=Unidentified Wood
 tile.avp:unitree.tendons.name=Unidentified Tree Tendons
 tile.avp:unitree.leaves.name=Unidentified Leaves
 tile.avp:unitree.sapling.name=Unidentified Sapling
+
 tile.avp:ceilingpanel.name=Ceiling Panel
 tile.avp:ceilingfan.name=Ceiling Fan
 tile.avp:ceilingvent.name=Ceiling Vent
 tile.avp:ceilinggrill.name=Ceiling Grill
 tile.avp:ceilinggrillstairs.name=Ceiling Grill Stairs
-tile.avp:ceilinggrillslab.name=Ceiling Grill Slab
+tile.avp:ceiling_grill_slab.name=Ceiling Grill Slab
+
 tile.avp:floorgrill.name=Floor Grill
 tile.avp:floorgrillstairs.name=Floor Grill Stairs
-tile.avp:floorgrillslab.name=Floor Grill Slab
+tile.avp:floor_grill_slab.name=Floor Grill Slab
 tile.avp:industrialwall.name=Industrial Wall
 tile.avp:industrialwall2.name=Industrial Wall
 tile.avp:industrialwallstairs.name=Industrial Wall Stairs
-tile.avp:industrialslab.name=Industrial Slab
+tile.avp:industrial_slab.name=Industrial Slab
 tile.avp:industrialvent.name=Industrial Vent
 tile.avp:vent.wall.name=Vent Wall
 tile.avp:vent.ceiling.name=Vent Ceiling
+
 tile.avp:industrialbricks.name=Industrial Bricks
-tile.avp:industrialbrickslab.name=Industrial Brick Slab
+tile.avp:industrial_brick_slab.name=Industrial Brick Slab
 tile.avp:industrialbrickstairs.name=Industrial Brick Stairs
 tile.avp:industrialglass.name=Industrial Glass
 tile.avp:industrialglassstairs.name=Industrial Glass Stairs
-tile.avp:industrialglassslab.name=Industrial Glass Slab
+tile.avp:industrial_glass_slab.name=Industrial Glass Slab
+
 tile.avp:metalpanel1.name=Metal Panel
 tile.avp:metalpanel1stairs.name=Metal Panel Stairs
 tile.avp:metalpanel1slab.name=Metal Panel Slab
@@ -242,14 +246,18 @@ tile.avp:metalpanel2slab.name=Metal Panel Slab
 tile.avp:metalpanel3.name=Metal Panel
 tile.avp:metalpanel3stairs.name=Metal Panel Stairs
 tile.avp:metalpanel3slab.name=Metal Panel Slab
+
 tile.avp:hiveresin.name=Hive Resin
 tile.avp:hiveresin.standard.name=Hive Resin (Standard)
+
 tile.avp:shippanel.name=Ship Panel
 tile.avp:shippanelstairs.name=Ship Panel Stairs
 tile.avp:shippanelslab.name=Ship Panel Slab
+
 tile.avp:tileovamorphdesign.name=Ovamorph Hieroglyphics Design
 tile.avp:tilefacehuggerdesign.name=Facehugger Hieroglyphics Design
 tile.avp:tilealiendesign.name=Alien Hieroglyphics Design
+
 tile.avp:shipwallbase.name=Ship Wall Base
 tile.avp:shipsupportpillar.name=Ship Support Pillar
 tile.avp:shipdecor1.name=Ship Decor
@@ -257,16 +265,44 @@ tile.avp:shipdecor2.name=Ship Decor
 tile.avp:shipdecor3.name=Ship Decor
 tile.avp:shipbrick.name=Ship Brick
 tile.avp:shippannelyautja.name=Yautja Ship Hieroglyphics
+
+tile.avp:ship_panel_slab.name=Yautja Panel Slab
+tile.avp:ship_panel_yautja_slab.name=Yautja Ship Hieroglyphics Slab
+tile.avp:ship_brick_slab.name=Ship Brick Slab
+tile.avp:ship_decor_3_slab.name=Ship Decor Slab
+tile.avp:ship_support_pillar_slab.name=Ship Support Pillar Slab
+
+tile.avp:ship_panel_stairs.name=Yautja Panel Stairs
+tile.avp:ship_panel_yautja_stairs.name=Yautja Ship Hieroglyphics Stairs
+tile.avp:ship_brick_stairs.name=Ship Brick Stairs
+tile.avp:ship_decor_3_stairs.name=Ship Decor Stairs
+tile.avp:ship_support_pillar_stairs.name=Ship Support Pillar Stairs
+
 tile.avp:templebricksingle.name=Temple Brick Single
 tile.avp:templebrick.name=Temple Brick 
 tile.avp:templetile.name=Temple Tile 
 tile.avp:templewallbase.name=Temple Wall Base 
-tile.avp:templefloor.name=Temple Floor 
-tile.avp:skulls.name=Skull Pile 
+tile.avp:templefloor.name=Temple Floor
+
+tile.avp:temple_brick_single_slab.name=Temple Brick Single Slab
+tile.avp:temple_brick_slab.name=Temple Brick Slab
+tile.avp:temple_tile_slab.name=Temple Tile Slab
+tile.avp:temple_wall_slab.name=Temple Wall Base Slab
+tile.avp:temple_floor_slab.name=Temple Floor Slab
+
+tile.avp:temple_brick_single_stairs.name=Temple Brick Single Stairs
+tile.avp:temple_brick_stairs.name=Temple Brick Stairs
+tile.avp:temple_tile_stairs.name=Temple Tile Stairs
+tile.avp:temple_wall_stairs.name=Temple Wall Base Stairs
+tile.avp:temple_floor_stairs.name=Temple Floor Stairs
+
+tile.avp:skulls.name=Skull Pile
+
 tile.avp:plasticblock.name=Plastic Block 
 tile.avp:plastictile.name=Plastic Tile
 tile.avp:plastictiletri.name=Plastic Triangular Tiles
 tile.avp:plastictilecircle.name=Plastic Circular Tiles
+
 tile.avp:engineershipfloor.name=Engineer Ship Floor 
 tile.avp:engineershipbrick.name=Engineer Ship Brick 
 tile.avp:engineershipbrick1.name=Engineer Ship Brick 
@@ -286,7 +322,8 @@ tile.avp:engineershipcolumn1.name=Engineer Ship Biomechanical Column
 tile.avp:engineershipcolumn2.name=Engineer Ship Ribbing
 tile.avp:engineershipmaterial0.name=Engineer Ship Material 
 tile.avp:engineershipmaterial1.name=Engineer Ship Material 
-tile.avp:engineershipmaterial2.name=Engineer Ship Material 
+tile.avp:engineershipmaterial2.name=Engineer Ship Material
+
 tile.avp:paddingpanel.name=White Geometric Padding Panel
 tile.avp:paddingpanel_white.name=White Geometric Padding Panel
 tile.avp:paddingpanel_orange.name=Orange Geometric Padding Panel
@@ -296,6 +333,7 @@ tile.avp:padding_square_white.name=White Square Padding
 tile.avp:padding_square_orange.name=Orange Square Padding
 tile.avp:padding_tiles_white.name=White Padding Tiles
 tile.avp:padding_tiles_orange.name=Orange Padding Tiles
+
 tile.avp:lv426rock.name=Lv-426 Rock
 
 #BLOCKS-SPECIAL
