@@ -10,6 +10,8 @@ import net.minecraftforge.oredict.OreDictionary;
 import org.alien.common.AlienBlocks;
 import org.apache.commons.lang3.StringUtils;
 import org.avp.AVP;
+import org.avp.common.block.init.AVPBlocks;
+import org.avp.common.block.init.AVPOreBlocks;
 
 import java.util.Arrays;
 
@@ -39,13 +41,13 @@ public class AVPOreDict
         registerOreDict("magnet", AVPItems.ITEM_NEODYMIUM_MAGNET, "", "material");
         registerOreDict("carbon", AVPItems.ITEM_CARBON, "", "material");
 
-        registerOreDict("copper", AVPBlocks.ORE_COPPER, "ore");
-        registerOreDict("lithium", AVPBlocks.ORE_LITHIUM, "ore");
-        registerOreDict("aluminum", AVPBlocks.ORE_BAUXITE, "ore");
-        registerOreDict("aluminium", AVPBlocks.ORE_BAUXITE, "ore");
-        registerOreDict("silicon", AVPBlocks.ORE_SILICON, "ore");
-        registerOreDict("monazite", AVPBlocks.ORE_MONAZITE, "ore");
-        registerOreDict("cobalt", AVPBlocks.ORE_COBALT, "ore");
+        registerOreDict("copper", AVPOreBlocks.ORE_COPPER, "ore");
+        registerOreDict("lithium", AVPOreBlocks.ORE_LITHIUM, "ore");
+        registerOreDict("aluminum", AVPOreBlocks.ORE_BAUXITE, "ore");
+        registerOreDict("aluminium", AVPOreBlocks.ORE_BAUXITE, "ore");
+        registerOreDict("silicon", AVPOreBlocks.ORE_SILICON, "ore");
+        registerOreDict("monazite", AVPOreBlocks.ORE_MONAZITE, "ore");
+        registerOreDict("cobalt", AVPOreBlocks.ORE_COBALT, "ore");
 
         
         registerOreDict("wood", AlienBlocks.GIGER_LOG, "log");

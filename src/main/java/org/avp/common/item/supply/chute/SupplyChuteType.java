@@ -7,7 +7,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.Resources;
 import org.avp.client.model.entity.ModelSupplyChute;
-import org.avp.common.AVPBlocks;
+import org.avp.common.block.init.AVPBlocks;
+import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.avp.common.entity.EntitySupplyChute;
 import org.avp.common.entity.EntitySupplyChuteMarines;
 import org.avp.common.entity.EntitySupplyChuteSeegson;
@@ -101,13 +102,13 @@ public enum SupplyChuteType {
             switch (type)
             {
                 case MARINES:
-                    return AVPBlocks.CRATE_MARINES;
+                    return AVPTileEntityBlocks.CRATE_MARINES;
 
                 case SEEGSON:
-                    return AVPBlocks.CRATE_SEEGSON;
+                    return AVPTileEntityBlocks.CRATE_SEEGSON;
 
                 default:
-                    return AVPBlocks.SUPPLY_CRATE;
+                    return AVPTileEntityBlocks.SUPPLY_CRATE;
             }
         }
 

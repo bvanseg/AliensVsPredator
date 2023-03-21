@@ -63,6 +63,11 @@ public class BlockRegistryUtil
         BlockRegistryUtil.setCreativeTab(block, itemblock);
     }
 
+    public static void registerStandardBlock(Block block) {
+        BlockRegistryUtil.registerBlock(block);
+        BlockRegistryUtil.registerItemBlock(block);
+    }
+
     private static void registerFluid(Block block) {
         BlockFluidBase fluid = (BlockFluidBase) block;
         FLUIDS.add(fluid);

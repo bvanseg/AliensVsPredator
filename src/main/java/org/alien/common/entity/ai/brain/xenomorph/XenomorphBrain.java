@@ -9,7 +9,8 @@ import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.alien.common.entity.ai.brain.task.xenomorph.ShareJellyBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.avp.common.AVPBlocks;
+import org.avp.common.block.init.AVPBlocks;
+import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
@@ -41,9 +42,9 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 		addToSets(Blocks.LIT_REDSTONE_LAMP, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
 		addToSets(Blocks.SEA_LANTERN, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
 		addToSets(Blocks.GLOWSTONE, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
-		addToSets(AVPBlocks.LIGHT_PANEL, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
+		addToSets(AVPTileEntityBlocks.LIGHT_PANEL, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
 
-		addToSets(AVPBlocks.POWERLINE, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
+		addToSets(AVPTileEntityBlocks.POWERLINE, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
 		addToSets(Blocks.REDSTONE_WIRE, BLOCKS_OF_INTEREST, DESTROY_BLOCKS);
 	}
 

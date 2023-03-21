@@ -9,7 +9,7 @@ import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import org.alien.common.world.dimension.BiomeGenLV;
 import org.avp.AVP;
-import org.avp.common.AVPBlocks;
+import org.avp.common.block.init.AVPBlocks;
 
 import java.util.Random;
 
