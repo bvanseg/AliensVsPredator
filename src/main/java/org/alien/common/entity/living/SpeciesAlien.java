@@ -211,12 +211,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     }
 
     @Override
-    public int getJellyProductionRate()
-    {
-        return 8 * 20;
-    }
-
-    @Override
     public int getJellyLevel()
     {
         return this.getDataManager().get(JELLY_LEVEL);
