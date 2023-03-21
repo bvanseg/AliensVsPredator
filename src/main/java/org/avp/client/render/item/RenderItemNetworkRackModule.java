@@ -71,7 +71,7 @@ public class RenderItemNetworkRackModule extends ItemRenderer<Model>
         {
             ItemNetworkRackModule module = (ItemNetworkRackModule) itemstack.getItem();
             // FIXME: Uncontrollable super typing, big no no.
-//            this.model = module.getModel();
+            this.model = module.getModel();
         }
 
         if (this.getModel() != null)

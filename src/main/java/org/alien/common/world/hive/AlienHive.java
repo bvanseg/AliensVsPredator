@@ -46,12 +46,14 @@ public class AlienHive {
 	
 	public void update() {
 		// TODO: Pass on hive to a royal hive member if one is available *before* destroying hive completely.
-		if (this.ownerEntity.isDead) {
-			this.destroy();
-		}
+	}
+
+	public void load() {
+		this.hiveMemberUUIDs.forEach(uuid -> AlienHiveHandler.instance.addEntityAsMemberToHive(uuid, this));
+		this.resinInHive.forEach(pos -> AlienHiveHandler.instance.addResinToHive(pos, this));
 	}
 	
-	public void destroy() {
+	public void unload() {
 		AlienHiveHandler.instance.removeHiveMembers(this.hiveMemberUUIDs);
 		AlienHiveHandler.instance.removeResinPositions(this.resinInHive);
 	}
