@@ -100,43 +100,51 @@ public class EntitySupplyChute extends Entity
         }
     }
 
+    private static final String DATA_NBT_KEY = "Data";
+    private static final String TIME_NBT_KEY = "Time";
+    private static final String DROP_ITEM_NBT_KEY = "DropItem";
+    private static final String HURT_ENTITIES_NBT_KEY = "HurtEntities";
+    private static final String FALL_HURT_AMOUNT_NBT_KEY = "FallHurtAmount";
+    private static final String FALL_HURT_MAX_NBT_KEY = "FallHurtMax";
+    private static final String TILE_ENTITY_DATA_NBT_KEY = "TileEntityData";
+
     @Override
     protected void writeEntityToNBT(NBTTagCompound tagCompound)
     {
-        tagCompound.setByte("Data", (byte) this.metadata);
-        tagCompound.setByte("Time", (byte) this.fallTime);
-        tagCompound.setBoolean("DropItem", this.shouldDropItem);
-        tagCompound.setBoolean("HurtEntities", this.hurtEntities);
-        tagCompound.setFloat("FallHurtAmount", this.fallHurtAmount);
-        tagCompound.setInteger("FallHurtMax", this.fallHurtMax);
+        tagCompound.setByte(DATA_NBT_KEY, (byte) this.metadata);
+        tagCompound.setByte(TIME_NBT_KEY, (byte) this.fallTime);
+        tagCompound.setBoolean(DROP_ITEM_NBT_KEY, this.shouldDropItem);
+        tagCompound.setBoolean(HURT_ENTITIES_NBT_KEY, this.hurtEntities);
+        tagCompound.setFloat(FALL_HURT_AMOUNT_NBT_KEY, this.fallHurtAmount);
+        tagCompound.setInteger(FALL_HURT_MAX_NBT_KEY, this.fallHurtMax);
 
         if (this.tileEntityData != null)
         {
-            tagCompound.setTag("TileEntityData", this.tileEntityData);
+            tagCompound.setTag(TILE_ENTITY_DATA_NBT_KEY, this.tileEntityData);
         }
     }
 
     @Override
     protected void readEntityFromNBT(NBTTagCompound tagCompund)
     {
-        this.metadata = tagCompund.getByte("Data") & 255;
-        this.fallTime = tagCompund.getByte("Time") & 255;
+        this.metadata = tagCompund.getByte(DATA_NBT_KEY) & 255;
+        this.fallTime = tagCompund.getByte(TIME_NBT_KEY) & 255;
 
-        if (tagCompund.hasKey("HurtEntities", 99))
+        if (tagCompund.hasKey(HURT_ENTITIES_NBT_KEY, 99))
         {
-            this.hurtEntities = tagCompund.getBoolean("HurtEntities");
-            this.fallHurtAmount = tagCompund.getFloat("FallHurtAmount");
-            this.fallHurtMax = tagCompund.getInteger("FallHurtMax");
+            this.hurtEntities = tagCompund.getBoolean(HURT_ENTITIES_NBT_KEY);
+            this.fallHurtAmount = tagCompund.getFloat(FALL_HURT_AMOUNT_NBT_KEY);
+            this.fallHurtMax = tagCompund.getInteger(FALL_HURT_MAX_NBT_KEY);
         }
 
-        if (tagCompund.hasKey("DropItem", 99))
+        if (tagCompund.hasKey(DROP_ITEM_NBT_KEY, 99))
         {
-            this.shouldDropItem = tagCompund.getBoolean("DropItem");
+            this.shouldDropItem = tagCompund.getBoolean(DROP_ITEM_NBT_KEY);
         }
 
-        if (tagCompund.hasKey("TileEntityData", 10))
+        if (tagCompund.hasKey(TILE_ENTITY_DATA_NBT_KEY, 10))
         {
-            this.tileEntityData = tagCompund.getCompoundTag("TileEntityData");
+            this.tileEntityData = tagCompund.getCompoundTag(TILE_ENTITY_DATA_NBT_KEY);
         }
     }
 

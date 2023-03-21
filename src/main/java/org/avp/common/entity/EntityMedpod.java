@@ -107,13 +107,16 @@ public class EntityMedpod extends Entity
         return this.tile;
     }
 
+    private static final String LAST_RIDDEN_ENTITY_UUID_NBT_KEY = "LastRiddenEntityUUID";
+
     @Override
     protected void readEntityFromNBT(NBTTagCompound nbt)
     {
-        String uuidString = nbt.getString("LastRiddenEntityUUID");
+        String uuidString = nbt.getString(LAST_RIDDEN_ENTITY_UUID_NBT_KEY);
 
         if (!uuidString.isEmpty())
         {
+            // TODO: Get from long bits here instead of string.
             this.lastRiddenEntityUUID = UUID.fromString(uuidString);
         }
     }
@@ -123,7 +126,8 @@ public class EntityMedpod extends Entity
     {
         if (this.lastRiddenEntityUUID != null)
         {
-            nbt.setString("LastRiddenEntityUUID", this.lastRiddenEntityUUID.toString());
+            // TODO: Set long bits here instead of string.
+            nbt.setString(LAST_RIDDEN_ENTITY_UUID_NBT_KEY, this.lastRiddenEntityUUID.toString());
         }
     }
 

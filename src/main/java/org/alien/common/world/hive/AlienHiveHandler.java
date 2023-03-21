@@ -50,9 +50,15 @@ public class AlienHiveHandler {
 				world.setBlockState(resinPos, resin.getParentBlock().getDefaultState(), 3);
 			}
 		}
+
+		resinPositionsToHive.remove(resinPos);
 	}
 
 	public void removeResinPositions(Set<BlockPos> resinPositions) {
 		this.resinPositionsToHive.keySet().removeAll(resinPositions);
+	}
+
+	public void addResinToHive(BlockPos resinPos, AlienHive alienHive) {
+		this.resinPositionsToHive.put(resinPos, alienHive);
 	}
 }

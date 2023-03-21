@@ -21,10 +21,6 @@ public interface HiveMember {
 		return EMPTY_HIVE_ID;
 	}
 	
-	default boolean canBecomeHiveMember() {
-		return this.getHiveMemberID() != EMPTY_HIVE_ID;
-	}
-	
 	default AlienHive getAlienHive() {
 		return AlienHiveHandler.instance.getHiveForEntityID(this.getHiveMemberID());
 	}
