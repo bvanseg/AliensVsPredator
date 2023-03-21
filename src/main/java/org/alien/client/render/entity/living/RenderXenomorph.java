@@ -6,7 +6,7 @@ import com.asx.mdx.client.render.model.MapModelTexture;
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.alien.common.api.parasitoidic.Maturable;
+import org.alien.client.render.util.AlienGrowthUtil;
 import org.alien.common.entity.living.SpeciesXenomorph;
 
 public class RenderXenomorph<XENO extends SpeciesXenomorph, MODEL extends Model<? extends SpeciesXenomorph>> extends RenderLivingWrapper<XENO, MODEL>
@@ -27,15 +27,7 @@ public class RenderXenomorph<XENO extends SpeciesXenomorph, MODEL extends Model<
     @Override
     protected void preRenderCallback(XENO xeno, float renderPartialTicks)
     {
-        float additionalScale = 0F;
-        float jellyLevelPrev = xeno.growthProgress;
-        xeno.growthProgress = xeno.getJellyLevel();
-        xeno.growthProgress = jellyLevelPrev + ((xeno.growthProgress - jellyLevelPrev) * renderPartialTicks * 0.005f);
-
-        if (xeno instanceof Maturable) {
-            additionalScale = xeno.growthProgress / (((Maturable) xeno).getMaturityLevel() * 2);
-        }
-
+        float additionalScale = AlienGrowthUtil.calculateJellyGrowthFactor(xeno, 0.005f, 2, renderPartialTicks);
         OpenGL.scale(this.scale + additionalScale, this.scale + additionalScale, this.scale + additionalScale);
         super.preRenderCallback(xeno, renderPartialTicks);
     }
