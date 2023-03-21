@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.AlienEntitySpawns;
 import org.avp.AVP;
-import org.lib.registry.EntitySpawnRegistryUtil;
+import org.lib.common.registry.EntitySpawnRegistryUtil;
 import org.predator.common.PredatorEntitySpawns;
 
 import java.io.File;
@@ -85,7 +85,7 @@ public class AVPSettings implements IPreInitEvent, IFlexibleConfiguration
     {
         public static final ClientSettings     instance          = new ClientSettings();
         private Configuration                  configuration;
-        private final ArrayList<ConfigSetting> allSettings       = new ArrayList<ConfigSetting>();
+        private final ArrayList<ConfigSetting> allSettings       = new ArrayList<>();
 
         private final String                   CATEGORY_GRAPHICS = "graphics";
 

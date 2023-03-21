@@ -69,7 +69,7 @@ public class BlockTransformer extends Block
                 {
                     TileEntityTransformer transformer = (TileEntityTransformer) te;
 
-                    ArrayList<EnumFacing> facing = new ArrayList<EnumFacing>();
+                    ArrayList<EnumFacing> facing = new ArrayList<>();
 
                     for (EnumFacing dir : EnumFacing.VALUES)
                     {

@@ -1,0 +1,8 @@
+{
+    "parent": "block/outer_stairs",
+    "textures": {
+        "bottom": "avp:blocks/templebricksingle",
+        "top": "avp:blocks/templebricksingle",
+        "side": "avp:blocks/templebricksingle"
+    }
+}

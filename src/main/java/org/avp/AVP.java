@@ -19,6 +19,7 @@ import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
 import org.avp.common.*;
+import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.config.ModelConfig;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
@@ -57,6 +58,7 @@ public class AVP implements IMod
 
         // Config
         AVPSettings.instance.pre(event);
+        AVPCreativeTabs.instance.pre(event);
 
         Aliens.instance.pre(event);
         Predators.instance.pre(event);
@@ -67,7 +69,6 @@ public class AVP implements IMod
 
         // Misc.
         CapabilityHandler.instance.pre(event);
-        AVPCreativeTabs.instance.pre(event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             Renders.instance.pre(event);
@@ -86,7 +87,6 @@ public class AVP implements IMod
         AVPGui.instance.init(event);
         AVPEventHandlers.instance.init(event);
         AVPCommands.instance.init(event);
-        PlayerModeHandler.instance.init(event);
         StructureSchematics.instance.init(event);
         AvpDataSerializers.instance.init(event);
 

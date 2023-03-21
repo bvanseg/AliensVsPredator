@@ -38,16 +38,14 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     protected Animation animation         =     NO_ANIMATION;
     protected boolean                           isAnimationPaused = false;
 
-    public SpeciesAlien(World world)
+    public float growthProgress;
+    public boolean growthInitialized = false;
+
+    protected SpeciesAlien(World world)
     {
         super(world);
         this.jumpMovementFactor = 0.2F;
         this.jellyLimitOverride = false;
-    }
-
-    public boolean isDependantOnHive()
-    {
-        return this.isDependant;
     }
 
     @Override
@@ -188,6 +186,12 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     {
         super.onUpdate();
         this.updateAnimations();
+
+        // FIXME: I'm not happy with this needing a flag, but there's no guaranteed initial sync point for the client entity (or at least the jelly level) that I'm aware of. - bvan.
+        if (!this.growthInitialized) {
+            this.growthProgress = this.getJellyLevel();
+            this.growthInitialized = true;
+        }
 
         if (this.canProduceJelly())
         {

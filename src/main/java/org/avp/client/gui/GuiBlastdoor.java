@@ -2,7 +2,9 @@ package org.avp.client.gui;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.Draw;
-import com.asx.mdx.client.render.gui.*;
+import com.asx.mdx.client.render.gui.GuiCustomButton;
+import com.asx.mdx.client.render.gui.GuiCustomScreen;
+import com.asx.mdx.client.render.gui.GuiCustomTextbox;
 import net.minecraft.client.renderer.GlStateManager;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketBlastdoorCommon;
@@ -40,23 +42,15 @@ public class GuiBlastdoor extends GuiCustomScreen
             {
                 this.password.setText(door.getPassword());
                 this.autolock = new GuiCustomButton(0, 0, 0, 0, 0, "");
-                this.autolock.setAction(new IAction() {
-                    @Override
-                    public void perform(IGuiElement element)
-                    {
-                        boolean value = !door.isAutolockEnabled();
-                        AVPNetworking.instance.sendToServer(new PacketBlastdoorCommon(PacketMode.SETAUTOLOCK, door.getPos(), value));
-                        status = "Auto-Lock " + (door.isAutolockEnabled() ? "Disabled" : "Enabled");
-                    }
+                this.autolock.setAction(element -> {
+                    boolean value = !door.isAutolockEnabled();
+                    AVPNetworking.instance.sendToServer(new PacketBlastdoorCommon(PacketMode.SETAUTOLOCK, door.getPos(), value));
+                    status = "Auto-Lock " + (door.isAutolockEnabled() ? "Disabled" : "Enabled");
                 });
                 this.bindTuner = new GuiCustomButton(0, 0, 0, 0, 0, "");
-                this.bindTuner.setAction(new IAction() {
-                    @Override
-                    public void perform(IGuiElement element)
-                    {
-                        AVPNetworking.instance.sendToServer(new PacketBlastdoorCommon(PacketMode.BIND, door.getPos()));
-                        status = String.format("Bound %s to security tuner.", door.getIdentifier());
-                    }
+                this.bindTuner.setAction(element -> {
+                    AVPNetworking.instance.sendToServer(new PacketBlastdoorCommon(PacketMode.BIND, door.getPos()));
+                    status = String.format("Bound %s to security tuner.", door.getIdentifier());
                 });
             }
         }

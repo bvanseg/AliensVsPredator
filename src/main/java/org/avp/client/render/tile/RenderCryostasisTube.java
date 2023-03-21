@@ -19,7 +19,7 @@ import static org.lwjgl.opengl.GL11.*;
 @SideOnly(Side.CLIENT)
 public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCryostasisTube>
 {
-    public static ArrayList<CryostasisEntityRenderer> renderers = new ArrayList<CryostasisEntityRenderer>();
+    public static ArrayList<CryostasisEntityRenderer> renderers = new ArrayList<>();
     private static final CryostasisEntityRenderer     renderer  = new CryostasisEntityRenderer()
                                                                 {
                                                                     public boolean isApplicable(Entity entity)

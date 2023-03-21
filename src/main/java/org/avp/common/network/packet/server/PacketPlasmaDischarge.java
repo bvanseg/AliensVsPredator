@@ -39,34 +39,29 @@ public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPl
     @Override
     public PacketPlasmaDischarge onMessage(PacketPlasmaDischarge packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            EntityPlayer player = ctx.getServerHandler().player;
+
+            if (player != null)
             {
-                EntityPlayer player = ctx.getServerHandler().player;
+                EntityPlasma plasma = new EntityPlasma(player.world, player, packet.size);
 
-                if (player != null)
+                if (plasma != null)
                 {
-                    EntityPlasma plasma = new EntityPlasma(player.world, player, packet.size);
+                    double dist = 0.6F;
+                    float rotationYaw = MDXMath.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, 0F);
+                    float rotationYawHead = MDXMath.interpolateRotation(player.prevRotationYawHead, player.rotationYawHead, 0F);
+                    double rotationYawRadians = Math.toRadians((rotationYawHead - (rotationYaw - rotationYawHead)) + 180);
+                    double plasmaX = (player.posX + (dist * (Math.cos(rotationYawRadians))));
+                    double plasmaZ = (player.posZ + (dist * (Math.sin(rotationYawRadians))));
 
-                    if (plasma != null)
-                    {
-                        double dist = 0.6F;
-                        float rotationYaw = MDXMath.interpolateRotation(player.prevRenderYawOffset, player.renderYawOffset, 0F);
-                        float rotationYawHead = MDXMath.interpolateRotation(player.prevRotationYawHead, player.rotationYawHead, 0F);
-                        double rotationYawRadians = Math.toRadians((rotationYawHead - (rotationYaw - rotationYawHead)) + 180);
-                        double plasmaX = (player.posX + (dist * (Math.cos(rotationYawRadians))));
-                        double plasmaZ = (player.posZ + (dist * (Math.sin(rotationYawRadians))));
-
-                        float speed = 2F;
-                        plasma.setLocationAndAngles(plasmaX, player.posY + player.getEyeHeight() + 0.025F, plasmaZ, player.rotationYaw, player.rotationPitch);
-                        plasma.motionX = -MathHelper.sin(plasma.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(plasma.rotationPitch / 180.0F * (float) Math.PI) * speed;
-                        plasma.motionZ = MathHelper.cos(plasma.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(plasma.rotationPitch / 180.0F * (float) Math.PI) * speed;
-                        plasma.motionY = -MathHelper.sin((plasma.rotationPitch) / 180.0F * (float) Math.PI) * speed;
-                        player.world.spawnEntity(plasma);
-                        PredatorSounds.WEAPON_PLASMACASTER.playSound(plasma, 0.1F, 1.0F);
-                    }
+                    float speed = 2F;
+                    plasma.setLocationAndAngles(plasmaX, player.posY + player.getEyeHeight() + 0.025F, plasmaZ, player.rotationYaw, player.rotationPitch);
+                    plasma.motionX = -MathHelper.sin(plasma.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(plasma.rotationPitch / 180.0F * (float) Math.PI) * speed;
+                    plasma.motionZ = MathHelper.cos(plasma.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(plasma.rotationPitch / 180.0F * (float) Math.PI) * speed;
+                    plasma.motionY = -MathHelper.sin((plasma.rotationPitch) / 180.0F * (float) Math.PI) * speed;
+                    player.world.spawnEntity(plasma);
+                    PredatorSounds.WEAPON_PLASMACASTER.playSound(plasma, 0.1F, 1.0F);
                 }
             }
         });

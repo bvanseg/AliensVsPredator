@@ -23,7 +23,7 @@ import org.alien.common.item.ItemArmorXeno;
 import org.alien.common.item.ItemSporePod;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.item.ItemEntitySummoner;
-import org.lib.registry.ItemRegistryUtil;
+import org.lib.common.registry.ItemRegistryUtil;
 
 public class AlienItems implements IPreInitEvent {
     public static final AlienItems instance = new AlienItems();

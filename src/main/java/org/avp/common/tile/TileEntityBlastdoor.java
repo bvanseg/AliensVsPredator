@@ -15,11 +15,11 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import org.avp.client.AVPSounds;
-import org.avp.common.AVPBlocks;
 import org.avp.common.AVPItems;
 import org.avp.common.AVPNetworking;
 import org.avp.common.api.machines.Openable;
 import org.avp.common.api.power.VoltageReceiver;
+import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.avp.common.network.packet.client.PacketOpenBlastdoor;
 
 import java.util.ArrayList;
@@ -49,7 +49,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements Voltage
     public TileEntityBlastdoor()
     {
         super(false);
-        this.children = new ArrayList<TileEntity>();
+        this.children = new ArrayList<>();
         this.identifier = "BD" + (1000 + new Random().nextInt(8999));
         this.password = "";
         this.bindKey = "";
@@ -237,7 +237,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements Voltage
     @Override
     public BlockPos[] defaultSet()
     {
-        List<BlockPos> set = new ArrayList<BlockPos>();
+        List<BlockPos> set = new ArrayList<>();
         BlockPos pos = new BlockPos(0, 0, 0);
 
         set.add(pos.add(1, 0, 0));
@@ -318,7 +318,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements Voltage
     @Override
     public Block getMultiBlockType()
     {
-        return AVPBlocks.BLAST_DOOR;
+        return AVPTileEntityBlocks.BLAST_DOOR;
     }
     
     @Override

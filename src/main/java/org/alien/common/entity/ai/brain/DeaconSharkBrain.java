@@ -1,7 +1,6 @@
 package org.alien.common.entity.ai.brain;
 
-import com.google.common.base.Predicate;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.living.vardic.EntityDeaconShark;
@@ -10,6 +9,9 @@ import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
+import org.lib.common.predicate.EntitySelectorBase;
+
+import java.util.function.Predicate;
 
 /**
  * 
@@ -21,15 +23,19 @@ public class DeaconSharkBrain extends AbstractEntityBrain<EntityDeaconShark> {
 		super(entity);
 	}
 
-	private final Predicate<EntityLivingBase> entitySelector = target -> !(target instanceof EntityDeaconShark) && DeaconSharkBrain.this.getEntity().canEntityBeSeen(target);
+	private final Predicate<Entity> entitySelector = target -> {
+		if (!EntitySelectorBase.instance.test(target)) return false;
+		return !(target instanceof EntityDeaconShark) && DeaconSharkBrain.this.getEntity().canEntityBeSeen(target);
+	};
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, entitySelector));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		EntityDeaconShark entity = this.getEntity();
 		this.addTask(new AttackOnCollideBrainTask(0.8D));
 		// TODO:

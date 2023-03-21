@@ -16,7 +16,7 @@ import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.Embryo;
-import org.avp.client.render.TacticalHUDRenderEvent;
+import org.avp.client.render.tactical.TacticalHelmetHUDRenderEvent;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.OrganismClientSync;
 import org.avp.common.network.packet.server.OrganismServerSync;
@@ -222,7 +222,7 @@ public interface Organism
             {
                 if (living == ClientGame.instance.minecraft().player)
                 {
-                    TacticalHUDRenderEvent.instance.getElectrocardiogram().setRate(organism.getHeartRate());
+                    TacticalHelmetHUDRenderEvent.instance.getElectrocardiogram().setRate(organism.getHeartRate());
                 }
             }
         }

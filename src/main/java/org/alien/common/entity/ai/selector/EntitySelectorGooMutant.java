@@ -1,26 +1,21 @@
 package org.alien.common.entity.ai.selector;
 
-import com.google.common.base.Predicate;
-import net.minecraft.entity.EntityLivingBase;
-import org.alien.common.entity.living.SpeciesAlien;
+import net.minecraft.entity.Entity;
 import org.alien.common.entity.living.vardic.EntityGooMutant;
+import org.lib.common.predicate.EntitySelectorBase;
+import org.lib.common.predicate.Predicates;
 
-public class EntitySelectorGooMutant implements Predicate<EntityLivingBase>
+public class EntitySelectorGooMutant extends EntitySelectorBase
 {
     public static final EntitySelectorGooMutant instance = new EntitySelectorGooMutant();
 
     @Override
-    public boolean apply(EntityLivingBase target)
+    public boolean test(Entity target)
     {
-        if (target instanceof EntityGooMutant)
-        {
-            return false;
-        }
-        
-        if (target instanceof SpeciesAlien)
-        {
-            return false;
-        }
+        if (!super.test(target)) return false;
+
+        if (target instanceof EntityGooMutant) return false;
+        if (Predicates.IS_ALIEN.test(target)) return false;
         
         return true;
     }

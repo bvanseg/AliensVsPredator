@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "variant=default": { "model": "avp:double_floor_grill_slab" }
+    }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "avp:blocks/shippanelyautja",
+    "side": "avp:blocks/shippanelyautja"
+  }
+}

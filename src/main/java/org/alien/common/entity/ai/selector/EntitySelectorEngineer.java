@@ -1,38 +1,25 @@
 package org.alien.common.entity.ai.selector;
 
-import com.google.common.base.Predicate;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.Entity;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
+import org.lib.common.predicate.EntitySelectorBase;
 import org.predator.common.entity.living.SpeciesYautja;
 
-public class EntitySelectorEngineer implements Predicate<EntityLivingBase>
+public class EntitySelectorEngineer extends EntitySelectorBase
 {
     public static final EntitySelectorEngineer instance = new EntitySelectorEngineer();
 
     @Override
-    public boolean apply(EntityLivingBase target)
+    public boolean test(Entity target)
     {
-        if (target instanceof SpeciesAlien)
-            return true;
-        if (target instanceof SpeciesYautja)
-            return true;
-        if (target instanceof EntityMarine)
-            return true;
-        if (target instanceof EntityCombatSynthetic)
-            return true;
+        if (!super.test(target)) return false;
 
-        if (target instanceof EntityPlayer)
-        {
-            EntityPlayer player = (EntityPlayer) target;
-
-            if (player.capabilities.isCreativeMode)
-            {
-                return false;
-            }
-        }
+        if (target instanceof SpeciesAlien) return true;
+        if (target instanceof SpeciesYautja) return true;
+        if (target instanceof EntityMarine) return true;
+        if (target instanceof EntityCombatSynthetic) return true;
 
         return false;
     }

@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "avp:blocks/templefloor",
+    "side": "avp:blocks/templefloor"
+  }
+}

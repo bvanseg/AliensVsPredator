@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "variant=default": { "model": "avp:double_temple_tile_slab" }
+    }
+}

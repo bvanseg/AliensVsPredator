@@ -50,27 +50,22 @@ public class PacketRemoveTurretTarget implements IMessage, IMessageHandler<Packe
     @Override
     public PacketRemoveTurretTarget onMessage(PacketRemoveTurretTarget packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                TileEntityTurret tile = (TileEntityTurret) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            TileEntityTurret tile = (TileEntityTurret) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
-                if (tile != null)
+            if (tile != null)
+            {
+                EntityEntry e = null;
+
+                for (EntityEntry ee : ForgeRegistries.ENTITIES)
                 {
-                    EntityEntry e = null;
-                    
-                    for (EntityEntry ee : ForgeRegistries.ENTITIES)
+                    if (ee.getRegistryName().toString().equalsIgnoreCase(packet.entityIdentifier))
                     {
-                        if (ee.getRegistryName().toString().equalsIgnoreCase(packet.entityIdentifier))
-                        {
-                            e = ee;
-                            break;
-                        }
+                        e = ee;
+                        break;
                     }
-                    tile.getTargetHelper().removeTargetType((Class<? extends Entity>) e.getEntityClass());
                 }
+                tile.getTargetHelper().removeTargetType((Class<? extends Entity>) e.getEntityClass());
             }
         });
         

@@ -10,7 +10,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.avp.common.entity.*;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
-import org.lib.registry.EntityRegistryUtil;
+import org.lib.common.registry.EntityRegistryUtil;
 
 import java.util.ArrayList;
 

@@ -23,7 +23,7 @@ import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.common.AVPSettings;
-import org.lib.registry.EntityRegistryUtil;
+import org.lib.common.registry.EntityRegistryUtil;
 
 import java.util.ArrayList;
 
