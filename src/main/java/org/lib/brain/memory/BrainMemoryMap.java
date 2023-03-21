@@ -34,4 +34,8 @@ public class BrainMemoryMap {
 	public void forget(BrainMemoryKey<?> memoryKey) {
 		this.memories.remove(memoryKey);
 	}
+
+    public void forgetEverything() {
+		memories.clear();
+    }
 }
