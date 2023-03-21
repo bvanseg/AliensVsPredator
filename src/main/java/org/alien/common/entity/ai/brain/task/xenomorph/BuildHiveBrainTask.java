@@ -43,10 +43,17 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 
 	private ArrayList<BlockPos> positionsOfInterest = new ArrayList<>();
 
+	private BlockPos targetPos;
+
 	@Override
 	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
 		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
 		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
+	}
+
+	@Override
+	public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.MOVE, BrainFlagState.PRESENT);
 	}
 
 	@Override
@@ -68,34 +75,59 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
     @Override
 	protected void startExecuting(EntityBrainContext ctx) {
 		EntityDrone entity = (EntityDrone) ctx.getEntity();
+		this.targetPos = findNextSuitableResinLocation(entity, 3);
 
-		BlockPos pos = findNextSuitableResinLocation(entity, 3);
+		if (targetPos == null) return;
 
-		if (pos == null) return;
-
-		IBlockState state = entity.world.getBlockState(pos);
-		Path path = entity.getNavigator().getPathToXYZ(pos.getX(), pos.getY(), pos.getZ());
+		Path path = entity.getNavigator().getPathToXYZ(targetPos.getX(), targetPos.getY(), targetPos.getZ());
 
 		if (path == null) return;
 
 		entity.getNavigator().setPath(path, 0.8D);
-		entity.world.setBlockState(pos, AlienBlocks.NATURAL_RESIN.getDefaultState());
-		((BlockHiveResin) AlienBlocks.NATURAL_RESIN).evaluateNeighbors(entity.world, pos);
-
-		TileEntity tileEntity = entity.world.getTileEntity(pos);
-
-		if (tileEntity == null || !(tileEntity instanceof  TileEntityHiveResin)) return;
-
-		TileEntityHiveResin resin = (TileEntityHiveResin) tileEntity;
-
-		resin.setParentBlock(state.getBlock(), 0);
-		entity.world.notifyBlockUpdate(pos, state, state, 3);
-		entity.getAlienHive().addResin(pos);
-
-		entity.setJellyLevel(entity.getJellyLevel() - 16);
 	}
 
-	private BlockPos findNextSuitableResinLocation(EntityLiving entity, int range)
+	@Override
+	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+		if (this.targetPos == null) return false;
+		if (ctx.getEntity().getNavigator().noPath()) return false;
+		if (((EntityDrone)ctx.getEntity()).getAlienHive() == null) return false;
+
+		return true;
+	}
+
+	@Override
+	protected void continueExecuting(EntityBrainContext ctx) {
+		EntityDrone entity = (EntityDrone) ctx.getEntity();
+		IBlockState state = entity.world.getBlockState(this.targetPos);
+
+		double distance = entity.getDistanceSq(this.targetPos);
+
+		if (!this.canReplaceWithResin(state)) {
+			this.targetPos = null;
+			return;
+		}
+
+		if (distance <= 2)
+		{
+			entity.world.setBlockState(this.targetPos, AlienBlocks.NATURAL_RESIN.getDefaultState());
+			((BlockHiveResin) AlienBlocks.NATURAL_RESIN).evaluateNeighbors(entity.world, this.targetPos);
+
+			TileEntity tileEntity = entity.world.getTileEntity(this.targetPos);
+
+			if (tileEntity == null || !(tileEntity instanceof TileEntityHiveResin)) return;
+
+			TileEntityHiveResin resin = (TileEntityHiveResin) tileEntity;
+
+			resin.setParentBlock(state.getBlock(), 0);
+			entity.world.notifyBlockUpdate(this.targetPos, state, state, 3);
+			entity.getAlienHive().addResin(this.targetPos);
+
+			entity.setJellyLevel(entity.getJellyLevel() - 16);
+			this.targetPos = null;
+		}
+	}
+
+	private BlockPos findNextSuitableResinLocation(EntityLiving entity, int radius)
 	{
 		// Read a random block pos from cache.
 		if (!positionsOfInterest.isEmpty()) {
@@ -110,28 +142,17 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 
 		ArrayList<BlockPos> data = new ArrayList<>();
 
-		for (int x = (int) (posX - range); x < posX + (range); x++)
+		for (int x = (int) (posX - radius); x < posX + (radius); x++)
 		{
-			for (int y = (int) (posY - range); y < posY + (range); y++)
+			for (int y = (int) (posY - radius); y < posY + (radius); y++)
 			{
-				for (int z = (int) (posZ - range); z < posZ + (range); z++)
+				for (int z = (int) (posZ - radius); z < posZ + (radius); z++)
 				{
 					BlockPos location = new BlockPos(x, y, z);
 					IBlockState blockState = world.getBlockState(location);
 
-					if (this.canReplaceWithResin(blockState))
-					{
-						Vec3d start = new Vec3d(posX, posY + entity.getEyeHeight(), posZ);
-						Vec3d end = new Vec3d(x, y, z);
-						RayTraceResult hit =  entity.world.rayTraceBlocks(start, end, false, true, false);
-
-						if (hit == null || hit.typeOfHit == RayTraceResult.Type.BLOCK)
-						{
-							if (Pos.isAnySurfaceEmpty(location, entity.world))
-							{
-								data.add(location);
-							}
-						}
+					if (this.canPlaceResinAt(entity, location, blockState)) {
+						data.add(location);
 					}
 				}
 			}
@@ -148,6 +169,19 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 
 		// Otherwise just return null, no pos found or cached.
 		return null;
+	}
+
+	private boolean canPlaceResinAt(EntityLiving entity, BlockPos location, IBlockState blockState) {
+		if (!this.canReplaceWithResin(blockState)) return false;
+
+		Vec3d start = new Vec3d(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ);
+		Vec3d end = new Vec3d(location.getX(), location.getY(), location.getZ());
+		RayTraceResult hit =  entity.world.rayTraceBlocks(start, end, false, true, false);
+
+		if (hit != null && hit.typeOfHit != RayTraceResult.Type.BLOCK) return false;
+		if (!Pos.isAnySurfaceEmpty(location, entity.world)) return false;
+
+		return true;
 	}
 
 	private boolean canReplaceWithResin(IBlockState blockState) {

@@ -23,13 +23,14 @@ public class YautjaBrain extends AbstractEntityBrain<SpeciesYautja> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorYautja.instance));
 		this.addSense(new NearestAvoidTargetBrainSensor(1, EntityAcidPool.class::isInstance));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		SpeciesYautja entity = this.getEntity();
 //      this.tasks.addTask(0, new EntityAISwimming(this));
 		this.addTask(new AttackOnCollideBrainTask(0.9D));

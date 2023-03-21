@@ -49,7 +49,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements Voltage
     public TileEntityBlastdoor()
     {
         super(false);
-        this.children = new ArrayList<TileEntity>();
+        this.children = new ArrayList<>();
         this.identifier = "BD" + (1000 + new Random().nextInt(8999));
         this.password = "";
         this.bindKey = "";
@@ -237,7 +237,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements Voltage
     @Override
     public BlockPos[] defaultSet()
     {
-        List<BlockPos> set = new ArrayList<BlockPos>();
+        List<BlockPos> set = new ArrayList<>();
         BlockPos pos = new BlockPos(0, 0, 0);
 
         set.add(pos.add(1, 0, 0));

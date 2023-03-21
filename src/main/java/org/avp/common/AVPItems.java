@@ -16,7 +16,7 @@ import org.avp.common.item.firearm.*;
 import org.avp.common.item.rackmodule.*;
 import org.avp.common.item.supply.chute.ItemSupplyChute;
 import org.avp.common.item.supply.chute.SupplyChuteType;
-import org.lib.registry.ItemRegistryUtil;
+import org.lib.common.registry.ItemRegistryUtil;
 
 public class AVPItems implements IPreInitEvent {
     public static final AVPItems instance = new AVPItems();

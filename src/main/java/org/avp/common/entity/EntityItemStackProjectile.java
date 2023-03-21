@@ -67,6 +67,8 @@ public abstract class EntityItemStackProjectile extends EntityProjectile
         return this.getDataManager().get(WEAPON_MATERIAL_ID);
     }
 
+    private static final String STACK_NBT_KEY = "stack";
+
     @Override
     public void writeEntityToNBT(NBTTagCompound nbttagcompound)
     {
@@ -74,7 +76,7 @@ public abstract class EntityItemStackProjectile extends EntityProjectile
 
         if (itemstack != null)
         {
-            nbttagcompound.setTag("stack", itemstack.writeToNBT(new NBTTagCompound()));
+            nbttagcompound.setTag(STACK_NBT_KEY, itemstack.writeToNBT(new NBTTagCompound()));
         }
     }
 
@@ -82,6 +84,6 @@ public abstract class EntityItemStackProjectile extends EntityProjectile
     public void readEntityFromNBT(NBTTagCompound nbttagcompound)
     {
         super.readEntityFromNBT(nbttagcompound);
-        setItemstack(new ItemStack(nbttagcompound.getCompoundTag("stack")));
+        setItemstack(new ItemStack(nbttagcompound.getCompoundTag(STACK_NBT_KEY)));
     }
 }

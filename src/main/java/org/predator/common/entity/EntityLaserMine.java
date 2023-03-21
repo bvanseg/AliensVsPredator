@@ -131,18 +131,21 @@ public class EntityLaserMine extends Entity
         return true;
     }
 
+    private static final String DIR_NBT_KEY = "Dir";
+    private static final String OWNER_NBT_KEY = "Owner";
+
     @Override
     public void writeEntityToNBT(NBTTagCompound nbttagcompound)
     {
-        nbttagcompound.setByte("Dir", (byte) this.direction);
-        nbttagcompound.setString("Owner", this.ownerUUID);
+        nbttagcompound.setByte(DIR_NBT_KEY, (byte) this.direction);
+        nbttagcompound.setString(OWNER_NBT_KEY, this.ownerUUID);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbttagcompound)
     {
-        this.direction = nbttagcompound.getByte("Dir");
-        this.ownerUUID = nbttagcompound.getString("Owner");
+        this.direction = nbttagcompound.getByte(DIR_NBT_KEY);
+        this.ownerUUID = nbttagcompound.getString(OWNER_NBT_KEY);
     }
 
     public double getLaserHitDistanceFromMine()

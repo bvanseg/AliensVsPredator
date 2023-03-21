@@ -21,12 +21,13 @@ public class HammerpedeBrain extends AbstractEntityBrain<EntityHammerpede> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorHammerpede.instance));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		EntityHammerpede entity = this.getEntity();
 		this.addTask(new SwimBrainTask(entity));
 		this.addTask(new AttackOnCollideBrainTask(0.8D));

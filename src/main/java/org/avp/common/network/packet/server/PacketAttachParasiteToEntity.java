@@ -46,24 +46,19 @@ public class PacketAttachParasiteToEntity implements IMessage, IMessageHandler<P
     @SideOnly(Side.CLIENT)
     public PacketAttachParasiteToEntity onMessage(PacketAttachParasiteToEntity packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            Entity e = ClientGame.instance.minecraft().world.getEntityByID(packet.parasiteId);
+            Entity e2 = ClientGame.instance.minecraft().world.getEntityByID(packet.targetId);
+
+            if (e instanceof Parasitoid)
             {
-                Entity e = ClientGame.instance.minecraft().world.getEntityByID(packet.parasiteId);
-                Entity e2 = ClientGame.instance.minecraft().world.getEntityByID(packet.targetId);
-                
-                if (e instanceof Parasitoid)
+                Parasitoid parasite = (Parasitoid) e;
+
+                if (e2 instanceof EntityLivingBase)
                 {
-                    Parasitoid parasite = (Parasitoid) e;
-                    
-                    if (e2 instanceof EntityLivingBase)
-                    {
-                        EntityLivingBase target = (EntityLivingBase) e2;
-                        
-                        parasite.attachToEntity(target);
-                    }
+                    EntityLivingBase target = (EntityLivingBase) e2;
+
+                    parasite.attachToEntity(target);
                 }
             }
         });

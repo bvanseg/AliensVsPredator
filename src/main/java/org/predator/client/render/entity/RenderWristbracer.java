@@ -14,11 +14,9 @@ import org.predator.common.entity.EntityWristbracer;
 public class RenderWristbracer extends Render<EntityWristbracer>
 {
     private final MapModelTexture<ModelWristBlade> wristbracer = Resources.instance.models().WRISTBLADES.clone();
-    private final ModelPlasma model       = new ModelPlasma();
-    private float                                rotation;
-    private float                                rotationPrev;
-    private float                                scale;
-    private float                                scalePrev;
+    private final ModelPlasma model = new ModelPlasma();
+    private float rotation;
+    private float scale;
 
     public RenderWristbracer(RenderManager m)
     {
@@ -29,58 +27,62 @@ public class RenderWristbracer extends Render<EntityWristbracer>
     @Override
     public void doRender(EntityWristbracer entity, double posX, double posY, double posZ, float yaw, float partialTicks)
     {
-        EntityWristbracer nuke = (EntityWristbracer) entity;
-
-        rotationPrev = rotation;
-        rotation = nuke.ticksExisted % 360;
-        rotation = rotationPrev + (rotation - rotationPrev) * partialTicks;
-        scalePrev = scale;
-        scale = nuke.getPostInitTicks() * 200 / nuke.getPostInitTicksMax();
-        scale = scalePrev + (scale - scalePrev) * partialTicks;
+        float rotationPrev = this.rotation;
+        this.rotation = entity.ticksExisted % 360;
+        this.rotation = rotationPrev + (this.rotation - rotationPrev) * partialTicks;
 
         OpenGL.pushMatrix();
         {
             OpenGL.translate(posX - 0.125F, posY + 0.15F, posZ + 0.05F);
             OpenGL.rotate(180F, 1F, 0F, 0F);
-            wristbracer.draw();
-            OpenGL.rotate(entity.rotationYaw - 90.0F, 0.0F, 1.0F, 0.0F);
-            OpenGL.rotate(entity.rotationPitch - 90.0F, 0.0F, 0.0F, 1.0F);
-            OpenGL.scale(scale, scale, scale);
+            this.wristbracer.draw();
 
-            if (nuke.getPostInitTicks() > 1)
+            if (entity.ticksExisted > EntityWristbracer.DETONATION_START_TIME_IN_TICKS)
             {
+                this.renderExplosiveWave(entity, partialTicks);
+            }
+        }
+        OpenGL.popMatrix();
+    }
+
+    private void renderExplosiveWave(EntityWristbracer entity, float partialTicks) {
+        // Set scale based on detonation progress.
+        float scalePrev = this.scale;
+        this.scale = scalePrev + (((entity.getPostDetonateTicks() * 200F) / 10) - scalePrev) * partialTicks;
+        OpenGL.rotate(entity.rotationYaw - 90.0F, 0.0F, 1.0F, 0.0F);
+        OpenGL.rotate(entity.rotationPitch - 90.0F, 0.0F, 0.0F, 1.0F);
+        OpenGL.scale(this.scale, this.scale, this.scale);
+
+        // Render multiple waves nested within one another.
+        OpenGL.pushMatrix();
+        {
+            OpenGL.rotate(this.rotation, 0.0F, 1.0F, 0.0F);
+            this.model.setScale(0.1F);
+            this.model.render();
+
+            OpenGL.pushMatrix();
+            {
+                OpenGL.rotate(this.rotation * 1.5F, 0.0F, 1.0F, 0.0F);
+                this.model.setScale(0.2F);
+                this.model.render();
+
                 OpenGL.pushMatrix();
                 {
-                    OpenGL.rotate(rotation, 0.0F, 1.0F, 0.0F);
-                    this.model.setScale(0.1F);
+                    OpenGL.rotate(this.rotation * 1.5F, 0.0F, 1.0F, 0.0F);
+                    this.model.setScale(0.3F);
                     this.model.render();
 
                     OpenGL.pushMatrix();
                     {
-                        OpenGL.rotate(rotation * 1.5F, 0.0F, 1.0F, 0.0F);
-                        this.model.setScale(0.2F);
+                        OpenGL.rotate(this.rotation * 1.5F, 0.0F, 1.0F, 0.0F);
+                        this.model.setScale(0.35F);
                         this.model.render();
-
-                        OpenGL.pushMatrix();
-                        {
-                            OpenGL.rotate(rotation * 1.5F, 0.0F, 1.0F, 0.0F);
-                            this.model.setScale(0.3F);
-                            this.model.render();
-
-                            OpenGL.pushMatrix();
-                            {
-                                OpenGL.rotate(rotation * 1.5F, 0.0F, 1.0F, 0.0F);
-                                this.model.setScale(0.35F);
-                                this.model.render();
-                            }
-                            OpenGL.popMatrix();
-                        }
-                        OpenGL.popMatrix();
                     }
                     OpenGL.popMatrix();
                 }
                 OpenGL.popMatrix();
             }
+            OpenGL.popMatrix();
         }
         OpenGL.popMatrix();
     }

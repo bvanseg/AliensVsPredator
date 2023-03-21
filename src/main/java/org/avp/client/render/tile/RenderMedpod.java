@@ -10,11 +10,21 @@ import java.util.ArrayList;
 
 public class RenderMedpod extends TileEntitySpecialRenderer<TileEntityMedpod>
 {
-    public static ArrayList<EntityRenderTransforms> transforms = new ArrayList<EntityRenderTransforms>();
+    public static ArrayList<EntityRenderTransforms> transforms = new ArrayList<>();
 
     @Override
     public void render(TileEntityMedpod tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
+        if (tile.isOpen())
+        {
+            tile.doorProgress = tile.doorProgress < tile.getMaxDoorProgress() ? tile.doorProgress + 0.025F : tile.doorProgress;
+        }
+
+        if (!tile.isOpen())
+        {
+            tile.doorProgress = tile.doorProgress > 0.0F ? tile.doorProgress - 0.025F : tile.doorProgress;
+        }
+
         OpenGL.pushMatrix();
         {
             float newScale = 1.5F;

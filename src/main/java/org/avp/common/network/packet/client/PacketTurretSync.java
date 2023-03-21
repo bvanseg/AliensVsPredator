@@ -54,17 +54,12 @@ public class PacketTurretSync implements IMessage, IMessageHandler<PacketTurretS
     @Override
     public PacketTurretSync onMessage(PacketTurretSync packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                TileEntityTurret tile = (TileEntityTurret) ClientGame.instance.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            TileEntityTurret tile = (TileEntityTurret) ClientGame.instance.minecraft().world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
-                if (tile != null)
-                {
-                    tile.onReceiveInitPacket(packet, ctx);
-                }
+            if (tile != null)
+            {
+                tile.onReceiveInitPacket(packet, ctx);
             }
         });
         return null;

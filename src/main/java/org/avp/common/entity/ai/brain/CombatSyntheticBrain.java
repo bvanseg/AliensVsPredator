@@ -24,15 +24,14 @@ public class CombatSyntheticBrain extends AbstractEntityBrain<EntityCombatSynthe
     }
 
     @Override
-    public void init() {
-        super.init();
-
-        // Senses
+    public void initSenses() {
         this.addSense(new EntityBrainSensor(1));
         this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorCombatSynthetic.instance));
         this.addSense(new NearestAvoidTargetBrainSensor(1, EntityAcidPool.class::isInstance));
+    }
 
-        // Tasks
+    @Override
+    public void initTasks() {
         EntityCombatSynthetic entity = this.getEntity();
         this.addTask(new NearestAttackableTargetBrainTask());
         this.addTask(new SwimBrainTask(entity));

@@ -27,7 +27,7 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
     public static final float                      MAX_SPEED        = 10F;
     private static final float                     SPEED_MULTIPLIER = 0.05F;
     private final Item                             magnet           = AVPItems.ITEM_NEODYMIUM_MAGNET;
-    private final ArrayList<HashMap<Integer, ItemStack>> sets             = new ArrayList<HashMap<Integer, ItemStack>>();
+    private final ArrayList<HashMap<Integer, ItemStack>> sets             = new ArrayList<>();
     private int                                    fullSets;
     private int                                    emptySets;
     private int                                    unstableSets;
@@ -137,7 +137,7 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
 
             if (slotInSet == 0)
             {
-                sets.add(new HashMap<Integer, ItemStack>());
+                sets.add(new HashMap<>());
             }
 
             if (slotInSet <= 4 && slotInSet > 0)
@@ -155,7 +155,7 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
 
         for (HashMap<Integer, ItemStack> set : sets)
         {
-            if (set.get(0) != null && set.get(1) != null && set.get(2) != null && set.get(3) != null && ((ItemStack) set.get(0)).getItem() == magnet && ((ItemStack) set.get(1)).getItem() == magnet && ((ItemStack) set.get(2)).getItem() == magnet && ((ItemStack) set.get(3)).getItem() == magnet)
+            if (set.get(0) != null && set.get(1) != null && set.get(2) != null && set.get(3) != null && (set.get(0)).getItem() == magnet && (set.get(1)).getItem() == magnet && (set.get(2)).getItem() == magnet && (set.get(3)).getItem() == magnet)
             {
                 fullSets++;
             }

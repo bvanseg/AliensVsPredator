@@ -4,14 +4,15 @@
  */
 package cofh.redstoneflux.impl;
 
+import cofh.redstoneflux.api.IEnergyStorage;
 import net.minecraft.nbt.NBTTagCompound;
 
 /**
- * Reference implementation of {@link cofh.redstoneflux.api.EnergyStorage}. Use/extend this or implement your own.
+ * Reference implementation of {@link IEnergyStorage}. Use/extend this or implement your own.
  *
  * @author King Lemming
  */
-public class EnergyStorage implements cofh.redstoneflux.api.EnergyStorage {
+public class EnergyStorage implements IEnergyStorage {
 
 	protected int energy;
 	protected int capacity;

@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.entity.ai.brain.MatriarchBrain;
+import org.alien.common.entity.ai.brain.xenomorph.MatriarchBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.AlienHive;
 import org.alien.common.world.hive.HiveOwner;
@@ -126,14 +126,15 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     }
 
     private static final String ALIEN_HIVE_NBT_KEY = "AlienHive";
+    private static final String OVIPOSITOR_SIZE_NBT_KEY = "ovipositorSize";
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
-        this.setOvipositorSize(nbt.getFloat("ovipositorSize"));
+        this.setOvipositorSize(nbt.getFloat(OVIPOSITOR_SIZE_NBT_KEY));
 
-        if (nbt.hasKey(ALIEN_HIVE_NBT_KEY, NBT.TAG_COMPOUND)) {
+        if (!this.world.isRemote && nbt.hasKey(ALIEN_HIVE_NBT_KEY, NBT.TAG_COMPOUND)) {
         	this.alienHive = this.createNewAlienHive();
         	NBTTagCompound hiveData = nbt.getCompoundTag(ALIEN_HIVE_NBT_KEY);
         	this.alienHive.readFromNBT(hiveData);
@@ -144,15 +145,16 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
-        nbt.setFloat("ovipositorSize", this.getOvipositorSize());
+        nbt.setFloat(OVIPOSITOR_SIZE_NBT_KEY, this.getOvipositorSize());
 
-        if (this.alienHive != null) {
+        if (!this.world.isRemote && this.alienHive != null) {
         	NBTTagCompound hiveData = new NBTTagCompound();
         	this.alienHive.writeToNBT(hiveData);
         	nbt.setTag(ALIEN_HIVE_NBT_KEY, hiveData);
         }
     }
-    
+
+    @Override
     public boolean canBeCollidedWith()
     {
         return true;
@@ -165,10 +167,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     }
     
     @Override
-    protected void collideWithEntity(Entity entityIn)
-    {
-        ;
-    }
+    protected void collideWithEntity(Entity entityIn) { /* Do Nothing */ }
 
     public float getOvipositorSize()
     {
@@ -194,6 +193,9 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 
 	@Override
 	public AlienHive createNewAlienHive() {
+        if (this.world.isRemote) {
+            throw new IllegalStateException("Can not instantiate hives client-side!");
+        }
 		return new AlienHive(this);
 	}
 
@@ -201,4 +203,20 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 	public UUID getHiveMemberID() {
 		return this.entityUniqueID;
 	}
+
+    @Override
+    public void onAddedToWorld() {
+        super.onAddedToWorld();
+        if (!this.world.isRemote && this.getAlienHive() != null) {
+            this.getAlienHive().load();
+        }
+    }
+
+    @Override
+    public void onRemovedFromWorld() {
+        super.onRemovedFromWorld();
+        if (!this.world.isRemote && this.getAlienHive() != null) {
+            this.getAlienHive().unload();
+        }
+    }
 }

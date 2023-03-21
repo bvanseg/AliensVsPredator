@@ -54,6 +54,7 @@ public class AVP implements IMod
 
         // Config
         AVPSettings.instance.pre(event);
+        AVPCreativeTabs.instance.pre(event);
 
         Aliens.instance.pre(event);
         Predators.instance.pre(event);
@@ -64,7 +65,6 @@ public class AVP implements IMod
 
         // Misc.
         CapabilityHandler.instance.pre(event);
-        AVPCreativeTabs.instance.pre(event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             Renders.instance.pre(event);
@@ -83,7 +83,6 @@ public class AVP implements IMod
         AVPGui.instance.init(event);
         AVPEventHandlers.instance.init(event);
         AVPCommands.instance.init(event);
-        PlayerModeHandler.instance.init(event);
         StructureSchematics.instance.init(event);
         AvpDataSerializers.instance.init(event);
 

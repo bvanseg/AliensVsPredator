@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.block.BlockStasisMechanism;
 import org.avp.common.block.skull.*;
-import org.lib.registry.BlockRegistryUtil;
+import org.lib.common.registry.BlockRegistryUtil;
 
 /**
  * @author Boston Vanseghi

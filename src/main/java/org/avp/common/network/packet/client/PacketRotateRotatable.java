@@ -52,22 +52,17 @@ public class PacketRotateRotatable implements IMessage, IMessageHandler<PacketRo
     @Override
     public PacketRotateRotatable onMessage(PacketRotateRotatable packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            World world = ClientGame.instance.minecraft().player.world;
+
+            if (world != null)
             {
-                World world = ClientGame.instance.minecraft().player.world;
+                TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
-                if (world != null)
+                if (tile != null && tile instanceof IRotatableYAxis)
                 {
-                    TileEntity tile = world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
-
-                    if (tile != null && tile instanceof IRotatableYAxis)
-                    {
-                        IRotatableYAxis rotatable = (IRotatableYAxis) tile;
-                        rotatable.setRotationYAxis(EnumFacing.byIndex(packet.direction));
-                    }
+                    IRotatableYAxis rotatable = (IRotatableYAxis) tile;
+                    rotatable.setRotationYAxis(EnumFacing.byIndex(packet.direction));
                 }
             }
         });

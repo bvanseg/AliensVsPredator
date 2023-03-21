@@ -18,12 +18,13 @@ public class EngineerBrain extends AbstractEntityBrain<SpeciesEngineer> {
 	}
 
 	@Override
-	public void init() {
-		// Brain Senses
+	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorEngineer.instance));
+	}
 
-		// Brain Tasks
+	@Override
+	public void initTasks() {
 		SpeciesEngineer entity = this.getEntity();
 		this.addTask(new SwimBrainTask(entity));
 		this.addTask(new AttackOnCollideBrainTask(0.800000011920929D));
