@@ -1,15 +1,15 @@
 package org.alien.client.model.tile.cached;
 
 import com.asx.mdx.client.ClientGame;
-import com.asx.mdx.client.render.model.Model;
 import com.asx.mdx.client.render.model.block.ModelRotationXYZ;
 import com.asx.mdx.common.io.config.GraphicsSetting;
-import com.google.common.base.Function;
-import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Lists;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.*;
+import net.minecraft.client.renderer.block.model.BakedQuad;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
+import net.minecraft.client.renderer.block.model.ItemOverrideList;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
@@ -21,7 +21,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
@@ -33,28 +32,28 @@ import javax.vecmath.Matrix4f;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Function;
 
 public class CachedModelResin implements IBakedModel
 {
-    private static final String                                                            TEXTURE_KEY            = "#texture";
-    private static final String                                                            TEXTURE_LOCATION       = "avp:blocks/hiveresin";
-    private static final VertexFormat                                                      VERTEX_FORMAT          = DefaultVertexFormats.BLOCK;
-    private static final java.util.function.Function<ResourceLocation, TextureAtlasSprite> TEXTURE_GETTER         = ModelLoader.defaultTextureGetter();
-    private static final Function<ResourceLocation, TextureAtlasSprite>                    DEFAULT_TEXTURE_GETTER = location -> ClientGame.instance.minecraft().getTextureMapBlocks().getAtlasSprite("avp:blocks/hiveresin");
+    private static final String TEXTURE_LOCATION = "avp:blocks/hiveresin";
+    private static final VertexFormat VERTEX_FORMAT = DefaultVertexFormats.BLOCK;
 
-    private final IModel                                                                         model;
-    private TextureAtlasSprite                                                             sprite;
-    private final RenderList                                                                     overrides;
-    private final Pair<? extends IBakedModel, Matrix4f>                                    selfPair;
-    protected ItemStack                                                                    stack;
-    protected EntityLivingBase                                                             entity;
-    private TransformType                                                                  transformType;
+    private static final Function<ResourceLocation, TextureAtlasSprite> DEFAULT_TEXTURE_GETTER = location -> ClientGame.instance.minecraft().getTextureMapBlocks().getAtlasSprite(TEXTURE_LOCATION);
 
-    public static class RenderList<M extends Model> extends ItemOverrideList
+    private final IModel model;
+    private TextureAtlasSprite sprite;
+    private final RenderList overrides;
+    private final Pair<? extends IBakedModel, Matrix4f> selfPair;
+    protected ItemStack stack;
+    protected EntityLivingBase entity;
+    private TransformType transformType;
+
+    public static class RenderList extends ItemOverrideList
     {
         public RenderList()
         {
-            super(Lists.<ItemOverride>newArrayList());
+            super(Lists.newArrayList());
         }
 
         @Override
@@ -63,7 +62,7 @@ public class CachedModelResin implements IBakedModel
             if (originalModel instanceof CachedModelResin)
             {
                 CachedModelResin model = (CachedModelResin) originalModel;
-                model.setItemstack(stack);
+                model.setItemStack(stack);
                 model.setEntity(entity);
             }
 
@@ -133,6 +132,13 @@ public class CachedModelResin implements IBakedModel
         return builder.build();
     }
 
+    private static final Vec3d[] BOTTOM_QUAD_VERTICES = new Vec3d[]{ new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 0.0D) };
+    private static final Vec3d[] TOP_QUAD_VERTICES = new Vec3d[]{ new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 0.0D) };
+    private static final Vec3d[] SOUTH_QUAD_VERTICES = new Vec3d[]{ new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D) };
+    private static final Vec3d[] NORTH_QUAD_VERTICES = new Vec3d[]{ new Vec3d(0.0D, 0.0D, 0.0D), new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(1.0D, 1.0D, 0.0D), new Vec3d(1.0D, 0.0D, 0.0D) };
+    private static final Vec3d[] WEST_QUAD_VERTICES = new Vec3d[]{ new Vec3d(0.0D, 0.0D, 1.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(0.0D, 0.0D, 0.0D) };
+    private static final Vec3d[] EAST_QUAD_VERTICES = new Vec3d[]{ new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 1.0D, 0.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 0.0D, 1.0D) };
+
     @Override
     public List<BakedQuad> getQuads(IBlockState state, EnumFacing side, long rand)
     {
@@ -166,22 +172,23 @@ public class CachedModelResin implements IBakedModel
 
             List<BakedQuad> quads = new ArrayList<>();
 
-            quads.add(createQuad(new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 0.0D), this.sprite));
-            quads.add(createQuad(new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 0.0D), this.sprite));
-            quads.add(createQuad(new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D), this.sprite));
-            quads.add(createQuad(new Vec3d(0.0D, 0.0D, 0.0D), new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(1.0D, 1.0D, 0.0D), new Vec3d(1.0D, 0.0D, 0.0D), this.sprite));
-            quads.add(createQuad(new Vec3d(0.0D, 0.0D, 1.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(0.0D, 0.0D, 0.0D), this.sprite));
-            quads.add(createQuad(new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 1.0D, 0.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 0.0D, 1.0D), this.sprite));
+            // BOTTOM
+            quads.add(createQuad(BOTTOM_QUAD_VERTICES[0], BOTTOM_QUAD_VERTICES[1], BOTTOM_QUAD_VERTICES[2], BOTTOM_QUAD_VERTICES[3], this.sprite));
+            // TOP
+            quads.add(createQuad(TOP_QUAD_VERTICES[0], TOP_QUAD_VERTICES[1], TOP_QUAD_VERTICES[2], TOP_QUAD_VERTICES[3], this.sprite));
+            // SOUTH
+            quads.add(createQuad(SOUTH_QUAD_VERTICES[0], SOUTH_QUAD_VERTICES[1], SOUTH_QUAD_VERTICES[2], SOUTH_QUAD_VERTICES[3], this.sprite));
+            //NORTH
+            quads.add(createQuad(NORTH_QUAD_VERTICES[0], NORTH_QUAD_VERTICES[1], NORTH_QUAD_VERTICES[2], NORTH_QUAD_VERTICES[3], this.sprite));
+            // WEST
+            quads.add(createQuad(WEST_QUAD_VERTICES[0], WEST_QUAD_VERTICES[1], WEST_QUAD_VERTICES[2], WEST_QUAD_VERTICES[3], this.sprite));
+            // EAST
+            quads.add(createQuad(EAST_QUAD_VERTICES[0], EAST_QUAD_VERTICES[1], EAST_QUAD_VERTICES[2], EAST_QUAD_VERTICES[3], this.sprite));
 
             return quads;
         }
 
         return Collections.emptyList();
-    }
-
-    private static IModel retexture(IModel model, String key, String location)
-    {
-        return model.retexture(ImmutableMap.of(key, location));
     }
 
     @Override
@@ -221,7 +228,7 @@ public class CachedModelResin implements IBakedModel
         return this.overrides;
     }
 
-    private void setItemstack(ItemStack stack)
+    private void setItemStack(ItemStack stack)
     {
         this.stack = stack;
     }
@@ -235,50 +242,6 @@ public class CachedModelResin implements IBakedModel
     public Pair<? extends IBakedModel, Matrix4f> handlePerspective(TransformType type)
     {
         this.transformType = type;
-
-        switch (type)
-        {
-            case FIRST_PERSON_LEFT_HAND:
-            {
-            }
-                break;
-            case FIRST_PERSON_RIGHT_HAND:
-            {
-            }
-                break;
-            case GUI:
-            {
-            }
-                break;
-            case THIRD_PERSON_LEFT_HAND:
-            {
-            }
-                break;
-            case THIRD_PERSON_RIGHT_HAND:
-            {
-            }
-                break;
-            case GROUND:
-            {
-            }
-                break;
-            case FIXED:
-            {
-            }
-                break;
-            case HEAD:
-            {
-            }
-                break;
-            case NONE:
-            {
-            }
-                break;
-
-            default:
-                break;
-        }
-
         return selfPair;
     }
 }

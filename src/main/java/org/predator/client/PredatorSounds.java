@@ -31,6 +31,11 @@ public class PredatorSounds implements IPreInitEvent
     public static final Sound  WEAPON_PLASMA_EXPLOSION      = SoundRegistryUtil.createSound("weapon.plasmacaster.explosion");
     public static final Sound  WEAPON_WRISTBLADES           = SoundRegistryUtil.createSound("weapon.blades");
 
+    // Wristbracer Console FX
+    public static final Sound WRISTBRACER_CONSOLE_OPEN      = SoundRegistryUtil.createSound("wristbracer.console.open");
+    public static final Sound WRISTBRACER_CONSOLE_CLOSE     = SoundRegistryUtil.createSound("wristbracer.console.close");
+    public static final Sound WRISTBRACER_CONSOLE_INTERACT  = SoundRegistryUtil.createSound("wristbracer.console.interact");
+
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         SoundRegistryUtil.registerSound(FX_WRISTBRACER_ALARM);
@@ -47,5 +52,9 @@ public class PredatorSounds implements IPreInitEvent
         SoundRegistryUtil.registerSound(WEAPON_PLASMACASTER_NOENERGY);
         SoundRegistryUtil.registerSound(WEAPON_PLASMA_EXPLOSION);
         SoundRegistryUtil.registerSound(WEAPON_WRISTBLADES);
+
+        SoundRegistryUtil.registerSound(WRISTBRACER_CONSOLE_OPEN);
+        SoundRegistryUtil.registerSound(WRISTBRACER_CONSOLE_CLOSE);
+        SoundRegistryUtil.registerSound(WRISTBRACER_CONSOLE_INTERACT);
     }
 }
