@@ -37,12 +37,7 @@ public class CachedModelReflectiveShape implements IBakedModel
     private static final String                                                            TEXTURE_LOCATION       = "avp:blocks/reflection";
     private static final VertexFormat                                                      VERTEX_FORMAT          = DefaultVertexFormats.POSITION_TEX_COLOR_NORMAL;
     private static final java.util.function.Function<ResourceLocation, TextureAtlasSprite> TEXTURE_GETTER         = ModelLoader.defaultTextureGetter();
-    private static final Function<ResourceLocation, TextureAtlasSprite>                    DEFAULT_TEXTURE_GETTER = new Function<ResourceLocation, TextureAtlasSprite>() {
-                                                                                                                      public TextureAtlasSprite apply(ResourceLocation location)
-                                                                                                                      {
-                                                                                                                          return ClientGame.instance.minecraft().getTextureMapBlocks().getAtlasSprite("avp:blocks/reflection");
-                                                                                                                      }
-                                                                                                                  };
+    private static final Function<ResourceLocation, TextureAtlasSprite>                    DEFAULT_TEXTURE_GETTER = location -> ClientGame.instance.minecraft().getTextureMapBlocks().getAtlasSprite("avp:blocks/reflection");
 
     private final IModel                                                                         model;
     private TextureAtlasSprite                                                             sprite;

@@ -3,8 +3,6 @@ package org.predator.client.gui;
 import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.gui.GuiCustomButton;
-import com.asx.mdx.client.render.gui.IAction;
-import com.asx.mdx.client.render.gui.IGuiElement;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -97,14 +95,7 @@ public class GuiWristbracer extends GuiContainer
             button.drawButton();
             button.drawTooltip();
 
-            button.setAction(new IAction()
-            {
-                @Override
-                public void perform(IGuiElement element)
-                {
-                    updateScreenDigit(button.id, displays.get(button) < 9 ? displays.get(button) + 1 : 0);
-                }
-            });
+            button.setAction(element -> updateScreenDigit(button.id, displays.get(button) < 9 ? displays.get(button) + 1 : 0));
 
             drawYautjaDigit(this.displays.get(button), guiLeft + 13 + 27 * (x1 - 1), guiTop + 49);
         }

@@ -44,7 +44,7 @@ public class ItemAPC extends HookedItem
 
         if (result == null)
         {
-            return new ActionResult<ItemStack>(EnumActionResult.FAIL, playerIn.getActiveItemStack());
+            return new ActionResult<>(EnumActionResult.FAIL, playerIn.getActiveItemStack());
         }
         else if (result.typeOfHit == RayTraceResult.Type.BLOCK)
         {
@@ -61,6 +61,6 @@ public class ItemAPC extends HookedItem
             }
         }
 
-        return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, playerIn.getActiveItemStack());
+        return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getActiveItemStack());
     }
 }

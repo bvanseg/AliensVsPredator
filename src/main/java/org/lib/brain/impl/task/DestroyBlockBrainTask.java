@@ -1,6 +1,5 @@
 package org.lib.brain.impl.task;
 
-import java.util.function.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -15,6 +14,7 @@ import org.lib.brain.impl.EntityBrainContext;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * 

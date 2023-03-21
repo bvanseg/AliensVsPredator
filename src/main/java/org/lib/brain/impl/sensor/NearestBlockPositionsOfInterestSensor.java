@@ -1,6 +1,5 @@
 package org.lib.brain.impl.sensor;
 
-import java.util.function.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import org.lib.brain.impl.BrainMemoryKeys;
@@ -8,6 +7,7 @@ import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.sensor.AbstractBrainSensor;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  * 

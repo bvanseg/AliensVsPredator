@@ -1,7 +1,7 @@
-package org.avp.client.render.wavegraph.ekg;
+package org.lib.client.render.wavegraph.ekg;
 
-import org.avp.client.render.wavegraph.DataEntry;
-import org.avp.client.render.wavegraph.Wavegraph;
+import org.lib.client.render.wavegraph.DataEntry;
+import org.lib.client.render.wavegraph.Wavegraph;
 
 public class DataEntryEKG extends DataEntry
 {

@@ -1,4 +1,4 @@
-package org.lib.model.loader;
+package org.lib.client.render.model.loader;
 
 import net.minecraft.client.resources.IResourceManager;
 import net.minecraft.util.ResourceLocation;

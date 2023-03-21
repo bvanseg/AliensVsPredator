@@ -15,7 +15,7 @@ public class LV426Formation5 extends LV426Formation
     @Override
     public Pos[] getOffsets()
     {
-        List<Pos> set = new ArrayList<Pos>();
+        List<Pos> set = new ArrayList<>();
         
 		offset(set, 0, 0, 3);
 		offset(set, 1, 0, 2);

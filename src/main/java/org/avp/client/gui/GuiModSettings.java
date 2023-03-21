@@ -4,7 +4,10 @@ import com.asx.mdx.client.ScaledResolution;
 import com.asx.mdx.client.Screen;
 import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.OpenGL;
-import com.asx.mdx.client.render.gui.*;
+import com.asx.mdx.client.render.gui.GuiCustomButton;
+import com.asx.mdx.client.render.gui.GuiCustomScreen;
+import com.asx.mdx.client.render.gui.GuiCustomTextbox;
+import com.asx.mdx.client.render.gui.IGuiElement;
 import com.asx.mdx.common.io.config.ConfigSetting;
 import com.asx.mdx.common.io.config.ConfigSettingBoolean;
 import com.asx.mdx.common.io.config.ConfigSettingGraphics;
@@ -24,7 +27,7 @@ import java.util.ArrayList;
 
 public class GuiModSettings extends GuiCustomScreen
 {
-    private final ArrayList<IGuiElement> elements = new ArrayList<IGuiElement>();
+    private final ArrayList<IGuiElement> elements = new ArrayList<>();
     private int                    scroll   = 0;
     private long                   lastApplyTime;
 
@@ -56,18 +59,13 @@ public class GuiModSettings extends GuiCustomScreen
                     element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
                 }
 
-                element.setAction(new IAction()
-                {
-                    @Override
-                    public void perform(IGuiElement element)
-                    {
-                        setting.toggle();
+                element.setAction(element17 -> {
+                    setting.toggle();
 
-                        if (element instanceof GuiCustomButton)
-                        {
-                            GuiCustomButton button = (GuiCustomButton) element;
-                            button.displayString = setting.getStringValue();
-                        }
+                    if (element17 instanceof GuiCustomButton)
+                    {
+                        GuiCustomButton button = (GuiCustomButton) element17;
+                        button.displayString = setting.getStringValue();
                     }
                 });
                 this.elements.add(element);
@@ -87,16 +85,11 @@ public class GuiModSettings extends GuiCustomScreen
                     element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
                 }
 
-                textbox.setAction(new IAction()
-                {
-                    @Override
-                    public void perform(IGuiElement element)
+                textbox.setAction(element16 -> {
+                    if (element16 instanceof GuiCustomTextbox)
                     {
-                        if (element instanceof GuiCustomTextbox)
-                        {
-                            GuiCustomTextbox t = (GuiCustomTextbox) element;
-                            setting.property().set(t.getText());
-                        }
+                        GuiCustomTextbox t = (GuiCustomTextbox) element16;
+                        setting.property().set(t.getText());
                     }
                 });
                 textbox.trackElement();
@@ -116,18 +109,13 @@ public class GuiModSettings extends GuiCustomScreen
                     element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
                 }
 
-                element.setAction(new IAction()
-                {
-                    @Override
-                    public void perform(IGuiElement element)
-                    {
-                        setting.toggle();
+                element.setAction(element15 -> {
+                    setting.toggle();
 
-                        if (element instanceof GuiCustomButton)
-                        {
-                            GuiCustomButton button = (GuiCustomButton) element;
-                            button.displayString = setting.getStringValue();
-                        }
+                    if (element15 instanceof GuiCustomButton)
+                    {
+                        GuiCustomButton button = (GuiCustomButton) element15;
+                        button.displayString = setting.getStringValue();
                     }
                 });
                 this.elements.add(element);
@@ -157,18 +145,13 @@ public class GuiModSettings extends GuiCustomScreen
                     element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
                 }
 
-                element.setAction(new IAction()
-                {
-                    @Override
-                    public void perform(IGuiElement element)
-                    {
-                        setting.toggle();
+                element.setAction(element14 -> {
+                    setting.toggle();
 
-                        if (element instanceof GuiCustomButton)
-                        {
-                            GuiCustomButton button = (GuiCustomButton) element;
-                            button.displayString = setting.getStringValue();
-                        }
+                    if (element14 instanceof GuiCustomButton)
+                    {
+                        GuiCustomButton button = (GuiCustomButton) element14;
+                        button.displayString = setting.getStringValue();
                     }
                 });
                 this.elements.add(element);
@@ -188,16 +171,11 @@ public class GuiModSettings extends GuiCustomScreen
                     textbox.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
                 }
 
-                textbox.setAction(new IAction()
-                {
-                    @Override
-                    public void perform(IGuiElement element)
+                textbox.setAction(element13 -> {
+                    if (element13 instanceof GuiCustomTextbox)
                     {
-                        if (element instanceof GuiCustomTextbox)
-                        {
-                            GuiCustomTextbox t = (GuiCustomTextbox) element;
-                            setting.property().set(t.getText());
-                        }
+                        GuiCustomTextbox t = (GuiCustomTextbox) element13;
+                        setting.property().set(t.getText());
                     }
                 });
                 textbox.trackElement();
@@ -216,14 +194,7 @@ public class GuiModSettings extends GuiCustomScreen
         element.overlayColorHover = 0xAA444444;
         element.fontColor = 0xFF00CCFF;
         element.fontShadow = false;
-        element.setAction(new IAction()
-        {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                applySettings();
-            }
-        });
+        element.setAction(element12 -> applySettings());
         this.elements.add(element);
 
         element = new GuiCustomButton(2, 0, 0, 0, 10, "Save and Apply");
@@ -231,14 +202,7 @@ public class GuiModSettings extends GuiCustomScreen
         element.overlayColorHover = 0xAA444444;
         element.fontColor = 0xFF00CCFF;
         element.fontShadow = false;
-        element.setAction(new IAction()
-        {
-            @Override
-            public void perform(IGuiElement element)
-            {
-                applyAndSaveSettings();
-            }
-        });
+        element.setAction(element1 -> applyAndSaveSettings());
         this.elements.add(element);
     }
 

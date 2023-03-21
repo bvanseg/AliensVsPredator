@@ -140,18 +140,20 @@ public class EntityGrenade extends EntityThrowable
         this.setDead();
     }
 
+    private static final String FUSE_NBT_KEY = "Fuse";
+
     @Override
     public void writeEntityToNBT(NBTTagCompound tag)
     {
         super.writeEntityToNBT(tag);
-        tag.setByte("Fuse", (byte) this.fuse);
+        tag.setByte(FUSE_NBT_KEY, (byte) this.fuse);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound tag)
     {
         super.readEntityFromNBT(tag);
-        this.fuse = tag.getByte("Fuse");
+        this.fuse = tag.getByte(FUSE_NBT_KEY);
     }
 
     @Override

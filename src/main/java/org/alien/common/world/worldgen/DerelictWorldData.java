@@ -13,7 +13,7 @@ public class DerelictWorldData implements IWorldSaveHandler
 
     public DerelictWorldData()
     {
-        this.derelictLocations = new ArrayList<DerelictLocation>();
+        this.derelictLocations = new ArrayList<>();
     }
 
     public boolean saveData(World world, NBTTagCompound tag)

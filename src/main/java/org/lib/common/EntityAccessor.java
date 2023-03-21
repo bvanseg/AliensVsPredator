@@ -1,4 +1,4 @@
-package org.avp;
+package org.lib.common;
 
 import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraft.entity.Entity;

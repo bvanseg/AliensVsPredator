@@ -48,17 +48,12 @@ public class PacketWriteToDataDevice implements IMessage, IMessageHandler<Packet
     @Override
     public PacketWriteToDataDevice onMessage(PacketWriteToDataDevice packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                DataDevice device = (DataDevice) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            DataDevice device = (DataDevice) ctx.getServerHandler().player.world.getTileEntity(new BlockPos(packet.x, packet.y, packet.z));
 
-                if (device != null)
-                {
-                    device.writeToOtherDevice(packet.id);
-                }
+            if (device != null)
+            {
+                device.writeToOtherDevice(packet.id);
             }
         });
 

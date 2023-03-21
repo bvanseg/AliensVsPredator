@@ -40,12 +40,7 @@ public class CachedModelResin implements IBakedModel
     private static final String                                                            TEXTURE_LOCATION       = "avp:blocks/hiveresin";
     private static final VertexFormat                                                      VERTEX_FORMAT          = DefaultVertexFormats.BLOCK;
     private static final java.util.function.Function<ResourceLocation, TextureAtlasSprite> TEXTURE_GETTER         = ModelLoader.defaultTextureGetter();
-    private static final Function<ResourceLocation, TextureAtlasSprite>                    DEFAULT_TEXTURE_GETTER = new Function<ResourceLocation, TextureAtlasSprite>() {
-                                                                                                                      public TextureAtlasSprite apply(ResourceLocation location)
-                                                                                                                      {
-                                                                                                                          return ClientGame.instance.minecraft().getTextureMapBlocks().getAtlasSprite("avp:blocks/hiveresin");
-                                                                                                                      }
-                                                                                                                  };
+    private static final Function<ResourceLocation, TextureAtlasSprite>                    DEFAULT_TEXTURE_GETTER = location -> ClientGame.instance.minecraft().getTextureMapBlocks().getAtlasSprite("avp:blocks/hiveresin");
 
     private final IModel                                                                         model;
     private TextureAtlasSprite                                                             sprite;
@@ -169,7 +164,7 @@ public class CachedModelResin implements IBakedModel
                 }
             }
 
-            List<BakedQuad> quads = new ArrayList<BakedQuad>();
+            List<BakedQuad> quads = new ArrayList<>();
 
             quads.add(createQuad(new Vec3d(1.0D, 0.0D, 0.0D), new Vec3d(1.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 1.0D), new Vec3d(0.0D, 0.0D, 0.0D), this.sprite));
             quads.add(createQuad(new Vec3d(0.0D, 1.0D, 0.0D), new Vec3d(0.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 1.0D), new Vec3d(1.0D, 1.0D, 0.0D), this.sprite));

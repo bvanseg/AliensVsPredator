@@ -3,12 +3,12 @@ package org.avp.client.input.handler;
 import com.asx.mdx.client.ClientGame;
 import net.minecraft.item.Item;
 import org.avp.client.KeybindHandler;
-import org.avp.client.input.IInputHandler;
+import org.avp.client.input.InputHandler;
 import org.avp.common.AVPNetworking;
 import org.avp.common.item.firearm.ItemFirearm;
 import org.avp.common.network.packet.server.PacketReloadFirearm;
 
-public class InputHandlerFirearm implements IInputHandler
+public class InputHandlerFirearm implements InputHandler
 {
     public static final InputHandlerFirearm instance   = new InputHandlerFirearm();
     private int                             lastReload = 0;

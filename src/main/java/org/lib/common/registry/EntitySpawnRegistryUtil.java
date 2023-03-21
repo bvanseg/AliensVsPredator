@@ -1,4 +1,4 @@
-package org.lib.registry;
+package org.lib.common.registry;
 
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;

@@ -25,7 +25,7 @@ public class BossBarEvent
 
     public BossBarEvent()
     {
-        bosses = new ArrayList<EntityLivingBase>();
+        bosses = new ArrayList<>();
     }
 
     @SubscribeEvent

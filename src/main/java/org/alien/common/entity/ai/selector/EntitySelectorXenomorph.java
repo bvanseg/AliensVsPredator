@@ -3,8 +3,8 @@ package org.alien.common.entity.ai.selector;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.passive.EntityBat;
 import net.minecraft.entity.passive.EntityWaterMob;
-import org.lib.predicate.EntitySelectorBase;
-import org.lib.predicate.Predicates;
+import org.lib.common.predicate.EntitySelectorBase;
+import org.lib.common.predicate.Predicates;
 
 public class EntitySelectorXenomorph extends EntitySelectorBase
 {

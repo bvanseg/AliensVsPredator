@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.AVPMaterials;
 import org.avp.common.item.ItemEntitySummoner;
-import org.lib.registry.ItemRegistryUtil;
+import org.lib.common.registry.ItemRegistryUtil;
 import org.predator.common.entity.living.EntityPredatorHound;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;

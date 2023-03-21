@@ -46,7 +46,7 @@ public class BlockRedstoneFluxGenerator extends Block
         {
             TileEntityRedstoneFluxGenerator generator = (TileEntityRedstoneFluxGenerator) te;
 
-            ArrayList<EnumFacing> EnumFacings = new ArrayList<EnumFacing>();
+            ArrayList<EnumFacing> EnumFacings = new ArrayList<>();
 
             for (EnumFacing dir : EnumFacing.VALUES)
             {
