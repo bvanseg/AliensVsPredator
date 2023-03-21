@@ -27,8 +27,8 @@ public class DestroyBlockBrainTask extends AbstractEntityBrainTask {
 	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
 		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
 		map.put(BrainFlags.BLOCK_POSITIONS_OF_INTEREST, BrainFlagState.PRESENT);
-		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
-		map.put(BrainFlags.NEAREST_AVOID_TARGET, BrainFlagState.PRESENT);
+		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
+		map.put(BrainFlags.NEAREST_AVOID_TARGET, BrainFlagState.ABSENT);
 	}
 
 	@Override
