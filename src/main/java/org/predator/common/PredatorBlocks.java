@@ -8,6 +8,7 @@ import net.minecraft.item.ItemSlab;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.block.BlockCustomSlab;
+import org.avp.common.block.BlockCustomStairs;
 import org.avp.common.block.BlockStasisMechanism;
 import org.avp.common.block.skull.*;
 import org.lib.common.block.BlockProperties;
@@ -41,6 +42,14 @@ public class PredatorBlocks implements IPreInitEvent {
 
     public static final BlockProperties TEMPLE_PROPS = new BlockProperties(Material.ROCK).setHardness(5F).setResistance(15.0F);
 
+    // Stairs
+    public static final Block TEMPLE_BRICK_STAIRS = new BlockCustomStairs(TEMPLE_BRICK.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_brick_stairs");
+    public static final Block TEMPLE_BRICK_SINGLE_STAIRS = new BlockCustomStairs(TEMPLE_TILES_SINGLE.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_brick_single_stairs");
+    public static final Block TEMPLE_TILE_STAIRS = new BlockCustomStairs(TEMPLE_TILE.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_tile_stairs");
+    public static final Block TEMPLE_WALL_STAIRS = new BlockCustomStairs(TEMPLE_WALL_1.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_wall_stairs");
+    public static final Block TEMPLE_FLOOR_STAIRS = new BlockCustomStairs(TEMPLE_WALL_2.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("temple_floor_stairs");
+
+    // Slabs
     public static final BlockCustomSlab TEMPLE_BRICK_SLAB_HALF = new BlockCustomSlab.Half("temple_brick_slab", TEMPLE_PROPS);
     public static final BlockCustomSlab TEMPLE_BRICK_SLAB_DOUBLE = new BlockCustomSlab.Double("double_temple_brick_slab", TEMPLE_PROPS);
 
@@ -87,6 +96,14 @@ public class PredatorBlocks implements IPreInitEvent {
 
         BlockRegistryUtil.registerStandardBlock(STASIS_MECHANISM);
 
+        // Stairs
+        BlockRegistryUtil.registerStandardBlock(TEMPLE_BRICK_STAIRS);
+        BlockRegistryUtil.registerStandardBlock(TEMPLE_BRICK_SINGLE_STAIRS);
+        BlockRegistryUtil.registerStandardBlock(TEMPLE_TILE_STAIRS);
+        BlockRegistryUtil.registerStandardBlock(TEMPLE_WALL_STAIRS);
+        BlockRegistryUtil.registerStandardBlock(TEMPLE_FLOOR_STAIRS);
+
+        // Slabs
         BlockRegistryUtil.registerBlock(TEMPLE_BRICK_SLAB_HALF);
         BlockRegistryUtil.registerBlock(TEMPLE_BRICK_SLAB_DOUBLE);
 
