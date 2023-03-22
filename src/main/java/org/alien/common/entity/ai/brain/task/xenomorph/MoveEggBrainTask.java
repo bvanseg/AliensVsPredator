@@ -104,25 +104,31 @@ public class MoveEggBrainTask extends AbstractEntityBrainTask {
 
 			// If no eggs are close by, we can drop the egg, now.
 			if (nearbyEggs.isEmpty() || nearbyEggs.stream().noneMatch(e -> ctx.getEntity().getDistance(e) < EggMoveConstants.EGG_SPACE_REQUIRED)) {
-				this.dropEgg(ctx);
+				this.dropEgg(ctx, false);
 			}
 		} else {
-			this.dropEgg(ctx);
+			this.dropEgg(ctx, false);
 		}
 	}
 
-	private void dropEgg(EntityBrainContext ctx) {
+	private void dropEgg(EntityBrainContext ctx, boolean forced) {
 		EntityLiving entity = ctx.getEntity();
 		BlockPos pos = entity.getPosition();
-		entity.getPassengers().forEach(egg -> {
-			egg.dismountRidingEntity();
-			if (egg instanceof EntityLiving) {
-				((EntityLiving)egg).setNoAI(false);
-			}
-			egg.setPosition(pos.getX(), pos.getY(), pos.getZ());
-			if (egg instanceof EntityOvamorph) {
-				((EntityOvamorph)egg).hasBeenMoved = true;
+		entity.getPassengers().forEach(passenger -> {
+			passenger.dismountRidingEntity();
+			passenger.setPosition(pos.getX(), pos.getY(), pos.getZ());
+
+			if (passenger instanceof EntityOvamorph) {
+				((EntityOvamorph)passenger).setNoAI(false);
+				((EntityOvamorph)passenger).hasBeenMoved = !forced;
 			}
 		});
+	}
+
+	@Override
+	public void finish(EntityBrainContext ctx) {
+		super.finish(ctx);
+		this.dropEgg(ctx, true);
+		ctx.getEntity().getNavigator().clearPath();
 	}
 }
