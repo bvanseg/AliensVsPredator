@@ -12,9 +12,13 @@ public class MaturityEntry {
     private final int timeUntilMaturity;
 
     public MaturityEntry(Class<? extends Entity> entityClass, int requiredJellyLevel) {
+        this(entityClass, requiredJellyLevel, (int)(requiredJellyLevel * 2.8125));
+    }
+
+    public MaturityEntry(Class<? extends Entity> entityClass, int requiredJellyLevel, int timeUntilMaturity) {
         this.entityClass = entityClass;
         this.requiredJellyLevel = requiredJellyLevel;
-        this.timeUntilMaturity = (int)(requiredJellyLevel * 2.8125);
+        this.timeUntilMaturity = timeUntilMaturity;
     }
 
     public Class<? extends Entity> getEntityClass() {
