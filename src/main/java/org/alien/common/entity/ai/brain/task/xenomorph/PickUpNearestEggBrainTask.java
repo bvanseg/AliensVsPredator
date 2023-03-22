@@ -54,6 +54,7 @@ public class PickUpNearestEggBrainTask extends AbstractEntityBrainTask {
 				!this.targetEgg.isDead &&
 				!this.targetEgg.hasBeenMoved &&
 				this.targetEgg.wantsToBeMoved &&
+				this.targetEgg.containsFacehugger() &&
 				this.targetEgg.getRidingEntity() == null &&
 				!ctx.getEntity().getNavigator().noPath();
 	}

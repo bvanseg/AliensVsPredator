@@ -52,7 +52,11 @@ public class MoveEggBrainTask extends AbstractEntityBrainTask {
 			return false;
 
 		// Must be carrying at least 1 egg.
-		if (ctx.getEntity().getPassengers().stream().noneMatch(EntityOvamorph.class::isInstance))
+		if (ctx.getEntity().getPassengers().stream().noneMatch(e -> {
+			if (!(e instanceof EntityOvamorph)) return false;
+			EntityOvamorph o = (EntityOvamorph) e;
+			return o.containsFacehugger();
+		}))
 			return false;
 
 		return true;
@@ -103,7 +107,7 @@ public class MoveEggBrainTask extends AbstractEntityBrainTask {
 							.map(e -> (EntityOvamorph) e).collect(Collectors.toList());
 
 			// If no eggs are close by, we can drop the egg, now.
-			if (nearbyEggs.isEmpty() || nearbyEggs.stream().noneMatch(e -> ctx.getEntity().getDistance(e) < EggMoveConstants.EGG_SPACE_REQUIRED)) {
+			if (nearbyEggs.stream().noneMatch(e -> ctx.getEntity().getDistance(e) < EggMoveConstants.EGG_SPACE_REQUIRED)) {
 				this.dropEgg(ctx, false);
 			}
 		} else {
