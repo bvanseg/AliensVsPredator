@@ -20,7 +20,7 @@ public class EntityCrusher extends EntityPraetorian implements Maturable, HiveMe
         super(world);
         this.jumpMovementFactor = 0.2F;
         this.experienceValue = 300;
-        this.setSize(1.0F, 2.8F);
+        this.setSize(2.0F, 2.8F);
     }
 
     @Override
