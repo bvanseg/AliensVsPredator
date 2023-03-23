@@ -58,7 +58,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 
 	public void init() {}
 	
-	public final void update(T ctx) {
+	public void update(T ctx) {
 		if (this.isDisabled)
 			return;
 
