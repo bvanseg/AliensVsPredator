@@ -53,7 +53,7 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (ctx.getEntity().world.getTotalWorldTime() % (60 + (ctx.getEntity().getRNG().nextInt(5) * 20)) == 0) {
 			this.hasPickedUpItem = false;
 			this.hasItemTarget = false;
@@ -70,12 +70,12 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+	protected boolean shouldContinueExecuting() {
 		return this.closestItemTarget != null && !ctx.getEntity().getNavigator().noPath() && !this.hasPickedUpItem;
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		Optional<List<EntityItem>> itemEntities = ctx.getBrain().getMemory(BrainMemoryKeys.ITEM_ENTITIES);
 		
 		if (itemEntities.isPresent()) {
@@ -95,7 +95,7 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected void continueExecuting(EntityBrainContext ctx) {
+	protected void continueExecuting() {
 		EntityLiving entity = ctx.getEntity();
 
 		if (entity.getDistanceSq(closestItemTarget) < 2) {
@@ -114,8 +114,8 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
     }
 
 	@Override
-	public void finish(EntityBrainContext ctx) {
-		super.finish(ctx);
+	public void finish() {
+		super.finish();
 		this.closestItemTarget = null;
 		this.hasItemTarget = false;
 	}

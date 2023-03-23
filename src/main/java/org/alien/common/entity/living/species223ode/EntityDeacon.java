@@ -62,7 +62,7 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

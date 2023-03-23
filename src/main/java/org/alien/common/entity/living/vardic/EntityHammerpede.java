@@ -71,7 +71,7 @@ public class EntityHammerpede extends SpeciesAlien implements IMob, Brainiac<Ham
         this.lurkInBlackGoo();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

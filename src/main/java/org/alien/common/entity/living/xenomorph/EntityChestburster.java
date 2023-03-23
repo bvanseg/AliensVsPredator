@@ -80,7 +80,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
         
         if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.test(this.getAttackTarget()))

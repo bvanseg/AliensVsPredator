@@ -53,7 +53,7 @@ public class EntityUrsuidae extends EntityMob implements IMob, Host, Brainiac<Ur
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

@@ -25,7 +25,7 @@ public class EntityBrainSensor extends AbstractBrainSensor<EntityBrainContext> {
 	}
 
 	@Override
-	public void sense(EntityBrainContext ctx) {
+	public void sense() {
 		// Use ticksExisted instead of world time here so that entities don't have synchronized AI execution.
 		if (ctx.getEntity().ticksExisted % cooldownInTicks != 0) {
 			return;

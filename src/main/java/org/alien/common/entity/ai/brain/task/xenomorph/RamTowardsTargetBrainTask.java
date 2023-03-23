@@ -46,7 +46,7 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 	private int cooldown;
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		// If the entity is not on the ground, can't ram.
 		if (!ctx.getEntity().onGround) {
 			return false;
@@ -67,7 +67,7 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 
 		EntityLiving rammer = ctx.getEntity();
 		Entity target = rammer.getAttackTarget();
@@ -117,8 +117,8 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	public void finish(EntityBrainContext ctx) {
-		super.finish(ctx);
+	public void finish() {
+		super.finish();
 		this.isRamming = false;
 		// Allow crusher to attack on collide, again.
 		ctx.getBrain().getProfileTaskSets().get(ctx.getBrain().getActiveProfile())

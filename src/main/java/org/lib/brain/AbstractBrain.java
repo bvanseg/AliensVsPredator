@@ -58,15 +58,25 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 
 	public void init() {}
 	
-	public void update(T ctx) {
+	public void update() {
 		if (this.isDisabled)
 			return;
 
-		profileSensorSets.computeIfAbsent(this.activeProfile, key -> new ArrayList<>()).forEach(sensor -> sensor.sense(ctx));
+		profileSensorSets.computeIfAbsent(this.activeProfile, key -> new ArrayList<>()).forEach(sensor -> {
+			if (sensor.ctx == null) {
+				throw new IllegalStateException("Brain sensor has a null context!");
+			}
+
+			sensor.sense();
+		});
 
 		profileTaskSets.computeIfAbsent(this.activeProfile, key -> new ArrayList<>()).forEach(task -> {
+			if (task.ctx == null) {
+				throw new IllegalStateException("Brain task has a null context!");
+			}
+
 			if (this.canRunTask(task)) {
-				if (task.runTask(ctx)) {
+				if (task.runTask()) {
 					this.setFlagMasksForTask(task);
 				} else {
 					this.clearFlagMasksForTask(task);
@@ -74,7 +84,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 			}
 			// If the flag states change, and we weren't able to run the task, but the task is still executing, we need to finish the task.
 			else if (task.isExecuting()) {
-				task.finish(ctx);
+				task.finish();
 				task.setExecuting(false);
 				this.clearFlagMasksForTask(task);
 			}
@@ -82,6 +92,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	}
 
 	public final void addSense(AbstractBrainSensor<T> brainSensor, BrainProfile... profiles) {
+		brainSensor.ctx = this.createContext();
 		Arrays.stream(profiles).forEach(
 			profile -> profileSensorSets.computeIfAbsent(profile, key -> new ArrayList<>()).add(brainSensor)
 		);
@@ -92,6 +103,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	}
 	
 	public final void addTask(AbstractBrainTask<T> brainTask, BrainProfile... profiles) {
+		brainTask.ctx = this.createContext();
 		Arrays.stream(profiles).forEach(
 			profile -> profileTaskSets.computeIfAbsent(profile, key -> new ArrayList<>()).add(brainTask)
 		);
@@ -100,6 +112,8 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	public final void addTask(AbstractBrainTask<T> brainTask) {
 		this.addTask(brainTask, BrainProfiles.STANDARD);
 	}
+
+	protected abstract T createContext();
 
 	public final boolean canRunTask(AbstractBrainTask<T> brainTask) {
 		Map<AbstractBrainFlag, BrainFlagState> requirements = brainTask.getFlagRequirements();

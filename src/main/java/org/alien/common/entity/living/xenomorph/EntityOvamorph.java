@@ -115,7 +115,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
 
         if (this.getHealth() < this.getMaxHealth())

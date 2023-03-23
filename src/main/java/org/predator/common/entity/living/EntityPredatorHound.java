@@ -53,7 +53,7 @@ public class EntityPredatorHound extends EntityMob implements IMob, Host, Braini
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

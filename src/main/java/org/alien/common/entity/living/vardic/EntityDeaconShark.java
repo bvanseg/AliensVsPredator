@@ -69,7 +69,7 @@ public class EntityDeaconShark extends SpeciesAlien implements Brainiac<DeaconSh
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

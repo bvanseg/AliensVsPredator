@@ -101,7 +101,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
 
         if (!this.world.isRemote)
         {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
             this.getDataManager().set(AIMING, this.getAttackTarget() != null);
         }
     }

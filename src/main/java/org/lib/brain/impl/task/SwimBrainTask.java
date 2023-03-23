@@ -37,13 +37,13 @@ public class SwimBrainTask extends AbstractEntityBrainTask {
     }
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
         EntityLiving entity = ctx.getEntity();
         return entity.isInWater() || entity.isInLava();
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
         EntityLiving entity = ctx.getEntity();
         if (entity.getRNG().nextFloat() < 0.8F) {
             entity.getJumpHelper().setJumping();
