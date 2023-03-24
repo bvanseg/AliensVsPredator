@@ -193,12 +193,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
         super.onUpdate();
         this.updateAnimations();
 
-        // FIXME: I'm not happy with this needing a flag, but there's no guaranteed initial sync point for the client entity (or at least the jelly level) that I'm aware of. - bvan.
-        if (!this.growthInitialized) {
-            this.growthProgress = this.getJellyLevel();
-            this.growthInitialized = true;
-        }
-
         if (this.canProduceJelly())
         {
             this.produceJelly();
@@ -213,6 +207,16 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
                     this.mature();
                 }
             }
+        }
+    }
+
+    @Override
+    public void notifyDataManagerChange(DataParameter<?> key) {
+        super.notifyDataManagerChange(key);
+
+        if (key == JELLY_LEVEL && !this.growthInitialized) {
+            this.growthProgress = this.getJellyLevel();
+            this.growthInitialized = true;
         }
     }
 
