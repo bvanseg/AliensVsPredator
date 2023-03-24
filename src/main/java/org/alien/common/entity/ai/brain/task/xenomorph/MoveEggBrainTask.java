@@ -43,7 +43,7 @@ public class MoveEggBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (!(ctx.getEntity() instanceof EntityDrone))
 			return false;
 
@@ -63,7 +63,7 @@ public class MoveEggBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		Optional<List<EntityLivingBase>> livingEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);
 
 		// Phase 1: Find avoid target.
@@ -108,14 +108,14 @@ public class MoveEggBrainTask extends AbstractEntityBrainTask {
 
 			// If no eggs are close by, we can drop the egg, now.
 			if (nearbyEggs.stream().noneMatch(e -> ctx.getEntity().getDistance(e) < EggMoveConstants.EGG_SPACE_REQUIRED)) {
-				this.dropEgg(ctx, false);
+				this.dropEgg(false);
 			}
 		} else {
-			this.dropEgg(ctx, false);
+			this.dropEgg(false);
 		}
 	}
 
-	private void dropEgg(EntityBrainContext ctx, boolean forced) {
+	private void dropEgg(boolean forced) {
 		EntityLiving entity = ctx.getEntity();
 		BlockPos pos = entity.getPosition();
 		entity.getPassengers().forEach(passenger -> {
@@ -130,9 +130,9 @@ public class MoveEggBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	public void finish(EntityBrainContext ctx) {
-		super.finish(ctx);
-		this.dropEgg(ctx, true);
+	public void finish() {
+		super.finish();
+		this.dropEgg(true);
 		ctx.getEntity().getNavigator().clearPath();
 	}
 }
