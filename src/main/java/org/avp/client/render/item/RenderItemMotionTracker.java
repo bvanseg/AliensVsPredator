@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderItemMotionTracker extends ItemRenderer<ModelMotionTracker>
 {
-    public RenderMotionTrackerScreen motionTracker = new RenderMotionTrackerScreen();
+    private final RenderMotionTrackerScreen motionTracker = new RenderMotionTrackerScreen();
 
     public RenderItemMotionTracker()
     {

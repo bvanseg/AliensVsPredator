@@ -21,6 +21,14 @@ public class AbstractEntityBrain<T extends Entity> extends AbstractBrain<EntityB
 		return this.entity;
 	}
 
+	@Override
+	public void update(EntityBrainContext ctx) {
+		if (this.entity.isDead)
+			return;
+
+		super.update(ctx);
+	}
+
 	public void initSenses() { /* Do Nothing */ }
 
 	public void initTasks() { /* Do Nothing */ }

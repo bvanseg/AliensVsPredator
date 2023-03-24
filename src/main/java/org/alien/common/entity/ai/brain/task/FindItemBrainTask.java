@@ -62,7 +62,8 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 		Optional<List<EntityItem>> itemEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.ITEM_ENTITIES);
 
 		if (itemEntitiesOptional.isPresent()) {
-			boolean isValidItemNearby = itemEntitiesOptional.get().stream().anyMatch(this.itemPredicate);
+			boolean isValidItemNearby = itemEntitiesOptional.get().stream()
+					.anyMatch(entityItem -> this.itemPredicate.test(entityItem) && entityItem.onGround);
 			return isValidItemNearby && !this.hasPickedUpItem;
 		}
 

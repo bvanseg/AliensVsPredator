@@ -320,11 +320,11 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(AlienItems.SUMMONER_DEACON, (new RenderItemSummoner(Resources.instance.models().DEACON)).setScale(7F).setY(7F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_DEACON_ADULT, (new RenderItemSummoner(Resources.instance.models().DEACON_ADULT)).setScale(7F).setY(7F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_WARRIOR, (new RenderItemSummoner(Resources.instance.models().WARRIOR)).setScale(7.5F).setY(9F));
-        Renderers.registerItemRenderer(AlienItems.SUMMONER_RUNNER_DRONE, (new RenderItemSummoner(Resources.instance.models().RUNNER_DRONE)).setScale(7.5F).setY(6F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_RUNNER_DRONE, (new RenderItemSummoner(Resources.instance.models().RUNNER_DRONE)).setScale(7.5F).setX(4F).setY(6F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_RUNNER_WARRIOR, (new RenderItemSummoner(Resources.instance.models().RUNNER_WARRIOR)).setScale(7.5F).setY(9F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_PRAETORIAN, (new RenderItemSummoner(Resources.instance.models().PRAETORIAN)).setScale(7.5F).setY(7.5F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_SPITTER, (new RenderItemSummoner(Resources.instance.models().SPITTER)).setScale(7.5F).setY(9F));
-        Renderers.registerItemRenderer(AlienItems.SUMMONER_CRUSHER, (new RenderItemSummoner(Resources.instance.models().CRUSHER)).setScale(7.5F).setY(9.5F));
+        Renderers.registerItemRenderer(AlienItems.SUMMONER_CRUSHER, (new RenderItemSummoner(Resources.instance.models().CRUSHER)).setScale(7.5F).setX(2F).setY(9.5F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_QUEEN, (new RenderItemSummoner(Resources.instance.models().MATRIARCH)).setScale(7.5F).setY(8F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_OVAMORPH, (new RenderItemSummoner(Resources.instance.models().OVAMORPH)).setScale(20F).setY(-16F));
         Renderers.registerItemRenderer(AlienItems.SUMMONER_OVAMORPH_GIGER, (new RenderItemSummoner(Resources.instance.models().OVAMORPH_GIGER)).setScale(10F).setY(0F));
