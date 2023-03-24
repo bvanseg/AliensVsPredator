@@ -245,9 +245,4 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
         this.bite();
         return super.attackEntityAsMob(entity);
     }
-
-    public boolean isAbleToClimb()
-    {
-        return this.ableToClimb;
-    }
 }

@@ -20,6 +20,7 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 
 	@Override
 	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
 		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
 	}
 	
