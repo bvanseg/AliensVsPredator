@@ -1,6 +1,5 @@
 package org.alien.common.entity.living.xenomorph;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
@@ -12,12 +11,10 @@ import org.alien.common.world.hive.HiveMember;
 
 public class EntityRunnerChestburster extends EntityChestburster implements IMob, Nascentic, HiveMember
 {
-    private final Class<? extends Entity> matureState;
 
     public EntityRunnerChestburster(World world)
     {
         super(world);
-        this.matureState = EntityRunnerDrone.class;
         this.setSize(1.0F, 1.0F);
         this.experienceValue = 16;
     }
@@ -30,12 +27,6 @@ public class EntityRunnerChestburster extends EntityChestburster implements IMob
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6499999761581421D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
-    }
-
-    @Override
-    public Class<? extends Entity> getMatureState()
-    {
-        return this.matureState;
     }
     
     @Override

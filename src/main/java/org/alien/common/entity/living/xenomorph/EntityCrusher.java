@@ -13,7 +13,7 @@ import org.alien.common.entity.ai.brain.xenomorph.CrusherBrain;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityCrusher extends EntityPraetorian implements Maturable, HiveMember
+public class EntityCrusher extends EntityPraetorian implements HiveMember
 {
     public EntityCrusher(World world)
     {
