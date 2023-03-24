@@ -58,7 +58,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 
 	public void init() {}
 	
-	public final void update(T ctx) {
+	public void update(T ctx) {
 		if (this.isDisabled)
 			return;
 
@@ -79,6 +79,8 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 				this.clearFlagMasksForTask(task);
 			}
 		});
+
+		memoryManager.forgetEverything();
 	}
 
 	public final void addSense(AbstractBrainSensor<T> brainSensor, BrainProfile... profiles) {

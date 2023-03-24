@@ -1,6 +1,5 @@
 package org.alien.common.entity.living.xenomorph;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
@@ -9,7 +8,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityRunnerWarrior extends EntityWarrior implements Maturable, HiveMember
+public class EntityRunnerWarrior extends EntityWarrior implements HiveMember
 {
     public EntityRunnerWarrior(World world)
     {
@@ -20,15 +19,8 @@ public class EntityRunnerWarrior extends EntityWarrior implements Maturable, Hiv
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(40.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6D);
-    }
-    
-    @Override
-    public Class<? extends Entity> getMatureState()
-    {
-        return EntityCrusher.class;
     }
     
     @Override
