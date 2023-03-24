@@ -54,7 +54,7 @@ public class EntityYautjaMutant extends EntityMob implements IMob, Host, Brainia
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

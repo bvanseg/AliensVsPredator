@@ -49,7 +49,7 @@ public class WanderBrainTask extends AbstractEntityBrainTask {
     }
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
         if (this.idleTime <= 100) {
             this.idleTime++;
             return false;
@@ -73,12 +73,12 @@ public class WanderBrainTask extends AbstractEntityBrainTask {
 	}
 
     @Override
-    protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+    protected boolean shouldContinueExecuting() {
         return !ctx.getEntity().getNavigator().noPath();
     }
 
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
     	ctx.getEntity().getNavigator().tryMoveToXYZ(this.x, this.y, this.z, this.speed);
 	}
 

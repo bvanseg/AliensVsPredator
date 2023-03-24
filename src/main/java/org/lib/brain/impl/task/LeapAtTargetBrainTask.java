@@ -31,7 +31,7 @@ public class LeapAtTargetBrainTask extends AbstractEntityBrainTask {
     }
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
         // If the entity is not on the ground, there's nothing to leap off of.
         if (!ctx.getEntity().onGround) {
             return false;
@@ -53,7 +53,7 @@ public class LeapAtTargetBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
         EntityLiving leaper = ctx.getEntity();
         Entity leapTarget = ctx.getEntity().getAttackTarget();
         double d0 = leapTarget.posX - leaper.posX;

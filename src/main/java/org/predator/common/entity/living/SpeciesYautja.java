@@ -94,7 +94,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
         
         if (this.world.getTotalWorldTime() % 10 == 0)

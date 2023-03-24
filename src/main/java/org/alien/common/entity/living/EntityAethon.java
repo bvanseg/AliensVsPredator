@@ -91,7 +91,7 @@ public class EntityAethon extends EntityMob implements IMob, Host, Brainiac<Aeth
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
 
         this.fallDistance = 0F;

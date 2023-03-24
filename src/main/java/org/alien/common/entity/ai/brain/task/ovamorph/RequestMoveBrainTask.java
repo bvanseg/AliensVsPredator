@@ -18,7 +18,7 @@ import java.util.Optional;
 public class RequestMoveBrainTask extends AbstractEntityBrainTask {
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (!(ctx.getEntity() instanceof EntityOvamorph))
 			return false;
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
@@ -26,7 +26,7 @@ public class RequestMoveBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		Optional<List<EntityLivingBase>> livingEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);
 		if (livingEntitiesOptional.isPresent()) {
 			List<EntityLivingBase> livingEntities = livingEntitiesOptional.get();

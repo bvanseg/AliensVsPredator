@@ -68,7 +68,7 @@ public abstract class SpeciesEngineer extends EntityMob implements Brainiac<Engi
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

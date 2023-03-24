@@ -27,7 +27,7 @@ public class MatriarchReproduceBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if(!(entity instanceof EntityMatriarch)) return false;
@@ -47,7 +47,7 @@ public class MatriarchReproduceBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 
 		Vec3d ovamorphPosition = this.getEggLayingPosition(ctx);

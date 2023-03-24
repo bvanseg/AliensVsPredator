@@ -28,7 +28,7 @@ public class ShareJellyBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if (!(entity instanceof SpeciesXenomorph) || !(entity instanceof HiveMember) || entity instanceof EntityMatriarch) {
@@ -42,7 +42,7 @@ public class ShareJellyBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityLiving entity = ctx.getEntity();
 		SpeciesXenomorph xenomorph = (SpeciesXenomorph)entity;
 		HiveMember hiveMember = (HiveMember) xenomorph;

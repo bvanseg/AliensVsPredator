@@ -37,7 +37,7 @@ public class PickUpNearestEggBrainTask extends AbstractEntityBrainTask {
 	private EntityOvamorph targetEgg;
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (!(ctx.getEntity() instanceof EntityDrone))
 			return false;
 
@@ -49,7 +49,7 @@ public class PickUpNearestEggBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+	protected boolean shouldContinueExecuting() {
 		return this.targetEgg != null &&
 				!this.targetEgg.isDead &&
 				!this.targetEgg.hasBeenMoved &&
@@ -60,7 +60,7 @@ public class PickUpNearestEggBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		// Phase 1: Find an egg that wants to be moved.
 		Optional<List<EntityLivingBase>> livingEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);
 
@@ -82,7 +82,7 @@ public class PickUpNearestEggBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected void continueExecuting(EntityBrainContext ctx) {
+	protected void continueExecuting() {
 		// Phase 2: Pick up egg.
 		if (ctx.getEntity().getDistance(this.targetEgg) < 2.0 && this.targetEgg.getRidingEntity() == null) {
 			this.targetEgg.startRiding(ctx.getEntity());
@@ -93,8 +93,8 @@ public class PickUpNearestEggBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	public void finish(EntityBrainContext ctx) {
-		super.finish(ctx);
+	public void finish() {
+		super.finish();
 		this.targetEgg = null;
 		ctx.getEntity().getNavigator().clearPath();
 	}

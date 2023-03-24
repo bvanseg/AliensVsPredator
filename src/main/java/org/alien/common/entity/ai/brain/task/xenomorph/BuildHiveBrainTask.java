@@ -57,7 +57,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if(!(entity instanceof EntityDrone)) return false;
@@ -73,7 +73,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityDrone entity = (EntityDrone) ctx.getEntity();
 		this.targetPos = findNextSuitableResinLocation(entity, 3);
 
@@ -87,7 +87,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+	protected boolean shouldContinueExecuting() {
 		if (this.targetPos == null) return false;
 		if (ctx.getEntity().getNavigator().noPath()) return false;
 		if (((EntityDrone)ctx.getEntity()).getAlienHive() == null) return false;
@@ -96,7 +96,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected void continueExecuting(EntityBrainContext ctx) {
+	protected void continueExecuting() {
 		EntityDrone entity = (EntityDrone) ctx.getEntity();
 		IBlockState state = entity.world.getBlockState(this.targetPos);
 

@@ -81,7 +81,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
                 this.brain.setActiveProfile(BrainProfiles.PARASITOID_INFERTILE);
             }
 
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
 
             this.negateFallDamage();
 

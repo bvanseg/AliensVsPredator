@@ -178,7 +178,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
 
         this.updateHitbox();

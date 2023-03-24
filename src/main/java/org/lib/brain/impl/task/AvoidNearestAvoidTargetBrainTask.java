@@ -62,7 +62,7 @@ public class AvoidNearestAvoidTargetBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 		// If already executing, check if the entity has no path.
 		if (this.isExecuting()) {
@@ -98,7 +98,7 @@ public class AvoidNearestAvoidTargetBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityCreature entity = (EntityCreature) ctx.getEntity();
 		Optional<Entity> avoidEntityOptional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_AVOID_TARGET);
 		Entity avoidEntity = avoidEntityOptional.get();
@@ -117,8 +117,8 @@ public class AvoidNearestAvoidTargetBrainTask extends AbstractEntityBrainTask {
     }
 
 	@Override
-	public void finish(EntityBrainContext ctx) {
-		super.finish(ctx);
+	public void finish() {
+		super.finish();
 		this.path = null;
 	}
 }

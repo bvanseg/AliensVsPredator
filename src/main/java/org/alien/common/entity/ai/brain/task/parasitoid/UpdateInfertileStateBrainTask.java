@@ -11,13 +11,13 @@ import org.lib.brain.task.AbstractBrainTask;
 public class UpdateInfertileStateBrainTask extends AbstractBrainTask<EntityBrainContext> {
 
     @Override
-    protected boolean shouldExecute(EntityBrainContext ctx) {
+    protected boolean shouldExecute() {
         return ctx.getEntity() instanceof EntityParasitoid &&
                 !((EntityParasitoid)ctx.getEntity()).isFertile();
     }
 
     @Override
-    protected void startExecuting(EntityBrainContext ctx) {
+    protected void startExecuting() {
         EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
 
         if (!parasite.isAttachedToHost()) {
@@ -26,7 +26,7 @@ public class UpdateInfertileStateBrainTask extends AbstractBrainTask<EntityBrain
     }
 
     @Override
-    protected void continueExecuting(EntityBrainContext ctx) {
+    protected void continueExecuting() {
         EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
         parasite.motionY -= 0.05F;
         parasite.motionY *= 0.98F;

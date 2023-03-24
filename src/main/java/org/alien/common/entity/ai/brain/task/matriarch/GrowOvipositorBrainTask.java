@@ -26,7 +26,7 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if(!(entity instanceof EntityMatriarch)) return false;
@@ -41,7 +41,7 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 
 		matriarchEntity.getBrain().setActiveProfile(BrainProfiles.MATRIARCH_REPRODUCING);
@@ -60,8 +60,8 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	public void finish(EntityBrainContext ctx) {
-		super.finish(ctx);
+	public void finish() {
+		super.finish();
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 		matriarchEntity.setOvipositorSize(0);
 		matriarchEntity.getBrain().setActiveProfile(BrainProfiles.STANDARD);

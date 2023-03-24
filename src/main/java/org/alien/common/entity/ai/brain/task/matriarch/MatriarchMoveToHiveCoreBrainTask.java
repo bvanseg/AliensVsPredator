@@ -27,7 +27,7 @@ public class MatriarchMoveToHiveCoreBrainTask extends AbstractEntityBrainTask {
 	private ArrayList<Pos> pathPoints = new ArrayList<>();
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (!(ctx.getEntity() instanceof EntityMatriarch))
 			return false;
 
@@ -36,7 +36,7 @@ public class MatriarchMoveToHiveCoreBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityMatriarch matriarch = (EntityMatriarch) ctx.getEntity();
 
 		Pos coordQueen = new Pos(matriarch);

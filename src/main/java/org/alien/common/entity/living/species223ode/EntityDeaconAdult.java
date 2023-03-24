@@ -54,7 +54,7 @@ public class EntityDeaconAdult extends Species223ODe implements Brainiac<DeaconA
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

@@ -82,7 +82,7 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Braini
 
         if (!this.world.isRemote)
         {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
 
             if (isFlying())
             {

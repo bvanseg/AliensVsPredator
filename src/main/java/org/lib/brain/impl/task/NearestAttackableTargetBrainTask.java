@@ -14,12 +14,12 @@ import java.util.Optional;
  */
 public class NearestAttackableTargetBrainTask extends AbstractEntityBrainTask {
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		return true;
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
     	Optional<EntityLivingBase> optional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
 
     	if (optional.isPresent()) {

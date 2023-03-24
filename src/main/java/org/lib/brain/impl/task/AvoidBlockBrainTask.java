@@ -52,7 +52,7 @@ public class AvoidBlockBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if (!(entity instanceof EntityCreature))
@@ -89,12 +89,12 @@ public class AvoidBlockBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+	protected boolean shouldContinueExecuting() {
 		return !ctx.getEntity().getNavigator().noPath();
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityCreature entity = (EntityCreature) ctx.getEntity();
 		Optional<List<BlockPos>> avoidEntityOptional = ctx.getBrain().getMemory(BrainMemoryKeys.BLOCK_POSITIONS_OF_INTEREST);
 		List<BlockPos> blockPositions = avoidEntityOptional.get();
@@ -118,8 +118,8 @@ public class AvoidBlockBrainTask extends AbstractEntityBrainTask {
     }
 
 	@Override
-	public void finish(EntityBrainContext ctx) {
-		super.finish(ctx);
+	public void finish() {
+		super.finish();
 		this.path = null;
 	}
 }

@@ -25,7 +25,7 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
     }
 
     @Override
-    protected boolean shouldExecute(EntityBrainContext ctx) {
+    protected boolean shouldExecute() {
         return ctx.getEntity() instanceof EntityParasitoid &&
                 ((EntityParasitoid)ctx.getEntity()).isAttachedToHost() &&
                 ctx.getEntity().getRidingEntity() != null &&
@@ -33,7 +33,7 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
     }
 
     @Override
-    protected void startExecuting(EntityBrainContext ctx) {
+    protected void startExecuting() {
         EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
         EntityLivingBase host = (EntityLivingBase) parasite.getRidingEntity();
 

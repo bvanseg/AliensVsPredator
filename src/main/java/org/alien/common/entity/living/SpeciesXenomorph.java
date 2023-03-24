@@ -76,7 +76,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            brain.update(new EntityBrainContext(this.getBrain(), this));
+            brain.update();
         }
 
         /** Fall Damage Negation **/

@@ -47,7 +47,7 @@ public class DestroyBlockBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		Optional<List<BlockPos>> blockPositionsOptional = ctx.getBrain().getMemory(BrainMemoryKeys.BLOCK_POSITIONS_OF_INTEREST);
@@ -70,12 +70,12 @@ public class DestroyBlockBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+	protected boolean shouldContinueExecuting() {
 		return !ctx.getEntity().getNavigator().noPath() && this.attemptTime < 20 * 5;
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityCreature entity = (EntityCreature) ctx.getEntity();
 		Optional<List<BlockPos>> blockPositionsOptional = ctx.getBrain().getMemory(BrainMemoryKeys.BLOCK_POSITIONS_OF_INTEREST);
 		List<BlockPos> blockPositions = blockPositionsOptional.get();
