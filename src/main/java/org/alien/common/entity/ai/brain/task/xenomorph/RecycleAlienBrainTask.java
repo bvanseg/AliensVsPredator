@@ -53,7 +53,6 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 
 		EntityDrone droneEntity = (EntityDrone) entity;
 
-		if (droneEntity.getAlienHive() == null) return false;
 		if (droneEntity.world.getTotalWorldTime() % 20 != 0) return false;
 		if (droneEntity.getRNG().nextInt(3) != 0) return false;
 
@@ -62,7 +61,7 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 
 	@Override
 	protected boolean shouldContinueExecuting() {
-		return this.recycleTarget != null && !this.recycleTarget.isDead;
+		return this.recycleTarget != null && !this.recycleTarget.isDead && !ctx.getEntity().getNavigator().noPath();
 	}
 
 	@Override
@@ -74,7 +73,7 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 		}
 
 		if (this.recycleTarget != null) {
-			entityDrone.getNavigator().tryMoveToEntityLiving(this.recycleTarget, entityDrone.getMoveHelper().getSpeed());
+			entityDrone.getNavigator().tryMoveToEntityLiving(this.recycleTarget, 1.0);
 		}
 	}
 
@@ -83,7 +82,7 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 		EntityDrone entityDrone = (EntityDrone) ctx.getEntity();
 		double distance = entityDrone.getDistanceSq(this.recycleTarget);
 
-		if (distance <= 2)
+		if (distance < 2)
 		{
 			entityDrone.setJellyLevel(entityDrone.getJellyLevel() + this.recycleTarget.getJellyLevel());
 			this.recycleTarget.setDead();
