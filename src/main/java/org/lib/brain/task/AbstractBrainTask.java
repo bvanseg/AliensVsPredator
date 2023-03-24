@@ -23,6 +23,12 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	public boolean runTask(T ctx) {
 		if (this.isDisabled) return false;
 
+		if (!this.isExecuting && this.shouldExecute(ctx)) {
+			this.startExecuting(ctx);
+			// Update isExecuting state after execute so that isExecuting is false for the first execution.
+			this.isExecuting = true;
+		}
+
 		if (this.isExecuting) {
 			if (this.shouldContinueExecuting(ctx)) {
 				this.continueExecuting(ctx);
@@ -30,12 +36,6 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 				this.finish(ctx);
 				this.isExecuting = false;
 			}
-		}
-
-		if (!this.isExecuting && this.shouldExecute(ctx)) {
-			this.startExecuting(ctx);
-			// Update isExecuting state after execute so that isExecuting is false for the first execution.
-			this.isExecuting = true;
 		}
 
 		return this.isExecuting;

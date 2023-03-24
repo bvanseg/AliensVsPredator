@@ -2,6 +2,7 @@ package org.avp.common.block.init;
 
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
 import org.avp.common.block.BlockCustomStairs;
@@ -18,11 +19,11 @@ public class AVPStairBlocks implements IPreInitEvent
     private AVPStairBlocks() {}
 
     // Stairs
-    public static final Block FLOOR_GRILL_STAIRS = new BlockCustomStairs(AVPBlocks.FLOOR_GRILL.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("floorgrillstairs");
-    public static final Block CEILING_GRILL_STAIRS = new BlockCustomStairs(AVPBlocks.CEILING_GRILL.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("ceilinggrillstairs");
+    public static final Block FLOOR_GRILL_STAIRS = new BlockCustomStairs(AVPBlocks.FLOOR_GRILL.getDefaultState()).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("floorgrillstairs");
+    public static final Block CEILING_GRILL_STAIRS = new BlockCustomStairs(AVPBlocks.CEILING_GRILL.getDefaultState()).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("ceilinggrillstairs");
     public static final Block IRON_BRICKS_STAIRS = new BlockCustomStairs(AVPBlocks.INDUSTRIAL_BRICKS.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickstairs");
     public static final Block WALL_STAIRS = new BlockCustomStairs(AVPBlocks.INDUSTRIAL_WALL.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialwallstairs");
-    public static final Block INDUSTRIAL_GLASS_STAIRS = new BlockCustomStairs(AVPBlocks.INDUSTRIAL_GLASS.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassstairs");
+    public static final Block INDUSTRIAL_GLASS_STAIRS = new BlockCustomStairs(AVPBlocks.INDUSTRIAL_GLASS.getDefaultState()).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassstairs");
 
     @Override
     public void pre(FMLPreInitializationEvent event) {

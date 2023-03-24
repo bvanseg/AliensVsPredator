@@ -12,12 +12,10 @@ import org.alien.common.world.hive.HiveMember;
 
 public class EntityQueenChestburster extends EntityChestburster implements IMob, Nascentic, HiveMember
 {
-    private final Class<? extends Entity> matureState;
 
     public EntityQueenChestburster(World world)
     {
         super(world);
-        this.matureState = EntityMatriarch.class;
         this.setSize(1.0F, 0.4F);
         this.experienceValue = 16;
     }
@@ -30,18 +28,6 @@ public class EntityQueenChestburster extends EntityChestburster implements IMob,
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6499999761581421D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
-    }
-
-    @Override
-    public Class<? extends Entity> getMatureState()
-    {
-        return this.matureState;
-    }
-
-    @Override
-    public int getMaturityLevel()
-    {
-        return 12800;
     }
     
     @Override
