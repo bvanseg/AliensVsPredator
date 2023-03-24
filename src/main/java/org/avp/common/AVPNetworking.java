@@ -42,19 +42,15 @@ public class AVPNetworking extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.SERVER, PacketReadFromDataDevice.class);
         this.registerMessage(Side.SERVER, PacketWriteToDataDevice.class);
         this.registerMessage(Side.SERVER, OrganismServerSync.class);
-        this.registerMessage(Side.SERVER, SpecialPlayerServerSync.class);
         this.registerMessage(Side.SERVER, PacketBlastdoorCommon.class);
         
         /** Send to the client **/
         this.registerMessage(Side.CLIENT, PacketTurretAmmoSync.class);
         this.registerMessage(Side.CLIENT, PacketTurretTargetUpdate.class);
-        this.registerMessage(Side.CLIENT, PacketOvamorphContainsFacehugger.class);
-        this.registerMessage(Side.CLIENT, PacketAmmoUpdate.class);
         this.registerMessage(Side.CLIENT, PacketOpenBlastdoor.class);
         this.registerMessage(Side.CLIENT, PacketOpenable.class);
         this.registerMessage(Side.CLIENT, PacketTurretSync.class);
         this.registerMessage(Side.CLIENT, OrganismClientSync.class);
-        this.registerMessage(Side.CLIENT, SpecialPlayerClientSync.class);
         this.registerMessage(Side.CLIENT, PacketRotateRotatable.class);
         this.registerMessage(Side.CLIENT, PacketSyncRF.class);
         this.registerMessage(Side.CLIENT, PacketOpenGui.class);
