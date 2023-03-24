@@ -14,6 +14,10 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -30,6 +34,8 @@ import java.util.List;
 
 public class EntityWristbracer extends EntityThrowable
 {
+    private static final DataParameter<Integer> TICKING_TIME_IN_TICKS = EntityDataManager.createKey(EntityWristbracer.class, DataSerializers.VARINT);
+
     private static final ArrayList<Block> EXCLUDED_BLOCKS = new ArrayList<>();
     private static final ArrayList<Material> EXCLUDED_MATERIALS = new ArrayList<>();
 
@@ -50,12 +56,18 @@ public class EntityWristbracer extends EntityThrowable
     }
 
     @Override
+    protected void entityInit() {
+        super.entityInit();
+        this.dataManager.register(TICKING_TIME_IN_TICKS, 0);
+    }
+
+    @Override
     public void onUpdate()
     {
         this.updatePositionAndMotion();
 
         // Countdown sound fx.
-        if (this.world.getTotalWorldTime() % 20 == 0 && this.ticksExisted < DETONATION_START_TIME_IN_TICKS)
+        if (this.world.getTotalWorldTime() % 20 == 0 && this.getTickingTimeInTicks() < DETONATION_START_TIME_IN_TICKS)
         {
             PredatorSounds.FX_WRISTBRACER_ALARM.playSound(this, 15F, 1F);
         }
@@ -63,21 +75,23 @@ public class EntityWristbracer extends EntityThrowable
         float explosionWidthMax = 80F;
         float explosionHeightMax = explosionWidthMax / 2;
 
-        if (this.ticksExisted >= ELECTRIC_ARC_START_TIME_IN_TICKS)
+        if (this.getTickingTimeInTicks() >= ELECTRIC_ARC_START_TIME_IN_TICKS)
         {
             this.zapNearbyBlock(explosionWidthMax);
         }
 
         // Explode 2 seconds after detonation start.
-        if (this.ticksExisted >= DETONATION_START_TIME_IN_TICKS + (20 * 2))
+        if (this.getTickingTimeInTicks() >= DETONATION_START_TIME_IN_TICKS + (20 * 2))
         {
             this.explode(explosionWidthMax, explosionHeightMax);
         }
 
         // Create explosion sounds while detonating.
-        if (this.ticksExisted % 2 == 0 && this.ticksExisted > DETONATION_START_TIME_IN_TICKS) {
+        if (this.getTickingTimeInTicks() > DETONATION_START_TIME_IN_TICKS && this.ticksExisted % 2 == 0) {
             this.world.playSound(null, this.getPosition(), SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.NEUTRAL, 15F, 0.3F);
         }
+
+        this.setTickingTimeInTicks(this.getTickingTimeInTicks() + 1);
     }
 
     private void updatePositionAndMotion() {
@@ -161,14 +175,36 @@ public class EntityWristbracer extends EntityThrowable
 
     public int getPostIntenseElectricArcTicks()
     {
-        return MathHelper.clamp((this.ticksExisted - ELECTRIC_ARC_START_TIME_IN_TICKS), 0, Integer.MAX_VALUE);
+        return MathHelper.clamp((this.getTickingTimeInTicks() - ELECTRIC_ARC_START_TIME_IN_TICKS), 0, Integer.MAX_VALUE);
     }
 
     public int getPostDetonateTicks()
     {
-        return MathHelper.clamp((this.ticksExisted - DETONATION_START_TIME_IN_TICKS), 0, Integer.MAX_VALUE);
+        return MathHelper.clamp((this.getTickingTimeInTicks() - DETONATION_START_TIME_IN_TICKS), 0, Integer.MAX_VALUE);
     }
 
     @Override
     protected void onImpact(RayTraceResult RayTraceResult) { /* Do Nothing */ }
+
+    private static final String TICKS_EXISTED_NBT_KEY = "TickingTime";
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        this.setTickingTimeInTicks(compound.getInteger(TICKS_EXISTED_NBT_KEY));
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound.setInteger(TICKS_EXISTED_NBT_KEY, this.getTickingTimeInTicks());
+        return super.writeToNBT(compound);
+    }
+
+    public int getTickingTimeInTicks() {
+        return this.dataManager.get(TICKING_TIME_IN_TICKS);
+    }
+
+    public void setTickingTimeInTicks(int tickingTimeInSeconds) {
+        this.dataManager.set(TICKING_TIME_IN_TICKS, tickingTimeInSeconds);
+    }
 }
