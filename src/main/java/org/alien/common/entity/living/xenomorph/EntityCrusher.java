@@ -13,14 +13,14 @@ import org.alien.common.entity.ai.brain.xenomorph.CrusherBrain;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityCrusher extends EntityPraetorian implements Maturable, HiveMember
+public class EntityCrusher extends EntityPraetorian implements HiveMember
 {
     public EntityCrusher(World world)
     {
         super(world);
         this.jumpMovementFactor = 0.2F;
         this.experienceValue = 300;
-        this.setSize(1.0F, 2.8F);
+        this.setSize(2.0F, 2.8F);
     }
 
     @Override

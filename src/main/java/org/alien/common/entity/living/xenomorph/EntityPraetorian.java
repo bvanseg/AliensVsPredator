@@ -1,6 +1,5 @@
 package org.alien.common.entity.living.xenomorph;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -9,11 +8,10 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityPraetorian extends SpeciesXenomorph implements Maturable, HiveMember
+public class EntityPraetorian extends SpeciesXenomorph implements HiveMember
 {
     public EntityPraetorian(World world)
     {
@@ -48,24 +46,6 @@ public class EntityPraetorian extends SpeciesXenomorph implements Maturable, Hiv
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.PRAETORIAN_DEATH.event();
-    }
-
-    @Override
-    public Class<? extends Entity> getMatureState()
-    {
-        return EntityMatriarch.class;
-    }
-
-    @Override
-    public int getMaturityLevel()
-    {
-        return 1024 * 16;
-    }
-
-    @Override
-    public int getMaturityTime()
-    {
-        return (30 * 60) * 20;
     }
     
     @Override

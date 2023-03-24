@@ -18,6 +18,8 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
+import org.alien.common.api.maturity.MaturityEntries;
+import org.alien.common.api.maturity.MaturityEntry;
 import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.EntityAcidPool;
@@ -137,22 +139,26 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
 
     public boolean isReadyToMature(RoyalOrganism jellyProducer)
     {
-        Maturable maturable = (Maturable) this;
+        MaturityEntry maturityEntry = MaturityEntries.getEntryFor(this.getClass()).orElse(null);
+        if (maturityEntry == null) return false;
         RoyalOrganism ro = this;
-        return maturable.getMatureState() != null && maturable.getMaturityLevel() > 0 && ro.getJellyLevel() >= maturable.getMaturityLevel();
+        return maturityEntry.getEntityClass() != null &&
+                maturityEntry.getRequiredJellyLevel() > 0 &&
+                ro.getJellyLevel() >= maturityEntry.getRequiredJellyLevel();
     }
 
     public void mature()
     {
-        Maturable maturable = (Maturable) this;
-        SpeciesAlien alien = (SpeciesAlien) Entities.constructEntity(this.world, maturable.getMatureState());
+        MaturityEntry maturityEntry = MaturityEntries.getEntryFor(this.getClass()).orElse(null);
+        if (maturityEntry == null) return;
+        SpeciesAlien alien = (SpeciesAlien) Entities.constructEntity(this.world, maturityEntry.getEntityClass());
         NBTTagCompound tag = new NBTTagCompound();
 
         alien.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0F, 0.0F);
         this.world.spawnEntity(alien);
         this.writeAlienToNBT(tag);
         alien.readAlienFromNBT(tag);
-        alien.setJellyLevel(this.getJellyLevel() - maturable.getMaturityLevel());
+        alien.setJellyLevel(this.getJellyLevel() - maturityEntry.getRequiredJellyLevel());
         // TODO: Create a shell of the original entity.
         this.setDead();
     }
@@ -187,31 +193,30 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
         super.onUpdate();
         this.updateAnimations();
 
-        // FIXME: I'm not happy with this needing a flag, but there's no guaranteed initial sync point for the client entity (or at least the jelly level) that I'm aware of. - bvan.
-        if (!this.growthInitialized) {
-            this.growthProgress = this.getJellyLevel();
-            this.growthInitialized = true;
-        }
-
         if (this.canProduceJelly())
         {
             this.produceJelly();
         }
 
-        if (this instanceof Maturable)
+        if (!this.world.isRemote)
         {
-            Maturable maturable = (Maturable) this;
-
-            if (!this.world.isRemote)
+            if (this.ticksExisted % 20 == 0)
             {
-                if (this.ticksExisted % 20 == 0)
+                if (this.isReadyToMature(this))
                 {
-                    if (maturable.isReadyToMature(this))
-                    {
-                        maturable.mature();
-                    }
+                    this.mature();
                 }
             }
+        }
+    }
+
+    @Override
+    public void notifyDataManagerChange(DataParameter<?> key) {
+        super.notifyDataManagerChange(key);
+
+        if (key == JELLY_LEVEL && !this.growthInitialized) {
+            this.growthProgress = this.getJellyLevel();
+            this.growthInitialized = true;
         }
     }
 

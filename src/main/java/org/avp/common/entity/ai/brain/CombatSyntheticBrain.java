@@ -2,9 +2,11 @@ package org.avp.common.entity.ai.brain;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.*;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.EntityAcidPool;
+import org.avp.common.entity.EntityGrenade;
 import org.avp.common.entity.ai.selector.EntitySelectorCombatSynthetic;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.lib.brain.impl.AbstractEntityBrain;
@@ -27,7 +29,7 @@ public class CombatSyntheticBrain extends AbstractEntityBrain<EntityCombatSynthe
     public void initSenses() {
         this.addSense(new EntityBrainSensor(1));
         this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorCombatSynthetic.instance));
-        this.addSense(new NearestAvoidTargetBrainSensor(1, EntityAcidPool.class::isInstance));
+        this.addSense(new NearestAvoidTargetBrainSensor(1, e -> e instanceof EntityAcidPool || e instanceof EntityGrenade || e instanceof EntityTNTPrimed));
     }
 
     @Override
@@ -52,6 +54,13 @@ public class CombatSyntheticBrain extends AbstractEntityBrain<EntityCombatSynthe
 
         this.addTask(new HurtByTargetBrainTask());
         this.addTask(new NearestAttackableTargetBrainTask());
-        this.addTask(new AvoidNearestAvoidTargetBrainTask(3.0F, 0.6F, 0.6F));
+        this.addTask(new AvoidNearestAvoidTargetBrainTask(0.6F, 0.6F, e -> {
+            if (e instanceof EntityAcidPool)
+                return 3.0F;
+            if (e instanceof EntityTNTPrimed)
+                return 8.0F;
+
+            return 5.0F;
+        }));
     }
 }
