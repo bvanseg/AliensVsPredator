@@ -85,24 +85,6 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
     }
 
     @Override
-    public Class<? extends Entity> getMatureState()
-    {
-        return EntityDeaconAdult.class;
-    }
-
-    @Override
-    public int getMaturityTime()
-    {
-        return (15 * 60) * 20;
-    }
-
-    @Override
-    public int getMaturityLevel()
-    {
-        return 6400;
-    }
-
-    @Override
     public void grow(EntityLivingBase host)
     {
         OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);

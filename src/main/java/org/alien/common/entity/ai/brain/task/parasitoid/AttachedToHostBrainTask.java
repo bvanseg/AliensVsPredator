@@ -38,7 +38,11 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
         EntityLivingBase host = (EntityLivingBase) parasite.getRidingEntity();
 
         if (host instanceof EntityLiving) {
-            ((EntityLiving)host).setNoAI(true);
+            EntityLiving livingHost = (EntityLiving) host;
+            // Make the host stop moving.
+            livingHost.setNoAI(true);
+            // Silence the host.
+            livingHost.livingSoundTime = -livingHost.getTalkInterval();
         }
 
         parasite.ticksOnHost++;

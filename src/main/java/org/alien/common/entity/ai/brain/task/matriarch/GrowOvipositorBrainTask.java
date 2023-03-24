@@ -1,6 +1,7 @@
 package org.alien.common.entity.ai.brain.task.matriarch;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.world.EnumSkyBlock;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
@@ -20,6 +21,7 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 
 	@Override
 	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
+		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
 		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
 	}
 	
@@ -33,6 +35,7 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 
 		if (matriarchEntity.getJellyLevel() < EntityMatriarch.OVIPOSITOR_UNHEALTHY_THRESHOLD) return false;
 		if (matriarchEntity.world.canSeeSky(matriarchEntity.getPosition())) return false;
+		if (matriarchEntity.world.getLightFor(EnumSkyBlock.SKY, matriarchEntity.getPosition()) > 4) return false;
 
 		return true;
 	}

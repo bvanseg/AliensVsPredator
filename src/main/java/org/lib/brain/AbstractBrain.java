@@ -89,6 +89,8 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 				this.clearFlagMasksForTask(task);
 			}
 		});
+
+		memoryManager.forgetEverything();
 	}
 
 	public final void addSense(AbstractBrainSensor<T> brainSensor, BrainProfile... profiles) {

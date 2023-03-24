@@ -23,6 +23,7 @@ public class WanderBrainTask extends AbstractEntityBrainTask {
     public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
         map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
         map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
+        map.put(BrainFlags.NEAREST_AVOID_TARGET, BrainFlagState.ABSENT);
     }
 
     @Override

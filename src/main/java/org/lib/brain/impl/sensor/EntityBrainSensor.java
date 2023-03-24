@@ -3,6 +3,7 @@ package org.lib.brain.impl.sensor;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 import org.lib.brain.impl.BrainMemoryKeys;
@@ -42,6 +43,7 @@ public class EntityBrainSensor extends AbstractBrainSensor<EntityBrainContext> {
         
         ArrayList<EntityLivingBase> livingEntities = new ArrayList<>();
         ArrayList<EntityItem> itemEntities = new ArrayList<>();
+		ArrayList<EntityPlayer> playerEntities = new ArrayList<>();
         
         allEntities.sort((e1, e2) -> {
         	double d1 = e1.getDistanceSq(entity);
@@ -70,11 +72,16 @@ public class EntityBrainSensor extends AbstractBrainSensor<EntityBrainContext> {
         	if (e instanceof EntityItem) {
         		itemEntities.add((EntityItem) e);
         	}
+
+			if (e instanceof EntityPlayer) {
+				playerEntities.add((EntityPlayer) e);
+			}
         });
         
         ctx.getBrain().remember(BrainMemoryKeys.ENTITIES, allEntities);
         ctx.getBrain().remember(BrainMemoryKeys.LIVING_ENTITIES, livingEntities);
         ctx.getBrain().remember(BrainMemoryKeys.ITEM_ENTITIES, itemEntities);
+		ctx.getBrain().remember(BrainMemoryKeys.PLAYER_ENTITIES, playerEntities);
         ctx.getBrain().remember(BrainMemoryKeys.NEAREST_ENTITY, !allEntities.isEmpty() ? allEntities.get(0) : null);
 	}
 

@@ -38,7 +38,13 @@ public class AttackOnCollideBrainTask extends AbstractEntityBrainTask {
 
 	@Override
 	protected boolean shouldContinueExecuting() {
-		return super.shouldContinueExecuting() && !ctx.getEntity().getNavigator().noPath();
+		// Entities lose their pathing when they are close to each other, so we need to account for that by doing distance
+		// checks here.
+		EntityLivingBase nearestAttackTarget = (EntityLivingBase) ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET).get();
+		double targetDistance = ctx.getEntity().getDistanceSq(nearestAttackTarget);
+		boolean isTargetInRange = targetDistance < ctx.getEntity().width + 2.0;
+
+		return super.shouldContinueExecuting() && (!ctx.getEntity().getNavigator().noPath() || isTargetInRange);
 	}
 
 	@Override
@@ -52,7 +58,7 @@ public class AttackOnCollideBrainTask extends AbstractEntityBrainTask {
 	protected void continueExecuting() {
 		EntityLivingBase nearestAttackTarget = (EntityLivingBase) ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET).get();
 		double targetDistance = ctx.getEntity().getDistanceSq(nearestAttackTarget);
-		boolean isTargetInRange = targetDistance < 2.0D;
+		boolean isTargetInRange = targetDistance < ctx.getEntity().width + 2.0;
 
 		if (isTargetInRange) {
 			ctx.getEntity().attackEntityAsMob(nearestAttackTarget);
