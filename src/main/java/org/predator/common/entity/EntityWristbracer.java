@@ -45,7 +45,7 @@ public class EntityWristbracer extends EntityThrowable
     public EntityWristbracer(World world)
     {
         super(world);
-        this.setSize(0.5F, 0.5F);
+        this.setSize(0.25F, 0.25F);
         this.ignoreFrustumCheck = true;
     }
 
