@@ -53,7 +53,6 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(PressureHUDRenderEvent.instance);
             this.registerEvent(FacehuggerRenderEvent.instance);
             this.registerEvent(VisionModeRenderEvent.instance);
-            this.registerEvent(RenderMotionTrackerScreen.instance);
             this.registerEvent(LightmapUpdateEvent.instance);
             this.registerEvent(RenderPlayerAPCEvent.instance);
             this.registerEvent(BossBarEvent.instance);
