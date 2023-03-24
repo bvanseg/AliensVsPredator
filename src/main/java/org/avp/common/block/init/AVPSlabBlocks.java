@@ -3,6 +3,7 @@ package org.avp.common.block.init;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemSlab;
+import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
 import org.avp.common.block.BlockCustomSlab;
@@ -25,11 +26,11 @@ public class AVPSlabBlocks implements IPreInitEvent
     public static final BlockProperties INDUSTRIAL_GLASS_PROPS = new BlockProperties(Material.IRON).setHardness(5F).setResistance(15.0F).setLightOpacity(0);
 
     // Slabs
-    public static final BlockCustomSlab FLOOR_GRILL_SLAB_HALF = new BlockCustomSlab.Half("floor_grill_slab", GRILL_PROPS);
-    public static final BlockCustomSlab FLOOR_GRILL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_floor_grill_slab", GRILL_PROPS);
+    public static final BlockCustomSlab FLOOR_GRILL_SLAB_HALF = new BlockCustomSlab.Half("floor_grill_slab", GRILL_PROPS).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false);
+    public static final BlockCustomSlab FLOOR_GRILL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_floor_grill_slab", GRILL_PROPS).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false);
 
-    public static final BlockCustomSlab CEILING_GRILL_SLAB_HALF = new BlockCustomSlab.Half("ceiling_grill_slab", GRILL_PROPS);
-    public static final BlockCustomSlab CEILING_GRILL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ceiling_grill_slab", GRILL_PROPS);
+    public static final BlockCustomSlab CEILING_GRILL_SLAB_HALF = new BlockCustomSlab.Half("ceiling_grill_slab", GRILL_PROPS).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false);
+    public static final BlockCustomSlab CEILING_GRILL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_ceiling_grill_slab", GRILL_PROPS).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false);
 
     public static final BlockCustomSlab INDUSTRIAL_SLAB_HALF = new BlockCustomSlab.Half("industrial_slab", WALL_PROPS);
     public static final BlockCustomSlab INDUSTRIAL_SLAB_DOUBLE = new BlockCustomSlab.Double("double_industrial_slab", WALL_PROPS);
@@ -37,8 +38,8 @@ public class AVPSlabBlocks implements IPreInitEvent
     public static final BlockCustomSlab INDUSTRIAL_BRICK_SLAB_HALF = new BlockCustomSlab.Half("industrial_brick_slab", WALL_PROPS);
     public static final BlockCustomSlab INDUSTRIAL_BRICK_SLAB_DOUBLE = new BlockCustomSlab.Double("double_industrial_brick_slab", WALL_PROPS);
 
-    public static final BlockCustomSlab INDUSTRIAL_GLASS_SLAB_HALF = new BlockCustomSlab.Half("industrial_glass_slab", INDUSTRIAL_GLASS_PROPS);
-    public static final BlockCustomSlab INDUSTRIAL_GLASS_SLAB_DOUBLE = new BlockCustomSlab.Double("double_industrial_glass_slab", INDUSTRIAL_GLASS_PROPS);
+    public static final BlockCustomSlab INDUSTRIAL_GLASS_SLAB_HALF = new BlockCustomSlab.Half("industrial_glass_slab", INDUSTRIAL_GLASS_PROPS).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false);
+    public static final BlockCustomSlab INDUSTRIAL_GLASS_SLAB_DOUBLE = new BlockCustomSlab.Double("double_industrial_glass_slab", INDUSTRIAL_GLASS_PROPS).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false);
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
