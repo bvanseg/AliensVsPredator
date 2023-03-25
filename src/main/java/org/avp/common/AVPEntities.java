@@ -28,7 +28,6 @@ public class AVPEntities implements IInitEvent
         registerEntityEntry(EntityGrenade.class, "Grenade");
         registerEntityEntry(EntityFlame.class, "Flamethrower");
         registerEntityEntry(EntityLiquidLatexPool.class, "LiquidLatexPool");
-        registerEntityEntry(EntityTurret.class, "EntityTurret");
         registerEntityEntry(EntityAPC.class, "APC");
         registerEntityEntry(EntityMedpod.class, "Medpod");
         registerEntityEntry(EntitySupplyChute.class, "SupplyChute");

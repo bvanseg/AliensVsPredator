@@ -1,5 +1,7 @@
 package org.lib.brain.flag;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * An abstraction for some property or state the entity is in. Why other implementations are not used:
  * Enums - not extensible.
@@ -15,17 +17,25 @@ package org.lib.brain.flag;
  *
  */
 public abstract class AbstractBrainFlag {
+
+	private static final AtomicInteger lastBitmaskId = new AtomicInteger(0);
 	
 	private final String identifier;
+	private final int bitmaskId;
 	
 	protected AbstractBrainFlag(String identifier) {
 		this.identifier = identifier;
+		this.bitmaskId = AbstractBrainFlag.lastBitmaskId.getAndIncrement();
 	}
 
 	public String getIdentifier() {
 		return identifier;
 	}
-	
+
+	public int getBitmaskId() {
+		return bitmaskId;
+	}
+
 	@Override
 	public String toString() {
 		return this.identifier;
