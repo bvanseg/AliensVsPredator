@@ -43,7 +43,7 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 	protected void startExecuting() {
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 
-		matriarchEntity.getBrain().setActiveProfile(BrainProfiles.MATRIARCH_REPRODUCING);
+		matriarchEntity.getBrain().disableAllProfilesExcept(BrainProfiles.MATRIARCH_REPRODUCING);
 
 		// If the queen does not have a hive, create one.
 		if (matriarchEntity.getAlienHive() == null) {
@@ -63,6 +63,6 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 		super.finish();
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 		matriarchEntity.setOvipositorSize(0);
-		matriarchEntity.getBrain().setActiveProfile(BrainProfiles.STANDARD);
+		matriarchEntity.getBrain().disableAllProfilesExcept(BrainProfiles.STANDARD);
 	}
 }

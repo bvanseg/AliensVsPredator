@@ -23,16 +23,15 @@ import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.profile.BrainProfiles;
 
 import java.util.List;
 
 public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, Brainiac<ParasitoidBrain>
 {
-    private static final DataParameter<Boolean> FERTILE            = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Boolean> ATTACHED_TO_HOST   = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
-    public int                                 timeSinceInfertile = 0;
-    public int                                  ticksOnHost        = 0;
+    private static final DataParameter<Boolean> FERTILE = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> ATTACHED_TO_HOST = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
+    public int timeSinceInfertile = 0;
+    public int ticksOnHost = 0;
 
     protected ParasitoidBrain brain;
 
@@ -74,12 +73,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            if (this.isAttachedToHost()) {
-                this.brain.setActiveProfile(BrainProfiles.PARASITOID_ATTACHED);
-            } else if (!this.isFertile()) {
-                this.brain.setActiveProfile(BrainProfiles.PARASITOID_INFERTILE);
-            }
-
             this.brain.update();
 
             this.negateFallDamage();

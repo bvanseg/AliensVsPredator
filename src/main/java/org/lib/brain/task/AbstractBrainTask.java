@@ -24,6 +24,7 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	
 	public boolean runTask() {
 		if (this.isDisabled) return false;
+		if (ctx == null) throw new IllegalStateException("Brain task context is null!");
 
 		if (!this.isExecuting && this.shouldExecute()) {
 			this.startExecuting();
@@ -36,7 +37,6 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 				this.continueExecuting();
 			} else {
 				this.finish();
-				this.isExecuting = false;
 			}
 		}
 
@@ -53,13 +53,12 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 	protected boolean shouldContinueExecuting() { return this.shouldExecute(); }
 	protected abstract void startExecuting();
 	protected void continueExecuting() { this.startExecuting(); }
-	public void finish() {}
+	public void finish() {
+		this.isExecuting = false;
+		this.ctx.getBrain().clearFlagMasksForTask(this);
+	}
 
 	public boolean isExecuting() { return this.isExecuting; }
-
-	public void setExecuting(boolean executing) {
-		isExecuting = executing;
-	}
 
 	public void setDisabled(boolean disabled) {
 		isDisabled = disabled;
