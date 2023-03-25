@@ -15,8 +15,8 @@ import net.minecraftforge.client.event.EntityViewRenderEvent.RenderFogEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.alien.client.AlienResources;
 import org.alien.common.world.dimension.DimensionUtil;
-import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
@@ -184,7 +184,7 @@ public class SkyProviderAcheron extends IRenderHandler
             OpenGL.color(1.0F, 1.0F, 1.0F, 1.0F);
             OpenGL.rotate(DimensionUtil.calculateCelestialAngle(world.getWorldTime(), renderPartialTicks) * 30.0F, 10.0F, -6.0F, -20.0F);
             OpenGL.rotate(155F, 0.0F, 1.0F, 0.0F);
-            Draw.bindTexture(Resources.instance.SKY_VARDA);
+            Draw.bindTexture(AlienResources.instance.SKY_VARDA);
             Draw.startQuads();
             Draw.vertex(-scale, 150.0D, -scale, 0.0D, 0.0D).endVertex();
             Draw.vertex(scale, 150.0D, -scale, 1.0D, 0.0D).endVertex();
@@ -202,7 +202,7 @@ public class SkyProviderAcheron extends IRenderHandler
             OpenGL.color(1.0F, 1.0F, 1.0F, 1.0F);
             OpenGL.rotate(DimensionUtil.calculateCelestialAngle(world.getWorldTime(), renderPartialTicks) * 360.0F, 10.0F, -6.0F, -20.0F);
             OpenGL.rotate(135F, 0.0F, 1.0F, 0.0F);
-            Draw.bindTexture(Resources.instance.SKY_CALPAMOS);
+            Draw.bindTexture(AlienResources.instance.SKY_CALPAMOS);
             Draw.startQuads();
             Draw.vertex(-scale, 150.0D, -scale, 0.0D, 0.0D).endVertex();
             Draw.vertex(scale, 150.0D, -scale, 1.0D, 0.0D).endVertex();
@@ -255,7 +255,7 @@ public class SkyProviderAcheron extends IRenderHandler
             byte cloudSections = 2;
 
             OpenGL.disableCullFace();
-            Draw.bindTexture(Resources.instance.SKY_VARDA_CLOUDS);
+            Draw.bindTexture(AlienResources.instance.SKY_VARDA_CLOUDS);
             OpenGL.enableBlend();
             OpenGlHelper.glBlendFunc(GL11.GL_ONE_MINUS_DST_COLOR, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
             OpenGL.scale(cloudSpan, 1.0F, cloudSpan);

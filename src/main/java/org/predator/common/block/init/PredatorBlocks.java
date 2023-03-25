@@ -8,7 +8,6 @@ import org.avp.common.AVPCreativeTabs;
 import org.avp.common.block.BlockStasisMechanism;
 import org.avp.common.block.skull.*;
 import org.lib.common.block.BasicBlock;
-import org.lib.common.block.BlockProperties;
 import org.lib.common.registry.BlockRegistryUtil;
 
 /**

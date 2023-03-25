@@ -4,16 +4,16 @@ import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
+import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelMyceliomorph;
 import org.alien.common.entity.living.xenomorph.EntityMyceliomorph;
-import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 public class RenderMyceliomorph extends RenderLivingWrapper<EntityMyceliomorph, ModelMyceliomorph>
 {
     public RenderMyceliomorph(RenderManager m)
     {
-        super(m, Resources.instance.models().MYCELIOMORPH);
+        super(m, AlienResources.instance.models().MYCELIOMORPH);
 //        this.setRenderPassModel(this.getModel().getModel());
     }
 
@@ -30,7 +30,7 @@ public class RenderMyceliomorph extends RenderLivingWrapper<EntityMyceliomorph, 
         }
         else
         {
-            Resources.instance.models().MYCELIOMORPH_MASK.getTexture().bind();
+            AlienResources.instance.models().MYCELIOMORPH_MASK.getTexture().bind();
             OpenGL.enable(GL11.GL_BLEND);
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
 

@@ -18,7 +18,6 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.entity.ai.helpers.EntityExtendedLookHelper;
 import org.avp.common.entity.ai.pathfinding.PathNavigateSwimmer;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 import java.util.function.Predicate;

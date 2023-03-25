@@ -19,7 +19,6 @@ import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.AethonBrain;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityAethon extends EntityMob implements IMob, Host, Brainiac<AethonBrain>
 {

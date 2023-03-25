@@ -2,7 +2,7 @@ package org.alien.client.render.tile.plant;
 
 import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import org.avp.client.Resources;
+import org.alien.client.AlienResources;
 import org.avp.common.tile.plant.TileEntityTreeFern;
 import org.lwjgl.opengl.GL12;
 
@@ -20,7 +20,7 @@ public class RenderTreeFern extends TileEntitySpecialRenderer<TileEntityTreeFern
             OpenGL.rotate(180F, 1, 0, 0);
             OpenGL.rotate(tile);
             OpenGL.color(tile.getPlantColor().r(), tile.getPlantColor().g(), tile.getPlantColor().b());
-            Resources.instance.models().TREE_FERN.draw(tile);
+            AlienResources.instance.models().TREE_FERN.draw(tile);
             OpenGL.color(1F, 1F, 1F);
         }
         OpenGL.popMatrix();

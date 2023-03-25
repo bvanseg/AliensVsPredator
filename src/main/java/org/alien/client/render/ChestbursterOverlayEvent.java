@@ -5,9 +5,9 @@ import com.asx.mdx.client.render.Draw;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.Pre;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.alien.client.AlienResources;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
-import org.avp.client.Resources;
 
 /**
  * @author Ri5ux
@@ -31,6 +31,6 @@ public class ChestbursterOverlayEvent
         if (!ClientGame.instance.minecraft().player.isDead) return;
         if (organism.getEmbryo().getAge() < organism.getEmbryo().getGestationPeriod() - 80) return;
 
-        Draw.drawOverlay(Resources.instance.BLUR_CHESTBURSTER_EMERGE, 1F, 0F, 0F, 1F);
+        Draw.drawOverlay(AlienResources.instance.BLUR_CHESTBURSTER_EMERGE, 1F, 0F, 0F, 1F);
     }
 }

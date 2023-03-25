@@ -7,7 +7,6 @@ import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.BrainMemoryKeys;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.Map;
 

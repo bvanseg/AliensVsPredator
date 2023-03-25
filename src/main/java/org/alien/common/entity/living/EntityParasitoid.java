@@ -23,7 +23,6 @@ import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.impl.profile.BrainProfiles;
 
 import java.util.List;
