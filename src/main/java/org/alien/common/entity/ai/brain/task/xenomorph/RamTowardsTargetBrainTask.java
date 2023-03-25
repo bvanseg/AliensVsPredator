@@ -46,7 +46,7 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 	private int cooldown;
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		// If the entity is not on the ground, can't ram.
 		if (!ctx.getEntity().onGround) {
 			return false;
@@ -67,18 +67,17 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 
 		EntityLiving rammer = ctx.getEntity();
 		Entity target = rammer.getAttackTarget();
-		double d0 = target.posX - rammer.posX;
-		double d1 = target.posZ - rammer.posZ;
+		double d0 = (target.posX - rammer.posX) * 1.5;
+		double d1 = (target.posZ - rammer.posZ) * 1.5;
 		float f = MathHelper.sqrt(d0 * d0 + d1 * d1);
 
-		// Back up during the last 2 seconds.
-		if (cooldown > 0 && cooldown < 20 * 2 && !this.canReachTarget(ctx)) {
-			ctx.getBrain().getProfileTaskSets().get(ctx.getBrain().getActiveProfile())
-					.forEach(task -> task.setDisabled(task instanceof AttackOnCollideBrainTask));
+		// Back up during the last 1 second.
+		if (cooldown > 0 && cooldown < 20 && !this.canReachTarget(ctx)) {
+			ctx.getBrain().getAllActiveProfileTasks().forEach(task -> task.setDisabled(task instanceof AttackOnCollideBrainTask));
 			rammer.motionX -= (d0 / f * 0.5 * 0.800000011920929 + rammer.motionX * 0.20000000298023224) * 0.5;
 			rammer.motionZ -= (d1 / f * 0.5 * 0.800000011920929 + rammer.motionZ * 0.20000000298023224) * 0.5;
 		}
@@ -100,10 +99,11 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 
 					// Hurt the nearest target found while ramming.
 					if (nearest instanceof EntityLivingBase &&
-							EntitySelectorXenomorph.instance.test((EntityLivingBase) nearest) &&
+							EntitySelectorXenomorph.instance.test(nearest) &&
 							rammer.getDistanceSq(nearest) <= 2.0D
 					) {
 						nearest.attackEntityFrom(new EntityDamageSource("ram", rammer), 10.0F);
+						((EntityLivingBase)nearest).knockBack(rammer, 2F, MathHelper.sin(rammer.rotationYaw * 0.017453292F), -MathHelper.cos(rammer.rotationYaw * 0.017453292F));
 					}
 				}
 			}
@@ -117,11 +117,11 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	public void finish(EntityBrainContext ctx) {
-		super.finish(ctx);
+	public void finish() {
+		super.finish();
 		this.isRamming = false;
 		// Allow crusher to attack on collide, again.
-		ctx.getBrain().getProfileTaskSets().get(ctx.getBrain().getActiveProfile())
+		ctx.getBrain().getProfileTaskSets().get(ctx.getBrain().getActiveProfiles())
 				.forEach(task -> task.setDisabled(false));
 	}
 

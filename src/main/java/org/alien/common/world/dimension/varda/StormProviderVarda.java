@@ -8,7 +8,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.Resources;
+import org.alien.client.AlienResources;
 
 public class StormProviderVarda extends StormProvider
 {
@@ -58,7 +58,7 @@ public class StormProviderVarda extends StormProvider
     @Override
     public Texture getStormTexture(World world, Biome biome)
     {
-        return Resources.instance.SKY_SILICA;
+        return AlienResources.instance.SKY_SILICA;
     }
 
     @Override

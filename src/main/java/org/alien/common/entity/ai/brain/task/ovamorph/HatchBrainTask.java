@@ -19,7 +19,7 @@ import org.lib.brain.task.AbstractBrainTask;
 public class HatchBrainTask extends AbstractBrainTask<EntityBrainContext> {
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (!(ctx.getEntity() instanceof EntityOvamorph))
 			return false;
 
@@ -29,7 +29,7 @@ public class HatchBrainTask extends AbstractBrainTask<EntityBrainContext> {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		this.hatch((EntityOvamorph) ctx.getEntity());
 	}
 

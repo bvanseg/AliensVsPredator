@@ -36,8 +36,8 @@ import org.avp.common.AVPItems;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.tile.TileEntityPowercell;
-import org.avp.common.tile.TileEntityStasisMechanism;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
+import org.predator.common.tile.TileEntityStasisMechanism;
 
 import static org.lwjgl.opengl.GL11.*;
 

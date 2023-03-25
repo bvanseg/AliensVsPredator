@@ -1,6 +1,6 @@
 package org.lib.brain.impl;
 
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import org.lib.brain.AbstractBrain;
 
 /**
@@ -10,7 +10,7 @@ import org.lib.brain.AbstractBrain;
  *
  * @param <T> The type of entity.
  */
-public class AbstractEntityBrain<T extends Entity> extends AbstractBrain<EntityBrainContext> {
+public class AbstractEntityBrain<T extends EntityLiving> extends AbstractBrain<EntityBrainContext> {
 	private final T entity;
 	
 	public AbstractEntityBrain(T entity) {
@@ -21,6 +21,14 @@ public class AbstractEntityBrain<T extends Entity> extends AbstractBrain<EntityB
 		return this.entity;
 	}
 
+	@Override
+	public void update() {
+		if (this.entity.isDead)
+			return;
+
+		super.update();
+	}
+
 	public void initSenses() { /* Do Nothing */ }
 
 	public void initTasks() { /* Do Nothing */ }
@@ -29,5 +37,10 @@ public class AbstractEntityBrain<T extends Entity> extends AbstractBrain<EntityB
 	public final void init() {
 		this.initSenses();
 		this.initTasks();
+	}
+
+	@Override
+	protected EntityBrainContext createContext() {
+		return new EntityBrainContext(this, this.getEntity());
 	}
 }

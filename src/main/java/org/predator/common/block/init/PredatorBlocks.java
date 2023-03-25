@@ -5,11 +5,10 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.common.AVPCreativeTabs;
-import org.avp.common.block.BlockStasisMechanism;
-import org.avp.common.block.skull.*;
 import org.lib.common.block.BasicBlock;
-import org.lib.common.block.BlockProperties;
 import org.lib.common.registry.BlockRegistryUtil;
+import org.predator.common.block.BlockStasisMechanism;
+import org.predator.common.block.skull.*;
 
 /**
  * @author Boston Vanseghi

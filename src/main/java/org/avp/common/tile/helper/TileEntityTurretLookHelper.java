@@ -8,6 +8,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import org.lib.client.AnimationUtil;
 
 /**
  * 
@@ -65,10 +66,6 @@ public class TileEntityTurretLookHelper {
         }
     }
     
-    private float lerp(float pointA, float pointB, float percentage) {
-        return (pointA * (1.0f - percentage)) + (pointB * percentage);
-    }
-    
     private void updateTurretYawLerp() {
     	float yawDeltaLeft = (this.targetTurretRotation.yaw - this.turretRotation.yaw);
     	float yawDeltaRight = (this.turretRotation.yaw - this.targetTurretRotation.yaw);
@@ -76,7 +73,7 @@ public class TileEntityTurretLookHelper {
     	float yawDeltaRightNormalized = yawDeltaRight < 0 ? yawDeltaRight + 360 : yawDeltaRight;
     	
     	float yawScaleFactor = (yawDeltaLeftNormalized < yawDeltaRightNormalized ? yawDeltaLeft : yawDeltaRight) / this.turretRotateSpeed;
-    	float yawLerpValue = lerp(this.turretRotation.yaw, this.targetTurretRotation.yaw, 0.1f / (yawScaleFactor + 0.1f)) - this.turretRotation.yaw;
+    	float yawLerpValue = AnimationUtil.lerp(this.turretRotation.yaw, this.targetTurretRotation.yaw, 0.1f / (yawScaleFactor + 0.1f)) - this.turretRotation.yaw;
     	
     	this.turretRotation.yaw += yawLerpValue;
     }
@@ -88,7 +85,7 @@ public class TileEntityTurretLookHelper {
     	float pitchDeltaRightNormalized = pitchDeltaRight < 0 ? pitchDeltaRight + 360 : pitchDeltaRight;
     	
     	float pitchScaleFactor = (pitchDeltaLeftNormalized < pitchDeltaRightNormalized ? pitchDeltaLeft : pitchDeltaRight) / this.turretRotateSpeed;
-    	float pitchLerpValue = lerp(this.turretRotation.pitch, this.targetTurretRotation.pitch, 0.1f / (pitchScaleFactor + 0.1f)) - this.turretRotation.pitch;
+    	float pitchLerpValue = AnimationUtil.lerp(this.turretRotation.pitch, this.targetTurretRotation.pitch, 0.1f / (pitchScaleFactor + 0.1f)) - this.turretRotation.pitch;
     	
     	this.turretRotation.pitch += pitchLerpValue;
     }

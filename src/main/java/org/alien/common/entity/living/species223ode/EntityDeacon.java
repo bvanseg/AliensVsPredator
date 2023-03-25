@@ -2,7 +2,6 @@ package org.alien.common.entity.living.species223ode;
 
 import com.asx.mdx.common.minecraft.Pos;
 import com.asx.mdx.common.minecraft.entity.Entities;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
@@ -19,7 +18,6 @@ import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPDamageSources;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<DeaconBrain>
 {
@@ -62,7 +60,7 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 
@@ -82,24 +80,6 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.PREQUELMORPH_DEATH.event();
-    }
-
-    @Override
-    public Class<? extends Entity> getMatureState()
-    {
-        return EntityDeaconAdult.class;
-    }
-
-    @Override
-    public int getMaturityTime()
-    {
-        return (15 * 60) * 20;
-    }
-
-    @Override
-    public int getMaturityLevel()
-    {
-        return 6400;
     }
 
     @Override

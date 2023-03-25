@@ -12,7 +12,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.BabyheadBrain;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityBabyhead extends EntityMob implements IMob, Host, Brainiac<BabyheadBrain>
 {
@@ -54,7 +53,7 @@ public class EntityBabyhead extends EntityMob implements IMob, Host, Brainiac<Ba
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

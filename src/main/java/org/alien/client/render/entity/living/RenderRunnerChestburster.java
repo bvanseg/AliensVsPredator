@@ -3,16 +3,16 @@ package org.alien.client.render.entity.living;
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
+import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelChestbursterRunner;
 import org.alien.client.render.util.AlienGrowthUtil;
 import org.alien.common.entity.living.xenomorph.EntityRunnerChestburster;
-import org.avp.client.Resources;
 
 public class RenderRunnerChestburster extends RenderLivingWrapper<EntityRunnerChestburster, ModelChestbursterRunner>
 {
     public RenderRunnerChestburster(RenderManager m)
     {
-        super(m, Resources.instance.models().CHESTBUSTER_RUNNER);
+        super(m, AlienResources.instance.models().CHESTBUSTER_RUNNER);
     }
 
     @Override

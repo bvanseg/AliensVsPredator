@@ -3,7 +3,6 @@ package org.lib.brain.impl.task;
 import net.minecraft.entity.EntityLivingBase;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainMemoryKeys;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.Optional;
 
@@ -14,12 +13,12 @@ import java.util.Optional;
  */
 public class NearestAttackableTargetBrainTask extends AbstractEntityBrainTask {
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		return true;
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
     	Optional<EntityLivingBase> optional = ctx.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
 
     	if (optional.isPresent()) {

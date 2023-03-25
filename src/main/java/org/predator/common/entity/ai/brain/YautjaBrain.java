@@ -1,7 +1,9 @@
 package org.predator.common.entity.ai.brain;
 
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityTNTPrimed;
 import org.alien.common.entity.EntityAcidPool;
+import org.avp.common.entity.EntityGrenade;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
@@ -26,7 +28,7 @@ public class YautjaBrain extends AbstractEntityBrain<SpeciesYautja> {
 	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
 		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorYautja.instance));
-		this.addSense(new NearestAvoidTargetBrainSensor(1, EntityAcidPool.class::isInstance));
+		this.addSense(new NearestAvoidTargetBrainSensor(1, e -> e instanceof EntityAcidPool || e instanceof EntityGrenade || e instanceof EntityTNTPrimed));
 	}
 
 	@Override
@@ -42,6 +44,13 @@ public class YautjaBrain extends AbstractEntityBrain<SpeciesYautja> {
 //		this.addTask(new BrainTaskAdapter(new EntityAIMoveTowardsTarget(entity, 0.9D, 48)));
 		this.addTask(new HurtByTargetBrainTask());
 		this.addTask(new NearestAttackableTargetBrainTask());
-		this.addTask(new AvoidNearestAvoidTargetBrainTask(3.0F, 0.9F, 0.9F));
+		this.addTask(new AvoidNearestAvoidTargetBrainTask(0.6F, 0.6F, e -> {
+			if (e instanceof EntityAcidPool)
+				return 3.0F;
+			if (e instanceof EntityTNTPrimed)
+				return 8.0F;
+
+			return 5.0F;
+		}));
 	}
 }

@@ -346,6 +346,7 @@ public class GuiTurret extends GuiContainer
             }
 
             playerNameInput.textboxKeyTyped(typedChar, keyCode);
+            scroll = 0;
             searchRequiresUpdate = true;
             return;
         }

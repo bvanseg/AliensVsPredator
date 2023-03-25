@@ -4,16 +4,16 @@ import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderManager;
+import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelSpitter;
 import org.alien.common.entity.living.xenomorph.EntitySpitter;
-import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 public class RenderSpitter extends RenderLivingWrapper<EntitySpitter, ModelSpitter>
 {
     public RenderSpitter(RenderManager m)
     {
-        super(m, Resources.instance.models().SPITTER);
+        super(m, AlienResources.instance.models().SPITTER);
 //        this.setRenderPassModel(this.getModel().getModel());
     }
 
@@ -30,7 +30,7 @@ public class RenderSpitter extends RenderLivingWrapper<EntitySpitter, ModelSpitt
         }
         else
         {
-            Resources.instance.models().SPITTER.getTexture().bind();
+            AlienResources.instance.models().SPITTER.getTexture().bind();
             OpenGL.enable(GL11.GL_BLEND);
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
 
