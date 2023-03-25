@@ -12,7 +12,6 @@ import org.lib.brain.sensor.AbstractBrainSensor;
 import org.lib.brain.task.AbstractBrainTask;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * A logical processor with input (sensors) and output/results (tasks). The processing pipeline is as follows:
@@ -40,7 +39,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	private final BrainMemoryMap memoryManager;
 	private final HashMap<BrainProfile, ArrayList<AbstractBrainSensor<T>>> profileSensorSets;
 	private final HashMap<BrainProfile, ArrayList<AbstractBrainTask<T>>> profileTaskSets;
-	private final HashMap<AbstractBrainFlag, BrainFlagState> brainFlagStates;
+	private final BitSet brainFlagStates;
 	private final HashSet<AbstractBrainTask<T>> executingTasks;
 
 	private boolean isDisabled = false;
@@ -51,7 +50,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		this.memoryManager = new BrainMemoryMap();
 		this.profileSensorSets = new HashMap<>();
 		this.profileTaskSets = new HashMap<>();
-		this.brainFlagStates = new HashMap<>();
+		this.brainFlagStates = new BitSet();
 		this.executingTasks = new HashSet<>();
 		this.activeProfiles = new HashSet<>();
 		this.activeProfiles.add(BrainProfiles.STANDARD);
@@ -80,15 +79,11 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 				if (this.canRunTask(task)) {
 					if (task.runTask()) {
 						this.setFlagMasksForTask(task);
-					} else {
-						this.clearFlagMasksForTask(task);
 					}
 				}
-				// If the flag states change, and we weren't able to run the task, but the task is still executing, we need to finish the task.
+				// If the flag states change, and we weren't able to run the task, but the task is still executing, we need to clean up the task.
 				else if (task.isExecuting()) {
 					task.finish();
-					task.setExecuting(false);
-					this.clearFlagMasksForTask(task);
 				}
 			});
 		});
@@ -142,26 +137,23 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		if (brainTask.isExecuting() && this.executingTasks.contains(brainTask)) {
 			return requirements.entrySet().stream()
 					.filter(entry -> entry.getKey() instanceof BrainMemoryFlag)
-					.allMatch(entry -> doesCurrentStateMatchRequirement(requirements, entry));
+					.allMatch(this::doesCurrentStateMatchRequirement);
 		}
 
-		return requirements.entrySet().stream().allMatch(entry -> doesCurrentStateMatchRequirement(requirements, entry));
+		return requirements.entrySet().stream().allMatch(this::doesCurrentStateMatchRequirement);
 	}
 
 	private void setFlagMasksForTask(AbstractBrainTask<T> brainTask) {
 		this.executingTasks.add(brainTask);
-		this.brainFlagStates.putAll(brainTask.getFlagMasks());
+		brainTask.getFlagMasks().forEach((key, value) -> this.brainFlagStates.set(key.getBitmaskId(), value.getBitMaskValue()));
 	}
 
-	private void clearFlagMasksForTask(AbstractBrainTask<T> brainTask) {
+	public void clearFlagMasksForTask(AbstractBrainTask<?> brainTask) {
 		this.executingTasks.remove(brainTask);
-		Map<AbstractBrainFlag, BrainFlagState> inversedFlags = brainTask.getFlagMasks()
-				.entrySet().stream()
-				.collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().inverse()));
-		this.brainFlagStates.putAll(inversedFlags);
+		brainTask.getFlagMasks().forEach((key, value) -> this.brainFlagStates.set(key.getBitmaskId(), !value.getBitMaskValue()));
 	}
 
-	private boolean doesCurrentStateMatchRequirement(Map<AbstractBrainFlag, BrainFlagState> requirements, Map.Entry<AbstractBrainFlag, BrainFlagState> entry) {
+	private boolean doesCurrentStateMatchRequirement(Map.Entry<AbstractBrainFlag, BrainFlagState> entry) {
 		boolean memoryPresent = true;
 		boolean memoryAbsent = true;
 
@@ -174,9 +166,9 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 
 		switch (entry.getValue())  {
 			case PRESENT:
-				return this.brainFlagStates.get(entry.getKey()) == requirements.get(entry.getKey()) && memoryPresent;
+				return this.brainFlagStates.get(entry.getKey().getBitmaskId()) && memoryPresent;
 			case ABSENT:
-				return (!this.brainFlagStates.containsKey(entry.getKey()) || this.brainFlagStates.get(entry.getKey()) == BrainFlagState.ABSENT) && memoryAbsent;
+				return !this.brainFlagStates.get(entry.getKey().getBitmaskId()) && memoryAbsent;
 			default:
 				return true;
 		}
@@ -200,7 +192,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 			AbstractBrainFlag flag = BrainFlags.getFlagForKey(memoryKey);
 			
 			if (flag != null) {
-				this.brainFlagStates.put(flag, BrainFlagState.PRESENT);
+				this.brainFlagStates.set(flag.getBitmaskId(), BrainFlagState.PRESENT.getBitMaskValue());
 			}
 		}
 	}
@@ -210,7 +202,8 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		AbstractBrainFlag flag = BrainFlags.getFlagForKey(memoryKey);
 		
 		if (flag != null) {
-			this.brainFlagStates.put(flag, hasMemory ? BrainFlagState.PRESENT : BrainFlagState.ABSENT);
+			boolean maskState = (hasMemory ? BrainFlagState.PRESENT : BrainFlagState.ABSENT).getBitMaskValue();
+			this.brainFlagStates.set(flag.getBitmaskId(), maskState);
 		}
 		
 		return hasMemory;
@@ -222,7 +215,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		AbstractBrainFlag flag = BrainFlags.getFlagForKey(memoryKey);
 		
 		if (flag != null) {
-			this.brainFlagStates.put(flag, BrainFlagState.ABSENT);
+			this.brainFlagStates.set(flag.getBitmaskId(), BrainFlagState.ABSENT.getBitMaskValue());
 		}
 	}
 
