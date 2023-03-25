@@ -1,6 +1,5 @@
 package org.alien.common.entity.living.xenomorph;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -10,7 +9,6 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.maturity.MaturityEntries;
-import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.entity.ai.brain.xenomorph.DroneBrain;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;

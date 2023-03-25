@@ -6,8 +6,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.alien.client.AlienResources;
 import org.alien.client.model.tile.plant.ModelGroundFern;
-import org.avp.client.Resources;
 import org.avp.common.tile.plant.TileEntityGroundFern;
 import org.lwjgl.opengl.GL11;
 
@@ -15,7 +15,7 @@ public class RenderItemGroundFern extends ItemRenderer<ModelGroundFern>
 {
     public RenderItemGroundFern()
     {
-        super(Resources.instance.models().GROUND_FERN);
+        super(AlienResources.instance.models().GROUND_FERN);
     }
 
     @Override

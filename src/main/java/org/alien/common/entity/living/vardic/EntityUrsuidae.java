@@ -12,7 +12,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.UrsuidaeBrain;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityUrsuidae extends EntityMob implements IMob, Host, Brainiac<UrsuidaeBrain>
 {

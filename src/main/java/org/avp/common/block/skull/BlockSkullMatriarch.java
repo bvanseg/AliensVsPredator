@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import org.alien.client.AlienResources;
 import org.alien.client.model.tile.skull.ModelQueenSkull;
-import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 
 public class BlockSkullMatriarch extends BlockSkull
@@ -21,7 +21,7 @@ public class BlockSkullMatriarch extends BlockSkull
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelQueenSkull m = Resources.instance.models().MATRIARCH_SKULL.getModel();
+        ModelQueenSkull m = AlienResources.instance.models().MATRIARCH_SKULL.getModel();
         return new ModelRenderer[] { m.head0 };
     }
 
@@ -36,7 +36,7 @@ public class BlockSkullMatriarch extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.instance.models().MATRIARCH_SKULL.getTexture();
+        return AlienResources.instance.models().MATRIARCH_SKULL.getTexture();
     }
     
     @Override

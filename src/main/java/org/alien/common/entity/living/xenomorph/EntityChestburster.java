@@ -30,7 +30,6 @@ import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPDamageSources;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic, HiveMember, Brainiac<ChestbursterBrain>
 {

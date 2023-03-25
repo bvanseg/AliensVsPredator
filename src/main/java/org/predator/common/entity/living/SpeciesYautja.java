@@ -24,7 +24,6 @@ import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.network.AvpDataSerializers;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 import org.predator.client.PredatorSounds;
 import org.predator.common.entity.ai.brain.YautjaBrain;
 import org.predator.common.entity.state.CloakState;

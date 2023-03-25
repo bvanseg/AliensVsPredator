@@ -5,8 +5,8 @@ import com.asx.mdx.client.render.model.texture.Texture;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import org.alien.client.AlienResources;
 import org.alien.client.model.tile.skull.ModelNeomorphSkull;
-import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 
 public class BlockSkullNeomorph extends BlockSkull
@@ -15,7 +15,7 @@ public class BlockSkullNeomorph extends BlockSkull
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelNeomorphSkull m = Resources.instance.models().NEOMORPH_SKULL.getModel();
+        ModelNeomorphSkull m = AlienResources.instance.models().NEOMORPH_SKULL.getModel();
         return new ModelRenderer[] { m.head };
     }
 
@@ -30,7 +30,7 @@ public class BlockSkullNeomorph extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.instance.models().NEOMORPH_SKULL.getTexture();
+        return AlienResources.instance.models().NEOMORPH_SKULL.getTexture();
     }
     
     @Override

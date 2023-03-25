@@ -5,8 +5,8 @@ import com.asx.mdx.client.render.model.texture.Texture;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import org.alien.client.AlienResources;
 import org.alien.client.model.tile.skull.ModelGigerAlienHead;
-import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 
 public class BlockHeadGigerAlien extends BlockSkull
@@ -15,7 +15,7 @@ public class BlockHeadGigerAlien extends BlockSkull
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelGigerAlienHead m = Resources.instance.models().GIGER_ALIEN_HEAD.getModel();
+        ModelGigerAlienHead m = AlienResources.instance.models().GIGER_ALIEN_HEAD.getModel();
         return new ModelRenderer[] { m.head };
     }
 
@@ -31,7 +31,7 @@ public class BlockHeadGigerAlien extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.instance.models().GIGER_ALIEN_HEAD.getTexture();
+        return AlienResources.instance.models().GIGER_ALIEN_HEAD.getTexture();
     }
     
     @Override

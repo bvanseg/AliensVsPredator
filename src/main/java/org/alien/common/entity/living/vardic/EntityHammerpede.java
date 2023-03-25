@@ -17,7 +17,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.HammerpedeBrain;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 

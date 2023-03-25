@@ -5,8 +5,8 @@ import com.asx.mdx.client.render.model.texture.Texture;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
+import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelWarrior;
-import org.avp.client.Resources;
 import org.avp.common.block.BlockSkull;
 
 public class BlockSkullXenomorphWarrior extends BlockSkull
@@ -15,7 +15,7 @@ public class BlockSkullXenomorphWarrior extends BlockSkull
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelWarrior m = Resources.instance.models().WARRIOR_SKULL.getModel();
+        ModelWarrior m = AlienResources.instance.models().WARRIOR_SKULL.getModel();
         return new ModelRenderer[] { m.headBase, m.headSpine1, m.headSpine2, m.headTop, m.lHead, m.rHead, m.jaw, m.jaw2 };
     }
 
@@ -30,7 +30,7 @@ public class BlockSkullXenomorphWarrior extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return Resources.instance.models().WARRIOR_SKULL.getTexture();
+        return AlienResources.instance.models().WARRIOR_SKULL.getTexture();
     }
     
     @Override
