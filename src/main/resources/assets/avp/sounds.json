@@ -20,7 +20,7 @@
   "marine.death": 					{ "sounds": [ "avp:mobs/marine/death" ] },
   "marine.hurt": 					{ "sounds": [ "avp:mobs/marine/hurt" ] },
   "ovamorph.living": 				{ "sounds": [ "avp:mobs/ovamorph/living0", "avp:mobs/ovamorph/living1" ] },
-  "ovamorph.open": 					{ "sounds": [ "avp:mobs/ovamorph/open" ] },
+  "ovamorph.open": 					{ "sounds": [ "avp:mobs/ovamorph/open0", "avp:mobs/ovamorph/open1" ] },
   "predator.cloaking": 				{ "sounds": [ "avp:mobs/predator/cloaking" ] },
   "predator.death": 				{ "sounds": [ "avp:mobs/predator/death0", "avp:mobs/predator/death1" ] },
   "predator.decloaking": 			{ "sounds": [ "avp:mobs/predator/decloaking" ] },
