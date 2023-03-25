@@ -46,14 +46,13 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 	}
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if(!(entity instanceof EntityDrone)) return false;
 
 		EntityDrone droneEntity = (EntityDrone) entity;
 
-		if (droneEntity.getAlienHive() == null) return false;
 		if (droneEntity.world.getTotalWorldTime() % 20 != 0) return false;
 		if (droneEntity.getRNG().nextInt(3) != 0) return false;
 
@@ -61,12 +60,12 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
-		return this.recycleTarget != null && !this.recycleTarget.isDead;
+	protected boolean shouldContinueExecuting() {
+		return this.recycleTarget != null && !this.recycleTarget.isDead && !ctx.getEntity().getNavigator().noPath();
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityDrone entityDrone = (EntityDrone) ctx.getEntity();
 
 		if (this.recycleTarget == null) {
@@ -74,16 +73,16 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 		}
 
 		if (this.recycleTarget != null) {
-			entityDrone.getNavigator().tryMoveToEntityLiving(this.recycleTarget, entityDrone.getMoveHelper().getSpeed());
+			entityDrone.getNavigator().tryMoveToEntityLiving(this.recycleTarget, 1.0);
 		}
 	}
 
 	@Override
-	protected void continueExecuting(EntityBrainContext ctx) {
+	protected void continueExecuting() {
 		EntityDrone entityDrone = (EntityDrone) ctx.getEntity();
 		double distance = entityDrone.getDistanceSq(this.recycleTarget);
 
-		if (distance <= 2)
+		if (distance < 2)
 		{
 			entityDrone.setJellyLevel(entityDrone.getJellyLevel() + this.recycleTarget.getJellyLevel());
 			this.recycleTarget.setDead();

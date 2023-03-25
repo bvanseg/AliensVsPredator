@@ -59,7 +59,7 @@ public class BrainTaskAdapter extends AbstractBrainTask<EntityBrainContext> {
 	}
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (this.isExecuting()) {
 			return this.minecraftAITask.shouldContinueExecuting();
 		}
@@ -68,7 +68,7 @@ public class BrainTaskAdapter extends AbstractBrainTask<EntityBrainContext> {
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		if (!this.isExecuting()) {
 			this.minecraftAITask.startExecuting();
 		} else {
@@ -77,8 +77,8 @@ public class BrainTaskAdapter extends AbstractBrainTask<EntityBrainContext> {
 	}
 
 	@Override
-	public void finish(EntityBrainContext ctx) {
-		super.finish(ctx);
+	public void finish() {
+		super.finish();
 		this.minecraftAITask.resetTask();
 	}
 }

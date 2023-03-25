@@ -10,7 +10,6 @@ import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.Map;
 
@@ -25,7 +24,7 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
     }
 
     @Override
-    protected boolean shouldExecute(EntityBrainContext ctx) {
+    protected boolean shouldExecute() {
         return ctx.getEntity() instanceof EntityParasitoid &&
                 ((EntityParasitoid)ctx.getEntity()).isAttachedToHost() &&
                 ctx.getEntity().getRidingEntity() != null &&
@@ -33,12 +32,16 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
     }
 
     @Override
-    protected void startExecuting(EntityBrainContext ctx) {
+    protected void startExecuting() {
         EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
         EntityLivingBase host = (EntityLivingBase) parasite.getRidingEntity();
 
         if (host instanceof EntityLiving) {
-            ((EntityLiving)host).setNoAI(true);
+            EntityLiving livingHost = (EntityLiving) host;
+            // Make the host stop moving.
+            livingHost.setNoAI(true);
+            // Silence the host.
+            livingHost.livingSoundTime = -livingHost.getTalkInterval();
         }
 
         parasite.ticksOnHost++;

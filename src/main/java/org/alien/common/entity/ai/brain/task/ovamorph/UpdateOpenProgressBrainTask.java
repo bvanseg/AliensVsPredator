@@ -8,7 +8,6 @@ import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.Map;
 
@@ -25,7 +24,7 @@ public class UpdateOpenProgressBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (!(ctx.getEntity() instanceof EntityOvamorph))
 			return false;
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
@@ -43,7 +42,7 @@ public class UpdateOpenProgressBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
 		int newHatchProgress = MathHelper.clamp(ovamorph.getOpenProgress() + 1, -EntityOvamorph.MAX_OPEN_PROGRESS, EntityOvamorph.MAX_OPEN_PROGRESS);
 		ovamorph.setOpenProgress(newHatchProgress);

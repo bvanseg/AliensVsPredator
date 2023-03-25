@@ -12,7 +12,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.ScelemurBrain;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityScelemur extends EntityMob implements IMob, Host, Brainiac<ScelemurBrain>
 {
@@ -53,7 +52,7 @@ public class EntityScelemur extends EntityMob implements IMob, Host, Brainiac<Sc
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

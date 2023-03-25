@@ -7,7 +7,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
-import org.avp.common.block.init.AVPBlocks;
+import org.alien.common.AlienBlocks;
 
 import java.util.Random;
 
@@ -175,12 +175,12 @@ public class VardaGenCaves extends MapGenBase
                         {
                             Block ceilBlock = primer.getBlockState(somethingX, somethingY, somethingZ).getBlock();
 
-                            if (ceilBlock == AVPBlocks.UNIDIRT)
+                            if (ceilBlock == AlienBlocks.UNIDIRT)
                             {
                                 atSurface = true;
                             }
 
-                            if ((ceilBlock != AVPBlocks.UNISTONE) || (ceilBlock != AVPBlocks.UNIDIRT) || (ceilBlock != AVPBlocks.UNIDIRT))
+                            if ((ceilBlock != AlienBlocks.UNISTONE) || (ceilBlock != AlienBlocks.UNIDIRT) || (ceilBlock != AlienBlocks.UNIDIRT))
                             {
                                 if (somethingY < 10)
                                 {
@@ -190,7 +190,7 @@ public class VardaGenCaves extends MapGenBase
                                 {
                                     primer.setBlockState(somethingX, somethingY, somethingZ, Blocks.AIR.getDefaultState());
 
-                                    if (atSurface && primer.getBlockState(somethingX, somethingY - 1, somethingZ) == AVPBlocks.UNIDIRT)
+                                    if (atSurface && primer.getBlockState(somethingX, somethingY - 1, somethingZ) == AlienBlocks.UNIDIRT)
                                     {
                                         primer.setBlockState(somethingX, somethingY - 1, somethingZ, this.world.getBiome(new BlockPos(somethingX + chunkX * 16, 0, somethingZ + chunkZ * 16)).topBlock);
                                     }

@@ -38,7 +38,6 @@ import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 import org.predator.common.item.ItemWristbracer;
 
 import java.util.List;
@@ -178,7 +177,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
 
         this.updateHitbox();

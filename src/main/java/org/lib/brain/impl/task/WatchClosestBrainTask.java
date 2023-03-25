@@ -11,7 +11,6 @@ import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.BrainMemoryKeys;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 import java.util.Map;
@@ -53,7 +52,7 @@ public class WatchClosestBrainTask extends AbstractEntityBrainTask {
     }
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 		if (entity.getRNG().nextFloat() >= this.chance) {
 			return false;
@@ -85,12 +84,12 @@ public class WatchClosestBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		this.lookTimeInTicks = 40 + ctx.getEntity().getRNG().nextInt(40);
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+	protected boolean shouldContinueExecuting() {
 		if (ctx.getEntity().getDistanceSq(this.closestEntity) > (this.maxDistance * this.maxDistance)) {
 			return false;
 		}
@@ -99,7 +98,7 @@ public class WatchClosestBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected void continueExecuting(EntityBrainContext ctx) {
+	protected void continueExecuting() {
 		EntityLiving entity = ctx.getEntity();
 		entity.getLookHelper().setLookPosition(
 			this.closestEntity.posX,
