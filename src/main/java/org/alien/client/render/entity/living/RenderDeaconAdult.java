@@ -4,9 +4,9 @@ import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelDeaconAdult;
 import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
-import org.avp.client.Resources;
 
 public class RenderDeaconAdult extends RenderLivingWrapper<EntityDeaconAdult, ModelDeaconAdult>
 {
@@ -14,7 +14,7 @@ public class RenderDeaconAdult extends RenderLivingWrapper<EntityDeaconAdult, Mo
     
     public RenderDeaconAdult(RenderManager m)
     {
-        super(m, Resources.instance.models().DEACON_ADULT);
+        super(m, AlienResources.instance.models().DEACON_ADULT);
     }
 
     @Override

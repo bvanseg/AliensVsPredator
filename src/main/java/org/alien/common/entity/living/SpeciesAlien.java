@@ -20,7 +20,6 @@ import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.api.maturity.MaturityEntries;
 import org.alien.common.api.maturity.MaturityEntry;
-import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.EntityAcidPool;
 import org.avp.common.AVPDamageSources;

@@ -14,15 +14,11 @@ import net.minecraft.util.math.MathHelper;
 import org.avp.client.Resources;
 import org.avp.client.model.tile.ModelLocker;
 import org.avp.common.tile.TileEntityLocker;
+import org.lib.client.AnimationUtil;
 import org.lwjgl.opengl.GL11;
 
 public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
 {
-	// TODO: This should be in a util or helper class in the future.
-	private float lerp(float pointA, float pointB, float percentage) {
-        return (pointA * (1.0f - percentage)) + (pointB * percentage);
-    }
-	
     @Override
     public void render(TileEntityLocker tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
@@ -39,7 +35,7 @@ public class RenderLocker extends TileEntitySpecialRenderer<TileEntityLocker>
             float openSpeed = 0.06F;
             tile.openProgress = MathHelper.clamp(tile.openProgress + (!tile.isOpen() ? -openSpeed : openSpeed), 0.0F, 1.0F);
             float lerpProgress = !tile.isOpen() ? tile.openProgress : 1 - tile.openProgress;
-            float openProgress = lerp(tile.isOpen() ? -1.5F : 0F, tile.isOpen() ? 0F : -1.5F, lerpProgress);
+            float openProgress = AnimationUtil.lerp(tile.isOpen() ? -1.5F : 0F, tile.isOpen() ? 0F : -1.5F, lerpProgress);
             
             ((ModelLocker) Resources.instance.models().LOCKER.getModel()).door.rotateAngleY = openProgress;
             Resources.instance.models().LOCKER.draw(tile);

@@ -5,7 +5,6 @@ import org.alien.common.entity.ai.brain.task.util.EggMoveConstants;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainMemoryKeys;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 import java.util.Optional;

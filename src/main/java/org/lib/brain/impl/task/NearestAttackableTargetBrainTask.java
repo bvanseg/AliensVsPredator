@@ -3,7 +3,6 @@ package org.lib.brain.impl.task;
 import net.minecraft.entity.EntityLivingBase;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainMemoryKeys;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.Optional;
 

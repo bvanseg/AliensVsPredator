@@ -27,7 +27,14 @@ public class RenderTurret extends TileEntitySpecialRenderer<TileEntityTurret>
             {
                 this.renderAmmoDisplay(tile);
 
-                if (!tile.getAttackHelper().isFiring())
+                // Solid beam while idle.
+                boolean idleCheck = !tile.getAttackHelper().isFiring();
+                // Flashing beam while firing.
+                boolean firingCheck = tile.hasWorld() && tile.getWorld().getTotalWorldTime() % 2 == 0 && tile.getLookHelper().isLockedOn();
+                // Solid beam while moving to lock on to target.
+                boolean rotatingCheck = tile.getAttackHelper().isFiring() && !tile.getLookHelper().isLockedOn();
+
+                if (idleCheck || rotatingCheck || firingCheck)
                 {
                     this.renderBeam(tile, 0, 0, -1, 0, 50, tile.beamColor, 0x00000000, -1);
                 }

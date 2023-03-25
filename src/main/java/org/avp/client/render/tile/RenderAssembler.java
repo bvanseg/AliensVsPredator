@@ -11,17 +11,13 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import org.avp.common.tile.TileEntityAssembler;
+import org.lib.client.AnimationUtil;
 import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.opengl.GL11.*;
 
 public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityAssembler>
 {
-    // TODO: Move this to a helper class.
-	private float lerp(float pointA, float pointB, float percentage) {
-        return (pointA * (1.0f - percentage)) + (pointB * percentage);
-    }
-	
     @Override
     public void render(TileEntityAssembler tile, double posX, double posY, double posZ, float renderPartialTicks, int destroy, float alpha)
     {
@@ -38,7 +34,7 @@ public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityAssembl
             OpenGL.enable(GL_BLEND);
             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             OpenGL.translate(posX + 0.5F, posY + 0.95F, posZ + 0.5F);
-            OpenGL.rotate(360 * this.lerp(0F, 1F, tile.rotateProgress), 0, 1, 0);
+            OpenGL.rotate(360 * AnimationUtil.lerp(0F, 1F, tile.rotateProgress), 0, 1, 0);
 
             OpenGL.pushMatrix();
             {

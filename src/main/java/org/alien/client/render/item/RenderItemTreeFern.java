@@ -6,16 +6,16 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.alien.client.AlienResources;
 import org.alien.client.model.tile.plant.ModelTreeFern;
-import org.avp.client.Resources;
-import org.avp.common.tile.plant.TileEntityGroundFern;
+import org.alien.common.tile.plant.TileEntityGroundFern;
 import org.lwjgl.opengl.GL11;
 
 public class RenderItemTreeFern extends ItemRenderer<ModelTreeFern>
 {
     public RenderItemTreeFern()
     {
-        super(Resources.instance.models().TREE_FERN);
+        super(AlienResources.instance.models().TREE_FERN);
     }
 
     @Override

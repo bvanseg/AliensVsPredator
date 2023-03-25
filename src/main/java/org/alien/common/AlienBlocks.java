@@ -5,9 +5,10 @@ import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.alien.common.block.*;
+import org.alien.common.block.skull.*;
 import org.avp.common.AVPCreativeTabs;
-import org.avp.common.block.*;
-import org.avp.common.block.skull.*;
+import org.avp.common.block.BlockStalagmite;
 import org.lib.common.registry.BlockRegistryUtil;
 
 /**
@@ -73,8 +74,8 @@ public class AlienBlocks implements IPreInitEvent {
     public static final Block LV_426_ROCK = new BlockMaterial(Material.ROCK).setHardness(1.3F).setResistance(2.0F).setRegistryName("lv426rock");
 
     /* Misc */
-    public static final Block PORTAL_VARDA = new BlockPortal(AlienDimensions.instance.VARDA).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("portal.varda");
-    public static final Block PORTAL_ACHERON = new BlockPortal(AlienDimensions.instance.ACHERON).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("portal.acheron");
+    public static final Block PORTAL_VARDA = new BlockPortal(AlienDimensions.VARDA).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("portal.varda");
+    public static final Block PORTAL_ACHERON = new BlockPortal(AlienDimensions.ACHERON).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("portal.acheron");
 
     public static final Block SKULL_ENGINEER = new BlockSkullEngineer().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("skull.engineer");
     public static final Block SKULL_JOCKEY = new BlockSkullSpaceJockey().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("skull.spacejockey");
@@ -87,6 +88,13 @@ public class AlienBlocks implements IPreInitEvent {
     public static final Block HEAD_GIGER_ALIEN = new BlockHeadGigerAlien().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("head.gigeralien");
     public static final Block BLACK_GOO = BlockRegistryUtil.createFluidBlock(BlockBlackGoo.fluid, BlockBlackGoo.class, "blackgoo");
     public static final Block MIST = BlockRegistryUtil.createFluidBlock(BlockMist.fluid, BlockMist.class, "mist");
+
+    // Dimension-based
+    public static final Block UNISTONE = new BlockMaterial(Material.ROCK).setHardness(1.3F).setResistance(2.0F).setRegistryName("unistone");
+    public static final Block UNISAND = new BlockMaterial(Material.SAND).setHardness(3.5F).setResistance(2.0F).setRegistryName("unisand");
+    public static final Block UNIGRAVEL = new BlockMaterial(Material.SAND).setHardness(3.0F).setLightOpacity(255).setRegistryName("unigravel");
+    public static final Block UNIDIRT = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("unidirt").setCreativeTab(AVPCreativeTabs.BLOCKS);
+    public static final Block STALAGMITE = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("stalagmite");
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
@@ -167,6 +175,12 @@ public class AlienBlocks implements IPreInitEvent {
 
         BlockRegistryUtil.registerBlock(BLACK_GOO);
         BlockRegistryUtil.registerBlock(MIST);
+
+        BlockRegistryUtil.registerStandardBlock(UNISTONE);
+        BlockRegistryUtil.registerStandardBlock(UNISAND);
+        BlockRegistryUtil.registerStandardBlock(UNIGRAVEL);
+        BlockRegistryUtil.registerStandardBlock(UNIDIRT);
+        BlockRegistryUtil.registerStandardBlock(STALAGMITE);
     }
 
     private void registerItemBlocks() {

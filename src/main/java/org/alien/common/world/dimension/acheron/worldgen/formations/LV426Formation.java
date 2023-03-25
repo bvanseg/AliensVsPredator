@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import org.alien.common.AlienBlocks;
 import org.alien.common.world.worldgen.TerrainGenVariant;
-import org.avp.common.block.init.AVPBlocks;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +25,7 @@ public class LV426Formation extends TerrainGenVariant<LV426Formation>
     @Override
     public Block[] getValidLocations()
     {
-        return new Block[] { AVPBlocks.UNIDIRT, AVPBlocks.UNISTONE
+        return new Block[] { AlienBlocks.UNIDIRT, AlienBlocks.UNISTONE
         };
     }
 

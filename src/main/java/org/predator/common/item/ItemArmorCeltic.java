@@ -12,10 +12,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.KeybindHandler;
-import org.avp.client.Resources;
 import org.avp.common.AVPMaterials;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.lwjgl.input.Keyboard;
+import org.predator.client.PredatorResources;
 import org.predator.client.PredatorSounds;
 import org.predator.client.render.VisionModeRenderEvent;
 import org.predator.common.PredatorItems;
@@ -32,9 +32,9 @@ public class ItemArmorCeltic extends ItemArmor
     {
         switch (slot) {
             case LEGS:
-                return Draw.getPath(Resources.instance.CELTIC2);
+                return Draw.getPath(PredatorResources.instance.CELTIC2);
             default:
-                return Draw.getPath(Resources.instance.CELTIC1);
+                return Draw.getPath(PredatorResources.instance.CELTIC1);
         }
     }
 

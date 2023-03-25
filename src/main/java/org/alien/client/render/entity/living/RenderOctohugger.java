@@ -6,9 +6,9 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelOctohugger;
 import org.alien.common.entity.living.vardic.EntityOctohugger;
-import org.avp.client.Resources;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entity.EntityMedpod;
@@ -18,7 +18,7 @@ public class RenderOctohugger extends RenderLivingWrapper<EntityOctohugger, Mode
 {
     public RenderOctohugger(RenderManager m)
     {
-        super(m, Resources.instance.models().OCTOHUGGER);
+        super(m, AlienResources.instance.models().OCTOHUGGER);
     }
 
     @Override
