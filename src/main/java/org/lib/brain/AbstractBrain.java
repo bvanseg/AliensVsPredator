@@ -45,7 +45,7 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 
 	private boolean isDisabled = false;
 
-	private BrainProfile activeProfile;
+	private final HashSet<BrainProfile> activeProfiles;
 	
 	protected AbstractBrain() {
 		this.memoryManager = new BrainMemoryMap();
@@ -53,45 +53,60 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		this.profileTaskSets = new HashMap<>();
 		this.brainFlagStates = new HashMap<>();
 		this.executingTasks = new HashSet<>();
-		this.activeProfile = BrainProfiles.STANDARD;
+		this.activeProfiles = new HashSet<>();
+		this.activeProfiles.add(BrainProfiles.STANDARD);
 	}
 
-	public void init() {}
+	protected abstract T createContext();
 	
 	public void update() {
 		if (this.isDisabled)
 			return;
 
-		profileSensorSets.computeIfAbsent(this.activeProfile, key -> new ArrayList<>()).forEach(sensor -> {
-			if (sensor.ctx == null) {
-				throw new IllegalStateException("Brain sensor has a null context!");
-			}
+		this.activeProfiles.forEach(profile -> {
+			profileSensorSets.computeIfAbsent(profile, key -> new ArrayList<>()).forEach(sensor -> {
+				if (sensor.ctx == null) {
+					throw new IllegalStateException("Brain sensor has a null context!");
+				}
 
-			sensor.sense();
-		});
+				sensor.sense();
+			});
 
-		profileTaskSets.computeIfAbsent(this.activeProfile, key -> new ArrayList<>()).forEach(task -> {
-			if (task.ctx == null) {
-				throw new IllegalStateException("Brain task has a null context!");
-			}
+			profileTaskSets.computeIfAbsent(profile, key -> new ArrayList<>()).forEach(task -> {
+				if (task.ctx == null) {
+					throw new IllegalStateException("Brain task has a null context!");
+				}
 
-			if (this.canRunTask(task)) {
-				if (task.runTask()) {
-					this.setFlagMasksForTask(task);
-				} else {
+				if (this.canRunTask(task)) {
+					if (task.runTask()) {
+						this.setFlagMasksForTask(task);
+					} else {
+						this.clearFlagMasksForTask(task);
+					}
+				}
+				// If the flag states change, and we weren't able to run the task, but the task is still executing, we need to finish the task.
+				else if (task.isExecuting()) {
+					task.finish();
+					task.setExecuting(false);
 					this.clearFlagMasksForTask(task);
 				}
-			}
-			// If the flag states change, and we weren't able to run the task, but the task is still executing, we need to finish the task.
-			else if (task.isExecuting()) {
-				task.finish();
-				task.setExecuting(false);
-				this.clearFlagMasksForTask(task);
-			}
+			});
 		});
 
 		memoryManager.forgetEverything();
 	}
+
+	public void setDisabled(boolean disabled) {
+		this.isDisabled = disabled;
+	}
+
+	/*
+	 *
+	 * INITIALIZATION LOGIC
+	 *
+	 */
+
+	public void init() {}
 
 	public final void addSense(AbstractBrainSensor<T> brainSensor, BrainProfile... profiles) {
 		brainSensor.ctx = this.createContext();
@@ -115,7 +130,11 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		this.addTask(brainTask, BrainProfiles.STANDARD);
 	}
 
-	protected abstract T createContext();
+	/*
+	 *
+	 * FLAG MASK LOGIC
+	 *
+	 */
 
 	public final boolean canRunTask(AbstractBrainTask<T> brainTask) {
 		Map<AbstractBrainFlag, BrainFlagState> requirements = brainTask.getFlagRequirements();
@@ -163,6 +182,13 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		}
 	}
 
+
+	/*
+	 *
+	 * MEMORIES
+	 *
+	 */
+
 	public <U> Optional<U> getMemory(BrainMemoryKey<? super U> memoryKey) {
 		return this.memoryManager.getMemory(memoryKey);
 	}
@@ -200,23 +226,46 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 		}
 	}
 
-	public Map<BrainProfile, ArrayList<AbstractBrainSensor<T>>> getProfileSensorSets() {
-		return profileSensorSets;
+	/*
+	 *
+	 * PROFILES
+	 *
+	 */
+
+	public final void enableProfiles(BrainProfile profile, BrainProfile... profiles) {
+		this.activeProfiles.add(profile);
+		this.activeProfiles.addAll(Arrays.asList(profiles));
 	}
 
-	public void setDisabled(boolean disabled) {
-		this.isDisabled = disabled;
+	public final void disableAllProfilesExcept(BrainProfile profile) {
+		this.disableAllProfiles();
+		this.activeProfiles.add(profile);
 	}
 
-	public final void setActiveProfile(BrainProfile profile) {
-		this.activeProfile = profile;
+	public final void disableProfiles(BrainProfile profile, BrainProfile... profiles) {
+		this.activeProfiles.remove(profile);
+		Arrays.asList(profiles).forEach(this.activeProfiles::remove);
 	}
 
-	public BrainProfile getActiveProfile() {
-		return activeProfile;
+	public final void disableAllProfiles() {
+		this.activeProfiles.clear();
+	}
+
+	public Set<BrainProfile> getActiveProfiles() {
+		return this.activeProfiles;
 	}
 
 	public Map<BrainProfile, ArrayList<AbstractBrainTask<T>>> getProfileTaskSets() {
 		return profileTaskSets;
+	}
+
+	public List<AbstractBrainTask<T>> getAllActiveProfileTasks() {
+		ArrayList<AbstractBrainTask<T>> activeTasks = new ArrayList<>();
+
+		this.profileTaskSets.entrySet().stream()
+				.filter(e -> this.activeProfiles.contains(e.getKey()))
+				.forEach(e -> activeTasks.addAll(e.getValue()));
+
+		return activeTasks;
 	}
 }
