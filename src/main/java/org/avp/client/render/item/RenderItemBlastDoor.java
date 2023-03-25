@@ -27,6 +27,7 @@ public class RenderItemBlastDoor extends ItemRenderer<ModelBlastdoor>
         GlStateManager.disableCull();
         OpenGL.scale(glScale, -glScale, glScale);
         this.getModel().draw();
+        GlStateManager.enableCull();
     }
 
     @Override
@@ -38,6 +39,7 @@ public class RenderItemBlastDoor extends ItemRenderer<ModelBlastdoor>
         GlStateManager.disableCull();
         OpenGL.scale(glScale, glScale, glScale);
         this.getModel().draw();
+        GlStateManager.enableCull();
     }
 
     @Override
@@ -60,5 +62,6 @@ public class RenderItemBlastDoor extends ItemRenderer<ModelBlastdoor>
         OpenGL.translate(-1.5F, 0F, 0F);
         GlStateManager.disableCull();
         this.getModel().draw();
+        GlStateManager.enableCull();
     }
 }

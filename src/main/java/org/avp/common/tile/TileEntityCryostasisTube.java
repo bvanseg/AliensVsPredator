@@ -9,6 +9,8 @@ import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.SoundCategory;
@@ -31,6 +33,24 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements Vo
     {
         super(false);
         this.setThresholdVoltage(90);
+    }
+
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket()
+    {
+        return new SPacketUpdateTileEntity(this.getPos(), 1, this.getUpdateTag());
+    }
+
+    @Override
+    public NBTTagCompound getUpdateTag()
+    {
+        return this.writeToNBT(new NBTTagCompound());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
+    {
+        this.readFromNBT(packet.getNbtCompound());
     }
 
     @Override
@@ -98,23 +118,28 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements Vo
         return Blocks.BEACON;
     }
 
+    private static final String CRACKED_NBT_KEY = "Cracked";
+    private static final String SHATTERED_NBT_KEY = "Shattered";
+    private static final String DIRECTION_NBT_KEY = "Direction";
+    private static final String STASIS_ITEMSTACK_NBT_KEY = "StasisItemstack";
+
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         super.writeToNBT(nbt);
-        nbt.setBoolean("Cracked", this.cracked);
-        nbt.setBoolean("Shattered", this.shattered);
+        nbt.setBoolean(CRACKED_NBT_KEY, this.cracked);
+        nbt.setBoolean(SHATTERED_NBT_KEY, this.shattered);
 
         if (this.direction != null)
         {
-            nbt.setInteger("Direction", this.direction.ordinal());
+            nbt.setInteger(DIRECTION_NBT_KEY, this.direction.ordinal());
         }
 
         if (this.stasisItemstack != null)
         {
             NBTTagCompound nbtStack = new NBTTagCompound();
             this.stasisItemstack.writeToNBT(nbtStack);
-            nbt.setTag("StasisItemstack", nbtStack);
+            nbt.setTag(STASIS_ITEMSTACK_NBT_KEY, nbtStack);
         }
         
         return nbt;
@@ -124,17 +149,17 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements Vo
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
-        this.cracked = nbt.getBoolean("Cracked");
-        this.shattered = nbt.getBoolean("Shattered");
+        this.cracked = nbt.getBoolean(CRACKED_NBT_KEY);
+        this.shattered = nbt.getBoolean(SHATTERED_NBT_KEY);
 
-        if (EnumFacing.byIndex(nbt.getInteger("Direction")) != null)
+        if (EnumFacing.byIndex(nbt.getInteger(DIRECTION_NBT_KEY)) != null)
         {
-            this.direction = EnumFacing.byIndex(nbt.getInteger("Direction"));
+            this.direction = EnumFacing.byIndex(nbt.getInteger(DIRECTION_NBT_KEY));
         }
 
-        NBTTagCompound nbtStack = nbt.getCompoundTag("StasisItemstack");
+        NBTTagCompound nbtStack = nbt.getCompoundTag(STASIS_ITEMSTACK_NBT_KEY);
 
-        if (nbtStack != null && !nbtStack.isEmpty() && nbtStack.hasKey("StasisItemstack")) {
+        if (nbtStack != null && !nbtStack.isEmpty()) {
             this.stasisItemstack = new ItemStack(nbtStack);
         }
 
