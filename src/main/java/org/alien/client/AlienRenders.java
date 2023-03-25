@@ -36,15 +36,15 @@ import org.alien.common.entity.living.vardic.*;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
+import org.alien.common.tile.TileEntityHiveResin;
+import org.alien.common.tile.plant.TileEntityGroundFern;
+import org.alien.common.tile.plant.TileEntityTreeFern;
 import org.avp.AVP;
 import org.avp.client.render.item.RenderItemSkull;
 import org.avp.client.render.item.RenderItemSummoner;
 import org.avp.client.render.transform.FaceLocationTransforms;
 import org.avp.client.render.transform.VanillaFaceLocationTransforms;
 import org.avp.common.block.BlockSkull;
-import org.avp.common.tile.TileEntityHiveResin;
-import org.avp.common.tile.plant.TileEntityGroundFern;
-import org.avp.common.tile.plant.TileEntityTreeFern;
 import org.lib.common.registry.BlockRegistryUtil;
 
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;

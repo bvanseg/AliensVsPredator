@@ -8,8 +8,6 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.AVP;
 import org.avp.common.AVPCreativeTabs;
-import org.avp.common.block.BlockStalagmite;
-import org.avp.common.block.BlockUnidentifiedDirt;
 import org.lib.common.block.BasicBlock;
 import org.lib.common.block.BlockProperties;
 import org.lib.common.registry.BlockRegistryUtil;
@@ -78,13 +76,6 @@ public class AVPBlocks implements IPreInitEvent
     public static final Block MUTHUR_PANEL_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(1F).setLightLevel(0.5F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("mainframepanel.shimmer");
     public static final Block MUTHUR_PANEL_2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(10F).setLightLevel(0.5F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("mainframepanel.flicker");
 
-    // Dimension-based
-    public static final Block UNISTONE = new BlockMaterial(Material.ROCK).setHardness(1.3F).setResistance(2.0F).setRegistryName("unistone");
-    public static final Block UNISAND = new BlockMaterial(Material.SAND).setHardness(3.5F).setResistance(2.0F).setRegistryName("unisand");
-    public static final Block UNIGRAVEL = new BlockMaterial(Material.SAND).setHardness(3.0F).setLightOpacity(255).setRegistryName("unigravel");
-    public static final Block UNIDIRT = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("unidirt").setCreativeTab(AVPCreativeTabs.BLOCKS);
-    public static final Block STALAGMITE = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("stalagmite");
-
     @Override
     public void pre(FMLPreInitializationEvent event) {
         AVP.log().info("Registering Blocks");
@@ -137,11 +128,5 @@ public class AVPBlocks implements IPreInitEvent
         BlockRegistryUtil.registerStandardBlock(PADDING_SQUARE_WHITE);
         BlockRegistryUtil.registerStandardBlock(PADDING_TILES_ORANGE);
         BlockRegistryUtil.registerStandardBlock(PADDING_TILES_WHITE);
-
-        BlockRegistryUtil.registerStandardBlock(UNISTONE);
-        BlockRegistryUtil.registerStandardBlock(UNISAND);
-        BlockRegistryUtil.registerStandardBlock(UNIGRAVEL);
-        BlockRegistryUtil.registerStandardBlock(UNIDIRT);
-        BlockRegistryUtil.registerStandardBlock(STALAGMITE);
     }
 }

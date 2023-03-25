@@ -11,8 +11,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import org.alien.common.AlienBlocks;
-import org.avp.common.block.BlockUnidentifiedLog;
-import org.avp.common.block.init.AVPBlocks;
+import org.alien.common.block.BlockUnidentifiedLog;
 
 import java.util.Random;
 
@@ -29,7 +28,7 @@ public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerato
     
     protected Block[] getValidTargetBlocks()
     {
-        return new Block[] { AVPBlocks.UNIDIRT, AlienBlocks.GIGER_SAPLING};
+        return new Block[] { AlienBlocks.UNIDIRT, AlienBlocks.GIGER_SAPLING};
     }
     
     public boolean isLocationValid(World world, BlockPos pos)

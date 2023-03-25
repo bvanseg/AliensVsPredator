@@ -7,8 +7,8 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
 import org.alien.client.AlienResources;
 import org.alien.client.model.tile.ModelHiveResin;
+import org.alien.common.tile.TileEntityHiveResin;
 import org.avp.common.AVPSettings.ClientSettings;
-import org.avp.common.tile.TileEntityHiveResin;
 
 public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveResin>
 {

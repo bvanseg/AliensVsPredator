@@ -5,7 +5,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.avp.AVP;
-import org.avp.common.tile.TileEntityStasisMechanism;
+import org.predator.common.tile.TileEntityStasisMechanism;
 
 public class PredatorTileEntities implements IInitEvent {
     public static final PredatorTileEntities instance = new PredatorTileEntities();
