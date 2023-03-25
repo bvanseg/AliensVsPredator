@@ -12,7 +12,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.GooMutantBrain;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityGooMutant extends EntityMob implements IMob, Host, Brainiac<GooMutantBrain>
 {
@@ -53,7 +52,7 @@ public class EntityGooMutant extends EntityMob implements IMob, Host, Brainiac<G
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

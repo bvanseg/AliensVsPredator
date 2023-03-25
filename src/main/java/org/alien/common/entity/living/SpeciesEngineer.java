@@ -17,7 +17,6 @@ import net.minecraft.world.World;
 import org.alien.common.entity.ai.brain.EngineerBrain;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public abstract class SpeciesEngineer extends EntityMob implements Brainiac<EngineerBrain>
 {
@@ -68,7 +67,7 @@ public abstract class SpeciesEngineer extends EntityMob implements Brainiac<Engi
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

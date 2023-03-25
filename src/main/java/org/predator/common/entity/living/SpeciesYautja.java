@@ -24,7 +24,6 @@ import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.network.AvpDataSerializers;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 import org.predator.client.PredatorSounds;
 import org.predator.common.entity.ai.brain.YautjaBrain;
 import org.predator.common.entity.state.CloakState;
@@ -94,7 +93,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
         
         if (this.world.getTotalWorldTime() % 10 == 0)

@@ -19,7 +19,6 @@ import org.alien.common.entity.ai.brain.DracomorphBrain;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Brainiac<DracomorphBrain>
 {
@@ -82,7 +81,7 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Braini
 
         if (!this.world.isRemote)
         {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
 
             if (isFlying())
             {

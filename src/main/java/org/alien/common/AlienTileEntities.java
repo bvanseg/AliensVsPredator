@@ -4,10 +4,10 @@ import com.asx.mdx.common.mods.IInitEvent;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import org.alien.common.tile.TileEntityHiveResin;
+import org.alien.common.tile.plant.TileEntityGroundFern;
+import org.alien.common.tile.plant.TileEntityTreeFern;
 import org.avp.AVP;
-import org.avp.common.tile.TileEntityHiveResin;
-import org.avp.common.tile.plant.TileEntityGroundFern;
-import org.avp.common.tile.plant.TileEntityTreeFern;
 
 public class AlienTileEntities implements IInitEvent {
     public static final AlienTileEntities instance = new AlienTileEntities();

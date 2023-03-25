@@ -9,7 +9,6 @@ import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.Map;
 
@@ -28,7 +27,7 @@ public class ShareJellyBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if (!(entity instanceof SpeciesXenomorph) || !(entity instanceof HiveMember) || entity instanceof EntityMatriarch) {
@@ -42,7 +41,7 @@ public class ShareJellyBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityLiving entity = ctx.getEntity();
 		SpeciesXenomorph xenomorph = (SpeciesXenomorph)entity;
 		HiveMember hiveMember = (HiveMember) xenomorph;

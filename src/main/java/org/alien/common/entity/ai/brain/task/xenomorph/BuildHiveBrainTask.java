@@ -12,14 +12,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.alien.common.AlienBlocks;
+import org.alien.common.block.BlockHiveResin;
 import org.alien.common.entity.living.xenomorph.EntityDrone;
-import org.avp.common.block.BlockHiveResin;
-import org.avp.common.tile.TileEntityHiveResin;
+import org.alien.common.tile.TileEntityHiveResin;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,7 +56,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if(!(entity instanceof EntityDrone)) return false;
@@ -73,7 +72,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityDrone entity = (EntityDrone) ctx.getEntity();
 		this.targetPos = findNextSuitableResinLocation(entity, 3);
 
@@ -87,7 +86,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+	protected boolean shouldContinueExecuting() {
 		if (this.targetPos == null) return false;
 		if (ctx.getEntity().getNavigator().noPath()) return false;
 		if (((EntityDrone)ctx.getEntity()).getAlienHive() == null) return false;
@@ -96,7 +95,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected void continueExecuting(EntityBrainContext ctx) {
+	protected void continueExecuting() {
 		EntityDrone entity = (EntityDrone) ctx.getEntity();
 		IBlockState state = entity.world.getBlockState(this.targetPos);
 

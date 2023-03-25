@@ -24,7 +24,6 @@ import org.avp.common.entity.ai.brain.MarineBrain;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Brainiac<MarineBrain>
 {
@@ -118,7 +117,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
         if (!this.world.isRemote)
         {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
             this.getDataManager().set(AIMING, this.getAttackTarget() != null || this.getBrain().hasMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET));
         }
     }

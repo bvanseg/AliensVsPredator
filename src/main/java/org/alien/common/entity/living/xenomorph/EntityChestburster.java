@@ -7,7 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -19,6 +18,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
+import org.alien.common.api.maturity.MaturityEntries;
+import org.alien.common.api.maturity.MaturityEntry;
 import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.ai.brain.xenomorph.ChestbursterBrain;
@@ -29,7 +30,6 @@ import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPDamageSources;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic, HiveMember, Brainiac<ChestbursterBrain>
 {
@@ -40,7 +40,8 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
     public EntityChestburster(World world)
     {
         super(world);
-        this.matureState = EntityDrone.class;
+        MaturityEntry maturityEntry = MaturityEntries.getEntryFor(this.getClass()).orElse(null);
+        this.matureState = maturityEntry != null ? maturityEntry.getEntityClass() : EntityDrone.class;
         this.setSize(1.0F, 0.4F);
         this.experienceValue = 16;
     }
@@ -80,7 +81,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
         
         if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.test(this.getAttackTarget()))
@@ -90,18 +91,20 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
     @Override
     public boolean isReadyToMature(RoyalOrganism jellyProducer)
     {
-        return this.ticksExisted >= this.getMaturityTime() || this.getJellyLevel() >= this.getMaturityLevel();
+        MaturityEntry maturityEntry = MaturityEntries.getEntryFor(this.getClass()).orElse(MaturityEntries.DEFAULT);
+        return this.ticksExisted >= maturityEntry.getMaturityTime() || this.getJellyLevel() >= maturityEntry.getRequiredJellyLevel();
     }
 
     @Override
     public void mature()
     {
-        if (this.getJellyLevel() >= this.getMaturityLevel() && this.ticksExisted < this.getMaturityTime())
+        MaturityEntry maturityEntry = MaturityEntries.getEntryFor(this.getClass()).orElse(MaturityEntries.DEFAULT);
+        if (this.getJellyLevel() >= maturityEntry.getRequiredJellyLevel() && this.ticksExisted < maturityEntry.getMaturityTime())
         {
-            this.setJellyLevel(this.getJellyLevel() - this.getMaturityLevel());
+            this.setJellyLevel(this.getJellyLevel() - maturityEntry.getRequiredJellyLevel());
         }
 
-        SpeciesAlien matureState = (SpeciesAlien) Entities.constructEntity(this.world, this.getMatureState());
+        SpeciesAlien matureState = (SpeciesAlien) Entities.constructEntity(this.world, this.matureState);
 
         if (matureState != null)
         {
@@ -119,20 +122,6 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
             // TODO:
         }
         this.setDead();
-    }
-
-    protected Entity findPlayerToAttack(EntityPlayer entityplayer)
-    {
-        float brightness = this.getBrightness();
-
-        if (brightness < 0.5F)
-        {
-            return this.world.getClosestPlayerToEntity(this, 32D);
-        }
-        else
-        {
-            return null;
-        }
     }
 
     @Override
@@ -158,12 +147,6 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
     {
         return this.collidedHorizontally;
     }
-
-    public boolean isClimbing()
-    {
-        return this.isOnLadder() && this.motionY > 1.0099999997764826D;
-    }
-
 
     @Override
     public boolean isPotionApplicable(PotionEffect potionEffect)
@@ -220,24 +203,6 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
         host.attackEntityFrom(AVPDamageSources.causeChestbursterDamage(this, host), 100000F);
         if(!host.isDead)
             host.setHealth(0);
-    }
-    
-    @Override
-    public Class<? extends Entity> getMatureState()
-    {
-        return this.matureState;
-    }
-
-    @Override
-    public int getMaturityTime()
-    {
-        return (15 * 60) * 20;
-    }
-
-    @Override
-    public int getMaturityLevel()
-    {
-        return 6400;
     }
     
     @Override

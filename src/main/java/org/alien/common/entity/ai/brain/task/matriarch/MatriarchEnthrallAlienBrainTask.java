@@ -9,7 +9,6 @@ import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.BrainMemoryKeys;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 import java.util.Map;
@@ -31,7 +30,7 @@ public class MatriarchEnthrallAlienBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if(!(entity instanceof EntityMatriarch)) return false;
@@ -45,7 +44,7 @@ public class MatriarchEnthrallAlienBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 
 		Optional<List<EntityLivingBase>> livingEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);

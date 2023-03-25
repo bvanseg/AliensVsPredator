@@ -7,8 +7,8 @@ import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import org.alien.client.AlienResources;
 import org.alien.client.model.entity.ModelSporePod;
-import org.avp.client.Resources;
 
 public class RenderItemSporePod extends ItemRenderer<ModelSporePod>
 {
@@ -21,7 +21,7 @@ public class RenderItemSporePod extends ItemRenderer<ModelSporePod>
     public RenderItemSporePod()
     {
         super(null);
-        this.model = Resources.instance.models().SPORE_POD.clone();
+        this.model = AlienResources.instance.models().SPORE_POD.clone();
     }
 
     public RenderItemSporePod setX(float x)

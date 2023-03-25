@@ -2,7 +2,9 @@ package org.alien.common.entity.ai.brain.xenomorph;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.ai.EntityAIBreakDoor;
 import net.minecraft.init.Blocks;
+import net.minecraft.pathfinding.PathNavigateGround;
 import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Maturable;
@@ -17,6 +19,7 @@ import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;
 import org.lib.brain.impl.task.*;
+import org.lib.brain.task.BrainTaskAdapter;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -63,6 +66,7 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 
 	@Override
 	public void initTasks() {
+
 		SpeciesXenomorph entity = this.getEntity();
 		this.addTask(new SwimBrainTask(this.getEntity()));
 		this.addTask(new LeapAtTargetBrainTask(0.6F));
@@ -82,5 +86,11 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 			}
 			return true;
 		}));
+
+		if (this.getEntity().getNavigator() instanceof PathNavigateGround) {
+			((PathNavigateGround)this.getEntity().getNavigator()).setBreakDoors(true);
+			// TODO: Make this more flexible as a brain task.
+			this.addTask(new BrainTaskAdapter(new EntityAIBreakDoor(this.getEntity())));
+		}
 	}
 }

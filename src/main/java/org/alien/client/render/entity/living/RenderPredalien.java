@@ -3,15 +3,15 @@ package org.alien.client.render.entity.living;
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
+import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelPredalien;
 import org.alien.common.entity.living.xenomorph.EntityPredalien;
-import org.avp.client.Resources;
 
 public class RenderPredalien extends RenderLivingWrapper<EntityPredalien, ModelPredalien>
 {
     public RenderPredalien(RenderManager m)
     {
-        super(m, Resources.instance.models().PREDALIEN);
+        super(m, AlienResources.instance.models().PREDALIEN);
     }
 
     @Override

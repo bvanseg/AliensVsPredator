@@ -13,7 +13,6 @@ import org.alien.common.world.TrilobiteImpregnationHandler;
 import org.alien.common.world.dimension.acheron.SkyProviderAcheron;
 import org.avp.client.input.AVPInputEventHandler;
 import org.avp.client.render.*;
-import org.avp.client.render.item.RenderMotionTrackerScreen;
 import org.avp.client.render.tactical.TacticalHelmetAPCGearRenderEvent;
 import org.avp.client.render.tactical.TacticalHelmetHUDRenderEvent;
 import org.avp.client.render.tactical.TacticalHelmetSettingsRenderEvent;
@@ -53,7 +52,6 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(PressureHUDRenderEvent.instance);
             this.registerEvent(FacehuggerRenderEvent.instance);
             this.registerEvent(VisionModeRenderEvent.instance);
-            this.registerEvent(RenderMotionTrackerScreen.instance);
             this.registerEvent(LightmapUpdateEvent.instance);
             this.registerEvent(RenderPlayerAPCEvent.instance);
             this.registerEvent(BossBarEvent.instance);

@@ -6,8 +6,8 @@ import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import org.alien.client.AlienResources;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
-import org.avp.client.Resources;
 
 public class FacehuggerRenderEvent
 {
@@ -22,7 +22,7 @@ public class FacehuggerRenderEvent
         if (!Entities.isRiding(ClientGame.instance.minecraft().player, EntityFacehugger.class)) return;
 
         OpenGL.pushMatrix();
-        Draw.drawOverlay(Resources.instance.BLUR_FACEHUGGER);
+        Draw.drawOverlay(AlienResources.instance.BLUR_FACEHUGGER);
         OpenGL.popMatrix();
     }
 }

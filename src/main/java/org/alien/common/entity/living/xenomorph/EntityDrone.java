@@ -1,6 +1,5 @@
 package org.alien.common.entity.living.xenomorph;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -9,13 +8,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.Maturable;
+import org.alien.common.api.maturity.MaturityEntries;
 import org.alien.common.entity.ai.brain.xenomorph.DroneBrain;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityDrone extends SpeciesXenomorph implements Maturable, HiveMember
+public class EntityDrone extends SpeciesXenomorph implements HiveMember
 {
     public EntityDrone(World world)
     {
@@ -39,24 +38,6 @@ public class EntityDrone extends SpeciesXenomorph implements Maturable, HiveMemb
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.53D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
-    }
-
-    @Override
-    public Class<? extends Entity> getMatureState()
-    {
-        return EntityWarrior.class;
-    }
-
-    @Override
-    public int getMaturityLevel()
-    {
-        return 1024 * 6;
-    }
-
-    @Override
-    public int getMaturityTime()
-    {
-        return (15 * 60) * 20;
     }
     
     @Override

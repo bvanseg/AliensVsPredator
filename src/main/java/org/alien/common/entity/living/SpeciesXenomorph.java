@@ -12,7 +12,6 @@ import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Brainiac<XenomorphBrain>
 {
@@ -76,7 +75,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            brain.update(new EntityBrainContext(this.getBrain(), this));
+            brain.update();
         }
 
         /** Fall Damage Negation **/
@@ -244,10 +243,5 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     {
         this.bite();
         return super.attackEntityAsMob(entity);
-    }
-
-    public boolean isAbleToClimb()
-    {
-        return this.ableToClimb;
     }
 }

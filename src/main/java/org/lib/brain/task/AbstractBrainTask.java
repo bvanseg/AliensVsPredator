@@ -19,23 +19,25 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 
 	private boolean isDisabled = false;
 	private boolean isExecuting = false;
+
+	public T ctx;
 	
-	public boolean runTask(T ctx) {
+	public boolean runTask() {
 		if (this.isDisabled) return false;
+		if (ctx == null) throw new IllegalStateException("Brain task context is null!");
 
-		if (this.isExecuting) {
-			if (this.shouldContinueExecuting(ctx)) {
-				this.continueExecuting(ctx);
-			} else {
-				this.finish(ctx);
-				this.isExecuting = false;
-			}
-		}
-
-		if (!this.isExecuting && this.shouldExecute(ctx)) {
-			this.startExecuting(ctx);
+		if (!this.isExecuting && this.shouldExecute()) {
+			this.startExecuting();
 			// Update isExecuting state after execute so that isExecuting is false for the first execution.
 			this.isExecuting = true;
+		}
+
+		if (this.isExecuting) {
+			if (this.shouldContinueExecuting()) {
+				this.continueExecuting();
+			} else {
+				this.finish();
+			}
 		}
 
 		return this.isExecuting;
@@ -47,17 +49,16 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 
 	public Map<AbstractBrainFlag, BrainFlagState> getFlagMasks() { return Collections.emptyMap(); }
 
-	protected abstract boolean shouldExecute(T ctx);
-	protected boolean shouldContinueExecuting(T ctx) { return this.shouldExecute(ctx); }
-	protected abstract void startExecuting(T ctx);
-	protected void continueExecuting(T ctx) { this.startExecuting(ctx); }
-	public void finish(T ctx) {}
+	protected abstract boolean shouldExecute();
+	protected boolean shouldContinueExecuting() { return this.shouldExecute(); }
+	protected abstract void startExecuting();
+	protected void continueExecuting() { this.startExecuting(); }
+	public void finish() {
+		this.isExecuting = false;
+		this.ctx.getBrain().clearFlagMasksForTask(this);
+	}
 
 	public boolean isExecuting() { return this.isExecuting; }
-
-	public void setExecuting(boolean executing) {
-		isExecuting = executing;
-	}
 
 	public void setDisabled(boolean disabled) {
 		isDisabled = disabled;

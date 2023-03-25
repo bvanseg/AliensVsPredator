@@ -7,7 +7,6 @@ import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.Map;
 
@@ -30,7 +29,7 @@ public class MoveToHiveCoreBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if (!(entity instanceof HiveMember)) return false;
@@ -44,12 +43,12 @@ public class MoveToHiveCoreBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+	protected boolean shouldContinueExecuting() {
 		return !ctx.getEntity().getNavigator().noPath();
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityLiving entity = ctx.getEntity();
 		HiveMember hiveMember = (HiveMember) entity;
 

@@ -23,7 +23,6 @@ import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.EntityLiquidLatexPool;
 import org.avp.common.entity.ai.brain.CombatSyntheticBrain;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, Host, Brainiac<CombatSyntheticBrain>
 {
@@ -101,7 +100,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
 
         if (!this.world.isRemote)
         {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
             this.getDataManager().set(AIMING, this.getAttackTarget() != null);
         }
     }

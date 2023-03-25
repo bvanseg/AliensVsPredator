@@ -6,12 +6,11 @@ import com.asx.mdx.client.render.gui.GuiCustomButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
+import org.predator.client.PredatorResources;
 import org.predator.client.PredatorSounds;
 import org.predator.common.inventory.ContainerWristbracer;
 import org.predator.common.item.ItemWristbracer;
@@ -69,7 +68,7 @@ public class GuiWristbracer extends GuiContainer
         this.guiLeft = this.width / 2 - xSize / 2;
         this.guiTop = this.height / 2 - ySize / 2;
     	this.drawDefaultBackground();
-        Resources.instance.GUI_WRISTBRACER.bind();
+        PredatorResources.instance.GUI_WRISTBRACER.bind();
         Draw.drawQuad(guiLeft, guiTop, xSize, ySize - 30, 0, 0, 0);
 
         for (byte hotbarSlotIndex = 0; hotbarSlotIndex < 9; hotbarSlotIndex++)
@@ -124,7 +123,7 @@ public class GuiWristbracer extends GuiContainer
         if (number <= 0) return;
 
         OpenGL.enable(GL11.GL_BLEND);
-        Resources.instance.GUI_WRISTBRACER.bind();
+        PredatorResources.instance.GUI_WRISTBRACER.bind();
         Draw.drawQuad(xPos, yPos, 28, 50, 0, (27 * (number - 1)), 126);
     }
 }

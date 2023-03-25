@@ -21,9 +21,14 @@ public abstract class BlockCustomSlab extends BlockSlab {
 
     public static final PropertyEnum<Variant> VARIANT = PropertyEnum.create("variant", Variant.class);
 
+    private BlockRenderLayer renderLayer;
+    private boolean doesSideRendering;
+
     protected BlockCustomSlab(String registryName, BlockProperties properties) {
         super(properties.getMaterial());
         this.setRegistryName(registryName);
+        this.renderLayer = BlockRenderLayer.SOLID;
+        this.doesSideRendering = true;
 
         IBlockState iblockstate = this.blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
 
@@ -33,6 +38,30 @@ public abstract class BlockCustomSlab extends BlockSlab {
 
         this.setDefaultState(iblockstate);
         this.useNeighborBrightness = !this.isDouble();
+    }
+
+    public BlockCustomSlab setRenderLayer(BlockRenderLayer layer) {
+        this.renderLayer = layer;
+        return this;
+    }
+
+    @Override
+    public BlockRenderLayer getRenderLayer() {
+        return this.renderLayer;
+    }
+
+    public BlockCustomSlab setDoesSideRendering(boolean doesSideRendering) {
+        this.doesSideRendering = doesSideRendering;
+        return this;
+    }
+
+    @Override
+    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
+        if (this.doesSideRendering) {
+            return super.doesSideBlockRendering(state, world, pos, face);
+        }
+
+        return false;
     }
 
     @Override
