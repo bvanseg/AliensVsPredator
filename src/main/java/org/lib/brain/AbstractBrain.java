@@ -59,8 +59,14 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 	protected abstract T createContext();
 	
 	public void update() {
-		if (this.isDisabled)
+		if (this.isDisabled) {
+			// Clean up executing tasks when the brain is disabled.
+			executingTasks.removeIf(task -> {
+				task.finish();
+				return true;
+			});
 			return;
+		}
 
 		this.activeProfiles.forEach(profile -> {
 			profileSensorSets.computeIfAbsent(profile, key -> new ArrayList<>()).forEach(sensor -> {
