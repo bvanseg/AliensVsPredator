@@ -11,7 +11,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.DeaconAdultBrain;
 import org.alien.common.entity.living.Species223ODe;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityDeaconAdult extends Species223ODe implements Brainiac<DeaconAdultBrain>
 {

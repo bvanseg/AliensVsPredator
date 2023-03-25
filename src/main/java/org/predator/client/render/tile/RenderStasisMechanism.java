@@ -4,7 +4,7 @@ import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.avp.client.Resources;
-import org.avp.common.tile.TileEntityStasisMechanism;
+import org.predator.common.tile.TileEntityStasisMechanism;
 
 import static org.lwjgl.opengl.GL11.GL_CULL_FACE;
 

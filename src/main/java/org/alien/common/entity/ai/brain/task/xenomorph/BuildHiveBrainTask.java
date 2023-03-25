@@ -12,14 +12,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.alien.common.AlienBlocks;
+import org.alien.common.block.BlockHiveResin;
 import org.alien.common.entity.living.xenomorph.EntityDrone;
-import org.avp.common.block.BlockHiveResin;
-import org.avp.common.tile.TileEntityHiveResin;
+import org.alien.common.tile.TileEntityHiveResin;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.ArrayList;
 import java.util.HashSet;

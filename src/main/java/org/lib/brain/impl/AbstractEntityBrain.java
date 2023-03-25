@@ -1,6 +1,5 @@
 package org.lib.brain.impl;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import org.lib.brain.AbstractBrain;
 

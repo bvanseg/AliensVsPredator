@@ -2,7 +2,7 @@ package org.alien.client.model.tile;
 
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.avp.common.tile.TileEntityHiveResin;
+import org.alien.common.tile.TileEntityHiveResin;
 
 public class ModelHiveResin extends Model<TileEntityHiveResin>
 {

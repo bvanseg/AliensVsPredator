@@ -10,7 +10,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.Host;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 import org.predator.common.PredatorItems;
 import org.predator.common.entity.ai.brain.HoundBrain;
 

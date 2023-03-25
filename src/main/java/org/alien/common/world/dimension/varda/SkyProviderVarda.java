@@ -14,8 +14,8 @@ import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.alien.client.AlienResources;
 import org.alien.common.world.dimension.DimensionUtil;
-import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 import java.util.Random;
@@ -151,7 +151,7 @@ public class SkyProviderVarda extends IRenderHandler
                 OpenGL.color(1.0F, 1.0F, 1.0F, 1.0F);
                 OpenGL.rotate(DimensionUtil.calculateCelestialAngle(world.getWorldTime(), partialTicks) * 360.0F, 10.0F, -6.0F, -20.0F);
                 OpenGL.rotate(135F, 0.0F, 1.0F, 0.0F);
-                Draw.bindTexture(Resources.instance.SKY_CALPAMOS);
+                Draw.bindTexture(AlienResources.instance.SKY_CALPAMOS);
                 Draw.startQuads();
                 Draw.vertex(-scale, 150.0D, -scale, 0.0D, 0.0D).endVertex();
                 Draw.vertex(scale, 150.0D, -scale, 1.0D, 0.0D).endVertex();

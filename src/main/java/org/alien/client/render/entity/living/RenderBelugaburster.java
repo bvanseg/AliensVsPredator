@@ -3,15 +3,15 @@ package org.alien.client.render.entity.living;
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
+import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelBelugaburster;
 import org.alien.common.entity.living.vardic.EntityBelugaburster;
-import org.avp.client.Resources;
 
 public class RenderBelugaburster extends RenderLivingWrapper<EntityBelugaburster, ModelBelugaburster>
 {
     public RenderBelugaburster(RenderManager m)
     {
-        super(m, Resources.instance.models().BELUGABURSTER);
+        super(m, AlienResources.instance.models().BELUGABURSTER);
     }
 
     @Override
