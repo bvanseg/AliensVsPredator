@@ -14,7 +14,6 @@ import org.avp.client.Resources;
 import org.avp.client.render.item.RenderItemSkull;
 import org.avp.client.render.item.RenderItemSummoner;
 import org.avp.common.block.BlockSkull;
-import org.avp.common.tile.TileEntityStasisMechanism;
 import org.lib.common.registry.BlockRegistryUtil;
 import org.predator.client.render.entity.*;
 import org.predator.client.render.entity.living.RenderPredatorHound;
@@ -28,6 +27,7 @@ import org.predator.common.entity.*;
 import org.predator.common.entity.living.EntityPredatorHound;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
+import org.predator.common.tile.TileEntityStasisMechanism;
 
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 

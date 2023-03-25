@@ -3,7 +3,7 @@ package org.alien.client.render.tile.plant;
 import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import org.alien.client.AlienResources;
-import org.avp.common.tile.plant.TileEntityTreeFern;
+import org.alien.common.tile.plant.TileEntityTreeFern;
 import org.lwjgl.opengl.GL12;
 
 public class RenderTreeFern extends TileEntitySpecialRenderer<TileEntityTreeFern>

@@ -2,7 +2,7 @@ package org.alien.common.world.hive;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.avp.common.tile.TileEntityHiveResin;
+import org.alien.common.tile.TileEntityHiveResin;
 
 import java.util.HashMap;
 import java.util.Set;
