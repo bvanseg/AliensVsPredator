@@ -41,4 +41,17 @@ public class ParasitoidBrain extends AbstractEntityBrain<EntityParasitoid> {
 	public void initParasiteTasks() {
 		this.addTask(new LeapAtTargetBrainTask(0.8F));
 	}
+
+	@Override
+	public void update() {
+		super.update();
+
+		EntityParasitoid entity = this.getEntity();
+
+		if (entity.isAttachedToHost()) {
+			this.disableAllProfilesExcept(BrainProfiles.PARASITOID_ATTACHED);
+		} else if (!entity.isFertile()) {
+			this.disableAllProfilesExcept(BrainProfiles.PARASITOID_INFERTILE);
+		}
+	}
 }
