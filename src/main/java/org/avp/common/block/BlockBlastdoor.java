@@ -274,33 +274,9 @@ public class BlockBlastdoor extends Block
         if (tile instanceof TileEntityBlastdoor)
         {
             TileEntityBlastdoor door = (TileEntityBlastdoor) tile;
-
-            if (door.isChild())
-            {
-                BlockPos parentPos = door.getParent().getPos();
-                IBlockState parentState = world.getBlockState(parentPos);
-
-                if (parentState != null)
-                {
-                    Block parentBlock = parentState.getBlock();
-
-                    if (parentBlock != null)
-                    {
-                        Item itemblock = BlockRegistryUtil.getItemFromBlock(parentBlock);
-
-                        if (itemblock != null)
-                        {
-                            return new ItemStack(itemblock);
-                        }
-                    }
-                }
-            }
-            else
-            {
-                BlockPos parentPos = door.getPos();
-                IBlockState parentState = world.getBlockState(parentPos);
-                return new ItemStack(BlockRegistryUtil.getItemFromBlock(parentState.getBlock()));
-            }
+            BlockPos doorPos = door.getPos();
+            IBlockState doorBlockState = world.getBlockState(doorPos);
+            return new ItemStack(BlockRegistryUtil.getItemFromBlock(doorBlockState.getBlock()));
         }
         
         return null; // Null here means something went seriously wrong.
