@@ -10,9 +10,19 @@ package org.lib.brain.flag;
  *
  */
 public enum BrainFlagState {
-	PRESENT,
-	ABSENT,
-	ANY;
+	PRESENT(true),
+	ABSENT(false),
+	ANY(false);
+
+	private final boolean bitMaskValue;
+
+	BrainFlagState(boolean bitMaskValue) {
+		this.bitMaskValue = bitMaskValue;
+	}
+
+	public boolean getBitMaskValue() {
+		return bitMaskValue;
+	}
 
 	public BrainFlagState inverse() {
 		if (this == PRESENT) return ABSENT;

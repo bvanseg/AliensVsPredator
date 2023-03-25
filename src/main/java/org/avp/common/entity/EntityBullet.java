@@ -331,16 +331,6 @@ public class EntityBullet extends Entity
             {
                 if (result.entityHit != null)
                 {
-                    if (this.shootingEntity instanceof EntityTurret)
-                    {
-                        EntityTurret entityTurret = (EntityTurret) this.shootingEntity;
-
-                        if (!entityTurret.getTileEntity().getTargetHelper().canTargetType(result.entityHit.getClass()))
-                        {
-                            entityTurret.getTileEntity().getTargetHelper().setAndUpdateTargetEntity(this.world, result.entityHit);
-                        }
-                    }
-
                     if (this.shootingEntity instanceof EntityMarine && (result.entityHit instanceof EntityMarine))
                     {
                         this.setDead();
