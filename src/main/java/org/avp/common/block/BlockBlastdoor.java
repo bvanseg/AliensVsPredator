@@ -10,7 +10,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
@@ -18,7 +17,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
@@ -28,7 +26,6 @@ import org.avp.client.gui.GuiBlastdoor;
 import org.avp.common.AVPItems;
 import org.avp.common.item.ItemMaintenanceJack;
 import org.avp.common.tile.TileEntityBlastdoor;
-import org.lib.common.registry.BlockRegistryUtil;
 
 public class BlockBlastdoor extends Block
 {
@@ -264,21 +261,5 @@ public class BlockBlastdoor extends Block
     public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
     {
         return true;
-    }
-
-    @Override
-    public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-    {
-        TileEntity tile = world.getTileEntity(target.getBlockPos());
-
-        if (tile instanceof TileEntityBlastdoor)
-        {
-            TileEntityBlastdoor door = (TileEntityBlastdoor) tile;
-            BlockPos doorPos = door.getPos();
-            IBlockState doorBlockState = world.getBlockState(doorPos);
-            return new ItemStack(BlockRegistryUtil.getItemFromBlock(doorBlockState.getBlock()));
-        }
-        
-        return null; // Null here means something went seriously wrong.
     }
 }
