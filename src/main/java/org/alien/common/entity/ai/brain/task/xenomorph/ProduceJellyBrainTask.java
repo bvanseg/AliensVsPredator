@@ -27,7 +27,7 @@ public class ProduceJellyBrainTask<T extends SpeciesAlien> extends AbstractEntit
 	}
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (!(ctx.getEntity() instanceof SpeciesAlien)) {
 			return false;
 		}
@@ -41,7 +41,7 @@ public class ProduceJellyBrainTask<T extends SpeciesAlien> extends AbstractEntit
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		SpeciesAlien alien = (SpeciesAlien) ctx.getEntity();
 		alien.setJellyLevel(alien.getJellyLevel() + this.jellyRate);
 	}

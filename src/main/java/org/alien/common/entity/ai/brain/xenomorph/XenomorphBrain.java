@@ -7,6 +7,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathNavigateGround;
 import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
+import org.alien.common.api.maturity.MaturityEntries;
+import org.alien.common.api.maturity.MaturityEntry;
 import org.alien.common.api.parasitoidic.Maturable;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.alien.common.entity.ai.brain.task.xenomorph.ProduceJellyBrainTask;
@@ -82,7 +84,8 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 		this.addTask(new DestroyBlockBrainTask(1.0D, DESTROY_BLOCKS::contains));
 		this.addTask(new ProduceJellyBrainTask<SpeciesXenomorph>(20, e -> {
 			if (e instanceof Maturable) {
-				return e.getJellyLevel() >= (((Maturable)e).getMaturityLevel() / 2);
+				MaturityEntry entry = MaturityEntries.getEntryFor(e.getClass()).orElse(null);
+				return entry != null && e.getJellyLevel() >= (entry.getRequiredJellyLevel() / 2);
 			}
 			return true;
 		}));
