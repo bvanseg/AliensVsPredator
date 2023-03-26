@@ -6,15 +6,12 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.Path;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.alien.common.AlienBlocks;
-import org.alien.common.block.BlockHiveResin;
 import org.alien.common.entity.living.xenomorph.EntityDrone;
-import org.alien.common.tile.TileEntityHiveResin;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
@@ -109,15 +106,14 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 		if (distance <= 2)
 		{
 			entity.world.setBlockState(this.targetPos, AlienBlocks.NATURAL_RESIN.getDefaultState());
-			((BlockHiveResin) AlienBlocks.NATURAL_RESIN).evaluateNeighbors(entity.world, this.targetPos);
 
-			TileEntity tileEntity = entity.world.getTileEntity(this.targetPos);
+			// TODO:
+//			((BlockHiveResin) AlienBlocks.NATURAL_RESIN).evaluateNeighbors(entity.world, this.targetPos);
+//			TileEntity tileEntity = entity.world.getTileEntity(this.targetPos);
+//			if (tileEntity == null || !(tileEntity instanceof TileEntityHiveResin)) return;
+//			TileEntityHiveResin resin = (TileEntityHiveResin) tileEntity;
+//			resin.setParentBlock(state.getBlock(), 0);
 
-			if (tileEntity == null || !(tileEntity instanceof TileEntityHiveResin)) return;
-
-			TileEntityHiveResin resin = (TileEntityHiveResin) tileEntity;
-
-			resin.setParentBlock(state.getBlock(), 0);
 			entity.world.notifyBlockUpdate(this.targetPos, state, state, 3);
 			entity.getAlienHive().addResin(this.targetPos);
 

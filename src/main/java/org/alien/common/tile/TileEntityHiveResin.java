@@ -166,11 +166,11 @@ public class TileEntityHiveResin extends TileEntity implements ITickable
         }
 
 
-        if (b instanceof BlockHiveResin && !evaluated)
-        {
-            BlockHiveResin resin = (BlockHiveResin) b;
-            resin.evaluateNeighbors(world, pos);
-            evaluated = true;
-        }
+//        if (b instanceof BlockHiveResin && !evaluated)
+//        {
+//            BlockHiveResin resin = (BlockHiveResin) b;
+//            resin.evaluateNeighbors(world, pos);
+//            evaluated = true;
+//        }
     }
 }

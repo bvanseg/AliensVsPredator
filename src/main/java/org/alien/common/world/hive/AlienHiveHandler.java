@@ -1,8 +1,9 @@
 package org.alien.common.world.hive;
 
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.alien.common.tile.TileEntityHiveResin;
+import org.alien.common.AlienBlocks;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -44,10 +45,11 @@ public class AlienHiveHandler {
 		BlockPos resinPos = new BlockPos(targetX, targetY, targetZ).toImmutable();
 		
 		if (resinPositionsToHive.containsKey(resinPos)) {
-			TileEntityHiveResin resin = (TileEntityHiveResin) world.getTileEntity(resinPos);
+			IBlockState resin = world.getBlockState(resinPos);
 			
-			if (resin != null) {
-				world.setBlockState(resinPos, resin.getParentBlock().getDefaultState(), 3);
+			if (resin != null && resin.getBlock() == AlienBlocks.RESIN) {
+				// TODO: Access storage handle and get parent block state.
+//				world.setBlockState(resinPos, resin.getParentBlock().getDefaultState(), 3);
 			}
 		}
 

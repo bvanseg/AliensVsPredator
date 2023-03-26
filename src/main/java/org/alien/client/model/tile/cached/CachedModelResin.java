@@ -2,7 +2,6 @@ package org.alien.client.model.tile.cached;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.model.block.ModelRotationXYZ;
-import com.asx.mdx.common.io.config.GraphicsSetting;
 import com.google.common.collect.Lists;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.BakedQuad;
@@ -23,10 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.TRSRTransformation;
-import net.minecraftforge.common.property.IExtendedBlockState;
-import org.alien.common.block.BlockHiveResin;
 import org.apache.commons.lang3.tuple.Pair;
-import org.avp.common.AVPSettings.ClientSettings;
 
 import javax.vecmath.Matrix4f;
 import java.util.ArrayList;
@@ -152,23 +148,24 @@ public class CachedModelResin implements IBakedModel
             TextureMap textureMap = ClientGame.instance.minecraft().getTextureMapBlocks();
             this.sprite = textureMap.getAtlasSprite(TEXTURE_LOCATION);
 
-            if (state instanceof IExtendedBlockState)
-            {
-                IExtendedBlockState extendedState = (IExtendedBlockState) state;
-                IBlockState parentState = extendedState.getValue(BlockHiveResin.PARENT_BLOCK);
-
-                if (parentState != null)
-                {
-                    this.sprite = ClientGame.instance.minecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(parentState);
-
-                    GraphicsSetting hiveTessellation = ClientSettings.instance.hiveTessellation().value();
-
-                    if (this.sprite == textureMap.getMissingSprite() || sprite == null || hiveTessellation == GraphicsSetting.LOW)
-                    {
-                        this.sprite = textureMap.getAtlasSprite(TEXTURE_LOCATION);
-                    }
-                }
-            }
+            // TODO:
+//            if (state instanceof IExtendedBlockState)
+//            {
+//                IExtendedBlockState extendedState = (IExtendedBlockState) state;
+//                IBlockState parentState = extendedState.getValue(BlockHiveResin.PARENT_BLOCK);
+//
+//                if (parentState != null)
+//                {
+//                    this.sprite = ClientGame.instance.minecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(parentState);
+//
+//                    GraphicsSetting hiveTessellation = ClientSettings.instance.hiveTessellation().value();
+//
+//                    if (this.sprite == textureMap.getMissingSprite() || sprite == null || hiveTessellation == GraphicsSetting.LOW)
+//                    {
+//                        this.sprite = textureMap.getAtlasSprite(TEXTURE_LOCATION);
+//                    }
+//                }
+//            }
 
             List<BakedQuad> quads = new ArrayList<>();
 

@@ -2,9 +2,8 @@ package org.alien.client.model.tile;
 
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.alien.common.tile.TileEntityHiveResin;
 
-public class ModelHiveResin extends Model<TileEntityHiveResin>
+public class ModelHiveResin extends Model
 {
     public final ModelRenderer nResinRipCenter;
     public final ModelRenderer sResinRipCenter;
@@ -388,7 +387,7 @@ public class ModelHiveResin extends Model<TileEntityHiveResin>
     }
     
     @Override
-    public void render(TileEntityHiveResin obj)
+    public void render(Object obj)
     {
         //BOTTOM
         draw(bResinRibCenter);
