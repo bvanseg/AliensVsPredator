@@ -50,7 +50,7 @@ public class OvipositorHelper {
 
     public static boolean canSeeEggLayingPosition(Entity entity, BlockPos eggPos) {
         // The queen needs to have line-of-sight to her egglaying position.
-        Vec3d bot = new Vec3d(entity.posX, (entity.posY + entity.height / 2), entity.posZ);
+        Vec3d bot = new Vec3d(entity.posX, entity.posY + (entity.height / 2), entity.posZ);
         Vec3d offset = new Vec3d(eggPos.getX(), eggPos.getY(), eggPos.getZ());
         RayTraceResult result = entity.world.rayTraceBlocks(bot, offset, false, true, false);
         return result == null;
