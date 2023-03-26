@@ -26,18 +26,18 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 		if (this.isDisabled) return false;
 		if (ctx == null) throw new IllegalStateException("Brain task context is null!");
 
-		if (!this.isExecuting && this.shouldExecute()) {
-			this.startExecuting();
-			// Update isExecuting state after execute so that isExecuting is false for the first execution.
-			this.isExecuting = true;
-		}
-
 		if (this.isExecuting) {
 			if (this.shouldContinueExecuting()) {
 				this.continueExecuting();
 			} else {
 				this.finish();
 			}
+		}
+
+		if (!this.isExecuting && this.shouldExecute()) {
+			this.startExecuting();
+			// Update isExecuting state after execute so that isExecuting is false for the first execution.
+			this.isExecuting = true;
 		}
 
 		return this.isExecuting;
