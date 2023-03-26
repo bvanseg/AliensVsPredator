@@ -6,7 +6,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
-import org.lib.brain.impl.EntityBrainContext;
 
 /**
  * @author Boston Vanseghi
@@ -15,14 +14,22 @@ public class OvipositorHelper {
 
     private OvipositorHelper() {}
 
+    public static Vec3d getPositionAround(Entity entity, int distance, float yaw) {
+        double rotationYawRadians = Math.toRadians(yaw);
+        double x = (entity.posX + (distance * (Math.cos(rotationYawRadians))));
+        double z = (entity.posZ + (distance * (Math.sin(rotationYawRadians))));
+
+        return new Vec3d(x, entity.posY, z);
+    }
+
     public static Vec3d getEggLayingPosition(Entity entity) {
         // TODO: Scale this distance with the queen's jelly level.
-        int ovipositorDist = 10;
-        double rotationYawRadians = Math.toRadians(entity.rotationYaw - 90);
-        double ovamorphX = (entity.posX + (ovipositorDist * (Math.cos(rotationYawRadians))));
-        double ovamorphZ = (entity.posZ + (ovipositorDist * (Math.sin(rotationYawRadians))));
+        return getPositionAround(entity, 10, entity.rotationYaw - 180);
+    }
 
-        return new Vec3d(ovamorphX, entity.posY, ovamorphZ);
+    public static Vec3d getOppositeOfEggLayingPosition(Entity entity) {
+        // TODO: Scale this distance with the queen's jelly level.
+        return getPositionAround(entity, 10, entity.rotationYaw);
     }
 
     public static boolean isEggLayingPositionSafe(Entity entity, BlockPos eggPos) {
@@ -30,9 +37,16 @@ public class OvipositorHelper {
         if (entity.world.getBlockState(eggPos) != Blocks.AIR.getDefaultState()) return false;
 
         // The ground below the egg-laying position must also be a full block.
-        if (!entity.world.getBlockState(eggPos.down()).isFullBlock()) return false;
 
-        return true;
+        boolean isSafeBlockBelow = false;
+
+        for (int i = 0; i < 4; i++) {
+            if (entity.world.getBlockState(eggPos.down(i + 1)).isFullBlock()) {
+                isSafeBlockBelow = true;
+            }
+        }
+
+        return isSafeBlockBelow;
     }
 
     public static boolean canSeeEggLayingPosition(Entity entity, BlockPos eggPos) {
