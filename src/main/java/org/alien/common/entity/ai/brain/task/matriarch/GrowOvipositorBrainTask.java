@@ -1,6 +1,7 @@
 package org.alien.common.entity.ai.brain.task.matriarch;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
 import org.alien.common.entity.ai.brain.task.util.OvipositorHelper;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
@@ -60,6 +61,16 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 			matriarchEntity.setOvipositorSize(matriarchEntity.getOvipositorSize() + EntityMatriarch.OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE);
 			matriarchEntity.setJellyLevel(matriarchEntity.getJellyLevel() - EntityMatriarch.OVIPOSITOR_JELLYLEVEL_GROWTH_USE);
 		}
+
+		// While the queen is growing her ovipositor, we need her to look away from her egglaying position.
+
+		Vec3d oppositeOfEggLayingPosition = OvipositorHelper.getOppositeOfEggLayingPosition(matriarchEntity);
+
+		matriarchEntity.getLookHelper().setLookPosition(
+				oppositeOfEggLayingPosition.x, oppositeOfEggLayingPosition.y, oppositeOfEggLayingPosition.z,
+				matriarchEntity.getHorizontalFaceSpeed(),
+				matriarchEntity.getVerticalFaceSpeed()
+		);
 	}
 
 	@Override
