@@ -5,12 +5,7 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.avp.common.AVPMaterials;
-import org.lib.brain.flag.AbstractBrainFlag;
-import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
-import org.lib.brain.impl.BrainFlags;
-
-import java.util.Map;
 
 /**
  * 
@@ -18,11 +13,6 @@ import java.util.Map;
  *
  */
 public class UpdateOpenProgressBrainTask extends AbstractEntityBrainTask {
-
-	@Override
-	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
-		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
-	}
 	
 	@Override
 	protected boolean shouldExecute() {
