@@ -2,16 +2,16 @@ package org.alien.client.render.entity.living;
 
 import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.client.renderer.entity.RenderManager;
+import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelRoyalFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
-import org.avp.client.Resources;
 
 public class RenderRoyalFacehugger extends RenderFacehuggers<EntityRoyalFacehugger, ModelRoyalFacehugger>
 {
     public RenderRoyalFacehugger(RenderManager m)
     {
-        super(m, Resources.instance.models().ROYALFACEHUGGER);
+        super(m, AlienResources.instance.models().ROYALFACEHUGGER);
     }
 
     @Override

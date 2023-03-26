@@ -1,8 +1,11 @@
 package org.alien.common.entity.living.xenomorph;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -10,6 +13,8 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
@@ -103,6 +108,17 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         }
     }
 
+    @Override
+    public boolean attackEntityAsMob(Entity entity) {
+        boolean result = super.attackEntityAsMob(entity);
+
+        if (result && entity instanceof EntityLivingBase) {
+            ((EntityLivingBase)entity).knockBack(this, 2F, MathHelper.sin(this.rotationYaw * 0.017453292F), -MathHelper.cos(this.rotationYaw * 0.017453292F));
+        }
+
+        return result;
+    }
+
     public boolean isReproducing() {
     	return this.getOvipositorSize() >= 1.3F;
     }
@@ -126,14 +142,15 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     }
 
     private static final String ALIEN_HIVE_NBT_KEY = "AlienHive";
+    private static final String OVIPOSITOR_SIZE_NBT_KEY = "ovipositorSize";
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
-        this.setOvipositorSize(nbt.getFloat("ovipositorSize"));
+        this.setOvipositorSize(nbt.getFloat(OVIPOSITOR_SIZE_NBT_KEY));
 
-        if (nbt.hasKey(ALIEN_HIVE_NBT_KEY, NBT.TAG_COMPOUND)) {
+        if (!this.world.isRemote && nbt.hasKey(ALIEN_HIVE_NBT_KEY, NBT.TAG_COMPOUND)) {
         	this.alienHive = this.createNewAlienHive();
         	NBTTagCompound hiveData = nbt.getCompoundTag(ALIEN_HIVE_NBT_KEY);
         	this.alienHive.readFromNBT(hiveData);
@@ -144,15 +161,16 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
-        nbt.setFloat("ovipositorSize", this.getOvipositorSize());
+        nbt.setFloat(OVIPOSITOR_SIZE_NBT_KEY, this.getOvipositorSize());
 
-        if (this.alienHive != null) {
+        if (!this.world.isRemote && this.alienHive != null) {
         	NBTTagCompound hiveData = new NBTTagCompound();
         	this.alienHive.writeToNBT(hiveData);
         	nbt.setTag(ALIEN_HIVE_NBT_KEY, hiveData);
         }
     }
-    
+
+    @Override
     public boolean canBeCollidedWith()
     {
         return true;
@@ -165,10 +183,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     }
     
     @Override
-    protected void collideWithEntity(Entity entityIn)
-    {
-        ;
-    }
+    protected void collideWithEntity(Entity entityIn) { /* Do Nothing */ }
 
     public float getOvipositorSize()
     {
@@ -194,6 +209,9 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 
 	@Override
 	public AlienHive createNewAlienHive() {
+        if (this.world.isRemote) {
+            throw new IllegalStateException("Can not instantiate hives client-side!");
+        }
 		return new AlienHive(this);
 	}
 
@@ -201,4 +219,26 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 	public UUID getHiveMemberID() {
 		return this.entityUniqueID;
 	}
+
+    @Override
+    public void onAddedToWorld() {
+        super.onAddedToWorld();
+        if (!this.world.isRemote && this.getAlienHive() != null) {
+            this.getAlienHive().load();
+        }
+    }
+
+    @Override
+    public void onRemovedFromWorld() {
+        super.onRemovedFromWorld();
+        if (!this.world.isRemote && this.getAlienHive() != null) {
+            this.getAlienHive().unload();
+        }
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, Block blockIn) {
+        this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 2F, 0.1F);
+    }
+
 }

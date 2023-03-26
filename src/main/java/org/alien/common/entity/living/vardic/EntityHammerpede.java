@@ -17,7 +17,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.HammerpedeBrain;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 
@@ -71,7 +70,7 @@ public class EntityHammerpede extends SpeciesAlien implements IMob, Brainiac<Ham
         this.lurkInBlackGoo();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

@@ -3,12 +3,12 @@ package org.alien.common.world.dimension;
 import com.google.common.base.Predicate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import org.avp.common.AVPBlocks;
+import org.alien.common.AlienBlocks;
 
 public class GenerationFilters
 {
     public static final Predicate<IBlockState> STONE = state -> {
-        if (state.getBlock() == AVPBlocks.UNISTONE)
+        if (state.getBlock() == AlienBlocks.UNISTONE)
         {
             return true;
         }
@@ -22,7 +22,7 @@ public class GenerationFilters
     };
     
     public static final Predicate<IBlockState> DIRT = state -> {
-        if (state.getBlock() == AVPBlocks.UNIDIRT)
+        if (state.getBlock() == AlienBlocks.UNIDIRT)
         {
             return true;
         }
@@ -36,7 +36,7 @@ public class GenerationFilters
     };
     
     public static final Predicate<IBlockState> SAND = state -> {
-        if (state.getBlock() == AVPBlocks.UNISAND)
+        if (state.getBlock() == AlienBlocks.UNISAND)
         {
             return true;
         }

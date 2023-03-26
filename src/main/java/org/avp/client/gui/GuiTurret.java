@@ -50,8 +50,8 @@ public class GuiTurret extends GuiContainer
     private static int                         scroll        = 0;
     private static boolean                     searchRequiresUpdate = false;
     
-    private static final IAction scrollDownAction = (IGuiElement element) -> { scrollDown(); };
-    private static final IAction scrollUpAction = (IGuiElement element) -> { scrollUp(); };
+    private static final IAction scrollDownAction = (IGuiElement element) -> scrollDown();
+    private static final IAction scrollUpAction = (IGuiElement element) -> scrollUp();
     
     private final IAction saveAction = new IAction() {
         @Override
@@ -346,6 +346,7 @@ public class GuiTurret extends GuiContainer
             }
 
             playerNameInput.textboxKeyTyped(typedChar, keyCode);
+            scroll = 0;
             searchRequiresUpdate = true;
             return;
         }

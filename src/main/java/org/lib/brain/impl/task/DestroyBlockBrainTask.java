@@ -1,6 +1,5 @@
 package org.lib.brain.impl.task;
 
-import java.util.function.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLiving;
@@ -10,11 +9,11 @@ import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.BrainMemoryKeys;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 /**
  * 
@@ -27,6 +26,8 @@ public class DestroyBlockBrainTask extends AbstractEntityBrainTask {
 	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
 		map.put(BrainFlags.MOVE, BrainFlagState.ABSENT);
 		map.put(BrainFlags.BLOCK_POSITIONS_OF_INTEREST, BrainFlagState.PRESENT);
+		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.ABSENT);
+		map.put(BrainFlags.NEAREST_AVOID_TARGET, BrainFlagState.ABSENT);
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class DestroyBlockBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		Optional<List<BlockPos>> blockPositionsOptional = ctx.getBrain().getMemory(BrainMemoryKeys.BLOCK_POSITIONS_OF_INTEREST);
@@ -68,12 +69,12 @@ public class DestroyBlockBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
+	protected boolean shouldContinueExecuting() {
 		return !ctx.getEntity().getNavigator().noPath() && this.attemptTime < 20 * 5;
 	}
 
 	@Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityCreature entity = (EntityCreature) ctx.getEntity();
 		Optional<List<BlockPos>> blockPositionsOptional = ctx.getBrain().getMemory(BrainMemoryKeys.BLOCK_POSITIONS_OF_INTEREST);
 		List<BlockPos> blockPositions = blockPositionsOptional.get();

@@ -8,7 +8,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.avp.common.AVPBlocks;
+import org.alien.common.AlienBlocks;
 
 import java.util.Random;
 
@@ -28,7 +28,7 @@ public class BlockStalagmite extends Block
 
     protected boolean canThisPlantGrowOn(IBlockState state)
     {
-        return state.getBlock() == AVPBlocks.UNIDIRT || state.getBlock() == AVPBlocks.UNISTONE || state.getMaterial() == Material.GROUND || state.getMaterial() == Material.ROCK;
+        return state.getBlock() == AlienBlocks.UNIDIRT || state.getBlock() == AlienBlocks.UNISTONE || state.getMaterial() == Material.GROUND || state.getMaterial() == Material.ROCK;
     }
 
     @Override

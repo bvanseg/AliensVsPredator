@@ -2,7 +2,7 @@ package org.alien.common.world.hive;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.avp.common.tile.TileEntityHiveResin;
+import org.alien.common.tile.TileEntityHiveResin;
 
 import java.util.HashMap;
 import java.util.Set;
@@ -50,9 +50,15 @@ public class AlienHiveHandler {
 				world.setBlockState(resinPos, resin.getParentBlock().getDefaultState(), 3);
 			}
 		}
+
+		resinPositionsToHive.remove(resinPos);
 	}
 
 	public void removeResinPositions(Set<BlockPos> resinPositions) {
 		this.resinPositionsToHive.keySet().removeAll(resinPositions);
+	}
+
+	public void addResinToHive(BlockPos resinPos, AlienHive alienHive) {
+		this.resinPositionsToHive.put(resinPos, alienHive);
 	}
 }

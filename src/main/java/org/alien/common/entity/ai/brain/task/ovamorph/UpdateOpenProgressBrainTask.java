@@ -2,15 +2,10 @@ package org.alien.common.entity.ai.brain.task.ovamorph;
 
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.avp.common.AVPMaterials;
-import org.lib.brain.flag.AbstractBrainFlag;
-import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
-import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
-
-import java.util.Map;
 
 /**
  * 
@@ -18,14 +13,9 @@ import java.util.Map;
  *
  */
 public class UpdateOpenProgressBrainTask extends AbstractEntityBrainTask {
-
-	@Override
-	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
-		map.put(BrainFlags.NEAREST_ATTACKABLE_TARGET, BrainFlagState.PRESENT);
-	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (!(ctx.getEntity() instanceof EntityOvamorph))
 			return false;
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
@@ -43,7 +33,12 @@ public class UpdateOpenProgressBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
+		AlienSounds.OVAMORPH_OPEN.playSound(ctx.getEntity());
+	}
+
+	@Override
+	protected void continueExecuting() {
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
 		int newHatchProgress = MathHelper.clamp(ovamorph.getOpenProgress() + 1, -EntityOvamorph.MAX_OPEN_PROGRESS, EntityOvamorph.MAX_OPEN_PROGRESS);
 		ovamorph.setOpenProgress(newHatchProgress);

@@ -13,15 +13,18 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.alien.Aliens;
+import org.alien.client.AlienRenders;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
 import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
 import org.avp.common.*;
+import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
 import org.predator.Predators;
+import org.predator.client.PredatorRenders;
 
 import java.time.LocalDate;
 
@@ -68,6 +71,8 @@ public class AVP implements IMod
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             Renders.instance.pre(event);
+            AlienRenders.instance.pre(event);
+            PredatorRenders.instance.pre(event);
         }
     }
 
@@ -83,7 +88,6 @@ public class AVP implements IMod
         AVPGui.instance.init(event);
         AVPEventHandlers.instance.init(event);
         AVPCommands.instance.init(event);
-        PlayerModeHandler.instance.init(event);
         StructureSchematics.instance.init(event);
         AvpDataSerializers.instance.init(event);
 
@@ -96,6 +100,8 @@ public class AVP implements IMod
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             Renders.instance.init(event);
+            AlienRenders.instance.init(event);
+            PredatorRenders.instance.init(event);
         }
     }
 

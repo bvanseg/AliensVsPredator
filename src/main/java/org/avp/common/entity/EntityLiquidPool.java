@@ -1,6 +1,7 @@
 package org.avp.common.entity;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
@@ -63,7 +64,10 @@ public class EntityLiquidPool extends Entity
         super.onUpdate();
         
         this.motionX = 0;
+        this.motionY -= 0.03999999910593033D;
         this.motionZ = 0;
+        this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+        this.motionY *= 0.9800000190734863D;
 
         if (!this.world.isRemote)
         {
@@ -72,10 +76,5 @@ public class EntityLiquidPool extends Entity
                 this.setDead();
             }
         }
-    }
-
-    public int getLifetime()
-    {
-        return lifetime;
     }
 }

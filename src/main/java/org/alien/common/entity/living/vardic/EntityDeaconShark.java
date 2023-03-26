@@ -1,7 +1,6 @@
 package org.alien.common.entity.living.vardic;
 
 import com.asx.mdx.common.minecraft.entity.Entities;
-import java.util.function.Predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
@@ -19,9 +18,9 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.entity.ai.helpers.EntityExtendedLookHelper;
 import org.avp.common.entity.ai.pathfinding.PathNavigateSwimmer;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 public class EntityDeaconShark extends SpeciesAlien implements Brainiac<DeaconSharkBrain>
 {
@@ -69,7 +68,7 @@ public class EntityDeaconShark extends SpeciesAlien implements Brainiac<DeaconSh
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
     }
 

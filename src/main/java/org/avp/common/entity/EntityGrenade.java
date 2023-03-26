@@ -106,13 +106,16 @@ public class EntityGrenade extends EntityThrowable
         	}
         }
 
+        if (this.fuse == 0) {
+            this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
+        }
+
         if (this.fuse++ >= 50)
         {
             this.explode();
         }
         else
         {
-            this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_TNT_PRIMED, SoundCategory.BLOCKS, 1.0F, 1.0F);
             this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + 0.5D, this.posZ, 0.0D, 0.0D, 0.0D);
         }
     }
@@ -140,18 +143,20 @@ public class EntityGrenade extends EntityThrowable
         this.setDead();
     }
 
+    private static final String FUSE_NBT_KEY = "Fuse";
+
     @Override
     public void writeEntityToNBT(NBTTagCompound tag)
     {
         super.writeEntityToNBT(tag);
-        tag.setByte("Fuse", (byte) this.fuse);
+        tag.setByte(FUSE_NBT_KEY, (byte) this.fuse);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound tag)
     {
         super.readEntityFromNBT(tag);
-        this.fuse = tag.getByte("Fuse");
+        this.fuse = tag.getByte(FUSE_NBT_KEY);
     }
 
     @Override

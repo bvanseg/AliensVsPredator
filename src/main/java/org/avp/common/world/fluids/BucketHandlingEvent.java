@@ -15,7 +15,7 @@ import java.util.Map;
 public class BucketHandlingEvent
 {
     public static BucketHandlingEvent instance = new BucketHandlingEvent();
-    public Map<Block, Item>           buckets  = new HashMap<Block, Item>();
+    public Map<Block, Item>           buckets  = new HashMap<>();
 
     private BucketHandlingEvent()
     {

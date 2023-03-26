@@ -1,6 +1,7 @@
 package org.alien.common.entity.ai.brain.xenomorph;
 
 import org.alien.common.entity.ai.brain.task.ovamorph.HatchBrainTask;
+import org.alien.common.entity.ai.brain.task.ovamorph.RequestMoveBrainTask;
 import org.alien.common.entity.ai.brain.task.ovamorph.UpdateOpenProgressBrainTask;
 import org.alien.common.entity.ai.brain.task.ovamorph.UpdateTimeUntilOpenBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
@@ -34,5 +35,8 @@ public class OvamorphBrain extends AbstractEntityBrain<EntityOvamorph> {
 		this.addTask(new UpdateTimeUntilOpenBrainTask());
 		this.addTask(new UpdateOpenProgressBrainTask());
 		this.addTask(new HatchBrainTask());
+
+		// Additional behaviors.
+		this.addTask(new RequestMoveBrainTask());
 	}
 }

@@ -32,7 +32,7 @@ public class ItemWristbracer extends HookedItem
     public static final String TAG_WRISTBRACER_ITEMS = "WristbracerItems";
     public static final String TAG_WRISTBRACER_ITEMS_SLOT = "Slot";
 
-    private static final HashMap<String, ActionCode> codes = new HashMap<String, ActionCode>();
+    private static final HashMap<String, ActionCode> codes = new HashMap<>();
 
     public interface ActionCode
     {
@@ -64,14 +64,9 @@ public class ItemWristbracer extends HookedItem
     
     static
     {
-        addCode("009001", new ActionCode()
-        {
-            @Override
-            public void onAction(String combonation, Object... args)
-            {
-                AVPNetworking.instance.sendToServer(new PacketSpawnNuke());
-                ClientGame.instance.minecraft().currentScreen = null;
-            }
+        addCode("009001", (combonation, args) -> {
+            AVPNetworking.instance.sendToServer(new PacketSpawnNuke());
+            ClientGame.instance.minecraft().currentScreen = null;
         });
     }
     
@@ -202,7 +197,7 @@ public class ItemWristbracer extends HookedItem
     
     public static ArrayList<ItemStack> wristbracers(EntityPlayer player)
     {
-        ArrayList<ItemStack> wristbracers = new ArrayList<ItemStack>();
+        ArrayList<ItemStack> wristbracers = new ArrayList<>();
         
         for (ItemStack stack : player.inventory.mainInventory)
         {

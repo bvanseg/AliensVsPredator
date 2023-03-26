@@ -6,7 +6,7 @@ import com.asx.mdx.client.render.OpenGL;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.Vec3d;
-import org.avp.client.Resources;
+import org.alien.client.AlienResources;
 import org.avp.common.api.blocks.material.MaterialRenderer;
 import org.lwjgl.opengl.GL11;
 
@@ -23,7 +23,7 @@ public class RenderMaterialBlackGoo implements MaterialRenderer
         OpenGL.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         OpenGL.color(1F, 1F, 1F, 0.1F);
         OpenGL.disableAlphaTest();
-        Draw.bindTexture(Resources.instance.BLACKGOO);
+        Draw.bindTexture(AlienResources.instance.BLACKGOO);
         Draw.drawQuad(0, 0, Screen.scaledDisplayResolution().getScaledWidth(), Screen.scaledDisplayResolution().getScaledHeight());
         OpenGL.depthMask(true);
         OpenGL.enableDepthTest();

@@ -4,7 +4,7 @@ import org.alien.common.entity.ai.brain.task.matriarch.GrowOvipositorBrainTask;
 import org.alien.common.entity.ai.brain.task.matriarch.MatriarchEnthrallAlienBrainTask;
 import org.alien.common.entity.ai.brain.task.matriarch.MatriarchMoveToHiveCoreBrainTask;
 import org.alien.common.entity.ai.brain.task.matriarch.MatriarchReproduceBrainTask;
-import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
+import org.alien.common.entity.ai.selector.EntitySelectorMatriarch;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.lib.brain.impl.profile.BrainProfiles;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
@@ -23,7 +23,7 @@ public class MatriarchBrain extends XenomorphBrain {
 	@Override
 	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1), BrainProfiles.STANDARD, BrainProfiles.MATRIARCH_REPRODUCING);
-		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorXenomorph.instance));
+		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorMatriarch.instance));
 	}
 
 	@Override

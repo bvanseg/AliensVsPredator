@@ -12,14 +12,13 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.alien.common.AlienBlocks;
+import org.alien.common.block.BlockHiveResin;
 import org.alien.common.entity.living.xenomorph.EntityDrone;
-import org.avp.common.block.BlockHiveResin;
-import org.avp.common.tile.TileEntityHiveResin;
+import org.alien.common.tile.TileEntityHiveResin;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,7 +56,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if(!(entity instanceof EntityDrone)) return false;
@@ -73,7 +72,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityDrone entity = (EntityDrone) ctx.getEntity();
 		this.targetPos = findNextSuitableResinLocation(entity, 3);
 
@@ -87,16 +86,25 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 	}
 
 	@Override
-	protected boolean shouldContinueExecuting(EntityBrainContext ctx) {
-		return this.targetPos != null && !ctx.getEntity().getNavigator().noPath();
+	protected boolean shouldContinueExecuting() {
+		if (this.targetPos == null) return false;
+		if (ctx.getEntity().getNavigator().noPath()) return false;
+		if (((EntityDrone)ctx.getEntity()).getAlienHive() == null) return false;
+
+		return true;
 	}
 
 	@Override
-	protected void continueExecuting(EntityBrainContext ctx) {
+	protected void continueExecuting() {
 		EntityDrone entity = (EntityDrone) ctx.getEntity();
 		IBlockState state = entity.world.getBlockState(this.targetPos);
 
 		double distance = entity.getDistanceSq(this.targetPos);
+
+		if (!this.canReplaceWithResin(state)) {
+			this.targetPos = null;
+			return;
+		}
 
 		if (distance <= 2)
 		{
@@ -105,7 +113,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 
 			TileEntity tileEntity = entity.world.getTileEntity(this.targetPos);
 
-			if (tileEntity == null || !(tileEntity instanceof  TileEntityHiveResin)) return;
+			if (tileEntity == null || !(tileEntity instanceof TileEntityHiveResin)) return;
 
 			TileEntityHiveResin resin = (TileEntityHiveResin) tileEntity;
 
@@ -142,19 +150,8 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 					BlockPos location = new BlockPos(x, y, z);
 					IBlockState blockState = world.getBlockState(location);
 
-					if (this.canReplaceWithResin(blockState))
-					{
-						Vec3d start = new Vec3d(posX, posY + entity.getEyeHeight(), posZ);
-						Vec3d end = new Vec3d(x, y, z);
-						RayTraceResult hit =  entity.world.rayTraceBlocks(start, end, false, true, false);
-
-						if (hit == null || hit.typeOfHit == RayTraceResult.Type.BLOCK)
-						{
-							if (Pos.isAnySurfaceEmpty(location, entity.world))
-							{
-								data.add(location);
-							}
-						}
+					if (this.canPlaceResinAt(entity, location, blockState)) {
+						data.add(location);
 					}
 				}
 			}
@@ -171,6 +168,19 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 
 		// Otherwise just return null, no pos found or cached.
 		return null;
+	}
+
+	private boolean canPlaceResinAt(EntityLiving entity, BlockPos location, IBlockState blockState) {
+		if (!this.canReplaceWithResin(blockState)) return false;
+
+		Vec3d start = new Vec3d(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ);
+		Vec3d end = new Vec3d(location.getX(), location.getY(), location.getZ());
+		RayTraceResult hit =  entity.world.rayTraceBlocks(start, end, false, true, false);
+
+		if (hit != null && hit.typeOfHit != RayTraceResult.Type.BLOCK) return false;
+		if (!Pos.isAnySurfaceEmpty(location, entity.world)) return false;
+
+		return true;
 	}
 
 	private boolean canReplaceWithResin(IBlockState blockState) {

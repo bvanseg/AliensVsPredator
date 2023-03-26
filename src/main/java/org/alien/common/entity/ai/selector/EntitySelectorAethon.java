@@ -2,7 +2,7 @@ package org.alien.common.entity.ai.selector;
 
 import net.minecraft.entity.Entity;
 import org.alien.common.entity.living.EntityAethon;
-import org.lib.predicate.EntitySelectorBase;
+import org.lib.common.predicate.EntitySelectorBase;
 
 public class EntitySelectorAethon extends EntitySelectorBase
 {

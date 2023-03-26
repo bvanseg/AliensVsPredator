@@ -9,32 +9,37 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockCustomStairs extends BlockStairs
 {
+    private BlockRenderLayer renderLayer;
+    private boolean doesSideRendering;
+
     public BlockCustomStairs(IBlockState modelState)
     {
         super(modelState);
+        this.renderLayer = BlockRenderLayer.SOLID;
+        this.doesSideRendering = true;
     }
-    
-    @Override
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.TRANSLUCENT;
+
+    public BlockCustomStairs setRenderLayer(BlockRenderLayer layer) {
+        this.renderLayer = layer;
+        return this;
     }
-    
+
     @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
+    public BlockRenderLayer getRenderLayer() {
+        return this.renderLayer;
     }
-    
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
+
+    public BlockCustomStairs setDoesSideRendering(boolean doesSideRendering) {
+        this.doesSideRendering = doesSideRendering;
+        return this;
     }
-    
+
     @Override
-    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face)
-    {
+    public boolean doesSideBlockRendering(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing face) {
+        if (this.doesSideRendering) {
+            return super.doesSideBlockRendering(state, world, pos, face);
+        }
+
         return false;
     }
 }

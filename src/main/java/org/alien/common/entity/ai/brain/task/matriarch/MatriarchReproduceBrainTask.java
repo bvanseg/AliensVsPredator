@@ -1,13 +1,15 @@
 package org.alien.common.entity.ai.brain.task.matriarch;
 
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
+import org.alien.common.entity.ai.brain.task.util.OvipositorHelper;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.Map;
 
@@ -24,7 +26,7 @@ public class MatriarchReproduceBrainTask extends AbstractEntityBrainTask {
 	}
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
 		if(!(entity instanceof EntityMatriarch)) return false;
@@ -35,20 +37,20 @@ public class MatriarchReproduceBrainTask extends AbstractEntityBrainTask {
 		if (matriarchEntity.world.getTotalWorldTime() % (20 * 120) != 0) return false;
 		if (matriarchEntity.getJellyLevel() < EntityMatriarch.OVIPOSITOR_UNHEALTHY_THRESHOLD) return false;
 
+		// Checks egglaying position and line-of-sight to egglaying position.
+		if (!OvipositorHelper.canGrowOvipositor(matriarchEntity)) return false;
+
 		return true;
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityMatriarch matriarchEntity = (EntityMatriarch) ctx.getEntity();
 
-		int ovipositorDist = 10;
-		double rotationYawRadians = Math.toRadians(matriarchEntity.rotationYaw - 90);
-		double ovamorphX = (matriarchEntity.posX + (ovipositorDist * (Math.cos(rotationYawRadians))));
-		double ovamorphZ = (matriarchEntity.posZ + (ovipositorDist * (Math.sin(rotationYawRadians))));
+		Vec3d ovamorphPosition = OvipositorHelper.getEggLayingPosition(matriarchEntity);
 
 		EntityOvamorph ovamorph = new EntityOvamorph(matriarchEntity.world);
-		ovamorph.setLocationAndAngles(ovamorphX, matriarchEntity.posY, ovamorphZ, 0F, 0F);
+		ovamorph.setLocationAndAngles(ovamorphPosition.x, ovamorphPosition.y, ovamorphPosition.z, 0F, 0F);
 		matriarchEntity.world.spawnEntity(ovamorph);
 		matriarchEntity.setJellyLevel(matriarchEntity.getJellyLevel() - 100);
 	}

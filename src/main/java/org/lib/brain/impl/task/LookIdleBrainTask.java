@@ -5,7 +5,6 @@ import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.Map;
 
@@ -32,7 +31,7 @@ public class LookIdleBrainTask extends AbstractEntityBrainTask {
 	private int idleTime;
 	
 	@Override
-	protected boolean shouldExecute(EntityBrainContext ctx) {
+	protected boolean shouldExecute() {
 		if (this.isExecuting()) {
 			return this.idleTime >= 0;
 		}
@@ -41,7 +40,7 @@ public class LookIdleBrainTask extends AbstractEntityBrainTask {
 	}
 	
     @Override
-	protected void startExecuting(EntityBrainContext ctx) {
+	protected void startExecuting() {
 		EntityLiving entity = ctx.getEntity();
 
 		// First execution pass.

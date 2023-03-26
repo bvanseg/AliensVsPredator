@@ -102,7 +102,7 @@ public class WorldProviderVarda extends WorldProvider implements IClimateProvide
     @Override
     public boolean canRespawnHere()
     {
-        return false;
+        return true;
     }
 
     @Override

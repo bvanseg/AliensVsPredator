@@ -7,7 +7,11 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.predator.client.PredatorSounds;
-import org.predator.common.*;
+import org.predator.common.PredatorEntities;
+import org.predator.common.PredatorEntitySpawns;
+import org.predator.common.PredatorItems;
+import org.predator.common.PredatorTileEntities;
+import org.predator.common.block.init.PredatorBlocks;
 
 /**
  * @author Boston Vanseghi

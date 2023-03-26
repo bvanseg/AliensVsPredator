@@ -15,7 +15,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import org.avp.common.AVPBlocks;
+import org.alien.common.AlienBlocks;
 
 import java.util.List;
 import java.util.Random;
@@ -235,7 +235,7 @@ public class ChunkProviderAcheron implements IChunkGenerator
                             {
                                 if ((lvt_45_1_ += d16) > 0.0D)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, AVPBlocks.UNISTONE.getDefaultState());
+                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, AlienBlocks.UNISTONE.getDefaultState());
                                 }
                                 else if (i2 * 8 + j2 < 60)
                                 {
@@ -296,7 +296,7 @@ public class ChunkProviderAcheron implements IChunkGenerator
                                 if (var12 <= 0)
                                 {
                                     top = Blocks.AIR;
-                                    filler = AVPBlocks.UNISTONE;
+                                    filler = AlienBlocks.UNISTONE;
                                 }
                                 else if ((blockY >= var5 - 4) && (blockY <= var5 + 1))
                                 {

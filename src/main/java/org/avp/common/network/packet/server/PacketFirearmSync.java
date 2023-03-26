@@ -13,9 +13,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import org.alien.common.block.BlockHiveResin;
 import org.alien.common.world.hive.AlienHiveHandler;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.block.BlockHiveResin;
 import org.avp.common.item.firearm.FirearmProfile;
 import org.avp.common.item.firearm.ItemFirearm;
 
@@ -68,86 +68,81 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
     @Override
     public PacketFirearmSync onMessage(PacketFirearmSync packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            if (ctx.getServerHandler().player.getHeldItemMainhand() != null)
             {
-                if (ctx.getServerHandler().player.getHeldItemMainhand() != null)
+                EntityPlayer player = ctx.getServerHandler().player;
+                World world = player.world;
+                RayTraceResult.Type hitType = Entities.getMovingObjectType(packet.hitType);
+
+                ItemFirearm itemFirearm = null;
+                if(ctx.getServerHandler().player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
+                    itemFirearm = (ItemFirearm) ctx.getServerHandler().player.getHeldItemMainhand().getItem();
+                else if(ctx.getServerHandler().player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
+                        itemFirearm = (ItemFirearm) ctx.getServerHandler().player.getHeldItemOffhand().getItem();
+
+                FirearmProfile firearm = FirearmProfile.getFirearmForGlobalId(packet.firearmId);
+
+                if (itemFirearm != null && itemFirearm.canSoundPlay())
                 {
-                    EntityPlayer player = ctx.getServerHandler().player;
-                    World world = player.world;
-                    RayTraceResult.Type hitType = Entities.getMovingObjectType(packet.hitType);
-                    
-                    ItemFirearm itemFirearm = null;
-                    if(ctx.getServerHandler().player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
-                        itemFirearm = (ItemFirearm) ctx.getServerHandler().player.getHeldItemMainhand().getItem();
-                    else if(ctx.getServerHandler().player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
-                            itemFirearm = (ItemFirearm) ctx.getServerHandler().player.getHeldItemOffhand().getItem();
-                    
-                    FirearmProfile firearm = FirearmProfile.getFirearmForGlobalId(packet.firearmId);
+                    world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), firearm.getSound().event(), SoundCategory.PLAYERS, 1F, 1F, true);
+                    itemFirearm.setLastSoundPlayed(System.currentTimeMillis());
+                }
 
-                    if (itemFirearm != null && itemFirearm.canSoundPlay())
+                if (hitType == RayTraceResult.Type.ENTITY)
+                {
+                    if (packet.entityId != -1)
                     {
-                        world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), firearm.getSound().event(), SoundCategory.PLAYERS, 1F, 1F, true);
-                        itemFirearm.setLastSoundPlayed(System.currentTimeMillis());
-                    }
+                        Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
 
-                    if (hitType == RayTraceResult.Type.ENTITY)
-                    {
-                        if (packet.entityId != -1)
+                        if (entity != null)
                         {
-                            Entity entity = ctx.getServerHandler().player.world.getEntityByID(packet.entityId);
-
-                            if (entity != null)
-                            {
-                                entity.hurtResistantTime = 0;
-                                entity.attackEntityFrom(AVPDamageSources.causeBulletDamage(ctx.getServerHandler().player), firearm.getClassification().getBaseDamage());
-                            }
+                            entity.hurtResistantTime = 0;
+                            entity.attackEntityFrom(AVPDamageSources.causeBulletDamage(ctx.getServerHandler().player), firearm.getClassification().getBaseDamage());
                         }
                     }
+                }
 
-                    if (hitType == RayTraceResult.Type.BLOCK)
+                if (hitType == RayTraceResult.Type.BLOCK)
+                {
+                    int targetX = packet.hitX;
+                    int targetY = packet.hitY;
+                    int targetZ = packet.hitZ;
+                    int blockIndex = targetX * targetY * targetZ;
+                    BlockPos pos = new BlockPos(packet.hitX, packet.hitY, packet.hitZ);
+                    IBlockState blockstate = world.getBlockState(pos);
+                    Block target = blockstate.getBlock();
+                    float hardness = 1F / blockstate.getBlockHardness(world, pos) / 100F;
+
+                    itemFirearm.setBreakProgress(itemFirearm.getBreakProgress() + hardness);
+
+                    if (blockIndex != itemFirearm.getBlockBreakingIndex())
                     {
-                        int targetX = packet.hitX;
-                        int targetY = packet.hitY;
-                        int targetZ = packet.hitZ;
-                        int blockIndex = targetX * targetY * targetZ;
-                        BlockPos pos = new BlockPos(packet.hitX, packet.hitY, packet.hitZ);
-                        IBlockState blockstate = world.getBlockState(pos);
-                        Block target = blockstate.getBlock();
-                        float hardness = 1F / blockstate.getBlockHardness(world, pos) / 100F;
+                        itemFirearm.setBreakProgress(0F);
+                    }
 
-                        itemFirearm.setBreakProgress(itemFirearm.getBreakProgress() + hardness);
+                    world.sendBlockBreakProgress(blockIndex, pos, (int) (itemFirearm.getBreakProgress() * 10.0F) - 1);
 
-                        if (blockIndex != itemFirearm.getBlockBreakingIndex())
+                    if (itemFirearm.getBreakProgress() >= 1F)
+                    {
+
+                        if (target != null && blockIndex == itemFirearm.getBlockBreakingIndex())
                         {
+                            if (target instanceof BlockHiveResin)
+                            {
+                                AlienHiveHandler.instance.breakResinAt(world, targetX, targetY, targetZ);
+                            }
+                            else
+                            {
+                                target.breakBlock(world, pos, blockstate);
+                                world.setBlockToAir(pos);
+                            }
+
+                            // world.playAuxSFX(2001, targetX, targetY, targetZ, Block.getIdFromBlock(target));
                             itemFirearm.setBreakProgress(0F);
                         }
-
-                        world.sendBlockBreakProgress(blockIndex, pos, (int) (itemFirearm.getBreakProgress() * 10.0F) - 1);
-
-                        if (itemFirearm.getBreakProgress() >= 1F)
-                        {
-
-                            if (target != null && blockIndex == itemFirearm.getBlockBreakingIndex())
-                            {
-                                if (target instanceof BlockHiveResin)
-                                {
-                                    AlienHiveHandler.instance.breakResinAt(world, targetX, targetY, targetZ);
-                                }
-                                else
-                                {
-                                    target.breakBlock(world, pos, blockstate);
-                                    world.setBlockToAir(pos);
-                                }
-
-                                // world.playAuxSFX(2001, targetX, targetY, targetZ, Block.getIdFromBlock(target));
-                                itemFirearm.setBreakProgress(0F);
-                            }
-                        }
-                        itemFirearm.setBlockBreakingIndex(blockIndex);
                     }
+                    itemFirearm.setBlockBreakingIndex(blockIndex);
                 }
             }
         });

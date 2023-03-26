@@ -19,20 +19,24 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
-import org.lib.brain.impl.EntityBrainContext;
 
 public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Brainiac<OvamorphBrain>
 {
     private static final DataParameter<Integer> TIME_LEFT_UNTIL_OPEN = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.VARINT);
-    private static final DataParameter<Byte>    OPEN_PROGRESS    = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);
+    private static final DataParameter<Byte> OPEN_PROGRESS = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);
 
-    public static final int MAX_OPEN_PROGRESS = 21;
+    public static final int MAX_OPEN_PROGRESS = 42;
 
-    public boolean                           acceleratedHatching;
-    public int                               hatchWaitTimer;
-    private boolean                              containsFacehugger;
-    protected boolean                           sendUpdates;
-    private int                                 timeSinceHatched = 0;
+    public boolean acceleratedHatching;
+    public int hatchWaitTimer;
+    private boolean containsFacehugger;
+    protected boolean sendUpdates;
+    private int timeSinceHatched = 0;
+
+    public boolean wantsToBeMoved;
+    public boolean hasBeenMoved;
+
+    public float renderOpenProgress;
 
     private OvamorphBrain brain;
 
@@ -43,6 +47,9 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
         this.experienceValue = 10;
         this.hatchWaitTimer = 20 * 3 + (20 * rand.nextInt(5));
         this.containsFacehugger = true;
+        this.wantsToBeMoved = false;
+        this.hasBeenMoved = false;
+        this.renderOpenProgress = -1;
     }
 
     @Override
@@ -70,18 +77,24 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataManager().register(OPEN_PROGRESS, (byte) -MAX_OPEN_PROGRESS);
+        this.getDataManager().register(OPEN_PROGRESS, (byte) 0);
         this.getDataManager().register(TIME_LEFT_UNTIL_OPEN, 20 * 30 + (10 * rand.nextInt(24)));
     }
+
+    private static final String CONTAINS_FACEHUGGER_NBT_KEY = "containsFacehugger";
+    private static final String TIME_HATCHED_NBT_KEY = "timeHatched";
+    private static final String OPEN_PROGRESS_NBT_KEY = "openProgress";
+    private static final String HAS_BEEN_MOVED_NBT_KEY = "hasBeenMoved";
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
 
-        this.containsFacehugger = nbt.getBoolean("containsFacehugger");
-        this.timeSinceHatched = nbt.getInteger("timeHatched");
-        this.setOpenProgress(nbt.getInteger("openProgress"));
+        this.containsFacehugger = nbt.getBoolean(CONTAINS_FACEHUGGER_NBT_KEY);
+        this.timeSinceHatched = nbt.getInteger(TIME_HATCHED_NBT_KEY);
+        this.setOpenProgress(nbt.getInteger(OPEN_PROGRESS_NBT_KEY));
+        this.hasBeenMoved = nbt.getBoolean(HAS_BEEN_MOVED_NBT_KEY);
         this.sendUpdates = true;
     }
 
@@ -90,9 +103,10 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     {
         super.writeEntityToNBT(nbt);
 
-        nbt.setBoolean("containsFacehugger", this.containsFacehugger);
-        nbt.setInteger("openProgress", this.getOpenProgress());
-        nbt.setInteger("timeHatched", this.timeSinceHatched);
+        nbt.setBoolean(CONTAINS_FACEHUGGER_NBT_KEY, this.containsFacehugger);
+        nbt.setInteger(OPEN_PROGRESS_NBT_KEY, this.getOpenProgress());
+        nbt.setInteger(TIME_HATCHED_NBT_KEY, this.timeSinceHatched);
+        nbt.setBoolean(HAS_BEEN_MOVED_NBT_KEY, this.hasBeenMoved);
     }
 
     @Override
@@ -115,7 +129,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update(new EntityBrainContext(this.getBrain(), this));
+            this.brain.update();
         }
 
         if (this.getHealth() < this.getMaxHealth())
@@ -133,10 +147,19 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     }
 
     @Override
+    public void notifyDataManagerChange(DataParameter<?> key) {
+        super.notifyDataManagerChange(key);
+
+        if (key == OPEN_PROGRESS && this.renderOpenProgress == -1) {
+            this.renderOpenProgress = this.getOpenProgress();
+        }
+    }
+
+    @Override
     protected void collideWithEntity(Entity entity)
     {
         super.collideWithEntity(entity);
-        if (entity instanceof EntityLivingBase && EntitySelectorParasitoid.instance.test((EntityLivingBase) entity))
+        if (entity instanceof EntityLivingBase && EntitySelectorParasitoid.instance.test(entity))
             this.setTimeLeftUntilOpen(0);
     }
 

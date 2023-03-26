@@ -3,6 +3,7 @@
   "xeno.death": 					{ "sounds": [ "avp:mobs/alien/death0", "avp:mobs/alien/death1" ] },
   "xeno.living": 					{ "sounds": [ "avp:mobs/alien/living0", "avp:mobs/alien/living1", "avp:mobs/alien/living2", "avp:mobs/alien/living3" ] },
   "xeno.hurt": 						{ "sounds": [ "avp:mobs/alien/hurt0", "avp:mobs/alien/hurt1" ] },
+  "xeno.eat": 						{ "sounds": [ "avp:mobs/alien/eat0", "avp:mobs/alien/eat1" ] },
   "prequelmorph.attack": 			{ "sounds": [ "avp:mobs/prequelmorph/attack0", "avp:mobs/prequelmorph/attack1", "avp:mobs/prequelmorph/attack2", "avp:mobs/prequelmorph/attack3" ] },
   "prequelmorph.death": 			{ "sounds": [ "avp:mobs/prequelmorph/death0", "avp:mobs/prequelmorph/death1" ] },
   "prequelmorph.living": 			{ "sounds": [ "avp:mobs/prequelmorph/living0", "avp:mobs/prequelmorph/living1", "avp:mobs/prequelmorph/living2", "avp:mobs/prequelmorph/living3" ] },
@@ -20,7 +21,7 @@
   "marine.death": 					{ "sounds": [ "avp:mobs/marine/death" ] },
   "marine.hurt": 					{ "sounds": [ "avp:mobs/marine/hurt" ] },
   "ovamorph.living": 				{ "sounds": [ "avp:mobs/ovamorph/living0", "avp:mobs/ovamorph/living1" ] },
-  "ovamorph.open": 					{ "sounds": [ "avp:mobs/ovamorph/open" ] },
+  "ovamorph.open": 					{ "sounds": [ "avp:mobs/ovamorph/open0", "avp:mobs/ovamorph/open1" ] },
   "predator.cloaking": 				{ "sounds": [ "avp:mobs/predator/cloaking" ] },
   "predator.death": 				{ "sounds": [ "avp:mobs/predator/death0", "avp:mobs/predator/death1" ] },
   "predator.decloaking": 			{ "sounds": [ "avp:mobs/predator/decloaking" ] },
@@ -71,5 +72,8 @@
   "blocks.newglass.step": 			{ "sounds": [ "avp:blocks/newglass/step0", "avp:blocks/newglass/step1", "avp:blocks/newglass/step2", "avp:blocks/newglass/step3" ] },
   "blocks.alarm.access": 			{ "sounds": [ "avp:blocks/alarm/access" ] },
   "blocks.alarm.buzzer": 			{ "sounds": [ "avp:blocks/alarm/buzzer" ] },
-  "blocks.alarm.emergency":			{ "sounds": [ "avp:blocks/alarm/emergency" ] }
+  "blocks.alarm.emergency":			{ "sounds": [ "avp:blocks/alarm/emergency" ] },
+  "wristbracer.console.open":		{ "sounds": [ "avp:gui/wristbracer/open" ] },
+  "wristbracer.console.close":		{ "sounds": [ "avp:gui/wristbracer/close" ] },
+  "wristbracer.console.interact":	{ "sounds": [ "avp:gui/wristbracer/interact" ] }
 }

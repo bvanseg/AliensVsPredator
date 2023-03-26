@@ -53,14 +53,14 @@ public class BlastDoorPlacementBoxRenderer
                     if (t instanceof TileEntityBlastdoor)
                     {
                         TileEntityBlastdoor bd = (TileEntityBlastdoor) t;
-                        List<BlockPos> blocks = new ArrayList<BlockPos>(Arrays.asList(bd.setFor(Entities.getEntityFacingRotY(p))));
+                        List<BlockPos> blocks = new ArrayList<>(Arrays.asList(bd.setFor(Entities.getEntityFacingRotY(p))));
                         blocks.add(new BlockPos(0, 0, 0));
 
                         Vec3d hitVec = ClientGame.instance.minecraft().objectMouseOver.hitVec;
 
-                        double x = p.lastTickPosX + (p.posX - p.lastTickPosX) * (double) event.getPartialTicks();
-                        double y = p.lastTickPosY + (p.posY - p.lastTickPosY) * (double) event.getPartialTicks();
-                        double z = p.lastTickPosZ + (p.posZ - p.lastTickPosZ) * (double) event.getPartialTicks();
+                        double x = p.lastTickPosX + (p.posX - p.lastTickPosX) * event.getPartialTicks();
+                        double y = p.lastTickPosY + (p.posY - p.lastTickPosY) * event.getPartialTicks();
+                        double z = p.lastTickPosZ + (p.posZ - p.lastTickPosZ) * event.getPartialTicks();
 
                         double locationX = Math.floor(hitVec.x);
                         double locationY = Math.floor(hitVec.y);

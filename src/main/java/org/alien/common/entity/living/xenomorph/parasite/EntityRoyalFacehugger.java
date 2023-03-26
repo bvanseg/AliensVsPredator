@@ -45,6 +45,8 @@ public class EntityRoyalFacehugger extends EntityFacehugger
     {
         OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
         organism.impregnate(Embryo.QUEEN);
+        if(this.getImplantSound() != null)
+            this.playSound(this.getImplantSound(), 0.5F, 1F);
         organism.syncWithClients(living);
         this.setFertility(false);
     }

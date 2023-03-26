@@ -15,9 +15,11 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import org.alien.common.AlienBlocks;
 import org.alien.common.entity.ai.selector.EntitySelectorAcidPool;
-import org.avp.common.AVPBlocks;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.api.blocks.AcidResistant;
+import org.avp.common.block.init.AVPBlocks;
+import org.avp.common.block.init.AVPSlabBlocks;
+import org.avp.common.block.init.AVPStairBlocks;
 import org.avp.common.entity.EntityLiquidPool;
 
 import java.util.ArrayList;
@@ -33,8 +35,9 @@ public class EntityAcidPool extends EntityLiquidPool
         BLOCK_DENYLIST.add(Blocks.BEDROCK);
         BLOCK_DENYLIST.add(Blocks.END_PORTAL_FRAME);
         BLOCK_DENYLIST.add(AVPBlocks.INDUSTRIAL_GLASS);
-        BLOCK_DENYLIST.add(AVPBlocks.INDUSTRIAL_GLASS_SLAB);
-        BLOCK_DENYLIST.add(AVPBlocks.INDUSTRIAL_GLASS_STAIRS);
+        BLOCK_DENYLIST.add(AVPSlabBlocks.INDUSTRIAL_GLASS_SLAB_HALF);
+        BLOCK_DENYLIST.add(AVPSlabBlocks.INDUSTRIAL_GLASS_SLAB_DOUBLE);
+        BLOCK_DENYLIST.add(AVPStairBlocks.INDUSTRIAL_GLASS_STAIRS);
         BLOCK_DENYLIST.add(AVPBlocks.PLASTIC);
         BLOCK_DENYLIST.add(AVPBlocks.PLASTIC_CIRCLE);
         BLOCK_DENYLIST.add(AVPBlocks.PLASTIC_TILE);

@@ -5,8 +5,8 @@ import com.asx.mdx.common.minecraft.entity.ItemDrop.DropType;
 import net.minecraft.item.ItemStack;
 import org.alien.common.AlienBlocks;
 import org.alien.common.AlienItems;
-import org.predator.common.PredatorBlocks;
 import org.predator.common.PredatorItems;
+import org.predator.common.block.init.PredatorBlocks;
 
 public class AVPItemDrops
 {

@@ -331,16 +331,6 @@ public class EntityBullet extends Entity
             {
                 if (result.entityHit != null)
                 {
-                    if (this.shootingEntity instanceof EntityTurret)
-                    {
-                        EntityTurret entityTurret = (EntityTurret) this.shootingEntity;
-
-                        if (!entityTurret.getTileEntity().getTargetHelper().canTargetType(result.entityHit.getClass()))
-                        {
-                            entityTurret.getTileEntity().getTargetHelper().setAndUpdateTargetEntity(this.world, result.entityHit);
-                        }
-                    }
-
                     if (this.shootingEntity instanceof EntityMarine && (result.entityHit instanceof EntityMarine))
                     {
                         this.setDead();
@@ -451,26 +441,33 @@ public class EntityBullet extends Entity
         this.physics = physics;
     }
 
+    private static final String X_TILE_NBT_KEY = "xTile";
+    private static final String Y_TILE_NBT_KEY = "yTile";
+    private static final String Z_TILE_NBT_KEY = "zTile";
+    private static final String SHAKE_NBT_KEY = "shake";
+    private static final String IN_GROUND_NBT_KEY = "inGround";
+    private static final String PLAYER_NBT_KEY = "player";
+
     @Override
     public void writeEntityToNBT(NBTTagCompound var1)
     {
-        var1.setShort("xTile", (short) this.xTile);
-        var1.setShort("yTile", (short) this.yTile);
-        var1.setShort("zTile", (short) this.zTile);
-        var1.setByte("shake", (byte) this.arrowShake);
-        var1.setByte("inGround", (byte) (this.inGround ? 1 : 0));
-        var1.setBoolean("player", this.doesArrowBelongToPlayer);
+        var1.setShort(X_TILE_NBT_KEY, (short) this.xTile);
+        var1.setShort(Y_TILE_NBT_KEY, (short) this.yTile);
+        var1.setShort(Z_TILE_NBT_KEY, (short) this.zTile);
+        var1.setByte(SHAKE_NBT_KEY, (byte) this.arrowShake);
+        var1.setByte(IN_GROUND_NBT_KEY, (byte) (this.inGround ? 1 : 0));
+        var1.setBoolean(PLAYER_NBT_KEY, this.doesArrowBelongToPlayer);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound var1)
     {
-        this.xTile = var1.getShort("xTile");
-        this.yTile = var1.getShort("yTile");
-        this.zTile = var1.getShort("zTile");
-        this.arrowShake = var1.getByte("shake") & 255;
-        this.inGround = var1.getByte("inGround") == 1;
-        this.doesArrowBelongToPlayer = var1.getBoolean("player");
+        this.xTile = var1.getShort(X_TILE_NBT_KEY);
+        this.yTile = var1.getShort(Y_TILE_NBT_KEY);
+        this.zTile = var1.getShort(Z_TILE_NBT_KEY);
+        this.arrowShake = var1.getByte(SHAKE_NBT_KEY) & 255;
+        this.inGround = var1.getByte(IN_GROUND_NBT_KEY) == 1;
+        this.doesArrowBelongToPlayer = var1.getBoolean(PLAYER_NBT_KEY);
     }
 
     @Override

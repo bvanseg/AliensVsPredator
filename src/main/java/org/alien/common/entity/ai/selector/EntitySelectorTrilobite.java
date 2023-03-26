@@ -5,8 +5,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import org.lib.predicate.EntitySelectorBase;
-import org.lib.predicate.Predicates;
+import org.lib.common.predicate.EntitySelectorBase;
+import org.lib.common.predicate.Predicates;
 
 public class EntitySelectorTrilobite extends EntitySelectorBase
 {

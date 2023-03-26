@@ -5,8 +5,8 @@ import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
+import org.alien.client.AlienResources;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
-import org.avp.client.Resources;
 import org.lwjgl.opengl.GL11;
 
 public class ModelMatriarch extends Model<EntityMatriarch>
@@ -518,7 +518,7 @@ public class ModelMatriarch extends Model<EntityMatriarch>
                     OpenGL.blendClear();
                     OpenGL.disableCullFace();
                     OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_COLOR);
-                    Resources.instance.models().MATRIARCH_MASK.getTexture().bind();
+                    AlienResources.instance.models().MATRIARCH_MASK.getTexture().bind();
                     draw(sack0);
                     OpenGL.enableCullFace();
                     OpenGL.blendClear();

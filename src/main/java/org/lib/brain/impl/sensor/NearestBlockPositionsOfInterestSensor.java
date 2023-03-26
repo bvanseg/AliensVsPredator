@@ -1,6 +1,5 @@
 package org.lib.brain.impl.sensor;
 
-import java.util.function.Predicate;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
 import org.lib.brain.impl.BrainMemoryKeys;
@@ -8,6 +7,7 @@ import org.lib.brain.impl.EntityBrainContext;
 import org.lib.brain.sensor.AbstractBrainSensor;
 
 import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  * 
@@ -28,7 +28,7 @@ public class NearestBlockPositionsOfInterestSensor extends AbstractBrainSensor<E
 	
 
 	@Override
-	public void sense(EntityBrainContext ctx) {
+	public void sense() {
 		// Use ticksExisted instead of world time here so that entities don't have synchronized AI execution.
 		if (ctx.getEntity().ticksExisted % cooldownInTicks != 0) {
 			return;

@@ -10,5 +10,8 @@ import org.lib.brain.AbstractBrainContext;
  *
  */
 public abstract class AbstractBrainSensor<T extends AbstractBrainContext> {
-	public abstract void sense(T ctx);
+
+	public T ctx;
+
+	public abstract void sense();
 }

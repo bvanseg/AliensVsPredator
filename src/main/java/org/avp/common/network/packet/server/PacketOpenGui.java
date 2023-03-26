@@ -41,14 +41,9 @@ public class PacketOpenGui implements IMessage, IMessageHandler<PacketOpenGui, P
     @SideOnly(Side.CLIENT)
     public PacketOpenGui onMessage(PacketOpenGui packet, MessageContext ctx)
     {
-        ClientGame.instance.minecraft().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                EntityPlayer player = ClientGame.instance.minecraft().player;
-                FMLNetworkHandler.openGui(player, AVP.instance, packet.guiIdentifier, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
-            }
+        ClientGame.instance.minecraft().addScheduledTask(() -> {
+            EntityPlayer player = ClientGame.instance.minecraft().player;
+            FMLNetworkHandler.openGui(player, AVP.instance, packet.guiIdentifier, player.world, (int) player.posX, (int) player.posY, (int) player.posZ);
         });
         return null;
     }

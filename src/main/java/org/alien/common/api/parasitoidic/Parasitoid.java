@@ -33,21 +33,23 @@ public interface Parasitoid
 
     int getDetachTime();
 
+    String IS_FERTILE_NBT_KEY = "IsFertile";
+
     static void readFromNBT(Parasitoid parasitoid, NBTTagCompound nbt)
     {
-        boolean isFertile = nbt.getInteger("IsFertile") == 0;
+        boolean isFertile = nbt.getInteger(IS_FERTILE_NBT_KEY) == 0;
         parasitoid.setFertility(isFertile);
     }
 
     static NBTTagCompound writeToNBT(Parasitoid parasitoid, NBTTagCompound nbt)
     {
-        nbt.setInteger("IsFertile", parasitoid.isFertile() ? 0 : 1);
+        nbt.setInteger(IS_FERTILE_NBT_KEY, parasitoid.isFertile() ? 0 : 1);
         return nbt;
     }
 
-    static ArrayList<Class<?>> getDefaultEntityBlacklist()
+    static ArrayList<Class<?>> getDefaultEntityDenylist()
     {
-        ArrayList<Class<?>> blacklist = new ArrayList<Class<?>>();
+        ArrayList<Class<?>> blacklist = new ArrayList<>();
 
         blacklist.add(EntityArmorStand.class);
         blacklist.add(SpeciesAlien.class);

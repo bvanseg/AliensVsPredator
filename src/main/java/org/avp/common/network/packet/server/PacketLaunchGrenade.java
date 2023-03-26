@@ -30,24 +30,19 @@ public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaun
     @Override
     public PacketLaunchGrenade onMessage(PacketLaunchGrenade packet, MessageContext ctx)
     {
-        ctx.getServerHandler().player.getServerWorld().addScheduledTask(new Runnable()
-        {
-            @Override
-            public void run()
+        ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
+            if (ctx.getServerHandler().player != null && ctx.getServerHandler().player.world != null)
             {
-                if (ctx.getServerHandler().player != null && ctx.getServerHandler().player.world != null)
-                {
-                    boolean hasNormal = Inventories.playerHas(AVPItems.ITEM_GRENADE, ctx.getServerHandler().player);
-                    boolean hasIncendiary = Inventories.playerHas(AVPItems.ITEM_INCENDIARY_GRENADE, ctx.getServerHandler().player);
+                boolean hasNormal = Inventories.playerHas(AVPItems.ITEM_GRENADE, ctx.getServerHandler().player);
+                boolean hasIncendiary = Inventories.playerHas(AVPItems.ITEM_INCENDIARY_GRENADE, ctx.getServerHandler().player);
 
-                    if (hasNormal || hasIncendiary)
-                    {
-                        EntityGrenade grenade = new EntityGrenade(ctx.getServerHandler().player.world, ctx.getServerHandler().player);
-                        grenade.explodeOnImpact = true;
-                        grenade.setFlaming(hasIncendiary);
-                        ctx.getServerHandler().player.world.spawnEntity(grenade);
-                        Inventories.consumeItem(ctx.getServerHandler().player, !hasIncendiary ? AVPItems.ITEM_GRENADE : AVPItems.ITEM_INCENDIARY_GRENADE);
-                    }
+                if (hasNormal || hasIncendiary)
+                {
+                    EntityGrenade grenade = new EntityGrenade(ctx.getServerHandler().player.world, ctx.getServerHandler().player);
+                    grenade.explodeOnImpact = true;
+                    grenade.setFlaming(hasIncendiary);
+                    ctx.getServerHandler().player.world.spawnEntity(grenade);
+                    Inventories.consumeItem(ctx.getServerHandler().player, !hasIncendiary ? AVPItems.ITEM_GRENADE : AVPItems.ITEM_INCENDIARY_GRENADE);
                 }
             }
         });

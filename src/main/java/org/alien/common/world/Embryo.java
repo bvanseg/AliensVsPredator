@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class Embryo implements Cloneable
 {
-    public static final ArrayList<Embryo> registeredTypes = new ArrayList<Embryo>();
+    public static final ArrayList<Embryo> registeredTypes = new ArrayList<>();
     private static int                    nextAvailableId = 1;
 
     public static final Embryo            STANDARD        = new Embryo(EntityChestburster.class, EntityDrone.class, EntityLiving.class).register();
