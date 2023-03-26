@@ -18,6 +18,7 @@ public class AlienSounds implements IPreInitEvent
     public static final Sound ALIEN_LIVING                 = SoundRegistryUtil.createSound("xeno.living");
     public static final Sound ALIEN_HURT                   = SoundRegistryUtil.createSound("xeno.hurt");
     public static final Sound ALIEN_DEATH                  = SoundRegistryUtil.createSound("xeno.death");
+    public static final Sound FLESH_EAT                    = SoundRegistryUtil.createSound("xeno.eat");
     
     /* QUEEN SOUNDS */
     public static final Sound QUEEN_HURT                   = SoundRegistryUtil.createSound("queen.hurt");
@@ -93,5 +94,7 @@ public class AlienSounds implements IPreInitEvent
         SoundRegistryUtil.registerSound(FACEHUGGER_LIVING);
 
         SoundRegistryUtil.registerSound(OVAMORPH_OPEN);
+
+        SoundRegistryUtil.registerSound(FLESH_EAT);
     }
 }
