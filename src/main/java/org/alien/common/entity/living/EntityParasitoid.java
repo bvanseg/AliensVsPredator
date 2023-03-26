@@ -83,6 +83,10 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
             }
         }
 
+        if (this.isAttachedToHost() && !this.isRiding()) {
+            this.detachFromHost();
+        }
+
         // left client-side so the facehugger can stop riding if ATTACHED_TO_HOST is false.
         if (!this.isAttachedToHost() && this.isRiding()) {
             this.detachFromHost();
