@@ -77,6 +77,7 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 
 		// Back up during the last 1 second.
 		if (cooldown > 0 && cooldown < 20 && !this.canReachTarget(ctx)) {
+			// TODO: Use profiles here, instead.
 			ctx.getBrain().getAllActiveProfileTasks().forEach(task -> task.setDisabled(task instanceof AttackOnCollideBrainTask));
 			rammer.motionX -= (d0 / f * 0.5 * 0.800000011920929 + rammer.motionX * 0.20000000298023224) * 0.5;
 			rammer.motionZ -= (d1 / f * 0.5 * 0.800000011920929 + rammer.motionZ * 0.20000000298023224) * 0.5;
@@ -121,8 +122,8 @@ public class RamTowardsTargetBrainTask extends AbstractEntityBrainTask {
 		super.finish();
 		this.isRamming = false;
 		// Allow crusher to attack on collide, again.
-		ctx.getBrain().getProfileTaskSets().get(ctx.getBrain().getActiveProfiles())
-				.forEach(task -> task.setDisabled(false));
+		// TODO: Use profiles here, instead.
+		ctx.getBrain().getAllActiveProfileTasks().forEach(task -> task.setDisabled(false));
 	}
 
 	// This is a naive method to check if the crusher can reach the target.

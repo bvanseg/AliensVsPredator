@@ -10,6 +10,8 @@ import org.alien.common.entity.living.SpeciesAlien;
 public class AlienGrowthUtil {
     private AlienGrowthUtil() {}
 
+    public static final int MATRIARCH_MAX_PSEUDO_JELLY_LEVEL = 2000;
+
     public static float calculateJellyGrowthFactor(SpeciesAlien alien, float step, int scaleReductionFactor, float partialTicks) {
         float additionalScale = 0F;
 
