@@ -3,8 +3,11 @@ package org.alien.common.entity.ai.brain.task.util;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import org.alien.client.render.util.AlienGrowthUtil;
+import org.alien.common.entity.living.SpeciesAlien;
 
 /**
  * @author Boston Vanseghi
@@ -22,13 +25,25 @@ public class OvipositorHelper {
     }
 
     public static Vec3d getEggLayingPosition(Entity entity) {
-        // TODO: Scale this distance with the queen's jelly level.
-        return getPositionAround(entity, 10, entity.rotationYaw - 180);
+        int distance = 10;
+
+        if (entity instanceof SpeciesAlien) {
+            float magicValue = MathHelper.clamp(((SpeciesAlien)entity).getJellyLevel() / ((float)AlienGrowthUtil.MATRIARCH_MAX_PSEUDO_JELLY_LEVEL * 2), 0F, 1F) / 1.75F;
+            distance += distance * magicValue;
+        }
+
+        return getPositionAround(entity, distance, entity.rotationYaw - 180);
     }
 
     public static Vec3d getOppositeOfEggLayingPosition(Entity entity) {
-        // TODO: Scale this distance with the queen's jelly level.
-        return getPositionAround(entity, 10, entity.rotationYaw);
+        int distance = 10;
+
+        if (entity instanceof SpeciesAlien) {
+            float magicValue = MathHelper.clamp(((SpeciesAlien)entity).getJellyLevel() / ((float)AlienGrowthUtil.MATRIARCH_MAX_PSEUDO_JELLY_LEVEL * 2), 0F, 1F) / 1.75F;
+            distance += distance * magicValue;
+        }
+
+        return getPositionAround(entity, distance, entity.rotationYaw);
     }
 
     public static boolean isEggLayingPositionSafe(Entity entity, BlockPos eggPos) {
