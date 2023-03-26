@@ -2,6 +2,7 @@ package org.alien.common.entity.ai.brain.task.xenomorph;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.xenomorph.EntityDrone;
 import org.lib.brain.flag.AbstractBrainFlag;
@@ -85,6 +86,7 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 		if (distance < 2)
 		{
 			entityDrone.setJellyLevel(entityDrone.getJellyLevel() + this.recycleTarget.getJellyLevel());
+			AlienSounds.FLESH_EAT.playSound(ctx.getEntity());
 			this.recycleTarget.setDead();
 			this.recycleTarget = null;
 		}
