@@ -31,6 +31,7 @@ public abstract class AbstractBrainTask<T extends AbstractBrainContext> {
 				this.continueExecuting();
 			} else {
 				this.finish();
+				return false;
 			}
 		}
 
