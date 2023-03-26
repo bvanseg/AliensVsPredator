@@ -1,11 +1,13 @@
 package org.alien.common.tile;
 
 import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
+import org.alien.common.AlienBlocks;
 import org.alien.common.block.BlockHiveResin;
 
 import java.util.Random;
@@ -154,6 +156,15 @@ public class TileEntityHiveResin extends TileEntity implements ITickable
     public void update()
     {
         Block b = this.world.getBlockState(this.pos).getBlock();
+
+        // FIXME: Resin crashes the game whenever its parent is also a resin block. If this resin tile is in such a state,
+        // we have to remove it from the world to prevent crashes.
+        // TODO: Replace the tile entity with a full non-tile-entity resin block when the resin rework is done.
+        if (this.parentBlock == AlienBlocks.RESIN || this.parentBlock == AlienBlocks.NATURAL_RESIN) {
+            this.world.setBlockState(this.pos, Blocks.AIR.getDefaultState());
+            return;
+        }
+
 
         if (b instanceof BlockHiveResin && !evaluated)
         {
