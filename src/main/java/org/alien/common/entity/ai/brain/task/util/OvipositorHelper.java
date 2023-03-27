@@ -9,12 +9,24 @@ import net.minecraft.util.math.Vec3d;
 import org.alien.client.render.util.AlienGrowthUtil;
 import org.alien.common.entity.living.SpeciesAlien;
 
+import javax.annotation.Nullable;
+
 /**
  * @author Boston Vanseghi
  */
 public class OvipositorHelper {
 
     private OvipositorHelper() {}
+
+    public static int getOvipositorLength(Entity entity) {
+        int distance = 10;
+
+        if (entity instanceof SpeciesAlien) {
+            float magicValue = MathHelper.clamp(((SpeciesAlien) entity).getJellyLevel() / ((float)AlienGrowthUtil.MATRIARCH_MAX_PSEUDO_JELLY_LEVEL * 2), 0F, 1F) / 1.75F;
+            distance += distance * magicValue;
+        }
+        return distance;
+    }
 
     public static Vec3d getPositionAround(Entity entity, int distance, float yaw) {
         double rotationYawRadians = Math.toRadians(yaw);
@@ -24,26 +36,57 @@ public class OvipositorHelper {
         return new Vec3d(x, entity.posY, z);
     }
 
-    public static Vec3d getEggLayingPosition(Entity entity) {
-        int distance = 10;
+    public static Vec3d findEggPositionAround(Entity entity, int distance) {
+        return findEggPositionAround(entity, distance, 180F / distance); // The larger the distance, the smaller the step.
+    }
 
-        if (entity instanceof SpeciesAlien) {
-            float magicValue = MathHelper.clamp(((SpeciesAlien)entity).getJellyLevel() / ((float)AlienGrowthUtil.MATRIARCH_MAX_PSEUDO_JELLY_LEVEL * 2), 0F, 1F) / 1.75F;
-            distance += distance * magicValue;
+    public static @Nullable Vec3d findEggPositionAround(Entity entity, int distance, float stepAngle) {
+        Vec3d potentialPosition;
+
+        for (int i = 0; i < 360 / stepAngle; i++) {
+            double rotationYawRadians = Math.toRadians(i * stepAngle);
+            double x = (entity.posX + (distance * (Math.cos(rotationYawRadians))));
+            double z = (entity.posZ + (distance * (Math.sin(rotationYawRadians))));
+
+            potentialPosition = new Vec3d(x, entity.posY, z);
+            BlockPos pos = new BlockPos(x, entity.posY, z);
+
+            if (isEggLayingPositionSafe(entity, pos) && canSeeEggLayingPosition(entity, pos)) {
+                return potentialPosition;
+            }
         }
 
-        return getPositionAround(entity, distance, entity.rotationYaw - 180);
+        return null;
+    }
+
+    public static Float findEggPositionAngleAround(Entity entity, int distance) {
+        return findEggPositionAngleAround(entity, distance, 180F / distance); // The larger the distance, the smaller the step.
+    }
+
+    public static Float findEggPositionAngleAround(Entity entity, int distance, float stepAngle) {
+        for (int i = 0; i < 360 / stepAngle; i++) {
+            double rotationYawRadians = Math.toRadians(entity.getRotationYawHead() + (i * stepAngle));
+            double x = (entity.posX + (distance * (Math.cos(rotationYawRadians))));
+            double z = (entity.posZ + (distance * (Math.sin(rotationYawRadians))));
+
+            BlockPos pos = new BlockPos(x, entity.posY, z);
+
+            if (isEggLayingPositionSafe(entity, pos) && canSeeEggLayingPosition(entity, pos)) {
+                return entity.getRotationYawHead() + (i * stepAngle);
+            }
+        }
+
+        return null;
+    }
+
+    public static Vec3d getEggLayingPosition(Entity entity) {
+        int distance = getOvipositorLength(entity);
+        return getPositionAround(entity, distance, entity.getRotationYawHead() - 180);
     }
 
     public static Vec3d getOppositeOfEggLayingPosition(Entity entity) {
-        int distance = 10;
-
-        if (entity instanceof SpeciesAlien) {
-            float magicValue = MathHelper.clamp(((SpeciesAlien)entity).getJellyLevel() / ((float)AlienGrowthUtil.MATRIARCH_MAX_PSEUDO_JELLY_LEVEL * 2), 0F, 1F) / 1.75F;
-            distance += distance * magicValue;
-        }
-
-        return getPositionAround(entity, distance, entity.rotationYaw);
+        int distance = getOvipositorLength(entity);
+        return getPositionAround(entity, distance, entity.getRotationYawHead());
     }
 
     public static boolean isEggLayingPositionSafe(Entity entity, BlockPos eggPos) {

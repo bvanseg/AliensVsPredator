@@ -1,9 +1,6 @@
 package org.alien.common.entity.ai.brain.xenomorph;
 
-import org.alien.common.entity.ai.brain.task.matriarch.GrowOvipositorBrainTask;
-import org.alien.common.entity.ai.brain.task.matriarch.MatriarchEnthrallAlienBrainTask;
-import org.alien.common.entity.ai.brain.task.matriarch.MatriarchMoveToHiveCoreBrainTask;
-import org.alien.common.entity.ai.brain.task.matriarch.MatriarchReproduceBrainTask;
+import org.alien.common.entity.ai.brain.task.matriarch.*;
 import org.alien.common.entity.ai.selector.EntitySelectorMatriarch;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.lib.brain.impl.profile.BrainProfiles;
@@ -30,8 +27,9 @@ public class MatriarchBrain extends XenomorphBrain {
 	public void initTasks() {
 		super.initTasks();
 		this.addTask(new MatriarchMoveToHiveCoreBrainTask());
-		this.addTask(new MatriarchEnthrallAlienBrainTask(), BrainProfiles.STANDARD, BrainProfiles.MATRIARCH_REPRODUCING);
+		this.addTask(new FindEgglayingPositionBrainTask(), BrainProfiles.STANDARD);
 		this.addTask(new GrowOvipositorBrainTask(), BrainProfiles.STANDARD, BrainProfiles.MATRIARCH_REPRODUCING);
+		this.addTask(new MatriarchEnthrallAlienBrainTask(), BrainProfiles.STANDARD, BrainProfiles.MATRIARCH_REPRODUCING);
 		this.addTask(new MatriarchReproduceBrainTask(), BrainProfiles.MATRIARCH_REPRODUCING);
 	}
 }
