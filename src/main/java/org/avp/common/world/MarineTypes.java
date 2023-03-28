@@ -33,7 +33,7 @@ public enum MarineTypes
 
     public SoundEvent getGunfireSound()
     {
-        return itemFirearm.getProfile().getSound().event();
+        return itemFirearm.getFirearmProfile().getSound().event();
     }
 
     public ItemFirearm getFirearmItem()
