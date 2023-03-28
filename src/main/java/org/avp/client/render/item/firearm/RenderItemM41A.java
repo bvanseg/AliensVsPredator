@@ -4,7 +4,6 @@ import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.model.texture.Texture;
-import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import com.asx.mdx.common.net.Networks;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -18,6 +17,8 @@ import org.avp.client.render.item.RenderMotionTrackerScreen;
 import org.avp.common.AVPItems;
 import org.avp.common.URLs;
 import org.avp.common.item.firearm.ItemFirearm;
+import org.lib.common.inventory.CachedInventoryHandler;
+import org.lib.common.inventory.InventorySnapshot;
 import org.lwjgl.input.Mouse;
 
 public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
@@ -79,8 +80,9 @@ public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
                 OpenGL.enableLighting();
                 OpenGL.color(1F, 1F, 1F, 1F);
             }
-            
-            if (Inventories.getAmountOfItemPlayerHas(AVPItems.ITEM_MOTION_TRACKER, (EntityPlayer) entity) > 0)
+
+            InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer((EntityPlayer) entity);
+            if (inventorySnapshot.hasItem(AVPItems.ITEM_MOTION_TRACKER))
             {
                 OpenGL.translate(-50F, -20F, -50F);
                 OpenGL.rotate(-90F, 0F, 1F, 0F);
