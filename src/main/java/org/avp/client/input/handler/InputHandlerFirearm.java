@@ -27,7 +27,7 @@ public class InputHandlerFirearm implements InputHandler
             {
                 ItemFirearm fireArm = (ItemFirearm) mainHand;
 
-                if (KeybindHandler.instance.specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
+                if (KeybindHandler.instance.specialSecondary.isPressed() && this.lastReload > fireArm.getFirearmProfile().getReloadTime())
                 {
                     this.lastReload = 0;
                     AVPNetworking.instance.sendToServer(new PacketReloadFirearm());
@@ -37,7 +37,7 @@ public class InputHandlerFirearm implements InputHandler
             {
             	ItemFirearm fireArm = (ItemFirearm) offHand;
 
-                if (KeybindHandler.instance.specialSecondary.isPressed() && this.lastReload > fireArm.getProfile().getReloadTime())
+                if (KeybindHandler.instance.specialSecondary.isPressed() && this.lastReload > fireArm.getFirearmProfile().getReloadTime())
                 {
                     this.lastReload = 0;
                     AVPNetworking.instance.sendToServer(new PacketReloadFirearm());

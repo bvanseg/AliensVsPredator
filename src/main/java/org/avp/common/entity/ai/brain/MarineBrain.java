@@ -66,7 +66,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     }
 
     private int getAttackDelayBasedOnFirearm() {
-        FirearmProfile firearmProfile = this.getEntity().getMarineType().getFirearmItem().getProfile();
+        FirearmProfile firearmProfile = this.getEntity().getMarineType().getFirearmItem().getFirearmProfile();
         double rpm = firearmProfile.getRoundsPerMinute();
         double rps = rpm / 60; // Rounds per second
         double rpt = rps / 20; // Rounds per tick

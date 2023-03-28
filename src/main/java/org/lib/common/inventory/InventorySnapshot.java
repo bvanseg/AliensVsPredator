@@ -1,14 +1,14 @@
 package org.lib.common.inventory;
 
-import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * @author Boston Vanseghi
@@ -43,6 +43,10 @@ public class InventorySnapshot {
 
     public boolean hasItem(Item item) {
         return itemSnapshots.containsKey(item) && itemSnapshots.get(item).getTotalCount() > 0;
+    }
+
+    public Set<Item> getItemsMatchingPredicate(Predicate<Item> itemPredicate) {
+        return itemSnapshots.keySet().stream().filter(itemPredicate).collect(Collectors.toSet());
     }
 
     public int getTotalCountForItem(Item item) {

@@ -34,11 +34,11 @@ public class PacketReloadFirearm implements IMessage, IMessageHandler<PacketRelo
 
             if (player != null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
             {
-                ((ItemFirearm) player.getHeldItemMainhand().getItem()).reload(ctx.getServerHandler().player);
+                ((ItemFirearm) player.getHeldItemMainhand().getItem()).reload(ctx.getServerHandler().player, player.getHeldItemMainhand());
             }
             else if (player != null && player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
             {
-                ((ItemFirearm) player.getHeldItemOffhand().getItem()).reload(ctx.getServerHandler().player);
+                ((ItemFirearm) player.getHeldItemOffhand().getItem()).reload(ctx.getServerHandler().player, player.getHeldItemOffhand());
             }
         });
 

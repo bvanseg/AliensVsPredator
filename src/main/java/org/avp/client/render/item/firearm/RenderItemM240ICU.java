@@ -88,7 +88,8 @@ public class RenderItemM240ICU extends ItemFirearmRenderer<ModelM240ICU>
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) ClientGame.instance.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
+        ItemStack itemStack = ClientGame.instance.minecraft().player.inventory.getCurrentItem();
+        int ammoCount = ((ItemFirearm) itemStack.getItem()).getAmmoCount(itemStack);
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 }

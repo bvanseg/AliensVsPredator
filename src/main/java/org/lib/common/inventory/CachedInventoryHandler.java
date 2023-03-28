@@ -17,18 +17,32 @@ public class CachedInventoryHandler {
 
     private CachedInventoryHandler() {}
 
-    private final HashMap<UUID, InventorySnapshot> cachedPlayerInventorySnapshots = new HashMap<>();
+    private final HashMap<UUID, InventorySnapshot> cachedServerPlayerInventorySnapshots = new HashMap<>();
+    private final HashMap<UUID, InventorySnapshot> cachedClientPlayerInventorySnapshots = new HashMap<>();
 
     @SubscribeEvent
-    public void worldTickEvent(TickEvent.WorldTickEvent event) {
-        cachedPlayerInventorySnapshots.clear();
+    public void serverTickEvent(TickEvent.ServerTickEvent event) {
+        cachedServerPlayerInventorySnapshots.clear();
+    }
+
+    @SubscribeEvent
+    public void clientTickEvent(TickEvent.ClientTickEvent event) {
+        cachedClientPlayerInventorySnapshots.clear();
     }
 
     public @Nullable InventorySnapshot getInventorySnapshotForPlayer(EntityPlayer player) {
-        return cachedPlayerInventorySnapshots.computeIfAbsent(player.getUniqueID(), key -> {
-            InventorySnapshot inventorySnapshot = new InventorySnapshot();
-            inventorySnapshot.snapshot(player.inventory);
-            return inventorySnapshot;
-        });
+        if (!player.world.isRemote) {
+            return cachedServerPlayerInventorySnapshots.computeIfAbsent(player.getUniqueID(), key -> {
+                InventorySnapshot inventorySnapshot = new InventorySnapshot();
+                inventorySnapshot.snapshot(player.inventory);
+                return inventorySnapshot;
+            });
+        } else {
+            return cachedClientPlayerInventorySnapshots.computeIfAbsent(player.getUniqueID(), key -> {
+                InventorySnapshot inventorySnapshot = new InventorySnapshot();
+                inventorySnapshot.snapshot(player.inventory);
+                return inventorySnapshot;
+            });
+        }
     }
 }
