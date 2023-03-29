@@ -11,6 +11,8 @@ import org.avp.common.entity.*;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
 import org.lib.common.registry.EntityRegistryUtil;
+import org.weapon.common.entity.EntityFlame;
+import org.weapon.common.entity.EntityGrenade;
 
 import java.util.ArrayList;
 

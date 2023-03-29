@@ -26,6 +26,7 @@ import org.predator.client.model.tile.skull.ModelBiomaskBerserker;
 import org.predator.client.model.tile.skull.ModelBiomaskClassic;
 import org.predator.client.model.tile.skull.ModelBiomaskFalconer;
 import org.predator.client.model.tile.skull.ModelBiomaskTracker;
+import org.weapon.client.model.item.*;
 
 @SideOnly(Side.CLIENT)
 public class Resources

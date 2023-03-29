@@ -9,7 +9,7 @@ import net.minecraft.item.ItemSword;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesEngineer;
 import org.avp.common.entity.living.EntityMarine;
-import org.avp.common.item.firearm.ItemFirearm;
+import org.weapon.common.item.firearm.ItemFirearm;
 import org.lib.common.predicate.EntitySelectorBase;
 import org.predator.common.item.ItemDisc;
 import org.predator.common.item.ItemPlasmaCannon;

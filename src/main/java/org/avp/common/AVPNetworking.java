@@ -10,6 +10,9 @@ import org.avp.AVP;
 import org.avp.common.network.packet.client.*;
 import org.avp.common.network.packet.server.*;
 import org.avp.common.network.packet.server.PacketBlastdoorCommon.PacketBlastdoorClient;
+import org.weapon.common.network.packet.server.PacketFirearmSync;
+import org.weapon.common.network.packet.server.PacketLaunchGrenade;
+import org.weapon.common.network.packet.server.PacketReloadFirearm;
 
 
 public class AVPNetworking extends SimpleNetworkWrapper implements IInitEvent

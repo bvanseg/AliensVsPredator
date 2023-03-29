@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.common.entity.EntityGrenade;
+import org.weapon.common.entity.EntityGrenade;
 
 public class PacketFireAPC implements IMessage, IMessageHandler<PacketFireAPC, PacketFireAPC>
 {

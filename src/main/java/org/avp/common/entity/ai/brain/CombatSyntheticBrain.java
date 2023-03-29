@@ -6,7 +6,7 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.EntityAcidPool;
-import org.avp.common.entity.EntityGrenade;
+import org.weapon.common.entity.EntityGrenade;
 import org.avp.common.entity.ai.selector.EntitySelectorCombatSynthetic;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.lib.brain.impl.AbstractEntityBrain;

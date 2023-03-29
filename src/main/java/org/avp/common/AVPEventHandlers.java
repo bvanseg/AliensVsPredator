@@ -24,6 +24,7 @@ import org.avp.common.world.hook.MaterialHandler;
 import org.lib.common.EntityAccessor;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.predator.client.render.VisionModeRenderEvent;
+import org.weapon.client.render.AmmoIndicatorRenderEvent;
 
 import java.util.ArrayList;
 

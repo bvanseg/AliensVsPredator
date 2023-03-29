@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
-import org.avp.common.entity.EntityBullet;
+import org.weapon.common.entity.EntityBullet;
 import org.avp.common.entity.ai.brain.MarineBrain;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;

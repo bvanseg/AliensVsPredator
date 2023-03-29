@@ -2,7 +2,7 @@ package org.avp.common.world;
 
 import net.minecraft.util.SoundEvent;
 import org.avp.common.AVPItems;
-import org.avp.common.item.firearm.ItemFirearm;
+import org.weapon.common.item.firearm.ItemFirearm;
 
 import java.util.Arrays;
 import java.util.HashMap;

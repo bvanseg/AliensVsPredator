@@ -12,10 +12,11 @@ import org.avp.common.item.*;
 import org.avp.common.item.expansion.ItemLedDisplay;
 import org.avp.common.item.expansion.ItemProcessor;
 import org.avp.common.item.expansion.ItemSMGAmmo;
-import org.avp.common.item.firearm.*;
 import org.avp.common.item.supply.chute.ItemSupplyChute;
 import org.avp.common.item.supply.chute.SupplyChuteType;
 import org.lib.common.registry.ItemRegistryUtil;
+import org.weapon.common.item.ItemGrenade;
+import org.weapon.common.item.firearm.*;
 
 public class AVPItems implements IPreInitEvent {
     public static final AVPItems instance = new AVPItems();
