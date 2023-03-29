@@ -1,19 +1,19 @@
 package org.avp.common.world;
 
 import net.minecraft.util.SoundEvent;
-import org.avp.common.AVPItems;
 import org.weapon.common.item.firearm.ItemFirearm;
+import org.weapon.common.item.init.WeaponItems;
 
 import java.util.Arrays;
 import java.util.HashMap;
 
 public enum MarineTypes
 {
-    M4(0, (ItemFirearm) AVPItems.ITEM_M4),
-    AK47(1, (ItemFirearm) AVPItems.ITEM_AK47),
-    M41A(2, (ItemFirearm) AVPItems.ITEM_M41A),
-    SNIPER(3, (ItemFirearm) AVPItems.ITEM_SNIPER),
-    M56SG(4, (ItemFirearm) AVPItems.ITEM_M56SG);
+    M4(0, (ItemFirearm) WeaponItems.ITEM_M4),
+    AK47(1, (ItemFirearm) WeaponItems.ITEM_AK47),
+    M41A(2, (ItemFirearm) WeaponItems.ITEM_M41A),
+    SNIPER(3, (ItemFirearm) WeaponItems.ITEM_SNIPER),
+    M56SG(4, (ItemFirearm) WeaponItems.ITEM_M56SG);
 
     private final int id;
     private final ItemFirearm itemFirearm;

@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.alien.common.AlienItems;
 import org.predator.common.PredatorItems;
 import org.predator.common.block.init.PredatorBlocks;
+import org.weapon.common.item.init.WeaponItems;
 
 public class AVPCreativeTabs implements IPreInitEvent
 {
@@ -56,7 +57,7 @@ public class AVPCreativeTabs implements IPreInitEvent
                                                             @Override
                                                             public ItemStack createIcon()
                                                             {
-                                                                return new ItemStack(AVPItems.ITEM_M56SG_STOCK);
+                                                                return new ItemStack(WeaponItems.ITEM_M56SG_STOCK);
                                                             }
 
                                                             public String getTranslationKey()

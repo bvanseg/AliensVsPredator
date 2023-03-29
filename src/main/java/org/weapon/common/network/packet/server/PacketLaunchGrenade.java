@@ -4,10 +4,10 @@ import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.common.AVPItems;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;
 import org.weapon.common.entity.EntityGrenade;
+import org.weapon.common.item.init.WeaponItems;
 
 public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaunchGrenade, PacketLaunchGrenade>
 {
@@ -35,8 +35,8 @@ public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaun
             if (ctx.getServerHandler().player != null && ctx.getServerHandler().player.world != null)
             {
                 InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(ctx.getServerHandler().player);
-                boolean hasNormal = inventorySnapshot.hasItem(AVPItems.ITEM_GRENADE);
-                boolean hasIncendiary = inventorySnapshot.hasItem(AVPItems.ITEM_INCENDIARY_GRENADE);
+                boolean hasNormal = inventorySnapshot.hasItem(WeaponItems.ITEM_GRENADE);
+                boolean hasIncendiary = inventorySnapshot.hasItem(WeaponItems.ITEM_INCENDIARY_GRENADE);
 
                 if (hasNormal || hasIncendiary)
                 {
@@ -44,7 +44,7 @@ public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaun
                     grenade.explodeOnImpact = true;
                     grenade.setFlaming(hasIncendiary);
                     ctx.getServerHandler().player.world.spawnEntity(grenade);
-                    inventorySnapshot.consumeItem(!hasIncendiary ? AVPItems.ITEM_GRENADE : AVPItems.ITEM_INCENDIARY_GRENADE);
+                    inventorySnapshot.consumeItem(!hasIncendiary ? WeaponItems.ITEM_GRENADE : WeaponItems.ITEM_INCENDIARY_GRENADE);
                 }
             }
         });

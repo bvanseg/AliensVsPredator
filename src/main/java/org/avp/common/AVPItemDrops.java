@@ -7,6 +7,7 @@ import org.alien.common.AlienBlocks;
 import org.alien.common.AlienItems;
 import org.predator.common.PredatorItems;
 import org.predator.common.block.init.PredatorBlocks;
+import org.weapon.common.item.init.WeaponItems;
 
 public class AVPItemDrops
 {
@@ -39,6 +40,6 @@ public class AVPItemDrops
     public static final ItemDrop BIOMASK_BERSERKER = new ItemDrop(3, new ItemStack(PredatorBlocks.BIOMASK_BERSERKER));
     public static final ItemDrop BIOMASK_FALCONER = new ItemDrop(3, new ItemStack(PredatorBlocks.BIOMASK_FALCONER));
     public static final ItemDrop BIOMASK_TRACKER = new ItemDrop(3, new ItemStack(PredatorBlocks.BIOMASK_TRACKER));
-    public static final ItemDrop AMMUNITION = new ItemDrop(75, DropType.RATE_PERSTACK_MULTIPLE, new ItemStack(AVPItems.ITEM_AMMO_AR), new ItemStack(AVPItems.ITEM_AMMO_PISTOL), new ItemStack(AVPItems.ITEM_AMMO_SMG), new ItemStack(AVPItems.ITEM_AMMO_SNIPER));
-    public static final ItemDrop FIREARMS = new ItemDrop(15, DropType.RATE_PERSTACK_SINGLE, new ItemStack(AVPItems.ITEM_M56SG), new ItemStack(AVPItems.ITEM_PISTOL), new ItemStack(AVPItems.ITEM_M4), new ItemStack(AVPItems.ITEM_M41A), new ItemStack(AVPItems.ITEM_SNIPER));
+    public static final ItemDrop AMMUNITION = new ItemDrop(75, DropType.RATE_PERSTACK_MULTIPLE, new ItemStack(WeaponItems.ITEM_AMMO_AR), new ItemStack(WeaponItems.ITEM_AMMO_PISTOL), new ItemStack(WeaponItems.ITEM_AMMO_SMG), new ItemStack(WeaponItems.ITEM_AMMO_SNIPER));
+    public static final ItemDrop FIREARMS = new ItemDrop(15, DropType.RATE_PERSTACK_SINGLE, new ItemStack(WeaponItems.ITEM_M56SG), new ItemStack(WeaponItems.ITEM_PISTOL), new ItemStack(WeaponItems.ITEM_M4), new ItemStack(WeaponItems.ITEM_M41A), new ItemStack(WeaponItems.ITEM_SNIPER));
 }

@@ -20,12 +20,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.AVPItems;
 import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.avp.common.tile.TileEntityCryostasisTube;
 import org.weapon.common.item.firearm.ItemFlamethrower;
 import org.weapon.common.item.firearm.ItemM240IncineratorUnit;
 import org.weapon.common.item.firearm.ItemSevastopolFlamethrower;
+import org.weapon.common.item.init.WeaponItems;
 
 import java.util.ArrayList;
 
@@ -77,7 +77,7 @@ public class EntityFlame extends EntityThrowable
 
         if (this.getThrower() != null && this.getThrower().getHeldItemMainhand() != null)
         {
-            if (this.getThrower().getHeldItemMainhand().getItem() == AVPItems.ITEM_M_240_ICU || this.getThrower().getHeldItemMainhand().getItem() == AVPItems.ITEM_SEVASTOPOL_FLAMETHROWER)
+            if (this.getThrower().getHeldItemMainhand().getItem() == WeaponItems.ITEM_M_240_ICU || this.getThrower().getHeldItemMainhand().getItem() == WeaponItems.ITEM_SEVASTOPOL_FLAMETHROWER)
             {
                 ItemFlamethrower flamethrower = (ItemFlamethrower) this.getThrower().getHeldItemMainhand().getItem();
 
