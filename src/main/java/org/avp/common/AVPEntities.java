@@ -31,8 +31,6 @@ public class AVPEntities implements IInitEvent
         registerEntityEntry(EntityAPC.class, "APC");
         registerEntityEntry(EntityMedpod.class, "Medpod");
         registerEntityEntry(EntitySupplyChute.class, "SupplyChute");
-        registerEntityEntry(EntitySupplyChuteMarines.class, "SupplyChuteMarines");
-        registerEntityEntry(EntitySupplyChuteSeegson.class, "SupplyChuteSeegson");
 
         registerLivingEntityEntry(EntityMarine.class, "Marine");
         registerLivingEntityEntry(EntityCombatSynthetic.class, "CombatSynthetic");
