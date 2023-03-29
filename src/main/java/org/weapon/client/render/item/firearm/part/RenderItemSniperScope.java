@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.weapon.client.model.item.ModelSniper;
 import org.avp.client.render.item.ItemRendererGroup;
+import org.weapon.client.model.item.ModelSniper;
 
 public class RenderItemSniperScope extends ItemRendererGroup<ModelSniper>
 {

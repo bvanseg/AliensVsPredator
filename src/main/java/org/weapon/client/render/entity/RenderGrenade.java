@@ -5,8 +5,8 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.avp.client.Resources;
-import org.weapon.common.entity.EntityGrenade;
 import org.lwjgl.opengl.GL11;
+import org.weapon.common.entity.EntityGrenade;
 
 public class RenderGrenade extends Render<EntityGrenade>
 {

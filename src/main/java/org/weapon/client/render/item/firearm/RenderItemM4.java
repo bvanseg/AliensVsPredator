@@ -7,9 +7,9 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.client.Resources;
+import org.lwjgl.input.Mouse;
 import org.weapon.client.model.item.ModelM4;
 import org.weapon.client.render.item.ItemFirearmRenderer;
-import org.lwjgl.input.Mouse;
 
 public class RenderItemM4 extends ItemFirearmRenderer<ModelM4>
 {

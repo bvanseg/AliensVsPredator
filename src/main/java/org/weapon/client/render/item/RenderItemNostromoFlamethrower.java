@@ -7,9 +7,9 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.client.Resources;
+import org.lwjgl.input.Mouse;
 import org.weapon.client.model.item.ModelSevastopolFlamethrower;
 import org.weapon.common.item.firearm.ItemFirearm;
-import org.lwjgl.input.Mouse;
 
 public class RenderItemNostromoFlamethrower extends ItemFirearmRenderer<ModelSevastopolFlamethrower>
 {

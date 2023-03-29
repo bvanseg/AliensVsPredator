@@ -6,16 +6,16 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.EntityAcidPool;
-import org.weapon.common.entity.EntityGrenade;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
 import org.avp.common.entity.living.EntityMarine;
-import org.weapon.common.item.firearm.FirearmProfile;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestAvoidTargetBrainSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
+import org.weapon.common.entity.EntityGrenade;
+import org.weapon.common.item.firearm.FirearmProfile;
 
 /**
  * @author Boston Vanseghi

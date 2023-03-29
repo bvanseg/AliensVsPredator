@@ -8,10 +8,10 @@ import net.minecraft.client.settings.GameSettings;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.client.Resources;
-import org.weapon.client.model.item.ModelSniper;
-import org.weapon.client.render.item.ItemFirearmRenderer;
 import org.avp.common.AVPItems;
 import org.lwjgl.input.Mouse;
+import org.weapon.client.model.item.ModelSniper;
+import org.weapon.client.render.item.ItemFirearmRenderer;
 
 public class RenderItemSniper extends ItemFirearmRenderer<ModelSniper>
 {

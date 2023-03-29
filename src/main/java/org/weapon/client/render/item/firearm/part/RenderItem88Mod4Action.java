@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.weapon.client.model.item.Model88MOD4;
 import org.avp.client.render.item.ItemRendererGroup;
+import org.weapon.client.model.item.Model88MOD4;
 
 public class RenderItem88Mod4Action extends ItemRendererGroup<Model88MOD4>
 {

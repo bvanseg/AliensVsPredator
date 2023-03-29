@@ -11,15 +11,15 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.avp.client.Resources;
-import org.weapon.client.model.item.ModelM41A;
-import org.weapon.client.render.item.ItemFirearmRenderer;
 import org.avp.client.render.item.RenderMotionTrackerScreen;
 import org.avp.common.AVPItems;
 import org.avp.common.URLs;
-import org.weapon.common.item.firearm.ItemFirearm;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;
 import org.lwjgl.input.Mouse;
+import org.weapon.client.model.item.ModelM41A;
+import org.weapon.client.render.item.ItemFirearmRenderer;
+import org.weapon.common.item.firearm.ItemFirearm;
 
 public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
 {

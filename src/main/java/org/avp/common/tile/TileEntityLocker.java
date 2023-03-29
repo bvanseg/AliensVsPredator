@@ -19,8 +19,8 @@ import org.avp.common.AVPGui;
 import org.avp.common.AVPNetworking;
 import org.avp.common.api.machines.Openable;
 import org.avp.common.inventory.ContainerLocker;
-import org.weapon.common.item.firearm.ItemFirearm;
 import org.avp.common.network.packet.client.PacketOpenable;
+import org.weapon.common.item.firearm.ItemFirearm;
 
 
 public class TileEntityLocker extends TileEntity implements Openable, IRotatableYAxis

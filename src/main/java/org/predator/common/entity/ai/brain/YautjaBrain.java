@@ -3,7 +3,6 @@ package org.predator.common.entity.ai.brain;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import org.alien.common.entity.EntityAcidPool;
-import org.weapon.common.entity.EntityGrenade;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
@@ -13,6 +12,7 @@ import org.lib.brain.task.BrainTaskAdapter;
 import org.predator.common.entity.ai.EntityAISuperjump;
 import org.predator.common.entity.ai.selector.EntitySelectorYautja;
 import org.predator.common.entity.living.SpeciesYautja;
+import org.weapon.common.entity.EntityGrenade;
 
 /**
  * 

@@ -6,9 +6,9 @@ import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformT
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import org.avp.client.Resources;
+import org.avp.common.entity.living.EntityMarine;
 import org.weapon.client.model.item.ModelM56SG;
 import org.weapon.client.render.item.ItemFirearmRenderer;
-import org.avp.common.entity.living.EntityMarine;
 
 public class RenderItemM56SG extends ItemFirearmRenderer<ModelM56SG>
 {

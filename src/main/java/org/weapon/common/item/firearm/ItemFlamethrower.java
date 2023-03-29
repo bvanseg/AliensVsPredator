@@ -13,9 +13,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.AVPSounds;
-import org.weapon.common.entity.EntityFlame;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;
+import org.weapon.common.entity.EntityFlame;
 
 import java.util.List;
 

@@ -9,8 +9,8 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import org.weapon.client.model.item.ModelAK47;
 import org.avp.client.render.item.ItemRendererGroup;
+import org.weapon.client.model.item.ModelAK47;
 
 public class RenderItemAK47Stock extends ItemRendererGroup<ModelAK47>
 {

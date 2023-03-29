@@ -19,11 +19,11 @@ import net.minecraft.world.World;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
-import org.weapon.common.entity.EntityBullet;
 import org.avp.common.entity.ai.brain.MarineBrain;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
+import org.weapon.common.entity.EntityBullet;
 
 public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Brainiac<MarineBrain>
 {

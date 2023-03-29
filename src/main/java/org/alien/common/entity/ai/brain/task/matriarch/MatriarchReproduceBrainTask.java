@@ -1,7 +1,6 @@
 package org.alien.common.entity.ai.brain.task.matriarch;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import org.alien.common.entity.ai.brain.task.util.OvipositorHelper;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;

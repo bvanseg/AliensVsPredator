@@ -20,9 +20,9 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPNetworking;
-import org.weapon.common.network.packet.server.PacketFirearmSync;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;
+import org.weapon.common.network.packet.server.PacketFirearmSync;
 
 import java.util.List;
 import java.util.Set;
