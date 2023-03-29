@@ -45,7 +45,7 @@ public class RenderItemNostromoFlamethrower extends ItemFirearmRenderer<ModelSev
         {
             OpenGL.translate(0F, 0.35F, -0.9F);
 
-            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && this.canAimWeapon(entity))
             {
                 OpenGL.translate(-0.5595F, 0F, 0F);
             }

@@ -44,7 +44,7 @@ public class RenderItemM4 extends ItemFirearmRenderer<ModelM4>
             float glScale = 1.0F;
             OpenGL.translate(0F, 0.85F, 0F);
 
-            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && this.canAimWeapon(entity))
             {
                 OpenGL.translate(-0.8095F, 0.165F, 0.4F);
             }

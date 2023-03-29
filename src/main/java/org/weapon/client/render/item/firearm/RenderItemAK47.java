@@ -46,7 +46,7 @@ public class RenderItemAK47 extends ItemFirearmRenderer<ModelAK47>
         {
             OpenGL.translate(1F, 0.2F, 0.2F);
 
-            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && this.canAimWeapon(entity))
             {
                 OpenGL.translate(-1.735F, 0.24F, 0.8F);
             }

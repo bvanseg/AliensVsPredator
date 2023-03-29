@@ -49,18 +49,20 @@ public class ItemFirearm extends HookedItem
     {
         ItemStack itemStack = player.getHeldItem(hand);
 
-        int ammunition = this.getAmmoCount(itemStack);
+        if (!player.isCreative() && !player.isSpectator()) {
+            int ammunition = this.getAmmoCount(itemStack);
 
-        if (ammunition <= 0) {
-            this.reload(player, itemStack);
-            return super.onItemRightClick(world, player, hand);
+            if (ammunition <= 0) {
+                this.reload(player, itemStack);
+                return super.onItemRightClick(world, player, hand);
+            }
+
+            // Decrement ammo count on fire.
+            NBTTagCompound weaponNBT = itemStack.getTagCompound();
+            int ammoCount = weaponNBT.getInteger(AMMUNITION_NBT_KEY);
+            weaponNBT.setInteger(AMMUNITION_NBT_KEY, ammoCount - firearmProfile.getAmmoConsumptionRate());
+            itemStack.setTagCompound(weaponNBT);
         }
-
-        // Decrement ammo count on fire.
-        NBTTagCompound weaponNBT = itemStack.getTagCompound();
-        int ammoCount = weaponNBT.getInteger(AMMUNITION_NBT_KEY);
-        weaponNBT.setInteger(AMMUNITION_NBT_KEY, ammoCount - firearmProfile.getAmmoConsumptionRate());
-        itemStack.setTagCompound(weaponNBT);
 
         if (!world.isRemote) {
             // TODO: Send firearm shoot packet here with player look vector info.
