@@ -58,7 +58,7 @@ public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
         {
             OpenGL.translate(1F, 1.25F, -0.3F);
 
-            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && this.canAimWeapon(entity))
             {
                 OpenGL.translate(-1.16F, -0.095F, 0.52F);
             }
