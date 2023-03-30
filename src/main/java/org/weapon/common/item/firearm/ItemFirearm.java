@@ -4,6 +4,7 @@ import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.sound.Sound;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import com.asx.mdx.common.minecraft.item.HookedItem;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,10 +25,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPNetworking;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;
-import org.weapon.common.reload.ReloadHandler;
 import org.weapon.common.item.firearm.rework.FirearmProperties;
 import org.weapon.common.item.firearm.rework.mode.FireMode;
 import org.weapon.common.network.packet.server.PacketFirearmSync;
+import org.weapon.common.reload.ReloadHandler;
 
 import java.util.List;
 import java.util.Set;
@@ -246,5 +247,15 @@ public class ItemFirearm extends HookedItem
     public void setBreakProgress(float breakProgress)
     {
         this.breakProgress = breakProgress;
+    }
+
+    @Override
+    public boolean canDestroyBlockInCreative(World world, BlockPos pos, ItemStack stack, EntityPlayer player) {
+        return false;
+    }
+
+    @Override
+    public float getDestroySpeed(ItemStack stack, IBlockState state) {
+        return 0F;
     }
 }
