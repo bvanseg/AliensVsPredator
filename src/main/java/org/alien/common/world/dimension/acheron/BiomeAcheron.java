@@ -53,7 +53,6 @@ public class BiomeAcheron extends BiomeGenLV
         @Override
         protected void genDecorations(Biome biome, World world, Random random)
         {
-            ;
         }
 
         @Override

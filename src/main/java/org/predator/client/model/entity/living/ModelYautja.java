@@ -604,7 +604,7 @@ public class ModelYautja extends Model<SpeciesYautja>
     @Override
     public void render(SpeciesYautja obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
+        EntityLivingBase base = (EntityLivingBase) obj;
 
         float swingProgress = swingProgress(obj);
         float swingProgressPrev = swingProgressPrev(obj);

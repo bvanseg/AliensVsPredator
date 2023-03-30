@@ -243,7 +243,6 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
                 EntityMoveHelper newMoveHelper = new EntityMoveHelper(living) {
                     public void onUpdateMoveHelper()
                     {
-                        ;
                     }
                 };
                 MDX.access().setMoveHelper(living, newMoveHelper);
@@ -252,12 +251,10 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
                 EntityLookHelper newLookHelper = new EntityLookHelper(living) {
                     public void setLookPosition(double x, double y, double z, float deltaYaw, float deltaPitch)
                     {
-                        ;
                     }
 
                     public void setLookPositionWithEntity(Entity entityIn, float deltaYaw, float deltaPitch)
                     {
-                        ;
                     }
 
                     public float updateRotation(float x, float y, float z)

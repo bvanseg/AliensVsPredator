@@ -19,7 +19,6 @@ public class BucketHandlingEvent
 
     private BucketHandlingEvent()
     {
-        ;
     }
 
     @SubscribeEvent

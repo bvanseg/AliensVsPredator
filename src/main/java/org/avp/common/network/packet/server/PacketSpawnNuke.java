@@ -14,19 +14,16 @@ public class PacketSpawnNuke implements IMessage, IMessageHandler<PacketSpawnNuk
 {
     public PacketSpawnNuke()
     {
-        ;
     }
 
     @Override
     public void toBytes(ByteBuf buffer)
     {
-        ;
     }
 
     @Override
     public void fromBytes(ByteBuf buffer)
     {
-        ;
     }
 
     @Override

@@ -19,7 +19,6 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
     {
         public PacketBlastdoorClient()
         {
-            ;
         }
 
         public PacketBlastdoorClient(PacketMode mode, BlockPos pos, Object... data)
@@ -107,7 +106,6 @@ public class PacketBlastdoorCommon implements IMessage, IMessageHandler<PacketBl
 
     public PacketBlastdoorCommon()
     {
-        ;
     }
 
     public PacketBlastdoorCommon(PacketMode mode, BlockPos pos, Object... data)

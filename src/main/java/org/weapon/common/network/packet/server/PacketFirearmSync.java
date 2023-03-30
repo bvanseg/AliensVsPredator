@@ -31,7 +31,6 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
 
     public PacketFirearmSync()
     {
-        ;
     }
 
     public PacketFirearmSync(RayTraceResult.Type hitType, Entity entity, int hitX, int hitY, int hitZ, FirearmProperties firearmProperties)

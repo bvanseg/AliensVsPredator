@@ -162,7 +162,6 @@ public class EntityBullet extends Entity
     @Override
     protected void entityInit()
     {
-        ;
     }
 
     public void shoot(double posX, double posY, double posZ, float velocity, double damage)
@@ -250,8 +249,8 @@ public class EntityBullet extends Entity
             if (block == Blocks.GLASS_PANE)
             {
                 this.world.setBlockToAir(pos);
-                GameSounds.fxMinecraftGlassShatter3.playSound(this.world, this.xTile, this.yTile, this.zTile, 1F, 1F);;
-                GameSounds.fxMinecraftGlassShatter1.playSound(this.shootingEntity);;
+                GameSounds.fxMinecraftGlassShatter3.playSound(this.world, this.xTile, this.yTile, this.zTile, 1F, 1F);
+                GameSounds.fxMinecraftGlassShatter1.playSound(this.shootingEntity);
             }
 
             if (block == this.inTile)
@@ -382,7 +381,6 @@ public class EntityBullet extends Entity
 
             for (this.rotationPitch = (float) (Math.atan2(this.motionY, velocity) * 180.0D / Math.PI); this.rotationPitch - this.prevRotationPitch < -180.0F; this.prevRotationPitch -= 360.0F)
             {
-                ;
             }
 
             while (this.rotationPitch - this.prevRotationPitch >= 180.0F)

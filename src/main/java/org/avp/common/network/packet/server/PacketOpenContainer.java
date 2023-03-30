@@ -14,7 +14,6 @@ public class PacketOpenContainer implements IMessage, IMessageHandler<PacketOpen
 
     public PacketOpenContainer()
     {
-        ;
     }
 
     public PacketOpenContainer(int guiIdentifier)

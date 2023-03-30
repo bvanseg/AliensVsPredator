@@ -10,19 +10,16 @@ public class PacketFireAPC implements IMessage, IMessageHandler<PacketFireAPC, P
 {
     public PacketFireAPC()
     {
-        ;
     }
 
     @Override
     public void toBytes(ByteBuf buffer)
     {
-        ;
     }
 
     @Override
     public void fromBytes(ByteBuf buffer)
     {
-        ;
     }
 
     @Override

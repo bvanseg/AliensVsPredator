@@ -168,8 +168,8 @@ public class ModelHammerpede extends Model<EntityHammerpede>
     @Override
     public void render(EntityHammerpede obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
-        
+        EntityLivingBase base = (EntityLivingBase) obj;
+
         if (base != null)
         {
             EntityHammerpede hammerpede = (EntityHammerpede) base;

@@ -18,7 +18,6 @@ public class RenderBullet extends Render<EntityBullet>
     @Override
     public void doRender(EntityBullet entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {
-        ;
     }
 
     @Override

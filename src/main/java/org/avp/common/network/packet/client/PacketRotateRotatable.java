@@ -20,7 +20,6 @@ public class PacketRotateRotatable implements IMessage, IMessageHandler<PacketRo
 
     public PacketRotateRotatable()
     {
-        ;
     }
 
     public PacketRotateRotatable(int direction, int x, int y, int z)

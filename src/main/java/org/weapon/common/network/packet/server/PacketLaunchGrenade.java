@@ -13,19 +13,16 @@ public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaun
 {
     public PacketLaunchGrenade()
     {
-        ;
     }
 
     @Override
     public void toBytes(ByteBuf buffer)
     {
-        ;
     }
 
     @Override
     public void fromBytes(ByteBuf buffer)
     {
-        ;
     }
 
     @Override

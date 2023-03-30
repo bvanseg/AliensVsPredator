@@ -38,7 +38,6 @@ public class MedpodTransforms
             @Override
             public void pre(Entity entity, float partialTicks)
             {
-                ;
             }
 
             @Override
@@ -55,7 +54,6 @@ public class MedpodTransforms
             @Override
             public void pre(Entity entity, float partialTicks)
             {
-                ;
             }
 
             @Override
@@ -70,7 +68,6 @@ public class MedpodTransforms
             @Override
             public void pre(Entity entity, float partialTicks)
             {
-                ;
             }
 
             @Override

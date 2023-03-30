@@ -49,7 +49,6 @@ public class PressureHUDRenderEvent
     @SubscribeEvent
     public void renderWorldLastEvent(RenderWorldLastEvent event)
     {
-        ;
     }
 
     @SubscribeEvent
@@ -109,7 +108,6 @@ public class PressureHUDRenderEvent
     {
         if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
         {
-            ;
         }
     }
 

@@ -274,7 +274,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     @Override
     protected void despawnEntity()
     {
-        ;
     }
 
     /** Animation Dependent **/

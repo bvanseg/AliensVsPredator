@@ -11,19 +11,16 @@ public class PacketReloadFirearm implements IMessage, IMessageHandler<PacketRelo
 {
     public PacketReloadFirearm()
     {
-        ;
     }
 
     @Override
     public void fromBytes(ByteBuf buf)
     {
-        ;
     }
 
     @Override
     public void toBytes(ByteBuf buf)
     {
-        ;
     }
 
     @Override

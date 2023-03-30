@@ -162,6 +162,5 @@ public class EntityGrenade extends EntityThrowable
     @Override
     protected void onImpact(RayTraceResult result)
     {
-        ;
     }
 }
