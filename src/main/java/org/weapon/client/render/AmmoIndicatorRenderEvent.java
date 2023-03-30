@@ -42,11 +42,11 @@ public class AmmoIndicatorRenderEvent
 
     private void drawAmmoIndicator(ItemStack itemStack, int xOffset, int yOffset) {
         ItemFirearm itemFireArm = (ItemFirearm) itemStack.getItem();
-        String displayStatus = " " + itemFireArm.getAmmoCount(itemStack) + "/" + itemFireArm.getFirearmProfile().getAmmoMax();
+        String displayStatus = " " + itemFireArm.getAmmoCount(itemStack) + "/" + itemFireArm.getFirearmProperties().getMaxAmmunition();
         int barWidth = 80;
 
         int scaledHeight = Screen.scaledDisplayResolution().getScaledHeight();
-        Draw.drawProgressBar(displayStatus, itemFireArm.getFirearmProfile().getAmmoMax(), itemFireArm.getAmmoCount(itemStack), xOffset, scaledHeight - yOffset, barWidth, 1, 0, 0xFFFF0000, false);
+        Draw.drawProgressBar(displayStatus, itemFireArm.getFirearmProperties().getMaxAmmunition(), itemFireArm.getAmmoCount(itemStack), xOffset, scaledHeight - yOffset, barWidth, 1, 0, 0xFFFF0000, false);
         //Draw.drawItemIcon(itemFireArm.getAmmoType(), (Screen.scaledDisplayResolution().getScaledWidth() / 2) + barWidth / 2 - Draw.getStringRenderWidth(displayStatus) - 2, Screen.scaledDisplayResolution().getScaledHeight() - 53, 16, 16);
     }
 }

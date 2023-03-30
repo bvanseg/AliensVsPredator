@@ -1,13 +1,7 @@
 package org.avp.common.item.expansion;
 
+import com.asx.mdx.common.minecraft.item.HookedItem;
 import org.avp.common.inventory.ContainerTurret.ITurretAmmunition;
-import org.weapon.common.item.firearm.Classification;
-import org.weapon.common.item.firearm.ItemAmmunition;
 
-public class ItemSMGAmmo extends ItemAmmunition implements ITurretAmmunition
-{
-    public ItemSMGAmmo()
-    {
-        super(Classification.SUB_MACHINE_GUN);
-    }
+public class ItemSMGAmmo extends HookedItem implements ITurretAmmunition {
 }

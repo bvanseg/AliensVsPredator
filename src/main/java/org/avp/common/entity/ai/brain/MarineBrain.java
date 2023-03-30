@@ -15,7 +15,7 @@ import org.lib.brain.impl.sensor.NearestAvoidTargetBrainSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
 import org.weapon.common.entity.EntityGrenade;
-import org.weapon.common.item.firearm.FirearmProfile;
+import org.weapon.common.item.firearm.rework.FirearmProperties;
 
 /**
  * @author Boston Vanseghi
@@ -66,8 +66,8 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     }
 
     private int getAttackDelayBasedOnFirearm() {
-        FirearmProfile firearmProfile = this.getEntity().getMarineType().getFirearmItem().getFirearmProfile();
-        double rpm = firearmProfile.getRoundsPerMinute();
+        FirearmProperties firearmProperties = this.getEntity().getMarineType().getFirearmItem().getFirearmProperties();
+        double rpm = 1000; // TODO: Use a proper rpm value here.
         double rps = rpm / 60; // Rounds per second
         double rpt = rps / 20; // Rounds per tick
         return (int) (1 / rpt); // How many ticks (x) must the entity wait until they can fire once (1 = rpt * x)

@@ -1,5 +1,6 @@
 package org.weapon.common.network.packet.server;
 
+import com.asx.mdx.client.sound.Sound;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
@@ -16,8 +17,8 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.alien.common.block.BlockHiveResin;
 import org.alien.common.world.hive.AlienHiveHandler;
 import org.avp.common.AVPDamageSources;
-import org.weapon.common.item.firearm.FirearmProfile;
 import org.weapon.common.item.firearm.ItemFirearm;
+import org.weapon.common.item.firearm.rework.FirearmProperties;
 
 public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirearmSync, PacketFirearmSync>
 {
@@ -33,14 +34,14 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
         ;
     }
 
-    public PacketFirearmSync(RayTraceResult.Type hitType, Entity entity, int hitX, int hitY, int hitZ, FirearmProfile firearm)
+    public PacketFirearmSync(RayTraceResult.Type hitType, Entity entity, int hitX, int hitY, int hitZ, FirearmProperties firearmProperties)
     {
         this.hitType = hitType.ordinal();
         this.entityId = entity != null ? entity.getEntityId() : -1;
         this.hitX = hitX;
         this.hitY = hitY;
         this.hitZ = hitZ;
-        this.firearmId = firearm.getGlobalId();
+        this.firearmId = firearmProperties.getId();
     }
 
     @Override
@@ -81,12 +82,15 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
                 else if(ctx.getServerHandler().player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
                         itemFirearm = (ItemFirearm) ctx.getServerHandler().player.getHeldItemOffhand().getItem();
 
-                FirearmProfile firearm = FirearmProfile.getFirearmForGlobalId(packet.firearmId);
+                FirearmProperties firearmProperties = FirearmProperties.getById(packet.firearmId);
 
                 if (itemFirearm != null && itemFirearm.canSoundPlay())
                 {
-                    world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), firearm.getSound().event(), SoundCategory.PLAYERS, 1F, 1F, true);
-                    itemFirearm.setLastSoundPlayed(System.currentTimeMillis());
+                    Sound firearmSound = itemFirearm.getFirearmProperties().getFireSounds().get(itemFirearm.getFirearmProperties().getDefaultFireMode());
+
+                    if (firearmSound != null) {
+                        world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), firearmSound.event(), SoundCategory.PLAYERS, 1F, 1F, true);
+                    }
                 }
 
                 if (hitType == RayTraceResult.Type.ENTITY)
@@ -98,7 +102,8 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
                         if (entity != null)
                         {
                             entity.hurtResistantTime = 0;
-                            entity.attackEntityFrom(AVPDamageSources.causeBulletDamage(ctx.getServerHandler().player), firearm.getClassification().getBaseDamage());
+                            // TODO: Calculate damage based on weapon + ammo combo.
+                            entity.attackEntityFrom(AVPDamageSources.causeBulletDamage(ctx.getServerHandler().player), firearmProperties.getDamageMultiplier());
                         }
                     }
                 }

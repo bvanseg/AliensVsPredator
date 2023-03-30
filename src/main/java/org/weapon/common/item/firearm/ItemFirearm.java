@@ -1,6 +1,7 @@
 package org.weapon.common.item.firearm;
 
 import com.asx.mdx.client.ClientGame;
+import com.asx.mdx.client.sound.Sound;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import com.asx.mdx.common.minecraft.item.HookedItem;
 import net.minecraft.client.util.ITooltipFlag;
@@ -14,6 +15,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
@@ -22,6 +24,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPNetworking;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;
+import org.weapon.common.item.firearm.rework.FirearmProperties;
+import org.weapon.common.item.firearm.rework.mode.FireMode;
 import org.weapon.common.network.packet.server.PacketFirearmSync;
 
 import java.util.List;
@@ -30,24 +34,24 @@ import java.util.Set;
 public class ItemFirearm extends HookedItem
 {
     
-    private final FirearmProfile firearmProfile;
-    private long                 lastSoundPlayed;
+    private final FirearmProperties firearmProperties;
     private float                breakProgress;
     private int                  breakingIndex;
 
-    public ItemFirearm(FirearmProfile firearmProfile)
+    public ItemFirearm(FirearmProperties firearmProperties)
     {
-        this.firearmProfile = firearmProfile;
+        this.firearmProperties = firearmProperties;
         this.setMaxStackSize(1);
-        this.lastSoundPlayed = 0;
     }
 
     private static final String AMMUNITION_NBT_KEY = "Ammunition";
+    private static final String FIRE_MODE_ID_NBT_KEY = "FireModeId";
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         ItemStack itemStack = player.getHeldItem(hand);
+        FireMode activeFireMode = this.getActiveFireMode(itemStack);
 
         if (!player.isCreative() && !player.isSpectator()) {
             int ammunition = this.getAmmoCount(itemStack);
@@ -58,10 +62,7 @@ public class ItemFirearm extends HookedItem
             }
 
             // Decrement ammo count on fire.
-            NBTTagCompound weaponNBT = itemStack.getTagCompound();
-            int ammoCount = weaponNBT.getInteger(AMMUNITION_NBT_KEY);
-            weaponNBT.setInteger(AMMUNITION_NBT_KEY, ammoCount - firearmProfile.getAmmoConsumptionRate());
-            itemStack.setTagCompound(weaponNBT);
+            this.consumeAmmunition(itemStack, activeFireMode);
         }
 
         if (!world.isRemote) {
@@ -70,11 +71,14 @@ public class ItemFirearm extends HookedItem
 
         if (world.isRemote) {
             this.renderRecoil();
-            this.fixDelay();
+            this.setRightClickDelay(activeFireMode);
 
             if (this.canSoundPlay()) {
-                world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), this.firearmProfile.getSound().event(), SoundCategory.PLAYERS, 1F, 1F, true);
-                this.setLastSoundPlayed(System.currentTimeMillis());
+                Sound soundForFireMode = this.firearmProperties.getFireSounds().get(activeFireMode);
+
+                if (soundForFireMode != null) {
+                    world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), soundForFireMode.event(), SoundCategory.PLAYERS, 1F, 1F, true);
+                }
             }
 
             // TODO: Move this logic server-side.
@@ -83,26 +87,33 @@ public class ItemFirearm extends HookedItem
             // TODO: The client shouldn't tell the server what it hit.
             if (trace != null && trace.typeOfHit == Type.BLOCK)
             {
-                AVPNetworking.instance.sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.x, (int) trace.hitVec.y, (int) trace.hitVec.z, this.firearmProfile));
+                AVPNetworking.instance.sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.x, (int) trace.hitVec.y, (int) trace.hitVec.z, this.firearmProperties));
             }
 
             // TODO: The client shouldn't tell the server what it hit.
             if (trace != null && trace.typeOfHit == Type.ENTITY)
             {
-                AVPNetworking.instance.sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, 0, 0, 0, this.firearmProfile));
+                AVPNetworking.instance.sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, 0, 0, 0, this.firearmProperties));
             }
         }
 
         return super.onItemRightClick(world, player, hand);
     }
-    
-    private boolean tryConsumeAmmoForFirearm(EntityPlayer player) {
+
+    private void consumeAmmunition(ItemStack itemStack, FireMode activeFireMode) {
+        NBTTagCompound weaponNBT = itemStack.getTagCompound();
+        int ammoCount = weaponNBT.getInteger(AMMUNITION_NBT_KEY);
+        int newAmmoCount = MathHelper.clamp(ammoCount - activeFireMode.getShotsPerTriggerPull(), 0, this.firearmProperties.getMaxAmmunition());
+        weaponNBT.setInteger(AMMUNITION_NBT_KEY, newAmmoCount);
+        itemStack.setTagCompound(weaponNBT);
+    }
+
+    private boolean tryConsumeRoundsForFirearm(EntityPlayer player) {
         InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(player);
 
         // Find ammunition items.
         Set<Item> ammoItems = inventorySnapshot.getItemsMatchingPredicate(
-                item -> item instanceof ItemAmmunition &&
-                        ((ItemAmmunition)item).getClassification() == this.firearmProfile.getClassification()
+                item -> this.firearmProperties.getConsumablesForReload().contains(item)
         );
 
         // If no ammo, failed to consume.
@@ -114,7 +125,7 @@ public class ItemFirearm extends HookedItem
     }
 
     public void reload(EntityPlayer player, ItemStack itemStack) {
-        boolean flag = tryConsumeAmmoForFirearm(player);
+        boolean flag = tryConsumeRoundsForFirearm(player);
 
         if (flag) {
             NBTTagCompound weaponNBT = itemStack.getTagCompound();
@@ -123,33 +134,31 @@ public class ItemFirearm extends HookedItem
                 weaponNBT = new NBTTagCompound();
             }
 
-            weaponNBT.setInteger(AMMUNITION_NBT_KEY, this.firearmProfile.getAmmoMax());
+            weaponNBT.setInteger(AMMUNITION_NBT_KEY, this.firearmProperties.getMaxAmmunition());
             itemStack.setTagCompound(weaponNBT);
         }
     }
 
     public boolean canSoundPlay()
     {
-        long major = System.currentTimeMillis() / 1000 - this.getLastSoundPlayTime() / 1000;
-        long minor = Math.abs((System.currentTimeMillis() - this.getLastSoundPlayTime()) - (major * 1000));
-        // TODO: We can just do bit manipulation instead of whatever this is. Also use ticks instead of system time.
-        double time = Double.parseDouble(String.format("%s.%s", major, minor));
-        return this.getLastSoundPlayTime() == 0 || (time >= this.getFirearmProfile().getSoundLength());
+        return true;
     }
 
     @SideOnly(Side.CLIENT)
     public void renderRecoil()
     {
-        ClientGame.instance.minecraft().player.renderArmPitch -= this.firearmProfile.getRecoil() * 40.0F;
-        ClientGame.instance.minecraft().player.renderArmYaw += this.firearmProfile.getRecoil() * 5.0F;
-        ClientGame.instance.minecraft().player.rotationPitch -= this.firearmProfile.getRecoil() * 1.4F;
+        ClientGame.instance.minecraft().player.renderArmPitch -= this.firearmProperties.getRecoil() * 40.0F;
+        ClientGame.instance.minecraft().player.renderArmYaw += this.firearmProperties.getRecoil() * 5.0F;
+        ClientGame.instance.minecraft().player.rotationPitch -= this.firearmProperties.getRecoil() * 1.4F;
     }
 
     @SideOnly(Side.CLIENT)
-    public void fixDelay()
+    public void setRightClickDelay(FireMode fireMode)
     {
         ClientGame.instance.setEquippedProgress(0.85F);
-        ClientGame.instance.setRightClickDelayTimer((int) (60 /** seconds **/ / this.getFirearmProfile().getRoundsPerMinute() * 20 /** ticks **/));
+        // TODO: Instead of setting the right click delay timer, cache the time until next shot and then return early in the right click method above.
+//        ClientGame.instance.setRightClickDelayTimer((int) (60 /** seconds **/ / this.getFirearmProfile().getRoundsPerMinute() * 20 /** ticks **/));
+        ClientGame.instance.setRightClickDelayTimer(fireMode.isFullyAutomatic() ? 0 : 20);
     }
 
     @Override
@@ -193,19 +202,32 @@ public class ItemFirearm extends HookedItem
         return weaponNBT.getInteger(AMMUNITION_NBT_KEY);
     }
 
-    public long getLastSoundPlayTime()
-    {
-        return this.lastSoundPlayed;
+    public FireMode getActiveFireMode(ItemStack itemStack) {
+        if (!(itemStack.getItem() instanceof ItemFirearm)) {
+            throw new UnsupportedOperationException("Can not read active fire mode of a non-firearm item!");
+        }
+
+        NBTTagCompound weaponNBT = itemStack.getTagCompound();
+
+        if (weaponNBT == null) {
+            weaponNBT = new NBTTagCompound();
+            itemStack.setTagCompound(weaponNBT);
+        }
+
+        if (!weaponNBT.hasKey(FIRE_MODE_ID_NBT_KEY)) {
+            weaponNBT.setInteger(FIRE_MODE_ID_NBT_KEY, this.firearmProperties.getDefaultFireMode().getId());
+        }
+
+        int fireModeId = weaponNBT.getInteger(FIRE_MODE_ID_NBT_KEY);
+
+        FireMode activeFireMode = FireMode.getById(fireModeId);
+
+        return activeFireMode != null ? activeFireMode : this.firearmProperties.getDefaultFireMode();
     }
 
-    public void setLastSoundPlayed(long lastSoundPlayed)
+    public FirearmProperties getFirearmProperties()
     {
-        this.lastSoundPlayed = lastSoundPlayed;
-    }
-
-    public FirearmProfile getFirearmProfile()
-    {
-        return firearmProfile;
+        return this.firearmProperties;
     }
 
     public float getBreakProgress()

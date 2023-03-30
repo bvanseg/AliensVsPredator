@@ -1,5 +1,6 @@
 package org.avp.common.world;
 
+import com.asx.mdx.client.sound.Sound;
 import net.minecraft.util.SoundEvent;
 import org.weapon.common.item.firearm.ItemFirearm;
 import org.weapon.common.item.init.WeaponItems;
@@ -31,7 +32,8 @@ public enum MarineTypes
 
     public SoundEvent getGunfireSound()
     {
-        return itemFirearm.getFirearmProfile().getSound().event();
+        Sound defaultFireSound = itemFirearm.getFirearmProperties().getFireSounds().get(itemFirearm.getFirearmProperties().getDefaultFireMode());
+        return defaultFireSound != null ? defaultFireSound.event() : null;
     }
 
     public ItemFirearm getFirearmItem()
