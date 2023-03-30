@@ -25,6 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPNetworking;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;
+import org.weapon.common.delay.DelayHandler;
 import org.weapon.common.item.firearm.rework.FirearmProperties;
 import org.weapon.common.item.firearm.rework.mode.FireMode;
 import org.weapon.common.network.packet.server.PacketFirearmSync;
@@ -54,6 +55,16 @@ public class ItemFirearm extends HookedItem
     {
         ItemStack itemStack = player.getHeldItem(hand);
         FireMode activeFireMode = this.getActiveFireMode(itemStack);
+
+        // Remove MC's hardcoded delay for right-clicking.
+        if (world.isRemote) {
+            ClientGame.instance.setRightClickDelayTimer(0);
+        }
+
+        // If the weapon has an active delay, return early.
+        if (DelayHandler.instance.hasDelay(player, hand)) {
+            return super.onItemRightClick(world, player, hand);
+        }
 
         if (!player.isCreative() && !player.isSpectator()) {
             int ammunition = this.getAmmoCount(itemStack);
@@ -95,8 +106,11 @@ public class ItemFirearm extends HookedItem
 
             // Render recoil after the weapon as fired. Otherwise, weapons with massive recoil (snipers, for example) will nearly always miss the target.
             this.renderRecoil();
-            this.setRightClickDelay(activeFireMode);
+            ClientGame.instance.setEquippedProgress(0.85F);
         }
+
+        int delay = this.firearmProperties.getTickDelayBetweenShots();
+        DelayHandler.instance.setDelay(player, hand, player.world.getTotalWorldTime() + delay);
 
         return super.onItemRightClick(world, player, hand);
     }
@@ -126,6 +140,11 @@ public class ItemFirearm extends HookedItem
     }
 
     public void reload(EntityPlayer player, ItemStack itemStack, EnumHand hand) {
+        // If a reload is already scheduled, do not run again.
+        if (ReloadHandler.instance.isReloading(player, hand)) {
+            return;
+        }
+
         boolean ableToConsumeRounds = tryConsumeRoundsForFirearm(player);
 
         if (ableToConsumeRounds) {
@@ -149,15 +168,6 @@ public class ItemFirearm extends HookedItem
         ClientGame.instance.minecraft().player.renderArmPitch -= this.firearmProperties.getRecoil() * 40.0F;
         ClientGame.instance.minecraft().player.renderArmYaw += this.firearmProperties.getRecoil() * 5.0F;
         ClientGame.instance.minecraft().player.rotationPitch -= this.firearmProperties.getRecoil() * 1.4F;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public void setRightClickDelay(FireMode fireMode)
-    {
-        ClientGame.instance.setEquippedProgress(0.85F);
-        // TODO: Instead of setting the right click delay timer, cache the time until next shot and then return early in the right click method above.
-//        ClientGame.instance.setRightClickDelayTimer((int) (60 /** seconds **/ / this.getFirearmProfile().getRoundsPerMinute() * 20 /** ticks **/));
-        ClientGame.instance.setRightClickDelayTimer(fireMode.isFullyAutomatic() ? 0 : 20);
     }
 
     @Override

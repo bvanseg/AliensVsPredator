@@ -1,4 +1,4 @@
-package org.weapon.common.reload;
+package org.weapon.common;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
@@ -8,11 +8,11 @@ import java.util.Objects;
 /**
  * @author Boston Vanseghi
  */
-public class ReloadKey {
+public class PlayerHandKey {
     private final EntityPlayer player;
     private final EnumHand enumHand;
 
-    public ReloadKey(EntityPlayer player, EnumHand enumHand) {
+    public PlayerHandKey(EntityPlayer player, EnumHand enumHand) {
         this.player = player;
         this.enumHand = enumHand;
     }
@@ -26,7 +26,7 @@ public class ReloadKey {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ReloadKey reloadKey = (ReloadKey) o;
-        return player.equals(reloadKey.player) && enumHand == reloadKey.enumHand;
+        PlayerHandKey playerHandKey = (PlayerHandKey) o;
+        return player.equals(playerHandKey.player) && enumHand == playerHandKey.enumHand;
     }
 }

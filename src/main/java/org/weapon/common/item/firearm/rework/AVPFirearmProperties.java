@@ -18,6 +18,7 @@ public class AVPFirearmProperties {
                     .setRecoil(0.6F)
                     .setDamageMultiplier(1F)
                     .setCanAim(true)
+                    .setTickDelayBetweenShots(1)
                     .addConsumableItemForReload(WeaponItems.ITEM_AMMO_AR)
                     .setFireSound(FireModes.AUTOMATIC, AVPSounds.WEAPON_GUNSHOT)
                     .build();
@@ -29,6 +30,7 @@ public class AVPFirearmProperties {
                     .setRecoil(0.5F)
                     .setDamageMultiplier(1F)
                     .setCanAim(true)
+                    .setTickDelayBetweenShots(1)
                     .addConsumableItemForReload(WeaponItems.ITEM_AMMO_AR)
                     .setFireSound(FireModes.AUTOMATIC, AVPSounds.WEAPON_GUNSHOT)
                     .build();
@@ -40,6 +42,7 @@ public class AVPFirearmProperties {
                     .setRecoil(0.5F)
                     .setDamageMultiplier(1F)
                     .setCanAim(true)
+                    .setTickDelayBetweenShots(10)
                     .addConsumableItemForReload(WeaponItems.ITEM_AMMO_AR)
                     .setFireSound(FireModes.QUAD_BURST, AVPSounds.WEAPON_PULSERIFLE)
                     // TODO: Set fire sound for automatic mode.
@@ -52,6 +55,7 @@ public class AVPFirearmProperties {
                     .setRecoil(0.2F)
                     .setDamageMultiplier(1F)
                     .setCanAim(true)
+                    .setTickDelayBetweenShots(0)
                     .addConsumableItemForReload(WeaponItems.ITEM_AMMO_SMG)
                     .setFireSound(FireModes.AUTOMATIC, AVPSounds.WEAPON_M56SG)
                     .build();
@@ -63,6 +67,7 @@ public class AVPFirearmProperties {
                     .setRecoil(0.1F)
                     .setDamageMultiplier(1F)
                     .setCanAim(true)
+                    .setTickDelayBetweenShots(6)
                     .addConsumableItemForReload(WeaponItems.ITEM_AMMO_PISTOL)
                     .setFireSound(FireModes.SEMI_AUTOMATIC, AVPSounds.WEAPON_GUNSHOT)
                     .build();
@@ -74,6 +79,7 @@ public class AVPFirearmProperties {
                     .setRecoil(1.5F)
                     .setDamageMultiplier(20F)
                     .setCanAim(true)
+                    .setTickDelayBetweenShots(20)
                     .addConsumableItemForReload(WeaponItems.ITEM_AMMO_SNIPER)
                     .setFireSound(FireModes.SEMI_AUTOMATIC, AVPSounds.WEAPON_SNIPER)
                     .build();

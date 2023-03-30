@@ -1,4 +1,4 @@
-package org.weapon.common.reload;
+package org.weapon.common;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;
@@ -6,17 +6,15 @@ import net.minecraft.util.EnumHand;
 /**
  * @author Boston Vanseghi
  */
-public class ReloadData {
+public class PlayerHandUseFuture {
 
     private final EntityPlayer player;
     private final EnumHand enumHand;
-    private final Runnable runnable;
     private final long worldTimeToRunAt;
 
-    public ReloadData(EntityPlayer player, EnumHand enumHand, Runnable runnable, long worldTimeToRunAt) {
+    public PlayerHandUseFuture(EntityPlayer player, EnumHand enumHand, long worldTimeToRunAt) {
         this.player = player;
         this.enumHand = enumHand;
-        this.runnable = runnable;
         this.worldTimeToRunAt = worldTimeToRunAt;
     }
 
@@ -26,10 +24,6 @@ public class ReloadData {
 
     public EnumHand getEnumHand() {
         return this.enumHand;
-    }
-
-    public Runnable getRunnable() {
-        return this.runnable;
     }
 
     public long getWorldTimeToRunAt() {

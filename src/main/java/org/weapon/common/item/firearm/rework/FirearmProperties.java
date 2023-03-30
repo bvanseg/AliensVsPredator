@@ -40,6 +40,8 @@ public class FirearmProperties {
 
     private boolean canAim;
 
+    private int tickDelayBetweenShots;
+
     private Map<FireMode, Sound> fireSounds;
 
     private Set<Item> consumablesForReload;
@@ -58,6 +60,7 @@ public class FirearmProperties {
         this.recoil = 0F;
         this.damageMultiplier = 1F;
         this.canAim = false;
+        this.tickDelayBetweenShots = 1;
         this.fireSounds = Collections.emptyMap();
         this.consumablesForReload = Collections.emptySet();
     }
@@ -98,44 +101,16 @@ public class FirearmProperties {
         return this.canAim;
     }
 
+    public int getTickDelayBetweenShots() {
+        return this.tickDelayBetweenShots;
+    }
+
     public Map<FireMode, Sound> getFireSounds() {
         return Collections.unmodifiableMap(this.fireSounds);
     }
 
     public Set<Item> getConsumablesForReload() {
         return Collections.unmodifiableSet(this.consumablesForReload);
-    }
-
-    /*
-     * Setters
-     */
-
-    private void setMaxAmmunition(int maxAmmunition) {
-        this.maxAmmunition = maxAmmunition;
-    }
-
-    private void setReloadTimeInTicks(int reloadTimeInTicks) {
-        this.reloadTimeInTicks = reloadTimeInTicks;
-    }
-
-    private void setRecoil(float recoil) {
-        this.recoil = recoil;
-    }
-
-    private void setDamageMultiplier(float damageMultiplier) {
-        this.damageMultiplier = damageMultiplier;
-    }
-
-    private void setCanAim(boolean canAim) {
-        this.canAim = canAim;
-    }
-
-    private void setFireSounds(Map<FireMode, Sound> fireSounds) {
-        this.fireSounds = fireSounds;
-    }
-
-    private void setConsumablesForReload(Set<Item> consumablesForReload) {
-        this.consumablesForReload = consumablesForReload;
     }
 
     /*
@@ -154,7 +129,7 @@ public class FirearmProperties {
         }
 
         public Builder setMaxAmmunition(int maxAmmunition) {
-            this.firearmProperties.setMaxAmmunition(maxAmmunition);
+            this.firearmProperties.maxAmmunition = maxAmmunition;
             return this;
         }
 
@@ -164,17 +139,22 @@ public class FirearmProperties {
         }
 
         public Builder setRecoil(float recoil) {
-            this.firearmProperties.setRecoil(recoil);
+            this.firearmProperties.recoil = recoil;
             return this;
         }
 
         public Builder setDamageMultiplier(float damageMultiplier) {
-            this.firearmProperties.setDamageMultiplier(damageMultiplier);
+            this.firearmProperties.damageMultiplier = damageMultiplier;
             return this;
         }
 
         public Builder setCanAim(boolean canAim) {
-            this.firearmProperties.setCanAim(canAim);
+            this.firearmProperties.canAim = canAim;
+            return this;
+        }
+
+        public Builder setTickDelayBetweenShots(int tickDelayBetweenShots) {
+            this.firearmProperties.tickDelayBetweenShots = tickDelayBetweenShots;
             return this;
         }
 
@@ -189,8 +169,8 @@ public class FirearmProperties {
         }
 
         public FirearmProperties build() {
-            this.firearmProperties.setFireSounds(this.fireSounds);
-            this.firearmProperties.setConsumablesForReload(this.consumableItemsForReload);
+            this.firearmProperties.fireSounds = this.fireSounds;
+            this.firearmProperties.consumablesForReload = this.consumableItemsForReload;
             return this.firearmProperties;
         }
     }
