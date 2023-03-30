@@ -71,9 +71,6 @@ public class ItemFirearm extends HookedItem
         }
 
         if (world.isRemote) {
-            this.renderRecoil();
-            this.setRightClickDelay(activeFireMode);
-
             if (this.canSoundPlay()) {
                 Sound soundForFireMode = this.firearmProperties.getFireSounds().get(activeFireMode);
 
@@ -96,6 +93,10 @@ public class ItemFirearm extends HookedItem
             {
                 AVPNetworking.instance.sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, 0, 0, 0, this.firearmProperties));
             }
+
+            // Render recoil after the weapon as fired. Otherwise, weapons with massive recoil (snipers, for example) will nearly always miss the target.
+            this.renderRecoil();
+            this.setRightClickDelay(activeFireMode);
         }
 
         return super.onItemRightClick(world, player, hand);
