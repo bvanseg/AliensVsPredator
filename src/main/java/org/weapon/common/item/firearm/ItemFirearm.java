@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPNetworking;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;
-import org.weapon.common.ReloadHandler;
+import org.weapon.common.reload.ReloadHandler;
 import org.weapon.common.item.firearm.rework.FirearmProperties;
 import org.weapon.common.item.firearm.rework.mode.FireMode;
 import org.weapon.common.network.packet.server.PacketFirearmSync;
@@ -71,12 +71,10 @@ public class ItemFirearm extends HookedItem
         }
 
         if (world.isRemote) {
-            if (this.canSoundPlay()) {
-                Sound soundForFireMode = this.firearmProperties.getFireSounds().get(activeFireMode);
+            Sound soundForFireMode = this.firearmProperties.getFireSounds().get(activeFireMode);
 
-                if (soundForFireMode != null) {
-                    world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), soundForFireMode.event(), SoundCategory.PLAYERS, 1F, 1F, true);
-                }
+            if (soundForFireMode != null) {
+                world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), soundForFireMode.event(), SoundCategory.PLAYERS, 1F, 1F, true);
             }
 
             // TODO: Move this logic server-side.
@@ -142,11 +140,6 @@ public class ItemFirearm extends HookedItem
                 itemStack.setTagCompound(weaponNBT);
             }, reloadTime);
         }
-    }
-
-    public boolean canSoundPlay()
-    {
-        return true;
     }
 
     @SideOnly(Side.CLIENT)

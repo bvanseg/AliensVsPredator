@@ -75,21 +75,25 @@ public class PacketFirearmSync implements IMessage, IMessageHandler<PacketFirear
                 World world = player.world;
                 RayTraceResult.Type hitType = Entities.getMovingObjectType(packet.hitType);
 
-                ItemFirearm itemFirearm = null;
+                ItemFirearm itemFirearm;
+
                 if(ctx.getServerHandler().player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
+                {
                     itemFirearm = (ItemFirearm) ctx.getServerHandler().player.getHeldItemMainhand().getItem();
+                }
                 else if(ctx.getServerHandler().player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
-                        itemFirearm = (ItemFirearm) ctx.getServerHandler().player.getHeldItemOffhand().getItem();
+                {
+                    itemFirearm = (ItemFirearm) ctx.getServerHandler().player.getHeldItemOffhand().getItem();
+                }
+                else
+                    return;
 
                 FirearmProperties firearmProperties = FirearmProperties.getById(packet.firearmId);
 
-                if (itemFirearm != null && itemFirearm.canSoundPlay())
-                {
-                    Sound firearmSound = itemFirearm.getFirearmProperties().getFireSounds().get(itemFirearm.getFirearmProperties().getDefaultFireMode());
+                Sound firearmSound = itemFirearm.getFirearmProperties().getFireSounds().get(itemFirearm.getFirearmProperties().getDefaultFireMode());
 
-                    if (firearmSound != null) {
-                        world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), firearmSound.event(), SoundCategory.PLAYERS, 1F, 1F, true);
-                    }
+                if (firearmSound != null) {
+                    world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), firearmSound.event(), SoundCategory.PLAYERS, 1F, 1F, true);
                 }
 
                 if (hitType == RayTraceResult.Type.ENTITY)

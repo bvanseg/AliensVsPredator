@@ -136,7 +136,10 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         {
             EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.0000001F);
             this.world.spawnEntity(entityBullet);
-            this.playSound(getMarineType().getGunfireSound(), 0.7F, 1F);
+            SoundEvent sound = getMarineType().getGunfireSound();
+            if (sound != null) {
+                this.playSound(sound, 0.7F, 1F);
+            }
             this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + this.getEyeHeight(), this.posZ, 1, 1, 1);
         }
     }

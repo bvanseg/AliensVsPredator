@@ -1,4 +1,4 @@
-package org.weapon.common;
+package org.weapon.common.reload;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.EnumHand;

@@ -25,7 +25,7 @@ import org.lib.common.EntityAccessor;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.predator.client.render.VisionModeRenderEvent;
 import org.weapon.client.render.AmmoIndicatorRenderEvent;
-import org.weapon.common.ReloadHandler;
+import org.weapon.common.reload.ReloadHandler;
 
 import java.util.ArrayList;
 
