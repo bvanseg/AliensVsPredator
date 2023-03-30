@@ -9,6 +9,8 @@ import org.weapon.common.item.init.WeaponItems;
  */
 public class AVPFirearmProperties {
 
+    private AVPFirearmProperties() {}
+
     public static final FirearmProperties AK47_PROPERTIES =
             new FirearmProperties.Builder(FireModes.AUTOMATIC)
                     .setMaxAmmunition(32)
