@@ -2,6 +2,7 @@ package org.weapon.common.network.packet.server;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumHand;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -29,13 +30,18 @@ public class PacketReloadFirearm implements IMessage, IMessageHandler<PacketRelo
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
             EntityPlayer player = ctx.getServerHandler().player;
 
-            if (player != null && player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
+            if (player == null) return;
+
+            if (player.getHeldItemMainhand().getItem() instanceof ItemFirearm)
             {
-                ((ItemFirearm) player.getHeldItemMainhand().getItem()).reload(ctx.getServerHandler().player, player.getHeldItemMainhand());
+                ItemFirearm firearm = ((ItemFirearm) player.getHeldItemMainhand().getItem());
+                firearm.reload(ctx.getServerHandler().player, player.getHeldItemMainhand(), EnumHand.MAIN_HAND);
             }
-            else if (player != null && player.getHeldItemOffhand() != null && player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
+
+            if (player.getHeldItemOffhand().getItem() instanceof ItemFirearm)
             {
-                ((ItemFirearm) player.getHeldItemOffhand().getItem()).reload(ctx.getServerHandler().player, player.getHeldItemOffhand());
+                ItemFirearm firearm = ((ItemFirearm) player.getHeldItemOffhand().getItem());
+                firearm.reload(ctx.getServerHandler().player, player.getHeldItemOffhand(), EnumHand.OFF_HAND);
             }
         });
 

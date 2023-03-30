@@ -58,6 +58,7 @@
   "weapon.m4": 						{ "sounds": [ "avp:items/weapons/m4/shoot0" ] },
   "weapon.m56sg": 					{ "sounds": [ "avp:items/weapons/smartgun/shoot0", "avp:items/weapons/smartgun/shoot1", "avp:items/weapons/smartgun/shoot2" ] },
   "weapon.m56sg.old": 				{ "sounds": [ "avp:items/weapons/smartgun/original" ] },
+  "weapon.reload": 					{ "sounds": [ "avp:items/weapons/reload" ] },
   "motiontracker.ping": 			{ "sounds": [ "avp:items/motiontracker/ping" ] },
   "motiontracker.pong": 			{ "sounds": [ "avp:items/motiontracker/pong" ] },
   "blocks.turret.shoot": 			{ "sounds": [ "avp:blocks/turret/shoot" ] },

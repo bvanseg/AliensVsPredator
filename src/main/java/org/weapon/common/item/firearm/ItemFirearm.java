@@ -24,6 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPNetworking;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;
+import org.weapon.common.ReloadHandler;
 import org.weapon.common.item.firearm.rework.FirearmProperties;
 import org.weapon.common.item.firearm.rework.mode.FireMode;
 import org.weapon.common.network.packet.server.PacketFirearmSync;
@@ -57,7 +58,7 @@ public class ItemFirearm extends HookedItem
             int ammunition = this.getAmmoCount(itemStack);
 
             if (ammunition <= 0) {
-                this.reload(player, itemStack);
+                this.reload(player, itemStack, hand);
                 return super.onItemRightClick(world, player, hand);
             }
 
@@ -124,18 +125,21 @@ public class ItemFirearm extends HookedItem
     	return true;
     }
 
-    public void reload(EntityPlayer player, ItemStack itemStack) {
-        boolean flag = tryConsumeRoundsForFirearm(player);
+    public void reload(EntityPlayer player, ItemStack itemStack, EnumHand hand) {
+        boolean ableToConsumeRounds = tryConsumeRoundsForFirearm(player);
 
-        if (flag) {
-            NBTTagCompound weaponNBT = itemStack.getTagCompound();
+        if (ableToConsumeRounds) {
+            long reloadTime = player.world.getTotalWorldTime() + this.firearmProperties.getReloadTimeInTicks();
+            ReloadHandler.instance.scheduleReload(player, hand, () -> {
+                NBTTagCompound weaponNBT = itemStack.getTagCompound();
 
-            if (weaponNBT == null) {
-                weaponNBT = new NBTTagCompound();
-            }
+                if (weaponNBT == null) {
+                    weaponNBT = new NBTTagCompound();
+                }
 
-            weaponNBT.setInteger(AMMUNITION_NBT_KEY, this.firearmProperties.getMaxAmmunition());
-            itemStack.setTagCompound(weaponNBT);
+                weaponNBT.setInteger(AMMUNITION_NBT_KEY, this.firearmProperties.getMaxAmmunition());
+                itemStack.setTagCompound(weaponNBT);
+            }, reloadTime);
         }
     }
 

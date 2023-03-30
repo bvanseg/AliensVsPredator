@@ -25,6 +25,7 @@ import org.lib.common.EntityAccessor;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.predator.client.render.VisionModeRenderEvent;
 import org.weapon.client.render.AmmoIndicatorRenderEvent;
+import org.weapon.common.ReloadHandler;
 
 import java.util.ArrayList;
 
@@ -77,6 +78,7 @@ public class AVPEventHandlers implements IInitEvent
         this.registerEvent(MaterialHandler.instance);
 
         this.registerEvent(CachedInventoryHandler.instance);
+        this.registerEvent(ReloadHandler.instance);
     }
 
     public void registerEvent(Object event)
