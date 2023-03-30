@@ -38,7 +38,7 @@
   "queen.hurt": 					{ "sounds": [ "avp:mobs/queen/hurt0", "avp:mobs/queen/hurt1", "avp:mobs/queen/hurt2", "avp:mobs/queen/hurt3" ] },
   "queen.living": 					{ "sounds": [ "avp:mobs/queen/living0", "avp:mobs/queen/living1", "avp:mobs/queen/living2", "avp:mobs/queen/living3" ] },
   "queen.living.constant": 			{ "sounds": [ "avp:mobs/queen/living-constant" ] },
-  "weapon.pulserifle": 				{ "sounds": [ "avp:items/weapons/pulserifle/shoot0", "avp:items/weapons/pulserifle/shoot1", "avp:items/weapons/pulserifle/shoot2", "avp:items/weapons/pulserifle/shoot3" ] },
+  "weapon.pulserifle": 				{ "sounds": [ "avp:items/weapons/pulserifle/shoot0", "avp:items/weapons/pulserifle/shoot1_1", "avp:items/weapons/pulserifle/shoot1_2", "avp:items/weapons/pulserifle/shoot2_1", "avp:items/weapons/pulserifle/shoot3_1", "avp:items/weapons/pulserifle/shoot3_2" ] },
   "predator.vision.switch": 		{ "sounds": [ "avp:items/predvision/switch" ] },
   "weapon.pulserifle.old": 			{ "sounds": [ "avp:items/weapons/pulserifle/original"] },
   "weapon.blades": 					{ "sounds": [ "avp:items/weapons/wristbracer/hit" ] },
