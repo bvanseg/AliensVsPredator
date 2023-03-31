@@ -9,7 +9,7 @@
         "description": {
             "translate": "avp.advancements.predators.acquire.artifact.description"
         },
-        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+        "background": "avp:textures/gui/advancements/backgrounds/yautja.png",
         "announce_to_chat": false
     },
     "criteria": {
