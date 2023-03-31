@@ -40,7 +40,7 @@ public class AVPFirearmProperties {
                     .setMaxAmmunition(99)
                     .setReloadTimeInTicks(20 * 3)
                     .setRecoil(0.5F)
-                    .setDamageMultiplier(1F)
+                    .setDamageMultiplier(4F)
                     .setCanAim(true)
                     .setTickDelayBetweenShots(10)
                     .addConsumableItemForReload(WeaponItems.ITEM_AMMO_AR)
