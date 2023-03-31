@@ -42,7 +42,7 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
         super(world);
         MaturityEntry maturityEntry = MaturityEntries.getEntryFor(this.getClass()).orElse(null);
         this.matureState = maturityEntry != null ? maturityEntry.getEntityClass() : EntityDrone.class;
-        this.setSize(1.0F, 0.4F);
+        this.setSize(0.65F, 0.4F);
         this.experienceValue = 16;
     }
 

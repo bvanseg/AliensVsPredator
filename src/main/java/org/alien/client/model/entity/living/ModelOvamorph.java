@@ -1,9 +1,8 @@
 package org.alien.client.model.entity.living;
 
+import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.math.MathHelper;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
 
 
@@ -61,40 +60,38 @@ public class ModelOvamorph extends Model<EntityOvamorph>
     }
 
     @Override
-    public void render(EntityOvamorph obj)
+    public void render(EntityOvamorph ovamorph)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;
 
-        if (base != null)
+        if (ovamorph != null)
         {
-            if (base instanceof EntityOvamorph)
-            {
-                EntityOvamorph ovamorph = (EntityOvamorph) base;
+            float progressPrev = ovamorph.renderOpenProgress;
+            ovamorph.renderOpenProgress = ovamorph.getOpenProgress();
+            ovamorph.renderOpenProgress = progressPrev + (ovamorph.renderOpenProgress - progressPrev) * ClientGame.instance.partialTicks();
 
-                float openAngle = 25;
-                float openSpeed = 0.075F;
-                float rotation = (float) Math.toRadians(openAngle + (MathHelper.sin(ovamorph.getOpenProgress() * openSpeed) * openAngle));
+            float openAngle = 37.5F;
+            float rotateAngle = openAngle * (ovamorph.renderOpenProgress / EntityOvamorph.MAX_OPEN_PROGRESS);
+            float rotation = (float) Math.toRadians(rotateAngle);
 
-                this.lFrontLobe2.rotateAngleX = rotation;
-                this.lFrontLobe2.rotateAngleZ = rotation;
-                this.lFrontLobe.rotateAngleX = rotation * 0.45F;
-                this.lFrontLobe.rotateAngleZ = rotation * 0.45F;
+            this.lFrontLobe2.rotateAngleX = rotation;
+            this.lFrontLobe2.rotateAngleZ = rotation;
+            this.lFrontLobe.rotateAngleX = rotation * 0.45F;
+            this.lFrontLobe.rotateAngleZ = rotation * 0.45F;
 
-                this.rFrontLobe2.rotateAngleX = rotation;
-                this.rFrontLobe2.rotateAngleZ = -rotation;
-                this.rFrontLobe.rotateAngleX = rotation * 0.45F;
-                this.rFrontLobe.rotateAngleZ = -rotation * 0.45F;
+            this.rFrontLobe2.rotateAngleX = rotation;
+            this.rFrontLobe2.rotateAngleZ = -rotation;
+            this.rFrontLobe.rotateAngleX = rotation * 0.45F;
+            this.rFrontLobe.rotateAngleZ = -rotation * 0.45F;
 
-                this.rBackLobe2.rotateAngleX = -rotation;
-                this.rBackLobe2.rotateAngleZ = -rotation;
-                this.rBackLobe.rotateAngleX = -rotation * 0.45F;
-                this.rBackLobe.rotateAngleZ = -rotation * 0.45F;
+            this.rBackLobe2.rotateAngleX = -rotation;
+            this.rBackLobe2.rotateAngleZ = -rotation;
+            this.rBackLobe.rotateAngleX = -rotation * 0.45F;
+            this.rBackLobe.rotateAngleZ = -rotation * 0.45F;
 
-                this.lBackLobe2.rotateAngleX = -rotation;
-                this.lBackLobe2.rotateAngleZ = rotation;
-                this.lBackLobe.rotateAngleX = -rotation * 0.45F;
-                this.lBackLobe.rotateAngleZ = rotation * 0.45F;
-            }
+            this.lBackLobe2.rotateAngleX = -rotation;
+            this.lBackLobe2.rotateAngleZ = rotation;
+            this.lBackLobe.rotateAngleX = -rotation * 0.45F;
+            this.lBackLobe.rotateAngleZ = rotation * 0.45F;
         }
 
         draw(this.rFrontLobe2);

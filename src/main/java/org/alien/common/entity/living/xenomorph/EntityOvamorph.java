@@ -25,7 +25,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     private static final DataParameter<Integer> TIME_LEFT_UNTIL_OPEN = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.VARINT);
     private static final DataParameter<Byte> OPEN_PROGRESS = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);
 
-    public static final int MAX_OPEN_PROGRESS = 21;
+    public static final int MAX_OPEN_PROGRESS = 42;
 
     public boolean acceleratedHatching;
     public int hatchWaitTimer;
@@ -35,6 +35,8 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
 
     public boolean wantsToBeMoved;
     public boolean hasBeenMoved;
+
+    public float renderOpenProgress;
 
     private OvamorphBrain brain;
 
@@ -47,6 +49,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
         this.containsFacehugger = true;
         this.wantsToBeMoved = false;
         this.hasBeenMoved = false;
+        this.renderOpenProgress = -1;
     }
 
     @Override
@@ -74,7 +77,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     protected void entityInit()
     {
         super.entityInit();
-        this.getDataManager().register(OPEN_PROGRESS, (byte) -MAX_OPEN_PROGRESS);
+        this.getDataManager().register(OPEN_PROGRESS, (byte) 0);
         this.getDataManager().register(TIME_LEFT_UNTIL_OPEN, 20 * 30 + (10 * rand.nextInt(24)));
     }
 
@@ -140,6 +143,15 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
 
             if (this.timeSinceHatched >= 20 * 60 * 5)
                 this.setDead();
+        }
+    }
+
+    @Override
+    public void notifyDataManagerChange(DataParameter<?> key) {
+        super.notifyDataManagerChange(key);
+
+        if (key == OPEN_PROGRESS && this.renderOpenProgress == -1) {
+            this.renderOpenProgress = this.getOpenProgress();
         }
     }
 
