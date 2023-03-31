@@ -1,5 +1,6 @@
 package org.alien.common.entity.ai.brain.parasitoid;
 
+import org.alien.common.entity.ai.brain.task.parasitoid.TrilobiteAttachedToHostBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.species223ode.EntityTrilobite;
 import org.lib.brain.impl.AbstractEntityBrain;
@@ -32,5 +33,8 @@ public class TrilobiteBrain extends AbstractEntityBrain<EntityTrilobite> {
 		this.addTask(new HurtByTargetBrainTask());
 		this.addTask(new LeapAtTargetBrainTask(0.85F));
 		this.addTask(new NearestAttackableTargetBrainTask());
+
+		// Trilobite/parasite-specific tasks.
+		this.addTask(new TrilobiteAttachedToHostBrainTask());
 	}
 }

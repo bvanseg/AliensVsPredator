@@ -48,7 +48,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
 
     private static final DataParameter<Boolean> FERTILE = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.BOOLEAN);
     public static final DataParameter<NBTTagCompound> DETACHED_TENTACLES = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.COMPOUND_TAG);
-    private int ticksOnHost = 0;
+    public int ticksOnHost = 0;
 
     private TrilobiteBrain brain;
 
@@ -214,56 +214,6 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
             this.motionY *= 0.98F;
             this.motionZ *= 0.98F;
             this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
-        }
-
-        if (this.isAttachedToHost())
-        {
-            this.ticksOnHost++;
-
-            if (this.getRidingEntity() instanceof EntityLiving)
-            {
-                EntityLiving living = (EntityLiving) this.getRidingEntity();
-
-                living.setNoAI(true);
-                
-                living.rotationYawHead = 0;
-                living.rotationYaw = 0;
-                living.prevRotationYawHead = 0;
-                living.prevRotationYaw = 0;
-
-                this.rotationYawHead = 0;
-                this.rotationYaw = 0;
-                this.prevRotationYawHead = 0;
-                this.prevRotationYaw = 0;
-
-                EntityMoveHelper newMoveHelper = new EntityMoveHelper(living) {
-                    public void onUpdateMoveHelper()
-                    {
-                        ;
-                    }
-                };
-                MDX.access().setMoveHelper(living, newMoveHelper);
-                MDX.access().setMoveHelper(this, newMoveHelper);
-
-                EntityLookHelper newLookHelper = new EntityLookHelper(living) {
-                    public void setLookPosition(double x, double y, double z, float deltaYaw, float deltaPitch)
-                    {
-                        ;
-                    }
-
-                    public void setLookPositionWithEntity(Entity entityIn, float deltaYaw, float deltaPitch)
-                    {
-                        ;
-                    }
-
-                    public float updateRotation(float x, float y, float z)
-                    {
-                        return 0F;
-                    }
-                };
-                MDX.access().setLookHelper(living, newLookHelper);
-                MDX.access().setLookHelper(this, newLookHelper);
-            }
         }
 
         if (this.getTicksOnHost() > this.getDetachTime())
@@ -456,7 +406,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
     @Override
     public boolean isFertile()
     {
-        return this.getDataManager().get(FERTILE).booleanValue();
+        return this.getDataManager().get(FERTILE);
     }
 
     @Override
@@ -468,7 +418,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
     @Override
     public boolean canAttach(Entity entity)
     {
-        return (entity instanceof EntityLivingBase) && EntitySelectorTrilobite.instance.test((EntityLivingBase) entity);
+        return (entity instanceof EntityLivingBase) && EntitySelectorTrilobite.instance.test(entity);
     }
 
     @Override
