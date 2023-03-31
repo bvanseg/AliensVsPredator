@@ -5,7 +5,6 @@ import com.asx.mdx.common.minecraft.entity.animations.Animation;
 import com.asx.mdx.common.minecraft.entity.animations.AnimationHandler;
 import com.asx.mdx.common.minecraft.entity.animations.IAnimated;
 import com.asx.mdx.internal.MDX;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityLookHelper;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -22,7 +21,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -32,6 +30,7 @@ import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.brain.parasitoid.TrilobiteBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.Species223ODe;
+import org.alien.common.entity.living.helper.TrilobiteTentacleHelper;
 import org.alien.common.world.Embryo;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
@@ -44,14 +43,16 @@ import java.util.List;
 
 public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnimated, Brainiac<TrilobiteBrain>
 {
-    public static final Animation                      IMPREGNATION_ANIMATION = Animation.create(0);
-    public static final Animation                      ANIMATION_HUG_WALL     = Animation.create(20 * 5);
+    public static final Animation IMPREGNATION_ANIMATION = Animation.create(0);
+    public static final Animation ANIMATION_HUG_WALL = Animation.create(20 * 5);
 
-    private static final DataParameter<Boolean>        FERTILE                = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<NBTTagCompound> DETACHED_TENTACLES     = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.COMPOUND_TAG);
-    private int                                        ticksOnHost            = 0;
+    private static final DataParameter<Boolean> FERTILE = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.BOOLEAN);
+    public static final DataParameter<NBTTagCompound> DETACHED_TENTACLES = EntityDataManager.createKey(EntityTrilobite.class, DataSerializers.COMPOUND_TAG);
+    private int ticksOnHost = 0;
 
     private TrilobiteBrain brain;
+
+    private final TrilobiteTentacleHelper tentacleHelper;
 
     public EntityTrilobite(World world)
     {
@@ -59,6 +60,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
         this.setSize(3F, 1.98F);
         this.experienceValue = 32;
         this.jumpMovementFactor = 1.0F;
+        this.tentacleHelper = new TrilobiteTentacleHelper(this);
     }
 
     @Override
@@ -92,14 +94,8 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
         this.getDataManager().register(FERTILE, true);
 
         NBTTagCompound tagDetachedTentacles = new NBTTagCompound();
-        tagDetachedTentacles.setIntArray("Tentacles", new int[this.getAmountOfTentacles()]);
+        tagDetachedTentacles.setIntArray("Tentacles", new int[this.tentacleHelper.getAmountOfTentacles()]);
         this.getDataManager().register(DETACHED_TENTACLES, tagDetachedTentacles);
-    }
-    
-    @Override
-    public void updatePassenger(Entity passenger)
-    {
-        super.updatePassenger(passenger);
     }
 
     private void updateHitbox()
@@ -119,7 +115,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
             int[] tentacles = this.getDetachedTentacles();
             boolean hasAllTentacles = true;
 
-            for (int i = 0; i < this.getAmountOfTentacles(); i++)
+            for (int i = 0; i < this.tentacleHelper.getAmountOfTentacles(); i++)
             {
                 if (tentacles[i] == 1)
                 {
@@ -366,7 +362,7 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
         super.readFromNBT(nbt);
         Parasitoid.readFromNBT(this, nbt);
 
-        this.setDetachedTentacles(nbt.getIntArray("Tentacles"));
+        this.tentacleHelper.setDetachedTentacles(nbt.getIntArray("Tentacles"));
     }
 
     @Override
@@ -437,88 +433,13 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
                 {
                     if (held.getItem() instanceof ItemSword || held.getItem() instanceof ItemAxe || ItemWristbracer.equippedHasBlades(player))
                     {
-                        this.detachTentacle();
+                        this.tentacleHelper.detachTentacle();
                     }
                 }
             }
         }
 
         return super.hitByEntity(entity);
-    }
-
-    public void dropTentacle()
-    {
-        this.dropItem(AlienItems.ITEM_RAW_TENTACLE, 1);
-    }
-
-    public int getAmountOfTentacles()
-    {
-        return 7;
-    }
-
-    public void detachTentacle()
-    {
-        int qty = getAmountOfTentacles();
-        int[] tentacles = this.getDetachedTentacles();
-
-        if (tentacles == null || tentacles != null && tentacles.length < qty)
-        {
-            tentacles = new int[qty];
-        }
-
-        this.detachNextTentacleRandomly(tentacles, qty, -1);
-        this.setDetachedTentacles(tentacles);
-    }
-
-    private int[] detachNextTentacleRandomly(int[] tentacles, int qty, int idx)
-    {
-        int randTentacle = this.rand.nextInt(qty);
-        boolean canContinue = false;
-
-        for (int t = 0; t < qty; t++)
-        {
-            if (tentacles[t] == 0)
-            {
-                canContinue = true;
-                break;
-            }
-        }
-
-        if (canContinue)
-        {
-            if (randTentacle != idx)
-            {
-                if (tentacles[randTentacle] == 0)
-                {
-                    tentacles[randTentacle] = 1;
-
-                    if (!this.world.isRemote)
-                    {
-                        this.dropTentacle();
-                    }
-
-                    return tentacles;
-                }
-                else
-                {
-                    detachNextTentacleRandomly(tentacles, qty, randTentacle);
-                }
-            }
-            else
-            {
-                detachNextTentacleRandomly(tentacles, qty, randTentacle);
-            }
-        }
-
-        return tentacles;
-    }
-
-    public void setDetachedTentacles(int[] tentacles)
-    {
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setTag("Tentacles", new NBTTagIntArray(tentacles));
-
-        this.getDataManager().set(DETACHED_TENTACLES, tag);
     }
 
     public int[] getDetachedTentacles()
@@ -572,5 +493,9 @@ public class EntityTrilobite extends Species223ODe implements Parasitoid, IAnima
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(AlienItems.SUMMONER_TRILOBITE);
+    }
+
+    public TrilobiteTentacleHelper getTentacleHelper() {
+        return this.tentacleHelper;
     }
 }

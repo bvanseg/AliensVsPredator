@@ -867,7 +867,7 @@ public class ModelTrilobite extends Model<EntityTrilobite>
 
             int[] tentacles = trilobite.getDetachedTentacles();
 
-            for (int i = 0; i < trilobite.getAmountOfTentacles(); i++)
+            for (int i = 0; i < trilobite.getTentacleHelper().getAmountOfTentacles(); i++)
             {
                 Model.Part tentacle = getTentacleById(i);
 
