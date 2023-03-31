@@ -9,7 +9,7 @@
         "description": {
             "translate": "avp.advancements.tech.acquire.carbon.description"
         },
-        "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
+        "background": "avp:textures/gui/advancements/backgrounds/tech.png",
         "announce_to_chat": false
     },
     "criteria": {
