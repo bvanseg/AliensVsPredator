@@ -2,10 +2,10 @@ package org.weapon.common.item.firearm;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.sound.Sound;
-import com.asx.mdx.common.minecraft.entity.Entities;
 import com.asx.mdx.common.minecraft.item.HookedItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -22,13 +22,13 @@ import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.AVPNetworking;
+import org.avp.common.AVPDamageSources;
+import org.lib.common.RayTraceUtil;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;
 import org.weapon.common.delay.DelayHandler;
 import org.weapon.common.item.firearm.rework.FirearmProperties;
 import org.weapon.common.item.firearm.rework.mode.FireMode;
-import org.weapon.common.network.packet.server.PacketFirearmSync;
 import org.weapon.common.reload.ReloadHandler;
 
 import java.util.List;
@@ -36,10 +36,7 @@ import java.util.Set;
 
 public class ItemFirearm extends HookedItem
 {
-    
     private final FirearmProperties firearmProperties;
-    private float                breakProgress;
-    private int                  breakingIndex;
 
     public ItemFirearm(FirearmProperties firearmProperties)
     {
@@ -79,31 +76,22 @@ public class ItemFirearm extends HookedItem
         }
 
         if (!world.isRemote) {
-            // TODO: Send firearm shoot packet here with player look vector info.
-        }
+            RayTraceResult result = RayTraceUtil.rayTrace(player, 128, 1.0F);
 
-        if (world.isRemote) {
+            if (result != null && result.typeOfHit == Type.ENTITY) {
+                Entity entity = result.entityHit;
+                entity.hurtResistantTime = 0;
+                entity.attackEntityFrom(AVPDamageSources.causeBulletDamage(player), firearmProperties.getDamageMultiplier());
+            }
+
             Sound soundForFireMode = this.firearmProperties.getFireSounds().get(activeFireMode);
 
             if (soundForFireMode != null) {
-                world.playSound(player.getPosition().getX(), player.getPosition().getY(), player.getPosition().getZ(), soundForFireMode.event(), SoundCategory.PLAYERS, 1F, 1F, true);
+                world.playSound(null, player.getPosition(), soundForFireMode.event(), SoundCategory.PLAYERS, 1F, 1F);
             }
+        }
 
-            // TODO: Move this logic server-side.
-            RayTraceResult trace = Entities.rayTraceSpecial(128, 1.0F);
-
-            // TODO: The client shouldn't tell the server what it hit.
-            if (trace != null && trace.typeOfHit == Type.BLOCK)
-            {
-                AVPNetworking.instance.sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, (int) trace.hitVec.x, (int) trace.hitVec.y, (int) trace.hitVec.z, this.firearmProperties));
-            }
-
-            // TODO: The client shouldn't tell the server what it hit.
-            if (trace != null && trace.typeOfHit == Type.ENTITY)
-            {
-                AVPNetworking.instance.sendToServer(new PacketFirearmSync(trace.typeOfHit, trace.entityHit, 0, 0, 0, this.firearmProperties));
-            }
-
+        if (world.isRemote) {
             // Render recoil after the weapon as fired. Otherwise, weapons with massive recoil (snipers, for example) will nearly always miss the target.
             this.renderRecoil();
             ClientGame.instance.setEquippedProgress(0.85F);
@@ -237,26 +225,6 @@ public class ItemFirearm extends HookedItem
     public FirearmProperties getFirearmProperties()
     {
         return this.firearmProperties;
-    }
-
-    public float getBreakProgress()
-    {
-        return breakProgress;
-    }
-
-    public int getBlockBreakingIndex()
-    {
-        return breakingIndex;
-    }
-
-    public void setBlockBreakingIndex(int breakingIndex)
-    {
-        this.breakingIndex = breakingIndex;
-    }
-
-    public void setBreakProgress(float breakProgress)
-    {
-        this.breakProgress = breakProgress;
     }
 
     @Override
