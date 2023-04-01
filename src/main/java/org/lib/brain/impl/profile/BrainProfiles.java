@@ -2,7 +2,13 @@ package org.lib.brain.impl.profile;
 
 import org.lib.brain.profile.BrainProfile;
 
+/**
+ * @author Boston Vanseghi
+ */
 public class BrainProfiles {
+
+    private BrainProfiles() {}
+
     public static final BrainProfile STANDARD = new BrainProfile("standard");
 
     // Facehugger

@@ -80,15 +80,6 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
                 this.detachFromHost();
             }
         }
-
-        if (this.isAttachedToHost() && !this.isRiding()) {
-            this.detachFromHost();
-        }
-
-        // left client-side so the facehugger can stop riding if ATTACHED_TO_HOST is false.
-        if (!this.isAttachedToHost() && this.isRiding()) {
-            this.detachFromHost();
-        }
     }
 
     @Override
@@ -154,7 +145,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
     @Override
     public boolean canAttach(Entity entity)
     {
-        return (entity instanceof EntityLivingBase) && EntitySelectorParasitoid.instance.test((EntityLivingBase) entity);
+        return (entity instanceof EntityLivingBase) && EntitySelectorParasitoid.instance.test(entity);
     }
 
     @Override
@@ -243,5 +234,21 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
     @Override
     public boolean canBreatheUnderwater() {
         return true;
+    }
+
+    @Override
+    public void onDeath(DamageSource damageSource)
+    {
+        if (this.getRidingEntity() != null && this.getRidingEntity() instanceof EntityLiving)
+        {
+            EntityLiving living = (EntityLiving) this.getRidingEntity();
+            living.setNoAI(false);
+
+            if (living instanceof Brainiac) {
+                ((Brainiac)living).setBrainDisabled(false);
+            }
+        }
+
+        super.onDeath(damageSource);
     }
 }
