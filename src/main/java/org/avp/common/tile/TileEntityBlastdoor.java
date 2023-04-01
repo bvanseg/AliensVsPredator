@@ -573,7 +573,7 @@ public class TileEntityBlastdoor extends TileEntityElectrical implements Voltage
         return false;
     }
 
-    public void bindToSecurityTuner(EntityPlayer playerEntity, ItemStack itemstack)
+    public void bindToSecurityTuner(ItemStack itemstack)
     {
         if (itemstack.getItem() == AVPItems.SECURITY_TUNER)
         {
