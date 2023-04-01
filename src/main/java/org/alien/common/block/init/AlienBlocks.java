@@ -1,4 +1,4 @@
-package org.alien.common;
+package org.alien.common.block.init;
 
 import com.asx.mdx.common.minecraft.block.BlockMaterial;
 import com.asx.mdx.common.mods.IPreInitEvent;
@@ -7,6 +7,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
+import org.alien.common.AlienDimensions;
 import org.alien.common.block.*;
 import org.alien.common.block.skull.*;
 import org.avp.common.AVPCreativeTabs;

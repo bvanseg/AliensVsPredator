@@ -19,7 +19,7 @@ import org.alien.client.render.item.RenderItemTreeFern;
 import org.alien.client.render.tile.RenderHiveResin;
 import org.alien.client.render.tile.plant.RenderGroundFern;
 import org.alien.client.render.tile.plant.RenderTreeFern;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.EntityAcidProjectile;

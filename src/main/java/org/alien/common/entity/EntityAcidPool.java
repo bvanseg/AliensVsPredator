@@ -13,7 +13,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.entity.ai.selector.EntitySelectorAcidPool;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.api.blocks.AcidResistant;

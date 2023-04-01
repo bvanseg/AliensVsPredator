@@ -3,7 +3,7 @@ package org.alien.common.world.dimension.varda.gen;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 
 import java.util.Random;
 

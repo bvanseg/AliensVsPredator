@@ -14,7 +14,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 
 import java.util.List;
 import java.util.Random;

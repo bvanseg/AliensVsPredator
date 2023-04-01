@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 
 import java.util.ArrayList;
 

@@ -3,7 +3,7 @@ package org.alien.common.world.dimension;
 import com.google.common.base.Predicate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 
 public class GenerationFilters
 {

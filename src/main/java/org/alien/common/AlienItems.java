@@ -7,6 +7,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.entity.living.EntityAethon;
 import org.alien.common.entity.living.EntityDracoEgg;
 import org.alien.common.entity.living.EntityYautjaMutant;
