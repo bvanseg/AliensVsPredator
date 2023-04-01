@@ -3,12 +3,16 @@ package org.alien.common;
 import com.asx.mdx.common.minecraft.block.BlockMaterial;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.oredict.OreDictionary;
 import org.alien.common.block.*;
 import org.alien.common.block.skull.*;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.block.BlockStalagmite;
+import org.lib.common.block.BasicBlock;
+import org.lib.common.block.BlockProperties;
 import org.lib.common.registry.BlockRegistryUtil;
 
 /**
@@ -96,165 +100,111 @@ public class AlienBlocks implements IPreInitEvent {
     public static final Block UNIDIRT = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("unidirt").setCreativeTab(AVPCreativeTabs.BLOCKS);
     public static final Block STALAGMITE = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("stalagmite");
 
+    // Woods
+    private static final BlockProperties WOOD_PLANK_PROPS = new BlockProperties(Material.WOOD)
+            .setHardness(2.0F).setResistance(5.0F).setSoundType(SoundType.WOOD).setFireInfo(5, 20);
+
+    public static final Block UNIDENTIFIED_PLANKS = new BasicBlock("unidentified_planks", WOOD_PLANK_PROPS);
+    public static final Block PARADISE_SMALL_LOG_PLANKS = new BasicBlock("paradise_small_log_planks", WOOD_PLANK_PROPS);
+    public static final Block PARADISE_MEDIUM_LOG_PLANKS = new BasicBlock("paradise_medium_log_planks", WOOD_PLANK_PROPS);
+    public static final Block PARADISE_LARGE_LOG_PLANKS = new BasicBlock("paradise_large_log_planks", WOOD_PLANK_PROPS);
+
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         this.registerBlocks();
-        this.registerItemBlocks();
+        this.registerOreDictionaryEntries();
     }
 
     private void registerBlocks() {
-        BlockRegistryUtil.registerBlock(NATURAL_RESIN);
-        BlockRegistryUtil.registerBlock(RESIN);
-        BlockRegistryUtil.registerBlock(RELIC_OVAMORPH);
+        BlockRegistryUtil.registerStandardBlock(NATURAL_RESIN);
+        BlockRegistryUtil.registerStandardBlock(RESIN);
+        BlockRegistryUtil.registerStandardBlock(RELIC_OVAMORPH);
 
-        BlockRegistryUtil.registerBlock(RELIC_FACEHUGGER);
-        BlockRegistryUtil.registerBlock(RELIC_ALIEN);
+        BlockRegistryUtil.registerStandardBlock(RELIC_FACEHUGGER);
+        BlockRegistryUtil.registerStandardBlock(RELIC_ALIEN);
 
 
-        BlockRegistryUtil.registerBlock(ENGINEER_FLOOR);
-        BlockRegistryUtil.registerBlock(ENGINEER_BRICK_0);
-        BlockRegistryUtil.registerBlock(ENGINEER_BRICK_1);
-        BlockRegistryUtil.registerBlock(ENGINEER_BRICK_2);
-        BlockRegistryUtil.registerBlock(ENGINEER_BRICK_3);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_FLOOR);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_BRICK_0);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_BRICK_1);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_BRICK_2);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_BRICK_3);
 
-        BlockRegistryUtil.registerBlock(ENGINEER_GRAVEL);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_GRAVEL);
 
-        BlockRegistryUtil.registerBlock(ENGINEER_WALL_0);
-        BlockRegistryUtil.registerBlock(ENGINEER_WALL_1);
-        BlockRegistryUtil.registerBlock(ENGINEER_WALL_2);
-        BlockRegistryUtil.registerBlock(ENGINEER_WALL_3);
-        BlockRegistryUtil.registerBlock(ENGINEER_WALL_4);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_WALL_0);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_WALL_1);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_WALL_2);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_WALL_3);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_WALL_4);
 
-        BlockRegistryUtil.registerBlock(ENGINEER_ROCK_0);
-        BlockRegistryUtil.registerBlock(ENGINEER_ROCK_1);
-        BlockRegistryUtil.registerBlock(ENGINEER_ROCK_2);
-        BlockRegistryUtil.registerBlock(ENGINEER_ROCK_3);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_ROCK_0);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_ROCK_1);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_ROCK_2);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_ROCK_3);
 
-        BlockRegistryUtil.registerBlock(ENGINEER_COLUMN_1);
-        BlockRegistryUtil.registerBlock(ENGINEER_COLUMN_2);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_COLUMN_1);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_COLUMN_2);
 
-        BlockRegistryUtil.registerBlock(ENGINEER_MATERIAL_0);
-        BlockRegistryUtil.registerBlock(ENGINEER_MATERIAL_1);
-        BlockRegistryUtil.registerBlock(ENGINEER_MATERIAL_2);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_MATERIAL_0);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_MATERIAL_1);
+        BlockRegistryUtil.registerStandardBlock(ENGINEER_MATERIAL_2);
 
-        BlockRegistryUtil.registerBlock(PARADISE_DIRT);
-        BlockRegistryUtil.registerBlock(PARADISE_DIRT_MOSSY);
-        BlockRegistryUtil.registerBlock(PARADISE_DIRT_PODZOL);
-        BlockRegistryUtil.registerBlock(PARADISE_GRASS);
-        BlockRegistryUtil.registerBlock(PARADISE_LEAVES_LARGE);
-        BlockRegistryUtil.registerBlock(PARADISE_LOG_LARGE);
-        BlockRegistryUtil.registerBlock(PARADISE_LEAVES_MED);
-        BlockRegistryUtil.registerBlock(PARADISE_LOG_MED);
-        BlockRegistryUtil.registerBlock(PARADISE_LEAVES_SMALL);
-        BlockRegistryUtil.registerBlock(PARADISE_LOG_SMALL);
-        BlockRegistryUtil.registerBlock(GROUND_FERN);
-        BlockRegistryUtil.registerBlock(TREE_FERN);
-        BlockRegistryUtil.registerBlock(WHEAT_GRASS);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_DIRT);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_DIRT_MOSSY);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_DIRT_PODZOL);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_GRASS);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_LEAVES_LARGE);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_LOG_LARGE);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_LEAVES_MED);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_LOG_MED);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_LEAVES_SMALL);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_LOG_SMALL);
+        BlockRegistryUtil.registerStandardBlock(GROUND_FERN);
+        BlockRegistryUtil.registerStandardBlock(TREE_FERN);
+        BlockRegistryUtil.registerStandardBlock(WHEAT_GRASS);
 
-        BlockRegistryUtil.registerBlock(GIGER_LOG);
-        BlockRegistryUtil.registerBlock(GIGER_TENDONS);
-        BlockRegistryUtil.registerBlock(GIGER_LEAVES);
-        BlockRegistryUtil.registerBlock(GIGER_LEAVES_M);
-        BlockRegistryUtil.registerBlock(GIGER_LEAVES_B);
-        BlockRegistryUtil.registerBlock(GIGER_SAPLING);
+        BlockRegistryUtil.registerStandardBlock(GIGER_LOG);
+        BlockRegistryUtil.registerStandardBlock(GIGER_TENDONS);
+        BlockRegistryUtil.registerStandardBlock(GIGER_LEAVES);
+        BlockRegistryUtil.registerStandardBlock(GIGER_LEAVES_M);
+        BlockRegistryUtil.registerStandardBlock(GIGER_LEAVES_B);
+        BlockRegistryUtil.registerStandardBlock(GIGER_SAPLING);
 
-        BlockRegistryUtil.registerBlock(LV_426_ROCK);
+        BlockRegistryUtil.registerStandardBlock(LV_426_ROCK);
 
-        BlockRegistryUtil.registerBlock(PORTAL_VARDA);
-        BlockRegistryUtil.registerBlock(PORTAL_ACHERON);
+        BlockRegistryUtil.registerStandardBlock(PORTAL_VARDA);
+        BlockRegistryUtil.registerStandardBlock(PORTAL_ACHERON);
 
-        BlockRegistryUtil.registerBlock(SKULL_ENGINEER);
-        BlockRegistryUtil.registerBlock(SKULL_JOCKEY);
-        BlockRegistryUtil.registerBlock(SKULL_XENO);
-        BlockRegistryUtil.registerBlock(SKULL_XENO_WARRIOR);
-        BlockRegistryUtil.registerBlock(SKULL_MATRIARCH);
-        BlockRegistryUtil.registerBlock(SKULL_PROTOMORPH);
-        BlockRegistryUtil.registerBlock(SKULL_NEOMORPH);
-        BlockRegistryUtil.registerBlock(HEAD_AETHON);
-        BlockRegistryUtil.registerBlock(HEAD_GIGER_ALIEN);
+        BlockRegistryUtil.registerStandardBlock(SKULL_ENGINEER);
+        BlockRegistryUtil.registerStandardBlock(SKULL_JOCKEY);
+        BlockRegistryUtil.registerStandardBlock(SKULL_XENO);
+        BlockRegistryUtil.registerStandardBlock(SKULL_XENO_WARRIOR);
+        BlockRegistryUtil.registerStandardBlock(SKULL_MATRIARCH);
+        BlockRegistryUtil.registerStandardBlock(SKULL_PROTOMORPH);
+        BlockRegistryUtil.registerStandardBlock(SKULL_NEOMORPH);
+        BlockRegistryUtil.registerStandardBlock(HEAD_AETHON);
+        BlockRegistryUtil.registerStandardBlock(HEAD_GIGER_ALIEN);
 
-        BlockRegistryUtil.registerBlock(BLACK_GOO);
-        BlockRegistryUtil.registerBlock(MIST);
+        BlockRegistryUtil.registerStandardBlock(BLACK_GOO);
+        BlockRegistryUtil.registerStandardBlock(MIST);
 
         BlockRegistryUtil.registerStandardBlock(UNISTONE);
         BlockRegistryUtil.registerStandardBlock(UNISAND);
         BlockRegistryUtil.registerStandardBlock(UNIGRAVEL);
         BlockRegistryUtil.registerStandardBlock(UNIDIRT);
         BlockRegistryUtil.registerStandardBlock(STALAGMITE);
+
+        BlockRegistryUtil.registerStandardBlock(UNIDENTIFIED_PLANKS);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_SMALL_LOG_PLANKS);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_MEDIUM_LOG_PLANKS);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_LARGE_LOG_PLANKS);
     }
 
-    private void registerItemBlocks() {
-        BlockRegistryUtil.registerItemBlock(NATURAL_RESIN);
-        BlockRegistryUtil.registerItemBlock(RESIN);
-        BlockRegistryUtil.registerItemBlock(RELIC_OVAMORPH);
-
-        BlockRegistryUtil.registerItemBlock(RELIC_FACEHUGGER);
-        BlockRegistryUtil.registerItemBlock(RELIC_ALIEN);
-
-
-        BlockRegistryUtil.registerItemBlock(ENGINEER_FLOOR);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_BRICK_0);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_BRICK_1);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_BRICK_2);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_BRICK_3);
-
-        BlockRegistryUtil.registerItemBlock(ENGINEER_GRAVEL);
-
-        BlockRegistryUtil.registerItemBlock(ENGINEER_WALL_0);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_WALL_1);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_WALL_2);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_WALL_3);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_WALL_4);
-
-        BlockRegistryUtil.registerItemBlock(ENGINEER_ROCK_0);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_ROCK_1);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_ROCK_2);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_ROCK_3);
-
-        BlockRegistryUtil.registerItemBlock(ENGINEER_COLUMN_1);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_COLUMN_2);
-
-        BlockRegistryUtil.registerItemBlock(ENGINEER_MATERIAL_0);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_MATERIAL_1);
-        BlockRegistryUtil.registerItemBlock(ENGINEER_MATERIAL_2);
-
-        BlockRegistryUtil.registerItemBlock(PARADISE_DIRT);
-        BlockRegistryUtil.registerItemBlock(PARADISE_DIRT_MOSSY);
-        BlockRegistryUtil.registerItemBlock(PARADISE_DIRT_PODZOL);
-        BlockRegistryUtil.registerItemBlock(PARADISE_GRASS);
-        BlockRegistryUtil.registerItemBlock(PARADISE_LEAVES_LARGE);
-        BlockRegistryUtil.registerItemBlock(PARADISE_LOG_LARGE);
-        BlockRegistryUtil.registerItemBlock(PARADISE_LEAVES_MED);
-        BlockRegistryUtil.registerItemBlock(PARADISE_LOG_MED);
-        BlockRegistryUtil.registerItemBlock(PARADISE_LEAVES_SMALL);
-        BlockRegistryUtil.registerItemBlock(PARADISE_LOG_SMALL);
-        BlockRegistryUtil.registerItemBlock(GROUND_FERN);
-        BlockRegistryUtil.registerItemBlock(TREE_FERN);
-        BlockRegistryUtil.registerItemBlock(WHEAT_GRASS);
-
-        BlockRegistryUtil.registerItemBlock(GIGER_LOG);
-        BlockRegistryUtil.registerItemBlock(GIGER_TENDONS);
-        BlockRegistryUtil.registerItemBlock(GIGER_LEAVES);
-        BlockRegistryUtil.registerItemBlock(GIGER_LEAVES_M);
-        BlockRegistryUtil.registerItemBlock(GIGER_LEAVES_B);
-        BlockRegistryUtil.registerItemBlock(GIGER_SAPLING);
-
-        BlockRegistryUtil.registerItemBlock(LV_426_ROCK);
-
-        BlockRegistryUtil.registerItemBlock(PORTAL_VARDA);
-        BlockRegistryUtil.registerItemBlock(PORTAL_ACHERON);
-
-        BlockRegistryUtil.registerItemBlock(SKULL_ENGINEER);
-        BlockRegistryUtil.registerItemBlock(SKULL_JOCKEY);
-        BlockRegistryUtil.registerItemBlock(SKULL_XENO);
-        BlockRegistryUtil.registerItemBlock(SKULL_XENO_WARRIOR);
-        BlockRegistryUtil.registerItemBlock(SKULL_MATRIARCH);
-        BlockRegistryUtil.registerItemBlock(SKULL_PROTOMORPH);
-        BlockRegistryUtil.registerItemBlock(SKULL_NEOMORPH);
-        BlockRegistryUtil.registerItemBlock(HEAD_AETHON);
-        BlockRegistryUtil.registerItemBlock(HEAD_GIGER_ALIEN);
-
-        BlockRegistryUtil.registerItemBlock(BLACK_GOO);
-        BlockRegistryUtil.registerItemBlock(MIST);
+    private void registerOreDictionaryEntries() {
+        OreDictionary.registerOre("plankWood", UNIDENTIFIED_PLANKS);
+        OreDictionary.registerOre("plankWood", PARADISE_SMALL_LOG_PLANKS);
+        OreDictionary.registerOre("plankWood", PARADISE_MEDIUM_LOG_PLANKS);
+        OreDictionary.registerOre("plankWood", PARADISE_LARGE_LOG_PLANKS);
     }
 }
