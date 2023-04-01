@@ -9,7 +9,7 @@ import org.avp.common.item.firearm.ItemFirearm;
 
 public abstract class ItemFirearmRenderer<T extends Model> extends ItemRenderer<T>
 {
-	public ItemFirearmRenderer(MapModelTexture<T> model)
+	protected ItemFirearmRenderer(MapModelTexture<T> model)
 	{
 		super(model);
 	}
@@ -25,5 +25,16 @@ public abstract class ItemFirearmRenderer<T extends Model> extends ItemRenderer<
 			return true;
 		
 		return false;
+	}
+
+	public boolean canAimWeapon(EntityLivingBase entity) {
+		if(!(entity instanceof EntityPlayer))
+			return false;
+
+		EntityPlayer player = (EntityPlayer) entity;
+
+		boolean mainhandCheck = player.getHeldItemMainhand().getItem() instanceof ItemFirearm && player.getHeldItemOffhand().isEmpty();
+		boolean offhandCheck = player.getHeldItemOffhand().getItem() instanceof ItemFirearm && player.getHeldItemMainhand().isEmpty();
+		return mainhandCheck || offhandCheck;
 	}
 }

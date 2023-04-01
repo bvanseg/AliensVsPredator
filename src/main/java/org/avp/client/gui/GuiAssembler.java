@@ -54,7 +54,6 @@ public class GuiAssembler extends GuiContainer
     private static int scroll = 0;
     private static int maxAssemblyAmount = 0;
     private static boolean searchRequiresUpdate = true;
-    private static boolean assemblyRequiresUpdate = true;
     
     private static final IAction assembleAction = (IGuiElement element) -> {
     	ItemSchematic selectedSchematic = !schematics.isEmpty() ? schematics.get(getScroll()) : null;
@@ -127,7 +126,6 @@ public class GuiAssembler extends GuiContainer
         
         scroll = 0;
         requestedAmount = 1;
-        assemblyRequiresUpdate = true;
         searchRequiresUpdate = true;
         schematics = new ArrayList<>(AssemblyManager.instance.schematics());
         searchBar.setText("");
@@ -162,7 +160,7 @@ public class GuiAssembler extends GuiContainer
     @Override
     protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
     {
-        if (schematics != null && schematics.size() > 0)
+        if (schematics != null && !schematics.isEmpty())
         {
             drawMaterialsSidebar();
             drawSchematicListItems();
@@ -267,13 +265,10 @@ public class GuiAssembler extends GuiContainer
         buttonScrollUp.baseColor = getScroll() == 0 ? 0x22000000 : 0xAA000000;
         buttonScrollUp.drawButton();
 
-        if (assemblyRequiresUpdate) {
-            ItemSchematic itemSchematic = schematics.size() > 0 ? schematics.get(getScroll()) : null;
+        ItemSchematic itemSchematic = !schematics.isEmpty() ? schematics.get(getScroll()) : null;
 
-            if (itemSchematic != null) {
-                maxAssemblyAmount = AssemblyResult.getMaximumPossibleAssembleCount(ClientGame.instance.minecraft().player, itemSchematic);
-                assemblyRequiresUpdate = false;
-            }
+        if (itemSchematic != null) {
+            maxAssemblyAmount = AssemblyResult.getMaximumPossibleAssembleCount(ClientGame.instance.minecraft().player, itemSchematic);
         }
         
         this.drawAssembleButton(buttonAssemble, maxAssemblyAmount >= 1);
@@ -358,7 +353,6 @@ public class GuiAssembler extends GuiContainer
     {
         if (scroll < schematics.size() - 1) {
             scroll += 1;
-            assemblyRequiresUpdate = true;
         }
     }
 
@@ -366,7 +360,6 @@ public class GuiAssembler extends GuiContainer
     {
         if (scroll >= 1) {
             scroll -= 1;
-            assemblyRequiresUpdate = true;
         }
     }
 

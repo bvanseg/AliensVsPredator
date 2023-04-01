@@ -5,9 +5,12 @@ import com.asx.mdx.common.minecraft.entity.Entities;
 import com.asx.mdx.common.minecraft.entity.ItemDrop;
 import com.asx.mdx.common.minecraft.entity.animations.Animation;
 import com.asx.mdx.common.minecraft.entity.animations.IAnimated;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
@@ -212,6 +215,14 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
             this.growthProgress = this.getJellyLevel();
             this.growthInitialized = true;
         }
+    }
+
+    @Override
+    public boolean startRiding(Entity entityIn) {
+        if (entityIn instanceof EntityBoat || entityIn instanceof EntityMinecart) {
+            return false;
+        }
+        return super.startRiding(entityIn);
     }
 
     @Override

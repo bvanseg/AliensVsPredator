@@ -15,6 +15,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPItems;
+import org.lib.common.inventory.CachedInventoryHandler;
+import org.lib.common.inventory.InventorySnapshot;
 
 import java.util.Random;
 
@@ -60,25 +62,24 @@ public class ItemStunBaton extends ItemSword
             return true;
         }
 
-        if (Inventories.playerHas(AVPItems.ITEM_CHARGE_PACK, player))
+        InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(player);
+
+        if (!inventorySnapshot.hasItem(AVPItems.ITEM_CHARGE_PACK)) return false;
+
+        ItemStack ammoStack = inventorySnapshot.getFirstNonEmptyStack(AVPItems.ITEM_CHARGE_PACK);
+
+        if (ammoStack == null || ammoStack.getItem() == null) return false;
+
+        if (ammoStack.getItemDamage() < ammoStack.getMaxDamage())
         {
-            ItemStack ammoStack = player.inventory.getStackInSlot(Inventories.getSlotForItemIn(AVPItems.ITEM_CHARGE_PACK, player.inventory));
-
-            if (ammoStack != null && ammoStack.getItem() != null)
-            {
-                if (ammoStack.getItemDamage() < ammoStack.getMaxDamage())
-                {
-                    ammoStack.damageItem(1, player);
-                }
-                else
-                {
-                    Inventories.consumeItem(player, ammoStack.getItem());
-                }
-
-                return true;
-            }
+            ammoStack.damageItem(1, player);
         }
-        return false;
+        else
+        {
+            inventorySnapshot.consumeItem(ammoStack.getItem());
+        }
+
+        return true;
     }
 
     @SideOnly(Side.CLIENT)

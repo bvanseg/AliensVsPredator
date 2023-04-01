@@ -15,6 +15,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.AVPSounds;
 import org.avp.common.entity.EntityFlame;
+import org.lib.common.inventory.CachedInventoryHandler;
+import org.lib.common.inventory.InventorySnapshot;
 
 import java.util.List;
 
@@ -68,30 +70,26 @@ public abstract class ItemFlamethrower extends HookedItem
 
     public boolean hasAmmo(World world, EntityPlayer player)
     {
-        if (player.capabilities.isCreativeMode)
+        if (player.capabilities.isCreativeMode) return true;
+
+        InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(player);
+
+        if (!inventorySnapshot.hasItem(this.ammo)) return false;
+
+        ItemStack ammoStack = inventorySnapshot.getFirstNonEmptyStack(this.ammo);
+
+        if (ammoStack == null || ammoStack.getItem() == null) return false;
+
+        if (ammoStack.getItemDamage() < ammoStack.getMaxDamage())
         {
-            return true;
+            ammoStack.damageItem(1, player);
+        }
+        else
+        {
+            inventorySnapshot.consumeItem(ammoStack.getItem());
         }
 
-        if (Inventories.playerHas(this.ammo, player))
-        {
-            ItemStack ammoStack = player.inventory.getStackInSlot(Inventories.getSlotForItemIn(this.ammo, player.inventory));
-
-            if (ammoStack != null && ammoStack.getItem() != null)
-            {
-                if (ammoStack.getItemDamage() < ammoStack.getMaxDamage())
-                {
-                    ammoStack.damageItem(1, player);
-                }
-                else
-                {
-                    Inventories.consumeItem(player, ammoStack.getItem());
-                }
-
-                return true;
-            }
-        }
-        return false;
+        return true;
     }
 
     public Item getAmmo()

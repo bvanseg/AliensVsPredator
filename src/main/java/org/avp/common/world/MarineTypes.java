@@ -1,13 +1,11 @@
 package org.avp.common.world;
 
-import com.asx.mdx.client.render.model.MapModelTexture;
-import com.asx.mdx.client.render.model.Model;
 import net.minecraft.util.SoundEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.Resources;
 import org.avp.common.AVPItems;
 import org.avp.common.item.firearm.ItemFirearm;
+
+import java.util.Arrays;
+import java.util.HashMap;
 
 public enum MarineTypes
 {
@@ -33,7 +31,7 @@ public enum MarineTypes
 
     public SoundEvent getGunfireSound()
     {
-        return itemFirearm.getProfile().getSound().event();
+        return itemFirearm.getFirearmProfile().getSound().event();
     }
 
     public ItemFirearm getFirearmItem()
@@ -41,36 +39,13 @@ public enum MarineTypes
         return itemFirearm;
     }
 
-    public static MarineTypes getTypeForId(int id)
-    {
-        for (MarineTypes type : values())
-        {
-            if (type.id == id)
-            {
-                return type;
-            }
-        }
+    private static final HashMap<Integer, MarineTypes> typesById = new HashMap<>();
 
-        return null;
+    static {
+        Arrays.stream(MarineTypes.values()).forEach(type -> typesById.put(type.id, type));
     }
 
-    @SideOnly(Side.CLIENT)
-    public MapModelTexture<? extends Model> getFirearmModelTexMap()
-    {
-        switch (this)
-        {
-            case M4:
-                return Resources.instance.models().M4;
-            case AK47:
-                return Resources.instance.models().AK47;
-            case M41A:
-                return Resources.instance.models().M41A;
-            case SNIPER:
-                return Resources.instance.models().SNIPER;
-            case M56SG:
-                return Resources.instance.models().M56SG;
-        }
-
-        return null;
+    public static MarineTypes getTypeForId(int id) {
+        return typesById.get(id);
     }
 }

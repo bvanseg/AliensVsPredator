@@ -11,7 +11,6 @@ import net.minecraftforge.common.capabilities.CapabilityManager;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.alien.common.world.capability.Organism;
@@ -23,6 +22,8 @@ import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 public class CapabilityHandler implements IPreInitEvent
 {
     public static final CapabilityHandler instance = new CapabilityHandler();
+
+    private CapabilityHandler() {}
 
     public static final ResourceLocation ORGANISM = new ResourceLocation(AVP.Properties.ID, "organism");
     public static final ResourceLocation SPECIAL_PLAYER = new ResourceLocation(AVP.Properties.ID, "special_player");
@@ -62,46 +63,38 @@ public class CapabilityHandler implements IPreInitEvent
         }
     }
 
-    @SubscribeEvent
-    public void onWorldSave(WorldEvent.Save event)
-    {
-        ;
-    }
-
     public void syncEntity(Entity target)
     {
         WorldServer worldServer = (WorldServer) target.world;
+        if (worldServer == null) return;
 
-        if (worldServer != null)
+        EntityTracker tracker = worldServer.getEntityTracker();
+
+        if (tracker == null) return;
+        if (target == null) return;
+
+        if (target instanceof EntityLivingBase)
         {
-            EntityTracker tracker = worldServer.getEntityTracker();
+            Organism.OrganismImpl organism = (Organism.OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
 
-            if (tracker != null && target != null)
+            if (organism != null)
             {
-                if (target instanceof EntityLivingBase)
-                {
-                    Organism.OrganismImpl organism = (Organism.OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
-
-                    if (organism != null)
-                    {
-                        if (target instanceof EntityPlayer)
-                        {
-                            EntityPlayer player = (EntityPlayer) target;
-                            organism.syncWithClients(player);
-                        }
-                    }
-                }
-
                 if (target instanceof EntityPlayer)
                 {
                     EntityPlayer player = (EntityPlayer) target;
-                    SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) target.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
-
-                    if (specialPlayer != null)
-                    {
-                        specialPlayer.syncWithClients(player);
-                    }
+                    organism.syncWithClients(player);
                 }
+            }
+        }
+
+        if (target instanceof EntityPlayer)
+        {
+            EntityPlayer player = (EntityPlayer) target;
+            SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) target.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
+
+            if (specialPlayer != null)
+            {
+                specialPlayer.syncWithClients(player);
             }
         }
     }

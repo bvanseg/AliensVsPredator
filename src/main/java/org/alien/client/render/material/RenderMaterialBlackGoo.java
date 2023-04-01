@@ -36,7 +36,7 @@ public class RenderMaterialBlackGoo implements MaterialRenderer
     @Override
     public Vec3d getFogColor()
     {
-        return new Vec3d(0.0, 0.0, 0.0);
+        return Vec3d.ZERO;
     }
 
     @Override

@@ -4,7 +4,6 @@ import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.model.texture.Texture;
-import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import com.asx.mdx.common.net.Networks;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
@@ -18,6 +17,8 @@ import org.avp.client.render.item.RenderMotionTrackerScreen;
 import org.avp.common.AVPItems;
 import org.avp.common.URLs;
 import org.avp.common.item.firearm.ItemFirearm;
+import org.lib.common.inventory.CachedInventoryHandler;
+import org.lib.common.inventory.InventorySnapshot;
 import org.lwjgl.input.Mouse;
 
 public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
@@ -57,7 +58,7 @@ public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
         {
             OpenGL.translate(1F, 1.25F, -0.3F);
 
-            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && this.canAimWeapon(entity))
             {
                 OpenGL.translate(-1.16F, -0.095F, 0.52F);
             }
@@ -79,8 +80,9 @@ public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
                 OpenGL.enableLighting();
                 OpenGL.color(1F, 1F, 1F, 1F);
             }
-            
-            if (Inventories.getAmountOfItemPlayerHas(AVPItems.ITEM_MOTION_TRACKER, (EntityPlayer) entity) > 0)
+
+            InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer((EntityPlayer) entity);
+            if (inventorySnapshot.hasItem(AVPItems.ITEM_MOTION_TRACKER))
             {
                 OpenGL.translate(-50F, -20F, -50F);
                 OpenGL.rotate(-90F, 0F, 1F, 0F);
@@ -106,7 +108,8 @@ public class RenderItemM41A extends ItemFirearmRenderer<ModelM41A>
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) ClientGame.instance.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
+        ItemStack itemStack = ClientGame.instance.minecraft().player.inventory.getCurrentItem();
+        int ammoCount = ((ItemFirearm)itemStack.getItem()).getAmmoCount(itemStack);
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 }
