@@ -1,12 +1,13 @@
 package org.avp.common.network.packet.server;
 
-import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import io.netty.buffer.ByteBuf;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityGrenade;
+import org.lib.common.inventory.CachedInventoryHandler;
+import org.lib.common.inventory.InventorySnapshot;
 
 public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaunchGrenade, PacketLaunchGrenade>
 {
@@ -33,8 +34,9 @@ public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaun
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
             if (ctx.getServerHandler().player != null && ctx.getServerHandler().player.world != null)
             {
-                boolean hasNormal = Inventories.playerHas(AVPItems.ITEM_GRENADE, ctx.getServerHandler().player);
-                boolean hasIncendiary = Inventories.playerHas(AVPItems.ITEM_INCENDIARY_GRENADE, ctx.getServerHandler().player);
+                InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(ctx.getServerHandler().player);
+                boolean hasNormal = inventorySnapshot.hasItem(AVPItems.ITEM_GRENADE);
+                boolean hasIncendiary = inventorySnapshot.hasItem(AVPItems.ITEM_INCENDIARY_GRENADE);
 
                 if (hasNormal || hasIncendiary)
                 {
@@ -42,7 +44,7 @@ public class PacketLaunchGrenade implements IMessage, IMessageHandler<PacketLaun
                     grenade.explodeOnImpact = true;
                     grenade.setFlaming(hasIncendiary);
                     ctx.getServerHandler().player.world.spawnEntity(grenade);
-                    Inventories.consumeItem(ctx.getServerHandler().player, !hasIncendiary ? AVPItems.ITEM_GRENADE : AVPItems.ITEM_INCENDIARY_GRENADE);
+                    inventorySnapshot.consumeItem(!hasIncendiary ? AVPItems.ITEM_GRENADE : AVPItems.ITEM_INCENDIARY_GRENADE);
                 }
             }
         });

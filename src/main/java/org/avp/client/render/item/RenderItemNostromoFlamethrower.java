@@ -45,7 +45,7 @@ public class RenderItemNostromoFlamethrower extends ItemFirearmRenderer<ModelSev
         {
             OpenGL.translate(0F, 0.35F, -0.9F);
 
-            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && this.canAimWeapon(entity))
             {
                 OpenGL.translate(-0.5595F, 0F, 0F);
             }
@@ -71,7 +71,8 @@ public class RenderItemNostromoFlamethrower extends ItemFirearmRenderer<ModelSev
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) ClientGame.instance.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
+        ItemStack itemStack =ClientGame.instance.minecraft().player.inventory.getCurrentItem();
+        int ammoCount = ((ItemFirearm)itemStack.getItem()).getAmmoCount(itemStack);
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 }

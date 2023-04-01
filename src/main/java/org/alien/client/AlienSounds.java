@@ -13,44 +13,50 @@ public class AlienSounds implements IPreInitEvent
     public static final AlienSounds instance = new AlienSounds();
 
     private AlienSounds() {}
+
+    /* ALIEN SOUNDS */
     public static final Sound ALIEN_LIVING                 = SoundRegistryUtil.createSound("xeno.living");
-    public static final Sound  ALIEN_HURT                   = SoundRegistryUtil.createSound("xeno.hurt");
-    public static final Sound  ALIEN_DEATH                  = SoundRegistryUtil.createSound("xeno.death");
+    public static final Sound ALIEN_HURT                   = SoundRegistryUtil.createSound("xeno.hurt");
+    public static final Sound ALIEN_DEATH                  = SoundRegistryUtil.createSound("xeno.death");
+    public static final Sound FLESH_EAT                    = SoundRegistryUtil.createSound("xeno.eat");
     
-    /** QUEEN SOUNDS **/
-    public static final Sound  QUEEN_HURT                   = SoundRegistryUtil.createSound("queen.hurt");
-    public static final Sound  QUEEN_LIVING_CONSTANT        = SoundRegistryUtil.createSound("queen.living.constant");
-    public static final Sound  QUEEN_LIVING                 = SoundRegistryUtil.createSound("queen.living");
-    public static final Sound  QUEEN_DEATH                  = SoundRegistryUtil.createSound("queen.death");
+    /* QUEEN SOUNDS */
+    public static final Sound QUEEN_HURT                   = SoundRegistryUtil.createSound("queen.hurt");
+    public static final Sound QUEEN_LIVING_CONSTANT        = SoundRegistryUtil.createSound("queen.living.constant");
+    public static final Sound QUEEN_LIVING                 = SoundRegistryUtil.createSound("queen.living");
+    public static final Sound QUEEN_DEATH                  = SoundRegistryUtil.createSound("queen.death");
 
-    /** PRAETORIAN SOUNDS **/
-    public static final Sound  PRAETORIAN_HURT              = SoundRegistryUtil.createSound("praetorian.hurt");
-    public static final Sound  PRAETORIAN_LIVING            = SoundRegistryUtil.createSound("praetorian.living");
-    public static final Sound  PRAETORIAN_DEATH             = SoundRegistryUtil.createSound("praetorian.death");
+    /* PRAETORIAN SOUNDS */
+    public static final Sound PRAETORIAN_HURT              = SoundRegistryUtil.createSound("praetorian.hurt");
+    public static final Sound PRAETORIAN_LIVING            = SoundRegistryUtil.createSound("praetorian.living");
+    public static final Sound PRAETORIAN_DEATH             = SoundRegistryUtil.createSound("praetorian.death");
 
-    /** PRED-ALIEN SOUNDS **/
-    public static final Sound  PREDALIEN_ATTACK             = SoundRegistryUtil.createSound("predalien.attack");
-    public static final Sound  PREDALIEN_HURT               = SoundRegistryUtil.createSound("predalien.hurt");
-    public static final Sound  PREDALIEN_LIVING             = SoundRegistryUtil.createSound("predalien.living");
-    public static final Sound  PREDALIEN_DEATH              = SoundRegistryUtil.createSound("predalien.death");
+    /* PRED-ALIEN SOUNDS */
+    public static final Sound PREDALIEN_ATTACK             = SoundRegistryUtil.createSound("predalien.attack");
+    public static final Sound PREDALIEN_HURT               = SoundRegistryUtil.createSound("predalien.hurt");
+    public static final Sound PREDALIEN_LIVING             = SoundRegistryUtil.createSound("predalien.living");
+    public static final Sound PREDALIEN_DEATH              = SoundRegistryUtil.createSound("predalien.death");
 
-    /** PREQUELMORPH SOUNDS **/
-    public static final Sound  PREQUELMORPH_ATTACK          = SoundRegistryUtil.createSound("prequelmorph.attack");
-    public static final Sound  PREQUELMORPH_HURT            = SoundRegistryUtil.createSound("prequelmorph.hurt");
-    public static final Sound  PREQUELMORPH_LIVING          = SoundRegistryUtil.createSound("prequelmorph.living");
-    public static final Sound  PREQUELMORPH_DEATH           = SoundRegistryUtil.createSound("prequelmorph.death");
+    /* PREQUELMORPH SOUNDS */
+    public static final Sound PREQUELMORPH_ATTACK          = SoundRegistryUtil.createSound("prequelmorph.attack");
+    public static final Sound PREQUELMORPH_HURT            = SoundRegistryUtil.createSound("prequelmorph.hurt");
+    public static final Sound PREQUELMORPH_LIVING          = SoundRegistryUtil.createSound("prequelmorph.living");
+    public static final Sound PREQUELMORPH_DEATH           = SoundRegistryUtil.createSound("prequelmorph.death");
 
-    /** CHESTBURSTER SOUNDS **/
-    public static final Sound  CHESTBURSTER_DEATH           = SoundRegistryUtil.createSound("chestburster.death");
-    public static final Sound  CHESTBURSTER_HURT            = SoundRegistryUtil.createSound("chestburster.hurt");
-    public static final Sound  CHESTBURSTER_ATTACK          = SoundRegistryUtil.createSound("chestburster.attack");
-    public static final Sound  CHESTBURSTER_BURST           = SoundRegistryUtil.createSound("chestburster.burst");
-    
-    /** FACEHUGGER SOUNDS **/
-    public static final Sound  FACEHUGGER_DEATH             = SoundRegistryUtil.createSound("facehugger.death");
-    public static final Sound  FACEHUGGER_HURT              = SoundRegistryUtil.createSound("facehugger.hurt");
-    public static final Sound  FACEHUGGER_IMPLANT           = SoundRegistryUtil.createSound("facehugger.implant");
-    public static final Sound  FACEHUGGER_LIVING            = SoundRegistryUtil.createSound("facehugger.living");
+    /* CHESTBURSTER SOUNDS */
+    public static final Sound CHESTBURSTER_DEATH           = SoundRegistryUtil.createSound("chestburster.death");
+    public static final Sound CHESTBURSTER_HURT            = SoundRegistryUtil.createSound("chestburster.hurt");
+    public static final Sound CHESTBURSTER_ATTACK          = SoundRegistryUtil.createSound("chestburster.attack");
+    public static final Sound CHESTBURSTER_BURST           = SoundRegistryUtil.createSound("chestburster.burst");
+
+    /* FACEHUGGER SOUNDS */
+    public static final Sound FACEHUGGER_DEATH             = SoundRegistryUtil.createSound("facehugger.death");
+    public static final Sound FACEHUGGER_HURT              = SoundRegistryUtil.createSound("facehugger.hurt");
+    public static final Sound FACEHUGGER_IMPLANT           = SoundRegistryUtil.createSound("facehugger.implant");
+    public static final Sound FACEHUGGER_LIVING            = SoundRegistryUtil.createSound("facehugger.living");
+
+    /* OVAMORPH SOUNDS */
+    public static final Sound OVAMORPH_OPEN                = SoundRegistryUtil.createSound("ovamorph.open");
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
@@ -86,5 +92,9 @@ public class AlienSounds implements IPreInitEvent
         SoundRegistryUtil.registerSound(FACEHUGGER_HURT);
         SoundRegistryUtil.registerSound(FACEHUGGER_IMPLANT);
         SoundRegistryUtil.registerSound(FACEHUGGER_LIVING);
+
+        SoundRegistryUtil.registerSound(OVAMORPH_OPEN);
+
+        SoundRegistryUtil.registerSound(FLESH_EAT);
     }
 }

@@ -49,7 +49,7 @@ public class RenderItemM240ICU extends ItemFirearmRenderer<ModelM240ICU>
         {
             OpenGL.translate(0F, 0.15F, -0.4F);
 
-            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && !isDualWielding(entity))
+            if (Mouse.isButtonDown(0) && ClientGame.instance.minecraft().inGameHasFocus && this.canAimWeapon(entity))
             {
                 OpenGL.translate(-0.6495F, 0F, 0F);
             }
@@ -88,7 +88,8 @@ public class RenderItemM240ICU extends ItemFirearmRenderer<ModelM240ICU>
 
     public String getAmmoCountDisplayString()
     {
-        int ammoCount = ((ItemFirearm) ClientGame.instance.minecraft().player.inventory.getCurrentItem().getItem()).getAmmoCount();
+        ItemStack itemStack = ClientGame.instance.minecraft().player.inventory.getCurrentItem();
+        int ammoCount = ((ItemFirearm) itemStack.getItem()).getAmmoCount(itemStack);
         return (ammoCount < 10 ? "0" + ammoCount : String.valueOf(ammoCount));
     }
 }

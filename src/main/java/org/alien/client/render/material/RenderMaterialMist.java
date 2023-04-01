@@ -9,16 +9,15 @@ import org.lwjgl.opengl.GL11;
 
 public class RenderMaterialMist implements MaterialRenderer
 {
+    private static final Vec3d FOG_COLOR = new Vec3d(0.55, 0.7, 0.9);
+
     @Override
-    public void renderMaterialOverlay(Material material)
-    {
-        ;
-    }
+    public void renderMaterialOverlay(Material material) { /* Do Nothing */ }
     
     @Override
     public Vec3d getFogColor()
     {
-        return new Vec3d(0.55, 0.7, 0.9);
+        return FOG_COLOR;
     }
     
     @Override

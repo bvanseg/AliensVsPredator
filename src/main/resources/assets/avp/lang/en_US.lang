@@ -549,3 +549,84 @@ tile.avp:unitree.leaves.b.name=Unitree Big Leaves
 item.avp:cobalt.name=Cobalt
 item.avp:neodymium.name=Neodymium
 item.avp:neodymium.magnet=Neodymium Magnet
+
+# ADVANCEMENTS
+avp.advancements.tech.acquire.copper.title=Copper-Top
+avp.advancements.tech.acquire.copper.description=Smelt a copper ingot
+avp.advancements.tech.acquire.silicon.title=Valley Of Innovation
+avp.advancements.tech.acquire.silicon.description=Acquire silicon
+avp.advancements.tech.acquire.lithium.title=Explosive When Wet
+avp.advancements.tech.acquire.lithium.description=Smelt a lithium ingot
+avp.advancements.tech.acquire.carbon.title=Carbon Copy
+avp.advancements.tech.acquire.carbon.description=Acquire carbon
+avp.advancements.tech.acquire.aluminum.title=Aluminated
+avp.advancements.tech.acquire.aluminum.description=Smelt an aluminum ingot
+
+avp.advancements.tech.acquire.resistor.title=Ohm Sweet Ohm
+avp.advancements.tech.acquire.resistor.description=Craft a resistor
+avp.advancements.tech.acquire.transistor.title=Amped Up
+avp.advancements.tech.acquire.transistor.description=Craft a transistor
+avp.advancements.tech.acquire.capacitor.title=Electric Potential
+avp.advancements.tech.acquire.capacitor.description=Craft a capacitor
+avp.advancements.tech.acquire.transformer.title=Rising Power
+avp.advancements.tech.acquire.transformer.description=Craft a step-up transformer
+
+avp.advancements.tech.acquire.polycarbonate.title=Crystal Clear
+avp.advancements.tech.acquire.polycarbonate.description=Craft polycarbonate
+
+avp.advancements.tech.acquire.diode.title=One-Way Street
+avp.advancements.tech.acquire.diode.description=Craft a diode
+avp.advancements.tech.acquire.led.title=Let There Be Light
+avp.advancements.tech.acquire.led.description=Craft an LED
+avp.advancements.tech.acquire.led.display.title=Let Light Be Useful
+avp.advancements.tech.acquire.led.display.description=Craft an LED Display
+
+
+avp.advancements.tech.acquire.regulator.title=Steady Hand
+avp.advancements.tech.acquire.regulator.description=Craft a regulator
+
+avp.advancements.tech.acquire.integrated.circuit.title=Integrated
+avp.advancements.tech.acquire.integrated.circuit.description=Craft an integrated circuit
+
+avp.advancements.tech.acquire.ram.title=Download Successful
+avp.advancements.tech.acquire.ram.description=Craft random access memory
+avp.advancements.tech.acquire.motherboard.title=Electronics Expert
+avp.advancements.tech.acquire.motherboard.description=Craft a motherboard
+avp.advancements.tech.acquire.microprocessor.title=Macro Results
+avp.advancements.tech.acquire.microprocessor.description=Craft a microprocessor
+avp.advancements.tech.acquire.ssd.title=Data Hoarder
+avp.advancements.tech.acquire.ssd.description=Craft a solid state drive
+avp.advancements.tech.acquire.powersupply.title=Powerhouse
+avp.advancements.tech.acquire.powersupply.description=Craft a power supply
+
+avp.advancements.tech.acquire.assembler.title=The Gathering
+avp.advancements.tech.acquire.assembler.description=Craft an assembler
+
+
+# PREDATOR ADVANCEMENTS
+avp.advancements.predators.acquire.artifact.title=Curious Oddity
+avp.advancements.predators.acquire.artifact.description=Acquire an artifact
+
+avp.advancements.predators.acquire.celtic.pickaxe.title=A Different Hunt
+avp.advancements.predators.acquire.celtic.pickaxe.description=Acquire a celtic pickaxe
+avp.advancements.predators.acquire.celtic.hoe.title=Hunter-Gatherer
+avp.advancements.predators.acquire.celtic.hoe.description=Acquire a celtic hoe
+
+avp.advancements.predators.acquire.celtic.sword.title=Honorable Blade
+avp.advancements.predators.acquire.celtic.sword.description=Acquire a celtic sword
+avp.advancements.predators.acquire.wristbracer.title=Hunter's Best Friend
+avp.advancements.predators.acquire.wristbracer.description=Acquire a wristbracer
+avp.advancements.predators.acquire.wristblade.title=Serrated Soul Stealer
+avp.advancements.predators.acquire.wristblade.description=Acquire wristblades for a wristbracer
+avp.advancements.predators.acquire.spear.title=World Within Reach
+avp.advancements.predators.acquire.spear.description=Acquire a spear
+avp.advancements.predators.acquire.smart.disc.title=Lethal Return
+avp.advancements.predators.acquire.smart.disc.description=Acquire a smart disc
+
+avp.advancements.predators.acquire.biomask.title=A New Perspective
+avp.advancements.predators.acquire.biomask.description=Acquire a biomask
+
+avp.advancements.predators.defeat.predator.title=Hunter, Hunted
+avp.advancements.predators.defeat.predator.description=Defeat a predator in combat
+avp.advancements.predators.defeat.predator.berserker.title=Rage, Rage
+avp.advancements.predators.defeat.predator.berserker.description=Defeat a berserker predator in combat

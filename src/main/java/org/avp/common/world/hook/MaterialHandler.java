@@ -29,27 +29,21 @@ public class MaterialHandler
     @SubscribeEvent
     public void render(RenderGameOverlayEvent event)
     {
-        if (ClientGame.instance.minecraft().world != null)
-        {
-            Material materialInside = getMaterialInside(ClientGame.instance.minecraft().player);
+        if (ClientGame.instance.minecraft().world == null) return;
 
-            if (materialInside != null && materialInside instanceof MaterialPhysics)
-            {
-                MaterialPhysics physics = (MaterialPhysics) materialInside;
-                MaterialRenderer renderer = physics.getMaterialRenderer();
+        Material materialInside = getMaterialInside(ClientGame.instance.minecraft().player);
 
-                if (renderer != null)
-                {
-                    if (event.getType() == ElementType.HELMET)
-                    {
-                        if (ClientGame.instance.minecraft().player.isInsideOfMaterial(materialInside))
-                        {
-                            renderer.renderMaterialOverlay(materialInside);
-                        }
-                    }
-                }
-            }
-        }
+        if (materialInside == null) return;
+        if (!(materialInside instanceof MaterialPhysics)) return;
+
+        MaterialPhysics physics = (MaterialPhysics) materialInside;
+        MaterialRenderer renderer = physics.getMaterialRenderer();
+
+        if (renderer == null) return;
+        if (event.getType() != ElementType.HELMET) return;
+        if (!ClientGame.instance.minecraft().player.isInsideOfMaterial(materialInside)) return;
+
+        renderer.renderMaterialOverlay(materialInside);
     }
     
     @SubscribeEvent
@@ -57,34 +51,31 @@ public class MaterialHandler
     {
         Entity entity = event.getEntity();
 
-        if (!entity.isDead)
+        if (entity.isDead) return;
+
+        try
         {
-            try
+            Material material = getMaterialInside(entity);
+
+            if (!(material instanceof MaterialPhysics)) return;
+
+            MaterialPhysics physics = (MaterialPhysics) material;
+            Vec3d motion = MaterialHandler.instance.handleMaterialAcceleration(entity, material);
+
+            if (motion == null) return;
+
+            physics.onCollision(entity);
+
+            if (entity.isPushedByWater() || physics.ignoresPushableCheck())
             {
-                Material material = getMaterialInside(entity);
-
-                if (material instanceof MaterialPhysics)
-                {
-                    MaterialPhysics physics = (MaterialPhysics) material;
-                    Vec3d motion = MaterialHandler.instance.handleMaterialAcceleration(entity, material, physics);
-
-                    if (motion != null)
-                    {
-                        physics.onCollision(entity);
-
-                        if (entity.isPushedByWater() || physics.ignoresPushableCheck())
-                        {
-                            motion = motion.normalize();
-                            physics.handleMovement(entity);
-                            physics.handleForce(entity, motion);
-                        }
-                    }
-                }
+                motion = motion.normalize();
+                physics.handleMovement(entity);
+                physics.handleForce(entity, motion);
             }
-            catch (Exception e)
-            {
-            	AVP.log().warn("Error handling fluid physics update for entity: " + e);
-            }
+        }
+        catch (Exception e)
+        {
+            AVP.log().warn("Error handling fluid physics update for entity: " + e);
         }
     }
 
@@ -92,52 +83,47 @@ public class MaterialHandler
     @SubscribeEvent
     public void fogRenderEvent(RenderFogEvent event)
     {
-        if (ClientGame.instance.minecraft().world != null && !ClientGame.instance.minecraft().isGamePaused())
-        {
-            Material material = getMaterialInside(ClientGame.instance.minecraft().player);
+        if (ClientGame.instance.minecraft().world == null) return;
+        if (ClientGame.instance.minecraft().isGamePaused()) return;
 
-            if (material instanceof MaterialPhysics && ClientGame.instance.minecraft().player.isInsideOfMaterial(material))
-            {
-                MaterialPhysics physics = (MaterialPhysics) material;
-                MaterialRenderer renderer = physics.getMaterialRenderer();
+        Material material = getMaterialInside(ClientGame.instance.minecraft().player);
 
-                if (renderer != null)
-                {
-                    renderer.renderFog(material);
-                }
-            }
-        }
+        if (!(material instanceof MaterialPhysics)) return;
+        if (!ClientGame.instance.minecraft().player.isInsideOfMaterial(material)) return;
+
+        MaterialPhysics physics = (MaterialPhysics) material;
+        MaterialRenderer renderer = physics.getMaterialRenderer();
+
+        if (renderer == null) return;
+
+        renderer.renderFog(material);
     }
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void fogColorUpdate(FogColors event)
     {
-        if (ClientGame.instance.minecraft().world != null && !ClientGame.instance.minecraft().isGamePaused())
-        {
-            Material material = getMaterialInside(ClientGame.instance.minecraft().player);
+        if (ClientGame.instance.minecraft().world == null) return;
+        if (ClientGame.instance.minecraft().isGamePaused()) return;
 
-            if (material instanceof MaterialPhysics)
-            {
-                if (ClientGame.instance.minecraft().player.isInsideOfMaterial(material))
-                {
-                    MaterialPhysics physics = (MaterialPhysics) material;
-                    MaterialRenderer renderer = physics.getMaterialRenderer();
+        Material material = getMaterialInside(ClientGame.instance.minecraft().player);
 
-                    if (renderer != null)
-                    {
-                        Vec3d fogColor = renderer.getFogColor();
+        if (!(material instanceof MaterialPhysics)) return;
+        if (!ClientGame.instance.minecraft().player.isInsideOfMaterial(material)) return;
 
-                        event.setRed((float) fogColor.x);
-                        event.setGreen((float) fogColor.y);
-                        event.setBlue((float) fogColor.z);
-                    }
-                }
-            }
-        }
+        MaterialPhysics physics = (MaterialPhysics) material;
+        MaterialRenderer renderer = physics.getMaterialRenderer();
+
+        if (renderer == null) return;
+
+        Vec3d fogColor = renderer.getFogColor();
+
+        event.setRed((float) fogColor.x);
+        event.setGreen((float) fogColor.y);
+        event.setBlue((float) fogColor.z);
     }
     
-    public static Material getMaterialInside(Entity entity)
+    private Material getMaterialInside(Entity entity)
     {
         AxisAlignedBB box = entity.getEntityBoundingBox();
         int minX = MathHelper.floor(box.minX);
@@ -147,24 +133,19 @@ public class MaterialHandler
         int minZ = MathHelper.floor(box.minZ);
         int maxZ = MathHelper.floor(box.maxZ + 1.0D);
 
-        if (!entity.world.isBlockLoaded(entity.getPosition()))
-        {
-            return null;
-        }
-        else
-        {
-            for (int x = minX; x < maxX; ++x)
-            {
-                for (int y = minY; y < maxY; ++y)
-                {
-                    for (int z = minZ; z < maxZ; ++z)
-                    {
-                        IBlockState block = entity.world.getBlockState(new BlockPos(x, y, z));
+        if (!entity.world.isBlockLoaded(entity.getPosition())) return null;
 
-                        if (block != null)
-                        {
-                            return block.getMaterial();
-                        }
+        for (int x = minX; x < maxX; ++x)
+        {
+            for (int y = minY; y < maxY; ++y)
+            {
+                for (int z = minZ; z < maxZ; ++z)
+                {
+                    IBlockState block = entity.world.getBlockState(new BlockPos(x, y, z));
+
+                    if (block != null)
+                    {
+                        return block.getMaterial();
                     }
                 }
             }
@@ -173,7 +154,7 @@ public class MaterialHandler
         return null;
     }
 
-    public Vec3d handleMaterialAcceleration(Entity entity, Material material, MaterialPhysics physics)
+    private Vec3d handleMaterialAcceleration(Entity entity, Material material)
     {
         AxisAlignedBB box = entity.getEntityBoundingBox().expand(0.0D, -0.4D, 0.0D).contract(0.001D, 0.001D, 0.001D);
 
@@ -184,37 +165,32 @@ public class MaterialHandler
         int minZ = MathHelper.floor(box.minZ);
         int maxZ = MathHelper.floor(box.maxZ + 1.0D);
 
-        if (!entity.world.isBlockLoaded(entity.getPosition()))
-        {
-            return null;
-        }
-        else
-        {
-            Vec3d motion = null;
+        if (!entity.world.isBlockLoaded(entity.getPosition())) return null;
 
-            for (int x = minX; x < maxX; ++x)
+        Vec3d motion = null;
+
+        for (int x = minX; x < maxX; ++x)
+        {
+            for (int y = minY; y < maxY; ++y)
             {
-                for (int y = minY; y < maxY; ++y)
+                for (int z = minZ; z < maxZ; ++z)
                 {
-                    for (int z = minZ; z < maxZ; ++z)
+                    BlockPos pos = new BlockPos(x, y, z);
+                    IBlockState block = entity.world.getBlockState(pos);
+
+                    if (block.getMaterial() != material) continue;
+
+                    double lhp = y + 1 - BlockLiquid.getLiquidHeightPercent(block.getBlock().getMetaFromState(block));
+
+                    if (maxY >= lhp)
                     {
-                        BlockPos pos = new BlockPos(x, y, z);
-                        IBlockState block = entity.world.getBlockState(pos);
-
-                        if (block.getMaterial() == material)
-                        {
-                            double lhp = y + 1 - BlockLiquid.getLiquidHeightPercent(block.getBlock().getMetaFromState(block));
-
-                            if (maxY >= lhp)
-                            {
-                                block.getBlock().modifyAcceleration(entity.world, pos, entity, motion = new Vec3d(0.0D, 0.0D, 0.0D));
-                            }
-                        }
+                        motion = Vec3d.ZERO;
+                        block.getBlock().modifyAcceleration(entity.world, pos, entity, motion);
                     }
                 }
             }
-
-            return motion;
         }
+
+        return motion;
     }
 }

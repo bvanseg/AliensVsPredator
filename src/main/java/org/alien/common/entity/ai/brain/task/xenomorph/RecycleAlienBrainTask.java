@@ -2,6 +2,7 @@ package org.alien.common.entity.ai.brain.task.xenomorph;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import org.alien.client.AlienSounds;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.xenomorph.EntityDrone;
 import org.lib.brain.flag.AbstractBrainFlag;
@@ -51,12 +52,7 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 
 		if(!(entity instanceof EntityDrone)) return false;
 
-		EntityDrone droneEntity = (EntityDrone) entity;
-
-		if (droneEntity.world.getTotalWorldTime() % 20 != 0) return false;
-		if (droneEntity.getRNG().nextInt(3) != 0) return false;
-
-		return true;
+		return entity.getRNG().nextInt(3) == 0;
 	}
 
 	@Override
@@ -85,9 +81,17 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 		if (distance < 2)
 		{
 			entityDrone.setJellyLevel(entityDrone.getJellyLevel() + this.recycleTarget.getJellyLevel());
+			AlienSounds.FLESH_EAT.playSound(ctx.getEntity());
 			this.recycleTarget.setDead();
 			this.recycleTarget = null;
 		}
+	}
+
+	@Override
+	public void finish() {
+		super.finish();
+		this.recycleTarget = null;
+		ctx.getEntity().getNavigator().clearPath();
 	}
 
 	@SuppressWarnings("unchecked")
