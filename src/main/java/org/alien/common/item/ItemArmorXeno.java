@@ -19,6 +19,9 @@ import org.alien.common.AlienItems;
 import org.avp.common.AVPArmorMaterials;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 
+/**
+ * @author Ri5ux
+ */
 public class ItemArmorXeno extends ItemArmor
 {
     @SideOnly(Side.CLIENT)
@@ -53,7 +56,10 @@ public class ItemArmorXeno extends ItemArmor
             ItemStack chest = Inventories.getChestSlotItemStack(player);
             ItemStack legs = Inventories.getLegsSlotItemStack(player);
             ItemStack boots = Inventories.getBootSlotItemStack(player);
-            return (helm != null && chest != null && legs != null && boots != null && (helm.getItem() == AlienItems.HELM_XENO && chest.getItem() == AlienItems.PLATE_XENO && legs.getItem() == AlienItems.LEGS_XENO && boots.getItem() == AlienItems.BOOTS_XENO));
+            return (helm.getItem() == AlienItems.HELM_XENO &&
+                    chest.getItem() == AlienItems.PLATE_XENO &&
+                    legs.getItem() == AlienItems.LEGS_XENO &&
+                    boots.getItem() == AlienItems.BOOTS_XENO);
         }
 
         return false;
@@ -62,21 +68,20 @@ public class ItemArmorXeno extends ItemArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if (isPlayerWearingXenoArmorSet(player))
+        if (!isPlayerWearingXenoArmorSet(player)) return;
+
+        SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
+
+        if (world.isRemote)
         {
-            SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
+            this.controlledAbility(player, specialPlayer);
+        }
 
-            if (world.isRemote)
-            {
-                this.controlledAbility(player, specialPlayer);
-            }
+        player.fallDistance = 0.0F;
 
-            player.fallDistance = 0.0F;
-
-            if (specialPlayer.canClimb() && player.collidedHorizontally)
-            {
-                player.motionY += 0.03F;
-            }
+        if (specialPlayer.canClimb() && player.collidedHorizontally)
+        {
+            player.motionY += 0.03F;
         }
     }
 
