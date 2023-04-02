@@ -9,15 +9,21 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 /**
  * @author Boston Vanseghi
  */
 public class ModelConfig {
 
-    private static ModelConfig instance;
+    public static ModelConfig instance;
 
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private static final Gson gson = new GsonBuilder()
+            .setPrettyPrinting()
+            .registerTypeAdapterFactory(new ConfigTypeAdapterFactory())
+            .create();
 
     public static ModelConfig getInstance() {
         if (instance == null) {
@@ -57,10 +63,26 @@ public class ModelConfig {
         }
     }
 
+    @ConfigValue.Category
     private ModelConfigGeneral general = new ModelConfigGeneral();
+
+    @ConfigValue.Category
     private ModelConfigGraphics graphics = new ModelConfigGraphics();
+
+    @ConfigValue.Category
     private ModelConfigBiomes biomes = new ModelConfigBiomes();
+
+    @ConfigValue.Category
     private ModelConfigSpawning spawning = new ModelConfigSpawning();
 
     public ModelConfig() {}
+
+
+    public boolean isHalloweenEventEnabled()
+    {
+        Date date = new Date();
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        return (localDate.getMonthValue() == 10 && localDate.getDayOfMonth() >= 27 || localDate.getMonthValue() == 11 && localDate.getDayOfMonth() <= 3);
+    }
 }

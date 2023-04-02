@@ -12,7 +12,7 @@ public class ModelConfigGeneral {
     private boolean debugToolsEnabled = false;
     private boolean nukesEnabled = true;
 
-    @ConfigLabel.Number
+    @ConfigValue.Number
     private int globalSoundVolume = 75;
 
     public ModelConfigGeneral() {}

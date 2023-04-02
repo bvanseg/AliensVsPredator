@@ -1,7 +1,7 @@
 package org.avp.common.config;
 
 import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author Boston Vanseghi
@@ -12,26 +12,41 @@ public class ModelConfigSpawning {
     private boolean autoSpawnsEnabled = true;
     private boolean evolvedXenomorphSpawns = true;
 
-    private List<String> spawnsAlien = Collections.emptyList();
-    private List<String> spawnsAquaticAlien = Collections.emptyList();
-    private List<String> spawnsPredator = Collections.emptyList();
-    private List<String> spawnsMarine = Collections.emptyList();
-    private List<String> spawnsVarda = Collections.emptyList();
+    private Set<String> spawnsAlien = Collections.emptySet();
+    private Set<String> spawnsAquaticAlien = Collections.emptySet();
+    private Set<String> spawnsPredator = Collections.emptySet();
+    private Set<String> spawnsMarine = Collections.emptySet();
+    private Set<String> spawnsVarda = Collections.emptySet();
 
+    @ConfigValue.Number
     private int spawnWeightEntityNauticomorph = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityDrone = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityWarrior = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityPraetorian = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityChestburster = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityFacehugger = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityYautjaWarrior = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityYautjaBerserker = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityMarine = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityEngineer = 5;
+    @ConfigValue.Number
     private int spawnWeightEntitySpaceJockey = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityHammerpede = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityOctohugger = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityDeacon = 5;
+    @ConfigValue.Number
     private int spawnWeightEntityTrilobite = 5;
 
     public ModelConfigSpawning() {}

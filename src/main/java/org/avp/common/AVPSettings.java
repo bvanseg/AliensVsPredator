@@ -265,14 +265,6 @@ public class AVPSettings implements IPreInitEvent, IFlexibleConfiguration
         return (float) ((Integer) this.globalSoundVolume.value()) / 100F;
     }
 
-    public boolean isHalloweenEventEnabled()
-    {
-        Date date = new Date();
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-        return (localDate.getMonthValue() == 10 && localDate.getDayOfMonth() >= 27 || localDate.getMonthValue() == 11 && localDate.getDayOfMonth() <= 3);
-    }
-
     public ConfigSettingBiomeList getSpawnsAlien()
     {
         return (ConfigSettingBiomeList) spawnsAlien;
