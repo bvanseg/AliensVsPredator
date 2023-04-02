@@ -87,7 +87,6 @@ public class AVP implements IMod
         logger.info("Initializing...");
 
         AVPNetworking.instance.init(event);
-        AVPMaterials.instance.init(event);
         AVPGui.instance.init(event);
         AVPEventHandlers.instance.init(event);
         AVPCommands.instance.init(event);

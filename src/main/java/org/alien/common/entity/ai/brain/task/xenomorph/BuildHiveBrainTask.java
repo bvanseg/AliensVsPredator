@@ -11,7 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.BlockHiveResin;
 import org.alien.common.entity.living.xenomorph.EntityDrone;
 import org.alien.common.tile.TileEntityHiveResin;

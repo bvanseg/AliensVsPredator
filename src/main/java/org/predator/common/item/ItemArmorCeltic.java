@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.KeybindHandler;
-import org.avp.common.AVPMaterials;
+import org.avp.common.AVPArmorMaterials;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
 import org.lwjgl.input.Keyboard;
 import org.predator.client.PredatorResources;
@@ -24,7 +24,7 @@ public class ItemArmorCeltic extends ItemArmor
 {
     public ItemArmorCeltic(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(AVPMaterials.Armors.CELTIC, renderIndex, armorType);
+        super(AVPArmorMaterials.CELTIC, renderIndex, armorType);
     }
     
     @Override
