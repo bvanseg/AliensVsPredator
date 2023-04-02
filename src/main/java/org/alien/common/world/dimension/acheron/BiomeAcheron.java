@@ -57,10 +57,12 @@ public class BiomeAcheron extends BiomeGenLV
             ;
         }
 
+        private static final WorldGenMinable WORLDGEN_ORE_UNIDIRT = new WorldGenMinable(AlienVardaBlocks.UNIDIRT.getDefaultState(), 32);
+
         @Override
         protected void generateOres(World world, Random random)
         {
-            Worlds.generateInChunk(world, new WorldGenMinable(AlienVardaBlocks.UNIDIRT.getDefaultState(), 32), random, 20, 0, 128, chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_UNIDIRT, random, 20, 0, 128, chunkPos);
         }
     }
 }

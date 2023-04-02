@@ -96,18 +96,28 @@ public class BiomeVarda extends BiomeGenLV
             }
         }
 
+        private static final WorldGenMinable WORLDGEN_ORE_UNIDIRT = new WorldGenMinable(AlienVardaBlocks.UNIDIRT.getDefaultState(), 32, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_UNISAND = new WorldGenMinable(AlienVardaBlocks.UNISAND.getDefaultState(), 32, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_BAUXITE = new WorldGenMinable(AVPOreBlocks.ORE_BAUXITE.getDefaultState(), 4, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_COPPER = new WorldGenMinable(AVPOreBlocks.ORE_COPPER.getDefaultState(), 4, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_SILICON = new WorldGenMinable(AVPOreBlocks.ORE_SILICON.getDefaultState(), 4, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_LITHIUM = new WorldGenMinable(AVPOreBlocks.ORE_LITHIUM.getDefaultState(), 3, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_COAL = new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), 16, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_IRON = new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), 8, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_DIAMOND = new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), 3, GenerationFilters.STONE);
+
         @Override
         protected void generateOres(World world, Random seed)
         {
-            Worlds.generateInChunk(world, new WorldGenMinable(AlienVardaBlocks.UNIDIRT.getDefaultState(), 32, GenerationFilters.STONE), seed, 20, 0, 4, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AlienVardaBlocks.UNISAND.getDefaultState(), 32, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AVPOreBlocks.ORE_BAUXITE.getDefaultState(), 4, GenerationFilters.STONE), seed, 20, 16, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AVPOreBlocks.ORE_COPPER.getDefaultState(), 4, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AVPOreBlocks.ORE_SILICON.getDefaultState(), 4, GenerationFilters.STONE), seed, 15, 0, 64, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AVPOreBlocks.ORE_LITHIUM.getDefaultState(), 3, GenerationFilters.STONE), seed, 1, 1, 48, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), 16, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), 8, GenerationFilters.STONE), seed, 20, 0, 64, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), 3, GenerationFilters.STONE), seed, 1, 0, 16, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_UNIDIRT, seed, 20, 0, 4, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_UNISAND, seed, 20, 0, 128, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_BAUXITE, seed, 20, 16, 128, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_COPPER, seed, 20, 0, 128, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_SILICON, seed, 15, 0, 64, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_LITHIUM, seed, 1, 1, 48, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_COAL, seed, 20, 0, 128, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_IRON, seed, 20, 0, 64, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_DIAMOND, seed, 1, 0, 16, this.chunkPos);
         }
 
         private void generateForest(Biome biome, World world, Random seed)
