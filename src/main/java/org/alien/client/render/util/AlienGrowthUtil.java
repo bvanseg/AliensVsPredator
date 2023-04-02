@@ -1,5 +1,6 @@
 package org.alien.client.render.util;
 
+import net.minecraft.util.math.MathHelper;
 import org.alien.common.api.maturity.MaturityEntries;
 import org.alien.common.api.maturity.MaturityEntry;
 import org.alien.common.entity.living.SpeciesAlien;
@@ -9,6 +10,8 @@ import org.alien.common.entity.living.SpeciesAlien;
  */
 public class AlienGrowthUtil {
     private AlienGrowthUtil() {}
+
+    public static final int MATRIARCH_MAX_PSEUDO_JELLY_LEVEL = 2000;
 
     public static float calculateJellyGrowthFactor(SpeciesAlien alien, float step, int scaleReductionFactor, float partialTicks) {
         float additionalScale = 0F;
@@ -21,6 +24,6 @@ public class AlienGrowthUtil {
             additionalScale = alien.growthProgress / (maturityEntry.getRequiredJellyLevel() * scaleReductionFactor);
         }
 
-        return additionalScale;
+        return MathHelper.clamp(additionalScale, 0F, 1F);
     }
 }

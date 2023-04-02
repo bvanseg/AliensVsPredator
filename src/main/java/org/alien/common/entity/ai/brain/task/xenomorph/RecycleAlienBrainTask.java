@@ -52,12 +52,7 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 
 		if(!(entity instanceof EntityDrone)) return false;
 
-		EntityDrone droneEntity = (EntityDrone) entity;
-
-		if (droneEntity.world.getTotalWorldTime() % 20 != 0) return false;
-		if (droneEntity.getRNG().nextInt(3) != 0) return false;
-
-		return true;
+		return entity.getRNG().nextInt(3) == 0;
 	}
 
 	@Override
@@ -90,6 +85,13 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 			this.recycleTarget.setDead();
 			this.recycleTarget = null;
 		}
+	}
+
+	@Override
+	public void finish() {
+		super.finish();
+		this.recycleTarget = null;
+		ctx.getEntity().getNavigator().clearPath();
 	}
 
 	@SuppressWarnings("unchecked")

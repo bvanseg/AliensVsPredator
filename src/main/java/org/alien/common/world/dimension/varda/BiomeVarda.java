@@ -10,8 +10,9 @@ import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenLakes;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.AlienDimensions;
+import org.alien.common.block.init.AlienVardaBlocks;
 import org.alien.common.entity.living.vardic.EntityDeaconShark;
 import org.alien.common.world.dimension.BiomeGenLV;
 import org.alien.common.world.dimension.GenerationFilters;
@@ -30,8 +31,8 @@ public class BiomeVarda extends BiomeGenLV
     public BiomeVarda(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = AlienBlocks.UNIDIRT.getDefaultState();
-        this.fillerBlock = AlienBlocks.UNISTONE.getDefaultState();
+        this.topBlock = AlienVardaBlocks.UNIDIRT.getDefaultState();
+        this.fillerBlock = AlienVardaBlocks.UNISTONE.getDefaultState();
         this.spawnableWaterCreatureList.add(new Biome.SpawnListEntry(EntityDeaconShark.class, 1, 0, 1));
     }
 
@@ -63,7 +64,7 @@ public class BiomeVarda extends BiomeGenLV
         @Override
         protected void genDecorations(Biome biome, World world, Random seed)
         {
-            WorldGenerator stalagmites = new WorldGenSurfaceBlock(AlienBlocks.STALAGMITE.getDefaultState());
+            WorldGenerator stalagmites = new WorldGenSurfaceBlock(AlienVardaBlocks.STALAGMITE.getDefaultState());
             WorldGenerator formation1 = new TerrainFormation();
             WorldGenerator formation2 = new TerrainFormation1();
             
@@ -95,23 +96,33 @@ public class BiomeVarda extends BiomeGenLV
             }
         }
 
+        private static final WorldGenMinable WORLDGEN_ORE_UNIDIRT = new WorldGenMinable(AlienVardaBlocks.UNIDIRT.getDefaultState(), 32, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_UNISAND = new WorldGenMinable(AlienVardaBlocks.UNISAND.getDefaultState(), 32, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_BAUXITE = new WorldGenMinable(AVPOreBlocks.ORE_BAUXITE.getDefaultState(), 4, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_COPPER = new WorldGenMinable(AVPOreBlocks.ORE_COPPER.getDefaultState(), 4, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_SILICON = new WorldGenMinable(AVPOreBlocks.ORE_SILICON.getDefaultState(), 4, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_LITHIUM = new WorldGenMinable(AVPOreBlocks.ORE_LITHIUM.getDefaultState(), 3, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_COAL = new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), 16, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_IRON = new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), 8, GenerationFilters.STONE);
+        private static final WorldGenMinable WORLDGEN_ORE_DIAMOND = new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), 3, GenerationFilters.STONE);
+
         @Override
         protected void generateOres(World world, Random seed)
         {
-            Worlds.generateInChunk(world, new WorldGenMinable(AlienBlocks.UNIDIRT.getDefaultState(), 32, GenerationFilters.STONE), seed, 20, 0, 4, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AlienBlocks.UNISAND.getDefaultState(), 32, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AVPOreBlocks.ORE_BAUXITE.getDefaultState(), 4, GenerationFilters.STONE), seed, 20, 16, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AVPOreBlocks.ORE_COPPER.getDefaultState(), 4, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AVPOreBlocks.ORE_SILICON.getDefaultState(), 4, GenerationFilters.STONE), seed, 15, 0, 64, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(AVPOreBlocks.ORE_LITHIUM.getDefaultState(), 3, GenerationFilters.STONE), seed, 1, 1, 48, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(Blocks.COAL_ORE.getDefaultState(), 16, GenerationFilters.STONE), seed, 20, 0, 128, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(Blocks.IRON_ORE.getDefaultState(), 8, GenerationFilters.STONE), seed, 20, 0, 64, this.chunkPos);
-            Worlds.generateInChunk(world, new WorldGenMinable(Blocks.DIAMOND_ORE.getDefaultState(), 3, GenerationFilters.STONE), seed, 1, 0, 16, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_UNIDIRT, seed, 20, 0, 4, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_UNISAND, seed, 20, 0, 128, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_BAUXITE, seed, 20, 16, 128, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_COPPER, seed, 20, 0, 128, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_SILICON, seed, 15, 0, 64, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_LITHIUM, seed, 1, 1, 48, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_COAL, seed, 20, 0, 128, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_IRON, seed, 20, 0, 64, this.chunkPos);
+            Worlds.generateInChunk(world, WORLDGEN_ORE_DIAMOND, seed, 1, 0, 16, this.chunkPos);
         }
 
         private void generateForest(Biome biome, World world, Random seed)
         {
-            WorldGenerator saplings = new WorldGenSustainableOnDirt(AlienBlocks.GIGER_SAPLING.getDefaultState());
+            WorldGenerator saplings = new WorldGenSustainableOnDirt(AlienVardaBlocks.GIGER_SAPLING.getDefaultState());
             WorldGenerator tree1 = new VardaTreeGenerator(true);
             WorldGenerator tree2 = new VardaTree2Generator(true);
             WorldGenerator tree3 = new VardaTree3Generator(true);

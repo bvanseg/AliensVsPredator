@@ -6,14 +6,15 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.block.init.AlienVardaBlocks;
 
 import java.util.Random;
 
 public class TerrainFormation extends WorldGenerator
 {
-    private static final IBlockState block       = AlienBlocks.UNIDIRT.getDefaultState();
-    Block[]                          validBlocks = new Block[] { AlienBlocks.UNIDIRT
+    private static final IBlockState block       = AlienVardaBlocks.UNIDIRT.getDefaultState();
+    Block[]                          validBlocks = new Block[] { AlienVardaBlocks.UNIDIRT
     };
 
     public boolean isLocationValid(World world, BlockPos pos)

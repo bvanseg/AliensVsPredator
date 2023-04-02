@@ -21,22 +21,33 @@ public abstract class BlockCustomSlab extends BlockSlab {
 
     public static final PropertyEnum<Variant> VARIANT = PropertyEnum.create("variant", Variant.class);
 
+    protected final BlockProperties blockProperties;
+
     private BlockRenderLayer renderLayer;
     private boolean doesSideRendering;
 
+    protected final String rawRegistryName;
+
     protected BlockCustomSlab(String registryName, BlockProperties properties) {
         super(properties.getMaterial());
+
+        this.rawRegistryName = registryName;
         this.setRegistryName(registryName);
+        this.blockProperties = properties;
         this.renderLayer = BlockRenderLayer.SOLID;
         this.doesSideRendering = true;
 
-        IBlockState iblockstate = this.blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
+        IBlockState iblockstate = this.blockState.getBaseState();
 
         if (!this.isDouble()) {
-            iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
+            iblockstate = iblockstate.withProperty(HALF, BlockSlab.EnumBlockHalf.BOTTOM);
         }
 
-        this.setDefaultState(iblockstate);
+        if (properties.getSoundType() != null) {
+            this.setSoundType(properties.getSoundType());
+        }
+
+        this.setDefaultState(iblockstate.withProperty(VARIANT, Variant.DEFAULT));
         this.useNeighborBrightness = !this.isDouble();
     }
 
@@ -48,6 +59,10 @@ public abstract class BlockCustomSlab extends BlockSlab {
     @Override
     public BlockRenderLayer getRenderLayer() {
         return this.renderLayer;
+    }
+
+    public boolean doesSideRendering() {
+        return this.doesSideRendering;
     }
 
     public BlockCustomSlab setDoesSideRendering(boolean doesSideRendering) {
@@ -65,68 +80,79 @@ public abstract class BlockCustomSlab extends BlockSlab {
     }
 
     @Override
-    public String getTranslationKey(int meta) {
-        return this.getTranslationKey();
+    public IBlockState getStateFromMeta(int meta)
+    {
+        IBlockState iblockstate = this.getDefaultState().withProperty(VARIANT, Variant.DEFAULT);
+
+        if (!this.isDouble())
+        {
+            iblockstate = iblockstate.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
+        }
+
+        return iblockstate;
+    }
+
+    /**
+     * Convert the BlockState into the correct metadata value
+     */
+    @Override
+    public int getMetaFromState(IBlockState state)
+    {
+        int i = 0;
+
+        if (!this.isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
+        {
+            i |= 8;
+        }
+
+        return i;
     }
 
     @Override
-    public IProperty<?> getVariantProperty() {
+    protected BlockStateContainer createBlockState()
+    {
+        return this.isDouble() ? new BlockStateContainer(this, VARIANT) : new BlockStateContainer(this, HALF, VARIANT);
+    }
+
+    /**
+     * Returns the slab block name with the type associated with it
+     */
+    @Override
+    public String getTranslationKey(int meta)
+    {
+        return super.getTranslationKey();
+    }
+
+    @Override
+    public IProperty<?> getVariantProperty()
+    {
         return VARIANT;
     }
 
     @Override
-    public Comparable<?> getTypeForItem(ItemStack stack) {
+    public Comparable<?> getTypeForItem(ItemStack stack)
+    {
         return Variant.DEFAULT;
     }
 
-    public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-        if (this instanceof Half) {
-            return Item.getItemFromBlock(this);
-        }
-        return null;
-    }
-
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
-        if (this instanceof Half) {
-            return new ItemStack(this);
-        }
-        return null;
-    }
-
-    @Override
-    public final IBlockState getStateFromMeta(final int meta) {
-        IBlockState blockstate = this.blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
-
-        if (!this.isDouble()) {
-            blockstate = blockstate.withProperty(HALF, ((meta & 8) != 0) ? EnumBlockHalf.TOP : EnumBlockHalf.BOTTOM);
-        }
-
-        return blockstate;
-    }
-
-    @Override
-    public final int getMetaFromState(final IBlockState state) {
-        int meta = 0;
-
-        if (!this.isDouble() && state.getValue(HALF) == EnumBlockHalf.TOP) {
-            meta |= 8;
-        }
-
-        return meta;
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState() {
-        if (!this.isDouble()) {
-            return new BlockStateContainer(this, VARIANT, HALF);
-        }
-        return new BlockStateContainer(this, VARIANT);
-    }
-
     public static class Double extends BlockCustomSlab {
-        public Double(String name, BlockProperties properties) {
+
+        private final BlockCustomSlab.Half halfSlab;
+
+        public Double(String name, BlockProperties properties, BlockCustomSlab.Half halfSlab) {
             super(name, properties);
             properties.apply(this);
+            this.halfSlab = halfSlab;
+        }
+
+        @Override
+        public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+            return Item.getItemFromBlock(halfSlab);
+        }
+
+        @Override
+        public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+            return new ItemStack(halfSlab);
         }
 
         @Override
@@ -139,6 +165,24 @@ public abstract class BlockCustomSlab extends BlockSlab {
         public Half(String name, BlockProperties properties) {
             super(name, properties);
             properties.apply(this);
+        }
+
+        public BlockCustomSlab.Double createDoubleVariant() {
+            return (Double) new Double(
+                    "double_" + this.rawRegistryName,
+                    this.blockProperties,
+                    this
+            ).setRenderLayer(this.getRenderLayer()).setDoesSideRendering(this.doesSideRendering());
+        }
+
+        @Override
+        public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+            return Item.getItemFromBlock(this);
+        }
+
+        @Override
+        public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
+            return new ItemStack(this);
         }
 
         @Override

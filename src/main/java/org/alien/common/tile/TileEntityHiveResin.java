@@ -7,7 +7,7 @@ import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.BlockHiveResin;
 
 import java.util.Random;

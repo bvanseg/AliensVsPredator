@@ -10,14 +10,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import org.avp.client.Resources;
+import org.avp.common.AVPArmorMaterials;
 import org.avp.common.AVPItems;
-import org.avp.common.AVPMaterials;
 
 public class ItemArmorPressureSuit extends ItemAntiVacuumArmor
 {
     public ItemArmorPressureSuit(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(AVPMaterials.Armors.PRESSURE_SUIT, renderIndex, armorType);
+        super(AVPArmorMaterials.PRESSURE_SUIT, renderIndex, armorType);
     }
     
     @Override

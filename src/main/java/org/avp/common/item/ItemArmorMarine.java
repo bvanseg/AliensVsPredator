@@ -11,14 +11,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import org.avp.client.Resources;
+import org.avp.common.AVPArmorMaterials;
 import org.avp.common.AVPItems;
-import org.avp.common.AVPMaterials;
 
 public class ItemArmorMarine extends ItemArmor
 {
     public ItemArmorMarine(int renderIndex, EntityEquipmentSlot slot)
     {
-        super(AVPMaterials.Armors.KEVLAR, renderIndex, slot);
+        super(AVPArmorMaterials.KEVLAR, renderIndex, slot);
     }
     
     @Override

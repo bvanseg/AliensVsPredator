@@ -83,7 +83,7 @@ public class BlockSupplyCrate extends BlockFalling
 
     public void spawnParachute(World world, BlockPos pos)
     {
-        EntitySupplyChute chute = this.getType().createEntity(world, (double) ((float) pos.getX() + 0.5F), (double) ((float) pos.getY() + 0.5F), (double) ((float) pos.getZ() + 0.5F));
+        EntitySupplyChute chute = new EntitySupplyChute(world, pos.getX() + 0.5F, pos.getY() + 0.5F, pos.getZ() + 0.5F);
         world.spawnEntity(chute);
     }
     

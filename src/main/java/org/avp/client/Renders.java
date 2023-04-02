@@ -113,8 +113,6 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerRenderer(EntityAPC.class, RenderAPC.class);
         Renderers.registerRenderer(EntityMedpod.class, RenderMedpodEntity.class);
         Renderers.registerRenderer(EntitySupplyChute.class, RenderSupplyChute.class);
-        Renderers.registerRenderer(EntitySupplyChuteMarines.class, RenderSupplyChute.class);
-        Renderers.registerRenderer(EntitySupplyChuteSeegson.class, RenderSupplyChute.class);
     }
     
     private void registerBlockItemRenderers()

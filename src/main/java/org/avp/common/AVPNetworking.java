@@ -9,7 +9,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.avp.AVP;
 import org.avp.common.network.packet.client.*;
 import org.avp.common.network.packet.server.*;
-import org.avp.common.network.packet.server.PacketBlastdoorCommon.PacketBlastdoorClient;
 
 
 public class AVPNetworking extends SimpleNetworkWrapper implements IInitEvent
@@ -42,7 +41,7 @@ public class AVPNetworking extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.SERVER, PacketReadFromDataDevice.class);
         this.registerMessage(Side.SERVER, PacketWriteToDataDevice.class);
         this.registerMessage(Side.SERVER, OrganismServerSync.class);
-        this.registerMessage(Side.SERVER, PacketBlastdoorCommon.class);
+        this.registerMessage(Side.SERVER, PacketBlastdoorServer.class);
         
         /** Send to the client **/
         this.registerMessage(Side.CLIENT, PacketTurretAmmoSync.class);
