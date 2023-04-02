@@ -16,6 +16,9 @@ public class AlienSlabBlocks implements IPreInitEvent {
     private AlienSlabBlocks() {}
 
     public static final BlockCustomSlab.Half UNIDENTIFIED_PLANKS_SLAB_HALF = new BlockCustomSlab.Half("unidentified_wood_slab", AlienBlocks.WOOD_PLANK_PROPS);
+    public static final BlockCustomSlab.Half PARADISE_SMALL_LOG_PLANKS_SLAB_HALF = new BlockCustomSlab.Half("paradise_small_log_wood_slab", AlienBlocks.WOOD_PLANK_PROPS);
+    public static final BlockCustomSlab.Half PARADISE_MEDIUM_LOG_PLANKS_SLAB_HALF = new BlockCustomSlab.Half("paradise_medium_log_wood_slab", AlienBlocks.WOOD_PLANK_PROPS);
+    public static final BlockCustomSlab.Half PARADISE_LARGE_LOG_PLANKS_SLAB_HALF = new BlockCustomSlab.Half("paradise_large_log_wood_slab", AlienBlocks.WOOD_PLANK_PROPS);
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
@@ -25,9 +28,15 @@ public class AlienSlabBlocks implements IPreInitEvent {
 
     private void registerBlocks() {
         BlockRegistryUtil.registerStandardSlabBlock(UNIDENTIFIED_PLANKS_SLAB_HALF);
+        BlockRegistryUtil.registerStandardSlabBlock(PARADISE_SMALL_LOG_PLANKS_SLAB_HALF);
+        BlockRegistryUtil.registerStandardSlabBlock(PARADISE_MEDIUM_LOG_PLANKS_SLAB_HALF);
+        BlockRegistryUtil.registerStandardSlabBlock(PARADISE_LARGE_LOG_PLANKS_SLAB_HALF);
     }
 
     private void registerOreDictionaryEntries() {
-        OreDictionary.registerOre("slabWood", new ItemStack(UNIDENTIFIED_PLANKS_SLAB_HALF, 1, OreDictionary.WILDCARD_VALUE));
+        OreDictionary.registerOre("slabWood", UNIDENTIFIED_PLANKS_SLAB_HALF);
+        OreDictionary.registerOre("slabWood", PARADISE_SMALL_LOG_PLANKS_SLAB_HALF);
+        OreDictionary.registerOre("slabWood", PARADISE_MEDIUM_LOG_PLANKS_SLAB_HALF);
+        OreDictionary.registerOre("slabWood", PARADISE_LARGE_LOG_PLANKS_SLAB_HALF);
     }
 }
