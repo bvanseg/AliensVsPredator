@@ -7,16 +7,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathNavigateGround;
 import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
-import org.alien.common.api.maturity.MaturityEntries;
-import org.alien.common.api.maturity.MaturityEntry;
-import org.alien.common.api.parasitoidic.Maturable;
+import org.alien.common.entity.ai.brain.AlienBrain;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
-import org.alien.common.entity.ai.brain.task.xenomorph.ProduceJellyBrainTask;
 import org.alien.common.entity.ai.brain.task.xenomorph.ShareJellyBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.common.block.init.AVPTileEntityBlocks;
-import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;
@@ -31,7 +27,7 @@ import java.util.HashSet;
  * @author Boston Vanseghi
  *
  */
-public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
+public class XenomorphBrain extends AlienBrain<SpeciesXenomorph> {
 	public XenomorphBrain(SpeciesXenomorph entity) {
 		super(entity);
 	}
@@ -68,6 +64,8 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 
 	@Override
 	public void initTasks() {
+		// Adds jelly producing tasks and other shared alien behaviors.
+		super.initTasks();
 
 		SpeciesXenomorph entity = this.getEntity();
 		this.addTask(new SwimBrainTask(this.getEntity()));
@@ -82,13 +80,6 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 		this.addTask(new NearestAttackableTargetBrainTask());
 		this.addTask(new AvoidBlockBrainTask(3F, 1.0F, 1.0F, AVOID_BLOCKS::contains));
 		this.addTask(new DestroyBlockBrainTask(1.0D, DESTROY_BLOCKS::contains));
-		this.addTask(new ProduceJellyBrainTask<SpeciesXenomorph>(20, e -> {
-			if (e instanceof Maturable) {
-				MaturityEntry entry = MaturityEntries.getEntryFor(e.getClass()).orElse(null);
-				return entry != null && e.getJellyLevel() >= (entry.getRequiredJellyLevel() / 2);
-			}
-			return true;
-		}));
 
 		if (this.getEntity().getNavigator() instanceof PathNavigateGround) {
 			((PathNavigateGround)this.getEntity().getNavigator()).setBreakDoors(true);

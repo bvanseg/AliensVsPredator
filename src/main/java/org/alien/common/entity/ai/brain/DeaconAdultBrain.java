@@ -3,7 +3,6 @@ package org.alien.common.entity.ai.brain;
 import net.minecraft.entity.EntityLivingBase;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
-import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.task.*;
@@ -13,7 +12,7 @@ import org.lib.brain.impl.task.*;
  * @author Boston Vanseghi
  *
  */
-public class DeaconAdultBrain extends AbstractEntityBrain<EntityDeaconAdult> {
+public class DeaconAdultBrain extends AlienBrain<EntityDeaconAdult> {
 	public DeaconAdultBrain(EntityDeaconAdult entity) {
 		super(entity);
 	}
@@ -26,6 +25,8 @@ public class DeaconAdultBrain extends AbstractEntityBrain<EntityDeaconAdult> {
 
 	@Override
 	public void initTasks() {
+		super.initTasks();
+
 		EntityDeaconAdult entity = this.getEntity();
 		this.addTask(new SwimBrainTask(entity));
 		this.addTask(new WanderBrainTask(0.8D));

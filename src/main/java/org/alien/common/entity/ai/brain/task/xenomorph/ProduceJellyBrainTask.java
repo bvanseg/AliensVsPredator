@@ -3,7 +3,6 @@ package org.alien.common.entity.ai.brain.task.xenomorph;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.lib.brain.impl.AbstractEntityBrainTask;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.function.Predicate;
 

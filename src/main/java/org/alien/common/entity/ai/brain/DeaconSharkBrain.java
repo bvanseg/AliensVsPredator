@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.living.vardic.EntityDeaconShark;
-import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.task.*;
@@ -18,7 +17,7 @@ import java.util.function.Predicate;
  * @author Boston Vanseghi
  *
  */
-public class DeaconSharkBrain extends AbstractEntityBrain<EntityDeaconShark> {
+public class DeaconSharkBrain extends AlienBrain<EntityDeaconShark> {
 	public DeaconSharkBrain(EntityDeaconShark entity) {
 		super(entity);
 	}
@@ -36,6 +35,8 @@ public class DeaconSharkBrain extends AbstractEntityBrain<EntityDeaconShark> {
 
 	@Override
 	public void initTasks() {
+		super.initTasks();
+
 		EntityDeaconShark entity = this.getEntity();
 		this.addTask(new AttackOnCollideBrainTask(0.8D));
 		// TODO:
