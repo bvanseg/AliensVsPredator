@@ -7,7 +7,7 @@ import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import org.alien.common.world.fluid.FluidMist;
-import org.avp.common.AVPMaterials;
+import org.avp.common.AVPFluidMaterials;
 
 public class BlockMist extends BlockFluidClassic
 {
@@ -15,7 +15,7 @@ public class BlockMist extends BlockFluidClassic
     
     public BlockMist()
     {
-        super(fluid, AVPMaterials.MIST);
+        super(fluid, AVPFluidMaterials.MIST);
         FluidRegistry.registerFluid(fluid);
         FluidRegistry.addBucketForFluid(fluid);
     }
