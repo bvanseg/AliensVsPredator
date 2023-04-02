@@ -1,0 +1,8 @@
+{
+    "parent": "block/inner_stairs",
+    "textures": {
+        "bottom": "avp:blocks/paradise_medium_log_planks",
+        "top": "avp:blocks/paradise_medium_log_planks",
+        "side": "avp:blocks/paradise_medium_log_planks"
+    }
+}
