@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.block.init.AlienParadiseBlocks;
 import org.avp.common.AVPSettings;
 
 import java.util.Random;
@@ -40,9 +41,9 @@ public class BiomeColorHandler implements IInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
-        registerFoliageColorHandler(AlienBlocks.PARADISE_LEAVES_SMALL);
-        registerFoliageColorHandler(AlienBlocks.PARADISE_LEAVES_MED);
-        registerFoliageColorHandler(AlienBlocks.PARADISE_LEAVES_LARGE);
+        registerFoliageColorHandler(AlienParadiseBlocks.PARADISE_LEAVES_SMALL);
+        registerFoliageColorHandler(AlienParadiseBlocks.PARADISE_LEAVES_MED);
+        registerFoliageColorHandler(AlienParadiseBlocks.PARADISE_LEAVES_LARGE);
     }
 
     public static void registerFoliageColorHandler(Block block)

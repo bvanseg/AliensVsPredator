@@ -8,6 +8,7 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.block.init.AlienVardaBlocks;
 import org.alien.common.world.dimension.BiomeGenLV;
 import org.avp.AVP;
 
@@ -20,8 +21,8 @@ public class BiomeAcheron extends BiomeGenLV
     public BiomeAcheron(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = AlienBlocks.UNIDIRT.getDefaultState();
-        this.fillerBlock = AlienBlocks.UNISTONE.getDefaultState();
+        this.topBlock = AlienVardaBlocks.UNIDIRT.getDefaultState();
+        this.fillerBlock = AlienVardaBlocks.UNISTONE.getDefaultState();
     }
     
     @Override
@@ -59,7 +60,7 @@ public class BiomeAcheron extends BiomeGenLV
         @Override
         protected void generateOres(World world, Random random)
         {
-            Worlds.generateInChunk(world, new WorldGenMinable(AlienBlocks.UNIDIRT.getDefaultState(), 32), random, 20, 0, 128, chunkPos);
+            Worlds.generateInChunk(world, new WorldGenMinable(AlienVardaBlocks.UNIDIRT.getDefaultState(), 32), random, 20, 0, 128, chunkPos);
         }
     }
 }

@@ -29,7 +29,7 @@ public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerato
     
     protected Block[] getValidTargetBlocks()
     {
-        return new Block[] { AlienBlocks.UNIDIRT, AlienVardaBlocks.GIGER_SAPLING};
+        return new Block[] { AlienVardaBlocks.UNIDIRT, AlienVardaBlocks.GIGER_SAPLING};
     }
     
     public boolean isLocationValid(World world, BlockPos pos)

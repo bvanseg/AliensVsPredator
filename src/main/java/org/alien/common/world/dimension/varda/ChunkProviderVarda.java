@@ -16,6 +16,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.MapGenBase;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
 import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.block.init.AlienVardaBlocks;
 import org.alien.common.world.dimension.varda.gen.VardaGenCaves;
 
 import java.util.List;
@@ -239,7 +240,7 @@ public class ChunkProviderVarda implements IChunkGenerator
                             {
                                 if ((var49 += var47) > 0.0D)
                                 {
-                                    primer.setBlockState(cX * 4 + eX, cY * 8 + eY, cZ * 4 + eZ, AlienBlocks.UNISTONE.getDefaultState());
+                                    primer.setBlockState(cX * 4 + eX, cY * 8 + eY, cZ * 4 + eZ, AlienVardaBlocks.UNISTONE.getDefaultState());
                                 }
                                 else if (cY * 8 + eY < midHeight)
                                 {
@@ -306,7 +307,7 @@ public class ChunkProviderVarda implements IChunkGenerator
                                 if (var12 <= 0)
                                 {
                                     top = Blocks.AIR;
-                                    fill = AlienBlocks.UNISTONE;
+                                    fill = AlienVardaBlocks.UNISTONE;
                                 }
                                 else if ((y >= var5 - 4) && (y <= var5 + 1))
                                 {

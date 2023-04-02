@@ -4,11 +4,12 @@ import com.google.common.base.Predicate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.block.init.AlienVardaBlocks;
 
 public class GenerationFilters
 {
     public static final Predicate<IBlockState> STONE = state -> {
-        if (state.getBlock() == AlienBlocks.UNISTONE)
+        if (state.getBlock() == AlienVardaBlocks.UNISTONE)
         {
             return true;
         }
@@ -22,7 +23,7 @@ public class GenerationFilters
     };
     
     public static final Predicate<IBlockState> DIRT = state -> {
-        if (state.getBlock() == AlienBlocks.UNIDIRT)
+        if (state.getBlock() == AlienVardaBlocks.UNIDIRT)
         {
             return true;
         }
@@ -36,7 +37,7 @@ public class GenerationFilters
     };
     
     public static final Predicate<IBlockState> SAND = state -> {
-        if (state.getBlock() == AlienBlocks.UNISAND)
+        if (state.getBlock() == AlienVardaBlocks.UNISAND)
         {
             return true;
         }
