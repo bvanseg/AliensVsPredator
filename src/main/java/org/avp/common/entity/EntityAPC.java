@@ -27,23 +27,26 @@ import org.avp.common.network.packet.server.PacketFireAPC;
 
 import java.util.List;
 
+/**
+ * @author Ri5ux
+ */
 public class EntityAPC extends Entity
 {
-    private static final DataParameter<Integer> TIME_SINCE_HIT    = EntityDataManager.<Integer>createKey(EntityAPC.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.<Integer>createKey(EntityAPC.class, DataSerializers.VARINT);
-    private static final DataParameter<Float>   DAMAGE_TAKEN      = EntityDataManager.<Float>createKey(EntityAPC.class, DataSerializers.FLOAT);
-    private double                              speedMultiplier;
+    private static final DataParameter<Integer> TIME_SINCE_HIT = EntityDataManager.createKey(EntityAPC.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> FORWARD_DIRECTION = EntityDataManager.createKey(EntityAPC.class, DataSerializers.VARINT);
+    private static final DataParameter<Float> DAMAGE_TAKEN = EntityDataManager.createKey(EntityAPC.class, DataSerializers.FLOAT);
+    private double speedMultiplier;
 
     @SideOnly(Side.CLIENT)
-    private double                              velocityX;
+    private double velocityX;
     @SideOnly(Side.CLIENT)
-    private double                              velocityY;
+    private double velocityY;
     @SideOnly(Side.CLIENT)
-    private double                              velocityZ;
-    private float                               tireRotation;
-    private double                              tireSpinDirection = 1;
-    private boolean                             accellerating     = false;
-    private boolean                             reverse           = false;
+    private double velocityZ;
+    private float tireRotation;
+    private double tireSpinDirection = 1;
+    private boolean isAccelerating = false;
+    private boolean isReversing = false;
 
     public EntityAPC(World worldIn)
     {
@@ -53,6 +56,18 @@ public class EntityAPC extends Entity
         this.setSize(3F, 2F);
         this.ignoreFrustumCheck = true;
         this.stepHeight = 1.0F;
+    }
+
+    public EntityAPC(World worldIn, double x, double y, double z)
+    {
+        this(worldIn);
+        this.setPosition(x, y, z);
+        this.motionX = 0.0D;
+        this.motionY = 0.0D;
+        this.motionZ = 0.0D;
+        this.prevPosX = x;
+        this.prevPosY = y;
+        this.prevPosZ = z;
     }
 
     @Override
@@ -81,18 +96,6 @@ public class EntityAPC extends Entity
         return true;
     }
 
-    public EntityAPC(World worldIn, double x, double y, double z)
-    {
-        this(worldIn);
-        this.setPosition(x, y, z);
-        this.motionX = 0.0D;
-        this.motionY = 0.0D;
-        this.motionZ = 0.0D;
-        this.prevPosX = x;
-        this.prevPosY = y;
-        this.prevPosZ = z;
-    }
-
     @Override
     public double getMountedYOffset()
     {
@@ -102,61 +105,41 @@ public class EntityAPC extends Entity
     @Override
     public void updatePassenger(Entity passenger)
     {
-        if (this.isPassenger(passenger))
-        {
-            double distance = 0;
-            double rotationYawRadians = Math.toRadians(this.rotationYaw);
-            double driverX = (this.posX + (distance * (Math.cos(rotationYawRadians))));
-            double driverZ = (this.posZ + (distance * (Math.sin(rotationYawRadians))));
-            passenger.setPosition(driverX, this.posY + this.getMountedYOffset() + passenger.getYOffset(), driverZ);
-        }
+        double distance = 0;
+        double rotationYawRadians = Math.toRadians(this.rotationYaw);
+        double driverX = (this.posX + (distance * (Math.cos(rotationYawRadians))));
+        double driverZ = (this.posZ + (distance * (Math.sin(rotationYawRadians))));
+        passenger.setPosition(driverX, this.posY + this.getMountedYOffset() + passenger.getYOffset(), driverZ);
     }
 
     @Override
     public boolean attackEntityFrom(DamageSource dmgSource, float f)
     {
-        if (this.isEntityInvulnerable(dmgSource))
-        {
-            return false;
-        }
-        else if (!this.world.isRemote && !this.isDead)
-        {
-            this.setForwardDirection(-this.getForwardDirection());
-            this.setTimeSinceHit(10);
-            this.setDamageTaken(this.getDamageTaken() + f * 10.0F);
-            this.markVelocityChanged();
-            boolean flag = dmgSource.getTrueSource() instanceof EntityPlayer && ((EntityPlayer) dmgSource.getTrueSource()).capabilities.isCreativeMode;
+        if (this.isEntityInvulnerable(dmgSource)) return false;
+        if (this.world.isRemote || this.isDead) return true;
 
-            if (flag || this.getDamageTaken() > 200.0F)
-            {
-                if (Entities.getEntityRiddenBy(this) != null)
-                {
-                    Entities.getEntityRiddenBy(this).startRiding(this);
-                }
-
-                if (!flag)
-                {
-                    this.dropItemWithOffset(AVPItems.ITEM_APC, 1, 0.0F);
-                }
-
-                this.setDead();
-            }
-
-            return true;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void performHurtAnimation()
-    {
         this.setForwardDirection(-this.getForwardDirection());
         this.setTimeSinceHit(10);
-        this.setDamageTaken(this.getDamageTaken() * 11.0F);
+        this.setDamageTaken(this.getDamageTaken() + f * 10.0F);
+        this.markVelocityChanged();
+        boolean flag = dmgSource.getTrueSource() instanceof EntityPlayer && ((EntityPlayer) dmgSource.getTrueSource()).capabilities.isCreativeMode;
+
+        if (flag || this.getDamageTaken() > 200.0F)
+        {
+            if (Entities.getEntityRiddenBy(this) != null)
+            {
+                Entities.getEntityRiddenBy(this).startRiding(this);
+            }
+
+            if (!flag)
+            {
+                this.dropItemWithOffset(AVPItems.ITEM_APC, 1, 0.0F);
+            }
+
+            this.setDead();
+        }
+
+        return true;
     }
 
     @Override
@@ -294,8 +277,8 @@ public class EntityAPC extends Entity
         {
             if (driver != null)
             {
-                accellerating = driver.moveForward > 0.1;
-                reverse = driver.moveForward < -0.1;
+                isAccelerating = driver.moveForward > 0.1;
+                isReversing = driver.moveForward < -0.1;
             }
 
             double maxAcceleration = Gear.forVelocity(Math.abs(curVelocity)).getMaxSpeed();
@@ -312,7 +295,7 @@ public class EntityAPC extends Entity
                 decelerationRate = 0.01D;
             }
 
-            if (reverse)
+            if (isReversing)
             {
                 decelerationRate = 0.02D;
                 maxAcceleration = 0.15D;
@@ -335,14 +318,14 @@ public class EntityAPC extends Entity
 
             boolean decellerating = false;
 
-            if (accellerating)
+            if (isAccelerating)
             {
                 if (this.speedMultiplier < maxAcceleration)
                 {
                     this.speedMultiplier += accelerationRate;
                 }
             }
-            else if (reverse)
+            else if (isReversing)
             {
                 if (this.speedMultiplier > -maxAcceleration)
                 {
@@ -386,8 +369,8 @@ public class EntityAPC extends Entity
 
             float mov = this.rotationYaw + 90;
 
-            this.motionX += -Math.sin((double) (mov * (float) Math.PI / 180.0F)) * this.speedMultiplier;
-            this.motionZ += Math.cos((double) (mov * (float) Math.PI / 180.0F)) * this.speedMultiplier;
+            this.motionX += -Math.sin((mov * (float) Math.PI / 180.0F)) * this.speedMultiplier;
+            this.motionZ += Math.cos((mov * (float) Math.PI / 180.0F)) * this.speedMultiplier;
 
             float baseTurnAcc = 10F;
             float turnAcceleration = curVelocity < 0.25 ? baseTurnAcc : baseTurnAcc / 1.5F;
@@ -396,17 +379,13 @@ public class EntityAPC extends Entity
             if (driver.moveStrafing > 0)
             {
                 // LEFT
-                this.rotationYaw = this.rotationYaw + (reverse ? +turnSpeed : -turnSpeed);
+                this.rotationYaw = this.rotationYaw + (isReversing ? +turnSpeed : -turnSpeed);
             }
             else if (driver.moveStrafing < 0)
             {
                 // RIGHT
-                this.rotationYaw = this.rotationYaw + (reverse ? -turnSpeed : +turnSpeed);
+                this.rotationYaw = this.rotationYaw + (isReversing ? -turnSpeed : +turnSpeed);
             }
-        }
-        else
-        {
-            ;
         }
 
         velocity1 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
@@ -424,16 +403,16 @@ public class EntityAPC extends Entity
         this.motionZ *= 0.65D;
 
         this.rotationPitch = 0.0F;
-        addedRotation = (double) this.rotationYaw;
+        addedRotation = this.rotationYaw;
         prevPosX = this.prevPosX - this.posX;
         prevPosZ = this.prevPosZ - this.posZ;
 
         if (prevPosX * prevPosX + prevPosZ * prevPosZ > 0.001D)
         {
-            addedRotation = (double) ((float) (Math.atan2(prevPosZ, prevPosX) * 180.0D / Math.PI));
+            addedRotation = ((float) (Math.atan2(prevPosZ, prevPosX) * 180.0D / Math.PI));
         }
 
-        double rotation = MathHelper.wrapDegrees(addedRotation - (double) this.rotationYaw);
+        double rotation = MathHelper.wrapDegrees(addedRotation - this.rotationYaw);
         double rotIncr = 15.0D * Math.sqrt(motionX * motionX + motionZ * motionZ);
 
         if (rotation > rotIncr)
@@ -450,24 +429,20 @@ public class EntityAPC extends Entity
 
         if (!this.world.isRemote)
         {
-            List list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(1D, 0.0D, 1D));
+            List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(1D, 0.0D, 1D));
 
-            if (list != null && !list.isEmpty())
-            {
-                for (int k1 = 0; k1 < list.size(); ++k1)
+            if (list.isEmpty()) return;
+
+            for (Entity entity: list) {
+                if (entity != driver)
                 {
-                    Entity entity = (Entity) list.get(k1);
+                    float hitDamage = (float) (40F * curVelocity);
+                    entity.attackEntityFrom(DamageSource.GENERIC, hitDamage);
+                }
 
-                    if (entity != driver)
-                    {
-                        float hitDamage = (float) (40F * curVelocity);
-                        entity.attackEntityFrom(DamageSource.GENERIC, hitDamage);
-                    }
-
-                    if (entity != Entities.getEntityRiddenBy(this) && entity.canBePushed() && entity instanceof EntityAPC)
-                    {
-                        entity.applyEntityCollision(this);
-                    }
+                if (entity != Entities.getEntityRiddenBy(this) && entity.canBePushed() && entity instanceof EntityAPC)
+                {
+                    entity.applyEntityCollision(this);
                 }
             }
         }
@@ -478,20 +453,19 @@ public class EntityAPC extends Entity
     {
         super.updateRidden();
 
-        if (Entities.getEntityRiddenBy(this) != null)
-        {
-            double oX = Math.cos((double) this.rotationYaw * Math.PI / 180.0D) * 0.4D;
-            double oZ = Math.sin((double) this.rotationYaw * Math.PI / 180.0D) * 0.4D;
-            Entities.getEntityRiddenBy(this).setPosition(this.posX + oX - 2.5F, this.posY + this.getMountedYOffset() + Entities.getEntityRiddenBy(this).getYOffset(), this.posZ + oZ + 0.25F);
+        if (Entities.getEntityRiddenBy(this) == null) return;
 
-            if (this.world.isRemote && Entities.getEntityRiddenBy(this) instanceof EntityPlayer)
+        double oX = Math.cos(this.rotationYaw * Math.PI / 180.0D) * 0.4D;
+        double oZ = Math.sin(this.rotationYaw * Math.PI / 180.0D) * 0.4D;
+        Entities.getEntityRiddenBy(this).setPosition(this.posX + oX - 2.5F, this.posY + this.getMountedYOffset() + Entities.getEntityRiddenBy(this).getYOffset(), this.posZ + oZ + 0.25F);
+
+        if (this.world.isRemote && Entities.getEntityRiddenBy(this) instanceof EntityPlayer)
+        {
+            if (ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0)
             {
-                if (ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0)
+                if (ClientGame.instance.minecraft().player == Entities.getEntityRiddenBy(this))
                 {
-                    if (ClientGame.instance.minecraft().player == Entities.getEntityRiddenBy(this))
-                    {
-                        ClientGame.instance.minecraft().gameSettings.thirdPersonView = 1;
-                    }
+                    ClientGame.instance.minecraft().gameSettings.thirdPersonView = 1;
                 }
             }
         }
@@ -506,18 +480,15 @@ public class EntityAPC extends Entity
     @Override
     public boolean processInitialInteract(EntityPlayer player, EnumHand hand)
     {
-        if (Entities.getEntityRiddenBy(this) != null && Entities.getEntityRiddenBy(this) instanceof EntityPlayer && Entities.getEntityRiddenBy(this) != player)
-        {
-            return true;
-        }
-        else
-        {
-            if (!this.world.isRemote)
-            {
+        if (Entities.getEntityRiddenBy(this) == null ||
+                !(Entities.getEntityRiddenBy(this) instanceof EntityPlayer) ||
+                Entities.getEntityRiddenBy(this) == player &&
+                !this.world.isRemote
+        ) {
                 player.startRiding(this);
-            }
-            return true;
+
         }
+        return true;
     }
 
     @Override
@@ -545,6 +516,21 @@ public class EntityAPC extends Entity
         {
             this.fallDistance = (float) ((double) this.fallDistance - distanceFallenThisTick);
         }
+    }
+
+    @Override
+    protected void readEntityFromNBT(NBTTagCompound compound) { /* Do Nothing */ }
+
+    @Override
+    protected void writeEntityToNBT(NBTTagCompound compound) { /* Do Nothing */ }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void performHurtAnimation()
+    {
+        this.setForwardDirection(-this.getForwardDirection());
+        this.setTimeSinceHit(10);
+        this.setDamageTaken(this.getDamageTaken() * 11.0F);
     }
 
     public void setDamageTaken(float damage)
@@ -577,40 +563,8 @@ public class EntityAPC extends Entity
         return this.getDataManager().get(FORWARD_DIRECTION);
     }
 
-    public double getSpeedMultiplier()
-    {
-        return speedMultiplier;
-    }
-
     public float getTireRotation()
     {
         return this.tireRotation;
-    }
-
-    public EntityLivingBase getDriver()
-    {
-        return (EntityLivingBase) Entities.getEntityRiddenBy(this);
-    }
-
-    public boolean isAccelerating()
-    {
-        return this.accellerating;
-    }
-
-    public boolean isReversing()
-    {
-        return this.reverse;
-    }
-
-    @Override
-    protected void readEntityFromNBT(NBTTagCompound compound)
-    {
-        ;
-    }
-
-    @Override
-    protected void writeEntityToNBT(NBTTagCompound compound)
-    {
-        ;
     }
 }

@@ -28,9 +28,9 @@ public class ItemAPC extends HookedItem
         float partialTicks = ClientGame.instance.partialTicks();
         float pitch = playerIn.prevRotationPitch + (playerIn.rotationPitch - playerIn.prevRotationPitch) * partialTicks;
         float yaw = playerIn.prevRotationYaw + (playerIn.rotationYaw - playerIn.prevRotationYaw) * partialTicks;
-        double dX = playerIn.prevPosX + (playerIn.posX - playerIn.prevPosX) * (double) partialTicks;
-        double dY = playerIn.prevPosY + (playerIn.posY - playerIn.prevPosY) * (double) partialTicks + 1.62D;
-        double dZ = playerIn.prevPosZ + (playerIn.posZ - playerIn.prevPosZ) * (double) partialTicks;
+        double dX = playerIn.prevPosX + (playerIn.posX - playerIn.prevPosX) * partialTicks;
+        double dY = playerIn.prevPosY + (playerIn.posY - playerIn.prevPosY) * partialTicks + 1.62D;
+        double dZ = playerIn.prevPosZ + (playerIn.posZ - playerIn.prevPosZ) * partialTicks;
         float rC = MathHelper.cos(-yaw * 0.017453292F - (float) Math.PI);
         float rS = MathHelper.sin(-yaw * 0.017453292F - (float) Math.PI);
         float mult = -MathHelper.cos(-pitch * 0.017453292F);
@@ -39,7 +39,7 @@ public class ItemAPC extends HookedItem
         float z = rC * mult;
         double range = 5.0D;
         Vec3d vec1 = new Vec3d(dX, dY, dZ);
-        Vec3d vec2 = vec1.add((double) x * range, (double) y * range, (double) z * range);
+        Vec3d vec2 = vec1.add(x * range, y * range, z * range);
         RayTraceResult result = worldIn.rayTraceBlocks(vec1, vec2, true);
 
         if (result == null)
@@ -52,8 +52,8 @@ public class ItemAPC extends HookedItem
             int hitY = (int) result.hitVec.y;
             int hitZ = (int) result.hitVec.z;
 
-            EntityAPC entityapc = new EntityAPC(worldIn, (double) ((float) hitX + 0.5F), (double) ((float) hitY + 1.0F), (double) ((float) hitZ + 0.5F));
-            entityapc.rotationYaw = (float) (((MathHelper.floor((double) (playerIn.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
+            EntityAPC entityapc = new EntityAPC(worldIn, (hitX + 0.5F), (hitY + 1.0F), (hitZ + 0.5F));
+            entityapc.rotationYaw = (((MathHelper.floor((playerIn.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3) - 1) * 90);
 
             if (!worldIn.isRemote)
             {
