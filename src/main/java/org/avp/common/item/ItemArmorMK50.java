@@ -7,13 +7,13 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.avp.client.Resources;
-import org.avp.common.AVPMaterials;
+import org.avp.common.AVPArmorMaterials;
 
 public class ItemArmorMK50 extends ItemAntiVacuumArmor
 {
     public ItemArmorMK50(int renderIndex, EntityEquipmentSlot armorType)
     {
-        super(AVPMaterials.Armors.MK50, renderIndex, armorType);
+        super(AVPArmorMaterials.MK50, renderIndex, armorType);
     }
 
     @Override

@@ -2,7 +2,7 @@ package org.alien.common.entity.ai.brain.task.ovamorph;
 
 import net.minecraft.world.World;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
-import org.avp.common.AVPMaterials;
+import org.avp.common.AVPFluidMaterials;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
@@ -34,7 +34,7 @@ public class UpdateTimeUntilOpenBrainTask extends AbstractEntityBrainTask {
 			return false;
 
 		// Don't update hatch state while in mist.
-		if (world.getBlockState(ovamorph.getPosition()).getMaterial() == AVPMaterials.MIST)
+		if (world.getBlockState(ovamorph.getPosition()).getMaterial() == AVPFluidMaterials.MIST)
 			return false;
 
 		if (ovamorph.getTimeLeftUntilOpen() <= 0)

@@ -11,6 +11,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.alien.client.AlienSounds;
 import org.alien.client.render.BiomeColorHandler;
 import org.alien.common.*;
+import org.alien.common.block.init.AlienBlocks;
 
 /**
  * @author Boston Vanseghi

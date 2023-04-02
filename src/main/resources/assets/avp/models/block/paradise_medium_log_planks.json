@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "avp:blocks/paradise_medium_log_planks"
+    }
+}

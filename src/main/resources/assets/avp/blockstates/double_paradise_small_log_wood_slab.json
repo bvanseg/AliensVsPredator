@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "variant=default": { "model": "avp:paradise_small_log_planks" }
+    }
+}
