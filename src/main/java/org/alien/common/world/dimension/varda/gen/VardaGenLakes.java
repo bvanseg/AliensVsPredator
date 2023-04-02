@@ -7,7 +7,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.block.init.AlienVardaBlocks;
 
 import java.util.Random;
 
@@ -127,7 +128,7 @@ public class VardaGenLakes extends WorldGenerator
                     if ((!var6[((rX * 16 + rZ) * 8 + rY)]) || (world.getBlockState(rPosBelow) != Blocks.DIRT.getDefaultState()) || (world.getLightFor(EnumSkyBlock.SKY, rPos) <= 0))
                         continue;
                     
-                    world.setBlockState(rPosBelow, AlienBlocks.UNIDIRT.getDefaultState());
+                    world.setBlockState(rPosBelow, AlienVardaBlocks.UNIDIRT.getDefaultState());
                 }
             }
 
@@ -146,7 +147,7 @@ public class VardaGenLakes extends WorldGenerator
 
                         if ((!flag) || ((rY >= 4) && (rand.nextInt(2) == 0)) || (!world.getBlockState(rPos).getMaterial().isSolid()))
                             continue;
-                        world.setBlockState(rPos, AlienBlocks.UNISTONE.getDefaultState());
+                        world.setBlockState(rPos, AlienVardaBlocks.UNISTONE.getDefaultState());
                     }
                 }
             }

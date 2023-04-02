@@ -7,7 +7,8 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.block.init.AlienVardaBlocks;
 
 import java.util.Random;
 
@@ -175,12 +176,12 @@ public class VardaGenCaves extends MapGenBase
                         {
                             Block ceilBlock = primer.getBlockState(somethingX, somethingY, somethingZ).getBlock();
 
-                            if (ceilBlock == AlienBlocks.UNIDIRT)
+                            if (ceilBlock == AlienVardaBlocks.UNIDIRT)
                             {
                                 atSurface = true;
                             }
 
-                            if ((ceilBlock != AlienBlocks.UNISTONE) || (ceilBlock != AlienBlocks.UNIDIRT) || (ceilBlock != AlienBlocks.UNIDIRT))
+                            if ((ceilBlock != AlienVardaBlocks.UNISTONE) || (ceilBlock != AlienVardaBlocks.UNIDIRT) || (ceilBlock != AlienVardaBlocks.UNIDIRT))
                             {
                                 if (somethingY < 10)
                                 {
@@ -190,7 +191,7 @@ public class VardaGenCaves extends MapGenBase
                                 {
                                     primer.setBlockState(somethingX, somethingY, somethingZ, Blocks.AIR.getDefaultState());
 
-                                    if (atSurface && primer.getBlockState(somethingX, somethingY - 1, somethingZ) == AlienBlocks.UNIDIRT)
+                                    if (atSurface && primer.getBlockState(somethingX, somethingY - 1, somethingZ) == AlienVardaBlocks.UNIDIRT)
                                     {
                                         primer.setBlockState(somethingX, somethingY - 1, somethingZ, this.world.getBiome(new BlockPos(somethingX + chunkX * 16, 0, somethingZ + chunkZ * 16)).topBlock);
                                     }

@@ -6,17 +6,25 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import org.lib.common.block.BlockProperties;
 
 public class BlockCustomStairs extends BlockStairs
 {
     private BlockRenderLayer renderLayer;
     private boolean doesSideRendering;
 
-    public BlockCustomStairs(IBlockState modelState)
+    public BlockCustomStairs(String registryName, BlockProperties blockProperties, IBlockState modelState)
     {
         super(modelState);
+        this.setRegistryName(registryName);
         this.renderLayer = BlockRenderLayer.SOLID;
         this.doesSideRendering = true;
+
+        blockProperties.apply(this);
+
+        if (blockProperties.getSoundType() != null) {
+            this.setSoundType(blockProperties.getSoundType());
+        }
     }
 
     public BlockCustomStairs setRenderLayer(BlockRenderLayer layer) {
