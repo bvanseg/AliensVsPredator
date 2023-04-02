@@ -16,8 +16,8 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.AVPMaterials;
 import org.avp.common.AVPNetworking;
+import org.avp.common.AVPToolMaterials;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorItems;
@@ -119,7 +119,7 @@ public class ItemWristbracer extends HookedItem
 
     public static float getDamageToApply()
     {
-        return AVPMaterials.Tools.CELTIC.getAttackDamage() * 1.5F;
+        return AVPToolMaterials.CELTIC.getAttackDamage() * 1.5F;
     }
 
     public static ItemStack getBlades(ItemStack wristbracer)

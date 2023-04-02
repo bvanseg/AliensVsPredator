@@ -1,8 +1,12 @@
 package org.lib.common.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
+
+import java.util.function.Consumer;
 
 /**
  * @author Boston Vanseghi
@@ -14,6 +18,9 @@ public class BlockProperties {
     private float hardness;
     private float resistance;
     private int lightOpacity;
+    private SoundType soundType;
+
+    private Consumer<Block> fireInfoConsumer;
 
     public BlockProperties(Material material) {
         this.material = material;
@@ -40,6 +47,16 @@ public class BlockProperties {
         return this;
     }
 
+    public BlockProperties setSoundType(SoundType soundType) {
+        this.soundType = soundType;
+        return this;
+    }
+
+    public BlockProperties setFireInfo(int encouragement, int flammability) {
+        this.fireInfoConsumer = block -> Blocks.FIRE.setFireInfo(block, encouragement, flammability);
+        return this;
+    }
+
     public CreativeTabs getCreativeTab() {
         return this.creativeTab;
     }
@@ -60,6 +77,10 @@ public class BlockProperties {
         return this.lightOpacity;
     }
 
+    public SoundType getSoundType() {
+        return this.soundType;
+    }
+
     public void apply(Block block) {
         block.setHardness(this.getHardness());
         block.setResistance(this.getResistance());
@@ -67,6 +88,10 @@ public class BlockProperties {
 
         if (this.getCreativeTab() != null) {
             block.setCreativeTab(this.getCreativeTab());
+        }
+
+        if (this.fireInfoConsumer != null) {
+            this.fireInfoConsumer.accept(block);
         }
     }
 }

@@ -19,8 +19,10 @@ import org.alien.client.render.item.RenderItemTreeFern;
 import org.alien.client.render.tile.RenderHiveResin;
 import org.alien.client.render.tile.plant.RenderGroundFern;
 import org.alien.client.render.tile.plant.RenderTreeFern;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.AlienItems;
+import org.alien.common.block.init.AlienParadiseBlocks;
+import org.alien.common.block.init.AlienSkullBlocks;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.EntityAcidProjectile;
 import org.alien.common.entity.living.EntityAethon;
@@ -151,21 +153,21 @@ public class AlienRenders implements IInitEvent, IPreInitEvent
     
     private void registerBlockItemRenderers()
     {
-        AlienRenders.registerSkullRenderer(AlienBlocks.SKULL_ENGINEER);
-        AlienRenders.registerSkullRenderer(AlienBlocks.SKULL_JOCKEY);
+        AlienRenders.registerSkullRenderer(AlienSkullBlocks.SKULL_ENGINEER);
+        AlienRenders.registerSkullRenderer(AlienSkullBlocks.SKULL_JOCKEY);
 
-        AlienRenders.registerSkullRenderer(AlienBlocks.SKULL_XENO);
-        AlienRenders.registerSkullRenderer(AlienBlocks.SKULL_XENO_WARRIOR);
-        AlienRenders.registerSkullRenderer(AlienBlocks.SKULL_MATRIARCH);
+        AlienRenders.registerSkullRenderer(AlienSkullBlocks.SKULL_XENO);
+        AlienRenders.registerSkullRenderer(AlienSkullBlocks.SKULL_XENO_WARRIOR);
+        AlienRenders.registerSkullRenderer(AlienSkullBlocks.SKULL_MATRIARCH);
 
-        AlienRenders.registerSkullRenderer(AlienBlocks.SKULL_PROTOMORPH);
-        AlienRenders.registerSkullRenderer(AlienBlocks.SKULL_NEOMORPH);
+        AlienRenders.registerSkullRenderer(AlienSkullBlocks.SKULL_PROTOMORPH);
+        AlienRenders.registerSkullRenderer(AlienSkullBlocks.SKULL_NEOMORPH);
 
-        AlienRenders.registerSkullRenderer(AlienBlocks.HEAD_AETHON);
-        AlienRenders.registerSkullRenderer(AlienBlocks.HEAD_GIGER_ALIEN);
+        AlienRenders.registerSkullRenderer(AlienSkullBlocks.HEAD_AETHON);
+        AlienRenders.registerSkullRenderer(AlienSkullBlocks.HEAD_GIGER_ALIEN);
 
-        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AlienBlocks.GROUND_FERN), new RenderItemGroundFern());
-        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AlienBlocks.TREE_FERN), new RenderItemTreeFern());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AlienParadiseBlocks.GROUND_FERN), new RenderItemGroundFern());
+        Renderers.registerBlockItemRenderer(BlockRegistryUtil.getItemFromBlock(AlienParadiseBlocks.TREE_FERN), new RenderItemTreeFern());
     }
 
     private void registerItemRenderers()

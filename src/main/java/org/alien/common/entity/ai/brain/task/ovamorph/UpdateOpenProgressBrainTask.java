@@ -4,7 +4,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
-import org.avp.common.AVPMaterials;
+import org.avp.common.AVPFluidMaterials;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 
 /**
@@ -25,7 +25,7 @@ public class UpdateOpenProgressBrainTask extends AbstractEntityBrainTask {
 		if (!ovamorph.containsFacehugger())
 			return false;
 		// Don't update hatch state while in mist.
-		if (world.getBlockState(ovamorph.getPosition()).getMaterial() == AVPMaterials.MIST)
+		if (world.getBlockState(ovamorph.getPosition()).getMaterial() == AVPFluidMaterials.MIST)
 			return false;
 
 		// Don't start opening until the time left until open is less than or equal to 0.
