@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.block.init.AlienVardaBlocks;
 
 import java.util.List;
 import java.util.Random;
@@ -45,11 +46,11 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
                 IBlockState above = world.getBlockState(pos.up());
                 if (this.type == Type.MIDDLE)
                 {
-                    return above.getBlock() == AlienBlocks.GIGER_LEAVES || above.getBlock() == AlienBlocks.GIGER_LEAVES_M;
+                    return above.getBlock() == AlienVardaBlocks.GIGER_LEAVES || above.getBlock() == AlienVardaBlocks.GIGER_LEAVES_M;
                 }
                 else
                 {
-                    return above.getBlock() == AlienBlocks.GIGER_LEAVES_M;
+                    return above.getBlock() == AlienVardaBlocks.GIGER_LEAVES_M;
                 }
             default:
                 return true;
@@ -100,7 +101,7 @@ public class BlockUnidentifiedTreeLeaves extends BlockLeaves
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(AlienBlocks.GIGER_SAPLING);
+        return Item.getItemFromBlock(AlienVardaBlocks.GIGER_SAPLING);
     }
 
     @Override

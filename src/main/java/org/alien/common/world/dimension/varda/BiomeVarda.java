@@ -12,6 +12,7 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.AlienDimensions;
+import org.alien.common.block.init.AlienVardaBlocks;
 import org.alien.common.entity.living.vardic.EntityDeaconShark;
 import org.alien.common.world.dimension.BiomeGenLV;
 import org.alien.common.world.dimension.GenerationFilters;
@@ -111,7 +112,7 @@ public class BiomeVarda extends BiomeGenLV
 
         private void generateForest(Biome biome, World world, Random seed)
         {
-            WorldGenerator saplings = new WorldGenSustainableOnDirt(AlienBlocks.GIGER_SAPLING.getDefaultState());
+            WorldGenerator saplings = new WorldGenSustainableOnDirt(AlienVardaBlocks.GIGER_SAPLING.getDefaultState());
             WorldGenerator tree1 = new VardaTreeGenerator(true);
             WorldGenerator tree2 = new VardaTree2Generator(true);
             WorldGenerator tree3 = new VardaTree3Generator(true);

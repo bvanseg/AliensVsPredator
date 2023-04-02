@@ -67,14 +67,6 @@ public class AlienBlocks implements IPreInitEvent {
     public static final Block TREE_FERN = new BlockTreeFern().setHardness(5.0F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("paradisian_tree_fern");
     public static final Block WHEAT_GRASS = new BlockWheatGrass().setHardness(5.0F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("paradisian_wheat_grass");
 
-    /* Varda */
-    public static final Block GIGER_LOG = new BlockUnidentifiedLog().setHardness(5F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("unitree.log");
-    public static final Block GIGER_TENDONS = new BlockUnidentifiedTreeTendon().setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("unitree.tendons");
-    public static final Block GIGER_LEAVES = new BlockUnidentifiedTreeLeaves(BlockUnidentifiedTreeLeaves.Type.TOP).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("unitree.leaves");
-    public static final Block GIGER_LEAVES_M = new BlockUnidentifiedTreeLeaves(BlockUnidentifiedTreeLeaves.Type.MIDDLE).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("unitree.leaves.m");
-    public static final Block GIGER_LEAVES_B = new BlockUnidentifiedTreeLeaves(BlockUnidentifiedTreeLeaves.Type.BOTTOM).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("unitree.leaves.b");
-    public static final Block GIGER_SAPLING = new BlockUnidentifiedTreeSapling().setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("unitree.sapling");
-
     /* Acheron */
     public static final Block LV_426_ROCK = new BlockMaterial(Material.ROCK).setHardness(1.3F).setResistance(2.0F).setRegistryName("lv426rock");
 
@@ -115,6 +107,7 @@ public class AlienBlocks implements IPreInitEvent {
         this.registerBlocks();
         this.registerOreDictionaryEntries();
 
+        AlienVardaBlocks.instance.pre(event);
         AlienSlabBlocks.instance.pre(event);
     }
 
@@ -166,13 +159,6 @@ public class AlienBlocks implements IPreInitEvent {
         BlockRegistryUtil.registerStandardBlock(GROUND_FERN);
         BlockRegistryUtil.registerStandardBlock(TREE_FERN);
         BlockRegistryUtil.registerStandardBlock(WHEAT_GRASS);
-
-        BlockRegistryUtil.registerStandardBlock(GIGER_LOG);
-        BlockRegistryUtil.registerStandardBlock(GIGER_TENDONS);
-        BlockRegistryUtil.registerStandardBlock(GIGER_LEAVES);
-        BlockRegistryUtil.registerStandardBlock(GIGER_LEAVES_M);
-        BlockRegistryUtil.registerStandardBlock(GIGER_LEAVES_B);
-        BlockRegistryUtil.registerStandardBlock(GIGER_SAPLING);
 
         BlockRegistryUtil.registerStandardBlock(LV_426_ROCK);
 

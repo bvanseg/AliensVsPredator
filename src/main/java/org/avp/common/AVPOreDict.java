@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.block.init.AlienVardaBlocks;
 import org.apache.commons.lang3.StringUtils;
 import org.avp.AVP;
 import org.avp.common.block.init.AVPOreBlocks;
@@ -49,7 +50,7 @@ public class AVPOreDict
         registerOreDict("cobalt", AVPOreBlocks.ORE_COBALT, "ore");
 
         
-        registerOreDict("wood", AlienBlocks.GIGER_LOG, "log");
+        registerOreDict("wood", AlienVardaBlocks.GIGER_LOG, "log");
     }
     
     public static void registerOreDict(String name, Item item, String... prefixes)

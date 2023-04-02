@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.AlienItems;
+import org.alien.common.block.init.AlienVardaBlocks;
 import org.avp.common.block.init.AVPOreBlocks;
 
 /**
@@ -34,6 +35,6 @@ public class AVPSmeltingRecipes
         GameRegistry.addSmelting(AVPOreBlocks.ORE_BAUXITE, new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM), 1.0F);
         GameRegistry.addSmelting(AVPOreBlocks.ORE_SILICON, new ItemStack(AVPItems.ITEM_SILICON), 1.0F);
         GameRegistry.addSmelting(AlienItems.ITEM_RAW_TENTACLE, new ItemStack(AlienItems.ITEM_TRILO_BITE), 2.0F);
-        GameRegistry.addSmelting(AlienBlocks.GIGER_LOG, CHARCOAL, 1.0F);
+        GameRegistry.addSmelting(AlienVardaBlocks.GIGER_LOG, CHARCOAL, 1.0F);
     }
 }
