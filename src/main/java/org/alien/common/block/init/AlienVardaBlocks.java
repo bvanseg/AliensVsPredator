@@ -35,7 +35,7 @@ public class AlienVardaBlocks implements IPreInitEvent {
     public static final Block UNIDIRT = new BlockUnidentifiedDirt().setHardness(0.5F).setResistance(2.0F).setLightOpacity(255).setRegistryName("unidirt").setCreativeTab(AVPCreativeTabs.BLOCKS);
     public static final Block STALAGMITE = new BlockStalagmite(Material.PLANTS).setHardness(0.0F).setLightOpacity(0).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("stalagmite");
 
-    public static final Block UNIDENTIFIED_PLANKS = new BasicBlock("unidentified_planks", AlienBlocks.WOOD_PLANK_PROPS);
+    public static final Block UNIDENTIFIED_PLANKS = new BasicBlock("unidentified_planks", AlienBlockProperties.WOOD_PLANK_PROPS);
 
     @Override
     public void pre(FMLPreInitializationEvent event) {

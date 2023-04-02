@@ -4,7 +4,6 @@ import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
-import org.alien.common.AlienDimensions;
 import org.alien.common.block.*;
 import org.avp.common.AVPCreativeTabs;
 import org.lib.common.block.BasicBlock;
@@ -33,9 +32,9 @@ public class AlienParadiseBlocks implements IPreInitEvent {
     public static final Block TREE_FERN = new BlockTreeFern().setHardness(5.0F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("paradisian_tree_fern");
     public static final Block WHEAT_GRASS = new BlockWheatGrass().setHardness(5.0F).setResistance(10.0F).setCreativeTab(AVPCreativeTabs.BLOCKS).setRegistryName("paradisian_wheat_grass");
 
-    public static final Block PARADISE_SMALL_LOG_PLANKS = new BasicBlock("paradise_small_log_planks", AlienBlocks.WOOD_PLANK_PROPS);
-    public static final Block PARADISE_MEDIUM_LOG_PLANKS = new BasicBlock("paradise_medium_log_planks", AlienBlocks.WOOD_PLANK_PROPS);
-    public static final Block PARADISE_LARGE_LOG_PLANKS = new BasicBlock("paradise_large_log_planks", AlienBlocks.WOOD_PLANK_PROPS);
+    public static final Block PARADISE_SMALL_LOG_PLANKS = new BasicBlock("paradise_small_log_planks", AlienBlockProperties.WOOD_PLANK_PROPS);
+    public static final Block PARADISE_MEDIUM_LOG_PLANKS = new BasicBlock("paradise_medium_log_planks", AlienBlockProperties.WOOD_PLANK_PROPS);
+    public static final Block PARADISE_LARGE_LOG_PLANKS = new BasicBlock("paradise_large_log_planks", AlienBlockProperties.WOOD_PLANK_PROPS);
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
