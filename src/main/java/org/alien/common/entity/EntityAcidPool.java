@@ -36,7 +36,6 @@ public class EntityAcidPool extends EntityLiquidPool
         BLOCK_DENYLIST.add(Blocks.END_PORTAL_FRAME);
         BLOCK_DENYLIST.add(AVPBlocks.INDUSTRIAL_GLASS);
         BLOCK_DENYLIST.add(AVPSlabBlocks.INDUSTRIAL_GLASS_SLAB_HALF);
-        BLOCK_DENYLIST.add(AVPSlabBlocks.INDUSTRIAL_GLASS_SLAB_DOUBLE);
         BLOCK_DENYLIST.add(AVPStairBlocks.INDUSTRIAL_GLASS_STAIRS);
         BLOCK_DENYLIST.add(AVPBlocks.PLASTIC);
         BLOCK_DENYLIST.add(AVPBlocks.PLASTIC_CIRCLE);
