@@ -1,0 +1,6 @@
+{
+    "parent": "block/fence_gate_open",
+    "textures": {
+        "texture": "avp:blocks/unidentified_planks"
+    }
+}

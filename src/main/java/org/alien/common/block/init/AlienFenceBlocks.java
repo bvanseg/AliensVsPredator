@@ -5,6 +5,7 @@ import net.minecraft.block.Block;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import org.avp.common.block.BlockCustomFence;
+import org.avp.common.block.BlockCustomFenceGate;
 import org.lib.common.registry.BlockRegistryUtil;
 
 /**
@@ -20,6 +21,11 @@ public class AlienFenceBlocks implements IPreInitEvent {
     public static final Block PARADISE_MEDIUM_LOG_FENCE = new BlockCustomFence("paradise_medium_log_wood_fence", AlienBlockProperties.WOOD_PLANK_PROPS);
     public static final Block PARADISE_LARGE_LOG_FENCE = new BlockCustomFence("paradise_large_log_wood_fence", AlienBlockProperties.WOOD_PLANK_PROPS);
 
+    public static final Block UNIDENTIFIED_FENCE_GATE = new BlockCustomFenceGate("unidentified_wood_fence_gate", AlienBlockProperties.WOOD_PLANK_PROPS);
+    public static final Block PARADISE_SMALL_LOG_FENCE_GATE = new BlockCustomFenceGate("paradise_small_log_wood_fence_gate", AlienBlockProperties.WOOD_PLANK_PROPS);
+    public static final Block PARADISE_MEDIUM_LOG_FENCE_GATE = new BlockCustomFenceGate("paradise_medium_log_wood_fence_gate", AlienBlockProperties.WOOD_PLANK_PROPS);
+    public static final Block PARADISE_LARGE_LOG_FENCE_GATE = new BlockCustomFenceGate("paradise_large_log_wood_fence_gate", AlienBlockProperties.WOOD_PLANK_PROPS);
+
     @Override
     public void pre(FMLPreInitializationEvent event) {
         this.registerBlocks();
@@ -31,6 +37,11 @@ public class AlienFenceBlocks implements IPreInitEvent {
         BlockRegistryUtil.registerStandardBlock(PARADISE_SMALL_LOG_FENCE);
         BlockRegistryUtil.registerStandardBlock(PARADISE_MEDIUM_LOG_FENCE);
         BlockRegistryUtil.registerStandardBlock(PARADISE_LARGE_LOG_FENCE);
+
+        BlockRegistryUtil.registerStandardBlock(UNIDENTIFIED_FENCE_GATE);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_SMALL_LOG_FENCE_GATE);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_MEDIUM_LOG_FENCE_GATE);
+        BlockRegistryUtil.registerStandardBlock(PARADISE_LARGE_LOG_FENCE_GATE);
     }
 
     private void registerOreDictionaryEntries() {
@@ -38,5 +49,10 @@ public class AlienFenceBlocks implements IPreInitEvent {
         OreDictionary.registerOre("fenceWood", PARADISE_SMALL_LOG_FENCE);
         OreDictionary.registerOre("fenceWood", PARADISE_MEDIUM_LOG_FENCE);
         OreDictionary.registerOre("fenceWood", PARADISE_LARGE_LOG_FENCE);
+
+        OreDictionary.registerOre("fenceGateWood", UNIDENTIFIED_FENCE_GATE);
+        OreDictionary.registerOre("fenceGateWood", PARADISE_SMALL_LOG_FENCE_GATE);
+        OreDictionary.registerOre("fenceGateWood", PARADISE_MEDIUM_LOG_FENCE_GATE);
+        OreDictionary.registerOre("fenceGateWood", PARADISE_LARGE_LOG_FENCE_GATE);
     }
 }
