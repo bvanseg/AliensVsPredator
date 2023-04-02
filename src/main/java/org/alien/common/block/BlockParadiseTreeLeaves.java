@@ -14,7 +14,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.block.init.AlienVardaBlocks;
 
 import java.util.List;
 import java.util.Random;
@@ -49,7 +50,7 @@ public class BlockParadiseTreeLeaves extends BlockLeaves
     @Override
     public Item getItemDropped(IBlockState state, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(AlienBlocks.GIGER_SAPLING);
+        return Item.getItemFromBlock(AlienVardaBlocks.GIGER_SAPLING);
     }
 
     @Override

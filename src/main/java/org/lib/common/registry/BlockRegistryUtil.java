@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemSlab;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fluids.Fluid;
@@ -12,6 +13,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import org.avp.common.AVPCreativeTabs;
+import org.avp.common.block.BlockCustomSlab;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,6 +68,13 @@ public class BlockRegistryUtil
     public static void registerStandardBlock(Block block) {
         BlockRegistryUtil.registerBlock(block);
         BlockRegistryUtil.registerItemBlock(block);
+    }
+
+    public static void registerStandardSlabBlock(BlockCustomSlab.Half halfSlab) {
+        BlockCustomSlab.Double doubleSlab = halfSlab.createDoubleVariant();
+        BlockRegistryUtil.registerBlock(halfSlab);
+        BlockRegistryUtil.registerBlock(doubleSlab);
+        BlockRegistryUtil.registerItemBlock(halfSlab, new ItemSlab(halfSlab, halfSlab, doubleSlab));
     }
 
     private static void registerFluid(Block block) {
