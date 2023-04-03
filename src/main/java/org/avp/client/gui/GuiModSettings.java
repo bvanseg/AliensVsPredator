@@ -14,6 +14,7 @@ import com.asx.mdx.common.system.SystemInfo;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.client.resource.ReloadRequirements;
 import net.minecraftforge.fml.client.FMLClientHandler;
+import org.apache.commons.lang3.text.WordUtils;
 import org.avp.common.config.ConfigSettingProxy;
 import org.avp.common.config.ModelConfig;
 import org.lwjgl.input.Keyboard;
@@ -130,7 +131,8 @@ public class GuiModSettings extends GuiCustomScreen
             if (proxy.getType().isAssignableFrom(Integer.class) || proxy.getType().isAssignableFrom(int.class)) {
                 textbox = new GuiCustomTextbox(0, 0, 0, 0);
                 textbox.setText(proxy.get().toString());
-                textbox.setTooltip(proxy.getDescription());
+
+                textbox.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(proxy.getName().replace("_", " ")), proxy.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", proxy.getDescription())));
 
                 textbox.setAction(element16 -> {
                     if (element16 instanceof GuiCustomTextbox)

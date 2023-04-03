@@ -12,13 +12,15 @@ public class ConfigSettingProxy<T> {
 
     private final String name;
     private final String description;
+    private final boolean requiresRestart;
     private final Class<?> type;
     private final Supplier<T> supplier;
     private final Consumer<T> consumer;
 
-    public ConfigSettingProxy(String name, String description, Class<?> type, Supplier<T> supplier, Consumer<T> consumer) {
+    public ConfigSettingProxy(String name, String description, boolean requiresRestart, Class<?> type, Supplier<T> supplier, Consumer<T> consumer) {
         this.name = name;
         this.description = description;
+        this.requiresRestart = requiresRestart;
         this.type = type;
         this.supplier = supplier;
         this.consumer = consumer;
@@ -30,6 +32,10 @@ public class ConfigSettingProxy<T> {
 
     public String getDescription() {
         return this.description;
+    }
+
+    public boolean getRequiresRestart() {
+        return this.requiresRestart;
     }
 
     public Class<?> getType() {

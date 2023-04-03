@@ -22,6 +22,8 @@ public class ConfigValue {
         long maxValue() default 100;
 
         String description() default "";
+
+        boolean requiresRestart() default false;
     }
 
     @Target(ElementType.FIELD)
@@ -32,5 +34,7 @@ public class ConfigValue {
         double maxValue() default 100;
 
         String description() default "";
+
+        boolean requiresRestart() default false;
     }
 }

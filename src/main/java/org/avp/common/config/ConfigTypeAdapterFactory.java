@@ -43,11 +43,13 @@ public class ConfigTypeAdapterFactory implements TypeAdapterFactory {
 
                     annotations.forEach(annotation -> {
                         if (annotation instanceof ConfigValue.Number) {
-                            processNumberValue(obj, field, (ConfigValue.Number) annotation);
-                            createConfigProxy(config, ((ConfigValue.Number) annotation).description(), obj, field);
+                            ConfigValue.Number label = (ConfigValue.Number) annotation;
+                            processNumberValue(obj, field, label);
+                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
                         } else if (annotation instanceof ConfigValue.Decimal) {
-                            processDecimalValue(obj, field, (ConfigValue.Decimal) annotation);
-                            createConfigProxy(config, ((ConfigValue.Decimal) annotation).description(), obj, field);
+                            ConfigValue.Decimal label = (ConfigValue.Decimal) annotation;
+                            processDecimalValue(obj, field, label);
+                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
                         }
                     });
 
@@ -62,8 +64,8 @@ public class ConfigTypeAdapterFactory implements TypeAdapterFactory {
                 });
             }
 
-            private void createConfigProxy(ModelConfig config, String description, Object obj, Field field) {
-                config.configSettingProxies.add(new ConfigSettingProxy<>(field.getName(), description, field.getType(), () -> {
+            private void createConfigProxy(ModelConfig config, String description, boolean requiresRestart, Object obj, Field field) {
+                config.configSettingProxies.add(new ConfigSettingProxy<>(field.getName(), description, requiresRestart, field.getType(), () -> {
                     try {
                         return field.get(obj);
                     } catch (IllegalAccessException e) {
