@@ -1,7 +1,11 @@
 package org.avp.common.config;
 
-import java.util.Collections;
+import org.alien.common.AlienEntitySpawns;
+import org.avp.common.AVPEntitySpawns;
+import org.predator.common.PredatorEntitySpawns;
+
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * @author Boston Vanseghi
@@ -15,11 +19,11 @@ public class ModelConfigSpawning {
     @ConfigValue.Boolean(description = "If disabled, no mature alien states will spawn naturally.", requiresRestart = true)
     public boolean evolvedXenomorphSpawns = true;
 
-    public Set<String> spawnsAlien = Collections.emptySet();
-    public Set<String> spawnsAquaticAlien = Collections.emptySet();
-    public Set<String> spawnsPredator = Collections.emptySet();
-    public Set<String> spawnsMarine = Collections.emptySet();
-    public Set<String> spawnsVarda = Collections.emptySet();
+    public Set<String> spawnsAlien = AlienEntitySpawns.DEFAULT_ALIEN_SPAWNS.stream().map(biome -> biome.getRegistryName().toString()).collect(Collectors.toSet());
+    public Set<String> spawnsAquaticAlien = AlienEntitySpawns.DEFAULT_AQUA_ALIEN_SPAWNS.stream().map(biome -> biome.getRegistryName().toString()).collect(Collectors.toSet());
+    public Set<String> spawnsPredator = PredatorEntitySpawns.DEFAULT_PREDATOR_SPAWNS.stream().map(biome -> biome.getRegistryName().toString()).collect(Collectors.toSet());
+    public Set<String> spawnsMarine = AVPEntitySpawns.DEFAULT_MARINE_SPAWNS.stream().map(biome -> biome.getRegistryName().toString()).collect(Collectors.toSet());
+    public Set<String> spawnsVarda = AlienEntitySpawns.DEFAULT_VARDA_LIFE_SPAWNS.stream().map(biome -> biome.getRegistryName().toString()).collect(Collectors.toSet());
 
     @ConfigValue.Number(description = "Spawn Weight", requiresRestart = true)
     public int spawnWeightEntityNauticomorph = 5;

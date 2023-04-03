@@ -18,7 +18,7 @@ public class AVPEntitySpawns implements IInitEvent {
     public static final AVPEntitySpawns instance = new AVPEntitySpawns();
 
     private AVPEntitySpawns() {}
-    protected static final ArrayList<Biome>        DEFAULT_MARINE_SPAWNS     = new ArrayList<>();
+    public static final ArrayList<Biome>        DEFAULT_MARINE_SPAWNS     = new ArrayList<>();
 
     static
     {
