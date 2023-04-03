@@ -13,6 +13,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPItemDrops;
+import org.lib.common.inventory.ItemDropContext;
 
 public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMember
 {
@@ -64,7 +65,8 @@ public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMembe
     public void onDeath(DamageSource damageSource)
     {
         super.onDeath(damageSource);
-        AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
+        ItemDropContext itemDropContext = new ItemDropContext(this);
+        itemDropContext.drop(AVPItemDrops.SKULL_PREDATOR);
     }
     
     @Override
