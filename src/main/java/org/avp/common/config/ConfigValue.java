@@ -16,6 +16,14 @@ public class ConfigValue {
 
     @Target(ElementType.FIELD)
     @Retention(RetentionPolicy.RUNTIME)
+    public @interface Collection {
+        String description() default "";
+
+        boolean requiresRestart() default false;
+    }
+
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
     public @interface Enum {
         String description() default "";
 

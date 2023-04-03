@@ -16,7 +16,6 @@ import org.alien.common.entity.living.vardic.EntityOctohugger;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.world.dimension.varda.BiomeVarda;
-import org.avp.common.AVPSettings;
 import org.avp.common.config.ModelConfig;
 import org.lib.common.registry.EntitySpawnRegistryUtil;
 
@@ -85,9 +84,9 @@ public class AlienEntitySpawns implements IInitEvent {
     {
         if (ModelConfig.instance.getSpawning().autoSpawnsEnabled)
         {
-            List<Biome> alienSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Alien", AVPSettings.instance.getSpawnsAlien().value());
-            List<Biome> aquaAlienSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("AlienAquatic", AVPSettings.instance.getSpawnsAquaticAlien().value());
-            List<Biome> vardaSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Varda", AVPSettings.instance.getSpawnsVarda().value());
+            List<Biome> alienSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Alien", new ArrayList<>(ModelConfig.instance.getSpawning().getAlienSpawnBiomes()));
+            List<Biome> aquaAlienSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("AlienAquatic", new ArrayList<>(ModelConfig.instance.getSpawning().getAquaticAlienSpawnBiomes()));
+            List<Biome> vardaSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Varda", new ArrayList<>(ModelConfig.instance.getSpawning().getVardaSpawnBiomes()));
 
             if (ModelConfig.instance.getSpawning().evolvedXenomorphSpawns)
             {

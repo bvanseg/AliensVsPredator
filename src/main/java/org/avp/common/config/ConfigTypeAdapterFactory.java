@@ -42,7 +42,13 @@ public class ConfigTypeAdapterFactory implements TypeAdapterFactory {
                     List<Annotation> annotations = Arrays.asList(field.getAnnotations());
 
                     annotations.forEach(annotation -> {
-                        if (annotation instanceof ConfigValue.Enum)
+                        if (annotation instanceof ConfigValue.Collection)
+                        {
+                            ConfigValue.Collection label = (ConfigValue.Collection) annotation;
+                            field.setAccessible(true);
+                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
+                        }
+                        else if (annotation instanceof ConfigValue.Enum)
                         {
                             ConfigValue.Enum label = (ConfigValue.Enum) annotation;
                             field.setAccessible(true);

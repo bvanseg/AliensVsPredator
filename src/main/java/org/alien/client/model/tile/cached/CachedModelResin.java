@@ -26,7 +26,6 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import org.alien.common.block.BlockHiveResin;
 import org.apache.commons.lang3.tuple.Pair;
-import org.avp.common.AVPSettings.ClientSettings;
 import org.avp.common.config.ModelConfig;
 
 import javax.vecmath.Matrix4f;

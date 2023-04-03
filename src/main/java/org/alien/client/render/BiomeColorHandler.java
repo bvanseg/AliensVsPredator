@@ -12,9 +12,7 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.init.AlienParadiseBlocks;
-import org.avp.common.AVPSettings;
 import org.avp.common.config.ModelConfig;
 
 import java.util.Random;

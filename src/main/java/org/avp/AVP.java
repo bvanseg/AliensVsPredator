@@ -58,8 +58,6 @@ public class AVP implements IMod
         ModelConfig config = ModelConfig.getInstance();
         config.write();
 
-        // Config
-        AVPSettings.instance.pre(event);
         AVPCreativeTabs.instance.pre(event);
 
         Aliens.instance.pre(event);

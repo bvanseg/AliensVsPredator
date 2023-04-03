@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelOvamorph;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
-import org.avp.common.AVPSettings;
 import org.avp.common.config.ModelConfig;
 
 public class RenderOvamorph extends RenderLivingWrapper<EntityOvamorph, ModelOvamorph>

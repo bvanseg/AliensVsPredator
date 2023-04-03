@@ -14,8 +14,6 @@ import com.asx.mdx.common.minecraft.Chat;
 import com.asx.mdx.common.system.SystemInfo;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.client.resource.ReloadRequirements;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import org.apache.commons.lang3.text.WordUtils;
 import org.avp.common.config.ConfigSettingProxy;
 import org.avp.common.config.ModelConfig;
@@ -142,6 +140,14 @@ public class GuiModSettings extends GuiCustomScreen
     @Override
     public void onGuiClosed() {
         super.onGuiClosed();
+        for (IGuiElement e : elements)
+        {
+            if (e instanceof GuiCustomTextbox)
+            {
+                GuiCustomTextbox textbox = (GuiCustomTextbox) e;
+                textbox.getAction().perform(textbox);
+            }
+        }
         ModelConfig.instance.write();
         ClientGame.instance.minecraft().player.sendMessage(new TextComponentString("Config automatically updated."));
     }
