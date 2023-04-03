@@ -17,8 +17,7 @@ public class ConfigValue {
     @Target(ElementType.FIELD)
     @Retention(RetentionPolicy.RUNTIME)
     public @interface String {
-
-        java.lang.String description() default "";
+        java.lang.String key();
 
         boolean requiresRestart() default false;
     }
@@ -26,7 +25,7 @@ public class ConfigValue {
     @Target(ElementType.FIELD)
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Collection {
-        java.lang.String description() default "";
+        java.lang.String key();
 
         boolean requiresRestart() default false;
     }
@@ -34,7 +33,7 @@ public class ConfigValue {
     @Target(ElementType.FIELD)
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Enum {
-        java.lang.String description() default "";
+        java.lang.String key();
 
         boolean requiresRestart() default false;
     }
@@ -42,7 +41,7 @@ public class ConfigValue {
     @Target(ElementType.FIELD)
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Boolean {
-        java.lang.String description() default "";
+        java.lang.String key();
 
         boolean requiresRestart() default false;
     }
@@ -50,11 +49,10 @@ public class ConfigValue {
     @Target(ElementType.FIELD)
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Number {
+        java.lang.String key();
         long minValue() default 0;
 
         long maxValue() default 100;
-
-        java.lang.String description() default "";
 
         boolean requiresRestart() default false;
     }
@@ -62,11 +60,10 @@ public class ConfigValue {
     @Target(ElementType.FIELD)
     @Retention(RetentionPolicy.RUNTIME)
     public @interface Decimal {
+        java.lang.String key();
         double minValue() default 0;
 
         double maxValue() default 100;
-
-        java.lang.String description() default "";
 
         boolean requiresRestart() default false;
     }

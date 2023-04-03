@@ -46,37 +46,37 @@ public class ConfigTypeAdapterFactory implements TypeAdapterFactory {
                         {
                             ConfigValue.Collection label = (ConfigValue.Collection) annotation;
                             field.setAccessible(true);
-                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
+                            createConfigProxy(config, label.key(), label.requiresRestart(), obj, field);
                         }
                         else if (annotation instanceof ConfigValue.Enum)
                         {
                             ConfigValue.Enum label = (ConfigValue.Enum) annotation;
                             field.setAccessible(true);
-                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
+                            createConfigProxy(config, label.key(), label.requiresRestart(), obj, field);
                         }
                         else if (annotation instanceof ConfigValue.Boolean)
                         {
                             ConfigValue.Boolean label = (ConfigValue.Boolean) annotation;
                             field.setAccessible(true);
-                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
+                            createConfigProxy(config, label.key(), label.requiresRestart(), obj, field);
                         }
                         else if (annotation instanceof ConfigValue.Number)
                         {
                             ConfigValue.Number label = (ConfigValue.Number) annotation;
                             processNumberValue(obj, field, label);
-                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
+                            createConfigProxy(config, label.key(), label.requiresRestart(), obj, field);
                         }
                         else if (annotation instanceof ConfigValue.Decimal)
                         {
                             ConfigValue.Decimal label = (ConfigValue.Decimal) annotation;
                             processDecimalValue(obj, field, label);
-                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
+                            createConfigProxy(config, label.key(), label.requiresRestart(), obj, field);
                         }
                         else if (annotation instanceof ConfigValue.String)
                         {
                             ConfigValue.String label = (ConfigValue.String) annotation;
                             field.setAccessible(true);
-                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
+                            createConfigProxy(config, label.key(), label.requiresRestart(), obj, field);
                         }
                     });
 
@@ -91,8 +91,8 @@ public class ConfigTypeAdapterFactory implements TypeAdapterFactory {
                 });
             }
 
-            private void createConfigProxy(ModelConfig config, String description, boolean requiresRestart, Object obj, Field field) {
-                config.configSettingProxies.add(new ConfigSettingProxy<>(field.getName(), description, requiresRestart, field.getType(), () -> {
+            private void createConfigProxy(ModelConfig config, String key, boolean requiresRestart, Object obj, Field field) {
+                config.configSettingProxies.add(new ConfigSettingProxy<>(key, requiresRestart, field.getType(), () -> {
                     try {
                         return field.get(obj);
                     } catch (IllegalAccessException e) {

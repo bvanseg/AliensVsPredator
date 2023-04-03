@@ -13,8 +13,8 @@ import com.asx.mdx.common.io.config.GraphicsSetting;
 import com.asx.mdx.common.minecraft.Chat;
 import com.asx.mdx.common.system.SystemInfo;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextComponentString;
-import org.apache.commons.lang3.text.WordUtils;
 import org.avp.common.config.ConfigSettingProxy;
 import org.avp.common.config.ModelConfig;
 import org.lwjgl.input.Keyboard;
@@ -56,13 +56,15 @@ public class GuiModSettings extends GuiCustomScreen
             {
                 element = new GuiCustomButton(2, 0, 0, 0, 10, proxy.get().toString());
 
-                if (proxy.getDescription().isEmpty())
+                String localizedName = I18n.format(proxy.getUnlocalizedKey());
+                if (proxy.getUnlocalizedDescription().isEmpty())
                 {
-                    element.setTooltip(Chat.format(String.format("&c%s", proxy.getName())));
+                    element.setTooltip(Chat.format(String.format("&c%s", localizedName)));
                 }
                 else
                 {
-                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(proxy.getName().replace("_", " ")), proxy.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", proxy.getDescription())));
+                    String localizedDescription = I18n.format(proxy.getUnlocalizedDescription());
+                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", localizedName, proxy.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", localizedDescription)));
                 }
 
                 element.setAction(element17 -> {
@@ -86,13 +88,15 @@ public class GuiModSettings extends GuiCustomScreen
             {
                 element = new GuiCustomButton(2, 0, 0, 0, 10, proxy.get().toString());
 
-                if (proxy.getDescription().isEmpty())
+                String localizedName = I18n.format(proxy.getUnlocalizedKey());
+                if (proxy.getUnlocalizedDescription().isEmpty())
                 {
-                    element.setTooltip(Chat.format(String.format("&c%s", proxy.getName())));
+                    element.setTooltip(Chat.format(String.format("&c%s", localizedName)));
                 }
                 else
                 {
-                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(proxy.getName().replace("_", " ")), proxy.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", proxy.getDescription())));
+                    String localizedDescription = I18n.format(proxy.getUnlocalizedDescription());
+                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", localizedName, proxy.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", localizedDescription)));
                 }
 
                 element.setAction(element14 -> {
@@ -115,13 +119,15 @@ public class GuiModSettings extends GuiCustomScreen
                 textbox = new GuiCustomTextbox(0, 0, 0, 0);
                 textbox.setText(proxy.get().toString());
 
-                if (proxy.getDescription().isEmpty())
+                String localizedName = I18n.format(proxy.getUnlocalizedKey());
+                if (proxy.getUnlocalizedDescription().isEmpty())
                 {
-                    textbox.setTooltip(Chat.format(String.format("&c%s", proxy.getName())));
+                    textbox.setTooltip(Chat.format(String.format("&c%s", localizedName)));
                 }
                 else
                 {
-                    textbox.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(proxy.getName().replace("_", " ")), proxy.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", proxy.getDescription())));
+                    String localizedDescription = I18n.format(proxy.getUnlocalizedDescription());
+                    textbox.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", localizedName, proxy.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", localizedDescription)));
                 }
 
                 textbox.setAction(element16 -> {
@@ -140,13 +146,15 @@ public class GuiModSettings extends GuiCustomScreen
                 textbox = new GuiCustomTextbox(0, 0, 0, 0);
                 textbox.setText(proxy.get().toString());
 
-                if (proxy.getDescription().isEmpty())
+                String localizedName = I18n.format(proxy.getUnlocalizedKey());
+                if (proxy.getUnlocalizedDescription().isEmpty())
                 {
-                    textbox.setTooltip(Chat.format(String.format("&c%s", proxy.getName())));
+                    textbox.setTooltip(Chat.format(String.format("&c%s", localizedName)));
                 }
                 else
                 {
-                    textbox.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(proxy.getName().replace("_", " ")), proxy.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", proxy.getDescription())));
+                    String localizedDescription = I18n.format(proxy.getUnlocalizedDescription());
+                    textbox.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", localizedName, proxy.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", localizedDescription)));
                 }
 
                 textbox.setAction(element16 -> {
