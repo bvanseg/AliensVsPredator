@@ -128,7 +128,7 @@ public class EntityGrenade extends EntityThrowable
         
         if (!this.world.isRemote)
         {
-        	Explosion explosion = Worlds.createExplosion(null, world, new Pos(this), 2F, isFlaming(), true, ModelConfig.instance.getGeneral().explosionsEnabled);
+        	Explosion explosion = Worlds.createExplosion(null, world, new Pos(this), 2F, isFlaming(), true, ModelConfig.getInstance().getGeneral().explosionsEnabled);
 
             List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox().expand(4, 4, 4));
 

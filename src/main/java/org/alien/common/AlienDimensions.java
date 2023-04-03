@@ -60,17 +60,17 @@ public class AlienDimensions implements IInitEvent
     }
 
     private static void registerAcheronDimension() {
-        if (ModelConfig.instance.getDimensions().acheronDimId == null) {
-            ModelConfig.instance.getDimensions().acheronDimId = DimensionManager.getNextFreeDimId();
+        if (ModelConfig.getInstance().getDimensions().acheronDimId == null) {
+            ModelConfig.getInstance().getDimensions().acheronDimId = DimensionManager.getNextFreeDimId();
         }
 
-        DimensionRegistryUtil.registerDimension(ACHERON, ModelConfig.instance.getDimensions().acheronDimId);
+        DimensionRegistryUtil.registerDimension(ACHERON, ModelConfig.getInstance().getDimensions().acheronDimId);
     }
 
     private static void registerVardaDimension() {
-        if (ModelConfig.instance.getDimensions().vardaDimId == null) {
-            ModelConfig.instance.getDimensions().vardaDimId = DimensionManager.getNextFreeDimId();
+        if (ModelConfig.getInstance().getDimensions().vardaDimId == null) {
+            ModelConfig.getInstance().getDimensions().vardaDimId = DimensionManager.getNextFreeDimId();
         }
-        DimensionRegistryUtil.registerDimension(VARDA, ModelConfig.instance.getDimensions().vardaDimId);
+        DimensionRegistryUtil.registerDimension(VARDA, ModelConfig.getInstance().getDimensions().vardaDimId);
     }
 }

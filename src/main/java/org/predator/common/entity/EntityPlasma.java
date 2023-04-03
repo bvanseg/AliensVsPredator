@@ -126,9 +126,9 @@ public class EntityPlasma extends EntityThrowable
     {
         if (!this.world.isRemote)
         {
-            if (ModelConfig.instance.getGeneral().plasmaCannonExplosions)
+            if (ModelConfig.getInstance().getGeneral().plasmaCannonExplosions)
             {
-                Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, ModelConfig.instance.getGeneral().explosionsEnabled);
+                Worlds.createExplosion(null, world, new Pos(this), 3F * this.getPlasmaSize(), false, true, ModelConfig.getInstance().getGeneral().explosionsEnabled);
             }
 
             PredatorSounds.WEAPON_PLASMA_EXPLOSION.playSound(this, 7F, 1.0F);

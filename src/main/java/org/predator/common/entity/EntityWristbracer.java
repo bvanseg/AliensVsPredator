@@ -140,7 +140,7 @@ public class EntityWristbracer extends EntityThrowable
     }
 
     private void explode(float explosionWidthMax, float explosionHeightMax) {
-        if (ModelConfig.instance.getGeneral().explosionsEnabled)
+        if (ModelConfig.getInstance().getGeneral().explosionsEnabled)
         {
             LargeExplosion explosion = new LargeExplosion(world, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1_000F, this.world.rand.nextLong(), EXCLUDED_BLOCKS, EXCLUDED_MATERIALS, 0, 2);
             explosion.start();

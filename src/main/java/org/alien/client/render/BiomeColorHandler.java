@@ -50,7 +50,7 @@ public class BiomeColorHandler implements IInitEvent
         ClientGame.instance.minecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> 0x228833, block);
 
         ClientGame.instance.minecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
-            if (ModelConfig.instance.isHalloweenEventEnabled())
+            if (ModelConfig.getInstance().isHalloweenEventEnabled())
             {
                 switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
                 {

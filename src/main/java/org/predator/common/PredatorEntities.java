@@ -38,7 +38,7 @@ public class PredatorEntities implements IInitEvent
         registerLivingEntityEntry(EntityYautjaWarrior.class, "Yautja");
         registerLivingEntityEntry(EntityYautjaBerserker.class, "YautjaBerserker");
 
-        if (ModelConfig.instance.getGeneral().experimentalFeatures)
+        if (ModelConfig.getInstance().getGeneral().experimentalFeatures)
         {
             registerLivingEntityEntry(EntityPredatorHound.class, "HellHound");
         }

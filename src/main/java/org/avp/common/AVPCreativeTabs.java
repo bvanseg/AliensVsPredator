@@ -81,7 +81,7 @@ public class AVPCreativeTabs implements IPreInitEvent
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
-        if (ModelConfig.instance.getGeneral().experimentalFeatures)
+        if (ModelConfig.getInstance().getGeneral().experimentalFeatures)
         {
             ENTITIES_WIP = new CreativeTabs("summoners_wip") {
                 @Override

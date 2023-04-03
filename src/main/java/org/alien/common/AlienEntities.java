@@ -74,7 +74,7 @@ public class AlienEntities implements IInitEvent
         registerLivingEntityEntry(EntityDeaconAdult.class, "DeaconAdult");
         registerLivingEntityEntry(EntityOvamorphGiger.class, "OvamorphGiger");
 
-        if (ModelConfig.instance.getGeneral().experimentalFeatures)
+        if (ModelConfig.getInstance().getGeneral().experimentalFeatures)
         {
             registerLivingEntityEntry(EntityBabyhead.class, "Babyhead");
             registerLivingEntityEntry(EntityBatXeno.class, "BatXeno");

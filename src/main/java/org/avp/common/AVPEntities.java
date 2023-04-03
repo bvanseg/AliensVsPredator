@@ -36,7 +36,7 @@ public class AVPEntities implements IInitEvent
         registerLivingEntityEntry(EntityMarine.class, "Marine");
         registerLivingEntityEntry(EntityCombatSynthetic.class, "CombatSynthetic");
 
-        if (ModelConfig.instance.getGeneral().experimentalFeatures)
+        if (ModelConfig.getInstance().getGeneral().experimentalFeatures)
         {
             // Left blank for experimental marine/weyland-yutani entities.
         }

@@ -19,7 +19,7 @@ import java.util.Date;
  */
 public class ModelConfig {
 
-    public static ModelConfig instance;
+    private static ModelConfig instance;
 
     private static final Gson gson = new GsonBuilder()
             .setPrettyPrinting()

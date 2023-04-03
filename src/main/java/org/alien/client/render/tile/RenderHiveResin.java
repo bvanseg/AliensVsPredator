@@ -15,7 +15,7 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
     @Override
     public void render(TileEntityHiveResin tile, double posX, double posY, double posZ, float partialTicks, int destroyStage, float alpha)
     {
-        GraphicsSetting hiveTessellation = ModelConfig.instance.getGraphics().hiveTessellation;
+        GraphicsSetting hiveTessellation = ModelConfig.getInstance().getGraphics().hiveTessellation;
 
         if (hiveTessellation == GraphicsSetting.MEDIUM || hiveTessellation == GraphicsSetting.HIGH || hiveTessellation == GraphicsSetting.ULTRA)
         {

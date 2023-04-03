@@ -161,7 +161,7 @@ public class CachedModelResin implements IBakedModel
                 {
                     this.sprite = ClientGame.instance.minecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(parentState);
 
-                    GraphicsSetting hiveTessellation = ModelConfig.instance.getGraphics().hiveTessellation;
+                    GraphicsSetting hiveTessellation = ModelConfig.getInstance().getGraphics().hiveTessellation;
 
                     if (this.sprite == textureMap.getMissingSprite() || sprite == null || hiveTessellation == GraphicsSetting.LOW)
                     {

@@ -50,7 +50,7 @@ public class GuiModSettings extends GuiCustomScreen
         header.fontShadow = false;
         this.elements.add(header);
 
-        for (ConfigSettingProxy<?> proxy: ModelConfig.instance.configSettingProxies) {
+        for (ConfigSettingProxy<?> proxy: ModelConfig.getInstance().configSettingProxies) {
             // Graphics
             if (proxy.getType().isAssignableFrom(GraphicsSetting.class))
             {
@@ -173,7 +173,7 @@ public class GuiModSettings extends GuiCustomScreen
                 textbox.getAction().perform(textbox);
             }
         }
-        ModelConfig.instance.write();
+        ModelConfig.getInstance().write();
         ClientGame.instance.minecraft().player.sendMessage(new TextComponentString("Config automatically updated."));
     }
 

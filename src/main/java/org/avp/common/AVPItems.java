@@ -242,7 +242,7 @@ public class AVPItems implements IPreInitEvent {
     }
 
     private void registerWristbracerCodes() {
-        ItemWristbracer.addCode(ModelConfig.instance.getGeneral().wristbracerNukeCode, (combination, args) -> {
+        ItemWristbracer.addCode(ModelConfig.getInstance().getGeneral().wristbracerNukeCode, (combination, args) -> {
             AVPNetworking.instance.sendToServer(new PacketSpawnNuke());
             ClientGame.instance.minecraft().currentScreen = null;
         });

@@ -21,7 +21,7 @@ public class ItemRegistryUtil {
 
     public static void registerItem(Item item, boolean isExperimental) {
         if (isExperimental) {
-            if (!ModelConfig.instance.getGeneral().experimentalFeatures) {
+            if (!ModelConfig.getInstance().getGeneral().experimentalFeatures) {
                 return;
             } else {
                 item.setCreativeTab(AVPCreativeTabs.ENTITIES_WIP);

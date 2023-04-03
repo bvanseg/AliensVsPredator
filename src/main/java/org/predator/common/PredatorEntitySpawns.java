@@ -54,12 +54,12 @@ public class PredatorEntitySpawns implements IInitEvent {
 
     private void registerSpawns()
     {
-        if (ModelConfig.instance.getSpawning().autoSpawnsEnabled)
+        if (ModelConfig.getInstance().getSpawning().autoSpawnsEnabled)
         {
-            List<Biome> predatorSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Predator", new ArrayList<>(ModelConfig.instance.getSpawning().getPredatorSpawnBiomes()));
+            List<Biome> predatorSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Predator", new ArrayList<>(ModelConfig.getInstance().getSpawning().getPredatorSpawnBiomes()));
 
-            EntityRegistry.addSpawn(EntityYautjaWarrior.class, ModelConfig.instance.getSpawning().spawnWeightEntityYautjaWarrior, 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
-            EntityRegistry.addSpawn(EntityYautjaBerserker.class, ModelConfig.instance.getSpawning().spawnWeightEntityYautjaBerserker, 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
+            EntityRegistry.addSpawn(EntityYautjaWarrior.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityYautjaWarrior, 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
+            EntityRegistry.addSpawn(EntityYautjaBerserker.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityYautjaBerserker, 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
         }
     }
 }

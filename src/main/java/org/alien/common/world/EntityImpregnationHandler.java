@@ -116,7 +116,7 @@ public class EntityImpregnationHandler
 
     @SideOnly(Side.CLIENT)
 	private void spawnBloodParticles(EntityLivingBase host, int age, int timeLeft, int timeBleed) {
-		GraphicsSetting bloodDetails = ModelConfig.instance.getGraphics().bloodDetails;
+		GraphicsSetting bloodDetails = ModelConfig.getInstance().getGraphics().bloodDetails;
 		// TODO: Not safe to use ordinals like this.
 		int particleCount = bloodDetails.ordinal() < 2 ? 32 : 0 + 32 * (int)Math.pow(2, bloodDetails.ordinal());
 
@@ -145,7 +145,7 @@ public class EntityImpregnationHandler
     @SideOnly(Side.CLIENT)
     private void bleed(EntityLivingBase host, float spread)
     {
-        if (host == null || !ModelConfig.instance.getGraphics().bloodEffects)
+        if (host == null || !ModelConfig.getInstance().getGraphics().bloodEffects)
         {
             return;
         }
@@ -195,7 +195,7 @@ public class EntityImpregnationHandler
             glow = true;
         }
         
-        GraphicsSetting bloodDetails = ModelConfig.instance.getGraphics().bloodDetails;
+        GraphicsSetting bloodDetails = ModelConfig.getInstance().getGraphics().bloodDetails;
         int maxAge = 0;
         
         switch(bloodDetails)
