@@ -73,6 +73,9 @@ public class ModelConfig {
     private final ModelConfigGraphics graphics = new ModelConfigGraphics();
 
     @ConfigValue.Category
+    private final ModelConfigDimensions dimensions = new ModelConfigDimensions();
+
+    @ConfigValue.Category
     private final ModelConfigBiomes biomes = new ModelConfigBiomes();
 
     @ConfigValue.Category
@@ -86,6 +89,10 @@ public class ModelConfig {
 
     public ModelConfigGraphics getGraphics() {
         return graphics;
+    }
+
+    public ModelConfigDimensions getDimensions() {
+        return dimensions;
     }
 
     public ModelConfigBiomes getBiomes() {

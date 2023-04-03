@@ -55,8 +55,8 @@ public class AVP implements IMod
     public void pre(FMLPreInitializationEvent event)
     {
         logger.info("Preparing...");
-        ModelConfig config = ModelConfig.getInstance();
-        config.write();
+        // TODO: There should be no need for this initial write, but we have to because the instance field is currently public.
+        ModelConfig.getInstance().write();
 
         AVPCreativeTabs.instance.pre(event);
 
@@ -109,6 +109,7 @@ public class AVP implements IMod
     public void post(FMLPostInitializationEvent event)
     {
         logger.info("Initialized. Running post initialization tasks...");
+        ModelConfig.getInstance().write();
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             KeybindHandler.instance.post(event);
