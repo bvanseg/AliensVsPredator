@@ -72,6 +72,12 @@ public class ConfigTypeAdapterFactory implements TypeAdapterFactory {
                             processDecimalValue(obj, field, label);
                             createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
                         }
+                        else if (annotation instanceof ConfigValue.String)
+                        {
+                            ConfigValue.String label = (ConfigValue.String) annotation;
+                            field.setAccessible(true);
+                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
+                        }
                     });
 
                     if (annotations.stream().anyMatch(ConfigValue.Category.class::isInstance)) {

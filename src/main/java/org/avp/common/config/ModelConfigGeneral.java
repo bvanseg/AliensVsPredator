@@ -21,5 +21,8 @@ public class ModelConfigGeneral {
     @ConfigValue.Number(description = "Change the default volume of this mod's sounds. EXAMPLE: 100 = 100% Volume, 50 = 50% Volume, 150 = 150% Volume", requiresRestart = true)
     public int globalSoundVolume = 75;
 
+    @ConfigValue.String(description = "Change the wristbracer's code to activate a nuclear detonation.", requiresRestart = true)
+    public String wristbracerNukeCode = "009001";
+
     public ModelConfigGeneral() { /* Do Nothing */ }
 }

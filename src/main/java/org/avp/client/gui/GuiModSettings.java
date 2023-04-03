@@ -111,6 +111,31 @@ public class GuiModSettings extends GuiCustomScreen
             }
 
             // Integer.
+            if (proxy.getType().isAssignableFrom(String.class)) {
+                textbox = new GuiCustomTextbox(0, 0, 0, 0);
+                textbox.setText(proxy.get().toString());
+
+                if (proxy.getDescription().isEmpty())
+                {
+                    textbox.setTooltip(Chat.format(String.format("&c%s", proxy.getName())));
+                }
+                else
+                {
+                    textbox.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(proxy.getName().replace("_", " ")), proxy.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", proxy.getDescription())));
+                }
+
+                textbox.setAction(element16 -> {
+                    if (element16 instanceof GuiCustomTextbox)
+                    {
+                        GuiCustomTextbox t = (GuiCustomTextbox) element16;
+                        ((ConfigSettingProxy<String>)proxy).set(t.getText());
+                    }
+                });
+                textbox.trackElement();
+                this.elements.add(textbox);
+            }
+
+            // Integer.
             if (proxy.getType().isAssignableFrom(Integer.class) || proxy.getType().isAssignableFrom(int.class)) {
                 textbox = new GuiCustomTextbox(0, 0, 0, 0);
                 textbox.setText(proxy.get().toString());
