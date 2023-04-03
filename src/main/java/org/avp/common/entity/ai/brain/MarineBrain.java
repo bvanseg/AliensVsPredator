@@ -1,10 +1,12 @@
 package org.avp.common.entity.ai.brain;
 
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import org.alien.common.entity.EntityAcidPool;
 import org.avp.common.entity.EntityGrenade;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
@@ -14,13 +16,29 @@ import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestAvoidTargetBrainSensor;
+import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
+
+import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * @author Boston Vanseghi
  */
 public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
+
+    private static final HashSet<Block> AVOID_BLOCKS = new HashSet<>();
+    private static final HashSet<Block> BLOCKS_OF_INTEREST = new HashSet<>();
+
+    static {
+        addToSets(Blocks.FIRE, BLOCKS_OF_INTEREST, AVOID_BLOCKS);
+    }
+
+    @SafeVarargs
+    private static void addToSets(Block block, HashSet<Block>... sets) {
+        Arrays.stream(sets).forEach(set -> set.add(block));
+    }
 
     public MarineBrain(EntityMarine entity) {
         super(entity);
@@ -30,6 +48,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     public void initSenses() {
         this.addSense(new EntityBrainSensor(1));
         this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorMarine.instance));
+        this.addSense(new NearestBlockPositionsOfInterestSensor(1, 8, BLOCKS_OF_INTEREST::contains));
         this.addSense(new NearestAvoidTargetBrainSensor(1, e -> e instanceof EntityAcidPool || e instanceof EntityGrenade || e instanceof EntityTNTPrimed));
     }
 
@@ -63,6 +82,8 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
 
             return 5.0F;
         }));
+
+        this.addTask(new AvoidBlockBrainTask(3F, 0.6F, 0.6F, AVOID_BLOCKS::contains));
     }
 
     private int getAttackDelayBasedOnFirearm() {
