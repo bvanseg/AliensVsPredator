@@ -59,8 +59,8 @@ public class PredatorEntitySpawns implements IInitEvent {
         {
             List<Biome> predatorSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Predator", AVPSettings.instance.getSpawnsPredator().value());
 
-            EntityRegistry.addSpawn(EntityYautjaWarrior.class, (Integer) AVPSettings.instance.spawnWeightEntityYautjaWarrior.value(), 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
-            EntityRegistry.addSpawn(EntityYautjaBerserker.class, (Integer) AVPSettings.instance.spawnWeightEntityYautjaBerserker.value(), 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
+            EntityRegistry.addSpawn(EntityYautjaWarrior.class, ModelConfig.instance.getSpawning().spawnWeightEntityYautjaWarrior, 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
+            EntityRegistry.addSpawn(EntityYautjaBerserker.class, ModelConfig.instance.getSpawning().spawnWeightEntityYautjaBerserker, 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
         }
     }
 }

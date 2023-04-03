@@ -45,7 +45,7 @@ public class AVPEntitySpawns implements IInitEvent {
         {
             List<Biome> marineSpawns = AVPSettings.instance.getSpawnsMarine().value();
 
-            EntityRegistry.addSpawn(EntityMarine.class, (Integer) AVPSettings.instance.spawnWeightEntityMarine.value(), 1, 1, EnumCreatureType.CREATURE, EntitySpawnRegistryUtil.array(marineSpawns));
+            EntityRegistry.addSpawn(EntityMarine.class, ModelConfig.instance.getSpawning().spawnWeightEntityMarine, 1, 1, EnumCreatureType.CREATURE, EntitySpawnRegistryUtil.array(marineSpawns));
         }
     }
 }

@@ -5,9 +5,12 @@ package org.avp.common.config;
  */
 public class ModelConfigBiomes {
 
-    private int biomeVarda = 223;
-    private int biomeVardaForest = 229;
-    private int biomeAcheron = 224;
+    @ConfigValue.Number(maxValue = Short.MAX_VALUE, description = "Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.", requiresRestart = true)
+    public int biomeVarda = 223;
+    @ConfigValue.Number(maxValue = Short.MAX_VALUE, description = "Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.", requiresRestart = true)
+    public int biomeVardaForest = 229;
+    @ConfigValue.Number(maxValue = Short.MAX_VALUE, description = "Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.", requiresRestart = true)
+    public int biomeAcheron = 224;
 
-    public ModelConfigBiomes() {}
+    public ModelConfigBiomes() { /* Do Nothing */ }
 }

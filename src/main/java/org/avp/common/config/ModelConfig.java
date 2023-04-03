@@ -64,7 +64,7 @@ public class ModelConfig {
         }
     }
 
-    public transient final ArrayList<ConfigSettingProxy<?>> configSettingProxies = new ArrayList<>();
+    public final transient ArrayList<ConfigSettingProxy<?>> configSettingProxies = new ArrayList<>();
 
     @ConfigValue.Category
     private final ModelConfigGeneral general = new ModelConfigGeneral();

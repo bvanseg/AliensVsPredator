@@ -16,6 +16,22 @@ public class ConfigValue {
 
     @Target(ElementType.FIELD)
     @Retention(RetentionPolicy.RUNTIME)
+    public @interface Enum {
+        String description() default "";
+
+        boolean requiresRestart() default false;
+    }
+
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
+    public @interface Boolean {
+        String description() default "";
+
+        boolean requiresRestart() default false;
+    }
+
+    @Target(ElementType.FIELD)
+    @Retention(RetentionPolicy.RUNTIME)
     public @interface Number {
         long minValue() default 0;
 

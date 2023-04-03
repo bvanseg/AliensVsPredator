@@ -8,8 +8,11 @@ import java.util.Set;
  */
 public class ModelConfigSpawning {
 
+    @ConfigValue.Boolean(description = "If enabled, mobs will spawn in the overworld using spawn weights.", requiresRestart = true)
     public boolean overworldSpawnsEnabled = false;
+    @ConfigValue.Boolean(description = "If disabled, no mobs from this mod will spawn.", requiresRestart = true)
     public boolean autoSpawnsEnabled = true;
+    @ConfigValue.Boolean(description = "If disabled, no mature alien states will spawn naturally.", requiresRestart = true)
     public boolean evolvedXenomorphSpawns = true;
 
     public Set<String> spawnsAlien = Collections.emptySet();

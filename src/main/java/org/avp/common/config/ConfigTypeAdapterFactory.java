@@ -42,11 +42,26 @@ public class ConfigTypeAdapterFactory implements TypeAdapterFactory {
                     List<Annotation> annotations = Arrays.asList(field.getAnnotations());
 
                     annotations.forEach(annotation -> {
-                        if (annotation instanceof ConfigValue.Number) {
+                        if (annotation instanceof ConfigValue.Enum)
+                        {
+                            ConfigValue.Enum label = (ConfigValue.Enum) annotation;
+                            field.setAccessible(true);
+                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
+                        }
+                        else if (annotation instanceof ConfigValue.Boolean)
+                        {
+                            ConfigValue.Boolean label = (ConfigValue.Boolean) annotation;
+                            field.setAccessible(true);
+                            createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
+                        }
+                        else if (annotation instanceof ConfigValue.Number)
+                        {
                             ConfigValue.Number label = (ConfigValue.Number) annotation;
                             processNumberValue(obj, field, label);
                             createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
-                        } else if (annotation instanceof ConfigValue.Decimal) {
+                        }
+                        else if (annotation instanceof ConfigValue.Decimal)
+                        {
                             ConfigValue.Decimal label = (ConfigValue.Decimal) annotation;
                             processDecimalValue(obj, field, label);
                             createConfigProxy(config, label.description(), label.requiresRestart(), obj, field);
