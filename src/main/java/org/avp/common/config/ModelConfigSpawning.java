@@ -8,46 +8,46 @@ import java.util.Set;
  */
 public class ModelConfigSpawning {
 
-    private boolean overworldSpawnsEnabled = false;
-    private boolean autoSpawnsEnabled = true;
-    private boolean evolvedXenomorphSpawns = true;
+    public boolean overworldSpawnsEnabled = false;
+    public boolean autoSpawnsEnabled = true;
+    public boolean evolvedXenomorphSpawns = true;
 
-    private Set<String> spawnsAlien = Collections.emptySet();
-    private Set<String> spawnsAquaticAlien = Collections.emptySet();
-    private Set<String> spawnsPredator = Collections.emptySet();
-    private Set<String> spawnsMarine = Collections.emptySet();
-    private Set<String> spawnsVarda = Collections.emptySet();
+    public Set<String> spawnsAlien = Collections.emptySet();
+    public Set<String> spawnsAquaticAlien = Collections.emptySet();
+    public Set<String> spawnsPredator = Collections.emptySet();
+    public Set<String> spawnsMarine = Collections.emptySet();
+    public Set<String> spawnsVarda = Collections.emptySet();
 
-    @ConfigValue.Number
-    private int spawnWeightEntityNauticomorph = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityDrone = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityWarrior = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityPraetorian = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityChestburster = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityFacehugger = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityYautjaWarrior = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityYautjaBerserker = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityMarine = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityEngineer = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntitySpaceJockey = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityHammerpede = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityOctohugger = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityDeacon = 5;
-    @ConfigValue.Number
-    private int spawnWeightEntityTrilobite = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityNauticomorph = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityDrone = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityWarrior = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityPraetorian = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityChestburster = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityFacehugger = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityYautjaWarrior = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityYautjaBerserker = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityMarine = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityEngineer = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntitySpaceJockey = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityHammerpede = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityOctohugger = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityDeacon = 5;
+    @ConfigValue.Number(description = "Spawn Weight")
+    public int spawnWeightEntityTrilobite = 5;
 
     public ModelConfigSpawning() {}
 }

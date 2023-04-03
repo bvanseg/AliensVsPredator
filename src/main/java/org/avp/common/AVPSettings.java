@@ -15,10 +15,7 @@ import org.lib.common.registry.EntitySpawnRegistryUtil;
 import org.predator.common.PredatorEntitySpawns;
 
 import java.io.File;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class AVPSettings implements IPreInitEvent, IFlexibleConfiguration
 {
@@ -198,71 +195,6 @@ public class AVPSettings implements IPreInitEvent, IFlexibleConfiguration
     public Configuration getConfig()
     {
         return configuration;
-    }
-
-    public boolean areOverworldSpawnsEnabled()
-    {
-        return (Boolean) overworldSpawnsEnabled.value();
-    }
-
-    public boolean areAutoSpawnsEnabled()
-    {
-        return (Boolean) autoSpawnsEnabled.value();
-    }
-
-    public boolean arePlasmaCannonExplosionsEnabled()
-    {
-        return (Boolean) plasmaCannonExplosions.value();
-    }
-
-    public boolean shouldEvolvedXenomorphsSpawn()
-    {
-        return (Boolean) evolvedXenomorphSpawns.value();
-    }
-
-    public boolean areExplosionsEnabled()
-    {
-        return (Boolean) this.explosionsEnabled.value();
-    }
-
-    public boolean isUpdaterEnabled()
-    {
-        return (Boolean) this.updaterEnabled.value();
-    }
-
-    public boolean areDebugToolsEnabled()
-    {
-        return (Boolean) this.debugToolsEnabled.value();
-    }
-
-    public boolean areExperimentalFeaturesEnabled()
-    {
-        return (Boolean) this.experimentalFeatures.value();
-    }
-
-    public boolean areNukesEnabled()
-    {
-        return (Boolean) this.nukesEnabled.value();
-    }
-
-    public int biomeIdVardaBadlands()
-    {
-        return (Integer) this.biomeVarda.value();
-    }
-
-    public int biomeIdVardaForest()
-    {
-        return (Integer) this.biomeVardaForest.value();
-    }
-
-    public int biomeIdAcheron()
-    {
-        return (Integer) this.biomeAcheron.value();
-    }
-
-    public float globalSoundVolume()
-    {
-        return (float) ((Integer) this.globalSoundVolume.value()) / 100F;
     }
 
     public ConfigSettingBiomeList getSpawnsAlien()

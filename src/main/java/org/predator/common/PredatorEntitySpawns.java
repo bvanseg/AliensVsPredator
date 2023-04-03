@@ -8,6 +8,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.avp.common.AVPSettings;
+import org.avp.common.config.ModelConfig;
 import org.lib.common.registry.EntitySpawnRegistryUtil;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
@@ -54,7 +55,7 @@ public class PredatorEntitySpawns implements IInitEvent {
 
     private void registerSpawns()
     {
-        if (AVPSettings.instance.areAutoSpawnsEnabled())
+        if (ModelConfig.instance.getSpawning().autoSpawnsEnabled)
         {
             List<Biome> predatorSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Predator", AVPSettings.instance.getSpawnsPredator().value());
 

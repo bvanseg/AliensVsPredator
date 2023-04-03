@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import org.avp.AVP;
-import org.avp.common.AVPSettings;
+import org.avp.common.config.ModelConfig;
 import org.predator.common.entity.EntityWristbracer;
 
 public class PacketSpawnNuke implements IMessage, IMessageHandler<PacketSpawnNuke, PacketSpawnNuke>
@@ -35,7 +35,7 @@ public class PacketSpawnNuke implements IMessage, IMessageHandler<PacketSpawnNuk
         ctx.getServerHandler().player.getServerWorld().addScheduledTask(() -> {
             EntityPlayer player = ctx.getServerHandler().player;
 
-            if (player != null && AVPSettings.instance.areNukesEnabled())
+            if (player != null && ModelConfig.instance.getGeneral().nukesEnabled)
             {
                 AVP.log().info(String.format("Player %s has just initiated a nuclear explosion at %s, %s, %s", player.getName(), player.posX, player.posY, player.posZ));
                 EntityWristbracer nuke = new EntityWristbracer(ctx.getServerHandler().player.world);

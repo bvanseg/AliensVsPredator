@@ -5,12 +5,12 @@ package org.avp.common.config;
  */
 public class ModelConfigGeneral {
 
-    private boolean experimentalFeatures = false;
-    private boolean explosionsEnabled = true;
-    private boolean plasmaCannonExplosions = true;
-    private boolean updaterEnabled = true;
-    private boolean debugToolsEnabled = false;
-    private boolean nukesEnabled = true;
+    public boolean experimentalFeatures = false;
+    public boolean explosionsEnabled = true;
+    public boolean plasmaCannonExplosions = true;
+    public boolean updaterEnabled = true;
+    public boolean debugToolsEnabled = false;
+    public boolean nukesEnabled = true;
 
     @ConfigValue.Number
     private int globalSoundVolume = 75;

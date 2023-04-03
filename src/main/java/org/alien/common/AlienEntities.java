@@ -23,6 +23,7 @@ import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.common.AVPSettings;
+import org.avp.common.config.ModelConfig;
 import org.lib.common.registry.EntityRegistryUtil;
 
 import java.util.ArrayList;
@@ -74,7 +75,7 @@ public class AlienEntities implements IInitEvent
         registerLivingEntityEntry(EntityDeaconAdult.class, "DeaconAdult");
         registerLivingEntityEntry(EntityOvamorphGiger.class, "OvamorphGiger");
 
-        if (AVPSettings.instance.areExperimentalFeaturesEnabled())
+        if (ModelConfig.instance.getGeneral().experimentalFeatures)
         {
             registerLivingEntityEntry(EntityBabyhead.class, "Babyhead");
             registerLivingEntityEntry(EntityBatXeno.class, "BatXeno");

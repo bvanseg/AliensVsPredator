@@ -7,6 +7,7 @@ import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import org.avp.common.config.ModelConfig;
 import org.avp.common.entity.living.EntityMarine;
 import org.lib.common.registry.EntitySpawnRegistryUtil;
 
@@ -40,7 +41,7 @@ public class AVPEntitySpawns implements IInitEvent {
 
     private void registerSpawns()
     {
-        if (AVPSettings.instance.areAutoSpawnsEnabled())
+        if (ModelConfig.instance.getSpawning().autoSpawnsEnabled)
         {
             List<Biome> marineSpawns = AVPSettings.instance.getSpawnsMarine().value();
 

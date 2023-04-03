@@ -11,6 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -63,20 +64,37 @@ public class ModelConfig {
         }
     }
 
-    @ConfigValue.Category
-    private ModelConfigGeneral general = new ModelConfigGeneral();
+    public transient final ArrayList<ConfigSettingProxy<?>> configSettingProxies = new ArrayList<>();
 
     @ConfigValue.Category
-    private ModelConfigGraphics graphics = new ModelConfigGraphics();
+    private final ModelConfigGeneral general = new ModelConfigGeneral();
 
     @ConfigValue.Category
-    private ModelConfigBiomes biomes = new ModelConfigBiomes();
+    private final ModelConfigGraphics graphics = new ModelConfigGraphics();
 
     @ConfigValue.Category
-    private ModelConfigSpawning spawning = new ModelConfigSpawning();
+    private final ModelConfigBiomes biomes = new ModelConfigBiomes();
 
-    public ModelConfig() {}
+    @ConfigValue.Category
+    private final ModelConfigSpawning spawning = new ModelConfigSpawning();
 
+    public ModelConfig() { /* Do Nothing */ }
+
+    public ModelConfigGeneral getGeneral() {
+        return general;
+    }
+
+    public ModelConfigGraphics getGraphics() {
+        return graphics;
+    }
+
+    public ModelConfigBiomes getBiomes() {
+        return biomes;
+    }
+
+    public ModelConfigSpawning getSpawning() {
+        return spawning;
+    }
 
     public boolean isHalloweenEventEnabled()
     {

@@ -8,17 +8,14 @@ import com.asx.mdx.client.render.gui.GuiCustomButton;
 import com.asx.mdx.client.render.gui.GuiCustomScreen;
 import com.asx.mdx.client.render.gui.GuiCustomTextbox;
 import com.asx.mdx.client.render.gui.IGuiElement;
-import com.asx.mdx.common.io.config.ConfigSetting;
-import com.asx.mdx.common.io.config.ConfigSettingBoolean;
-import com.asx.mdx.common.io.config.ConfigSettingGraphics;
-import com.asx.mdx.common.io.config.ConfigSettingInteger;
+import com.asx.mdx.common.io.config.GraphicsSetting;
 import com.asx.mdx.common.minecraft.Chat;
 import com.asx.mdx.common.system.SystemInfo;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
-import org.apache.commons.lang3.text.WordUtils;
-import org.avp.common.AVPSettings;
-import org.avp.common.AVPSettings.ClientSettings;
+import net.minecraftforge.client.resource.ReloadRequirements;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import org.avp.common.config.ConfigSettingProxy;
+import org.avp.common.config.ModelConfig;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -41,86 +38,84 @@ public class GuiModSettings extends GuiCustomScreen
         header.enabled = false;
         this.elements.add(header);
 
-        GuiCustomButton element = null;
+        GuiCustomButton element;
         GuiCustomTextbox textbox = null;
 
-        for (ConfigSetting setting : ClientSettings.instance.allSettings())
-        {
-            if (setting instanceof ConfigSettingGraphics)
-            {
-                element = new GuiCustomButton(2, 0, 0, 0, 10, setting.getStringValue());
+        for (ConfigSettingProxy<?> proxy: ModelConfig.instance.configSettingProxies) {
+            // Graphics
+            if (proxy.getType().isAssignableFrom(GraphicsSetting.class)) {
+                element = new GuiCustomButton(2, 0, 0, 0, 10, proxy.getName());
 
-                if (setting.property().getComment() == null || setting.property().getComment() != null && setting.property().getComment().isEmpty())
-                {
-                    element.tooltip = Chat.format(String.format("&c%s", setting.property().getLanguageKey()));
-                }
-                else
-                {
-                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
-                }
-
-                element.setAction(element17 -> {
-                    setting.toggle();
-
-                    if (element17 instanceof GuiCustomButton)
-                    {
-                        GuiCustomButton button = (GuiCustomButton) element17;
-                        button.displayString = setting.getStringValue();
-                    }
-                });
-                this.elements.add(element);
-            }
-
-            if (setting instanceof ConfigSettingInteger)
-            {
-                textbox = new GuiCustomTextbox(0, 0, 0, 0);
-                textbox.setText(setting.getStringValue());
-
-                if (setting.property().getComment() == null || setting.property().getComment() != null && setting.property().getComment().isEmpty())
-                {
-                    textbox.setTooltip(Chat.format(String.format("&c%s", setting.property().getLanguageKey())));
-                }
-                else
-                {
-                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
-                }
-
-                textbox.setAction(element16 -> {
-                    if (element16 instanceof GuiCustomTextbox)
-                    {
-                        GuiCustomTextbox t = (GuiCustomTextbox) element16;
-                        setting.property().set(t.getText());
-                    }
-                });
-                textbox.trackElement();
-                this.elements.add(textbox);
-            }
-
-            if (setting instanceof ConfigSettingBoolean)
-            {
-                element = new GuiCustomButton(2, 0, 0, 0, 10, setting.getStringValue());
-
-                if (setting.property().getComment() == null || setting.property().getComment() != null && setting.property().getComment().isEmpty())
-                {
-                    element.tooltip = Chat.format(String.format("&c%s", setting.property().getLanguageKey()));
-                }
-                else
-                {
-                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
-                }
-
-                element.setAction(element15 -> {
-                    setting.toggle();
-
-                    if (element15 instanceof GuiCustomButton)
-                    {
-                        GuiCustomButton button = (GuiCustomButton) element15;
-                        button.displayString = setting.getStringValue();
-                    }
-                });
+//                element.setAction(element17 -> {
+//                    setting.toggle();
+//
+//                    if (element17 instanceof GuiCustomButton)
+//                    {
+//                        GuiCustomButton button = (GuiCustomButton) element17;
+//                        button.displayString = setting.getStringValue();
+//                    }
+//                });
                 this.elements.add(element);
             }
         }
+
+//        for (ConfigSetting setting : ClientSettings.instance.allSettings())
+//        {
+//            if (setting instanceof ConfigSettingGraphics)
+//            {
+//                element = new GuiCustomButton(2, 0, 0, 0, 10, setting.getStringValue());
+//
+//                if (setting.property().getComment() == null || setting.property().getComment() != null && setting.property().getComment().isEmpty())
+//                {
+//                    element.tooltip = Chat.format(String.format("&c%s", setting.property().getLanguageKey()));
+//                }
+//                else
+//                {
+//                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
+//                }
+//
+//                element.setAction(element17 -> {
+//                    setting.toggle();
+//
+//                    if (element17 instanceof GuiCustomButton)
+//                    {
+//                        GuiCustomButton button = (GuiCustomButton) element17;
+//                        button.displayString = setting.getStringValue();
+//                    }
+//                });
+//                this.elements.add(element);
+//            }
+//
+//            if (setting instanceof ConfigSettingInteger)
+//            {
+//                initIntegerTextBoxComponent(element, setting);
+//            }
+//
+//            if (setting instanceof ConfigSettingBoolean)
+//            {
+//                element = new GuiCustomButton(2, 0, 0, 0, 10, setting.getStringValue());
+//
+//                if (setting.property().getComment() == null || setting.property().getComment() != null && setting.property().getComment().isEmpty())
+//                {
+//                    element.tooltip = Chat.format(String.format("&c%s", setting.property().getLanguageKey()));
+//                }
+//                else
+//                {
+//                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
+//                }
+//
+//                element.setAction(element15 -> {
+//                    setting.toggle();
+//
+//                    if (element15 instanceof GuiCustomButton)
+//                    {
+//                        GuiCustomButton button = (GuiCustomButton) element15;
+//                        button.displayString = setting.getStringValue();
+//                    }
+//                });
+//                this.elements.add(element);
+//            }
+//        }
 
         /** Game Settings **/
         header = new GuiCustomButton(0, 0, 0, 0, 10, "Gameplay Settings");
@@ -130,58 +125,77 @@ public class GuiModSettings extends GuiCustomScreen
         header.fontShadow = false;
         this.elements.add(header);
 
-        for (ConfigSetting setting : AVPSettings.instance.allSettings())
-        {
-            if (setting instanceof ConfigSettingBoolean)
-            {
-                element = new GuiCustomButton(2, 0, 0, 0, 10, setting.getStringValue());
-
-                if (setting.property().getComment() == null || setting.property().getComment() != null && setting.property().getComment().isEmpty())
-                {
-                    element.tooltip = Chat.format(String.format("&c%s", setting.property().getLanguageKey()));
-                }
-                else
-                {
-                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
-                }
-
-                element.setAction(element14 -> {
-                    setting.toggle();
-
-                    if (element14 instanceof GuiCustomButton)
-                    {
-                        GuiCustomButton button = (GuiCustomButton) element14;
-                        button.displayString = setting.getStringValue();
-                    }
-                });
-                this.elements.add(element);
-            }
-
-            if (setting instanceof ConfigSettingInteger)
-            {
+        for (ConfigSettingProxy<?> proxy: ModelConfig.instance.configSettingProxies) {
+            // Integer.
+            if (proxy.getType().isAssignableFrom(Integer.class) || proxy.getType().isAssignableFrom(int.class)) {
                 textbox = new GuiCustomTextbox(0, 0, 0, 0);
-                textbox.setText(setting.getStringValue());
+                textbox.setText(proxy.get().toString());
+                textbox.setTooltip(proxy.getDescription());
 
-                if (setting.property().getComment() == null || setting.property().getComment() != null && setting.property().getComment().isEmpty())
-                {
-                    textbox.setTooltip(Chat.format(String.format("&c%s", setting.property().getLanguageKey())));
-                }
-                else
-                {
-                    textbox.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
-                }
-
-                textbox.setAction(element13 -> {
-                    if (element13 instanceof GuiCustomTextbox)
+                textbox.setAction(element16 -> {
+                    if (element16 instanceof GuiCustomTextbox)
                     {
-                        GuiCustomTextbox t = (GuiCustomTextbox) element13;
-                        setting.property().set(t.getText());
+                        GuiCustomTextbox t = (GuiCustomTextbox) element16;
+                        ((ConfigSettingProxy<Integer>)proxy).set(Integer.parseInt(t.getText()));
                     }
                 });
                 textbox.trackElement();
                 this.elements.add(textbox);
             }
         }
+
+//        for (ConfigSetting setting : AVPSettings.instance.allSettings())
+//        {
+//            if (setting instanceof ConfigSettingBoolean)
+//            {
+//                element = new GuiCustomButton(2, 0, 0, 0, 10, setting.getStringValue());
+//
+//                if (setting.property().getComment() == null || setting.property().getComment() != null && setting.property().getComment().isEmpty())
+//                {
+//                    element.tooltip = Chat.format(String.format("&c%s", setting.property().getLanguageKey()));
+//                }
+//                else
+//                {
+//                    element.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
+//                }
+//
+//                element.setAction(element14 -> {
+//                    setting.toggle();
+//
+//                    if (element14 instanceof GuiCustomButton)
+//                    {
+//                        GuiCustomButton button = (GuiCustomButton) element14;
+//                        button.displayString = setting.getStringValue();
+//                    }
+//                });
+//                this.elements.add(element);
+//            }
+//
+//            if (setting instanceof ConfigSettingInteger)
+//            {
+//                textbox = new GuiCustomTextbox(0, 0, 0, 0);
+//                textbox.setText(setting.getStringValue());
+//
+//                if (setting.property().getComment() == null || setting.property().getComment() != null && setting.property().getComment().isEmpty())
+//                {
+//                    textbox.setTooltip(Chat.format(String.format("&c%s", setting.property().getLanguageKey())));
+//                }
+//                else
+//                {
+//                    textbox.setTooltip(Chat.format(String.format("&f%s&f:s:&b%s&7%s", WordUtils.capitalize(setting.property().getLanguageKey().replace("_", " ")), setting.getRequiresRestart() ? "&c[RESTART REQUIRED] " : "&b", setting.property().getComment())));
+//                }
+//
+//                textbox.setAction(element13 -> {
+//                    if (element13 instanceof GuiCustomTextbox)
+//                    {
+//                        GuiCustomTextbox t = (GuiCustomTextbox) element13;
+//                        setting.property().set(t.getText());
+//                    }
+//                });
+//                textbox.trackElement();
+//                this.elements.add(textbox);
+//            }
+//        }
 
         element = new GuiCustomButton(2, 0, 0, 0, 10, "");
         element.visible = false;
@@ -214,8 +228,9 @@ public class GuiModSettings extends GuiCustomScreen
 
     private void saveSettings()
     {
-        AVPSettings.instance.saveSettings();
-        ClientSettings.instance.saveSettings();
+        ModelConfig.instance.write();
+//        AVPSettings.instance.saveSettings();
+//        ClientSettings.instance.saveSettings();
     }
 
     private void applySettings()
@@ -229,12 +244,6 @@ public class GuiModSettings extends GuiCustomScreen
             }
         }
         this.lastApplyTime = System.currentTimeMillis();
-    }
-
-    @Override
-    public void initGui()
-    {
-        super.initGui();
     }
 
     @Override
@@ -362,7 +371,8 @@ public class GuiModSettings extends GuiCustomScreen
             if (time < 1000 && time > 500)
             {
                 this.lastApplyTime = 0;
-                Minecraft.getMinecraft().refreshResources();
+                FMLClientHandler.instance().refreshResources(ReloadRequirements.all());
+//                Minecraft.getMinecraft().refreshResources();
             }
         }
 
@@ -451,21 +461,9 @@ public class GuiModSettings extends GuiCustomScreen
     }
 
     @Override
-    public void drawBackground(int i)
-    {
-        super.drawBackground(i);
-    }
-
-    @Override
     public boolean doesGuiPauseGame()
     {
         return false;
-    }
-
-    @Override
-    public void onGuiClosed()
-    {
-        super.onGuiClosed();
     }
 
     public void scrollDown()
@@ -482,10 +480,5 @@ public class GuiModSettings extends GuiCustomScreen
         {
             this.scroll += 1;
         }
-    }
-
-    public int getScroll()
-    {
-        return this.scroll;
     }
 }

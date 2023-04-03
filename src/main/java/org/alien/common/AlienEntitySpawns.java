@@ -17,6 +17,7 @@ import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.world.dimension.varda.BiomeVarda;
 import org.avp.common.AVPSettings;
+import org.avp.common.config.ModelConfig;
 import org.lib.common.registry.EntitySpawnRegistryUtil;
 
 import java.util.ArrayList;
@@ -82,13 +83,13 @@ public class AlienEntitySpawns implements IInitEvent {
 
     private void registerSpawns()
     {
-        if (AVPSettings.instance.areAutoSpawnsEnabled())
+        if (ModelConfig.instance.getSpawning().autoSpawnsEnabled)
         {
             List<Biome> alienSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Alien", AVPSettings.instance.getSpawnsAlien().value());
             List<Biome> aquaAlienSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("AlienAquatic", AVPSettings.instance.getSpawnsAquaticAlien().value());
             List<Biome> vardaSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Varda", AVPSettings.instance.getSpawnsVarda().value());
 
-            if (AVPSettings.instance.shouldEvolvedXenomorphsSpawn())
+            if (ModelConfig.instance.getSpawning().evolvedXenomorphSpawns)
             {
                 EntityRegistry.addSpawn(EntityNauticomorph.class, (Integer) AVPSettings.instance.spawnWeightEntityNauticomorph.value(), 1, 2, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(aquaAlienSpawns));
                 EntityRegistry.addSpawn(EntityDrone.class, (Integer) AVPSettings.instance.spawnWeightEntityDrone.value(), 1, 3, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(alienSpawns));

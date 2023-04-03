@@ -30,13 +30,13 @@ public class ConfigTypeAdapterFactory implements TypeAdapterFactory {
 
                 if (obj instanceof ModelConfig) {
                     ModelConfig config = (ModelConfig) obj;
-                    this.recurseObject(config);
+                    this.recurseObject(config, config);
                 }
 
                 return obj;
             }
 
-            private void recurseObject(Object obj) {
+            private void recurseObject(ModelConfig config, Object obj) {
                 Field[] declaredFields = obj.getClass().getDeclaredFields();
                 Arrays.stream(declaredFields).forEach(field -> {
                     List<Annotation> annotations = Arrays.asList(field.getAnnotations());
@@ -44,20 +44,38 @@ public class ConfigTypeAdapterFactory implements TypeAdapterFactory {
                     annotations.forEach(annotation -> {
                         if (annotation instanceof ConfigValue.Number) {
                             processNumberValue(obj, field, (ConfigValue.Number) annotation);
+                            createConfigProxy(config, ((ConfigValue.Number) annotation).description(), obj, field);
                         } else if (annotation instanceof ConfigValue.Decimal) {
                             processDecimalValue(obj, field, (ConfigValue.Decimal) annotation);
+                            createConfigProxy(config, ((ConfigValue.Decimal) annotation).description(), obj, field);
                         }
                     });
 
                     if (annotations.stream().anyMatch(ConfigValue.Category.class::isInstance)) {
                         try {
                             field.setAccessible(true);
-                            recurseObject(field.get(obj));
+                            recurseObject(config, field.get(obj));
                         } catch (IllegalAccessException e) {
                             throw new RuntimeException(e);
                         }
                     }
                 });
+            }
+
+            private void createConfigProxy(ModelConfig config, String description, Object obj, Field field) {
+                config.configSettingProxies.add(new ConfigSettingProxy<>(field.getName(), description, field.getType(), () -> {
+                    try {
+                        return field.get(obj);
+                    } catch (IllegalAccessException e) {
+                        throw new RuntimeException(e);
+                    }
+                }, newValue -> {
+                    try {
+                        field.set(obj, newValue);
+                    } catch (IllegalAccessException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }));
             }
 
             private void processNumberValue(Object obj, Field field, ConfigValue.Number annotation) {
