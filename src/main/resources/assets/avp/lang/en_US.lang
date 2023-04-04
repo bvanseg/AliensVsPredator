@@ -593,6 +593,10 @@ avp.advancements.tech.acquire.transformer.description=Craft a step-up transforme
 
 avp.advancements.tech.acquire.polycarbonate.title=Crystal Clear
 avp.advancements.tech.acquire.polycarbonate.description=Craft polycarbonate
+avp.advancements.tech.acquire.cable.title=Getting Connected
+avp.advancements.tech.acquire.cable.description=Craft cables
+avp.advancements.tech.acquire.solar.panel.title=Sunbathing
+avp.advancements.tech.acquire.solar.panel.description=Craft a solar panel
 
 avp.advancements.tech.acquire.diode.title=One-Way Street
 avp.advancements.tech.acquire.diode.description=Craft a diode

@@ -19,9 +19,9 @@ public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityAssembl
     @Override
     public void render(TileEntityAssembler tile, double posX, double posY, double posZ, float renderPartialTicks, int destroy, float alpha)
     {
-        float rotateSpeed = 10F;
+        float rotationSpeed = 10F;
         float rotatePrev = tile.rotateProgress;
-    	tile.rotateProgress = ((tile.getWorld().getTotalWorldTime() % 360) * rotateSpeed) / 360F;
+    	tile.rotateProgress = tile.getWorld().getTotalWorldTime() * rotationSpeed;
         tile.rotateProgress = rotatePrev + (tile.rotateProgress - rotatePrev) * renderPartialTicks;
     	
         OpenGL.pushMatrix();
@@ -30,7 +30,7 @@ public class RenderAssembler extends TileEntitySpecialRenderer<TileEntityAssembl
         OpenGL.enable(GL_BLEND);
         OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         OpenGL.translate(posX + 0.5F, posY + 0.95F, posZ + 0.5F);
-        OpenGL.rotate(360 * tile.rotateProgress, 0, 1, 0);
+        OpenGL.rotate(tile.rotateProgress, 0, 1, 0);
 
         OpenGL.pushMatrix();
         OpenGL.scale(0.025F, -0.025F, 0.025F);
