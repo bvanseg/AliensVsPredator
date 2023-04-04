@@ -5,17 +5,23 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
@@ -25,6 +31,8 @@ import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.common.inventory.ItemDropContext;
+
+import java.util.Set;
 
 public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Brainiac<MarineBrain>
 {
@@ -45,6 +53,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> SKIN_TONE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> CAMO_COLOR  = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> EYE_COLOR   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
 
     protected MarineBrain brain;
@@ -73,9 +82,58 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     {
         super.entityInit();
         this.getDataManager().register(AIMING, false);
+
         this.getDataManager().register(TYPE, this.world.rand.nextInt(MarineTypes.values().length));
         this.getDataManager().register(SKIN_TONE, SKIN_TONES[this.world.rand.nextInt(SKIN_TONES.length)]);
+        this.getDataManager().register(CAMO_COLOR, -1);
         this.getDataManager().register(EYE_COLOR, EYE_COLORS[this.world.rand.nextInt(EYE_COLORS.length)]);
+    }
+
+    private int generateCamoColorBasedOnCurrentBiome() {
+        Biome biome = this.world.getBiome(this.getPosition());
+
+        int color;
+
+        Set<BiomeDictionary.Type> biomeTypes = BiomeDictionary.getTypes(biome);
+
+        if (biomeTypes.contains(BiomeDictionary.Type.NETHER)) {
+            color = 0x85_42_42_FF; // Netherrack
+        } else if (biomeTypes.contains(BiomeDictionary.Type.END)) {
+            color = 0xEE_F6_B4_FF; // End Stone
+        } else if (biomeTypes.contains(BiomeDictionary.Type.MUSHROOM)) {
+            color = 0x8B_71_73_FF; // Mycelium
+        } else if (!world.canBlockSeeSky(this.getPosition())) {
+            color = 0x74_74_74_FF; // Underground
+        }
+        else if (biomeTypes.contains(BiomeDictionary.Type.SNOWY)) {
+            color = 0xFA_FA_FA_FF; // Snow
+        } else if (biomeTypes.contains(BiomeDictionary.Type.SANDY) || biomeTypes.contains(BiomeDictionary.Type.BEACH)) {
+            color = 0xD5_C4_96_FF; // Sand
+        } else if (biomeTypes.contains(BiomeDictionary.Type.OCEAN)) {
+            color = 0x1F_3C_5A_FF; // Water
+        } else if (biomeTypes.contains(BiomeDictionary.Type.RIVER)) {
+            color = 0x30_5A_9C_FF; // Water (river)
+        } else if (biomeTypes.contains(BiomeDictionary.Type.SWAMP)) {
+            color = 0x2F_5C_41_FF; // Swamp Water
+        } else if (biomeTypes.contains(BiomeDictionary.Type.FOREST)) {
+            color = 0x3C_67_3C_FF; // Leaves (forest)
+        } else if (biomeTypes.contains(BiomeDictionary.Type.PLAINS)) {
+            color = 0x8B_AC_45_FF; // Grass
+        } else if (biomeTypes.contains(BiomeDictionary.Type.MOUNTAIN)) {
+            color = 0x7F_7F_7F_FF; // Stone
+        } else if (biomeTypes.contains(BiomeDictionary.Type.HILLS)) {
+            color = 0x8B_72_3E_FF; // Dirt
+        } else if (biomeTypes.contains(BiomeDictionary.Type.JUNGLE)) {
+            color = 0x50_76_35_FF; // Leaves (jungle)
+        } else if (biomeTypes.contains(BiomeDictionary.Type.SAVANNA)) {
+            color = 0xBF_A6_5A_FF; // Grass (savanna)
+        } else {
+            // Default coloring for camo is white.
+            color = 0xAA_AA_AA_FF;
+        }
+
+
+        return color;
     }
 
     @Override
@@ -118,9 +176,26 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
         if (!this.world.isRemote)
         {
+            // We can't initialize the marine's camo color within entityInit, because while that method
+            // is being invoked, the entity is positioned at 0, 0, 0, and will always get the biome
+            // at that position instead of its true spawn position. So we initialize the camo color here, instead.
+            if (this.getCamoColor() == -1) {
+                this.getDataManager().set(CAMO_COLOR, this.generateCamoColorBasedOnCurrentBiome());
+            }
+
             this.brain.update();
             this.getDataManager().set(AIMING, this.getAttackTarget() != null || this.getBrain().hasMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET));
         }
+    }
+
+    @Override
+    protected boolean processInteract(EntityPlayer player, EnumHand hand) {
+        if (player.getHeldItem(hand).getItem() == Items.DYE) {
+            int dyeColor = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorValue();
+            this.getDataManager().set(CAMO_COLOR, dyeColor << 8);
+        }
+
+        return super.processInteract(player, hand);
     }
 
     @Override
@@ -169,6 +244,11 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return this.dataManager.get(EYE_COLOR);
     }
 
+    public int getCamoColor()
+    {
+        return this.dataManager.get(CAMO_COLOR);
+    }
+
     @Override
     public void setSwingingArms(boolean swingingArms) { /* Do Nothing */ }
     
@@ -181,6 +261,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     private static final String WEAPON_TYPE_NBT_KEY = "WeaponType";
     private static final String SKIN_TONE_NBT_KEY = "SkinTone";
     private static final String EYE_COLOR_NBT_KEY = "EyeColor";
+    private static final String CAMO_COLOR_NBT_KEY = "CamoColor";
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt)
@@ -189,6 +270,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         nbt.setInteger(WEAPON_TYPE_NBT_KEY, this.dataManager.get(TYPE));
         nbt.setInteger(SKIN_TONE_NBT_KEY, this.getSkinTone());
         nbt.setInteger(EYE_COLOR_NBT_KEY, this.getEyeColor());
+        nbt.setInteger(CAMO_COLOR_NBT_KEY, this.getCamoColor());
     }
 
     @Override
@@ -198,5 +280,6 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.dataManager.set(TYPE, nbt.getInteger(WEAPON_TYPE_NBT_KEY));
         this.dataManager.set(SKIN_TONE, nbt.getInteger(SKIN_TONE_NBT_KEY));
         this.dataManager.set(EYE_COLOR, nbt.getInteger(EYE_COLOR_NBT_KEY));
+        this.dataManager.set(CAMO_COLOR, nbt.getInteger(CAMO_COLOR_NBT_KEY));
     }
 }
