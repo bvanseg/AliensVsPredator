@@ -6,6 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.alien.common.AlienItems;
+import org.avp.common.config.ModelConfig;
 import org.predator.common.PredatorItems;
 import org.predator.common.block.init.PredatorBlocks;
 import org.weapon.common.item.init.WeaponItems;
@@ -81,7 +82,7 @@ public class AVPCreativeTabs implements IPreInitEvent
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
-        if (AVPSettings.instance.areExperimentalFeaturesEnabled())
+        if (ModelConfig.getInstance().getGeneral().experimentalFeatures)
         {
             ENTITIES_WIP = new CreativeTabs("summoners_wip") {
                 @Override

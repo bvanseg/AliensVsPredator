@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
-import org.avp.common.AVPSettings.ClientSettings;
+import org.avp.common.config.ModelConfig;
 import org.predator.common.entity.living.SpeciesYautja;
 
 public class EntityImpregnationHandler
@@ -116,7 +116,7 @@ public class EntityImpregnationHandler
 
     @SideOnly(Side.CLIENT)
 	private void spawnBloodParticles(EntityLivingBase host, int age, int timeLeft, int timeBleed) {
-		GraphicsSetting bloodDetails = ClientSettings.instance.bloodDetails().value();
+		GraphicsSetting bloodDetails = ModelConfig.getInstance().getGraphics().bloodDetails;
 		// TODO: Not safe to use ordinals like this.
 		int particleCount = bloodDetails.ordinal() < 2 ? 32 : 0 + 32 * (int)Math.pow(2, bloodDetails.ordinal());
 
@@ -145,7 +145,7 @@ public class EntityImpregnationHandler
     @SideOnly(Side.CLIENT)
     private void bleed(EntityLivingBase host, float spread)
     {
-        if (host == null || !ClientSettings.instance.bloodFX().value())
+        if (host == null || !ModelConfig.getInstance().getGraphics().bloodEffects)
         {
             return;
         }
@@ -195,7 +195,7 @@ public class EntityImpregnationHandler
             glow = true;
         }
         
-        GraphicsSetting bloodDetails = ClientSettings.instance.bloodDetails().value();
+        GraphicsSetting bloodDetails = ModelConfig.getInstance().getGraphics().bloodDetails;
         int maxAge = 0;
         
         switch(bloodDetails)

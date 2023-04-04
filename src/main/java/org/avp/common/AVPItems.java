@@ -1,11 +1,13 @@
 package org.avp.common;
 
+import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.common.minecraft.item.HookedItem;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.avp.common.config.ModelConfig;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.item.*;
@@ -13,7 +15,9 @@ import org.avp.common.item.expansion.ItemLedDisplay;
 import org.avp.common.item.expansion.ItemProcessor;
 import org.avp.common.item.supply.chute.ItemSupplyChute;
 import org.avp.common.item.supply.chute.SupplyChuteType;
+import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.lib.common.registry.ItemRegistryUtil;
+import org.predator.common.item.ItemWristbracer;
 import org.weapon.common.item.init.WeaponItems;
 
 public class AVPItems implements IPreInitEvent {
@@ -80,8 +84,8 @@ public class AVPItems implements IPreInitEvent {
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
-        // Register AVP Items.
-        registerItems();
+        this.registerItems();
+        this.registerWristbracerCodes();
 
         // Register weapon items.
         WeaponItems.instance.pre(event);
@@ -155,5 +159,12 @@ public class AVPItems implements IPreInitEvent {
 
         ItemRegistryUtil.registerItem(SUMMONER_MARINE);
         ItemRegistryUtil.registerItem(SUMMONER_COMBAT_SYNTHETIC);
+    }
+
+    private void registerWristbracerCodes() {
+        ItemWristbracer.addCode(ModelConfig.getInstance().getGeneral().wristbracerNukeCode, (combination, args) -> {
+            AVPNetworking.instance.sendToServer(new PacketSpawnNuke());
+            ClientGame.instance.minecraft().currentScreen = null;
+        });
     }
 }

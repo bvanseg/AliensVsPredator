@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import org.avp.common.AVPSettings;
+import org.avp.common.config.ModelConfig;
 import org.lib.common.registry.EntityRegistryUtil;
 import org.predator.common.entity.*;
 import org.predator.common.entity.living.EntityPredatorHound;
@@ -38,7 +38,7 @@ public class PredatorEntities implements IInitEvent
         registerLivingEntityEntry(EntityYautjaWarrior.class, "Yautja");
         registerLivingEntityEntry(EntityYautjaBerserker.class, "YautjaBerserker");
 
-        if (AVPSettings.instance.areExperimentalFeaturesEnabled())
+        if (ModelConfig.getInstance().getGeneral().experimentalFeatures)
         {
             registerLivingEntityEntry(EntityPredatorHound.class, "HellHound");
         }

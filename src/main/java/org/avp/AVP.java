@@ -21,6 +21,7 @@ import org.avp.client.KeybindHandler;
 import org.avp.client.Renders;
 import org.avp.common.*;
 import org.avp.common.block.init.AVPBlocks;
+import org.avp.common.config.ModelConfig;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
 import org.predator.Predators;
@@ -54,9 +55,9 @@ public class AVP implements IMod
     public void pre(FMLPreInitializationEvent event)
     {
         logger.info("Preparing...");
+        // TODO: There should be no need for this initial write, but we have to because the instance field is currently public.
+        ModelConfig.getInstance().write();
 
-        // Config
-        AVPSettings.instance.pre(event);
         AVPCreativeTabs.instance.pre(event);
 
         Aliens.instance.pre(event);
@@ -108,6 +109,7 @@ public class AVP implements IMod
     public void post(FMLPostInitializationEvent event)
     {
         logger.info("Initialized. Running post initialization tasks...");
+        ModelConfig.getInstance().write();
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             KeybindHandler.instance.post(event);
