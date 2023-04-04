@@ -2,11 +2,9 @@ package org.predator.client.render.item;
 
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.item.ItemRenderer;
-import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms.TransformType;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.avp.client.Resources;
 import org.predator.client.model.item.ModelWristBlade;

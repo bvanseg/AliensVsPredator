@@ -26,7 +26,7 @@ import net.minecraftforge.common.model.TRSRTransformation;
 import net.minecraftforge.common.property.IExtendedBlockState;
 import org.alien.common.block.BlockHiveResin;
 import org.apache.commons.lang3.tuple.Pair;
-import org.avp.common.AVPSettings.ClientSettings;
+import org.avp.common.config.ModelConfig;
 
 import javax.vecmath.Matrix4f;
 import java.util.ArrayList;
@@ -161,7 +161,7 @@ public class CachedModelResin implements IBakedModel
                 {
                     this.sprite = ClientGame.instance.minecraft().getBlockRendererDispatcher().getBlockModelShapes().getTexture(parentState);
 
-                    GraphicsSetting hiveTessellation = ClientSettings.instance.hiveTessellation().value();
+                    GraphicsSetting hiveTessellation = ModelConfig.getInstance().getGraphics().hiveTessellation;
 
                     if (this.sprite == textureMap.getMissingSprite() || sprite == null || hiveTessellation == GraphicsSetting.LOW)
                     {

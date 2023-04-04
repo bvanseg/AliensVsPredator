@@ -19,7 +19,6 @@ public class PacketAttachParasiteToEntity implements IMessage, IMessageHandler<P
 
     public PacketAttachParasiteToEntity()
     {
-        ;
     }
 
     public PacketAttachParasiteToEntity(int parasiteId, int targetId)

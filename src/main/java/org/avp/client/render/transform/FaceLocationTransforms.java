@@ -18,7 +18,6 @@ public class FaceLocationTransforms
             @Override
             public void pre(Entity entity, float partialTicks)
             {
-                ;
             }
 
             @Override
@@ -36,7 +35,6 @@ public class FaceLocationTransforms
             @Override
             public void pre(Entity entity, float partialTicks)
             {
-                ;
             }
 
             @Override
@@ -54,7 +52,6 @@ public class FaceLocationTransforms
             @Override
             public void pre(Entity entity, float partialTicks)
             {
-                ;
             }
 
             @Override
@@ -72,7 +69,6 @@ public class FaceLocationTransforms
             @Override
             public void pre(Entity entity, float partialTicks)
             {
-                ;
             }
 
             @Override

@@ -6,16 +6,15 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.EntityAcidPool;
-import org.avp.common.entity.EntityGrenade;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
 import org.avp.common.entity.living.EntityMarine;
-import org.avp.common.item.firearm.FirearmProfile;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestAvoidTargetBrainSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
+import org.weapon.common.entity.EntityGrenade;
 
 /**
  * @author Boston Vanseghi
@@ -39,7 +38,16 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         this.addTask(new NearestAttackableTargetBrainTask());
         this.addTask(new SwimBrainTask(entity));
         // TODO:
-        this.addTask(new BrainTaskAdapter(new EntityAIAttackRanged(entity, 0.4D, getAttackDelayBasedOnFirearm(), 24)));
+        this.addTask(
+                new BrainTaskAdapter(
+                        new EntityAIAttackRanged(
+                                entity,
+                                0.4D,
+                                this.getEntity().getMarineType().getFirearmItem().getFirearmProperties().getTickDelayBetweenShots(),
+                                24
+                        )
+                )
+        );
         this.addTask(new BrainTaskAdapter(new EntityAIAvoidEntity<>(entity, EntityZombie.class, 8.0F, 0.6D, 0.6D)));
         this.addTask(new BrainTaskAdapter(new EntityAIMoveIndoors(entity)));
         this.addTask(new BrainTaskAdapter(new EntityAIRestrictOpenDoor(entity)));
@@ -63,13 +71,5 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
 
             return 5.0F;
         }));
-    }
-
-    private int getAttackDelayBasedOnFirearm() {
-        FirearmProfile firearmProfile = this.getEntity().getMarineType().getFirearmItem().getFirearmProfile();
-        double rpm = firearmProfile.getRoundsPerMinute();
-        double rps = rpm / 60; // Rounds per second
-        double rpt = rps / 20; // Rounds per tick
-        return (int) (1 / rpt); // How many ticks (x) must the entity wait until they can fire once (1 = rpt * x)
     }
 }

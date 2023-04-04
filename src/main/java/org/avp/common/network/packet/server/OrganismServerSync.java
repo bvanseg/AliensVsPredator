@@ -17,7 +17,6 @@ public class OrganismServerSync implements IMessage, IMessageHandler<OrganismSer
 
     public OrganismServerSync()
     {
-        ;
     }
 
     public OrganismServerSync(int entityId, NBTTagCompound tag)

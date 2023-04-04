@@ -15,7 +15,6 @@ public class RenderMedpodEntity extends Render<EntityMedpod>
     @Override
     public void doRender(EntityMedpod entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {
-        ;
     }
 
     @Override

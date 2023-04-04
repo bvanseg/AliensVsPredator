@@ -18,7 +18,6 @@ public class PacketRemoveTurretTarget implements IMessage, IMessageHandler<Packe
 
     public PacketRemoveTurretTarget()
     {
-        ;
     }
 
     public PacketRemoveTurretTarget(int x, int y, int z, String entityIdentifier)

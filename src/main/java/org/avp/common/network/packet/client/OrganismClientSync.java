@@ -18,7 +18,6 @@ public class OrganismClientSync implements IMessage, IMessageHandler<OrganismCli
 
     public OrganismClientSync()
     {
-        ;
     }
 
     public OrganismClientSync(int entityId, NBTTagCompound tag)

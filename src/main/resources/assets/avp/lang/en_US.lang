@@ -570,6 +570,12 @@ item.avp:cobalt.name=Cobalt
 item.avp:neodymium.name=Neodymium
 item.avp:neodymium.magnet=Neodymium Magnet
 
+# CONTROLS
+keybind.group.avp=Aliens Vs Predators
+key.item.special.primary=Primary Special Ability
+key.item.special.secondary=Secondary Special Ability
+key.generic.special=Predator Vision
+
 # ADVANCEMENTS
 avp.advancements.tech.acquire.copper.title=Copper-Top
 avp.advancements.tech.acquire.copper.description=Smelt a copper ingot
@@ -654,3 +660,122 @@ avp.advancements.predators.defeat.predator.title=Hunter, Hunted
 avp.advancements.predators.defeat.predator.description=Defeat a predator in combat
 avp.advancements.predators.defeat.predator.berserker.title=Rage, Rage
 avp.advancements.predators.defeat.predator.berserker.description=Defeat a berserker predator in combat
+
+
+# CONFIG
+avp.config.experimental.features.key=Experimental Features
+avp.config.experimental.features.desc=If enabled, experimental mod features will be turned on. If using this on a server, it will need to be enabled on both the client and server to work properly.
+
+avp.config.explosions.enabled.key=Explosions Enabled
+avp.config.explosions.enabled.desc=If disabled, all explosions triggered by this mod will be cancelled.
+
+avp.config.plasma.cannon.explosions.key=Plasma Cannon Explosions
+avp.config.plasma.cannon.explosions.desc=If enabled, a plasma cannon's projectiles will explode upon impact.
+
+avp.config.updater.enabled.key=Updater Enabled
+avp.config.updater.enabled.desc=Toggle the mod's update checking capabilities. Will not check for new updates if disabled.
+
+avp.config.debug.tools.enabled.key=Debug Tools Enabled
+avp.config.debug.tools.enabled.desc=Toggle the built in debugging tools. Used primarily in development environments.
+
+avp.config.nukes.enabled.key=Nukes Enabled
+avp.config.nukes.enabled.desc=If disabled, you will not be allowed to use any nuke-based functionality.
+
+avp.config.global.sound.volume.key=Global Sound Volume
+avp.config.global.sound.volume.desc=Change the default volume of this mod's sounds. EXAMPLE: 100 = 100% Volume, 50 = 50% Volume, 150 = 150% Volume
+
+avp.config.wristbracer.nuke.code.key=Wristbracer Nuke Code
+avp.config.wristbracer.nuke.code.desc=Change the wristbracer's code to activate a nuclear detonation.
+
+avp.config.blood.effects.key=Blood Effects
+avp.config.blood.effects.desc=Turns blood particle effects on or off.
+
+avp.config.hive.tessellation.key=Hive Tessellation Detail
+avp.config.hive.tessellation.desc=The visual complexity and detail of xenomorph hives.
+
+avp.config.blood.details.key=Blood Details
+avp.config.blood.details.desc=Sets the amount of blood particles and how long they last.
+
+avp.config.varda.dim.id.key=Varda Dimension ID
+avp.config.varda.dim.id.desc=Change the internal ID of this dimension. WARNING: Changing a dimension ID will prevent existing worlds from loading.
+
+avp.config.acheron.dim.id.key=Acheron Dimension ID
+avp.config.acheron.dim.id.desc=Change the internal ID of this dimension. WARNING: Changing a dimension ID will prevent existing worlds from loading.
+
+avp.config.biome.varda.id.key=Varda Biome ID
+avp.config.biome.varda.id.desc=Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.
+
+avp.config.biome.varda.forest.id.key=Varda Forest Biome ID
+avp.config.biome.varda.forest.id.desc=Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.
+
+avp.config.biome.acheron.id.key=Acheron Biome ID
+avp.config.biome.acheron.id.desc=Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.
+
+avp.config.overworld.spawns.enabled.key=Overworld Spawns Enabled
+avp.config.overworld.spawns.enabled.desc=If enabled, mobs will spawn in the overworld using spawn weights.
+
+avp.config.auto.spawns.enabled.key=Auto Spawns Enabled
+avp.config.auto.spawns.enabled.desc=If disabled, no mobs from this mod will spawn.
+
+avp.config.evolved.xenomorph.spawns.key=Evolved Xenomorph Spawns Enabled
+avp.config.evolved.xenomorph.spawns.desc=If disabled, no mature alien states will spawn naturally.
+
+avp.config.spawns.alien.key=Alien Spawns
+avp.config.spawns.alien.desc=List of biomes for aliens to spawn in.
+
+avp.config.spawns.aquatic.alien.key=Aquatic Alien Spawns
+avp.config.spawns.aquatic.alien.desc=List of biomes for aquatic aliens to spawn in.
+
+avp.config.spawns.predator.key=Predator Spawns
+avp.config.spawns.predator.desc=List of biomes for predators to spawn in.
+
+avp.config.spawns.marine.key=Marine Spawns
+avp.config.spawns.marine.desc=List of biomes for marines to spawn in.
+
+avp.config.spawns.varda.wildlife.key=Varda Wildlife Spawns
+avp.config.spawns.varda.wildlife.desc=List of biomes for Varda wildlife to spawn in.
+
+avp.config.spawn.weight.nauticomorph.key=Nauticomorph Spawn Weight
+avp.config.spawn.weight.nauticomorph.desc=Spawn Weight
+
+avp.config.spawn.weight.drone.key=Drone Spawn Weight
+avp.config.spawn.weight.drone.desc=Spawn Weight
+
+avp.config.spawn.weight.warrior.key=Warrior Spawn Weight
+avp.config.spawn.weight.warrior.desc=Spawn Weight
+
+avp.config.spawn.weight.praetorian.key=Praetorian Spawn Weight
+avp.config.spawn.weight.praetorian.desc=Spawn Weight
+
+avp.config.spawn.weight.chestburster.key=Chestburster Spawn Weight
+avp.config.spawn.weight.chestburster.desc=Spawn Weight
+
+avp.config.spawn.weight.facehugger.key=Facehugger Spawn Weight
+avp.config.spawn.weight.facehugger.desc=Spawn Weight
+
+avp.config.spawn.weight.yautja.warrior.key=Yautja Warrior Spawn Weight
+avp.config.spawn.weight.yautja.warrior.desc=Spawn Weight
+
+avp.config.spawn.weight.yautja.berserker.key=Yautja Berserker Spawn Weight
+avp.config.spawn.weight.yautja.berserker.desc=Spawn Weight
+
+avp.config.spawn.weight.marine.key=Marine Spawn Weight
+avp.config.spawn.weight.marine.desc=Spawn Weight
+
+avp.config.spawn.weight.engineer.key=Engineer Spawn Weight
+avp.config.spawn.weight.engineer.desc=Spawn Weight
+
+avp.config.spawn.weight.space.jockey.key=Space Jockey Spawn Weight
+avp.config.spawn.weight.space.jockey.desc=Spawn Weight
+
+avp.config.spawn.weight.hammerpede.key=Hammerpede Spawn Weight
+avp.config.spawn.weight.hammerpede.desc=Spawn Weight
+
+avp.config.spawn.weight.octohugger.key=Octohugger Spawn Weight
+avp.config.spawn.weight.octohugger.desc=Spawn Weight
+
+avp.config.spawn.weight.deacon.key=Deacon Spawn Weight
+avp.config.spawn.weight.deacon.desc=Spawn Weight
+
+avp.config.spawn.weight.trilobite.key=Trilobite Spawn Weight
+avp.config.spawn.weight.trilobite.desc=Spawn Weight

@@ -19,7 +19,6 @@ public class PacketOpenable implements IMessage, IMessageHandler<PacketOpenable,
 
     public PacketOpenable()
     {
-        ;
     }
 
     public PacketOpenable(boolean open, int x, int y, int z)

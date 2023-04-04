@@ -21,12 +21,10 @@ public class StructureDerelict extends Structure
     @Override
     public void onProcessing()
     {
-        ;
     }
 
     @Override
     public void onProcessingComplete()
     {
-        ;
     }
 }

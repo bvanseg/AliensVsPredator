@@ -2,7 +2,6 @@ package org.avp.common.item;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.entity.fx.EntityFXElectricArc;
-import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;

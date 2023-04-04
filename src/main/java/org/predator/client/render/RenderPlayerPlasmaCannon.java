@@ -46,12 +46,10 @@ public class RenderPlayerPlasmaCannon implements EventRenderer, FirstPersonRende
 
             if (cte.phase == Phase.START)
             {
-                ;
             }
 
             if (cte.phase == Phase.END)
             {
-                ;
             }
         }
     }
