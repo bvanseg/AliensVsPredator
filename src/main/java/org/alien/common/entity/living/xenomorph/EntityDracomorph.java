@@ -19,6 +19,7 @@ import org.alien.common.entity.ai.brain.DracomorphBrain;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
+import org.lib.common.inventory.ItemDropContext;
 
 public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Brainiac<DracomorphBrain>
 {
@@ -167,22 +168,23 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Braini
     {
         super.onDeath(source);
 
+        ItemDropContext itemDropContext = new ItemDropContext(this);
         switch (this.rand.nextInt(5))
         {
             case 0:
-                AVPItemDrops.SKULL_ENGINEER.tryDrop(this);
+                itemDropContext.drop(AVPItemDrops.SKULL_ENGINEER);
                 break;
             case 1:
-                AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
+                itemDropContext.drop(AVPItemDrops.SKULL_SPACEJOCKEY);
                 break;
             case 2:
-                AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
+                itemDropContext.drop(AVPItemDrops.SKULL_PREDATOR);
                 break;
             case 3:
-                AVPItemDrops.SKULL_XENO_DRONE.tryDrop(this);
+                itemDropContext.drop(AVPItemDrops.SKULL_XENO_DRONE);
                 break;
             case 4:
-                AVPItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
+                itemDropContext.drop(AVPItemDrops.SKULL_XENO_WARRIOR);
                 break;
             default:
                 break;

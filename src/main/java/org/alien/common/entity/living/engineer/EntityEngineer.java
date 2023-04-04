@@ -10,6 +10,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesEngineer;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
+import org.lib.common.inventory.ItemDropContext;
 
 public class EntityEngineer extends SpeciesEngineer
 {
@@ -33,13 +34,14 @@ public class EntityEngineer extends SpeciesEngineer
     public void onDeath(DamageSource damagesource)
     {
         super.onDeath(damagesource);
-        
+
+        ItemDropContext itemDropContext = new ItemDropContext(this);
         if (damagesource == AVPDamageSources.WRISTBRACER) {
-            AVPItemDrops.SKULL_ENGINEER.tryDrop(this, 25);
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_ENGINEER, 25);
             return;
         }
 
-        AVPItemDrops.SKULL_ENGINEER.tryDrop(this);
+        itemDropContext.drop(AVPItemDrops.SKULL_ENGINEER);
     }
 
     @Override

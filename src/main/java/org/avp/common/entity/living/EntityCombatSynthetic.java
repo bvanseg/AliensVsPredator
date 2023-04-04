@@ -23,6 +23,7 @@ import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.EntityLiquidLatexPool;
 import org.avp.common.entity.ai.brain.CombatSyntheticBrain;
 import org.lib.brain.Brainiac;
+import org.lib.common.inventory.ItemDropContext;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, Host, Brainiac<CombatSyntheticBrain>
 {
@@ -133,8 +134,9 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     public void onDeath(DamageSource damageSource)
     {
         super.onDeath(damageSource);
-        
-        AVPItemDrops.AMMUNITION.tryDrop(this);
+
+        ItemDropContext itemDropContext = new ItemDropContext(this);
+        itemDropContext.drop(AVPItemDrops.AMMO_AR);
 
         if (!this.world.isRemote)
         {
