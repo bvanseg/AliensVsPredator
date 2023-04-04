@@ -1,10 +1,11 @@
 package org.alien.common.entity.ai.brain.parasitoid;
 
+import org.alien.common.entity.ai.brain.AlienBrain;
 import org.alien.common.entity.ai.brain.task.parasitoid.AttachedToHostBrainTask;
 import org.alien.common.entity.ai.brain.task.parasitoid.UpdateInfertileStateBrainTask;
+import org.alien.common.entity.ai.brain.task.xenomorph.ProduceJellyBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.profile.BrainProfiles;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
@@ -15,7 +16,7 @@ import org.lib.brain.impl.task.*;
  * @author Boston Vanseghi
  *
  */
-public class ParasitoidBrain extends AbstractEntityBrain<EntityParasitoid> {
+public class ParasitoidBrain extends AlienBrain<EntityParasitoid> {
 	public ParasitoidBrain(EntityParasitoid entity) {
 		super(entity);
 	}
@@ -28,6 +29,8 @@ public class ParasitoidBrain extends AbstractEntityBrain<EntityParasitoid> {
 
 	@Override
 	public void initTasks() {
+		super.init();
+
 		this.addTask(new SwimBrainTask(this.getEntity()));
 		this.addTask(new AttackOnCollideBrainTask(0.55D));
 		this.addTask(new WanderBrainTask(0.55D));
@@ -40,6 +43,11 @@ public class ParasitoidBrain extends AbstractEntityBrain<EntityParasitoid> {
 
 	public void initParasiteTasks() {
 		this.addTask(new LeapAtTargetBrainTask(0.8F));
+	}
+
+	@Override
+	public void initJellyProductionTask() {
+		this.addTask(new ProduceJellyBrainTask<EntityParasitoid>(20, e -> e.isFertile() && e.getJellyLevel() <= 256));
 	}
 
 	@Override

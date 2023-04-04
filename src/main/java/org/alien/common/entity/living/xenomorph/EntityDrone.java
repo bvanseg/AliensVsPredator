@@ -39,16 +39,6 @@ public class EntityDrone extends SpeciesXenomorph implements HiveMember
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.53D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2.0D);
     }
-
-    @Override
-    public void produceJelly()
-    {
-        if (this.world.isRemote) return;
-        if (this.world.getTotalWorldTime() % 20 != 0) return;
-        if (this.getJellyLevel() >= (MaturityEntries.getRequiredJellyLevel(this.getClass()) / 2)) return;
-
-        this.setJellyLevel(this.getJellyLevel() + 20);
-    }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)

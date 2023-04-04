@@ -7,10 +7,10 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.util.SoundCategory;
 import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
+import org.alien.common.entity.ai.brain.AlienBrain;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorChestbursterAvoid;
 import org.alien.common.entity.living.xenomorph.EntityChestburster;
-import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAvoidTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;
@@ -23,7 +23,7 @@ import java.util.HashSet;
  * @author Boston Vanseghi
  *
  */
-public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
+public class ChestbursterBrain extends AlienBrain<EntityChestburster> {
 	public ChestbursterBrain(EntityChestburster entity) {
 		super(entity);
 	}
@@ -45,6 +45,8 @@ public class ChestbursterBrain extends AbstractEntityBrain<EntityChestburster> {
 
 	@Override
 	public void initTasks() {
+		super.initTasks();
+
 		EntityChestburster entity = this.getEntity();
 		this.addTask(new SwimBrainTask(entity));
 		this.addTask(new AvoidNearestAvoidTargetBrainTask(8.0F, 0.4F, 0.7F));
