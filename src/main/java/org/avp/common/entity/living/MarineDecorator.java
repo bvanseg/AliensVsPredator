@@ -25,6 +25,40 @@ public class MarineDecorator {
             0x3f0c08FF  // Dark Brown
     };
 
+    protected static final String[] NAMES = new String[]{
+            "Alex",
+            "Anderson",
+            "Apone",
+            "Billy",
+            "Bob",
+            "Brandon",
+            "Brody",
+            "Cameron",
+            "Connor",
+            "Crowe",
+            "Dallas",
+            "Dietrich",
+            "Drake",
+            "Dustin",
+            "Ferro",
+            "Fincher",
+            "Frost",
+            "Gorman",
+            "Harrison",
+            "Hicks",
+            "Hudson",
+            "Jason",
+            "Jefferson",
+            "Justin",
+            "Markus",
+            "O'Bannon",
+            "Shift",
+            "Scott",
+            "Spunkmeyer",
+            "Toby",
+            "Wierzbowski"
+    };
+
     private MarineDecorator() {}
 
     public static int generateRandomWeaponType(EntityMarine marine) {
@@ -83,5 +117,42 @@ public class MarineDecorator {
         }
 
         return color;
+    }
+
+    public static String generateRandomMarineName(EntityMarine marine) {
+        return NAMES[marine.world.rand.nextInt(NAMES.length)];
+    }
+
+    public static MarineRank generateRandomMarineRank(EntityMarine marine) {
+        return MarineRank.values()[marine.world.rand.nextInt(MarineRank.values().length)];
+    }
+
+    public static enum MarineRank {
+        PRIVATE("Private", "Pvt"),
+        PRIVATE_FIRST_CLASS("Private First Class", "PFC"),
+        LANCE_CORPORAL("Lance Corporal", "LCpl"),
+        CORPORAL("Corporal", "Cpl"),
+        SERGEANT("Sergeant", "Sgt"),
+        STAFF_SERGEANT("Staff Sergeant", "SSgt"),
+        GUNNERY_SERGEANT("Gunnery Sergeant", "GySgt"),
+        MASTER_SERGEANT("Master Sergeant", "MSgt"),
+        FIRST_SERGEANT("First Sergeant", "1st Sgt"),
+        MASTER_GUNNERY_SERGEANT("Master Gunnery Sergeant", "MGySgt");
+
+        private String displayName;
+        private String shorthandName;
+
+        MarineRank(String displayName, String shorthandName) {
+            this.displayName = displayName;
+            this.shorthandName = shorthandName;
+        }
+
+        public String getDisplayName() {
+            return this.displayName;
+        }
+
+        public String getShorthandName() {
+            return this.shorthandName;
+        }
     }
 }

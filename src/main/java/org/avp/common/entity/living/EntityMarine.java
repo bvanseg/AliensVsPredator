@@ -8,6 +8,7 @@ import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.EnumDyeColor;
@@ -28,6 +29,7 @@ import org.avp.client.AVPSounds;
 import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.ai.brain.MarineBrain;
+import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
@@ -39,10 +41,12 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 {
 
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> SKIN_TONE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> CAMO_COLOR  = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> EYE_COLOR   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> SKIN_TONE = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> CAMO_COLOR = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> EYE_COLOR = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<String> NAME = EntityDataManager.createKey(EntityMarine.class, DataSerializers.STRING);
+    private static final DataParameter<MarineDecorator.MarineRank> RANK = EntityDataManager.createKey(EntityMarine.class, AvpDataSerializers.MARINE_RANK);
     protected static final DataParameter<Optional<UUID>> SQUAD_LEADER_UNIQUE_ID = EntityDataManager.createKey(EntityMarine.class, DataSerializers.OPTIONAL_UNIQUE_ID);
 
     protected MarineBrain brain;
@@ -96,6 +100,8 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.getDataManager().register(SKIN_TONE, MarineDecorator.generateRandomSkinTone(this));
         this.getDataManager().register(CAMO_COLOR, -1);
         this.getDataManager().register(EYE_COLOR, MarineDecorator.generateRandomEyeColor(this));
+        this.getDataManager().register(NAME, MarineDecorator.generateRandomMarineName(this));
+        this.getDataManager().register(RANK, MarineDecorator.generateRandomMarineRank(this));
         this.getDataManager().register(SQUAD_LEADER_UNIQUE_ID, Optional.absent());
     }
 
@@ -164,10 +170,24 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     @Override
     public void onDeath(DamageSource damageSource)
     {
+        this.sendDeathMessageToSquadLeader();
         super.onDeath(damageSource);
 
         if (!this.world.isRemote) {
             Inventories.dropItemsInAt(this.inventory, this.world, this.getPosition());
+        }
+    }
+
+    private void sendDeathMessageToSquadLeader() {
+        if (!this.getSquadLeaderID().isPresent()) return;
+
+        EntityLivingBase squadLeader = this.world.getPlayerEntityByUUID(this.getSquadLeaderID().get());
+
+        if (squadLeader == null) return;
+
+        if (!this.world.isRemote && this.world.getGameRules().getBoolean("showDeathMessages") && squadLeader instanceof EntityPlayerMP)
+        {
+            squadLeader.sendMessage(this.getCombatTracker().getDeathMessage());
         }
     }
 
@@ -190,6 +210,16 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return marineType != null ? marineType : MarineTypes.M41A;
     }
 
+    @Override
+    public String getName() {
+        return this.getRank().getShorthandName() + " " + this.getMarineName();
+    }
+
+    @Override
+    public boolean hasCustomName() {
+        return true;
+    }
+
     public boolean isAiming()
     {
         return this.getDataManager().get(AIMING);
@@ -208,6 +238,14 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     public int getCamoColor()
     {
         return this.dataManager.get(CAMO_COLOR);
+    }
+
+    public String getMarineName() {
+        return this.dataManager.get(NAME);
+    }
+
+    public MarineDecorator.MarineRank getRank() {
+        return this.dataManager.get(RANK);
     }
 
     public Optional<UUID> getSquadLeaderID() {
@@ -231,7 +269,10 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     private static final String SKIN_TONE_NBT_KEY = "SkinTone";
     private static final String EYE_COLOR_NBT_KEY = "EyeColor";
     private static final String CAMO_COLOR_NBT_KEY = "CamoColor";
+    private static final String NAME_NBT_KEY = "MarineName";
+    private static final String RANK_NBT_KEY = "Rank";
     private static final String SQUAD_LEADER_NBT_KEY = "SquadLeader";
+    private static final String INVENTORY_NBT_KEY = "Inventory";
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt)
@@ -241,11 +282,17 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         nbt.setInteger(SKIN_TONE_NBT_KEY, this.getSkinTone());
         nbt.setInteger(EYE_COLOR_NBT_KEY, this.getEyeColor());
         nbt.setInteger(CAMO_COLOR_NBT_KEY, this.getCamoColor());
+        nbt.setString(NAME_NBT_KEY, this.getMarineName());
+        nbt.setInteger(RANK_NBT_KEY, this.getRank().ordinal());
 
         if (this.getSquadLeaderID().isPresent()) {
             nbt.setUniqueId(SQUAD_LEADER_NBT_KEY, this.getSquadLeaderID().get());
         }
 
+        this.writeInventoryToNBT(nbt);
+    }
+
+    private void writeInventoryToNBT(NBTTagCompound nbt) {
         NBTTagList nbttaglist = new NBTTagList();
 
         for (int i = 0; i < this.inventory.getSizeInventory(); ++i)
@@ -258,7 +305,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
             }
         }
 
-        nbt.setTag("Inventory", nbttaglist);
+        nbt.setTag(INVENTORY_NBT_KEY, nbttaglist);
     }
 
     @Override
@@ -269,12 +316,18 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.dataManager.set(SKIN_TONE, nbt.getInteger(SKIN_TONE_NBT_KEY));
         this.dataManager.set(EYE_COLOR, nbt.getInteger(EYE_COLOR_NBT_KEY));
         this.dataManager.set(CAMO_COLOR, nbt.getInteger(CAMO_COLOR_NBT_KEY));
+        this.dataManager.set(NAME, nbt.getString(NAME_NBT_KEY));
+        this.dataManager.set(RANK, MarineDecorator.MarineRank.values()[nbt.getInteger(RANK_NBT_KEY)]);
 
         if (nbt.hasKey(SQUAD_LEADER_NBT_KEY)) {
             this.setSquadLeaderUniqueID(nbt.getUniqueId(SQUAD_LEADER_NBT_KEY));
         }
 
-        NBTTagList nbttaglist = nbt.getTagList("Inventory", Constants.NBT.TAG_COMPOUND);
+        this.readInventoryFromNBT(nbt);
+    }
+
+    private void readInventoryFromNBT(NBTTagCompound nbt) {
+        NBTTagList nbttaglist = nbt.getTagList(INVENTORY_NBT_KEY, Constants.NBT.TAG_COMPOUND);
 
         for (int i = 0; i < nbttaglist.tagCount(); ++i)
         {
