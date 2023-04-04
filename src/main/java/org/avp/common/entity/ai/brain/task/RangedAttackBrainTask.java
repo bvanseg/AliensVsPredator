@@ -29,14 +29,12 @@ public class RangedAttackBrainTask extends AbstractEntityBrainTask {
     private int rangedAttackTime;
 
     private final double entityMoveSpeed;
-    private final int minRangedAttackWaitTime;
     private final int maxRangedAttackWaitTime;
     private final float attackRadius;
     private final float maxAttackDistance;
 
     public RangedAttackBrainTask(double moveSpeed, int maxAttackTime, float maxAttackDistanceIn) {
         this.entityMoveSpeed = moveSpeed;
-        this.minRangedAttackWaitTime = maxAttackTime;
         this.maxRangedAttackWaitTime = maxAttackTime;
         this.attackRadius = maxAttackDistanceIn;
         this.maxAttackDistance = maxAttackDistanceIn * maxAttackDistanceIn;
@@ -48,12 +46,6 @@ public class RangedAttackBrainTask extends AbstractEntityBrainTask {
 
         return ctx.getEntity().getAttackTarget() != null &&
                 ctx.getEntity().canEntityBeSeen(ctx.getEntity().getAttackTarget());
-    }
-
-    @Override
-    public boolean shouldContinueExecuting()
-    {
-        return this.shouldExecute() && !ctx.getEntity().getNavigator().noPath();
     }
 
     @Override
@@ -77,13 +69,7 @@ public class RangedAttackBrainTask extends AbstractEntityBrainTask {
             float f = MathHelper.sqrt(d0) / this.attackRadius;
             float distanceFactor = MathHelper.clamp(f, 0.1F, 1.0F);
             ((IRangedAttackMob)ctx.getEntity()).attackEntityWithRangedAttack(attackTarget, distanceFactor);
-            this.rangedAttackTime = MathHelper.floor(f * (this.maxRangedAttackWaitTime - this.minRangedAttackWaitTime) + this.minRangedAttackWaitTime);
+            this.rangedAttackTime = maxRangedAttackWaitTime;
         }
-    }
-
-    @Override
-    public void finish() {
-        super.finish();
-        this.rangedAttackTime = -1;
     }
 }
