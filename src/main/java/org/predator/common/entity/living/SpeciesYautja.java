@@ -24,6 +24,7 @@ import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.network.AvpDataSerializers;
 import org.lib.brain.Brainiac;
+import org.lib.common.inventory.ItemDropContext;
 import org.predator.client.PredatorSounds;
 import org.predator.common.entity.ai.brain.YautjaBrain;
 import org.predator.common.entity.state.CloakState;
@@ -278,27 +279,28 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     {
         super.onDeath(damagesource);
 
-        AVPItemDrops.PREDATOR_ARTIFACT.tryDrop(this);
-        AVPItemDrops.PLASMACANNON.tryDrop(this);
-        AVPItemDrops.WRISTBRACER.tryDrop(this);
-        AVPItemDrops.SHURIKEN.tryDrop(this);
-        AVPItemDrops.SILICON.tryDrop(this);
-        AVPItemDrops.WRISTBRACER_BLADES.tryDrop(this);
+        ItemDropContext itemDropContext = new ItemDropContext(this);
+        itemDropContext.drop(AVPItemDrops.PREDATOR_ARTIFACT);
+        itemDropContext.drop(AVPItemDrops.PLASMACANNON);
+        itemDropContext.drop(AVPItemDrops.WRISTBRACER);
+        itemDropContext.drop(AVPItemDrops.SHURIKEN);
+        itemDropContext.drop(AVPItemDrops.SILICON);
+        itemDropContext.drop(AVPItemDrops.WRISTBRACER_BLADES);
         
-        dropBiomaskAndSkull(damagesource);
+        dropBiomaskAndSkull(itemDropContext, damagesource);
     }
     
-    protected void dropBiomaskAndSkull(DamageSource damagesource)
+    protected void dropBiomaskAndSkull(ItemDropContext itemDropContext, DamageSource damagesource)
     {
         if (damagesource == AVPDamageSources.WRISTBRACER)
         {
-            AVPItemDrops.SKULL_PREDATOR.tryDrop(this, 25);
-            AVPItemDrops.BIOMASK.tryDrop(this, 25);
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_PREDATOR, 25);
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.BIOMASK, 25);
         }
         else
         {
-            AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
-            AVPItemDrops.BIOMASK.tryDrop(this);
+            itemDropContext.drop(AVPItemDrops.SKULL_PREDATOR);
+            itemDropContext.drop(AVPItemDrops.BIOMASK);
         }
     }
     

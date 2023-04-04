@@ -1,5 +1,6 @@
 package org.alien.common.world.dimension.acheron;
 
+import net.minecraft.client.audio.MusicTicker;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DimensionType;
@@ -10,6 +11,8 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.common.AlienDimensions;
+
+import javax.annotation.Nullable;
 
 public class WorldProviderAcheron extends WorldProvider
 {
@@ -141,5 +144,11 @@ public class WorldProviderAcheron extends WorldProvider
     public DimensionType getDimensionType()
     {
         return AlienDimensions.instance.ACHERON.getType();
+    }
+
+    @Nullable
+    @Override
+    public MusicTicker.MusicType getMusicType() {
+        return MusicTicker.MusicType.END;
     }
 }

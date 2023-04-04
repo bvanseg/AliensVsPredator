@@ -7,6 +7,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
+import org.lib.common.inventory.ItemDropContext;
 import org.predator.common.PredatorItems;
 import org.predator.common.entity.living.SpeciesYautja;
 
@@ -36,21 +37,21 @@ public class EntityYautjaBerserker extends SpeciesYautja
     }
     
     @Override
-    protected void dropBiomaskAndSkull(DamageSource damageSource)
+    protected void dropBiomaskAndSkull(ItemDropContext itemDropContext, DamageSource damageSource)
     {
         if (damageSource == AVPDamageSources.WRISTBRACER)
         {
-            AVPItemDrops.SKULL_PREDATOR.tryDrop(this, 25);
-            AVPItemDrops.BIOMASK_BERSERKER.tryDrop(this, 25);
-            AVPItemDrops.BIOMASK_FALCONER.tryDrop(this, 25);
-            AVPItemDrops.BIOMASK_TRACKER.tryDrop(this, 25);
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_PREDATOR, 25);
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.BIOMASK_BERSERKER, 25);
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.BIOMASK_FALCONER, 25);
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.BIOMASK_TRACKER, 25);
             return;
         }
 
-        AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
-        AVPItemDrops.BIOMASK_BERSERKER.tryDrop(this);
-        AVPItemDrops.BIOMASK_FALCONER.tryDrop(this);
-        AVPItemDrops.BIOMASK_TRACKER.tryDrop(this);
+        itemDropContext.drop(AVPItemDrops.SKULL_PREDATOR);
+        itemDropContext.drop(AVPItemDrops.BIOMASK_BERSERKER);
+        itemDropContext.drop(AVPItemDrops.BIOMASK_FALCONER);
+        itemDropContext.drop(AVPItemDrops.BIOMASK_TRACKER);
     }
     
     @Override
