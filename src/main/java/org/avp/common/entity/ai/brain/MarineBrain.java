@@ -16,6 +16,7 @@ import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.avp.common.entity.EntityGrenade;
 import org.avp.common.entity.ai.brain.task.EatFoodBrainTask;
 import org.avp.common.entity.ai.brain.task.FollowSquadLeaderBrainTask;
+import org.avp.common.entity.ai.brain.task.PlaceTorchBrainTask;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.item.firearm.FirearmProfile;
@@ -106,10 +107,11 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
 
         this.addTask(new FollowSquadLeaderBrainTask(0.6D, 10.0F, 2.0F));
 
+        // Inventory tasks.
         this.addTask(new FindItemBrainTask(ITEM_PICKUP_PREDICATE, 0.6D)
                 .onUseItem(entityItem -> this.getEntity().getInventory().addItem(entityItem.getItem())));
-
         this.addTask(new EatFoodBrainTask());
+        this.addTask(new PlaceTorchBrainTask());
     }
 
     private int getAttackDelayBasedOnFirearm() {
