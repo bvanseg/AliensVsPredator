@@ -21,6 +21,7 @@ import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPNetworking;
+import org.avp.common.network.packet.client.PacketDismountRidingEntity;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;
 
@@ -106,6 +107,10 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         }
         this.dismountRidingEntity();
         this.setNoAI(true);
+
+        if (!this.world.isRemote) {
+            AVPNetworking.instance.sendToAll(new PacketDismountRidingEntity(this.getEntityId()));
+        }
     }
 
     @Override
