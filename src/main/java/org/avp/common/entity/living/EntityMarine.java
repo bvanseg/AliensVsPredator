@@ -1,5 +1,6 @@
 package org.avp.common.entity.living;
 
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import com.google.common.base.Optional;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
@@ -8,9 +9,11 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -23,14 +26,15 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.util.Constants;
 import org.avp.client.AVPSounds;
-import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.ai.brain.MarineBrain;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
+import org.lib.common.inventory.InventorySnapshot;
 
 import java.util.Set;
 import java.util.UUID;
@@ -60,10 +64,13 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
     protected MarineBrain brain;
 
+    private final InventoryBasic inventory;
+
     public EntityMarine(World world)
     {
         super(world);
         this.experienceValue = 5;
+        this.inventory = new InventoryBasic("Items", false, 9 * 3);
     }
 
     @Override
@@ -72,6 +79,23 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
             this.brain = new MarineBrain(this);
         }
         return this.brain;
+    }
+
+    /**
+     * Gets the marine's inventory.
+     * Deprecated to discourage usage. Use getInventorySnapshot, instead.
+     *
+     * @return The marine's inventory.
+     */
+    @Deprecated
+    public InventoryBasic getInventory() {
+        return this.inventory;
+    }
+
+    public InventorySnapshot getInventorySnapshot() {
+        InventorySnapshot snapshot = new InventorySnapshot();
+        snapshot.snapshot(this.inventory);
+        return snapshot;
     }
 
     @Override
@@ -211,7 +235,10 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     public void onDeath(DamageSource damageSource)
     {
         super.onDeath(damageSource);
-        AVPItemDrops.AMMUNITION.tryDrop(this);
+
+        if (!this.world.isRemote) {
+            Inventories.dropItemsInAt(this.inventory, this.world, this.getPosition());
+        }
     }
 
     @Override
@@ -288,6 +315,20 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         if (this.getSquadLeaderID().isPresent()) {
             nbt.setUniqueId(SQUAD_LEADER_NBT_KEY, this.getSquadLeaderID().get());
         }
+
+        NBTTagList nbttaglist = new NBTTagList();
+
+        for (int i = 0; i < this.inventory.getSizeInventory(); ++i)
+        {
+            ItemStack itemstack = this.inventory.getStackInSlot(i);
+
+            if (!itemstack.isEmpty())
+            {
+                nbttaglist.appendTag(itemstack.writeToNBT(new NBTTagCompound()));
+            }
+        }
+
+        nbt.setTag("Inventory", nbttaglist);
     }
 
     @Override
@@ -301,6 +342,18 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
         if (nbt.hasKey(SQUAD_LEADER_NBT_KEY)) {
             this.setSquadLeaderUniqueID(nbt.getUniqueId(SQUAD_LEADER_NBT_KEY));
+        }
+
+        NBTTagList nbttaglist = nbt.getTagList("Inventory", Constants.NBT.TAG_COMPOUND);
+
+        for (int i = 0; i < nbttaglist.tagCount(); ++i)
+        {
+            ItemStack itemstack = new ItemStack(nbttaglist.getCompoundTagAt(i));
+
+            if (!itemstack.isEmpty())
+            {
+                this.inventory.addItem(itemstack);
+            }
         }
     }
 }
