@@ -1,5 +1,6 @@
 package org.avp.common.entity.living;
 
+import com.google.common.base.Optional;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -32,6 +33,7 @@ import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
 
 import java.util.Set;
+import java.util.UUID;
 
 public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Brainiac<MarineBrain>
 {
@@ -54,6 +56,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     private static final DataParameter<Integer> SKIN_TONE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> CAMO_COLOR  = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> EYE_COLOR   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    protected static final DataParameter<Optional<UUID>> SQUAD_LEADER_UNIQUE_ID = EntityDataManager.createKey(EntityMarine.class, DataSerializers.OPTIONAL_UNIQUE_ID);
 
     protected MarineBrain brain;
 
@@ -86,6 +89,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.getDataManager().register(SKIN_TONE, SKIN_TONES[this.world.rand.nextInt(SKIN_TONES.length)]);
         this.getDataManager().register(CAMO_COLOR, -1);
         this.getDataManager().register(EYE_COLOR, EYE_COLORS[this.world.rand.nextInt(EYE_COLORS.length)]);
+        this.getDataManager().register(SQUAD_LEADER_UNIQUE_ID, Optional.absent());
     }
 
     private int generateCamoColorBasedOnCurrentBiome() {
@@ -189,6 +193,12 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
     @Override
     protected boolean processInteract(EntityPlayer player, EnumHand hand) {
+        // If the marine does not have a squad leader already, the interacting player is now the squad leader.
+        if (!this.getSquadLeaderID().isPresent()) {
+            this.setSquadLeaderUniqueID(player.getUniqueID());
+            return super.processInteract(player, hand);
+        }
+
         if (player.getHeldItem(hand).getItem() == Items.DYE) {
             int dyeColor = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorValue();
             this.getDataManager().set(CAMO_COLOR, dyeColor << 8);
@@ -243,6 +253,14 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return this.dataManager.get(CAMO_COLOR);
     }
 
+    public Optional<UUID> getSquadLeaderID() {
+        return this.getDataManager().get(SQUAD_LEADER_UNIQUE_ID);
+    }
+
+    public void setSquadLeaderUniqueID(UUID squadLeaderUniqueId) {
+        this.getDataManager().set(SQUAD_LEADER_UNIQUE_ID, Optional.of(squadLeaderUniqueId));
+    }
+
     @Override
     public void setSwingingArms(boolean swingingArms) { /* Do Nothing */ }
     
@@ -256,6 +274,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     private static final String SKIN_TONE_NBT_KEY = "SkinTone";
     private static final String EYE_COLOR_NBT_KEY = "EyeColor";
     private static final String CAMO_COLOR_NBT_KEY = "CamoColor";
+    private static final String SQUAD_LEADER_NBT_KEY = "SquadLeader";
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt)
@@ -265,6 +284,10 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         nbt.setInteger(SKIN_TONE_NBT_KEY, this.getSkinTone());
         nbt.setInteger(EYE_COLOR_NBT_KEY, this.getEyeColor());
         nbt.setInteger(CAMO_COLOR_NBT_KEY, this.getCamoColor());
+
+        if (this.getSquadLeaderID().isPresent()) {
+            nbt.setUniqueId(SQUAD_LEADER_NBT_KEY, this.getSquadLeaderID().get());
+        }
     }
 
     @Override
@@ -275,5 +298,9 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.dataManager.set(SKIN_TONE, nbt.getInteger(SKIN_TONE_NBT_KEY));
         this.dataManager.set(EYE_COLOR, nbt.getInteger(EYE_COLOR_NBT_KEY));
         this.dataManager.set(CAMO_COLOR, nbt.getInteger(CAMO_COLOR_NBT_KEY));
+
+        if (nbt.hasKey(SQUAD_LEADER_NBT_KEY)) {
+            this.setSquadLeaderUniqueID(nbt.getUniqueId(SQUAD_LEADER_NBT_KEY));
+        }
     }
 }

@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import org.alien.common.entity.EntityAcidPool;
 import org.avp.common.entity.EntityGrenade;
+import org.avp.common.entity.ai.brain.task.FollowSquadLeaderBrainTask;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.item.firearm.FirearmProfile;
@@ -84,6 +85,8 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         }));
 
         this.addTask(new AvoidBlockBrainTask(3F, 0.6F, 0.6F, AVOID_BLOCKS::contains));
+
+        this.addTask(new FollowSquadLeaderBrainTask(0.6D, 10.0F, 2.0F));
     }
 
     private int getAttackDelayBasedOnFirearm() {
