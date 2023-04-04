@@ -12,6 +12,7 @@ import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
+import org.lib.common.inventory.ItemDropContext;
 
 public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Brainiac<XenomorphBrain>
 {
@@ -223,18 +224,21 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
     {
         super.onDeath(damageSource);
 
-        AVPItemDrops.XENO_FEET.tryDrop(this);
-        AVPItemDrops.XENO_HELM.tryDrop(this);
-        AVPItemDrops.XENO_LEGS.tryDrop(this);
-        AVPItemDrops.XENO_TORSO.tryDrop(this);
+        ItemDropContext itemDropContext = new ItemDropContext(this);
+        itemDropContext.drop(AVPItemDrops.XENO_FEET);
+        itemDropContext.drop(AVPItemDrops.XENO_HELM);
+        itemDropContext.drop(AVPItemDrops.XENO_LEGS);
+        itemDropContext.drop(AVPItemDrops.XENO_TORSO);
 
         if (damageSource == AVPDamageSources.WRISTBRACER)
         {
-            AVPItemDrops.SKULLS_XENO.tryDrop(this, 25);
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_XENO_DRONE, 25);
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_XENO_WARRIOR, 25);
         }
         else
         {
-            AVPItemDrops.SKULLS_XENO.tryDrop(this);
+            itemDropContext.drop(AVPItemDrops.SKULL_XENO_DRONE);
+            itemDropContext.drop(AVPItemDrops.SKULL_XENO_WARRIOR);
         }
     }
 

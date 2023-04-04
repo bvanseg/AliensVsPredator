@@ -19,6 +19,7 @@ import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.AethonBrain;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
+import org.lib.common.inventory.ItemDropContext;
 
 public class EntityAethon extends EntityMob implements IMob, Host, Brainiac<AethonBrain>
 {
@@ -174,14 +175,15 @@ public class EntityAethon extends EntityMob implements IMob, Host, Brainiac<Aeth
     public void onDeath(DamageSource source)
     {
         super.onDeath(source);
-        
-        AVPItemDrops.SKULL_ENGINEER.tryDrop(this);
-        AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
-        AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
-        AVPItemDrops.SKULL_XENO_DRONE.tryDrop(this);
-        AVPItemDrops.SKULL_XENO_WARRIOR.tryDrop(this);
-        AVPItemDrops.SKULL_AETHON.tryDrop(this);
-        AVPItemDrops.HEAD_GIGER.tryDrop(this);
+
+        ItemDropContext itemDropContext = new ItemDropContext(this);
+        itemDropContext.drop(AVPItemDrops.SKULL_ENGINEER);
+        itemDropContext.drop(AVPItemDrops.SKULL_SPACEJOCKEY);
+        itemDropContext.drop(AVPItemDrops.SKULL_PREDATOR);
+        itemDropContext.drop(AVPItemDrops.SKULL_XENO_DRONE);
+        itemDropContext.drop(AVPItemDrops.SKULL_XENO_WARRIOR);
+        itemDropContext.drop(AVPItemDrops.SKULL_AETHON);
+        itemDropContext.drop(AVPItemDrops.HEAD_GIGER);
     }
     
     @Override

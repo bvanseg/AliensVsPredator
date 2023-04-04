@@ -24,6 +24,7 @@ import org.avp.common.entity.ai.brain.MarineBrain;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
+import org.lib.common.inventory.ItemDropContext;
 
 public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Brainiac<MarineBrain>
 {
@@ -126,7 +127,12 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     public void onDeath(DamageSource damageSource)
     {
         super.onDeath(damageSource);
-        AVPItemDrops.AMMUNITION.tryDrop(this);
+
+        ItemDropContext itemDropContext = new ItemDropContext(this);
+        itemDropContext.drop(AVPItemDrops.AMMO_AR);
+        itemDropContext.drop(AVPItemDrops.AMMO_PISTOL);
+        itemDropContext.drop(AVPItemDrops.AMMO_SMG);
+        itemDropContext.drop(AVPItemDrops.AMMO_SNIPER);
     }
 
     @Override
