@@ -13,14 +13,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
-import org.avp.common.entity.EntityGrenade;
 import org.avp.common.entity.ai.brain.task.EatFoodBrainTask;
 import org.avp.common.entity.ai.brain.task.FollowSquadLeaderBrainTask;
 import org.avp.common.entity.ai.brain.task.PlaceTorchBrainTask;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
 import org.avp.common.entity.living.EntityMarine;
-import org.avp.common.item.firearm.FirearmProfile;
-import org.avp.common.item.firearm.ItemAmmunition;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
@@ -29,6 +26,7 @@ import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
 import org.weapon.common.entity.EntityGrenade;
+import org.weapon.common.item.init.WeaponItems;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -51,10 +49,14 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         Arrays.stream(sets).forEach(set -> set.add(block));
     }
 
-    private static final Predicate<EntityItem> ITEM_PICKUP_PREDICATE = (entityItem) -> {
-        if (entityItem.getItem().getItem() instanceof ItemFood) return true; // Marines can pick up food.
-        if (entityItem.getItem().getItem() instanceof ItemAmmunition) return true; // Marines can pick up ammunition.
-        if (entityItem.getItem().getItem() == Item.getItemFromBlock(Blocks.TORCH)) return true; // Marines can pick up torches.
+    private static final Predicate<EntityItem> ITEM_PICKUP_PREDICATE = entityItem -> {
+        Item item = entityItem.getItem().getItem();
+        if (item instanceof ItemFood) return true; // Marines can pick up food.
+        if (item == WeaponItems.ITEM_AMMO_AR ||
+                item == WeaponItems.ITEM_AMMO_PISTOL ||
+                item == WeaponItems.ITEM_AMMO_SMG ||
+                item == WeaponItems.ITEM_AMMO_SNIPER) return true; // Marines can pick up ammunition.
+        if (item == Item.getItemFromBlock(Blocks.TORCH)) return true; // Marines can pick up torches.
 
         return false;
     };
