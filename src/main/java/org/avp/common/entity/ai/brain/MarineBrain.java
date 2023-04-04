@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.monster.EntityCreeper;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -93,6 +94,8 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         this.addTask(new AvoidNearestAvoidTargetBrainTask(0.6F, 0.6F, e -> {
             if (e instanceof EntityAcidPool)
                 return 3.0F;
+            if (e instanceof EntityCreeper && ((EntityCreeper)e).hasIgnited())
+                return 8.0F;
             if (e instanceof EntityTNTPrimed)
                 return 8.0F;
 
