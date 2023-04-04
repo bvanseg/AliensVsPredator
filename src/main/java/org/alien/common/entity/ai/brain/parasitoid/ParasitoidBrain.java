@@ -29,7 +29,7 @@ public class ParasitoidBrain extends AlienBrain<EntityParasitoid> {
 
 	@Override
 	public void initTasks() {
-		super.init();
+		super.initTasks();
 
 		this.addTask(new SwimBrainTask(this.getEntity()));
 		this.addTask(new AttackOnCollideBrainTask(0.55D));
