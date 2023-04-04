@@ -31,7 +31,6 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
 
     public TileEntityAssembler()
     {
-        ;
     }
 
     @Override
@@ -150,13 +149,11 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     @Override
     public void openInventory(EntityPlayer player)
     {
-        ;
     }
 
     @Override
     public void closeInventory(EntityPlayer player)
     {
-        ;
     }
 
     @Override
@@ -279,7 +276,6 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     @Override
     public void clear()
     {
-        ;
     }
 
     @Override

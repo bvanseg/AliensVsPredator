@@ -18,7 +18,6 @@ public class InventoryCustomPlayer implements IInventory
 
     public InventoryCustomPlayer()
     {
-        ;
     }
 
     @Override
@@ -97,13 +96,11 @@ public class InventoryCustomPlayer implements IInventory
     @Override
     public void openInventory(EntityPlayer player)
     {
-        ;
     }
 
     @Override
     public void closeInventory(EntityPlayer player)
     {
-        ;
     }
 
     @Override
@@ -163,7 +160,6 @@ public class InventoryCustomPlayer implements IInventory
     @Override
     public void markDirty()
     {
-        ;
     }
     
     @Override
@@ -182,7 +178,6 @@ public class InventoryCustomPlayer implements IInventory
     @Override
     public void setField(int id, int value)
     {
-        ;
     }
 
     @Override
@@ -194,7 +189,6 @@ public class InventoryCustomPlayer implements IInventory
     @Override
     public void clear()
     {
-        ;
     }
 
     @Override

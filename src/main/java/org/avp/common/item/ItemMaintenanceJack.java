@@ -26,7 +26,6 @@ public class ItemMaintenanceJack extends HookedItem
 
     public void onOpenBlastDoor(EntityPlayer player, ItemStack currentEquippedItem)
     {
-        ;
     }
     
     @Override

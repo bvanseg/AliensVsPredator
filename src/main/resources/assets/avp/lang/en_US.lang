@@ -570,6 +570,12 @@ item.avp:cobalt.name=Cobalt
 item.avp:neodymium.name=Neodymium
 item.avp:neodymium.magnet=Neodymium Magnet
 
+# CONTROLS
+keybind.group.avp=Aliens Vs Predators
+key.item.special.primary=Primary Special Ability
+key.item.special.secondary=Secondary Special Ability
+key.generic.special=Predator Vision
+
 # ADVANCEMENTS
 avp.advancements.tech.acquire.copper.title=Copper-Top
 avp.advancements.tech.acquire.copper.description=Smelt a copper ingot

@@ -84,7 +84,7 @@ public class EntityTrilobite extends EntityParasitoid implements IAnimated
         tagDetachedTentacles.setIntArray("Tentacles", new int[this.tentacleHelper.getAmountOfTentacles()]);
         this.getDataManager().register(DETACHED_TENTACLES, tagDetachedTentacles);
     }
-    
+
     @Override
     protected void updateAnimations()
     {

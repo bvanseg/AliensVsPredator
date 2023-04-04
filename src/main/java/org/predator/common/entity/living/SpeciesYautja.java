@@ -154,7 +154,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     private void handleCloak() {
         if (this.cloakProgress < MAX_CLOAK) {
             if (this.getCloakState() != CloakState.CLOAKING) {
-                PredatorSounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);;
+                PredatorSounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);
             }
 
             this.setCloakState(CloakState.CLOAKING);

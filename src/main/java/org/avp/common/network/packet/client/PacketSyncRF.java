@@ -19,7 +19,6 @@ public class PacketSyncRF implements IMessage, IMessageHandler<PacketSyncRF, Pac
 
     public PacketSyncRF()
     {
-        ;
     }
 
     public PacketSyncRF(int rf, int x, int y, int z)

@@ -28,4 +28,4 @@ public class UnlistedPropertyBlockstate implements IUnlistedProperty<IBlockState
     {
         return value.toString();
     }
-};
+}

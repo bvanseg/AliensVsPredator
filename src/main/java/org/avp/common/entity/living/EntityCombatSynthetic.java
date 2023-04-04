@@ -19,10 +19,11 @@ import org.alien.common.api.parasitoidic.Host;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
-import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.EntityLiquidLatexPool;
 import org.avp.common.entity.ai.brain.CombatSyntheticBrain;
 import org.lib.brain.Brainiac;
+import org.weapon.common.entity.EntityBullet;
+import org.weapon.common.item.init.WeaponItems;
 import org.lib.common.inventory.ItemDropContext;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, Host, Brainiac<CombatSyntheticBrain>
@@ -85,7 +86,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     @Override
     public ItemStack getHeldItemMainhand()
     {
-        return new ItemStack(AVPItems.ITEM_M41A);
+        return new ItemStack(WeaponItems.ITEM_M41A);
     }
 
     @Override
