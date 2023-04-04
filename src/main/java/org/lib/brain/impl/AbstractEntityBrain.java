@@ -23,7 +23,7 @@ public class AbstractEntityBrain<T extends EntityLiving> extends AbstractBrain<E
 
 	@Override
 	public void update() {
-		if (this.entity.isDead)
+		if (this.entity.isDead || this.entity.getHealth() <= 0F)
 			return;
 
 		super.update();
