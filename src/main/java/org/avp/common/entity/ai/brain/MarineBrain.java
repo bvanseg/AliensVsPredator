@@ -16,6 +16,7 @@ import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.avp.common.entity.ai.brain.task.EatFoodBrainTask;
 import org.avp.common.entity.ai.brain.task.FollowSquadLeaderBrainTask;
 import org.avp.common.entity.ai.brain.task.PlaceTorchBrainTask;
+import org.avp.common.entity.ai.brain.task.RangedAttackBrainTask;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
 import org.avp.common.entity.living.EntityMarine;
 import org.lib.brain.impl.AbstractEntityBrain;
@@ -78,17 +79,14 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         EntityMarine entity = this.getEntity();
         this.addTask(new NearestAttackableTargetBrainTask());
         this.addTask(new SwimBrainTask(entity));
-        // TODO:
         this.addTask(
-                new BrainTaskAdapter(
-                        new EntityAIAttackRanged(
-                                entity,
-                                0.4D,
-                                this.getEntity().getMarineType().getFirearmItem().getFirearmProperties().getTickDelayBetweenShots(),
-                                24
-                        )
-                )
+            new RangedAttackBrainTask(
+                0.4D,
+                this.getEntity().getMarineType().getFirearmItem().getFirearmProperties().getTickDelayBetweenShots(),
+                24
+            )
         );
+        // TODO:
         this.addTask(new BrainTaskAdapter(new EntityAIAvoidEntity<>(entity, EntityZombie.class, 8.0F, 0.6D, 0.6D)));
         this.addTask(new BrainTaskAdapter(new EntityAIMoveIndoors(entity)));
         this.addTask(new BrainTaskAdapter(new EntityAIRestrictOpenDoor(entity)));
