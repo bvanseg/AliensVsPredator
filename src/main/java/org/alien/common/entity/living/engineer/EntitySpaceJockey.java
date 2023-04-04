@@ -10,6 +10,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesEngineer;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
+import org.lib.common.inventory.ItemDropContext;
 
 public class EntitySpaceJockey extends SpeciesEngineer
 {
@@ -34,12 +35,13 @@ public class EntitySpaceJockey extends SpeciesEngineer
     {
         super.onDeath(damagesource);
 
+        ItemDropContext itemDropContext = new ItemDropContext(this);
         if (damagesource == AVPDamageSources.WRISTBRACER) {
-            AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this, 25);
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_SPACEJOCKEY, 25);
             return;
         }
 
-        AVPItemDrops.SKULL_SPACEJOCKEY.tryDrop(this);
+        itemDropContext.drop(AVPItemDrops.SKULL_SPACEJOCKEY);
     }
 
     @Override
