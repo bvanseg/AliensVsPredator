@@ -94,6 +94,7 @@ public class Resources
         public final MapModelTexture<ModelCCFL>                   CCFL_TUBE_OFF                  = new MapModelTexture(new ModelCCFL(), new Texture(AVP.Properties.ID, "textures/tile/ccfl_off.png"));
         public final MapModelTexture<ModelMarine>                 MARINE                         = new MapModelTexture(new ModelMarine(), new Texture(AVP.Properties.ID, "textures/mob/marine.png"));
         public final MapModelTexture<ModelMarine>                 MARINE_SKIN                    = new MapModelTexture(new ModelMarine(), new Texture(AVP.Properties.ID, "textures/mob/marine_skin.png"));
+        public final MapModelTexture<ModelMarine>                 MARINE_CAMO                    = new MapModelTexture(new ModelMarine(), new Texture(AVP.Properties.ID, "textures/mob/marine_camo.png"));
         public final MapModelTexture<ModelMarine>                 MARINE_EYES                    = new MapModelTexture(new ModelMarine(), new Texture(AVP.Properties.ID, "textures/mob/marine_eyes.png"));
         public final MapModelTexture<ModelYautja>                 YAUTJA_WARRIOR                 = new MapModelTexture(new ModelYautja(), new Texture(AVP.Properties.ID, "textures/mob/yautja.png"));
         public final MapModelTexture<ModelYautja>                 YAUTJA_BERSERKER               = new MapModelTexture(new ModelYautja(), new Texture(AVP.Properties.ID, "textures/mob/yautja_berserker.png"));
