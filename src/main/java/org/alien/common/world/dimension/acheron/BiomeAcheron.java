@@ -54,7 +54,6 @@ public class BiomeAcheron extends BiomeGenLV
         @Override
         protected void genDecorations(Biome biome, World world, Random random)
         {
-            ;
         }
 
         private static final WorldGenMinable WORLDGEN_ORE_UNIDIRT = new WorldGenMinable(AlienVardaBlocks.UNIDIRT.getDefaultState(), 32);

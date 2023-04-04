@@ -9,7 +9,6 @@ public class LV426Formation4 extends LV426Formation
 {
     public LV426Formation4()
     {
-        ;
     }
     
     @Override

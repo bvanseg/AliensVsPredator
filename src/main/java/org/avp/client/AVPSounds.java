@@ -14,30 +14,33 @@ public class AVPSounds implements IPreInitEvent
 
     private AVPSounds() {}
 
-    public static final Sound FX_WEAPON_PISTOL              = SoundRegistryUtil.createSound("weapon.pistol");
-    
-    /** MARINE SOUNDS **/
-    public static final Sound  MARINE_HURT                  = SoundRegistryUtil.createSound("marine.hurt");
-    public static final Sound  MARINE_DEATH                 = SoundRegistryUtil.createSound("marine.death");
+    public static final Sound FX_WEAPON_PISTOL = SoundRegistryUtil.createSound("weapon.pistol");
 
-    public static final Sound  WEAPON_FLAMETHROWER          = SoundRegistryUtil.createSound("weapon.flamethrower");
-    public static final Sound  WEAPON_GUNSHOT               = SoundRegistryUtil.createSound("weapon.gunshot");
-    public static final Sound  WEAPON_SNIPER                = SoundRegistryUtil.createSound("weapon.sniper");
-    public static final Sound  WEAPON_PULSERIFLE            = SoundRegistryUtil.createSound("weapon.pulserifle");
-    public static final Sound  WEAPON_STUNBATON             = SoundRegistryUtil.createSound("weapon.stunbaton");
-    public static final Sound  WEAPON_M56SG                 = SoundRegistryUtil.createSound("weapon.m56sg");
-    public static final Sound  MOTIONTRACKER_PING           = SoundRegistryUtil.createSound("motiontracker.ping");
-    public static final Sound  MOTIONTRACKER_PONG           = SoundRegistryUtil.createSound("motiontracker.pong");
-    public static final Sound  BLASTDOOR_SEVASTOPOL_OPEN    = SoundRegistryUtil.createSound("blocks.blastdoor.sevastopol.open");
-    public static final Sound  BLASTDOOR_SEVASTOPOL_CLOSE   = SoundRegistryUtil.createSound("blocks.blastdoor.sevastopol.close");
-    public static final Sound  BLASTDOOR_OPEN               = SoundRegistryUtil.createSound("blocks.blastdoor.open");
-    public static final Sound  BLASTDOOR_CLOSE              = SoundRegistryUtil.createSound("blocks.blastdoor.close");
-    public static final Sound  BLASTDOOR_UNLOCK             = SoundRegistryUtil.createSound("blocks.blastdoor.unlock");
-    public static final Sound  BLASTDOOR_LOCK               = SoundRegistryUtil.createSound("blocks.blastdoor.lock");
-    public static final Sound  BLASTDOOR_PASSWORD_DENIED    = SoundRegistryUtil.createSound("blocks.blastdoor.pass_deny");
-    public static final Sound  ALARM_ACCESS                 = SoundRegistryUtil.createSound("blocks.alarm.access");
-    public static final Sound  ALARM_BUZZER                 = SoundRegistryUtil.createSound("blocks.alarm.buzzer");
-    public static final Sound  ALARM_EMERGENCY              = SoundRegistryUtil.createSound("blocks.alarm.emergency");
+    /**
+     * MARINE SOUNDS
+     **/
+    public static final Sound MARINE_HURT = SoundRegistryUtil.createSound("marine.hurt");
+    public static final Sound MARINE_DEATH = SoundRegistryUtil.createSound("marine.death");
+
+    public static final Sound WEAPON_FLAMETHROWER = SoundRegistryUtil.createSound("weapon.flamethrower");
+    public static final Sound WEAPON_GUNSHOT = SoundRegistryUtil.createSound("weapon.gunshot");
+    public static final Sound WEAPON_SNIPER = SoundRegistryUtil.createSound("weapon.sniper");
+    public static final Sound WEAPON_PULSERIFLE = SoundRegistryUtil.createSound("weapon.pulserifle");
+    public static final Sound WEAPON_STUNBATON = SoundRegistryUtil.createSound("weapon.stunbaton");
+    public static final Sound WEAPON_M56SG = SoundRegistryUtil.createSound("weapon.m56sg");
+    public static final Sound WEAPON_RELOAD = SoundRegistryUtil.createSound("weapon.reload");
+    public static final Sound MOTIONTRACKER_PING = SoundRegistryUtil.createSound("motiontracker.ping");
+    public static final Sound MOTIONTRACKER_PONG = SoundRegistryUtil.createSound("motiontracker.pong");
+    public static final Sound BLASTDOOR_SEVASTOPOL_OPEN = SoundRegistryUtil.createSound("blocks.blastdoor.sevastopol.open");
+    public static final Sound BLASTDOOR_SEVASTOPOL_CLOSE = SoundRegistryUtil.createSound("blocks.blastdoor.sevastopol.close");
+    public static final Sound BLASTDOOR_OPEN = SoundRegistryUtil.createSound("blocks.blastdoor.open");
+    public static final Sound BLASTDOOR_CLOSE = SoundRegistryUtil.createSound("blocks.blastdoor.close");
+    public static final Sound BLASTDOOR_UNLOCK = SoundRegistryUtil.createSound("blocks.blastdoor.unlock");
+    public static final Sound BLASTDOOR_LOCK = SoundRegistryUtil.createSound("blocks.blastdoor.lock");
+    public static final Sound BLASTDOOR_PASSWORD_DENIED = SoundRegistryUtil.createSound("blocks.blastdoor.pass_deny");
+    public static final Sound ALARM_ACCESS = SoundRegistryUtil.createSound("blocks.alarm.access");
+    public static final Sound ALARM_BUZZER = SoundRegistryUtil.createSound("blocks.alarm.buzzer");
+    public static final Sound ALARM_EMERGENCY = SoundRegistryUtil.createSound("blocks.alarm.emergency");
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
@@ -52,6 +55,7 @@ public class AVPSounds implements IPreInitEvent
         SoundRegistryUtil.registerSound(WEAPON_PULSERIFLE);
         SoundRegistryUtil.registerSound(WEAPON_STUNBATON);
         SoundRegistryUtil.registerSound(WEAPON_M56SG);
+        SoundRegistryUtil.registerSound(WEAPON_RELOAD);
         SoundRegistryUtil.registerSound(MOTIONTRACKER_PING);
         SoundRegistryUtil.registerSound(MOTIONTRACKER_PONG);
 

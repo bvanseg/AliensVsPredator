@@ -9,8 +9,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumHandSide;
 import net.minecraft.util.math.MathHelper;
-import org.avp.common.AVPItems;
 import org.avp.common.entity.living.EntityMarine;
+import org.weapon.common.item.init.WeaponItems;
 
 public class ModelMarine extends Model<EntityMarine>
 {
@@ -217,7 +217,7 @@ public class ModelMarine extends Model<EntityMarine>
         this.bipedLeftArm.rotateAngleX -= MathHelper.sin(ageInTicks * 0.067F) * 0.05F;
 
         // Because the smart gun is a relatively large weapon, the marine needs two hands to hold it at all times.
-        if (entityIn instanceof EntityMarine && ((EntityMarine)entityIn).getHeldItemMainhand().getItem() == AVPItems.ITEM_M56SG)
+        if (entityIn instanceof EntityMarine && ((EntityMarine)entityIn).getHeldItemMainhand().getItem() == WeaponItems.ITEM_M56SG)
         {
             this.bipedRightArm.rotateAngleY = -0.4F + this.bipedHead.rotateAngleY;
             this.bipedLeftArm.rotateAngleY = 0.1F + this.bipedHead.rotateAngleY + 1.4F;

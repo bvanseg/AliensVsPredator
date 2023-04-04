@@ -16,7 +16,6 @@ public class PacketWriteToDataDevice implements IMessage, IMessageHandler<Packet
 
     public PacketWriteToDataDevice()
     {
-        ;
     }
 
     public PacketWriteToDataDevice(int x, int y, int z, int id)

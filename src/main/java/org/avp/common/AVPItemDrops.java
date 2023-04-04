@@ -6,6 +6,7 @@ import org.alien.common.block.init.AlienSkullBlocks;
 import org.lib.common.inventory.ItemDrop;
 import org.predator.common.PredatorItems;
 import org.predator.common.block.init.PredatorBlocks;
+import org.weapon.common.item.init.WeaponItems;
 
 public class AVPItemDrops
 {
@@ -41,15 +42,15 @@ public class AVPItemDrops
     public static final ItemDrop BIOMASK_FALCONER = new ItemDrop.Builder(PredatorBlocks.BIOMASK_FALCONER).setDropWeight(3).build();
     public static final ItemDrop BIOMASK_TRACKER = new ItemDrop.Builder(PredatorBlocks.BIOMASK_TRACKER).setDropWeight(3).build();
 
-    public static final ItemDrop AMMO_AR = new ItemDrop.Builder(AVPItems.ITEM_AMMO_AR).setDropWeight(75).build();
-    public static final ItemDrop AMMO_PISTOL = new ItemDrop.Builder(AVPItems.ITEM_AMMO_PISTOL).setDropWeight(75).build();
-    public static final ItemDrop AMMO_SMG = new ItemDrop.Builder(AVPItems.ITEM_AMMO_SMG).setDropWeight(75).build();
-    public static final ItemDrop AMMO_SNIPER = new ItemDrop.Builder(AVPItems.ITEM_AMMO_SNIPER).setDropWeight(75).build();
+    public static final ItemDrop AMMO_AR = new ItemDrop.Builder(WeaponItems.ITEM_AMMO_AR).setDropWeight(75).build();
+    public static final ItemDrop AMMO_PISTOL = new ItemDrop.Builder(WeaponItems.ITEM_AMMO_PISTOL).setDropWeight(75).build();
+    public static final ItemDrop AMMO_SMG = new ItemDrop.Builder(WeaponItems.ITEM_AMMO_SMG).setDropWeight(75).build();
+    public static final ItemDrop AMMO_SNIPER = new ItemDrop.Builder(WeaponItems.ITEM_AMMO_SNIPER).setDropWeight(75).build();
 
 
-    public static final ItemDrop M56SG = new ItemDrop.Builder(AVPItems.ITEM_M56SG).setDropWeight(15).build();
-    public static final ItemDrop PISTOL = new ItemDrop.Builder(AVPItems.ITEM_PISTOL).setDropWeight(15).build();
-    public static final ItemDrop M4 = new ItemDrop.Builder(AVPItems.ITEM_M4).setDropWeight(15).build();
-    public static final ItemDrop M41A = new ItemDrop.Builder(AVPItems.ITEM_M41A).setDropWeight(15).build();
-    public static final ItemDrop SNIPER = new ItemDrop.Builder(AVPItems.ITEM_SNIPER).setDropWeight(15).build();
+    public static final ItemDrop M56SG = new ItemDrop.Builder(WeaponItems.ITEM_M56SG).setDropWeight(15).build();
+    public static final ItemDrop PISTOL = new ItemDrop.Builder(WeaponItems.ITEM_PISTOL).setDropWeight(15).build();
+    public static final ItemDrop M4 = new ItemDrop.Builder(WeaponItems.ITEM_M4).setDropWeight(15).build();
+    public static final ItemDrop M41A = new ItemDrop.Builder(WeaponItems.ITEM_M41A).setDropWeight(15).build();
+    public static final ItemDrop SNIPER = new ItemDrop.Builder(WeaponItems.ITEM_SNIPER).setDropWeight(15).build();
 }

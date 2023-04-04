@@ -12,7 +12,8 @@ import org.avp.AVP;
 import org.avp.client.model.entity.ModelBullet;
 import org.avp.client.model.entity.ModelSupplyChute;
 import org.avp.client.model.entity.living.ModelMarine;
-import org.avp.client.model.item.*;
+import org.avp.client.model.item.ModelMotionTracker;
+import org.avp.client.model.item.ModelStunBaton;
 import org.avp.client.model.tile.*;
 import org.avp.client.model.tile.rackmodule.*;
 import org.predator.client.model.entity.ModelLaserMine;
@@ -26,6 +27,7 @@ import org.predator.client.model.tile.skull.ModelBiomaskBerserker;
 import org.predator.client.model.tile.skull.ModelBiomaskClassic;
 import org.predator.client.model.tile.skull.ModelBiomaskFalconer;
 import org.predator.client.model.tile.skull.ModelBiomaskTracker;
+import org.weapon.client.model.item.*;
 
 @SideOnly(Side.CLIENT)
 public class Resources

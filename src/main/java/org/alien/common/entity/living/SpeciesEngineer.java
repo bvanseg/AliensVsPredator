@@ -146,7 +146,6 @@ public abstract class SpeciesEngineer extends EntityMob implements Brainiac<Engi
     @Override
     protected void despawnEntity()
     {
-        ;
     }
 
     @Override

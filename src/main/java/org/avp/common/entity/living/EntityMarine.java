@@ -27,12 +27,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPItems;
-import org.avp.common.entity.EntityBullet;
 import org.avp.common.entity.ai.brain.MarineBrain;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
+import org.weapon.common.entity.EntityBullet;
 import org.lib.common.inventory.InventorySnapshot;
 import org.lib.common.inventory.ItemDropContext;
 
@@ -199,7 +199,10 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         {
             EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.0000001F);
             this.world.spawnEntity(entityBullet);
-            this.playSound(getMarineType().getGunfireSound(), 0.7F, 1F);
+            SoundEvent sound = getMarineType().getGunfireSound();
+            if (sound != null) {
+                this.playSound(sound, 0.7F, 1F);
+            }
             this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + this.getEyeHeight(), this.posZ, 1, 1, 1);
         }
     }

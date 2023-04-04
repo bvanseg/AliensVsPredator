@@ -4,7 +4,7 @@ import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.avp.AVP;
-import org.avp.common.AVPSettings;
+import org.avp.common.config.ModelConfig;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,7 +41,7 @@ public class EntitySpawnRegistryUtil {
         Set<Biome> overworldBiomes = EntitySpawnRegistryUtil.getOverworldBiomeList();
 
         biomes.removeIf(biome -> {
-            boolean condition = !AVPSettings.instance.areOverworldSpawnsEnabled() && overworldBiomes.contains(biome);
+            boolean condition = !ModelConfig.getInstance().getSpawning().overworldSpawnsEnabled && overworldBiomes.contains(biome);
             if (condition) {
                 AVP.log().info("Overworld spawn weights disabled. Removing biome from spawn list {}: {}", listName, biome.getRegistryName());
             }

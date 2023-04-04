@@ -16,6 +16,7 @@ import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.avp.common.item.crafting.AssemblyManager;
 import org.avp.common.item.crafting.ItemSchematic;
 import org.predator.common.PredatorItems;
+import org.weapon.common.item.init.WeaponItems;
 
 /**
  * @author Ri5ux
@@ -166,7 +167,7 @@ public class AVPItemSchematics
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_M41A, 1),
+                        new ItemStack(WeaponItems.ITEM_M41A, 1),
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 4),
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 4),
                         new ItemStack(AVPItems.ITEM_INGOT_COPPER, 4),
@@ -208,7 +209,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.GLOWSTONE_DUST, 2) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("pulserifle", new ItemStack(AVPItems.ITEM_M41A, 1)) {
+        AssemblyManager.register(new ItemSchematic("pulserifle", new ItemStack(WeaponItems.ITEM_M41A, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -222,7 +223,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_LED_DISPLAY, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("grenade", new ItemStack(AVPItems.ITEM_GRENADE, 2)) {
+        AssemblyManager.register(new ItemSchematic("grenade", new ItemStack(WeaponItems.ITEM_GRENADE, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -233,7 +234,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_COPPER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("fire_grenade", new ItemStack(AVPItems.ITEM_INCENDIARY_GRENADE, 2)) {
+        AssemblyManager.register(new ItemSchematic("fire_grenade", new ItemStack(WeaponItems.ITEM_INCENDIARY_GRENADE, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -283,7 +284,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("sniperMagazine", new ItemStack(AVPItems.ITEM_AMMO_SNIPER, 1)) {
+        AssemblyManager.register(new ItemSchematic("sniperMagazine", new ItemStack(WeaponItems.ITEM_AMMO_SNIPER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -292,7 +293,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.GUNPOWDER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("pistolMagazine", new ItemStack(AVPItems.ITEM_AMMO_PISTOL, 3)) {
+        AssemblyManager.register(new ItemSchematic("pistolMagazine", new ItemStack(WeaponItems.ITEM_AMMO_PISTOL, 3)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -302,7 +303,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_COPPER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("ARAmmo", new ItemStack(AVPItems.ITEM_AMMO_AR, 1)) {
+        AssemblyManager.register(new ItemSchematic("ARAmmo", new ItemStack(WeaponItems.ITEM_AMMO_AR, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -312,7 +313,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.GUNPOWDER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("SMGAmmo", new ItemStack(AVPItems.ITEM_AMMO_SMG, 1)) {
+        AssemblyManager.register(new ItemSchematic("SMGAmmo", new ItemStack(WeaponItems.ITEM_AMMO_SMG, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -322,57 +323,57 @@ public class AVPItemSchematics
                         new ItemStack(Items.GUNPOWDER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("m56sg", new ItemStack(AVPItems.ITEM_M56SG, 1)) {
+        AssemblyManager.register(new ItemSchematic("m56sg", new ItemStack(WeaponItems.ITEM_M56SG, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_M56SG_AIMING_MODULE, 1),
-                        new ItemStack(AVPItems.ITEM_M56SG_STOCK, 1),
-                        new ItemStack(AVPItems.ITEM_M56SG_BARREL, 1),
-                        new ItemStack(AVPItems.ITEM_M56SG_SUPPORT_FRAME, 1) };
+                        new ItemStack(WeaponItems.ITEM_M56SG_AIMING_MODULE, 1),
+                        new ItemStack(WeaponItems.ITEM_M56SG_STOCK, 1),
+                        new ItemStack(WeaponItems.ITEM_M56SG_BARREL, 1),
+                        new ItemStack(WeaponItems.ITEM_M56SG_SUPPORT_FRAME, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("sniper", new ItemStack(AVPItems.ITEM_SNIPER, 1)) {
+        AssemblyManager.register(new ItemSchematic("sniper", new ItemStack(WeaponItems.ITEM_SNIPER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_SNIPER_SCOPE, 1),
-                        new ItemStack(AVPItems.ITEM_SNIPER_ACTION, 1),
-                        new ItemStack(AVPItems.ITEM_SNIPER_PERIPHERALS, 1),
-                        new ItemStack(AVPItems.ITEM_SNIPER_BARREL, 1),
-                        new ItemStack(AVPItems.ITEM_SNIPER_STOCK, 1) };
+                        new ItemStack(WeaponItems.ITEM_SNIPER_SCOPE, 1),
+                        new ItemStack(WeaponItems.ITEM_SNIPER_ACTION, 1),
+                        new ItemStack(WeaponItems.ITEM_SNIPER_PERIPHERALS, 1),
+                        new ItemStack(WeaponItems.ITEM_SNIPER_BARREL, 1),
+                        new ItemStack(WeaponItems.ITEM_SNIPER_STOCK, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("pistol", new ItemStack(AVPItems.ITEM_PISTOL, 1)) {
+        AssemblyManager.register(new ItemSchematic("pistol", new ItemStack(WeaponItems.ITEM_PISTOL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_PISTOL_STOCK, 1),
-                        new ItemStack(AVPItems.ITEM_PISTOL_BARREL, 1),
-                        new ItemStack(AVPItems.ITEM_PISTOL_ACTION, 1) };
+                        new ItemStack(WeaponItems.ITEM_PISTOL_STOCK, 1),
+                        new ItemStack(WeaponItems.ITEM_PISTOL_BARREL, 1),
+                        new ItemStack(WeaponItems.ITEM_PISTOL_ACTION, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("m4", new ItemStack(AVPItems.ITEM_M4, 1)) {
+        AssemblyManager.register(new ItemSchematic("m4", new ItemStack(WeaponItems.ITEM_M4, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_M4_STOCK, 1),
-                        new ItemStack(AVPItems.ITEM_M4_BARREL, 1),
-                        new ItemStack(AVPItems.ITEM_M4_ACTION, 1) };
+                        new ItemStack(WeaponItems.ITEM_M4_STOCK, 1),
+                        new ItemStack(WeaponItems.ITEM_M4_BARREL, 1),
+                        new ItemStack(WeaponItems.ITEM_M4_ACTION, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("ak47", new ItemStack(AVPItems.ITEM_AK47, 1)) {
+        AssemblyManager.register(new ItemSchematic("ak47", new ItemStack(WeaponItems.ITEM_AK47, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_AK47_ACTION, 1),
-                        new ItemStack(AVPItems.ITEM_AK47_BARREL, 1),
-                        new ItemStack(AVPItems.ITEM_AK47_STOCK, 1) };
+                        new ItemStack(WeaponItems.ITEM_AK47_ACTION, 1),
+                        new ItemStack(WeaponItems.ITEM_AK47_BARREL, 1),
+                        new ItemStack(WeaponItems.ITEM_AK47_STOCK, 1) };
             }
         });
         AssemblyManager.register(new ItemSchematic("doritos", new ItemStack(AVPItems.ITEM_DORITOS, 4)) {
@@ -407,7 +408,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.IRON_INGOT, 8) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("flamethrower", new ItemStack(AVPItems.ITEM_M_240_ICU, 1)) {
+        AssemblyManager.register(new ItemSchematic("flamethrower", new ItemStack(WeaponItems.ITEM_M_240_ICU, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {

@@ -467,7 +467,7 @@ public class ModelPredalien extends Model<EntityPredalien>
     @Override
     public void render(EntityPredalien obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
+        EntityLivingBase base = (EntityLivingBase) obj;
 
         float newangle = MathHelper.cos(idleProgress(obj) * 4.0F * 0.1F) * (float) Math.PI * 0.5F * swingProgressPrev(obj);
         float distMult = 0.25F;

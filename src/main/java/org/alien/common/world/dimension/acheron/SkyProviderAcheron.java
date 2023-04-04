@@ -343,7 +343,6 @@ public class SkyProviderAcheron extends IRenderHandler
                         }
 
                         Draw.tessellate();
-                        ;
                     }
                 }
             }

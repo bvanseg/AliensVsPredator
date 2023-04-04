@@ -16,7 +16,6 @@ public class PacketPlasmaDischarge implements IMessage, IMessageHandler<PacketPl
 
     public PacketPlasmaDischarge()
     {
-        ;
     }
 
     public PacketPlasmaDischarge(float size)

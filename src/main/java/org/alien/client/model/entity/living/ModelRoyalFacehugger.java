@@ -478,7 +478,7 @@ public class ModelRoyalFacehugger extends ModelFacehugger
     @Override
     public void render(EntityFacehugger obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
+        EntityLivingBase base = (EntityLivingBase) obj;
         float yRot = -0.0585F;
 
         this.tail01.rotateAngleY = (MathHelper.cos(swingProgress(obj) * 0.6662F + (float) Math.PI) * swingProgressPrev(obj) * 0.25F);

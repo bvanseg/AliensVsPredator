@@ -66,13 +66,11 @@ public class TileEntityWorkstation extends TileEntityElectrical implements INetw
     @Override
     public void sendData()
     {
-        ;
     }
 
     @Override
     public void receiveData()
     {
-        ;
     }
 
     @Override
