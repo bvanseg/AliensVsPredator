@@ -91,7 +91,7 @@ public class GuiTacticalHUDSettings extends GuiCustomScreen
 
         channel.setMaxStringLength(18);
         channel.setX(interfaceStartX + 10);
-        channel.setY(elementStart);;
+        channel.setY(elementStart);
         channel.setHeight(15);
         channel.setWidth(120);
         Draw.drawString("Broadcast Channel", channel.x() + channel.width() + 10, channel.y() + 3, 0xFFCCCCCC);

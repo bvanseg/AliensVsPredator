@@ -77,7 +77,6 @@ public class RenderWorkstation extends TileEntitySpecialRenderer<TileEntityWorks
                 }
                 catch (Exception e)
                 {
-                    ;
                 }
             }
 

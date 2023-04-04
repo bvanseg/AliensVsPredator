@@ -310,7 +310,7 @@ public class ModelUltramorph extends Model<EntityUltramorph>
     @Override
     public void render(EntityUltramorph obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
+        EntityLivingBase base = (EntityLivingBase) obj;
         SpeciesXenomorph xenomorph = (SpeciesXenomorph) base;
 
         float swingProgress = swingProgress(obj);

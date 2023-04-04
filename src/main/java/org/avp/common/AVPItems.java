@@ -13,13 +13,12 @@ import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.item.*;
 import org.avp.common.item.expansion.ItemLedDisplay;
 import org.avp.common.item.expansion.ItemProcessor;
-import org.avp.common.item.expansion.ItemSMGAmmo;
-import org.avp.common.item.firearm.*;
 import org.avp.common.item.supply.chute.ItemSupplyChute;
 import org.avp.common.item.supply.chute.SupplyChuteType;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.lib.common.registry.ItemRegistryUtil;
 import org.predator.common.item.ItemWristbracer;
+import org.weapon.common.item.init.WeaponItems;
 
 public class AVPItems implements IPreInitEvent {
     public static final AVPItems instance = new AVPItems();
@@ -39,44 +38,6 @@ public class AVPItems implements IPreInitEvent {
     public static final Item LEGS_MARINE = new ItemArmorMarine(0, EntityEquipmentSlot.LEGS).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("legwear.tactical");
     public static final Item BOOTS_MARINE = new ItemArmorMarine(0, EntityEquipmentSlot.FEET).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("boots.tactical");
     public static final Item ITEM_STUN_BATON = new ItemStunBaton().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("stun.baton");
-    public static final Item ITEM_GRENADE = new ItemGrenade(false).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("grenade.m40");
-    public static final Item ITEM_INCENDIARY_GRENADE = new ItemGrenade(true).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("grenade.incindiary");
-    public static final Item ITEM_AMMO_PISTOL = new ItemAmmunition(Classification.PISTOL).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("ammo.pistol");
-    public static final Item ITEM_AMMO_AR = new ItemAmmunition(Classification.ASSAULT_RIFLE).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("ammo.ar");
-    public static final Item ITEM_AMMO_SMG = new ItemSMGAmmo().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("ammo.smg");
-    public static final Item ITEM_AMMO_SNIPER = new ItemAmmunition(Classification.RIFLE).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("ammo.sniper");
-    public static final Item ITEM_PROPANE_TANK = new HookedItem().setMaxStackSize(1).setMaxDamage(64).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("ammo.flamethrower");
-    public static final Item ITEM_M_240_ICU = new ItemM240IncineratorUnit(ITEM_PROPANE_TANK).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("gun.m240icu");
-    public static final Item ITEM_SEVASTOPOL_FLAMETHROWER = new ItemSevastopolFlamethrower(ITEM_PROPANE_TANK).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("gun.flamethrower.nostromo");
-    public static final Item ITEM_PISTOL = new ItemFirearm(FirearmProfiles.PISTOL).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("gun.pistol");
-    public static final Item ITEM_M4 = new ItemFirearm(FirearmProfiles.M4).setFull3D().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("gun.m4");
-    public static final Item ITEM_SNIPER = new ItemFirearm(FirearmProfiles.SNIPER).setFull3D().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("gun.sniper");
-    public static final Item ITEM_M41A = new ItemFirearm(FirearmProfiles.M41A).setFull3D().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("gun.m41a");
-    public static final Item ITEM_M56SG = new ItemFirearm(FirearmProfiles.M56SG).setFull3D().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("gun.m56sg");
-    public static final Item ITEM_AK47 = new ItemFirearm(FirearmProfiles.AK47).setFull3D().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("gun.ak47");
-    public static final Item ITEM_PISTOL_STOCK = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.pistol.stock");
-    public static final Item ITEM_PISTOL_BARREL = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.pistol.barrel");
-    public static final Item ITEM_PISTOL_ACTION = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.pistol.action");
-    public static final Item ITEM_M4_STOCK = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m4.stock");
-    public static final Item ITEM_M4_BARREL = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m4.barrel");
-    public static final Item ITEM_M4_ACTION = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m4.action");
-    public static final Item ITEM_SNIPER_STOCK = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.sniper.stock");
-    public static final Item ITEM_SNIPER_BARREL = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.sniper.barrel");
-    public static final Item ITEM_SNIPER_ACTION = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.sniper.action");
-    public static final Item ITEM_SNIPER_SCOPE = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.sniper.scope");
-    public static final Item ITEM_SNIPER_PERIPHERALS = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.sniper.peripherals");
-    public static final Item ITEM_M41A_STOCK = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m41a.stock");
-    public static final Item ITEM_M41A_BARREL = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m41a.barrel");
-    public static final Item ITEM_M41A_ACTION = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m41a.action");
-    public static final Item ITEM_M41A_PERIPHERALS = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m41a.peripherals");
-    public static final Item ITEM_M56SG_STOCK = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m56sg.stock");
-    public static final Item ITEM_M56SG_BARREL = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m56sg.barrel");
-    public static final Item ITEM_M56SG_ACTION = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m56sg.action");
-    public static final Item ITEM_M56SG_SUPPORT_FRAME = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m56sg.supportframe");
-    public static final Item ITEM_M56SG_AIMING_MODULE = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.m56sg.aimingmodule");
-    public static final Item ITEM_AK47_STOCK = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.ak47.stock");
-    public static final Item ITEM_AK47_BARREL = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.ak47.barrel");
-    public static final Item ITEM_AK47_ACTION = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.GUN_PARTS).setRegistryName("part.ak47.action");
     public static final Item ITEM_DORITOS = new ItemFood(8, true).setAlwaysEdible().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("food.doritos");
     public static final Item ITEM_DORITOS_COOL_RANCH = new ItemFood(8, true).setAlwaysEdible().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("food.doritos.coolranch");
     public static final Item ITEM_FLASH_DRIVE = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("device.nbtdrive");
@@ -122,9 +83,12 @@ public class AVPItems implements IPreInitEvent {
     public static final Item SUMMONER_COMBAT_SYNTHETIC = new ItemEntitySummoner(EntityCombatSynthetic.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.synthetic.combat");
 
     @Override
-    public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
+    public void pre(FMLPreInitializationEvent event) {
         this.registerItems();
         this.registerWristbracerCodes();
+
+        // Register weapon items.
+        WeaponItems.instance.pre(event);
     }
 
     private static void registerItems() {
@@ -144,50 +108,6 @@ public class AVPItems implements IPreInitEvent {
         ItemRegistryUtil.registerItem(BOOTS_MARINE);
 
         ItemRegistryUtil.registerItem(ITEM_STUN_BATON);
-        ItemRegistryUtil.registerItem(ITEM_GRENADE);
-        ItemRegistryUtil.registerItem(ITEM_INCENDIARY_GRENADE);
-        ItemRegistryUtil.registerItem(ITEM_AMMO_PISTOL);
-        ItemRegistryUtil.registerItem(ITEM_AMMO_AR);
-        ItemRegistryUtil.registerItem(ITEM_AMMO_SMG);
-        ItemRegistryUtil.registerItem(ITEM_AMMO_SNIPER);
-        ItemRegistryUtil.registerItem(ITEM_PROPANE_TANK);
-        ItemRegistryUtil.registerItem(ITEM_M_240_ICU);
-        ItemRegistryUtil.registerItem(ITEM_SEVASTOPOL_FLAMETHROWER);
-        ItemRegistryUtil.registerItem(ITEM_PISTOL);
-        ItemRegistryUtil.registerItem(ITEM_M4);
-        ItemRegistryUtil.registerItem(ITEM_SNIPER);
-        ItemRegistryUtil.registerItem(ITEM_M41A);
-        ItemRegistryUtil.registerItem(ITEM_M56SG);
-        ItemRegistryUtil.registerItem(ITEM_AK47);
-
-        ItemRegistryUtil.registerItem(ITEM_PISTOL_STOCK);
-        ItemRegistryUtil.registerItem(ITEM_PISTOL_BARREL);
-        ItemRegistryUtil.registerItem(ITEM_PISTOL_ACTION);
-
-        ItemRegistryUtil.registerItem(ITEM_M4_STOCK);
-        ItemRegistryUtil.registerItem(ITEM_M4_BARREL);
-        ItemRegistryUtil.registerItem(ITEM_M4_ACTION);
-
-        ItemRegistryUtil.registerItem(ITEM_SNIPER_STOCK);
-        ItemRegistryUtil.registerItem(ITEM_SNIPER_BARREL);
-        ItemRegistryUtil.registerItem(ITEM_SNIPER_ACTION);
-        ItemRegistryUtil.registerItem(ITEM_SNIPER_SCOPE);
-        ItemRegistryUtil.registerItem(ITEM_SNIPER_PERIPHERALS);
-
-        ItemRegistryUtil.registerItem(ITEM_M41A_STOCK);
-        ItemRegistryUtil.registerItem(ITEM_M41A_BARREL);
-        ItemRegistryUtil.registerItem(ITEM_M41A_ACTION);
-        ItemRegistryUtil.registerItem(ITEM_M41A_PERIPHERALS);
-
-        ItemRegistryUtil.registerItem(ITEM_M56SG_STOCK);
-        ItemRegistryUtil.registerItem(ITEM_M56SG_BARREL);
-        ItemRegistryUtil.registerItem(ITEM_M56SG_ACTION);
-        ItemRegistryUtil.registerItem(ITEM_M56SG_SUPPORT_FRAME);
-        ItemRegistryUtil.registerItem(ITEM_M56SG_AIMING_MODULE);
-
-        ItemRegistryUtil.registerItem(ITEM_AK47_STOCK);
-        ItemRegistryUtil.registerItem(ITEM_AK47_BARREL);
-        ItemRegistryUtil.registerItem(ITEM_AK47_ACTION);
 
         ItemRegistryUtil.registerItem(ITEM_DORITOS);
         ItemRegistryUtil.registerItem(ITEM_DORITOS_COOL_RANCH);

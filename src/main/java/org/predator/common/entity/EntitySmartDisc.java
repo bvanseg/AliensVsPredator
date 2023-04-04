@@ -119,7 +119,7 @@ public class EntitySmartDisc extends EntityProjectile
 
                 if (this.soundTimer > 3.0F)
                 {
-                    GameSounds.fxBow.playSound(this, 0.6F, 1.0F / (this.rand.nextFloat() * 0.2F + 2.2F - limitedStrength));;
+                    GameSounds.fxBow.playSound(this, 0.6F, 1.0F / (this.rand.nextFloat() * 0.2F + 2.2F - limitedStrength));
                     this.soundTimer %= 3.0F;
                 }
             }
@@ -167,7 +167,7 @@ public class EntitySmartDisc extends EntityProjectile
                 {
                     player = (EntityPlayer) entity;
                     
-                    GameSounds.fxPop.playSound(this, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);;
+                    GameSounds.fxPop.playSound(this, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
                     this.onItemPickup(player);
 
                     if (!player.capabilities.isCreativeMode)
@@ -217,7 +217,7 @@ public class EntitySmartDisc extends EntityProjectile
     @Override
     public void playHitSound()
     {
-        GameSounds.fxBowHit.playSound(this, 1.0F, 1.0F / (this.rand.nextFloat() * 0.4F + 0.9F));;
+        GameSounds.fxBowHit.playSound(this, 1.0F, 1.0F / (this.rand.nextFloat() * 0.4F + 0.9F));
     }
 
     @Override
@@ -265,7 +265,7 @@ public class EntitySmartDisc extends EntityProjectile
             {
                 if (entityplayer.inventory.addItemStackToInventory(new ItemStack(PredatorItems.ITEM_DISC, 1)))
                 {
-                    GameSounds.fxPop.playSound(this, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);;
+                    GameSounds.fxPop.playSound(this, 0.2F, ((this.rand.nextFloat() - this.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
                     entityplayer.onItemPickup(this, 1);
                     this.setDead();
                 }

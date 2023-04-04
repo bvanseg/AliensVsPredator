@@ -17,7 +17,6 @@ public class PacketReadFromDataDevice implements IMessage, IMessageHandler<Packe
 
     public PacketReadFromDataDevice()
     {
-        ;
     }
 
     public PacketReadFromDataDevice(int x, int y, int z, int id)

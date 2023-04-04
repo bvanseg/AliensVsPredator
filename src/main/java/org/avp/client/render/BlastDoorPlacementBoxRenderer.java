@@ -28,7 +28,6 @@ public class BlastDoorPlacementBoxRenderer
 
     public BlastDoorPlacementBoxRenderer()
     {
-        ;
     }
 
     @SubscribeEvent

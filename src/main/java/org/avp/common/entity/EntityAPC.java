@@ -406,7 +406,6 @@ public class EntityAPC extends Entity
         }
         else
         {
-            ;
         }
 
         velocity1 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
@@ -605,12 +604,10 @@ public class EntityAPC extends Entity
     @Override
     protected void readEntityFromNBT(NBTTagCompound compound)
     {
-        ;
     }
 
     @Override
     protected void writeEntityToNBT(NBTTagCompound compound)
     {
-        ;
     }
 }

@@ -25,7 +25,7 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
                                                                     public boolean isApplicable(Entity entity)
                                                                     {
                                                                         return true;
-                                                                    };
+                                                                    }
                                                                 };
 
     public static abstract class CryostasisEntityRenderer extends EntityRenderTransforms
@@ -38,13 +38,11 @@ public class RenderCryostasisTube extends TileEntitySpecialRenderer<TileEntityCr
         @Override
         public void pre(Entity entity, float partialTicks)
         {
-            ;
         }
 
         @Override
         public void post(Entity entity, float partialTicks)
         {
-            ;
         }
 
         public void renderChassis(RenderCryostasisTube renderer, TileEntityCryostasisTube tile, double posX, double posY, double posZ)

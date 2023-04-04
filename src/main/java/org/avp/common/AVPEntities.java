@@ -8,10 +8,15 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.avp.common.config.ModelConfig;
-import org.avp.common.entity.*;
+import org.avp.common.entity.EntityAPC;
+import org.avp.common.entity.EntityLiquidLatexPool;
+import org.avp.common.entity.EntityMedpod;
+import org.avp.common.entity.EntitySupplyChute;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
 import org.lib.common.registry.EntityRegistryUtil;
+import org.weapon.common.entity.EntityFlame;
+import org.weapon.common.entity.EntityGrenade;
 
 import java.util.ArrayList;
 
