@@ -38,12 +38,12 @@ public abstract class AbstractEntityBrainTask extends AbstractBrainTask<EntityBr
 	public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {}
 
 	@Override
-	public final Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
 		return FLAG_REQUIREMENTS.get(this.getClass());
 	}
 
 	@Override
-	public final Map<AbstractBrainFlag, BrainFlagState> getFlagMasks() {
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagMasks() {
 		return FLAG_MASKS.get(this.getClass());
 	}
 }

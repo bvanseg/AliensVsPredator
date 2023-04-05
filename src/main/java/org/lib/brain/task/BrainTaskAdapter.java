@@ -3,19 +3,20 @@ package org.lib.brain.task;
 import net.minecraft.entity.ai.EntityAIBase;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
+import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * 
  * @author Boston Vanseghi
  *
  */
-public class BrainTaskAdapter extends AbstractBrainTask<EntityBrainContext> {
+public class BrainTaskAdapter extends AbstractEntityBrainTask {
 	
 	private static Map<AbstractBrainFlag, BrainFlagState> getFlagsForMutexBits(int mutexBits) {
 		HashMap<AbstractBrainFlag, BrainFlagState> flags = new HashMap<>();
@@ -46,34 +47,46 @@ public class BrainTaskAdapter extends AbstractBrainTask<EntityBrainContext> {
 	}
 	
 	private final EntityAIBase minecraftAITask;
-	private final Map<AbstractBrainFlag, BrainFlagState> flags;
+	private final Map<AbstractBrainFlag, BrainFlagState> flagRequirements;
+	private final Map<AbstractBrainFlag, BrainFlagState> flagMasks;
 	
 	public BrainTaskAdapter(EntityAIBase minecraftAITask) {
+		super();
 		this.minecraftAITask = minecraftAITask;
-		this.flags = getFlagsForMutexBits(minecraftAITask.getMutexBits());
+		this.flagRequirements = getFlagsForMutexBits(minecraftAITask.getMutexBits());
+		this.flagMasks = flagRequirements.entrySet()
+				.stream()
+				.collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().inverse()));
 	}
 
 	@Override
 	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
-		return this.flags;
+		return this.flagRequirements;
+	}
+
+	@Override
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagMasks() {
+		return this.flagMasks;
 	}
 
 	@Override
 	protected boolean shouldExecute() {
-		if (this.isExecuting()) {
-			return this.minecraftAITask.shouldContinueExecuting();
-		}
-		
 		return this.minecraftAITask.shouldExecute();
 	}
 
 	@Override
+	protected boolean shouldContinueExecuting() {
+		return this.minecraftAITask.shouldContinueExecuting();
+	}
+
+	@Override
 	protected void startExecuting() {
-		if (!this.isExecuting()) {
-			this.minecraftAITask.startExecuting();
-		} else {
-			this.minecraftAITask.updateTask();
-		}
+		this.minecraftAITask.startExecuting();
+	}
+
+	@Override
+	protected void continueExecuting() {
+		this.minecraftAITask.updateTask();
 	}
 
 	@Override
