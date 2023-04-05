@@ -3,6 +3,7 @@ package org.alien.common.entity.ai.brain;
 import org.alien.common.api.maturity.MaturityEntries;
 import org.alien.common.api.maturity.MaturityEntry;
 import org.alien.common.api.parasitoidic.Maturable;
+import org.alien.common.entity.ai.brain.task.MatureBrainTask;
 import org.alien.common.entity.ai.brain.task.xenomorph.ProduceJellyBrainTask;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.lib.brain.impl.AbstractEntityBrain;
@@ -21,6 +22,7 @@ public abstract class AlienBrain<T extends SpeciesAlien> extends AbstractEntityB
 	public void initTasks() {
 		super.initTasks();
 		this.initJellyProductionTask();
+		this.initMaturationTask();
 	}
 
 	public void initJellyProductionTask() {
@@ -31,5 +33,9 @@ public abstract class AlienBrain<T extends SpeciesAlien> extends AbstractEntityB
 			}
 			return true;
 		}));
+	}
+
+	protected void initMaturationTask() {
+		this.addTask(new MatureBrainTask());
 	}
 }
