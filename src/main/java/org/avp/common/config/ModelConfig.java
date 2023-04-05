@@ -81,6 +81,9 @@ public class ModelConfig {
     @ConfigValue.Category
     private final ModelConfigSpawning spawning = new ModelConfigSpawning();
 
+    @ConfigValue.Category
+    private final ModelConfigParasites parasites = new ModelConfigParasites();
+
     public ModelConfig() { /* Do Nothing */ }
 
     public ModelConfigGeneral getGeneral() {
@@ -101,6 +104,10 @@ public class ModelConfig {
 
     public ModelConfigSpawning getSpawning() {
         return spawning;
+    }
+
+    public ModelConfigParasites getParasites() {
+        return parasites;
     }
 
     public boolean isHalloweenEventEnabled()

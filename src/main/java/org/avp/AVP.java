@@ -109,6 +109,10 @@ public class AVP implements IMod
     public void post(FMLPostInitializationEvent event)
     {
         logger.info("Initialized. Running post initialization tasks...");
+
+        // Initialize parasite data after entities are registered.
+        ModelConfig.getInstance().getParasites().init();
+
         ModelConfig.getInstance().write();
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {

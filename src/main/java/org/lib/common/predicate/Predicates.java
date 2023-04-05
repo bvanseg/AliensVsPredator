@@ -3,12 +3,13 @@ package org.lib.common.predicate;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.alien.common.api.parasitoidic.Host;
-import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.Organism;
+import org.avp.common.config.ModelConfig;
 
-import java.util.ArrayList;
 import java.util.function.Predicate;
 
 /**
@@ -44,12 +45,13 @@ public class Predicates {
 
     public static final Predicate<Entity> IS_PARASITOID_TARGET = target -> {
         if (!(target instanceof EntityLivingBase)) return false;
+        EntityEntry entityEntry = EntityRegistry.getEntry(target.getClass());
 
-        ArrayList<Class<?>> denyList = Parasitoid.getDefaultEntityDenylist();
-
-        for (Class<?> c : denyList) {
-            if (c.isInstance(target))
-                return false;
+        if (entityEntry != null &&
+            entityEntry.getRegistryName() != null &&
+            ModelConfig.getInstance().getParasites().denyList.contains(entityEntry.getRegistryName().toString())
+        ) {
+            return false;
         }
 
         return true;
