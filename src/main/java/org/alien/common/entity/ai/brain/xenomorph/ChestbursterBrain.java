@@ -8,6 +8,7 @@ import net.minecraft.util.SoundCategory;
 import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.AlienBrain;
+import org.alien.common.entity.ai.brain.task.ChestbursterMatureBrainTask;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorChestbursterAvoid;
 import org.alien.common.entity.living.xenomorph.EntityChestburster;
@@ -67,5 +68,10 @@ public class ChestbursterBrain extends AlienBrain<EntityChestburster> {
 				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.RAW_YIELD))));
 
 		this.addTask(new AvoidBlockBrainTask(6F, 0.7F, 0.7F, AVOID_BLOCKS::contains));
+	}
+
+	@Override
+	protected void initMaturationTask() {
+		this.addTask(new ChestbursterMatureBrainTask());
 	}
 }
