@@ -19,7 +19,6 @@ import org.alien.client.render.item.RenderItemTreeFern;
 import org.alien.client.render.tile.RenderHiveResin;
 import org.alien.client.render.tile.plant.RenderGroundFern;
 import org.alien.client.render.tile.plant.RenderTreeFern;
-import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.AlienItems;
 import org.alien.common.block.init.AlienParadiseBlocks;
 import org.alien.common.block.init.AlienSkullBlocks;
@@ -147,7 +146,7 @@ public class AlienRenders implements IInitEvent, IPreInitEvent
         } 
         else
         {
-            AVP.log().error("Error registering skull block renderer. Type mismatch: {}", block.getTranslationKey());
+            AVP.instance.getLogger().error("Error registering skull block renderer. Type mismatch: {}", block.getTranslationKey());
         }
     }
     

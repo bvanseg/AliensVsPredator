@@ -206,7 +206,7 @@ public class AlienHive {
 		UUID matriarchId = nbt.getUniqueId(MATRIARCH_ID_NBT_KEY);
 		
 		if (matriarchId == null || !matriarchId.equals(this.getHiveOwner().getHiveMemberID())) {
-			AVP.log().warn("Loaded an invalid matriarch id '{}', expected '{}'!", matriarchId, this.getHiveOwner().getHiveMemberID());
+			AVP.instance.getLogger().warn("Loaded an invalid matriarch id '{}', expected '{}'!", matriarchId, this.getHiveOwner().getHiveMemberID());
 		}
 		
 		// Read core block position.
