@@ -47,27 +47,26 @@ public class BrainTaskAdapter extends AbstractEntityBrainTask {
 	}
 	
 	private final EntityAIBase minecraftAITask;
-	private final Map<AbstractBrainFlag, BrainFlagState> flags;
+	private final Map<AbstractBrainFlag, BrainFlagState> flagRequirements;
+	private final Map<AbstractBrainFlag, BrainFlagState> flagMasks;
 	
 	public BrainTaskAdapter(EntityAIBase minecraftAITask) {
 		super();
 		this.minecraftAITask = minecraftAITask;
-		this.flags = getFlagsForMutexBits(minecraftAITask.getMutexBits());
+		this.flagRequirements = getFlagsForMutexBits(minecraftAITask.getMutexBits());
+		this.flagMasks = flagRequirements.entrySet()
+				.stream()
+				.collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().inverse()));
 	}
 
 	@Override
-	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
-		map.putAll(this.flags);
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagRequirements() {
+		return this.flagRequirements;
 	}
 
 	@Override
-	public void setFlagMasks(Map<AbstractBrainFlag, BrainFlagState> map) {
-		// Invert the tasks to be set to present on task execute.
-		map.putAll(
-				map.entrySet()
-						.stream()
-						.collect(Collectors.toMap(Map.Entry::getKey, entry -> entry.getValue().inverse()))
-		);
+	public Map<AbstractBrainFlag, BrainFlagState> getFlagMasks() {
+		return this.flagMasks;
 	}
 
 	@Override
