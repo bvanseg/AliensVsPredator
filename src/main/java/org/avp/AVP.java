@@ -29,11 +29,16 @@ import org.predator.client.PredatorRenders;
 
 import java.time.LocalDate;
 
+/**
+ * @author Ri5ux
+ */
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
 public class AVP implements IMod
 {
     public static class Properties
     {
+        private Properties() {}
+
         public static final String NAME         = "AliensVsPredator";
         public static final String ID           = "avp";
         public static final String DEPENDENCIES = "required-after:mdxlib";
@@ -43,7 +48,7 @@ public class AVP implements IMod
     @Mod.Instance(AVP.Properties.ID)
     public static AVP instance;
 
-    public static final Logger logger = LogManager.getLogger("AVP");
+    public final Logger logger = LogManager.getLogger("AVP");
 
     @Override
     public ModContainer container()
@@ -55,8 +60,6 @@ public class AVP implements IMod
     public void pre(FMLPreInitializationEvent event)
     {
         logger.info("Preparing...");
-        // TODO: There should be no need for this initial write, but we have to because the instance field is currently public.
-        ModelConfig.getInstance().write();
 
         AVPCreativeTabs.instance.pre(event);
 
@@ -122,9 +125,8 @@ public class AVP implements IMod
         AVPCommands.instance.onServerStarting(event);
     }
 
-    @Deprecated
-    public static Logger log()
+    public Logger getLogger()
     {
-        return logger;
+        return this.logger;
     }
 }

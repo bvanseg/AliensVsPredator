@@ -75,7 +75,7 @@ public class MaterialHandler
         }
         catch (Exception e)
         {
-            AVP.log().warn("Error handling fluid physics update for entity: " + e);
+            AVP.instance.getLogger().warn("Error handling fluid physics update for entity: " + e);
         }
     }
 

@@ -42,7 +42,7 @@ public class AVPOreBlocks implements IPreInitEvent
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
-        AVP.log().info("Registering Ore Blocks");
+        AVP.instance.getLogger().info("Registering Ore Blocks");
 
         this.registerBlocks();
     }

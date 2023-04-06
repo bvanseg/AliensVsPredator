@@ -53,7 +53,7 @@ public class AVPTileEntityBlocks implements IPreInitEvent
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
-        AVP.log().info("Registering Tile Entity Blocks");
+        AVP.instance.getLogger().info("Registering Tile Entity Blocks");
 
         this.registerBlocks();
     }

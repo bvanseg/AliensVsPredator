@@ -83,7 +83,7 @@ public class PredatorRenders implements IInitEvent, IPreInitEvent
         } 
         else
         {
-            AVP.log().error("Error registering skull block renderer. Type mismatch: {}", block.getTranslationKey());
+            AVP.instance.getLogger().error("Error registering skull block renderer. Type mismatch: {}", block.getTranslationKey());
         }
     }
     

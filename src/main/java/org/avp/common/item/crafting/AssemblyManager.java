@@ -27,7 +27,7 @@ public class AssemblyManager
 
         AssemblyManager.instance.schematicsByName.compute(schematic.getName().toLowerCase(Locale.US), (key, value) -> {
             if (value != null) {
-                AVP.log().warn("[AVP/API/Assembler] Schematic with name '{}' is already registered.", schematic.getName());
+                AVP.instance.getLogger().warn("[AVP/API/Assembler] Schematic with name '{}' is already registered.", schematic.getName());
             }
 
             return schematic;
