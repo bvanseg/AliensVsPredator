@@ -15,10 +15,13 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import org.alien.common.api.emybro.EmbryoEntry;
+import org.alien.common.api.emybro.EmbryoKey;
+import org.alien.common.api.emybro.EmbryoRegistry;
 import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.brain.parasitoid.ParasitoidBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
-import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.PacketDismountRidingEntity;
@@ -163,7 +166,9 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
     public void implantEmbryo(EntityLivingBase living)
     {
         OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
-        organism.impregnate(living);
+        EmbryoKey embryoKey = new EmbryoKey(this, living);
+        EmbryoEntry embryoEntry = EmbryoRegistry.getEntry(embryoKey);
+        organism.setEmbryo(embryoEntry.create());
         if(this.getImplantSound() != null)
             this.playSound(this.getImplantSound(), 0.5F, 1F);
         organism.syncWithClients(living);

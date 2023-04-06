@@ -14,7 +14,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.ai.brain.DeaconBrain;
 import org.alien.common.entity.living.Species223ODe;
-import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.AVPDamageSources;
 import org.lib.brain.Brainiac;
@@ -101,7 +101,7 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
 
         this.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
         host.world.spawnEntity(this);
-        organism.removeEmbryo();
+        organism.setEmbryo(null);
         host.getActivePotionEffects().clear();
         host.attackEntityFrom(AVPDamageSources.causeDeaconBursterDamage(this, host), 100000F);
     }
