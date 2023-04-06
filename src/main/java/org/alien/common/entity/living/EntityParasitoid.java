@@ -168,7 +168,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
         EmbryoKey embryoKey = new EmbryoKey(this, living);
         EmbryoEntry embryoEntry = EmbryoRegistry.getEntry(embryoKey);
-        organism.setEmbryo(embryoEntry.create());
+        organism.setEmbryo(embryoEntry.create(embryoKey));
         if(this.getImplantSound() != null)
             this.playSound(this.getImplantSound(), 0.5F, 1F);
         organism.syncWithClients(living);

@@ -41,7 +41,7 @@ public class EmbryoEntries {
             .setImpregnator(EntityRoyalFacehugger.class)
             .setTransitionaryStage(EntityQueenChestburster.class)
             .addHost(EntityLiving.class) // Any host, royal facehugger is the deciding factor.
-            // TODO: Set gestation period.
+            .setGestationPeriod(20 * 60 * 10) // 10 Minutes
             .build();
 
     public static final EmbryoEntry BELUGAMORPH = new EmbryoEntry.Builder(EntityBelugamorph.class)

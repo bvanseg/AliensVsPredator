@@ -5,22 +5,30 @@ import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.alien.common.api.emybro.EmbryoEntry;
+import org.alien.common.api.emybro.EmbryoKey;
 import org.alien.common.api.emybro.EmbryoRegistry;
 import org.alien.common.world.capability.Organism;
 import org.alien.common.world.capability.OrganismImpl;
 import org.avp.common.AVPDamageSources;
+import org.lib.common.FuncUtil;
 
 /**
  * @author Ri5ux
  */
 public class Embryo {
-    private final int id;
+    private final EmbryoEntry embryoEntry;
+    private final EmbryoKey embryoKey;
     private int age;
 
-    public Embryo(int id) {
-        this.id = id;
+    public Embryo(EmbryoEntry embryoEntry, EmbryoKey embryoKey) {
+        this.embryoEntry = embryoEntry;
+        this.embryoKey = embryoKey;
         this.age = 0;
     }
 
@@ -28,19 +36,19 @@ public class Embryo {
         this.age++;
     }
 
-    public int getId() {
-        return this.id;
-    }
-
     public int getAge() {
         return this.age;
     }
 
     public EmbryoEntry getEntry() {
-        return EmbryoRegistry.findById(this.id);
+        return this.embryoEntry;
     }
 
-    public Class<? extends EntityLivingBase> getBirthCreature() {
+    public EmbryoKey getEmbryoKey() {
+        return this.embryoKey;
+    }
+
+    public Class<? extends Entity> getBirthCreature() {
         return getEntry().getTransitionary().orElse(getEntry().getAdult());
     }
 
@@ -76,34 +84,58 @@ public class Embryo {
      */
     @Deprecated
     public int getGestationPeriod() {
-        EmbryoEntry embryoEntry = EmbryoRegistry.findById(this.id);
-        return embryoEntry.getGestationPeriod();
+        return this.embryoEntry.getGestationPeriod();
     }
 
     private static final String AGE_NBT_KEY = "Age";
-    private static final String EMBRYO_ID_NBT_KEY = "EmbryoId";
+    private static final String IMPREGNATOR_ID_NBT_KEY = "ImpregnatorId";
+    private static final String HOST_ID_NBT_KEY = "HostId";
 
     public static void save(Embryo embryo, NBTTagCompound nbt) {
         if (embryo != null) {
-            nbt.setInteger(EMBRYO_ID_NBT_KEY, embryo.id);
+            Class<? extends Entity> impregnatorClass = embryo.getEmbryoKey().getParasiteClass();
+            Class<? extends Entity> hostClass = embryo.getEmbryoKey().getHostClass();
+
+            EntityEntry impregnatorEntityEntry = EntityRegistry.getEntry(impregnatorClass);
+            String impregnatorRegistryName = FuncUtil.let(FuncUtil.let(impregnatorEntityEntry, EntityEntry::getRegistryName), ResourceLocation::toString);
+            if (impregnatorRegistryName != null) {
+                nbt.setString(IMPREGNATOR_ID_NBT_KEY, impregnatorRegistryName);
+            }
+
+            EntityEntry hostEntityEntry = EntityRegistry.getEntry(hostClass);
+            String hostRegistryName = FuncUtil.let(FuncUtil.let(hostEntityEntry, EntityEntry::getRegistryName), ResourceLocation::toString);
+            if (hostRegistryName != null) {
+                nbt.setString(HOST_ID_NBT_KEY, hostRegistryName);
+            }
+
             nbt.setInteger(AGE_NBT_KEY, embryo.age);
         }
     }
 
     public static Embryo load(NBTTagCompound nbt) {
-        int id = nbt.getInteger(EMBRYO_ID_NBT_KEY);
+        String impregnatorId = nbt.getString(IMPREGNATOR_ID_NBT_KEY);
+        String hostId = nbt.getString(HOST_ID_NBT_KEY);
 
-        if (id != 0) {
-            try {
-                EmbryoEntry embryoEntry = EmbryoRegistry.findById(id);
-                Embryo embryo = embryoEntry.create();
-                embryo.age = nbt.getInteger(AGE_NBT_KEY);
+        // To load the entry, we need to reconstruct the embryo entry from both the host and the stored parasite registry name.
+        // Because embryo entries are now configurable, the old integer id system would break easily since the order for which
+        // the embryo entries were loaded was not guaranteed, therefore not guaranteeing the integer id being set.
+        // By using string ids of the parasite and host, we can avoid integer id issues altogether and keep the embryo loading
+        // stable so long as the original entity registry names do not change.
+        if (!impregnatorId.isEmpty()) {
+            EntityEntry impregnatorEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(impregnatorId));
+            EntityEntry hostEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(hostId));
 
-                return embryo;
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            if (impregnatorEntry == null || hostEntry == null) return null;
+
+            EmbryoKey key = new EmbryoKey(impregnatorEntry.getEntityClass(), hostEntry.getEntityClass());
+            EmbryoEntry embryoEntry = EmbryoRegistry.getEntry(key);
+            Embryo embryo = embryoEntry.create(key);
+
+            embryo.age = nbt.getInteger(AGE_NBT_KEY);
+
+            return embryo;
         }
+
         return null;
     }
 }

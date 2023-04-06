@@ -99,8 +99,11 @@ public class OrganismImpl implements Organism, Capability.IStorage<Organism> {
     }
 
     public void syncWithClients(EntityLivingBase living) {
-        if (living != null && !living.world.isRemote)
-            AVPNetworking.instance.sendToAll(new OrganismClientSync(living.getEntityId(), (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null)));
+        if (living != null && !living.world.isRemote) {
+            NBTTagCompound tag = (NBTTagCompound) Provider.CAPABILITY.getStorage().writeNBT(Provider.CAPABILITY, this, null);
+            OrganismClientSync packet = new OrganismClientSync(living.getEntityId(), tag);
+            AVPNetworking.instance.sendToAll(packet);
+        }
     }
 
     private static final String BPM_NBT_KEY = "BPM";

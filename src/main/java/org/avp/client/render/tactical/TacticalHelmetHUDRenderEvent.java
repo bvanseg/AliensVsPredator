@@ -6,13 +6,12 @@ import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.alien.common.api.emybro.EmbryoEntry;
 import org.alien.common.world.capability.Organism;
 import org.alien.common.world.capability.OrganismImpl;
 import org.avp.client.Resources;
@@ -163,10 +162,9 @@ public class TacticalHelmetHUDRenderEvent {
                 int lifeTimeTicks = this.playerOrganism.getEmbryo().getGestationPeriod() - this.playerOrganism.getEmbryo().getAge();
                 int lifeTimeSeconds = lifeTimeTicks / 20;
 
-                Class<? extends EntityLivingBase> birthCreatureClass = this.playerOrganism.getEmbryo().getBirthCreature();
+                Class<? extends Entity> birthCreatureClass = this.playerOrganism.getEmbryo().getBirthCreature();
                 String line1 = String.format("TYPE: %s", birthCreatureClass.getSimpleName().replace("Entity", ""));
                 String line2 = String.format("VITAL.TIME: %s.%sM", lifeTimeSeconds / 60, lifeTimeSeconds % 60);
-                String line3 = String.format("EID: %s", this.playerOrganism.getEmbryo().getId());
 
                 OpenGL.pushMatrix();
                 {
@@ -183,7 +181,6 @@ public class TacticalHelmetHUDRenderEvent {
                     OpenGL.rotate(180F, 0F, 0F, 1F);
                     Draw.drawString(line1, -Draw.getStringRenderWidth(line1) - 64, -50, 0xFFFF0000, false);
                     Draw.drawString(line2, -Draw.getStringRenderWidth(line2) - 64, -40, 0xFFFF0000, false);
-                    Draw.drawString(line3, -Draw.getStringRenderWidth(line3) - 64, -30, 0xFFFF0000, false);
                 }
                 OpenGL.popMatrix();
             }

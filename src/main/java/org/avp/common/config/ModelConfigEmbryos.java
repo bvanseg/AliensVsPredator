@@ -2,6 +2,7 @@ package org.avp.common.config;
 
 import org.alien.common.api.emybro.EmbryoEntries;
 import org.alien.common.api.emybro.EmbryoEntry;
+import org.alien.common.api.emybro.EmbryoRegistry;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -18,7 +19,7 @@ public class ModelConfigEmbryos {
     public ModelConfigEmbryos() { /* Do Nothing */ }
 
     public void init() {
-        if (embryoEntries == null) {
+        if (this.embryoEntries == null) {
             HashSet<EmbryoEntry> defaultEmbryoEntries = new HashSet<>();
             defaultEmbryoEntries.add(EmbryoEntries.BATXENO);
             defaultEmbryoEntries.add(EmbryoEntries.BELUGAMORPH);
@@ -34,9 +35,12 @@ public class ModelConfigEmbryos {
             defaultEmbryoEntries.add(EmbryoEntries.RUNNER_DRONE);
             defaultEmbryoEntries.add(EmbryoEntries.SPITTER);
             defaultEmbryoEntries.add(EmbryoEntries.ULTRAMORPH);
-            embryoEntries = defaultEmbryoEntries.stream().map(ModelConfigEmbryoEntry::new).collect(Collectors.toSet());
+            this.embryoEntries = defaultEmbryoEntries.stream().map(ModelConfigEmbryoEntry::new).collect(Collectors.toSet());
         }
 
-
+        for (ModelConfigEmbryoEntry configEmbryoEntry: this.embryoEntries) {
+            EmbryoEntry embryoEntry = new EmbryoEntry.Builder(configEmbryoEntry).build();
+            EmbryoRegistry.register(embryoEntry);
+        }
     }
 }

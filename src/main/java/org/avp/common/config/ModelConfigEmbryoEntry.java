@@ -16,6 +16,7 @@ import java.util.Set;
  */
 public class ModelConfigEmbryoEntry {
 
+    private int gestationPeriod;
     private String impregnator;
     private Set<String> hosts;
     private String transitionary;
@@ -24,6 +25,7 @@ public class ModelConfigEmbryoEntry {
     public ModelConfigEmbryoEntry() {}
 
     public ModelConfigEmbryoEntry(EmbryoEntry embryoEntry) {
+        this.gestationPeriod = embryoEntry.getGestationPeriod();
         processImpregnator(embryoEntry);
         processHosts(embryoEntry);
         processTransitionary(embryoEntry);
@@ -81,6 +83,10 @@ public class ModelConfigEmbryoEntry {
         }
 
         this.hosts = hostRegistryNames;
+    }
+
+    public int getGestationPeriod() {
+        return this.gestationPeriod;
     }
 
     public String getImpregnator() {

@@ -1,6 +1,6 @@
 package org.alien.common.api.emybro;
 
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.Entity;
 
 import java.util.Objects;
 
@@ -9,16 +9,24 @@ import java.util.Objects;
  */
 public class EmbryoKey {
 
-    private final Class<? extends EntityLivingBase> parasiteClass;
-    private final Class<? extends EntityLivingBase> hostClass;
+    private final Class<? extends Entity> parasiteClass;
+    private final Class<? extends Entity> hostClass;
 
-    public EmbryoKey(EntityLivingBase parasite, EntityLivingBase host) {
+    public EmbryoKey(Entity parasite, Entity host) {
         this(parasite.getClass(), host.getClass());
     }
 
-    public EmbryoKey(Class<? extends EntityLivingBase> parasiteClass, Class<? extends EntityLivingBase> hostClass) {
+    public EmbryoKey(Class<? extends Entity> parasiteClass, Class<? extends Entity> hostClass) {
         this.parasiteClass = parasiteClass;
         this.hostClass = hostClass;
+    }
+
+    public Class<? extends Entity> getParasiteClass() {
+        return this.parasiteClass;
+    }
+
+    public Class<? extends Entity> getHostClass() {
+        return this.hostClass;
     }
 
     @Override
