@@ -7,11 +7,16 @@ import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.*;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.alien.common.entity.living.Species223ODe;
 import org.alien.common.entity.living.SpeciesAlien;
+import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.avp.common.entity.EntityLiquidPool;
 
-import java.util.ArrayList;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public interface Parasitoid
 {
@@ -47,41 +52,71 @@ public interface Parasitoid
         return nbt;
     }
 
-    static ArrayList<Class<?>> getDefaultEntityDenylist()
+    // Do not use this directly. Use ModelConfig's parasite data, instead.
+    @Deprecated
+    static ArrayList<Class<? extends Entity>> getDefaultEntityDenylist()
     {
-        ArrayList<Class<?>> blacklist = new ArrayList<>();
+        ArrayList<Class<? extends Entity>> denylist = new ArrayList<>();
 
-        blacklist.add(EntityArmorStand.class);
-        blacklist.add(SpeciesAlien.class);
-        blacklist.add(EntityLiquidPool.class);
-        blacklist.add(Parasitoid.class);
-        blacklist.add(Species223ODe.class);
-        blacklist.add(EntitySnowman.class);
-        blacklist.add(EntityGolem.class);
-        blacklist.add(EntitySkeleton.class);
-        blacklist.add(EntityZombie.class);
-        blacklist.add(EntitySpider.class);
-        blacklist.add(EntitySilverfish.class);
-        blacklist.add(EntityPigZombie.class);
-        blacklist.add(EntityGhast.class);
-        blacklist.add(EntityBlaze.class);
-        blacklist.add(EntitySlime.class);
-        blacklist.add(EntityMagmaCube.class);
-        blacklist.add(EntityWither.class);
-        blacklist.add(EntityShulker.class);
-        blacklist.add(EntitySkeletonHorse.class);
-        blacklist.add(EntityZombieHorse.class);
-        blacklist.add(EntityEndermite.class);
-        blacklist.add(EntityEnderman.class);
-        blacklist.add(EntityRabbit.class);
-        blacklist.add(EntityChicken.class);
-        blacklist.add(EntityOcelot.class);
-        blacklist.add(EntityParrot.class);
-        blacklist.add(EntityBat.class);
-        blacklist.add(EntityVex.class);
-        blacklist.add(EntityHusk.class);
-        blacklist.add(EntityStray.class);
+        denylist.add(EntityArmorStand.class);
+        denylist.add(SpeciesAlien.class);
+        denylist.add(EntityLiquidPool.class);
+        denylist.add(EntityFacehugger.class);
+        denylist.add(Species223ODe.class);
+        denylist.add(EntitySnowman.class);
+        denylist.add(EntityGolem.class);
+        denylist.add(EntitySkeleton.class);
+        denylist.add(EntityZombie.class);
+        denylist.add(EntitySpider.class);
+        denylist.add(EntitySilverfish.class);
+        denylist.add(EntityPigZombie.class);
+        denylist.add(EntityGhast.class);
+        denylist.add(EntityBlaze.class);
+        denylist.add(EntitySlime.class);
+        denylist.add(EntityMagmaCube.class);
+        denylist.add(EntityWither.class);
+        denylist.add(EntityShulker.class);
+        denylist.add(EntitySkeletonHorse.class);
+        denylist.add(EntityZombieHorse.class);
+        denylist.add(EntityEndermite.class);
+        denylist.add(EntityEnderman.class);
+        denylist.add(EntityRabbit.class);
+        denylist.add(EntityChicken.class);
+        denylist.add(EntityOcelot.class);
+        denylist.add(EntityParrot.class);
+        denylist.add(EntityBat.class);
+        denylist.add(EntityVex.class);
+        denylist.add(EntityHusk.class);
+        denylist.add(EntityStray.class);
 
-        return blacklist;
+        return denylist;
+    }
+
+    // Do not use this directly. Use ModelConfig's parasite data, instead.
+    @Deprecated
+    static Set<EntityEntry> getParasitoidDenylistEntries() {
+        HashSet<EntityEntry> entityEntries = new HashSet<>();
+
+        for (Class<?> entityClass: getDefaultEntityDenylist()) {
+            for (Map.Entry<ResourceLocation, EntityEntry> entry: ForgeRegistries.ENTITIES.getEntries()) {
+                // If this entry's entity class equals the denylist entity class OR this entry's entity class is a subclass
+                // of the denylist entity class, add this entry to the denylist.
+                if (entityClass == entry.getValue().getEntityClass() ||
+                        entityClass.isAssignableFrom(entry.getValue().getEntityClass())
+                ) {
+                    entityEntries.add(entry.getValue());
+                }
+            }
+        }
+
+        return entityEntries;
+    }
+
+    // Do not use this directly. Use ModelConfig's parasite data, instead.
+    @Deprecated
+    static Set<String> getParasitoidDenylistRegistryNames() {
+        return getParasitoidDenylistEntries().stream().map(
+                entityEntry -> entityEntry.getRegistryName() != null ? entityEntry.getRegistryName().toString() : null
+        ).filter(Objects::nonNull).collect(Collectors.toSet());
     }
 }

@@ -12,5 +12,20 @@ public class AlienCreatureTypes {
 
     private AlienCreatureTypes() {}
 
-    public static final EnumCreatureType ALIEN = EnumHelper.addCreatureType("alien", SpeciesAlien.class, 70, Material.AIR, false, false);
+    private static EnumCreatureType ALIEN;
+
+    public static void init() {
+        ALIEN = createAlienCreatureType();
+    }
+
+    private static EnumCreatureType createAlienCreatureType() {
+        return EnumHelper.addCreatureType("alien", SpeciesAlien.class, 70, Material.AIR, false, false);
+    }
+
+    public static EnumCreatureType getAlienCreatureType() {
+        if (ALIEN == null) {
+            ALIEN = createAlienCreatureType();
+        }
+        return ALIEN;
+    }
 }

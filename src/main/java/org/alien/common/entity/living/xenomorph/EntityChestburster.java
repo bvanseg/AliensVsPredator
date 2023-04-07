@@ -22,7 +22,7 @@ import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.ai.brain.xenomorph.ChestbursterBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPDamageSources;
@@ -147,23 +147,6 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
     @Override
     public void vitalize(EntityLivingBase host)
     {
-        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
-        this.matureState = organism.getEmbryo().getResultingOrganism();
-        
-        Pos safeLocation = Entities.getSafeLocationAround(this, new Pos((int)host.posX, (int)host.posY, (int)host.posZ));
-        
-        if (safeLocation == null)
-        {
-            safeLocation = new Pos((int)host.posX, (int)host.posY, (int)host.posZ);
-        }
-        
-        this.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
-        host.world.spawnEntity(this);
-        organism.removeEmbryo();
-        host.getActivePotionEffects().clear();
-        host.attackEntityFrom(AVPDamageSources.causeChestbursterDamage(this, host), 100000F);
-        if(!host.isDead)
-            host.setHealth(0);
     }
     
     @Override

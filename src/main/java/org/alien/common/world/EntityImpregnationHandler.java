@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.avp.common.config.ModelConfig;
 import org.predator.common.entity.living.SpeciesYautja;
@@ -46,7 +46,7 @@ public class EntityImpregnationHandler
         // If the host can't be ticked, remove its embryo and return.
         if (!this.canTickHost(entity)) {
             if (organism != null && organism.hasEmbryo()) {
-                organism.removeEmbryo();
+                organism.setEmbryo(null);
             }
             return;
         }
@@ -59,7 +59,7 @@ public class EntityImpregnationHandler
         
  		if (!world.isRemote)
  		{
- 		    organism.gestate(host);
+             organism.getEmbryo().grow();
  		    
  		    // TODO: This clears potion effects the host has every tick, not sure if this is correct.
  		    if (organism.getEmbryo().getAge() > 0) {
@@ -71,10 +71,9 @@ public class EntityImpregnationHandler
         	}
  		    
  		    boolean isEmbryoReadyToLive = organism.getEmbryo().getAge() >= organism.getEmbryo().getGestationPeriod();
- 		    
- 		    // TODO: Why would nascentic organism ever be null here?
- 		    if (isEmbryoReadyToLive && organism.getEmbryo().getNascenticOrganism() != null) {
-                organism.getEmbryo().getNascenticOrganism().vitalize(host);
+
+ 		    if (isEmbryoReadyToLive) {
+                organism.getEmbryo().vitalize(host);
  		    }
  		}
  		else // client world.
@@ -82,7 +81,7 @@ public class EntityImpregnationHandler
  	        // FIXME: Organism gestates server-side but not client-side when game is paused!
  		    if (!ClientGame.instance.minecraft().isGamePaused())
  		    {
- 		        organism.gestate(host);
+                 organism.getEmbryo().grow();
  		    }
 
 			// FIXME: This currently runs every tick, but does nothing.
@@ -221,7 +220,7 @@ public class EntityImpregnationHandler
     public void respawnEvent(PlayerRespawnEvent event)
     {
         OrganismImpl organism = (OrganismImpl) event.player.getCapability(Provider.CAPABILITY, null);
-        organism.removeEmbryo();
+        organism.setEmbryo(null);
     }
 
     @SubscribeEvent

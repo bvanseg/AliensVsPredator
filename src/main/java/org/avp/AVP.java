@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.alien.Aliens;
 import org.alien.client.AlienRenders;
+import org.alien.common.entity.AlienCreatureTypes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
@@ -60,6 +61,11 @@ public class AVP implements IMod
     public void pre(FMLPreInitializationEvent event)
     {
         logger.info("Preparing...");
+
+        // It is absolutely essential that we initialize this here before everything else. This creates new creature types,
+        // which involves modifying the CreatureType enum via reflection at runtime. If this is not done early enough,
+        // the mod may crash with other mods or with itself (alien entities are registered using these creature types).
+        AlienCreatureTypes.init();
 
         AVPCreativeTabs.instance.pre(event);
 
@@ -112,6 +118,9 @@ public class AVP implements IMod
     public void post(FMLPostInitializationEvent event)
     {
         logger.info("Initialized. Running post initialization tasks...");
+        ModelConfig.getInstance().getEmbryos().init();
+        ModelConfig.getInstance().getParasites().init();
+
         ModelConfig.getInstance().write();
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {

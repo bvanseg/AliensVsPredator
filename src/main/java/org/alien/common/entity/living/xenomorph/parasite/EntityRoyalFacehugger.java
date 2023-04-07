@@ -1,14 +1,10 @@
 package org.alien.common.entity.living.xenomorph.parasite;
 
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.Organism.OrganismImpl;
-import org.alien.common.world.capability.Organism.Provider;
 
 public class EntityRoyalFacehugger extends EntityFacehugger
 {
@@ -38,17 +34,6 @@ public class EntityRoyalFacehugger extends EntityFacehugger
     protected boolean canTriggerWalking()
     {
         return false;
-    }
-
-    @Override
-    public void implantEmbryo(EntityLivingBase living)
-    {
-        OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
-        organism.impregnate(Embryo.QUEEN);
-        if(this.getImplantSound() != null)
-            this.playSound(this.getImplantSound(), 0.5F, 1F);
-        organism.syncWithClients(living);
-        this.setFertility(false);
     }
     
     @Override

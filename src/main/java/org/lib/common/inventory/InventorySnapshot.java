@@ -3,10 +3,10 @@ package org.lib.common.inventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 public class InventorySnapshot {
 
     private final HashMap<Item, ItemSnapshot> itemSnapshots;
+
+    // Map of ore dictionary IDs to item snapshots.
+    private final HashMap<String, Set<ItemSnapshot>> itemSnapshotsByOreDictId = new HashMap<>();
 
     private IInventory inventory;
 
@@ -37,12 +40,46 @@ public class InventorySnapshot {
                 continue;
             }
 
-            itemSnapshots.computeIfAbsent(itemStack.getItem(), ItemSnapshot::new).updateSlotWithStack(i, itemStack);
+            ItemSnapshot itemSnapshot = itemSnapshots.computeIfAbsent(itemStack.getItem(), ItemSnapshot::new);
+            itemSnapshot.updateSlotWithStack(i, itemStack);
+
+            int[] ids = OreDictionary.getOreIDs(itemStack);
+
+            for (int id : ids) {
+                String sharedName = OreDictionary.getOreName(id);
+                itemSnapshotsByOreDictId.computeIfAbsent(sharedName, key -> new HashSet<>()).add(itemSnapshot);
+            }
         }
     }
 
+    private int getOreDictItemCount(Item item) {
+        return this.getOreDictItemCount(new ItemStack(item, 1));
+    }
+
+    public int getOreDictItemCount(ItemStack itemStack) {
+        return this.getItemSnapshotsWithOreDict(itemStack).stream().mapToInt(ItemSnapshot::getTotalCount).sum();
+    }
+
+    public Set<ItemSnapshot> getItemSnapshotsWithOreDict(Item item) {
+        return this.getItemSnapshotsWithOreDict(new ItemStack(item, 1));
+    }
+
+    public Set<ItemSnapshot> getItemSnapshotsWithOreDict(ItemStack itemStack) {
+        int[] ids = OreDictionary.getOreIDs(itemStack);
+
+        HashSet<ItemSnapshot> snapshots = new HashSet<>();
+
+        for (int id: ids) {
+            String sharedName = OreDictionary.getOreName(id);
+            Set<ItemSnapshot> oreDictSnapshots = itemSnapshotsByOreDictId.getOrDefault(sharedName, Collections.emptySet());
+            snapshots.addAll(oreDictSnapshots);
+        }
+
+        return snapshots;
+    }
+
     public boolean hasItem(Item item) {
-        return itemSnapshots.containsKey(item) && itemSnapshots.get(item).getTotalCount() > 0;
+        return this.getOreDictItemCount(item) > 0;
     }
 
     public Set<Item> getItemsMatchingPredicate(Predicate<Item> itemPredicate) {
@@ -50,15 +87,19 @@ public class InventorySnapshot {
     }
 
     public int getTotalCountForItem(Item item) {
-        ItemSnapshot snapshot = itemSnapshots.get(item);
-        return snapshot != null ? snapshot.getTotalCount() : 0;
+        return this.getOreDictItemCount(item);
     }
 
     public int getNextNonEmptySlot(Item item) {
-        ItemSnapshot snapshot = itemSnapshots.get(item);
-        if (snapshot == null || snapshot.getSlots().isEmpty()) return -1;
+        Set<ItemSnapshot> snapshots = this.getItemSnapshotsWithOreDict(item);
 
-        for (int i : snapshot.getSlots()) {
+        if (snapshots.isEmpty() || snapshots.stream().allMatch(snapshot -> snapshot.getSlots().isEmpty())) {
+            return -1;
+        }
+
+        List<Integer> slots = snapshots.stream().map(ItemSnapshot::getSlots).flatMap(Set::stream).collect(Collectors.toList());
+
+        for (int i : slots) {
             if (!this.inventory.getStackInSlot(i).isEmpty()) {
                 return i;
             }
