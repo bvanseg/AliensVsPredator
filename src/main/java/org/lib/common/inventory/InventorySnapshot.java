@@ -53,11 +53,14 @@ public class InventorySnapshot {
     }
 
     public int getOreDictItemCount(Item item) {
-        return this.getItemSnapshotsWithOreDict(item).stream().mapToInt(ItemSnapshot::getTotalCount).sum();
+        return this.getOreDictItemCount(new ItemStack(item, 1));
     }
 
-    public Set<ItemSnapshot> getItemSnapshotsWithOreDict(Item item) {
-        ItemStack itemStack = new ItemStack(item, 1);
+    public int getOreDictItemCount(ItemStack itemStack) {
+        return this.getItemSnapshotsWithOreDict(itemStack).stream().mapToInt(ItemSnapshot::getTotalCount).sum();
+    }
+
+    public Set<ItemSnapshot> getItemSnapshotsWithOreDict(ItemStack itemStack) {
         int[] ids = OreDictionary.getOreIDs(itemStack);
 
         HashSet<ItemSnapshot> snapshots = new HashSet<>();
