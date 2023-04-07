@@ -1,10 +1,10 @@
 package org.avp.common.item.crafting;
 
-import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import org.lib.common.inventory.CachedInventoryHandler;
+import org.lib.common.inventory.InventorySnapshot;
 
 import java.util.Objects;
 
@@ -27,7 +27,7 @@ public class AssemblyResult {
     }
 
     public void assemble() {
-        if (!canAssemble) return;
+        if (!this.canAssemble) return;
 
         // TODO: Instead of using a for loop here, just create itemStacks with the desired amount (if stackable).
         for (int i = 0; i < this.desiredAmount; i++) {
@@ -40,7 +40,7 @@ public class AssemblyResult {
     }
 
     public boolean canAssembleSchematic() {
-        return canAssemble;
+        return this.canAssemble;
     }
 
     public static AssemblyResult getResult(EntityPlayer player, ItemSchematic schematic, int desiredAmount) {
@@ -53,6 +53,7 @@ public class AssemblyResult {
 
         // The required items to craft the schematic.
         ItemStack[] itemsRequired = schematic.getItemsRequired();
+        InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(player);
 
         // For every requirement, check if the player has the required count.
         for (ItemStack requirement : itemsRequired) {
@@ -61,9 +62,9 @@ public class AssemblyResult {
                 return new AssemblyResult(player, schematic, false, desiredAmount);
             }
 
-            Item requiredItem = AssemblyManager.findInventoryItemStackMatchOreDict(player, requirement).getItem();
+            int requiredItemCountPlayerHas = inventorySnapshot.getOreDictItemCount(requirement);
 
-            if (Inventories.getAmountOfItemPlayerHas(requiredItem, player) < requirement.getCount() * desiredAmount) {
+            if (requiredItemCountPlayerHas < requirement.getCount() * desiredAmount) {
                 return new AssemblyResult(player, schematic, false, desiredAmount);
             }
         }
@@ -81,6 +82,7 @@ public class AssemblyResult {
 
         // The required items to craft the schematic.
         ItemStack[] itemsRequired = schematic.getItemsRequired();
+        InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(player);
 
         int mostThatCanBeAssembled = Integer.MAX_VALUE;
 
@@ -91,10 +93,8 @@ public class AssemblyResult {
                 return 0;
             }
 
-            Item requiredItem = AssemblyManager.findInventoryItemStackMatchOreDict(player, requirement).getItem();
-
-            int amountPlayerHas = Inventories.getAmountOfItemPlayerHas(requiredItem, player);
-            mostThatCanBeAssembled = Math.min(mostThatCanBeAssembled, amountPlayerHas / requirement.getCount());
+            int requiredItemCountPlayerHas = inventorySnapshot.getOreDictItemCount(requirement);
+            mostThatCanBeAssembled = Math.min(mostThatCanBeAssembled, requiredItemCountPlayerHas / requirement.getCount());
         }
 
         return mostThatCanBeAssembled;
