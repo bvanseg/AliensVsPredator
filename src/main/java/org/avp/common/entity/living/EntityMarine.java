@@ -23,6 +23,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import org.avp.client.AVPSounds;
@@ -32,9 +33,8 @@ import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
-import org.weapon.common.entity.EntityBullet;
 import org.lib.common.inventory.InventorySnapshot;
-import org.lib.common.inventory.ItemDropContext;
+import org.weapon.common.entity.EntityBullet;
 
 import java.util.UUID;
 
@@ -154,15 +154,28 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
     @Override
     protected boolean processInteract(EntityPlayer player, EnumHand hand) {
-        // If the marine does not have a squad leader already, the interacting player is now the squad leader.
-        if (!this.getSquadLeaderID().isPresent()) {
-            this.setSquadLeaderUniqueID(player.getUniqueID());
-            return super.processInteract(player, hand);
-        }
+        if (!this.world.isRemote) {
+            if (player.getHeldItem(hand).getItem() == Items.DYE) {
+                int dyeColor = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorValue();
+                this.getDataManager().set(CAMO_COLOR, dyeColor << 8);
+                return super.processInteract(player, hand);
+            }
 
-        if (player.getHeldItem(hand).getItem() == Items.DYE) {
-            int dyeColor = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorValue();
-            this.getDataManager().set(CAMO_COLOR, dyeColor << 8);
+            // If the marine does not have a squad leader already, the interacting player is now the squad leader.
+            if (hand == EnumHand.MAIN_HAND) {
+                if (!this.getSquadLeaderID().isPresent()) {
+                    this.setSquadLeaderUniqueID(Optional.of(player.getUniqueID()));
+                    player.sendMessage(new TextComponentString(String.format("%s is now following you.", this.getMarineName())));
+                } else {
+                    UUID squadLeaderID = this.getSquadLeaderID().get();
+                    if (player.getUniqueID().equals(squadLeaderID)) {
+                        this.setSquadLeaderUniqueID(Optional.absent());
+                        player.sendMessage(new TextComponentString(String.format("%s is no longer following you.",this.getMarineName())));
+                    } else {
+                        player.sendMessage(new TextComponentString(String.format("%s is already following another player!",this.getMarineName())));
+                    }
+                }
+            }
         }
 
         return super.processInteract(player, hand);
@@ -256,8 +269,8 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return this.getDataManager().get(SQUAD_LEADER_UNIQUE_ID);
     }
 
-    public void setSquadLeaderUniqueID(UUID squadLeaderUniqueId) {
-        this.getDataManager().set(SQUAD_LEADER_UNIQUE_ID, Optional.of(squadLeaderUniqueId));
+    public void setSquadLeaderUniqueID(Optional<UUID> squadLeaderUniqueId) {
+        this.getDataManager().set(SQUAD_LEADER_UNIQUE_ID, squadLeaderUniqueId);
     }
 
     @Override
@@ -324,7 +337,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.dataManager.set(RANK, MarineDecorator.MarineRank.values()[nbt.getInteger(RANK_NBT_KEY)]);
 
         if (nbt.hasKey(SQUAD_LEADER_NBT_KEY)) {
-            this.setSquadLeaderUniqueID(nbt.getUniqueId(SQUAD_LEADER_NBT_KEY));
+            this.setSquadLeaderUniqueID(Optional.of(nbt.getUniqueId(SQUAD_LEADER_NBT_KEY)));
         }
 
         this.readInventoryFromNBT(nbt);
