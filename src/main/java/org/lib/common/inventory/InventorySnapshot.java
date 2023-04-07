@@ -52,12 +52,16 @@ public class InventorySnapshot {
         }
     }
 
-    public int getOreDictItemCount(Item item) {
+    private int getOreDictItemCount(Item item) {
         return this.getOreDictItemCount(new ItemStack(item, 1));
     }
 
     public int getOreDictItemCount(ItemStack itemStack) {
         return this.getItemSnapshotsWithOreDict(itemStack).stream().mapToInt(ItemSnapshot::getTotalCount).sum();
+    }
+
+    public Set<ItemSnapshot> getItemSnapshotsWithOreDict(Item item) {
+        return this.getItemSnapshotsWithOreDict(new ItemStack(item, 1));
     }
 
     public Set<ItemSnapshot> getItemSnapshotsWithOreDict(ItemStack itemStack) {
@@ -75,7 +79,7 @@ public class InventorySnapshot {
     }
 
     public boolean hasItem(Item item) {
-        return itemSnapshots.containsKey(item) && itemSnapshots.get(item).getTotalCount() > 0;
+        return this.getOreDictItemCount(item) > 0;
     }
 
     public Set<Item> getItemsMatchingPredicate(Predicate<Item> itemPredicate) {
@@ -83,15 +87,19 @@ public class InventorySnapshot {
     }
 
     public int getTotalCountForItem(Item item) {
-        ItemSnapshot snapshot = itemSnapshots.get(item);
-        return snapshot != null ? snapshot.getTotalCount() : 0;
+        return this.getOreDictItemCount(item);
     }
 
     public int getNextNonEmptySlot(Item item) {
-        ItemSnapshot snapshot = itemSnapshots.get(item);
-        if (snapshot == null || snapshot.getSlots().isEmpty()) return -1;
+        Set<ItemSnapshot> snapshots = this.getItemSnapshotsWithOreDict(item);
 
-        for (int i : snapshot.getSlots()) {
+        if (snapshots.isEmpty() || snapshots.stream().allMatch(snapshot -> snapshot.getSlots().isEmpty())) {
+            return -1;
+        }
+
+        List<Integer> slots = snapshots.stream().map(ItemSnapshot::getSlots).flatMap(Set::stream).collect(Collectors.toList());
+
+        for (int i : slots) {
             if (!this.inventory.getStackInSlot(i).isEmpty()) {
                 return i;
             }
