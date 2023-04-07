@@ -4,6 +4,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import org.lib.common.FuncUtil;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -74,6 +75,8 @@ public class InventorySnapshot {
             Set<ItemSnapshot> oreDictSnapshots = itemSnapshotsByOreDictId.getOrDefault(sharedName, Collections.emptySet());
             snapshots.addAll(oreDictSnapshots);
         }
+
+        FuncUtil.let(itemSnapshots.get(itemStack.getItem()), snapshots::add);
 
         return snapshots;
     }
