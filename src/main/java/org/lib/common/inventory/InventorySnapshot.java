@@ -3,10 +3,10 @@ package org.lib.common.inventory;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 public class InventorySnapshot {
 
     private final HashMap<Item, ItemSnapshot> itemSnapshots;
+
+    // Map of ore dictionary IDs to item snapshots.
+    private final HashMap<String, Set<ItemSnapshot>> itemSnapshotsByOreDictId = new HashMap<>();
 
     private IInventory inventory;
 
@@ -37,8 +40,35 @@ public class InventorySnapshot {
                 continue;
             }
 
-            itemSnapshots.computeIfAbsent(itemStack.getItem(), ItemSnapshot::new).updateSlotWithStack(i, itemStack);
+            ItemSnapshot itemSnapshot = itemSnapshots.computeIfAbsent(itemStack.getItem(), ItemSnapshot::new);
+            itemSnapshot.updateSlotWithStack(i, itemStack);
+
+            int[] ids = OreDictionary.getOreIDs(itemStack);
+
+            for (int id : ids) {
+                String sharedName = OreDictionary.getOreName(id);
+                itemSnapshotsByOreDictId.computeIfAbsent(sharedName, key -> new HashSet<>()).add(itemSnapshot);
+            }
         }
+    }
+
+    public int getOreDictItemCount(Item item) {
+        return this.getItemSnapshotsWithOreDict(item).stream().mapToInt(ItemSnapshot::getTotalCount).sum();
+    }
+
+    public Set<ItemSnapshot> getItemSnapshotsWithOreDict(Item item) {
+        ItemStack itemStack = new ItemStack(item, 1);
+        int[] ids = OreDictionary.getOreIDs(itemStack);
+
+        HashSet<ItemSnapshot> snapshots = new HashSet<>();
+
+        for (int id: ids) {
+            String sharedName = OreDictionary.getOreName(id);
+            Set<ItemSnapshot> oreDictSnapshots = itemSnapshotsByOreDictId.getOrDefault(sharedName, Collections.emptySet());
+            snapshots.addAll(oreDictSnapshots);
+        }
+
+        return snapshots;
     }
 
     public boolean hasItem(Item item) {
