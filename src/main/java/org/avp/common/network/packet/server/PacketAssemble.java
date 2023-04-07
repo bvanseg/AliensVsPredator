@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.common.item.crafting.AssemblyManager;
+import org.avp.common.item.crafting.ItemSchematicRegistry;
 import org.avp.common.item.crafting.AssemblyResult;
 import org.avp.common.item.crafting.ItemSchematic;
 
@@ -49,7 +49,7 @@ public class PacketAssemble implements IMessage, IMessageHandler<PacketAssemble,
 
             if (player != null)
             {
-                ItemSchematic schematic = AssemblyManager.instance.getSchematicByName(packet.name);
+                ItemSchematic schematic = ItemSchematicRegistry.getSchematicByName(packet.name);
                 AssemblyResult result = AssemblyResult.getResult(player, schematic, packet.count);
 
                 if (result.canAssembleSchematic()) {
