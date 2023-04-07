@@ -1,8 +1,11 @@
 package org.avp.common.entity.ai.brain.task;
 
+import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemAppleGold;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import org.avp.common.entity.living.EntityMarine;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
@@ -73,13 +76,31 @@ public class EatFoodBrainTask extends AbstractEntityBrainTask {
         InventorySnapshot inventorySnapshot = marine.getInventorySnapshot();
 
         if (this.eatTimer-- <= 0) {
-            float healAmount = ((ItemFood)foodItemStack.getItem()).getSaturationModifier(ItemStack.EMPTY) * 10;
+            ItemFood itemFood = ((ItemFood)foodItemStack.getItem());
+            float healAmount = itemFood.getSaturationModifier(ItemStack.EMPTY) * 10;
+
+            if (itemFood instanceof ItemAppleGold) {
+                this.applyGoldenAppleEffects(marine);
+            }
+
             inventorySnapshot.consumeItem(this.foodItemStack.getItem(), 1);
             ctx.getEntity().setHealth(ctx.getEntity().getHealth() + healAmount);
             this.isEating = false;
         }
         else if (this.eatTimer % 4 == 0) {
             ctx.getEntity().playSound(SoundEvents.ENTITY_GENERIC_EAT, 1F, 1F);
+        }
+    }
+
+    private void applyGoldenAppleEffects(EntityMarine marine) {
+        if (foodItemStack.getMetadata() > 0) {
+            marine.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 400, 1));
+            marine.addPotionEffect(new PotionEffect(MobEffects.RESISTANCE, 6000, 0));
+            marine.addPotionEffect(new PotionEffect(MobEffects.FIRE_RESISTANCE, 6000, 0));
+            marine.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 2400, 3));
+        } else {
+            marine.addPotionEffect(new PotionEffect(MobEffects.REGENERATION, 100, 1));
+            marine.addPotionEffect(new PotionEffect(MobEffects.ABSORPTION, 2400, 0));
         }
     }
 
