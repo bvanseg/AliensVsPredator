@@ -17,7 +17,7 @@ public class EntityPraetorian extends SpeciesXenomorph implements HiveMember
     {
         super(world);
         this.experienceValue = 300;
-        this.setSize(1.0F, 3.0F);
+        this.setSize(1.5F, 3.0F);
     }
 
     @Override

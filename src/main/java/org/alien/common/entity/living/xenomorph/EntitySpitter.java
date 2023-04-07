@@ -29,7 +29,7 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob,
     {
         super(par1World);
         this.experienceValue = 275;
-        this.setSize(1.0F, 3.0F);
+        this.setSize(1.0F, 2.5F);
     }
 
     @Override

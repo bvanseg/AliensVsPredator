@@ -21,6 +21,6 @@ public class RenderRunnerChestburster extends RenderLivingWrapper<EntityRunnerCh
         float additionalScale = AlienGrowthUtil.calculateJellyGrowthFactor(entitylivingBase, 0.005f, 3, partialTicks);
         super.preRenderCallback(entitylivingBase, shadowSize);
         OpenGL.scale(0.55F + additionalScale, 0.55F + additionalScale, 0.55F + additionalScale);
-        OpenGL.translate(0.0f, 0f, -0.9f);
+        OpenGL.translate(0.0f, 0f, -0.6f);
     }
 }

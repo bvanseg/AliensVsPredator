@@ -36,7 +36,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     public EntityCombatSynthetic(World word)
     {
         super(word);
-        this.setSize(1, 2);
+        this.setSize(0.75F, 2F);
         this.experienceValue = 40;
     }
 

@@ -15,7 +15,7 @@ public class EntityBelugaburster extends EntityChestburster implements IMob, Nas
     public EntityBelugaburster(World world)
     {
         super(world);
-        this.setSize(1.0F, 0.4F);
+        this.setSize(0.25F, 0.7F);
         this.experienceValue = 16;
     }
 
