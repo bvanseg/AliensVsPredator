@@ -84,6 +84,9 @@ public class ModelConfig {
     @ConfigValue.Category
     private final ModelConfigEmbryos embryos = new ModelConfigEmbryos();
 
+    @ConfigValue.Category
+    private final ModelConfigParasites parasites = new ModelConfigParasites();
+
     public ModelConfig() { /* Do Nothing */ }
 
     public ModelConfigGeneral getGeneral() {
@@ -108,6 +111,10 @@ public class ModelConfig {
 
     public ModelConfigEmbryos getEmbryos() {
         return this.embryos;
+    }
+
+    public ModelConfigParasites getParasites() {
+        return parasites;
     }
 
     public boolean isHalloweenEventEnabled()

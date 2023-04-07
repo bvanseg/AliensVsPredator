@@ -119,6 +119,8 @@ public class AVP implements IMod
     {
         logger.info("Initialized. Running post initialization tasks...");
         ModelConfig.getInstance().getEmbryos().init();
+        ModelConfig.getInstance().getParasites().init();
+
         ModelConfig.getInstance().write();
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
