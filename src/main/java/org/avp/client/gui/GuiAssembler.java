@@ -22,6 +22,8 @@ import org.avp.common.item.crafting.AssemblyResult;
 import org.avp.common.item.crafting.ItemSchematic;
 import org.avp.common.network.packet.server.PacketAssemble;
 import org.avp.common.tile.TileEntityAssembler;
+import org.lib.common.inventory.CachedInventoryHandler;
+import org.lib.common.inventory.InventorySnapshot;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -180,11 +182,12 @@ public class GuiAssembler extends GuiContainer
 	    int assemblerSidePanelWidth = ((this.width - this.xSize) / 2) - 5;
 	    int assemblerSidePanelX = -assemblerSidePanelWidth;
 
+        InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(ClientGame.instance.minecraft().player);
         OpenGL.enableBlend();
 	    for (ItemStack stack : selectedSchematic.getItemsRequired())
 	    {
 	        currentStack++;
-	        int amountOfStack = AssemblyManager.amountForMatchingStack(ClientGame.instance.minecraft().player, stack);
+	        int amountOfStack = inventorySnapshot.getOreDictItemCount(stack);
 	        int stackY = 15 + (currentStack * 8);
 	        int currentStackSize = (Math.min(amountOfStack, stack.getCount()));
 	        Draw.drawRect(assemblerSidePanelX, stackY - 2, assemblerSidePanelWidth, 8, 0xDD000000);
