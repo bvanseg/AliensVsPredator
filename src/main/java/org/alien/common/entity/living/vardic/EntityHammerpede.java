@@ -29,7 +29,7 @@ public class EntityHammerpede extends SpeciesAlien implements IMob, Brainiac<Ham
     {
         super(par1World);
 
-        this.setSize(0.5F, 0.5F);
+        this.setSize(0.25F, 0.75F);
         this.experienceValue = 16;
     }
 

@@ -44,7 +44,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     public EntityOvamorph(World par1World)
     {
         super(par1World);
-        this.setSize(1F, 1F);
+        this.setSize(0.85F, 1F);
         this.experienceValue = 10;
         this.hatchWaitTimer = 20 * 3 + (20 * rand.nextInt(5));
         this.containsFacehugger = true;

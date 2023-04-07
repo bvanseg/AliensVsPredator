@@ -11,7 +11,6 @@ public class EntityRoyalFacehugger extends EntityFacehugger
     public EntityRoyalFacehugger(World world)
     {
         super(world);
-        this.setSize(1F, 1F);
         this.experienceValue = 300;
     }
 

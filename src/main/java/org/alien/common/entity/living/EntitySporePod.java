@@ -19,7 +19,7 @@ public class EntitySporePod extends Entity
     {
         super(world);
         this.ignoreFrustumCheck = true;
-        this.setSize(0.5F, 0.5F);
+        this.setSize(0.2F, 0.2F);
         this.setRandomAmountOfPods();
     }
 

@@ -29,7 +29,7 @@ public abstract class SpeciesEngineer extends EntityMob implements Brainiac<Engi
     {
         super(world);
         this.experienceValue = 250;
-        this.setSize(1.0F, 2.5F);
+        this.setSize(0.7F, 2.5F);
     }
 
     @Override
