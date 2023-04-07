@@ -57,6 +57,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     public EntityMarine(World world)
     {
         super(world);
+        this.setSize(0.75F, 2F);
         this.experienceValue = 5;
         this.inventory = new InventoryBasic("Items", false, 9 * 3);
     }

@@ -14,6 +14,7 @@ public class EntityOvamorphGiger extends EntityOvamorph
     public EntityOvamorphGiger(World world)
     {
         super(world);
+        this.setSize(0.7F, 0.95F);
     }
 
     @Override

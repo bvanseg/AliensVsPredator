@@ -50,7 +50,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         super(world);
         this.experienceValue = 250;
         this.cloakProgress = MIN_CLOAK;
-        this.setSize(1.0F, 2.5F);
+        this.setSize(0.75F, 2.5F);
         this.jumpMovementFactor = 0.1F;
     }
 

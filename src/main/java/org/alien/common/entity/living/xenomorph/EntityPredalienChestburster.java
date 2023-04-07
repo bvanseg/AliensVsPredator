@@ -14,7 +14,6 @@ public class EntityPredalienChestburster extends EntityChestburster implements I
     public EntityPredalienChestburster(World world)
     {
         super(world);
-        this.setSize(1.0F, 0.4F);
         this.experienceValue = 16;
     }
 
