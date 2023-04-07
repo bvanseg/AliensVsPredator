@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.Organism;
+import org.alien.common.world.capability.OrganismImpl;
 import org.avp.common.config.ModelConfig;
 
 import java.util.function.Predicate;
@@ -21,7 +22,7 @@ public class Predicates {
 
     public static final Predicate<Entity> EMBRYO_CARRIER = target -> {
         if (!(target instanceof EntityLivingBase)) return false;
-        Organism.OrganismImpl organism = (Organism.OrganismImpl) target.getCapability(Organism.Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) target.getCapability(Organism.Provider.CAPABILITY, null);
         return organism != null && organism.hasEmbryo();
     };
 

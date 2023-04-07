@@ -43,7 +43,7 @@ public class EntitySpawnRegistryUtil {
         biomes.removeIf(biome -> {
             boolean condition = !ModelConfig.getInstance().getSpawning().overworldSpawnsEnabled && overworldBiomes.contains(biome);
             if (condition) {
-                AVP.log().info("Overworld spawn weights disabled. Removing biome from spawn list {}: {}", listName, biome.getRegistryName());
+                AVP.instance.getLogger().info("Overworld spawn weights disabled. Removing biome from spawn list {}: {}", listName, biome.getRegistryName());
             }
             return condition;
         });

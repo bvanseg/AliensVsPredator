@@ -1,6 +1,5 @@
 package org.avp.common.item.crafting;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class ItemSchematic implements IItemSchematic
@@ -29,24 +28,5 @@ public class ItemSchematic implements IItemSchematic
     public ItemStack[] getItemsRequired()
     {
         return items;
-    }
-
-    public static boolean isComplete(ItemSchematic schematic, EntityPlayer player)
-    {
-        int progress = 0;
-        int maxProgress = 0;
-
-        for (ItemStack stack : schematic.getItemsRequired())
-        {
-            int amountOfStack = AssemblyManager.amountForMatchingStack(player, stack);
-            maxProgress += stack.getCount();
-
-            if (amountOfStack > 0)
-            {
-                progress += Math.min(amountOfStack, stack.getCount());
-            }
-        }
-
-        return progress == maxProgress;
     }
 }

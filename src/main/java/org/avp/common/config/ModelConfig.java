@@ -82,6 +82,9 @@ public class ModelConfig {
     private final ModelConfigSpawning spawning = new ModelConfigSpawning();
 
     @ConfigValue.Category
+    private final ModelConfigEmbryos embryos = new ModelConfigEmbryos();
+
+    @ConfigValue.Category
     private final ModelConfigParasites parasites = new ModelConfigParasites();
 
     public ModelConfig() { /* Do Nothing */ }
@@ -104,6 +107,10 @@ public class ModelConfig {
 
     public ModelConfigSpawning getSpawning() {
         return spawning;
+    }
+
+    public ModelConfigEmbryos getEmbryos() {
+        return this.embryos;
     }
 
     public ModelConfigParasites getParasites() {

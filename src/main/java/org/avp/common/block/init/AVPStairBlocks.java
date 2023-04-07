@@ -27,7 +27,7 @@ public class AVPStairBlocks implements IPreInitEvent
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
-        AVP.log().info("Registering Stair Blocks");
+        AVP.instance.getLogger().info("Registering Stair Blocks");
 
         this.registerBlocks();
     }

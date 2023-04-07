@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.alien.Aliens;
 import org.alien.client.AlienRenders;
+import org.alien.common.entity.AlienCreatureTypes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
@@ -29,11 +30,16 @@ import org.predator.client.PredatorRenders;
 
 import java.time.LocalDate;
 
+/**
+ * @author Ri5ux
+ */
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
 public class AVP implements IMod
 {
     public static class Properties
     {
+        private Properties() {}
+
         public static final String NAME         = "AliensVsPredator";
         public static final String ID           = "avp";
         public static final String DEPENDENCIES = "required-after:mdxlib";
@@ -43,7 +49,7 @@ public class AVP implements IMod
     @Mod.Instance(AVP.Properties.ID)
     public static AVP instance;
 
-    public static final Logger logger = LogManager.getLogger("AVP");
+    public final Logger logger = LogManager.getLogger("AVP");
 
     @Override
     public ModContainer container()
@@ -55,8 +61,11 @@ public class AVP implements IMod
     public void pre(FMLPreInitializationEvent event)
     {
         logger.info("Preparing...");
-        // TODO: There should be no need for this initial write, but we have to because the instance field is currently public.
-        ModelConfig.getInstance().write();
+
+        // It is absolutely essential that we initialize this here before everything else. This creates new creature types,
+        // which involves modifying the CreatureType enum via reflection at runtime. If this is not done early enough,
+        // the mod may crash with other mods or with itself (alien entities are registered using these creature types).
+        AlienCreatureTypes.init();
 
         AVPCreativeTabs.instance.pre(event);
 
@@ -109,8 +118,7 @@ public class AVP implements IMod
     public void post(FMLPostInitializationEvent event)
     {
         logger.info("Initialized. Running post initialization tasks...");
-
-        // Initialize parasite data after entities are registered.
+        ModelConfig.getInstance().getEmbryos().init();
         ModelConfig.getInstance().getParasites().init();
 
         ModelConfig.getInstance().write();
@@ -126,9 +134,8 @@ public class AVP implements IMod
         AVPCommands.instance.onServerStarting(event);
     }
 
-    @Deprecated
-    public static Logger log()
+    public Logger getLogger()
     {
-        return logger;
+        return this.logger;
     }
 }

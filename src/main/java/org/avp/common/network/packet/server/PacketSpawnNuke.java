@@ -34,7 +34,7 @@ public class PacketSpawnNuke implements IMessage, IMessageHandler<PacketSpawnNuk
 
             if (player != null && ModelConfig.getInstance().getGeneral().nukesEnabled)
             {
-                AVP.log().info(String.format("Player %s has just initiated a nuclear explosion at %s, %s, %s", player.getName(), player.posX, player.posY, player.posZ));
+                AVP.instance.getLogger().info(String.format("Player %s has just initiated a nuclear explosion at %s, %s, %s", player.getName(), player.posX, player.posY, player.posZ));
                 EntityWristbracer nuke = new EntityWristbracer(ctx.getServerHandler().player.world);
                 nuke.setLocationAndAngles(ctx.getServerHandler().player.posX, ctx.getServerHandler().player.posY, ctx.getServerHandler().player.posZ, 0F, 0F);
                 ctx.getServerHandler().player.world.spawnEntity(nuke);
