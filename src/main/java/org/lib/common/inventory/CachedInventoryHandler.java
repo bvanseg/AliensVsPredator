@@ -4,7 +4,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
-import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -30,7 +29,7 @@ public class CachedInventoryHandler {
         cachedClientPlayerInventorySnapshots.clear();
     }
 
-    public @Nullable InventorySnapshot getInventorySnapshotForPlayer(EntityPlayer player) {
+    public InventorySnapshot getInventorySnapshotForPlayer(EntityPlayer player) {
         if (!player.world.isRemote) {
             return cachedServerPlayerInventorySnapshots.computeIfAbsent(player.getUniqueID(), key -> {
                 InventorySnapshot inventorySnapshot = new InventorySnapshot();
