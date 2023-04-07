@@ -1,6 +1,5 @@
 package org.avp.common.item.crafting;
 
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.lib.common.inventory.CachedInventoryHandler;
@@ -28,15 +27,17 @@ public class AssemblyResult {
 
     public void assemble() {
         if (!this.canAssemble) return;
+        ItemStack assembledItemStack = this.schematic.getItemStackAssembled();
 
-        // TODO: Instead of using a for loop here, just create itemStacks with the desired amount (if stackable).
-        for (int i = 0; i < this.desiredAmount; i++) {
-            ItemStack assembledStack = schematic.getItemStackAssembled().copy();
-            if (!player.inventory.addItemStackToInventory(assembledStack))
-            {
-                new EntityItem(player.world, player.posX, player.posY, player.posZ, assembledStack);
-            }
+        // Consume Items
+        InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(this.player);
+        for (ItemStack requirement: schematic.getItemsRequired()) {
+            int cost = requirement.getCount() * this.desiredAmount;
+            inventorySnapshot.consumeItem(requirement.getItem(), cost);
         }
+
+        ItemStack resultingItemStack = new ItemStack(assembledItemStack.getItem(), assembledItemStack.getCount() * this.desiredAmount);
+        player.inventory.addItemStackToInventory(resultingItemStack);
     }
 
     public boolean canAssembleSchematic() {
