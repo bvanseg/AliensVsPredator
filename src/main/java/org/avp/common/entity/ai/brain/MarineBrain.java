@@ -24,7 +24,6 @@ import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
 import org.weapon.common.entity.EntityGrenade;
-import org.weapon.common.item.init.WeaponItems;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -47,13 +46,12 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         Arrays.stream(sets).forEach(set -> set.add(block));
     }
 
-    private static final Predicate<EntityItem> ITEM_PICKUP_PREDICATE = entityItem -> {
+    private final Predicate<EntityItem> itemPickupPredicate = entityItem -> {
         Item item = entityItem.getItem().getItem();
         if (item instanceof ItemFood) return true; // Marines can pick up food.
-        if (item == WeaponItems.ITEM_AMMO_AR ||
-                item == WeaponItems.ITEM_AMMO_PISTOL ||
-                item == WeaponItems.ITEM_AMMO_SMG ||
-                item == WeaponItems.ITEM_AMMO_SNIPER) return true; // Marines can pick up ammunition.
+        if (this.getEntity()
+                .getMarineType().getFirearmItem()
+                .getFirearmProperties().getConsumablesForReload().contains(item)) return true; // Marines can pick up ammunition.
         if (item == Item.getItemFromBlock(Blocks.TORCH)) return true; // Marines can pick up torches.
 
         return false;
@@ -71,14 +69,24 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         this.addSense(new NearestAvoidTargetBrainSensor(1, e ->
                 e instanceof EntityAcidPool ||
                 e instanceof EntityGrenade ||
-                e instanceof EntityTNTPrimed
+                e instanceof EntityTNTPrimed ||
+                (!this.getEntity().hasLoadedAmmunition() && EntitySelectorMarine.instance.test(e)) || // Avoid target if no ammo.
+                this.getEntity().getDistanceSq(e) < 4 && EntitySelectorMarine.instance.test(e) // Avoid target if too close
         ));
     }
 
     @Override
     public void initTasks() {
         EntityMarine entity = this.getEntity();
+
         this.addTask(new NearestAttackableTargetBrainTask());
+        this.addTask(
+            new InvalidateAttackTargetBrainTask(target ->
+                !this.getEntity().hasLoadedAmmunition() || // Out of ammo
+                this.getEntity().getDistanceSq(target) < 4 // Target too close
+            )
+        );
+
         this.addTask(new SwimBrainTask(entity));
         this.addTask(
             new MarineRangedAttackBrainTask(
@@ -99,7 +107,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     }
 
     private void initInventoryTasks() {
-        this.addTask(new FindItemBrainTask(ITEM_PICKUP_PREDICATE, 0.6D)
+        this.addTask(new FindItemBrainTask(itemPickupPredicate, 0.6D)
                 .onUseItem(entityItem -> this.getEntity().getInventory().addItem(entityItem.getItem())));
         this.addTask(new EatFoodBrainTask());
         this.addTask(new PlaceTorchBrainTask());
@@ -124,7 +132,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     private void initCombatTasks() {
         this.addTask(new HurtByTargetBrainTask());
         this.addTask(new NearestAttackableTargetBrainTask());
-        this.addTask(new AvoidNearestAvoidTargetBrainTask(0.6F, 0.6F, e -> {
+        this.addTask(new AvoidNearestAvoidTargetBrainTask(0.6F, 0.8F, e -> {
             if (e instanceof EntityAcidPool)
                 return 3.0F;
             if (e instanceof EntityCreeper && ((EntityCreeper)e).hasIgnited())
