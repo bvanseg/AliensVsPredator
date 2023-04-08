@@ -69,7 +69,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
                     .getFirearmItem()
                     .getFirearmProperties()
                     .getConsumablesForReload()
-                    .forEach(consumable -> this.inventory.addItem(new ItemStack(consumable, this.getRNG().nextInt(5) + 1)));
+                    .forEach(consumable -> this.inventory.addItem(new ItemStack(consumable, this.getRNG().nextInt(5) + 3)));
         }
     }
 
