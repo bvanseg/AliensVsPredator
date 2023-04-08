@@ -66,10 +66,14 @@ public class RangedAttackBrainTask extends AbstractEntityBrainTask {
 
         if (--this.rangedAttackTime <= 0)
         {
-            float f = MathHelper.sqrt(d0) / this.attackRadius;
-            float distanceFactor = MathHelper.clamp(f, 0.1F, 1.0F);
-            ((IRangedAttackMob)ctx.getEntity()).attackEntityWithRangedAttack(attackTarget, distanceFactor);
-            this.rangedAttackTime = maxRangedAttackWaitTime;
+            this.attackEntityWithRangedAttack(attackTarget, d0);
         }
+    }
+
+    protected void attackEntityWithRangedAttack(EntityLivingBase attackTarget, double d0) {
+        float f = MathHelper.sqrt(d0) / this.attackRadius;
+        float distanceFactor = MathHelper.clamp(f, 0.1F, 1.0F);
+        ((IRangedAttackMob)ctx.getEntity()).attackEntityWithRangedAttack(attackTarget, distanceFactor);
+        this.rangedAttackTime = maxRangedAttackWaitTime;
     }
 }

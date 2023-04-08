@@ -13,10 +13,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
-import org.avp.common.entity.ai.brain.task.EatFoodBrainTask;
-import org.avp.common.entity.ai.brain.task.FollowSquadLeaderBrainTask;
-import org.avp.common.entity.ai.brain.task.PlaceTorchBrainTask;
-import org.avp.common.entity.ai.brain.task.RangedAttackBrainTask;
+import org.avp.common.entity.ai.brain.task.*;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
 import org.avp.common.entity.living.EntityMarine;
 import org.lib.brain.impl.AbstractEntityBrain;
@@ -80,12 +77,14 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         this.addTask(new NearestAttackableTargetBrainTask());
         this.addTask(new SwimBrainTask(entity));
         this.addTask(
-            new RangedAttackBrainTask(
+            new MarineRangedAttackBrainTask(
                 0.4D,
                 this.getEntity().getMarineType().getFirearmItem().getFirearmProperties().getTickDelayBetweenShots(),
                 24
             )
         );
+        this.addTask(new MarineReloadTask());
+
         // TODO:
         this.addTask(new BrainTaskAdapter(new EntityAIAvoidEntity<>(entity, EntityZombie.class, 8.0F, 0.6D, 0.6D)));
         this.addTask(new BrainTaskAdapter(new EntityAIMoveIndoors(entity)));
@@ -96,6 +95,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         this.addTask(new WanderBrainTask( 0.6D));
         this.addTask(new WatchClosestBrainTask(EntityPlayer.class, 3.0F));
         this.addTask(new WatchClosestBrainTask(EntityLiving.class, 8.0F));
+
         // TODO:
         this.addTask(new BrainTaskAdapter(new EntityAIMoveIndoors(entity)));
         this.addTask(new BrainTaskAdapter(new EntityAIOpenDoor(entity, true)));

@@ -33,6 +33,7 @@ import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
+import org.lib.common.FuncUtil;
 import org.lib.common.inventory.InventorySnapshot;
 import org.weapon.common.entity.EntityBullet;
 
@@ -52,6 +53,8 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
 
     protected MarineBrain brain;
 
+    protected int loadedAmmunition;
+
     private final InventoryBasic inventory;
 
     public EntityMarine(World world)
@@ -60,6 +63,14 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.setSize(0.75F, 2F);
         this.experienceValue = 5;
         this.inventory = new InventoryBasic("Items", false, 9 * 3);
+
+        if (!this.world.isRemote) {
+            this.getMarineType()
+                    .getFirearmItem()
+                    .getFirearmProperties()
+                    .getConsumablesForReload()
+                    .forEach(consumable -> this.inventory.addItem(new ItemStack(consumable, this.getRNG().nextInt(5) + 1)));
+        }
     }
 
     @Override
@@ -149,7 +160,13 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
             }
 
             this.brain.update();
-            this.getDataManager().set(AIMING, this.getAttackTarget() != null || this.getBrain().hasMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET));
+
+            EntityLivingBase target =
+                    FuncUtil.let(
+                            this.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET).orElse(this.getAttackTarget()),
+                            t -> (EntityLivingBase) t
+                    );
+            this.getDataManager().set(AIMING, target != null && !target.isDead && target.getHealth() > 0);
         }
     }
 
@@ -209,9 +226,9 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase targetEntity, float damage)
     {
-        if (this.getAttackTarget() != null)
+        if (this.getAttackTarget() != null && !this.getAttackTarget().isDead  && this.getAttackTarget().getHealth() > 0)
         {
-            EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.0000001F);
+            EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, this.getMarineType().getFirearmItem().getFirearmProperties().getDamageMultiplier());
             this.world.spawnEntity(entityBullet);
             SoundEvent sound = getMarineType().getGunfireSound();
             if (sound != null) {
@@ -270,6 +287,18 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return this.getDataManager().get(SQUAD_LEADER_UNIQUE_ID);
     }
 
+    public int getLoadedAmmunition() {
+        return this.loadedAmmunition;
+    }
+
+    public boolean hasLoadedAmmunition() {
+        return this.getLoadedAmmunition() > 0;
+    }
+
+    public void setLoadedAmmunition(int loadedAmmunition) {
+        this.loadedAmmunition = Math.max(0, loadedAmmunition);
+    }
+
     public void setSquadLeaderUniqueID(Optional<UUID> squadLeaderUniqueId) {
         this.getDataManager().set(SQUAD_LEADER_UNIQUE_ID, squadLeaderUniqueId);
     }
@@ -291,6 +320,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     private static final String RANK_NBT_KEY = "Rank";
     private static final String SQUAD_LEADER_NBT_KEY = "SquadLeader";
     private static final String INVENTORY_NBT_KEY = "Inventory";
+    private static final String LOADED_AMMUNITION_NBT_KEY = "LoadedAmmo";
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt)
@@ -302,6 +332,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         nbt.setInteger(CAMO_COLOR_NBT_KEY, this.getCamoColor());
         nbt.setString(NAME_NBT_KEY, this.getMarineName());
         nbt.setInteger(RANK_NBT_KEY, this.getRank().ordinal());
+        nbt.setInteger(LOADED_AMMUNITION_NBT_KEY, this.loadedAmmunition);
 
         if (this.getSquadLeaderID().isPresent()) {
             nbt.setUniqueId(SQUAD_LEADER_NBT_KEY, this.getSquadLeaderID().get());
@@ -336,6 +367,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.dataManager.set(CAMO_COLOR, nbt.getInteger(CAMO_COLOR_NBT_KEY));
         this.dataManager.set(NAME, nbt.getString(NAME_NBT_KEY));
         this.dataManager.set(RANK, MarineDecorator.MarineRank.values()[nbt.getInteger(RANK_NBT_KEY)]);
+        this.loadedAmmunition = nbt.getInteger(LOADED_AMMUNITION_NBT_KEY);
 
         if (nbt.hasKey(SQUAD_LEADER_NBT_KEY)) {
             this.setSquadLeaderUniqueID(Optional.of(nbt.getUniqueId(SQUAD_LEADER_NBT_KEY)));

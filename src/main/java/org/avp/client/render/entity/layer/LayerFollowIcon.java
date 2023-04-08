@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.item.ItemStack;
 import org.avp.common.AVPItems;
 import org.avp.common.entity.living.EntityMarine;
+import org.lib.common.inventory.InventorySnapshot;
 
 /**
  * @author Boston Vanseghi
@@ -15,6 +16,9 @@ import org.avp.common.entity.living.EntityMarine;
 public class LayerFollowIcon implements LayerRenderer<EntityMarine> {
     @Override
     public void doRenderLayer(EntityMarine entityMarine, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+
+//        InventorySnapshot inventorySnapshot = entityMarine.getInventorySnapshot();
+
         if (entityMarine.getSquadLeaderID().isPresent() && entityMarine.getSquadLeaderID().get().equals(ClientGame.instance.minecraft().player.getUniqueID())) {
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.0F, -0.9F, 0.0F);
