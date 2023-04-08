@@ -213,7 +213,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     private void sendDeathMessageToSquadLeader() {
         if (!this.getSquadLeaderID().isPresent()) return;
 
-        EntityLivingBase squadLeader = this.world.getPlayerEntityByUUID(this.getSquadLeaderID().get());
+        EntityPlayer squadLeader = this.world.getPlayerEntityByUUID(this.getSquadLeaderID().get());
 
         if (squadLeader == null) return;
 
@@ -250,8 +250,16 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return this.getRank().getShorthandName() + " " + this.getMarineName();
     }
 
+    // If this is set to true, the marine's death message will be once by default, and sent twice if they have a squad leader
+    // (the second being sent onDeath).
     @Override
     public boolean hasCustomName() {
+        return false;
+    }
+
+    // The marine should always render their name tag.
+    @Override
+    public boolean getAlwaysRenderNameTag() {
         return true;
     }
 
