@@ -1,35 +1,38 @@
 package org.alien.common.entity.living.xenomorph;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIAttackMelee;
-import net.minecraft.entity.ai.EntityAIAttackRanged;
-import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.EntityAcidProjectile;
+import org.alien.common.entity.ai.brain.xenomorph.SpitterBrain;
+import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 
 public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob, HiveMember
 {
-    private final EntityAIBase rangedAttackAI = new EntityAIAttackRanged(this, 0.4D, 16, 40);
-    private final EntityAIAttackMelee meleeAttackAI = new EntityAIAttackMelee(this, 1.2D, false);
-    
-    private boolean isMeleeMode = false;
     
     public EntitySpitter(World par1World)
     {
         super(par1World);
         this.experienceValue = 275;
         this.setSize(1.0F, 2.5F);
+    }
+
+    @Override
+    public XenomorphBrain getBrain() {
+        if (brain == null && !this.world.isRemote) {
+            brain = new SpitterBrain(this);
+        }
+        return brain;
     }
 
     @Override
@@ -64,39 +67,6 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob,
     {
         return 2;
     }
-    
-    /**
-     * Updates the combat tasks of the spitter. If an entity is within sqrt(34) blocks, it will use melee. Else, it will use spit.
-     */
-    public void updateCombatTasks()
-    {
-        float rangeThreshold = 34f;
-        
-        if(this.getAttackTarget() != null)
-        {
-            if (this.getDistanceSq(this.getAttackTarget()) <= rangeThreshold && !this.isMeleeMode)
-            {
-                this.isMeleeMode = true;
-                this.tasks.removeTask(rangedAttackAI);
-                this.tasks.addTask(1, meleeAttackAI);
-            }
-            else if (this.getDistanceSq(this.getAttackTarget()) >= rangeThreshold && this.isMeleeMode)
-            {
-                this.isMeleeMode = false;
-                this.tasks.removeTask(meleeAttackAI);
-                this.tasks.addTask(1, rangedAttackAI);
-            }
-        }
-    }
-
-    @Override
-    public boolean attackEntityAsMob(Entity entity)
-    {
-        if(!isMeleeMode)
-            this.attackEntityWithRangedAttack((EntityLivingBase) entity, 0.2f);
-        
-        return super.attackEntityAsMob(entity);
-    }
 
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase targetEntity, float damage)
@@ -107,18 +77,16 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob,
 
             if (this.canEntityBeSeen(targetEntity))
             {
-                EntityAcidProjectile entityacid = new EntityAcidProjectile(this.world, this, targetEntity, 1.6F, 14 - damage * 4);
-                entityacid.setDamage(damage * 2.0F + this.rand.nextGaussian() * 0.25D + damage * 0.11F);
-                this.world.spawnEntity(entityacid);
+                EntityAcidProjectile entityAcidProjectile = new EntityAcidProjectile(this.world, this);
+                double d0 = targetEntity.posX - this.posX;
+                double d1 = targetEntity.getEntityBoundingBox().minY + (targetEntity.height / 3.0F) - entityAcidProjectile.posY;
+                double d2 = targetEntity.posZ - this.posZ;
+                double d3 = MathHelper.sqrt(d0 * d0 + d2 * d2);
+                entityAcidProjectile.shoot(d0, d1 + d3 * 0.20000000298023224, d2, 1.6F, (14 - this.world.getDifficulty().getId() * 4));
+                entityAcidProjectile.setDamage(damage * 2.0F + this.rand.nextGaussian() * 0.25D + damage * 0.11F);
+                this.world.spawnEntity(entityAcidProjectile);
             }
         }
-    }
-
-    @Override
-    public void onUpdate()
-    {
-        super.onUpdate();
-        this.updateCombatTasks();
     }
 
     @Override
