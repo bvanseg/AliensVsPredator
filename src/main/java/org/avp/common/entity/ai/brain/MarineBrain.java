@@ -13,9 +13,11 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
+import org.avp.common.AVPNetworking;
 import org.avp.common.entity.ai.brain.task.*;
 import org.avp.common.entity.ai.selector.EntitySelectorMarine;
 import org.avp.common.entity.living.EntityMarine;
+import org.avp.common.network.packet.client.PacketSyncEntityInventory;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
@@ -108,7 +110,10 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
 
     private void initInventoryTasks() {
         this.addTask(new FindItemBrainTask(itemPickupPredicate, 0.6D)
-                .onUseItem(entityItem -> this.getEntity().getInventory().addItem(entityItem.getItem())));
+                .onUseItem(entityItem -> {
+                    this.getEntity().getInventory().addItem(entityItem.getItem());
+                    AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(this.getEntity(), this.getEntity().getInventory()));
+                }));
         this.addTask(new EatFoodBrainTask());
         this.addTask(new PlaceTorchBrainTask());
     }

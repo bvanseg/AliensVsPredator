@@ -2,6 +2,7 @@ package org.avp.common.entity.living;
 
 import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import com.google.common.base.Optional;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
@@ -14,7 +15,6 @@ import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -25,7 +25,8 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPItems;
 import org.avp.common.entity.ai.brain.MarineBrain;
@@ -34,12 +35,14 @@ import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.common.FuncUtil;
+import org.lib.common.InventoryHolder;
+import org.lib.common.inventory.InventoryNBTUtil;
 import org.lib.common.inventory.InventorySnapshot;
 import org.weapon.common.entity.EntityBullet;
 
 import java.util.UUID;
 
-public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Brainiac<MarineBrain>
+public class EntityMarine extends EntityCreature implements IEntityAdditionalSpawnData, InventoryHolder, IMob, IRangedAttackMob, Brainiac<MarineBrain>
 {
 
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
@@ -87,7 +90,7 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
      *
      * @return The marine's inventory.
      */
-    @Deprecated
+    @Override
     public InventoryBasic getInventory() {
         return this.inventory;
     }
@@ -331,6 +334,12 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     private static final String LOADED_AMMUNITION_NBT_KEY = "LoadedAmmo";
 
     @Override
+    public void writeSpawnData(ByteBuf byteBuf) {
+        NBTTagCompound tag = InventoryNBTUtil.writeInventoryToNBT(INVENTORY_NBT_KEY, this.getInventory());
+        ByteBufUtils.writeTag(byteBuf, tag);
+    }
+
+    @Override
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
@@ -346,23 +355,13 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
             nbt.setUniqueId(SQUAD_LEADER_NBT_KEY, this.getSquadLeaderID().get());
         }
 
-        this.writeInventoryToNBT(nbt);
+        InventoryNBTUtil.writeInventoryToNBT(INVENTORY_NBT_KEY, this.inventory);
     }
 
-    private void writeInventoryToNBT(NBTTagCompound nbt) {
-        NBTTagList nbttaglist = new NBTTagList();
-
-        for (int i = 0; i < this.inventory.getSizeInventory(); ++i)
-        {
-            ItemStack itemstack = this.inventory.getStackInSlot(i);
-
-            if (!itemstack.isEmpty())
-            {
-                nbttaglist.appendTag(itemstack.writeToNBT(new NBTTagCompound()));
-            }
-        }
-
-        nbt.setTag(INVENTORY_NBT_KEY, nbttaglist);
+    @Override
+    public void readSpawnData(ByteBuf byteBuf) {
+        NBTTagCompound tag = ByteBufUtils.readTag(byteBuf);
+        InventoryNBTUtil.readInventoryFromNBT(INVENTORY_NBT_KEY, tag, this.inventory);
     }
 
     @Override
@@ -381,20 +380,6 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
             this.setSquadLeaderUniqueID(Optional.of(nbt.getUniqueId(SQUAD_LEADER_NBT_KEY)));
         }
 
-        this.readInventoryFromNBT(nbt);
-    }
-
-    private void readInventoryFromNBT(NBTTagCompound nbt) {
-        NBTTagList nbttaglist = nbt.getTagList(INVENTORY_NBT_KEY, Constants.NBT.TAG_COMPOUND);
-
-        for (int i = 0; i < nbttaglist.tagCount(); ++i)
-        {
-            ItemStack itemstack = new ItemStack(nbttaglist.getCompoundTagAt(i));
-
-            if (!itemstack.isEmpty())
-            {
-                this.inventory.addItem(itemstack);
-            }
-        }
+        InventoryNBTUtil.readInventoryFromNBT(INVENTORY_NBT_KEY, nbt, this.inventory);
     }
 }

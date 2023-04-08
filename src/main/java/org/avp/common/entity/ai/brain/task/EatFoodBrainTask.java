@@ -6,7 +6,9 @@ import net.minecraft.item.ItemAppleGold;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import org.avp.common.AVPNetworking;
 import org.avp.common.entity.living.EntityMarine;
+import org.avp.common.network.packet.client.PacketSyncEntityInventory;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
@@ -86,6 +88,9 @@ public class EatFoodBrainTask extends AbstractEntityBrainTask {
             inventorySnapshot.consumeItem(this.foodItemStack.getItem(), 1);
             ctx.getEntity().setHealth(ctx.getEntity().getHealth() + healAmount);
             this.isEating = false;
+
+            // Sync inventory to clients
+            AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(marine, marine.getInventory()));
         }
         else if (this.eatTimer % 4 == 0) {
             ctx.getEntity().playSound(SoundEvents.ENTITY_GENERIC_EAT, 1F, 1F);

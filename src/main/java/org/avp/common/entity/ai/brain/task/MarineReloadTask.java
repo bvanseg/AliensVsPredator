@@ -3,7 +3,9 @@ package org.avp.common.entity.ai.brain.task;
 import net.minecraft.item.Item;
 import net.minecraft.util.SoundCategory;
 import org.avp.client.AVPSounds;
+import org.avp.common.AVPNetworking;
 import org.avp.common.entity.living.EntityMarine;
+import org.avp.common.network.packet.client.PacketSyncEntityInventory;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.common.inventory.InventorySnapshot;
 import org.weapon.common.item.firearm.rework.FirearmProperties;
@@ -49,6 +51,9 @@ public class MarineReloadTask extends AbstractEntityBrainTask {
                 Item firstConsumableAmmo = firstConsumableAmmoOptional.get();
                 inventorySnapshot.consumeItem(firstConsumableAmmo, 1);
                 marine.setLoadedAmmunition(firearmProperties.getMaxAmmunition());
+
+                // Sync inventory edit to clients.
+                AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(marine, marine.getInventory()));
             }
         }
     }
