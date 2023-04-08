@@ -68,7 +68,11 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         this.addSense(new EntityBrainSensor(1));
         this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorMarine.instance));
         this.addSense(new NearestBlockPositionsOfInterestSensor(1, 8, BLOCKS_OF_INTEREST::contains));
-        this.addSense(new NearestAvoidTargetBrainSensor(1, e -> e instanceof EntityAcidPool || e instanceof EntityGrenade || e instanceof EntityTNTPrimed));
+        this.addSense(new NearestAvoidTargetBrainSensor(1, e ->
+                e instanceof EntityAcidPool ||
+                e instanceof EntityGrenade ||
+                e instanceof EntityTNTPrimed
+        ));
     }
 
     @Override
@@ -87,19 +91,37 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
 
         // TODO:
         this.addTask(new BrainTaskAdapter(new EntityAIAvoidEntity<>(entity, EntityZombie.class, 8.0F, 0.6D, 0.6D)));
+
+        this.initNavigationTasks(entity);
+        this.initIdleTasks();
+        this.initCombatTasks();
+        this.initInventoryTasks();
+    }
+
+    private void initInventoryTasks() {
+        this.addTask(new FindItemBrainTask(ITEM_PICKUP_PREDICATE, 0.6D)
+                .onUseItem(entityItem -> this.getEntity().getInventory().addItem(entityItem.getItem())));
+        this.addTask(new EatFoodBrainTask());
+        this.addTask(new PlaceTorchBrainTask());
+    }
+
+    private void initNavigationTasks(EntityMarine entity) {
         this.addTask(new BrainTaskAdapter(new EntityAIMoveIndoors(entity)));
         this.addTask(new BrainTaskAdapter(new EntityAIRestrictOpenDoor(entity)));
         this.addTask(new BrainTaskAdapter(new EntityAIOpenDoor(entity, true)));
         this.addTask(new BrainTaskAdapter(new EntityAIMoveTowardsRestriction(entity, 0.6D)));
 
+        this.addTask(new AvoidBlockBrainTask(3F, 0.6F, 0.6F, AVOID_BLOCKS::contains));
+        this.addTask(new FollowSquadLeaderBrainTask(0.6D, 10.0F, 2.0F));
+    }
+
+    private void initIdleTasks() {
         this.addTask(new WanderBrainTask( 0.6D));
         this.addTask(new WatchClosestBrainTask(EntityPlayer.class, 3.0F));
         this.addTask(new WatchClosestBrainTask(EntityLiving.class, 8.0F));
+    }
 
-        // TODO:
-        this.addTask(new BrainTaskAdapter(new EntityAIMoveIndoors(entity)));
-        this.addTask(new BrainTaskAdapter(new EntityAIOpenDoor(entity, true)));
-
+    private void initCombatTasks() {
         this.addTask(new HurtByTargetBrainTask());
         this.addTask(new NearestAttackableTargetBrainTask());
         this.addTask(new AvoidNearestAvoidTargetBrainTask(0.6F, 0.6F, e -> {
@@ -112,15 +134,5 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
 
             return 5.0F;
         }));
-
-        this.addTask(new AvoidBlockBrainTask(3F, 0.6F, 0.6F, AVOID_BLOCKS::contains));
-
-        this.addTask(new FollowSquadLeaderBrainTask(0.6D, 10.0F, 2.0F));
-
-        // Inventory tasks.
-        this.addTask(new FindItemBrainTask(ITEM_PICKUP_PREDICATE, 0.6D)
-                .onUseItem(entityItem -> this.getEntity().getInventory().addItem(entityItem.getItem())));
-        this.addTask(new EatFoodBrainTask());
-        this.addTask(new PlaceTorchBrainTask());
     }
 }
