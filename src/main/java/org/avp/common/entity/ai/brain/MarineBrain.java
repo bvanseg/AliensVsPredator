@@ -90,13 +90,6 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         );
 
         this.addTask(new SwimBrainTask(entity));
-        this.addTask(
-            new MarineRangedAttackBrainTask(
-                0.4D,
-                this.getEntity().getMarineType().getFirearmItem().getFirearmProperties().getTickDelayBetweenShots(),
-                24
-            )
-        );
         this.addTask(new MarineReloadTask());
 
         // TODO:
@@ -135,8 +128,16 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     }
 
     private void initCombatTasks() {
+        this.addTask(new ProtectSquadLeaderTask());
         this.addTask(new HurtByTargetBrainTask());
         this.addTask(new NearestAttackableTargetBrainTask());
+        this.addTask(
+                new MarineRangedAttackBrainTask(
+                        0.4D,
+                        this.getEntity().getMarineType().getFirearmItem().getFirearmProperties().getTickDelayBetweenShots(),
+                        24
+                )
+        );
         this.addTask(new AvoidNearestAvoidTargetBrainTask(0.6F, 0.8F, e -> {
             if (e instanceof EntityAcidPool)
                 return 3.0F;
