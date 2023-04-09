@@ -399,7 +399,8 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
             nbt.setUniqueId(SQUAD_LEADER_NBT_KEY, this.getSquadLeaderID().get());
         }
 
-        InventoryNBTUtil.writeInventoryToNBT(INVENTORY_NBT_KEY, this.inventory);
+        NBTTagCompound inventoryTag = InventoryNBTUtil.writeInventoryToNBT(INVENTORY_NBT_KEY, this.inventory);
+        nbt.setTag(INVENTORY_NBT_KEY, inventoryTag);
     }
 
     @Override
@@ -426,6 +427,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
             this.setSquadLeaderUniqueID(Optional.of(squadLeaderUUID));
         }
 
-        InventoryNBTUtil.readInventoryFromNBT(INVENTORY_NBT_KEY, nbt, this.inventory);
+        NBTTagCompound inventoryTag = nbt.getCompoundTag(INVENTORY_NBT_KEY);
+        InventoryNBTUtil.readInventoryFromNBT(INVENTORY_NBT_KEY, inventoryTag, this.inventory);
     }
 }
