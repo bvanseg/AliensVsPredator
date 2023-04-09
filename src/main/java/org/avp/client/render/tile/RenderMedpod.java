@@ -39,15 +39,17 @@ public class RenderMedpod extends TileEntitySpecialRenderer<TileEntityMedpod>
             OpenGL.enableBlend();
             OpenGL.blendClear();
 
-            if (tile.getVoltage() > 0)
-            {
+            if (tile.getVoltage() > 0) {
                 OpenGL.disableLight();
                 OpenGL.disableLightMapping();
             }
 
             Resources.instance.models().MEDPOD_MASK.draw(tile);
-            OpenGL.enableLight();
-            OpenGL.enableLightMapping();
+
+            if (tile.getVoltage() > 0) {
+                OpenGL.enableLight();
+                OpenGL.enableLightMapping();
+            }
             OpenGL.blendClear();
             OpenGL.disableBlend();
             OpenGL.enableCullFace();
