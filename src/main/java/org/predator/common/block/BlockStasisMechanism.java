@@ -15,13 +15,14 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.avp.common.item.ItemEntitySummoner;
 import org.predator.common.tile.TileEntityStasisMechanism;
 
 public class BlockStasisMechanism extends Block
 {
+    private static final AxisAlignedBB BOUNDING_BOX = new AxisAlignedBB(0D, 0D, 0D, 1D, 0.2D, 1D);
+
     public BlockStasisMechanism(Material material)
     {
         super(material);
@@ -38,12 +39,6 @@ public class BlockStasisMechanism extends Block
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.INVISIBLE;
-    }
-    
-    @Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-    {
-        return null;
     }
 
     @Override
@@ -116,5 +111,15 @@ public class BlockStasisMechanism extends Block
             tile.setDirection((byte) (MathHelper.floor(((placer.rotationYaw * 4F) / 360F) + 0.5D) & 3));
             world.markBlockRangeForRenderUpdate(pos, pos);
         }
+    }
+
+    @Override
+    public boolean causesSuffocation(IBlockState state) {
+        return false;
+    }
+
+    @Override
+    public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
+        return BOUNDING_BOX.offset(pos);
     }
 }
