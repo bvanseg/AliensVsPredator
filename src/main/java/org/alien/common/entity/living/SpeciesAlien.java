@@ -197,12 +197,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
         this.getDataManager().set(JELLY_LEVEL, level);
     }
 
-    @Override
-    public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount)
-    {
-        return type == EnumCreatureType.MONSTER;
-    }
-
     protected void negateFallDamage()
     {
         this.fallDistance = 0F;
