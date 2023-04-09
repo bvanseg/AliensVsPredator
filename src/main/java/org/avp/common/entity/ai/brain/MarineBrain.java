@@ -92,9 +92,6 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         this.addTask(new SwimBrainTask(entity));
         this.addTask(new MarineReloadTask());
 
-        // TODO:
-        this.addTask(new BrainTaskAdapter(new EntityAIAvoidEntity<>(entity, EntityZombie.class, 8.0F, 0.6D, 0.6D)));
-
         this.initNavigationTasks(entity);
         this.initIdleTasks();
         this.initCombatTasks();
