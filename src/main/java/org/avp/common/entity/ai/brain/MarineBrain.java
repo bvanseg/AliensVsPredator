@@ -2,11 +2,13 @@ package org.avp.common.entity.ai.brain;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.ai.*;
+import net.minecraft.entity.ai.EntityAIMoveIndoors;
+import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
+import net.minecraft.entity.ai.EntityAIOpenDoor;
+import net.minecraft.entity.ai.EntityAIRestrictOpenDoor;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -81,26 +83,8 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     public void initTasks() {
         EntityMarine entity = this.getEntity();
 
-        this.addTask(new NearestAttackableTargetBrainTask());
-        this.addTask(
-            new InvalidateAttackTargetBrainTask(target ->
-                !this.getEntity().hasLoadedAmmunition() || // Out of ammo
-                this.getEntity().getDistanceSq(target) < 4 // Target too close
-            )
-        );
-
         this.addTask(new SwimBrainTask(entity));
-        this.addTask(
-            new MarineRangedAttackBrainTask(
-                0.4D,
-                this.getEntity().getMarineType().getFirearmItem().getFirearmProperties().getTickDelayBetweenShots(),
-                24
-            )
-        );
         this.addTask(new MarineReloadTask());
-
-        // TODO:
-        this.addTask(new BrainTaskAdapter(new EntityAIAvoidEntity<>(entity, EntityZombie.class, 8.0F, 0.6D, 0.6D)));
 
         this.initNavigationTasks(entity);
         this.initIdleTasks();
@@ -135,8 +119,23 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     }
 
     private void initCombatTasks() {
+        this.addTask(new ProtectSquadLeaderTask());
         this.addTask(new HurtByTargetBrainTask());
         this.addTask(new NearestAttackableTargetBrainTask());
+        this.addTask(
+                new InvalidateAttackTargetBrainTask(target ->
+                        !this.getEntity().hasLoadedAmmunition() || // Out of ammo
+                                this.getEntity().getDistanceSq(target) < 4 || // Target too close
+                                this.getEntity().getSquadLeaderID().isPresent() && target.getUniqueID().equals(this.getEntity().getSquadLeaderID().get()) // Do not attack squad leader.
+                )
+        );
+        this.addTask(
+                new MarineRangedAttackBrainTask(
+                        0.4D,
+                        this.getEntity().getMarineType().getFirearmItem().getFirearmProperties().getTickDelayBetweenShots(),
+                        24
+                )
+        );
         this.addTask(new AvoidNearestAvoidTargetBrainTask(0.6F, 0.8F, e -> {
             if (e instanceof EntityAcidPool)
                 return 3.0F;
