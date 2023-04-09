@@ -29,10 +29,10 @@ public class EntityBullet extends Entity
     private int     ticksInAir;
     private boolean inGround;
     private boolean doesArrowBelongToPlayer;
-    private boolean arrowCritical;
     private boolean physics;
     public Entity   shootingEntity;
     public double   damage;
+
 
     public EntityBullet(World world)
     {
@@ -45,62 +45,9 @@ public class EntityBullet extends Entity
         this.doesArrowBelongToPlayer = false;
         this.arrowShake = 0;
         this.ticksInAir = 0;
-        this.arrowCritical = false;
         this.setSize(0.5F, 0.5F);
     }
 
-    public EntityBullet(World world, double x, double y, double z)
-    {
-        super(world);
-        this.xTile = -1;
-        this.yTile = -1;
-        this.zTile = -1;
-        this.inTile = Blocks.AIR;
-        this.inGround = false;
-        this.doesArrowBelongToPlayer = false;
-        this.arrowShake = 0;
-        this.ticksInAir = 0;
-        this.arrowCritical = true;
-        this.setSize(0.5F, 0.5F);
-        this.setPosition(x, y, z);
-    }
-
-    public EntityBullet(World world, Object source, float velocity, double damage)
-    {
-        super(world);
-        this.damage = damage;
-        this.xTile = -1;
-        this.yTile = -1;
-        this.zTile = -1;
-        this.inTile = Blocks.AIR;
-        this.inGround = false;
-        this.physics = true;
-        this.doesArrowBelongToPlayer = false;
-        this.arrowShake = 0;
-        this.ticksInAir = 0;
-        this.arrowCritical = true;
-        this.setSize(0.5F, 0.5F);
-        this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
-        this.posY -= 0.10000000149011612D;
-        this.posZ -= MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
-        this.setPosition(this.posX, this.posY, this.posZ);
-        this.motionX = -MathHelper.sin(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
-        this.motionZ = MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * MathHelper.cos(this.rotationPitch / 180.0F * (float) Math.PI);
-        this.motionY = (-MathHelper.sin(this.rotationPitch / 180.0F * (float) Math.PI));
-        this.shoot(this.motionX, this.motionY, this.motionZ, velocity * 1.5F, 1.0F);
-
-        if (source instanceof EntityLivingBase)
-        {
-            EntityLivingBase living = (EntityLivingBase) source;
-            this.shootingEntity = living;
-            this.setLocationAndAngles(living.posX, living.posY + living.getEyeHeight(), living.posZ, living.rotationYaw, living.rotationPitch);
-
-            if (source instanceof EntityPlayer)
-            {
-                this.doesArrowBelongToPlayer = living instanceof EntityPlayer;
-            }
-        }
-    }
 
     public EntityBullet(World world, Object source, Entity targetEntity, float velocity, double damage)
     {
@@ -115,7 +62,6 @@ public class EntityBullet extends Entity
         this.doesArrowBelongToPlayer = false;
         this.arrowShake = 0;
         this.ticksInAir = 0;
-        this.arrowCritical = true;
         this.setSize(0.5F, 0.5F);
         this.posX -= MathHelper.cos(this.rotationYaw / 180.0F * (float) Math.PI) * 0.16F;
         this.posY -= 0.10000000149011612D;
@@ -155,7 +101,7 @@ public class EntityBullet extends Entity
             double xOffset = x / v;
             double zOffset = z / v;
             this.setLocationAndAngles(srcX + xOffset, this.posY, srcZ + zOffset, yaw, pitch);
-            this.shoot(x, y, z, velocity, damage);
+            this.shoot(x, y, z, velocity);
         }
     }
 
@@ -164,15 +110,15 @@ public class EntityBullet extends Entity
     {
     }
 
-    public void shoot(double posX, double posY, double posZ, float velocity, double damage)
+    public void shoot(double posX, double posY, double posZ, float velocity)
     {
         float v = MathHelper.sqrt(posX * posX + posY * posY + posZ * posZ);
         posX /= v;
         posY /= v;
         posZ /= v;
-        posX += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * damage;
-        posY += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * damage;
-        posZ += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * damage;
+        posX += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * 0.0000001F;
+        posY += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * 0.0000001F;
+        posZ += this.rand.nextGaussian() * (this.rand.nextBoolean() ? -1 : 1) * 0.007499999832361937D * 0.0000001F;
         posX *= velocity;
         posY *= velocity;
         posZ *= velocity;
@@ -330,18 +276,13 @@ public class EntityBullet extends Entity
             {
                 if (result.entityHit != null)
                 {
-                    if (this.shootingEntity instanceof EntityMarine && (result.entityHit instanceof EntityMarine))
+                    if (this.shootingEntity instanceof EntityMarine &&
+                            (result.entityHit instanceof EntityMarine || (((EntityMarine)this.shootingEntity).getSquadLeaderID().isPresent() &&
+                                    ((EntityMarine)this.shootingEntity).getSquadLeaderID().get().equals(result.entityHit.getUniqueID())))
+                    )
                     {
                         this.setDead();
                         return;
-                    }
-
-                    velocity = MathHelper.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-                    int attackDamage = (int) Math.ceil(velocity * damage);
-
-                    if (this.arrowCritical)
-                    {
-                        attackDamage += this.rand.nextInt(attackDamage / 2 + 2);
                     }
 
                     DamageSource damagesource = this.shootingEntity == null ? AVPDamageSources.causeBulletDamage(this) : AVPDamageSources.BULLET;
@@ -350,7 +291,7 @@ public class EntityBullet extends Entity
                     if (result.entityHit instanceof EntityLivingBase)
                     {
                         ((EntityLivingBase) result.entityHit).getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.9);
-                        result.entityHit.attackEntityFrom(damagesource, attackDamage);
+                        result.entityHit.attackEntityFrom(damagesource, (float) this.damage);
                         this.setDead();
                     }
                 }
@@ -369,7 +310,6 @@ public class EntityBullet extends Entity
                     this.posZ -= this.motionZ / velocity * 0.05000000074505806D;
                     this.inGround = true;
                     this.arrowShake = 7;
-                    this.arrowCritical = false;
                 }
             }
 

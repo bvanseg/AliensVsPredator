@@ -1,13 +1,20 @@
 package org.avp.common.entity.living;
 
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
+import com.google.common.base.Optional;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IRangedAttackMob;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -17,65 +24,88 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import org.avp.client.AVPSounds;
-import org.avp.common.AVPItemDrops;
 import org.avp.common.AVPItems;
+import org.avp.common.AVPNetworking;
 import org.avp.common.entity.ai.brain.MarineBrain;
+import org.avp.common.network.AvpDataSerializers;
+import org.avp.common.network.packet.client.PacketSyncEntityInventory;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
+import org.lib.common.FuncUtil;
+import org.lib.common.InventoryHolder;
+import org.lib.common.inventory.CachedInventoryHandler;
+import org.lib.common.inventory.InventoryNBTUtil;
+import org.lib.common.inventory.InventorySnapshot;
+import org.lib.common.predicate.Predicates;
 import org.weapon.common.entity.EntityBullet;
-import org.lib.common.inventory.ItemDropContext;
 
-import java.util.Set;
+import java.util.UUID;
 
-public class EntityMarine extends EntityCreature implements IMob, IRangedAttackMob, Brainiac<MarineBrain>
+public class EntityMarine extends EntityCreature implements IEntityAdditionalSpawnData, InventoryHolder, IMob, IRangedAttackMob, Brainiac<MarineBrain>
 {
-    protected static final int[] SKIN_TONES = new int[] { 0xF1C381FF, 0xC58C85FF, 0xECBCB4FF, 0xD1A3A4FF, 0xA1665EFF, 0x503335FF, 0x592F2AFF };
-    protected static final int[] EYE_COLORS = new int[] {
-            0x4D1500FF, // Classic brownish-black
-            0x8BB5DBFF, // Light Blue
-            0x4079C0FF, // Blue
-            0xB3B9B9FF, // Light Gray
-            0x8E9796FF, // Gray
-            0x748B9DFF, // Blue-Gray
-            0x6E9D4CFF, // Green
-            0xAA6925FF, // Amber
-            0x863603FF, // Light Brown
-            0x3f0c08FF  // Dark Brown
-    };
 
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
-    private static final DataParameter<Integer> TYPE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> SKIN_TONE   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> CAMO_COLOR  = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
-    private static final DataParameter<Integer> EYE_COLOR   = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> SKIN_TONE = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> CAMO_COLOR = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> EYE_COLOR = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
+    private static final DataParameter<String> NAME = EntityDataManager.createKey(EntityMarine.class, DataSerializers.STRING);
+    private static final DataParameter<MarineDecorator.MarineRank> RANK = EntityDataManager.createKey(EntityMarine.class, AvpDataSerializers.MARINE_RANK);
+    protected static final DataParameter<Optional<UUID>> SQUAD_LEADER_UNIQUE_ID = EntityDataManager.createKey(EntityMarine.class, DataSerializers.OPTIONAL_UNIQUE_ID);
 
     protected MarineBrain brain;
+
+    protected int loadedAmmunition;
+
+    private final InventoryBasic inventory;
 
     public EntityMarine(World world)
     {
         super(world);
         this.setSize(0.75F, 2F);
         this.experienceValue = 5;
+        this.inventory = new InventoryBasic("Items", false, 9 * 3);
+
+        if (!this.world.isRemote) {
+            this.getMarineType()
+                    .getFirearmItem()
+                    .getFirearmProperties()
+                    .getConsumablesForReload()
+                    .forEach(consumable -> this.inventory.addItem(new ItemStack(consumable, this.getRNG().nextInt(5) + 3)));
+        }
     }
 
     @Override
     public MarineBrain getBrain() {
         if (!this.world.isRemote && this.brain == null) {
             this.brain = new MarineBrain(this);
+            this.brain.init();
         }
         return this.brain;
     }
 
+    /**
+     * Gets the marine's inventory.
+     * Deprecated to discourage usage. Use getInventorySnapshot, instead.
+     *
+     * @return The marine's inventory.
+     */
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public InventoryBasic getInventory() {
+        return this.inventory;
+    }
+
+    public InventorySnapshot getInventorySnapshot() {
+        InventorySnapshot snapshot = new InventorySnapshot();
+        snapshot.snapshot(this.inventory);
+        return snapshot;
     }
 
     @Override
@@ -84,57 +114,13 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         super.entityInit();
         this.getDataManager().register(AIMING, false);
 
-        this.getDataManager().register(TYPE, this.world.rand.nextInt(MarineTypes.values().length));
-        this.getDataManager().register(SKIN_TONE, SKIN_TONES[this.world.rand.nextInt(SKIN_TONES.length)]);
+        this.getDataManager().register(TYPE, MarineDecorator.generateRandomWeaponType(this));
+        this.getDataManager().register(SKIN_TONE, MarineDecorator.generateRandomSkinTone(this));
         this.getDataManager().register(CAMO_COLOR, -1);
-        this.getDataManager().register(EYE_COLOR, EYE_COLORS[this.world.rand.nextInt(EYE_COLORS.length)]);
-    }
-
-    private int generateCamoColorBasedOnCurrentBiome() {
-        Biome biome = this.world.getBiome(this.getPosition());
-
-        int color;
-
-        Set<BiomeDictionary.Type> biomeTypes = BiomeDictionary.getTypes(biome);
-
-        if (biomeTypes.contains(BiomeDictionary.Type.NETHER)) {
-            color = 0x85_42_42_FF; // Netherrack
-        } else if (biomeTypes.contains(BiomeDictionary.Type.END)) {
-            color = 0xEE_F6_B4_FF; // End Stone
-        } else if (biomeTypes.contains(BiomeDictionary.Type.MUSHROOM)) {
-            color = 0x8B_71_73_FF; // Mycelium
-        } else if (!world.canBlockSeeSky(this.getPosition())) {
-            color = 0x74_74_74_FF; // Underground
-        }
-        else if (biomeTypes.contains(BiomeDictionary.Type.SNOWY)) {
-            color = 0xFA_FA_FA_FF; // Snow
-        } else if (biomeTypes.contains(BiomeDictionary.Type.SANDY) || biomeTypes.contains(BiomeDictionary.Type.BEACH)) {
-            color = 0xD5_C4_96_FF; // Sand
-        } else if (biomeTypes.contains(BiomeDictionary.Type.OCEAN)) {
-            color = 0x1F_3C_5A_FF; // Water
-        } else if (biomeTypes.contains(BiomeDictionary.Type.RIVER)) {
-            color = 0x30_5A_9C_FF; // Water (river)
-        } else if (biomeTypes.contains(BiomeDictionary.Type.SWAMP)) {
-            color = 0x2F_5C_41_FF; // Swamp Water
-        } else if (biomeTypes.contains(BiomeDictionary.Type.FOREST)) {
-            color = 0x3C_67_3C_FF; // Leaves (forest)
-        } else if (biomeTypes.contains(BiomeDictionary.Type.PLAINS)) {
-            color = 0x8B_AC_45_FF; // Grass
-        } else if (biomeTypes.contains(BiomeDictionary.Type.MOUNTAIN)) {
-            color = 0x7F_7F_7F_FF; // Stone
-        } else if (biomeTypes.contains(BiomeDictionary.Type.HILLS)) {
-            color = 0x8B_72_3E_FF; // Dirt
-        } else if (biomeTypes.contains(BiomeDictionary.Type.JUNGLE)) {
-            color = 0x50_76_35_FF; // Leaves (jungle)
-        } else if (biomeTypes.contains(BiomeDictionary.Type.SAVANNA)) {
-            color = 0xBF_A6_5A_FF; // Grass (savanna)
-        } else {
-            // Default coloring for camo is white.
-            color = 0xAA_AA_AA_FF;
-        }
-
-
-        return color;
+        this.getDataManager().register(EYE_COLOR, MarineDecorator.generateRandomEyeColor(this));
+        this.getDataManager().register(NAME, MarineDecorator.generateRandomMarineName(this));
+        this.getDataManager().register(RANK, MarineDecorator.generateRandomMarineRank(this));
+        this.getDataManager().register(SQUAD_LEADER_UNIQUE_ID, Optional.absent());
     }
 
     @Override
@@ -144,12 +130,6 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6499999761581421D);
         this.getEntityAttribute(SharedMonsterAttributes.ARMOR).setBaseValue(10.0D);
-    }
-
-    @Override
-    public float getBlockPathWeight(BlockPos pos)
-    {
-        return 0.5F - this.world.getLightBrightness(pos);
     }
 
     @Override
@@ -181,42 +161,116 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
             // is being invoked, the entity is positioned at 0, 0, 0, and will always get the biome
             // at that position instead of its true spawn position. So we initialize the camo color here, instead.
             if (this.getCamoColor() == -1) {
-                this.getDataManager().set(CAMO_COLOR, this.generateCamoColorBasedOnCurrentBiome());
+                this.getDataManager().set(CAMO_COLOR, MarineDecorator.generateCamoColorBasedOnCurrentBiome(this));
             }
 
-            this.brain.update();
-            this.getDataManager().set(AIMING, this.getAttackTarget() != null || this.getBrain().hasMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET));
+            this.getBrain().update();
+
+            EntityLivingBase target =
+                    FuncUtil.let(
+                            this.getBrain().getMemory(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET).orElse(this.getAttackTarget()),
+                            t -> (EntityLivingBase) t
+                    );
+            this.getDataManager().set(AIMING, target != null && !target.isDead && target.getHealth() > 0);
         }
     }
 
     @Override
     protected boolean processInteract(EntityPlayer player, EnumHand hand) {
-        if (player.getHeldItem(hand).getItem() == Items.DYE) {
-            int dyeColor = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorValue();
-            this.getDataManager().set(CAMO_COLOR, dyeColor << 8);
+        if (!this.world.isRemote) {
+            if (this.isSquadLeader(player)) {
+
+                ItemStack heldItemStack = player.getHeldItem(hand);
+                Item heldItem = heldItemStack.getItem();
+                InventorySnapshot playerInventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(player);
+
+                // Allows the player to dye the marine's camo whatever color they'd like.
+                if (heldItem == Items.DYE)
+                {
+                    int dyeColor = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorValue();
+                    this.getDataManager().set(CAMO_COLOR, dyeColor << 8);
+
+                    if (!Predicates.IS_IMMORTAL_PLAYER.test(player)) {
+                        playerInventorySnapshot.consumeItem(Items.DYE);
+                    }
+                    return super.processInteract(player, hand);
+                }
+                // Allows the player to give marines food or ammo by right-clicking.
+                else if (
+                        heldItem instanceof ItemFood ||
+                        this.getMarineType().getFirearmItem().getFirearmProperties().getConsumablesForReload().contains(heldItem)
+                )
+                {
+                    // Add item to marine's inventory.
+                    this.inventory.addItem(new ItemStack(heldItem, 1));
+                    // Remove item from player's inventory.
+                    if (!Predicates.IS_IMMORTAL_PLAYER.test(player)) {
+                        playerInventorySnapshot.consumeItem(heldItem);
+                    }
+                    // Synchronize marine's inventory.
+                    AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(this, this.inventory));
+                    return super.processInteract(player, hand);
+                }
+            }
+
+            // If the marine does not have a squad leader already, the interacting player is now the squad leader.
+            if (hand == EnumHand.MAIN_HAND) {
+                this.tryChangeSquadLeader(player);
+            }
         }
 
         return super.processInteract(player, hand);
     }
 
+    private boolean isSquadLeader(EntityLivingBase entity) {
+        return this.getSquadLeaderID().isPresent() && entity.getUniqueID().equals(this.getSquadLeaderID().get());
+    }
+
+    private void tryChangeSquadLeader(EntityPlayer player) {
+        if (!this.getSquadLeaderID().isPresent()) {
+            this.setSquadLeaderUniqueID(Optional.of(player.getUniqueID()));
+            player.sendMessage(new TextComponentString(String.format("%s is now following you.", this.getMarineName())));
+        } else {
+            UUID squadLeaderID = this.getSquadLeaderID().get();
+            if (player.getUniqueID().equals(squadLeaderID)) {
+                this.setSquadLeaderUniqueID(Optional.absent());
+                player.sendMessage(new TextComponentString(String.format("%s is no longer following you.",this.getMarineName())));
+            } else {
+                player.sendMessage(new TextComponentString(String.format("%s is already following another player!",this.getMarineName())));
+            }
+        }
+    }
+
     @Override
     public void onDeath(DamageSource damageSource)
     {
+        this.sendDeathMessageToSquadLeader();
         super.onDeath(damageSource);
 
-        ItemDropContext itemDropContext = new ItemDropContext(this);
-        itemDropContext.drop(AVPItemDrops.AMMO_AR);
-        itemDropContext.drop(AVPItemDrops.AMMO_PISTOL);
-        itemDropContext.drop(AVPItemDrops.AMMO_SMG);
-        itemDropContext.drop(AVPItemDrops.AMMO_SNIPER);
+        if (!this.world.isRemote) {
+            Inventories.dropItemsInAt(this.inventory, this.world, this.getPosition());
+        }
+    }
+
+    private void sendDeathMessageToSquadLeader() {
+        if (!this.getSquadLeaderID().isPresent()) return;
+
+        EntityPlayer squadLeader = this.world.getPlayerEntityByUUID(this.getSquadLeaderID().get());
+
+        if (squadLeader == null) return;
+
+        if (!this.world.isRemote && this.world.getGameRules().getBoolean("showDeathMessages") && squadLeader instanceof EntityPlayerMP)
+        {
+            squadLeader.sendMessage(this.getCombatTracker().getDeathMessage());
+        }
     }
 
     @Override
     public void attackEntityWithRangedAttack(EntityLivingBase targetEntity, float damage)
     {
-        if (this.getAttackTarget() != null)
+        if (this.getAttackTarget() != null && !this.getAttackTarget().isDead  && this.getAttackTarget().getHealth() > 0)
         {
-            EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, 0.0000001F);
+            EntityBullet entityBullet = new EntityBullet(this.world, this, targetEntity, 10F, this.getMarineType().getFirearmItem().getFirearmProperties().getDamageMultiplier());
             this.world.spawnEntity(entityBullet);
             SoundEvent sound = getMarineType().getGunfireSound();
             if (sound != null) {
@@ -231,6 +285,24 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         Integer marineTypeInteger = this.getDataManager().get(TYPE);
         MarineTypes marineType = MarineTypes.getTypeForId(marineTypeInteger);
         return marineType != null ? marineType : MarineTypes.M41A;
+    }
+
+    @Override
+    public String getName() {
+        return this.getRank().getShorthandName() + " " + this.getMarineName();
+    }
+
+    // If this is set to true, the marine's death message will be once by default, and sent twice if they have a squad leader
+    // (the second being sent onDeath).
+    @Override
+    public boolean hasCustomName() {
+        return false;
+    }
+
+    // The marine should always render their name tag.
+    @Override
+    public boolean getAlwaysRenderNameTag() {
+        return true;
     }
 
     public boolean isAiming()
@@ -253,6 +325,34 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         return this.dataManager.get(CAMO_COLOR);
     }
 
+    public String getMarineName() {
+        return this.dataManager.get(NAME);
+    }
+
+    public MarineDecorator.MarineRank getRank() {
+        return this.dataManager.get(RANK);
+    }
+
+    public Optional<UUID> getSquadLeaderID() {
+        return this.getDataManager().get(SQUAD_LEADER_UNIQUE_ID);
+    }
+
+    public int getLoadedAmmunition() {
+        return this.loadedAmmunition;
+    }
+
+    public boolean hasLoadedAmmunition() {
+        return this.getLoadedAmmunition() > 0;
+    }
+
+    public void setLoadedAmmunition(int loadedAmmunition) {
+        this.loadedAmmunition = Math.max(0, loadedAmmunition);
+    }
+
+    public void setSquadLeaderUniqueID(Optional<UUID> squadLeaderUniqueId) {
+        this.getDataManager().set(SQUAD_LEADER_UNIQUE_ID, squadLeaderUniqueId);
+    }
+
     @Override
     public void setSwingingArms(boolean swingingArms) { /* Do Nothing */ }
     
@@ -266,6 +366,17 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
     private static final String SKIN_TONE_NBT_KEY = "SkinTone";
     private static final String EYE_COLOR_NBT_KEY = "EyeColor";
     private static final String CAMO_COLOR_NBT_KEY = "CamoColor";
+    private static final String NAME_NBT_KEY = "MarineName";
+    private static final String RANK_NBT_KEY = "Rank";
+    private static final String SQUAD_LEADER_NBT_KEY = "SquadLeader";
+    private static final String INVENTORY_NBT_KEY = "Inventory";
+    private static final String LOADED_AMMUNITION_NBT_KEY = "LoadedAmmo";
+
+    @Override
+    public void writeSpawnData(ByteBuf byteBuf) {
+        NBTTagCompound tag = InventoryNBTUtil.writeInventoryToNBT(INVENTORY_NBT_KEY, this.getInventory());
+        ByteBufUtils.writeTag(byteBuf, tag);
+    }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbt)
@@ -275,6 +386,22 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         nbt.setInteger(SKIN_TONE_NBT_KEY, this.getSkinTone());
         nbt.setInteger(EYE_COLOR_NBT_KEY, this.getEyeColor());
         nbt.setInteger(CAMO_COLOR_NBT_KEY, this.getCamoColor());
+        nbt.setString(NAME_NBT_KEY, this.getMarineName());
+        nbt.setInteger(RANK_NBT_KEY, this.getRank().ordinal());
+        nbt.setInteger(LOADED_AMMUNITION_NBT_KEY, this.loadedAmmunition);
+
+        if (this.getSquadLeaderID().isPresent()) {
+            nbt.setUniqueId(SQUAD_LEADER_NBT_KEY, this.getSquadLeaderID().get());
+        }
+
+        NBTTagCompound inventoryTag = InventoryNBTUtil.writeInventoryToNBT(INVENTORY_NBT_KEY, this.inventory);
+        nbt.setTag(INVENTORY_NBT_KEY, inventoryTag);
+    }
+
+    @Override
+    public void readSpawnData(ByteBuf byteBuf) {
+        NBTTagCompound tag = ByteBufUtils.readTag(byteBuf);
+        InventoryNBTUtil.readInventoryFromNBT(INVENTORY_NBT_KEY, tag, this.inventory);
     }
 
     @Override
@@ -285,5 +412,17 @@ public class EntityMarine extends EntityCreature implements IMob, IRangedAttackM
         this.dataManager.set(SKIN_TONE, nbt.getInteger(SKIN_TONE_NBT_KEY));
         this.dataManager.set(EYE_COLOR, nbt.getInteger(EYE_COLOR_NBT_KEY));
         this.dataManager.set(CAMO_COLOR, nbt.getInteger(CAMO_COLOR_NBT_KEY));
+        this.dataManager.set(NAME, nbt.getString(NAME_NBT_KEY));
+        this.dataManager.set(RANK, MarineDecorator.MarineRank.values()[nbt.getInteger(RANK_NBT_KEY)]);
+        this.loadedAmmunition = nbt.getInteger(LOADED_AMMUNITION_NBT_KEY);
+
+        UUID squadLeaderUUID = nbt.getUniqueId(SQUAD_LEADER_NBT_KEY);
+
+        if (squadLeaderUUID.getLeastSignificantBits() != 0 && squadLeaderUUID.getMostSignificantBits() != 0) {
+            this.setSquadLeaderUniqueID(Optional.of(squadLeaderUUID));
+        }
+
+        NBTTagCompound inventoryTag = nbt.getCompoundTag(INVENTORY_NBT_KEY);
+        InventoryNBTUtil.readInventoryFromNBT(INVENTORY_NBT_KEY, inventoryTag, this.inventory);
     }
 }

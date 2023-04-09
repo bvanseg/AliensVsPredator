@@ -75,9 +75,10 @@ public class XenomorphBrain extends AlienBrain<SpeciesXenomorph> {
 				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.RAW_YIELD))));
 		this.addTask(new ShareJellyBrainTask());
 		this.addTask(new WatchClosestBrainTask(EntityLivingBase.class, 16F));
-		this.addTask(new AttackOnCollideBrainTask(1.0D));
+
+		this.initCombatTasks();
+
 		this.addTask(new HurtByTargetBrainTask());
-		this.addTask(new NearestAttackableTargetBrainTask());
 		this.addTask(new AvoidBlockBrainTask(3F, 1.0F, 1.0F, AVOID_BLOCKS::contains));
 		this.addTask(new DestroyBlockBrainTask(1.0D, DESTROY_BLOCKS::contains));
 
@@ -86,5 +87,10 @@ public class XenomorphBrain extends AlienBrain<SpeciesXenomorph> {
 			// TODO: Make this more flexible as a brain task.
 			this.addTask(new BrainTaskAdapter(new EntityAIBreakDoor(this.getEntity())));
 		}
+	}
+
+	public void initCombatTasks() {
+		this.addTask(new NearestAttackableTargetBrainTask());
+		this.addTask(new AttackOnCollideBrainTask(1.0D));
 	}
 }
