@@ -59,7 +59,7 @@ public class ItemFirearm extends HookedItem
         }
 
         // If the weapon has an active delay, return early.
-        if (DelayHandler.instance.hasDelay(player, hand)) {
+        if (DelayHandler.instance.hasDelay(player, hand) || ReloadHandler.instance.isReloading(player, hand)) {
             return super.onItemRightClick(world, player, hand);
         }
 
