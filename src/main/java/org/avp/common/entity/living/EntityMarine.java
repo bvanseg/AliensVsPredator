@@ -17,7 +17,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
@@ -87,6 +86,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     public MarineBrain getBrain() {
         if (!this.world.isRemote && this.brain == null) {
             this.brain = new MarineBrain(this);
+            this.brain.init();
         }
         return this.brain;
     }
@@ -106,11 +106,6 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         InventorySnapshot snapshot = new InventorySnapshot();
         snapshot.snapshot(this.inventory);
         return snapshot;
-    }
-
-    @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
     }
 
     @Override
@@ -169,7 +164,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
                 this.getDataManager().set(CAMO_COLOR, MarineDecorator.generateCamoColorBasedOnCurrentBiome(this));
             }
 
-            this.brain.update();
+            this.getBrain().update();
 
             EntityLivingBase target =
                     FuncUtil.let(
