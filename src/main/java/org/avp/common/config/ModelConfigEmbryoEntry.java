@@ -72,9 +72,10 @@ public class ModelConfigEmbryoEntry {
                 hostRegistryNames.add(hostEntry.getRegistryName().toString());
             } else {
                 for (Map.Entry<ResourceLocation, EntityEntry> entry: ForgeRegistries.ENTITIES.getEntries()) {
-                    if  ((hostClass == entry.getValue().getEntityClass() ||
-                            hostClass.isAssignableFrom(entry.getValue().getEntityClass())) &&
-                            entry.getValue().getRegistryName() != null
+                    if  ((hostClass == entry.getValue().getEntityClass() || // If the entry directly matches the host class
+                            hostClass.isAssignableFrom(entry.getValue().getEntityClass())) && // Or if the entry is a subtype of the host class
+                            entry.getValue().getRegistryName() != null && // And the entry's registry name does not equal null
+                            embryoEntry.getNonHosts().stream().noneMatch(nonHost -> nonHost.isAssignableFrom(entry.getValue().getEntityClass())) // And the entry is not a subtype of the non host classes.
                     ) {
                         hostRegistryNames.add(entry.getValue().getRegistryName().toString());
                     }
