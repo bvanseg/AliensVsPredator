@@ -5,10 +5,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.client.input.handler.InputHandlerFirearm;
-import org.avp.client.input.handler.InputHandlerPulseRifle;
 import org.predator.client.input.handler.InputHandlerPlasmaCannon;
 import org.predator.client.input.handler.InputHandlerWristbracer;
+import org.weapon.client.input.handler.InputHandlerFirearm;
+import org.weapon.client.input.handler.InputHandlerPulseRifle;
 
 import java.util.ArrayList;
 

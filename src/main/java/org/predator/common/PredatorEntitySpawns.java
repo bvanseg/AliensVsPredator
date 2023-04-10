@@ -7,7 +7,7 @@ import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
-import org.avp.common.AVPSettings;
+import org.avp.common.config.ModelConfig;
 import org.lib.common.registry.EntitySpawnRegistryUtil;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
@@ -54,12 +54,12 @@ public class PredatorEntitySpawns implements IInitEvent {
 
     private void registerSpawns()
     {
-        if (AVPSettings.instance.areAutoSpawnsEnabled())
+        if (ModelConfig.getInstance().getSpawning().autoSpawnsEnabled)
         {
-            List<Biome> predatorSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Predator", AVPSettings.instance.getSpawnsPredator().value());
+            List<Biome> predatorSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Predator", new ArrayList<>(ModelConfig.getInstance().getSpawning().getPredatorSpawnBiomes()));
 
-            EntityRegistry.addSpawn(EntityYautjaWarrior.class, (Integer) AVPSettings.instance.spawnWeightEntityYautjaWarrior.value(), 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
-            EntityRegistry.addSpawn(EntityYautjaBerserker.class, (Integer) AVPSettings.instance.spawnWeightEntityYautjaBerserker.value(), 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
+            EntityRegistry.addSpawn(EntityYautjaWarrior.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityYautjaWarrior, 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
+            EntityRegistry.addSpawn(EntityYautjaBerserker.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityYautjaBerserker, 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
         }
     }
 }

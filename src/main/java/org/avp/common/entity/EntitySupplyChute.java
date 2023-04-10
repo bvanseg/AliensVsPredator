@@ -11,26 +11,23 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.item.supply.chute.SupplyChuteType;
 import org.avp.common.tile.TileEntitySupplyCrate;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public class EntitySupplyChute extends Entity
 {
-    public int            metadata;
-    public int            fallTime;
-    public boolean        shouldDropItem;
-    private boolean       hurtEntities;
-    private int           fallHurtMax;
-    private float         fallHurtAmount;
+    public int metadata;
+    public int fallTime;
+    public boolean shouldDropItem;
+    private boolean hurtEntities;
+    private int fallHurtMax;
+    private float fallHurtAmount;
     public NBTTagCompound tileEntityData;
 
     public EntitySupplyChute(World world)
@@ -40,7 +37,7 @@ public class EntitySupplyChute extends Entity
         this.fallHurtMax = 40;
         this.fallHurtAmount = 2.0F;
     }
-    
+
     public EntitySupplyChute(World world, double posX, double posY, double posZ)
     {
         this(world, posX, posY, posZ, 0);
@@ -64,40 +61,19 @@ public class EntitySupplyChute extends Entity
         this.prevPosZ = posZ;
     }
 
-    protected void entityInit()
-    {
-        ;
-    }
+    @Override
+    protected void entityInit() { /* Do Nothing */ }
 
+    @Override
     protected boolean canTriggerWalking()
     {
         return false;
     }
 
+    @Override
     public boolean canBeCollidedWith()
     {
         return !this.isDead;
-    }
-
-    protected void fall(float distance)
-    {
-        if (this.hurtEntities)
-        {
-            int i = MathHelper.ceil(distance - 1.0F);
-
-            if (i > 0)
-            {
-                ArrayList arraylist = new ArrayList(this.world.getEntitiesWithinAABBExcludingEntity(this, this.getEntityBoundingBox()));
-                DamageSource damagesource = DamageSource.FALLING_BLOCK;
-                Iterator iterator = arraylist.iterator();
-
-                while (iterator.hasNext())
-                {
-                    Entity entity = (Entity) iterator.next();
-                    entity.attackEntityFrom(damagesource, (float) Math.min(MathHelper.floor((float) i * this.fallHurtAmount), this.fallHurtMax));
-                }
-            }
-        }
     }
 
     private static final String DATA_NBT_KEY = "Data";
@@ -109,54 +85,43 @@ public class EntitySupplyChute extends Entity
     private static final String TILE_ENTITY_DATA_NBT_KEY = "TileEntityData";
 
     @Override
-    protected void writeEntityToNBT(NBTTagCompound tagCompound)
+    protected void writeEntityToNBT(NBTTagCompound nbtTagCompound)
     {
-        tagCompound.setByte(DATA_NBT_KEY, (byte) this.metadata);
-        tagCompound.setByte(TIME_NBT_KEY, (byte) this.fallTime);
-        tagCompound.setBoolean(DROP_ITEM_NBT_KEY, this.shouldDropItem);
-        tagCompound.setBoolean(HURT_ENTITIES_NBT_KEY, this.hurtEntities);
-        tagCompound.setFloat(FALL_HURT_AMOUNT_NBT_KEY, this.fallHurtAmount);
-        tagCompound.setInteger(FALL_HURT_MAX_NBT_KEY, this.fallHurtMax);
+        nbtTagCompound.setByte(DATA_NBT_KEY, (byte) this.metadata);
+        nbtTagCompound.setByte(TIME_NBT_KEY, (byte) this.fallTime);
+        nbtTagCompound.setBoolean(DROP_ITEM_NBT_KEY, this.shouldDropItem);
+        nbtTagCompound.setBoolean(HURT_ENTITIES_NBT_KEY, this.hurtEntities);
+        nbtTagCompound.setFloat(FALL_HURT_AMOUNT_NBT_KEY, this.fallHurtAmount);
+        nbtTagCompound.setInteger(FALL_HURT_MAX_NBT_KEY, this.fallHurtMax);
 
         if (this.tileEntityData != null)
         {
-            tagCompound.setTag(TILE_ENTITY_DATA_NBT_KEY, this.tileEntityData);
+            nbtTagCompound.setTag(TILE_ENTITY_DATA_NBT_KEY, this.tileEntityData);
         }
     }
 
     @Override
-    protected void readEntityFromNBT(NBTTagCompound tagCompund)
+    protected void readEntityFromNBT(NBTTagCompound nbtTagCompound)
     {
-        this.metadata = tagCompund.getByte(DATA_NBT_KEY) & 255;
-        this.fallTime = tagCompund.getByte(TIME_NBT_KEY) & 255;
+        this.metadata = nbtTagCompound.getByte(DATA_NBT_KEY) & 255;
+        this.fallTime = nbtTagCompound.getByte(TIME_NBT_KEY) & 255;
 
-        if (tagCompund.hasKey(HURT_ENTITIES_NBT_KEY, 99))
+        if (nbtTagCompound.hasKey(HURT_ENTITIES_NBT_KEY, Constants.NBT.TAG_ANY_NUMERIC))
         {
-            this.hurtEntities = tagCompund.getBoolean(HURT_ENTITIES_NBT_KEY);
-            this.fallHurtAmount = tagCompund.getFloat(FALL_HURT_AMOUNT_NBT_KEY);
-            this.fallHurtMax = tagCompund.getInteger(FALL_HURT_MAX_NBT_KEY);
+            this.hurtEntities = nbtTagCompound.getBoolean(HURT_ENTITIES_NBT_KEY);
+            this.fallHurtAmount = nbtTagCompound.getFloat(FALL_HURT_AMOUNT_NBT_KEY);
+            this.fallHurtMax = nbtTagCompound.getInteger(FALL_HURT_MAX_NBT_KEY);
         }
 
-        if (tagCompund.hasKey(DROP_ITEM_NBT_KEY, 99))
+        if (nbtTagCompound.hasKey(DROP_ITEM_NBT_KEY, Constants.NBT.TAG_ANY_NUMERIC))
         {
-            this.shouldDropItem = tagCompund.getBoolean(DROP_ITEM_NBT_KEY);
+            this.shouldDropItem = nbtTagCompound.getBoolean(DROP_ITEM_NBT_KEY);
         }
 
-        if (tagCompund.hasKey(TILE_ENTITY_DATA_NBT_KEY, 10))
+        if (nbtTagCompound.hasKey(TILE_ENTITY_DATA_NBT_KEY, Constants.NBT.TAG_COMPOUND))
         {
-            this.tileEntityData = tagCompund.getCompoundTag(TILE_ENTITY_DATA_NBT_KEY);
+            this.tileEntityData = nbtTagCompound.getCompoundTag(TILE_ENTITY_DATA_NBT_KEY);
         }
-    }
-
-    public void setHurtEntities(boolean hurtEntities)
-    {
-        this.hurtEntities = hurtEntities;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public float getShadowSize()
-    {
-        return 0.0F;
     }
 
     @SideOnly(Side.CLIENT)
@@ -165,6 +130,7 @@ public class EntitySupplyChute extends Entity
         return this.world;
     }
 
+    @Override
     @SideOnly(Side.CLIENT)
     public boolean canRenderOnFire()
     {
@@ -238,15 +204,11 @@ public class EntitySupplyChute extends Entity
 
                                     NBTTagCompound nbttagcompound = new NBTTagCompound();
                                     crate.writeToNBT(nbttagcompound);
-                                    Iterator iterator = this.tileEntityData.getKeySet().iterator();
 
-                                    while (iterator.hasNext())
-                                    {
-                                        String s = (String) iterator.next();
+                                    for (String s : this.tileEntityData.getKeySet()) {
                                         NBTBase nbtbase = this.tileEntityData.getTag(s);
 
-                                        if (!s.equals("x") && !s.equals("y") && !s.equals("z"))
-                                        {
+                                        if (!s.equals("x") && !s.equals("y") && !s.equals("z")) {
                                             nbttagcompound.setTag(s, nbtbase.copy());
                                         }
                                     }
@@ -298,6 +260,7 @@ public class EntitySupplyChute extends Entity
 
     public SupplyChuteType getType()
     {
-        return SupplyChuteType.get(this.getClass());
+        // TODO: Support other supply chute types.
+        return SupplyChuteType.UNBRANDED;
     }
 }

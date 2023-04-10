@@ -15,7 +15,6 @@ public class RenderMechanism extends Render<EntityMechanism>
     @Override
     public void doRender(EntityMechanism entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {
-        ;
     }
 
     @Override

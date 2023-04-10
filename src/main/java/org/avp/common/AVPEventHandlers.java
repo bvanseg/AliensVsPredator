@@ -22,7 +22,11 @@ import org.avp.common.world.fluids.BucketHandlingEvent;
 import org.avp.common.world.hook.FarmlandRegistry;
 import org.avp.common.world.hook.MaterialHandler;
 import org.lib.common.EntityAccessor;
+import org.lib.common.inventory.CachedInventoryHandler;
 import org.predator.client.render.VisionModeRenderEvent;
+import org.weapon.client.render.AmmoIndicatorRenderEvent;
+import org.weapon.common.delay.DelayHandler;
+import org.weapon.common.reload.ReloadHandler;
 
 import java.util.ArrayList;
 
@@ -73,6 +77,10 @@ public class AVPEventHandlers implements IInitEvent
         this.registerEvent(FarmlandRegistry.instance);
         this.registerEvent(BucketHandlingEvent.instance);
         this.registerEvent(MaterialHandler.instance);
+
+        this.registerEvent(CachedInventoryHandler.instance);
+        this.registerEvent(ReloadHandler.instance);
+        this.registerEvent(DelayHandler.instance);
     }
 
     public void registerEvent(Object event)

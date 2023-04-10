@@ -1,6 +1,5 @@
 package org.alien.common.entity.living.xenomorph;
 
-import com.asx.mdx.common.Game;
 import com.asx.mdx.common.minecraft.Pos;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
@@ -12,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -21,11 +19,10 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.maturity.MaturityEntries;
 import org.alien.common.api.maturity.MaturityEntry;
 import org.alien.common.api.parasitoidic.Nascentic;
-import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.ai.brain.xenomorph.ChestbursterBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPDamageSources;
@@ -86,42 +83,6 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
         
         if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.test(this.getAttackTarget()))
             this.setAttackTarget(null);
-    }
-
-    @Override
-    public boolean isReadyToMature(RoyalOrganism jellyProducer)
-    {
-        MaturityEntry maturityEntry = MaturityEntries.getEntryFor(this.getClass()).orElse(MaturityEntries.DEFAULT);
-        return this.ticksExisted >= maturityEntry.getMaturityTime() || this.getJellyLevel() >= maturityEntry.getRequiredJellyLevel();
-    }
-
-    @Override
-    public void mature()
-    {
-        MaturityEntry maturityEntry = MaturityEntries.getEntryFor(this.getClass()).orElse(MaturityEntries.DEFAULT);
-        if (this.getJellyLevel() >= maturityEntry.getRequiredJellyLevel() && this.ticksExisted < maturityEntry.getMaturityTime())
-        {
-            this.setJellyLevel(this.getJellyLevel() - maturityEntry.getRequiredJellyLevel());
-        }
-
-        SpeciesAlien matureState = (SpeciesAlien) Entities.constructEntity(this.world, this.matureState);
-
-        if (matureState != null)
-        {
-            matureState.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0F, 0.0F);
-            this.world.spawnEntity(matureState);
-
-            for (int particleCount = 0; particleCount < 8; ++particleCount)
-            {
-                this.world.spawnParticle(EnumParticleTypes.SNOWBALL, this.posX, this.posY, this.posZ, 0.0D, 0.0D, 0.0D);
-            }
-
-        }
-        else if (Game.instance.isDevEnvironment())
-        {
-            // TODO:
-        }
-        this.setDead();
     }
 
     @Override
@@ -186,28 +147,15 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
     @Override
     public void vitalize(EntityLivingBase host)
     {
-        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
-        this.matureState = organism.getEmbryo().getResultingOrganism();
-        
-        Pos safeLocation = Entities.getSafeLocationAround(this, new Pos((int)host.posX, (int)host.posY, (int)host.posZ));
-        
-        if (safeLocation == null)
-        {
-            safeLocation = new Pos((int)host.posX, (int)host.posY, (int)host.posZ);
-        }
-        
-        this.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
-        host.world.spawnEntity(this);
-        organism.removeEmbryo();
-        host.getActivePotionEffects().clear();
-        host.attackEntityFrom(AVPDamageSources.causeChestbursterDamage(this, host), 100000F);
-        if(!host.isDead)
-            host.setHealth(0);
     }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(AlienItems.SUMMONER_CHESTBURSTER);
+    }
+
+    public Class<? extends Entity> getMatureState() {
+        return this.matureState;
     }
 }

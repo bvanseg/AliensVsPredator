@@ -1,5 +1,6 @@
 package org.alien.client.render.util;
 
+import net.minecraft.util.math.MathHelper;
 import org.alien.common.api.maturity.MaturityEntries;
 import org.alien.common.api.maturity.MaturityEntry;
 import org.alien.common.entity.living.SpeciesAlien;
@@ -23,6 +24,6 @@ public class AlienGrowthUtil {
             additionalScale = alien.growthProgress / (maturityEntry.getRequiredJellyLevel() * scaleReductionFactor);
         }
 
-        return additionalScale;
+        return MathHelper.clamp(additionalScale, 0F, 0.33F);
     }
 }

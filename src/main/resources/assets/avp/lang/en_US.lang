@@ -208,6 +208,11 @@ tile.avp:unistone.name=Unidentified stone
 tile.avp:unisand.name=Unidentified sand
 tile.avp:unigravel.name=Unidentified gravel
 tile.avp:unitree.log.name=Unidentified Wood
+tile.avp:unidentified_planks.name=Unidentified Wood Planks
+tile.avp:unidentified_wood_slab.name=Unidentified Wood Slab
+tile.avp:unidentified_wood_stairs.name=Unidentified Wood Stairs
+tile.avp:unidentified_wood_fence.name=Unidentified Fence
+tile.avp:unidentified_wood_fence_gate.name=Unidentified Fence Gate
 tile.avp:unitree.tendons.name=Unidentified Tree Tendons
 tile.avp:unitree.leaves.name=Unidentified Leaves
 tile.avp:unitree.sapling.name=Unidentified Sapling
@@ -536,11 +541,26 @@ tile.avp:paradise_dirt_mossy.name=Paradise Mossy Dirt
 tile.avp:paradise_dirt_podzol.name=Paradise Podzol Dirt
 tile.avp:paradise_grass.name=Paradise Grass
 tile.avp:paradise_leaves_large.name=Paradise Large Leaves
-tile.avp:paradise_log_large.name=Paradise Large Log 
-tile.avp:paradise_leaves_med.name=Paradise Medium Leaves 
-tile.avp:paradise_log_med.name=Paradise Medium Log 
-tile.avp:paradise_leaves_small.name=Paradise Small Leaves 
-tile.avp:paradise_log_small.name=Paradise Small Log 
+tile.avp:paradise_log_large.name=Paradise Large Log
+tile.avp:paradise_large_log_planks.name=Paradise Large Log Planks
+tile.avp:paradise_large_log_wood_slab.name=Paradise Large Log Wood Slab
+tile.avp:paradise_large_log_wood_stairs.name=Paradise Large Log Wood Stairs
+tile.avp:paradise_large_log_wood_fence.name=Paradise Large Log Fence
+tile.avp:paradise_large_log_wood_fence_gate.name=Paradise Large Log Fence Gate
+tile.avp:paradise_leaves_med.name=Paradise Medium Leaves
+tile.avp:paradise_log_med.name=Paradise Medium Log
+tile.avp:paradise_medium_log_planks.name=Paradise Medium Log Planks
+tile.avp:paradise_medium_log_wood_slab.name=Paradise Medium Log Wood Slab
+tile.avp:paradise_medium_log_wood_stairs.name=Paradise Medium Log Wood Stairs
+tile.avp:paradise_medium_log_wood_fence.name=Paradise Medium Log Fence
+tile.avp:paradise_medium_log_wood_fence_gate.name=Paradise Medium Log Fence Gate
+tile.avp:paradise_leaves_small.name=Paradise Small Leaves
+tile.avp:paradise_log_small.name=Paradise Small Log
+tile.avp:paradise_small_log_planks.name=Paradise Small Log Planks
+tile.avp:paradise_small_log_wood_slab.name=Paradise Small Log Wood Slab
+tile.avp:paradise_small_log_wood_stairs.name=Paradise Small Log Wood Stairs
+tile.avp:paradise_small_log_wood_fence.name=Paradise Small Log Fence
+tile.avp:paradise_small_log_wood_fence_gate.name=Paradise Small Log Fence Gate
 tile.avp:paradisian_ground_fern.name=Paradisian Ground Fern
 tile.avp:paradisian_tree_fern.name=Paradisian Tree Fern
 tile.avp:paradisian_wheat_grass.name=Paradisian Wheat Grass
@@ -549,3 +569,213 @@ tile.avp:unitree.leaves.b.name=Unitree Big Leaves
 item.avp:cobalt.name=Cobalt
 item.avp:neodymium.name=Neodymium
 item.avp:neodymium.magnet=Neodymium Magnet
+
+# CONTROLS
+keybind.group.avp=Aliens Vs Predators
+key.item.special.primary=Primary Special Ability
+key.item.special.secondary=Secondary Special Ability
+key.generic.special=Predator Vision
+
+# ADVANCEMENTS
+avp.advancements.tech.acquire.copper.title=Copper-Top
+avp.advancements.tech.acquire.copper.description=Smelt a copper ingot
+avp.advancements.tech.acquire.silicon.title=Valley Of Innovation
+avp.advancements.tech.acquire.silicon.description=Acquire silicon
+avp.advancements.tech.acquire.lithium.title=Explosive When Wet
+avp.advancements.tech.acquire.lithium.description=Smelt a lithium ingot
+avp.advancements.tech.acquire.carbon.title=Carbon Copy
+avp.advancements.tech.acquire.carbon.description=Acquire carbon
+avp.advancements.tech.acquire.aluminum.title=Aluminated
+avp.advancements.tech.acquire.aluminum.description=Smelt an aluminum ingot
+
+avp.advancements.tech.acquire.resistor.title=Ohm Sweet Ohm
+avp.advancements.tech.acquire.resistor.description=Craft a resistor
+avp.advancements.tech.acquire.transistor.title=Amped Up
+avp.advancements.tech.acquire.transistor.description=Craft a transistor
+avp.advancements.tech.acquire.capacitor.title=Electric Potential
+avp.advancements.tech.acquire.capacitor.description=Craft a capacitor
+avp.advancements.tech.acquire.transformer.title=Rising Power
+avp.advancements.tech.acquire.transformer.description=Craft a step-up transformer
+
+avp.advancements.tech.acquire.polycarbonate.title=Crystal Clear
+avp.advancements.tech.acquire.polycarbonate.description=Craft polycarbonate
+avp.advancements.tech.acquire.cable.title=Getting Connected
+avp.advancements.tech.acquire.cable.description=Craft cables
+avp.advancements.tech.acquire.solar.panel.title=Sunbathing
+avp.advancements.tech.acquire.solar.panel.description=Craft a solar panel
+
+avp.advancements.tech.acquire.diode.title=One-Way Street
+avp.advancements.tech.acquire.diode.description=Craft a diode
+avp.advancements.tech.acquire.led.title=Let There Be Light
+avp.advancements.tech.acquire.led.description=Craft an LED
+avp.advancements.tech.acquire.led.display.title=Let Light Be Useful
+avp.advancements.tech.acquire.led.display.description=Craft an LED Display
+
+
+avp.advancements.tech.acquire.regulator.title=Steady Hand
+avp.advancements.tech.acquire.regulator.description=Craft a regulator
+
+avp.advancements.tech.acquire.integrated.circuit.title=Integrated
+avp.advancements.tech.acquire.integrated.circuit.description=Craft an integrated circuit
+
+avp.advancements.tech.acquire.ram.title=Download Successful
+avp.advancements.tech.acquire.ram.description=Craft random access memory
+avp.advancements.tech.acquire.motherboard.title=Electronics Expert
+avp.advancements.tech.acquire.motherboard.description=Craft a motherboard
+avp.advancements.tech.acquire.microprocessor.title=Macro Results
+avp.advancements.tech.acquire.microprocessor.description=Craft a microprocessor
+avp.advancements.tech.acquire.ssd.title=Data Hoarder
+avp.advancements.tech.acquire.ssd.description=Craft a solid state drive
+avp.advancements.tech.acquire.powersupply.title=Powerhouse
+avp.advancements.tech.acquire.powersupply.description=Craft a power supply
+
+avp.advancements.tech.acquire.assembler.title=The Gathering
+avp.advancements.tech.acquire.assembler.description=Craft an assembler
+
+
+# PREDATOR ADVANCEMENTS
+avp.advancements.predators.acquire.artifact.title=Curious Oddity
+avp.advancements.predators.acquire.artifact.description=Acquire an artifact
+
+avp.advancements.predators.acquire.celtic.pickaxe.title=A Different Hunt
+avp.advancements.predators.acquire.celtic.pickaxe.description=Acquire a celtic pickaxe
+avp.advancements.predators.acquire.celtic.hoe.title=Hunter-Gatherer
+avp.advancements.predators.acquire.celtic.hoe.description=Acquire a celtic hoe
+
+avp.advancements.predators.acquire.celtic.sword.title=Honorable Blade
+avp.advancements.predators.acquire.celtic.sword.description=Acquire a celtic sword
+avp.advancements.predators.acquire.wristbracer.title=Hunter's Best Friend
+avp.advancements.predators.acquire.wristbracer.description=Acquire a wristbracer
+avp.advancements.predators.acquire.wristblade.title=Serrated Soul Stealer
+avp.advancements.predators.acquire.wristblade.description=Acquire wristblades for a wristbracer
+avp.advancements.predators.acquire.spear.title=World Within Reach
+avp.advancements.predators.acquire.spear.description=Acquire a spear
+avp.advancements.predators.acquire.smart.disc.title=Lethal Return
+avp.advancements.predators.acquire.smart.disc.description=Acquire a smart disc
+
+avp.advancements.predators.acquire.biomask.title=A New Perspective
+avp.advancements.predators.acquire.biomask.description=Acquire a biomask
+
+avp.advancements.predators.defeat.predator.title=Hunter, Hunted
+avp.advancements.predators.defeat.predator.description=Defeat a predator in combat
+avp.advancements.predators.defeat.predator.berserker.title=Rage, Rage
+avp.advancements.predators.defeat.predator.berserker.description=Defeat a berserker predator in combat
+
+
+# CONFIG
+avp.config.experimental.features.key=Experimental Features
+avp.config.experimental.features.desc=If enabled, experimental mod features will be turned on. If using this on a server, it will need to be enabled on both the client and server to work properly.
+
+avp.config.explosions.enabled.key=Explosions Enabled
+avp.config.explosions.enabled.desc=If disabled, all explosions triggered by this mod will be cancelled.
+
+avp.config.plasma.cannon.explosions.key=Plasma Cannon Explosions
+avp.config.plasma.cannon.explosions.desc=If enabled, a plasma cannon's projectiles will explode upon impact.
+
+avp.config.updater.enabled.key=Updater Enabled
+avp.config.updater.enabled.desc=Toggle the mod's update checking capabilities. Will not check for new updates if disabled.
+
+avp.config.debug.tools.enabled.key=Debug Tools Enabled
+avp.config.debug.tools.enabled.desc=Toggle the built in debugging tools. Used primarily in development environments.
+
+avp.config.nukes.enabled.key=Nukes Enabled
+avp.config.nukes.enabled.desc=If disabled, you will not be allowed to use any nuke-based functionality.
+
+avp.config.global.sound.volume.key=Global Sound Volume
+avp.config.global.sound.volume.desc=Change the default volume of this mod's sounds. EXAMPLE: 100 = 100% Volume, 50 = 50% Volume, 150 = 150% Volume
+
+avp.config.wristbracer.nuke.code.key=Wristbracer Nuke Code
+avp.config.wristbracer.nuke.code.desc=Change the wristbracer's code to activate a nuclear detonation.
+
+avp.config.blood.effects.key=Blood Effects
+avp.config.blood.effects.desc=Turns blood particle effects on or off.
+
+avp.config.hive.tessellation.key=Hive Tessellation Detail
+avp.config.hive.tessellation.desc=The visual complexity and detail of xenomorph hives.
+
+avp.config.blood.details.key=Blood Details
+avp.config.blood.details.desc=Sets the amount of blood particles and how long they last.
+
+avp.config.varda.dim.id.key=Varda Dimension ID
+avp.config.varda.dim.id.desc=Change the internal ID of this dimension. WARNING: Changing a dimension ID will prevent existing worlds from loading.
+
+avp.config.acheron.dim.id.key=Acheron Dimension ID
+avp.config.acheron.dim.id.desc=Change the internal ID of this dimension. WARNING: Changing a dimension ID will prevent existing worlds from loading.
+
+avp.config.biome.varda.id.key=Varda Biome ID
+avp.config.biome.varda.id.desc=Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.
+
+avp.config.biome.varda.forest.id.key=Varda Forest Biome ID
+avp.config.biome.varda.forest.id.desc=Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.
+
+avp.config.biome.acheron.id.key=Acheron Biome ID
+avp.config.biome.acheron.id.desc=Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.
+
+avp.config.overworld.spawns.enabled.key=Overworld Spawns Enabled
+avp.config.overworld.spawns.enabled.desc=If enabled, mobs will spawn in the overworld using spawn weights.
+
+avp.config.auto.spawns.enabled.key=Auto Spawns Enabled
+avp.config.auto.spawns.enabled.desc=If disabled, no mobs from this mod will spawn.
+
+avp.config.evolved.xenomorph.spawns.key=Evolved Xenomorph Spawns Enabled
+avp.config.evolved.xenomorph.spawns.desc=If disabled, no mature alien states will spawn naturally.
+
+avp.config.spawns.alien.key=Alien Spawns
+avp.config.spawns.alien.desc=List of biomes for aliens to spawn in.
+
+avp.config.spawns.aquatic.alien.key=Aquatic Alien Spawns
+avp.config.spawns.aquatic.alien.desc=List of biomes for aquatic aliens to spawn in.
+
+avp.config.spawns.predator.key=Predator Spawns
+avp.config.spawns.predator.desc=List of biomes for predators to spawn in.
+
+avp.config.spawns.marine.key=Marine Spawns
+avp.config.spawns.marine.desc=List of biomes for marines to spawn in.
+
+avp.config.spawns.varda.wildlife.key=Varda Wildlife Spawns
+avp.config.spawns.varda.wildlife.desc=List of biomes for Varda wildlife to spawn in.
+
+avp.config.spawn.weight.nauticomorph.key=Nauticomorph Spawn Weight
+avp.config.spawn.weight.nauticomorph.desc=Spawn Weight
+
+avp.config.spawn.weight.drone.key=Drone Spawn Weight
+avp.config.spawn.weight.drone.desc=Spawn Weight
+
+avp.config.spawn.weight.warrior.key=Warrior Spawn Weight
+avp.config.spawn.weight.warrior.desc=Spawn Weight
+
+avp.config.spawn.weight.praetorian.key=Praetorian Spawn Weight
+avp.config.spawn.weight.praetorian.desc=Spawn Weight
+
+avp.config.spawn.weight.chestburster.key=Chestburster Spawn Weight
+avp.config.spawn.weight.chestburster.desc=Spawn Weight
+
+avp.config.spawn.weight.facehugger.key=Facehugger Spawn Weight
+avp.config.spawn.weight.facehugger.desc=Spawn Weight
+
+avp.config.spawn.weight.yautja.warrior.key=Yautja Warrior Spawn Weight
+avp.config.spawn.weight.yautja.warrior.desc=Spawn Weight
+
+avp.config.spawn.weight.yautja.berserker.key=Yautja Berserker Spawn Weight
+avp.config.spawn.weight.yautja.berserker.desc=Spawn Weight
+
+avp.config.spawn.weight.marine.key=Marine Spawn Weight
+avp.config.spawn.weight.marine.desc=Spawn Weight
+
+avp.config.spawn.weight.engineer.key=Engineer Spawn Weight
+avp.config.spawn.weight.engineer.desc=Spawn Weight
+
+avp.config.spawn.weight.space.jockey.key=Space Jockey Spawn Weight
+avp.config.spawn.weight.space.jockey.desc=Spawn Weight
+
+avp.config.spawn.weight.hammerpede.key=Hammerpede Spawn Weight
+avp.config.spawn.weight.hammerpede.desc=Spawn Weight
+
+avp.config.spawn.weight.octohugger.key=Octohugger Spawn Weight
+avp.config.spawn.weight.octohugger.desc=Spawn Weight
+
+avp.config.spawn.weight.deacon.key=Deacon Spawn Weight
+avp.config.spawn.weight.deacon.desc=Spawn Weight
+
+avp.config.spawn.weight.trilobite.key=Trilobite Spawn Weight
+avp.config.spawn.weight.trilobite.desc=Spawn Weight

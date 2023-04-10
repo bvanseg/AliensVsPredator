@@ -12,7 +12,7 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.HammerpedeBrain;
 import org.alien.common.entity.living.SpeciesAlien;
@@ -29,7 +29,7 @@ public class EntityHammerpede extends SpeciesAlien implements IMob, Brainiac<Ham
     {
         super(par1World);
 
-        this.setSize(0.5F, 0.5F);
+        this.setSize(0.25F, 0.75F);
         this.experienceValue = 16;
     }
 

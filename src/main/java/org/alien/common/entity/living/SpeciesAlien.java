@@ -1,13 +1,15 @@
 package org.alien.common.entity.living;
 
 import com.asx.mdx.common.minecraft.Worlds;
-import com.asx.mdx.common.minecraft.entity.Entities;
 import com.asx.mdx.common.minecraft.entity.ItemDrop;
 import com.asx.mdx.common.minecraft.entity.animations.Animation;
 import com.asx.mdx.common.minecraft.entity.animations.IAnimated;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
@@ -18,8 +20,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.maturity.MaturityEntries;
-import org.alien.common.api.maturity.MaturityEntry;
 import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.EntityAcidPool;
 import org.avp.common.AVPDamageSources;
@@ -136,32 +136,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
         }
     }
 
-    public boolean isReadyToMature(RoyalOrganism jellyProducer)
-    {
-        MaturityEntry maturityEntry = MaturityEntries.getEntryFor(this.getClass()).orElse(null);
-        if (maturityEntry == null) return false;
-        RoyalOrganism ro = this;
-        return maturityEntry.getEntityClass() != null &&
-                maturityEntry.getRequiredJellyLevel() > 0 &&
-                ro.getJellyLevel() >= maturityEntry.getRequiredJellyLevel();
-    }
-
-    public void mature()
-    {
-        MaturityEntry maturityEntry = MaturityEntries.getEntryFor(this.getClass()).orElse(null);
-        if (maturityEntry == null) return;
-        SpeciesAlien alien = (SpeciesAlien) Entities.constructEntity(this.world, maturityEntry.getEntityClass());
-        NBTTagCompound tag = new NBTTagCompound();
-
-        alien.setLocationAndAngles(this.posX, this.posY, this.posZ, 0.0F, 0.0F);
-        this.world.spawnEntity(alien);
-        this.writeAlienToNBT(tag);
-        alien.readAlienFromNBT(tag);
-        alien.setJellyLevel(this.getJellyLevel() - maturityEntry.getRequiredJellyLevel());
-        // TODO: Create a shell of the original entity.
-        this.setDead();
-    }
-
     protected void onPickupJelly(EntityItem entityItem)
     {
         this.setJellyLevel(this.getJellyLevel() + (entityItem.getItem().getCount() * 100));
@@ -191,22 +165,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     {
         super.onUpdate();
         this.updateAnimations();
-
-        if (this.canProduceJelly())
-        {
-            this.produceJelly();
-        }
-
-        if (!this.world.isRemote)
-        {
-            if (this.ticksExisted % 20 == 0)
-            {
-                if (this.isReadyToMature(this))
-                {
-                    this.mature();
-                }
-            }
-        }
     }
 
     @Override
@@ -220,27 +178,11 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     }
 
     @Override
-    public boolean canProduceJelly()
-    {
-        return this.world.getTotalWorldTime() % this.getJellyProductionRate() == 0;
-    }
-
-    @Override
-    public int getJellyProductionRate()
-    {
-        return 8 * 20;
-    }
-
-    @Override
-    public void produceJelly()
-    {
-        if (!this.world.isRemote)
-        {
-            if (this.world.getTotalWorldTime() % 20 == 0)
-            {
-                // this.setJellyLevel(this.getJellyLevel() + 20);
-            }
+    public boolean startRiding(Entity entityIn) {
+        if (entityIn instanceof EntityBoat || entityIn instanceof EntityMinecart) {
+            return false;
         }
+        return super.startRiding(entityIn);
     }
 
     @Override
@@ -253,12 +195,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     public void setJellyLevel(int level)
     {
         this.getDataManager().set(JELLY_LEVEL, level);
-    }
-
-    @Override
-    public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount)
-    {
-        return type == EnumCreatureType.MONSTER;
     }
 
     protected void negateFallDamage()
@@ -274,7 +210,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     @Override
     protected void despawnEntity()
     {
-        ;
     }
 
     /** Animation Dependent **/

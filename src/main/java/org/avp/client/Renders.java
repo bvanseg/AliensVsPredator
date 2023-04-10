@@ -20,24 +20,38 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.client.model.item.*;
-import org.avp.client.render.entity.*;
+import org.avp.client.render.entity.RenderAPC;
+import org.avp.client.render.entity.RenderLiquidLatexPool;
+import org.avp.client.render.entity.RenderMedpodEntity;
+import org.avp.client.render.entity.RenderSupplyChute;
 import org.avp.client.render.entity.living.RenderCombatSynthetic;
 import org.avp.client.render.entity.living.RenderMarine;
 import org.avp.client.render.item.*;
-import org.avp.client.render.item.firearm.*;
-import org.avp.client.render.item.firearm.part.*;
 import org.avp.client.render.tile.*;
 import org.avp.client.render.transform.CryostasisTubeRenderers;
 import org.avp.client.render.transform.MedpodTransforms;
 import org.avp.common.AVPItems;
 import org.avp.common.block.init.AVPTileEntityBlocks;
-import org.avp.common.entity.*;
+import org.avp.common.entity.EntityAPC;
+import org.avp.common.entity.EntityLiquidLatexPool;
+import org.avp.common.entity.EntityMedpod;
+import org.avp.common.entity.EntitySupplyChute;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.tile.*;
 import org.lib.client.render.model.loader.ReflectiveModelLoader;
 import org.lib.common.registry.BlockRegistryUtil;
+import org.weapon.client.model.item.*;
+import org.weapon.client.render.entity.RenderBullet;
+import org.weapon.client.render.entity.RenderFlame;
+import org.weapon.client.render.entity.RenderGrenade;
+import org.weapon.client.render.item.RenderItemNostromoFlamethrower;
+import org.weapon.client.render.item.firearm.*;
+import org.weapon.client.render.item.firearm.part.*;
+import org.weapon.common.entity.EntityBullet;
+import org.weapon.common.entity.EntityFlame;
+import org.weapon.common.entity.EntityGrenade;
+import org.weapon.common.item.init.WeaponItems;
 
 import static net.minecraftforge.fml.client.registry.ClientRegistry.bindTileEntitySpecialRenderer;
 
@@ -113,8 +127,6 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerRenderer(EntityAPC.class, RenderAPC.class);
         Renderers.registerRenderer(EntityMedpod.class, RenderMedpodEntity.class);
         Renderers.registerRenderer(EntitySupplyChute.class, RenderSupplyChute.class);
-        Renderers.registerRenderer(EntitySupplyChuteMarines.class, RenderSupplyChute.class);
-        Renderers.registerRenderer(EntitySupplyChuteSeegson.class, RenderSupplyChute.class);
     }
     
     private void registerBlockItemRenderers()
@@ -149,18 +161,18 @@ public class Renders implements IInitEvent, IPreInitEvent
     private void registerItemRenderers()
     {
         Renderers.registerItemRenderer(AVPItems.ITEM_STUN_BATON, new RenderItemStunBaton());
-        Renderers.registerItemRenderer(AVPItems.ITEM_M_240_ICU, new RenderItemM240ICU());
-        Renderers.registerItemRenderer(AVPItems.ITEM_SEVASTOPOL_FLAMETHROWER, new RenderItemNostromoFlamethrower());
-        Renderers.registerItemRenderer(AVPItems.ITEM_M41A, new RenderItemM41A());
-        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG, new RenderItemM56SG());
-        Renderers.registerItemRenderer(AVPItems.ITEM_AK47, new RenderItemAK47());
-        Renderers.registerItemRenderer(AVPItems.ITEM_M4, new RenderItemM4());
-        Renderers.registerItemRenderer(AVPItems.ITEM_PISTOL, new RenderItem88MOD4());
-        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER, new RenderItemSniper());
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M_240_ICU, new RenderItemM240ICU());
+        Renderers.registerItemRenderer(WeaponItems.ITEM_SEVASTOPOL_FLAMETHROWER, new RenderItemNostromoFlamethrower());
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M41A, new RenderItemM41A());
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M56SG, new RenderItemM56SG());
+        Renderers.registerItemRenderer(WeaponItems.ITEM_AK47, new RenderItemAK47());
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M4, new RenderItemM4());
+        Renderers.registerItemRenderer(WeaponItems.ITEM_PISTOL, new RenderItem88MOD4());
+        Renderers.registerItemRenderer(WeaponItems.ITEM_SNIPER, new RenderItemSniper());
         Renderers.registerItemRenderer(AVPItems.ITEM_MOTION_TRACKER, new RenderItemMotionTracker());
         Renderers.registerItemRenderer(AVPItems.ITEM_APC, new RenderItemAPC());
-        Renderers.registerItemRenderer(AVPItems.ITEM_GRENADE, new RenderItemM40(Resources.instance.models().M40GRENADE));
-        Renderers.registerItemRenderer(AVPItems.ITEM_INCENDIARY_GRENADE, new RenderItemM40(Resources.instance.models().M40GRENADE_INCENDIARY));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_GRENADE, new RenderItemM40(Resources.instance.models().M40GRENADE));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_INCENDIARY_GRENADE, new RenderItemM40(Resources.instance.models().M40GRENADE_INCENDIARY));
         
         Renderers.registerItemRenderer(AVPItems.ITEM_SUPPLY_CHUTE, new RenderItemSupplyChute());
         Renderers.registerItemRenderer(AVPItems.ITEM_SUPPLY_CHUTE_MARINES, new RenderItemSupplyChute());
@@ -178,39 +190,39 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(AVPItems.SUMMONER_COMBAT_SYNTHETIC, (new RenderItemSummoner(Resources.instance.models().COMBAT_SYNTHETIC)).setScale(16F).setY(-8F));
 
         MapModelTexture<Model88MOD4> _88MOD4 = Resources.instance.models()._88MOD4;
-        Renderers.registerItemRenderer(AVPItems.ITEM_PISTOL_BARREL, new RenderItem88Mod4Barrel(_88MOD4, _88MOD4.getModel().getBarrel()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_PISTOL_ACTION, new RenderItem88Mod4Action(_88MOD4, _88MOD4.getModel().getAction()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_PISTOL_STOCK, new RenderItem88Mod4Stock(_88MOD4, _88MOD4.getModel().getStock()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_PISTOL_BARREL, new RenderItem88Mod4Barrel(_88MOD4, _88MOD4.getModel().getBarrel()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_PISTOL_ACTION, new RenderItem88Mod4Action(_88MOD4, _88MOD4.getModel().getAction()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_PISTOL_STOCK, new RenderItem88Mod4Stock(_88MOD4, _88MOD4.getModel().getStock()));
 
         MapModelTexture<ModelAK47> AK47 = Resources.instance.models().AK47;
-        Renderers.registerItemRenderer(AVPItems.ITEM_AK47_BARREL, new RenderItemAK47Barrel(AK47, AK47.getModel().getBarrel()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_AK47_ACTION, new RenderItemAK47Action(AK47, AK47.getModel().getAction()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_AK47_STOCK, new RenderItemAK47Stock(AK47, AK47.getModel().getStock()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_AK47_BARREL, new RenderItemAK47Barrel(AK47, AK47.getModel().getBarrel()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_AK47_ACTION, new RenderItemAK47Action(AK47, AK47.getModel().getAction()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_AK47_STOCK, new RenderItemAK47Stock(AK47, AK47.getModel().getStock()));
 
         MapModelTexture<ModelM4> M4 = Resources.instance.models().M4;
-        Renderers.registerItemRenderer(AVPItems.ITEM_M4_BARREL, new RenderItemM4Barrel(M4, M4.getModel().getBarrel()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_M4_ACTION, new RenderItemM4Action(M4, M4.getModel().getAction()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_M4_STOCK, new RenderItemM4Stock(M4, M4.getModel().getStock()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M4_BARREL, new RenderItemM4Barrel(M4, M4.getModel().getBarrel()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M4_ACTION, new RenderItemM4Action(M4, M4.getModel().getAction()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M4_STOCK, new RenderItemM4Stock(M4, M4.getModel().getStock()));
 
         MapModelTexture<ModelM56SG> M56SG = Resources.instance.models().M56SG;
-        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG_ACTION, new RenderItemM56SGAction(M56SG, M56SG.getModel().getAction()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG_AIMING_MODULE, new RenderItemM56SGAimingModule(M56SG, M56SG.getModel().getAccessories()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG_BARREL, new RenderItemM56SGBarrel(M56SG, M56SG.getModel().getBarrel()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG_STOCK, new RenderItemM56SGStock(M56SG, M56SG.getModel().getStock()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_M56SG_SUPPORT_FRAME, new RenderItemM56SGSupportFrame(M56SG, M56SG.getModel().getPeripherals()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M56SG_ACTION, new RenderItemM56SGAction(M56SG, M56SG.getModel().getAction()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M56SG_AIMING_MODULE, new RenderItemM56SGAimingModule(M56SG, M56SG.getModel().getAccessories()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M56SG_BARREL, new RenderItemM56SGBarrel(M56SG, M56SG.getModel().getBarrel()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M56SG_STOCK, new RenderItemM56SGStock(M56SG, M56SG.getModel().getStock()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M56SG_SUPPORT_FRAME, new RenderItemM56SGSupportFrame(M56SG, M56SG.getModel().getPeripherals()));
 
         MapModelTexture<ModelM41A> M41A = Resources.instance.models().M41A;
-        Renderers.registerItemRenderer(AVPItems.ITEM_M41A_ACTION, new RenderItemM41AAction(M41A, M41A.getModel().getAction()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_M41A_BARREL, new RenderItemM41ABarrel(M41A, M41A.getModel().getBarrel()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_M41A_STOCK, new RenderItemM41AStock(M41A, M41A.getModel().getStock()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_M41A_PERIPHERALS, new RenderItemM41APeripherals(M41A, M41A.getModel().getPeripherals()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M41A_ACTION, new RenderItemM41AAction(M41A, M41A.getModel().getAction()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M41A_BARREL, new RenderItemM41ABarrel(M41A, M41A.getModel().getBarrel()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M41A_STOCK, new RenderItemM41AStock(M41A, M41A.getModel().getStock()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_M41A_PERIPHERALS, new RenderItemM41APeripherals(M41A, M41A.getModel().getPeripherals()));
 
         MapModelTexture<ModelSniper> SNIPER = Resources.instance.models().SNIPER;
-        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER_BARREL, new RenderItemSniperBarrel(SNIPER, SNIPER.getModel().getBarrel()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER_ACTION, new RenderItemSniperAction(SNIPER, SNIPER.getModel().getAction()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER_SCOPE, new RenderItemSniperScope(SNIPER, SNIPER.getModel().getScope()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER_STOCK, new RenderItemSniperStock(SNIPER, SNIPER.getModel().getStock()));
-        Renderers.registerItemRenderer(AVPItems.ITEM_SNIPER_PERIPHERALS, new RenderItemSniperPeripherals(SNIPER, SNIPER.getModel().getPeripherals()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_SNIPER_BARREL, new RenderItemSniperBarrel(SNIPER, SNIPER.getModel().getBarrel()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_SNIPER_ACTION, new RenderItemSniperAction(SNIPER, SNIPER.getModel().getAction()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_SNIPER_SCOPE, new RenderItemSniperScope(SNIPER, SNIPER.getModel().getScope()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_SNIPER_STOCK, new RenderItemSniperStock(SNIPER, SNIPER.getModel().getStock()));
+        Renderers.registerItemRenderer(WeaponItems.ITEM_SNIPER_PERIPHERALS, new RenderItemSniperPeripherals(SNIPER, SNIPER.getModel().getPeripherals()));
     }
 
     private void registerTileEntitySpecialRenderers()

@@ -235,7 +235,6 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
     @Override
     public void update()
     {
-        ;
     }
 
     /**

@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 import org.alien.common.entity.ai.brain.EngineerBrain;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
+import org.lib.common.inventory.ItemDropContext;
 
 public abstract class SpeciesEngineer extends EntityMob implements Brainiac<EngineerBrain>
 {
@@ -28,7 +29,7 @@ public abstract class SpeciesEngineer extends EntityMob implements Brainiac<Engi
     {
         super(world);
         this.experienceValue = 250;
-        this.setSize(1.0F, 2.5F);
+        this.setSize(0.7F, 2.5F);
     }
 
     @Override
@@ -49,9 +50,10 @@ public abstract class SpeciesEngineer extends EntityMob implements Brainiac<Engi
     {
         super.onDeath(damagesource);
 
-        AVPItemDrops.NBT_DRIVE.tryDrop(this);
-        AVPItemDrops.PHIAL.tryDrop(this);
-        AVPItemDrops.PHIAL_EMPTY.tryDrop(this);
+        ItemDropContext itemDropContext = new ItemDropContext(this);
+        itemDropContext.drop(AVPItemDrops.NBT_DRIVE);
+        itemDropContext.drop(AVPItemDrops.PHIAL);
+        itemDropContext.drop(AVPItemDrops.PHIAL_EMPTY);
     }
     
 
@@ -144,7 +146,6 @@ public abstract class SpeciesEngineer extends EntityMob implements Brainiac<Engi
     @Override
     protected void despawnEntity()
     {
-        ;
     }
 
     @Override

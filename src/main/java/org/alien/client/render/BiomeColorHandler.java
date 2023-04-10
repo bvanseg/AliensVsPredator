@@ -12,8 +12,8 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.alien.common.AlienBlocks;
-import org.avp.common.AVPSettings;
+import org.alien.common.block.init.AlienParadiseBlocks;
+import org.avp.common.config.ModelConfig;
 
 import java.util.Random;
 
@@ -40,9 +40,9 @@ public class BiomeColorHandler implements IInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
-        registerFoliageColorHandler(AlienBlocks.PARADISE_LEAVES_SMALL);
-        registerFoliageColorHandler(AlienBlocks.PARADISE_LEAVES_MED);
-        registerFoliageColorHandler(AlienBlocks.PARADISE_LEAVES_LARGE);
+        registerFoliageColorHandler(AlienParadiseBlocks.PARADISE_LEAVES_SMALL);
+        registerFoliageColorHandler(AlienParadiseBlocks.PARADISE_LEAVES_MED);
+        registerFoliageColorHandler(AlienParadiseBlocks.PARADISE_LEAVES_LARGE);
     }
 
     public static void registerFoliageColorHandler(Block block)
@@ -50,7 +50,7 @@ public class BiomeColorHandler implements IInitEvent
         ClientGame.instance.minecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> 0x228833, block);
 
         ClientGame.instance.minecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
-            if (AVPSettings.instance.isHalloweenEventEnabled())
+            if (ModelConfig.getInstance().isHalloweenEventEnabled())
             {
                 switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
                 {

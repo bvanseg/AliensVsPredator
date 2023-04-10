@@ -19,15 +19,15 @@ public class AVPStairBlocks implements IPreInitEvent
     private AVPStairBlocks() {}
 
     // Stairs
-    public static final Block FLOOR_GRILL_STAIRS = new BlockCustomStairs(AVPBlocks.FLOOR_GRILL.getDefaultState()).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("floorgrillstairs");
-    public static final Block CEILING_GRILL_STAIRS = new BlockCustomStairs(AVPBlocks.CEILING_GRILL.getDefaultState()).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false).setHardness(5F).setResistance(15.0F).setLightOpacity(4).setRegistryName("ceilinggrillstairs");
-    public static final Block IRON_BRICKS_STAIRS = new BlockCustomStairs(AVPBlocks.INDUSTRIAL_BRICKS.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialbrickstairs");
-    public static final Block WALL_STAIRS = new BlockCustomStairs(AVPBlocks.INDUSTRIAL_WALL.getDefaultState()).setHardness(5F).setResistance(15.0F).setLightOpacity(255).setRegistryName("industrialwallstairs");
-    public static final Block INDUSTRIAL_GLASS_STAIRS = new BlockCustomStairs(AVPBlocks.INDUSTRIAL_GLASS.getDefaultState()).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false).setHardness(5F).setResistance(15.0F).setLightOpacity(0).setRegistryName("industrialglassstairs");
+    public static final Block FLOOR_GRILL_STAIRS = new BlockCustomStairs("floorgrillstairs", AVPBlocks.INDUSTRIAL_PROPS, AVPBlocks.FLOOR_GRILL.getDefaultState()).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false).setLightOpacity(4);
+    public static final Block CEILING_GRILL_STAIRS = new BlockCustomStairs("ceilinggrillstairs", AVPBlocks.INDUSTRIAL_PROPS, AVPBlocks.CEILING_GRILL.getDefaultState()).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false).setLightOpacity(4);
+    public static final Block IRON_BRICKS_STAIRS = new BlockCustomStairs("industrialbrickstairs", AVPBlocks.INDUSTRIAL_PROPS, AVPBlocks.INDUSTRIAL_BRICKS.getDefaultState()).setLightOpacity(255);
+    public static final Block WALL_STAIRS = new BlockCustomStairs("industrialwallstairs", AVPBlocks.INDUSTRIAL_PROPS, AVPBlocks.INDUSTRIAL_WALL.getDefaultState()).setLightOpacity(255);
+    public static final Block INDUSTRIAL_GLASS_STAIRS = new BlockCustomStairs("industrialglassstairs", AVPBlocks.INDUSTRIAL_PROPS, AVPBlocks.INDUSTRIAL_GLASS.getDefaultState()).setRenderLayer(BlockRenderLayer.TRANSLUCENT).setDoesSideRendering(false).setLightOpacity(0);
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
-        AVP.log().info("Registering Stair Blocks");
+        AVP.instance.getLogger().info("Registering Stair Blocks");
 
         this.registerBlocks();
     }

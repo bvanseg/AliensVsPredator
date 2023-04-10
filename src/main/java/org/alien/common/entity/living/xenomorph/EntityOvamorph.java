@@ -19,6 +19,7 @@ import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
+import org.lib.common.inventory.ItemDropContext;
 
 public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Brainiac<OvamorphBrain>
 {
@@ -43,7 +44,7 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     public EntityOvamorph(World par1World)
     {
         super(par1World);
-        this.setSize(1F, 1F);
+        this.setSize(0.85F, 1F);
         this.experienceValue = 10;
         this.hatchWaitTimer = 20 * 3 + (20 * rand.nextInt(5));
         this.containsFacehugger = true;
@@ -114,7 +115,8 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     {
         super.onDeath(damagesource);
 
-        AVPItemDrops.ROYAL_JELLY_GENERIC.tryDrop(this);
+        ItemDropContext itemDropContext = new ItemDropContext(this);
+        itemDropContext.drop(AVPItemDrops.ROYAL_JELLY);
     }
 
     @Override
@@ -167,7 +169,8 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     protected void damageEntity(DamageSource source, float amount)
     {
         super.damageEntity(source, amount);
-        AVPItemDrops.ROYAL_JELLY_SINGLE.tryDrop(this);
+        ItemDropContext itemDropContext = new ItemDropContext(this);
+        itemDropContext.dropWithAmount(AVPItemDrops.ROYAL_JELLY, 1);
     }
 
     public int getOpenProgress()

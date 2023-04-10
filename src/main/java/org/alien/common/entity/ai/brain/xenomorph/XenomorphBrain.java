@@ -7,12 +7,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathNavigateGround;
 import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
+import org.alien.common.entity.ai.brain.AlienBrain;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.alien.common.entity.ai.brain.task.xenomorph.ShareJellyBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorXenomorph;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.avp.common.block.init.AVPTileEntityBlocks;
-import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;
@@ -27,7 +27,7 @@ import java.util.HashSet;
  * @author Boston Vanseghi
  *
  */
-public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
+public class XenomorphBrain extends AlienBrain<SpeciesXenomorph> {
 	public XenomorphBrain(SpeciesXenomorph entity) {
 		super(entity);
 	}
@@ -64,6 +64,8 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 
 	@Override
 	public void initTasks() {
+		// Adds jelly producing tasks and other shared alien behaviors.
+		super.initTasks();
 
 		SpeciesXenomorph entity = this.getEntity();
 		this.addTask(new SwimBrainTask(this.getEntity()));
@@ -73,9 +75,10 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.RAW_YIELD))));
 		this.addTask(new ShareJellyBrainTask());
 		this.addTask(new WatchClosestBrainTask(EntityLivingBase.class, 16F));
-		this.addTask(new AttackOnCollideBrainTask(1.0D));
+
+		this.initCombatTasks();
+
 		this.addTask(new HurtByTargetBrainTask());
-		this.addTask(new NearestAttackableTargetBrainTask());
 		this.addTask(new AvoidBlockBrainTask(3F, 1.0F, 1.0F, AVOID_BLOCKS::contains));
 		this.addTask(new DestroyBlockBrainTask(1.0D, DESTROY_BLOCKS::contains));
 
@@ -84,5 +87,10 @@ public class XenomorphBrain extends AbstractEntityBrain<SpeciesXenomorph> {
 			// TODO: Make this more flexible as a brain task.
 			this.addTask(new BrainTaskAdapter(new EntityAIBreakDoor(this.getEntity())));
 		}
+	}
+
+	public void initCombatTasks() {
+		this.addTask(new NearestAttackableTargetBrainTask());
+		this.addTask(new AttackOnCollideBrainTask(1.0D));
 	}
 }

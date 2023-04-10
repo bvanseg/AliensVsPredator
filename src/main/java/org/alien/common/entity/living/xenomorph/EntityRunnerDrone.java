@@ -12,6 +12,7 @@ public class EntityRunnerDrone extends EntityDrone implements HiveMember
     public EntityRunnerDrone(World world)
     {
         super(world);
+        this.setSize(1F, 1.5F);
     }
 
     @Override

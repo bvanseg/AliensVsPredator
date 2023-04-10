@@ -254,7 +254,7 @@ public class TileEntityTurret extends TileEntityElectrical implements DataDevice
                         Class<? extends Entity> c = entityEntry.getEntityClass();
                         this.getTargetHelper().addTargetType(c);
                     } else {
-                        AVP.log().warn("NULL EntityEntry found in NBTDrive for id " + id);
+                        AVP.instance.getLogger().warn("NULL EntityEntry found in NBTDrive for id " + id);
                     }
                 }
             }

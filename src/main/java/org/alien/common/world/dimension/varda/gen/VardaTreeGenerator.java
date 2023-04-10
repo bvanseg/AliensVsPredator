@@ -10,16 +10,17 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import org.alien.common.AlienBlocks;
+import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.BlockUnidentifiedLog;
+import org.alien.common.block.init.AlienVardaBlocks;
 
 import java.util.Random;
 
 public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerator
 {
-    public static final IBlockState TREE_TENDONS = AlienBlocks.GIGER_TENDONS.getDefaultState();
-    public static final IBlockState TREE_LOGS = AlienBlocks.GIGER_LOG.getDefaultState().withProperty(BlockUnidentifiedLog.LOG_AXIS, EnumAxis.Y);
-    public static final IBlockState TREE_LEAVES = AlienBlocks.GIGER_LEAVES.getDefaultState();
+    public static final IBlockState TREE_TENDONS = AlienVardaBlocks.GIGER_TENDONS.getDefaultState();
+    public static final IBlockState TREE_LOGS = AlienVardaBlocks.GIGER_LOG.getDefaultState().withProperty(BlockUnidentifiedLog.LOG_AXIS, EnumAxis.Y);
+    public static final IBlockState TREE_LEAVES = AlienVardaBlocks.GIGER_LEAVES.getDefaultState();
     
     public VardaTreeGenerator(boolean doBlockNotify)
     {
@@ -28,7 +29,7 @@ public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerato
     
     protected Block[] getValidTargetBlocks()
     {
-        return new Block[] { AlienBlocks.UNIDIRT, AlienBlocks.GIGER_SAPLING};
+        return new Block[] { AlienVardaBlocks.UNIDIRT, AlienVardaBlocks.GIGER_SAPLING};
     }
     
     public boolean isLocationValid(World world, BlockPos pos)
@@ -92,7 +93,6 @@ public class VardaTreeGenerator extends WorldGenerator implements IWorldGenerato
     @Override
     public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
     {
-        ;
     }
 
     @Override

@@ -78,7 +78,7 @@ public class AVPBlocks implements IPreInitEvent
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
-        AVP.log().info("Registering Blocks");
+        AVP.instance.getLogger().info("Registering Blocks");
 
         this.registerBlocks();
 

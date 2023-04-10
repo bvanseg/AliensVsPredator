@@ -5,6 +5,7 @@ import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.EntityLivingBase;
+import org.alien.common.entity.living.helper.TrilobiteAnimationController;
 import org.alien.common.entity.living.species223ode.EntityTrilobite;
 
 import static com.asx.mdx.client.render.model.animations.AnimationHelper.*;
@@ -867,7 +868,7 @@ public class ModelTrilobite extends Model<EntityTrilobite>
 
             int[] tentacles = trilobite.getDetachedTentacles();
 
-            for (int i = 0; i < trilobite.getAmountOfTentacles(); i++)
+            for (int i = 0; i < trilobite.getTentacleHelper().getAmountOfTentacles(); i++)
             {
                 Model.Part tentacle = getTentacleById(i);
 
@@ -1329,7 +1330,7 @@ public class ModelTrilobite extends Model<EntityTrilobite>
     {
         setRotationAngles(trilobite);
 
-        animator.setAnimation(EntityTrilobite.ANIMATION_HUG_WALL);
+        animator.setAnimation(TrilobiteAnimationController.ANIMATION_HUG_WALL);
         {
             animator.startKeyframe(5);
             {
@@ -1340,7 +1341,7 @@ public class ModelTrilobite extends Model<EntityTrilobite>
         }
         animator.resetKeyframe(8);
 
-        animator.setAnimation(EntityTrilobite.IMPREGNATION_ANIMATION);
+        animator.setAnimation(TrilobiteAnimationController.IMPREGNATION_ANIMATION);
         {
             animator.startKeyframe(5);
             {

@@ -13,6 +13,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPItemDrops;
+import org.lib.common.inventory.ItemDropContext;
 
 public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMember
 {
@@ -21,7 +22,7 @@ public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMembe
         super(world);
         this.jumpMovementFactor = 0.025F;
         this.experienceValue = 225;
-        this.setSize(1.0F, 2.5F);
+        this.setSize(0.7F, 2.5F);
         this.ignoreFrustumCheck = true;
     }
 
@@ -64,7 +65,8 @@ public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMembe
     public void onDeath(DamageSource damageSource)
     {
         super.onDeath(damageSource);
-        AVPItemDrops.SKULL_PREDATOR.tryDrop(this);
+        ItemDropContext itemDropContext = new ItemDropContext(this);
+        itemDropContext.drop(AVPItemDrops.SKULL_PREDATOR);
     }
     
     @Override

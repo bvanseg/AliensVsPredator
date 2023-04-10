@@ -19,7 +19,6 @@ public class PacketTurretSync implements IMessage, IMessageHandler<PacketTurretS
 
     public PacketTurretSync()
     {
-        ;
     }
 
     public PacketTurretSync(TileEntityTurret turret)

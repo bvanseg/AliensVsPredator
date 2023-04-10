@@ -11,4 +11,9 @@ public class RenderRunnerWarrior extends RenderXenomorph<EntityRunnerWarrior, Mo
     {
         super(m, AlienResources.instance.models().RUNNER_WARRIOR, 1F);
     }
+
+    @Override
+    public RenderXenomorph<EntityRunnerWarrior, ModelRunnerWarrior> setScale(float renderScale) {
+        return super.setScale(renderScale);
+    }
 }
