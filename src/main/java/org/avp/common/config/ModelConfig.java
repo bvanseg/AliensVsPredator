@@ -23,7 +23,6 @@ public class ModelConfig {
 
     private static final Gson gson = new GsonBuilder()
             .setPrettyPrinting()
-            .registerTypeAdapterFactory(new ConfigTypeAdapterFactory())
             .create();
 
     public static ModelConfig getInstance() {
@@ -51,7 +50,15 @@ public class ModelConfig {
         String lines = StringUtils.join(Files.readAllLines(configFile.toPath(), StandardCharsets.UTF_8), "\n");
 
         ModelConfig readConfig = gson.fromJson(lines, ModelConfig.class);
-        return readConfig == null ? new ModelConfig() : readConfig;
+        ModelConfig config = readConfig;
+
+        if (config == null) {
+            config = new ModelConfig();
+        }
+
+        ModelConfigProxyGenerator.recurseModelConfig(config, config);
+
+        return config;
     }
 
     public void write() {
