@@ -133,4 +133,16 @@ public class EmbryoEntry {
     public Embryo create(EmbryoKey embryoKey) {
         return new Embryo(this, embryoKey);
     }
+
+    // Auto-generated
+    @Override
+    public String toString() {
+        return "EmbryoEntry{" +
+                "gestationPeriod=" + gestationPeriod +
+                ", impregnator=" + impregnator +
+                ", hosts=" + hosts +
+                ", transitionary=" + transitionary +
+                ", adult=" + adult +
+                '}';
+    }
 }
