@@ -35,7 +35,9 @@ public class ModelConfigEmbryos {
             defaultEmbryoEntries.add(EmbryoEntries.RUNNER_DRONE);
             defaultEmbryoEntries.add(EmbryoEntries.SPITTER);
             defaultEmbryoEntries.add(EmbryoEntries.ULTRAMORPH);
-            this.embryoEntries = defaultEmbryoEntries.stream().map(ModelConfigEmbryoEntry::new).collect(Collectors.toSet());
+            this.embryoEntries = defaultEmbryoEntries.stream().map(ModelConfigEmbryoEntry::new)
+                    .filter(entry -> entry.getAdult() != null && !entry.getAdult().isEmpty())
+                    .collect(Collectors.toSet());
         }
 
         for (ModelConfigEmbryoEntry configEmbryoEntry: this.embryoEntries) {
