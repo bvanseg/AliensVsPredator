@@ -39,7 +39,10 @@ public class NearestAttackableTargetBrainSensor extends AbstractBrainSensor<Enti
 		if (livingEntitiesOptional.isPresent()) {
 			List<EntityLivingBase> livingEntities = livingEntitiesOptional.get();
 			List<EntityLivingBase> targets = livingEntities.stream().filter(
-				target -> !target.isDead && target.getHealth() > 0 && targetPredicate.test(target)
+				target -> !target.isDead &&
+						target.getHealth() > 0 &&
+						ctx.getEntity().canEntityBeSeen(target) &&
+						targetPredicate.test(target)
 			).collect(Collectors.toList());
 
 			if (!targets.isEmpty()) {
