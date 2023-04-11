@@ -23,7 +23,6 @@ public class EntityDeaconAdult extends Species223ODe implements Brainiac<DeaconA
         this.jumpMovementFactor = 0.02F;
         this.experienceValue = 100;
         this.setSize(0.8F, 3.2F);
-        this.isDependant = false;
     }
 
     @Override

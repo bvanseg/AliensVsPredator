@@ -22,7 +22,6 @@ public class EntityBelugamorph extends SpeciesXenomorph implements IMob
         this.experienceValue = 100;
         this.setSize(0.7F, 2.75F);
         this.ableToClimb = false;
-        this.isDependant = false;
     }
 
     @Override

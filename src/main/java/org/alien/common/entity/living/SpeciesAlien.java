@@ -33,7 +33,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
     private static final DataParameter<Integer> JELLY_LEVEL = EntityDataManager.createKey(SpeciesAlien.class, DataSerializers.VARINT);
     private UUID signature;
     protected boolean jellyLimitOverride;
-    protected boolean isDependant = false;
 
     /**
      * Animations
@@ -110,16 +109,6 @@ public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrgan
         if (!this.world.isRemote) {
             if (damagesource != DamageSource.ON_FIRE && damagesource != DamageSource.IN_FIRE && damagesource != AVPDamageSources.FLAMETHROWER) {
                 this.spawnAcidPool();
-            }
-
-            int adjustedLevel = this.getJellyLevel() / 4;
-
-            if (!this.jellyLimitOverride) {
-                adjustedLevel = Math.min(adjustedLevel, 64);
-            }
-
-            if (this.isDependant) {
-                new ItemDrop(100, new ItemStack(AlienItems.ITEM_ROYAL_JELLY, adjustedLevel)).tryDrop(this);
             }
         }
     }

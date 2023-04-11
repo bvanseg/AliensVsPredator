@@ -30,7 +30,6 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
         this.experienceValue = 100;
         this.jumpMovementFactor = 1.0F;
         this.setSize(0.6F, 1.8F);
-        this.isDependant = false;
     }
 
     @Override

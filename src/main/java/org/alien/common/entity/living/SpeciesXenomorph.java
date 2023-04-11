@@ -1,13 +1,16 @@
 package org.alien.common.entity.living;
 
+import com.asx.mdx.common.minecraft.entity.ItemDrop;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.IMob;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
+import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
@@ -37,7 +40,6 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
         super(world);
         this.jumpMovementFactor = 0.045F;
         this.ableToClimb = false;
-        this.isDependant = true;
     }
 
     @Override
@@ -240,6 +242,14 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Bra
             itemDropContext.drop(AVPItemDrops.SKULL_XENO_DRONE);
             itemDropContext.drop(AVPItemDrops.SKULL_XENO_WARRIOR);
         }
+
+        int adjustedLevel = this.getJellyLevel() / 4;
+
+        if (!this.jellyLimitOverride) {
+            adjustedLevel = Math.min(adjustedLevel, 64);
+        }
+
+        new ItemDrop(100, new ItemStack(AlienItems.ITEM_ROYAL_JELLY, adjustedLevel)).tryDrop(this);
     }
 
     @Override
