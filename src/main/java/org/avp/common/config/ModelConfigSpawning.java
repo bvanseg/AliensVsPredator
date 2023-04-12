@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
  */
 public class ModelConfigSpawning {
 
+    @ConfigValue.Boolean(key = "custom.creature.types.enabled", requiresRestart = true)
+    public boolean customCreatureTypesEnabled = true;
     @ConfigValue.Boolean(key = "overworld.spawns.enabled", requiresRestart = true)
     public boolean overworldSpawnsEnabled = false;
     @ConfigValue.Boolean(key = "auto.spawns.enabled", requiresRestart = true)
