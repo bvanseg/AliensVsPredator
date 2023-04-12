@@ -5,9 +5,11 @@ import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.alien.common.AlienEntitySpawns;
 import org.avp.common.AVPEntitySpawns;
+import org.lib.common.FuncUtil;
 import org.predator.common.PredatorEntitySpawns;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,15 +28,30 @@ public class ModelConfigSpawning {
     public boolean evolvedXenomorphSpawns = true;
 
     @ConfigValue.Collection(key = "spawns.alien", requiresRestart = true)
-    public Set<String> spawnsAlien = new HashSet<>(AlienEntitySpawns.DEFAULT_ALIEN_SPAWNS).stream().map(biome -> biome.getRegistryName().toString()).collect(Collectors.toSet());
+    public Set<String> spawnsAlien = new HashSet<>(AlienEntitySpawns.DEFAULT_ALIEN_SPAWNS).stream()
+            .map(biome -> FuncUtil.let(biome.getRegistryName(), ResourceLocation::toString))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toSet());
     @ConfigValue.Collection(key = "spawns.aquatic.alien", requiresRestart = true)
-    public Set<String> spawnsAquaticAlien = new HashSet<>(AlienEntitySpawns.DEFAULT_AQUA_ALIEN_SPAWNS).stream().map(biome -> biome.getRegistryName().toString()).collect(Collectors.toSet());
+    public Set<String> spawnsAquaticAlien = new HashSet<>(AlienEntitySpawns.DEFAULT_AQUA_ALIEN_SPAWNS).stream()
+            .map(biome -> FuncUtil.let(biome.getRegistryName(), ResourceLocation::toString))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toSet());
     @ConfigValue.Collection(key = "spawns.predator", requiresRestart = true)
-    public Set<String> spawnsPredator = new HashSet<>(PredatorEntitySpawns.DEFAULT_PREDATOR_SPAWNS).stream().map(biome -> biome.getRegistryName().toString()).collect(Collectors.toSet());
+    public Set<String> spawnsPredator = new HashSet<>(PredatorEntitySpawns.DEFAULT_PREDATOR_SPAWNS).stream()
+            .map(biome -> FuncUtil.let(biome.getRegistryName(), ResourceLocation::toString))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toSet());
     @ConfigValue.Collection(key = "spawns.marine", requiresRestart = true)
-    public Set<String> spawnsMarine = new HashSet<>(AVPEntitySpawns.DEFAULT_MARINE_SPAWNS).stream().map(biome -> biome.getRegistryName().toString()).collect(Collectors.toSet());
+    public Set<String> spawnsMarine = new HashSet<>(AVPEntitySpawns.DEFAULT_MARINE_SPAWNS).stream()
+            .map(biome -> FuncUtil.let(biome.getRegistryName(), ResourceLocation::toString))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toSet());
     @ConfigValue.Collection(key = "spawns.varda.wildlife", requiresRestart = true)
-    public Set<String> spawnsVarda = new HashSet<>(AlienEntitySpawns.DEFAULT_VARDA_LIFE_SPAWNS).stream().map(biome -> biome.getRegistryName().toString()).collect(Collectors.toSet());
+    public Set<String> spawnsVarda = new HashSet<>(AlienEntitySpawns.DEFAULT_VARDA_LIFE_SPAWNS).stream()
+            .map(biome -> FuncUtil.let(biome.getRegistryName(), ResourceLocation::toString))
+            .filter(Objects::nonNull)
+            .collect(Collectors.toSet());
 
     @ConfigValue.Number(key = "spawn.weight.nauticomorph", requiresRestart = true)
     public int spawnWeightEntityNauticomorph = 5;
