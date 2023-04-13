@@ -49,11 +49,11 @@ public class ModelConfig {
         }
         String lines = StringUtils.join(Files.readAllLines(configFile.toPath(), StandardCharsets.UTF_8), "\n");
 
-        ModelConfig readConfig = gson.fromJson(lines, ModelConfig.class);
-        ModelConfig config = readConfig;
+        ModelConfig config = gson.fromJson(lines, ModelConfig.class);
 
         if (config == null) {
             config = new ModelConfig();
+            config.write();
         }
 
         ModelConfigProxyGenerator.recurseModelConfig(config, config);
@@ -65,7 +65,7 @@ public class ModelConfig {
         File configDir = Loader.instance().getConfigDir();
         File configFile = new File(configDir, "avp/config.json");
         try {
-            com.google.common.io.Files.write(gson.toJson(instance), configFile, StandardCharsets.UTF_8);
+            com.google.common.io.Files.write(gson.toJson(this), configFile, StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }

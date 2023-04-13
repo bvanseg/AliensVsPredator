@@ -24,7 +24,7 @@ public class BrainMemoryMap {
 	}
 	
 	public <T> void remember(BrainMemoryKey<?> memoryKey, T data) {
-		memories.compute(memoryKey, (k, v) -> Optional.of(data));
+		memories.compute(memoryKey, (k, v) -> Optional.ofNullable(data));
 	}
 	
 	public boolean hasMemory(BrainMemoryKey<?> memoryKey) {
