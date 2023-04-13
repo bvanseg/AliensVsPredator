@@ -15,11 +15,16 @@ public class EmbryoRegistry {
 
     public static void register(EmbryoEntry embryoEntry) {
         if(!embryoEntry.getImpregnator().isPresent()) {
-            AVP.instance.getLogger().warn("Attempted to register an EmbryoEntry that has no impregnator! Entry: {}", embryoEntry);
+            AVP.instance.getLogger().warn("Attempted to register an EmbryoEntry that has no impregnator! This entry will be ignored. Entry: {}", embryoEntry);
             return;
         }
 
         Class<? extends Entity> impregnatorClass = embryoEntry.getImpregnator().get();
+
+        if (embryoEntry.getAdult() == null) {
+            AVP.instance.getLogger().warn("An EmbryoEntry had a null adult! This entry will be ignored. Entry data: {}", embryoEntry);
+            return;
+        }
 
         // Compute all permutations of hosts for the impregnator type and map them to the respective embryo entry.
         embryoEntry.getHosts().forEach(hostClass -> {
@@ -27,7 +32,7 @@ public class EmbryoRegistry {
 
             EMBRYO_ENTRIES.compute(embryoKey, (key, value) -> {
                if (value != null) {
-                   AVP.instance.getLogger().warn("An EmbryoEntry already exists for EmbryoKey ({}, {})!", impregnatorClass, hostClass);
+                   AVP.instance.getLogger().warn("An EmbryoEntry (adult {}) already exists for EmbryoKey ({}, {})!", value.getAdult(), impregnatorClass, hostClass);
                }
 
                 return embryoEntry;

@@ -22,11 +22,13 @@ public class EmbryoEntry {
     private int gestationPeriod;
     private Class<? extends Entity> impregnator;
     private final Collection<Class<? extends Entity>> hosts;
+    private final Collection<Class<? extends Entity>> nonHosts;
     private Class<? extends Entity> transitionary;
     private final Class<? extends Entity> adult;
 
     private EmbryoEntry(Collection<Class<? extends Entity>> hosts, Class<? extends Entity> adult) {
         this.hosts = hosts;
+        this.nonHosts = new HashSet<>();
         this.adult = adult;
         this.gestationPeriod = 20 * 60 * 5; // 5 Minutes
     }
@@ -37,6 +39,10 @@ public class EmbryoEntry {
 
     public Collection<Class<? extends Entity>> getHosts() {
         return this.hosts;
+    }
+
+    public Collection<Class<? extends Entity>> getNonHosts() {
+        return this.nonHosts;
     }
 
     public Optional<Class<? extends Entity>> getTransitionary() {
@@ -104,6 +110,11 @@ public class EmbryoEntry {
             return this;
         }
 
+        public Builder removeHost(Class<? extends Entity> entityEntry) {
+            this.embryoEntry.nonHosts.add(entityEntry);
+            return this;
+        }
+
         public Builder setTransitionaryStage(Class<? extends Entity> entityEntry) {
             this.embryoEntry.transitionary = entityEntry;
             return this;
@@ -121,5 +132,17 @@ public class EmbryoEntry {
 
     public Embryo create(EmbryoKey embryoKey) {
         return new Embryo(this, embryoKey);
+    }
+
+    // Auto-generated
+    @Override
+    public String toString() {
+        return "EmbryoEntry{" +
+                "gestationPeriod=" + gestationPeriod +
+                ", impregnator=" + impregnator +
+                ", hosts=" + hosts +
+                ", transitionary=" + transitionary +
+                ", adult=" + adult +
+                '}';
     }
 }

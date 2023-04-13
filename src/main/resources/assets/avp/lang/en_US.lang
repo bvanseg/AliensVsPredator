@@ -711,6 +711,9 @@ avp.config.biome.varda.forest.id.desc=Change the internal ID of this biome. WARN
 avp.config.biome.acheron.id.key=Acheron Biome ID
 avp.config.biome.acheron.id.desc=Change the internal ID of this biome. WARNING: Changing a biome ID will prevent existing worlds from loading.
 
+avp.config.custom.creature.types.enabled.key=Custom Creature Types Enabled
+avp.config.custom.creature.types.enabled.desc=Enables alien creatures to have their own spawn cap.
+
 avp.config.overworld.spawns.enabled.key=Overworld Spawns Enabled
 avp.config.overworld.spawns.enabled.desc=If enabled, mobs will spawn in the overworld using spawn weights.
 
