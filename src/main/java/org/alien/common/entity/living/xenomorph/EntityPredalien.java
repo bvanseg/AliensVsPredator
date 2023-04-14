@@ -22,7 +22,7 @@ public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMembe
         super(world);
         this.jumpMovementFactor = 0.025F;
         this.experienceValue = 225;
-        this.setSize(1.0F, 2.5F);
+        this.setSize(0.7F, 2.5F);
         this.ignoreFrustumCheck = true;
     }
 

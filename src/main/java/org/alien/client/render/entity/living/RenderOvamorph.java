@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelOvamorph;
 import org.alien.common.entity.living.xenomorph.EntityOvamorph;
-import org.avp.common.AVPSettings;
+import org.avp.common.config.ModelConfig;
 
 public class RenderOvamorph extends RenderLivingWrapper<EntityOvamorph, ModelOvamorph>
 {
@@ -26,6 +26,6 @@ public class RenderOvamorph extends RenderLivingWrapper<EntityOvamorph, ModelOva
     @Override
     protected ResourceLocation getEntityTexture(EntityOvamorph ovamorph)
     {
-        return AVPSettings.instance.isHalloweenEventEnabled() ? AlienResources.instance.models().OVAMORPH_JACKO.getTexture() :  this.model.getTexture();
+        return ModelConfig.getInstance().isHalloweenEventEnabled() ? AlienResources.instance.models().OVAMORPH_JACKO.getTexture() :  this.model.getTexture();
     }
 }

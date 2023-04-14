@@ -15,7 +15,7 @@ public class EntityQueenChestburster extends EntityChestburster implements IMob,
     public EntityQueenChestburster(World world)
     {
         super(world);
-        this.setSize(1.0F, 0.4F);
+        this.setSize(0.8F, 1F);
         this.experienceValue = 16;
     }
 

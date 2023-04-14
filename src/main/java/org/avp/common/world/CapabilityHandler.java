@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.alien.common.world.capability.Organism;
 import org.alien.common.world.capability.Organism.Provider;
+import org.alien.common.world.capability.OrganismImpl;
 import org.avp.AVP;
 import org.avp.common.world.capability.SpecialPlayer;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
@@ -31,7 +32,7 @@ public class CapabilityHandler implements IPreInitEvent
     @Override
     public void pre(FMLPreInitializationEvent event)
     {
-        CapabilityManager.INSTANCE.register(Organism.class, new Organism.OrganismImpl(), new Organism.OrganismImpl.Factory());
+        CapabilityManager.INSTANCE.register(Organism.class, new OrganismImpl(), new OrganismImpl.Factory());
         CapabilityManager.INSTANCE.register(SpecialPlayer.class, new SpecialPlayerImpl(), new SpecialPlayerImpl.Factory());
     }
     
@@ -75,7 +76,7 @@ public class CapabilityHandler implements IPreInitEvent
 
         if (target instanceof EntityLivingBase)
         {
-            Organism.OrganismImpl organism = (Organism.OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
+            OrganismImpl organism = (OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
 
             if (organism != null)
             {

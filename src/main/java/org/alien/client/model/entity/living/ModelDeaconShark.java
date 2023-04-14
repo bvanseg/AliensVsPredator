@@ -178,8 +178,8 @@ public class ModelDeaconShark extends Model<EntityDeaconShark>
     @Override
     public void render(EntityDeaconShark obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
-        
+        EntityLivingBase base = (EntityLivingBase) obj;
+
         draw(body1);
         this.body2.rotateAngleY = MathHelper.cos(swingProgress(obj) * 0.6662F + (float) Math.PI) * swingProgressPrev(obj) * 0.25F;
         this.body3.rotateAngleY = -0.085F;

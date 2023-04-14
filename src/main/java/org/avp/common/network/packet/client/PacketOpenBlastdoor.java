@@ -19,7 +19,6 @@ public class PacketOpenBlastdoor implements IMessage, IMessageHandler<PacketOpen
 
     public PacketOpenBlastdoor()
     {
-        ;
     }
 
     public PacketOpenBlastdoor(boolean open, BlockPos pos)

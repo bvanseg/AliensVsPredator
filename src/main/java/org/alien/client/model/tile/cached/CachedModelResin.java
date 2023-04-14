@@ -23,6 +23,7 @@ import net.minecraftforge.client.model.IModel;
 import net.minecraftforge.client.model.pipeline.UnpackedBakedQuad;
 import net.minecraftforge.common.model.TRSRTransformation;
 import org.apache.commons.lang3.tuple.Pair;
+import org.avp.common.config.ModelConfig;
 
 import javax.vecmath.Matrix4f;
 import java.util.ArrayList;

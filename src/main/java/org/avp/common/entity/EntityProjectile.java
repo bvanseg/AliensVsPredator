@@ -247,7 +247,6 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
 
             for (this.rotationPitch = (float) ((Math.atan2(this.motionY, MathHelper.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ)) * 180D) / Math.PI); this.rotationPitch - this.prevRotationPitch < -180F; this.prevRotationPitch -= 360F)
             {
-                ;
             }
             while (this.rotationPitch - this.prevRotationPitch >= 180F)
             {
@@ -404,7 +403,6 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
 
     public void playHitSound()
     {
-        ;
     }
 
     public boolean canBeCritical()

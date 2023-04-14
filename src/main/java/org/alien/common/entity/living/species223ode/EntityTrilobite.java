@@ -25,9 +25,6 @@ import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.entity.living.helper.TrilobiteAnimationController;
 import org.alien.common.entity.living.helper.TrilobiteTentacleHelper;
-import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.Organism.OrganismImpl;
-import org.alien.common.world.capability.Organism.Provider;
 
 import java.util.List;
 
@@ -84,7 +81,7 @@ public class EntityTrilobite extends EntityParasitoid implements IAnimated
         tagDetachedTentacles.setIntArray("Tentacles", new int[this.tentacleHelper.getAmountOfTentacles()]);
         this.getDataManager().register(DETACHED_TENTACLES, tagDetachedTentacles);
     }
-    
+
     @Override
     protected void updateAnimations()
     {
@@ -183,15 +180,6 @@ public class EntityTrilobite extends EntityParasitoid implements IAnimated
             this.startRiding(living);
             this.implantEmbryo(living);
         }
-    }
-
-    @Override
-    public void implantEmbryo(EntityLivingBase target)
-    {
-        OrganismImpl organism = (OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
-        organism.impregnate(Embryo.DEACON);
-        organism.syncWithClients(target);
-        this.setFertility(false);
     }
 
     @Override

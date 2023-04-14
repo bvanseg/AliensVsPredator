@@ -32,6 +32,5 @@ public class ItemArmorMK50 extends ItemAntiVacuumArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        ;
     }
 }

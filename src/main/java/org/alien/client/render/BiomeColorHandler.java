@@ -12,9 +12,8 @@ import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.init.AlienParadiseBlocks;
-import org.avp.common.AVPSettings;
+import org.avp.common.config.ModelConfig;
 
 import java.util.Random;
 
@@ -51,7 +50,7 @@ public class BiomeColorHandler implements IInitEvent
         ClientGame.instance.minecraft().getItemColors().registerItemColorHandler((stack, tintIndex) -> 0x228833, block);
 
         ClientGame.instance.minecraft().getBlockColors().registerBlockColorHandler((state, worldIn, pos, tintIndex) -> {
-            if (AVPSettings.instance.isHalloweenEventEnabled())
+            if (ModelConfig.getInstance().isHalloweenEventEnabled())
             {
                 switch (new Random(pos.getX() + pos.getY() + pos.getZ()).nextInt(5))
                 {

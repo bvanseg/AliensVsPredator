@@ -186,7 +186,7 @@ public class ModelChestbursterPredalien extends Model<EntityPredalienChestburste
     @Override
     public void render(EntityPredalienChestburster obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
+        EntityLivingBase base = (EntityLivingBase) obj;
 
         float newangle = MathHelper.cos(idleProgress(obj) * 4.0F * 0.1F) * (float) Math.PI * 0.9F * swingProgressPrev(obj);
         float distMult = 0.05F;

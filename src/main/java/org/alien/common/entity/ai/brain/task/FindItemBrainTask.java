@@ -40,11 +40,19 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 	private final Predicate<EntityItem> itemPredicate;
 	private Consumer<EntityItem> onUseItemCallback;
 
+	private double moveSpeed;
+
 
 	private EntityItem closestItemTarget;
 
 	public FindItemBrainTask(Predicate<EntityItem> itemPredicate) {
 		this.itemPredicate = itemPredicate;
+		this.moveSpeed = 1.0;
+	}
+
+	public FindItemBrainTask(Predicate<EntityItem> itemPredicate, double moveSpeed) {
+		this.itemPredicate = itemPredicate;
+		this.moveSpeed = moveSpeed;
 	}
 
 	public FindItemBrainTask onUseItem(Consumer<EntityItem> onUseItemCallback) {
@@ -88,7 +96,7 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 	            this.closestItemTarget = entityItemList.get(0);
 
 	            if (!this.hasItemTarget) {
-					entity.getNavigator().setPath(entity.getNavigator().getPathToEntityLiving(closestItemTarget), 1);
+					entity.getNavigator().setPath(entity.getNavigator().getPathToEntityLiving(this.closestItemTarget), this.moveSpeed);
                     this.hasItemTarget = true;
                 }
 	        }

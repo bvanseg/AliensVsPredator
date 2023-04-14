@@ -12,6 +12,7 @@ public class EntityRunnerWarrior extends EntityWarrior implements HiveMember
     public EntityRunnerWarrior(World world)
     {
         super(world);
+        this.setSize(1F, 1.75F);
     }
 
     @Override

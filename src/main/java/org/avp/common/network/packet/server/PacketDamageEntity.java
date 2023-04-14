@@ -14,7 +14,6 @@ public class PacketDamageEntity implements IMessage, IMessageHandler<PacketDamag
 
     public PacketDamageEntity()
     {
-        ;
     }
 
     public PacketDamageEntity(Entity entity, Entity entitySource, float damage)

@@ -1,6 +1,5 @@
 package org.alien.common.block;
 
-import com.asx.mdx.common.minecraft.Dimension;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,6 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lib.common.dimension.Dimension;
 
 import java.util.Random;
 

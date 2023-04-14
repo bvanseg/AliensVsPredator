@@ -18,6 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPNetworking;
 import org.avp.common.AVPToolMaterials;
+import org.avp.common.config.ModelConfig;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorItems;
@@ -60,14 +61,6 @@ public class ItemWristbracer extends HookedItem
         {
             codes.put(combonation, action);
         }
-    }
-    
-    static
-    {
-        addCode("009001", (combonation, args) -> {
-            AVPNetworking.instance.sendToServer(new PacketSpawnNuke());
-            ClientGame.instance.minecraft().currentScreen = null;
-        });
     }
     
     @Override

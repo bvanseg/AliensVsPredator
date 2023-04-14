@@ -50,7 +50,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         super(world);
         this.experienceValue = 250;
         this.cloakProgress = MIN_CLOAK;
-        this.setSize(1.0F, 2.5F);
+        this.setSize(0.75F, 2.5F);
         this.jumpMovementFactor = 0.1F;
     }
 
@@ -154,7 +154,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     private void handleCloak() {
         if (this.cloakProgress < MAX_CLOAK) {
             if (this.getCloakState() != CloakState.CLOAKING) {
-                PredatorSounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);;
+                PredatorSounds.YAUTJA_CLOAK.playSound(this, 0.6F, 1.0F);
             }
 
             this.setCloakState(CloakState.CLOAKING);

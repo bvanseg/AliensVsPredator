@@ -26,7 +26,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.avp.common.AVPSettings;
+import org.avp.common.config.ModelConfig;
 import org.predator.client.PredatorSounds;
 
 import java.util.ArrayList;
@@ -140,7 +140,7 @@ public class EntityWristbracer extends EntityThrowable
     }
 
     private void explode(float explosionWidthMax, float explosionHeightMax) {
-        if (AVPSettings.instance.areExplosionsEnabled())
+        if (ModelConfig.getInstance().getGeneral().explosionsEnabled)
         {
             LargeExplosion explosion = new LargeExplosion(world, explosionWidthMax, explosionHeightMax, explosionWidthMax, (int) this.posX, (int) this.posY, (int) this.posZ, 1_000F, this.world.rand.nextLong(), EXCLUDED_BLOCKS, EXCLUDED_MATERIALS, 0, 2);
             explosion.start();
