@@ -7,6 +7,7 @@ import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import org.avp.common.config.ModelConfig;
 import org.avp.common.entity.living.EntityMarine;
 import org.lib.common.registry.EntitySpawnRegistryUtil;
 
@@ -17,7 +18,7 @@ public class AVPEntitySpawns implements IInitEvent {
     public static final AVPEntitySpawns instance = new AVPEntitySpawns();
 
     private AVPEntitySpawns() {}
-    protected static final ArrayList<Biome>        DEFAULT_MARINE_SPAWNS     = new ArrayList<>();
+    public static final ArrayList<Biome>        DEFAULT_MARINE_SPAWNS     = new ArrayList<>();
 
     static
     {
@@ -40,11 +41,11 @@ public class AVPEntitySpawns implements IInitEvent {
 
     private void registerSpawns()
     {
-        if (AVPSettings.instance.areAutoSpawnsEnabled())
+        if (ModelConfig.getInstance().getSpawning().autoSpawnsEnabled)
         {
-            List<Biome> marineSpawns = AVPSettings.instance.getSpawnsMarine().value();
+            List<Biome> marineSpawns = new ArrayList<>(ModelConfig.getInstance().getSpawning().getMarineSpawnBiomes());
 
-            EntityRegistry.addSpawn(EntityMarine.class, (Integer) AVPSettings.instance.spawnWeightEntityMarine.value(), 1, 1, EnumCreatureType.CREATURE, EntitySpawnRegistryUtil.array(marineSpawns));
+            EntityRegistry.addSpawn(EntityMarine.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityMarine, 1, 1, EnumCreatureType.CREATURE, EntitySpawnRegistryUtil.array(marineSpawns));
         }
     }
 }

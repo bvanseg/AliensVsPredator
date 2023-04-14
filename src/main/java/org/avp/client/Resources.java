@@ -12,7 +12,8 @@ import org.avp.AVP;
 import org.avp.client.model.entity.ModelBullet;
 import org.avp.client.model.entity.ModelSupplyChute;
 import org.avp.client.model.entity.living.ModelMarine;
-import org.avp.client.model.item.*;
+import org.avp.client.model.item.ModelMotionTracker;
+import org.avp.client.model.item.ModelStunBaton;
 import org.avp.client.model.tile.*;
 import org.avp.client.model.tile.rackmodule.*;
 import org.predator.client.model.entity.ModelLaserMine;
@@ -26,6 +27,7 @@ import org.predator.client.model.tile.skull.ModelBiomaskBerserker;
 import org.predator.client.model.tile.skull.ModelBiomaskClassic;
 import org.predator.client.model.tile.skull.ModelBiomaskFalconer;
 import org.predator.client.model.tile.skull.ModelBiomaskTracker;
+import org.weapon.client.model.item.*;
 
 @SideOnly(Side.CLIENT)
 public class Resources
@@ -92,6 +94,7 @@ public class Resources
         public final MapModelTexture<ModelCCFL>                   CCFL_TUBE_OFF                  = new MapModelTexture(new ModelCCFL(), new Texture(AVP.Properties.ID, "textures/tile/ccfl_off.png"));
         public final MapModelTexture<ModelMarine>                 MARINE                         = new MapModelTexture(new ModelMarine(), new Texture(AVP.Properties.ID, "textures/mob/marine.png"));
         public final MapModelTexture<ModelMarine>                 MARINE_SKIN                    = new MapModelTexture(new ModelMarine(), new Texture(AVP.Properties.ID, "textures/mob/marine_skin.png"));
+        public final MapModelTexture<ModelMarine>                 MARINE_CAMO                    = new MapModelTexture(new ModelMarine(), new Texture(AVP.Properties.ID, "textures/mob/marine_camo.png"));
         public final MapModelTexture<ModelMarine>                 MARINE_EYES                    = new MapModelTexture(new ModelMarine(), new Texture(AVP.Properties.ID, "textures/mob/marine_eyes.png"));
         public final MapModelTexture<ModelYautja>                 YAUTJA_WARRIOR                 = new MapModelTexture(new ModelYautja(), new Texture(AVP.Properties.ID, "textures/mob/yautja.png"));
         public final MapModelTexture<ModelYautja>                 YAUTJA_BERSERKER               = new MapModelTexture(new ModelYautja(), new Texture(AVP.Properties.ID, "textures/mob/yautja_berserker.png"));

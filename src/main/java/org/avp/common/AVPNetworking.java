@@ -9,6 +9,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.avp.AVP;
 import org.avp.common.network.packet.client.*;
 import org.avp.common.network.packet.server.*;
+import org.weapon.common.network.packet.server.PacketLaunchGrenade;
+import org.weapon.common.network.packet.server.PacketReloadFirearm;
 
 
 public class AVPNetworking extends SimpleNetworkWrapper implements IInitEvent
@@ -24,14 +26,13 @@ public class AVPNetworking extends SimpleNetworkWrapper implements IInitEvent
     @Override
     public void init(FMLInitializationEvent event)
     {
-        /** Send to the server **/
+        /* Send to the server */
         this.registerMessage(Side.SERVER, PacketAssemble.class);
         this.registerMessage(Side.SERVER, PacketOpenContainer.class);
         this.registerMessage(Side.SERVER, PacketReloadFirearm.class);
         this.registerMessage(Side.SERVER, PacketLaunchGrenade.class);
         this.registerMessage(Side.SERVER, PacketFireAPC.class);
         this.registerMessage(Side.SERVER, PacketDamageEntity.class);
-        this.registerMessage(Side.SERVER, PacketFirearmSync.class);
         this.registerMessage(Side.SERVER, PacketSpawnEntity.class);
         this.registerMessage(Side.SERVER, PacketSpawnNuke.class);
         this.registerMessage(Side.SERVER, PacketPlasmaDischarge.class);
@@ -43,7 +44,9 @@ public class AVPNetworking extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.SERVER, OrganismServerSync.class);
         this.registerMessage(Side.SERVER, PacketBlastdoorServer.class);
         
-        /** Send to the client **/
+        /* Send to the client */
+        this.registerMessage(Side.CLIENT, PacketDismountRidingEntity.class);
+        this.registerMessage(Side.CLIENT, PacketSyncEntityInventory.class);
         this.registerMessage(Side.CLIENT, PacketTurretAmmoSync.class);
         this.registerMessage(Side.CLIENT, PacketTurretTargetUpdate.class);
         this.registerMessage(Side.CLIENT, PacketOpenBlastdoor.class);

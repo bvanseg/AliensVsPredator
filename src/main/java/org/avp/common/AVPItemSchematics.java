@@ -13,9 +13,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.block.init.AVPReflectiveBlocks;
 import org.avp.common.block.init.AVPTileEntityBlocks;
-import org.avp.common.item.crafting.AssemblyManager;
+import org.avp.common.item.crafting.ItemSchematicRegistry;
 import org.avp.common.item.crafting.ItemSchematic;
 import org.predator.common.PredatorItems;
+import org.weapon.common.item.init.WeaponItems;
 
 /**
  * @author Ri5ux
@@ -33,7 +34,7 @@ public class AVPItemSchematics
 
     private static void addSchematics()
     {
-        AssemblyManager.register(new ItemSchematic("teslacoil", new ItemStack(AVPTileEntityBlocks.TESLA_COIL, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("teslacoil", new ItemStack(AVPTileEntityBlocks.TESLA_COIL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -48,7 +49,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("terminal", new ItemStack(AVPTileEntityBlocks.TERMINAL, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("terminal", new ItemStack(AVPTileEntityBlocks.TERMINAL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -67,7 +68,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_slope", new ItemStack(AVPReflectiveBlocks.SLOPE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("reflective_slope", new ItemStack(AVPReflectiveBlocks.SLOPE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -78,7 +79,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_corner", new ItemStack(AVPReflectiveBlocks.CORNER, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("reflective_corner", new ItemStack(AVPReflectiveBlocks.CORNER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -89,7 +90,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_inverter_corner", new ItemStack(AVPReflectiveBlocks.INVERTED_CORNER, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("reflective_inverter_corner", new ItemStack(AVPReflectiveBlocks.INVERTED_CORNER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -100,7 +101,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_ridge", new ItemStack(AVPReflectiveBlocks.RIDGE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("reflective_ridge", new ItemStack(AVPReflectiveBlocks.RIDGE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -111,7 +112,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_pyramid", new ItemStack(AVPReflectiveBlocks.PYRAMID, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("reflective_pyramid", new ItemStack(AVPReflectiveBlocks.PYRAMID, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -122,7 +123,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_inverted_ridge", new ItemStack(AVPReflectiveBlocks.INVERTED_RIDGE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("reflective_inverted_ridge", new ItemStack(AVPReflectiveBlocks.INVERTED_RIDGE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -133,7 +134,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("reflective_inverted_pyramid", new ItemStack(AVPReflectiveBlocks.INVERTED_PYRAMID, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("reflective_inverted_pyramid", new ItemStack(AVPReflectiveBlocks.INVERTED_PYRAMID, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -144,7 +145,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("medpod", new ItemStack(AVPTileEntityBlocks.MEDPOD, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("medpod", new ItemStack(AVPTileEntityBlocks.MEDPOD, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -161,12 +162,12 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("turret", new ItemStack(AVPTileEntityBlocks.TURRET, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("turret", new ItemStack(AVPTileEntityBlocks.TURRET, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_M41A, 1),
+                        new ItemStack(WeaponItems.ITEM_M41A, 1),
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 4),
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 4),
                         new ItemStack(AVPItems.ITEM_INGOT_COPPER, 4),
@@ -174,7 +175,7 @@ public class AVPItemSchematics
                 };
             }
         });
-        AssemblyManager.register(new ItemSchematic("redstonefluxGenerator", new ItemStack(AVPTileEntityBlocks.UNIVERSAL_GENERATOR, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("redstonefluxGenerator", new ItemStack(AVPTileEntityBlocks.UNIVERSAL_GENERATOR, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -186,7 +187,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.DIAMOND, 4) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("cryostasisTube", new ItemStack(AVPTileEntityBlocks.CRYO_TUBE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("cryostasisTube", new ItemStack(AVPTileEntityBlocks.CRYO_TUBE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -197,7 +198,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPTileEntityBlocks.LIGHT_PANEL, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("lightPanel", new ItemStack(AVPTileEntityBlocks.LIGHT_PANEL, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("lightPanel", new ItemStack(AVPTileEntityBlocks.LIGHT_PANEL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -208,7 +209,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.GLOWSTONE_DUST, 2) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("pulserifle", new ItemStack(AVPItems.ITEM_M41A, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("pulserifle", new ItemStack(WeaponItems.ITEM_M41A, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -222,7 +223,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_LED_DISPLAY, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("grenade", new ItemStack(AVPItems.ITEM_GRENADE, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("grenade", new ItemStack(WeaponItems.ITEM_GRENADE, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -233,7 +234,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_COPPER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("fire_grenade", new ItemStack(AVPItems.ITEM_INCENDIARY_GRENADE, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("fire_grenade", new ItemStack(WeaponItems.ITEM_INCENDIARY_GRENADE, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -244,7 +245,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_COPPER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("marineHelm", new ItemStack(AVPItems.HELM_MARINE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("marineHelm", new ItemStack(AVPItems.HELM_MARINE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -256,7 +257,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_PROCESSOR, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("marinePlate", new ItemStack(AVPItems.PLATE_MARINE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("marinePlate", new ItemStack(AVPItems.PLATE_MARINE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -265,7 +266,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 2) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("marineLeggings", new ItemStack(AVPItems.LEGS_MARINE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("marineLeggings", new ItemStack(AVPItems.LEGS_MARINE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -274,7 +275,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 2) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("marineBoots", new ItemStack(AVPItems.BOOTS_MARINE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("marineBoots", new ItemStack(AVPItems.BOOTS_MARINE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -283,7 +284,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("sniperMagazine", new ItemStack(AVPItems.ITEM_AMMO_SNIPER, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("sniperMagazine", new ItemStack(WeaponItems.ITEM_AMMO_SNIPER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -292,7 +293,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.GUNPOWDER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("pistolMagazine", new ItemStack(AVPItems.ITEM_AMMO_PISTOL, 3)) {
+        ItemSchematicRegistry.register(new ItemSchematic("pistolMagazine", new ItemStack(WeaponItems.ITEM_AMMO_PISTOL, 3)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -302,7 +303,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_COPPER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("ARAmmo", new ItemStack(AVPItems.ITEM_AMMO_AR, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("ARAmmo", new ItemStack(WeaponItems.ITEM_AMMO_AR, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -312,7 +313,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.GUNPOWDER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("SMGAmmo", new ItemStack(AVPItems.ITEM_AMMO_SMG, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("SMGAmmo", new ItemStack(WeaponItems.ITEM_AMMO_SMG, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -322,60 +323,60 @@ public class AVPItemSchematics
                         new ItemStack(Items.GUNPOWDER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("m56sg", new ItemStack(AVPItems.ITEM_M56SG, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("m56sg", new ItemStack(WeaponItems.ITEM_M56SG, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_M56SG_AIMING_MODULE, 1),
-                        new ItemStack(AVPItems.ITEM_M56SG_STOCK, 1),
-                        new ItemStack(AVPItems.ITEM_M56SG_BARREL, 1),
-                        new ItemStack(AVPItems.ITEM_M56SG_SUPPORT_FRAME, 1) };
+                        new ItemStack(WeaponItems.ITEM_M56SG_AIMING_MODULE, 1),
+                        new ItemStack(WeaponItems.ITEM_M56SG_STOCK, 1),
+                        new ItemStack(WeaponItems.ITEM_M56SG_BARREL, 1),
+                        new ItemStack(WeaponItems.ITEM_M56SG_SUPPORT_FRAME, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("sniper", new ItemStack(AVPItems.ITEM_SNIPER, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("sniper", new ItemStack(WeaponItems.ITEM_SNIPER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_SNIPER_SCOPE, 1),
-                        new ItemStack(AVPItems.ITEM_SNIPER_ACTION, 1),
-                        new ItemStack(AVPItems.ITEM_SNIPER_PERIPHERALS, 1),
-                        new ItemStack(AVPItems.ITEM_SNIPER_BARREL, 1),
-                        new ItemStack(AVPItems.ITEM_SNIPER_STOCK, 1) };
+                        new ItemStack(WeaponItems.ITEM_SNIPER_SCOPE, 1),
+                        new ItemStack(WeaponItems.ITEM_SNIPER_ACTION, 1),
+                        new ItemStack(WeaponItems.ITEM_SNIPER_PERIPHERALS, 1),
+                        new ItemStack(WeaponItems.ITEM_SNIPER_BARREL, 1),
+                        new ItemStack(WeaponItems.ITEM_SNIPER_STOCK, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("pistol", new ItemStack(AVPItems.ITEM_PISTOL, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("pistol", new ItemStack(WeaponItems.ITEM_PISTOL, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_PISTOL_STOCK, 1),
-                        new ItemStack(AVPItems.ITEM_PISTOL_BARREL, 1),
-                        new ItemStack(AVPItems.ITEM_PISTOL_ACTION, 1) };
+                        new ItemStack(WeaponItems.ITEM_PISTOL_STOCK, 1),
+                        new ItemStack(WeaponItems.ITEM_PISTOL_BARREL, 1),
+                        new ItemStack(WeaponItems.ITEM_PISTOL_ACTION, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("m4", new ItemStack(AVPItems.ITEM_M4, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("m4", new ItemStack(WeaponItems.ITEM_M4, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_M4_STOCK, 1),
-                        new ItemStack(AVPItems.ITEM_M4_BARREL, 1),
-                        new ItemStack(AVPItems.ITEM_M4_ACTION, 1) };
+                        new ItemStack(WeaponItems.ITEM_M4_STOCK, 1),
+                        new ItemStack(WeaponItems.ITEM_M4_BARREL, 1),
+                        new ItemStack(WeaponItems.ITEM_M4_ACTION, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("ak47", new ItemStack(AVPItems.ITEM_AK47, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("ak47", new ItemStack(WeaponItems.ITEM_AK47, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
                 return new ItemStack[] {
-                        new ItemStack(AVPItems.ITEM_AK47_ACTION, 1),
-                        new ItemStack(AVPItems.ITEM_AK47_BARREL, 1),
-                        new ItemStack(AVPItems.ITEM_AK47_STOCK, 1) };
+                        new ItemStack(WeaponItems.ITEM_AK47_ACTION, 1),
+                        new ItemStack(WeaponItems.ITEM_AK47_BARREL, 1),
+                        new ItemStack(WeaponItems.ITEM_AK47_STOCK, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("doritos", new ItemStack(AVPItems.ITEM_DORITOS, 4)) {
+        ItemSchematicRegistry.register(new ItemSchematic("doritos", new ItemStack(AVPItems.ITEM_DORITOS, 4)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -384,7 +385,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.BAKED_POTATO, 4) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("doritosCoolRanch", new ItemStack(AVPItems.ITEM_DORITOS_COOL_RANCH, 4)) {
+        ItemSchematicRegistry.register(new ItemSchematic("doritosCoolRanch", new ItemStack(AVPItems.ITEM_DORITOS_COOL_RANCH, 4)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -393,7 +394,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.WHEAT, 3) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("motionTracker", new ItemStack(AVPItems.ITEM_MOTION_TRACKER, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("motionTracker", new ItemStack(AVPItems.ITEM_MOTION_TRACKER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -407,7 +408,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.IRON_INGOT, 8) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("flamethrower", new ItemStack(AVPItems.ITEM_M_240_ICU, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("flamethrower", new ItemStack(WeaponItems.ITEM_M_240_ICU, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -419,7 +420,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.IRON_INGOT, 6) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("nbtDrive", new ItemStack(AVPItems.ITEM_FLASH_DRIVE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("nbtDrive", new ItemStack(AVPItems.ITEM_FLASH_DRIVE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -429,7 +430,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_LITHIUM, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticBiomask", new ItemStack(PredatorItems.BIOMASK_CELTIC, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticBiomask", new ItemStack(PredatorItems.BIOMASK_CELTIC, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -442,7 +443,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_PROCESSOR, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticPlate", new ItemStack(PredatorItems.CHESTPLATE_CELTIC, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticPlate", new ItemStack(PredatorItems.CHESTPLATE_CELTIC, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -453,7 +454,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 3) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticLegs", new ItemStack(PredatorItems.LEGS_CELTIC, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticLegs", new ItemStack(PredatorItems.LEGS_CELTIC, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -464,7 +465,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 2) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticBoots", new ItemStack(PredatorItems.BOOTS_CELTIC, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticBoots", new ItemStack(PredatorItems.BOOTS_CELTIC, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -475,7 +476,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticAxe", new ItemStack(PredatorItems.AXE_CELTIC, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticAxe", new ItemStack(PredatorItems.AXE_CELTIC, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -486,7 +487,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticPickaxe", new ItemStack(PredatorItems.PICKAXE_CELTIC, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticPickaxe", new ItemStack(PredatorItems.PICKAXE_CELTIC, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -497,7 +498,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticHoe", new ItemStack(PredatorItems.HOE_CELTIC, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticHoe", new ItemStack(PredatorItems.HOE_CELTIC, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -508,7 +509,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticShovel", new ItemStack(PredatorItems.SHOVEL_CELTIC, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticShovel", new ItemStack(PredatorItems.SHOVEL_CELTIC, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -519,7 +520,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticSword", new ItemStack(PredatorItems.SWORD_CELTIC, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticSword", new ItemStack(PredatorItems.SWORD_CELTIC, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -530,7 +531,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("wristBlade", new ItemStack(PredatorItems.ITEM_WRISTBRACER, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("wristBlade", new ItemStack(PredatorItems.ITEM_WRISTBRACER, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -542,7 +543,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 2) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("wristbracerBlades", new ItemStack(PredatorItems.ITEM_WRISTBRACER_BLADES, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("wristbracerBlades", new ItemStack(PredatorItems.ITEM_WRISTBRACER_BLADES, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -554,7 +555,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 2) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("proximityMine", new ItemStack(PredatorItems.ITEM_PROXIMITY_MINE, 3)) {
+        ItemSchematicRegistry.register(new ItemSchematic("proximityMine", new ItemStack(PredatorItems.ITEM_PROXIMITY_MINE, 3)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -565,7 +566,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticDisc", new ItemStack(PredatorItems.ITEM_DISC, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticDisc", new ItemStack(PredatorItems.ITEM_DISC, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -576,7 +577,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 2) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticShuriken", new ItemStack(PredatorItems.ITEM_SHURIKEN, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticShuriken", new ItemStack(PredatorItems.ITEM_SHURIKEN, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -586,7 +587,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 2) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("celticSpear", new ItemStack(PredatorItems.ITEM_SPEAR, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("celticSpear", new ItemStack(PredatorItems.ITEM_SPEAR, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -597,7 +598,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.DIAMOND, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("polycarbonate", new ItemStack(AVPItems.ITEM_POLYCARBONATE, 4)) {
+        ItemSchematicRegistry.register(new ItemSchematic("polycarbonate", new ItemStack(AVPItems.ITEM_POLYCARBONATE, 4)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -606,7 +607,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_SILICON, 3) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("carbon", new ItemStack(AVPItems.ITEM_CARBON, 3)) {
+        ItemSchematicRegistry.register(new ItemSchematic("carbon", new ItemStack(AVPItems.ITEM_CARBON, 3)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -614,7 +615,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.COAL, 4) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("resistor", new ItemStack(AVPItems.ITEM_RESISTOR, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("resistor", new ItemStack(AVPItems.ITEM_RESISTOR, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -623,7 +624,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_CARBON, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("capacitor", new ItemStack(AVPItems.ITEM_CAPACITOR, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("capacitor", new ItemStack(AVPItems.ITEM_CAPACITOR, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -632,7 +633,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_LITHIUM, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("diode", new ItemStack(AVPItems.ITEM_DIODE, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("diode", new ItemStack(AVPItems.ITEM_DIODE, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -642,7 +643,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_SILICON, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("led", new ItemStack(AVPItems.ITEM_LED, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("led", new ItemStack(AVPItems.ITEM_LED, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -652,7 +653,7 @@ public class AVPItemSchematics
                         new ItemStack(Items.REDSTONE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("regulator", new ItemStack(AVPItems.ITEM_VOLTAGE_REGULATOR, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("regulator", new ItemStack(AVPItems.ITEM_VOLTAGE_REGULATOR, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -662,7 +663,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_RESISTOR, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("transistor", new ItemStack(AVPItems.ITEM_TRANSISTOR, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("transistor", new ItemStack(AVPItems.ITEM_TRANSISTOR, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -672,7 +673,7 @@ public class AVPItemSchematics
                         new ItemStack(Item.getItemFromBlock(Blocks.LEVER), 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("ic", new ItemStack(AVPItems.ITEM_INTEGRATED_CIRCUIT, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("ic", new ItemStack(AVPItems.ITEM_INTEGRATED_CIRCUIT, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -687,7 +688,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_DIODE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("processor", new ItemStack(AVPItems.ITEM_PROCESSOR, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("processor", new ItemStack(AVPItems.ITEM_PROCESSOR, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -697,7 +698,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_LITHIUM, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("motherboard", new ItemStack(AVPItems.ITEM_MOTHERBOARD, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("motherboard", new ItemStack(AVPItems.ITEM_MOTHERBOARD, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -710,7 +711,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_DIODE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("powerline", new ItemStack(AVPTileEntityBlocks.POWERLINE, 4)) {
+        ItemSchematicRegistry.register(new ItemSchematic("powerline", new ItemStack(AVPTileEntityBlocks.POWERLINE, 4)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -719,7 +720,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_COPPER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("powersupply", new ItemStack(AVPItems.ITEM_POWER_SUPPLY, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("powersupply", new ItemStack(AVPItems.ITEM_POWER_SUPPLY, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -730,7 +731,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPTileEntityBlocks.TRANSFORMER, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("ledDisplay", new ItemStack(AVPItems.ITEM_LED_DISPLAY, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("ledDisplay", new ItemStack(AVPItems.ITEM_LED_DISPLAY, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -741,7 +742,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_LITHIUM, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("ram", new ItemStack(AVPItems.ITEM_RAM, 2)) {
+        ItemSchematicRegistry.register(new ItemSchematic("ram", new ItemStack(AVPItems.ITEM_RAM, 2)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -753,7 +754,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_POLYCARBONATE, 1) };
             }
         });
-        AssemblyManager.register(new ItemSchematic("solidstatedrive", new ItemStack(AVPItems.ITEM_SOLID_STATE_DRIVE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("solidstatedrive", new ItemStack(AVPItems.ITEM_SOLID_STATE_DRIVE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {

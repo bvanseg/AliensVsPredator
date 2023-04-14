@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
 import org.avp.common.AVPGui;
 import org.avp.common.inventory.ContainerAssembler;
-import org.avp.common.item.crafting.AssemblyManager;
+import org.avp.common.item.crafting.ItemSchematicRegistry;
 import org.predator.common.PredatorItems;
 
 public class TileEntityAssembler extends TileEntity implements IInventory, ITickable
@@ -31,7 +31,6 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
 
     public TileEntityAssembler()
     {
-        ;
     }
 
     @Override
@@ -53,7 +52,7 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
         {
             if (this.getWorld().rand.nextInt(3) == 0)
             {
-                this.randomItem = AssemblyManager.instance.schematics().get(this.getWorld().rand.nextInt(AssemblyManager.instance.schematics().size())).getItemStackAssembled().getItem();
+                this.randomItem = ItemSchematicRegistry.getSchematics().get(this.getWorld().rand.nextInt(ItemSchematicRegistry.getSchematics().size())).getItemStackAssembled().getItem();
             }
         }
 
@@ -150,13 +149,11 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     @Override
     public void openInventory(EntityPlayer player)
     {
-        ;
     }
 
     @Override
     public void closeInventory(EntityPlayer player)
     {
-        ;
     }
 
     @Override
@@ -279,7 +276,6 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
     @Override
     public void clear()
     {
-        ;
     }
 
     @Override

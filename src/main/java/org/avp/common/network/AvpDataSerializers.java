@@ -5,7 +5,12 @@ import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializer;
 import net.minecraft.network.datasync.DataSerializers;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.registries.DataSerializerEntry;
+import org.avp.AVP;
+import org.avp.common.entity.living.MarineDecorator;
 import org.predator.common.entity.state.CloakState;
 
 /**
@@ -36,9 +41,31 @@ public class AvpDataSerializers implements IInitEvent {
         }
     };
 
+    public static final DataSerializer<MarineDecorator.MarineRank> MARINE_RANK = new DataSerializer<MarineDecorator.MarineRank>() {
+
+        public void write(PacketBuffer buf, MarineDecorator.MarineRank value) {
+            buf.writeEnumValue(value);
+        }
+
+        public MarineDecorator.MarineRank read(PacketBuffer buf) {
+            return buf.readEnumValue(MarineDecorator.MarineRank.class);
+        }
+
+        public DataParameter<MarineDecorator.MarineRank> createKey(int id) {
+            return new DataParameter<>(id, this);
+        }
+
+        public MarineDecorator.MarineRank copyValue(MarineDecorator.MarineRank value) {
+            return value;
+        }
+    };
+
     @Override
     public void init(FMLInitializationEvent event) {
-		// TODO: Use forge registry, instead.
-    	DataSerializers.registerSerializer(CLOAK_STATE);
+        ForgeRegistries.DATA_SERIALIZERS.register(new DataSerializerEntry(CLOAK_STATE).setRegistryName(AVP.Properties.ID, "cloak_state"));
+        ForgeRegistries.DATA_SERIALIZERS.register(new DataSerializerEntry(MARINE_RANK).setRegistryName(AVP.Properties.ID, "marine_rank"));
+        // TODO: Use forge registry, instead.
+//    	DataSerializers.registerSerializer(CLOAK_STATE);
+//        DataSerializers.registerSerializer(MARINE_RANK);
     }
 }

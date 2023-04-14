@@ -70,7 +70,6 @@ public class EntitySpear extends EntityItemStackProjectile
 
                 if (itemstack.getMaxDamage() + 1 > itemstack.getMaxDamage())
                 {
-                    ;
                 }
                 else
                 {

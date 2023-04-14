@@ -24,7 +24,7 @@ import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 
 import java.util.ArrayList;
@@ -227,15 +227,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, Parasito
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.FACEHUGGER_DEATH.event();
-    }
-
-    @Override
-    public void implantEmbryo(EntityLivingBase living)
-    {
-        OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
-        organism.impregnate(Embryo.BELUGA);
-        organism.syncWithClients(living);
-        this.setFertility(false);
     }
 
     @Override

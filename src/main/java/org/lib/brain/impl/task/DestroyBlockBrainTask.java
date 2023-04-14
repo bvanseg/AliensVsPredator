@@ -49,6 +49,9 @@ public class DestroyBlockBrainTask extends AbstractEntityBrainTask {
 	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
+		// Respect mob-griefing rules.
+		if (!entity.world.getGameRules().getBoolean("mobGriefing")) return false;
+
 		Optional<List<BlockPos>> blockPositionsOptional = ctx.getBrain().getMemory(BrainMemoryKeys.BLOCK_POSITIONS_OF_INTEREST);
 		if (!blockPositionsOptional.isPresent())
 			return false;

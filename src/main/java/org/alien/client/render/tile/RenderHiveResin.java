@@ -8,14 +8,14 @@ import net.minecraft.init.Blocks;
 import org.alien.client.AlienResources;
 import org.alien.client.model.tile.ModelHiveResin;
 import org.alien.common.tile.TileEntityHiveResin;
-import org.avp.common.AVPSettings.ClientSettings;
+import org.avp.common.config.ModelConfig;
 
 public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveResin>
 {
     @Override
     public void render(TileEntityHiveResin tile, double posX, double posY, double posZ, float partialTicks, int destroyStage, float alpha)
     {
-        GraphicsSetting hiveTessellation = ClientSettings.instance.hiveTessellation().value();
+        GraphicsSetting hiveTessellation = ModelConfig.getInstance().getGraphics().hiveTessellation;
 
         if (hiveTessellation == GraphicsSetting.MEDIUM || hiveTessellation == GraphicsSetting.HIGH || hiveTessellation == GraphicsSetting.ULTRA)
         {

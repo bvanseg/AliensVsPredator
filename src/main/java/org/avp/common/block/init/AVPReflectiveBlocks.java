@@ -29,7 +29,7 @@ public class AVPReflectiveBlocks implements IPreInitEvent
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
-        AVP.log().info("Registering Reflective Blocks");
+        AVP.instance.getLogger().info("Registering Reflective Blocks");
 
         this.registerBlocks();
     }

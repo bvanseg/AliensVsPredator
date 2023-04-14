@@ -1,6 +1,5 @@
 package org.avp.common.block.init;
 
-import com.asx.mdx.common.minecraft.block.BlockMaterial;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -43,7 +42,7 @@ public class AVPOreBlocks implements IPreInitEvent
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
-        AVP.log().info("Registering Ore Blocks");
+        AVP.instance.getLogger().info("Registering Ore Blocks");
 
         this.registerBlocks();
     }

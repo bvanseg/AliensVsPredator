@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 
 public class OrganismClientSync implements IMessage, IMessageHandler<OrganismClientSync, OrganismClientSync>
@@ -18,7 +18,6 @@ public class OrganismClientSync implements IMessage, IMessageHandler<OrganismCli
 
     public OrganismClientSync()
     {
-        ;
     }
 
     public OrganismClientSync(int entityId, NBTTagCompound tag)

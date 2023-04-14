@@ -238,7 +238,7 @@ public class ModelChestbursterRunner extends Model<EntityRunnerChestburster>
     @Override
     public void render(EntityRunnerChestburster obj)
     {
-        EntityLivingBase base = (EntityLivingBase) obj;;
+        EntityLivingBase base = (EntityLivingBase) obj;
 
         float newangle = MathHelper.cos(idleProgress(obj) * 4.0F * 0.1F) * (float) Math.PI * 0.9F * swingProgressPrev(obj);
         float distMult = 0.05F;

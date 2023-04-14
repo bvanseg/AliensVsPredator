@@ -5,7 +5,6 @@ import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.ai.selector.EntitySelectorDracomorph;
 import org.alien.common.entity.living.xenomorph.EntityDracomorph;
-import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.task.*;
@@ -16,7 +15,7 @@ import org.lib.brain.task.BrainTaskAdapter;
  * @author Boston Vanseghi
  *
  */
-public class DracomorphBrain extends AbstractEntityBrain<EntityDracomorph> {
+public class DracomorphBrain extends AlienBrain<EntityDracomorph> {
 	public DracomorphBrain(EntityDracomorph entity) {
 		super(entity);
 	}
@@ -29,6 +28,8 @@ public class DracomorphBrain extends AbstractEntityBrain<EntityDracomorph> {
 
 	@Override
 	public void initTasks() {
+		super.initTasks();
+
 		EntityDracomorph entity = this.getEntity();
 
 		this.addTask(new SwimBrainTask(entity));

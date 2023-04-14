@@ -387,6 +387,9 @@ public class EntityAPC extends Entity
                 this.rotationYaw = this.rotationYaw + (isReversing ? -turnSpeed : +turnSpeed);
             }
         }
+        else
+        {
+        }
 
         velocity1 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 

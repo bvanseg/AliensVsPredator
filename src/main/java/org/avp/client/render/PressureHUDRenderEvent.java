@@ -28,7 +28,7 @@ import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.Organism.OrganismImpl;
+import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.dimension.varda.WorldProviderVarda;
 import org.avp.client.Resources;
@@ -49,7 +49,6 @@ public class PressureHUDRenderEvent
     @SubscribeEvent
     public void renderWorldLastEvent(RenderWorldLastEvent event)
     {
-        ;
     }
 
     @SubscribeEvent
@@ -109,7 +108,6 @@ public class PressureHUDRenderEvent
     {
         if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
         {
-            ;
         }
     }
 

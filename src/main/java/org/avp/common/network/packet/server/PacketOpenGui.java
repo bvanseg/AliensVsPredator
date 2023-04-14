@@ -17,7 +17,6 @@ public class PacketOpenGui implements IMessage, IMessageHandler<PacketOpenGui, P
 
     public PacketOpenGui()
     {
-        ;
     }
 
     public PacketOpenGui(int guiIdentifier)
