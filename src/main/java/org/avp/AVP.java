@@ -57,15 +57,17 @@ public class AVP implements IMod
         return Game.instance.getModContainer(AVP.Properties.ID);
     }
 
-    @Mod.EventHandler
-    public void pre(FMLPreInitializationEvent event)
-    {
-        logger.info("Preparing...");
-
+    static {
         // It is absolutely essential that we initialize this here before everything else. This creates new creature types,
         // which involves modifying the CreatureType enum via reflection at runtime. If this is not done early enough,
         // the mod may crash with other mods or with itself (alien entities are registered using these creature types).
         AlienCreatureTypes.init();
+    }
+
+    @Mod.EventHandler
+    public void pre(FMLPreInitializationEvent event)
+    {
+        logger.info("Preparing...");
 
         AVPCreativeTabs.instance.pre(event);
 
