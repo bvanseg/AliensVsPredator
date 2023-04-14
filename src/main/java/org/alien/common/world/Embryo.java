@@ -4,12 +4,14 @@ import com.asx.mdx.common.minecraft.Pos;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import org.alien.common.api.emybro.EmbryoEntries;
 import org.alien.common.api.emybro.EmbryoEntry;
 import org.alien.common.api.emybro.EmbryoKey;
 import org.alien.common.api.emybro.EmbryoRegistry;
@@ -87,6 +89,7 @@ public class Embryo {
         return this.embryoEntry.getGestationPeriod();
     }
 
+    private static final String PLAYER_HOST_ID = "player";
     private static final String AGE_NBT_KEY = "Age";
     private static final String IMPREGNATOR_ID_NBT_KEY = "ImpregnatorId";
     private static final String HOST_ID_NBT_KEY = "HostId";
@@ -102,10 +105,17 @@ public class Embryo {
                 nbt.setString(IMPREGNATOR_ID_NBT_KEY, impregnatorRegistryName);
             }
 
-            EntityEntry hostEntityEntry = EntityRegistry.getEntry(hostClass);
-            String hostRegistryName = FuncUtil.let(FuncUtil.let(hostEntityEntry, EntityEntry::getRegistryName), ResourceLocation::toString);
-            if (hostRegistryName != null) {
-                nbt.setString(HOST_ID_NBT_KEY, hostRegistryName);
+            if (EntityPlayer.class.isAssignableFrom(hostClass)) // Handle players
+            {
+                nbt.setString(HOST_ID_NBT_KEY, PLAYER_HOST_ID);
+            }
+            else // Handle non-players
+            {
+                EntityEntry hostEntityEntry = EntityRegistry.getEntry(hostClass);
+                String hostRegistryName = FuncUtil.let(FuncUtil.let(hostEntityEntry, EntityEntry::getRegistryName), ResourceLocation::toString);
+                if (hostRegistryName != null) {
+                    nbt.setString(HOST_ID_NBT_KEY, hostRegistryName);
+                }
             }
 
             nbt.setInteger(AGE_NBT_KEY, embryo.age);
@@ -125,11 +135,21 @@ public class Embryo {
             EntityEntry impregnatorEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(impregnatorId));
             EntityEntry hostEntry = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(hostId));
 
-            if (impregnatorEntry == null || hostEntry == null) return null;
+            if (impregnatorEntry == null) return null;
 
-            EmbryoKey key = new EmbryoKey(impregnatorEntry.getEntityClass(), hostEntry.getEntityClass());
-            EmbryoEntry embryoEntry = EmbryoRegistry.getEntry(key);
-            Embryo embryo = embryoEntry.create(key);
+            Embryo embryo;
+
+            // Special case handling for players, as player entities are not registered along with normal entities.
+            if (hostId.equalsIgnoreCase(PLAYER_HOST_ID))
+            {
+                embryo = EmbryoEntries.DRONE.create(new EmbryoKey(impregnatorEntry.getEntityClass(), EntityPlayer.class));
+            } else {
+                if (hostEntry == null) return null;
+
+                EmbryoKey key = new EmbryoKey(impregnatorEntry.getEntityClass(), hostEntry.getEntityClass());
+                EmbryoEntry embryoEntry = EmbryoRegistry.getEntry(key);
+                embryo = embryoEntry.create(key);
+            }
 
             embryo.age = nbt.getInteger(AGE_NBT_KEY);
 
