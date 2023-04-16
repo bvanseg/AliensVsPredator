@@ -104,17 +104,18 @@ item.avp:part.regulator.name=Regulator
 item.avp:ingot.lithium.name=Lithium Ingot
 item.avp:carbon.name=Carbon
 item.avp:royaljelly.name=Royal Jelly
-item.avp:blackgoo.item.name=Black Goo
 item.avp:phial.goo.name=Ampule of Goo
 item.avp:phial.empty.name=Ampule
 item.avp:device.nbtdrive.name=NBT Drive
 item.avp:apc.name=APC
-item.avp:blackGooBucket.name=Bucket of Black Goo
 item.avp:food.doritos.name=Doritos
 item.avp:food.doritos.coolranch.name=Doritos (Cool Ranch)
 item.avp:food.raw.tentacle.name=Raw Tentacle
 item.avp:food.trilo.bite.name=Trilo Bite
 
+#BUCKETS
+fluid.blackGoo=Black Goo
+fluid.mist=Reactive Mist
 
 #ITEMS-SUMMONERS
 #Immature Xenomorphs
@@ -189,8 +190,6 @@ item.avp:motiontracker.name=F.E.M.S 5.547.60 Motion Tracker
 item.avp:wristblade.name=Wristbracer
 item.avp:plasmacaster.name=Plasma Caster
 item.avp:mine.laser.name=Laser Mine
-item.avp:bucket.blackgoo.name=Bucket of Black Goo
-item.avp:bucket.mist.name=Bucket of Reactive Mist
 item.avp:gun.pistol.name=88Mod4
 item.avp:gun.m4.name=M4 Carbine
 item.avp:gun.sniper.name=Semi-Automatic Sniper Rifle

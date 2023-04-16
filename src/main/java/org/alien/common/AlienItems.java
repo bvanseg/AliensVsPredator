@@ -104,9 +104,6 @@ public class AlienItems implements IPreInitEvent {
         ItemRegistryUtil.registerItemWithIcon(ITEM_PHIAL);
         ItemRegistryUtil.registerItemWithIcon(ITEM_PHIAL_EMPTY);
 
-        ItemRegistryUtil.registerItemWithIcon(BLACK_GOO_BUCKET);
-        ItemRegistryUtil.registerItemWithIcon(MIST_BUCKET);
-
         ItemRegistryUtil.registerItem(SUMMONER_SPORE_POD);
         ItemRegistryUtil.registerItem(SUMMONER_DRONE);
         ItemRegistryUtil.registerItem(SUMMONER_AQUA);
