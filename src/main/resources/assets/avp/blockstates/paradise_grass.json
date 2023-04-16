@@ -12,28 +12,28 @@
     },
     "variants": {
         "normal": [{
-            "model": "cube_all"
+            "model": "cube"
         }],
         "inventory": [{
-            "model": "cube_all"
+            "model": "cube"
         }],
         "snowy=false,variant=dirt": [{ 
-            "model": "cube_all" 
+            "model": "cube"
         }],
         "snowy=true,variant=dirt": [{ 
-            "model": "cube_all" 
+            "model": "cube"
         }],
         "snowy=false,variant=coarse_dirt": [{ 
-            "model": "cube_all" 
+            "model": "cube"
         }],
         "snowy=true,variant=coarse_dirt": [{ 
-            "model": "cube_all" 
+            "model": "cube"
         }],
         "snowy=false,variant=podzol": [{ 
-            "model": "cube_all" 
+            "model": "cube"
         }],
         "snowy=true,variant=podzol": [{ 
-            "model": "cube_all" 
+            "model": "cube"
         }]
     }
 }

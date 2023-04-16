@@ -13,22 +13,22 @@
             "model": "cube_all"
         }],
         "snowy=false,variant=dirt": [{ 
-            "model": "cube_all" 
+            "model": "cube_all"
         }],
         "snowy=true,variant=dirt": [{ 
-            "model": "cube_all" 
+            "model": "cube_all"
         }],
         "snowy=false,variant=coarse_dirt": [{ 
-            "model": "cube_all" 
+            "model": "cube_all"
         }],
         "snowy=true,variant=coarse_dirt": [{ 
-            "model": "cube_all" 
+            "model": "cube_all"
         }],
         "snowy=false,variant=podzol": [{ 
-            "model": "cube_all" 
+            "model": "cube_all"
         }],
         "snowy=true,variant=podzol": [{ 
-            "model": "cube_all" 
+            "model": "cube_all"
         }]
     }
 }
