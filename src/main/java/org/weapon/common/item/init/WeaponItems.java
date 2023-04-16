@@ -65,11 +65,11 @@ public class WeaponItems implements IPreInitEvent {
     public void pre(FMLPreInitializationEvent event) {
         ItemRegistryUtil.registerItem(ITEM_GRENADE);
         ItemRegistryUtil.registerItem(ITEM_INCENDIARY_GRENADE);
-        ItemRegistryUtil.registerItem(ITEM_AMMO_PISTOL);
-        ItemRegistryUtil.registerItem(ITEM_AMMO_AR);
-        ItemRegistryUtil.registerItem(ITEM_AMMO_SMG);
-        ItemRegistryUtil.registerItem(ITEM_AMMO_SNIPER);
-        ItemRegistryUtil.registerItem(ITEM_PROPANE_TANK);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_AMMO_PISTOL);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_AMMO_AR);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_AMMO_SMG);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_AMMO_SNIPER);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_PROPANE_TANK);
         ItemRegistryUtil.registerItem(ITEM_M_240_ICU);
         ItemRegistryUtil.registerItem(ITEM_SEVASTOPOL_FLAMETHROWER);
         ItemRegistryUtil.registerItem(ITEM_PISTOL);
