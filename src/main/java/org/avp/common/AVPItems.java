@@ -8,6 +8,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.common.config.ModelConfig;
+import org.avp.common.entity.EntityAPC;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.item.*;
@@ -57,7 +58,6 @@ public class AVPItems implements IPreInitEvent {
     public static final Item ITEM_SUPPLY_CHUTE = new ItemSupplyChute(SupplyChuteType.UNBRANDED).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("device.supplychute");
     public static final Item ITEM_SUPPLY_CHUTE_MARINES = new ItemSupplyChute(SupplyChuteType.MARINES).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("device.supplychute.marines");
     public static final Item ITEM_SUPPLY_CHUTE_SEEGSON = new ItemSupplyChute(SupplyChuteType.SEEGSON).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("device.supplychute.seegson");
-    public static final Item ITEM_APC = new ItemAPC().setCreativeTab(AVPCreativeTabs.MAIN).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("apc");
     public static final Item ITEM_CARBON = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("carbon");
     public static final Item ITEM_COBALT = new HookedItem().setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("cobalt");
     public static final Item ITEM_NEODYMIUM = new HookedItem().setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("neodymium");
@@ -79,6 +79,8 @@ public class AVPItems implements IPreInitEvent {
     public static final Item RACK_MODULE_6 = new ItemNetworkRackModule(5).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("rackmodule6");
     public static final Item RACK_MODULE_7 = new ItemNetworkRackModule(6).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("rackmodule7");
     public static final Item RACK_MODULE_8 = new ItemNetworkRackModule(7).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("rackmodule8");
+
+    public static final Item SUMMONER_APC = new ItemEntitySummoner(EntityAPC.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("apc");
     public static final Item SUMMONER_MARINE = new ItemEntitySummoner(EntityMarine.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.marine");
     public static final Item SUMMONER_COMBAT_SYNTHETIC = new ItemEntitySummoner(EntityCombatSynthetic.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.synthetic.combat");
 
@@ -131,8 +133,6 @@ public class AVPItems implements IPreInitEvent {
         ItemRegistryUtil.registerItem(ITEM_SUPPLY_CHUTE_MARINES);
         ItemRegistryUtil.registerItem(ITEM_SUPPLY_CHUTE_SEEGSON);
 
-        ItemRegistryUtil.registerItem(ITEM_APC);
-
         ItemRegistryUtil.registerItemWithIcon(ITEM_CARBON);
         ItemRegistryUtil.registerItemWithIcon(ITEM_COBALT);
         ItemRegistryUtil.registerItemWithIcon(ITEM_NEODYMIUM);
@@ -157,6 +157,7 @@ public class AVPItems implements IPreInitEvent {
         ItemRegistryUtil.registerItem(RACK_MODULE_7);
         ItemRegistryUtil.registerItem(RACK_MODULE_8);
 
+        ItemRegistryUtil.registerItem(SUMMONER_APC);
         ItemRegistryUtil.registerItem(SUMMONER_MARINE);
         ItemRegistryUtil.registerItem(SUMMONER_COMBAT_SYNTHETIC);
     }
