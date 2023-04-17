@@ -4,8 +4,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import org.avp.common.api.Resizable;
 
-public class EntityLiquidPool extends Entity
+/**
+ * @author Ri5ux
+ */
+public class EntityLiquidPool extends Entity implements Resizable
 {
     protected int lifetime;
 
@@ -20,19 +24,13 @@ public class EntityLiquidPool extends Entity
     }
 
     @Override
-    protected void entityInit()
-    {
-    }
+    protected void entityInit() { /* Do Nothing */ }
 
     @Override
-    protected void readEntityFromNBT(NBTTagCompound compound)
-    {
-    }
+    protected void readEntityFromNBT(NBTTagCompound compound) { /* Do Nothing */ }
 
     @Override
-    protected void writeEntityToNBT(NBTTagCompound compound)
-    {
-    }
+    protected void writeEntityToNBT(NBTTagCompound compound) { /* Do Nothing */ }
 
     @Override
     public boolean canBeCollidedWith()
@@ -69,12 +67,17 @@ public class EntityLiquidPool extends Entity
         this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
         this.motionY *= 0.9800000190734863D;
 
-        if (!this.world.isRemote)
-        {
-            if (this.ticksExisted > this.lifetime)
-            {
-                this.setDead();
-            }
+        if (!this.world.isRemote && (this.ticksExisted > this.lifetime)) {
+            this.setDead();
         }
+    }
+
+    public void setLifetime(int lifetime) {
+        this.lifetime = lifetime;
+    }
+
+    @Override
+    public void resize(float width, float height) {
+        this.setSize(width, height);
     }
 }
