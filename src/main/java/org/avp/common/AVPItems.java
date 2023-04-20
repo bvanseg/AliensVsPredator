@@ -92,40 +92,40 @@ public class AVPItems implements IPreInitEvent {
     }
 
     private static void registerItems() {
-        ItemRegistryUtil.registerItem(PRESSURE_MASK);
-        ItemRegistryUtil.registerItem(PRESSURE_CHEST);
-        ItemRegistryUtil.registerItem(PRESSURE_PANTS);
-        ItemRegistryUtil.registerItem(PRESSURE_BOOTS);
+        ItemRegistryUtil.registerItemWithIcon(PRESSURE_MASK);
+        ItemRegistryUtil.registerItemWithIcon(PRESSURE_CHEST);
+        ItemRegistryUtil.registerItemWithIcon(PRESSURE_PANTS);
+        ItemRegistryUtil.registerItemWithIcon(PRESSURE_BOOTS);
 
-        ItemRegistryUtil.registerItem(MK_50_HELMET);
-        ItemRegistryUtil.registerItem(MK_50_BODY);
-        ItemRegistryUtil.registerItem(MK_50_PANTS);
-        ItemRegistryUtil.registerItem(MK_50_BOOTS);
+        ItemRegistryUtil.registerItemWithIcon(MK_50_HELMET);
+        ItemRegistryUtil.registerItemWithIcon(MK_50_BODY);
+        ItemRegistryUtil.registerItemWithIcon(MK_50_PANTS);
+        ItemRegistryUtil.registerItemWithIcon(MK_50_BOOTS);
 
-        ItemRegistryUtil.registerItem(HELM_MARINE);
-        ItemRegistryUtil.registerItem(PLATE_MARINE);
-        ItemRegistryUtil.registerItem(LEGS_MARINE);
-        ItemRegistryUtil.registerItem(BOOTS_MARINE);
+        ItemRegistryUtil.registerItemWithIcon(HELM_MARINE);
+        ItemRegistryUtil.registerItemWithIcon(PLATE_MARINE);
+        ItemRegistryUtil.registerItemWithIcon(LEGS_MARINE);
+        ItemRegistryUtil.registerItemWithIcon(BOOTS_MARINE);
 
         ItemRegistryUtil.registerItem(ITEM_STUN_BATON);
 
-        ItemRegistryUtil.registerItem(ITEM_DORITOS);
-        ItemRegistryUtil.registerItem(ITEM_DORITOS_COOL_RANCH);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_DORITOS);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_DORITOS_COOL_RANCH);
 
-        ItemRegistryUtil.registerItem(ITEM_FLASH_DRIVE);
-        ItemRegistryUtil.registerItem(ITEM_CAPACITOR);
-        ItemRegistryUtil.registerItem(ITEM_TRANSISTOR);
-        ItemRegistryUtil.registerItem(ITEM_RAM);
-        ItemRegistryUtil.registerItem(ITEM_RESISTOR);
-        ItemRegistryUtil.registerItem(ITEM_PROCESSOR);
-        ItemRegistryUtil.registerItem(ITEM_SOLID_STATE_DRIVE);
-        ItemRegistryUtil.registerItem(ITEM_DIODE);
-        ItemRegistryUtil.registerItem(ITEM_MOTHERBOARD);
-        ItemRegistryUtil.registerItem(ITEM_POWER_SUPPLY);
-        ItemRegistryUtil.registerItem(ITEM_LED_DISPLAY);
-        ItemRegistryUtil.registerItem(ITEM_VOLTAGE_REGULATOR);
-        ItemRegistryUtil.registerItem(ITEM_LED);
-        ItemRegistryUtil.registerItem(ITEM_INTEGRATED_CIRCUIT);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_FLASH_DRIVE);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_CAPACITOR);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_TRANSISTOR);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_RAM);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_RESISTOR);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_PROCESSOR);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_SOLID_STATE_DRIVE);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_DIODE);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_MOTHERBOARD);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_POWER_SUPPLY);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_LED_DISPLAY);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_VOLTAGE_REGULATOR);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_LED);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_INTEGRATED_CIRCUIT);
 
         ItemRegistryUtil.registerItem(ITEM_SUPPLY_CHUTE);
         ItemRegistryUtil.registerItem(ITEM_SUPPLY_CHUTE_MARINES);
@@ -133,20 +133,20 @@ public class AVPItems implements IPreInitEvent {
 
         ItemRegistryUtil.registerItem(ITEM_APC);
 
-        ItemRegistryUtil.registerItem(ITEM_CARBON);
-        ItemRegistryUtil.registerItem(ITEM_COBALT);
-        ItemRegistryUtil.registerItem(ITEM_NEODYMIUM);
-        ItemRegistryUtil.registerItem(ITEM_NEODYMIUM_MAGNET);
-        ItemRegistryUtil.registerItem(ITEM_SILICON);
-        ItemRegistryUtil.registerItem(ITEM_INGOT_ALUMINUM);
-        ItemRegistryUtil.registerItem(ITEM_INGOT_COPPER);
-        ItemRegistryUtil.registerItem(ITEM_POLYCARBONATE);
-        ItemRegistryUtil.registerItem(ITEM_INGOT_LITHIUM);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_CARBON);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_COBALT);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_NEODYMIUM);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_NEODYMIUM_MAGNET);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_SILICON);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_INGOT_ALUMINUM);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_INGOT_COPPER);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_POLYCARBONATE);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_INGOT_LITHIUM);
 
         ItemRegistryUtil.registerItem(ITEM_MOTION_TRACKER);
-        ItemRegistryUtil.registerItem(ITEM_CHARGE_PACK);
-        ItemRegistryUtil.registerItem(ITEM_MAINTENANCE_JACK);
-        ItemRegistryUtil.registerItem(SECURITY_TUNER);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_CHARGE_PACK);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_MAINTENANCE_JACK);
+        ItemRegistryUtil.registerItemWithIcon(SECURITY_TUNER);
 
         ItemRegistryUtil.registerItem(RACK_MODULE_1);
         ItemRegistryUtil.registerItem(RACK_MODULE_2);
