@@ -1,7 +1,6 @@
 package org.alien.common.entity.living;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
@@ -10,7 +9,7 @@ import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 
-public abstract class SpeciesXenomorph extends SpeciesAlien implements IMob, Brainiac<XenomorphBrain> {
+public abstract class SpeciesXenomorph extends SpeciesAlien implements Brainiac<XenomorphBrain> {
 
     protected XenomorphBrain brain;
 

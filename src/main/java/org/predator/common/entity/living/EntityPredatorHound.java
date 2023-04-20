@@ -13,7 +13,7 @@ import org.lib.brain.Brainiac;
 import org.predator.common.PredatorItems;
 import org.predator.common.entity.ai.brain.HoundBrain;
 
-public class EntityPredatorHound extends EntityMob implements IMob, Host, Brainiac<HoundBrain>
+public class EntityPredatorHound extends EntityMob implements Host, Brainiac<HoundBrain>
 {
     private HoundBrain brain;
 

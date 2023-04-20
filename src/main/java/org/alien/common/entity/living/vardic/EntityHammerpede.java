@@ -3,7 +3,6 @@ package org.alien.common.entity.living.vardic;
 import com.asx.mdx.common.minecraft.Pos;
 import com.asx.mdx.common.minecraft.block.Blocks;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -20,7 +19,7 @@ import org.lib.brain.Brainiac;
 
 import java.util.List;
 
-public class EntityHammerpede extends SpeciesAlien implements IMob, Brainiac<HammerpedeBrain>
+public class EntityHammerpede extends SpeciesAlien implements Brainiac<HammerpedeBrain>
 {
 
     private HammerpedeBrain brain;

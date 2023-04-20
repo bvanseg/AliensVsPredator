@@ -3,7 +3,6 @@ package org.alien.common.entity.living.xenomorph;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -21,7 +20,7 @@ import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 
-public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Brainiac<OvamorphBrain>
+public class EntityOvamorph extends SpeciesAlien implements HiveMember, Brainiac<OvamorphBrain>
 {
     private static final DataParameter<Integer> TIME_LEFT_UNTIL_OPEN = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.VARINT);
     private static final DataParameter<Byte> OPEN_PROGRESS = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);

@@ -4,7 +4,6 @@ import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
@@ -30,7 +29,7 @@ import org.lib.brain.Brainiac;
 
 import java.util.List;
 
-public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, Brainiac<ParasitoidBrain>
+public class EntityParasitoid extends SpeciesAlien implements Parasitoid, Brainiac<ParasitoidBrain>
 {
     private static final DataParameter<Boolean> FERTILE = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
     public int timeSinceInfertile = 0;

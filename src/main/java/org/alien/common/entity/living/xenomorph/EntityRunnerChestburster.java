@@ -1,7 +1,6 @@
 package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -9,7 +8,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityRunnerChestburster extends EntityChestburster implements IMob, Nascentic, HiveMember
+public class EntityRunnerChestburster extends EntityChestburster implements Nascentic, HiveMember
 {
 
     public EntityRunnerChestburster(World world)

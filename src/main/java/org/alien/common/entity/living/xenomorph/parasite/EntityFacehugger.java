@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
@@ -18,7 +17,7 @@ import org.alien.common.entity.ai.brain.parasitoid.FacehuggerBrain;
 import org.alien.common.entity.ai.brain.parasitoid.ParasitoidBrain;
 import org.alien.common.entity.living.EntityParasitoid;
 
-public class EntityFacehugger extends EntityParasitoid implements IMob, Parasitoid
+public class EntityFacehugger extends EntityParasitoid implements Parasitoid
 {
     private int refertilizationJelly = 0;
 

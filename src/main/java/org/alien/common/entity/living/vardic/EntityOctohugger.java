@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -26,7 +25,7 @@ import org.alien.common.entity.living.EntityParasitoid;
 
 import java.util.ArrayList;
 
-public class EntityOctohugger extends EntityParasitoid implements IMob, Parasitoid
+public class EntityOctohugger extends EntityParasitoid implements Parasitoid
 {
     private static final DataParameter<BlockPos> HANGING_POSITION = EntityDataManager.createKey(EntityOctohugger.class, DataSerializers.BLOCK_POS);
     private static final DataParameter<Boolean>  HANGING          = EntityDataManager.createKey(EntityOctohugger.class, DataSerializers.BOOLEAN);

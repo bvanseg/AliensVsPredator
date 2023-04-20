@@ -3,7 +3,6 @@ package org.alien.common.entity.living.xenomorph;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -25,7 +24,7 @@ import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.hive.HiveMember;
 import org.lib.brain.Brainiac;
 
-public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic, HiveMember, Brainiac<ChestbursterBrain>
+public class EntityChestburster extends SpeciesAlien implements Nascentic, HiveMember, Brainiac<ChestbursterBrain>
 {
     private Class<? extends Entity> matureState;
 

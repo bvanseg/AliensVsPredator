@@ -2,7 +2,6 @@ package org.alien.common.entity.living.xenomorph;
 
 import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -21,7 +20,7 @@ import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 
-public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Brainiac<DracomorphBrain>
+public class EntityDracomorph extends SpeciesAlien implements Host, Brainiac<DracomorphBrain>
 {
     private static final DataParameter<Integer> FLYING = EntityDataManager.createKey(EntityDracomorph.class, DataSerializers.VARINT);
     private BlockPos flyToPosition;

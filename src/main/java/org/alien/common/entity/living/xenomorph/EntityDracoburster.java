@@ -1,14 +1,13 @@
 package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Nascentic;
 
-public class EntityDracoburster extends EntityChestburster implements IMob, Nascentic
+public class EntityDracoburster extends EntityChestburster implements Nascentic
 {
 
     public EntityDracoburster(World world)

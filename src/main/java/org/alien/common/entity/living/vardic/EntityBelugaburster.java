@@ -1,7 +1,6 @@
 package org.alien.common.entity.living.vardic;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -9,7 +8,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.living.xenomorph.EntityChestburster;
 
-public class EntityBelugaburster extends EntityChestburster implements IMob, Nascentic
+public class EntityBelugaburster extends EntityChestburster implements Nascentic
 {
 
     public EntityBelugaburster(World world)

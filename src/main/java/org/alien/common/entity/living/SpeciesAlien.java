@@ -9,7 +9,6 @@ import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -25,7 +24,7 @@ import java.util.UUID;
 /**
  * @author Ri5ux
  */
-public abstract class SpeciesAlien extends EntityMob implements IMob, RoyalOrganism, IAnimated {
+public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, IAnimated {
     private static final DataParameter<Integer> JELLY_LEVEL = EntityDataManager.createKey(SpeciesAlien.class, DataSerializers.VARINT);
     private UUID signature;
     protected boolean jellyLimitOverride;
