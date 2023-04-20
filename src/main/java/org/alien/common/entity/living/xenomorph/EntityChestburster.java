@@ -1,7 +1,6 @@
 package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -15,16 +14,13 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.maturity.MaturityEntries;
 import org.alien.common.api.maturity.MaturityEntry;
-import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.ai.brain.xenomorph.ChestbursterBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.Organism.Provider;
-import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.hive.HiveMember;
 import org.lib.brain.Brainiac;
 
-public class EntityChestburster extends SpeciesAlien implements Nascentic, HiveMember, Brainiac<ChestbursterBrain>
+public class EntityChestburster extends SpeciesAlien implements HiveMember, Brainiac<ChestbursterBrain>
 {
     private Class<? extends Entity> matureState;
 
@@ -132,17 +128,6 @@ public class EntityChestburster extends SpeciesAlien implements Nascentic, HiveM
     {
         super.writeEntityToNBT(nbt);
         nbt.setString("MaturityState", this.matureState.getName());
-    }
-
-    @Override
-    public void grow(EntityLivingBase host)
-    {
-        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
-    }
-
-    @Override
-    public void vitalize(EntityLivingBase host)
-    {
     }
     
     @Override

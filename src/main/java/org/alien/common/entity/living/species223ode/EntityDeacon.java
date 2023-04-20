@@ -1,8 +1,5 @@
 package org.alien.common.entity.living.species223ode;
 
-import com.asx.mdx.common.minecraft.Pos;
-import com.asx.mdx.common.minecraft.entity.Entities;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -11,15 +8,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.ai.brain.DeaconBrain;
 import org.alien.common.entity.living.Species223ODe;
-import org.alien.common.world.capability.Organism.Provider;
-import org.alien.common.world.capability.OrganismImpl;
-import org.avp.common.AVPDamageSources;
 import org.lib.brain.Brainiac;
 
-public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<DeaconBrain>
+public class EntityDeacon extends Species223ODe implements Brainiac<DeaconBrain>
 {
     private DeaconBrain brain;
 
@@ -79,30 +72,6 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.PREQUELMORPH_DEATH.event();
-    }
-
-    @Override
-    public void grow(EntityLivingBase host)
-    {
-        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
-    }
-
-    @Override
-    public void vitalize(EntityLivingBase host)
-    {
-        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
-        Pos safeLocation = Entities.getSafeLocationAround(this, new Pos((int) host.posX, (int) host.posY, (int) host.posZ));
-
-        if (safeLocation == null)
-        {
-            safeLocation = new Pos((int) host.posX, (int) host.posY, (int) host.posZ);
-        }
-
-        this.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
-        host.world.spawnEntity(this);
-        organism.setEmbryo(null);
-        host.getActivePotionEffects().clear();
-        host.attackEntityFrom(AVPDamageSources.causeDeaconBursterDamage(this, host), 100000F);
     }
     
     @Override

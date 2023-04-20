@@ -5,10 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.living.xenomorph.EntityChestburster;
 
-public class EntityBelugaburster extends EntityChestburster implements Nascentic
+public class EntityBelugaburster extends EntityChestburster
 {
 
     public EntityBelugaburster(World world)
