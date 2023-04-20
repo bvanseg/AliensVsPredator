@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorph;
+package org.alien.common.entity.living.xenomorph.exotic;
 
 import com.asx.mdx.common.math.MDXMath;
 import com.asx.mdx.common.minecraft.Pos;

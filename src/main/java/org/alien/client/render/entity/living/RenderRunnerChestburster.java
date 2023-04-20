@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelChestbursterRunner;
 import org.alien.client.render.util.AlienGrowthUtil;
-import org.alien.common.entity.living.xenomorph.EntityRunnerChestburster;
+import org.alien.common.entity.living.xenomorph.burster.EntityRunnerChestburster;
 
 public class RenderRunnerChestburster extends RenderLivingWrapper<EntityRunnerChestburster, ModelChestbursterRunner>
 {

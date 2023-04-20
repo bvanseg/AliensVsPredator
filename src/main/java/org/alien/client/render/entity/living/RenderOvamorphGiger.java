@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelOvamorphGiger;
-import org.alien.common.entity.living.xenomorph.EntityOvamorphGiger;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorphGiger;
 
 public class RenderOvamorphGiger extends RenderLivingWrapper<EntityOvamorphGiger, ModelOvamorphGiger>
 {

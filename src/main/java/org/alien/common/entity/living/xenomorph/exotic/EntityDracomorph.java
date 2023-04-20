@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorph;
+package org.alien.common.entity.living.xenomorph.exotic;
 
 import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.entity.SharedMonsterAttributes;

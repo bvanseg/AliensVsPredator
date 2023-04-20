@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorph;
+package org.alien.common.entity.living.xenomorph.burster;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;

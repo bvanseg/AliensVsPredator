@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorph;
+package org.alien.common.entity.living.xenomorph.burster;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -17,6 +17,7 @@ import org.alien.common.api.maturity.MaturityEntry;
 import org.alien.common.entity.ai.brain.xenomorph.ChestbursterBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
+import org.alien.common.entity.living.xenomorph.EntityDrone;
 import org.alien.common.world.hive.HiveMember;
 import org.lib.brain.Brainiac;
 

@@ -7,6 +7,8 @@ import com.asx.mdx.client.render.model.MapModelTexture;
 import net.minecraft.entity.Entity;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.entity.living.xenomorph.*;
+import org.alien.common.entity.living.xenomorph.burster.EntityChestburster;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.avp.client.Resources;
 import org.avp.client.render.tile.RenderCryostasisTube;

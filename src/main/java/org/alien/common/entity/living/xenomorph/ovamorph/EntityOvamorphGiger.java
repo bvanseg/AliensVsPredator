@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorph;
+package org.alien.common.entity.living.xenomorph.ovamorph;
 
 import com.asx.mdx.common.minecraft.entity.animations.Animation;
 import net.minecraft.entity.SharedMonsterAttributes;

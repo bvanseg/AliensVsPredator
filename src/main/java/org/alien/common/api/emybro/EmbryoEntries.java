@@ -15,6 +15,8 @@ import org.alien.common.entity.living.vardic.EntityBelugaburster;
 import org.alien.common.entity.living.vardic.EntityBelugamorph;
 import org.alien.common.entity.living.vardic.EntityOctohugger;
 import org.alien.common.entity.living.xenomorph.*;
+import org.alien.common.entity.living.xenomorph.burster.*;
+import org.alien.common.entity.living.xenomorph.exotic.*;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.common.entity.living.EntityCombatSynthetic;

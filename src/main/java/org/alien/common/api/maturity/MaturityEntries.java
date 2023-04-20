@@ -6,6 +6,11 @@ import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
 import org.alien.common.entity.living.vardic.EntityBelugaburster;
 import org.alien.common.entity.living.vardic.EntityBelugamorph;
 import org.alien.common.entity.living.xenomorph.*;
+import org.alien.common.entity.living.xenomorph.burster.EntityDracoburster;
+import org.alien.common.entity.living.xenomorph.burster.EntityPredalienChestburster;
+import org.alien.common.entity.living.xenomorph.burster.EntityQueenChestburster;
+import org.alien.common.entity.living.xenomorph.burster.EntityRunnerChestburster;
+import org.alien.common.entity.living.xenomorph.exotic.EntityDracomorph;
 
 import java.util.HashMap;
 import java.util.Optional;

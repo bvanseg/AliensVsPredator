@@ -14,6 +14,8 @@ import org.alien.common.entity.living.species223ode.EntityTrilobite;
 import org.alien.common.entity.living.vardic.EntityHammerpede;
 import org.alien.common.entity.living.vardic.EntityOctohugger;
 import org.alien.common.entity.living.xenomorph.*;
+import org.alien.common.entity.living.xenomorph.burster.EntityChestburster;
+import org.alien.common.entity.living.xenomorph.exotic.EntityNauticomorph;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.world.dimension.varda.BiomeVarda;
 import org.avp.common.config.ModelConfig;

@@ -4,7 +4,7 @@ import net.minecraft.entity.ai.EntityAIMoveThroughVillage;
 import net.minecraft.entity.ai.EntityAIMoveTowardsRestriction;
 import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.ai.selector.EntitySelectorDracomorph;
-import org.alien.common.entity.living.xenomorph.EntityDracomorph;
+import org.alien.common.entity.living.xenomorph.exotic.EntityDracomorph;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.task.*;
