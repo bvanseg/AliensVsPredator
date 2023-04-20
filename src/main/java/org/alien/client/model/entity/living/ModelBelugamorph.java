@@ -1,11 +1,8 @@
 package org.alien.client.model.entity.living;
 
-import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import org.alien.client.render.XenomorphJawState;
-import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.entity.living.vardic.EntityBelugamorph;
 
 

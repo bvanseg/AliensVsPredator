@@ -1,25 +1,21 @@
 package org.alien.common.entity.living;
 
 import com.asx.mdx.common.minecraft.Worlds;
-import com.asx.mdx.common.minecraft.entity.ItemDrop;
 import com.asx.mdx.common.minecraft.entity.animations.Animation;
 import com.asx.mdx.common.minecraft.entity.animations.IAnimated;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.EntityAcidPool;
 import org.avp.common.AVPDamageSources;

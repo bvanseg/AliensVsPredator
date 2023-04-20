@@ -23,9 +23,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.OrganismImpl;
-import org.alien.common.world.capability.Organism.Provider;
 
 import java.util.ArrayList;
 

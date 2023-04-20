@@ -9,7 +9,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants.NBT;
 import org.alien.common.api.maturity.MaturityEntries;
 import org.alien.common.api.maturity.MaturityEntry;
-import org.alien.common.entity.living.xenomorph.*;
+import org.alien.common.entity.living.xenomorph.EntityDrone;
+import org.alien.common.entity.living.xenomorph.EntityRunnerDrone;
+import org.alien.common.entity.living.xenomorph.EntityRunnerWarrior;
+import org.alien.common.entity.living.xenomorph.EntityWarrior;
 import org.avp.AVP;
 import org.lib.common.EntityAccessor;
 

@@ -8,8 +8,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
+import org.alien.common.world.capability.OrganismImpl;
 import org.avp.common.tile.TileEntityMedpod;
 import org.lib.common.EntityAccessor;
 

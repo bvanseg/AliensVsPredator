@@ -1,7 +1,5 @@
 package org.alien.common.entity.living.xenomorph;
 
-import com.asx.mdx.common.minecraft.Pos;
-import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -22,10 +20,9 @@ import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.ai.brain.xenomorph.ChestbursterBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
+import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.hive.HiveMember;
-import org.avp.common.AVPDamageSources;
 import org.lib.brain.Brainiac;
 
 public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic, HiveMember, Brainiac<ChestbursterBrain>

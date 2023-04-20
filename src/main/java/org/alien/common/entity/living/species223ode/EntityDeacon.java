@@ -14,8 +14,8 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.ai.brain.DeaconBrain;
 import org.alien.common.entity.living.Species223ODe;
-import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
+import org.alien.common.world.capability.OrganismImpl;
 import org.avp.common.AVPDamageSources;
 import org.lib.brain.Brainiac;
 

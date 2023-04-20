@@ -13,8 +13,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.block.init.AVPReflectiveBlocks;
 import org.avp.common.block.init.AVPTileEntityBlocks;
-import org.avp.common.item.crafting.ItemSchematicRegistry;
 import org.avp.common.item.crafting.ItemSchematic;
+import org.avp.common.item.crafting.ItemSchematicRegistry;
 import org.predator.common.PredatorItems;
 import org.weapon.common.item.init.WeaponItems;
 

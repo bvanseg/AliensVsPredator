@@ -7,9 +7,9 @@ import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import org.avp.common.item.crafting.ItemSchematicRegistry;
 import org.avp.common.item.crafting.AssemblyResult;
 import org.avp.common.item.crafting.ItemSchematic;
+import org.avp.common.item.crafting.ItemSchematicRegistry;
 
 /**
  * @author Ri5ux

@@ -22,9 +22,9 @@ import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityLiquidLatexPool;
 import org.avp.common.entity.ai.brain.CombatSyntheticBrain;
 import org.lib.brain.Brainiac;
+import org.lib.common.inventory.ItemDropContext;
 import org.weapon.common.entity.EntityBullet;
 import org.weapon.common.item.init.WeaponItems;
-import org.lib.common.inventory.ItemDropContext;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, Host, Brainiac<CombatSyntheticBrain>
 {

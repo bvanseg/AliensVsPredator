@@ -11,11 +11,7 @@ import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import org.avp.common.AVPItems;
 import org.avp.common.entity.living.EntityMarine;
-import org.lib.common.FuncUtil;
 import org.lib.common.inventory.InventorySnapshot;
-import org.weapon.common.item.init.WeaponItems;
-
-import java.util.Optional;
 
 /**
  * @author Boston Vanseghi
