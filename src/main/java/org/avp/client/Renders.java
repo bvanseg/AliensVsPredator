@@ -170,7 +170,6 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(WeaponItems.ITEM_PISTOL, new RenderItem88MOD4());
         Renderers.registerItemRenderer(WeaponItems.ITEM_SNIPER, new RenderItemSniper());
         Renderers.registerItemRenderer(AVPItems.ITEM_MOTION_TRACKER, new RenderItemMotionTracker());
-        Renderers.registerItemRenderer(AVPItems.ITEM_APC, new RenderItemAPC());
         Renderers.registerItemRenderer(WeaponItems.ITEM_GRENADE, new RenderItemM40(Resources.instance.models().M40GRENADE));
         Renderers.registerItemRenderer(WeaponItems.ITEM_INCENDIARY_GRENADE, new RenderItemM40(Resources.instance.models().M40GRENADE_INCENDIARY));
         
@@ -186,6 +185,7 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(AVPItems.RACK_MODULE_7, new RenderItemNetworkRackModule(Resources.instance.models().RACKMODULE7));
         Renderers.registerItemRenderer(AVPItems.RACK_MODULE_8, new RenderItemNetworkRackModule(Resources.instance.models().RACKMODULE8));
 
+        Renderers.registerItemRenderer(AVPItems.SUMMONER_APC, new RenderItemAPC());
         Renderers.registerItemRenderer(AVPItems.SUMMONER_MARINE, (new RenderItemSummoner(Resources.instance.models().MARINE)).setScale(16F).setY(-8F));
         Renderers.registerItemRenderer(AVPItems.SUMMONER_COMBAT_SYNTHETIC, (new RenderItemSummoner(Resources.instance.models().COMBAT_SYNTHETIC)).setScale(16F).setY(-8F));
 
