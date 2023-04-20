@@ -20,7 +20,6 @@ public class EntityUltramorph extends SpeciesXenomorph implements IMob
         this.jumpMovementFactor = 0.02F;
         this.experienceValue = 100;
         this.setSize(1.5F, 3.5F);
-        this.ableToClimb = false;
     }
 
     @Override
