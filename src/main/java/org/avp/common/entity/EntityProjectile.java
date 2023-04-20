@@ -28,32 +28,22 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
     protected int     yTile;
     protected int     zTile;
     protected Block   inTile;
-    protected boolean inGround;
     protected int     ticksInGround;
     protected int     ticksInAir;
     public boolean    beenInGround;
-    public float      additionalDamage;
     public int        knockback;
 
-    public EntityProjectile(World world)
+    protected EntityProjectile(World world)
     {
         super(world);
         this.xTile = -1;
         this.yTile = -1;
         this.zTile = -1;
         this.inTile = null;
-        this.inGround = false;
         this.arrowShake = 0;
         this.ticksInAir = 0;
-        this.additionalDamage = 0;
         this.knockback = 0;
         this.setSize(0.5F, 0.5F);
-    }
-
-    @Override
-    protected void entityInit()
-    {
-        super.entityInit();
     }
 
     @Override
@@ -366,16 +356,6 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
         this.ticksInAir = 0;
     }
 
-    public final double getVelocity()
-    {
-        return Math.sqrt(this.motionX * this.motionX + this.motionY * this.motionY + this.motionZ * this.motionZ);
-    }
-
-    public ItemStack getItemstack()
-    {
-        return null;
-    }
-
     public boolean aimRotation()
     {
         return true;
@@ -404,20 +384,10 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
     public void playHitSound()
     {
     }
-
-    public boolean canBeCritical()
-    {
-        return false;
-    }
     
     public boolean isInGround()
     {
         return inGround;
-    }
-
-    public void setAdditionalDamage(float additionalDamage)
-    {
-        this.additionalDamage = additionalDamage;
     }
 
     @Override
@@ -440,16 +410,13 @@ public abstract class EntityProjectile extends EntityArrow implements IThrowable
             {
                 if (!this.world.isRemote)
                 {
-                    if (this.getItemstack() != null)
-                    {
-                        ItemStack item = new ItemStack(this.getItemstack().getItem(), 1, this.getItemstack().getItemDamage() + 1);
+                    ItemStack item = this.getArrowStack();
 
-                        if (item != null && entityplayer.inventory.addItemStackToInventory(item))
-                        {
-                            GameSounds.fxPop.playSound(this, 0.2F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
-                            this.onItemPickup(entityplayer);
-                            this.setDead();
-                        }
+                    if (item != null && entityplayer.inventory.addItemStackToInventory(item))
+                    {
+                        GameSounds.fxPop.playSound(this, 0.2F, ((rand.nextFloat() - rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+                        this.onItemPickup(entityplayer);
+                        this.setDead();
                     }
                 }
             }

@@ -567,7 +567,7 @@ tile.avp:unitree.leaves.m.name=Unitree Medium Leaves
 tile.avp:unitree.leaves.b.name=Unitree Big Leaves 
 item.avp:cobalt.name=Cobalt
 item.avp:neodymium.name=Neodymium
-item.avp:neodymium.magnet=Neodymium Magnet
+item.avp:neodymium.magnet.name=Neodymium Magnet
 
 # CONTROLS
 keybind.group.avp=Aliens Vs Predators

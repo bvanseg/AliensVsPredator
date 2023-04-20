@@ -118,7 +118,7 @@ public class EntityLaserMine extends Entity
 
     public int getLaserMaxDepth()
     {
-        return 32;
+        return 4;
     }
 
     @Override

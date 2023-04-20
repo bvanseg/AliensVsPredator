@@ -233,12 +233,6 @@ public class EntitySmartDisc extends EntityProjectile
     }
 
     @Override
-    public boolean canBeCritical()
-    {
-        return true;
-    }
-
-    @Override
     public int getMaxArrowShake()
     {
         return 0;
