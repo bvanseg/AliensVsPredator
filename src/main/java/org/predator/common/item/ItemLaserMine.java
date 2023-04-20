@@ -21,7 +21,8 @@ public class ItemLaserMine extends Item
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         byte metaValue = (byte) (facing.ordinal() == 5 ? 3 : facing.ordinal() == 4 ? 1 : facing.ordinal() == 3 ? 2 : 0);
-        EntityLaserMine entity = new EntityLaserMine(world, pos, metaValue, player.getUniqueID().toString());
+
+        EntityLaserMine entity = new EntityLaserMine(world, pos, metaValue, player.getUniqueID());
 
         if (entity.canStay()) {
             if (!world.isRemote) {
