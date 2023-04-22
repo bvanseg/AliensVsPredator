@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorph;
+package org.alien.common.entity.living.xenomorph.exotic;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
@@ -8,9 +8,9 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityPantheramorph extends SpeciesXenomorph implements HiveMember
+public class EntityBatXeno extends SpeciesXenomorph implements HiveMember
 {
-    public EntityPantheramorph(World world)
+    public EntityBatXeno(World world)
     {
         super(world);
     }
@@ -20,13 +20,13 @@ public class EntityPantheramorph extends SpeciesXenomorph implements HiveMember
     {
         super.applyEntityAttributes();
 
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.55D);
     }
     
     @Override
     public ItemStack getPickedResult(RayTraceResult target)
     {
-        return new ItemStack(AlienItems.SUMMONER_PANTHERAMORPH);
+        return new ItemStack(AlienItems.SUMMONER_BAT_XENO);
     }
 }

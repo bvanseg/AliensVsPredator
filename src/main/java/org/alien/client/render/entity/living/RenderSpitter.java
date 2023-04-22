@@ -5,7 +5,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelSpitter;
-import org.alien.common.entity.living.xenomorph.EntitySpitter;
+import org.alien.common.entity.living.xenomorph.exotic.EntitySpitter;
 
 public class RenderSpitter extends RenderLivingWrapper<EntitySpitter, ModelSpitter>
 {

@@ -2,7 +2,6 @@ package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -13,7 +12,7 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.HiveMember;
 
-public class EntityWarrior extends SpeciesXenomorph implements IMob, HiveMember
+public class EntityWarrior extends SpeciesXenomorph implements HiveMember
 {
     public EntityWarrior(World world)
     {

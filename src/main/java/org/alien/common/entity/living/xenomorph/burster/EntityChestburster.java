@@ -1,11 +1,7 @@
-package org.alien.common.entity.living.xenomorph;
+package org.alien.common.entity.living.xenomorph.burster;
 
-import com.asx.mdx.common.minecraft.Pos;
-import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,21 +14,15 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.maturity.MaturityEntries;
 import org.alien.common.api.maturity.MaturityEntry;
-import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.ai.brain.xenomorph.ChestbursterBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.OrganismImpl;
-import org.alien.common.world.capability.Organism.Provider;
+import org.alien.common.entity.living.xenomorph.EntityDrone;
 import org.alien.common.world.hive.HiveMember;
-import org.avp.common.AVPDamageSources;
-import org.lib.brain.Brainiac;
 
-public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic, HiveMember, Brainiac<ChestbursterBrain>
+public class EntityChestburster extends SpeciesAlien implements HiveMember
 {
     private Class<? extends Entity> matureState;
-
-    private ChestbursterBrain brain;
 
     public EntityChestburster(World world)
     {
@@ -45,15 +35,12 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
 
     @Override
     public ChestbursterBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new ChestbursterBrain(this);
-        }
-        return this.brain;
+        return (ChestbursterBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public ChestbursterBrain createNewBrain() {
+        return new ChestbursterBrain(this);
     }
 
     @Override
@@ -76,10 +63,6 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
     public void onUpdate()
     {
         super.onUpdate();
-
-        if (!this.world.isRemote) {
-            this.brain.update();
-        }
         
         if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.test(this.getAttackTarget()))
             this.setAttackTarget(null);
@@ -136,17 +119,6 @@ public class EntityChestburster extends SpeciesAlien implements IMob, Nascentic,
     {
         super.writeEntityToNBT(nbt);
         nbt.setString("MaturityState", this.matureState.getName());
-    }
-
-    @Override
-    public void grow(EntityLivingBase host)
-    {
-        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
-    }
-
-    @Override
-    public void vitalize(EntityLivingBase host)
-    {
     }
     
     @Override

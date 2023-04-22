@@ -1,11 +1,10 @@
 package org.alien.common.entity.ai.brain.task;
 
 import com.asx.mdx.common.minecraft.entity.Entities;
-import net.minecraft.util.EnumParticleTypes;
 import org.alien.common.api.maturity.MaturityEntries;
 import org.alien.common.api.maturity.MaturityEntry;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.entity.living.xenomorph.EntityChestburster;
+import org.alien.common.entity.living.xenomorph.burster.EntityChestburster;
 
 /**
  * @author Boston Vanseghi

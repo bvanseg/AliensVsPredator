@@ -1,9 +1,8 @@
-package org.alien.common.entity.living.xenomorph;
+package org.alien.common.entity.living.xenomorph.ovamorph;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -18,10 +17,9 @@ import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPItemDrops;
-import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 
-public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Brainiac<OvamorphBrain>
+public class EntityOvamorph extends SpeciesAlien implements HiveMember
 {
     private static final DataParameter<Integer> TIME_LEFT_UNTIL_OPEN = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.VARINT);
     private static final DataParameter<Byte> OPEN_PROGRESS = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);
@@ -39,8 +37,6 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
 
     public float renderOpenProgress;
 
-    private OvamorphBrain brain;
-
     public EntityOvamorph(World par1World)
     {
         super(par1World);
@@ -55,15 +51,12 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
 
     @Override
     public OvamorphBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new OvamorphBrain(this);
-        }
-        return this.brain;
+        return (OvamorphBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public OvamorphBrain createNewBrain() {
+        return new OvamorphBrain(this);
     }
 
     @Override
@@ -129,10 +122,6 @@ public class EntityOvamorph extends SpeciesAlien implements IMob, HiveMember, Br
     public void onUpdate()
     {
         super.onUpdate();
-
-        if (!this.world.isRemote) {
-            this.brain.update();
-        }
 
         if (this.getHealth() < this.getMaxHealth())
         {

@@ -3,7 +3,6 @@ package org.alien.common.world.dimension;
 import com.google.common.base.Predicate;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.init.AlienVardaBlocks;
 
 public class GenerationFilters

@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -27,7 +26,7 @@ import org.alien.common.world.hive.HiveOwner;
 
 import java.util.UUID;
 
-public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
+public class EntityMatriarch extends SpeciesXenomorph implements HiveOwner
 {
     public static final float                 OVIPOSITOR_THRESHOLD_SIZE          = 1.3F;
     public static final float                 OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE = 0.00225F;

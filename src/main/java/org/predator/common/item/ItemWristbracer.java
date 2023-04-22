@@ -1,6 +1,5 @@
 package org.predator.common.item;
 
-import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.common.minecraft.item.HookedItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -16,10 +15,7 @@ import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.AVPNetworking;
 import org.avp.common.AVPToolMaterials;
-import org.avp.common.config.ModelConfig;
-import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorItems;
 import org.predator.common.inventory.ContainerWristbracer;

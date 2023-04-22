@@ -3,7 +3,7 @@ package org.alien.common.entity.ai.brain.xenomorph;
 import net.minecraft.entity.EntityLiving;
 import org.alien.common.entity.ai.brain.task.xenomorph.*;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.world.hive.HiveMember;
 import org.lib.brain.impl.profile.BrainProfiles;

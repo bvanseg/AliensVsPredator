@@ -1,8 +1,7 @@
-package org.alien.common.entity.living.xenomorph;
+package org.alien.common.entity.living.xenomorph.exotic;
 
 import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -18,15 +17,12 @@ import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.DracomorphBrain;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.AVPItemDrops;
-import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 
-public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Brainiac<DracomorphBrain>
+public class EntityDracomorph extends SpeciesAlien implements Host
 {
     private static final DataParameter<Integer> FLYING = EntityDataManager.createKey(EntityDracomorph.class, DataSerializers.VARINT);
     private BlockPos flyToPosition;
-
-    private DracomorphBrain brain;
 
     public EntityDracomorph(World world)
     {
@@ -39,15 +35,12 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Braini
 
     @Override
     public DracomorphBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new DracomorphBrain(this);
-        }
-        return this.brain;
+        return (DracomorphBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public DracomorphBrain createNewBrain() {
+        return new DracomorphBrain(this);
     }
 
     @Override
@@ -82,8 +75,6 @@ public class EntityDracomorph extends SpeciesAlien implements IMob, Host, Braini
 
         if (!this.world.isRemote)
         {
-            this.brain.update();
-
             if (isFlying())
             {
                 this.motionY *= 0.5000000238418579D;

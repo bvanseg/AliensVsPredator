@@ -22,8 +22,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerRespawnEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
+import org.alien.common.world.capability.OrganismImpl;
 import org.avp.common.config.ModelConfig;
 import org.predator.common.entity.living.SpeciesYautja;
 

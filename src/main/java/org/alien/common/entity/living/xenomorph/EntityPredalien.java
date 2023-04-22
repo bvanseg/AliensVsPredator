@@ -2,7 +2,6 @@ package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -15,7 +14,7 @@ import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPItemDrops;
 import org.lib.common.inventory.ItemDropContext;
 
-public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMember
+public class EntityPredalien extends SpeciesXenomorph implements HiveMember
 {
     public EntityPredalien(World world)
     {

@@ -5,8 +5,7 @@ import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import org.alien.client.render.XenomorphJawState;
-import org.alien.common.entity.living.xenomorph.EntityNauticomorph;
+import org.alien.common.entity.living.xenomorph.exotic.EntityNauticomorph;
 
 public class ModelNauticomorph extends Model<EntityNauticomorph>
 {
@@ -309,19 +308,6 @@ public class ModelNauticomorph extends Model<EntityNauticomorph>
         float swingProgress = swingProgress(e);
         float swingProgressPrev = swingProgressPrev(e);
         float tailAngle = MathHelper.cos((Minecraft.getMinecraft().world.getTotalWorldTime() % 360 + ClientGame.instance.partialTicks()) * (e != null && e.motionX + e.motionZ != 0 ? 0.67F : 0.07F));
-
-        if (e != null)
-        {
-            float innerJawDistance = XenomorphJawState.calculateJawOffset(e.getInnerJawProgress());
-            float lowerJawAngle = XenomorphJawState.interpolateLowerJawAngle(e.getOuterJawProgress());
-            float innerJawAngle = XenomorphJawState.interpolateInnerJawAngle(e.getInnerJawProgress());
-
-            this.jawLower.rotateAngleX = (float) Math.toRadians(lowerJawAngle * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-            this.innerJaw.rotationPointY = 3.725F;
-            this.innerJaw.rotateAngleX = (float) Math.toRadians((10 + innerJawAngle) * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-            this.innerJaw.offsetY = (0.15F * innerJawDistance * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-            this.innerJaw.offsetZ = (-0.1F * innerJawDistance * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-        }
 
         this.head1.rotateAngleY = (float) Math.toRadians(headYaw(e)) * 0.75F;
         this.rThigh.rotateAngleX = MathHelper.cos(swingProgress * 0.3662F + (float) Math.PI) * 0.9F * swingProgressPrev;

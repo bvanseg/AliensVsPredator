@@ -1,6 +1,5 @@
 package org.avp.common;
 
-import net.minecraft.item.ItemStack;
 import org.alien.common.AlienItems;
 import org.alien.common.block.init.AlienSkullBlocks;
 import org.lib.common.inventory.ItemDrop;

@@ -1,9 +1,7 @@
 package org.alien.common.entity.living;
 
-import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -11,7 +9,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
@@ -21,7 +18,7 @@ import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 
-public class EntityAethon extends EntityMob implements IMob, Host, Brainiac<AethonBrain>
+public class EntityAethon extends EntityMob implements Host, Brainiac<AethonBrain>
 {
     private static final DataParameter<Integer> FLYING = EntityDataManager.createKey(EntityAethon.class, DataSerializers.VARINT);
 

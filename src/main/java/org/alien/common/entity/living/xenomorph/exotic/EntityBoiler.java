@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.xenomorph;
+package org.alien.common.entity.living.xenomorph.exotic;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;

@@ -1,11 +1,11 @@
-package org.alien.common.entity.living;
+package org.alien.common.entity.living.xenomorph.ovamorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 
 public class EntityDracoEgg extends EntityOvamorph
 {
