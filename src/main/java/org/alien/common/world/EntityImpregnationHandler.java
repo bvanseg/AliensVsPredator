@@ -2,6 +2,7 @@ package org.alien.common.world;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.common.math.MDXMath;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -53,17 +54,22 @@ public class EntityImpregnationHandler
             organism.getEmbryo().grow();
         }
 
+        // These variables determine the beginning times of the stages of embryo development as percentages. The percentages
+        // count down as they are multiplied with the gestationPeriod (so if age < gestationPeriod * 0.75, stage 1 will
+        // begin once 25% of the gestation period has elapsed).
+        double stageOnePercentage = 0.75;
+        double stageTwoPercentage = 0.5;
+        double stageThreePercentage = 0.25;
+        double stageFourPercentage = 0.1;
+
+        int currentStage = (int) MDXMath.map(age, gestationPeriod * (1 - stageOnePercentage), gestationPeriod * (1 - stageFourPercentage), 1, 4);
+
+        // Play heartbeat sounds only for the client players.
+        if (world.isRemote && host == ClientGame.instance.minecraft().player) {
+            this.playHeartbeatSound(world, host, currentStage);
+        }
+
         if (!world.isRemote) {
-            // These variables determine the beginning times of the stages of embryo development as percentages. The percentages
-            // count down as they are multiplied with the gestationPeriod (so if age < gestationPeriod * 0.75, stage 1 will
-            // begin once 25% of the gestation period has elapsed).
-            double stageOnePercentage = 0.75;
-            double stageTwoPercentage = 0.5;
-            double stageThreePercentage = 0.25;
-            double stageFourPercentage = 0.1;
-
-            int currentStage = (int) MDXMath.map(age, gestationPeriod * (1 - stageOnePercentage), gestationPeriod * (1 - stageFourPercentage), 1, 4);
-
             // Stage 1, the player develops an increasing hunger up to hunger 100.
             if (ticksUntilBirth < gestationPeriod * stageOnePercentage) {
                 int hungerAmplifier = (int) MDXMath.map(age, gestationPeriod * (1 - stageOnePercentage), gestationPeriod, 1, 40);
@@ -89,26 +95,29 @@ public class EntityImpregnationHandler
                 host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, gestationPeriod, stageFourAmplifier));
             }
 
-            if (currentStage == 1 && world.getTotalWorldTime() % 20 == 0) {
-                world.playSound(null, host.getPosition(), AlienSounds.HEARTBEAT_NORMAL.event(), SoundCategory.HOSTILE, 0.5F, 1F);
-            }
-            else if (currentStage == 2 && world.getTotalWorldTime() % 15 == 0) {
-                world.playSound(null, host.getPosition(), AlienSounds.HEARTBEAT_ELEVATED.event(), SoundCategory.HOSTILE, 1F, 1F);
-            }
-            else if (currentStage == 3 && world.getTotalWorldTime() % 10 == 0) {
-                world.playSound(null, host.getPosition(), AlienSounds.HEARTBEAT_RAPID.event(), SoundCategory.HOSTILE, 1.5F, 1F);
-            }
-            else if (currentStage >= 4 && world.getTotalWorldTime() % 8 == 0) {
-                world.playSound(null, host.getPosition(), AlienSounds.HEARTBEAT_FATAL.event(), SoundCategory.HOSTILE, 2F, 1F);
-            }
-
             // Congratulations, it's the birth of a billion dollar franchise!
             if (ticksUntilBirth <= 0) {
                 organism.getEmbryo().vitalize(host);
             }
         }
     }
-    
+
+    private void playHeartbeatSound(World world, EntityLivingBase host, int currentStage) {
+        EntityPlayerSP player = ClientGame.instance.minecraft().player;
+        if (currentStage == 1 && world.getTotalWorldTime() % 20 == 0) {
+            world.playSound(player, host.getPosition(), AlienSounds.HEARTBEAT_NORMAL.event(), SoundCategory.HOSTILE, 0.5F, 1F);
+        }
+        else if (currentStage == 2 && world.getTotalWorldTime() % 15 == 0) {
+            world.playSound(player, host.getPosition(), AlienSounds.HEARTBEAT_ELEVATED.event(), SoundCategory.HOSTILE, 1F, 1F);
+        }
+        else if (currentStage == 3 && world.getTotalWorldTime() % 10 == 0) {
+            world.playSound(player, host.getPosition(), AlienSounds.HEARTBEAT_RAPID.event(), SoundCategory.HOSTILE, 1.5F, 1F);
+        }
+        else if (currentStage >= 4 && world.getTotalWorldTime() % 8 == 0) {
+            world.playSound(player, host.getPosition(), AlienSounds.HEARTBEAT_FATAL.event(), SoundCategory.HOSTILE, 2F, 1F);
+        }
+    }
+
     public boolean canTickHost(Entity entity) {
     	// If the entity is in an invalid state
     	if (entity == null || entity.isDead || entity.world == null || !(entity instanceof EntityLivingBase))
