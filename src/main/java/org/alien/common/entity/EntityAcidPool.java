@@ -5,7 +5,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
@@ -17,6 +16,7 @@ import net.minecraft.world.World;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.init.AlienEngineerBlocks;
 import org.alien.common.entity.ai.selector.EntitySelectorAcidPool;
+import org.alien.common.potion.AlienPotions;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.api.blocks.AcidResistant;
 import org.avp.common.block.init.AVPBlocks;
@@ -192,7 +192,7 @@ public class EntityAcidPool extends EntityLiquidPool
             EntityLivingBase livingEntity = (EntityLivingBase) entity;
 
             if (EntitySelectorAcidPool.instance.test(livingEntity)) {
-                livingEntity.addPotionEffect(new PotionEffect(MobEffects.POISON, (14 * 20), 0));
+                livingEntity.addPotionEffect(new PotionEffect(AlienPotions.ACID, (14 * 20), 0));
                 livingEntity.attackEntityFrom(AVPDamageSources.ACID, 4f);
             }
         });
