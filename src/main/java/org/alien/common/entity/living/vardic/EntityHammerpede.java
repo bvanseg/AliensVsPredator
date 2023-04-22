@@ -15,15 +15,11 @@ import org.alien.common.AlienItems;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.entity.ai.brain.HammerpedeBrain;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.lib.brain.Brainiac;
 
 import java.util.List;
 
-public class EntityHammerpede extends SpeciesAlien implements Brainiac<HammerpedeBrain>
+public class EntityHammerpede extends SpeciesAlien
 {
-
-    private HammerpedeBrain brain;
-
     public EntityHammerpede(World par1World)
     {
         super(par1World);
@@ -34,15 +30,12 @@ public class EntityHammerpede extends SpeciesAlien implements Brainiac<Hammerped
 
     @Override
     public HammerpedeBrain getBrain() {
-        if (!this.world.isRemote) {
-            this.brain = new HammerpedeBrain(this);
-        }
-        return this.brain;
+        return (HammerpedeBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public HammerpedeBrain createNewBrain() {
+        return new HammerpedeBrain(this);
     }
 
     @Override
@@ -67,10 +60,6 @@ public class EntityHammerpede extends SpeciesAlien implements Brainiac<Hammerped
         super.onUpdate();
         this.fallDistance = 0F;
         this.lurkInBlackGoo();
-
-        if (!this.world.isRemote) {
-            this.brain.update();
-        }
     }
 
     public void lurkInBlackGoo()

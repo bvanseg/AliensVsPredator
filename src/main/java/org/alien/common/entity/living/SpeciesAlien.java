@@ -17,14 +17,16 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.EntityAcidPool;
+import org.alien.common.entity.ai.brain.AlienBrain;
 import org.avp.common.AVPDamageSources;
+import org.lib.brain.Brainiac;
 
 import java.util.UUID;
 
 /**
  * @author Ri5ux
  */
-public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, IAnimated {
+public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, IAnimated, Brainiac<AlienBrain<? extends SpeciesAlien>> {
     private static final DataParameter<Integer> JELLY_LEVEL = EntityDataManager.createKey(SpeciesAlien.class, DataSerializers.VARINT);
     private UUID signature;
     protected boolean jellyLimitOverride;
@@ -39,11 +41,24 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
     public float growthProgress;
     public boolean growthInitialized = false;
 
+    private AlienBrain<? extends SpeciesAlien> brain;
+
     protected SpeciesAlien(World world) {
         super(world);
         this.jumpMovementFactor = 0.2F;
         this.jellyLimitOverride = false;
     }
+
+    @Override
+    public AlienBrain<? extends SpeciesAlien> getBrain() {
+        if (!this.world.isRemote && this.brain == null) {
+            this.brain = this.createNewBrain();
+            this.brain.init();
+        }
+        return this.brain;
+    }
+
+    public abstract AlienBrain<? extends SpeciesAlien> createNewBrain();
 
     @Override
     protected void entityInit() {
@@ -128,6 +143,11 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
     @Override
     public void onUpdate() {
         super.onUpdate();
+
+        if (!this.world.isRemote) {
+            this.getBrain().update();
+        }
+
         this.updateAnimations();
     }
 

@@ -19,13 +19,10 @@ import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.xenomorph.EntityDrone;
 import org.alien.common.world.hive.HiveMember;
-import org.lib.brain.Brainiac;
 
-public class EntityChestburster extends SpeciesAlien implements HiveMember, Brainiac<ChestbursterBrain>
+public class EntityChestburster extends SpeciesAlien implements HiveMember
 {
     private Class<? extends Entity> matureState;
-
-    private ChestbursterBrain brain;
 
     public EntityChestburster(World world)
     {
@@ -38,15 +35,12 @@ public class EntityChestburster extends SpeciesAlien implements HiveMember, Brai
 
     @Override
     public ChestbursterBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new ChestbursterBrain(this);
-        }
-        return this.brain;
+        return (ChestbursterBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public ChestbursterBrain createNewBrain() {
+        return new ChestbursterBrain(this);
     }
 
     @Override
@@ -69,10 +63,6 @@ public class EntityChestburster extends SpeciesAlien implements HiveMember, Brai
     public void onUpdate()
     {
         super.onUpdate();
-
-        if (!this.world.isRemote) {
-            this.brain.update();
-        }
         
         if(this.getAttackTarget() != null && !EntitySelectorParasitoid.instance.test(this.getAttackTarget()))
             this.setAttackTarget(null);

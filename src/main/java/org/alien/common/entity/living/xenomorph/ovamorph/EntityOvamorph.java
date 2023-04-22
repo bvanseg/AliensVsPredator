@@ -17,10 +17,9 @@ import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPItemDrops;
-import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 
-public class EntityOvamorph extends SpeciesAlien implements HiveMember, Brainiac<OvamorphBrain>
+public class EntityOvamorph extends SpeciesAlien implements HiveMember
 {
     private static final DataParameter<Integer> TIME_LEFT_UNTIL_OPEN = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.VARINT);
     private static final DataParameter<Byte> OPEN_PROGRESS = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);
@@ -38,8 +37,6 @@ public class EntityOvamorph extends SpeciesAlien implements HiveMember, Brainiac
 
     public float renderOpenProgress;
 
-    private OvamorphBrain brain;
-
     public EntityOvamorph(World par1World)
     {
         super(par1World);
@@ -54,15 +51,12 @@ public class EntityOvamorph extends SpeciesAlien implements HiveMember, Brainiac
 
     @Override
     public OvamorphBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new OvamorphBrain(this);
-        }
-        return this.brain;
+        return (OvamorphBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public OvamorphBrain createNewBrain() {
+        return new OvamorphBrain(this);
     }
 
     @Override
@@ -128,10 +122,6 @@ public class EntityOvamorph extends SpeciesAlien implements HiveMember, Brainiac
     public void onUpdate()
     {
         super.onUpdate();
-
-        if (!this.world.isRemote) {
-            this.brain.update();
-        }
 
         if (this.getHealth() < this.getMaxHealth())
         {

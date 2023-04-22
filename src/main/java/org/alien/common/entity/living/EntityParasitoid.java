@@ -29,13 +29,11 @@ import org.lib.brain.Brainiac;
 
 import java.util.List;
 
-public class EntityParasitoid extends SpeciesAlien implements Parasitoid, Brainiac<ParasitoidBrain>
+public class EntityParasitoid extends SpeciesAlien implements Parasitoid
 {
     private static final DataParameter<Boolean> FERTILE = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
     public int timeSinceInfertile = 0;
     public int ticksOnHost = 0;
-
-    protected ParasitoidBrain brain;
 
     public EntityParasitoid(World world)
     {
@@ -44,15 +42,12 @@ public class EntityParasitoid extends SpeciesAlien implements Parasitoid, Braini
 
     @Override
     public ParasitoidBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new ParasitoidBrain(this);
-        }
-        return this.brain;
+        return (ParasitoidBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public ParasitoidBrain createNewBrain() {
+        return new ParasitoidBrain(this);
     }
 
     @Override
@@ -74,8 +69,6 @@ public class EntityParasitoid extends SpeciesAlien implements Parasitoid, Braini
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update();
-
             this.negateFallDamage();
 
             if (this.getTicksOnHost() > this.getDetachTime())

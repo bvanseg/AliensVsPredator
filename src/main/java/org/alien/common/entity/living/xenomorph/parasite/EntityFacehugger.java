@@ -14,7 +14,6 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.brain.parasitoid.FacehuggerBrain;
-import org.alien.common.entity.ai.brain.parasitoid.ParasitoidBrain;
 import org.alien.common.entity.living.EntityParasitoid;
 
 public class EntityFacehugger extends EntityParasitoid implements Parasitoid
@@ -30,11 +29,13 @@ public class EntityFacehugger extends EntityParasitoid implements Parasitoid
     }
 
     @Override
-    public ParasitoidBrain getBrain() {
-        if (!this.world.isRemote && this.brain ==  null) {
-            this.brain = new FacehuggerBrain(this);
-        }
-        return this.brain;
+    public FacehuggerBrain getBrain() {
+        return (FacehuggerBrain) super.getBrain();
+    }
+
+    @Override
+    public FacehuggerBrain createNewBrain() {
+        return new FacehuggerBrain(this);
     }
 
     @Override

@@ -6,10 +6,9 @@ import net.minecraft.world.World;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
-import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 
-public abstract class SpeciesXenomorph extends SpeciesAlien implements Brainiac<XenomorphBrain> {
+public abstract class SpeciesXenomorph extends SpeciesAlien {
 
     protected XenomorphBrain brain;
 
@@ -20,15 +19,12 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements Brainiac<
 
     @Override
     public XenomorphBrain getBrain() {
-        if (this.brain == null && !this.world.isRemote) {
-            this.brain = new XenomorphBrain(this);
-        }
-        return this.brain;
+        return (XenomorphBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public XenomorphBrain createNewBrain() {
+        return new XenomorphBrain(this);
     }
 
     @Override
@@ -40,10 +36,6 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements Brainiac<
     @Override
     public void onUpdate() {
         super.onUpdate();
-
-        if (!this.world.isRemote) {
-            this.getBrain().update();
-        }
 
         /* Fall Damage Negation */
         this.fallDistance = 0F;
