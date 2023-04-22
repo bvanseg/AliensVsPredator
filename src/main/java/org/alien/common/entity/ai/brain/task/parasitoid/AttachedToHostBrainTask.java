@@ -4,6 +4,8 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.potion.PotionEffect;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.world.capability.Organism;
 import org.alien.common.world.capability.OrganismImpl;
@@ -50,6 +52,7 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
         host.motionY -= 0.05F;
         host.motionY *= 0.98F;
         host.move(MoverType.SELF, 0, host.motionY, 0);
+        host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 1));
 
         parasite.rotationYawHead = host.rotationYawHead;
         parasite.rotationYaw = host.rotationYaw;

@@ -23,11 +23,13 @@ public class EntityDrone extends SpeciesXenomorph implements HiveMember
     }
 
     @Override
-    public XenomorphBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new DroneBrain(this);
-        }
-        return this.brain;
+    public DroneBrain getBrain() {
+        return (DroneBrain) super.getBrain();
+    }
+
+    @Override
+    public XenomorphBrain createNewBrain() {
+        return new DroneBrain(this);
     }
 
     @Override

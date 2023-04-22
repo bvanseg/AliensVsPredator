@@ -58,6 +58,12 @@ public class AlienSounds implements IPreInitEvent
     /* OVAMORPH SOUNDS */
     public static final Sound OVAMORPH_OPEN                = SoundRegistryUtil.createSound("ovamorph.open");
 
+    /* HEARTBEAT SOUNDS */
+    public static final Sound HEARTBEAT_NORMAL             = SoundRegistryUtil.createSound("heartbeat.normal");
+    public static final Sound HEARTBEAT_ELEVATED           = SoundRegistryUtil.createSound("heartbeat.elevated");
+    public static final Sound HEARTBEAT_RAPID              = SoundRegistryUtil.createSound("heartbeat.rapid");
+    public static final Sound HEARTBEAT_FATAL              = SoundRegistryUtil.createSound("heartbeat.fatal");
+
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         SoundRegistryUtil.registerSound(ALIEN_LIVING);
@@ -96,5 +102,10 @@ public class AlienSounds implements IPreInitEvent
         SoundRegistryUtil.registerSound(OVAMORPH_OPEN);
 
         SoundRegistryUtil.registerSound(FLESH_EAT);
+
+        SoundRegistryUtil.registerSound(HEARTBEAT_NORMAL);
+        SoundRegistryUtil.registerSound(HEARTBEAT_ELEVATED);
+        SoundRegistryUtil.registerSound(HEARTBEAT_RAPID);
+        SoundRegistryUtil.registerSound(HEARTBEAT_FATAL);
     }
 }
