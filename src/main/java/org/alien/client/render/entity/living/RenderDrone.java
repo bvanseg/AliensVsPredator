@@ -9,6 +9,6 @@ public class RenderDrone extends RenderXenomorph<EntityDrone, ModelDrone>
 {
     public RenderDrone(RenderManager m)
     {
-        super(m, AlienResources.instance.models().DRONE_ADVANCED, 0.8F);
+        super(m, AlienResources.instance.models().DRONE_ADVANCED, 0.9F);
     }
 }
