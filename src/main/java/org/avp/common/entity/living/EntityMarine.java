@@ -3,10 +3,7 @@ package org.avp.common.entity.living;
 import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import com.google.common.base.Optional;
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.IRangedAttackMob;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -26,6 +23,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
@@ -46,6 +44,7 @@ import org.lib.common.inventory.InventorySnapshot;
 import org.lib.common.predicate.Predicates;
 import org.weapon.common.entity.EntityBullet;
 
+import javax.annotation.Nullable;
 import java.util.UUID;
 
 public class EntityMarine extends EntityCreature implements IEntityAdditionalSpawnData, InventoryHolder, IMob, IRangedAttackMob, Brainiac<MarineBrain>
@@ -72,14 +71,6 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         this.setSize(0.75F, 2F);
         this.experienceValue = 5;
         this.inventory = new InventoryBasic("Items", false, 9 * 3);
-
-        if (!this.world.isRemote) {
-            this.getMarineType()
-                    .getFirearmItem()
-                    .getFirearmProperties()
-                    .getConsumablesForReload()
-                    .forEach(consumable -> this.inventory.addItem(new ItemStack(consumable, this.getRNG().nextInt(5) + 3)));
-        }
     }
 
     @Override
@@ -116,7 +107,6 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
 
         int weaponType = MarineDecorator.generateRandomWeaponType(this);
         this.getDataManager().register(TYPE, weaponType);
-        this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(MarineTypes.getTypeForId(weaponType).getFirearmItem(), 1));
 
         this.getDataManager().register(SKIN_TONE, MarineDecorator.generateRandomSkinTone(this));
         this.getDataManager().register(CAMO_COLOR, -1);
@@ -124,6 +114,26 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         this.getDataManager().register(NAME, MarineDecorator.generateRandomMarineName(this));
         this.getDataManager().register(RANK, MarineDecorator.generateRandomMarineRank(this));
         this.getDataManager().register(SQUAD_LEADER_UNIQUE_ID, Optional.absent());
+    }
+
+    @Nullable
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        /* Initialize decorations */
+        // Initialize camo color.
+        this.getDataManager().set(CAMO_COLOR, MarineDecorator.generateCamoColorBasedOnCurrentBiome(this));
+
+        /* Initialize inventory */
+        // Set held weapon
+        this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(this.getMarineType().getFirearmItem()));
+        // Set ammo count
+        this.getMarineType()
+                .getFirearmItem()
+                .getFirearmProperties()
+                .getConsumablesForReload()
+                .forEach(consumable -> this.inventory.addItem(new ItemStack(consumable, this.getRNG().nextInt(5) + 3)));
+
+        return super.onInitialSpawn(difficulty, livingdata);
     }
 
     @Override
@@ -154,13 +164,6 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
 
         if (!this.world.isRemote)
         {
-            // We can't initialize the marine's camo color within entityInit, because while that method
-            // is being invoked, the entity is positioned at 0, 0, 0, and will always get the biome
-            // at that position instead of its true spawn position. So we initialize the camo color here, instead.
-            if (this.getCamoColor() == -1) {
-                this.getDataManager().set(CAMO_COLOR, MarineDecorator.generateCamoColorBasedOnCurrentBiome(this));
-            }
-
             this.getBrain().update();
 
             EntityLivingBase target =
