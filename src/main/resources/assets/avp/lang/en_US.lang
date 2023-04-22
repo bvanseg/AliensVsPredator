@@ -498,6 +498,8 @@ death.attack.laserMine=%1$s was blown to bits by a laser mine.
 death.attack.flamethrower=%1$s was incinerated.
 death.attack.bullet=%1$s was shot by %2$s.
 
+#POTION EFFECTS
+effect.disintegration=Disintegration
 
 #TEXT-MISC
 gui.avp.beta.feedback.info.submit.title=Submit Feedback

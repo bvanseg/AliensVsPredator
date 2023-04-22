@@ -8,6 +8,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.alien.client.render.ChestbursterOverlayEvent;
 import org.alien.client.render.FacehuggerRenderEvent;
 import org.alien.common.AlienDimensions;
+import org.alien.common.potion.PotionEffectEventHandler;
 import org.alien.common.world.EntityImpregnationHandler;
 import org.alien.common.world.TrilobiteImpregnationHandler;
 import org.alien.common.world.dimension.acheron.SkyProviderAcheron;
@@ -69,6 +70,7 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(AlienDimensions.instance);
         }
 
+        this.registerEvent(PotionEffectEventHandler.instance);
         this.registerEvent(EntityAccessor.instance);
         this.registerEvent(EntityImpregnationHandler.instance);
         this.registerEvent(TrilobiteImpregnationHandler.instance);
