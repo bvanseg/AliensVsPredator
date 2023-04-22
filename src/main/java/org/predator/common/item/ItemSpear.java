@@ -43,11 +43,14 @@ public class ItemSpear extends ItemSword
 
         if (!inventorySnapshot.hasItem(PredatorItems.ITEM_SPEAR)) return;
 
-        EntitySpear entityspear = new EntitySpear(world, player, itemstack);
+        EntitySpear entityspear = new EntitySpear(world, player);
         entityspear.shoot(entityspear.motionX, entityspear.motionY, entityspear.motionZ, 0.9F * charge, 0.1F);
         GameSounds.fxPop.playSound(player, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + charge * 0.5F);
         world.spawnEntity(entityspear);
-        inventorySnapshot.consumeItem(PredatorItems.ITEM_SPEAR);
+
+        if (!player.isCreative()) {
+            inventorySnapshot.consumeItem(PredatorItems.ITEM_SPEAR);
+        }
     }
 
     @Override
@@ -65,11 +68,8 @@ public class ItemSpear extends ItemSword
     @Override
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
-        InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(player);
-        if (inventorySnapshot.hasItem(PredatorItems.ITEM_SPEAR))
-        {
+        if (player.getHeldItem(hand).getItem() == PredatorItems.ITEM_SPEAR)
             player.setActiveHand(hand);
-        }
 
         return super.onItemRightClick(world, player, hand);
     }

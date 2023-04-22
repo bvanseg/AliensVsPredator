@@ -214,19 +214,24 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         return effect.getPotion() != MobEffects.POISON && super.isPotionApplicable(effect);
     }
 
+    private static final String TICKS_ON_HOST_NBT_KEY = "ticksOnHost";
+    private static final String TIME_SINCE_INFERTILE_NBT_KEY = "timeOfInfertility";
+
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
         Parasitoid.readFromNBT(this, nbt);
-        this.timeSinceInfertile = nbt.getInteger("timeOfInfertility");
+        this.ticksOnHost = nbt.getInteger(TICKS_ON_HOST_NBT_KEY);
+        this.timeSinceInfertile = nbt.getInteger(TIME_SINCE_INFERTILE_NBT_KEY);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         Parasitoid.writeToNBT(this, nbt);
-        nbt.setInteger("timeOfInfertility", this.timeSinceInfertile);
+        nbt.setInteger(TICKS_ON_HOST_NBT_KEY, this.ticksOnHost);
+        nbt.setInteger(TIME_SINCE_INFERTILE_NBT_KEY, this.timeSinceInfertile);
         return super.writeToNBT(nbt);
     }
     

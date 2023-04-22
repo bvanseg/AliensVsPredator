@@ -1,16 +1,3 @@
 {
-    "forge_marker": 1,
-    "defaults": {
-        "textures": {
-            "all": "avp:blocks/cryostasistube"
-        }
-    },
-    "variants": {
-        "normal": [{
-            "model": "cube_all"
-        }],
-        "inventory": [{
-            "model": "cube_all"
-        }]
-    }
+    "forge_marker": 1
 }

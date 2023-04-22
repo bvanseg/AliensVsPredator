@@ -5,27 +5,16 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 
 public abstract class EntityItemStackProjectile extends EntityProjectile
 {
-    private static final DataParameter<Byte> WEAPON_MATERIAL_ID = EntityDataManager.<Byte> createKey(EntityItemStackProjectile.class, DataSerializers.BYTE);
-    protected ItemStack                      itemstack;
+    protected ItemStack itemStack;
 
-    public EntityItemStackProjectile(World world)
+    protected EntityItemStackProjectile(World world)
     {
         super(world);
-    }
-
-    @Override
-    public void entityInit()
-    {
-        super.entityInit();
-        this.getDataManager().register(WEAPON_MATERIAL_ID, (byte) 0);
     }
 
     @Override
@@ -51,20 +40,19 @@ public abstract class EntityItemStackProjectile extends EntityProjectile
         }
     }
 
-    public void setItemstack(ItemStack itemstack)
+    public void setItemStack(ItemStack itemStack)
     {
-        this.itemstack = itemstack;
+        this.itemStack = itemStack;
+    }
+
+    public ItemStack getItemStack()
+    {
+        return this.itemStack;
     }
 
     @Override
-    public ItemStack getItemstack()
-    {
-        return itemstack;
-    }
-
-    public int getWeaponMaterialId()
-    {
-        return this.getDataManager().get(WEAPON_MATERIAL_ID);
+    protected final ItemStack getArrowStack() {
+        return this.getItemStack();
     }
 
     private static final String STACK_NBT_KEY = "stack";
@@ -74,9 +62,9 @@ public abstract class EntityItemStackProjectile extends EntityProjectile
     {
         super.writeEntityToNBT(nbttagcompound);
 
-        if (itemstack != null)
+        if (itemStack != null)
         {
-            nbttagcompound.setTag(STACK_NBT_KEY, itemstack.writeToNBT(new NBTTagCompound()));
+            nbttagcompound.setTag(STACK_NBT_KEY, this.itemStack.writeToNBT(new NBTTagCompound()));
         }
     }
 
@@ -84,6 +72,6 @@ public abstract class EntityItemStackProjectile extends EntityProjectile
     public void readEntityFromNBT(NBTTagCompound nbttagcompound)
     {
         super.readEntityFromNBT(nbttagcompound);
-        setItemstack(new ItemStack(nbttagcompound.getCompoundTag(STACK_NBT_KEY)));
+        this.setItemStack(new ItemStack(nbttagcompound.getCompoundTag(STACK_NBT_KEY)));
     }
 }

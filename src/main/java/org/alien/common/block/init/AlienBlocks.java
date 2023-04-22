@@ -63,7 +63,7 @@ public class AlienBlocks implements IPreInitEvent {
 
         BlockRegistryUtil.registerStandardBlock(PORTAL_ACHERON);
 
-        BlockRegistryUtil.registerStandardBlock(BLACK_GOO);
-        BlockRegistryUtil.registerStandardBlock(MIST);
+        BlockRegistryUtil.registerBlock(BLACK_GOO);
+        BlockRegistryUtil.registerBlock(MIST);
     }
 }
