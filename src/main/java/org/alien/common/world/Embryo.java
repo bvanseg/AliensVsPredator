@@ -8,14 +8,17 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import org.alien.client.AlienSounds;
 import org.alien.common.api.emybro.EmbryoEntries;
 import org.alien.common.api.emybro.EmbryoEntry;
 import org.alien.common.api.emybro.EmbryoKey;
 import org.alien.common.api.emybro.EmbryoRegistry;
+import org.alien.common.entity.living.xenomorph.burster.EntityChestburster;
 import org.alien.common.world.capability.Organism;
 import org.alien.common.world.capability.OrganismImpl;
 import org.avp.common.AVPDamageSources;
@@ -89,6 +92,11 @@ public class Embryo {
 
             birthedCreature.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
             host.world.spawnEntity(birthedCreature);
+
+            // Play birth sound
+            if (birthedCreature instanceof EntityChestburster) {
+                host.world.playSound(null, host.getPosition(), AlienSounds.CHESTBURSTER_BURST.event(), SoundCategory.HOSTILE, 0.5F, 1F);
+            }
 
             // Clean up
             hostOrganism.setEmbryo(null);
