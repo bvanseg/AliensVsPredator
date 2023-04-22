@@ -114,7 +114,10 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         super.entityInit();
         this.getDataManager().register(AIMING, false);
 
-        this.getDataManager().register(TYPE, MarineDecorator.generateRandomWeaponType(this));
+        int weaponType = MarineDecorator.generateRandomWeaponType(this);
+        this.getDataManager().register(TYPE, weaponType);
+        this.setHeldItem(EnumHand.MAIN_HAND, new ItemStack(MarineTypes.getTypeForId(weaponType).getFirearmItem(), 1));
+
         this.getDataManager().register(SKIN_TONE, MarineDecorator.generateRandomSkinTone(this));
         this.getDataManager().register(CAMO_COLOR, -1);
         this.getDataManager().register(EYE_COLOR, MarineDecorator.generateRandomEyeColor(this));
@@ -142,12 +145,6 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     protected SoundEvent getDeathSound()
     {
         return AVPSounds.MARINE_DEATH.event();
-    }
-
-    @Override
-    public ItemStack getHeldItemMainhand()
-    {
-        return new ItemStack(getMarineType().getFirearmItem());
     }
 
     @Override
