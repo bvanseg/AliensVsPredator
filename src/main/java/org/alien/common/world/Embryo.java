@@ -6,6 +6,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -27,6 +28,8 @@ public class Embryo {
     private final EmbryoEntry embryoEntry;
     private final EmbryoKey embryoKey;
     private int age;
+
+    private Entity birthCreature;
 
     public Embryo(EmbryoEntry embryoEntry, EmbryoKey embryoKey) {
         this.embryoEntry = embryoEntry;
@@ -58,24 +61,38 @@ public class Embryo {
         return Entities.constructEntity(world, getBirthCreature());
     }
 
+    private Entity getOrCreateBirthCreature(World world) {
+        if (this.birthCreature == null) {
+            this.birthCreature = this.createBirthCreature(world);
+        }
+        return this.birthCreature;
+    }
+
     public void vitalize(EntityLivingBase host) {
         OrganismImpl hostOrganism = (OrganismImpl) host.getCapability(Organism.Provider.CAPABILITY, null);
-        Entity birthCreature = this.createBirthCreature(host.world);
 
-        Pos safeLocation = Entities.getSafeLocationAround(birthCreature, new Pos((int)host.posX, (int)host.posY, (int)host.posZ));
+        if (hostOrganism == null || !hostOrganism.hasEmbryo()) return;
 
-        if (safeLocation == null)
-        {
-            safeLocation = new Pos((int)host.posX, (int)host.posY, (int)host.posZ);
-        }
+        Entity birthedCreature = this.getOrCreateBirthCreature(host.world);
 
-        birthCreature.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
-        host.world.spawnEntity(birthCreature);
-        hostOrganism.setEmbryo(null);
-        host.getActivePotionEffects().clear();
-        host.attackEntityFrom(AVPDamageSources.causeChestbursterDamage(birthCreature, host), 100000F);
-        if(!host.isDead) {
-            host.setHealth(0);
+        // Attack the entity while host is alive and birth creature is vitalizing.
+        DamageSource damageSource = AVPDamageSources.causeChestbursterDamage(birthedCreature, host);
+        float damage = host.getMaxHealth() / 8F;
+        host.attackEntityFrom(damageSource, damage);
+
+        if(host.getHealth() <= 0F || host.isDead) {
+            // Spawn embryo
+            Pos safeLocation = Entities.getSafeLocationAround(birthedCreature, new Pos((int)host.posX, (int)host.posY, (int)host.posZ));
+
+            if (safeLocation == null)
+                safeLocation = new Pos((int)host.posX, (int)host.posY, (int)host.posZ);
+
+            birthedCreature.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
+            host.world.spawnEntity(birthedCreature);
+
+            // Clean up
+            hostOrganism.setEmbryo(null);
+            host.getActivePotionEffects().clear();
         }
     }
 
