@@ -30,10 +30,16 @@ public class ItemRegistryUtil {
 
         item.setTranslationKey(item.getRegistryName().getNamespace() + ":" + item.getRegistryName().getPath());
         ForgeRegistries.ITEMS.register(item);
+    }
 
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-        {
-            Renderers.registerIcon(item);
-        }
+    public static void registerItemIcon(Item item) {
+        if (FMLCommonHandler.instance().getSide() != Side.CLIENT) return;
+
+        Renderers.registerIcon(item);
+    }
+
+    public static void registerItemWithIcon(Item item) {
+        registerItem(item);
+        registerItemIcon(item);
     }
 }

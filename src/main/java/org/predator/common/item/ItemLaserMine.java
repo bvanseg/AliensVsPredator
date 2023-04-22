@@ -18,16 +18,20 @@ import java.util.List;
 public class ItemLaserMine extends Item
 {
     @Override
-    public EnumActionResult onItemUse( EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
         byte metaValue = (byte) (facing.ordinal() == 5 ? 3 : facing.ordinal() == 4 ? 1 : facing.ordinal() == 3 ? 2 : 0);
 
-        EntityLaserMine entity = new EntityLaserMine(world, pos, metaValue, player.getUniqueID().toString());
+        EntityLaserMine entity = new EntityLaserMine(world, pos, metaValue, player.getUniqueID());
 
-        if (!world.isRemote && entity.canStay())
-        {
-            player.getActiveItemStack().shrink(1);
-            world.spawnEntity(entity);
+        if (entity.canStay()) {
+            if (!world.isRemote) {
+                world.spawnEntity(entity);
+            }
+
+            ItemStack stack = player.getHeldItem(hand);
+            stack.shrink(1);
+
             return EnumActionResult.SUCCESS;
         }
         

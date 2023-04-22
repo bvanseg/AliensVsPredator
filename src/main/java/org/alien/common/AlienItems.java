@@ -91,21 +91,18 @@ public class AlienItems implements IPreInitEvent {
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
-        ItemRegistryUtil.registerItem(HELM_XENO);
-        ItemRegistryUtil.registerItem(PLATE_XENO);
-        ItemRegistryUtil.registerItem(LEGS_XENO);
-        ItemRegistryUtil.registerItem(BOOTS_XENO);
+        ItemRegistryUtil.registerItemWithIcon(HELM_XENO);
+        ItemRegistryUtil.registerItemWithIcon(PLATE_XENO);
+        ItemRegistryUtil.registerItemWithIcon(LEGS_XENO);
+        ItemRegistryUtil.registerItemWithIcon(BOOTS_XENO);
 
-        ItemRegistryUtil.registerItem(ITEM_RAW_TENTACLE);
-        ItemRegistryUtil.registerItem(ITEM_TRILO_BITE);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_RAW_TENTACLE);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_TRILO_BITE);
 
-        ItemRegistryUtil.registerItem(ITEM_ROYAL_JELLY);
-        ItemRegistryUtil.registerItem(ITEM_BLACK_GOO);
-        ItemRegistryUtil.registerItem(ITEM_PHIAL);
-        ItemRegistryUtil.registerItem(ITEM_PHIAL_EMPTY);
-
-        ItemRegistryUtil.registerItem(BLACK_GOO_BUCKET);
-        ItemRegistryUtil.registerItem(MIST_BUCKET);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_ROYAL_JELLY);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_BLACK_GOO);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_PHIAL);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_PHIAL_EMPTY);
 
         ItemRegistryUtil.registerItem(SUMMONER_SPORE_POD);
         ItemRegistryUtil.registerItem(SUMMONER_DRONE);

@@ -50,26 +50,26 @@ public class PredatorItems implements IPreInitEvent {
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
-        ItemRegistryUtil.registerItem(BIOMASK_CELTIC);
-        ItemRegistryUtil.registerItem(CHESTPLATE_CELTIC);
-        ItemRegistryUtil.registerItem(LEGS_CELTIC);
-        ItemRegistryUtil.registerItem(BOOTS_CELTIC);
+        ItemRegistryUtil.registerItemWithIcon(BIOMASK_CELTIC);
+        ItemRegistryUtil.registerItemWithIcon(CHESTPLATE_CELTIC);
+        ItemRegistryUtil.registerItemWithIcon(LEGS_CELTIC);
+        ItemRegistryUtil.registerItemWithIcon(BOOTS_CELTIC);
 
-        ItemRegistryUtil.registerItem(SHOVEL_CELTIC);
-        ItemRegistryUtil.registerItem(PICKAXE_CELTIC);
-        ItemRegistryUtil.registerItem(AXE_CELTIC);
-        ItemRegistryUtil.registerItem(SWORD_CELTIC);
-        ItemRegistryUtil.registerItem(HOE_CELTIC);
+        ItemRegistryUtil.registerItemWithIcon(SHOVEL_CELTIC);
+        ItemRegistryUtil.registerItemWithIcon(PICKAXE_CELTIC);
+        ItemRegistryUtil.registerItemWithIcon(AXE_CELTIC);
+        ItemRegistryUtil.registerItemWithIcon(SWORD_CELTIC);
+        ItemRegistryUtil.registerItemWithIcon(HOE_CELTIC);
         ItemRegistryUtil.registerItem(ITEM_SPEAR);
         ItemRegistryUtil.registerItem(ITEM_WRISTBRACER);
         ItemRegistryUtil.registerItem(ITEM_WRISTBRACER_BLADES);
 
         ItemRegistryUtil.registerItem(ITEM_PLASMA_CANNON);
-        ItemRegistryUtil.registerItem(ITEM_PROXIMITY_MINE);
-        ItemRegistryUtil.registerItem(ITEM_DISC);
-        ItemRegistryUtil.registerItem(ITEM_SHURIKEN);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_PROXIMITY_MINE);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_DISC);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_SHURIKEN);
 
-        ItemRegistryUtil.registerItem(ITEM_ARTIFACT_TECH);
+        ItemRegistryUtil.registerItemWithIcon(ITEM_ARTIFACT_TECH);
 
         ItemRegistryUtil.registerItem(SUMMONER_YAUTJA_WARRIOR);
         ItemRegistryUtil.registerItem(SUMMONER_YAUTJA_BERSERKER);

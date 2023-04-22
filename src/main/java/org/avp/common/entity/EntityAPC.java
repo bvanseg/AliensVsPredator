@@ -131,13 +131,8 @@ public class EntityAPC extends Entity
                 Entities.getEntityRiddenBy(this).startRiding(this);
             }
 
-            if (!flag)
-            {
-                this.dropItemWithOffset(AVPItems.ITEM_APC, 1, 0.0F);
+                this.setDead();
             }
-
-            this.setDead();
-        }
 
         return true;
     }
