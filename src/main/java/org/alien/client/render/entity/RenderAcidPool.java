@@ -26,10 +26,10 @@ public class RenderAcidPool extends Render<EntityAcidPool>
     @Override
     public void doRender(EntityAcidPool entity, double posX, double posY, double posZ, float yaw, float renderPartialTicks)
     {
-        OpenGL.pushMatrix();
+        GlStateManager.pushMatrix();
         {
             float scale = 1F;
-            float cover = 0.5F;
+            float cover = (entity.width / 2) - 0.5F;
             double renderX = entity.lastTickPosX + (entity.posX - entity.lastTickPosX) * renderPartialTicks;
             double renderY = entity.lastTickPosY + (entity.posY - entity.lastTickPosY) * renderPartialTicks + entity.getCollisionBorderSize();
             double renderZ = entity.lastTickPosZ + (entity.posZ - entity.lastTickPosZ) * renderPartialTicks;
@@ -39,17 +39,17 @@ public class RenderAcidPool extends Render<EntityAcidPool>
 
             GlStateManager.disableLight(0);
             GlStateManager.disableLight(1);
-            // OpenGL.enableLightMapping();
-            OpenGL.enableBlend();
+
+            GlStateManager.enableBlend();
             OpenGL.blendClear();
-            OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_ALPHA);
-            // OpenGL.enableLighting();
-            // OpenGL.enableLight();
-            // OpenGL.enableLightMapping();
+            GlStateManager.blendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_ALPHA);
+
             this.bindTexture(Resources.instance.LIQUID_POOL);
             Resources.instance.LIQUID_POOL.bind();
+
             Draw.startQuads();
-            OpenGL.color(1F, 1F, 0F, 1F);
+
+            GlStateManager.color(1F, 1F, 0F, 1F);
 
             for (int blockX = MathHelper.floor(renderX - cover); blockX <= MathHelper.floor(renderX + cover); ++blockX)
             {
@@ -69,8 +69,10 @@ public class RenderAcidPool extends Render<EntityAcidPool>
             }
 
             Draw.tessellate();
-            OpenGL.color(1F, 1F, 1F, 1F);
+
+            GlStateManager.color(1F, 1F, 1F, 1F);
             OpenGL.blendClear();
+
             GlStateManager.enableLight(0);
             GlStateManager.enableLight(1);
         }
