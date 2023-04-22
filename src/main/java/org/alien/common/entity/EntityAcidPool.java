@@ -1,11 +1,15 @@
 package org.alien.common.entity;
 
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
@@ -16,6 +20,7 @@ import net.minecraft.world.World;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.init.AlienEngineerBlocks;
 import org.alien.common.entity.ai.selector.EntitySelectorAcidPool;
+import org.alien.common.item.ItemArmorXeno;
 import org.alien.common.potion.AlienPotions;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.api.blocks.AcidResistant;
@@ -193,9 +198,33 @@ public class EntityAcidPool extends EntityLiquidPool
 
             if (EntitySelectorAcidPool.instance.test(livingEntity)) {
                 livingEntity.addPotionEffect(new PotionEffect(AlienPotions.ACID, (14 * 20), 0));
+
+                // Try and damage player boots rapidly while the player is standing in acid.
+                if (livingEntity instanceof EntityPlayer && this.tryDamageBoots((EntityPlayer) livingEntity)) {
+                    return;
+                }
+
                 livingEntity.attackEntityFrom(AVPDamageSources.ACID, 4f);
             }
         });
+    }
+
+    private boolean tryDamageBoots(EntityPlayer player) {
+        ItemStack bootsStack = Inventories.getBootSlotItemStack(player);
+
+        if (!bootsStack.isEmpty() &&
+                bootsStack != ItemStack.EMPTY &&
+                bootsStack.getItem() instanceof ItemArmor &&
+                !(bootsStack.getItem() instanceof ItemArmorXeno)
+        ) {
+            if (this.world.getTotalWorldTime() % 20 == 0) {
+                bootsStack.damageItem(20, player);
+                this.world.playSound(null, this.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 1F, 1F);
+            }
+            return true;
+        }
+
+        return false;
     }
 
     @Override
