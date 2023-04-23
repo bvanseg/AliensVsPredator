@@ -50,26 +50,26 @@ public class PredatorItems implements IPreInitEvent {
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
-        ItemRegistryUtil.registerItemWithIcon(BIOMASK_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(CHESTPLATE_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(LEGS_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(BOOTS_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(BIOMASK_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(CHESTPLATE_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(LEGS_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(BOOTS_CELTIC);
 
-        ItemRegistryUtil.registerItemWithIcon(SHOVEL_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(PICKAXE_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(AXE_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(SWORD_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(HOE_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(SHOVEL_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(PICKAXE_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(AXE_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(SWORD_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(HOE_CELTIC);
         ItemRegistryUtil.registerItem(ITEM_SPEAR);
         ItemRegistryUtil.registerItem(ITEM_WRISTBRACER);
         ItemRegistryUtil.registerItem(ITEM_WRISTBRACER_BLADES);
 
         ItemRegistryUtil.registerItem(ITEM_PLASMA_CANNON);
-        ItemRegistryUtil.registerItemWithIcon(ITEM_PROXIMITY_MINE);
-        ItemRegistryUtil.registerItemWithIcon(ITEM_DISC);
-        ItemRegistryUtil.registerItemWithIcon(ITEM_SHURIKEN);
+        ItemRegistryUtil.registerItemWithModel(ITEM_PROXIMITY_MINE);
+        ItemRegistryUtil.registerItemWithModel(ITEM_DISC);
+        ItemRegistryUtil.registerItemWithModel(ITEM_SHURIKEN);
 
-        ItemRegistryUtil.registerItemWithIcon(ITEM_ARTIFACT_TECH);
+        ItemRegistryUtil.registerItemWithModel(ITEM_ARTIFACT_TECH);
 
         ItemRegistryUtil.registerItem(SUMMONER_YAUTJA_WARRIOR);
         ItemRegistryUtil.registerItem(SUMMONER_YAUTJA_BERSERKER);
