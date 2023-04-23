@@ -14,6 +14,7 @@ import org.avp.client.Resources;
 import org.avp.client.render.item.RenderItemSkull;
 import org.avp.client.render.item.RenderItemSummoner;
 import org.avp.common.block.BlockSkull;
+import org.lib.client.render.ItemModelRegistryUtil;
 import org.lib.common.registry.BlockRegistryUtil;
 import org.predator.client.render.entity.*;
 import org.predator.client.render.entity.living.RenderPredatorHound;
@@ -105,9 +106,9 @@ public class PredatorRenders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(PredatorItems.ITEM_PLASMA_CANNON, new RenderItemPlasmaCannon());
         Renderers.registerItemRenderer(PredatorItems.ITEM_SPEAR, new RenderItemSpear());
 
-        Renderers.registerItemRenderer(PredatorItems.SUMMONER_YAUTJA_WARRIOR, (new RenderItemSummoner(Resources.instance.models().YAUTJA_WARRIOR)).setScale(7.5F).setY(8F));
-        Renderers.registerItemRenderer(PredatorItems.SUMMONER_YAUTJA_BERSERKER, (new RenderItemSummoner(Resources.instance.models().YAUTJA_BERSERKER)).setScale(7.5F).setY(8F));
-        Renderers.registerItemRenderer(PredatorItems.SUMMONER_PREDATOR_HOUND, (new RenderItemSummoner(Resources.instance.models().PREDATOR_HOUND)).setScale(12F).setY(-3F));
+        ItemModelRegistryUtil.registerSummonerModel(PredatorItems.SUMMONER_YAUTJA_WARRIOR, new RenderItemSummoner(Resources.instance.models().YAUTJA_WARRIOR).setScale(7.5F).setY(8F), 0xB9A86C, 0x5A4728);
+        ItemModelRegistryUtil.registerSummonerModel(PredatorItems.SUMMONER_YAUTJA_BERSERKER, new RenderItemSummoner(Resources.instance.models().YAUTJA_BERSERKER).setScale(7.5F).setY(8F), 0xB9A86C, 0x7E3129);
+        ItemModelRegistryUtil.registerSummonerModel(PredatorItems.SUMMONER_PREDATOR_HOUND, new RenderItemSummoner(Resources.instance.models().PREDATOR_HOUND).setScale(12F).setY(-3F), 0x646442, 0x334626);
     }
 
     private void registerTileEntitySpecialRenderers()
