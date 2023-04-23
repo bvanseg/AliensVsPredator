@@ -10,9 +10,6 @@
 [java-lang]: https://www.java.com/
 [java-shield]: https://img.shields.io/badge/Made%20with-Java-ED8B00.svg
 
-[curse-download-shield]: https://cf.way2muchnoise.eu/full_221641_downloads.svg
-[curse-files-link]: https://www.curseforge.com/minecraft/mc-mods/aliensvspredator/files
-
 [curse-downloads-shield]: https://cf.way2muchnoise.eu/full_221641_downloads.svg
 [curse-files-link]: https://www.curseforge.com/minecraft/mc-mods/aliensvspredator/files
 
@@ -25,8 +22,8 @@ AliensVsPredator (Minecraft Mod)
 [![java-shield][]][java-lang]
 ![GitHub code size in bytes][code-size]
 [![discord-shield][]][discord-invite]
-[![curse-downloads-shield]][curse-files-link]
-[![curse-versions-shield]][curse-link]
+[![curse-downloads-shield]][curse-link]
+[![curse-versions-shield]][curse-files-link]
 
 ## Links ##
 * [Source]
