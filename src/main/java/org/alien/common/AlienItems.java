@@ -45,8 +45,6 @@ public class AlienItems implements IPreInitEvent {
     public static final Item ITEM_BLACK_GOO = new HookedItem().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("blackgoo.item");
     public static final Item ITEM_PHIAL = new HookedItem().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("phial.goo");
     public static final Item ITEM_PHIAL_EMPTY = new HookedItem().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("phial.empty");
-    public static final Item BLACK_GOO_BUCKET = new ItemBucket(AlienBlocks.BLACK_GOO).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("bucket.blackgoo");
-    public static final Item MIST_BUCKET = new ItemBucket(AlienBlocks.MIST).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("bucket.mist");
     public static final Item SUMMONER_SPORE_POD = new ItemSporePod().setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.sporepod");
     public static final Item SUMMONER_DRONE = new ItemEntitySummoner(EntityDrone.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.drone");
     public static final Item SUMMONER_AQUA = new ItemEntitySummoner(EntityNauticomorph.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.aqua");
@@ -95,18 +93,18 @@ public class AlienItems implements IPreInitEvent {
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
-        ItemRegistryUtil.registerItemWithIcon(HELM_XENO);
-        ItemRegistryUtil.registerItemWithIcon(PLATE_XENO);
-        ItemRegistryUtil.registerItemWithIcon(LEGS_XENO);
-        ItemRegistryUtil.registerItemWithIcon(BOOTS_XENO);
+        ItemRegistryUtil.registerItemWithModel(HELM_XENO);
+        ItemRegistryUtil.registerItemWithModel(PLATE_XENO);
+        ItemRegistryUtil.registerItemWithModel(LEGS_XENO);
+        ItemRegistryUtil.registerItemWithModel(BOOTS_XENO);
 
-        ItemRegistryUtil.registerItemWithIcon(ITEM_RAW_TENTACLE);
-        ItemRegistryUtil.registerItemWithIcon(ITEM_TRILO_BITE);
+        ItemRegistryUtil.registerItemWithModel(ITEM_RAW_TENTACLE);
+        ItemRegistryUtil.registerItemWithModel(ITEM_TRILO_BITE);
 
-        ItemRegistryUtil.registerItemWithIcon(ITEM_ROYAL_JELLY);
-        ItemRegistryUtil.registerItemWithIcon(ITEM_BLACK_GOO);
-        ItemRegistryUtil.registerItemWithIcon(ITEM_PHIAL);
-        ItemRegistryUtil.registerItemWithIcon(ITEM_PHIAL_EMPTY);
+        ItemRegistryUtil.registerItemWithModel(ITEM_ROYAL_JELLY);
+        ItemRegistryUtil.registerItemWithModel(ITEM_BLACK_GOO);
+        ItemRegistryUtil.registerItemWithModel(ITEM_PHIAL);
+        ItemRegistryUtil.registerItemWithModel(ITEM_PHIAL_EMPTY);
 
         ItemRegistryUtil.registerItem(SUMMONER_SPORE_POD);
         ItemRegistryUtil.registerItem(SUMMONER_DRONE);
