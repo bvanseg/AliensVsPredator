@@ -50,8 +50,12 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         Arrays.stream(sets).forEach(set -> set.add(block));
     }
 
-    private final Predicate<EntityItem> itemPickupPredicate = entityItem -> {
+    public final Predicate<EntityItem> itemPickupPredicate = entityItem -> {
         Item item = entityItem.getItem().getItem();
+        return this.itemPredicate.test(item);
+    };
+
+    public final Predicate<Item> itemPredicate = item -> {
         if (item instanceof ItemFood) return true; // Marines can pick up food.
         if (this.getEntity()
                 .getMarineType().getFirearmItem()
@@ -93,7 +97,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     }
 
     private void initInventoryTasks() {
-        this.addTask(new FindItemBrainTask(itemPickupPredicate, 0.6D)
+        this.addTask(new FindItemBrainTask(this.itemPickupPredicate, 0.6D)
                 .onUseItem(entityItem -> {
                     this.getEntity().getInventory().addItem(entityItem.getItem());
                     AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(this.getEntity(), this.getEntity().getInventory()));

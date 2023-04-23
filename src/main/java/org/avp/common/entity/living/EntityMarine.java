@@ -196,11 +196,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
                     return super.processInteract(player, hand);
                 }
                 // Allows the player to give marines food or ammo by right-clicking.
-                else if (
-                        heldItem instanceof ItemFood ||
-                        this.getMarineType().getFirearmItem().getFirearmProperties().getConsumablesForReload().contains(heldItem)
-                )
-                {
+                else if (this.getBrain().itemPredicate.test(heldItem)) {
                     // Add item to marine's inventory.
                     this.inventory.addItem(new ItemStack(heldItem, 1));
                     // Remove item from player's inventory.
