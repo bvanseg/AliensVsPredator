@@ -24,7 +24,7 @@ import net.minecraftforge.common.util.Constants.NBT;
 import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
 import org.avp.common.AVPGui;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketAddTurretTarget;
 import org.avp.common.tile.TileEntityTurret;

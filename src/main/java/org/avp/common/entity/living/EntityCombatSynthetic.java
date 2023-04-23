@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.Host;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPItemDrops;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.entity.EntityLiquidLatexPool;
 import org.avp.common.entity.ai.brain.CombatSyntheticBrain;
 import org.lib.brain.Brainiac;

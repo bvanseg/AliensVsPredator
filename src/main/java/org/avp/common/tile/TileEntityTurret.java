@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.AVPNetworking;
 import org.avp.common.api.machines.DataDevice;
 import org.avp.common.api.power.VoltageReceiver;

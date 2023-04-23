@@ -9,7 +9,8 @@ import net.minecraft.client.gui.inventory.GuiInventory;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.avp.client.gui.GuiTacticalHUDSettings;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPArmorItems;
+import org.avp.common.item.init.AVPItems;
 
 public class TacticalHelmetSettingsRenderEvent
 {
@@ -38,7 +39,7 @@ public class TacticalHelmetSettingsRenderEvent
 
     public void renderInventoryElements(RenderGameOverlayEvent event)
     {
-        if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPItems.HELM_MARINE)
+        if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPArmorItems.HELM_MARINE)
         {
             if (ClientGame.instance.minecraft().currentScreen instanceof GuiInventory || ClientGame.instance.minecraft().currentScreen instanceof GuiChat)
             {

@@ -30,7 +30,7 @@ import org.avp.client.render.item.*;
 import org.avp.client.render.tile.*;
 import org.avp.client.render.transform.CryostasisTubeRenderers;
 import org.avp.client.render.transform.MedpodTransforms;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.avp.common.entity.EntityAPC;
 import org.avp.common.entity.EntityLiquidLatexPool;

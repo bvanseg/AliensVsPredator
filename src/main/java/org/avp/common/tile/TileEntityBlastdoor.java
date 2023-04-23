@@ -15,7 +15,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import org.avp.client.AVPSounds;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.AVPNetworking;
 import org.avp.common.api.machines.Openable;
 import org.avp.common.api.power.VoltageReceiver;

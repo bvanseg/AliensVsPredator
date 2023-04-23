@@ -16,7 +16,8 @@ import org.alien.common.world.capability.Organism;
 import org.alien.common.world.capability.OrganismImpl;
 import org.avp.client.Resources;
 import org.avp.client.render.LightmapUpdateEvent;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPArmorItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.world.capability.SpecialPlayer;
 import org.lib.client.render.wavegraph.Wavegraph;
 import org.lib.client.render.wavegraph.ekg.Electrocardiogram;
@@ -58,7 +59,7 @@ public class TacticalHelmetHUDRenderEvent {
 
         ItemStack helmSlotItemStack = Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player);
 
-        if (helmSlotItemStack != null && ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && helmSlotItemStack.getItem() == AVPItems.HELM_MARINE)
+        if (helmSlotItemStack != null && ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && helmSlotItemStack.getItem() == AVPArmorItems.HELM_MARINE)
         {
             SpecialPlayer.SpecialPlayerImpl specialPlayer = (SpecialPlayer.SpecialPlayerImpl) ClientGame.instance.minecraft().player.getCapability(SpecialPlayer.SpecialPlayerImpl.Provider.CAPABILITY, null);
 

@@ -1,4 +1,4 @@
-package org.avp.common;
+package org.avp.common.item.init;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.common.minecraft.item.HookedItem;
@@ -7,6 +7,8 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.avp.common.AVPCreativeTabs;
+import org.avp.common.AVPNetworking;
 import org.avp.common.config.ModelConfig;
 import org.avp.common.entity.EntityAPC;
 import org.avp.common.entity.living.EntityCombatSynthetic;
@@ -26,18 +28,6 @@ public class AVPItems implements IPreInitEvent {
 
     private AVPItems() {}
 
-    public static final Item PRESSURE_MASK = new ItemArmorPressureSuit(0, EntityEquipmentSlot.HEAD).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("helm.pressure");
-    public static final Item PRESSURE_CHEST = new ItemArmorPressureSuit(0, EntityEquipmentSlot.CHEST).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("body.pressure");
-    public static final Item PRESSURE_PANTS = new ItemArmorPressureSuit(0, EntityEquipmentSlot.LEGS).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("legwear.pressure");
-    public static final Item PRESSURE_BOOTS = new ItemArmorPressureSuit(0, EntityEquipmentSlot.FEET).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("boots.pressure");
-    public static final Item MK_50_HELMET = new ItemArmorMK50(0, EntityEquipmentSlot.HEAD).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("helm.mk50");
-    public static final Item MK_50_BODY = new ItemArmorMK50(0, EntityEquipmentSlot.CHEST).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("body.mk50");
-    public static final Item MK_50_PANTS = new ItemArmorMK50(0, EntityEquipmentSlot.LEGS).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("legwear.mk50");
-    public static final Item MK_50_BOOTS = new ItemArmorMK50(0, EntityEquipmentSlot.FEET).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("boots.mk50");
-    public static final Item HELM_MARINE = new ItemArmorMarine(0, EntityEquipmentSlot.HEAD).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("helm.tactical");
-    public static final Item PLATE_MARINE = new ItemArmorMarine(0, EntityEquipmentSlot.CHEST).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("body.tactical");
-    public static final Item LEGS_MARINE = new ItemArmorMarine(0, EntityEquipmentSlot.LEGS).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("legwear.tactical");
-    public static final Item BOOTS_MARINE = new ItemArmorMarine(0, EntityEquipmentSlot.FEET).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("boots.tactical");
     public static final Item ITEM_STUN_BATON = new ItemStunBaton().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("stun.baton");
     public static final Item ITEM_DORITOS = new ItemFood(8, true).setAlwaysEdible().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("food.doritos");
     public static final Item ITEM_DORITOS_COOL_RANCH = new ItemFood(8, true).setAlwaysEdible().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("food.doritos.coolranch");
@@ -86,6 +76,7 @@ public class AVPItems implements IPreInitEvent {
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
+        AVPArmorItems.instance.pre(event);
         this.registerItems();
         this.registerWristbracerCodes();
 
@@ -93,22 +84,7 @@ public class AVPItems implements IPreInitEvent {
         WeaponItems.instance.pre(event);
     }
 
-    private static void registerItems() {
-        ItemRegistryUtil.registerItemWithModel(PRESSURE_MASK);
-        ItemRegistryUtil.registerItemWithModel(PRESSURE_CHEST);
-        ItemRegistryUtil.registerItemWithModel(PRESSURE_PANTS);
-        ItemRegistryUtil.registerItemWithModel(PRESSURE_BOOTS);
-
-        ItemRegistryUtil.registerItemWithModel(MK_50_HELMET);
-        ItemRegistryUtil.registerItemWithModel(MK_50_BODY);
-        ItemRegistryUtil.registerItemWithModel(MK_50_PANTS);
-        ItemRegistryUtil.registerItemWithModel(MK_50_BOOTS);
-
-        ItemRegistryUtil.registerItemWithModel(HELM_MARINE);
-        ItemRegistryUtil.registerItemWithModel(PLATE_MARINE);
-        ItemRegistryUtil.registerItemWithModel(LEGS_MARINE);
-        ItemRegistryUtil.registerItemWithModel(BOOTS_MARINE);
-
+    private void registerItems() {
         ItemRegistryUtil.registerItem(ITEM_STUN_BATON);
 
         ItemRegistryUtil.registerItemWithModel(ITEM_DORITOS);

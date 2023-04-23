@@ -32,7 +32,8 @@ import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.dimension.varda.WorldProviderVarda;
 import org.avp.client.Resources;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPArmorItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.tile.TileEntityPowercell;
@@ -58,7 +59,7 @@ public class PressureHUDRenderEvent
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
             {
-                if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
+                if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPArmorItems.PRESSURE_MASK)
                 {
                     SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) ClientGame.instance.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
@@ -106,7 +107,7 @@ public class PressureHUDRenderEvent
 
     public void renderInventoryElements()
     {
-        if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
+        if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPArmorItems.PRESSURE_MASK)
         {
         }
     }
