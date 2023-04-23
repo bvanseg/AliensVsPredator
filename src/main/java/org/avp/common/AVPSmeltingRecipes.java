@@ -10,6 +10,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.alien.common.AlienItems;
 import org.alien.common.block.init.AlienVardaBlocks;
 import org.avp.common.block.init.AVPOreBlocks;
+import org.avp.common.item.init.AVPItems;
 
 /**
  * @author Ri5ux

@@ -11,6 +11,7 @@ import org.alien.common.block.init.AlienVardaBlocks;
 import org.apache.commons.lang3.StringUtils;
 import org.avp.AVP;
 import org.avp.common.block.init.AVPOreBlocks;
+import org.avp.common.item.init.AVPItems;
 
 import java.util.Arrays;
 
