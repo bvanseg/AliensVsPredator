@@ -9,7 +9,8 @@ import org.alien.client.render.ChestbursterOverlayEvent;
 import org.alien.client.render.FacehuggerRenderEvent;
 import org.alien.common.AlienDimensions;
 import org.alien.common.potion.PotionEffectEventHandler;
-import org.alien.common.world.EntityImpregnationHandler;
+import org.alien.common.world.ClientEntityImpregnationHandler;
+import org.alien.common.world.ServerEntityImpregnationHandler;
 import org.alien.common.world.TrilobiteImpregnationHandler;
 import org.alien.common.world.dimension.acheron.SkyProviderAcheron;
 import org.avp.client.input.AVPInputEventHandler;
@@ -63,16 +64,17 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(RenderLivingHook.instance);
             this.registerEvent(SkyProviderAcheron.instance);
             this.registerEvent(BlastDoorPlacementBoxRenderer.instance);
+            this.registerEvent(ClientEntityImpregnationHandler.instance);
         }
 
         if (FMLCommonHandler.instance().getSide() == Side.SERVER)
         {
             this.registerEvent(AlienDimensions.instance);
+            this.registerEvent(ServerEntityImpregnationHandler.instance);
         }
 
         this.registerEvent(PotionEffectEventHandler.instance);
         this.registerEvent(EntityAccessor.instance);
-        this.registerEvent(EntityImpregnationHandler.instance);
         this.registerEvent(TrilobiteImpregnationHandler.instance);
         this.registerEvent(CapabilityHandler.instance);
         this.registerEvent(SaveHandler.instance);
