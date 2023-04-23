@@ -6,6 +6,8 @@ import com.asx.mdx.common.io.config.GraphicsSetting;
  * @author Boston Vanseghi
  */
 public class ModelConfigGraphics {
+    @ConfigValue.Boolean(key = "spawn.egg.summoners")
+    public boolean spawnEggSummoners = false;
     @ConfigValue.Boolean(key = "blood.effects")
     public boolean bloodEffects = true;
     @ConfigValue.Enum(key = "hive.tessellation")
