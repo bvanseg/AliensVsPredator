@@ -26,6 +26,7 @@ import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestAvoidTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;
 import org.lib.brain.impl.task.*;
+import org.lib.brain.profile.BrainProfile;
 import org.lib.brain.task.BrainTaskAdapter;
 import org.weapon.common.entity.EntityGrenade;
 
@@ -37,6 +38,12 @@ import java.util.function.Predicate;
  * @author Boston Vanseghi
  */
 public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
+
+    // Lone wolf behavior for when the marine has no squad leader (and therefore no squad).
+    private static final BrainProfile WOLF_BEHAVIOR = new BrainProfile("wolf_behavior");
+
+    // Squad behavior for when the marine has a squad leader and a squad.
+    private static final BrainProfile SQUAD_BEHAVIOR = new BrainProfile("squad_behavior");
 
     private static final HashSet<Block> AVOID_BLOCKS = new HashSet<>();
     private static final HashSet<Block> BLOCKS_OF_INTEREST = new HashSet<>();
@@ -109,17 +116,17 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         this.addTask(new BrainTaskAdapter(new EntityAIMoveTowardsRestriction(entity, 0.6D)));
 
         this.addTask(new AvoidBlockBrainTask(3F, 0.6F, 0.6F, AVOID_BLOCKS::contains));
-        this.addTask(new FollowSquadLeaderBrainTask(0.6D, 10.0F, 2.0F));
+        this.addTask(new FollowSquadLeaderBrainTask(0.6D, 10.0F, 2.0F), SQUAD_BEHAVIOR);
     }
 
     private void initIdleTasks() {
-        this.addTask(new WanderBrainTask( 0.6D));
+        this.addTask(new WanderBrainTask( 0.6D), WOLF_BEHAVIOR);
         this.addTask(new WatchClosestBrainTask(EntityPlayer.class, 3.0F));
         this.addTask(new WatchClosestBrainTask(EntityLiving.class, 8.0F));
     }
 
     private void initCombatTasks() {
-        this.addTask(new ProtectSquadLeaderTask());
+        this.addTask(new ProtectSquadLeaderTask(), SQUAD_BEHAVIOR);
         this.addTask(new HurtByTargetBrainTask());
         this.addTask(new NearestAttackableTargetBrainTask());
         this.addTask(
@@ -146,5 +153,18 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
 
             return 5.0F;
         }));
+    }
+
+    @Override
+    public void update() {
+        super.update();
+
+        if (this.getEntity().getSquadLeaderID().isPresent()) {
+            this.enableProfiles(SQUAD_BEHAVIOR);
+            this.disableProfiles(WOLF_BEHAVIOR);
+        } else {
+            this.enableProfiles(WOLF_BEHAVIOR);
+            this.disableProfiles(SQUAD_BEHAVIOR);
+        }
     }
 }
