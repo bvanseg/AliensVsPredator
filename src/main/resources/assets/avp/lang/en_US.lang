@@ -119,70 +119,70 @@ fluid.mist=Reactive Mist
 
 #ITEMS-SUMMONERS
 #Immature Xenomorphs
-item.avp:summon.ovamorph.name=Ovamorph (Egg)
-item.avp:summon.ovamorph.giger.name=Ovamorph (Egg, Giger)
-item.avp:summon.facehugger.name=Facehugger
-item.avp:summon.chestburster.name=Chestburster
-item.avp:summon.royalfacehugger.name=Royal Facehugger
-item.avp:summon.chestburster.runner.name=Runner Chestburster
-item.avp:summon.chestburster.predalien.name=Predalien Chestburster
-item.avp:summon.chestburster.queen.name=Queen Chestburster
-item.avp:summon.dracoegg.name=Dracovamorph
-item.avp:summon.dracoburster.name=Dracoburster
+item.avp:summon.ovamorph.name=Ovamorph (Egg) Summoner
+item.avp:summon.ovamorph.giger.name=Ovamorph (Egg, Giger) Summoner
+item.avp:summon.facehugger.name=Facehugger Summoner
+item.avp:summon.chestburster.name=Chestburster Summoner
+item.avp:summon.royalfacehugger.name=Royal Facehugger Summoner
+item.avp:summon.chestburster.runner.name=Runner Chestburster Summoner
+item.avp:summon.chestburster.predalien.name=Predalien Chestburster Summoner
+item.avp:summon.chestburster.queen.name=Queen Chestburster Summoner
+item.avp:summon.dracoegg.name=Dracovamorph Summoner
+item.avp:summon.dracoburster.name=Dracoburster Summoner
 
 #Default Evolving Xenomorphs
-item.avp:summon.drone.name=Xenomorph Drone
-item.avp:summon.warrior.name=Xenomorph Warrior
-item.avp:summon.praetorian.name=Xenomorph Praetorian
-item.avp:summon.queen.name=Xenomorph Queen
+item.avp:summon.drone.name=Xenomorph Drone Summoner
+item.avp:summon.warrior.name=Xenomorph Warrior Summoner
+item.avp:summon.praetorian.name=Xenomorph Praetorian Summoner
+item.avp:summon.queen.name=Xenomorph Queen Summoner
 
 #Animal Derived Xenomorphs
-item.avp:summon.runner.drone.name=Xenomorph Runner
-item.avp:summon.runner.warrior.name=Xenomorph Runner Warrior
-item.avp:summon.crusher.name=Xenomorph Crusher
+item.avp:summon.runner.drone.name=Xenomorph Runner Summoner
+item.avp:summon.runner.warrior.name=Xenomorph Runner Warrior Summoner
+item.avp:summon.crusher.name=Xenomorph Crusher Summoner
 
 #Other Xenomorphs
-item.avp:summon.spitter.name=Xenomorph Spitter
-item.avp:summon.boiler.name=Boiler
-item.avp:summon.predalien.name=Predalien
-item.avp:summon.aqua.name=Nauticomorph
-item.avp:summon.myceliomorph.name=Myceliomorph
-item.avp:summon.pantheramorph.name=Pantheramorph
-item.avp:summon.dracomorph.name=Dracomorph
-item.avp:summon.batxeno.name=Chiropteramorph
-item.avp:summon.ultramorph.name=Ultramorph
+item.avp:summon.spitter.name=Xenomorph Spitter Summoner
+item.avp:summon.boiler.name=Boiler Summoner
+item.avp:summon.predalien.name=Predalien Summoner
+item.avp:summon.aqua.name=Nauticomorph Summoner
+item.avp:summon.myceliomorph.name=Myceliomorph Summoner
+item.avp:summon.pantheramorph.name=Pantheramorph Summoner
+item.avp:summon.dracomorph.name=Dracomorph Summoner
+item.avp:summon.batxeno.name=Chiropteramorph Summoner
+item.avp:summon.ultramorph.name=Ultramorph Summoner
 
 #Xenomorph-Like Organisms
-item.avp:summon.trilobite.name=Trilobite
-item.avp:summon.deacon.name=Deacon
-item.avp:summon.deacon.adult.name=Deacon (Adult)
-item.avp:summon.octohugger.name=Octohugger
-item.avp:summon.belugaburster.name=Belugaburster
-item.avp:summon.belugamorph.name=Belugamorph
+item.avp:summon.trilobite.name=Trilobite Summoner
+item.avp:summon.deacon.name=Deacon Summoner
+item.avp:summon.deacon.adult.name=Deacon (Adult) Summoner
+item.avp:summon.octohugger.name=Octohugger Summoner
+item.avp:summon.belugaburster.name=Belugaburster Summoner
+item.avp:summon.belugamorph.name=Belugamorph Summoner
 
 #Goo-based Creatures and Mutants
-item.avp:summon.sporepod.name=Spore Pods
-item.avp:summon.hammerpede.name=Hammerpede
-item.avp:summon.deaconshark.name=Deacon Shark
-item.avp:summon.goomutant.name=Goo Mutant
-item.avp:summon.aethon.name=Aethon
-item.avp:summon.babyhead.name=Babyhead
-item.avp:summon.vardamonkey.name=Scelemur
-item.avp:summon.ursuidae.name=Ursuidae
-item.avp:summon.yautjamutant.name=Mutant Yautja
+item.avp:summon.sporepod.name=Spore Pods Summoner
+item.avp:summon.hammerpede.name=Hammerpede Summoner
+item.avp:summon.deaconshark.name=Deacon Shark Summoner
+item.avp:summon.goomutant.name=Goo Mutant Summoner
+item.avp:summon.aethon.name=Aethon Summoner
+item.avp:summon.babyhead.name=Babyhead Summoner
+item.avp:summon.vardamonkey.name=Scelemur Summoner
+item.avp:summon.ursuidae.name=Ursuidae Summoner
+item.avp:summon.yautjamutant.name=Mutant Yautja Summoner
 
 #Predators
-item.avp:summon.yautja.warrior.name=Yautja (Predator)
-item.avp:summon.yautja.berserker.name=Berserker Yautja
-item.avp:summon.predatorhound.name=Hellhound
+item.avp:summon.yautja.warrior.name=Yautja (Predator) Summoner
+item.avp:summon.yautja.berserker.name=Berserker Yautja Summoner
+item.avp:summon.predatorhound.name=Hellhound Summoner
 
 #Engineers
-item.avp:summon.engineer.name=Engineer
-item.avp:summon.spacejockey.name=Space Jockey
+item.avp:summon.engineer.name=Engineer Summoner
+item.avp:summon.spacejockey.name=Space Jockey Summoner
 
 #Humans and Synthetics
-item.avp:summon.marine.name=Marine
-item.avp:summon.synthetic.combat.name=Combat Synthetic
+item.avp:summon.marine.name=Marine Summoner
+item.avp:summon.synthetic.combat.name=Combat Synthetic Summoner
 
 
 #ITEMS-TOOLS AND WEAPONS 2
