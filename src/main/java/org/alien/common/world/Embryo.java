@@ -74,6 +74,7 @@ public class Embryo {
     public void vitalize(EntityLivingBase host) {
         OrganismImpl hostOrganism = (OrganismImpl) host.getCapability(Organism.Provider.CAPABILITY, null);
 
+        if (host.world.getTotalWorldTime() % 10 != 0) return;
         if (hostOrganism == null || !hostOrganism.hasEmbryo()) return;
 
         Entity birthedCreature = this.getOrCreateBirthCreature(host.world);
@@ -82,6 +83,7 @@ public class Embryo {
         DamageSource damageSource = AVPDamageSources.causeChestbursterDamage(birthedCreature, host);
         float damage = host.getMaxHealth() / 8F;
         host.attackEntityFrom(damageSource, damage);
+        host.world.playSound(null, host.getPosition(), AlienSounds.BONE_CRUNCH.event(), SoundCategory.HOSTILE, 1F, 1F);
 
         if(host.getHealth() <= 0F || host.isDead) {
             // Spawn embryo
