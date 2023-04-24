@@ -42,11 +42,11 @@ public class PredatorItems implements IPreInitEvent {
     public static final Item ITEM_SHURIKEN = new ItemShuriken().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("shuriken");
     public static final Item ITEM_ARTIFACT_TECH = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("artifact.tech");
 
-    public static final Item SUMMONER_YAUTJA_WARRIOR = new ItemEntitySummoner(EntityYautjaWarrior.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.yautja.warrior");
-    public static final Item SUMMONER_YAUTJA_BERSERKER = new ItemEntitySummoner(EntityYautjaBerserker.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.yautja.berserker");
+    public static final Item SUMMONER_YAUTJA_WARRIOR = new ItemEntitySummoner<>(EntityYautjaWarrior.class, EntityYautjaWarrior::new).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.yautja.warrior");
+    public static final Item SUMMONER_YAUTJA_BERSERKER = new ItemEntitySummoner<>(EntityYautjaBerserker.class, EntityYautjaBerserker::new).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.yautja.berserker");
 
     /* Experimental */
-    public static final Item SUMMONER_PREDATOR_HOUND = new ItemEntitySummoner(EntityPredatorHound.class).setRegistryName("summon.predatorhound");
+    public static final Item SUMMONER_PREDATOR_HOUND = new ItemEntitySummoner<>(EntityPredatorHound.class, EntityPredatorHound::new).setRegistryName("summon.predatorhound");
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {

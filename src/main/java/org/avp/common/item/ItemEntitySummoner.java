@@ -16,17 +16,20 @@ import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketSpawnEntity;
 
 import java.util.List;
+import java.util.function.Function;
 
-public class ItemEntitySummoner extends HookedItem
+public class ItemEntitySummoner<T extends Entity> extends HookedItem
 {
-    private final Class<? extends Entity> c;
+    private final Class<T> entityClass;
+    private final Function<World, T> deferredEntityConstructor;
 
-    public ItemEntitySummoner(Class<? extends Entity> c)
+    public ItemEntitySummoner(Class<T> entityClass, Function<World, T> deferredEntityConstructor)
     {
         super();
-        this.c = c;
-        this.setDescription("Summoner for " + c.getSimpleName().replace("Entity", ""));
-        this.setTranslationKey(AVP.Properties.DOMAIN + "summon." + c.getSimpleName());
+        this.entityClass = entityClass;
+        this.deferredEntityConstructor = deferredEntityConstructor;
+        this.setDescription("Summoner for " + entityClass.getSimpleName().replace("Entity", ""));
+        this.setTranslationKey(AVP.Properties.DOMAIN + "summon." + entityClass.getSimpleName());
     }
     
     @Override
@@ -37,11 +40,13 @@ public class ItemEntitySummoner extends HookedItem
         if (world.isRemote)
         {
             RayTraceResult ray = player.rayTrace(50D, 1F);
-            
+
+            if (ray == null) return super.onItemRightClick(world, player, hand);
+
             if(player.isSneaking() && player.isCreative()) {
-                AVPNetworking.instance.sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 5));
+                AVPNetworking.instance.sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(this.entityClass), 5));
             } else {
-                AVPNetworking.instance.sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(c), 1));
+                AVPNetworking.instance.sendToServer(new PacketSpawnEntity(ray.hitVec.x + 0.5, ray.hitVec.y + 1D, ray.hitVec.z + 0.5, Entities.getEntityRegistrationId(this.entityClass), 1));
             }
         
         }
@@ -49,14 +54,9 @@ public class ItemEntitySummoner extends HookedItem
         return super.onItemRightClick(world, player, hand);
     }
 
-    public Class<? extends Entity> getEntityClass()
-    {
-        return c;
-    }
-
     public Entity createNewEntity(World world)
     {
-        return Entities.constructEntity(world, c);
+        return this.deferredEntityConstructor.apply(world);
     }
     
     @Override

@@ -70,9 +70,9 @@ public class AVPItems implements IPreInitEvent {
     public static final Item RACK_MODULE_7 = new ItemNetworkRackModule(6).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("rackmodule7");
     public static final Item RACK_MODULE_8 = new ItemNetworkRackModule(7).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("rackmodule8");
 
-    public static final Item SUMMONER_APC = new ItemEntitySummoner(EntityAPC.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("apc");
-    public static final Item SUMMONER_MARINE = new ItemEntitySummoner(EntityMarine.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.marine");
-    public static final Item SUMMONER_COMBAT_SYNTHETIC = new ItemEntitySummoner(EntityCombatSynthetic.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.synthetic.combat");
+    public static final Item SUMMONER_APC = new ItemEntitySummoner<>(EntityAPC.class, EntityAPC::new).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("apc");
+    public static final Item SUMMONER_MARINE = new ItemEntitySummoner<>(EntityMarine.class, EntityMarine::new).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.marine");
+    public static final Item SUMMONER_COMBAT_SYNTHETIC = new ItemEntitySummoner<>(EntityCombatSynthetic.class, EntityCombatSynthetic::new).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.synthetic.combat");
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
