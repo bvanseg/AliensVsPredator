@@ -222,6 +222,8 @@ public class TacticalHelmetHUDRenderEvent {
                 Draw.drawQuad(btX, btY, batteryWidth, btHeight, 0F, maxU, 0.5F, 1F);
             }
             OpenGL.popMatrix();
+            OpenGL.blendClear();
+            OpenGL.disableBlend();
         }
         OpenGL.popMatrix();
     }
