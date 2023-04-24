@@ -28,7 +28,7 @@ public class AVPBlocks implements IPreInitEvent
     public static final BlockProperties PADDING_PROPS = new BlockProperties(Material.CLOTH)
             .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
     public static final BlockProperties PLASTIC_PROPS = new BlockProperties(Material.CLAY)
-            .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+            .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(10F).setResistance(15.0F);
 
 
     // Ceiling
