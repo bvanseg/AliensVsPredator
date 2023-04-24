@@ -79,5 +79,6 @@
   "blocks.alarm.emergency":			{ "sounds": [ "avp:blocks/alarm/emergency" ] },
   "wristbracer.console.open":		{ "sounds": [ "avp:gui/wristbracer/open" ] },
   "wristbracer.console.close":		{ "sounds": [ "avp:gui/wristbracer/close" ] },
-  "wristbracer.console.interact":	{ "sounds": [ "avp:gui/wristbracer/interact" ] }
+  "wristbracer.console.interact":	{ "sounds": [ "avp:gui/wristbracer/interact" ] },
+  "bone.crunch": 					{ "sounds": [ "avp:bones/bone_crunch_0", "avp:bones/bone_crunch_1" ] }
 }

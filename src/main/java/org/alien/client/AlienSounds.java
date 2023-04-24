@@ -64,6 +64,9 @@ public class AlienSounds implements IPreInitEvent
     public static final Sound HEARTBEAT_RAPID              = SoundRegistryUtil.createSound("heartbeat.rapid");
     public static final Sound HEARTBEAT_FATAL              = SoundRegistryUtil.createSound("heartbeat.fatal");
 
+    /* BONE CRUNCH SOUNDS */
+    public static final Sound BONE_CRUNCH                  = SoundRegistryUtil.createSound("bone.crunch");
+
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         SoundRegistryUtil.registerSound(ALIEN_LIVING);
@@ -107,5 +110,7 @@ public class AlienSounds implements IPreInitEvent
         SoundRegistryUtil.registerSound(HEARTBEAT_ELEVATED);
         SoundRegistryUtil.registerSound(HEARTBEAT_RAPID);
         SoundRegistryUtil.registerSound(HEARTBEAT_FATAL);
+
+        SoundRegistryUtil.registerSound(BONE_CRUNCH);
     }
 }
