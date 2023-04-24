@@ -58,10 +58,12 @@ public class EntityMatriarch extends SpeciesXenomorph implements HiveOwner
 
     @Override
     public MatriarchBrain getBrain() {
-        if (brain == null && !this.world.isRemote) {
-            brain = new MatriarchBrain(this);
-        }
-        return (MatriarchBrain) brain;
+        return (MatriarchBrain) super.getBrain();
+    }
+
+    @Override
+    public MatriarchBrain createNewBrain() {
+        return new MatriarchBrain(this);
     }
 
     @Override
