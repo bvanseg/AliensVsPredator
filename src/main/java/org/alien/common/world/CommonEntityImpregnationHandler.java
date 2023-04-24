@@ -18,22 +18,18 @@ import org.lib.common.FuncUtil;
 /**
  * @author Boston Vanseghi
  */
-public class ServerEntityImpregnationHandler extends EntityImpregnationHandler
+public class CommonEntityImpregnationHandler extends EntityImpregnationHandler
 {
-    public static final ServerEntityImpregnationHandler instance = new ServerEntityImpregnationHandler();
+    public static final CommonEntityImpregnationHandler instance = new CommonEntityImpregnationHandler();
 
-    private ServerEntityImpregnationHandler() {}
+    private CommonEntityImpregnationHandler() {}
 
     @Override
     @SubscribeEvent
     public void tick(LivingUpdateEvent event)
     {
-    	Entity entity =  event.getEntity();
-    	
+    	Entity entity = event.getEntity();
         World world = entity.getEntityWorld();
-
-        if (world.isRemote) return;
-        
         EntityLivingBase host = (EntityLivingBase) entity;
         OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
 
@@ -47,6 +43,10 @@ public class ServerEntityImpregnationHandler extends EntityImpregnationHandler
 
         organism.onTick(host, organism);
 
+        if (world.isRemote) return;
+
+        organism.getEmbryo().grow();
+
         this.updateEmbryoStageGrowth(host, organism);
     }
 
@@ -54,8 +54,6 @@ public class ServerEntityImpregnationHandler extends EntityImpregnationHandler
         int age = organism.getEmbryo().getAge();
         int gestationPeriod = organism.getEmbryo().getEntry().getGestationPeriod();
         int ticksUntilBirth = gestationPeriod - age;
-
-        organism.getEmbryo().grow();
 
         // Stage 1, the player develops an increasing hunger up to hunger 100.
         if (ticksUntilBirth < gestationPeriod * STAGE_ONE_PERCENTAGE) {
