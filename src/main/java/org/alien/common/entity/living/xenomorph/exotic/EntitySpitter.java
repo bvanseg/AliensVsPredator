@@ -13,11 +13,9 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.EntityAcidProjectile;
 import org.alien.common.entity.ai.brain.xenomorph.SpitterBrain;
-import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
 
-public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob, HiveMember
+public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob
 {
     
     public EntitySpitter(World par1World)

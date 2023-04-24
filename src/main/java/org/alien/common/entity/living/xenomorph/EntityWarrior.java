@@ -10,9 +10,8 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
 
-public class EntityWarrior extends SpeciesXenomorph implements HiveMember
+public class EntityWarrior extends SpeciesXenomorph
 {
     public EntityWarrior(World world)
     {

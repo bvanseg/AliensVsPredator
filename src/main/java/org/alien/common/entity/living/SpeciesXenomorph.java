@@ -4,11 +4,12 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
+import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
 import org.lib.common.inventory.ItemDropContext;
 
-public abstract class SpeciesXenomorph extends SpeciesAlien {
+public abstract class SpeciesXenomorph extends SpeciesAlien implements HiveMember {
 
     protected XenomorphBrain brain;
 

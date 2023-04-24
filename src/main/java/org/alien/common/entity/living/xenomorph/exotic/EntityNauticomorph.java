@@ -20,11 +20,10 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.selector.EntitySelectorNauticomorph;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
 
 import java.util.ArrayList;
 
-public class EntityNauticomorph extends SpeciesXenomorph implements HiveMember
+public class EntityNauticomorph extends SpeciesXenomorph
 {
     private static final DataParameter<Float> PHOSPHORESCENCE_LEVEL = EntityDataManager.createKey(EntityNauticomorph.class, DataSerializers.FLOAT);
 

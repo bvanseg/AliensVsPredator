@@ -10,11 +10,10 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPItemDrops;
 import org.lib.common.inventory.ItemDropContext;
 
-public class EntityPredalien extends SpeciesXenomorph implements HiveMember
+public class EntityPredalien extends SpeciesXenomorph
 {
     public EntityPredalien(World world)
     {

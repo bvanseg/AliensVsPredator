@@ -6,9 +6,8 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
 
-public class EntityPantheramorph extends SpeciesXenomorph implements HiveMember
+public class EntityPantheramorph extends SpeciesXenomorph
 {
     public EntityPantheramorph(World world)
     {
