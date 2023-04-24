@@ -28,11 +28,13 @@ public class EntitySpitter extends SpeciesXenomorph implements IRangedAttackMob,
     }
 
     @Override
-    public XenomorphBrain getBrain() {
-        if (brain == null && !this.world.isRemote) {
-            brain = new SpitterBrain(this);
-        }
-        return brain;
+    public SpitterBrain getBrain() {
+        return (SpitterBrain) super.getBrain();
+    }
+
+    @Override
+    public SpitterBrain createNewBrain() {
+        return new SpitterBrain(this);
     }
 
     @Override
