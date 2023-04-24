@@ -31,35 +31,22 @@ public class ClientEntityImpregnationHandler extends EntityImpregnationHandler
     public void tick(LivingUpdateEvent event)
     {
     	Entity entity =  event.getEntity();
-    	
         World world = entity.getEntityWorld();
-
-        if (!world.isRemote) return;
-
         EntityLivingBase host = (EntityLivingBase) entity;
         OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
 
         if (organism == null || !organism.hasEmbryo()) return;
-
-        // If the host can't be ticked, remove its embryo and return.
-        if (!this.canTickHost(entity)) {
-            organism.setEmbryo(null);
-            return;
-        }
-
-        organism.onTick(host, organism);
-        
-    	int age = organism.getEmbryo().getAge();
-        int gestationPeriod = organism.getEmbryo().getEntry().getGestationPeriod();
+        if (!world.isRemote) return;
 
         if (!ClientGame.instance.minecraft().isGamePaused()) {
             organism.getEmbryo().grow();
         }
 
-        int currentStage = (int) MDXMath.map(age, gestationPeriod * (1 - STAGE_ONE_PERCENTAGE), gestationPeriod * (1 - STAGE_FOUR_PERCENTAGE), 1, 4);
-
         // Play heartbeat sounds only for the client players.
         if (host == ClientGame.instance.minecraft().player) {
+            int age = organism.getEmbryo().getAge();
+            int gestationPeriod = organism.getEmbryo().getEntry().getGestationPeriod();
+            int currentStage = (int) MDXMath.map(age, gestationPeriod * (1 - STAGE_ONE_PERCENTAGE), gestationPeriod * (1 - STAGE_FOUR_PERCENTAGE), 1, 4);
             this.playHeartbeatSound(world, host, currentStage);
         }
     }
