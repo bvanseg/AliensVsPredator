@@ -1,5 +1,6 @@
 package org.avp.client.render.entity;
 
+import com.asx.mdx.client.ClientGame;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -15,8 +16,9 @@ public class RenderAPC extends Render<EntityAPC> {
     @Override
     public void doRender(EntityAPC entity, double x, double y, double z, float entityYaw, float partialTicks) {
         GlStateManager.pushMatrix();
-        GlStateManager.translate((float) x, (float) y + 2.25F, (float) z);
-        GlStateManager.rotate(180.0F - entityYaw, 0.0F, 1.0F, 0.0F);
+        GlStateManager.translate((float) x, (float) y + 2.20F, (float) z);
+        GlStateManager.rotate(-90, 0, 1, 0);
+        GlStateManager.rotate(-((entity.rotationYaw - entity.prevRotationYaw) * ClientGame.instance.partialTicks() + entity.prevRotationYaw + 180), 0, 1, 0);
         GlStateManager.scale(-1.5F, -1.5F, 1.5F);
 
         if (this.renderOutlines) {
