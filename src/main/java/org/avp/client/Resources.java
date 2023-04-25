@@ -9,6 +9,7 @@ import com.asx.mdx.client.render.model.wavefront.TriangulatedWavefrontModel;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.AVP;
+import org.avp.client.model.entity.ModelAPC;
 import org.avp.client.model.entity.ModelBullet;
 import org.avp.client.model.entity.ModelSupplyChute;
 import org.avp.client.model.entity.living.ModelMarine;
@@ -112,9 +113,7 @@ public class Resources
         public final MapModelTexture<ModelBiomaskTracker>         BIOMASK_TRACKER                = new MapModelTexture(new ModelBiomaskTracker(), new Texture(AVP.Properties.ID, "textures/mob/yautja/yautja_tracker.png"));
         public final MapModelTexture<ModelRedstoneFluxGenerator>  RFGENERATOR                    = new MapModelTexture(new ModelRedstoneFluxGenerator(), new Texture(AVP.Properties.ID, "textures/tile/redstonefluxgenerator.png"));
         public final MapModelTexture<ModelPredatorHound>          PREDATOR_HOUND                 = new MapModelTexture(new ModelPredatorHound(), new Texture(AVP.Properties.ID, "textures/mob/predatorhound.png"));
-
-        /** Wavefront models **/
-        public final TriangulatedWavefrontModel M577_APC                                         = WavefrontModelLoader.load(AVP.class, AVP.Properties.ID, "m577apc", "/assets/avp/models/m577apc");
+        public final MapModelTexture<ModelAPC>                    APC                            = new MapModelTexture(new ModelAPC(), new Texture(AVP.Properties.ID, "textures/apc.png"));
 
         public final MapModelTexture<ModelNetworkModuleRack>      NETWORKMODULERACK              = new MapModelTexture(new ModelNetworkModuleRack(), new Texture(AVP.Properties.ID, "textures/tile/networkmodulerack.png"));
         public final MapModelTexture<ModelNetworkModuleRack>      NETWORKMODULERACK_ON           = new MapModelTexture(new ModelNetworkModuleRack(), new Texture(AVP.Properties.ID, "textures/tile/networkmodulerack_on.png"));

@@ -27,11 +27,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
             OpenGL.rotate(90, 0F, 1F, 0F);
             OpenGL.scale(scale, scale, scale);
             GlStateManager.disableCull();
-
-            for (Part p : Resources.instance.models().M577_APC.parts.values())
-            {
-                p.draw();
-            }
+            Resources.instance.models().APC.draw();
         }
         OpenGL.popMatrix();
     }
@@ -47,11 +43,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
             OpenGL.rotate(110F, 0F, 0F, 1F);
             OpenGL.rotate(16F, 1F, 0F, 0F);
             GlStateManager.disableCull();
-
-            for (Part p : Resources.instance.models().M577_APC.parts.values())
-            {
-                p.draw();
-            }
+            Resources.instance.models().APC.draw();
         }
         OpenGL.popMatrix();
     }
@@ -65,11 +57,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
             OpenGL.scale(scale, scale, scale);
             OpenGL.translate(0F, -1.3F, 0F);
             OpenGL.rotate(-90F, 0.0F, 1.0F, 0.0F);
-
-            for (Part p : Resources.instance.models().M577_APC.parts.values())
-            {
-                p.draw();
-            }
+            Resources.instance.models().APC.draw();
         }
         OpenGL.popMatrix();
     }
@@ -82,11 +70,7 @@ public class RenderItemAPC extends ItemRenderer<Model>
             OpenGL.scale(0.2F, 0.2F, 0.2F);
             OpenGL.translate(0, -1F, 0);
             OpenGL.rotate((ClientGame.instance.minecraft().world.getTotalWorldTime() + ClientGame.instance.partialTicks() % 360) * 10, 0.0F, 1.0F, 0.0F);
-
-            for (Part p : Resources.instance.models().M577_APC.parts.values())
-            {
-                p.draw();
-            }
+            Resources.instance.models().APC.draw();
         }
         OpenGL.popMatrix();
     }
