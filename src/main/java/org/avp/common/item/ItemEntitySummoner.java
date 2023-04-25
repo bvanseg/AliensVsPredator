@@ -66,4 +66,8 @@ public class ItemEntitySummoner<T extends Entity> extends HookedItem
         tooltip.add("Right click to spawn 1.");
         tooltip.add("Shift + right click to spawn 5.");
     }
+
+    public Class<T> getEntityClass() {
+        return this.entityClass;
+    }
 }
