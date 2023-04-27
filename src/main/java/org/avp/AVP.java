@@ -23,6 +23,7 @@ import org.avp.client.Renders;
 import org.avp.common.*;
 import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.config.ModelConfig;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
 import org.predator.Predators;

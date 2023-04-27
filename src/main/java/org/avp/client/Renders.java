@@ -7,7 +7,9 @@ import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.model.ModelLoaderRegistry;
@@ -30,7 +32,7 @@ import org.avp.client.render.item.*;
 import org.avp.client.render.tile.*;
 import org.avp.client.render.transform.CryostasisTubeRenderers;
 import org.avp.client.render.transform.MedpodTransforms;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.block.init.AVPTileEntityBlocks;
 import org.avp.common.entity.EntityAPC;
 import org.avp.common.entity.EntityLiquidLatexPool;
@@ -39,6 +41,7 @@ import org.avp.common.entity.EntitySupplyChute;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.tile.*;
+import org.lib.client.render.ItemModelRegistryUtil;
 import org.lib.client.render.model.loader.ReflectiveModelLoader;
 import org.lib.common.registry.BlockRegistryUtil;
 import org.weapon.client.model.item.*;
@@ -85,6 +88,15 @@ public class Renders implements IInitEvent, IPreInitEvent
     public static void registerAllModels(ModelRegistryEvent event)
     {
         registerFluidModels();
+    }
+
+    @SubscribeEvent
+    public static void registerColorHandlerEvent(ColorHandlerEvent.Item event) {
+        ItemModelRegistryUtil.getItemColorHandlers().forEach(pair -> {
+            IItemColor colorHandler = pair.getLeft();
+            Item item = pair.getRight();
+            event.getItemColors().registerItemColorHandler(colorHandler, item);
+        });
     }
 
     private static void registerFluidModels()
@@ -170,7 +182,6 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(WeaponItems.ITEM_PISTOL, new RenderItem88MOD4());
         Renderers.registerItemRenderer(WeaponItems.ITEM_SNIPER, new RenderItemSniper());
         Renderers.registerItemRenderer(AVPItems.ITEM_MOTION_TRACKER, new RenderItemMotionTracker());
-        Renderers.registerItemRenderer(AVPItems.ITEM_APC, new RenderItemAPC());
         Renderers.registerItemRenderer(WeaponItems.ITEM_GRENADE, new RenderItemM40(Resources.instance.models().M40GRENADE));
         Renderers.registerItemRenderer(WeaponItems.ITEM_INCENDIARY_GRENADE, new RenderItemM40(Resources.instance.models().M40GRENADE_INCENDIARY));
         
@@ -186,8 +197,9 @@ public class Renders implements IInitEvent, IPreInitEvent
         Renderers.registerItemRenderer(AVPItems.RACK_MODULE_7, new RenderItemNetworkRackModule(Resources.instance.models().RACKMODULE7));
         Renderers.registerItemRenderer(AVPItems.RACK_MODULE_8, new RenderItemNetworkRackModule(Resources.instance.models().RACKMODULE8));
 
-        Renderers.registerItemRenderer(AVPItems.SUMMONER_MARINE, (new RenderItemSummoner(Resources.instance.models().MARINE)).setScale(16F).setY(-8F));
-        Renderers.registerItemRenderer(AVPItems.SUMMONER_COMBAT_SYNTHETIC, (new RenderItemSummoner(Resources.instance.models().COMBAT_SYNTHETIC)).setScale(16F).setY(-8F));
+        ItemModelRegistryUtil.registerSummonerModel(AVPItems.SUMMONER_APC, new RenderItemAPC(), 0x69_5A_3D, 0x2D_2C_31);
+        ItemModelRegistryUtil.registerSummonerModel(AVPItems.SUMMONER_MARINE, new RenderItemSummoner(Resources.instance.models().MARINE).setScale(16F).setY(-8F), 0x9B9B9B, 0x434242);
+        ItemModelRegistryUtil.registerSummonerModel(AVPItems.SUMMONER_COMBAT_SYNTHETIC, new RenderItemSummoner(Resources.instance.models().COMBAT_SYNTHETIC).setScale(16F).setY(-8F), 0x6C6C6C, 0x434242);
 
         MapModelTexture<Model88MOD4> _88MOD4 = Resources.instance.models()._88MOD4;
         Renderers.registerItemRenderer(WeaponItems.ITEM_PISTOL_BARREL, new RenderItem88Mod4Barrel(_88MOD4, _88MOD4.getModel().getBarrel()));

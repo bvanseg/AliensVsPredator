@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 
 public class BlockTempleSpawner extends Block
 {

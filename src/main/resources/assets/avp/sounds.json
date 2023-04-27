@@ -15,9 +15,12 @@
   "chestburster.death": 			{ "sounds": [ "avp:mobs/chestburster/death" ] },
   "chestburster.attack": 			{ "sounds": [ "avp:mobs/chestburster/attack" ] },
   "chestburster.burst": 			{ "sounds": [ "avp:mobs/chestburster/burst" ] },
-  "chestburster.burst.predalien": 	{ "sounds": [ "avp:mobs/chestburster/burst-predalien" ] },
   "chestburster.grow": 				{ "sounds": [ "avp:mobs/chestburster/grow" ] },
   "chestburster.hurt": 				{ "sounds": [ "avp:mobs/chestburster/hurt" ] },
+  "heartbeat.normal":	            { "sounds": [ "avp:heartbeat/heartbeat_0" ] },
+  "heartbeat.elevated":	            { "sounds": [ "avp:heartbeat/heartbeat_1" ] },
+  "heartbeat.rapid":	            { "sounds": [ "avp:heartbeat/heartbeat_2" ] },
+  "heartbeat.fatal":	            { "sounds": [ "avp:heartbeat/heartbeat_3" ] },
   "marine.death": 					{ "sounds": [ "avp:mobs/marine/death" ] },
   "marine.hurt": 					{ "sounds": [ "avp:mobs/marine/hurt" ] },
   "ovamorph.living": 				{ "sounds": [ "avp:mobs/ovamorph/living0", "avp:mobs/ovamorph/living1" ] },
@@ -76,5 +79,6 @@
   "blocks.alarm.emergency":			{ "sounds": [ "avp:blocks/alarm/emergency" ] },
   "wristbracer.console.open":		{ "sounds": [ "avp:gui/wristbracer/open" ] },
   "wristbracer.console.close":		{ "sounds": [ "avp:gui/wristbracer/close" ] },
-  "wristbracer.console.interact":	{ "sounds": [ "avp:gui/wristbracer/interact" ] }
+  "wristbracer.console.interact":	{ "sounds": [ "avp:gui/wristbracer/interact" ] },
+  "bone.crunch": 					{ "sounds": [ "avp:bones/bone_crunch_0", "avp:bones/bone_crunch_1" ] }
 }

@@ -13,8 +13,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.block.init.AVPReflectiveBlocks;
 import org.avp.common.block.init.AVPTileEntityBlocks;
-import org.avp.common.item.crafting.ItemSchematicRegistry;
 import org.avp.common.item.crafting.ItemSchematic;
+import org.avp.common.item.crafting.ItemSchematicRegistry;
+import org.avp.common.item.init.AVPArmorItems;
+import org.avp.common.item.init.AVPItems;
 import org.predator.common.PredatorItems;
 import org.weapon.common.item.init.WeaponItems;
 
@@ -245,7 +247,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_COPPER, 1) };
             }
         });
-        ItemSchematicRegistry.register(new ItemSchematic("marineHelm", new ItemStack(AVPItems.HELM_MARINE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("marineHelm", new ItemStack(AVPArmorItems.HELM_MARINE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -257,7 +259,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_PROCESSOR, 1) };
             }
         });
-        ItemSchematicRegistry.register(new ItemSchematic("marinePlate", new ItemStack(AVPItems.PLATE_MARINE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("marinePlate", new ItemStack(AVPArmorItems.PLATE_MARINE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -266,7 +268,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 2) };
             }
         });
-        ItemSchematicRegistry.register(new ItemSchematic("marineLeggings", new ItemStack(AVPItems.LEGS_MARINE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("marineLeggings", new ItemStack(AVPArmorItems.LEGS_MARINE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {
@@ -275,7 +277,7 @@ public class AVPItemSchematics
                         new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM, 2) };
             }
         });
-        ItemSchematicRegistry.register(new ItemSchematic("marineBoots", new ItemStack(AVPItems.BOOTS_MARINE, 1)) {
+        ItemSchematicRegistry.register(new ItemSchematic("marineBoots", new ItemStack(AVPArmorItems.BOOTS_MARINE, 1)) {
             @Override
             public ItemStack[] getItemsRequired()
             {

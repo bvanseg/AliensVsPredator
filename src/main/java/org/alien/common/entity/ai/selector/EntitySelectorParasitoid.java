@@ -6,7 +6,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPArmorItems;
+import org.avp.common.item.init.AVPItems;
 import org.lib.common.predicate.EntitySelectorBase;
 import org.lib.common.predicate.Predicates;
 import org.predator.common.PredatorItems;
@@ -22,7 +23,7 @@ public class EntitySelectorParasitoid extends EntitySelectorBase
     static
     {
         HELMET_DENYLIST.add(PredatorItems.BIOMASK_CELTIC);
-        HELMET_DENYLIST.add(AVPItems.MK_50_HELMET);
+        HELMET_DENYLIST.add(AVPArmorItems.MK_50_HELMET);
     }
 
     @Override

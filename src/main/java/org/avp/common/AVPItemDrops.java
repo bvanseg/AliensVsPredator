@@ -1,8 +1,8 @@
 package org.avp.common;
 
-import net.minecraft.item.ItemStack;
 import org.alien.common.AlienItems;
 import org.alien.common.block.init.AlienSkullBlocks;
+import org.avp.common.item.init.AVPItems;
 import org.lib.common.inventory.ItemDrop;
 import org.predator.common.PredatorItems;
 import org.predator.common.block.init.PredatorBlocks;

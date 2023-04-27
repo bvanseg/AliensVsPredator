@@ -6,7 +6,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.init.AlienVardaBlocks;
 
 import java.util.Random;

@@ -1,7 +1,7 @@
 package org.alien.client.model.entity.living;
 
 import com.asx.mdx.client.render.model.Model;
-import org.alien.common.entity.living.xenomorph.EntityOvamorphGiger;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorphGiger;
 
 public class ModelOvamorphGiger extends Model<EntityOvamorphGiger>
 {

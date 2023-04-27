@@ -1,6 +1,8 @@
 package org.avp.common.entity.ai.brain.task;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPNetworking;
@@ -39,30 +41,37 @@ public class MarineReloadTask extends AbstractEntityBrainTask {
         FirearmProperties firearmProperties = marine.getMarineType().getFirearmItem().getFirearmProperties();
         int reloadTimerForWeapon = firearmProperties.getReloadTimeInTicks();
 
+        InventorySnapshot inventorySnapshot = marine.getInventorySnapshot();
+
+        // These should be guaranteed to exist based on shouldExecute conditions.
+        Item reloadItem = this.getReloadItem().get();
+        ItemStack reloadItemStack = inventorySnapshot.getFirstNonEmptyStack(reloadItem);
+
         if (this.reloadTimer == 0) {
             ctx.getEntity().world.playSound(null, ctx.getEntity().getPosition(), AVPSounds.WEAPON_RELOAD.event(), SoundCategory.NEUTRAL, 1F, 1F);
+            marine.setHeldItem(EnumHand.OFF_HAND, reloadItemStack);
         }
 
         if (this.reloadTimer++ >= reloadTimerForWeapon) {
-            InventorySnapshot inventorySnapshot = marine.getInventorySnapshot();
-            Optional<Item> firstConsumableAmmoOptional = firearmProperties.getConsumablesForReload().stream().findFirst();
-
-            if (firstConsumableAmmoOptional.isPresent()) {
-                Item firstConsumableAmmo = firstConsumableAmmoOptional.get();
-                inventorySnapshot.consumeItem(firstConsumableAmmo, 1);
+                inventorySnapshot.consumeItem(reloadItem, 1);
                 marine.setLoadedAmmunition(firearmProperties.getMaxAmmunition());
 
                 // Sync inventory edit to clients.
                 AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(marine, marine.getInventory()));
-            }
+
+                marine.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
         }
     }
 
-    private boolean hasReloadItem() {
+    private Optional<Item> getReloadItem() {
         EntityMarine marine = (EntityMarine) ctx.getEntity();
         FirearmProperties firearmProperties = marine.getMarineType().getFirearmItem().getFirearmProperties();
         InventorySnapshot inventorySnapshot = marine.getInventorySnapshot();
-        return !inventorySnapshot.getItemsMatchingPredicate(item -> firearmProperties.getConsumablesForReload().contains(item)).isEmpty();
+        return inventorySnapshot.getItemsMatchingPredicate(item -> firearmProperties.getConsumablesForReload().contains(item)).stream().findFirst();
+    }
+
+    private boolean hasReloadItem() {
+        return this.getReloadItem().isPresent();
     }
 
     @Override

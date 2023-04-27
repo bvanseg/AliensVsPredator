@@ -30,6 +30,9 @@ public class ProtectSquadLeaderTask extends AbstractEntityBrainTask {
         EntityMarine marine = (EntityMarine) ctx.getEntity();
         EntityLivingBase squadLeader = this.getSquadLeader(marine);
 
+        // Check to make sure that the squad leader is still alive in order to be protected.
+        if (squadLeader == null || squadLeader.isDead || squadLeader.getHealth() <= 0F) return;
+
         Optional<List<EntityLivingBase>> nearbyEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);
 
         if (nearbyEntitiesOptional.isPresent()) {

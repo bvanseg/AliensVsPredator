@@ -2,7 +2,6 @@ package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -11,9 +10,8 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
 
-public class EntityWarrior extends SpeciesXenomorph implements IMob, HiveMember
+public class EntityWarrior extends SpeciesXenomorph
 {
     public EntityWarrior(World world)
     {
@@ -29,7 +27,7 @@ public class EntityWarrior extends SpeciesXenomorph implements IMob, HiveMember
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(50.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(9.0D);
     }
 
     @Override

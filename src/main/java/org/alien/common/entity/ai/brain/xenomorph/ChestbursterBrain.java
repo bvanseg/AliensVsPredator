@@ -11,7 +11,7 @@ import org.alien.common.entity.ai.brain.AlienBrain;
 import org.alien.common.entity.ai.brain.task.ChestbursterMatureBrainTask;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorChestbursterAvoid;
-import org.alien.common.entity.living.xenomorph.EntityChestburster;
+import org.alien.common.entity.living.xenomorph.burster.EntityChestburster;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAvoidTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestBlockPositionsOfInterestSensor;

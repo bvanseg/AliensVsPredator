@@ -7,7 +7,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.MapGenBase;
-import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.init.AlienVardaBlocks;
 
 import java.util.Random;

@@ -4,7 +4,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.math.Vec3d;
 import org.alien.common.entity.ai.brain.task.util.OvipositorHelper;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;

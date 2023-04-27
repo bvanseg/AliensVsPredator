@@ -4,7 +4,7 @@ import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import org.alien.common.entity.living.xenomorph.EntityPredalienChestburster;
+import org.alien.common.entity.living.xenomorph.burster.EntityPredalienChestburster;
 
 
 public class ModelChestbursterPredalien extends Model<EntityPredalienChestburster>

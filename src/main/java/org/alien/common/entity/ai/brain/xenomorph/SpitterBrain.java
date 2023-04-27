@@ -1,6 +1,6 @@
 package org.alien.common.entity.ai.brain.xenomorph;
 
-import org.alien.common.entity.living.xenomorph.EntitySpitter;
+import org.alien.common.entity.living.xenomorph.exotic.EntitySpitter;
 import org.avp.common.entity.ai.brain.task.RangedAttackBrainTask;
 import org.lib.brain.impl.task.AttackOnCollideBrainTask;
 import org.lib.brain.impl.task.NearestAttackableTargetBrainTask;

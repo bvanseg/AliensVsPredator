@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.alien.common.AlienItems;
 import org.avp.common.config.ModelConfig;
+import org.avp.common.item.init.AVPItems;
 import org.predator.common.PredatorItems;
 import org.predator.common.block.init.PredatorBlocks;
 import org.weapon.common.item.init.WeaponItems;

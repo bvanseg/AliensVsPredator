@@ -23,7 +23,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.gui.GuiBlastdoor;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.item.ItemMaintenanceJack;
 import org.avp.common.tile.TileEntityBlastdoor;
 

@@ -55,6 +55,8 @@ public class BlockCryostasisTube extends Block
                 if (player.getHeldItemMainhand() != null && player.getHeldItemMainhand().getItem() instanceof ItemEntitySummoner)
                 {
                     ItemEntitySummoner item = (ItemEntitySummoner) player.getHeldItemMainhand().getItem();
+                    if (!EntityLivingBase.class.isAssignableFrom(item.getEntityClass())) return true;
+
                     tile.stasisItemstack = new ItemStack(item, 1);
                     tile.stasisEntity = item.createNewEntity(world);
                     Inventories.consumeItem(player, item);

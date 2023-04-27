@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
@@ -15,10 +14,9 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.brain.parasitoid.FacehuggerBrain;
-import org.alien.common.entity.ai.brain.parasitoid.ParasitoidBrain;
 import org.alien.common.entity.living.EntityParasitoid;
 
-public class EntityFacehugger extends EntityParasitoid implements IMob, Parasitoid
+public class EntityFacehugger extends EntityParasitoid implements Parasitoid
 {
     private int refertilizationJelly = 0;
 
@@ -31,11 +29,13 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, Parasito
     }
 
     @Override
-    public ParasitoidBrain getBrain() {
-        if (!this.world.isRemote && this.brain ==  null) {
-            this.brain = new FacehuggerBrain(this);
-        }
-        return this.brain;
+    public FacehuggerBrain getBrain() {
+        return (FacehuggerBrain) super.getBrain();
+    }
+
+    @Override
+    public FacehuggerBrain createNewBrain() {
+        return new FacehuggerBrain(this);
     }
 
     @Override
@@ -43,9 +43,8 @@ public class EntityFacehugger extends EntityParasitoid implements IMob, Parasito
     {
         super.applyEntityAttributes();
 
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(14.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(5.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.55D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(0.50D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(32.0D);
     }
 

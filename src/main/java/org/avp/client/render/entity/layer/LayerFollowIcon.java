@@ -9,13 +9,10 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPArmorItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.entity.living.EntityMarine;
-import org.lib.common.FuncUtil;
 import org.lib.common.inventory.InventorySnapshot;
-import org.weapon.common.item.init.WeaponItems;
-
-import java.util.Optional;
 
 /**
  * @author Boston Vanseghi
@@ -23,7 +20,7 @@ import java.util.Optional;
 public class LayerFollowIcon implements LayerRenderer<EntityMarine> {
 
     private static final ItemStack FOOD_ITEM_STACK = new ItemStack(Items.COOKED_BEEF, 1);
-    private static final ItemStack STANDARD_FOLLOW_ITEM_STACK = new ItemStack(AVPItems.HELM_MARINE, 1);
+    private static final ItemStack STANDARD_FOLLOW_ITEM_STACK = new ItemStack(AVPArmorItems.HELM_MARINE, 1);
 
     @Override
     public void doRenderLayer(EntityMarine entityMarine, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {

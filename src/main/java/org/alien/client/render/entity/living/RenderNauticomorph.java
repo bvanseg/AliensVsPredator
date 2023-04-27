@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelNauticomorph;
 import org.alien.client.render.layer.LayerPhosphorescent;
-import org.alien.common.entity.living.xenomorph.EntityNauticomorph;
+import org.alien.common.entity.living.xenomorph.exotic.EntityNauticomorph;
 
 /**
  * @author Ri5ux

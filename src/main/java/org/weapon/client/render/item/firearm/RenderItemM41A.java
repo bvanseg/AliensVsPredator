@@ -12,7 +12,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.avp.client.Resources;
 import org.avp.client.render.item.RenderMotionTrackerScreen;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.URLs;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;

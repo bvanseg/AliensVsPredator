@@ -2,7 +2,6 @@ package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -11,11 +10,10 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPItemDrops;
 import org.lib.common.inventory.ItemDropContext;
 
-public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMember
+public class EntityPredalien extends SpeciesXenomorph
 {
     public EntityPredalien(World world)
     {
@@ -30,9 +28,9 @@ public class EntityPredalien extends SpeciesXenomorph implements IMob, HiveMembe
     protected void applyEntityAttributes()
     {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(200.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.45D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
     }
 
