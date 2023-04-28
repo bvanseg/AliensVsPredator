@@ -2,7 +2,7 @@
   "parent": "avp:recipes/root",
   "rewards": {
     "recipes": [
-      "avp:block_industrialglassstairs"
+      "avp:block/padding_pipes_orange"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "avp:industrialglass"
+            "item": "minecraft:wool"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "avp:block_industrialglassstairs"
+        "recipe": "avp:block/padding_pipes_orange"
       }
     }
   },

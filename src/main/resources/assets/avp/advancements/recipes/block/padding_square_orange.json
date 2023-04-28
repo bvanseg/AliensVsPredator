@@ -2,7 +2,7 @@
   "parent": "avp:recipes/root",
   "rewards": {
     "recipes": [
-      "avp:microprocessor"
+      "avp:block/padding_square_orange"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "avp:part.ic"
+            "item": "minecraft:wool"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "avp:microprocessor"
+        "recipe": "avp:block/padding_square_orange"
       }
     }
   },

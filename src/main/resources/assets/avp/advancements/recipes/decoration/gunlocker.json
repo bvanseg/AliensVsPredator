@@ -2,7 +2,7 @@
   "parent": "avp:recipes/root",
   "rewards": {
     "recipes": [
-      "avp:block_gunlocker"
+      "avp:decoration/block_gunlocker"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "avp:block_gunlocker"
+        "recipe": "avp:decoration/block_gunlocker"
       }
     }
   },

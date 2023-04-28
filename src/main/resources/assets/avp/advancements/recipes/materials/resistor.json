@@ -2,7 +2,7 @@
   "parent": "avp:recipes/root",
   "rewards": {
     "recipes": [
-      "avp:resistor"
+      "avp:materials/resistor"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "avp:resistor"
+        "recipe": "avp:materials/resistor"
       }
     }
   },

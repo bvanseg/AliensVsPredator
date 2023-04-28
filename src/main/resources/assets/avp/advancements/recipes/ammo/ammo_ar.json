@@ -2,7 +2,7 @@
   "parent": "avp:recipes/root",
   "rewards": {
     "recipes": [
-      "avp:ammo_ar"
+      "avp:ammo/ammo_ar"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "avp:ammo_ar"
+        "recipe": "avp:ammo/ammo_ar"
       }
     }
   },

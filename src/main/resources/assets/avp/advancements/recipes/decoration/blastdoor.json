@@ -2,7 +2,7 @@
   "parent": "avp:recipes/root",
   "rewards": {
     "recipes": [
-      "avp:block_blastdoor"
+      "avp:decoration/block_blastdoor"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "avp:block_blastdoor"
+        "recipe": "avp:decoration/block_blastdoor"
       }
     }
   },

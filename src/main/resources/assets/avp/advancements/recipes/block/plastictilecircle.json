@@ -2,7 +2,7 @@
   "parent": "avp:recipes/root",
   "rewards": {
     "recipes": [
-      "avp:stun.baton"
+      "avp:block/plastictilecircle"
     ]
   },
   "criteria": {
@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "avp:powerline"
+            "item": "avp:polycarbonate"
           }
         ]
       }
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "avp:stun.baton"
+        "recipe": "avp:block/plastictilecircle"
       }
     }
   },

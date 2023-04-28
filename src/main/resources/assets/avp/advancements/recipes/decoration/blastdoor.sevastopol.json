@@ -2,7 +2,7 @@
   "parent": "avp:recipes/root",
   "rewards": {
     "recipes": [
-      "avp:blastdoor.sevastopol"
+      "avp:decoration/blastdoor.sevastopol"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "avp:blastdoor.sevastopol"
+        "recipe": "avp:decoration/blastdoor.sevastopol"
       }
     }
   },

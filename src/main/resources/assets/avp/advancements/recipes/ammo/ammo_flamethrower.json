@@ -2,7 +2,7 @@
   "parent": "avp:recipes/root",
   "rewards": {
     "recipes": [
-      "avp:ammo_flamethrower"
+      "avp:ammo/ammo_flamethrower"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "avp:ammo_flamethrower"
+        "recipe": "avp:ammo/ammo_flamethrower"
       }
     }
   },
