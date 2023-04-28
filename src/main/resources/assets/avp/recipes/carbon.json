@@ -1,15 +1,18 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "AA ",
-    "AA ",
-    "   "
+    "AA",
+    "AA"
   ],
   "key": {
     "A": [
       {
         "item": "minecraft:coal",
         "data": 0
+      },
+      {
+        "item": "minecraft:coal",
+        "data": 1
       }
     ]
   },
