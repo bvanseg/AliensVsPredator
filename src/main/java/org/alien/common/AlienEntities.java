@@ -10,6 +10,9 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.EntityAcidProjectile;
 import org.alien.common.entity.living.EntityAethon;
+import org.alien.common.entity.living.paradise.EntityKetterBird;
+import org.alien.common.entity.living.paradise.EntityPaintedMink;
+import org.alien.common.entity.living.paradise.EntityStripedDevil;
 import org.alien.common.entity.living.xenomorph.ovamorph.EntityDracoEgg;
 import org.alien.common.entity.living.EntitySporePod;
 import org.alien.common.entity.living.EntityYautjaMutant;
@@ -91,6 +94,10 @@ public class AlienEntities implements IInitEvent
             registerLivingEntityEntry(EntityUrsuidae.class, "Ursuidae");
             registerLivingEntityEntry(EntityScelemur.class, "VardaMonkey");
             registerLivingEntityEntry(EntityYautjaMutant.class, "YautjaMutant");
+
+            registerLivingEntityEntry(EntityKetterBird.class, "KetterBird");
+            registerLivingEntityEntry(EntityPaintedMink.class, "PaintedMink");
+            registerLivingEntityEntry(EntityStripedDevil.class, "StripedDevil");
         }
     }
 

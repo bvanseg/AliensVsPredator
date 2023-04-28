@@ -6,6 +6,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.entity.ModelSporePod;
 import org.alien.client.model.entity.living.*;
+import org.alien.client.model.entity.living.paradise.ModelKetterBird;
+import org.alien.client.model.entity.living.paradise.ModelPaintedMink;
+import org.alien.client.model.entity.living.paradise.ModelStripedDevil;
 import org.alien.client.model.tile.ModelHiveResin;
 import org.alien.client.model.tile.plant.ModelGroundFern;
 import org.alien.client.model.tile.plant.ModelTreeFern;
@@ -94,6 +97,14 @@ public class AlienResources
 
         /** New xenomorph model format **/
         public final MapModelTexture<ModelUltramorph>             ULTRAMORPH                     = new MapModelTexture(new ModelUltramorph(), new Texture(AVP.Properties.ID, "textures/mob/ultramorph.png"));
+
+        /* Paradise creatures */
+        public final MapModelTexture<ModelKetterBird>           KETTER_BIRD                      = new MapModelTexture(new ModelKetterBird(), new Texture(AVP.Properties.ID, "textures/mob/paradise/ketter_bird_1.png"));
+        public final MapModelTexture<ModelKetterBird>           KETTER_BIRD_EYES                 = new MapModelTexture(new ModelKetterBird(), new Texture(AVP.Properties.ID, "textures/mob/paradise/ketter_bird_eyes.png"));
+        public final MapModelTexture<ModelPaintedMink>          PAINTED_MINK                     = new MapModelTexture(new ModelPaintedMink(), new Texture(AVP.Properties.ID, "textures/mob/paradise/painted_mink_1.png"));
+        public final MapModelTexture<ModelPaintedMink>          PAINTED_MINK_EYES                = new MapModelTexture(new ModelPaintedMink(), new Texture(AVP.Properties.ID, "textures/mob/paradise/painted_mink_eyes.png"));
+        public final MapModelTexture<ModelStripedDevil>         STRIPED_DEVIL                    = new MapModelTexture(new ModelStripedDevil(), new Texture(AVP.Properties.ID, "textures/mob/paradise/striped_devil.png"));
+        public final MapModelTexture<ModelStripedDevil>         STRIPED_DEVIL_EYES               = new MapModelTexture(new ModelStripedDevil(), new Texture(AVP.Properties.ID, "textures/mob/paradise/striped_devil_eyes.png"));
     }
 
     public final Texture SKY_VARDA_CLOUDS         = new Texture(AVP.Properties.ID, "textures/misc/varda-clouds.png");

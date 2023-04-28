@@ -13,6 +13,9 @@ import org.alien.client.render.entity.RenderAcidPool;
 import org.alien.client.render.entity.RenderAcidProjectile;
 import org.alien.client.render.entity.RenderSporePod;
 import org.alien.client.render.entity.living.*;
+import org.alien.client.render.entity.living.paradise.RenderKetterBird;
+import org.alien.client.render.entity.living.paradise.RenderPaintedMink;
+import org.alien.client.render.entity.living.paradise.RenderStripedDevil;
 import org.alien.client.render.item.RenderItemGroundFern;
 import org.alien.client.render.item.RenderItemSporePod;
 import org.alien.client.render.item.RenderItemTreeFern;
@@ -25,6 +28,9 @@ import org.alien.common.block.init.AlienSkullBlocks;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.EntityAcidProjectile;
 import org.alien.common.entity.living.EntityAethon;
+import org.alien.common.entity.living.paradise.EntityKetterBird;
+import org.alien.common.entity.living.paradise.EntityPaintedMink;
+import org.alien.common.entity.living.paradise.EntityStripedDevil;
 import org.alien.common.entity.living.xenomorph.ovamorph.EntityDracoEgg;
 import org.alien.common.entity.living.EntitySporePod;
 import org.alien.common.entity.living.EntityYautjaMutant;
@@ -131,6 +137,10 @@ public class AlienRenders implements IInitEvent, IPreInitEvent
         Renderers.registerRenderer(EntityUrsuidae.class, RenderUrsuidae.class);
         Renderers.registerRenderer(EntityScelemur.class, RenderScelemur.class);
         Renderers.registerRenderer(EntityYautjaMutant.class, RenderYautjaMutant.class);
+
+        Renderers.registerRenderer(EntityKetterBird.class, RenderKetterBird.class);
+        Renderers.registerRenderer(EntityPaintedMink.class, RenderPaintedMink.class);
+        Renderers.registerRenderer(EntityStripedDevil.class, RenderStripedDevil.class);
     }
 
     private void registerStandardEntityRenderers()
@@ -224,6 +234,11 @@ public class AlienRenders implements IInitEvent, IPreInitEvent
         ItemModelRegistryUtil.registerSummonerModel(AlienItems.SUMMONER_URSUIDAE, new RenderItemSummoner(AlienResources.instance.models().URSUIDAE).setScale(14F).setY(-8F), 0x47645A, 0x38483E);
         ItemModelRegistryUtil.registerSummonerModel(AlienItems.SUMMONER_VARDA_MONKEY, new RenderItemSummoner(AlienResources.instance.models().VARDA_MONKEY).setScale(16F).setY(-14F), 0xE5E7C4, 0x8D938F);
         ItemModelRegistryUtil.registerSummonerModel(AlienItems.SUMMONER_YAUTJA_MUTANT, new RenderItemSummoner(AlienResources.instance.models().MUTANT_YAUTJA).setScale(9F).setY(6F), 0x7B7B7B, 0xB3E1AD);
+
+        /* Paradise Summoner Models */
+        ItemModelRegistryUtil.registerSummonerModel(AlienItems.SUMMONER_KETTER_BIRD, new RenderItemSummoner(AlienResources.instance.models().KETTER_BIRD).setScale(9F).setY(3F), 0x381B0C, 0x936951);
+        ItemModelRegistryUtil.registerSummonerModel(AlienItems.SUMMONER_PAINTED_MINK, new RenderItemSummoner(AlienResources.instance.models().PAINTED_MINK).setScale(9F).setY(2F), 0x484541, 0x56381E);
+        ItemModelRegistryUtil.registerSummonerModel(AlienItems.SUMMONER_STRIPED_DEVIL, new RenderItemSummoner(AlienResources.instance.models().STRIPED_DEVIL).setScale(9F).setY(2F), 0x2E2C2F, 0x534233);
     }
 
     private void registerTileEntitySpecialRenderers()

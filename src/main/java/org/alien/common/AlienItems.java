@@ -9,6 +9,9 @@ import net.minecraft.item.ItemFood;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.entity.living.EntityAethon;
+import org.alien.common.entity.living.paradise.EntityKetterBird;
+import org.alien.common.entity.living.paradise.EntityPaintedMink;
+import org.alien.common.entity.living.paradise.EntityStripedDevil;
 import org.alien.common.entity.living.xenomorph.ovamorph.EntityDracoEgg;
 import org.alien.common.entity.living.EntityYautjaMutant;
 import org.alien.common.entity.living.engineer.EntityEngineer;
@@ -91,6 +94,10 @@ public class AlienItems implements IPreInitEvent {
     public static final Item SUMMONER_VARDA_MONKEY = new ItemEntitySummoner<>(EntityScelemur.class, EntityScelemur::new).setRegistryName("summon.vardamonkey");
     public static final Item SUMMONER_YAUTJA_MUTANT = new ItemEntitySummoner<>(EntityYautjaMutant.class, EntityYautjaMutant::new).setRegistryName("summon.yautjamutant");
 
+    public static final Item SUMMONER_KETTER_BIRD = new ItemEntitySummoner<>(EntityKetterBird.class, EntityKetterBird::new).setRegistryName("summon.ketterbird");
+    public static final Item SUMMONER_PAINTED_MINK = new ItemEntitySummoner<>(EntityPaintedMink.class, EntityPaintedMink::new).setRegistryName("summon.paintedmink");
+    public static final Item SUMMONER_STRIPED_DEVIL = new ItemEntitySummoner<>(EntityStripedDevil.class, EntityStripedDevil::new).setRegistryName("summon.stripeddevil");
+
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         ItemRegistryUtil.registerItemWithModel(HELM_XENO);
@@ -151,5 +158,9 @@ public class AlienItems implements IPreInitEvent {
         ItemRegistryUtil.registerItem(SUMMONER_URSUIDAE, true);
         ItemRegistryUtil.registerItem(SUMMONER_VARDA_MONKEY, true);
         ItemRegistryUtil.registerItem(SUMMONER_YAUTJA_MUTANT, true);
+
+        ItemRegistryUtil.registerItem(SUMMONER_KETTER_BIRD, true);
+        ItemRegistryUtil.registerItem(SUMMONER_PAINTED_MINK, true);
+        ItemRegistryUtil.registerItem(SUMMONER_STRIPED_DEVIL, true);
     }
 }
