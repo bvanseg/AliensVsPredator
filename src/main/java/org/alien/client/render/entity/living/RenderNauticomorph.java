@@ -11,19 +11,16 @@ import org.alien.common.entity.living.xenomorph.exotic.EntityNauticomorph;
 /**
  * @author Ri5ux
  */
-public class RenderNauticomorph<N extends EntityNauticomorph> extends RenderLivingWrapper<N, ModelNauticomorph>
-{
+public class RenderNauticomorph extends RenderLivingWrapper<EntityNauticomorph, ModelNauticomorph> {
 
 
-    public RenderNauticomorph(RenderManager m)
-    {
+    public RenderNauticomorph(RenderManager m) {
         super(m, AlienResources.instance.models().NAUTICOMORPH_XENOMORPH);
-        this.addLayer(new LayerPhosphorescent<>(this, AlienResources.instance.models().NAUTICOMORPH_XENOMORPH_MASK));
+        this.addLayer(new LayerPhosphorescent(this, AlienResources.instance.models().NAUTICOMORPH_XENOMORPH_MASK));
     }
 
     @Override
-    protected void preRenderCallback(EntityNauticomorph entityliving, float partialTicks)
-    {
+    protected void preRenderCallback(EntityNauticomorph entityliving, float partialTicks) {
         OpenGL.scale(0.8F, 0.8F, 0.8F);
     }
 }
