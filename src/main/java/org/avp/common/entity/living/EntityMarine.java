@@ -357,6 +357,11 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         return new ItemStack(AVPItems.SUMMONER_MARINE);
     }
 
+    @Override
+    protected boolean canDespawn() {
+        return false;
+    }
+
     private static final String WEAPON_TYPE_NBT_KEY = "WeaponType";
     private static final String SKIN_TONE_NBT_KEY = "SkinTone";
     private static final String EYE_COLOR_NBT_KEY = "EyeColor";
