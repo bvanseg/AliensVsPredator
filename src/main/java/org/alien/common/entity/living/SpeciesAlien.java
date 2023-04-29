@@ -5,6 +5,7 @@ import com.asx.mdx.common.minecraft.entity.animations.Animation;
 import com.asx.mdx.common.minecraft.entity.animations.IAnimated;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
@@ -16,6 +17,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.RoyalOrganism;
+import org.alien.common.entity.AlienCreatureTypes;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.ai.brain.AlienBrain;
 import org.avp.common.AVPDamageSources;
@@ -47,6 +49,17 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
         super(world);
         this.jumpMovementFactor = 0.2F;
         this.jellyLimitOverride = false;
+    }
+
+    @Override
+    public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount) {
+        // If not using custom creature type, fall back on default super behavior.
+        if (AlienCreatureTypes.getAlienCreatureType() == EnumCreatureType.MONSTER)
+            return super.isCreatureType(type, forSpawnCount);
+
+        // Otherwise, override for the alien creature type. If we do not do this, the superclass will check against assignable
+        // classes on the creature
+        return type == AlienCreatureTypes.getAlienCreatureType();
     }
 
     @Override
