@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.avp.common.config.ModelConfig;
 import org.lib.common.registry.EntitySpawnRegistryUtil;
+import org.predator.common.entity.PredatorCreatureTypes;
 import org.predator.common.entity.living.yautja.EntityYautjaBerserker;
 import org.predator.common.entity.living.yautja.EntityYautjaWarrior;
 
@@ -18,12 +19,12 @@ import java.util.List;
 public class PredatorEntitySpawns implements IInitEvent {
     public static final PredatorEntitySpawns instance = new PredatorEntitySpawns();
 
-    private PredatorEntitySpawns() {}
+    private PredatorEntitySpawns() {
+    }
 
-    public static final ArrayList<Biome>        DEFAULT_PREDATOR_SPAWNS   = new ArrayList<>();
+    public static final ArrayList<Biome> DEFAULT_PREDATOR_SPAWNS = new ArrayList<>();
 
-    static
-    {
+    static {
         DEFAULT_PREDATOR_SPAWNS.addAll(
             Lists.newArrayList(
                 Biomes.BIRCH_FOREST,
@@ -52,14 +53,12 @@ public class PredatorEntitySpawns implements IInitEvent {
         this.registerSpawns();
     }
 
-    private void registerSpawns()
-    {
-        if (ModelConfig.getInstance().getSpawning().autoSpawnsEnabled)
-        {
+    private void registerSpawns() {
+        if (ModelConfig.getInstance().getSpawning().autoSpawnsEnabled) {
             List<Biome> predatorSpawns = EntitySpawnRegistryUtil.filterOverworldBiomes("Predator", new ArrayList<>(ModelConfig.getInstance().getSpawning().getPredatorSpawnBiomes()));
 
-            EntityRegistry.addSpawn(EntityYautjaWarrior.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityYautjaWarrior, 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
-            EntityRegistry.addSpawn(EntityYautjaBerserker.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityYautjaBerserker, 0, 1, EnumCreatureType.MONSTER, EntitySpawnRegistryUtil.array(predatorSpawns));
+            EntityRegistry.addSpawn(EntityYautjaWarrior.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityYautjaWarrior, 1, 1, PredatorCreatureTypes.getPredatorCreatureType(), EntitySpawnRegistryUtil.array(predatorSpawns));
+            EntityRegistry.addSpawn(EntityYautjaBerserker.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityYautjaBerserker, 1, 1, PredatorCreatureTypes.getPredatorCreatureType(), EntitySpawnRegistryUtil.array(predatorSpawns));
         }
     }
 }
