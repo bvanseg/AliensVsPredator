@@ -23,6 +23,7 @@ import org.avp.client.Renders;
 import org.avp.common.*;
 import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.config.ModelConfig;
+import org.avp.common.entity.MarineCreatureTypes;
 import org.avp.common.item.init.AVPItems;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
@@ -64,6 +65,7 @@ public class AVP implements IMod
         // which involves modifying the CreatureType enum via reflection at runtime. If this is not done early enough,
         // the mod may crash with other mods or with itself (avp entities are registered using these creature types).
         AlienCreatureTypes.init();
+        MarineCreatureTypes.init();
         PredatorCreatureTypes.init();
     }
 
