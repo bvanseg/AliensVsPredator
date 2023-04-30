@@ -10,6 +10,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
@@ -66,15 +67,22 @@ public class ItemWristbracer extends HookedItem
         if (!equippedHasBlades(player)) return super.onLeftClickEntity(stack, player, entity);
 
         PredatorSounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F);
-        entity.attackEntityFrom(AVPDamageSources.causeWristbracerDamage(player), getDamageToApply());
+        entity.attackEntityFrom(new EntityDamageSource(AVPDamageSources.WRISTBRACER, player), getDamageToApply());
 
         if (player.world.isRemote || player.capabilities.isCreativeMode) return super.onLeftClickEntity(stack, player, entity);
 
+        // Update the damage of the wristblade within the wristbracer.
+        this.updateDamage(player);
+
+        return super.onLeftClickEntity(stack, player, entity);
+    }
+
+    private void updateDamage(EntityPlayer player) {
         ItemStack bladesStack = getBlades(player.getHeldItemMainhand());
         NBTTagCompound nbt = player.getHeldItemMainhand().getTagCompound();
         NBTTagList wristbracerContents = nbt.getTagList(TAG_WRISTBRACER_ITEMS, Constants.NBT.TAG_COMPOUND);
 
-        if (bladesStack == null) return super.onLeftClickEntity(stack, player, entity);
+        if (bladesStack == null) return;
 
         for (int s = 0; s < wristbracerContents.tagCount(); s++)
         {
@@ -95,8 +103,6 @@ public class ItemWristbracer extends HookedItem
         nbt.setTag(TAG_WRISTBRACER_ITEMS, wristbracerContents);
         player.getHeldItemMainhand().setTagCompound(nbt);
         ((ContainerWristbracer) getNewContainer(player)).saveToNBT();
-
-        return super.onLeftClickEntity(stack, player, entity);
     }
 
     public Container getNewContainer(EntityPlayer player)

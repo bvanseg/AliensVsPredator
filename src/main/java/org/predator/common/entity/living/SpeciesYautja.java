@@ -292,8 +292,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     
     protected void dropBiomaskAndSkull(ItemDropContext itemDropContext, DamageSource damagesource)
     {
-        if (damagesource == AVPDamageSources.WRISTBRACER)
-        {
+        if (damagesource.getDamageType().equalsIgnoreCase(AVPDamageSources.WRISTBRACER)) {
             itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_PREDATOR, 25);
             itemDropContext.dropWithBonusDropWeight(AVPItemDrops.BIOMASK, 25);
         }

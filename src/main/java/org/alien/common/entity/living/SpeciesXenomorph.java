@@ -52,7 +52,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements HiveMembe
         itemDropContext.drop(AVPItemDrops.XENO_LEGS);
         itemDropContext.drop(AVPItemDrops.XENO_TORSO);
 
-        if (damageSource == AVPDamageSources.WRISTBRACER) {
+        if (damageSource.getDamageType().equalsIgnoreCase(AVPDamageSources.WRISTBRACER)) {
             itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_XENO_DRONE, 25);
             itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_XENO_WARRIOR, 25);
         } else {
