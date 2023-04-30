@@ -28,6 +28,7 @@ import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
 import org.predator.Predators;
 import org.predator.client.PredatorRenders;
+import org.predator.common.entity.PredatorCreatureTypes;
 
 import java.time.LocalDate;
 
@@ -59,10 +60,11 @@ public class AVP implements IMod
     }
 
     static {
-        // It is absolutely essential that we initialize this here before everything else. This creates new creature types,
+        // It is absolutely essential that we initialize these here before everything else. These create new creature types,
         // which involves modifying the CreatureType enum via reflection at runtime. If this is not done early enough,
-        // the mod may crash with other mods or with itself (alien entities are registered using these creature types).
+        // the mod may crash with other mods or with itself (avp entities are registered using these creature types).
         AlienCreatureTypes.init();
+        PredatorCreatureTypes.init();
     }
 
     @Mod.EventHandler
