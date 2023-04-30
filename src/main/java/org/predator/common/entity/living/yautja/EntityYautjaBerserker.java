@@ -39,8 +39,7 @@ public class EntityYautjaBerserker extends SpeciesYautja
     @Override
     protected void dropBiomaskAndSkull(ItemDropContext itemDropContext, DamageSource damageSource)
     {
-        if (damageSource == AVPDamageSources.WRISTBRACER)
-        {
+        if (damageSource.getDamageType().equalsIgnoreCase(AVPDamageSources.WRISTBRACER)) {
             itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_PREDATOR, 25);
             itemDropContext.dropWithBonusDropWeight(AVPItemDrops.BIOMASK_BERSERKER, 25);
             itemDropContext.dropWithBonusDropWeight(AVPItemDrops.BIOMASK_FALCONER, 25);
