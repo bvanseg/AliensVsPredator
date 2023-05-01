@@ -25,6 +25,7 @@ public class RenderPlasmaCannonHook {
     @SubscribeEvent
     public void renderHand(RenderHandEvent event)
     {
+        if (ClientGame.instance.minecraft().player.isSpectator()) return;
         renderPlasmaCannon.renderFirstPerson(event, event.getPartialTicks());
     }
 
@@ -33,7 +34,7 @@ public class RenderPlasmaCannonHook {
     {
         if (event.getEntity() == null) return;
 
-        if (event.getEntity() instanceof EntityPlayer)
+        if (event.getEntity() instanceof EntityPlayer && !((EntityPlayer)event.getEntity()).isSpectator())
         {
             renderPlasmaCannon.render(event, ClientGame.instance.partialTicks());
         }
@@ -50,7 +51,7 @@ public class RenderPlasmaCannonHook {
     {
         if (event.getEntity() == null) return;
 
-        if (event.getEntity() instanceof EntityPlayer)
+        if (event.getEntity() instanceof EntityPlayer && !((EntityPlayer)event.getEntity()).isSpectator())
         {
             renderPlasmaCannon.render(event, ClientGame.instance.partialTicks());
         }
