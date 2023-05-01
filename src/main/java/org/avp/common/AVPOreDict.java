@@ -49,7 +49,6 @@ public class AVPOreDict
         registerOreDict("monazite", AVPOreBlocks.ORE_MONAZITE, "ore");
         registerOreDict("cobalt", AVPOreBlocks.ORE_COBALT, "ore");
 
-        
         registerOreDict("wood", AlienVardaBlocks.GIGER_LOG, "log");
     }
     
