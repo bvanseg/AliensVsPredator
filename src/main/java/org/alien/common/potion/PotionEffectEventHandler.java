@@ -45,39 +45,38 @@ public class PotionEffectEventHandler {
                 return;
             }
 
-            if (!entityLivingBase.world.isRemote) {
-                int randomArmorIndex = entityPlayer.getRNG().nextInt(4);
-                ItemStack armorPiece = entityPlayer.inventory.armorInventory.get(randomArmorIndex);
+            int randomArmorIndex = entityPlayer.getRNG().nextInt(4);
+            ItemStack armorPiece = entityPlayer.inventory.armorInventory.get(randomArmorIndex);
 
-                // If the player has armor equipped in the random slot, try and damage that.
-                if (!armorPiece.isEmpty() && armorPiece != ItemStack.EMPTY) {
-                    // The player wearing xeno armor will "soak" acid damage ticks.
-                    if (armorPiece.getItem() instanceof ItemArmorXeno) {
-                        return;
-                    }
-
-                    // Normal armor is damaged significantly.
-                    if (armorPiece.getItem() instanceof ItemArmor) {
-                        armorPiece.damageItem(10 + 10 * amplifier, entityPlayer);
-                    }
-                }
-                // Otherwise, damage the player directly.
-                else {
-                    entityLivingBase.attackEntityFrom(AVPDamageSources.ACID, 1F + amplifier);
+            // If the player has armor equipped in the random slot, try and damage that.
+            if (!entityLivingBase.world.isRemote && !armorPiece.isEmpty() && armorPiece != ItemStack.EMPTY) {
+                // The player wearing xeno armor will "soak" acid damage ticks.
+                if (armorPiece.getItem() instanceof ItemArmorXeno) {
+                    return;
                 }
 
-                entityPlayer.world.playSound(null, entityPlayer.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 0.5F, 1F);
-            } else {
-                Random rand = entityPlayer.getRNG();
-                for (int i = 0; i < 10; i++) {
-                    entityPlayer.world.spawnParticle(
-                            EnumParticleTypes.SMOKE_NORMAL,
-                            entityPlayer.posX + rand.nextDouble(),
-                            entityPlayer.posY + rand.nextDouble(),
-                            entityPlayer.posZ + rand.nextDouble(),
-                            0.0D, 0.0D, 0.0D
-                    );
+                // Normal armor is damaged significantly.
+                if (armorPiece.getItem() instanceof ItemArmor) {
+                    armorPiece.damageItem(10 + 10 * amplifier, entityPlayer);
+                    entityLivingBase.world.playSound(null, entityLivingBase.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 0.5F, 1F);
+                    return;
                 }
+            }
+        }
+
+        if (!entityLivingBase.world.isRemote) {
+            entityLivingBase.attackEntityFrom(AVPDamageSources.ACID, 1F + amplifier);
+            entityLivingBase.world.playSound(null, entityLivingBase.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 0.5F, 1F);
+        } else {
+            Random rand = entityLivingBase.getRNG();
+            for (int i = 0; i < 10; i++) {
+                entityLivingBase.world.spawnParticle(
+                        EnumParticleTypes.SMOKE_NORMAL,
+                        entityLivingBase.posX + rand.nextDouble(),
+                        entityLivingBase.posY + rand.nextDouble(),
+                        entityLivingBase.posZ + rand.nextDouble(),
+                        0.0D, 0.0D, 0.0D
+                );
             }
         }
     }
