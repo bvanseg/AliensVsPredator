@@ -18,6 +18,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.Host;
 import org.avp.common.AVPDamageSources;
@@ -52,6 +53,21 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         this.cloakProgress = MIN_CLOAK;
         this.setSize(0.75F, 2.5F);
         this.jumpMovementFactor = 0.1F;
+    }
+
+    @Override
+    public boolean getCanSpawnHere() {
+        boolean isAboveSeaLevel = this.posY >= this.world.getSeaLevel();
+        return super.getCanSpawnHere() && isAboveSeaLevel;
+    }
+
+    @Override
+    protected boolean isValidLightLevel() {
+        return true;
+    }
+
+    public float getBlockPathWeight(BlockPos pos) {
+        return 0.0F;
     }
 
     @Override
