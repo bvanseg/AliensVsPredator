@@ -200,4 +200,9 @@ public class EntityNauticomorph extends SpeciesXenomorph
     {
         return new ItemStack(AlienItems.SUMMONER_AQUA);
     }
+
+    @Override
+    protected float getWaterSlowDown() {
+        return 0.98F;
+    }
 }
