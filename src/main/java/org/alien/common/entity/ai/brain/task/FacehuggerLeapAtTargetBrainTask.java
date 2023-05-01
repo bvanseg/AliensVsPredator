@@ -36,6 +36,9 @@ public class FacehuggerLeapAtTargetBrainTask extends AbstractEntityBrainTask {
         if (leapTarget == null) {
             return false;
         } else {
+            if (leaper.motionX == 0 && leaper.motionZ == 0)
+                return false;
+
             double d0 = leaper.getDistanceSq(leapTarget);
             return d0 >= 24.0 && d0 <= 58.0;
         }
