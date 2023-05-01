@@ -497,6 +497,8 @@ death.attack.smartdisc=%1$s was sliced in half by a smart disc.
 death.attack.laserMine=%1$s was blown to bits by a laser mine.
 death.attack.flamethrower=%1$s was incinerated.
 death.attack.bullet=%1$s was shot by %2$s.
+death.attack.wristbracer=%1$s was ripped to shreds by %2$s.
+death.attack.plasmacaster=%1$s was blown to bits by %2$s.
 
 #POTION EFFECTS
 effect.disintegration=Disintegration

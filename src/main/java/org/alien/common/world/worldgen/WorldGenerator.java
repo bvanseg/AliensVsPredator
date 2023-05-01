@@ -10,7 +10,9 @@ import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import org.avp.common.block.init.AVPOreBlocks;
 
+import java.util.Optional;
 import java.util.Random;
+import java.util.function.Predicate;
 
 /**
  * @author Ri5ux
@@ -44,19 +46,16 @@ public class WorldGenerator implements IWorldGenerator
                 this.runGenerator(WORLDGEN_ORE_SILICON, 4, 1, 64, world, rand, chunkX, chunkZ);
                 this.runGenerator(WORLDGEN_ORE_MONAZITE, 4, 1, 48, world, rand, chunkX, chunkZ);
 
-                BlockPos chunkCoords = new BlockPos(chunkX, 0, chunkZ);
-                Biome biome = world.getBiome(chunkCoords);
+                this.runGenerator(WORLDGEN_ORE_LITHIUM, 2, 1, 48, world, rand, chunkX, chunkZ, Optional.of(pos -> {
+                    Biome biome = world.getBiome(pos);
+                    return BiomeDictionary.getTypes(biome).contains(BiomeDictionary.Type.BEACH) ||
+                            BiomeDictionary.getTypes(biome).contains(BiomeDictionary.Type.WATER);
+                }));
+                this.runGenerator(WORLDGEN_ORE_COBALT, 2, 1, 64, world, rand, chunkX, chunkZ, Optional.of(pos -> {
+                    Biome biome = world.getBiome(pos);
+                    return BiomeDictionary.getTypes(biome).contains(BiomeDictionary.Type.JUNGLE);
+                }));
 
-
-                if (BiomeDictionary.getTypes(biome).contains(BiomeDictionary.Type.BEACH) || BiomeDictionary.getTypes(biome).contains(BiomeDictionary.Type.WATER))
-                {
-                    this.runGenerator(WORLDGEN_ORE_LITHIUM, 2, 1, 48, world, rand, chunkX, chunkZ);
-                }
-
-                if (BiomeDictionary.getTypes(biome).contains(BiomeDictionary.Type.JUNGLE))
-                {
-                    this.runGenerator(WORLDGEN_ORE_COBALT, 2, 1, 64, world, rand, chunkX, chunkZ);
-                }
                 break;
             //End
             case 1:
@@ -66,13 +65,26 @@ public class WorldGenerator implements IWorldGenerator
                 break;
         }
     }
+
+    private void runGenerator(
+            WorldGenMinable worldGenMinable,
+            int chancesToSpawn,
+            int minHeight, int maxHeight,
+            World world,
+            Random rand,
+            int chunkX, int chunkZ
+    ) {
+        this.runGenerator(worldGenMinable, chancesToSpawn, minHeight, maxHeight, world, rand, chunkX, chunkZ, Optional.empty());
+    }
+
     private void runGenerator(
         WorldGenMinable worldGenMinable,
         int chancesToSpawn,
         int minHeight, int maxHeight,
         World world,
         Random rand,
-        int chunkX, int chunkZ
+        int chunkX, int chunkZ,
+        Optional<Predicate<BlockPos>> predicate
     ) {
         if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight) {
             throw new IllegalArgumentException("Illegal Height Arguments for WorldGenerator");
@@ -84,8 +96,17 @@ public class WorldGenerator implements IWorldGenerator
             int x = chunkX * 16 + rand.nextInt(16);
             int y = minHeight + rand.nextInt(heightdiff);
             int z = chunkZ * 16 + rand.nextInt(16);
+            BlockPos pos = new BlockPos(x, y, z);
 
-            worldGenMinable.generate(world, rand, new BlockPos(x, y, z));
+            if (predicate.isPresent() && !predicate.get().test(pos)) {
+                continue;
+            }
+
+            if (worldGenMinable == WORLDGEN_ORE_COBALT) {
+                System.out.println("TEST");
+            }
+
+            worldGenMinable.generate(world, rand, pos);
         }
     }
 }
