@@ -68,4 +68,10 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements HiveMembe
 
         itemDropContext.dropWithAmount(AVPItemDrops.ROYAL_JELLY, adjustedLevel);
     }
+
+    // Speeds up xenomorphs in water.
+    @Override
+    protected float getWaterSlowDown() {
+        return 0.9F;
+    }
 }

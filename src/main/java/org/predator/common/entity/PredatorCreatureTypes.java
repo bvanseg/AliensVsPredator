@@ -24,7 +24,7 @@ public class PredatorCreatureTypes {
         EnumCreatureType creatureType = EnumCreatureType.MONSTER; // Default fallback for predator creatures.
 
         if (customCreatureTypesEnabled) {
-            creatureType = EnumHelper.addCreatureType("predator", SpeciesYautja.class, 6, Material.AIR, false, false);
+            creatureType = EnumHelper.addCreatureType("predator", SpeciesYautja.class, 12, Material.AIR, false, false);
         }
 
         return creatureType;

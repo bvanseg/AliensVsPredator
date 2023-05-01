@@ -18,6 +18,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.Host;
 import org.avp.common.AVPDamageSources;
@@ -55,6 +56,21 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     }
 
     @Override
+    public boolean getCanSpawnHere() {
+        boolean isAboveSeaLevel = this.posY >= this.world.getSeaLevel();
+        return super.getCanSpawnHere() && isAboveSeaLevel;
+    }
+
+    @Override
+    protected boolean isValidLightLevel() {
+        return true;
+    }
+
+    public float getBlockPathWeight(BlockPos pos) {
+        return 0.0F;
+    }
+
+    @Override
     public YautjaBrain getBrain() {
         if (!this.world.isRemote && this.brain == null) {
             this.brain = new YautjaBrain(this);
@@ -73,9 +89,8 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(80.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.6D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(6.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(0.75D);
-        this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(48D);
     }
 
     @Override
