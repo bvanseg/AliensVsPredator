@@ -2,7 +2,6 @@ package org.predator.common;
 
 import com.asx.mdx.common.mods.IInitEvent;
 import com.google.common.collect.Lists;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -27,23 +26,11 @@ public class PredatorEntitySpawns implements IInitEvent {
     static {
         DEFAULT_PREDATOR_SPAWNS.addAll(
             Lists.newArrayList(
-                Biomes.BIRCH_FOREST,
-                Biomes.BIRCH_FOREST_HILLS,
-                Biomes.DESERT,
-                Biomes.DESERT_HILLS,
-                Biomes.EXTREME_HILLS,
-                Biomes.EXTREME_HILLS_EDGE,
-                Biomes.EXTREME_HILLS_WITH_TREES,
-                Biomes.FOREST,
-                Biomes.FOREST_HILLS,
-                Biomes.FROZEN_OCEAN,
-                Biomes.FROZEN_RIVER,
-                Biomes.ICE_PLAINS,
                 Biomes.JUNGLE,
                 Biomes.JUNGLE_EDGE,
                 Biomes.JUNGLE_HILLS,
-                Biomes.TAIGA,
-                Biomes.TAIGA_HILLS
+                Biomes.MUTATED_JUNGLE,
+                Biomes.MUTATED_JUNGLE_EDGE
             )
         );
     }
