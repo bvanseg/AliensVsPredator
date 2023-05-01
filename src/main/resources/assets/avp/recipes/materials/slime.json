@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SS",
+    "SS"
+  ],
+  "key": {
+    "S": [
+      {
+        "item": "avp:royaljelly",
+        "data": 0
+      }
+    ]
+  },
+  "result": {
+    "item": "minecraft:slime_ball",
+    "data": 0
+  }
+}
