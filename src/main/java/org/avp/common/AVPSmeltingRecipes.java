@@ -31,7 +31,6 @@ public class AVPSmeltingRecipes
 
     private static void addSmelting()
     {
-        GameRegistry.addSmelting(AVPOreBlocks.ORE_COPPER, new ItemStack(AVPItems.ITEM_INGOT_COPPER), 1.0F);
         GameRegistry.addSmelting(AVPOreBlocks.ORE_LITHIUM, new ItemStack(AVPItems.ITEM_INGOT_LITHIUM), 1.0F);
         GameRegistry.addSmelting(AVPOreBlocks.ORE_BAUXITE, new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM), 1.0F);
         GameRegistry.addSmelting(AVPOreBlocks.ORE_SILICON, new ItemStack(AVPItems.ITEM_SILICON), 1.0F);
@@ -41,5 +40,22 @@ public class AVPSmeltingRecipes
         GameRegistry.addSmelting(AlienParadiseBlocks.PARADISE_LOG_SMALL, CHARCOAL, 1.0F);
         GameRegistry.addSmelting(AlienParadiseBlocks.PARADISE_LOG_MED, CHARCOAL, 1.0F);
         GameRegistry.addSmelting(AlienParadiseBlocks.PARADISE_LOG_LARGE, CHARCOAL, 1.0F);
+
+        addCopperSmeltingRecipes();
+    }
+
+    private static void addCopperSmeltingRecipes() {
+        GameRegistry.addSmelting(AVPOreBlocks.ORE_COPPER, new ItemStack(AVPItems.ITEM_INGOT_COPPER), 1.0F);
+        GameRegistry.addSmelting(AVPItems.RAW_COPPER, new ItemStack(AVPItems.ITEM_INGOT_COPPER), 1.0F);
+
+        GameRegistry.addSmelting(AVPItems.COPPER_PICKAXE, new ItemStack(AVPItems.COPPER_NUGGET), 0.1F);
+        GameRegistry.addSmelting(AVPItems.COPPER_SHOVEL, new ItemStack(AVPItems.COPPER_NUGGET), 0.1F);
+        GameRegistry.addSmelting(AVPItems.COPPER_AXE, new ItemStack(AVPItems.COPPER_NUGGET), 0.1F);
+        GameRegistry.addSmelting(AVPItems.COPPER_HOE, new ItemStack(AVPItems.COPPER_NUGGET), 0.1F);
+        GameRegistry.addSmelting(AVPItems.COPPER_SWORD, new ItemStack(AVPItems.COPPER_NUGGET), 0.1F);
+        GameRegistry.addSmelting(AVPItems.COPPER_HELMET, new ItemStack(AVPItems.COPPER_NUGGET), 0.1F);
+        GameRegistry.addSmelting(AVPItems.COPPER_CHESTPLATE, new ItemStack(AVPItems.COPPER_NUGGET), 0.1F);
+        GameRegistry.addSmelting(AVPItems.COPPER_LEGGINGS, new ItemStack(AVPItems.COPPER_NUGGET), 0.1F);
+        GameRegistry.addSmelting(AVPItems.COPPER_BOOTS, new ItemStack(AVPItems.COPPER_NUGGET), 0.1F);
     }
 }

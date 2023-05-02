@@ -2,13 +2,15 @@ package org.avp.common.item.init;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.common.minecraft.item.HookedItem;
+import com.asx.mdx.common.minecraft.item.ItemToolMaterialAxe;
+import com.asx.mdx.common.minecraft.item.ItemToolMaterialPickaxe;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.AVPNetworking;
+import org.avp.common.AVPToolMaterials;
 import org.avp.common.config.ModelConfig;
 import org.avp.common.entity.EntityAPC;
 import org.avp.common.entity.living.EntityCombatSynthetic;
@@ -20,6 +22,7 @@ import org.avp.common.item.supply.chute.ItemSupplyChute;
 import org.avp.common.item.supply.chute.SupplyChuteType;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.lib.common.registry.ItemRegistryUtil;
+import org.predator.common.item.ItemArmorCopper;
 import org.predator.common.item.ItemWristbracer;
 import org.weapon.common.item.init.WeaponItems;
 
@@ -73,6 +76,24 @@ public class AVPItems implements IPreInitEvent {
     public static final Item SUMMONER_APC = new ItemEntitySummoner<>(EntityAPC.class, EntityAPC::new).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("apc");
     public static final Item SUMMONER_MARINE = new ItemEntitySummoner<>(EntityMarine.class, EntityMarine::new).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.marine");
     public static final Item SUMMONER_COMBAT_SYNTHETIC = new ItemEntitySummoner<>(EntityCombatSynthetic.class, EntityCombatSynthetic::new).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.synthetic.combat");
+
+    /* Copper Items */
+
+    public static final Item RAW_COPPER = new Item().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("raw_copper");
+    public static final Item COPPER_NUGGET = new Item().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_nugget");
+
+    // Tools
+    public static final Item COPPER_AXE = new ItemToolMaterialAxe(AVPToolMaterials.COPPER).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_axe");
+    public static final Item COPPER_PICKAXE = new ItemToolMaterialPickaxe(AVPToolMaterials.COPPER).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_pickaxe");
+    public static final Item COPPER_HOE = new ItemHoe(AVPToolMaterials.COPPER).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_hoe");
+    public static final Item COPPER_SHOVEL = new ItemSpade(AVPToolMaterials.COPPER).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_shovel");
+    public static final Item COPPER_SWORD = new ItemSword(AVPToolMaterials.COPPER).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_sword");
+
+    // Armor
+    public static final Item COPPER_HELMET = new ItemArmorCopper(0, EntityEquipmentSlot.HEAD).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_helmet");
+    public static final Item COPPER_CHESTPLATE = new ItemArmorCopper(0, EntityEquipmentSlot.CHEST).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_chestplate");
+    public static final Item COPPER_LEGGINGS = new ItemArmorCopper(0, EntityEquipmentSlot.LEGS).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_leggings");
+    public static final Item COPPER_BOOTS = new ItemArmorCopper(0, EntityEquipmentSlot.FEET).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_boots");
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
@@ -136,6 +157,20 @@ public class AVPItems implements IPreInitEvent {
         ItemRegistryUtil.registerItem(SUMMONER_APC);
         ItemRegistryUtil.registerItem(SUMMONER_MARINE);
         ItemRegistryUtil.registerItem(SUMMONER_COMBAT_SYNTHETIC);
+
+        ItemRegistryUtil.registerItemWithModel(RAW_COPPER);
+        ItemRegistryUtil.registerItemWithModel(COPPER_NUGGET);
+
+        ItemRegistryUtil.registerItemWithModel(COPPER_AXE);
+        ItemRegistryUtil.registerItemWithModel(COPPER_PICKAXE);
+        ItemRegistryUtil.registerItemWithModel(COPPER_HOE);
+        ItemRegistryUtil.registerItemWithModel(COPPER_SHOVEL);
+        ItemRegistryUtil.registerItemWithModel(COPPER_SWORD);
+
+        ItemRegistryUtil.registerItemWithModel(COPPER_HELMET);
+        ItemRegistryUtil.registerItemWithModel(COPPER_CHESTPLATE);
+        ItemRegistryUtil.registerItemWithModel(COPPER_LEGGINGS);
+        ItemRegistryUtil.registerItemWithModel(COPPER_BOOTS);
     }
 
     private void registerWristbracerCodes() {

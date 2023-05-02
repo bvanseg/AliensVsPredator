@@ -25,6 +25,10 @@ public class BlockAVPOre extends BasicBlock {
         {
             return AVPItems.ITEM_COBALT;
         }
+        else if (this == AVPOreBlocks.ORE_COPPER)
+        {
+            return AVPItems.RAW_COPPER;
+        }
         else if (this == AVPOreBlocks.ORE_MONAZITE)
         {
             return AVPItems.ITEM_NEODYMIUM;
@@ -43,6 +47,10 @@ public class BlockAVPOre extends BasicBlock {
         if (this == AVPOreBlocks.ORE_COBALT)
         {
             return 1 + fortune;
+        }
+        else if (this == AVPOreBlocks.ORE_COPPER)
+        {
+            return 1 + random.nextInt(fortune + 1);
         }
         else if (this == AVPOreBlocks.ORE_MONAZITE)
         {

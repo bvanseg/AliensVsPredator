@@ -3,6 +3,7 @@ package org.avp.common.block.init;
 import com.asx.mdx.common.minecraft.block.BlockMaterial;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -76,6 +77,9 @@ public class AVPBlocks implements IPreInitEvent
     public static final Block MUTHUR_PANEL_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(1F).setLightLevel(0.5F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("mainframepanel.shimmer");
     public static final Block MUTHUR_PANEL_2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(10F).setLightLevel(0.5F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("mainframepanel.flicker");
 
+    public static final Block RAW_COPPER_BLOCK = new BasicBlock("raw_copper_block", AVPOreBlocks.COPPER_PROPS);
+    public static final Block COPPER_BLOCK = new BasicBlock("copper_block", new BlockProperties(Material.IRON).setHardness(4.0F).setResistance(10F).setSoundType(SoundType.METAL).setCreativeTab(AVPCreativeTabs.MAIN));
+
     @Override
     public void pre(FMLPreInitializationEvent event) {
         AVP.instance.getLogger().info("Registering Blocks");
@@ -128,5 +132,8 @@ public class AVPBlocks implements IPreInitEvent
         BlockRegistryUtil.registerStandardBlock(PADDING_SQUARE_WHITE);
         BlockRegistryUtil.registerStandardBlock(PADDING_TILES_ORANGE);
         BlockRegistryUtil.registerStandardBlock(PADDING_TILES_WHITE);
+
+        BlockRegistryUtil.registerStandardBlock(RAW_COPPER_BLOCK);
+        BlockRegistryUtil.registerStandardBlock(COPPER_BLOCK);
     }
 }
