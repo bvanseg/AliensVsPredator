@@ -180,6 +180,12 @@
     ],
     "subtitle": "subtitles.entity.ovamorph.open"
   },
+  "predator.vision.loop": {
+    "sounds": [
+      "avp:items/predvision/loop"
+    ],
+    "subtitle": "subtitles.entity.predator.vision.loop"
+  },
   "predator.vision.switch": {
     "sounds": [
       "avp:items/predvision/switch"

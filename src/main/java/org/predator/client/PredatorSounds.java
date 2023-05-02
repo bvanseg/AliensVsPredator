@@ -24,6 +24,7 @@ public class PredatorSounds implements IPreInitEvent
     public static final Sound  YAUTJA_DECLOAK               = SoundRegistryUtil.createSound("predator.decloaking");
 
     /** YAUTJA VISION SOUNDS **/
+    public static final Sound  YAUTJA_VISION_LOOP         = SoundRegistryUtil.createSound("predator.vision.loop");
     public static final Sound  YAUTJA_VISION_SWITCH         = SoundRegistryUtil.createSound("predator.vision.switch");
     public static final Sound  WEAPON_PLASMACASTER          = SoundRegistryUtil.createSound("weapon.plasmacaster");
     public static final Sound  WEAPON_PLASMACASTER_CHARGE   = SoundRegistryUtil.createSound("weapon.plasmacaster.charge");
@@ -45,6 +46,7 @@ public class PredatorSounds implements IPreInitEvent
         SoundRegistryUtil.registerSound(YAUTJA_DEATH);
         SoundRegistryUtil.registerSound(YAUTJA_CLOAK);
         SoundRegistryUtil.registerSound(YAUTJA_DECLOAK);
+        SoundRegistryUtil.registerSound(YAUTJA_VISION_LOOP);
         SoundRegistryUtil.registerSound(YAUTJA_VISION_SWITCH);
 
         SoundRegistryUtil.registerSound(WEAPON_PLASMACASTER);
