@@ -35,6 +35,10 @@ item.avp:copper_helmet.name=Copper Helmet
 item.avp:copper_chestplate.name=Copper Chestplate
 item.avp:copper_leggings.name=Copper Leggings
 item.avp:copper_boots.name=Copper Boots
+item.avp:aluminum_helmet.name=Aluminum Helmet
+item.avp:aluminum_chestplate.name=Aluminum Chestplate
+item.avp:aluminum_leggings.name=Aluminum Leggings
+item.avp:aluminum_boots.name=Aluminum Boots
 
 
 # ITEMS-TOOLS AND WEAPONS
@@ -56,6 +60,11 @@ item.avp:copper_hoe.name=Copper Hoe
 item.avp:copper_pickaxe.name=Copper Pickaxe
 item.avp:copper_shovel.name=Copper Shovel
 item.avp:copper_sword.name=Copper Sword
+item.avp:aluminum_axe.name=Aluminum Axe
+item.avp:aluminum_hoe.name=Aluminum Hoe
+item.avp:aluminum_pickaxe.name=Aluminum Pickaxe
+item.avp:aluminum_shovel.name=Aluminum Shovel
+item.avp:aluminum_sword.name=Aluminum Sword
 
 
 # ITEMS-FIREARM COMPONENTS
@@ -121,6 +130,8 @@ item.avp:food.doritos.name=Doritos
 item.avp:food.doritos.coolranch.name=Doritos (Cool Ranch)
 item.avp:food.raw.tentacle.name=Raw Tentacle
 item.avp:food.trilo.bite.name=Trilo Bite
+item.avp:copper_nugget.name=Aluminum Nugget
+item.avp:raw_bauxite.name=Raw Bauxite
 item.avp:copper_nugget.name=Copper Nugget
 item.avp:raw_copper.name=Raw Copper
 
@@ -418,6 +429,8 @@ tile.avp:skull.yautja.name=Yautja Skull
 tile.avp:skull.engineer.name=Engineer Helmet
 tile.avp:skull.spacejockey.name=Space Jockey Skull
 tile.avp:engineership.ampule.name=Ampule
+tile.avp:aluminum_block.name=Block of Aluminum
+tile.avp:raw_bauxite_block.name=Block of Raw Bauxite
 tile.avp:copper_block.name=Block of Copper
 tile.avp:raw_copper_block.name=Block of Raw Copper
 

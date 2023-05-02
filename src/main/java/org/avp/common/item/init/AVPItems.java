@@ -22,6 +22,7 @@ import org.avp.common.item.supply.chute.ItemSupplyChute;
 import org.avp.common.item.supply.chute.SupplyChuteType;
 import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.lib.common.registry.ItemRegistryUtil;
+import org.predator.common.item.ItemArmorAluminum;
 import org.predator.common.item.ItemArmorCopper;
 import org.predator.common.item.ItemWristbracer;
 import org.weapon.common.item.init.WeaponItems;
@@ -94,6 +95,24 @@ public class AVPItems implements IPreInitEvent {
     public static final Item COPPER_CHESTPLATE = new ItemArmorCopper(0, EntityEquipmentSlot.CHEST).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_chestplate");
     public static final Item COPPER_LEGGINGS = new ItemArmorCopper(0, EntityEquipmentSlot.LEGS).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_leggings");
     public static final Item COPPER_BOOTS = new ItemArmorCopper(0, EntityEquipmentSlot.FEET).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("copper_boots");
+
+    /* Aluminum Items */
+
+    public static final Item RAW_BAUXITE = new Item().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("raw_bauxite");
+    public static final Item ALUMINUM_NUGGET = new Item().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("aluminum_nugget");
+
+    // Tools
+    public static final Item ALUMINUM_AXE = new ItemToolMaterialAxe(AVPToolMaterials.ALUMINUM).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("aluminum_axe");
+    public static final Item ALUMINUM_PICKAXE = new ItemToolMaterialPickaxe(AVPToolMaterials.ALUMINUM).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("aluminum_pickaxe");
+    public static final Item ALUMINUM_HOE = new ItemHoe(AVPToolMaterials.ALUMINUM).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("aluminum_hoe");
+    public static final Item ALUMINUM_SHOVEL = new ItemSpade(AVPToolMaterials.ALUMINUM).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("aluminum_shovel");
+    public static final Item ALUMINUM_SWORD = new ItemSword(AVPToolMaterials.ALUMINUM).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("aluminum_sword");
+
+    // Armor
+    public static final Item ALUMINUM_HELMET = new ItemArmorAluminum(0, EntityEquipmentSlot.HEAD).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("aluminum_helmet");
+    public static final Item ALUMINUM_CHESTPLATE = new ItemArmorAluminum(0, EntityEquipmentSlot.CHEST).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("aluminum_chestplate");
+    public static final Item ALUMINUM_LEGGINGS = new ItemArmorAluminum(0, EntityEquipmentSlot.LEGS).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("aluminum_leggings");
+    public static final Item ALUMINUM_BOOTS = new ItemArmorAluminum(0, EntityEquipmentSlot.FEET).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("aluminum_boots");
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
@@ -171,6 +190,20 @@ public class AVPItems implements IPreInitEvent {
         ItemRegistryUtil.registerItemWithModel(COPPER_CHESTPLATE);
         ItemRegistryUtil.registerItemWithModel(COPPER_LEGGINGS);
         ItemRegistryUtil.registerItemWithModel(COPPER_BOOTS);
+
+        ItemRegistryUtil.registerItemWithModel(RAW_BAUXITE);
+        ItemRegistryUtil.registerItemWithModel(ALUMINUM_NUGGET);
+
+        ItemRegistryUtil.registerItemWithModel(ALUMINUM_AXE);
+        ItemRegistryUtil.registerItemWithModel(ALUMINUM_PICKAXE);
+        ItemRegistryUtil.registerItemWithModel(ALUMINUM_HOE);
+        ItemRegistryUtil.registerItemWithModel(ALUMINUM_SHOVEL);
+        ItemRegistryUtil.registerItemWithModel(ALUMINUM_SWORD);
+
+        ItemRegistryUtil.registerItemWithModel(ALUMINUM_HELMET);
+        ItemRegistryUtil.registerItemWithModel(ALUMINUM_CHESTPLATE);
+        ItemRegistryUtil.registerItemWithModel(ALUMINUM_LEGGINGS);
+        ItemRegistryUtil.registerItemWithModel(ALUMINUM_BOOTS);
     }
 
     private void registerWristbracerCodes() {
