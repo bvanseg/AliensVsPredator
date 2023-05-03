@@ -48,6 +48,11 @@ public class AVPItemDrops
     public static final ItemDrop CELTIC_PICKAXE = new ItemDrop.Builder(PredatorItems.PICKAXE_CELTIC).setDropWeight(5).build();
     public static final ItemDrop CELTIC_SHOVEL = new ItemDrop.Builder(PredatorItems.SHOVEL_CELTIC).setDropWeight(5).build();
     public static final ItemDrop CELTIC_SWORD = new ItemDrop.Builder(PredatorItems.SWORD_CELTIC).setDropWeight(5).build();
+    
+    public static final ItemDrop CELTIC_BIOMASK = new ItemDrop.Builder(PredatorItems.BIOMASK_CELTIC).setDropWeight(1).build();
+    public static final ItemDrop CELTIC_CHESTPLATE = new ItemDrop.Builder(PredatorItems.CHESTPLATE_CELTIC).setDropWeight(5).build();
+    public static final ItemDrop CELTIC_LEGGINGS = new ItemDrop.Builder(PredatorItems.LEGS_CELTIC).setDropWeight(5).build();
+    public static final ItemDrop CELTIC_BOOTS = new ItemDrop.Builder(PredatorItems.BOOTS_CELTIC).setDropWeight(5).build();
 
     public static final ItemDrop AMMO_AR = new ItemDrop.Builder(WeaponItems.ITEM_AMMO_AR).setDropWeight(75).build();
 

@@ -231,6 +231,11 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         itemDropContext.drop(AVPItemDrops.CELTIC_PICKAXE);
         itemDropContext.drop(AVPItemDrops.CELTIC_SHOVEL);
         itemDropContext.drop(AVPItemDrops.CELTIC_SWORD);
+
+        itemDropContext.drop(AVPItemDrops.CELTIC_BIOMASK);
+        itemDropContext.drop(AVPItemDrops.CELTIC_CHESTPLATE);
+        itemDropContext.drop(AVPItemDrops.CELTIC_LEGGINGS);
+        itemDropContext.drop(AVPItemDrops.CELTIC_BOOTS);
         
         dropBiomaskAndSkull(itemDropContext, damagesource);
     }
