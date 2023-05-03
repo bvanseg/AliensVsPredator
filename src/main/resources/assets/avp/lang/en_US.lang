@@ -848,6 +848,10 @@ subtitles.entity.predator.ambient=Predator clicks
 subtitles.entity.predator.hurt=Predator hurt
 subtitles.entity.predator.death=Predator dies
 
+subtitles.entity.praetorian.ambient=Praetorian hisses
+subtitles.entity.praetorian.hurt=Praetorian hurt
+subtitles.entity.praetorian.death=Praetorian dies
+
 subtitles.entity.predalien.attack=Predalien attacks
 subtitles.entity.predalien.ambient=Predalien hisses
 subtitles.entity.predalien.hurt=Predalien hurt
