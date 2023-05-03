@@ -43,6 +43,12 @@ public class AVPItemDrops
     public static final ItemDrop BIOMASK_FALCONER = new ItemDrop.Builder(PredatorBlocks.BIOMASK_FALCONER).setDropWeight(3).build();
     public static final ItemDrop BIOMASK_TRACKER = new ItemDrop.Builder(PredatorBlocks.BIOMASK_TRACKER).setDropWeight(3).build();
 
+    public static final ItemDrop CELTIC_AXE = new ItemDrop.Builder(PredatorItems.AXE_CELTIC).setDropWeight(5).build();
+    public static final ItemDrop CELTIC_HOE = new ItemDrop.Builder(PredatorItems.HOE_CELTIC).setDropWeight(5).build();
+    public static final ItemDrop CELTIC_PICKAXE = new ItemDrop.Builder(PredatorItems.PICKAXE_CELTIC).setDropWeight(5).build();
+    public static final ItemDrop CELTIC_SHOVEL = new ItemDrop.Builder(PredatorItems.SHOVEL_CELTIC).setDropWeight(5).build();
+    public static final ItemDrop CELTIC_SWORD = new ItemDrop.Builder(PredatorItems.SWORD_CELTIC).setDropWeight(5).build();
+
     public static final ItemDrop AMMO_AR = new ItemDrop.Builder(WeaponItems.ITEM_AMMO_AR).setDropWeight(75).build();
 
     public static final ItemDrop M4 = new ItemDrop.Builder(WeaponItems.ITEM_M4).setDropWeight(15).build();
