@@ -38,7 +38,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
 
     private YautjaBrain brain;
 
-    public SpeciesYautja(World world)
+    protected SpeciesYautja(World world)
     {
         super(world);
         this.experienceValue = 250;

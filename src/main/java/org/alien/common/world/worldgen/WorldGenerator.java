@@ -102,10 +102,6 @@ public class WorldGenerator implements IWorldGenerator
                 continue;
             }
 
-            if (worldGenMinable == WORLDGEN_ORE_COBALT) {
-                System.out.println("TEST");
-            }
-
             worldGenMinable.generate(world, rand, pos);
         }
     }
