@@ -10,70 +10,16 @@ import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import org.avp.client.render.tile.RenderMedpod;
 import org.avp.client.render.util.EntityRenderTransforms;
 import org.avp.common.entity.EntityMedpod;
-import org.predator.client.render.RenderPlayerPlasmaCannon;
 
 public class RenderLivingHook
 {
     public static final RenderLivingHook instance = new RenderLivingHook();
-    public static final RenderPlayerPlasmaCannon renderPlasmaCannon = new RenderPlayerPlasmaCannon();
 
     public static final RenderLiving renderer = new RenderLiving();
-
-    @SubscribeEvent
-    public void update(ClientTickEvent event)
-    {
-        renderPlasmaCannon.update(event, ClientGame.instance.minecraft(), ClientGame.instance.minecraft().world);
-    }
-
-    @SubscribeEvent
-    public void renderHand(RenderHandEvent event)
-    {
-        renderPlasmaCannon.renderFirstPerson(event, event.getPartialTicks());
-    }
-
-    @SubscribeEvent
-    public void entityRenderEventPre(RenderLivingEvent.Pre event)
-    {
-        if (event.getEntity() != null)
-        {
-            if (event.getEntity() instanceof EntityPlayer)
-            {
-                renderPlasmaCannon.render(event, ClientGame.instance.partialTicks());
-            }
-
-            if (event.getEntity().getRidingEntity() instanceof EntityMedpod)
-            {
-                event.setCanceled(true);
-                renderer.render(event.getEntity(), event.getRenderer(), event.getX(), event.getY(), event.getZ(), ClientGame.instance.partialTicks());
-            }
-        }
-    }
-
-    @SubscribeEvent
-    public void entityRenderEventPost(RenderLivingEvent.Post event)
-    {
-        if (event.getEntity() != null)
-        {
-            if (event.getEntity() instanceof EntityPlayer)
-            {
-                renderPlasmaCannon.render(event, ClientGame.instance.partialTicks());
-            }
-
-            if (event.getEntity().getRidingEntity() instanceof EntityMedpod)
-            {
-                event.setCanceled(true);
-            }
-        }
-    }
 
     public RenderLiving getRenderer()
     {

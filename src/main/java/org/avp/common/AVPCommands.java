@@ -7,22 +7,18 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import org.avp.common.command.CommandSettings;
 
-public class AVPCommands implements IInitEvent
-{
+public class AVPCommands implements IInitEvent {
     public static final AVPCommands instance = new AVPCommands();
-    private CommandSettings commandSettings;
 
     private AVPCommands() {}
 
     @Override
-    public void init(FMLInitializationEvent event)
-    {
+    public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
     @Mod.EventHandler
-    public void onServerStarting(FMLServerStartingEvent event)
-    {
-        event.registerServerCommand(this.commandSettings = new CommandSettings());
+    public void onServerStarting(FMLServerStartingEvent event) {
+        event.registerServerCommand(new CommandSettings());
     }
 }
