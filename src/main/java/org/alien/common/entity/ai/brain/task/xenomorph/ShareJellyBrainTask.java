@@ -1,6 +1,7 @@
 package org.alien.common.entity.ai.brain.task.xenomorph;
 
 import net.minecraft.entity.EntityLiving;
+import org.alien.JellyConstants;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.alien.common.world.hive.HiveMember;
@@ -30,7 +31,7 @@ public class ShareJellyBrainTask extends AbstractEntityBrainTask {
 	protected boolean shouldExecute() {
 		EntityLiving entity = ctx.getEntity();
 
-		if (!(entity instanceof SpeciesXenomorph) || !(entity instanceof HiveMember) || entity instanceof EntityMatriarch) {
+		if (!(entity instanceof SpeciesXenomorph) || entity instanceof EntityMatriarch) {
 			return false;
 		}
 
@@ -44,15 +45,14 @@ public class ShareJellyBrainTask extends AbstractEntityBrainTask {
 	protected void startExecuting() {
 		EntityLiving entity = ctx.getEntity();
 		SpeciesXenomorph xenomorph = (SpeciesXenomorph)entity;
-		HiveMember hiveMember = (HiveMember) xenomorph;
-		HiveOwner hiveOwner = hiveMember.getAlienHive().getHiveOwner();
+		HiveOwner hiveOwner = xenomorph.getAlienHive().getHiveOwner();
 
 		if (hiveOwner instanceof EntityMatriarch) {
 			EntityMatriarch queen = (EntityMatriarch) hiveOwner;
 
 			if (queen.getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || queen.isReproducing())
 			{
-				if (queen.getJellyLevel() < EntityMatriarch.OVIPOSITOR_JELLYLEVEL_THRESHOLD * 2 && xenomorph.getJellyLevel() >= 80)
+				if (queen.getJellyLevel() < JellyConstants.OVIPOSITOR_THRESHOLD * 2 && xenomorph.getJellyLevel() >= JellyConstants.DRONE_SHARE_THRESHOLD)
 				{
 					queen.setJellyLevel(queen.getJellyLevel() + xenomorph.getJellyLevel());
 					xenomorph.setJellyLevel(0);

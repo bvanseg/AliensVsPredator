@@ -34,7 +34,7 @@ public class ProduceJellyBrainTask<T extends SpeciesAlien> extends AbstractEntit
 
 		World world = ctx.getEntity().world;
 
-		if (world.getTotalWorldTime() % 20 != 0) return false;
+		if (world.getTotalWorldTime() % this.jellyRate != 0) return false;
 
 		return produceJellyPredicate.test((T) alien);
 	}
@@ -42,6 +42,6 @@ public class ProduceJellyBrainTask<T extends SpeciesAlien> extends AbstractEntit
 	@Override
 	protected void startExecuting() {
 		SpeciesAlien alien = (SpeciesAlien) ctx.getEntity();
-		alien.setJellyLevel(alien.getJellyLevel() + this.jellyRate);
+		alien.setJellyLevel(alien.getJellyLevel() + 1);
 	}
 }

@@ -5,7 +5,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.world.hive.HiveMember;
-import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
 import org.lib.common.inventory.ItemDropContext;
 
@@ -46,26 +45,29 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements HiveMembe
     public void onDeath(DamageSource damageSource) {
         super.onDeath(damageSource);
 
+        dropLoot(damageSource);
+    }
+
+    protected void dropLoot(DamageSource damageSource) {
         ItemDropContext itemDropContext = new ItemDropContext(this);
         itemDropContext.drop(AVPItemDrops.XENO_FEET);
         itemDropContext.drop(AVPItemDrops.XENO_HELM);
         itemDropContext.drop(AVPItemDrops.XENO_LEGS);
         itemDropContext.drop(AVPItemDrops.XENO_TORSO);
 
-        if (damageSource == AVPDamageSources.WRISTBRACER) {
-            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_XENO_DRONE, 25);
-            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_XENO_WARRIOR, 25);
-        } else {
-            itemDropContext.drop(AVPItemDrops.SKULL_XENO_DRONE);
-            itemDropContext.drop(AVPItemDrops.SKULL_XENO_WARRIOR);
-        }
+        dropSkull(damageSource, itemDropContext);
+        dropJelly(itemDropContext);
+    }
 
-        int adjustedLevel = this.getJellyLevel() / 4;
+    protected void dropJelly(ItemDropContext itemDropContext) {
+        itemDropContext.dropWithAmount(AVPItemDrops.ROYAL_JELLY, this.getJellyLevel());
+    }
 
-        if (!this.jellyLimitOverride) {
-            adjustedLevel = Math.min(adjustedLevel, 64);
-        }
+    protected void dropSkull(DamageSource damageSource, ItemDropContext itemDropContext) {}
 
-        itemDropContext.dropWithAmount(AVPItemDrops.ROYAL_JELLY, adjustedLevel);
+    // Speeds up xenomorphs in water.
+    @Override
+    protected float getWaterSlowDown() {
+        return 0.9F;
     }
 }

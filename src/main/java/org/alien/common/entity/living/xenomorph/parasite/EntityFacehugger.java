@@ -3,7 +3,6 @@ package org.alien.common.entity.living.xenomorph.parasite;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.SoundEvent;
@@ -62,19 +61,6 @@ public class EntityFacehugger extends EntityParasitoid implements Parasitoid
     
     @Override
     protected void despawnEntity() { /* Do Nothing */ }
-
-    @Override
-    protected void onPickupJelly(EntityItem entityItem)
-    {
-        super.onPickupJelly(entityItem);
-
-        refertilizationJelly += entityItem.getItem().getCount();
-
-        if (refertilizationJelly >= (5 + this.rand.nextInt(5)))
-        {
-            this.setFertility(true);
-        }
-    }
 
     @Override
     protected SoundEvent getDeathSound()

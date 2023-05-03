@@ -20,6 +20,8 @@ public class InputHandlerPlasmaCannon implements InputHandler
     @Override
     public void handleInput()
     {
+        if (ClientGame.instance.minecraft().player.isSpectator()) return;
+
         if (ItemWristbracer.hasPlasmaCannon(ItemWristbracer.wristbracer(ClientGame.instance.minecraft().player)))
         {
             float potentialChargeSize = Math.min(this.chargeSize, this.getMaxChargeSize());
