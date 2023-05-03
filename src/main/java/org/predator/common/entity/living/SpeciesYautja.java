@@ -5,6 +5,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
@@ -25,6 +26,7 @@ import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 import org.predator.client.PredatorSounds;
+import org.predator.common.entity.PredatorCreatureTypes;
 import org.predator.common.entity.ai.brain.YautjaBrain;
 import org.predator.common.entity.living.helper.YautjaCloakHelper;
 import org.predator.common.entity.state.CloakState;
@@ -56,6 +58,17 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     @Override
     protected boolean isValidLightLevel() {
         return true;
+    }
+
+    @Override
+    public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount) {
+        // If not using custom creature type, fall back on default super behavior.
+        if (PredatorCreatureTypes.getPredatorCreatureType() == EnumCreatureType.MONSTER)
+            return super.isCreatureType(type, forSpawnCount);
+
+        // Otherwise, override for the predator creature type. If we do not do this, the superclass will check against assignable
+        // classes on the creature
+        return type == PredatorCreatureTypes.getPredatorCreatureType();
     }
 
     public float getBlockPathWeight(BlockPos pos) {
