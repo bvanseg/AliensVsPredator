@@ -107,6 +107,7 @@ public class FollowSquadLeaderBrainTask extends AbstractEntityBrainTask {
         EntityMarine marine = (EntityMarine) ctx.getEntity();
         EntityLivingBase owner = getSquadLeader(marine);
 
+        if (owner == null) return;
         if (marine.getLeashed() || marine.isRiding()) return;
         if (marine.getDistanceSq(owner) < 1440.0D) return;
 
