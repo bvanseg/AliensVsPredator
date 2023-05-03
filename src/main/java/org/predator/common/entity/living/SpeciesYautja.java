@@ -18,7 +18,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.Host;
 import org.avp.common.AVPDamageSources;
@@ -226,6 +225,19 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         itemDropContext.drop(AVPItemDrops.SHURIKEN);
         itemDropContext.drop(AVPItemDrops.SILICON);
         itemDropContext.drop(AVPItemDrops.WRISTBRACER_BLADES);
+        itemDropContext.drop(AVPItemDrops.SPEAR);
+        itemDropContext.drop(AVPItemDrops.SMART_DISC);
+
+        itemDropContext.drop(AVPItemDrops.CELTIC_AXE);
+        itemDropContext.drop(AVPItemDrops.CELTIC_HOE);
+        itemDropContext.drop(AVPItemDrops.CELTIC_PICKAXE);
+        itemDropContext.drop(AVPItemDrops.CELTIC_SHOVEL);
+        itemDropContext.drop(AVPItemDrops.CELTIC_SWORD);
+
+        itemDropContext.drop(AVPItemDrops.CELTIC_BIOMASK);
+        itemDropContext.drop(AVPItemDrops.CELTIC_CHESTPLATE);
+        itemDropContext.drop(AVPItemDrops.CELTIC_LEGGINGS);
+        itemDropContext.drop(AVPItemDrops.CELTIC_BOOTS);
         
         dropBiomaskAndSkull(itemDropContext, damagesource);
     }
