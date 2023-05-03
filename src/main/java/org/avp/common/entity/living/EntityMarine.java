@@ -36,6 +36,7 @@ import org.avp.common.network.packet.client.PacketSyncEntityInventory;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
+import org.lib.common.EntityAccessor;
 import org.lib.common.FuncUtil;
 import org.lib.common.InventoryHolder;
 import org.lib.common.inventory.CachedInventoryHandler;
@@ -340,8 +341,15 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         return this.dataManager.get(RANK);
     }
 
-    public Optional<UUID> getSquadLeaderID() {
+    private Optional<UUID> getSquadLeaderID() {
         return this.getDataManager().get(SQUAD_LEADER_UNIQUE_ID);
+    }
+
+    public Optional<EntityLivingBase> getSquadLeader() {
+        if (!this.getSquadLeaderID().isPresent()) return Optional.absent();
+        Optional<Entity> leader = Optional.fromJavaUtil(EntityAccessor.instance.getEntityByUUID(this.getSquadLeaderID().get()));
+        if (!leader.isPresent() || !(leader.get() instanceof EntityLivingBase)) return Optional.absent();
+        return Optional.fromNullable((EntityLivingBase) leader.get());
     }
 
     public int getLoadedAmmunition() {
