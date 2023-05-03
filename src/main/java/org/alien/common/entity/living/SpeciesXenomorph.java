@@ -60,13 +60,7 @@ public abstract class SpeciesXenomorph extends SpeciesAlien implements HiveMembe
     }
 
     protected void dropJelly(ItemDropContext itemDropContext) {
-        int adjustedLevel = this.getJellyLevel() / 4;
-
-        if (!this.jellyLimitOverride) {
-            adjustedLevel = Math.min(adjustedLevel, 64);
-        }
-
-        itemDropContext.dropWithAmount(AVPItemDrops.ROYAL_JELLY, adjustedLevel);
+        itemDropContext.dropWithAmount(AVPItemDrops.ROYAL_JELLY, this.getJellyLevel());
     }
 
     protected void dropSkull(DamageSource damageSource, ItemDropContext itemDropContext) {}

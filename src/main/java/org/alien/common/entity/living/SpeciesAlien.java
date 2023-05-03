@@ -103,7 +103,7 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
     @Override
     public void onKillEntity(EntityLivingBase entity) {
         super.onKillEntity(entity);
-        this.setJellyLevel(this.getJellyLevel() + 250);
+        this.setJellyLevel(this.getJellyLevel() + 25);
     }
 
     @Override

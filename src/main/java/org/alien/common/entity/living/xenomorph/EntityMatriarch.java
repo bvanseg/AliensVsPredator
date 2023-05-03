@@ -32,9 +32,6 @@ public class EntityMatriarch extends SpeciesXenomorph implements HiveOwner
 {
     public static final float                 OVIPOSITOR_THRESHOLD_SIZE          = 1.3F;
     public static final float                 OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE = 0.00225F;
-    public static final int                   OVIPOSITOR_UNHEALTHY_THRESHOLD     = 50;
-    public static final int                   OVIPOSITOR_JELLYLEVEL_THRESHOLD    = 1000;
-    public static final int                   OVIPOSITOR_JELLYLEVEL_GROWTH_USE   = 1;
 
     private static final DataParameter<Float> OVIPOSITOR_SIZE = EntityDataManager.createKey(EntityMatriarch.class, DataSerializers.FLOAT);
 
