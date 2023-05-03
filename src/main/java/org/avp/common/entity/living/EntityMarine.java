@@ -27,9 +27,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import org.avp.client.AVPSounds;
-import org.avp.common.item.init.AVPItems;
 import org.avp.common.AVPNetworking;
+import org.avp.common.entity.MarineCreatureTypes;
 import org.avp.common.entity.ai.brain.MarineBrain;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.network.packet.client.PacketSyncEntityInventory;
 import org.avp.common.world.MarineTypes;
@@ -113,6 +114,17 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         this.getDataManager().register(NAME, MarineDecorator.generateRandomMarineName(this));
         this.getDataManager().register(RANK, MarineDecorator.generateRandomMarineRank(this));
         this.getDataManager().register(SQUAD_LEADER_UNIQUE_ID, Optional.absent());
+    }
+
+    @Override
+    public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount) {
+        // If not using custom creature type, fall back on default super behavior.
+        if (MarineCreatureTypes.getMarineCreatureType() == EnumCreatureType.CREATURE)
+            return super.isCreatureType(type, forSpawnCount);
+
+        // Otherwise, override for the marine creature type. If we do not do this, the superclass will check against assignable
+        // classes on the creature
+        return type == MarineCreatureTypes.getMarineCreatureType();
     }
 
     @Nullable
