@@ -137,7 +137,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
                 new InvalidateAttackTargetBrainTask(target ->
                         !this.getEntity().hasLoadedAmmunition() || // Out of ammo
                                 this.getEntity().getDistanceSq(target) < 4 || // Target too close
-                                this.getEntity().getSquadLeaderID().isPresent() && target.getUniqueID().equals(this.getEntity().getSquadLeaderID().get()) // Do not attack squad leader.
+                                this.getEntity().getSquadLeader().isPresent() && target.getUniqueID().equals(this.getEntity().getSquadLeader().get()) // Do not attack squad leader.
                 )
         );
         this.addTask(
@@ -163,7 +163,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     public void update() {
         super.update();
 
-        if (this.getEntity().getSquadLeaderID().isPresent()) {
+        if (this.getEntity().getSquadLeader().isPresent()) {
             this.enableProfiles(SQUAD_BEHAVIOR);
             this.disableProfiles(WOLF_BEHAVIOR);
         } else {
