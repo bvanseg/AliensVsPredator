@@ -17,6 +17,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
+import org.alien.JellyConstants;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.xenomorph.MatriarchBrain;
@@ -198,7 +199,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements HiveOwner
     @Override
     protected int getJellyLevelStart()
     {
-        return 1000;
+        return JellyConstants.RAW_YIELD * 4;
     }
     
     @Override
