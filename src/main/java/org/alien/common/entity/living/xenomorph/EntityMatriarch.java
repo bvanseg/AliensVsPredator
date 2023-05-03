@@ -42,7 +42,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements HiveOwner
     {
         super(world);
         this.setSize(2.0F, 5.0F);
-        this.experienceValue = 40000;
+        this.experienceValue = 4000;
         this.jumpMovementFactor = 0.2F;
         this.hurtResistantTime = 0;
         this.ignoreFrustumCheck = true;
