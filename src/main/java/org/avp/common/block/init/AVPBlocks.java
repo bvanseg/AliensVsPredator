@@ -80,6 +80,9 @@ public class AVPBlocks implements IPreInitEvent
     public static final Block RAW_COPPER_BLOCK = new BasicBlock("raw_copper_block", AVPOreBlocks.COPPER_PROPS);
     public static final Block COPPER_BLOCK = new BasicBlock("copper_block", new BlockProperties(Material.IRON).setHardness(4.0F).setResistance(10F).setSoundType(SoundType.METAL).setCreativeTab(AVPCreativeTabs.MAIN));
 
+    public static final Block RAW_BAUXITE_BLOCK = new BasicBlock("raw_bauxite_block", AVPOreBlocks.COPPER_PROPS);
+    public static final Block ALUMINUM_BLOCK = new BasicBlock("aluminum_block", new BlockProperties(Material.IRON).setHardness(4.0F).setResistance(10F).setSoundType(SoundType.METAL).setCreativeTab(AVPCreativeTabs.MAIN));
+
     @Override
     public void pre(FMLPreInitializationEvent event) {
         AVP.instance.getLogger().info("Registering Blocks");
@@ -135,5 +138,8 @@ public class AVPBlocks implements IPreInitEvent
 
         BlockRegistryUtil.registerStandardBlock(RAW_COPPER_BLOCK);
         BlockRegistryUtil.registerStandardBlock(COPPER_BLOCK);
+
+        BlockRegistryUtil.registerStandardBlock(RAW_BAUXITE_BLOCK);
+        BlockRegistryUtil.registerStandardBlock(ALUMINUM_BLOCK);
     }
 }

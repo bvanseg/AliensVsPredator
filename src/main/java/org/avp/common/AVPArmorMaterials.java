@@ -12,6 +12,7 @@ public class AVPArmorMaterials {
 
     private AVPArmorMaterials() {}
 
+    public static final ItemArmor.ArmorMaterial ALUMINUM = EnumHelper.addArmorMaterial("aluminum", "items.aluminum", 14, new int[]{2, 5, 5, 2}, 10, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
     public static final ItemArmor.ArmorMaterial COPPER = EnumHelper.addArmorMaterial("copper", "items.copper", 12, new int[]{1, 4, 5, 2}, 11, SoundEvents.ITEM_ARMOR_EQUIP_IRON, 0.0F);
 
     public static final ItemArmor.ArmorMaterial CELTIC = EnumHelper.addArmorMaterial("celtic", "items.celtic", 34, new int[] { 4, 7, 5, 3 }, 20, null, 5);
