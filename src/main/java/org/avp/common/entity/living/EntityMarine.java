@@ -67,7 +67,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     public EntityMarine(World world)
     {
         super(world);
-        this.setSize(0.75F, 2F);
+        this.setSize(0.75F, 1.95F);
         this.experienceValue = 5;
         this.inventory = new InventoryBasic("Items", false, 9 * 3);
     }
