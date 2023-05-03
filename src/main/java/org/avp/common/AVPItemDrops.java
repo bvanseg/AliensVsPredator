@@ -32,7 +32,7 @@ public class AVPItemDrops
     public static final ItemDrop SKULL_AETHON = new ItemDrop.Builder(AlienSkullBlocks.HEAD_AETHON).setDropWeight(1).build();
     public static final ItemDrop HEAD_GIGER = new ItemDrop.Builder(AlienSkullBlocks.HEAD_GIGER_ALIEN).setDropWeight(1).build();
 
-    public static final ItemDrop PREDATOR_ARTIFACT = new ItemDrop.Builder(PredatorItems.ITEM_ARTIFACT_TECH).setDropWeight(25).build();
+    public static final ItemDrop PREDATOR_ARTIFACT = new ItemDrop.Builder(PredatorItems.ITEM_ARTIFACT_TECH).setMinimumDropAmount(1).setMaximumDropAmount(2).setDropWeight(25).build();
     public static final ItemDrop PLASMACANNON = new ItemDrop.Builder(PredatorItems.ITEM_PLASMA_CANNON).setDropWeight(2).build();
     public static final ItemDrop WRISTBRACER = new ItemDrop.Builder(PredatorItems.ITEM_WRISTBRACER).setDropWeight(2).build();
     public static final ItemDrop SPEAR = new ItemDrop.Builder(PredatorItems.ITEM_SPEAR).setDropWeight(2).build();
