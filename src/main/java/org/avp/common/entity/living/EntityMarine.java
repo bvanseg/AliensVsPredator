@@ -199,8 +199,11 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
                 // Allows the player to dye the marine's camo whatever color they'd like.
                 if (heldItem == Items.DYE)
                 {
-                    int dyeColor = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorValue();
-                    this.getDataManager().set(CAMO_COLOR, dyeColor << 8);
+                    float[] dyeColorValues = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorComponentValues();
+                    int r = (int) (dyeColorValues[0] * 255);
+                    int g = (int) (dyeColorValues[1] * 255);
+                    int b = (int) (dyeColorValues[2] * 255);
+                    this.getDataManager().set(CAMO_COLOR, (r << 24) | (g << 16) | (b << 8));
 
                     if (!Predicates.IS_IMMORTAL_PLAYER.test(player)) {
                         playerInventorySnapshot.consumeItem(Items.DYE);
