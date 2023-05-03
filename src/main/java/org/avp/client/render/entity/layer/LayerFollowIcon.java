@@ -9,9 +9,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
-import org.avp.common.item.init.AVPArmorItems;
-import org.avp.common.item.init.AVPItems;
 import org.avp.common.entity.living.EntityMarine;
+import org.avp.common.item.init.AVPArmorItems;
 import org.lib.common.inventory.InventorySnapshot;
 
 /**
@@ -24,7 +23,7 @@ public class LayerFollowIcon implements LayerRenderer<EntityMarine> {
 
     @Override
     public void doRenderLayer(EntityMarine entityMarine, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        if (entityMarine.getSquadLeaderID().isPresent() && entityMarine.getSquadLeaderID().get().equals(ClientGame.instance.minecraft().player.getUniqueID())) {
+        if (entityMarine.getSquadLeader().isPresent() && entityMarine.getSquadLeader().get().getUniqueID().equals(ClientGame.instance.minecraft().player.getUniqueID())) {
             GlStateManager.pushMatrix();
             GlStateManager.translate(0.0F, -0.9F, 0.0F);
             GlStateManager.rotate(-180.0F, 1.0F, 0.0F, 0.0F);

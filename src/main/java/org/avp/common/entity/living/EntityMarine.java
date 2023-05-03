@@ -27,14 +27,16 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.registry.IEntityAdditionalSpawnData;
 import org.avp.client.AVPSounds;
-import org.avp.common.item.init.AVPItems;
 import org.avp.common.AVPNetworking;
+import org.avp.common.entity.MarineCreatureTypes;
 import org.avp.common.entity.ai.brain.MarineBrain;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.network.packet.client.PacketSyncEntityInventory;
 import org.avp.common.world.MarineTypes;
 import org.lib.brain.Brainiac;
 import org.lib.brain.impl.BrainMemoryKeys;
+import org.lib.common.EntityAccessor;
 import org.lib.common.FuncUtil;
 import org.lib.common.InventoryHolder;
 import org.lib.common.inventory.CachedInventoryHandler;
@@ -115,6 +117,17 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         this.getDataManager().register(SQUAD_LEADER_UNIQUE_ID, Optional.absent());
     }
 
+    @Override
+    public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount) {
+        // If not using custom creature type, fall back on default super behavior.
+        if (MarineCreatureTypes.getMarineCreatureType() == EnumCreatureType.CREATURE)
+            return super.isCreatureType(type, forSpawnCount);
+
+        // Otherwise, override for the marine creature type. If we do not do this, the superclass will check against assignable
+        // classes on the creature
+        return type == MarineCreatureTypes.getMarineCreatureType();
+    }
+
     @Nullable
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
@@ -186,8 +199,11 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
                 // Allows the player to dye the marine's camo whatever color they'd like.
                 if (heldItem == Items.DYE)
                 {
-                    int dyeColor = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorValue();
-                    this.getDataManager().set(CAMO_COLOR, dyeColor << 8);
+                    float[] dyeColorValues = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorComponentValues();
+                    int r = (int) (dyeColorValues[0] * 255);
+                    int g = (int) (dyeColorValues[1] * 255);
+                    int b = (int) (dyeColorValues[2] * 255);
+                    this.getDataManager().set(CAMO_COLOR, (r << 24) | (g << 16) | (b << 8));
 
                     if (!Predicates.IS_IMMORTAL_PLAYER.test(player)) {
                         playerInventorySnapshot.consumeItem(Items.DYE);
@@ -328,8 +344,15 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         return this.dataManager.get(RANK);
     }
 
-    public Optional<UUID> getSquadLeaderID() {
+    private Optional<UUID> getSquadLeaderID() {
         return this.getDataManager().get(SQUAD_LEADER_UNIQUE_ID);
+    }
+
+    public Optional<EntityLivingBase> getSquadLeader() {
+        if (!this.getSquadLeaderID().isPresent()) return Optional.absent();
+        Optional<Entity> leader = Optional.fromJavaUtil(EntityAccessor.instance.getEntityByUUID(this.getSquadLeaderID().get()));
+        if (!leader.isPresent() || !(leader.get() instanceof EntityLivingBase)) return Optional.absent();
+        return Optional.fromNullable((EntityLivingBase) leader.get());
     }
 
     public int getLoadedAmmunition() {
