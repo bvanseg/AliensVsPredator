@@ -50,6 +50,8 @@ public class PredatorResources
 
     public final Texture CELTIC1                  = new Texture(AVP.Properties.ID, "textures/armor/celtic_1.png");
     public final Texture CELTIC2                  = new Texture(AVP.Properties.ID, "textures/armor/celtic_2.png");
+    public final Texture COPPER1                  = new Texture(AVP.Properties.ID, "textures/armor/copper_1.png");
+    public final Texture COPPER2                  = new Texture(AVP.Properties.ID, "textures/armor/copper_2.png");
     public final Texture DISC                     = new Texture(AVP.Properties.ID, "textures/misc/disc.png");
     public final Texture SHURIKEN                 = new Texture(AVP.Properties.ID, "textures/misc/shuriken.png");
     public final Texture BLUR_CELTIC_HUD          = new Texture(AVP.Properties.ID, "textures/misc/celtic-helm-overlay.png");

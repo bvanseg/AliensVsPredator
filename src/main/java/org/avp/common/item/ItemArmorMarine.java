@@ -13,7 +13,6 @@ import net.minecraft.world.World;
 import org.avp.client.Resources;
 import org.avp.common.AVPArmorMaterials;
 import org.avp.common.item.init.AVPArmorItems;
-import org.avp.common.item.init.AVPItems;
 
 public class ItemArmorMarine extends ItemArmor
 {
