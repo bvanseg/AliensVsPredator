@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.predator.client.render.layer.LayerYautjaCloakStaticArc;
 import org.predator.client.render.layer.LayerYautjaCloakStaticOverlay;
 import org.predator.common.entity.living.SpeciesYautja;
+import org.predator.common.entity.living.helper.YautjaCloakHelper;
 import org.predator.common.entity.state.CloakState;
 
 public class RenderYautja<T extends SpeciesYautja, MODEL extends Model> extends RenderLivingWrapper<T, MODEL> {
@@ -24,7 +25,7 @@ public class RenderYautja<T extends SpeciesYautja, MODEL extends Model> extends 
 
         if (isRenderableCloakState) {
             GlStateManager.alphaFunc(516, 0.003921569F);
-            float transparency = 1F - (entity.cloakProgress / (float)SpeciesYautja.MAX_CLOAK) + 0.05F;
+            float transparency = 1F - (entity.cloakProgress / (float) YautjaCloakHelper.MAX_CLOAK) + 0.05F;
             GlStateManager.color(1F, 1F, 1F, transparency);
             GlStateManager.enableNormalize();
             GlStateManager.enableBlend();
