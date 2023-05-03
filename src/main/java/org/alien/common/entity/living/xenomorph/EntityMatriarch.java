@@ -23,6 +23,8 @@ import org.alien.common.entity.ai.brain.xenomorph.MatriarchBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.AlienHive;
 import org.alien.common.world.hive.HiveOwner;
+import org.avp.common.AVPItemDrops;
+import org.lib.common.inventory.ItemDropContext;
 
 import java.util.UUID;
 
@@ -242,4 +244,8 @@ public class EntityMatriarch extends SpeciesXenomorph implements HiveOwner
         this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 2F, 0.1F);
     }
 
+    @Override
+    protected void dropSkull(DamageSource damageSource, ItemDropContext itemDropContext) {
+        itemDropContext.drop(AVPItemDrops.SKULL_XENO_MATRIARCH);
+    }
 }

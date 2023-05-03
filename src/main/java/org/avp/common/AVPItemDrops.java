@@ -27,6 +27,7 @@ public class AVPItemDrops
     public static final ItemDrop SKULL_SPACEJOCKEY = new ItemDrop.Builder(AlienSkullBlocks.SKULL_JOCKEY).setDropWeight(1).build();
     public static final ItemDrop SKULL_XENO_DRONE = new ItemDrop.Builder(AlienSkullBlocks.SKULL_XENO).setDropWeight(1).build();
     public static final ItemDrop SKULL_XENO_WARRIOR = new ItemDrop.Builder(AlienSkullBlocks.SKULL_XENO_WARRIOR).setDropWeight(1).build();
+    public static final ItemDrop SKULL_XENO_MATRIARCH = new ItemDrop.Builder(AlienSkullBlocks.SKULL_MATRIARCH).setDropWeight(100).build();
     public static final ItemDrop SKULL_PREDATOR = new ItemDrop.Builder(PredatorBlocks.SKULL_YAUTJA).setDropWeight(1).build();
     public static final ItemDrop SKULL_AETHON = new ItemDrop.Builder(AlienSkullBlocks.HEAD_AETHON).setDropWeight(1).build();
     public static final ItemDrop HEAD_GIGER = new ItemDrop.Builder(AlienSkullBlocks.HEAD_GIGER_ALIEN).setDropWeight(1).build();

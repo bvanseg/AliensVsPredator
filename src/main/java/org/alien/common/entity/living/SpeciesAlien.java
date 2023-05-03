@@ -7,7 +7,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.nbt.NBTTagCompound;
@@ -134,11 +133,6 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
                 this.spawnAcidPool();
             }
         }
-    }
-
-    protected void onPickupJelly(EntityItem entityItem) {
-        this.setJellyLevel(this.getJellyLevel() + (entityItem.getItem().getCount() * 100));
-        entityItem.setDead();
     }
 
     protected void updateAnimations() {
