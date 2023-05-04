@@ -79,19 +79,19 @@ public class FollowSquadLeaderBrainTask extends AbstractEntityBrainTask {
     {
         EntityMarine marine = (EntityMarine) ctx.getEntity();
 
-        boolean hasPath = !marine.getNavigator().noPath();
-
-        // If the marine loses their pathing, we want to attempt a teleport.
-        if (!hasPath) {
-            this.attemptToTeleportToSquadLeader();
-        }
-
         Optional<EntityLivingBase> squadLeaderOptional = marine.getSquadLeader().toJavaUtil();
 
         if (!squadLeaderOptional.isPresent())
             return false;
 
         EntityLivingBase squadLeader = squadLeaderOptional.get();
+
+        boolean hasPath = !marine.getNavigator().noPath();
+
+        // If the marine loses their pathing, we want to attempt a teleport.
+        if (!hasPath) {
+            this.attemptToTeleportToSquadLeader(squadLeader);
+        }
 
         return marine.getDistanceSq(squadLeader) > this.maxDist * this.maxDist;
     }
@@ -108,13 +108,12 @@ public class FollowSquadLeaderBrainTask extends AbstractEntityBrainTask {
             this.timeToRecalcPath = 10;
 
             if (!marine.getNavigator().tryMoveToEntityLiving(squadLeader, this.followSpeed))
-                this.attemptToTeleportToSquadLeader();
+                this.attemptToTeleportToSquadLeader(squadLeader);
         }
     }
 
-    private void attemptToTeleportToSquadLeader() {
+    private void attemptToTeleportToSquadLeader(EntityLivingBase owner) {
         EntityMarine marine = (EntityMarine) ctx.getEntity();
-        EntityLivingBase owner = marine.getSquadLeader().get();
 
         if (marine.getLeashed() || marine.isRiding()) return;
         if (marine.getDistanceSq(owner) < 1440.0D) return;
