@@ -11,9 +11,9 @@ import net.minecraft.client.renderer.entity.RenderLivingBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-import org.avp.client.render.tile.RenderMedpod;
 import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.common.entity.EntityMedpod;
+import org.power.client.render.tile.RenderMedpod;
+import org.power.common.entity.EntityMedpod;
 
 public class RenderLivingHook
 {

@@ -10,6 +10,7 @@ import org.avp.common.AVPCreativeTabs;
 import org.avp.common.block.*;
 import org.avp.common.item.supply.chute.SupplyChuteType;
 import org.lib.common.registry.BlockRegistryUtil;
+import org.power.common.block.*;
 
 /**
  * @author Ri5ux

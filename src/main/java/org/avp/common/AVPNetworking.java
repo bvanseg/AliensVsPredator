@@ -9,6 +9,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.avp.AVP;
 import org.avp.common.network.packet.client.*;
 import org.avp.common.network.packet.server.*;
+import org.power.common.network.packet.client.PacketBlastdoorClient;
+import org.power.common.network.packet.client.PacketOpenBlastdoor;
+import org.power.common.network.packet.client.PacketSyncRF;
+import org.power.common.network.packet.client.PacketTurretSync;
+import org.power.common.network.packet.server.*;
 import org.weapon.common.network.packet.server.PacketLaunchGrenade;
 import org.weapon.common.network.packet.server.PacketReloadFirearm;
 

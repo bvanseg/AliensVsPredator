@@ -6,7 +6,7 @@ import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderLivingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import org.avp.common.entity.EntityMedpod;
+import org.power.common.entity.EntityMedpod;
 import org.predator.client.render.RenderPlayerPlasmaCannon;
 
 /**

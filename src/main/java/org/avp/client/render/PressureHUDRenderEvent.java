@@ -32,12 +32,11 @@ import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.dimension.varda.WorldProviderVarda;
 import org.avp.client.Resources;
-import org.avp.common.item.init.AVPArmorItems;
-import org.avp.common.item.init.AVPItems;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.entity.living.EntityMarine;
-import org.avp.common.tile.TileEntityPowercell;
+import org.avp.common.item.init.AVPArmorItems;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
+import org.power.common.tile.TileEntityPowercell;
 import org.predator.common.tile.TileEntityStasisMechanism;
 
 import static org.lwjgl.opengl.GL11.*;
