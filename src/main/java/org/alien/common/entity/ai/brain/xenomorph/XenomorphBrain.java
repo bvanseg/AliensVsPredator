@@ -5,7 +5,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBreakDoor;
 import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathNavigateGround;
-import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.AlienBrain;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
