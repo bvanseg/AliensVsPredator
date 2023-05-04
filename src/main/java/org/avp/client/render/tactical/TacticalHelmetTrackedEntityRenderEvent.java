@@ -17,7 +17,6 @@ import org.alien.common.world.capability.Organism;
 import org.alien.common.world.capability.OrganismImpl;
 import org.avp.client.Resources;
 import org.avp.common.item.init.AVPArmorItems;
-import org.avp.common.item.init.AVPItems;
 import org.avp.common.world.capability.SpecialPlayer;
 import org.lwjgl.opengl.GL11;
 

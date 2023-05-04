@@ -2,8 +2,8 @@ package org.avp.common.block;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
-import org.avp.common.item.init.AVPItems;
 import org.avp.common.block.init.AVPOreBlocks;
+import org.avp.common.item.init.AVPItems;
 import org.lib.common.block.BasicBlock;
 import org.lib.common.block.BlockProperties;
 
