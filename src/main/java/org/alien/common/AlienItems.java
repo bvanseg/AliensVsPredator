@@ -25,6 +25,7 @@ import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.alien.common.item.ItemArmorXeno;
 import org.alien.common.item.ItemSporePod;
+import org.avp.common.AVPArmorMaterials;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.AVPToolMaterials;
 import org.avp.common.item.ItemEntitySummoner;
@@ -151,6 +152,9 @@ public class AlienItems implements IPreInitEvent {
         ItemRegistryUtil.registerItem(SUMMONER_URSUIDAE, true);
         ItemRegistryUtil.registerItem(SUMMONER_VARDA_MONKEY, true);
         ItemRegistryUtil.registerItem(SUMMONER_YAUTJA_MUTANT, true);
+
+        /* Repairs */
+        AVPArmorMaterials.CHITIN.setRepairItem(new ItemStack(AlienItems.ITEM_ROYAL_JELLY));
 
         AVPToolMaterials.CHITIN.setRepairItem(new ItemStack(AlienItems.ITEM_ROYAL_JELLY));
     }
