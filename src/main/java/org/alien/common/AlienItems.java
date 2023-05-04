@@ -5,6 +5,7 @@ import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.alien.common.entity.living.EntityAethon;
 import org.alien.common.entity.living.EntityYautjaMutant;
@@ -25,6 +26,7 @@ import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.alien.common.item.ItemArmorXeno;
 import org.alien.common.item.ItemSporePod;
 import org.avp.common.AVPCreativeTabs;
+import org.avp.common.AVPToolMaterials;
 import org.avp.common.item.ItemEntitySummoner;
 import org.lib.common.registry.ItemRegistryUtil;
 
@@ -149,5 +151,7 @@ public class AlienItems implements IPreInitEvent {
         ItemRegistryUtil.registerItem(SUMMONER_URSUIDAE, true);
         ItemRegistryUtil.registerItem(SUMMONER_VARDA_MONKEY, true);
         ItemRegistryUtil.registerItem(SUMMONER_YAUTJA_MUTANT, true);
+
+        AVPToolMaterials.CHITIN.setRepairItem(new ItemStack(AlienItems.ITEM_ROYAL_JELLY));
     }
 }
