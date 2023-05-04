@@ -77,5 +77,7 @@ public class PredatorItems implements IPreInitEvent {
 
         /* Repairs */
         AVPArmorMaterials.CELTIC.setRepairItem(new ItemStack(PredatorItems.ITEM_ARTIFACT_TECH));
+
+        AVPToolMaterials.CELTIC.setRepairItem(new ItemStack(PredatorItems.ITEM_ARTIFACT_TECH));
     }
 }

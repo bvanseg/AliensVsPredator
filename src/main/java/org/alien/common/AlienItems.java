@@ -27,6 +27,7 @@ import org.alien.common.item.ItemArmorXeno;
 import org.alien.common.item.ItemSporePod;
 import org.avp.common.AVPArmorMaterials;
 import org.avp.common.AVPCreativeTabs;
+import org.avp.common.AVPToolMaterials;
 import org.avp.common.item.ItemEntitySummoner;
 import org.lib.common.registry.ItemRegistryUtil;
 
@@ -154,5 +155,7 @@ public class AlienItems implements IPreInitEvent {
 
         /* Repairs */
         AVPArmorMaterials.CHITIN.setRepairItem(new ItemStack(AlienItems.ITEM_ROYAL_JELLY));
+
+        AVPToolMaterials.CHITIN.setRepairItem(new ItemStack(AlienItems.ITEM_ROYAL_JELLY));
     }
 }
