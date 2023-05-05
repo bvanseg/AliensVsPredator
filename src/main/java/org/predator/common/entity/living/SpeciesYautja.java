@@ -268,11 +268,6 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         }
     }
 
-    @Override
-    protected boolean canDespawn() {
-        return false;
-    }
-
     private static final String WEARING_MASK_NBT_KEY = "WearingMask";
     private static final String CLOAK_STATE_NBT_KEY = "CloakState";
     private static final String CLOAK_PROGRESS_NBT_KEY = "CloakProgress";
