@@ -78,6 +78,9 @@ public class AvoidNearestAvoidTargetBrainTask extends AbstractEntityBrainTask {
 
 		Entity avoidEntity = nearestAvoidTargetOptional.get();
 
+		// Avoid targets should be visible to the entity.
+		if (!entity.canEntityBeSeen(avoidEntity)) return false;
+
 		// Find random position away from avoid target.
 		Vec3d vec3d = RandomPositionGenerator.findRandomTargetBlockAwayFrom(entityCreature, (int)this.getAvoidDistance(avoidEntity), 7, avoidEntity.getPositionVector());
 		if (vec3d == null)
