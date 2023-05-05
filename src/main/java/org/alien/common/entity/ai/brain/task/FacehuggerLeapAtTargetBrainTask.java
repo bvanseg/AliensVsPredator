@@ -3,7 +3,7 @@ package org.alien.common.entity.ai.brain.task;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import org.alien.common.entity.ai.helper.FacehuggerLeapHelper;
+import org.alien.common.entity.ai.helper.LeapHelper;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
@@ -49,6 +49,6 @@ public class FacehuggerLeapAtTargetBrainTask extends AbstractEntityBrainTask {
 	protected void startExecuting() {
         EntityLiving leaper = ctx.getEntity();
         EntityLivingBase leapTarget = ctx.getEntity().getAttackTarget();
-        FacehuggerLeapHelper.leapAtTarget(leaper, leapTarget);
+        LeapHelper.leapAtTarget(leaper, leapTarget);
     }
 }
