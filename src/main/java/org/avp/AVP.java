@@ -100,6 +100,9 @@ public class AVP implements IMod
         logger.info("AliensVsPredator Minecraft Mod Copyright © 2012-{} ASX", currentYear);
         logger.info("Initializing...");
 
+        AVPOreDict.registerOres();
+        AVPItemSchematics.registerRecipes();
+
         AVPNetworking.instance.init(event);
         AVPGui.instance.init(event);
         AVPEventHandlers.instance.init(event);

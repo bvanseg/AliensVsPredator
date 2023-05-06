@@ -23,12 +23,12 @@ import org.alien.common.entity.ai.selector.EntitySelectorAcidPool;
 import org.alien.common.item.ItemArmorXeno;
 import org.alien.common.potion.AlienPotions;
 import org.avp.common.AVPDamageSources;
+import org.avp.common.AVPNetworking;
 import org.avp.common.api.blocks.AcidResistant;
 import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.block.init.AVPSlabBlocks;
 import org.avp.common.block.init.AVPStairBlocks;
 import org.avp.common.entity.EntityLiquidPool;
-import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.client.PacketSyncEntitySize;
 
 import java.util.ArrayList;

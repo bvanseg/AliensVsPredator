@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.block.init.AVPTileEntityBlocks;
-import org.avp.common.tile.TileEntityCryostasisTube;
+import org.power.common.tile.TileEntityCryostasisTube;
 import org.weapon.common.item.firearm.ItemFlamethrower;
 import org.weapon.common.item.firearm.ItemM240IncineratorUnit;
 import org.weapon.common.item.firearm.ItemSevastopolFlamethrower;

@@ -5,11 +5,9 @@ import com.asx.mdx.common.minecraft.item.ItemToolMaterialAxe;
 import com.asx.mdx.common.minecraft.item.ItemToolMaterialPickaxe;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemSpade;
-import net.minecraft.item.ItemSword;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.avp.common.AVPArmorMaterials;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.AVPToolMaterials;
 import org.avp.common.item.ItemEntitySummoner;
@@ -76,5 +74,10 @@ public class PredatorItems implements IPreInitEvent {
 
         /* Experimental */
         ItemRegistryUtil.registerItem(SUMMONER_PREDATOR_HOUND, true);
+
+        /* Repairs */
+        AVPArmorMaterials.CELTIC.setRepairItem(new ItemStack(PredatorItems.ITEM_ARTIFACT_TECH));
+
+        AVPToolMaterials.CELTIC.setRepairItem(new ItemStack(PredatorItems.ITEM_ARTIFACT_TECH));
     }
 }

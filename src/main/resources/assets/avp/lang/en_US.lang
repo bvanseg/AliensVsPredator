@@ -835,6 +835,11 @@ subtitles.entity.chestburster.death=Chestburster dies
 subtitles.entity.chestburster.grow=Chestburster grows
 subtitles.entity.chestburster.burst=Chestburster bursts
 
+subtitles.effects.heartbeat.normal=Heartbeats
+subtitles.effects.heartbeat.elevated=Elevated heartbeats
+subtitles.effects.heartbeat.rapid=Rapid heartbeats
+subtitles.effects.heartbeat.fatal=Fatal heartbeats
+
 subtitles.entity.marine.hurt=Marine hurt
 subtitles.entity.marine.death=Marine dies
 
@@ -904,3 +909,5 @@ subtitles.block.alarm.emergency=Alarm emergency
 subtitles.wristbracer.console.open=Wristbracer opens
 subtitles.wristbracer.console.close=Wristbracer closes
 subtitles.wristbracer.console.interact=Wristbracer button clicks
+
+subtitles.bone.break=Bones cracking

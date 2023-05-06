@@ -204,6 +204,9 @@ public class AVPItems implements IPreInitEvent {
         ItemRegistryUtil.registerItemWithModel(ALUMINUM_CHESTPLATE);
         ItemRegistryUtil.registerItemWithModel(ALUMINUM_LEGGINGS);
         ItemRegistryUtil.registerItemWithModel(ALUMINUM_BOOTS);
+
+        AVPToolMaterials.ALUMINUM.setRepairItem(new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM));
+        AVPToolMaterials.COPPER.setRepairItem(new ItemStack(AVPItems.ITEM_INGOT_COPPER));
     }
 
     private void registerWristbracerCodes() {

@@ -10,7 +10,6 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.avp.client.gui.GuiTacticalHUDSettings;
 import org.avp.common.item.init.AVPArmorItems;
-import org.avp.common.item.init.AVPItems;
 
 public class TacticalHelmetSettingsRenderEvent
 {

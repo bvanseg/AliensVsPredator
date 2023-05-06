@@ -23,6 +23,7 @@ import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.Host;
 import org.avp.common.AVPDamageSources;
 import org.avp.common.AVPItemDrops;
+import org.avp.common.network.AvpDataSerializers;
 import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 import org.predator.client.PredatorSounds;
@@ -35,6 +36,9 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
 {
     private static final DataParameter<Boolean> WEARING_MASK = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> DUCKING = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
+
+    public static final DataParameter<CloakState> CLOAK_STATE = EntityDataManager.createKey(SpeciesYautja.class, AvpDataSerializers.CLOAK_STATE);
+    public static final DataParameter<Integer> CLOAK_PROGRESS = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.VARINT);
 
     public int cloakProgress;
 
@@ -268,11 +272,6 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         }
     }
 
-    @Override
-    protected boolean canDespawn() {
-        return false;
-    }
-
     private static final String WEARING_MASK_NBT_KEY = "WearingMask";
     private static final String CLOAK_STATE_NBT_KEY = "CloakState";
     private static final String CLOAK_PROGRESS_NBT_KEY = "CloakProgress";
@@ -307,11 +306,11 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
 
     public void setCloakState(CloakState cloakState) {
     	if (this.world.isRemote) return;
-        this.getDataManager().set(YautjaCloakHelper.CLOAK_STATE, cloakState);
+        this.getDataManager().set(CLOAK_STATE, cloakState);
     }
 
     public CloakState getCloakState() {
-    	return this.getDataManager().get(YautjaCloakHelper.CLOAK_STATE);
+    	return this.getDataManager().get(CLOAK_STATE);
     }
 
     public void setWearingMask(boolean wearingMask)
