@@ -285,7 +285,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
             this.world.spawnEntity(entityBullet);
             SoundEvent sound = getMarineType().getGunfireSound();
             if (sound != null) {
-                this.playSound(sound, 0.7F, 1F);
+                this.playSound(sound, 1.75F, 1F);
             }
             this.world.spawnParticle(EnumParticleTypes.SMOKE_NORMAL, this.posX, this.posY + this.getEyeHeight(), this.posZ, 1, 1, 1);
         }
