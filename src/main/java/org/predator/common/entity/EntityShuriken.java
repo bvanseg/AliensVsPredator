@@ -56,7 +56,7 @@ public class EntityShuriken extends EntityItemStackProjectile
                 damagesource = AVPDamageSources.causeShurikenDamage(this.shootingEntity);
             }
 
-            if (entity.attackEntityFrom(damagesource, 1))
+            if (entity.attackEntityFrom(damagesource, 6))
             {
                 this.applyEntityHitEffects(entity);
                 this.playHitSound();
