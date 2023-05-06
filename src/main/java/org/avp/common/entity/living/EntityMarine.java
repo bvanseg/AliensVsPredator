@@ -22,6 +22,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -266,18 +267,23 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     }
 
     private void tryChangeSquadLeader(EntityPlayer player) {
+        TextComponentString textString;
+
         if (!this.getSquadLeaderID().isPresent()) {
             this.setSquadLeaderUniqueID(Optional.of(player.getUniqueID()));
-            player.sendMessage(new TextComponentString(String.format("%s is now following you.", this.getMarineName())));
+            textString = new TextComponentString(String.format("%s is now following you.", this.getMarineName()));
         } else {
             UUID squadLeaderID = this.getSquadLeaderID().get();
             if (player.getUniqueID().equals(squadLeaderID)) {
                 this.setSquadLeaderUniqueID(Optional.absent());
-                player.sendMessage(new TextComponentString(String.format("%s is no longer following you.",this.getMarineName())));
+                textString = new TextComponentString(String.format("%s is no longer following you.",this.getMarineName()));
             } else {
-                player.sendMessage(new TextComponentString(String.format("%s is already following another player!",this.getMarineName())));
+                textString = new TextComponentString(String.format("%s is already following another player!",this.getMarineName()));
+                textString.getStyle().setColor(TextFormatting.RED);
             }
         }
+
+        player.sendMessage(textString);
     }
 
     @Override
