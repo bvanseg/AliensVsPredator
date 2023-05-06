@@ -51,6 +51,7 @@ import java.util.UUID;
 public class EntityMarine extends EntityCreature implements IEntityAdditionalSpawnData, InventoryHolder, IMob, IRangedAttackMob, Brainiac<MarineBrain>
 {
 
+    private static final DataParameter<Boolean> GUARDING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> AIMING = EntityDataManager.createKey(EntityMarine.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> TYPE = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
     private static final DataParameter<Integer> SKIN_TONE = EntityDataManager.createKey(EntityMarine.class, DataSerializers.VARINT);
@@ -104,6 +105,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     protected void entityInit()
     {
         super.entityInit();
+        this.getDataManager().register(GUARDING, false);
         this.getDataManager().register(AIMING, false);
 
         int weaponType = MarineDecorator.generateRandomWeaponType(this);
@@ -199,38 +201,64 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
                 // Allows the player to dye the marine's camo whatever color they'd like.
                 if (heldItem == Items.DYE)
                 {
-                    float[] dyeColorValues = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorComponentValues();
-                    int r = (int) (dyeColorValues[0] * 255);
-                    int g = (int) (dyeColorValues[1] * 255);
-                    int b = (int) (dyeColorValues[2] * 255);
-                    this.getDataManager().set(CAMO_COLOR, (r << 24) | (g << 16) | (b << 8));
-
-                    if (!Predicates.IS_IMMORTAL_PLAYER.test(player)) {
-                        playerInventorySnapshot.consumeItem(Items.DYE);
-                    }
+                    this.changeMarineCamoColor(player, hand, playerInventorySnapshot);
                     return super.processInteract(player, hand);
                 }
                 // Allows the player to give marines food or ammo by right-clicking.
-                else if (this.getBrain().itemPredicate.test(heldItem)) {
-                    // Add item to marine's inventory.
-                    this.inventory.addItem(new ItemStack(heldItem, 1));
-                    // Remove item from player's inventory.
-                    if (!Predicates.IS_IMMORTAL_PLAYER.test(player)) {
-                        playerInventorySnapshot.consumeItem(heldItem);
-                    }
-                    // Synchronize marine's inventory.
-                    AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(this, this.inventory));
+                else if (this.getBrain().itemPredicate.test(heldItem))
+                {
+                    this.acceptItemFromPlayer(player, heldItem, playerInventorySnapshot);
+                    return super.processInteract(player, hand);
+                }
+                else if (player.isSneaking() && hand == EnumHand.MAIN_HAND)
+                {
+                    this.toggleGuardMode(player);
                     return super.processInteract(player, hand);
                 }
             }
 
             // If the marine does not have a squad leader already, the interacting player is now the squad leader.
-            if (hand == EnumHand.MAIN_HAND) {
+            if (!this.isGuarding() && hand == EnumHand.MAIN_HAND) {
                 this.tryChangeSquadLeader(player);
             }
         }
 
         return super.processInteract(player, hand);
+    }
+
+    private void toggleGuardMode(EntityPlayer player) {
+        boolean invertedFlag = !this.isGuarding();
+
+        if (invertedFlag) {
+            player.sendMessage(new TextComponentString(String.format("%s is now standing guard.", this.getMarineName())));
+        } else {
+            player.sendMessage(new TextComponentString(String.format("%s is now following you.", this.getMarineName())));
+        }
+
+        this.setGuarding(invertedFlag);
+    }
+
+    private void acceptItemFromPlayer(EntityPlayer player, Item heldItem, InventorySnapshot playerInventorySnapshot) {
+        // Add item to marine's inventory.
+        this.inventory.addItem(new ItemStack(heldItem, 1));
+        // Remove item from player's inventory.
+        if (!Predicates.IS_IMMORTAL_PLAYER.test(player)) {
+            playerInventorySnapshot.consumeItem(heldItem);
+        }
+        // Synchronize marine's inventory.
+        AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(this, this.inventory));
+    }
+
+    private void changeMarineCamoColor(EntityPlayer player, EnumHand hand, InventorySnapshot playerInventorySnapshot) {
+        float[] dyeColorValues = EnumDyeColor.byDyeDamage(player.getHeldItem(hand).getItemDamage()).getColorComponentValues();
+        int r = (int) (dyeColorValues[0] * 255);
+        int g = (int) (dyeColorValues[1] * 255);
+        int b = (int) (dyeColorValues[2] * 255);
+        this.getDataManager().set(CAMO_COLOR, (r << 24) | (g << 16) | (b << 8));
+
+        if (!Predicates.IS_IMMORTAL_PLAYER.test(player)) {
+            playerInventorySnapshot.consumeItem(Items.DYE);
+        }
     }
 
     private boolean isSquadLeader(EntityLivingBase entity) {
@@ -316,6 +344,16 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         return true;
     }
 
+    public boolean isGuarding()
+    {
+        return this.getDataManager().get(GUARDING);
+    }
+
+    public void setGuarding(boolean isGuarding)
+    {
+        this.getDataManager().set(GUARDING, isGuarding);
+    }
+
     public boolean isAiming()
     {
         return this.getDataManager().get(AIMING);
@@ -385,6 +423,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         return !this.getSquadLeaderID().isPresent();
     }
 
+    private static final String GUARDING_NBT_KEY = "Guarding";
     private static final String WEAPON_TYPE_NBT_KEY = "WeaponType";
     private static final String SKIN_TONE_NBT_KEY = "SkinTone";
     private static final String EYE_COLOR_NBT_KEY = "EyeColor";
@@ -405,6 +444,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
+        nbt.setBoolean(GUARDING_NBT_KEY, this.dataManager.get(GUARDING));
         nbt.setInteger(WEAPON_TYPE_NBT_KEY, this.dataManager.get(TYPE));
         nbt.setInteger(SKIN_TONE_NBT_KEY, this.getSkinTone());
         nbt.setInteger(EYE_COLOR_NBT_KEY, this.getEyeColor());
@@ -431,6 +471,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
+        this.dataManager.set(GUARDING, nbt.getBoolean(GUARDING_NBT_KEY));
         this.dataManager.set(TYPE, nbt.getInteger(WEAPON_TYPE_NBT_KEY));
         this.dataManager.set(SKIN_TONE, nbt.getInteger(SKIN_TONE_NBT_KEY));
         this.dataManager.set(EYE_COLOR, nbt.getInteger(EYE_COLOR_NBT_KEY));
