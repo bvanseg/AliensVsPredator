@@ -1,5 +1,6 @@
 package org.avp.common.item.crafting;
 
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.lib.common.inventory.CachedInventoryHandler;
@@ -37,7 +38,21 @@ public class AssemblyResult {
         }
 
         ItemStack resultingItemStack = new ItemStack(assembledItemStack.getItem(), assembledItemStack.getCount() * this.desiredAmount);
-        player.inventory.addItemStackToInventory(resultingItemStack);
+
+        // If we failed to add the item to the player's inventory, drop it on the ground at their feet.
+        if (!player.inventory.addItemStackToInventory(resultingItemStack)) {
+            this.dropItemFromPlayer(resultingItemStack);
+        }
+    }
+
+    private void dropItemFromPlayer(ItemStack resultingItemStack) {
+        EntityItem entityitem = this.player.dropItem(resultingItemStack, false);
+
+        if (entityitem != null)
+        {
+            entityitem.setNoPickupDelay();
+            entityitem.setOwner(this.player.getName());
+        }
     }
 
     public boolean canAssembleSchematic() {
