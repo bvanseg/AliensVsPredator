@@ -70,6 +70,6 @@ public class NearestAttackableTargetBrainSensor extends AbstractBrainSensor<Enti
 	private boolean isTargetValid(EntityLivingBase target) {
 		return !target.isDead &&
 				target.getHealth() > 0 &&
-				targetPredicate.test(target);
+				(target == this.ctx.getEntity().getRevengeTarget() || targetPredicate.test(target));
 	}
 }
