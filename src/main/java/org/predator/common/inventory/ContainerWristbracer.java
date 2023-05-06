@@ -11,6 +11,9 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
 import org.predator.common.item.ItemWristbracer;
 
+import java.util.Optional;
+import java.util.UUID;
+
 /**
  * @author Ri5ux
  */
@@ -49,13 +52,18 @@ public class ContainerWristbracer extends Container {
         this.loadFromNBT();
     }
 
+    private static final String ID_NBT_KEY = "id";
+
     public void saveToNBT() {
         NBTTagCompound wristbracerTag = this.stack.getTagCompound();
         NBTTagList items = new NBTTagList();
 
         if (wristbracerTag == null) {
             wristbracerTag = new NBTTagCompound();
+            wristbracerTag.setUniqueId(ID_NBT_KEY, UUID.randomUUID());
         }
+
+        UUID wristbracerId = wristbracerTag.getUniqueId(ID_NBT_KEY);
 
         for (byte slot = 0; slot < this.inventory.getSizeInventory(); slot++) {
             ItemStack stk = this.inventory.getStackInSlot(slot);
@@ -66,21 +74,36 @@ public class ContainerWristbracer extends Container {
         }
 
         wristbracerTag.setTag(ItemWristbracer.TAG_WRISTBRACER_ITEMS, items);
-        this.stack.setTagCompound(wristbracerTag);
+
+        // Originally we were trying to save to the original stack stored as a field in this class, but that might cause
+        // an inventory duping bug if the player moves the wristbracer around while the wristbracer's inventory is open.
+        // The workaround here is to store a unique identifier to the wristbracer, and then once we save the wristbracer's NBT,
+        // we find the stack again in case the player has moved it prior to saving.
+        Optional<ItemStack> wristbracerStack = this.player.inventory.mainInventory.stream().filter(s -> {
+            if (!s.hasTagCompound()) return false;
+            NBTTagCompound tag = s.getTagCompound();
+            if (tag == null) return false;
+            UUID uuid = tag.getUniqueId(ID_NBT_KEY);
+            if (uuid == null) return false;
+            return uuid.equals(wristbracerId);
+        }).findFirst();
+
+        NBTTagCompound finalWristbracerTag = wristbracerTag;
+        wristbracerStack.ifPresent(s -> s.setTagCompound(finalWristbracerTag));
     }
 
     public void loadFromNBT() {
-        if (this.stack != null && this.stack.getTagCompound() != null) {
-            NBTTagList items = this.stack.getTagCompound().getTagList(ItemWristbracer.TAG_WRISTBRACER_ITEMS, Constants.NBT.TAG_COMPOUND);
+        if (this.stack.getTagCompound() == null) return;
 
-            for (byte x = 0; x < items.tagCount(); x++) {
-                NBTTagCompound item = items.getCompoundTagAt(x);
+        NBTTagList items = this.stack.getTagCompound().getTagList(ItemWristbracer.TAG_WRISTBRACER_ITEMS, Constants.NBT.TAG_COMPOUND);
 
-                byte slot = item.getByte(ItemWristbracer.TAG_WRISTBRACER_ITEMS_SLOT);
+        for (byte x = 0; x < items.tagCount(); x++) {
+            NBTTagCompound item = items.getCompoundTagAt(x);
 
-                if (slot >= 0 && slot <= this.inventory.getSizeInventory()) {
-                    this.inventory.setInventorySlotContents(slot, new ItemStack(item));
-                }
+            byte slot = item.getByte(ItemWristbracer.TAG_WRISTBRACER_ITEMS_SLOT);
+
+            if (slot >= 0 && slot <= this.inventory.getSizeInventory()) {
+                this.inventory.setInventorySlotContents(slot, new ItemStack(item));
             }
         }
     }
