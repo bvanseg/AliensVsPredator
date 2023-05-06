@@ -8,7 +8,7 @@
         "a": [
             {
                 "type": "forge:ore_dict",
-                "ore": "IngotIron"
+                "ore": "ingotIron"
             }
         ],
         "b": [
