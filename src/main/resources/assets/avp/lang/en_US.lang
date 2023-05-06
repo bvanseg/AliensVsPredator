@@ -835,6 +835,11 @@ subtitles.entity.chestburster.death=Chestburster dies
 subtitles.entity.chestburster.grow=Chestburster grows
 subtitles.entity.chestburster.burst=Chestburster bursts
 
+subtitles.effects.heartbeat.normal=Heart beating
+subtitles.effects.heartbeat.elevated=Elevated heart beating
+subtitles.effects.heartbeat.rapid=Rapid heart beating
+subtitles.effects.heartbeat.fatal=Fatal heart beating
+
 subtitles.entity.marine.hurt=Marine hurt
 subtitles.entity.marine.death=Marine dies
 
