@@ -1,10 +1,6 @@
 package org.predator.common.entity.living.helper;
 
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.MathHelper;
-import org.avp.common.network.AvpDataSerializers;
 import org.predator.client.PredatorSounds;
 import org.predator.common.entity.living.SpeciesYautja;
 import org.predator.common.entity.state.CloakState;
@@ -16,16 +12,13 @@ public class YautjaCloakHelper {
 
     private YautjaCloakHelper() { /* Do Nothing */ }
 
-    public static final DataParameter<CloakState> CLOAK_STATE = EntityDataManager.createKey(SpeciesYautja.class, AvpDataSerializers.CLOAK_STATE);
-    private static final DataParameter<Integer> CLOAK_PROGRESS = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.VARINT);
-
     public static final int MAX_CLOAK = 20 * 2;
     public static final int MIN_CLOAK = 0;
     public static final int CLOAK_PROGRESS_SPEED = 1;
 
     public static void entityInit(SpeciesYautja yautja) {
-        yautja.getDataManager().register(CLOAK_STATE, CloakState.DECLOAKED);
-        yautja.getDataManager().register(CLOAK_PROGRESS, MIN_CLOAK);
+        yautja.getDataManager().register(SpeciesYautja.CLOAK_STATE, CloakState.DECLOAKED);
+        yautja.getDataManager().register(SpeciesYautja.CLOAK_PROGRESS, MIN_CLOAK);
     }
 
 

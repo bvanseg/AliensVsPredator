@@ -52,7 +52,7 @@ public class ShareJellyBrainTask extends AbstractEntityBrainTask {
 
 			if (queen.getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || queen.isReproducing())
 			{
-				if (queen.getJellyLevel() < JellyConstants.OVIPOSITOR_THRESHOLD * 2 && xenomorph.getJellyLevel() >= JellyConstants.DRONE_SHARE_THRESHOLD)
+				if (queen.getJellyLevel() < JellyConstants.QUEEN_SHARE_SATISFACTION_THRESHOLD * 2 && xenomorph.getJellyLevel() >= JellyConstants.DRONE_SHARE_THRESHOLD)
 				{
 					queen.setJellyLevel(queen.getJellyLevel() + xenomorph.getJellyLevel());
 					xenomorph.setJellyLevel(0);

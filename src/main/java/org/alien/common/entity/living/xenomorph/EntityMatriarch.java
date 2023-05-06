@@ -46,7 +46,6 @@ public class EntityMatriarch extends SpeciesXenomorph implements HiveOwner
         this.jumpMovementFactor = 0.2F;
         this.hurtResistantTime = 0;
         this.ignoreFrustumCheck = true;
-        this.jellyLimitOverride = true;
     }
 
     @Override
