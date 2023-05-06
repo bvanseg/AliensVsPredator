@@ -5,7 +5,7 @@ import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import org.alien.common.entity.ai.helper.FacehuggerLeapHelper;
+import org.alien.common.entity.ai.helper.LeapHelper;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.alien.common.entity.living.xenomorph.burster.EntityQueenChestburster;
 import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
@@ -63,7 +63,7 @@ public class HatchBrainTask extends AbstractBrainTask<EntityBrainContext> {
 
 		// Adjust the facehugger's initial motion after spawning.
 		if (target != null) {
-			FacehuggerLeapHelper.leapAtTarget(facehugger, target);
+			LeapHelper.leapAtTarget(facehugger, target);
 		}
 
 		facehugger.motionY = 0.75F;

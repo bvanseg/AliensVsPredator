@@ -7,9 +7,9 @@ import net.minecraft.util.math.MathHelper;
 /**
  * @author Boston Vanseghi
  */
-public class FacehuggerLeapHelper {
+public class LeapHelper {
 
-    private FacehuggerLeapHelper() { /* Do Nothing */ }
+    private LeapHelper() { /* Do Nothing */ }
 
     public static void leapAtTarget(EntityLivingBase leaper, Entity leapTarget) {
         if (leaper == null || leapTarget == null) return;
@@ -19,11 +19,11 @@ public class FacehuggerLeapHelper {
         float f = MathHelper.sqrt(d0 * d0 + d1 * d1);
 
         if (leaper.motionX == 0) {
-            leaper.motionX = d0 / f * 0.800000011920929;
+            leaper.motionX = (d0 / f);
         }
 
         if (leaper.motionZ == 0) {
-            leaper.motionZ = d1 / f * 0.800000011920929;
+            leaper.motionZ = (d1 / f);
         }
 
         if (f >= 1.0E-4) {
