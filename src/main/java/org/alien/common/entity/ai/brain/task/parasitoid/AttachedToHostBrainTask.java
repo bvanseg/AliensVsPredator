@@ -54,7 +54,10 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
         host.motionY -= 0.05F;
         host.motionY *= 0.98F;
         host.move(MoverType.SELF, 0, host.motionY, 0);
-        this.subdueHost(host);
+
+        if (parasite.ticksOnHost >= 20 * 2) {
+            this.subdueHost(host);
+        }
 
         parasite.rotationYawHead = host.rotationYawHead;
         parasite.rotationYaw = host.rotationYaw;
