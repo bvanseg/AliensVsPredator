@@ -382,7 +382,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
 
     @Override
     protected boolean canDespawn() {
-        return false;
+        return !this.getSquadLeaderID().isPresent();
     }
 
     private static final String WEAPON_TYPE_NBT_KEY = "WeaponType";
