@@ -41,6 +41,8 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
 
         if (host == null) return;
 
+        parasite.ticksOnHost++;
+
         if (host instanceof EntityLiving) {
             EntityLiving livingHost = (EntityLiving) host;
             // Make the host stop moving.
@@ -48,8 +50,6 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
             // Silence the host.
             livingHost.livingSoundTime = -livingHost.getTalkInterval();
         }
-
-        parasite.ticksOnHost++;
 
         host.motionY -= 0.05F;
         host.motionY *= 0.98F;

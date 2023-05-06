@@ -75,6 +75,11 @@ public class EntityParasitoid extends SpeciesAlien implements Parasitoid
             {
                 this.detachFromHost();
             }
+
+            // Keep attempting to implant an embryo so long as the parasite is fertile.
+            if (this.isAttachedToHost() && this.isFertile()) {
+                this.implantEmbryo((EntityLivingBase) this.getRidingEntity());
+            }
         }
     }
 
@@ -148,9 +153,7 @@ public class EntityParasitoid extends SpeciesAlien implements Parasitoid
         if (Entities.getEntityRiddenBy(target) == null && target instanceof EntityLivingBase)
         {
             EntityLivingBase living = (EntityLivingBase) target;
-
             this.startRiding(living);
-            this.implantEmbryo(living);
         }
     }
 
