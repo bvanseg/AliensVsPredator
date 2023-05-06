@@ -6,12 +6,13 @@ import net.minecraft.item.*;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.SpeciesEngineer;
 import org.avp.common.entity.living.EntityMarine;
+import org.lib.common.inventory.CachedInventoryHandler;
+import org.lib.common.inventory.InventorySnapshot;
 import org.lib.common.predicate.EntitySelectorBase;
-import org.predator.common.item.ItemDisc;
-import org.predator.common.item.ItemPlasmaCannon;
-import org.predator.common.item.ItemShuriken;
-import org.predator.common.item.ItemWristbracer;
+import org.predator.common.item.*;
 import org.weapon.common.item.firearm.ItemFirearm;
+
+import java.util.function.Predicate;
 
 public class EntitySelectorYautja extends EntitySelectorBase
 {
@@ -25,19 +26,21 @@ public class EntitySelectorYautja extends EntitySelectorBase
         if (entity instanceof EntityPlayer)
         {
             EntityPlayer player = (EntityPlayer) entity;
-            ItemStack stack = player.getHeldItemMainhand();
 
-            Item item = stack.getItem();
+            InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(player);
 
-            if (item instanceof ItemSword ||
-                item instanceof ItemAxe ||
-                item instanceof ItemFirearm ||
-                item instanceof ItemWristbracer ||
-                item instanceof ItemPlasmaCannon ||
-                item instanceof ItemBow ||
-                item instanceof ItemDisc ||
-                item instanceof ItemShuriken
-            ) {
+            Predicate<Item> predicate = item -> item instanceof ItemSword ||
+                    item instanceof ItemAxe ||
+                    item instanceof ItemPickaxe ||
+                    item instanceof ItemFirearm ||
+                    item instanceof ItemWristbracer ||
+                    item instanceof ItemPlasmaCannon ||
+                    item instanceof ItemBow ||
+                    item instanceof ItemDisc ||
+                    item instanceof ItemShuriken;
+
+
+            if (!inventorySnapshot.getItemsMatchingPredicate(predicate).isEmpty()) {
                 return true;
             }
         }

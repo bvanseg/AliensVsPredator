@@ -19,7 +19,7 @@ import java.util.Optional;
 public class MaturityEntries {
     private static final HashMap<Class<? extends Entity>, MaturityEntry> entityTypesToMaturityEntries = new HashMap<>();
 
-    public static final MaturityEntry DEFAULT = new MaturityEntry(EntityDrone.class, 6400, (15 * 60) * 20);
+    public static final MaturityEntry DEFAULT = new MaturityEntry(EntityDrone.class, JellyConstants.RAW_YIELD, (15 * 60) * 20);
 
     static {
         // Exotic Bursters

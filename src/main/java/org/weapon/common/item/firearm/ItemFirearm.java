@@ -87,7 +87,7 @@ public class ItemFirearm extends HookedItem
             Sound soundForFireMode = this.firearmProperties.getFireSounds().get(activeFireMode);
 
             if (soundForFireMode != null) {
-                world.playSound(null, player.getPosition(), soundForFireMode.event(), SoundCategory.PLAYERS, 1F, 1F);
+                world.playSound(null, player.getPosition(), soundForFireMode.event(), SoundCategory.PLAYERS, 2.5F, 1F);
             }
         }
 

@@ -7,14 +7,12 @@ import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 import org.lib.brain.impl.BrainMemoryKeys;
-import org.lib.brain.impl.EntityBrainContext;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 /**
  * 
@@ -22,9 +20,6 @@ import java.util.stream.Collectors;
  *
  */
 public class FindItemBrainTask extends AbstractEntityBrainTask {
-	
-    private boolean hasPickedUpItem;
-    private boolean hasItemTarget;
 
 	@Override
 	public void setFlagRequirements(Map<AbstractBrainFlag, BrainFlagState> map) {
@@ -40,18 +35,19 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 	private final Predicate<EntityItem> itemPredicate;
 	private Consumer<EntityItem> onUseItemCallback;
 
-	private double moveSpeed;
+	private final double moveSpeed;
 
 
 	private EntityItem closestItemTarget;
 
 	public FindItemBrainTask(Predicate<EntityItem> itemPredicate) {
-		this.itemPredicate = itemPredicate;
-		this.moveSpeed = 1.0;
+		this(itemPredicate, 1.0);
 	}
 
 	public FindItemBrainTask(Predicate<EntityItem> itemPredicate, double moveSpeed) {
-		this.itemPredicate = itemPredicate;
+		this.itemPredicate = entityItem -> itemPredicate.test(entityItem) &&
+				entityItem.onGround &&
+				ctx.getEntity().canEntityBeSeen(entityItem);
 		this.moveSpeed = moveSpeed;
 	}
 
@@ -62,17 +58,19 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 	
 	@Override
 	protected boolean shouldExecute() {
-		if (ctx.getEntity().world.getTotalWorldTime() % (60 + (ctx.getEntity().getRNG().nextInt(5) * 20)) == 0) {
-			this.hasPickedUpItem = false;
-			this.hasItemTarget = false;
+		if (ctx.getEntity().world.getTotalWorldTime() % (60 + (ctx.getEntity().getRNG().nextInt(5) * 20)) != 0) {
+			return false;
 		}
 
 		Optional<List<EntityItem>> itemEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.ITEM_ENTITIES);
 
 		if (itemEntitiesOptional.isPresent()) {
-			boolean isValidItemNearby = itemEntitiesOptional.get().stream()
-					.anyMatch(entityItem -> this.itemPredicate.test(entityItem) && entityItem.onGround);
-			return isValidItemNearby && !this.hasPickedUpItem;
+			Optional<EntityItem> closestItemOptional = itemEntitiesOptional.get().stream().filter(itemPredicate).findFirst();
+
+			if (closestItemOptional.isPresent()) {
+				this.closestItemTarget = closestItemOptional.get();
+				return true;
+			}
 		}
 
 		return false;
@@ -80,41 +78,25 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 
 	@Override
 	protected boolean shouldContinueExecuting() {
-		return this.closestItemTarget != null && !ctx.getEntity().getNavigator().noPath() && !this.hasPickedUpItem;
+		return this.closestItemTarget != null && !this.closestItemTarget.isDead && !ctx.getEntity().getNavigator().noPath();
 	}
 
 	@Override
 	protected void startExecuting() {
-		Optional<List<EntityItem>> itemEntities = ctx.getBrain().getMemory(BrainMemoryKeys.ITEM_ENTITIES);
-		
-		if (itemEntities.isPresent()) {
-			EntityLiving entity = ctx.getEntity();
-			
-			List<EntityItem> entityItemList = itemEntities.get().stream().filter(this.itemPredicate).collect(Collectors.toList());
-			
-			if (!entityItemList.isEmpty()) {
-	            this.closestItemTarget = entityItemList.get(0);
-
-	            if (!this.hasItemTarget) {
-					entity.getNavigator().setPath(entity.getNavigator().getPathToEntityLiving(this.closestItemTarget), this.moveSpeed);
-                    this.hasItemTarget = true;
-                }
-	        }
-		}
+		EntityLiving entity = ctx.getEntity();
+		entity.getNavigator().setPath(entity.getNavigator().getPathToEntityLiving(this.closestItemTarget), this.moveSpeed);
 	}
 
 	@Override
 	protected void continueExecuting() {
 		EntityLiving entity = ctx.getEntity();
 
-		if (entity.getDistanceSq(closestItemTarget) < 2) {
-			this.onPickupItem(ctx, closestItemTarget);
-			this.hasPickedUpItem = true;
-			this.hasItemTarget = false;
+		if (entity.getDistanceSq(this.closestItemTarget) < 2) {
+			this.onPickupItem(this.closestItemTarget);
 		}
 	}
 
-	private void onPickupItem(EntityBrainContext ctx, EntityItem entityItem) {
+	private void onPickupItem(EntityItem entityItem) {
 		if (this.onUseItemCallback != null) {
 			this.onUseItemCallback.accept(entityItem);
 		}
@@ -126,6 +108,5 @@ public class FindItemBrainTask extends AbstractEntityBrainTask {
 	public void finish() {
 		super.finish();
 		this.closestItemTarget = null;
-		this.hasItemTarget = false;
 	}
 }
