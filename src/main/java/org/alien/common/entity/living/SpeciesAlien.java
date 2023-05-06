@@ -30,7 +30,6 @@ import java.util.UUID;
 public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, IAnimated, Brainiac<AlienBrain<? extends SpeciesAlien>> {
     private static final DataParameter<Integer> JELLY_LEVEL = EntityDataManager.createKey(SpeciesAlien.class, DataSerializers.VARINT);
     private UUID signature;
-    protected boolean jellyLimitOverride;
 
     /**
      * Animations
@@ -47,7 +46,6 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
     protected SpeciesAlien(World world) {
         super(world);
         this.jumpMovementFactor = 0.2F;
-        this.jellyLimitOverride = false;
     }
 
     @Override
