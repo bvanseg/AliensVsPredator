@@ -9,7 +9,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
-import org.predator.common.item.ItemWristbracer;
+import org.predator.common.PredatorItems;
+import org.predator.common.item.*;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -22,14 +23,42 @@ public class ContainerWristbracer extends Container {
     private final ItemStack stack;
     private final EntityPlayer player;
 
-    public static class SlotWristbracer extends Slot {
-        public SlotWristbracer(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+    private static class SlotWristbracer extends Slot {
+        private SlotWristbracer(IInventory inventoryIn, int index, int xPosition, int yPosition) {
             super(inventoryIn, index, xPosition, yPosition);
         }
 
+        // The wristbracer shouldn't ever hold items that aren't predator tech. It's not meant to be a storage device.
         @Override
         public boolean isItemValid(ItemStack stack) {
-            return !(stack.getItem() instanceof ItemWristbracer);
+            return !(stack.getItem() instanceof ItemWristbracer) &&
+                    (
+                        stack.getItem() instanceof ItemPlasmaCannon ||
+                        stack.getItem() instanceof ItemLaserMine ||
+                        stack.getItem() instanceof ItemSpear ||
+                        stack.getItem() instanceof ItemShuriken ||
+                        stack.getItem() instanceof ItemDisc ||
+                        stack.getItem() == PredatorItems.ITEM_WRISTBRACER_BLADES ||
+                        stack.getItem() == PredatorItems.ITEM_ARTIFACT_TECH ||
+                        stack.getItem() == PredatorItems.PICKAXE_CELTIC ||
+                        stack.getItem() == PredatorItems.AXE_CELTIC ||
+                        stack.getItem() == PredatorItems.SHOVEL_CELTIC ||
+                        stack.getItem() == PredatorItems.SWORD_CELTIC ||
+                        stack.getItem() == PredatorItems.HOE_CELTIC
+                    );
+        }
+    }
+
+    private static class SlotPlayerHotbar extends Slot {
+
+        private SlotPlayerHotbar(IInventory inventoryIn, int index, int xPosition, int yPosition) {
+            super(inventoryIn, index, xPosition, yPosition);
+        }
+
+        // Prevents the player from moving the source wristbracer for the container. Otherwise, duping glitches can occur.
+        @Override
+        public boolean canTakeStack(EntityPlayer playerIn) {
+            return playerIn.getHeldItemMainhand() != this.getStack();
         }
     }
 
@@ -46,7 +75,7 @@ public class ContainerWristbracer extends Container {
         }
 
         for (byte x = 0; x < 9; x++) {
-            addSlotToContainer(new Slot(player.inventory, x, 15 + (18 * x), 136));
+            addSlotToContainer(new SlotPlayerHotbar(player.inventory, x, 15 + (18 * x), 136));
         }
 
         this.loadFromNBT();
@@ -61,6 +90,7 @@ public class ContainerWristbracer extends Container {
         if (wristbracerTag == null) {
             wristbracerTag = new NBTTagCompound();
             wristbracerTag.setUniqueId(ID_NBT_KEY, UUID.randomUUID());
+            this.stack.setTagCompound(wristbracerTag);
         }
 
         UUID wristbracerId = wristbracerTag.getUniqueId(ID_NBT_KEY);
