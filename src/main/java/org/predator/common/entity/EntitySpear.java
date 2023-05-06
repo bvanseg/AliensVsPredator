@@ -15,7 +15,6 @@ import org.predator.common.PredatorItems;
 
 public class EntitySpear extends EntityItemStackProjectile
 {
-    private int damage;
 
     public EntitySpear(World world)
     {
@@ -57,7 +56,7 @@ public class EntitySpear extends EntityItemStackProjectile
                 damagesource = AVPDamageSources.causeSpearDamage(this.shootingEntity);
             }
 
-            if (entity.attackEntityFrom(damagesource, damage + 1))
+            if (entity.attackEntityFrom(damagesource, 30F))
             {
                 this.applyEntityHitEffects(entity);
                 this.playHitSound();
