@@ -126,9 +126,15 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         if (MarineCreatureTypes.getMarineCreatureType() == EnumCreatureType.CREATURE)
             return super.isCreatureType(type, forSpawnCount);
 
+        if (type == EnumCreatureType.CREATURE)
+            return false;
+
+        if (forSpawnCount && this.isNoDespawnRequired())
+            return false;
+
         // Otherwise, override for the marine creature type. If we do not do this, the superclass will check against assignable
         // classes on the creature
-        return type == MarineCreatureTypes.getMarineCreatureType();
+        return type.getCreatureClass().isAssignableFrom(this.getClass());
     }
 
     @Nullable

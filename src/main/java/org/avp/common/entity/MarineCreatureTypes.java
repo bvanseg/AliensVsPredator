@@ -24,7 +24,7 @@ public class MarineCreatureTypes {
         EnumCreatureType creatureType = EnumCreatureType.CREATURE; // Default fallback for marine creatures.
 
         if (customCreatureTypesEnabled) {
-            creatureType = EnumHelper.addCreatureType("marine", EntityMarine.class, 20, Material.AIR, false, false);
+            creatureType = EnumHelper.addCreatureType("marine", EntityMarine.class, 10, Material.AIR, false, false);
         }
 
         return creatureType;
