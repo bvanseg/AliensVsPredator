@@ -3,7 +3,10 @@ package org.predator.common.entity.living;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.Blocks;
@@ -19,6 +22,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.Host;
 import org.avp.common.AVPDamageSources;
+import org.avp.common.AVPItemDropTables;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.network.AvpDataSerializers;
 import org.lib.brain.Brainiac;
@@ -239,27 +243,8 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         super.onDeath(damagesource);
 
         ItemDropContext itemDropContext = new ItemDropContext(this);
-        itemDropContext.drop(AVPItemDrops.PREDATOR_ARTIFACT);
-        itemDropContext.drop(AVPItemDrops.PLASMACANNON);
-        itemDropContext.drop(AVPItemDrops.WRISTBRACER);
-        itemDropContext.drop(AVPItemDrops.SHURIKEN);
-        itemDropContext.drop(AVPItemDrops.LASER_MINE);
-        itemDropContext.drop(AVPItemDrops.SILICON);
-        itemDropContext.drop(AVPItemDrops.WRISTBRACER_BLADES);
-        itemDropContext.drop(AVPItemDrops.SPEAR);
-        itemDropContext.drop(AVPItemDrops.SMART_DISC);
-
-        itemDropContext.drop(AVPItemDrops.CELTIC_AXE);
-        itemDropContext.drop(AVPItemDrops.CELTIC_HOE);
-        itemDropContext.drop(AVPItemDrops.CELTIC_PICKAXE);
-        itemDropContext.drop(AVPItemDrops.CELTIC_SHOVEL);
-        itemDropContext.drop(AVPItemDrops.CELTIC_SWORD);
-
-        itemDropContext.drop(AVPItemDrops.CELTIC_BIOMASK);
-        itemDropContext.drop(AVPItemDrops.CELTIC_CHESTPLATE);
-        itemDropContext.drop(AVPItemDrops.CELTIC_LEGGINGS);
-        itemDropContext.drop(AVPItemDrops.CELTIC_BOOTS);
-        
+        itemDropContext.drop(AVPItemDropTables.PREDATOR_DROP_TABLE);
+        itemDropContext.drop(AVPItemDropTables.PREDATOR_DROP_TABLE);
         dropBiomaskAndSkull(itemDropContext, damagesource);
     }
     
