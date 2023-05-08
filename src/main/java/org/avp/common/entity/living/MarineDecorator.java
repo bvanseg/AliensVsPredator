@@ -62,7 +62,7 @@ public class MarineDecorator {
     private MarineDecorator() {}
 
     public static int generateRandomWeaponType(EntityMarine marine) {
-        return marine.world.rand.nextInt(MarineTypes.values().length);
+        return MarineTypes.rollRandomWeightedMarineType(marine.getRNG()).getValue();
     }
 
     public static int generateRandomSkinTone(EntityMarine marine) {
