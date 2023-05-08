@@ -111,7 +111,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
                 .onUseItem(entityItem -> {
                     this.getEntity().getInventory().addItem(entityItem.getItem());
                     AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(this.getEntity(), this.getEntity().getInventory()));
-                }));
+                }), LEADER_FOLLOW_BEHAVIOR);
         this.addTask(new EatFoodBrainTask());
         this.addTask(new PlaceTorchBrainTask());
     }

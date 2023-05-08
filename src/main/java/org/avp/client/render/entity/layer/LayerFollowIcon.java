@@ -20,34 +20,43 @@ public class LayerFollowIcon implements LayerRenderer<EntityMarine> {
 
     private static final ItemStack FOOD_ITEM_STACK = new ItemStack(Items.COOKED_BEEF, 1);
     private static final ItemStack STANDARD_FOLLOW_ITEM_STACK = new ItemStack(AVPArmorItems.HELM_MARINE, 1);
+    private static final ItemStack STANDARD_GUARD_ITEM_STACK = new ItemStack(AVPArmorItems.BOOTS_MARINE, 1);
 
     @Override
     public void doRenderLayer(EntityMarine entityMarine, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        if (entityMarine.getSquadLeader().isPresent() && entityMarine.getSquadLeader().get().getUniqueID().equals(ClientGame.instance.minecraft().player.getUniqueID())) {
-            GlStateManager.pushMatrix();
-            GlStateManager.translate(0.0F, -0.9F, 0.0F);
-            GlStateManager.rotate(-180.0F, 1.0F, 0.0F, 0.0F);
-            GlStateManager.scale(0.8F, 0.8F, 0.8F);
+        if (!entityMarine.getSquadLeader().isPresent() ||
+                !entityMarine.getSquadLeader().get().getUniqueID().equals(ClientGame.instance.minecraft().player.getUniqueID())) return;
 
-            InventorySnapshot inventorySnapshot = entityMarine.getInventorySnapshot();
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(0.0F, -0.9F, 0.0F);
+        GlStateManager.rotate(-180.0F, 1.0F, 0.0F, 0.0F);
+        GlStateManager.scale(0.8F, 0.8F, 0.8F);
 
-            if (this.marineNeedsAmmo(entityMarine, inventorySnapshot))
-            {
-                Item item = entityMarine.getMarineType().getFirearmItem().getFirearmProperties().getConsumablesForReload().stream().findFirst().get();
-                ItemStack ammoItemStack = new ItemStack(item, 1);
-                Minecraft.getMinecraft().getItemRenderer().renderItemSide(entityMarine, ammoItemStack, ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, false);
-            }
-            else if (this.marineNeedsFood(entityMarine, inventorySnapshot))
-            {
-                Minecraft.getMinecraft().getItemRenderer().renderItemSide(entityMarine, FOOD_ITEM_STACK, ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, false);
-            }
-            else
-            {
-                Minecraft.getMinecraft().getItemRenderer().renderItemSide(entityMarine, STANDARD_FOLLOW_ITEM_STACK, ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, false);
-            }
+        InventorySnapshot inventorySnapshot = entityMarine.getInventorySnapshot();
 
-            GlStateManager.popMatrix();
+        ItemStack contextStack;
+
+        if (this.marineNeedsAmmo(entityMarine, inventorySnapshot))
+        {
+            Item item = entityMarine.getMarineType().getFirearmItem().getFirearmProperties().getConsumablesForReload().stream().findFirst().get();
+            contextStack = new ItemStack(item, 1);
         }
+        else if (this.marineNeedsFood(entityMarine, inventorySnapshot))
+        {
+            contextStack = FOOD_ITEM_STACK;
+        }
+        else
+        {
+            if (entityMarine.isGuarding()) {
+                contextStack = STANDARD_GUARD_ITEM_STACK;
+            } else {
+                contextStack = STANDARD_FOLLOW_ITEM_STACK;
+            }
+        }
+
+        Minecraft.getMinecraft().getItemRenderer().renderItemSide(entityMarine, contextStack, ItemCameraTransforms.TransformType.THIRD_PERSON_RIGHT_HAND, false);
+
+        GlStateManager.popMatrix();
     }
 
     private boolean marineNeedsFood(EntityMarine entityMarine, InventorySnapshot inventorySnapshot) {

@@ -126,9 +126,15 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         if (MarineCreatureTypes.getMarineCreatureType() == EnumCreatureType.CREATURE)
             return super.isCreatureType(type, forSpawnCount);
 
+        if (type == EnumCreatureType.CREATURE)
+            return false;
+
+        if (forSpawnCount && this.isNoDespawnRequired())
+            return false;
+
         // Otherwise, override for the marine creature type. If we do not do this, the superclass will check against assignable
         // classes on the creature
-        return type == MarineCreatureTypes.getMarineCreatureType();
+        return type.getCreatureClass().isAssignableFrom(this.getClass());
     }
 
     @Nullable
@@ -230,12 +236,17 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     private void toggleGuardMode(EntityPlayer player) {
         boolean invertedFlag = !this.isGuarding();
 
+        TextComponentString textString;
+
         if (invertedFlag) {
-            player.sendMessage(new TextComponentString(String.format("%s is now standing guard.", this.getMarineName())));
+            textString = new TextComponentString(String.format("%s is now standing guard.", this.getMarineName()));
+            textString.getStyle().setColor(TextFormatting.BLUE);
         } else {
-            player.sendMessage(new TextComponentString(String.format("%s is now following you.", this.getMarineName())));
+            textString = new TextComponentString(String.format("%s is now following you.", this.getMarineName()));
+            textString.getStyle().setColor(TextFormatting.GREEN);
         }
 
+        player.sendMessage(textString);
         this.setGuarding(invertedFlag);
     }
 
@@ -269,14 +280,40 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     private void tryChangeSquadLeader(EntityPlayer player) {
         TextComponentString textString;
 
+        InventorySnapshot snapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(player);
+
         if (!this.getSquadLeaderID().isPresent()) {
-            this.setSquadLeaderUniqueID(Optional.of(player.getUniqueID()));
-            textString = new TextComponentString(String.format("%s is now following you.", this.getMarineName()));
+            // Having a marine follow requires 1 diamond.
+            if (player.getHeldItemMainhand().getItem() == Items.DIAMOND) {
+                this.setSquadLeaderUniqueID(Optional.of(player.getUniqueID()));
+
+                if (!player.isCreative()) {
+                    snapshot.consumeItem(Items.DIAMOND);
+                }
+
+                textString = new TextComponentString(String.format("%s is now following you (-1 Diamond).", this.getMarineName()));
+                textString.getStyle().setColor(TextFormatting.GREEN);
+            } else {
+                textString = new TextComponentString("You can't afford this marine (1 Diamond required in hand)!");
+                textString.getStyle().setColor(TextFormatting.RED);
+            }
         } else {
             UUID squadLeaderID = this.getSquadLeaderID().get();
             if (player.getUniqueID().equals(squadLeaderID)) {
-                this.setSquadLeaderUniqueID(Optional.absent());
-                textString = new TextComponentString(String.format("%s is no longer following you.",this.getMarineName()));
+                // Releasing a marine requires a gold ingot.
+                if (player.getHeldItemMainhand().getItem() == Items.GOLD_INGOT) {
+                    this.setSquadLeaderUniqueID(Optional.absent());
+
+                    if (!player.isCreative()) {
+                        snapshot.consumeItem(Items.GOLD_INGOT);
+                    }
+
+                    textString = new TextComponentString(String.format("%s is no longer following you (-1 Gold Ingot).",this.getMarineName()));
+                    textString.getStyle().setColor(TextFormatting.YELLOW);
+                } else {
+                    textString = new TextComponentString("You can't afford to release this marine (1 Gold Ingot required in hand)!");
+                    textString.getStyle().setColor(TextFormatting.RED);
+                }
             } else {
                 textString = new TextComponentString(String.format("%s is already following another player!",this.getMarineName()));
                 textString.getStyle().setColor(TextFormatting.RED);

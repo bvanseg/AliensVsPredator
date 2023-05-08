@@ -67,6 +67,7 @@ public class AttackOnCollideBrainTask extends AbstractEntityBrainTask {
 	@Override
 	public void finish() {
 		super.finish();
+		ctx.getEntity().getNavigator().clearPath();
 		ctx.getBrain().forget(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET);
 	}
 }
