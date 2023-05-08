@@ -3,10 +3,7 @@ package org.predator.common.entity.living;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.Blocks;
@@ -70,9 +67,15 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         if (PredatorCreatureTypes.getPredatorCreatureType() == EnumCreatureType.MONSTER)
             return super.isCreatureType(type, forSpawnCount);
 
+        if (type == EnumCreatureType.MONSTER)
+            return false;
+
+        if (forSpawnCount && this.isNoDespawnRequired())
+            return false;
+
         // Otherwise, override for the predator creature type. If we do not do this, the superclass will check against assignable
         // classes on the creature
-        return type == PredatorCreatureTypes.getPredatorCreatureType();
+        return type.getCreatureClass().isAssignableFrom(this.getClass());
     }
 
     public float getBlockPathWeight(BlockPos pos) {
