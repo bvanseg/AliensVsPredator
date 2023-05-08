@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import org.alien.common.api.parasitoidic.Host;
+import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.Organism;
 import org.alien.common.world.capability.OrganismImpl;
@@ -57,4 +58,7 @@ public class Predicates {
 
         return true;
     };
+
+    public static final Predicate<Entity> HAS_ATTACHED_PARASITE =
+            target -> target.getPassengers().stream().anyMatch(EntityParasitoid.class::isInstance);
 }
