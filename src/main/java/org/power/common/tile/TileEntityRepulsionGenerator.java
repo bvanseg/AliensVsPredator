@@ -2,254 +2,116 @@ package org.power.common.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.util.Constants;
 import org.avp.common.api.power.VoltageProvider;
-import org.avp.common.item.init.AVPItems;
 import org.power.common.inventory.ContainerRepulsionGenerator;
+import org.power.common.tile.helper.repulsion.InventorySetType;
+import org.power.common.tile.helper.repulsion.RepulsionGeneratorSet;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+/**
+ * @author Ri5ux
+ */
+public class TileEntityRepulsionGenerator extends TileEntityElectrical implements VoltageProvider {
+    public static final float MAX_SPEED = 10F;
+    private static final float SPEED_MULTIPLIER = 0.05F;
 
-public class TileEntityRepulsionGenerator extends TileEntityElectrical implements VoltageProvider
-{
-    public Container                               container;
-    public InventoryBasic                          inventory;
-    public float                                   speed;
-    public static final float                      MAX_SPEED        = 10F;
-    private static final float                     SPEED_MULTIPLIER = 0.05F;
-    private final Item                             magnet           = AVPItems.ITEM_NEODYMIUM_MAGNET;
-    private final ArrayList<HashMap<Integer, ItemStack>> sets             = new ArrayList<>();
-    private int                                    fullSets;
-    private int                                    emptySets;
-    private int                                    unstableSets;
-    private float                                  speedPerSet;
-    private float                                  proposedSpeed;
-    private long                                   ticksExisted;
+    private float speed;
+    private final RepulsionGeneratorSet primarySet;
+    private final RepulsionGeneratorSet secondarySet;
 
-    public TileEntityRepulsionGenerator()
-    {
+    public TileEntityRepulsionGenerator() {
         super(true);
-        this.inventory = new InventoryBasic("container.repulsiongenerator.slots", true, 10);
+        this.primarySet = new RepulsionGeneratorSet(InventorySetType.PRIMARY);
+        this.secondarySet = new RepulsionGeneratorSet(InventorySetType.SECONDARY);
     }
 
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket()
-    {
+    public SPacketUpdateTileEntity getUpdatePacket() {
         return new SPacketUpdateTileEntity(this.getPos(), 1, this.getUpdateTag());
     }
 
     @Override
-    public NBTTagCompound getUpdateTag()
-    {
+    public NBTTagCompound getUpdateTag() {
         return this.writeToNBT(new NBTTagCompound());
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet)
-    {
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
         this.readFromNBT(packet.getNbtCompound());
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound nbt)
-    {
+    public NBTTagCompound writeToNBT(NBTTagCompound nbt) {
         super.writeToNBT(nbt);
-
-        nbt.setLong("TicksExisted", this.ticksExisted);
         nbt.setFloat("RotationSpeed", this.speed);
-        nbt.setFloat("ProposedSpeed", this.proposedSpeed);
-
-        if (this.inventory != null)
-        {
-            this.saveInventoryToNBT(nbt, inventory);
-        }
-
+        primarySet.writeToNBT(nbt);
+        secondarySet.writeToNBT(nbt);
         return nbt;
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound nbt)
-    {
+    public void readFromNBT(NBTTagCompound nbt) {
         super.readFromNBT(nbt);
-
-        this.ticksExisted = nbt.getLong("TicksExisted");
         this.speed = nbt.getFloat("RotationSpeed");
-        this.proposedSpeed = nbt.getFloat("ProposedSpeed");
-        this.readInventoryFromNBT(nbt, this.inventory);
-    }
-
-    private void saveInventoryToNBT(NBTTagCompound nbt, IInventory inventory)
-    {
-        NBTTagList items = new NBTTagList();
-
-        for (byte x = 0; x < inventory.getSizeInventory(); x++)
-        {
-            ItemStack stack = inventory.getStackInSlot(x);
-
-            if (stack != null)
-            {
-                NBTTagCompound item = new NBTTagCompound();
-                item.setByte("Slot", x);
-                stack.writeToNBT(item);
-                items.appendTag(item);
-            }
-        }
-
-        nbt.setTag(inventory.getName(), items);
-    }
-
-    private void readInventoryFromNBT(NBTTagCompound nbt, IInventory inventory)
-    {
-        NBTTagList items = nbt.getTagList(inventory.getName(), Constants.NBT.TAG_COMPOUND);
-
-        for (byte x = 0; x < items.tagCount(); x++)
-        {
-            NBTTagCompound item = items.getCompoundTagAt(x);
-
-            byte slot = item.getByte("Slot");
-
-            if (slot >= 0 && slot <= inventory.getSizeInventory())
-            {
-                inventory.setInventorySlotContents(slot, new ItemStack(item));
-            }
-        }
+        this.primarySet.readFromNBT(nbt);
+        this.secondarySet.readFromNBT(nbt);
     }
 
     @Override
-    public void update()
-    {
-        ticksExisted++;
-        sets.clear();
+    public void update() {
+        primarySet.update();
+        secondarySet.update();
+        this.updateSpeed();
+        this.updateVoltage();
+    }
 
-        for (int i = this.inventory.getSizeInventory(); i > 0; i--)
-        {
-            ItemStack stack = (this.inventory.getStackInSlot(i - 1));
-            int slotInSet = i % 5;
-
-            if (slotInSet == 0)
-            {
-                sets.add(new HashMap<>());
-            }
-
-            if (slotInSet <= 4 && slotInSet > 0)
-            {
-                if (sets.size() > 0)
-                {
-                    sets.get(sets.size() - 1).put(slotInSet - 1, stack);
-                }
-            }
-        }
-
-        fullSets = 0;
-        emptySets = 0;
-        unstableSets = 0;
-
-        for (HashMap<Integer, ItemStack> set : sets)
-        {
-            if (set.get(0) != null && set.get(1) != null && set.get(2) != null && set.get(3) != null && (set.get(0)).getItem() == magnet && (set.get(1)).getItem() == magnet && (set.get(2)).getItem() == magnet && (set.get(3)).getItem() == magnet)
-            {
-                fullSets++;
-            }
-            else if (set.get(0) == null && set.get(1) == null && set.get(2) == null && set.get(3) == null)
-            {
-                emptySets++;
-            }
-            else if (set.get(0) == null || set.get(1) == null || set.get(2) == null || set.get(3) == null)
-            {
-                unstableSets++;
-            }
-        }
-
-        speedPerSet = MAX_SPEED / sets.size();
-        proposedSpeed = fullSets * speedPerSet;
-
-        // if (this.speed < this.MAX_SPEED)
-        {
-            if (this.speed < proposedSpeed)
-            {
-                this.speed += SPEED_MULTIPLIER;
-            }
-            else if (this.speed > proposedSpeed)
-            {
-                this.speed -= SPEED_MULTIPLIER;
-
-                if (this.speed < 0)
-                {
-                    this.speed = 0;
-                }
-            }
-        }
-
-        if (ticksExisted % (200 / this.getUpdateFrequency()) == 0)
-        {
+    private void updateVoltage() {
+        if (this.world.getTotalWorldTime() % (200 / this.getUpdateFrequency()) == 0) {
             this.setVoltage(this.getRotationSpeed() * 240 / MAX_SPEED);
         }
     }
 
+    private void updateSpeed() {
+        float proposedSpeed = (primarySet.getProposedSpeed() + secondarySet.getProposedSpeed()) * (MAX_SPEED / 2);
+
+        if (this.speed < proposedSpeed)
+        {
+            this.speed = Math.min(this.speed + SPEED_MULTIPLIER, proposedSpeed);
+        }
+        else if (this.speed > proposedSpeed)
+        {
+            this.speed = Math.max(this.speed - SPEED_MULTIPLIER, 0);
+        }
+    }
+
+    public InventoryBasic getInventory(InventorySetType inventorySetType) {
+        return inventorySetType == InventorySetType.PRIMARY ? this.primarySet.getInventory() : this.secondarySet.getInventory();
+    }
+
     @Override
-    public boolean canConnectPower(EnumFacing from)
-    {
+    public boolean canConnectPower(EnumFacing from) {
         return true;
     }
 
     @Override
-    public double getCurrentVoltage(EnumFacing from)
-    {
+    public double getCurrentVoltage(EnumFacing from) {
         return this.voltage;
     }
 
     @Override
-    public double getMaxVoltage(EnumFacing from)
-    {
+    public double getMaxVoltage(EnumFacing from) {
         return 10000;
     }
 
-    public Container getNewContainer(EntityPlayer player)
-    {
-        return (container = new ContainerRepulsionGenerator(player, this));
+    public Container getNewContainer(EntityPlayer player) {
+        return new ContainerRepulsionGenerator(player, this);
     }
 
-    public float getRotationSpeed()
-    {
+    public float getRotationSpeed() {
         return speed;
-    }
-
-    public ArrayList<HashMap<Integer, ItemStack>> getSets()
-    {
-        return sets;
-    }
-
-    public int getFullSets()
-    {
-        return fullSets;
-    }
-
-    public int getEmptySets()
-    {
-        return emptySets;
-    }
-
-    public int getUnstableSets()
-    {
-        return unstableSets;
-    }
-
-    public float getSpeedPerSet()
-    {
-        return speedPerSet;
-    }
-
-    public float getProposedSpeed()
-    {
-        return proposedSpeed;
     }
 }
