@@ -39,7 +39,7 @@ public class AVPItemDropTables {
         .addItemDropSet(
             new ItemDropTable.Builder()
                     .addItemDrop(PredatorItems.ITEM_WRISTBRACER, 1)
-                    .addItemDrop(PredatorItems.ITEM_WRISTBRACER_BLADES, 1)
+                    .addItemDrop(PredatorItems.ITEM_WRISTBRACER_BLADES, 3)
                     .addItemDrop(PredatorItems.ITEM_PLASMA_CANNON, 1)
                     .build(), 1
         )
