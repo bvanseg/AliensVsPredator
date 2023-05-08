@@ -65,6 +65,12 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
     public void update() {
         primarySet.update();
         secondarySet.update();
+
+        if (this.world.getTotalWorldTime() % 20 == 0) {
+            primarySet.updateMagnetDamage();
+            secondarySet.updateMagnetDamage();
+        }
+
         this.updateSpeed();
         this.updateVoltage();
     }
@@ -76,7 +82,7 @@ public class TileEntityRepulsionGenerator extends TileEntityElectrical implement
     }
 
     private void updateSpeed() {
-        float proposedSpeed = (primarySet.getProposedSpeed() + secondarySet.getProposedSpeed()) * (MAX_SPEED / 2);
+        float proposedSpeed = primarySet.getProposedSpeed() + secondarySet.getProposedSpeed();
 
         if (this.speed < proposedSpeed)
         {

@@ -69,6 +69,57 @@ public class ContainerRepulsionGenerator extends Container {
     }
 
     @Override
+    public ItemStack transferStackInSlot(EntityPlayer player, int slotIndex)
+    {
+        Slot slot = getSlot(slotIndex);
+
+        if (!slot.getHasStack()) return ItemStack.EMPTY;
+
+        ItemStack stack = slot.getStack();
+        ItemStack result = stack.copy();
+
+        int inventoryLastSlot = this.generator.getInventory(InventorySetType.PRIMARY).getSizeInventory() - 1;
+        int secondaryInventoryLastSlot = (this.generator.getInventory(InventorySetType.SECONDARY).getSizeInventory() * 2) - 1;
+        int containerLastSlot = this.inventorySlots.size() - 1;
+
+        if (slotIndex <= inventoryLastSlot)
+        {
+            if (!this.mergeItemStack(stack, secondaryInventoryLastSlot + 1, containerLastSlot + 1, false))
+            {
+                return ItemStack.EMPTY;
+            }
+        }
+
+        if (slotIndex <= secondaryInventoryLastSlot)
+        {
+            if (!this.mergeItemStack(stack, secondaryInventoryLastSlot + 1, containerLastSlot + 1, false))
+            {
+                return ItemStack.EMPTY;
+            }
+        }
+        else
+        {
+            if (!this.mergeItemStack(stack, 0, secondaryInventoryLastSlot, false))
+            {
+                return ItemStack.EMPTY;
+            }
+        }
+
+        if (stack.getCount() == 0)
+        {
+            slot.putStack(ItemStack.EMPTY);
+        }
+        else
+        {
+            slot.onSlotChanged();
+        }
+
+        slot.onTake(player, stack);
+
+        return result;
+    }
+
+    @Override
     public boolean canInteractWith(EntityPlayer player) {
         return true;
     }

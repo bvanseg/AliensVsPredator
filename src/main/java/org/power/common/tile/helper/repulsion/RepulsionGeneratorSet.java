@@ -1,13 +1,17 @@
 package org.power.common.tile.helper.repulsion;
 
+import net.minecraft.init.Items;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryBasic;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraftforge.common.util.Constants;
+import org.avp.common.item.init.AVPItems;
+import org.power.common.tile.TileEntityRepulsionGenerator;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Boston Vanseghi
@@ -38,13 +42,39 @@ public class RepulsionGeneratorSet {
 
         switch (this.setType) {
             case FULL:
-                this.proposedSpeed = 5;
+                this.proposedSpeed = (TileEntityRepulsionGenerator.MAX_SPEED / 2);
                 break;
-            case UNSTABLE:
-                this.proposedSpeed = 2.5F;
-                break;
+//            case UNSTABLE:
+//                this.proposedSpeed = 2.5F;
+//                break;
             default:
                 this.proposedSpeed = 0F;
+        }
+    }
+
+    public void updateMagnetDamage() {
+        if (this.setType == SetType.FULL) {
+            for (Map.Entry<Integer, ItemStack> entry: this.set.entrySet()) {
+                ItemStack itemStack = entry.getValue();
+                if (itemStack.getItem() != AVPItems.ITEM_NEODYMIUM_MAGNET) continue;
+
+                itemStack.setItemDamage(itemStack.getItemDamage() + 1);
+
+                // If magnet is fully damaged, it reverts to an iron ingot.
+                if (itemStack.getItemDamage() >= itemStack.getMaxDamage()) {
+                    int lastSlotIndex = this.getInventory().getSizeInventory() - 1;
+                    ItemStack outputStack = this.inventory.getStackInSlot(lastSlotIndex);
+
+                    if (outputStack.isEmpty()) {
+                        outputStack = new ItemStack(Items.IRON_INGOT, 0);
+                    }
+
+                    itemStack.setCount(itemStack.getCount() - 1);
+                    outputStack.setCount(outputStack.getCount() + 1);
+                    this.inventory.setInventorySlotContents(entry.getKey(), itemStack);
+                    this.inventory.setInventorySlotContents(lastSlotIndex, outputStack);
+                }
+            }
         }
     }
 

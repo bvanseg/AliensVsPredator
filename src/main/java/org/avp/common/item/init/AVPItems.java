@@ -55,7 +55,7 @@ public class AVPItems implements IPreInitEvent {
     public static final Item ITEM_CARBON = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("carbon");
     public static final Item ITEM_COBALT = new HookedItem().setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("cobalt");
     public static final Item ITEM_NEODYMIUM = new HookedItem().setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("neodymium");
-    public static final Item ITEM_NEODYMIUM_MAGNET = new HookedItem().setMaxStackSize(16).setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("neodymium.magnet");
+    public static final Item ITEM_NEODYMIUM_MAGNET = new HookedItem().setCreativeTab(AVPCreativeTabs.CRAFTING).setMaxDamage(1200 * 3).setMaxStackSize(1).setRegistryName("neodymium.magnet");
     public static final Item ITEM_SILICON = new HookedItem().setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("silicon");
     public static final Item ITEM_INGOT_ALUMINUM = new HookedItem().setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("ingot.aluminum");
     public static final Item ITEM_INGOT_COPPER = new HookedItem().setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("ingot.copper");
