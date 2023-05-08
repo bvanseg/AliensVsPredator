@@ -20,6 +20,7 @@ public class LayerFollowIcon implements LayerRenderer<EntityMarine> {
 
     private static final ItemStack FOOD_ITEM_STACK = new ItemStack(Items.COOKED_BEEF, 1);
     private static final ItemStack STANDARD_FOLLOW_ITEM_STACK = new ItemStack(AVPArmorItems.HELM_MARINE, 1);
+    private static final ItemStack STANDARD_GUARD_ITEM_STACK = new ItemStack(AVPArmorItems.BOOTS_MARINE, 1);
 
     @Override
     public void doRenderLayer(EntityMarine entityMarine, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
@@ -47,7 +48,7 @@ public class LayerFollowIcon implements LayerRenderer<EntityMarine> {
         else
         {
             if (entityMarine.isGuarding()) {
-                contextStack = new ItemStack(AVPArmorItems.BOOTS_MARINE);
+                contextStack = STANDARD_GUARD_ITEM_STACK;
             } else {
                 contextStack = STANDARD_FOLLOW_ITEM_STACK;
             }
