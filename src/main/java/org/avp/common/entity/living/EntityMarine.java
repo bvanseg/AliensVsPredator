@@ -286,7 +286,11 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
             // Having a marine follow requires 1 diamond.
             if (player.getHeldItemMainhand().getItem() == Items.DIAMOND) {
                 this.setSquadLeaderUniqueID(Optional.of(player.getUniqueID()));
-                snapshot.consumeItem(Items.DIAMOND);
+
+                if (!player.isCreative()) {
+                    snapshot.consumeItem(Items.DIAMOND);
+                }
+
                 textString = new TextComponentString(String.format("%s is now following you (-1 Diamond).", this.getMarineName()));
                 textString.getStyle().setColor(TextFormatting.GREEN);
             } else {
@@ -299,7 +303,11 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
                 // Releasing a marine requires a gold ingot.
                 if (player.getHeldItemMainhand().getItem() == Items.GOLD_INGOT) {
                     this.setSquadLeaderUniqueID(Optional.absent());
-                    snapshot.consumeItem(Items.GOLD_INGOT);
+
+                    if (!player.isCreative()) {
+                        snapshot.consumeItem(Items.GOLD_INGOT);
+                    }
+
                     textString = new TextComponentString(String.format("%s is no longer following you (-1 Gold Ingot).",this.getMarineName()));
                     textString.getStyle().setColor(TextFormatting.YELLOW);
                 } else {
