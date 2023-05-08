@@ -39,6 +39,7 @@ public class AVPItemDrops
     public static final ItemDrop SMART_DISC = new ItemDrop.Builder(PredatorItems.ITEM_DISC).setDropWeight(2).build();
     public static final ItemDrop WRISTBRACER_BLADES = new ItemDrop.Builder(PredatorItems.ITEM_WRISTBRACER_BLADES).setDropWeight(7).build();
     public static final ItemDrop SHURIKEN = new ItemDrop.Builder(PredatorItems.ITEM_SHURIKEN).setDropWeight(7).setMinimumDropAmount(8).setMaximumDropAmount(16).build();
+    public static final ItemDrop LASER_MINE = new ItemDrop.Builder(PredatorItems.ITEM_PROXIMITY_MINE).setDropWeight(7).setMinimumDropAmount(1).setMaximumDropAmount(3).build();
     public static final ItemDrop SILICON = new ItemDrop.Builder(AVPItems.ITEM_SILICON).setDropWeight(25).setMinimumDropAmount(3).setMaximumDropAmount(6).build();
     public static final ItemDrop BIOMASK = new ItemDrop.Builder(PredatorBlocks.BIOMASK_CLASSIC).setDropWeight(3).build();
     public static final ItemDrop BIOMASK_BERSERKER = new ItemDrop.Builder(PredatorBlocks.BIOMASK_BERSERKER).setDropWeight(3).build();
