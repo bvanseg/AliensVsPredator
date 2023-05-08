@@ -657,6 +657,8 @@ avp.advancements.tech.acquire.ssd.title=Data Hoarder
 avp.advancements.tech.acquire.ssd.description=Craft a solid state drive
 avp.advancements.tech.acquire.powersupply.title=Powerhouse
 avp.advancements.tech.acquire.powersupply.description=Craft a power supply
+avp.advancements.tech.acquire.repulsion.generator.title=How Repulsive
+avp.advancements.tech.acquire.repulsion.generator.description=Craft a repulsion generator
 
 avp.advancements.tech.acquire.assembler.title=The Gathering
 avp.advancements.tech.acquire.assembler.description=Craft an assembler
