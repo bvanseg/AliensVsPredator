@@ -1,7 +1,6 @@
 package org.power.common.tile;
 
 import net.minecraft.util.EnumFacing;
-import net.minecraft.world.EnumSkyBlock;
 import org.avp.common.api.power.VoltageReceiver;
 
 public class TileEntityLightPanel extends TileEntityElectrical implements VoltageReceiver
@@ -9,21 +8,13 @@ public class TileEntityLightPanel extends TileEntityElectrical implements Voltag
     public TileEntityLightPanel()
     {
         super(false);
+        this.emitsLightWhenPowered = true;
     }
 
     @Override
     public void update()
     {
-        super.update();
-
-        boolean previouslyOperational = this.isOperational();
-
         this.updateEnergyAsReceiver();
-
-        if (previouslyOperational != this.isOperational())
-        {
-            this.world.checkLightFor(EnumSkyBlock.BLOCK, pos);
-        }
     }
 
     @Override

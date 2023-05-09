@@ -1,7 +1,6 @@
 package org.power.common.block;
 
 import com.asx.mdx.common.minecraft.entity.Entities;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -9,17 +8,16 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import org.power.common.tile.TileEntityCCFLTube;
-import org.power.common.tile.TileEntityElectrical;
 
-public class BlockCCFLTube extends Block
+public class BlockCCFLTube extends ElectricalBlock
 {
     public BlockCCFLTube(Material material)
     {
         super(material);
         this.setLightOpacity(0);
+        this.lightEmittedWhenPowered = 15;
     }
     
     @Override
@@ -38,24 +36,6 @@ public class BlockCCFLTube extends Block
     public boolean isTopSolid(IBlockState state)
     {
         return false;
-    }
-    
-    @Override
-    public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        TileEntity tile = world.getTileEntity(pos);
-        
-        if (tile instanceof TileEntityElectrical)
-        {
-            TileEntityElectrical e = (TileEntityElectrical) tile;
-            
-            if (e.isOperational())
-            {
-                return 15;
-            }
-        }
-        
-        return 0;
     }
     
     @Override
