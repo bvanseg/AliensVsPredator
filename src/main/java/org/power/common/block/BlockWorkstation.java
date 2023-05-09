@@ -1,6 +1,5 @@
 package org.power.common.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,12 +11,13 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.power.common.tile.TileEntityWorkstation;
 
-public class BlockWorkstation extends Block
+public class BlockWorkstation extends ElectricalBlock
 {
     public BlockWorkstation(Material material)
     {
         super(material);
         this.setTickRandomly(true);
+        this.lightEmittedWhenPowered = 4;
     }
     
     @Override

@@ -15,6 +15,7 @@ public class TileEntityWorkstation extends TileEntityElectrical implements INetw
     {
         super(false);
         this.setThresholdVoltage(105);
+        this.emitsLightWhenPowered = true;
     }
 
     @Override
