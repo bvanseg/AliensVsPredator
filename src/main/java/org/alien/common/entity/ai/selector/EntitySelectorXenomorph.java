@@ -17,6 +17,7 @@ public class EntitySelectorXenomorph extends EntitySelectorBase
 
         if (Predicates.IS_ALIEN.test(target)) return false;
         if (Predicates.EMBRYO_CARRIER.test(target)) return false;
+        if (Predicates.HAS_ATTACHED_PARASITE.test(target)) return false;
         
         if (target instanceof EntityWaterMob) {
             return target.isInWater() || target.isOverWater();

@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import org.alien.client.render.entity.living.RenderNauticomorph;
-import org.alien.common.entity.living.xenomorph.EntityNauticomorph;
+import org.alien.common.entity.living.xenomorph.exotic.EntityNauticomorph;
 
 /**
  * @author Ri5ux

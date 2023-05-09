@@ -2,12 +2,16 @@ package org.alien.common.block.init;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import org.alien.common.block.AlienSoundTypes;
 import org.lib.common.block.BlockProperties;
 
 /**
  * @author Boston Vanseghi
  */
 public class AlienBlockProperties {
+
+    public static final BlockProperties RESIN_PROPS = new BlockProperties(Material.CLAY)
+            .setHardness(5.0F).setResistance(10.0F).setSoundType(AlienSoundTypes.RESIN).setFireInfo(5, 20);
 
     // Woods
     public static final BlockProperties WOOD_PLANK_PROPS = new BlockProperties(Material.WOOD)

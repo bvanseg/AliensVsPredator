@@ -21,7 +21,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.KeybindHandler;
-import org.avp.common.AVPItems;
 import org.avp.common.AVPNetworking;
 import org.avp.common.network.packet.server.PacketFireAPC;
 

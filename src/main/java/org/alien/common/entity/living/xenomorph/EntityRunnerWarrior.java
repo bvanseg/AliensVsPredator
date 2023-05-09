@@ -5,9 +5,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.world.hive.HiveMember;
 
-public class EntityRunnerWarrior extends EntityWarrior implements HiveMember
+public class EntityRunnerWarrior extends EntityWarrior
 {
     public EntityRunnerWarrior(World world)
     {

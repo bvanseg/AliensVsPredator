@@ -1,7 +1,6 @@
 package org.alien.common.block;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,16 +18,18 @@ import net.minecraftforge.common.property.IUnlistedProperty;
 import org.alien.common.tile.TileEntityHiveResin;
 import org.alien.common.tile.TileEntityHiveResin.ResinVariant;
 import org.avp.common.block.property.UnlistedPropertyBlockstate;
+import org.lib.common.block.BasicBlock;
+import org.lib.common.block.BlockProperties;
 
 import java.util.Random;
 
-public class BlockHiveResin extends Block
+public class BlockHiveResin extends BasicBlock
 {
     public static final IUnlistedProperty<IBlockState> PARENT_BLOCK = new UnlistedPropertyBlockstate();
     
-    public BlockHiveResin(Material material)
+    public BlockHiveResin(String registryName, BlockProperties properties)
     {
-        super(material);
+        super(registryName, properties);
     }
 
     @Override

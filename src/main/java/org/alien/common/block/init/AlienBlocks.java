@@ -22,8 +22,8 @@ public class AlienBlocks implements IPreInitEvent {
 
     private AlienBlocks() {}
 
-    public static final Block NATURAL_RESIN = new BlockHiveResin(Material.WOOD).setRegistryName("hiveresin");
-    public static final Block RESIN = new BlockMaterial(Material.WOOD).setHardness(5F).setResistance(10.0F).setRegistryName("hiveresin.standard");
+    public static final Block NATURAL_RESIN = new BlockHiveResin("hiveresin", AlienBlockProperties.RESIN_PROPS);
+    public static final Block RESIN = new BasicBlock("hiveresin.standard", AlienBlockProperties.RESIN_PROPS);
     public static final Block RELIC_OVAMORPH = new BasicBlock("tileovamorphdesign", AlienBlockProperties.RELIC_PROPS);
     public static final Block RELIC_FACEHUGGER = new BasicBlock("tilefacehuggerdesign", AlienBlockProperties.RELIC_PROPS);
     public static final Block RELIC_ALIEN = new BasicBlock("tilealiendesign", AlienBlockProperties.RELIC_PROPS);

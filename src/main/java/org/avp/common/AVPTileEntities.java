@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.avp.AVP;
 import org.avp.common.tile.*;
+import org.power.common.tile.*;
 
 public class AVPTileEntities implements IInitEvent {
     public static final AVPTileEntities instance = new AVPTileEntities();

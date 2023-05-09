@@ -2,7 +2,7 @@ package org.alien.common.entity.ai.brain.task.ovamorph;
 
 import net.minecraft.entity.EntityLivingBase;
 import org.alien.common.entity.ai.brain.task.util.EggMoveConstants;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainMemoryKeys;
 

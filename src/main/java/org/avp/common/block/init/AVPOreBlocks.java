@@ -23,7 +23,7 @@ public class AVPOreBlocks implements IPreInitEvent
     // Properties
     private static final BlockProperties COBALT_PROPS = new BlockProperties(Material.IRON)
             .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(50F).setResistance(20F);
-    private static final BlockProperties COPPER_PROPS = new BlockProperties(Material.IRON)
+    public static final BlockProperties COPPER_PROPS = new BlockProperties(Material.IRON)
             .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(3.2F).setResistance(2.6F);
     private static final BlockProperties LITHIUM_PROPS = new BlockProperties(Material.IRON)
             .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(4.2F).setResistance(5.4F);

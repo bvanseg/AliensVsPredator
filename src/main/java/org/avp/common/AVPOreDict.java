@@ -2,28 +2,23 @@ package org.avp.common;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 import org.alien.common.block.init.AlienVardaBlocks;
 import org.apache.commons.lang3.StringUtils;
 import org.avp.AVP;
 import org.avp.common.block.init.AVPOreBlocks;
+import org.avp.common.item.init.AVPItems;
 
 import java.util.Arrays;
 
 /**
  * @author Ri5ux
  */
-@EventBusSubscriber
 public class AVPOreDict
 {
     private AVPOreDict() {}
 
-    @SubscribeEvent
-    public static void registerOres(RegistryEvent.Register<IRecipe> event)
+    public static void registerOres()
     {
         AVP.instance.getLogger().info("Ore dictionary registration");
         
@@ -48,7 +43,6 @@ public class AVPOreDict
         registerOreDict("monazite", AVPOreBlocks.ORE_MONAZITE, "ore");
         registerOreDict("cobalt", AVPOreBlocks.ORE_COBALT, "ore");
 
-        
         registerOreDict("wood", AlienVardaBlocks.GIGER_LOG, "log");
     }
     

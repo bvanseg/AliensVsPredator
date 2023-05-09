@@ -5,11 +5,9 @@ import com.asx.mdx.common.minecraft.item.ItemToolMaterialAxe;
 import com.asx.mdx.common.minecraft.item.ItemToolMaterialPickaxe;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemSpade;
-import net.minecraft.item.ItemSword;
+import net.minecraft.item.*;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.avp.common.AVPArmorMaterials;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.AVPToolMaterials;
 import org.avp.common.item.ItemEntitySummoner;
@@ -42,39 +40,44 @@ public class PredatorItems implements IPreInitEvent {
     public static final Item ITEM_SHURIKEN = new ItemShuriken().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("shuriken");
     public static final Item ITEM_ARTIFACT_TECH = new HookedItem().setMaxStackSize(64).setCreativeTab(AVPCreativeTabs.CRAFTING).setRegistryName("artifact.tech");
 
-    public static final Item SUMMONER_YAUTJA_WARRIOR = new ItemEntitySummoner(EntityYautjaWarrior.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.yautja.warrior");
-    public static final Item SUMMONER_YAUTJA_BERSERKER = new ItemEntitySummoner(EntityYautjaBerserker.class).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.yautja.berserker");
+    public static final Item SUMMONER_YAUTJA_WARRIOR = new ItemEntitySummoner<>(EntityYautjaWarrior.class, EntityYautjaWarrior::new).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.yautja.warrior");
+    public static final Item SUMMONER_YAUTJA_BERSERKER = new ItemEntitySummoner<>(EntityYautjaBerserker.class, EntityYautjaBerserker::new).setCreativeTab(AVPCreativeTabs.ENTITIES).setRegistryName("summon.yautja.berserker");
 
     /* Experimental */
-    public static final Item SUMMONER_PREDATOR_HOUND = new ItemEntitySummoner(EntityPredatorHound.class).setRegistryName("summon.predatorhound");
+    public static final Item SUMMONER_PREDATOR_HOUND = new ItemEntitySummoner<>(EntityPredatorHound.class, EntityPredatorHound::new).setRegistryName("summon.predatorhound");
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
-        ItemRegistryUtil.registerItemWithIcon(BIOMASK_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(CHESTPLATE_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(LEGS_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(BOOTS_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(BIOMASK_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(CHESTPLATE_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(LEGS_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(BOOTS_CELTIC);
 
-        ItemRegistryUtil.registerItemWithIcon(SHOVEL_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(PICKAXE_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(AXE_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(SWORD_CELTIC);
-        ItemRegistryUtil.registerItemWithIcon(HOE_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(SHOVEL_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(PICKAXE_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(AXE_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(SWORD_CELTIC);
+        ItemRegistryUtil.registerItemWithModel(HOE_CELTIC);
         ItemRegistryUtil.registerItem(ITEM_SPEAR);
         ItemRegistryUtil.registerItem(ITEM_WRISTBRACER);
         ItemRegistryUtil.registerItem(ITEM_WRISTBRACER_BLADES);
 
         ItemRegistryUtil.registerItem(ITEM_PLASMA_CANNON);
-        ItemRegistryUtil.registerItemWithIcon(ITEM_PROXIMITY_MINE);
-        ItemRegistryUtil.registerItemWithIcon(ITEM_DISC);
-        ItemRegistryUtil.registerItemWithIcon(ITEM_SHURIKEN);
+        ItemRegistryUtil.registerItemWithModel(ITEM_PROXIMITY_MINE);
+        ItemRegistryUtil.registerItemWithModel(ITEM_DISC);
+        ItemRegistryUtil.registerItemWithModel(ITEM_SHURIKEN);
 
-        ItemRegistryUtil.registerItemWithIcon(ITEM_ARTIFACT_TECH);
+        ItemRegistryUtil.registerItemWithModel(ITEM_ARTIFACT_TECH);
 
         ItemRegistryUtil.registerItem(SUMMONER_YAUTJA_WARRIOR);
         ItemRegistryUtil.registerItem(SUMMONER_YAUTJA_BERSERKER);
 
         /* Experimental */
         ItemRegistryUtil.registerItem(SUMMONER_PREDATOR_HOUND, true);
+
+        /* Repairs */
+        AVPArmorMaterials.CELTIC.setRepairItem(new ItemStack(PredatorItems.ITEM_ARTIFACT_TECH));
+
+        AVPToolMaterials.CELTIC.setRepairItem(new ItemStack(PredatorItems.ITEM_ARTIFACT_TECH));
     }
 }

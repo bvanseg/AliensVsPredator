@@ -36,7 +36,8 @@ public class EntitySpaceJockey extends SpeciesEngineer
         super.onDeath(damagesource);
 
         ItemDropContext itemDropContext = new ItemDropContext(this);
-        if (damagesource == AVPDamageSources.WRISTBRACER) {
+
+        if (damagesource.getDamageType().equalsIgnoreCase(AVPDamageSources.WRISTBRACER)) {
             itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_SPACEJOCKEY, 25);
             return;
         }

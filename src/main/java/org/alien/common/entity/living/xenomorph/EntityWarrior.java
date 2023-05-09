@@ -2,7 +2,6 @@ package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -11,9 +10,11 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
+import org.avp.common.AVPDamageSources;
+import org.avp.common.AVPItemDrops;
+import org.lib.common.inventory.ItemDropContext;
 
-public class EntityWarrior extends SpeciesXenomorph implements IMob, HiveMember
+public class EntityWarrior extends SpeciesXenomorph
 {
     public EntityWarrior(World world)
     {
@@ -54,5 +55,14 @@ public class EntityWarrior extends SpeciesXenomorph implements IMob, HiveMember
     public ItemStack getPickedResult(RayTraceResult target)
     {
         return new ItemStack(AlienItems.SUMMONER_WARRIOR);
+    }
+
+    @Override
+    protected void dropSkull(DamageSource damageSource, ItemDropContext itemDropContext) {
+        if (damageSource.getDamageType().equalsIgnoreCase(AVPDamageSources.WRISTBRACER)) {
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_XENO_WARRIOR, 25);
+        } else {
+            itemDropContext.drop(AVPItemDrops.SKULL_XENO_WARRIOR);
+        }
     }
 }

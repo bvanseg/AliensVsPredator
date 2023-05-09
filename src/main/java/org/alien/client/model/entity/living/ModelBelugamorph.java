@@ -1,11 +1,8 @@
 package org.alien.client.model.entity.living;
 
-import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.util.math.MathHelper;
-import org.alien.client.render.XenomorphJawState;
-import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.entity.living.vardic.EntityBelugamorph;
 
 
@@ -452,21 +449,9 @@ public class ModelBelugamorph extends Model<EntityBelugamorph>
     @Override
     public void render(EntityBelugamorph obj)
     {
-        SpeciesXenomorph xenomorph = (SpeciesXenomorph) obj;
         float swingProgress = swingProgress(obj);
         float swingProgressPrev = swingProgressPrev(obj);
 
-        if (xenomorph != null)
-        {
-            float innerJawDistance = XenomorphJawState.calculateJawOffset(xenomorph.getInnerJawProgress());
-            float lowerJawAngle = XenomorphJawState.interpolateLowerJawAngle(xenomorph.getOuterJawProgress());
-
-            this.upperJaw.offsetY = (0.025F * innerJawDistance * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-            this.upperJaw.offsetZ = (-0.075F * innerJawDistance * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-            this.lowerJaw.offsetY = (0.055F * innerJawDistance * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-            this.lowerJaw.offsetZ = (-0.075F * innerJawDistance * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-            this.lowerJaw.rotateAngleX = (float) Math.toRadians((lowerJawAngle - 70) * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-        }
         this.headBase.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;
         this.rThigh.rotateAngleX = MathHelper.cos(swingProgress * 0.8662F + (float) Math.PI) * 0.9F * swingProgressPrev - 0.3F;
         this.lThigh.rotateAngleX = MathHelper.sin(swingProgress * 0.8662F + (float) Math.PI) * 0.9F * swingProgressPrev - 0.3F;

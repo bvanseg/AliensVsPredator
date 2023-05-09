@@ -1,7 +1,7 @@
 package org.alien.common.entity.ai.brain.task.ovamorph;
 
 import net.minecraft.world.World;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.avp.common.AVPFluidMaterials;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;

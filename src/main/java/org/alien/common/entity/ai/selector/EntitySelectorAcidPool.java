@@ -1,6 +1,9 @@
 package org.alien.common.entity.ai.selector;
 
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
+import org.alien.common.AlienItems;
 import org.lib.common.predicate.EntitySelectorBase;
 import org.lib.common.predicate.Predicates;
 
@@ -17,6 +20,6 @@ public class EntitySelectorAcidPool extends EntitySelectorBase
 
         if (Predicates.IS_ALIEN.test(target)) return false;
 
-        return true;
+        return !(target instanceof EntityPlayer) || Inventories.getBootSlotItemStack((EntityPlayer) target).getItem() != AlienItems.BOOTS_XENO;
     }
 }

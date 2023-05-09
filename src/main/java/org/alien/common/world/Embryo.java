@@ -5,16 +5,22 @@ import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import org.alien.client.AlienSounds;
 import org.alien.common.api.emybro.EmbryoEntries;
 import org.alien.common.api.emybro.EmbryoEntry;
 import org.alien.common.api.emybro.EmbryoKey;
 import org.alien.common.api.emybro.EmbryoRegistry;
+import org.alien.common.entity.living.xenomorph.burster.EntityChestburster;
 import org.alien.common.world.capability.Organism;
 import org.alien.common.world.capability.OrganismImpl;
 import org.avp.common.AVPDamageSources;
@@ -27,6 +33,8 @@ public class Embryo {
     private final EmbryoEntry embryoEntry;
     private final EmbryoKey embryoKey;
     private int age;
+
+    private Entity birthCreature;
 
     public Embryo(EmbryoEntry embryoEntry, EmbryoKey embryoKey) {
         this.embryoEntry = embryoEntry;
@@ -58,25 +66,55 @@ public class Embryo {
         return Entities.constructEntity(world, getBirthCreature());
     }
 
+    private Entity getOrCreateBirthCreature(World world) {
+        if (this.birthCreature == null) {
+            this.birthCreature = this.createBirthCreature(world);
+        }
+        return this.birthCreature;
+    }
+
     public void vitalize(EntityLivingBase host) {
         OrganismImpl hostOrganism = (OrganismImpl) host.getCapability(Organism.Provider.CAPABILITY, null);
-        Entity birthCreature = this.createBirthCreature(host.world);
 
-        Pos safeLocation = Entities.getSafeLocationAround(birthCreature, new Pos((int)host.posX, (int)host.posY, (int)host.posZ));
+        if (host.world.getTotalWorldTime() % 10 != 0) return;
+        if (hostOrganism == null || !hostOrganism.hasEmbryo()) return;
 
-        if (safeLocation == null)
-        {
-            safeLocation = new Pos((int)host.posX, (int)host.posY, (int)host.posZ);
+        Entity birthedCreature = this.getOrCreateBirthCreature(host.world);
+
+        // Attack the entity while host is alive and birth creature is vitalizing.
+        DamageSource damageSource = AVPDamageSources.causeChestbursterDamage(birthedCreature, host);
+        float damage = host.getMaxHealth() / 8F;
+        boolean isProtectedByTotem = this.hasTotemOfUndying(host);
+        host.attackEntityFrom(damageSource, damage);
+        host.world.playSound(null, host.getPosition(), AlienSounds.BONE_CRUNCH.event(), SoundCategory.HOSTILE, 1F, 1F);
+
+        if(host.getHealth() <= 0F || host.isDead || (host.getHealth() <= 1.0F && isProtectedByTotem)) {
+            // Spawn embryo
+            Pos safeLocation = Entities.getSafeLocationAround(birthedCreature, new Pos((int)host.posX, (int)host.posY, (int)host.posZ));
+
+            if (safeLocation == null)
+                safeLocation = new Pos((int)host.posX, (int)host.posY, (int)host.posZ);
+
+            birthedCreature.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
+            host.world.spawnEntity(birthedCreature);
+
+            // Play birth sound
+            if (birthedCreature instanceof EntityChestburster) {
+                host.world.playSound(null, host.getPosition(), AlienSounds.CHESTBURSTER_BURST.event(), SoundCategory.HOSTILE, 0.5F, 1F);
+            }
+
+            // Clean up
+            hostOrganism.setEmbryo(null);
+            host.clearActivePotions();
         }
+    }
 
-        birthCreature.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
-        host.world.spawnEntity(birthCreature);
-        hostOrganism.setEmbryo(null);
-        host.getActivePotionEffects().clear();
-        host.attackEntityFrom(AVPDamageSources.causeChestbursterDamage(birthCreature, host), 100000F);
-        if(!host.isDead) {
-            host.setHealth(0);
-        }
+    private boolean hasTotemOfUndying(EntityLivingBase host) {
+        for (EnumHand enumhand : EnumHand.values())
+            if (host.getHeldItem(enumhand).getItem() == Items.TOTEM_OF_UNDYING)
+                return true;
+
+        return false;
     }
 
     /**

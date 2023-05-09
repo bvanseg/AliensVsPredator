@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelDracoburster;
 import org.alien.client.render.util.AlienGrowthUtil;
-import org.alien.common.entity.living.xenomorph.EntityDracoburster;
+import org.alien.common.entity.living.xenomorph.burster.EntityDracoburster;
 
 public class RenderDracoburster extends RenderLivingWrapper<EntityDracoburster, ModelDracoburster>
 {
