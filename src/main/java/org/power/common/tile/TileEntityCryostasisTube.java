@@ -33,6 +33,7 @@ public class TileEntityCryostasisTube extends TileEntityElectrical implements Vo
     {
         super(false);
         this.setThresholdVoltage(90);
+        this.emitsLightWhenPowered = true;
     }
 
     @Override

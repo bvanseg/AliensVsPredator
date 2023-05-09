@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import org.avp.common.item.ItemEntitySummoner;
 import org.power.common.tile.TileEntityCryostasisTube;
 
-public class BlockCryostasisTube extends Block
+public class BlockCryostasisTube extends ElectricalBlock
 {
 
     private static final AxisAlignedBB BOUNDING_BOX_INTACT = new AxisAlignedBB(0.1D, 0D, 0.1D, 0.9D, 2.0D, 0.9D);
@@ -29,6 +29,7 @@ public class BlockCryostasisTube extends Block
     {
         super(material);
         this.setTickRandomly(true);
+        this.lightEmittedWhenPowered = 4;
     }
 
     @Override

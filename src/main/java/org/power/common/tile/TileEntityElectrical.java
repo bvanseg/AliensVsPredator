@@ -14,6 +14,7 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,6 +36,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
     protected double  boost;
     protected int     updateFrequency;
     protected boolean isSrc;
+    protected boolean emitsLightWhenPowered;
 
     public TileEntityElectrical(boolean isSource)
     {
@@ -44,6 +46,7 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
         this.updateFrequency = 50;/** 1000 / 50Hz = 20 Ticks **/
         this.resistance = 0.1;
         this.boost = 0;
+        this.emitsLightWhenPowered = false;
     }
 
     @Override
@@ -242,6 +245,8 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
      */
     public void updateEnergyAsReceiver()
     {
+        boolean isPreviouslyOperational = this.isOperational();
+
         this.voltagePrev = this.voltage;
 
         TileEntity surroundingTile = null;
@@ -288,6 +293,10 @@ public abstract class TileEntityElectrical extends TileEntity implements ITickab
         if (surroundingTile == null || this.getVoltage() < 0)
         {
             this.setVoltage(0);
+        }
+
+        if (this.emitsLightWhenPowered && isPreviouslyOperational != this.isOperational()) {
+            this.world.checkLightFor(EnumSkyBlock.BLOCK, pos);
         }
     }
 
