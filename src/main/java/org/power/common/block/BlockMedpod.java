@@ -20,12 +20,13 @@ import org.avp.common.api.machines.Openable;
 import org.power.common.tile.TileEntityMedpod;
 
 
-public class BlockMedpod extends Block
+public class BlockMedpod extends ElectricalBlock
 {
     public BlockMedpod(Material material)
     {
         super(material);
         setTickRandomly(true);
+        this.lightEmittedWhenPowered = 7;
     }
     
     @Override

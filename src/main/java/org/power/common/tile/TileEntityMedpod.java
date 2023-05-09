@@ -25,6 +25,7 @@ public class TileEntityMedpod extends TileEntityElectrical implements Openable, 
     {
         super(false);
         this.isOpen = false;
+        this.emitsLightWhenPowered = true;
     }
 
     public EntityMedpod getEntity()
