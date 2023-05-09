@@ -3,6 +3,7 @@ package org.alien.common.entity.ai.brain.task.matriarch;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.EnumSkyBlock;
+import org.alien.JellyConstants;
 import org.alien.common.entity.ai.brain.task.util.OvipositorHelper;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
 import org.lib.brain.flag.AbstractBrainFlag;
@@ -34,7 +35,6 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 
 		EntityMatriarch matriarchEntity = (EntityMatriarch) entity;
 
-		if (matriarchEntity.getJellyLevel() < EntityMatriarch.OVIPOSITOR_UNHEALTHY_THRESHOLD) return false;
 		if (matriarchEntity.world.canSeeSky(matriarchEntity.getPosition())) return false;
 		if (matriarchEntity.world.getLightFor(EnumSkyBlock.SKY, matriarchEntity.getPosition()) > 4) return false;
 
@@ -59,7 +59,7 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 		if (matriarchEntity.getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE)
 		{
 			matriarchEntity.setOvipositorSize(matriarchEntity.getOvipositorSize() + EntityMatriarch.OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE);
-			matriarchEntity.setJellyLevel(matriarchEntity.getJellyLevel() - EntityMatriarch.OVIPOSITOR_JELLYLEVEL_GROWTH_USE);
+			matriarchEntity.setJellyLevel(matriarchEntity.getJellyLevel() - JellyConstants.OVIPOSITOR_GROWTH_COST);
 		}
 
 		// While the queen is growing her ovipositor, we need her to look away from her egglaying position.

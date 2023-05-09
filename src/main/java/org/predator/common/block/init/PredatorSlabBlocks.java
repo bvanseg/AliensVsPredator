@@ -1,7 +1,6 @@
 package org.predator.common.block.init;
 
 import com.asx.mdx.common.mods.IPreInitEvent;
-import net.minecraft.item.ItemSlab;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.avp.common.block.BlockCustomSlab;
 import org.lib.common.registry.BlockRegistryUtil;

@@ -1,18 +1,22 @@
 package org.alien.common.block;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraftforge.common.property.IUnlistedProperty;
+import org.avp.common.block.property.UnlistedPropertyBlockstate;
+import org.lib.common.block.BasicBlock;
+import org.lib.common.block.BlockProperties;
 
-public class BlockHiveResin extends Block
+public class BlockHiveResin extends BasicBlock
 {
-    public BlockHiveResin(Material material)
+    public static final IUnlistedProperty<IBlockState> PARENT_BLOCK = new UnlistedPropertyBlockstate();
+    
+    public BlockHiveResin(String registryName, BlockProperties properties)
     {
-        super(material);
+        super(registryName, properties);
     }
 
 

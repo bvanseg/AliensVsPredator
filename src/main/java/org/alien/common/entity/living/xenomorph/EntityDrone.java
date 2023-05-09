@@ -11,9 +11,11 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.xenomorph.DroneBrain;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
+import org.avp.common.AVPDamageSources;
+import org.avp.common.AVPItemDrops;
+import org.lib.common.inventory.ItemDropContext;
 
-public class EntityDrone extends SpeciesXenomorph implements HiveMember
+public class EntityDrone extends SpeciesXenomorph
 {
     public EntityDrone(World world)
     {
@@ -23,11 +25,13 @@ public class EntityDrone extends SpeciesXenomorph implements HiveMember
     }
 
     @Override
-    public XenomorphBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new DroneBrain(this);
-        }
-        return this.brain;
+    public DroneBrain getBrain() {
+        return (DroneBrain) super.getBrain();
+    }
+
+    @Override
+    public XenomorphBrain createNewBrain() {
+        return new DroneBrain(this);
     }
 
     @Override
@@ -61,5 +65,14 @@ public class EntityDrone extends SpeciesXenomorph implements HiveMember
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.ALIEN_DEATH.event();
+    }
+
+    @Override
+    protected void dropSkull(DamageSource damageSource, ItemDropContext itemDropContext) {
+        if (damageSource.getDamageType().equalsIgnoreCase(AVPDamageSources.WRISTBRACER)) {
+            itemDropContext.dropWithBonusDropWeight(AVPItemDrops.SKULL_XENO_DRONE, 25);
+        } else {
+            itemDropContext.drop(AVPItemDrops.SKULL_XENO_DRONE);
+        }
     }
 }

@@ -6,7 +6,7 @@ import org.alien.common.entity.ai.brain.task.ovamorph.RequestMoveBrainTask;
 import org.alien.common.entity.ai.brain.task.ovamorph.UpdateOpenProgressBrainTask;
 import org.alien.common.entity.ai.brain.task.ovamorph.UpdateTimeUntilOpenBrainTask;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
 import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.task.NearestAttackableTargetBrainTask;
@@ -39,5 +39,14 @@ public class OvamorphBrain extends AlienBrain<EntityOvamorph> {
 
 		// Additional behaviors.
 		this.addTask(new RequestMoveBrainTask());
+	}
+
+	@Override
+	public void update() {
+		super.update();
+
+		if (!this.getEntity().containsFacehugger()) {
+			this.disableAllProfiles();
+		}
 	}
 }

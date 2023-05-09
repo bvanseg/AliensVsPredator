@@ -4,7 +4,6 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -18,22 +17,22 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants.NBT;
+import org.alien.JellyConstants;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.xenomorph.MatriarchBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.world.hive.AlienHive;
 import org.alien.common.world.hive.HiveOwner;
+import org.avp.common.AVPItemDrops;
+import org.lib.common.inventory.ItemDropContext;
 
 import java.util.UUID;
 
-public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
+public class EntityMatriarch extends SpeciesXenomorph implements HiveOwner
 {
     public static final float                 OVIPOSITOR_THRESHOLD_SIZE          = 1.3F;
     public static final float                 OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE = 0.00225F;
-    public static final int                   OVIPOSITOR_UNHEALTHY_THRESHOLD     = 50;
-    public static final int                   OVIPOSITOR_JELLYLEVEL_THRESHOLD    = 1000;
-    public static final int                   OVIPOSITOR_JELLYLEVEL_GROWTH_USE   = 1;
 
     private static final DataParameter<Float> OVIPOSITOR_SIZE = EntityDataManager.createKey(EntityMatriarch.class, DataSerializers.FLOAT);
 
@@ -43,11 +42,10 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     {
         super(world);
         this.setSize(2.0F, 5.0F);
-        this.experienceValue = 40000;
+        this.experienceValue = 4000;
         this.jumpMovementFactor = 0.2F;
         this.hurtResistantTime = 0;
         this.ignoreFrustumCheck = true;
-        this.jellyLimitOverride = true;
     }
 
     @Override
@@ -59,10 +57,12 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
 
     @Override
     public MatriarchBrain getBrain() {
-        if (brain == null && !this.world.isRemote) {
-            brain = new MatriarchBrain(this);
-        }
-        return (MatriarchBrain) brain;
+        return (MatriarchBrain) super.getBrain();
+    }
+
+    @Override
+    public MatriarchBrain createNewBrain() {
+        return new MatriarchBrain(this);
     }
 
     @Override
@@ -198,7 +198,7 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
     @Override
     protected int getJellyLevelStart()
     {
-        return 1000;
+        return JellyConstants.RAW_YIELD * 4;
     }
     
     @Override
@@ -241,4 +241,8 @@ public class EntityMatriarch extends SpeciesXenomorph implements IMob, HiveOwner
         this.playSound(SoundEvents.ENTITY_IRONGOLEM_STEP, 2F, 0.1F);
     }
 
+    @Override
+    protected void dropSkull(DamageSource damageSource, ItemDropContext itemDropContext) {
+        itemDropContext.drop(AVPItemDrops.SKULL_XENO_MATRIARCH);
+    }
 }

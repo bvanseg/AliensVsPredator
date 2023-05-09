@@ -9,9 +9,8 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
 
-public class EntityPraetorian extends SpeciesXenomorph implements HiveMember
+public class EntityPraetorian extends SpeciesXenomorph
 {
     public EntityPraetorian(World world)
     {

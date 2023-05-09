@@ -6,7 +6,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelChestbursterPredalien;
 import org.alien.client.render.util.AlienGrowthUtil;
-import org.alien.common.entity.living.xenomorph.EntityPredalienChestburster;
+import org.alien.common.entity.living.xenomorph.burster.EntityPredalienChestburster;
 
 public class RenderPredalienChestburster extends RenderLivingWrapper<EntityPredalienChestburster, ModelChestbursterPredalien>
 {

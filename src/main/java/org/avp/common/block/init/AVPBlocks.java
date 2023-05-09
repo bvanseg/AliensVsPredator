@@ -3,6 +3,7 @@ package org.avp.common.block.init;
 import com.asx.mdx.common.minecraft.block.BlockMaterial;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -26,9 +27,9 @@ public class AVPBlocks implements IPreInitEvent
     public static final BlockProperties INDUSTRIAL_PROPS = new BlockProperties(Material.IRON)
             .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(5F).setResistance(15F);
     public static final BlockProperties PADDING_PROPS = new BlockProperties(Material.CLOTH)
-            .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+            .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(10F).setResistance(15.0F);
     public static final BlockProperties PLASTIC_PROPS = new BlockProperties(Material.CLAY)
-            .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(10F).setResistance(15.0F).setLightOpacity(0);
+            .setCreativeTab(AVPCreativeTabs.MAIN).setHardness(10F).setResistance(15.0F);
 
 
     // Ceiling
@@ -75,6 +76,12 @@ public class AVPBlocks implements IPreInitEvent
     public static final Block FLOOR_GRILL = new BasicBlock("floorgrill", INDUSTRIAL_PROPS).setLayer(BlockRenderLayer.TRANSLUCENT).setLightOpacity(4);
     public static final Block MUTHUR_PANEL_1 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(1F).setLightLevel(0.5F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("mainframepanel.shimmer");
     public static final Block MUTHUR_PANEL_2 = new BlockMaterial(Material.IRON).setHardness(5F).setResistance(10F).setLightLevel(0.5F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("mainframepanel.flicker");
+
+    public static final Block RAW_COPPER_BLOCK = new BasicBlock("raw_copper_block", AVPOreBlocks.COPPER_PROPS);
+    public static final Block COPPER_BLOCK = new BasicBlock("copper_block", new BlockProperties(Material.IRON).setHardness(4.0F).setResistance(10F).setSoundType(SoundType.METAL).setCreativeTab(AVPCreativeTabs.MAIN));
+
+    public static final Block RAW_BAUXITE_BLOCK = new BasicBlock("raw_bauxite_block", AVPOreBlocks.COPPER_PROPS);
+    public static final Block ALUMINUM_BLOCK = new BasicBlock("aluminum_block", new BlockProperties(Material.IRON).setHardness(4.0F).setResistance(10F).setSoundType(SoundType.METAL).setCreativeTab(AVPCreativeTabs.MAIN));
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
@@ -128,5 +135,11 @@ public class AVPBlocks implements IPreInitEvent
         BlockRegistryUtil.registerStandardBlock(PADDING_SQUARE_WHITE);
         BlockRegistryUtil.registerStandardBlock(PADDING_TILES_ORANGE);
         BlockRegistryUtil.registerStandardBlock(PADDING_TILES_WHITE);
+
+        BlockRegistryUtil.registerStandardBlock(RAW_COPPER_BLOCK);
+        BlockRegistryUtil.registerStandardBlock(COPPER_BLOCK);
+
+        BlockRegistryUtil.registerStandardBlock(RAW_BAUXITE_BLOCK);
+        BlockRegistryUtil.registerStandardBlock(ALUMINUM_BLOCK);
     }
 }

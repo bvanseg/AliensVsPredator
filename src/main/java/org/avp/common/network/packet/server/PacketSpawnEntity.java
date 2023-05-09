@@ -3,7 +3,9 @@ package org.avp.common.network.packet.server;
 import com.asx.mdx.common.minecraft.entity.Entities;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -64,6 +66,12 @@ public class PacketSpawnEntity implements IMessage, IMessageHandler<PacketSpawnE
 
                     if (entity != null) {
                         entity.setLocationAndAngles(packet.x, packet.y, packet.z, 0.0F, 0.0F);
+
+                        if (entity instanceof EntityLiving) {
+                            BlockPos pos = new BlockPos(packet.x, packet.y, packet.z);
+                            ((EntityLiving)entity).onInitialSpawn(player.world.getDifficultyForLocation(pos), null);
+                        }
+
                         player.world.spawnEntity(entity);
                     }
                 }

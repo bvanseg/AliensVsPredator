@@ -6,6 +6,7 @@ import net.minecraft.item.ItemAppleGold;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumHand;
 import org.avp.common.AVPNetworking;
 import org.avp.common.entity.living.EntityMarine;
 import org.avp.common.network.packet.client.PacketSyncEntityInventory;
@@ -69,6 +70,7 @@ public class EatFoodBrainTask extends AbstractEntityBrainTask {
             this.isEating = true;
             this.foodItemStack = stack;
             this.eatTimer = (int)(20 * 1.61); // Players eat for 1.61 seconds.
+            marine.setHeldItem(EnumHand.OFF_HAND, stack);
         }
     }
 
@@ -91,6 +93,7 @@ public class EatFoodBrainTask extends AbstractEntityBrainTask {
 
             // Sync inventory to clients
             AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(marine, marine.getInventory()));
+            marine.setHeldItem(EnumHand.OFF_HAND, ItemStack.EMPTY);
         }
         else if (this.eatTimer % 4 == 0) {
             ctx.getEntity().playSound(SoundEvents.ENTITY_GENERIC_EAT, 1F, 1F);

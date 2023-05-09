@@ -3,7 +3,7 @@ package org.alien.common.entity.ai.brain.task.ovamorph;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.avp.common.AVPFluidMaterials;
 import org.lib.brain.impl.AbstractEntityBrainTask;
 

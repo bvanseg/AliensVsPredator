@@ -5,7 +5,7 @@ import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import org.alien.client.AlienResources;
 import org.alien.client.model.entity.living.ModelDracomorph;
-import org.alien.common.entity.living.xenomorph.EntityDracomorph;
+import org.alien.common.entity.living.xenomorph.exotic.EntityDracomorph;
 
 public class RenderDracomorph extends RenderLivingWrapper<EntityDracomorph, ModelDracomorph>
 {

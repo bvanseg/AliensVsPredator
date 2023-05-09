@@ -31,6 +31,14 @@ item.avp:helm.mk50.name=MK50 Helmet
 item.avp:body.mk50.name=MK50 Chest Guard
 item.avp:legwear.mk50.name=MK50 Jumpsuit
 item.avp:boots.mk50.name=MK50 Boots
+item.avp:copper_helmet.name=Copper Helmet
+item.avp:copper_chestplate.name=Copper Chestplate
+item.avp:copper_leggings.name=Copper Leggings
+item.avp:copper_boots.name=Copper Boots
+item.avp:aluminum_helmet.name=Aluminum Helmet
+item.avp:aluminum_chestplate.name=Aluminum Chestplate
+item.avp:aluminum_leggings.name=Aluminum Leggings
+item.avp:aluminum_boots.name=Aluminum Boots
 
 
 # ITEMS-TOOLS AND WEAPONS
@@ -47,6 +55,16 @@ item.avp:plasmacannon.name=Plasma Caster
 item.avp:tool.maintenancejack.name=Maintenance Jack
 item.avp:tool.securitytuner.name=Security Access Tuner
 item.avp:stun.baton.name=Stun Baton
+item.avp:copper_axe.name=Copper Axe
+item.avp:copper_hoe.name=Copper Hoe
+item.avp:copper_pickaxe.name=Copper Pickaxe
+item.avp:copper_shovel.name=Copper Shovel
+item.avp:copper_sword.name=Copper Sword
+item.avp:aluminum_axe.name=Aluminum Axe
+item.avp:aluminum_hoe.name=Aluminum Hoe
+item.avp:aluminum_pickaxe.name=Aluminum Pickaxe
+item.avp:aluminum_shovel.name=Aluminum Shovel
+item.avp:aluminum_sword.name=Aluminum Sword
 
 
 # ITEMS-FIREARM COMPONENTS
@@ -112,6 +130,10 @@ item.avp:food.doritos.name=Doritos
 item.avp:food.doritos.coolranch.name=Doritos (Cool Ranch)
 item.avp:food.raw.tentacle.name=Raw Tentacle
 item.avp:food.trilo.bite.name=Trilo Bite
+item.avp:aluminum_nugget.name=Aluminum Nugget
+item.avp:raw_bauxite.name=Raw Bauxite
+item.avp:copper_nugget.name=Copper Nugget
+item.avp:raw_copper.name=Raw Copper
 
 #BUCKETS
 fluid.blackGoo=Black Goo
@@ -119,70 +141,70 @@ fluid.mist=Reactive Mist
 
 #ITEMS-SUMMONERS
 #Immature Xenomorphs
-item.avp:summon.ovamorph.name=Ovamorph (Egg)
-item.avp:summon.ovamorph.giger.name=Ovamorph (Egg, Giger)
-item.avp:summon.facehugger.name=Facehugger
-item.avp:summon.chestburster.name=Chestburster
-item.avp:summon.royalfacehugger.name=Royal Facehugger
-item.avp:summon.chestburster.runner.name=Runner Chestburster
-item.avp:summon.chestburster.predalien.name=Predalien Chestburster
-item.avp:summon.chestburster.queen.name=Queen Chestburster
-item.avp:summon.dracoegg.name=Dracovamorph
-item.avp:summon.dracoburster.name=Dracoburster
+item.avp:summon.ovamorph.name=Ovamorph (Egg) Summoner
+item.avp:summon.ovamorph.giger.name=Ovamorph (Egg, Giger) Summoner
+item.avp:summon.facehugger.name=Facehugger Summoner
+item.avp:summon.chestburster.name=Chestburster Summoner
+item.avp:summon.royalfacehugger.name=Royal Facehugger Summoner
+item.avp:summon.chestburster.runner.name=Runner Chestburster Summoner
+item.avp:summon.chestburster.predalien.name=Predalien Chestburster Summoner
+item.avp:summon.chestburster.queen.name=Queen Chestburster Summoner
+item.avp:summon.dracoegg.name=Dracovamorph Summoner
+item.avp:summon.dracoburster.name=Dracoburster Summoner
 
 #Default Evolving Xenomorphs
-item.avp:summon.drone.name=Xenomorph Drone
-item.avp:summon.warrior.name=Xenomorph Warrior
-item.avp:summon.praetorian.name=Xenomorph Praetorian
-item.avp:summon.queen.name=Xenomorph Queen
+item.avp:summon.drone.name=Xenomorph Drone Summoner
+item.avp:summon.warrior.name=Xenomorph Warrior Summoner
+item.avp:summon.praetorian.name=Xenomorph Praetorian Summoner
+item.avp:summon.queen.name=Xenomorph Queen Summoner
 
 #Animal Derived Xenomorphs
-item.avp:summon.runner.drone.name=Xenomorph Runner
-item.avp:summon.runner.warrior.name=Xenomorph Runner Warrior
-item.avp:summon.crusher.name=Xenomorph Crusher
+item.avp:summon.runner.drone.name=Xenomorph Runner Summoner
+item.avp:summon.runner.warrior.name=Xenomorph Runner Warrior Summoner
+item.avp:summon.crusher.name=Xenomorph Crusher Summoner
 
 #Other Xenomorphs
-item.avp:summon.spitter.name=Xenomorph Spitter
-item.avp:summon.boiler.name=Boiler
-item.avp:summon.predalien.name=Predalien
-item.avp:summon.aqua.name=Nauticomorph
-item.avp:summon.myceliomorph.name=Myceliomorph
-item.avp:summon.pantheramorph.name=Pantheramorph
-item.avp:summon.dracomorph.name=Dracomorph
-item.avp:summon.batxeno.name=Chiropteramorph
-item.avp:summon.ultramorph.name=Ultramorph
+item.avp:summon.spitter.name=Xenomorph Spitter Summoner
+item.avp:summon.boiler.name=Boiler Summoner
+item.avp:summon.predalien.name=Predalien Summoner
+item.avp:summon.aqua.name=Nauticomorph Summoner
+item.avp:summon.myceliomorph.name=Myceliomorph Summoner
+item.avp:summon.pantheramorph.name=Pantheramorph Summoner
+item.avp:summon.dracomorph.name=Dracomorph Summoner
+item.avp:summon.batxeno.name=Chiropteramorph Summoner
+item.avp:summon.ultramorph.name=Ultramorph Summoner
 
 #Xenomorph-Like Organisms
-item.avp:summon.trilobite.name=Trilobite
-item.avp:summon.deacon.name=Deacon
-item.avp:summon.deacon.adult.name=Deacon (Adult)
-item.avp:summon.octohugger.name=Octohugger
-item.avp:summon.belugaburster.name=Belugaburster
-item.avp:summon.belugamorph.name=Belugamorph
+item.avp:summon.trilobite.name=Trilobite Summoner
+item.avp:summon.deacon.name=Deacon Summoner
+item.avp:summon.deacon.adult.name=Deacon (Adult) Summoner
+item.avp:summon.octohugger.name=Octohugger Summoner
+item.avp:summon.belugaburster.name=Belugaburster Summoner
+item.avp:summon.belugamorph.name=Belugamorph Summoner
 
 #Goo-based Creatures and Mutants
-item.avp:summon.sporepod.name=Spore Pods
-item.avp:summon.hammerpede.name=Hammerpede
-item.avp:summon.deaconshark.name=Deacon Shark
-item.avp:summon.goomutant.name=Goo Mutant
-item.avp:summon.aethon.name=Aethon
-item.avp:summon.babyhead.name=Babyhead
-item.avp:summon.vardamonkey.name=Scelemur
-item.avp:summon.ursuidae.name=Ursuidae
-item.avp:summon.yautjamutant.name=Mutant Yautja
+item.avp:summon.sporepod.name=Spore Pods Summoner
+item.avp:summon.hammerpede.name=Hammerpede Summoner
+item.avp:summon.deaconshark.name=Deacon Shark Summoner
+item.avp:summon.goomutant.name=Goo Mutant Summoner
+item.avp:summon.aethon.name=Aethon Summoner
+item.avp:summon.babyhead.name=Babyhead Summoner
+item.avp:summon.vardamonkey.name=Scelemur Summoner
+item.avp:summon.ursuidae.name=Ursuidae Summoner
+item.avp:summon.yautjamutant.name=Mutant Yautja Summoner
 
 #Predators
-item.avp:summon.yautja.warrior.name=Yautja (Predator)
-item.avp:summon.yautja.berserker.name=Berserker Yautja
-item.avp:summon.predatorhound.name=Hellhound
+item.avp:summon.yautja.warrior.name=Yautja (Predator) Summoner
+item.avp:summon.yautja.berserker.name=Berserker Yautja Summoner
+item.avp:summon.predatorhound.name=Hellhound Summoner
 
 #Engineers
-item.avp:summon.engineer.name=Engineer
-item.avp:summon.spacejockey.name=Space Jockey
+item.avp:summon.engineer.name=Engineer Summoner
+item.avp:summon.spacejockey.name=Space Jockey Summoner
 
 #Humans and Synthetics
-item.avp:summon.marine.name=Marine
-item.avp:summon.synthetic.combat.name=Combat Synthetic
+item.avp:summon.marine.name=Marine Summoner
+item.avp:summon.synthetic.combat.name=Combat Synthetic Summoner
 
 
 #ITEMS-TOOLS AND WEAPONS 2
@@ -407,6 +429,10 @@ tile.avp:skull.yautja.name=Yautja Skull
 tile.avp:skull.engineer.name=Engineer Helmet
 tile.avp:skull.spacejockey.name=Space Jockey Skull
 tile.avp:engineership.ampule.name=Ampule
+tile.avp:aluminum_block.name=Block of Aluminum
+tile.avp:raw_bauxite_block.name=Block of Raw Bauxite
+tile.avp:copper_block.name=Block of Copper
+tile.avp:raw_copper_block.name=Block of Raw Copper
 
 
 #MOBS
@@ -497,7 +523,11 @@ death.attack.smartdisc=%1$s was sliced in half by a smart disc.
 death.attack.laserMine=%1$s was blown to bits by a laser mine.
 death.attack.flamethrower=%1$s was incinerated.
 death.attack.bullet=%1$s was shot by %2$s.
+death.attack.wristbracer=%1$s was ripped to shreds by %2$s.
+death.attack.plasmacaster=%1$s was blown to bits by %2$s.
 
+#POTION EFFECTS
+effect.disintegration=Disintegration
 
 #TEXT-MISC
 gui.avp.beta.feedback.info.submit.title=Submit Feedback
@@ -627,6 +657,8 @@ avp.advancements.tech.acquire.ssd.title=Data Hoarder
 avp.advancements.tech.acquire.ssd.description=Craft a solid state drive
 avp.advancements.tech.acquire.powersupply.title=Powerhouse
 avp.advancements.tech.acquire.powersupply.description=Craft a power supply
+avp.advancements.tech.acquire.repulsion.generator.title=How Repulsive
+avp.advancements.tech.acquire.repulsion.generator.description=Craft a repulsion generator
 
 avp.advancements.tech.acquire.assembler.title=The Gathering
 avp.advancements.tech.acquire.assembler.description=Craft an assembler
@@ -781,3 +813,103 @@ avp.config.spawn.weight.deacon.desc=Spawn Weight
 
 avp.config.spawn.weight.trilobite.key=Trilobite Spawn Weight
 avp.config.spawn.weight.trilobite.desc=Spawn Weight
+
+#SUBTITLES
+subtitles.entity.xenomorph.attack=Xenomorph attacks
+subtitles.entity.xenomorph.ambient=Xenomorph hisses
+subtitles.entity.xenomorph.hurt=Xenomorph hurt
+subtitles.entity.xenomorph.death=Xenomorph dies
+subtitles.entity.xenomorph.eat=Xenomorph devours
+
+subtitles.entity.prequelmorph.attack=Belugamorph attacks
+subtitles.entity.prequelmorph.ambient=Belugamorph hisses
+subtitles.entity.prequelmorph.hurt=Belugamorph hurt
+subtitles.entity.prequelmorph.death=Belugamorph dies
+
+subtitles.entity.facehugger.implant=Facehugger implants embryos
+subtitles.entity.facehugger.ambient=Facehugger chirps
+subtitles.entity.facehugger.hurt=Facehugger hurt
+subtitles.entity.facehugger.death=Facehugger dies
+
+subtitles.entity.chestburster.attack=Chestburster attacks
+subtitles.entity.chestburster.hurt=Chestburster hurt
+subtitles.entity.chestburster.death=Chestburster dies
+subtitles.entity.chestburster.grow=Chestburster grows
+subtitles.entity.chestburster.burst=Chestburster bursts
+
+subtitles.effects.heartbeat.normal=Heartbeats
+subtitles.effects.heartbeat.elevated=Elevated heartbeats
+subtitles.effects.heartbeat.rapid=Rapid heartbeats
+subtitles.effects.heartbeat.fatal=Fatal heartbeats
+
+subtitles.entity.marine.hurt=Marine hurt
+subtitles.entity.marine.death=Marine dies
+
+subtitles.entity.ovamorph.ambient=Ovamorph writhes
+subtitles.entity.ovamorph.open=Ovamorph hatches
+
+subtitles.entity.predator.vision.switch=Biomask changes vision
+subtitles.entity.predator.cloak=Predator cloaks
+subtitles.entity.predator.decloak=Predator decloaks
+subtitles.entity.predator.ambient=Predator clicks
+subtitles.entity.predator.hurt=Predator hurt
+subtitles.entity.predator.death=Predator dies
+
+subtitles.entity.praetorian.ambient=Praetorian hisses
+subtitles.entity.praetorian.hurt=Praetorian hurt
+subtitles.entity.praetorian.death=Praetorian dies
+
+subtitles.entity.predalien.attack=Predalien attacks
+subtitles.entity.predalien.ambient=Predalien hisses
+subtitles.entity.predalien.hurt=Predalien hurt
+subtitles.entity.predalien.death=Predalien dies
+
+subtitles.entity.queen.ambient=Queen hisses
+subtitles.entity.queen.ambient.loop=Queen breathes
+subtitles.entity.queen.hurt=Queen hurt
+subtitles.entity.queen.death=Queen dies
+
+subtitles.weapon.blades=Wristblade wooshes
+subtitles.wristbracer.alarm=Wristbracer counts down
+
+subtitles.weapon.pulserifle.shoot=Pulse rifle shoots
+
+subtitles.weapon.plasmacaster.shoot=Plasmacaster shoots
+subtitles.weapon.plasmacaster.charge=Plasmacaster charging up
+subtitles.weapon.plasmacaster.noenergy=Plasmacaster fizzles
+subtitles.weapon.plasmacaster.boltexplosion=Plasmacaster bolt explodes
+
+subtitles.weapon.flamethrower.shoot=Flamethrower shoots
+subtitles.weapon.stunbaton.hit=Stun baton shocks
+
+subtitles.weapon.gunshot=Gunshot
+
+subtitles.weapon.pistol.shoot=Pistol shoots
+subtitles.weapon.sniper.shoot=Sniper shoots
+subtitles.weapon.ak47.shoot=AK47 shoots
+subtitles.weapon.m4.shoot=M4 shoots
+subtitles.weapon.m56sg.shoot=M56SG shoots
+subtitles.weapon.reload=Weapon reloading
+
+subtitles.motiontracker.ping=Motiontracker pings
+subtitles.motiontracker.pong=Motiontracker pongs
+
+subtitles.block.blastdoor.sevastopol.open=Blast door opens
+subtitles.block.blastdoor.sevastopol.close=Blast door closes
+subtitles.block.blastdoor.open=Blast door opens
+subtitles.block.blastdoor.close=Blast door closes
+subtitles.block.blastdoor.lock=Blast door locks
+subtitles.block.blastdoor.unlock=Blast door unlocks
+subtitles.block.blastdoor.passworddeny=Blast door password denied
+
+subtitles.block.hive.step=Hive resin squishes
+subtitles.block.newglass.step=Glass compresses
+subtitles.block.alarm.access=Alarm access
+subtitles.block.alarm.buzzer=Alarm buzzes
+subtitles.block.alarm.emergency=Alarm emergency
+
+subtitles.wristbracer.console.open=Wristbracer opens
+subtitles.wristbracer.console.close=Wristbracer closes
+subtitles.wristbracer.console.interact=Wristbracer button clicks
+
+subtitles.bone.break=Bones cracking

@@ -10,6 +10,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.alien.JellyConstants;
 import org.alien.common.block.BlockHiveResin;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.entity.living.xenomorph.EntityDrone;
@@ -64,7 +65,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 		if (droneEntity.getAlienHive() == null) return false;
 		if (droneEntity.world.getTotalWorldTime() % 10 != 0) return false;
 		if (droneEntity.getRNG().nextInt(3) != 0) return false;
-		if (droneEntity.getJellyLevel() < 16) return false;
+		if (droneEntity.getJellyLevel() < JellyConstants.RESIN_PLACE_COST) return false;
 
 		return true;
 	}
@@ -118,7 +119,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 			entity.world.notifyBlockUpdate(this.targetPos, state, state, 3);
 			entity.getAlienHive().addResin(this.targetPos);
 
-			entity.setJellyLevel(entity.getJellyLevel() - 16);
+			entity.setJellyLevel(entity.getJellyLevel() - JellyConstants.RESIN_PLACE_COST);
 			this.targetPos = null;
 		}
 	}

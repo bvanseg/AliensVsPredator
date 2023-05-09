@@ -2,6 +2,7 @@ package org.predator.common.entity.ai.brain;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.player.EntityPlayer;
 import org.alien.common.entity.EntityAcidPool;
 import org.lib.brain.impl.AbstractEntityBrain;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
@@ -9,6 +10,7 @@ import org.lib.brain.impl.sensor.NearestAttackableTargetBrainSensor;
 import org.lib.brain.impl.sensor.NearestAvoidTargetBrainSensor;
 import org.lib.brain.impl.task.*;
 import org.lib.brain.task.BrainTaskAdapter;
+import org.lib.common.predicate.Predicates;
 import org.predator.common.entity.ai.EntityAISuperjump;
 import org.predator.common.entity.ai.selector.EntitySelectorYautja;
 import org.predator.common.entity.living.SpeciesYautja;
@@ -27,7 +29,20 @@ public class YautjaBrain extends AbstractEntityBrain<SpeciesYautja> {
 	@Override
 	public void initSenses() {
 		this.addSense(new EntityBrainSensor(1));
-		this.addSense(new NearestAttackableTargetBrainSensor(1, EntitySelectorYautja.instance));
+		this.addSense(
+			new NearestAttackableTargetBrainSensor(1, target -> {
+				if (target == this.getEntity().getRevengeTarget()) {
+					if (target instanceof EntityPlayer) {
+						return !Predicates.IS_IMMORTAL_PLAYER.test(target);
+					}
+					return true;
+				}
+
+				return EntitySelectorYautja.instance.test(target);
+			}
+			)
+		)
+		;
 		this.addSense(new NearestAvoidTargetBrainSensor(1, e -> e instanceof EntityAcidPool || e instanceof EntityGrenade || e instanceof EntityTNTPrimed));
 	}
 

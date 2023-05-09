@@ -2,9 +2,10 @@ package org.alien.common.entity.ai.brain.task.matriarch;
 
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.math.Vec3d;
+import org.alien.JellyConstants;
 import org.alien.common.entity.ai.brain.task.util.OvipositorHelper;
 import org.alien.common.entity.living.xenomorph.EntityMatriarch;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;
@@ -34,7 +35,6 @@ public class MatriarchReproduceBrainTask extends AbstractEntityBrainTask {
 
 		if (!matriarchEntity.isReproducing()) return false;
 		if (matriarchEntity.world.getTotalWorldTime() % (20 * 120) != 0) return false;
-		if (matriarchEntity.getJellyLevel() < EntityMatriarch.OVIPOSITOR_UNHEALTHY_THRESHOLD) return false;
 
 		// Checks egglaying position and line-of-sight to egglaying position.
 		if (!OvipositorHelper.canGrowOvipositor(matriarchEntity)) return false;
@@ -51,6 +51,6 @@ public class MatriarchReproduceBrainTask extends AbstractEntityBrainTask {
 		EntityOvamorph ovamorph = new EntityOvamorph(matriarchEntity.world);
 		ovamorph.setLocationAndAngles(ovamorphPosition.x, ovamorphPosition.y, ovamorphPosition.z, 0F, 0F);
 		matriarchEntity.world.spawnEntity(ovamorph);
-		matriarchEntity.setJellyLevel(matriarchEntity.getJellyLevel() - 100);
+		matriarchEntity.setJellyLevel(matriarchEntity.getJellyLevel() - JellyConstants.EGG_LAY_COST);
 	}
 }

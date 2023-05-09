@@ -3,7 +3,7 @@ package org.alien.client.model.entity.living;
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.alien.common.entity.living.xenomorph.EntityOvamorph;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 
 
 public class ModelOvamorph extends Model<EntityOvamorph>

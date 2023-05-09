@@ -28,15 +28,15 @@ import net.minecraftforge.fml.common.ModContainer;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
+import org.alien.common.world.capability.OrganismImpl;
 import org.alien.common.world.dimension.varda.WorldProviderVarda;
 import org.avp.client.Resources;
-import org.avp.common.AVPItems;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.entity.living.EntityMarine;
-import org.avp.common.tile.TileEntityPowercell;
+import org.avp.common.item.init.AVPArmorItems;
 import org.avp.common.world.capability.SpecialPlayer.SpecialPlayerImpl;
+import org.power.common.tile.TileEntityPowercell;
 import org.predator.common.tile.TileEntityStasisMechanism;
 
 import static org.lwjgl.opengl.GL11.*;
@@ -58,7 +58,7 @@ public class PressureHUDRenderEvent
         {
             if (event.getType() == RenderGameOverlayEvent.ElementType.HOTBAR)
             {
-                if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
+                if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPArmorItems.PRESSURE_MASK)
                 {
                     SpecialPlayerImpl specialPlayer = (SpecialPlayerImpl) ClientGame.instance.minecraft().player.getCapability(SpecialPlayerImpl.Provider.CAPABILITY, null);
 
@@ -106,7 +106,7 @@ public class PressureHUDRenderEvent
 
     public void renderInventoryElements()
     {
-        if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPItems.PRESSURE_MASK)
+        if (Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player) != null && Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player).getItem() == AVPArmorItems.PRESSURE_MASK)
         {
         }
     }

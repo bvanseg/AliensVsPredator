@@ -16,7 +16,7 @@ import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.world.capability.Organism;
 import org.alien.common.world.capability.OrganismImpl;
 import org.avp.client.Resources;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPArmorItems;
 import org.avp.common.world.capability.SpecialPlayer;
 import org.lwjgl.opengl.GL11;
 
@@ -93,7 +93,7 @@ public class TacticalHelmetTrackedEntityRenderEvent {
 
         ItemStack helmSlotItemStack = Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player);
         if (helmSlotItemStack == null) return false;
-        if (helmSlotItemStack.getItem() != AVPItems.HELM_MARINE) return false;
+        if (helmSlotItemStack.getItem() != AVPArmorItems.HELM_MARINE) return false;
 
         return true;
     }
