@@ -40,4 +40,13 @@ public class OvamorphBrain extends AlienBrain<EntityOvamorph> {
 		// Additional behaviors.
 		this.addTask(new RequestMoveBrainTask());
 	}
+
+	@Override
+	public void update() {
+		super.update();
+
+		if (!this.getEntity().containsFacehugger()) {
+			this.disableAllProfiles();
+		}
+	}
 }

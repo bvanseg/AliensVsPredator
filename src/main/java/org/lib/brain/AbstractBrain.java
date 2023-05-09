@@ -93,8 +93,6 @@ public abstract class AbstractBrain<T extends AbstractBrainContext> {
 				}
 			});
 		});
-
-		memoryManager.forgetEverything();
 	}
 
 	public void setDisabled(boolean disabled) {

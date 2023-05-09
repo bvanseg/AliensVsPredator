@@ -3,7 +3,9 @@ package org.avp.common.item.init;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.avp.common.AVPArmorMaterials;
 import org.avp.common.AVPCreativeTabs;
 import org.avp.common.item.ItemArmorMK50;
 import org.avp.common.item.ItemArmorMarine;
@@ -50,5 +52,12 @@ public class AVPArmorItems implements IPreInitEvent {
         ItemRegistryUtil.registerItemWithModel(PLATE_MARINE);
         ItemRegistryUtil.registerItemWithModel(LEGS_MARINE);
         ItemRegistryUtil.registerItemWithModel(BOOTS_MARINE);
+
+        AVPArmorMaterials.ALUMINUM.setRepairItem(new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM));
+        AVPArmorMaterials.COPPER.setRepairItem(new ItemStack(AVPItems.ITEM_INGOT_COPPER));
+
+        AVPArmorMaterials.KEVLAR.setRepairItem(new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM));
+        AVPArmorMaterials.PRESSURE_SUIT.setRepairItem(new ItemStack(AVPItems.ITEM_INGOT_ALUMINUM));
+        AVPArmorMaterials.MK50.setRepairItem(new ItemStack(AVPItems.ITEM_INGOT_COPPER));
     }
 }

@@ -8,9 +8,9 @@ public class ItemSchematic implements IItemSchematic
     private final ItemStack   item;
     private final ItemStack[] items;
 
-    public ItemSchematic(String id, ItemStack item, ItemStack... items)
+    public ItemSchematic(ItemStack item, ItemStack... items)
     {
-        this.id = id;
+        this.id = item.getItem().getRegistryName().getPath();
         this.item = item;
         this.items = items;
     }

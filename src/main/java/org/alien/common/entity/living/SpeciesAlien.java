@@ -5,8 +5,8 @@ import com.asx.mdx.common.minecraft.entity.animations.Animation;
 import com.asx.mdx.common.minecraft.entity.animations.IAnimated;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.entity.item.EntityBoat;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,6 +16,7 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.RoyalOrganism;
+import org.alien.common.entity.AlienCreatureTypes;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.ai.brain.AlienBrain;
 import org.avp.common.AVPDamageSources;
@@ -29,7 +30,6 @@ import java.util.UUID;
 public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, IAnimated, Brainiac<AlienBrain<? extends SpeciesAlien>> {
     private static final DataParameter<Integer> JELLY_LEVEL = EntityDataManager.createKey(SpeciesAlien.class, DataSerializers.VARINT);
     private UUID signature;
-    protected boolean jellyLimitOverride;
 
     /**
      * Animations
@@ -46,7 +46,17 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
     protected SpeciesAlien(World world) {
         super(world);
         this.jumpMovementFactor = 0.2F;
-        this.jellyLimitOverride = false;
+    }
+
+    @Override
+    public boolean isCreatureType(EnumCreatureType type, boolean forSpawnCount) {
+        // If not using custom creature type, fall back on default super behavior.
+        if (AlienCreatureTypes.getAlienCreatureType() == EnumCreatureType.MONSTER)
+            return super.isCreatureType(type, forSpawnCount);
+
+        // Otherwise, override for the alien creature type. If we do not do this, the superclass will check against assignable
+        // classes on the creature
+        return type == AlienCreatureTypes.getAlienCreatureType();
     }
 
     @Override
@@ -91,7 +101,7 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
     @Override
     public void onKillEntity(EntityLivingBase entity) {
         super.onKillEntity(entity);
-        this.setJellyLevel(this.getJellyLevel() + 250);
+        this.setJellyLevel(this.getJellyLevel() + 25);
     }
 
     @Override
@@ -121,11 +131,6 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
                 this.spawnAcidPool();
             }
         }
-    }
-
-    protected void onPickupJelly(EntityItem entityItem) {
-        this.setJellyLevel(this.getJellyLevel() + (entityItem.getItem().getCount() * 100));
-        entityItem.setDead();
     }
 
     protected void updateAnimations() {

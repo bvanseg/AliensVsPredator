@@ -4,10 +4,9 @@ import com.asx.mdx.common.minecraft.item.HookedItem;
 import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.entity.living.EntityAethon;
 import org.alien.common.entity.living.paradise.EntityKetterBird;
 import org.alien.common.entity.living.paradise.EntityPaintedMink;
@@ -23,13 +22,16 @@ import org.alien.common.entity.living.vardic.*;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.burster.*;
 import org.alien.common.entity.living.xenomorph.exotic.*;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityDracoEgg;
 import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorphGiger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.alien.common.item.ItemArmorXeno;
 import org.alien.common.item.ItemSporePod;
+import org.avp.common.AVPArmorMaterials;
 import org.avp.common.AVPCreativeTabs;
+import org.avp.common.AVPToolMaterials;
 import org.avp.common.item.ItemEntitySummoner;
 import org.lib.common.registry.ItemRegistryUtil;
 
@@ -162,5 +164,10 @@ public class AlienItems implements IPreInitEvent {
         ItemRegistryUtil.registerItem(SUMMONER_KETTER_BIRD, true);
         ItemRegistryUtil.registerItem(SUMMONER_PAINTED_MINK, true);
         ItemRegistryUtil.registerItem(SUMMONER_STRIPED_DEVIL, true);
+
+        /* Repairs */
+        AVPArmorMaterials.CHITIN.setRepairItem(new ItemStack(AlienItems.ITEM_ROYAL_JELLY));
+
+        AVPToolMaterials.CHITIN.setRepairItem(new ItemStack(AlienItems.ITEM_ROYAL_JELLY));
     }
 }

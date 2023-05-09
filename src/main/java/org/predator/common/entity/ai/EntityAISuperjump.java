@@ -4,6 +4,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.util.math.MathHelper;
+import org.alien.common.entity.ai.helper.LeapHelper;
 
 @Deprecated
 public class EntityAISuperjump extends EntityAIBase
@@ -37,7 +38,7 @@ public class EntityAISuperjump extends EntityAIBase
         {
             double distance = this.leaper.getDistanceSq(this.leapTarget);
 
-            if (distance >= 30.0D && distance <= 500.0D)
+            if (distance >= 58.0D && distance <= 255.0D)
             {
                 if (!this.leaper.onGround)
                 {
@@ -70,16 +71,13 @@ public class EntityAISuperjump extends EntityAIBase
     @Override
     public void startExecuting()
     {
-        double distX = this.leapTarget.posX - this.leaper.posX;
-        double distZ = this.leapTarget.posZ - this.leaper.posZ;
-        float distance = MathHelper.sqrt(distX * distX + distZ * distZ);
+        double d0 = this.leapTarget.posX - this.leaper.posX;
+        double d1 = this.leapTarget.posZ - this.leaper.posZ;
+        float f = MathHelper.sqrt(d0 * d0 + d1 * d1);
 
-        if (distance >= 1.0E-4D)
-        {
-            this.leaper.motionX += distX / distance + this.leaper.motionX;
-            this.leaper.motionZ += distZ / distance + this.leaper.motionZ;
-        }
+        LeapHelper.leapAtTarget(this.leaper, this.leapTarget);
 
-        this.leaper.motionY = (double)this.leapMotionY + (0.3F / (1 + this.leaper.getRNG().nextInt(2)));
+        double newMotionY = (double)this.leapMotionY + (0.3F / (1 + this.leaper.getRNG().nextInt(2)));
+        this.leaper.motionY = Math.min(newMotionY, f / 10F);
     }
 }

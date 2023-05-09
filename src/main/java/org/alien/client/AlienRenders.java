@@ -43,6 +43,7 @@ import org.alien.common.entity.living.vardic.*;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.burster.*;
 import org.alien.common.entity.living.xenomorph.exotic.*;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityDracoEgg;
 import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorphGiger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;

@@ -5,8 +5,10 @@ import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
@@ -82,10 +84,11 @@ public class Embryo {
         // Attack the entity while host is alive and birth creature is vitalizing.
         DamageSource damageSource = AVPDamageSources.causeChestbursterDamage(birthedCreature, host);
         float damage = host.getMaxHealth() / 8F;
+        boolean isProtectedByTotem = this.hasTotemOfUndying(host);
         host.attackEntityFrom(damageSource, damage);
         host.world.playSound(null, host.getPosition(), AlienSounds.BONE_CRUNCH.event(), SoundCategory.HOSTILE, 1F, 1F);
 
-        if(host.getHealth() <= 0F || host.isDead) {
+        if(host.getHealth() <= 0F || host.isDead || (host.getHealth() <= 1.0F && isProtectedByTotem)) {
             // Spawn embryo
             Pos safeLocation = Entities.getSafeLocationAround(birthedCreature, new Pos((int)host.posX, (int)host.posY, (int)host.posZ));
 
@@ -102,8 +105,16 @@ public class Embryo {
 
             // Clean up
             hostOrganism.setEmbryo(null);
-            host.getActivePotionEffects().clear();
+            host.clearActivePotions();
         }
+    }
+
+    private boolean hasTotemOfUndying(EntityLivingBase host) {
+        for (EnumHand enumhand : EnumHand.values())
+            if (host.getHeldItem(enumhand).getItem() == Items.TOTEM_OF_UNDYING)
+                return true;
+
+        return false;
     }
 
     /**

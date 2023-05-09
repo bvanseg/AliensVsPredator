@@ -8,7 +8,6 @@ import org.lib.brain.impl.BrainMemoryKeys;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -20,7 +19,7 @@ public class ProtectSquadLeaderTask extends AbstractEntityBrainTask {
     protected boolean shouldExecute() {
         if (!(ctx.getEntity() instanceof EntityMarine)) return false;
         EntityMarine marine = (EntityMarine) ctx.getEntity();
-        return marine.getSquadLeaderID().isPresent() &&
+        return marine.getSquadLeader().isPresent() &&
                 (marine.getRevengeTarget() == null || marine.getRevengeTarget().isDead || marine.getRevengeTarget().getHealth() <= 0) &&
                 (marine.getAttackTarget() == null || marine.getAttackTarget().isDead || marine.getAttackTarget().getHealth() <= 0);
     }
@@ -28,10 +27,10 @@ public class ProtectSquadLeaderTask extends AbstractEntityBrainTask {
     @Override
     protected void startExecuting() {
         EntityMarine marine = (EntityMarine) ctx.getEntity();
-        EntityLivingBase squadLeader = this.getSquadLeader(marine);
+        EntityLivingBase squadLeader = marine.getSquadLeader().get();
 
         // Check to make sure that the squad leader is still alive in order to be protected.
-        if (squadLeader == null || squadLeader.isDead || squadLeader.getHealth() <= 0F) return;
+        if (squadLeader.isDead || squadLeader.getHealth() <= 0F) return;
 
         Optional<List<EntityLivingBase>> nearbyEntitiesOptional = ctx.getBrain().getMemory(BrainMemoryKeys.LIVING_ENTITIES);
 
@@ -52,10 +51,5 @@ public class ProtectSquadLeaderTask extends AbstractEntityBrainTask {
                 ctx.getBrain().remember(BrainMemoryKeys.NEAREST_ATTACKABLE_TARGET, threateningEntity);
             }
         }
-    }
-
-    public EntityLivingBase getSquadLeader(EntityMarine marine) {
-        UUID uuid = marine.getSquadLeaderID().get();
-        return marine.world.getPlayerEntityByUUID(uuid);
     }
 }

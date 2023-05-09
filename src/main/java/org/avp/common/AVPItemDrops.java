@@ -4,7 +4,6 @@ import org.alien.common.AlienItems;
 import org.alien.common.block.init.AlienSkullBlocks;
 import org.avp.common.item.init.AVPItems;
 import org.lib.common.inventory.ItemDrop;
-import org.predator.common.PredatorItems;
 import org.predator.common.block.init.PredatorBlocks;
 import org.weapon.common.item.init.WeaponItems;
 
@@ -27,30 +26,17 @@ public class AVPItemDrops
     public static final ItemDrop SKULL_SPACEJOCKEY = new ItemDrop.Builder(AlienSkullBlocks.SKULL_JOCKEY).setDropWeight(1).build();
     public static final ItemDrop SKULL_XENO_DRONE = new ItemDrop.Builder(AlienSkullBlocks.SKULL_XENO).setDropWeight(1).build();
     public static final ItemDrop SKULL_XENO_WARRIOR = new ItemDrop.Builder(AlienSkullBlocks.SKULL_XENO_WARRIOR).setDropWeight(1).build();
+    public static final ItemDrop SKULL_XENO_MATRIARCH = new ItemDrop.Builder(AlienSkullBlocks.SKULL_MATRIARCH).setDropWeight(100).build();
     public static final ItemDrop SKULL_PREDATOR = new ItemDrop.Builder(PredatorBlocks.SKULL_YAUTJA).setDropWeight(1).build();
     public static final ItemDrop SKULL_AETHON = new ItemDrop.Builder(AlienSkullBlocks.HEAD_AETHON).setDropWeight(1).build();
     public static final ItemDrop HEAD_GIGER = new ItemDrop.Builder(AlienSkullBlocks.HEAD_GIGER_ALIEN).setDropWeight(1).build();
 
-    public static final ItemDrop PREDATOR_ARTIFACT = new ItemDrop.Builder(PredatorItems.ITEM_ARTIFACT_TECH).setDropWeight(25).build();
-    public static final ItemDrop PLASMACANNON = new ItemDrop.Builder(PredatorItems.ITEM_PLASMA_CANNON).setDropWeight(2).build();
-    public static final ItemDrop WRISTBRACER = new ItemDrop.Builder(PredatorItems.ITEM_WRISTBRACER).setDropWeight(2).build();
-    public static final ItemDrop WRISTBRACER_BLADES = new ItemDrop.Builder(PredatorItems.ITEM_WRISTBRACER_BLADES).setDropWeight(7).build();
-    public static final ItemDrop SHURIKEN = new ItemDrop.Builder(PredatorItems.ITEM_SHURIKEN).setDropWeight(7).build();
-    public static final ItemDrop SILICON = new ItemDrop.Builder(AVPItems.ITEM_SILICON).setDropWeight(25).build();
     public static final ItemDrop BIOMASK = new ItemDrop.Builder(PredatorBlocks.BIOMASK_CLASSIC).setDropWeight(3).build();
     public static final ItemDrop BIOMASK_BERSERKER = new ItemDrop.Builder(PredatorBlocks.BIOMASK_BERSERKER).setDropWeight(3).build();
     public static final ItemDrop BIOMASK_FALCONER = new ItemDrop.Builder(PredatorBlocks.BIOMASK_FALCONER).setDropWeight(3).build();
     public static final ItemDrop BIOMASK_TRACKER = new ItemDrop.Builder(PredatorBlocks.BIOMASK_TRACKER).setDropWeight(3).build();
 
     public static final ItemDrop AMMO_AR = new ItemDrop.Builder(WeaponItems.ITEM_AMMO_AR).setDropWeight(75).build();
-    public static final ItemDrop AMMO_PISTOL = new ItemDrop.Builder(WeaponItems.ITEM_AMMO_PISTOL).setDropWeight(75).build();
-    public static final ItemDrop AMMO_SMG = new ItemDrop.Builder(WeaponItems.ITEM_AMMO_SMG).setDropWeight(75).build();
-    public static final ItemDrop AMMO_SNIPER = new ItemDrop.Builder(WeaponItems.ITEM_AMMO_SNIPER).setDropWeight(75).build();
 
-
-    public static final ItemDrop M56SG = new ItemDrop.Builder(WeaponItems.ITEM_M56SG).setDropWeight(15).build();
-    public static final ItemDrop PISTOL = new ItemDrop.Builder(WeaponItems.ITEM_PISTOL).setDropWeight(15).build();
     public static final ItemDrop M4 = new ItemDrop.Builder(WeaponItems.ITEM_M4).setDropWeight(15).build();
-    public static final ItemDrop M41A = new ItemDrop.Builder(WeaponItems.ITEM_M41A).setDropWeight(15).build();
-    public static final ItemDrop SNIPER = new ItemDrop.Builder(WeaponItems.ITEM_SNIPER).setDropWeight(15).build();
 }
