@@ -24,6 +24,7 @@ import org.avp.common.world.hook.FarmlandRegistry;
 import org.avp.common.world.hook.MaterialHandler;
 import org.lib.common.EntityAccessor;
 import org.lib.common.inventory.CachedInventoryHandler;
+import org.power.client.render.BlastDoorPlacementBoxRenderer;
 import org.predator.client.render.VisionModeRenderEvent;
 import org.weapon.client.render.AmmoIndicatorRenderEvent;
 import org.weapon.common.delay.DelayHandler;
@@ -49,6 +50,7 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(ChestbursterOverlayEvent.instance);
             this.registerEvent(AmmoIndicatorRenderEvent.instance);
 
+            // Tactical helmet
             this.registerEvent(TacticalHelmetHUDRenderEvent.instance);
             this.registerEvent(TacticalHelmetTrackedEntityRenderEvent.instance);
             this.registerEvent(TacticalHelmetAPCGearRenderEvent.instance);
@@ -60,7 +62,11 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(LightmapUpdateEvent.instance);
             this.registerEvent(RenderPlayerAPCEvent.instance);
             this.registerEvent(BossBarEvent.instance);
+
+            // Render living hooks
             this.registerEvent(RenderLivingHook.instance);
+            this.registerEvent(RenderPlasmaCannonHook.instance);
+
             this.registerEvent(SkyProviderAcheron.instance);
             this.registerEvent(BlastDoorPlacementBoxRenderer.instance);
             this.registerEvent(ClientEntityImpregnationHandler.instance);

@@ -59,13 +59,12 @@ public class ChestbursterBrain extends AlienBrain<EntityChestburster> {
 		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() instanceof ItemFood)
 				.onUseItem(entityItem -> {
 					ItemFood itemFood = (ItemFood) entityItem.getItem().getItem();
-					int foodGain = (int) (JellyConstants.BASE_FOOD_YIELD * itemFood.getSaturationModifier(entityItem.getItem()));
-					int jellyGain = (entityItem.getItem().getCount() * foodGain);
-					entity.setJellyLevel(entity.getJellyLevel() + jellyGain);
+					int foodGain = (int) (JellyConstants.BASE_FOOD_YIELD * itemFood.getSaturationModifier(entityItem.getItem()) * entityItem.getItem().getCount());
+					entity.setJellyLevel(entity.getJellyLevel() + foodGain);
 					entity.world.playSound(null, entity.getPosition(), SoundEvents.ENTITY_GENERIC_EAT, SoundCategory.NEUTRAL, 1F, 1F);
 				}));
 		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY)
-				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.RAW_YIELD))));
+				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + e.getItem().getCount())));
 
 		this.addTask(new AvoidBlockBrainTask(6F, 0.7F, 0.7F, AVOID_BLOCKS::contains));
 	}

@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.Random;
 
@@ -60,5 +61,30 @@ public class ItemDropContext {
         EntityItem entityItem = new EntityItem(world, pos.x, pos.y, pos.z, itemStack);
         entityItem.setDefaultPickupDelay();
         world.spawnEntity(entityItem);
+    }
+
+    public void drop(ItemDropTable itemDropTable) {
+        int weightSum = itemDropTable.getSumOfWeights();
+        int weightRoll = random.nextInt(weightSum);
+        int[] summedWeights = itemDropTable.getCumulativeSummedWeights();
+
+        int i = 0;
+        for (int cumulativeWeight: summedWeights) {
+            if (weightRoll < cumulativeWeight) {
+                Pair<Object, Integer> droppableWithWeight = itemDropTable.getDroppablesWithWeight().get(i);
+                Object droppable = droppableWithWeight.getLeft();
+
+                if (droppable instanceof ItemDropTable) {
+                    this.drop((ItemDropTable) droppable);
+                }
+                else {
+                    ItemDrop itemDrop = (ItemDrop) droppable;
+                    this.dropWithWeight(itemDrop, 100);
+                }
+
+                return;
+            }
+            i++;
+        }
     }
 }

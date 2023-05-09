@@ -15,7 +15,7 @@ import org.lib.brain.impl.AbstractEntityBrainTask;
 import org.lib.brain.impl.BrainFlags;
 
 import java.util.Map;
-import java.util.UUID;
+import java.util.Optional;
 
 /**
  * @author Boston Vanseghi
@@ -49,78 +49,88 @@ public class FollowSquadLeaderBrainTask extends AbstractEntityBrainTask {
         if (!(ctx.getEntity() instanceof EntityMarine)) return false;
         EntityMarine marine = (EntityMarine) ctx.getEntity();
 
-        if (!marine.getSquadLeaderID().isPresent()) return false;
+        if (!marine.getSquadLeader().isPresent()) return false;
 
+        Optional<EntityLivingBase> squadLeaderOptional = marine.getSquadLeader().toJavaUtil();
 
-        EntityLivingBase squadLeader = this.getSquadLeader(marine);
-
-        if (squadLeader == null)
-        {
+        if (!squadLeaderOptional.isPresent())
             return false;
-        }
-        else if (squadLeader instanceof EntityPlayer && ((EntityPlayer)squadLeader).isSpectator())
-        {
-            return false;
-        }
-        else if (marine.getDistanceSq(squadLeader) < (this.minDist * this.minDist))
-        {
-            return false;
-        }
 
-        return true;
+        EntityLivingBase squadLeader = squadLeaderOptional.get();
+
+        if (squadLeader instanceof EntityPlayer && ((EntityPlayer)squadLeader).isSpectator())
+            return false;
+        else
+            return marine.getDistanceSq(squadLeader) >= (this.minDist * this.minDist);
     }
 
     @Override
     protected void startExecuting() {
         EntityMarine marine = (EntityMarine) ctx.getEntity();
-        EntityLivingBase squadLeader = this.getSquadLeader(marine);
+
         this.timeToRecalcPath = 0;
         this.oldWaterCost = marine.getPathPriority(PathNodeType.WATER);
         marine.setPathPriority(PathNodeType.WATER, 0.0F);
-        marine.getNavigator().tryMoveToEntityLiving(squadLeader, this.followSpeed);
+        marine.getNavigator().tryMoveToEntityLiving(marine.getSquadLeader().get(), this.followSpeed);
     }
 
     @Override
     public boolean shouldContinueExecuting()
     {
         EntityMarine marine = (EntityMarine) ctx.getEntity();
-        return !marine.getNavigator().noPath() &&
-                marine.getDistanceSq(this.getSquadLeader(marine)) > (this.maxDist * this.maxDist);
+
+        Optional<EntityLivingBase> squadLeaderOptional = marine.getSquadLeader().toJavaUtil();
+
+        if (!squadLeaderOptional.isPresent())
+            return false;
+
+        EntityLivingBase squadLeader = squadLeaderOptional.get();
+
+        boolean hasPath = !marine.getNavigator().noPath();
+
+        // If the marine loses their pathing, we want to attempt a teleport.
+        if (!hasPath) {
+            this.attemptToTeleportToSquadLeader(squadLeader);
+        }
+
+        return marine.getDistanceSq(squadLeader) > this.maxDist * this.maxDist;
     }
 
     @Override
     protected void continueExecuting() {
         EntityMarine marine = (EntityMarine) ctx.getEntity();
-        EntityLivingBase owner = getSquadLeader(marine);
-        marine.getLookHelper().setLookPositionWithEntity(owner, 10.0F, (float)marine.getVerticalFaceSpeed());
+        EntityLivingBase squadLeader = marine.getSquadLeader().get();
+
+        marine.getLookHelper().setLookPositionWithEntity(squadLeader, 10.0F, marine.getVerticalFaceSpeed());
 
         if (--this.timeToRecalcPath <= 0)
         {
             this.timeToRecalcPath = 10;
 
-            if (!marine.getNavigator().tryMoveToEntityLiving(owner, this.followSpeed))
-            {
-                if (!marine.getLeashed() && !marine.isRiding())
-                {
-                    if (marine.getDistanceSq(owner) >= 144.0D)
-                    {
-                        int i = MathHelper.floor(owner.posX) - 2;
-                        int j = MathHelper.floor(owner.posZ) - 2;
-                        int k = MathHelper.floor(owner.getEntityBoundingBox().minY);
+            if (!marine.getNavigator().tryMoveToEntityLiving(squadLeader, this.followSpeed))
+                this.attemptToTeleportToSquadLeader(squadLeader);
+        }
+    }
 
-                        for (int l = 0; l <= 4; ++l)
-                        {
-                            for (int i1 = 0; i1 <= 4; ++i1)
-                            {
-                                if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && this.isTeleportFriendlyBlock(i, j, k, l, i1))
-                                {
-                                    marine.setLocationAndAngles((float)(i + l) + 0.5F, k, (float)(j + i1) + 0.5F, marine.rotationYaw, marine.rotationPitch);
-                                    marine.getNavigator().clearPath();
-                                    return;
-                                }
-                            }
-                        }
-                    }
+    private void attemptToTeleportToSquadLeader(EntityLivingBase owner) {
+        EntityMarine marine = (EntityMarine) ctx.getEntity();
+
+        if (marine.getLeashed() || marine.isRiding()) return;
+        if (marine.getDistanceSq(owner) < 1440.0D) return;
+
+        int i = MathHelper.floor(owner.posX) - 2;
+        int j = MathHelper.floor(owner.posZ) - 2;
+        int k = MathHelper.floor(owner.getEntityBoundingBox().minY);
+
+        for (int l = 0; l <= 4; ++l)
+        {
+            for (int i1 = 0; i1 <= 4; ++i1)
+            {
+                if ((l < 1 || i1 < 1 || l > 3 || i1 > 3) && this.isTeleportFriendlyBlock(i, j, k, l, i1))
+                {
+                    marine.setLocationAndAngles((i + l) + 0.5F, k, (j + i1) + 0.5F, marine.rotationYaw, marine.rotationPitch);
+                    marine.getNavigator().clearPath();
+                    return;
                 }
             }
         }
@@ -132,11 +142,6 @@ public class FollowSquadLeaderBrainTask extends AbstractEntityBrainTask {
         EntityMarine marine = (EntityMarine) ctx.getEntity();
         marine.getNavigator().clearPath();
         marine.setPathPriority(PathNodeType.WATER, this.oldWaterCost);
-    }
-
-    public EntityLivingBase getSquadLeader(EntityMarine marine) {
-        UUID uuid = marine.getSquadLeaderID().get();
-        return marine.world.getPlayerEntityByUUID(uuid);
     }
 
     protected boolean isTeleportFriendlyBlock(int x, int z, int y, int xOffset, int zOffset)

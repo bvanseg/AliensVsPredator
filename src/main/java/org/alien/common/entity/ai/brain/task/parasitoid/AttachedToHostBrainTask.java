@@ -39,6 +39,10 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
         EntityParasitoid parasite = (EntityParasitoid) ctx.getEntity();
         EntityLivingBase host = (EntityLivingBase) parasite.getRidingEntity();
 
+        if (host == null) return;
+
+        parasite.ticksOnHost++;
+
         if (host instanceof EntityLiving) {
             EntityLiving livingHost = (EntityLiving) host;
             // Make the host stop moving.
@@ -47,12 +51,13 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
             livingHost.livingSoundTime = -livingHost.getTalkInterval();
         }
 
-        parasite.ticksOnHost++;
-
         host.motionY -= 0.05F;
         host.motionY *= 0.98F;
         host.move(MoverType.SELF, 0, host.motionY, 0);
-        host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 1));
+
+        if (parasite.ticksOnHost >= 20 * 2) {
+            this.subdueHost(host);
+        }
 
         parasite.rotationYawHead = host.rotationYawHead;
         parasite.rotationYaw = host.rotationYaw;
@@ -65,5 +70,12 @@ public class AttachedToHostBrainTask extends AbstractEntityBrainTask {
             organism.setEmbryo(null);
             parasite.detachFromHost();
         }
+    }
+
+    private void subdueHost(EntityLivingBase host) {
+        host.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, 30, 10));
+        host.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 30, 10));
+        host.addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 30, 10));
+        host.addPotionEffect(new PotionEffect(MobEffects.BLINDNESS, 30, 10));
     }
 }

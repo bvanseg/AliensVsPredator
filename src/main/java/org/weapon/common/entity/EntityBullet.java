@@ -277,8 +277,8 @@ public class EntityBullet extends Entity
                 if (result.entityHit != null)
                 {
                     if (this.shootingEntity instanceof EntityMarine &&
-                            (result.entityHit instanceof EntityMarine || (((EntityMarine)this.shootingEntity).getSquadLeaderID().isPresent() &&
-                                    ((EntityMarine)this.shootingEntity).getSquadLeaderID().get().equals(result.entityHit.getUniqueID())))
+                            (result.entityHit instanceof EntityMarine || (((EntityMarine)this.shootingEntity).getSquadLeader().isPresent() &&
+                                    ((EntityMarine)this.shootingEntity).getSquadLeader().get().getUniqueID().equals(result.entityHit.getUniqueID())))
                     )
                     {
                         this.setDead();

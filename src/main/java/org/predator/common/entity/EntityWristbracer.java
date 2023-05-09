@@ -2,6 +2,7 @@ package org.predator.common.entity;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.client.entity.fx.EntityFXElectricArc;
+import com.asx.mdx.common.math.MDXMath;
 import com.asx.mdx.common.minecraft.LargeExplosion;
 import com.asx.mdx.common.minecraft.Pos;
 import com.asx.mdx.common.minecraft.entity.Entities;
@@ -67,9 +68,10 @@ public class EntityWristbracer extends EntityThrowable
         this.updatePositionAndMotion();
 
         // Countdown sound fx.
-        if (this.world.getTotalWorldTime() % 20 == 0 && this.getTickingTimeInTicks() < DETONATION_START_TIME_IN_TICKS)
+        if (this.world.getTotalWorldTime() % 12 == 0 && this.getTickingTimeInTicks() < DETONATION_START_TIME_IN_TICKS)
         {
-            PredatorSounds.FX_WRISTBRACER_ALARM.playSound(this, 15F, 1F);
+            float pitchIncrease = (float) MDXMath.map((this.getTickingTimeInTicks() / (float) DETONATION_START_TIME_IN_TICKS), 0F, 1F, 0F, 0.6F);
+            PredatorSounds.FX_WRISTBRACER_ALARM.playSound(this, 15F, 1F + pitchIncrease);
         }
 
         float explosionWidthMax = 80F;
