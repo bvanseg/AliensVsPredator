@@ -2,7 +2,6 @@ package org.predator.common.entity.living;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -13,7 +12,7 @@ import org.lib.brain.Brainiac;
 import org.predator.common.PredatorItems;
 import org.predator.common.entity.ai.brain.HoundBrain;
 
-public class EntityPredatorHound extends EntityMob implements IMob, Host, Brainiac<HoundBrain>
+public class EntityPredatorHound extends EntityMob implements Host, Brainiac<HoundBrain>
 {
     private HoundBrain brain;
 

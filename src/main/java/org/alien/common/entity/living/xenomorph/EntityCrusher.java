@@ -9,10 +9,8 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.xenomorph.CrusherBrain;
-import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
-import org.alien.common.world.hive.HiveMember;
 
-public class EntityCrusher extends EntityPraetorian implements HiveMember
+public class EntityCrusher extends EntityPraetorian
 {
     public EntityCrusher(World world)
     {
@@ -23,11 +21,13 @@ public class EntityCrusher extends EntityPraetorian implements HiveMember
     }
 
     @Override
-    public XenomorphBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new CrusherBrain(this);
-        }
-        return this.brain;
+    public CrusherBrain getBrain() {
+        return (CrusherBrain) super.getBrain();
+    }
+
+    @Override
+    public CrusherBrain createNewBrain() {
+        return new CrusherBrain(this);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class EntityCrusher extends EntityPraetorian implements HiveMember
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(90.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(4.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
     }
 

@@ -7,8 +7,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.alien.client.render.ChestbursterOverlayEvent;
 import org.alien.client.render.FacehuggerRenderEvent;
-import org.alien.common.AlienDimensions;
-import org.alien.common.world.EntityImpregnationHandler;
+import org.alien.common.potion.PotionEffectEventHandler;
+import org.alien.common.world.ClientEntityImpregnationHandler;
+import org.alien.common.world.CommonEntityImpregnationHandler;
 import org.alien.common.world.TrilobiteImpregnationHandler;
 import org.alien.common.world.dimension.acheron.SkyProviderAcheron;
 import org.avp.client.input.AVPInputEventHandler;
@@ -23,6 +24,7 @@ import org.avp.common.world.hook.FarmlandRegistry;
 import org.avp.common.world.hook.MaterialHandler;
 import org.lib.common.EntityAccessor;
 import org.lib.common.inventory.CachedInventoryHandler;
+import org.power.client.render.BlastDoorPlacementBoxRenderer;
 import org.predator.client.render.VisionModeRenderEvent;
 import org.weapon.client.render.AmmoIndicatorRenderEvent;
 import org.weapon.common.delay.DelayHandler;
@@ -48,6 +50,7 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(ChestbursterOverlayEvent.instance);
             this.registerEvent(AmmoIndicatorRenderEvent.instance);
 
+            // Tactical helmet
             this.registerEvent(TacticalHelmetHUDRenderEvent.instance);
             this.registerEvent(TacticalHelmetTrackedEntityRenderEvent.instance);
             this.registerEvent(TacticalHelmetAPCGearRenderEvent.instance);
@@ -59,18 +62,19 @@ public class AVPEventHandlers implements IInitEvent
             this.registerEvent(LightmapUpdateEvent.instance);
             this.registerEvent(RenderPlayerAPCEvent.instance);
             this.registerEvent(BossBarEvent.instance);
+
+            // Render living hooks
             this.registerEvent(RenderLivingHook.instance);
+            this.registerEvent(RenderPlasmaCannonHook.instance);
+
             this.registerEvent(SkyProviderAcheron.instance);
             this.registerEvent(BlastDoorPlacementBoxRenderer.instance);
+            this.registerEvent(ClientEntityImpregnationHandler.instance);
         }
 
-        if (FMLCommonHandler.instance().getSide() == Side.SERVER)
-        {
-            this.registerEvent(AlienDimensions.instance);
-        }
-
+        this.registerEvent(CommonEntityImpregnationHandler.instance);
+        this.registerEvent(PotionEffectEventHandler.instance);
         this.registerEvent(EntityAccessor.instance);
-        this.registerEvent(EntityImpregnationHandler.instance);
         this.registerEvent(TrilobiteImpregnationHandler.instance);
         this.registerEvent(CapabilityHandler.instance);
         this.registerEvent(SaveHandler.instance);

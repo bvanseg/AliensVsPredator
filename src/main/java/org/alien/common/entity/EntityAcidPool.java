@@ -1,11 +1,15 @@
 package org.alien.common.entity;
 
+import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
@@ -16,15 +20,20 @@ import net.minecraft.world.World;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.block.init.AlienEngineerBlocks;
 import org.alien.common.entity.ai.selector.EntitySelectorAcidPool;
+import org.alien.common.item.ItemArmorXeno;
+import org.alien.common.potion.AlienPotions;
 import org.avp.common.AVPDamageSources;
+import org.avp.common.AVPNetworking;
 import org.avp.common.api.blocks.AcidResistant;
 import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.block.init.AVPSlabBlocks;
 import org.avp.common.block.init.AVPStairBlocks;
 import org.avp.common.entity.EntityLiquidPool;
+import org.avp.common.network.packet.client.PacketSyncEntitySize;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class EntityAcidPool extends EntityLiquidPool
 {
@@ -64,9 +73,9 @@ public class EntityAcidPool extends EntityLiquidPool
         BLOCK_DENYLIST.add(AlienEngineerBlocks.ENGINEER_WALL_4);
     }
 
-    private float                         breakProgress  = -1;
-    protected int                         yOffset;
-    protected Block                       block;
+    private float breakProgress = -1;
+    protected int yOffset;
+    protected Block block;
 
     private boolean isPushing;
 
@@ -84,8 +93,11 @@ public class EntityAcidPool extends EntityLiquidPool
         super.onUpdate();
 
         if (!this.world.isRemote) {
+            List<Entity> nearbyEntities = this.getNearbyEntities();
+            this.mergeWithNearbyAcidPools(nearbyEntities);
+
             if (this.isPushing) {
-                damageNearbyEntities();
+                this.damageNearbyEntities(nearbyEntities);
                 this.isPushing = false;
             }
 
@@ -135,15 +147,84 @@ public class EntityAcidPool extends EntityLiquidPool
         }
 	}
 
-    private void damageNearbyEntities() {
-        ArrayList<EntityLivingBase> entityItemList = (ArrayList<EntityLivingBase>) world.getEntitiesWithinAABB(EntityLivingBase.class, new AxisAlignedBB(this.posX - 1, this.posY, this.posZ - 1, this.posX + 1, this.posY + 1, this.posZ + 1));
+    private void mergePools(EntityAcidPool other) {
+        if (other == null ||
+            other == this || // Do not merge with self
+            other.isDead || // Do not merge if dead
+            other.width > this.width
+        )
+            return;
 
-        entityItemList.forEach(livingEntity -> {
+        this.setLifetime(this.lifetime + other.lifetime);
+
+        float newWidth = (this.width + other.width) / 1.5F;
+        this.setSize(newWidth, this.height);
+
+        // Entity bounding box changes do not automatically sync, so we must synchronize all clients with the changed box.
+        AVPNetworking.instance.sendToAll(new PacketSyncEntitySize(this, newWidth, this.height));
+
+        other.setDead();
+    }
+
+    private ArrayList<Entity> getNearbyEntities() {
+        float radialWidth = (this.width / 2);
+        AxisAlignedBB aabb = new AxisAlignedBB(
+            this.posX - radialWidth,
+            this.posY - this.height,
+            this.posZ - radialWidth,
+
+            this.posX + radialWidth,
+            this.posY + this.height,
+            this.posZ + radialWidth
+        );
+        return (ArrayList<Entity>) world.getEntitiesWithinAABB(Entity.class, aabb);
+    }
+
+    private void mergeWithNearbyAcidPools(List<Entity> entityList) {
+        entityList.forEach(entity -> {
+            if (entity instanceof EntityAcidPool) {
+                this.mergePools((EntityAcidPool) entity);
+            }
+        });
+    }
+
+    private void damageNearbyEntities(List<Entity> entityList) {
+        entityList.forEach(entity -> {
+            if (!(entity instanceof EntityLivingBase)) {
+                return;
+            }
+
+            EntityLivingBase livingEntity = (EntityLivingBase) entity;
+
             if (EntitySelectorAcidPool.instance.test(livingEntity)) {
-                livingEntity.addPotionEffect(new PotionEffect(MobEffects.POISON, (14 * 20), 0));
+                livingEntity.addPotionEffect(new PotionEffect(AlienPotions.ACID, (14 * 20), 0));
+
+                // Try and damage player boots rapidly while the player is standing in acid.
+                if (livingEntity instanceof EntityPlayer && this.tryDamageBoots((EntityPlayer) livingEntity)) {
+                    return;
+                }
+
                 livingEntity.attackEntityFrom(AVPDamageSources.ACID, 4f);
             }
         });
+    }
+
+    private boolean tryDamageBoots(EntityPlayer player) {
+        ItemStack bootsStack = Inventories.getBootSlotItemStack(player);
+
+        if (!bootsStack.isEmpty() &&
+                bootsStack != ItemStack.EMPTY &&
+                bootsStack.getItem() instanceof ItemArmor &&
+                !(bootsStack.getItem() instanceof ItemArmorXeno)
+        ) {
+            if (this.world.getTotalWorldTime() % 20 == 0) {
+                bootsStack.damageItem(20, player);
+                this.world.playSound(null, this.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.NEUTRAL, 1F, 1F);
+            }
+            return true;
+        }
+
+        return false;
     }
 
     @Override

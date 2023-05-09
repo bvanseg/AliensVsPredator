@@ -14,8 +14,9 @@ import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.world.capability.Organism;
+import org.alien.common.world.capability.OrganismImpl;
 import org.avp.client.Resources;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPArmorItems;
 import org.avp.common.world.capability.SpecialPlayer;
 import org.lwjgl.opengl.GL11;
 
@@ -92,7 +93,7 @@ public class TacticalHelmetTrackedEntityRenderEvent {
 
         ItemStack helmSlotItemStack = Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player);
         if (helmSlotItemStack == null) return false;
-        if (helmSlotItemStack.getItem() != AVPItems.HELM_MARINE) return false;
+        if (helmSlotItemStack.getItem() != AVPArmorItems.HELM_MARINE) return false;
 
         return true;
     }
@@ -105,7 +106,7 @@ public class TacticalHelmetTrackedEntityRenderEvent {
 //        if (!Entities.canEntityBeSeenBy(living, ClientGame.instance.minecraft().player)) return;
 
         double partialTicks = ClientGame.instance.partialTicks();
-        Organism.OrganismImpl organism = (Organism.OrganismImpl) living.getCapability(Organism.Provider.CAPABILITY, null);
+        OrganismImpl organism = (OrganismImpl) living.getCapability(Organism.Provider.CAPABILITY, null);
         Entity rve = ClientGame.instance.minecraft().getRenderViewEntity();
 
         Vec3d lPos = new Vec3d(living.posX, living.posY, living.posZ).add(0, living.getEyeHeight() / 2, 0);

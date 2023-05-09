@@ -1,7 +1,8 @@
 package org.lib.common.registry;
 
-import com.asx.mdx.client.render.Renderers;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -30,10 +31,15 @@ public class ItemRegistryUtil {
 
         item.setTranslationKey(item.getRegistryName().getNamespace() + ":" + item.getRegistryName().getPath());
         ForgeRegistries.ITEMS.register(item);
+    }
 
-        if (FMLCommonHandler.instance().getSide() == Side.CLIENT)
-        {
-            Renderers.registerIcon(item);
-        }
+    public static void registerItemModel(Item item) {
+        if (FMLCommonHandler.instance().getSide() != Side.CLIENT) return;
+        ModelLoader.setCustomModelResourceLocation(item, 0 , new ModelResourceLocation(item.getRegistryName(), "inventory"));
+    }
+
+    public static void registerItemWithModel(Item item) {
+        registerItem(item);
+        registerItemModel(item);
     }
 }

@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.network.internal.FMLNetworkHandler;
 import org.avp.AVP;
 import org.avp.common.AVPGui;
 import org.avp.common.inventory.ContainerAssembler;
-import org.avp.common.item.crafting.AssemblyManager;
+import org.avp.common.item.crafting.ItemSchematicRegistry;
 import org.predator.common.PredatorItems;
 
 public class TileEntityAssembler extends TileEntity implements IInventory, ITickable
@@ -52,7 +52,7 @@ public class TileEntityAssembler extends TileEntity implements IInventory, ITick
         {
             if (this.getWorld().rand.nextInt(3) == 0)
             {
-                this.randomItem = AssemblyManager.instance.schematics().get(this.getWorld().rand.nextInt(AssemblyManager.instance.schematics().size())).getItemStackAssembled().getItem();
+                this.randomItem = ItemSchematicRegistry.getSchematics().get(this.getWorld().rand.nextInt(ItemSchematicRegistry.getSchematics().size())).getItemStackAssembled().getItem();
             }
         }
 

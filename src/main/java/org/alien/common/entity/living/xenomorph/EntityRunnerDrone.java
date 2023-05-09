@@ -5,13 +5,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
-import org.alien.common.world.hive.HiveMember;
 
-public class EntityRunnerDrone extends EntityDrone implements HiveMember
+public class EntityRunnerDrone extends EntityDrone
 {
     public EntityRunnerDrone(World world)
     {
         super(world);
+        this.setSize(1F, 1.5F);
     }
 
     @Override
@@ -19,7 +19,7 @@ public class EntityRunnerDrone extends EntityDrone implements HiveMember
     {
         super.applyEntityAttributes();
 
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.63D);
     }
     

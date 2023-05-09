@@ -7,13 +7,16 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.nbt.NBTTagString;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.util.Constants.NBT;
+import org.alien.common.api.maturity.MaturityEntries;
+import org.alien.common.api.maturity.MaturityEntry;
+import org.alien.common.entity.living.xenomorph.EntityDrone;
+import org.alien.common.entity.living.xenomorph.EntityRunnerDrone;
+import org.alien.common.entity.living.xenomorph.EntityRunnerWarrior;
+import org.alien.common.entity.living.xenomorph.EntityWarrior;
 import org.avp.AVP;
 import org.lib.common.EntityAccessor;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * 
@@ -28,7 +31,44 @@ public class AlienHive {
 
 	private BlockPos coreBlockPos;
 
-	// TODO: Store hive member UUIDs by their role (class).
+	// Hive members are additionally tracked by their role (class).
+	private final HashMap<Class<? extends Entity>, HashSet<UUID>> hiveMemberUUIDsByRole = new HashMap<>();
+
+	// A static entry that exposes the ideal ratio each role of the hive should be. This helps aliens determine
+	// whether they should mature. If the hive's current drone ratio is too high and the warrior ratio is too low,
+	// then some drones will be allowed to morph into warriors. Otherwise, it's important to keep drones. If both ratios
+	// are too low, then drones will also not morph into warriors until they are at a healthy count.
+	private static final HashMap<Class<? extends Entity>, Integer> IDEAL_ROLE_RATIOS = new HashMap<>();
+
+	static {
+		IDEAL_ROLE_RATIOS.putIfAbsent(EntityDrone.class, 2); // 2 drones for every 1 warrior.
+		IDEAL_ROLE_RATIOS.putIfAbsent(EntityRunnerDrone.class, 2);
+
+		IDEAL_ROLE_RATIOS.putIfAbsent(EntityWarrior.class, 5); // 3 warriors for every 1 praetorian
+		IDEAL_ROLE_RATIOS.putIfAbsent(EntityRunnerWarrior.class, 5);
+	}
+
+	public float getRatioToAdult(Class<? extends Entity> role) {
+		if (!HiveMember.class.isAssignableFrom(role))
+			throw new IllegalArgumentException("Given role class was not a HiveMember!");
+
+		MaturityEntry maturityEntry = MaturityEntries.getEntryFor(role).orElse(null);
+		// Ex. if role is EntityDrone.class, this gets the EntityWarrior.class count.
+		int adultCount = maturityEntry == null ? 1 : this.hiveMemberUUIDsByRole.computeIfAbsent(maturityEntry.getEntityClass(), key -> new HashSet<>()).size();
+
+		// let droneCount = 5 and warriorCount = 0.
+		// droneCount / max(1, warriorCount) = 5, which is greater than the drone ratio (2 drones every 1 warrior), so evolve a drone.
+		// let droneCount = 4 and warriorCount = 1.
+		// droneCount / max(1, warriorCount) = 4, which is greater than the drone ratio (2 drones every 1 warrior), so evolve a drone.
+		// let droneCount = 3 and warriorCount = 2.
+		// droneCount / max(1, warriorCount) = 1.5, which is NOT greater than the drone ratio (2 drones every 1 warrior), so do nothing.
+		return ((float)this.hiveMemberUUIDsByRole.computeIfAbsent(role, key -> new HashSet<>()).size()) / Math.max(adultCount, 1);
+	}
+
+	public boolean canMature(Class<? extends Entity> role) {
+		float ratio = this.getRatioToAdult(role);
+		return ratio > IDEAL_ROLE_RATIOS.getOrDefault(role, 1);
+	}
 
 	public AlienHive(Entity ownerEntity) {
 		if (!(ownerEntity instanceof HiveOwner)) {
@@ -45,7 +85,26 @@ public class AlienHive {
 	}
 	
 	public void update() {
-		// TODO: Pass on hive to a royal hive member if one is available *before* destroying hive completely.
+		this.hiveMemberUUIDsByRole.clear();
+
+		this.hiveMemberUUIDs.removeIf(hiveMemberUUID -> {
+			Optional<Entity> entityOptional = EntityAccessor.instance.getEntityByUUID(hiveMemberUUID);
+
+			boolean shouldRemove = false;
+			if (entityOptional.isPresent()) {
+				Entity entity = entityOptional.get();
+
+				if (entity.isDead) {
+					shouldRemove = true;
+				} else {
+					this.hiveMemberUUIDsByRole.computeIfAbsent(entity.getClass(), key -> new HashSet<>()).add(hiveMemberUUID);
+				}
+			} else {
+				shouldRemove = true;
+			}
+
+			return shouldRemove;
+		});
 	}
 
 	public void load() {
@@ -74,7 +133,11 @@ public class AlienHive {
 	public BlockPos getCoreBlockPos() {
 		return coreBlockPos;
 	}
-	
+
+	public Entity getHiveOwnerEntity() {
+		return this.ownerEntity;
+	}
+
 	public HiveOwner getHiveOwner() {
 		return (HiveOwner) this.ownerEntity;
 	}
@@ -146,7 +209,7 @@ public class AlienHive {
 		UUID matriarchId = nbt.getUniqueId(MATRIARCH_ID_NBT_KEY);
 		
 		if (matriarchId == null || !matriarchId.equals(this.getHiveOwner().getHiveMemberID())) {
-			AVP.log().warn("Loaded an invalid matriarch id '{}', expected '{}'!", matriarchId, this.getHiveOwner().getHiveMemberID());
+			AVP.instance.getLogger().warn("Loaded an invalid matriarch id '{}', expected '{}'!", matriarchId, this.getHiveOwner().getHiveMemberID());
 		}
 		
 		// Read core block position.

@@ -3,7 +3,6 @@ package org.alien.common.entity.living.vardic;
 import com.asx.mdx.common.minecraft.Pos;
 import com.asx.mdx.common.minecraft.block.Blocks;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -12,38 +11,31 @@ import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
-import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.AlienItems;
+import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.entity.ai.brain.HammerpedeBrain;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.lib.brain.Brainiac;
 
 import java.util.List;
 
-public class EntityHammerpede extends SpeciesAlien implements IMob, Brainiac<HammerpedeBrain>
+public class EntityHammerpede extends SpeciesAlien
 {
-
-    private HammerpedeBrain brain;
-
     public EntityHammerpede(World par1World)
     {
         super(par1World);
 
-        this.setSize(0.5F, 0.5F);
+        this.setSize(0.25F, 0.75F);
         this.experienceValue = 16;
     }
 
     @Override
     public HammerpedeBrain getBrain() {
-        if (!this.world.isRemote) {
-            this.brain = new HammerpedeBrain(this);
-        }
-        return this.brain;
+        return (HammerpedeBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public HammerpedeBrain createNewBrain() {
+        return new HammerpedeBrain(this);
     }
 
     @Override
@@ -68,10 +60,6 @@ public class EntityHammerpede extends SpeciesAlien implements IMob, Brainiac<Ham
         super.onUpdate();
         this.fallDistance = 0F;
         this.lurkInBlackGoo();
-
-        if (!this.world.isRemote) {
-            this.brain.update();
-        }
     }
 
     public void lurkInBlackGoo()

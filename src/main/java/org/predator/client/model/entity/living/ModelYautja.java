@@ -631,9 +631,11 @@ public class ModelYautja extends Model<SpeciesYautja>
         this.rMandibleLower1.rotateAngleY = -(float) Math.sin(Math.toRadians(mandibleProgress)) * 0.075F;
         this.rMandibleLower1.rotateAngleZ = -(float) Math.cos(Math.toRadians(mandibleProgress)) * 0.075F;
 
-        this.face.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 1F;
-        this.rThigh.rotateAngleX = MathHelper.cos(swingProgress * 1F + (float) Math.PI) * 0.75F * swingProgressPrev - 0.2F;
-        this.lThigh.rotateAngleX = MathHelper.sin(swingProgress * 1F + (float) Math.PI) * 0.75F * swingProgressPrev - 0.2F;
+        this.face.rotateAngleY = (float) Math.toRadians(headYaw(obj));
+        this.face.rotateAngleX = (float) Math.toRadians(headPitch(obj));
+
+        this.rThigh.rotateAngleX = MathHelper.cos(swingProgress + (float) Math.PI) * 0.75F * swingProgressPrev - 0.2F;
+        this.lThigh.rotateAngleX = MathHelper.sin(swingProgress + (float) Math.PI) * 0.75F * swingProgressPrev - 0.2F;
         this.rArmUpper.rotateAngleX = MathHelper.cos(swingProgress * 0.75F) * 0.6F * swingProgressPrev;
         this.lArmUpper.rotateAngleX = MathHelper.sin(swingProgress * 0.75F) * 0.6F * swingProgressPrev;
         
@@ -668,6 +670,7 @@ public class ModelYautja extends Model<SpeciesYautja>
         OpenGL.translate(-this.rArmUpper.rotationPointX * DEFAULT_SCALE, -this.rArmUpper.rotationPointY * DEFAULT_SCALE, -this.rArmUpper.rotationPointZ * DEFAULT_SCALE);
         draw(rArmUpper);
         OpenGL.popMatrix();
+
         OpenGL.pushMatrix();
         OpenGL.translate(this.body.offsetX, this.body.offsetY, this.body.offsetZ);
         OpenGL.translate(this.body.rotationPointX * DEFAULT_SCALE, this.body.rotationPointY * DEFAULT_SCALE, this.body.rotationPointZ * DEFAULT_SCALE);
@@ -676,6 +679,7 @@ public class ModelYautja extends Model<SpeciesYautja>
         OpenGL.translate(-this.body.rotationPointX * DEFAULT_SCALE, -this.body.rotationPointY * DEFAULT_SCALE, -this.body.rotationPointZ * DEFAULT_SCALE);
         draw(body);
         OpenGL.popMatrix();
+
         OpenGL.pushMatrix();
         OpenGL.translate(this.rThigh.offsetX, this.rThigh.offsetY, this.rThigh.offsetZ);
         OpenGL.translate(this.rThigh.rotationPointX * DEFAULT_SCALE, this.rThigh.rotationPointY * DEFAULT_SCALE, this.rThigh.rotationPointZ * DEFAULT_SCALE);
@@ -684,6 +688,7 @@ public class ModelYautja extends Model<SpeciesYautja>
         OpenGL.translate(-this.rThigh.rotationPointX * DEFAULT_SCALE, -this.rThigh.rotationPointY * DEFAULT_SCALE, -this.rThigh.rotationPointZ * DEFAULT_SCALE);
         draw(rThigh);
         OpenGL.popMatrix();
+
         OpenGL.pushMatrix();
         OpenGL.translate(this.lArmUpper.offsetX, this.lArmUpper.offsetY, this.lArmUpper.offsetZ);
         OpenGL.translate(this.lArmUpper.rotationPointX * DEFAULT_SCALE, this.lArmUpper.rotationPointY * DEFAULT_SCALE, this.lArmUpper.rotationPointZ * DEFAULT_SCALE);
@@ -692,7 +697,9 @@ public class ModelYautja extends Model<SpeciesYautja>
         OpenGL.translate(-this.lArmUpper.rotationPointX * DEFAULT_SCALE, -this.lArmUpper.rotationPointY * DEFAULT_SCALE, -this.lArmUpper.rotationPointZ * DEFAULT_SCALE);
         draw(lArmUpper);
         OpenGL.popMatrix();
+
         draw(face);
+
         OpenGL.pushMatrix();
         OpenGL.translate(this.lThigh.offsetX, this.lThigh.offsetY, this.lThigh.offsetZ);
         OpenGL.translate(this.lThigh.rotationPointX * DEFAULT_SCALE, this.lThigh.rotationPointY * DEFAULT_SCALE, this.lThigh.rotationPointZ * DEFAULT_SCALE);

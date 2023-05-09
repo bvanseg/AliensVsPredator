@@ -9,6 +9,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import org.avp.AVP;
 import org.avp.common.network.packet.client.*;
 import org.avp.common.network.packet.server.*;
+import org.power.common.network.packet.client.PacketBlastdoorClient;
+import org.power.common.network.packet.client.PacketOpenBlastdoor;
+import org.power.common.network.packet.client.PacketSyncRF;
+import org.power.common.network.packet.client.PacketTurretSync;
+import org.power.common.network.packet.server.*;
 import org.weapon.common.network.packet.server.PacketLaunchGrenade;
 import org.weapon.common.network.packet.server.PacketReloadFirearm;
 
@@ -45,6 +50,9 @@ public class AVPNetworking extends SimpleNetworkWrapper implements IInitEvent
         this.registerMessage(Side.SERVER, PacketBlastdoorServer.class);
         
         /* Send to the client */
+        this.registerMessage(Side.CLIENT, PacketSyncEntitySize.class);
+        this.registerMessage(Side.CLIENT, PacketDismountRidingEntity.class);
+        this.registerMessage(Side.CLIENT, PacketSyncEntityInventory.class);
         this.registerMessage(Side.CLIENT, PacketTurretAmmoSync.class);
         this.registerMessage(Side.CLIENT, PacketTurretTargetUpdate.class);
         this.registerMessage(Side.CLIENT, PacketOpenBlastdoor.class);

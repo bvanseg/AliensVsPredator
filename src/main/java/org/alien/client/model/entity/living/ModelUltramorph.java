@@ -6,7 +6,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
-import org.alien.client.render.XenomorphJawState;
 import org.alien.common.entity.living.SpeciesXenomorph;
 import org.alien.common.entity.living.xenomorph.EntityUltramorph;
 
@@ -316,19 +315,6 @@ public class ModelUltramorph extends Model<EntityUltramorph>
         float swingProgress = swingProgress(obj);
         float swingProgressPrev = swingProgressPrev(obj);
         float tailAngle = MathHelper.cos((Minecraft.getMinecraft().world.getTotalWorldTime() % 360 + ClientGame.instance.partialTicks()) * (base != null && base.motionX + base.motionZ != 0 ? 0.67F : 0.07F));
-
-        if (xenomorph != null)
-        {
-            float innerJawDistance = XenomorphJawState.calculateJawOffset(xenomorph.getInnerJawProgress());
-            float lowerJawAngle = XenomorphJawState.interpolateLowerJawAngle(xenomorph.getOuterJawProgress());
-            float innerJawAngle = XenomorphJawState.interpolateInnerJawAngle(xenomorph.getInnerJawProgress());
-
-            this.jawLower.rotateAngleX = (float) Math.toRadians(lowerJawAngle * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-            this.innerJaw.rotationPointY = 3.725F;
-            this.innerJaw.rotateAngleX = (float) Math.toRadians((10 + innerJawAngle) * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-            this.innerJaw.offsetY = (0.15F * innerJawDistance * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-            this.innerJaw.offsetZ = (-0.1F * innerJawDistance * ClientGame.instance.partialTicks()) / ClientGame.instance.partialTicks();
-        }
 
         this.head1.rotateAngleY = (float) Math.toRadians(headYaw(obj)) * 0.75F;
         this.rThigh.rotateAngleX = MathHelper.cos(swingProgress * 0.3662F + (float) Math.PI) * 0.9F * swingProgressPrev;

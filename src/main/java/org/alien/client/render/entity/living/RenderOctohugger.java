@@ -11,8 +11,8 @@ import org.alien.client.model.entity.living.ModelOctohugger;
 import org.alien.common.entity.living.vardic.EntityOctohugger;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.common.entity.EntityMedpod;
 import org.lwjgl.opengl.GL11;
+import org.power.common.entity.EntityMedpod;
 
 public class RenderOctohugger extends RenderLivingWrapper<EntityOctohugger, ModelOctohugger>
 {

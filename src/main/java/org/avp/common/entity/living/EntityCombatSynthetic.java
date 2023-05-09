@@ -18,13 +18,13 @@ import net.minecraft.world.World;
 import org.alien.common.api.parasitoidic.Host;
 import org.avp.client.AVPSounds;
 import org.avp.common.AVPItemDrops;
-import org.avp.common.AVPItems;
 import org.avp.common.entity.EntityLiquidLatexPool;
 import org.avp.common.entity.ai.brain.CombatSyntheticBrain;
+import org.avp.common.item.init.AVPItems;
 import org.lib.brain.Brainiac;
+import org.lib.common.inventory.ItemDropContext;
 import org.weapon.common.entity.EntityBullet;
 import org.weapon.common.item.init.WeaponItems;
-import org.lib.common.inventory.ItemDropContext;
 
 public class EntityCombatSynthetic extends EntityCreature implements IMob, IRangedAttackMob, Host, Brainiac<CombatSyntheticBrain>
 {
@@ -36,7 +36,7 @@ public class EntityCombatSynthetic extends EntityCreature implements IMob, IRang
     public EntityCombatSynthetic(World word)
     {
         super(word);
-        this.setSize(1, 2);
+        this.setSize(0.75F, 2F);
         this.experienceValue = 40;
     }
 

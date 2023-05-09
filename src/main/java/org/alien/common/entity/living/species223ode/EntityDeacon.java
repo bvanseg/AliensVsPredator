@@ -1,8 +1,5 @@
 package org.alien.common.entity.living.species223ode;
 
-import com.asx.mdx.common.minecraft.Pos;
-import com.asx.mdx.common.minecraft.entity.Entities;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
@@ -11,17 +8,10 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.api.parasitoidic.Nascentic;
 import org.alien.common.entity.ai.brain.DeaconBrain;
 import org.alien.common.entity.living.Species223ODe;
-import org.alien.common.world.capability.Organism.OrganismImpl;
-import org.alien.common.world.capability.Organism.Provider;
-import org.avp.common.AVPDamageSources;
-import org.lib.brain.Brainiac;
 
-public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<DeaconBrain>
-{
-    private DeaconBrain brain;
+public class EntityDeacon extends Species223ODe {
 
     public EntityDeacon(World world)
     {
@@ -30,20 +20,16 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
         this.experienceValue = 100;
         this.jumpMovementFactor = 1.0F;
         this.setSize(0.6F, 1.8F);
-        this.isDependant = false;
     }
 
     @Override
     public DeaconBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new DeaconBrain(this);
-        }
-        return this.brain;
+        return (DeaconBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public DeaconBrain createNewBrain() {
+        return new DeaconBrain(this);
     }
 
     @Override
@@ -53,15 +39,6 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(60.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4700000238418579D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.75D);
-    }
-
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-
-        if (!this.world.isRemote) {
-            this.brain.update();
-        }
     }
 
     @Override
@@ -80,30 +57,6 @@ public class EntityDeacon extends Species223ODe implements Nascentic, Brainiac<D
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.PREQUELMORPH_DEATH.event();
-    }
-
-    @Override
-    public void grow(EntityLivingBase host)
-    {
-        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
-    }
-
-    @Override
-    public void vitalize(EntityLivingBase host)
-    {
-        OrganismImpl organism = (OrganismImpl) host.getCapability(Provider.CAPABILITY, null);
-        Pos safeLocation = Entities.getSafeLocationAround(this, new Pos((int) host.posX, (int) host.posY, (int) host.posZ));
-
-        if (safeLocation == null)
-        {
-            safeLocation = new Pos((int) host.posX, (int) host.posY, (int) host.posZ);
-        }
-
-        this.setLocationAndAngles(safeLocation.x(), safeLocation.y(), safeLocation.z(), 0.0F, 0.0F);
-        host.world.spawnEntity(this);
-        organism.removeEmbryo();
-        host.getActivePotionEffects().clear();
-        host.attackEntityFrom(AVPDamageSources.causeDeaconBursterDamage(this, host), 100000F);
     }
     
     @Override

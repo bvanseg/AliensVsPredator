@@ -6,15 +6,17 @@ import com.asx.mdx.client.render.Draw;
 import com.asx.mdx.client.render.OpenGL;
 import com.asx.mdx.common.minecraft.entity.player.inventory.Inventories;
 import net.minecraft.client.gui.Gui;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import org.alien.common.world.capability.Organism;
+import org.alien.common.world.capability.OrganismImpl;
 import org.avp.client.Resources;
 import org.avp.client.render.LightmapUpdateEvent;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPArmorItems;
 import org.avp.common.world.capability.SpecialPlayer;
 import org.lib.client.render.wavegraph.Wavegraph;
 import org.lib.client.render.wavegraph.ekg.Electrocardiogram;
@@ -33,7 +35,7 @@ public class TacticalHelmetHUDRenderEvent {
     private boolean gammaRestored = true;
 
     private SpecialPlayer.SpecialPlayerImpl specialPlayer;
-    private Organism.OrganismImpl playerOrganism;
+    private OrganismImpl playerOrganism;
     private final ArrayList<EntityPlayer> playersInHUD = new ArrayList<>();
 
     private final Electrocardiogram electrocardiogram;
@@ -56,7 +58,7 @@ public class TacticalHelmetHUDRenderEvent {
 
         ItemStack helmSlotItemStack = Inventories.getHelmSlotItemStack(ClientGame.instance.minecraft().player);
 
-        if (helmSlotItemStack != null && ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && helmSlotItemStack.getItem() == AVPItems.HELM_MARINE)
+        if (helmSlotItemStack != null && ClientGame.instance.minecraft().gameSettings.thirdPersonView == 0 && helmSlotItemStack.getItem() == AVPArmorItems.HELM_MARINE)
         {
             SpecialPlayer.SpecialPlayerImpl specialPlayer = (SpecialPlayer.SpecialPlayerImpl) ClientGame.instance.minecraft().player.getCapability(SpecialPlayer.SpecialPlayerImpl.Provider.CAPABILITY, null);
 
@@ -160,9 +162,9 @@ public class TacticalHelmetHUDRenderEvent {
                 int lifeTimeTicks = this.playerOrganism.getEmbryo().getGestationPeriod() - this.playerOrganism.getEmbryo().getAge();
                 int lifeTimeSeconds = lifeTimeTicks / 20;
 
-                String line1 = String.format("TYPE: %s", this.playerOrganism.getEmbryo().getNascenticOrganism() != null ? this.playerOrganism.getEmbryo().getNascenticOrganism().getClass().getSimpleName().replace("Entity", "") : "Unknown");
+                Class<? extends Entity> birthCreatureClass = this.playerOrganism.getEmbryo().getBirthCreature();
+                String line1 = String.format("TYPE: %s", birthCreatureClass.getSimpleName().replace("Entity", ""));
                 String line2 = String.format("VITAL.TIME: %s.%sM", lifeTimeSeconds / 60, lifeTimeSeconds % 60);
-                String line3 = String.format("EID: %s", this.playerOrganism.getEmbryo().getRegistrationId());
 
                 OpenGL.pushMatrix();
                 {
@@ -179,7 +181,6 @@ public class TacticalHelmetHUDRenderEvent {
                     OpenGL.rotate(180F, 0F, 0F, 1F);
                     Draw.drawString(line1, -Draw.getStringRenderWidth(line1) - 64, -50, 0xFFFF0000, false);
                     Draw.drawString(line2, -Draw.getStringRenderWidth(line2) - 64, -40, 0xFFFF0000, false);
-                    Draw.drawString(line3, -Draw.getStringRenderWidth(line3) - 64, -30, 0xFFFF0000, false);
                 }
                 OpenGL.popMatrix();
             }
@@ -220,11 +221,13 @@ public class TacticalHelmetHUDRenderEvent {
                 Draw.drawQuad(btX, btY, batteryWidth, btHeight, 0F, maxU, 0.5F, 1F);
             }
             OpenGL.popMatrix();
+            OpenGL.blendClear();
+            OpenGL.disableBlend();
         }
         OpenGL.popMatrix();
     }
 
-    public void drawImpregnationIndicator(Organism.OrganismImpl organism)
+    public void drawImpregnationIndicator(OrganismImpl organism)
     {
         // if (organism.hasEmbryo() && organism.getEntity().world.getWorldTime() % 20 <=
         // 10)
@@ -335,9 +338,9 @@ public class TacticalHelmetHUDRenderEvent {
         return false;
     }
 
-    public Organism.OrganismImpl getPlayerOrganism()
+    public OrganismImpl getPlayerOrganism()
     {
-        return ClientGame.instance.minecraft() != null ? ClientGame.instance.minecraft().player != null ? this.playerOrganism = (Organism.OrganismImpl) ClientGame.instance.minecraft().player.getCapability(Organism.Provider.CAPABILITY, null) : null : null;
+        return ClientGame.instance.minecraft() != null ? ClientGame.instance.minecraft().player != null ? this.playerOrganism = (OrganismImpl) ClientGame.instance.minecraft().player.getCapability(Organism.Provider.CAPABILITY, null) : null : null;
     }
 
     public void changeChannel(String channel)

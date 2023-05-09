@@ -12,6 +12,7 @@ import org.alien.client.AlienSounds;
 import org.alien.client.render.BiomeColorHandler;
 import org.alien.common.*;
 import org.alien.common.block.init.AlienBlocks;
+import org.alien.common.potion.AlienPotions;
 
 /**
  * @author Boston Vanseghi
@@ -25,6 +26,7 @@ public class Aliens implements IPreInitEvent, IInitEvent, IPostInitEvent {
     public void pre(FMLPreInitializationEvent event) {
         AlienBlocks.instance.pre(event);
         AlienItems.instance.pre(event);
+        AlienPotions.instance.pre(event);
         AlienSounds.instance.pre(event);
     }
 

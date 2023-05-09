@@ -10,11 +10,9 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.DeaconAdultBrain;
 import org.alien.common.entity.living.Species223ODe;
-import org.lib.brain.Brainiac;
 
-public class EntityDeaconAdult extends Species223ODe implements Brainiac<DeaconAdultBrain>
+public class EntityDeaconAdult extends Species223ODe
 {
-    private DeaconAdultBrain brain;
 
     public EntityDeaconAdult(World world)
     {
@@ -23,20 +21,16 @@ public class EntityDeaconAdult extends Species223ODe implements Brainiac<DeaconA
         this.jumpMovementFactor = 0.02F;
         this.experienceValue = 100;
         this.setSize(0.8F, 3.2F);
-        this.isDependant = false;
     }
 
     @Override
     public DeaconAdultBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new DeaconAdultBrain(this);
-        }
-        return this.brain;
+        return (DeaconAdultBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public DeaconAdultBrain createNewBrain() {
+        return new DeaconAdultBrain(this);
     }
 
     @Override
@@ -46,15 +40,6 @@ public class EntityDeaconAdult extends Species223ODe implements Brainiac<DeaconA
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(120.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.4700000238418579D);
         this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3D);
-    }
-
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-
-        if (!this.world.isRemote) {
-            this.brain.update();
-        }
     }
 
     @Override

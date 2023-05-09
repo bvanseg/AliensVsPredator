@@ -2,7 +2,7 @@ package org.alien.client.model.entity.living;
 
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelRenderer;
-import org.alien.common.entity.living.EntityDracoEgg;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityDracoEgg;
 
 public class ModelDracoOvamorph extends Model<EntityDracoEgg>
 {

@@ -13,7 +13,11 @@ import org.alien.common.entity.living.species223ode.EntityDeacon;
 import org.alien.common.entity.living.species223ode.EntityTrilobite;
 import org.alien.common.entity.living.vardic.EntityHammerpede;
 import org.alien.common.entity.living.vardic.EntityOctohugger;
-import org.alien.common.entity.living.xenomorph.*;
+import org.alien.common.entity.living.xenomorph.EntityDrone;
+import org.alien.common.entity.living.xenomorph.EntityPraetorian;
+import org.alien.common.entity.living.xenomorph.EntityWarrior;
+import org.alien.common.entity.living.xenomorph.burster.EntityChestburster;
+import org.alien.common.entity.living.xenomorph.exotic.EntityNauticomorph;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.world.dimension.varda.BiomeVarda;
 import org.avp.common.config.ModelConfig;
@@ -90,25 +94,25 @@ public class AlienEntitySpawns implements IInitEvent {
 
             if (ModelConfig.getInstance().getSpawning().evolvedXenomorphSpawns)
             {
-                EntityRegistry.addSpawn(EntityNauticomorph.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityNauticomorph, 1, 2, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(aquaAlienSpawns));
-                EntityRegistry.addSpawn(EntityDrone.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityDrone, 1, 3, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(alienSpawns));
-                EntityRegistry.addSpawn(EntityWarrior.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityWarrior, 1, 3, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(alienSpawns));
-                EntityRegistry.addSpawn(EntityPraetorian.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityPraetorian, 1, 2, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(alienSpawns));
-                EntityRegistry.addSpawn(EntityChestburster.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityChestburster, 1, 3, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(alienSpawns));
-                EntityRegistry.addSpawn(EntityFacehugger.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityFacehugger, 1, 2, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(alienSpawns));
+                EntityRegistry.addSpawn(EntityNauticomorph.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityNauticomorph, 1, 2, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(aquaAlienSpawns));
+                EntityRegistry.addSpawn(EntityDrone.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityDrone, 1, 3, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(alienSpawns));
+                EntityRegistry.addSpawn(EntityWarrior.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityWarrior, 1, 3, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(alienSpawns));
+                EntityRegistry.addSpawn(EntityPraetorian.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityPraetorian, 1, 2, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(alienSpawns));
+                EntityRegistry.addSpawn(EntityChestburster.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityChestburster, 1, 3, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(alienSpawns));
+                EntityRegistry.addSpawn(EntityFacehugger.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityFacehugger, 1, 2, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(alienSpawns));
             }
             else
             {
-                EntityRegistry.addSpawn(EntityFacehugger.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityFacehugger, 1, 2, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(alienSpawns));
+                EntityRegistry.addSpawn(EntityFacehugger.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityFacehugger, 1, 2, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(alienSpawns));
             }
 
-            EntityRegistry.addSpawn(EntityEngineer.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityEngineer, 1, 1, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(vardaSpawns));
-            EntityRegistry.addSpawn(EntitySpaceJockey.class, ModelConfig.getInstance().getSpawning().spawnWeightEntitySpaceJockey, 1, 1, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(vardaSpawns));
-            EntityRegistry.addSpawn(EntityHammerpede.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityHammerpede, 0, 3, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(vardaSpawns));
-            EntityRegistry.addSpawn(EntityOctohugger.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityOctohugger, 0, 3, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(vardaSpawns));
-            EntityRegistry.addSpawn(EntityDeacon.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityDeacon, 0, 1, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(vardaSpawns));
-            EntityRegistry.addSpawn(EntityEngineer.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityEngineer, 0, 1, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(vardaSpawns));
-            EntityRegistry.addSpawn(EntityTrilobite.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityTrilobite, 0, 1, AlienCreatureTypes.ALIEN, EntitySpawnRegistryUtil.array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityEngineer.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityEngineer, 1, 1, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(vardaSpawns));
+            EntityRegistry.addSpawn(EntitySpaceJockey.class, ModelConfig.getInstance().getSpawning().spawnWeightEntitySpaceJockey, 1, 1, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityHammerpede.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityHammerpede, 0, 3, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityOctohugger.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityOctohugger, 0, 3, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityDeacon.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityDeacon, 0, 1, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityEngineer.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityEngineer, 0, 1, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(vardaSpawns));
+            EntityRegistry.addSpawn(EntityTrilobite.class, ModelConfig.getInstance().getSpawning().spawnWeightEntityTrilobite, 0, 1, AlienCreatureTypes.getAlienCreatureType(), EntitySpawnRegistryUtil.array(vardaSpawns));
         }
     }
 }

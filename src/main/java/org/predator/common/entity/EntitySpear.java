@@ -15,24 +15,17 @@ import org.predator.common.PredatorItems;
 
 public class EntitySpear extends EntityItemStackProjectile
 {
-    private int damage;
 
     public EntitySpear(World world)
     {
         super(world);
     }
 
-    public EntitySpear(World world, double posX, double posY, double posZ)
-    {
-        this(world);
-        setPosition(posX, posY, posZ);
-    }
-
-    public EntitySpear(World world, EntityLivingBase entityliving, ItemStack itemstack)
+    public EntitySpear(World world, EntityLivingBase entityliving)
     {
         this(world);
         this.shootingEntity = entityliving;
-        this.setItemstack(new ItemStack(PredatorItems.ITEM_SPEAR));
+        this.setItemStack(new ItemStack(PredatorItems.ITEM_SPEAR));
         this.setLocationAndAngles(entityliving.posX, entityliving.posY + entityliving.getEyeHeight(), entityliving.posZ, entityliving.rotationYaw, entityliving.rotationPitch);
         this.posX -= MathHelper.cos((rotationYaw / 180F) * 3.141593F) * 0.16F;
         this.posY -= 0.1D;
@@ -63,23 +56,23 @@ public class EntitySpear extends EntityItemStackProjectile
                 damagesource = AVPDamageSources.causeSpearDamage(this.shootingEntity);
             }
 
-            if (entity.attackEntityFrom(damagesource, damage + 1))
+            if (entity.attackEntityFrom(damagesource, 30F))
             {
                 this.applyEntityHitEffects(entity);
                 this.playHitSound();
 
-                if (itemstack.getMaxDamage() + 1 > itemstack.getMaxDamage())
+                if (itemStack.getMaxDamage() + 1 > itemStack.getMaxDamage())
                 {
                 }
                 else
                 {
                     if (shootingEntity instanceof EntityLivingBase)
                     {
-                        itemstack.damageItem(1, (EntityLivingBase) shootingEntity);
+                        itemStack.damageItem(1, (EntityLivingBase) shootingEntity);
                     }
                     else
                     {
-                        itemstack.attemptDamageItem(1, rand, null);
+                        itemStack.attemptDamageItem(1, rand, null);
                     }
                     this.setVelocity(0D, 0D, 0D);
                 }
@@ -122,8 +115,8 @@ public class EntitySpear extends EntityItemStackProjectile
     }
 
     @Override
-    protected ItemStack getArrowStack()
+    public ItemStack getItemStack()
     {
-        return this.getItemstack();
+        return new ItemStack(this.itemStack.getItem(), 1, this.itemStack.getItemDamage() + 1);
     }
 }

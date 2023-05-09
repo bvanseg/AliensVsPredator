@@ -12,10 +12,10 @@
     },
     "variants": {
         "normal": [{
-            "model": "cube_all"
+            "model": "cube"
         }],
         "inventory": [{
-            "model": "cube_all"
+            "model": "cube"
         }]
     }
 }

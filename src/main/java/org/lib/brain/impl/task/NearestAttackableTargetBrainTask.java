@@ -24,7 +24,7 @@ public class NearestAttackableTargetBrainTask extends AbstractEntityBrainTask {
     	if (optional.isPresent()) {
     		EntityLivingBase nearestAttackTarget = optional.get();
 
-			if (!nearestAttackTarget.isDead) {
+			if (!nearestAttackTarget.isDead && nearestAttackTarget.getHealth() > 0) {
 				ctx.getEntity().setAttackTarget(nearestAttackTarget);
 			} else {
 				ctx.getEntity().setAttackTarget(null);

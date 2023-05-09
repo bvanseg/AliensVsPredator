@@ -2,7 +2,6 @@ package org.alien.common.entity.living.vardic;
 
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -13,7 +12,7 @@ import org.alien.common.api.parasitoidic.Host;
 import org.alien.common.entity.ai.brain.ScelemurBrain;
 import org.lib.brain.Brainiac;
 
-public class EntityScelemur extends EntityMob implements IMob, Host, Brainiac<ScelemurBrain>
+public class EntityScelemur extends EntityMob implements Host, Brainiac<ScelemurBrain>
 {
     private ScelemurBrain brain;
 

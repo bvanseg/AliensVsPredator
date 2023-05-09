@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.alien.Aliens;
 import org.alien.client.AlienRenders;
+import org.alien.common.entity.AlienCreatureTypes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.avp.client.AVPSounds;
@@ -22,18 +23,26 @@ import org.avp.client.Renders;
 import org.avp.common.*;
 import org.avp.common.block.init.AVPBlocks;
 import org.avp.common.config.ModelConfig;
+import org.avp.common.entity.MarineCreatureTypes;
+import org.avp.common.item.init.AVPItems;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
 import org.predator.Predators;
 import org.predator.client.PredatorRenders;
+import org.predator.common.entity.PredatorCreatureTypes;
 
 import java.time.LocalDate;
 
+/**
+ * @author Ri5ux
+ */
 @Mod(name = AVP.Properties.NAME, modid = AVP.Properties.ID, dependencies = AVP.Properties.DEPENDENCIES)
 public class AVP implements IMod
 {
     public static class Properties
     {
+        private Properties() {}
+
         public static final String NAME         = "AliensVsPredator";
         public static final String ID           = "avp";
         public static final String DEPENDENCIES = "required-after:mdxlib";
@@ -43,7 +52,7 @@ public class AVP implements IMod
     @Mod.Instance(AVP.Properties.ID)
     public static AVP instance;
 
-    public static final Logger logger = LogManager.getLogger("AVP");
+    public final Logger logger = LogManager.getLogger("AVP");
 
     @Override
     public ModContainer container()
@@ -51,12 +60,19 @@ public class AVP implements IMod
         return Game.instance.getModContainer(AVP.Properties.ID);
     }
 
+    static {
+        // It is absolutely essential that we initialize these here before everything else. These create new creature types,
+        // which involves modifying the CreatureType enum via reflection at runtime. If this is not done early enough,
+        // the mod may crash with other mods or with itself (avp entities are registered using these creature types).
+        AlienCreatureTypes.init();
+        MarineCreatureTypes.init();
+        PredatorCreatureTypes.init();
+    }
+
     @Mod.EventHandler
     public void pre(FMLPreInitializationEvent event)
     {
         logger.info("Preparing...");
-        // TODO: There should be no need for this initial write, but we have to because the instance field is currently public.
-        ModelConfig.getInstance().write();
 
         AVPCreativeTabs.instance.pre(event);
 
@@ -84,6 +100,9 @@ public class AVP implements IMod
         logger.info("AliensVsPredator Minecraft Mod Copyright © 2012-{} ASX", currentYear);
         logger.info("Initializing...");
 
+        AVPOreDict.registerOres();
+        AVPItemSchematics.registerRecipes();
+
         AVPNetworking.instance.init(event);
         AVPGui.instance.init(event);
         AVPEventHandlers.instance.init(event);
@@ -109,6 +128,9 @@ public class AVP implements IMod
     public void post(FMLPostInitializationEvent event)
     {
         logger.info("Initialized. Running post initialization tasks...");
+        ModelConfig.getInstance().getEmbryos().init();
+        ModelConfig.getInstance().getParasites().init();
+
         ModelConfig.getInstance().write();
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
@@ -122,9 +144,8 @@ public class AVP implements IMod
         AVPCommands.instance.onServerStarting(event);
     }
 
-    @Deprecated
-    public static Logger log()
+    public Logger getLogger()
     {
-        return logger;
+        return this.logger;
     }
 }

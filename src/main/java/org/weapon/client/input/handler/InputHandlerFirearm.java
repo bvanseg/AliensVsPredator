@@ -1,48 +1,45 @@
 package org.weapon.client.input.handler;
 
 import com.asx.mdx.client.ClientGame;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.util.EnumHand;
 import org.avp.client.KeybindHandler;
 import org.avp.client.input.InputHandler;
 import org.avp.common.AVPNetworking;
+import org.weapon.common.delay.DelayHandler;
 import org.weapon.common.item.firearm.ItemFirearm;
 import org.weapon.common.network.packet.server.PacketReloadFirearm;
 
+/**
+ * @author Ri5ux
+ * @author Boston Vanseghi
+ */
 public class InputHandlerFirearm implements InputHandler
 {
     public static final InputHandlerFirearm instance   = new InputHandlerFirearm();
-    private int                             lastReload = 0;
 
     @Override
     public void handleInput()
     {
-        if (ClientGame.instance.minecraft().player != null)
-        {
-            this.lastReload++;
-            
-            Item mainHand = ClientGame.instance.minecraft().player.getHeldItemMainhand().getItem();
-            Item offHand = ClientGame.instance.minecraft().player.getHeldItemOffhand().getItem();
+        EntityPlayer player = ClientGame.instance.minecraft().player;
 
-            if (ClientGame.instance.minecraft().inGameHasFocus && mainHand != null && mainHand instanceof ItemFirearm)
-            {
-                ItemFirearm fireArm = (ItemFirearm) mainHand;
+        if (player == null) return;
+        if (!ClientGame.instance.minecraft().inGameHasFocus) return;
+        if (!KeybindHandler.instance.specialSecondary.isPressed()) return;
 
-                if (KeybindHandler.instance.specialSecondary.isPressed() && this.lastReload > fireArm.getFirearmProperties().getReloadTimeInTicks())
-                {
-                    this.lastReload = 0;
-                    AVPNetworking.instance.sendToServer(new PacketReloadFirearm());
-                }
-            }
-            else if (ClientGame.instance.minecraft().inGameHasFocus && offHand != null && offHand instanceof ItemFirearm)
-            {
-            	ItemFirearm fireArm = (ItemFirearm) offHand;
+        handleReload(player, EnumHand.MAIN_HAND);
+        handleReload(player, EnumHand.OFF_HAND);
+    }
 
-                if (KeybindHandler.instance.specialSecondary.isPressed() && this.lastReload > fireArm.getFirearmProperties().getReloadTimeInTicks())
-                {
-                    this.lastReload = 0;
-                    AVPNetworking.instance.sendToServer(new PacketReloadFirearm());
-                }
-            }
-        }
+    private static void handleReload(EntityPlayer player, EnumHand hand) {
+        Item handItem = player.getHeldItem(hand).getItem();
+
+        if (!(handItem instanceof ItemFirearm)) return;
+
+        ItemFirearm firearm = (ItemFirearm) handItem;
+        long reloadTime = player.world.getTotalWorldTime() + firearm.getFirearmProperties().getReloadTimeInTicks();
+        DelayHandler.instance.setDelay(player, hand, reloadTime);
+        AVPNetworking.instance.sendToServer(new PacketReloadFirearm());
     }
 }

@@ -19,15 +19,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
-import org.alien.common.entity.ai.brain.parasitoid.ParasitoidBrain;
 import org.alien.common.entity.ai.brain.parasitoid.TrilobiteBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorTrilobite;
 import org.alien.common.entity.living.EntityParasitoid;
 import org.alien.common.entity.living.helper.TrilobiteAnimationController;
 import org.alien.common.entity.living.helper.TrilobiteTentacleHelper;
-import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.Organism.OrganismImpl;
-import org.alien.common.world.capability.Organism.Provider;
 
 import java.util.List;
 
@@ -52,16 +48,13 @@ public class EntityTrilobite extends EntityParasitoid implements IAnimated
     }
 
     @Override
-    public ParasitoidBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new TrilobiteBrain(this);
-        }
-        return this.brain;
+    public TrilobiteBrain getBrain() {
+        return (TrilobiteBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public TrilobiteBrain createNewBrain() {
+        return new TrilobiteBrain(this);
     }
 
     @Override
@@ -183,15 +176,6 @@ public class EntityTrilobite extends EntityParasitoid implements IAnimated
             this.startRiding(living);
             this.implantEmbryo(living);
         }
-    }
-
-    @Override
-    public void implantEmbryo(EntityLivingBase target)
-    {
-        OrganismImpl organism = (OrganismImpl) target.getCapability(Provider.CAPABILITY, null);
-        organism.impregnate(Embryo.DEACON);
-        organism.syncWithClients(target);
-        this.setFertility(false);
     }
 
     @Override

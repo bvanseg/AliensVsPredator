@@ -24,6 +24,6 @@ public class AlienGrowthUtil {
             additionalScale = alien.growthProgress / (maturityEntry.getRequiredJellyLevel() * scaleReductionFactor);
         }
 
-        return MathHelper.clamp(additionalScale, 0F, 1F);
+        return MathHelper.clamp(additionalScale, 0F, 0.33F);
     }
 }

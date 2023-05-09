@@ -8,6 +8,8 @@ import org.weapon.common.entity.EntityFlame;
 
 public class AVPDamageSources extends DamageSource
 {
+    public static final String WRISTBRACER = "wristbracer";
+
     public static final DamageSource ACID = (new DamageSource("acid")).setDamageBypassesArmor();
     public static final DamageSource ELECTRICITY = (new DamageSource("electricity")).setDamageBypassesArmor();
     public static final DamageSource ACID_PROJECTILE = (new DamageSource("acidshot")).setDamageBypassesArmor().setProjectile();
@@ -17,7 +19,6 @@ public class AVPDamageSources extends DamageSource
     public static final DamageSource BULLET = (new DamageSource("bullet")).setProjectile();
     public static final DamageSource SMART_DISC = (new DamageSource("smartdisc")).setProjectile();
     public static final DamageSource SHURIKEN = (new DamageSource("shuriken")).setProjectile();
-    public static final DamageSource WRISTBRACER = (new DamageSource("wristbracer"));
     public static final DamageSource SPEAR = (new DamageSource("spear")).setProjectile();
     public static final DamageSource PLASMA_CASTER = (new DamageSource("plasmacaster")).setProjectile().setMagicDamage().setDamageBypassesArmor();
     public static final DamageSource FLAMETHROWER = (new DamageSource("flamethrower")).setProjectile().setFireDamage().setDifficultyScaled();
@@ -42,11 +43,6 @@ public class AVPDamageSources extends DamageSource
     public static DamageSource causeSpearDamage(Entity sourceEntity)
     {
         return (new EntityDamageSource(SPEAR.getDamageType(), sourceEntity)).setProjectile();
-    }
-
-    public static DamageSource causeWristbracerDamage(Entity sourceEntity)
-    {
-        return WRISTBRACER;
     }
 
     public static DamageSource causeShurikenDamage(Entity sourceEntity)

@@ -1,6 +1,5 @@
 package org.predator.common.item;
 
-import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.common.minecraft.item.HookedItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
@@ -11,20 +10,19 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EntityDamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.common.AVPDamageSources;
-import org.avp.common.AVPNetworking;
 import org.avp.common.AVPToolMaterials;
-import org.avp.common.config.ModelConfig;
-import org.avp.common.network.packet.server.PacketSpawnNuke;
 import org.predator.client.PredatorSounds;
 import org.predator.common.PredatorItems;
 import org.predator.common.inventory.ContainerWristbracer;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -66,43 +64,45 @@ public class ItemWristbracer extends HookedItem
     @Override
     public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
     {
-        if (equippedHasBlades(player))
+        if (!equippedHasBlades(player)) return super.onLeftClickEntity(stack, player, entity);
+
+        PredatorSounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F);
+        entity.attackEntityFrom(new EntityDamageSource(AVPDamageSources.WRISTBRACER, player), getDamageToApply());
+
+        if (player.world.isRemote || player.capabilities.isCreativeMode) return super.onLeftClickEntity(stack, player, entity);
+
+        // Update the damage of the wristblade within the wristbracer.
+        this.updateDamage(player);
+
+        return super.onLeftClickEntity(stack, player, entity);
+    }
+
+    private void updateDamage(EntityPlayer player) {
+        ItemStack bladesStack = getBlades(player.getHeldItemMainhand());
+        NBTTagCompound nbt = player.getHeldItemMainhand().getTagCompound();
+        NBTTagList wristbracerContents = nbt.getTagList(TAG_WRISTBRACER_ITEMS, Constants.NBT.TAG_COMPOUND);
+
+        if (bladesStack == null) return;
+
+        for (int s = 0; s < wristbracerContents.tagCount(); s++)
         {
-            PredatorSounds.WEAPON_WRISTBLADES.playSound(entity, 1.0F, 1.0F);
-            entity.attackEntityFrom(AVPDamageSources.causeWristbracerDamage(player), getDamageToApply());
+            NBTTagCompound slot = wristbracerContents.getCompoundTagAt(s);
+            ItemStack slotstack = new ItemStack(slot);
 
-            if (!player.world.isRemote && !player.capabilities.isCreativeMode)
+            if (slotstack != null && slotstack.getItem() == PredatorItems.ITEM_WRISTBRACER_BLADES)
             {
-                ItemStack bladesStack = getBlades(player.getHeldItemMainhand());
-                NBTTagCompound nbt = player.getHeldItemMainhand().getTagCompound();
-                NBTTagList wristbracerContents = nbt.getTagList(TAG_WRISTBRACER_ITEMS, Constants.NBT.TAG_COMPOUND);
-
-                if (bladesStack != null && !player.world.isRemote)
-                {
-                    for (int s = 0; s < wristbracerContents.tagCount(); s++)
-                    {
-                        NBTTagCompound slot = wristbracerContents.getCompoundTagAt(s);
-                        ItemStack slotstack = new ItemStack(slot);
-
-                        if (slotstack != null && slotstack.getItem() == PredatorItems.ITEM_WRISTBRACER_BLADES)
-                        {
-                            wristbracerContents.removeTag(s);
-                            bladesStack.writeToNBT(slot);
-                            slot.setShort("Damage", (short) (bladesStack.getItemDamage() + 1));
-                            slot.setByte(TAG_WRISTBRACER_ITEMS_SLOT, (byte) s);
-                            wristbracerContents.appendTag(slot);
-                            break;
-                        }
-                    }
-                }
-
-                nbt.setTag(TAG_WRISTBRACER_ITEMS, wristbracerContents);
-                player.getHeldItemMainhand().setTagCompound(nbt);
-                ((ContainerWristbracer) getNewContainer(player)).saveToNBT();
+                wristbracerContents.removeTag(s);
+                bladesStack.writeToNBT(slot);
+                slot.setShort("Damage", (short) (bladesStack.getItemDamage() + 1));
+                slot.setByte(TAG_WRISTBRACER_ITEMS_SLOT, (byte) s);
+                wristbracerContents.appendTag(slot);
+                break;
             }
         }
 
-        return super.onLeftClickEntity(stack, player, entity);
+        nbt.setTag(TAG_WRISTBRACER_ITEMS, wristbracerContents);
+        player.getHeldItemMainhand().setTagCompound(nbt);
+        ((ContainerWristbracer) getNewContainer(player)).saveToNBT();
     }
 
     public Container getNewContainer(EntityPlayer player)
@@ -184,11 +184,11 @@ public class ItemWristbracer extends HookedItem
     
     public static ItemStack wristbracer(EntityPlayer player)
     {
-        ArrayList<ItemStack> stacks = wristbracers(player);
-        return stacks.size() > 0 ? stacks.get(0) : null;
+        List<ItemStack> stacks = wristbracers(player);
+        return !stacks.isEmpty() ? stacks.get(0) : null;
     }
     
-    public static ArrayList<ItemStack> wristbracers(EntityPlayer player)
+    private static List<ItemStack> wristbracers(EntityPlayer player)
     {
         ArrayList<ItemStack> wristbracers = new ArrayList<>();
         
@@ -214,10 +214,7 @@ public class ItemWristbracer extends HookedItem
             String formatted = I18n.format(descriptionKey, getDamageToApply());
             String[] lines = formatted.split("/n");
 
-            for (String line : lines)
-            {
-                tooltip.add(line);
-            }
+            Collections.addAll(tooltip, lines);
         }
     }
 }

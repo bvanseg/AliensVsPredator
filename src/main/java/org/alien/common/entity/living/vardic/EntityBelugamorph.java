@@ -2,7 +2,6 @@ package org.alien.common.entity.living.vardic;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -12,7 +11,7 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
 
-public class EntityBelugamorph extends SpeciesXenomorph implements IMob
+public class EntityBelugamorph extends SpeciesXenomorph
 {
     public EntityBelugamorph(World world)
     {
@@ -20,9 +19,7 @@ public class EntityBelugamorph extends SpeciesXenomorph implements IMob
 
         this.jumpMovementFactor = 0.02F;
         this.experienceValue = 100;
-        this.setSize(0.7F, 2.25F);
-        this.ableToClimb = false;
-        this.isDependant = false;
+        this.setSize(0.7F, 2.75F);
     }
 
     @Override

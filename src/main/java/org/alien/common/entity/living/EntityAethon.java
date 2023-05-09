@@ -1,9 +1,7 @@
 package org.alien.common.entity.living;
 
-import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -11,7 +9,6 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
@@ -21,7 +18,7 @@ import org.avp.common.AVPItemDrops;
 import org.lib.brain.Brainiac;
 import org.lib.common.inventory.ItemDropContext;
 
-public class EntityAethon extends EntityMob implements IMob, Host, Brainiac<AethonBrain>
+public class EntityAethon extends EntityMob implements Host, Brainiac<AethonBrain>
 {
     private static final DataParameter<Integer> FLYING = EntityDataManager.createKey(EntityAethon.class, DataSerializers.VARINT);
 
@@ -33,7 +30,7 @@ public class EntityAethon extends EntityMob implements IMob, Host, Brainiac<Aeth
     {
         super(world);
         this.experienceValue = 150;
-        this.setSize(3, 7);
+        this.setSize(1.5F, 6);
     }
 
     @Override
@@ -96,53 +93,53 @@ public class EntityAethon extends EntityMob implements IMob, Host, Brainiac<Aeth
 
         this.fallDistance = 0F;
 
-        if (!this.world.isRemote)
-        {
-            if (isFlying())
-            {
-                this.motionY *= 0.5000000238418579D;
-            }
-
-            if (this.getAttackTarget() != null && this.getDistance(this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ) <= 12)
-            {
-                this.getDataManager().set(FLYING, 0);
-            }
-            else if (this.getAttackTarget() == null && this.rand.nextInt(30) == 0)
-            {
-                this.getDataManager().set(FLYING, 1);
-            }
-
-            if (this.flyToPosition != null && (!this.world.isAirBlock(this.flyToPosition) || this.flyToPosition.getY() < 1))
-            {
-                this.flyToPosition = null;
-            }
-
-            if (this.flyToPosition == null || this.rand.nextInt(30) == 0 || Pos.distanceSq(flyToPosition.getX(), flyToPosition.getY(), flyToPosition.getZ(), (int) this.posX, (int) this.posY, (int) this.posZ) < 4.0F)
-            {
-                if (this.getAttackTarget() != null)
-                {
-                    this.flyToPosition = new BlockPos((int) this.getAttackTarget().posX, (int) this.getAttackTarget().posY, (int) this.getAttackTarget().posZ);
-                }
-                else
-                {
-                    this.flyToPosition = new BlockPos((int) this.posX + this.rand.nextInt(16) - this.rand.nextInt(16), (int) this.posY + this.rand.nextInt(14) - this.rand.nextInt(16), (int) this.posZ + this.rand.nextInt(16) - this.rand.nextInt(16));
-                }
-            }
-
-            if (this.isFlying())
-            {
-                double d0 = this.flyToPosition.getX() + 0.5D - this.posX;
-                double d1 = this.flyToPosition.getY() + 0.1D - this.posY;
-                double d2 = this.flyToPosition.getZ() + 0.5D - this.posZ;
-                this.motionX += (Math.signum(d0) * 0.65D - this.motionX) * 0.10000000149011612D;
-                this.motionY += (Math.signum(d1) * 2.199999988079071D - this.motionY) * 0.10000000149011612D;
-                this.motionZ += (Math.signum(d2) * 0.65D - this.motionZ) * 0.10000000149011612D;
-                float f = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) - 90.0F;
-                float f1 = MathHelper.wrapDegrees(f - this.rotationYaw);
-                this.moveForward = 0.5F;
-                this.rotationYaw += f1;
-            }
-        }
+//        if (!this.world.isRemote)
+//        {
+//            if (isFlying())
+//            {
+//                this.motionY *= 0.5000000238418579D;
+//            }
+//
+//            if (this.getAttackTarget() != null && this.getDistance(this.getAttackTarget().posX, this.getAttackTarget().posY, this.getAttackTarget().posZ) <= 12)
+//            {
+//                this.getDataManager().set(FLYING, 0);
+//            }
+//            else if (this.getAttackTarget() == null && this.rand.nextInt(30) == 0)
+//            {
+//                this.getDataManager().set(FLYING, 1);
+//            }
+//
+//            if (this.flyToPosition != null && (!this.world.isAirBlock(this.flyToPosition) || this.flyToPosition.getY() < 1))
+//            {
+//                this.flyToPosition = null;
+//            }
+//
+//            if (this.flyToPosition == null || this.rand.nextInt(30) == 0 || Pos.distanceSq(flyToPosition.getX(), flyToPosition.getY(), flyToPosition.getZ(), (int) this.posX, (int) this.posY, (int) this.posZ) < 4.0F)
+//            {
+//                if (this.getAttackTarget() != null)
+//                {
+//                    this.flyToPosition = new BlockPos((int) this.getAttackTarget().posX, (int) this.getAttackTarget().posY, (int) this.getAttackTarget().posZ);
+//                }
+//                else
+//                {
+//                    this.flyToPosition = new BlockPos((int) this.posX + this.rand.nextInt(16) - this.rand.nextInt(16), (int) this.posY + this.rand.nextInt(14) - this.rand.nextInt(16), (int) this.posZ + this.rand.nextInt(16) - this.rand.nextInt(16));
+//                }
+//            }
+//
+//            if (this.isFlying())
+//            {
+//                double d0 = this.flyToPosition.getX() + 0.5D - this.posX;
+//                double d1 = this.flyToPosition.getY() + 0.1D - this.posY;
+//                double d2 = this.flyToPosition.getZ() + 0.5D - this.posZ;
+//                this.motionX += (Math.signum(d0) * 0.65D - this.motionX) * 0.10000000149011612D;
+//                this.motionY += (Math.signum(d1) * 2.199999988079071D - this.motionY) * 0.10000000149011612D;
+//                this.motionZ += (Math.signum(d2) * 0.65D - this.motionZ) * 0.10000000149011612D;
+//                float f = (float) (Math.atan2(this.motionZ, this.motionX) * 180.0D / Math.PI) - 90.0F;
+//                float f1 = MathHelper.wrapDegrees(f - this.rotationYaw);
+//                this.moveForward = 0.5F;
+//                this.rotationYaw += f1;
+//            }
+//        }
     }
 
     public boolean isFlying()

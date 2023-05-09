@@ -5,7 +5,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBreakDoor;
 import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.PathNavigateGround;
-import org.alien.JellyConstants;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.AlienBrain;
 import org.alien.common.entity.ai.brain.task.FindItemBrainTask;
@@ -72,12 +71,13 @@ public class XenomorphBrain extends AlienBrain<SpeciesXenomorph> {
 		this.addTask(new LeapAtTargetBrainTask(0.6F));
 		this.addTask(new WanderBrainTask(0.8D));
 		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY)
-				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + (e.getItem().getCount() * JellyConstants.RAW_YIELD))));
+				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + e.getItem().getCount())));
 		this.addTask(new ShareJellyBrainTask());
 		this.addTask(new WatchClosestBrainTask(EntityLivingBase.class, 16F));
-		this.addTask(new AttackOnCollideBrainTask(1.0D));
+
+		this.initCombatTasks();
+
 		this.addTask(new HurtByTargetBrainTask());
-		this.addTask(new NearestAttackableTargetBrainTask());
 		this.addTask(new AvoidBlockBrainTask(3F, 1.0F, 1.0F, AVOID_BLOCKS::contains));
 		this.addTask(new DestroyBlockBrainTask(1.0D, DESTROY_BLOCKS::contains));
 
@@ -86,5 +86,10 @@ public class XenomorphBrain extends AlienBrain<SpeciesXenomorph> {
 			// TODO: Make this more flexible as a brain task.
 			this.addTask(new BrainTaskAdapter(new EntityAIBreakDoor(this.getEntity())));
 		}
+	}
+
+	public void initCombatTasks() {
+		this.addTask(new NearestAttackableTargetBrainTask());
+		this.addTask(new AttackOnCollideBrainTask(1.0D));
 	}
 }

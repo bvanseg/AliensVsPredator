@@ -54,7 +54,7 @@ public class SaveHandler
                 {
                     if (!dataHandler.saveData(world, tag))
                     {
-                    	AVP.log().info(String.format("Unable to save world data: ", this.getSaveFilename()));
+                    	AVP.instance.getLogger().info(String.format("Unable to save world data: ", this.getSaveFilename()));
                     }
                 }
             }
@@ -80,7 +80,7 @@ public class SaveHandler
             {
                 if (worldSave.getAbsoluteFile().exists())
                 {
-                	AVP.log().info(String.format("Loading world data: ", worldSave.getAbsolutePath()));
+                	AVP.instance.getLogger().info(String.format("Loading world data: ", worldSave.getAbsolutePath()));
                     NBTTagCompound read = NBTStorage.readCompressed(worldSave.getAbsoluteFile());
                     tag = read == null ? tag : read;
 
@@ -90,7 +90,7 @@ public class SaveHandler
                         {
                             if (!dataHandler.loadData(world, tag))
                             {
-                            	AVP.log().info(String.format("Unable to load world data: ", this.getSaveFilename()));
+                            	AVP.instance.getLogger().info(String.format("Unable to load world data: ", this.getSaveFilename()));
                             }
                         }
                     }

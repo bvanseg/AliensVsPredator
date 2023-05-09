@@ -19,16 +19,18 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import org.avp.common.AVPDamageSources;
+import org.lib.common.FuncUtil;
 import org.predator.common.PredatorItems;
 
 import java.util.List;
+import java.util.UUID;
 
 public class EntityLaserMine extends Entity
 {
     private static final DataParameter<Boolean> TRIPPED = EntityDataManager.createKey(EntityLaserMine.class, DataSerializers.BOOLEAN);
 
     private static final int TIME_TO_DETONATE_IN_TICKS = 10;
-    private String ownerUUID;
+    private UUID ownerUUID;
     public int direction;
     public BlockPos parentBlockPos;
 	private Entity targetEntity;
@@ -48,7 +50,7 @@ public class EntityLaserMine extends Entity
         this.setSize(0.5F, 0.5F);
     }
 
-    public EntityLaserMine(World world, BlockPos pos, int direction, String ownerUUID)
+    public EntityLaserMine(World world, BlockPos pos, int direction, UUID ownerUUID)
     {
         this(world);
         this.parentBlockPos = pos;
@@ -66,8 +68,7 @@ public class EntityLaserMine extends Entity
     
     public boolean canStay()
     {
-    	boolean flag = parentBlockPos != null && world.getBlockState(parentBlockPos) == Blocks.AIR.getDefaultState();
-        return !flag;
+        return this.parentBlockPos != null && world.getBlockState(this.parentBlockPos) != Blocks.AIR.getDefaultState();
     }
 
     @Override
@@ -117,7 +118,7 @@ public class EntityLaserMine extends Entity
 
     public int getLaserMaxDepth()
     {
-        return 32;
+        return 4;
     }
 
     @Override
@@ -131,21 +132,30 @@ public class EntityLaserMine extends Entity
         return true;
     }
 
+    private static final String PARENT_BLOCK_POS_NBT_KEY = "ParentBlockPos";
     private static final String DIR_NBT_KEY = "Dir";
     private static final String OWNER_NBT_KEY = "Owner";
 
     @Override
     public void writeEntityToNBT(NBTTagCompound nbttagcompound)
     {
+        if (parentBlockPos != null) {
+            nbttagcompound.setIntArray(PARENT_BLOCK_POS_NBT_KEY, new int[] { parentBlockPos.getX(), parentBlockPos.getY(), parentBlockPos.getZ() });
+        }
+
         nbttagcompound.setByte(DIR_NBT_KEY, (byte) this.direction);
-        nbttagcompound.setString(OWNER_NBT_KEY, this.ownerUUID);
+        nbttagcompound.setUniqueId(OWNER_NBT_KEY, this.ownerUUID);
     }
 
     @Override
     public void readEntityFromNBT(NBTTagCompound nbttagcompound)
     {
+        this.parentBlockPos = FuncUtil.let(
+            nbttagcompound.getIntArray(PARENT_BLOCK_POS_NBT_KEY),
+            array -> array.length != 3 ? null : new BlockPos(array[0], array[1], array[2])
+        );
         this.direction = nbttagcompound.getByte(DIR_NBT_KEY);
-        this.ownerUUID = nbttagcompound.getString(OWNER_NBT_KEY);
+        this.ownerUUID = nbttagcompound.getUniqueId(OWNER_NBT_KEY);
     }
 
     public double getLaserHitDistanceFromMine()

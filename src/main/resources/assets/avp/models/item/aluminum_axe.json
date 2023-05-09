@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "avp:items/aluminum/aluminum_axe"
+  }
+}

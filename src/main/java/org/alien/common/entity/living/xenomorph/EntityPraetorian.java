@@ -9,15 +9,14 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
-import org.alien.common.world.hive.HiveMember;
 
-public class EntityPraetorian extends SpeciesXenomorph implements HiveMember
+public class EntityPraetorian extends SpeciesXenomorph
 {
     public EntityPraetorian(World world)
     {
         super(world);
         this.experienceValue = 300;
-        this.setSize(1.0F, 3.0F);
+        this.setSize(1.5F, 3.0F);
     }
 
     @Override
@@ -26,7 +25,7 @@ public class EntityPraetorian extends SpeciesXenomorph implements HiveMember
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
-        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(5.0D);
+        this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(12.0D);
         this.getEntityAttribute(SharedMonsterAttributes.KNOCKBACK_RESISTANCE).setBaseValue(1F);
     }
 

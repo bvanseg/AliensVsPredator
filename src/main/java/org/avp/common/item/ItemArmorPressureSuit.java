@@ -11,7 +11,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import org.avp.client.Resources;
 import org.avp.common.AVPArmorMaterials;
-import org.avp.common.AVPItems;
+import org.avp.common.item.init.AVPArmorItems;
 
 public class ItemArmorPressureSuit extends ItemAntiVacuumArmor
 {
@@ -37,10 +37,10 @@ public class ItemArmorPressureSuit extends ItemAntiVacuumArmor
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack)
     {
-        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AVPItems.PRESSURE_MASK &&
-                Inventories.getChestSlotItemStack(player) != null && Inventories.getChestSlotItemStack(player).getItem() == AVPItems.PRESSURE_CHEST &&
-                    Inventories.getLegsSlotItemStack(player) != null && Inventories.getLegsSlotItemStack(player).getItem() == AVPItems.PRESSURE_PANTS &&
-                        Inventories.getBootSlotItemStack(player) != null && Inventories.getBootSlotItemStack(player).getItem() == AVPItems.PRESSURE_BOOTS)
+        if (Inventories.getHelmSlotItemStack(player) != null && Inventories.getHelmSlotItemStack(player).getItem() == AVPArmorItems.PRESSURE_MASK &&
+                Inventories.getChestSlotItemStack(player) != null && Inventories.getChestSlotItemStack(player).getItem() == AVPArmorItems.PRESSURE_CHEST &&
+                    Inventories.getLegsSlotItemStack(player) != null && Inventories.getLegsSlotItemStack(player).getItem() == AVPArmorItems.PRESSURE_PANTS &&
+                        Inventories.getBootSlotItemStack(player) != null && Inventories.getBootSlotItemStack(player).getItem() == AVPArmorItems.PRESSURE_BOOTS)
         {
             player.addPotionEffect(new PotionEffect(MobEffects.WATER_BREATHING, 1, 0));
             player.addPotionEffect(new PotionEffect(MobEffects.NIGHT_VISION, 1, 0));

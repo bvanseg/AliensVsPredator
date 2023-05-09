@@ -6,7 +6,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -23,13 +22,10 @@ import org.alien.common.AlienItems;
 import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.EntityParasitoid;
-import org.alien.common.world.Embryo;
-import org.alien.common.world.capability.Organism.OrganismImpl;
-import org.alien.common.world.capability.Organism.Provider;
 
 import java.util.ArrayList;
 
-public class EntityOctohugger extends EntityParasitoid implements IMob, Parasitoid
+public class EntityOctohugger extends EntityParasitoid implements Parasitoid
 {
     private static final DataParameter<BlockPos> HANGING_POSITION = EntityDataManager.createKey(EntityOctohugger.class, DataSerializers.BLOCK_POS);
     private static final DataParameter<Boolean>  HANGING          = EntityDataManager.createKey(EntityOctohugger.class, DataSerializers.BOOLEAN);
@@ -227,15 +223,6 @@ public class EntityOctohugger extends EntityParasitoid implements IMob, Parasito
     protected SoundEvent getDeathSound()
     {
         return AlienSounds.FACEHUGGER_DEATH.event();
-    }
-
-    @Override
-    public void implantEmbryo(EntityLivingBase living)
-    {
-        OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
-        organism.impregnate(Embryo.BELUGA);
-        organism.syncWithClients(living);
-        this.setFertility(false);
     }
 
     @Override

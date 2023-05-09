@@ -1,7 +1,6 @@
 package org.alien.common.entity.living.xenomorph;
 
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
@@ -11,7 +10,7 @@ import org.alien.client.AlienSounds;
 import org.alien.common.AlienItems;
 import org.alien.common.entity.living.SpeciesXenomorph;
 
-public class EntityUltramorph extends SpeciesXenomorph implements IMob
+public class EntityUltramorph extends SpeciesXenomorph
 {
     public EntityUltramorph(World world)
     {
@@ -19,9 +18,7 @@ public class EntityUltramorph extends SpeciesXenomorph implements IMob
 
         this.jumpMovementFactor = 0.02F;
         this.experienceValue = 100;
-        this.setSize(1.5F, 4F);
-        this.ableToClimb = false;
-        this.isDependant = false;
+        this.setSize(1.5F, 3.5F);
     }
 
     @Override

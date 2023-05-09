@@ -17,11 +17,13 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.avp.client.Resources;
 import org.avp.common.AVPNetworking;
-import org.avp.common.item.crafting.AssemblyManager;
 import org.avp.common.item.crafting.AssemblyResult;
 import org.avp.common.item.crafting.ItemSchematic;
+import org.avp.common.item.crafting.ItemSchematicRegistry;
 import org.avp.common.network.packet.server.PacketAssemble;
 import org.avp.common.tile.TileEntityAssembler;
+import org.lib.common.inventory.CachedInventoryHandler;
+import org.lib.common.inventory.InventorySnapshot;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
@@ -34,7 +36,7 @@ import java.util.List;
  */
 public class GuiAssembler extends GuiContainer
 {
-	private static final List<ItemSchematic> sortedSchematics = new ArrayList<>(AssemblyManager.instance.schematics());
+	private static final List<ItemSchematic> sortedSchematics = new ArrayList<>(ItemSchematicRegistry.getSchematics());
     private static final GuiCustomButton buttonScrollUp = new GuiCustomButton(0, 0, 0, 20, 20, "");
     private static final GuiCustomButton  buttonScrollDown = new GuiCustomButton(1, 0, 0, 20, 20, "");
     private static final GuiCustomButton  buttonAssemble = new GuiCustomButton(2, 0, 0, 50, 20, "");
@@ -70,7 +72,7 @@ public class GuiAssembler extends GuiContainer
     		String d = I18n.translateToLocal(b.getItemStackAssembled().getItem().getTranslationKey() + ".name");
     		return c.compareTo(d);
     	});
-    	schematics = new ArrayList<>(AssemblyManager.instance.schematics());
+    	schematics = new ArrayList<>(ItemSchematicRegistry.getSchematics());
     	
         searchBar.setWidth(208);
         searchBar.setHeight(15);
@@ -127,7 +129,7 @@ public class GuiAssembler extends GuiContainer
         scroll = 0;
         requestedAmount = 1;
         searchRequiresUpdate = true;
-        schematics = new ArrayList<>(AssemblyManager.instance.schematics());
+        schematics = new ArrayList<>(ItemSchematicRegistry.getSchematics());
         searchBar.setText("");
 
         int buttonWidth = 38;
@@ -180,11 +182,12 @@ public class GuiAssembler extends GuiContainer
 	    int assemblerSidePanelWidth = ((this.width - this.xSize) / 2) - 5;
 	    int assemblerSidePanelX = -assemblerSidePanelWidth;
 
+        InventorySnapshot inventorySnapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(ClientGame.instance.minecraft().player);
         OpenGL.enableBlend();
 	    for (ItemStack stack : selectedSchematic.getItemsRequired())
 	    {
 	        currentStack++;
-	        int amountOfStack = AssemblyManager.amountForMatchingStack(ClientGame.instance.minecraft().player, stack);
+	        int amountOfStack = inventorySnapshot.getOreDictItemCount(stack);
 	        int stackY = 15 + (currentStack * 8);
 	        int currentStackSize = (Math.min(amountOfStack, stack.getCount()));
 	        Draw.drawRect(assemblerSidePanelX, stackY - 2, assemblerSidePanelWidth, 8, 0xDD000000);

@@ -32,7 +32,7 @@ public class AVPSlabBlocks implements IPreInitEvent
 
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
-        AVP.log().info("Registering AVP Slab Blocks");
+        AVP.instance.getLogger().info("Registering AVP Slab Blocks");
 
         this.registerBlocks();
     }

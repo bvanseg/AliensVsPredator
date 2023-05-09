@@ -17,18 +17,15 @@ import org.alien.common.entity.ai.brain.DeaconSharkBrain;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.avp.common.entity.ai.helpers.EntityExtendedLookHelper;
 import org.avp.common.entity.ai.pathfinding.PathNavigateSwimmer;
-import org.lib.brain.Brainiac;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-public class EntityDeaconShark extends SpeciesAlien implements Brainiac<DeaconSharkBrain>
+public class EntityDeaconShark extends SpeciesAlien
 {
     @Deprecated
     private final Predicate<EntityLivingBase> entitySelector = target -> !(target instanceof EntityDeaconShark) && EntityDeaconShark.this.canEntityBeSeen(target);
     private double                         distanceToTargetLastTick;
-
-    private DeaconSharkBrain brain;
 
     public EntityDeaconShark(World worldIn)
     {
@@ -42,15 +39,12 @@ public class EntityDeaconShark extends SpeciesAlien implements Brainiac<DeaconSh
 
     @Override
     public DeaconSharkBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new DeaconSharkBrain(this);
-        }
-        return this.brain;
+        return (DeaconSharkBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public DeaconSharkBrain createNewBrain() {
+        return new DeaconSharkBrain(this);
     }
 
     @Override
@@ -61,15 +55,6 @@ public class EntityDeaconShark extends SpeciesAlien implements Brainiac<DeaconSh
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
         this.getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(16.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(30.0D);
-    }
-
-    @Override
-    public void onUpdate() {
-        super.onUpdate();
-
-        if (!this.world.isRemote) {
-            this.brain.update();
-        }
     }
 
     @Override

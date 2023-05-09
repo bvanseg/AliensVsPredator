@@ -4,7 +4,6 @@ import com.asx.mdx.common.minecraft.entity.Entities;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.monster.IMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,24 +14,26 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
+import org.alien.common.api.emybro.EmbryoEntry;
+import org.alien.common.api.emybro.EmbryoKey;
+import org.alien.common.api.emybro.EmbryoRegistry;
 import org.alien.common.api.parasitoidic.Parasitoid;
 import org.alien.common.entity.ai.brain.parasitoid.ParasitoidBrain;
 import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
-import org.alien.common.world.capability.Organism.OrganismImpl;
 import org.alien.common.world.capability.Organism.Provider;
+import org.alien.common.world.capability.OrganismImpl;
 import org.avp.common.AVPNetworking;
+import org.avp.common.network.packet.client.PacketDismountRidingEntity;
 import org.avp.common.network.packet.server.PacketAttachParasiteToEntity;
 import org.lib.brain.Brainiac;
 
 import java.util.List;
 
-public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, Brainiac<ParasitoidBrain>
+public class EntityParasitoid extends SpeciesAlien implements Parasitoid
 {
     private static final DataParameter<Boolean> FERTILE = EntityDataManager.createKey(EntityParasitoid.class, DataSerializers.BOOLEAN);
     public int timeSinceInfertile = 0;
     public int ticksOnHost = 0;
-
-    protected ParasitoidBrain brain;
 
     public EntityParasitoid(World world)
     {
@@ -41,15 +42,12 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
 
     @Override
     public ParasitoidBrain getBrain() {
-        if (!this.world.isRemote && this.brain == null) {
-            this.brain = new ParasitoidBrain(this);
-        }
-        return this.brain;
+        return (ParasitoidBrain) super.getBrain();
     }
 
     @Override
-    protected void initEntityAI() {
-        this.getBrain().init();
+    public ParasitoidBrain createNewBrain() {
+        return new ParasitoidBrain(this);
     }
 
     @Override
@@ -71,13 +69,16 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         super.onUpdate();
 
         if (!this.world.isRemote) {
-            this.brain.update();
-
             this.negateFallDamage();
 
             if (this.getTicksOnHost() > this.getDetachTime())
             {
                 this.detachFromHost();
+            }
+
+            // Keep attempting to implant an embryo so long as the parasite is fertile.
+            if (this.isAttachedToHost() && this.isFertile()) {
+                this.implantEmbryo((EntityLivingBase) this.getRidingEntity());
             }
         }
     }
@@ -106,6 +107,10 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         }
         this.dismountRidingEntity();
         this.setNoAI(true);
+
+        if (!this.world.isRemote) {
+            AVPNetworking.instance.sendToAll(new PacketDismountRidingEntity(this.getEntityId()));
+        }
     }
 
     @Override
@@ -148,9 +153,7 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         if (Entities.getEntityRiddenBy(target) == null && target instanceof EntityLivingBase)
         {
             EntityLivingBase living = (EntityLivingBase) target;
-
             this.startRiding(living);
-            this.implantEmbryo(living);
         }
     }
 
@@ -158,7 +161,9 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
     public void implantEmbryo(EntityLivingBase living)
     {
         OrganismImpl organism = (OrganismImpl) living.getCapability(Provider.CAPABILITY, null);
-        organism.impregnate(living);
+        EmbryoKey embryoKey = new EmbryoKey(this, living);
+        EmbryoEntry embryoEntry = EmbryoRegistry.getEntry(embryoKey);
+        organism.setEmbryo(embryoEntry.create(embryoKey));
         if(this.getImplantSound() != null)
             this.playSound(this.getImplantSound(), 0.5F, 1F);
         organism.syncWithClients(living);
@@ -204,19 +209,24 @@ public class EntityParasitoid extends SpeciesAlien implements IMob, Parasitoid, 
         return effect.getPotion() != MobEffects.POISON && super.isPotionApplicable(effect);
     }
 
+    private static final String TICKS_ON_HOST_NBT_KEY = "ticksOnHost";
+    private static final String TIME_SINCE_INFERTILE_NBT_KEY = "timeOfInfertility";
+
     @Override
     public void readFromNBT(NBTTagCompound nbt)
     {
         super.readFromNBT(nbt);
         Parasitoid.readFromNBT(this, nbt);
-        this.timeSinceInfertile = nbt.getInteger("timeOfInfertility");
+        this.ticksOnHost = nbt.getInteger(TICKS_ON_HOST_NBT_KEY);
+        this.timeSinceInfertile = nbt.getInteger(TIME_SINCE_INFERTILE_NBT_KEY);
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound nbt)
     {
         Parasitoid.writeToNBT(this, nbt);
-        nbt.setInteger("timeOfInfertility", this.timeSinceInfertile);
+        nbt.setInteger(TICKS_ON_HOST_NBT_KEY, this.ticksOnHost);
+        nbt.setInteger(TIME_SINCE_INFERTILE_NBT_KEY, this.timeSinceInfertile);
         return super.writeToNBT(nbt);
     }
     
