@@ -7,6 +7,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -111,43 +112,19 @@ public class BlockTurret extends Block
 
         return true;
     }
-    
+
     @Override
-    public void onPlayerDestroy(World world, BlockPos pos, IBlockState state)
-    {
-        super.onPlayerDestroy(world, pos, state);
-
-        TileEntityTurret tile = (TileEntityTurret) world.getTileEntity(pos);
-
-        if (tile != null)
-        {
-            if (!world.isRemote)
-            {
-                for (int i = 0; i < tile.getAmmoHelper().inventoryAmmo.getSizeInventory(); i++)
-                {
-                    ItemStack stack = tile.getAmmoHelper().inventoryAmmo.getStackInSlot(i);
-
-                    if (stack != null)
-                    {
-                        EntityItem entityitem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
-                        entityitem.setPickupDelay(10);
-                        world.spawnEntity(entityitem);
-                    }
-                }
-
-                for (int i = 0; i < tile.inventoryExpansion.getSizeInventory(); i++)
-                {
-                    ItemStack stack = tile.inventoryExpansion.getStackInSlot(i);
-
-                    if (stack != null)
-                    {
-                        EntityItem entityitem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), stack);
-                        entityitem.setPickupDelay(10);
-                        world.spawnEntity(entityitem);
-                    }
-                }
-            }
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+        if (tileentity instanceof TileEntityTurret) {
+            InventoryHelper.dropInventoryItems(worldIn, pos, ((TileEntityTurret) tileentity).getAmmoHelper().inventoryAmmo);
+            InventoryHelper.dropInventoryItems(worldIn, pos, ((TileEntityTurret) tileentity).inventoryExpansion);
+            InventoryHelper.dropInventoryItems(worldIn, pos, ((TileEntityTurret) tileentity).inventoryDrive);
+            // TODO: Might not be necessary?
+            worldIn.updateComparatorOutputLevel(pos, this);
         }
+
+        super.breakBlock(worldIn, pos, state);
     }
 
     @Override
