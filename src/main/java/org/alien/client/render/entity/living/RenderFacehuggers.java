@@ -10,7 +10,7 @@ import org.alien.client.model.entity.living.ModelFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.avp.client.render.RenderLivingHook;
 import org.avp.client.render.util.EntityRenderTransforms;
-import org.avp.common.entity.EntityMedpod;
+import org.power.common.entity.EntityMedpod;
 
 import java.util.ArrayList;
 

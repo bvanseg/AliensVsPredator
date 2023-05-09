@@ -37,7 +37,11 @@ public class NearestAvoidTargetBrainSensor extends AbstractBrainSensor<EntityBra
 
 		if (entitiesOptional.isPresent()) {
 			List<Entity> entities = entitiesOptional.get();
-			List<Entity> targets = entities.stream().filter(avoidTargetPredicate).collect(Collectors.toList());
+			List<Entity> targets = entities.stream().filter(target -> !target.isDead &&
+					avoidTargetPredicate.test(target) &&
+					// Avoid targets should be visible to the entity.
+					ctx.getEntity().canEntityBeSeen(target)
+			).collect(Collectors.toList());
 
 			if (!targets.isEmpty()) {
 		        ctx.getBrain().remember(BrainMemoryKeys.NEAREST_AVOID_TARGET, targets.get(0));

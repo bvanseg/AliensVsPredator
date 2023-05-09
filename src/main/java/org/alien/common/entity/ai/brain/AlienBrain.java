@@ -27,7 +27,7 @@ public abstract class AlienBrain<T extends SpeciesAlien> extends AbstractEntityB
 	public void initJellyProductionTask() {
 		this.addTask(new ProduceJellyBrainTask<>(20, e -> {
 			MaturityEntry entry = MaturityEntries.getEntryFor(e.getClass()).orElse(null);
-			return entry != null && e.getJellyLevel() >= (entry.getRequiredJellyLevel() / 2);
+			return entry != null && e.getJellyLevel() < (entry.getRequiredJellyLevel() / 2);
 		}));
 	}
 

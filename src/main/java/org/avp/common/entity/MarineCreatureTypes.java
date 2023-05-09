@@ -21,10 +21,10 @@ public class MarineCreatureTypes {
 
     private static EnumCreatureType createMarineCreatureType() {
         boolean customCreatureTypesEnabled = ModelConfig.getInstance().getSpawning().customCreatureTypesEnabled;
-        EnumCreatureType creatureType = EnumCreatureType.MONSTER; // Default fallback for marine creatures.
+        EnumCreatureType creatureType = EnumCreatureType.CREATURE; // Default fallback for marine creatures.
 
         if (customCreatureTypesEnabled) {
-            creatureType = EnumHelper.addCreatureType("marine", EntityMarine.class, 20, Material.AIR, false, false);
+            creatureType = EnumHelper.addCreatureType("marine", EntityMarine.class, 10, Material.AIR, false, false);
         }
 
         return creatureType;

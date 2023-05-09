@@ -7,7 +7,6 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import org.avp.common.item.init.AVPArmorItems;
-import org.avp.common.item.init.AVPItems;
 import org.lib.common.predicate.EntitySelectorBase;
 import org.lib.common.predicate.Predicates;
 import org.predator.common.PredatorItems;

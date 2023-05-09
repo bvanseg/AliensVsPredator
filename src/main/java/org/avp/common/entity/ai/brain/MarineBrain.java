@@ -45,6 +45,9 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     // Squad behavior for when the marine has a squad leader and a squad.
     private static final BrainProfile SQUAD_BEHAVIOR = new BrainProfile("squad_behavior");
 
+    // Behavior for marines following squad leaders.
+    private static final BrainProfile LEADER_FOLLOW_BEHAVIOR = new BrainProfile("leader_follow_behavior");
+
     private static final HashSet<Block> AVOID_BLOCKS = new HashSet<>();
     private static final HashSet<Block> BLOCKS_OF_INTEREST = new HashSet<>();
 
@@ -108,7 +111,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
                 .onUseItem(entityItem -> {
                     this.getEntity().getInventory().addItem(entityItem.getItem());
                     AVPNetworking.instance.sendToAll(new PacketSyncEntityInventory(this.getEntity(), this.getEntity().getInventory()));
-                }));
+                }), LEADER_FOLLOW_BEHAVIOR);
         this.addTask(new EatFoodBrainTask());
         this.addTask(new PlaceTorchBrainTask());
     }
@@ -120,7 +123,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
         this.addTask(new BrainTaskAdapter(new EntityAIMoveTowardsRestriction(entity, 0.6D)));
 
         this.addTask(new AvoidBlockBrainTask(3F, 0.6F, 0.6F, AVOID_BLOCKS::contains));
-        this.addTask(new FollowSquadLeaderBrainTask(0.6D, 10.0F, 2.0F), SQUAD_BEHAVIOR);
+        this.addTask(new FollowSquadLeaderBrainTask(0.6D, 10.0F, 2.0F), LEADER_FOLLOW_BEHAVIOR);
     }
 
     private void initIdleTasks() {
@@ -137,7 +140,8 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
                 new InvalidateAttackTargetBrainTask(target ->
                         !this.getEntity().hasLoadedAmmunition() || // Out of ammo
                                 this.getEntity().getDistanceSq(target) < 4 || // Target too close
-                                this.getEntity().getSquadLeaderID().isPresent() && target.getUniqueID().equals(this.getEntity().getSquadLeaderID().get()) // Do not attack squad leader.
+                                (this.getEntity().getSquadLeader().isPresent() &&
+                                target.getUniqueID().equals(this.getEntity().getSquadLeader().get().getUniqueID())) // Do not attack squad leader.
                 )
         );
         this.addTask(
@@ -163,12 +167,22 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
     public void update() {
         super.update();
 
-        if (this.getEntity().getSquadLeaderID().isPresent()) {
+        if (this.getEntity().getSquadLeader().isPresent()) {
             this.enableProfiles(SQUAD_BEHAVIOR);
             this.disableProfiles(WOLF_BEHAVIOR);
+
+            // If the marine is not guarding (not stationary), allow the marine to follow the squad leader.
+            if (!this.getEntity().isGuarding()) {
+                this.enableProfiles(LEADER_FOLLOW_BEHAVIOR);
+            }
+            // Otherwise, the marine should be stationary.
+            else {
+                this.disableProfiles(LEADER_FOLLOW_BEHAVIOR);
+            }
         } else {
+            this.getEntity().setGuarding(false);
             this.enableProfiles(WOLF_BEHAVIOR);
-            this.disableProfiles(SQUAD_BEHAVIOR);
+            this.disableProfiles(SQUAD_BEHAVIOR, LEADER_FOLLOW_BEHAVIOR);
         }
     }
 }

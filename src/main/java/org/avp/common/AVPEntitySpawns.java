@@ -2,7 +2,6 @@ package org.avp.common;
 
 import com.asx.mdx.common.mods.IInitEvent;
 import com.google.common.collect.Lists;
-import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
