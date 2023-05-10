@@ -700,6 +700,9 @@ avp.advancements.predators.defeat.predator.description=Defeat a predator in comb
 avp.advancements.predators.defeat.predator.berserker.title=Rage, Rage
 avp.advancements.predators.defeat.predator.berserker.description=Defeat a berserker predator in combat
 
+# VARDA ADVANCEMENTS
+avp.advancements.varda.root.title=Arrive on Varda
+avp.advancements.varda.root.description=Time to meet your maker
 
 # CONFIG
 avp.config.experimental.features.key=Experimental Features
