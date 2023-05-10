@@ -1,29 +1,26 @@
-package org.alien.client.render.layer;
+package org.covenant.client.render.layer;
 
-import com.asx.mdx.client.render.OpenGL;
-import com.asx.mdx.client.render.model.texture.Texture;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import org.alien.client.AlienResources;
-import org.alien.client.render.entity.living.paradise.RenderKetterBird;
-import org.alien.common.entity.living.paradise.EntityKetterBird;
-import org.avp.AVP;
+import org.covenant.client.render.entity.living.RenderStripedDevil;
+import org.covenant.client.CovenantResources;
+import org.covenant.common.entity.living.EntityStripedDevil;
 
 /**
  * @author Boston Vanseghi
  */
-public class LayerKetterBirdEyes implements LayerRenderer<EntityKetterBird> {
-    private final RenderKetterBird renderer;
+public class LayerStripedDevilEyes implements LayerRenderer<EntityStripedDevil> {
+    private final RenderStripedDevil renderer;
 
-    public LayerKetterBirdEyes(RenderKetterBird renderer) {
+    public LayerStripedDevilEyes(RenderStripedDevil renderer) {
         this.renderer = renderer;
     }
 
     @Override
-    public void doRenderLayer(EntityKetterBird entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        AlienResources.instance.models().KETTER_BIRD_EYES.bindTexture();
+    public void doRenderLayer(EntityStripedDevil entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+        CovenantResources.Models.STRIPED_DEVIL_EYES.bindTexture();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
         GlStateManager.disableLighting();

@@ -1,4 +1,4 @@
-package org.alien.client.render;
+package org.covenant.client.render;
 
 import com.asx.mdx.client.ClientGame;
 import com.asx.mdx.common.mods.IInitEvent;

@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.paradise;
+package org.covenant.common.entity.living;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -8,7 +8,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import org.alien.common.AlienItems;
+import org.covenant.common.CovenantItems;
 
 /**
  * @author Boston Vanseghi
@@ -40,6 +40,6 @@ public class EntityKetterBird extends EntityCreature {
 
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
-        return new ItemStack(AlienItems.SUMMONER_KETTER_BIRD);
+        return new ItemStack(CovenantItems.SUMMONER_KETTER_BIRD);
     }
 }

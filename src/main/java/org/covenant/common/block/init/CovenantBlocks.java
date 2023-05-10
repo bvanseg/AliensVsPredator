@@ -15,5 +15,6 @@ public class CovenantBlocks implements IPreInitEvent {
     public void pre(FMLPreInitializationEvent event) {
         CovenantParadiseBlocks.instance.pre(event);
         CovenantSkullBlocks.instance.pre(event);
+        CovenantStairsBlocks.instance.pre(event);
     }
 }

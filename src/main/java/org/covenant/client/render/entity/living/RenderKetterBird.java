@@ -1,13 +1,13 @@
-package org.alien.client.render.entity.living.paradise;
+package org.covenant.client.render.entity.living;
 
 import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.alien.client.AlienResources;
-import org.alien.client.model.entity.living.paradise.ModelKetterBird;
-import org.alien.client.render.layer.LayerKetterBirdEyes;
-import org.alien.common.entity.living.paradise.EntityKetterBird;
+import org.covenant.client.model.entity.living.ModelKetterBird;
+import org.covenant.client.render.layer.LayerKetterBirdEyes;
+import org.covenant.common.entity.living.EntityKetterBird;
 import org.avp.AVP;
+import org.covenant.client.CovenantResources;
 
 /**
  * @author Boston Vanseghi
@@ -20,7 +20,7 @@ public class RenderKetterBird extends RenderLivingWrapper<EntityKetterBird, Mode
     };
 
     public RenderKetterBird(RenderManager m) {
-        super(m, AlienResources.instance.models().KETTER_BIRD);
+        super(m, CovenantResources.Models.KETTER_BIRD);
         this.addLayer(new LayerKetterBirdEyes(this));
     }
 

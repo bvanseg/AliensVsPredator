@@ -5,9 +5,6 @@ import com.asx.mdx.client.render.model.texture.Texture;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.alien.client.model.entity.living.*;
-import org.alien.client.model.entity.living.paradise.ModelKetterBird;
-import org.alien.client.model.entity.living.paradise.ModelPaintedMink;
-import org.alien.client.model.entity.living.paradise.ModelStripedDevil;
 import org.alien.client.model.tile.ModelHiveResin;
 import org.alien.client.model.tile.skull.ModelAethonHead;
 import org.alien.client.model.tile.skull.ModelGigerAlienHead;
@@ -67,14 +64,6 @@ public class AlienResources {
         public static final MapModelTexture<ModelMyceliomorph> MYCELIOMORPH = new MapModelTexture<>(new ModelMyceliomorph(), new Texture(AVP.Properties.ID, "textures/mob/myceliomorph.png"));
         public static final MapModelTexture<ModelMyceliomorph> MYCELIOMORPH_MASK = new MapModelTexture<>(new ModelMyceliomorph(), new Texture(AVP.Properties.ID, "textures/mob/myceliomorph_glow.png"));
         public static final MapModelTexture<ModelPantheramorph> PANTHERAMORPH = new MapModelTexture<>(new ModelPantheramorph(), new Texture(AVP.Properties.ID, "textures/mob/pantheramorph.png"));
-
-        /* Paradise creatures */
-        public final MapModelTexture<ModelKetterBird>           KETTER_BIRD                      = new MapModelTexture(new ModelKetterBird(), new Texture(AVP.Properties.ID, "textures/mob/paradise/ketter_bird_1.png"));
-        public final MapModelTexture<ModelKetterBird>           KETTER_BIRD_EYES                 = new MapModelTexture(new ModelKetterBird(), new Texture(AVP.Properties.ID, "textures/mob/paradise/ketter_bird_eyes.png"));
-        public final MapModelTexture<ModelPaintedMink>          PAINTED_MINK                     = new MapModelTexture(new ModelPaintedMink(), new Texture(AVP.Properties.ID, "textures/mob/paradise/painted_mink_1.png"));
-        public final MapModelTexture<ModelPaintedMink>          PAINTED_MINK_EYES                = new MapModelTexture(new ModelPaintedMink(), new Texture(AVP.Properties.ID, "textures/mob/paradise/painted_mink_eyes.png"));
-        public final MapModelTexture<ModelStripedDevil>         STRIPED_DEVIL                    = new MapModelTexture(new ModelStripedDevil(), new Texture(AVP.Properties.ID, "textures/mob/paradise/striped_devil.png"));
-        public final MapModelTexture<ModelStripedDevil>         STRIPED_DEVIL_EYES               = new MapModelTexture(new ModelStripedDevil(), new Texture(AVP.Properties.ID, "textures/mob/paradise/striped_devil_eyes.png"));
     }
 
     public static final Texture SKY_SILICA = new Texture(AVP.Properties.ID, "textures/misc/silica.png");

@@ -24,6 +24,7 @@ public class PrometheusBlocks implements IPreInitEvent {
         PrometheusEngineerBlocks.instance.pre(event);
         PrometheusVardaBlocks.instance.pre(event);
         PrometheusSkullBlocks.instance.pre(event);
+        PrometheusStairsBlocks.instance.pre(event);
     }
 
     private void registerBlocks() {

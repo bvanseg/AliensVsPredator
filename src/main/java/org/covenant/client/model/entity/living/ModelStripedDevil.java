@@ -1,9 +1,9 @@
-package org.alien.client.model.entity.living.paradise;
+package org.covenant.client.model.entity.living;
 
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
-import org.alien.common.entity.living.paradise.EntityStripedDevil;
+import org.covenant.common.entity.living.EntityStripedDevil;
 
 public class ModelStripedDevil extends Model<EntityStripedDevil> {
 	private final ModelRenderer root;

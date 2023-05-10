@@ -1,10 +1,9 @@
-package org.alien.client.model.entity.living.paradise;
+package org.covenant.client.model.entity.living;
 
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
-import net.minecraft.entity.Entity;
-import org.alien.common.entity.living.paradise.EntityPaintedMink;
+import org.covenant.common.entity.living.EntityPaintedMink;
 
 public class ModelPaintedMink extends Model<EntityPaintedMink> {
 	private final ModelRenderer root;

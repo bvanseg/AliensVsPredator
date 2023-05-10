@@ -41,7 +41,6 @@ public class AlienBlocks implements IPreInitEvent {
         this.registerBlocks();
 
         AlienSlabBlocks.instance.pre(event);
-        AlienStairsBlocks.instance.pre(event);
         AlienFenceBlocks.instance.pre(event);
         AlienSkullBlocks.instance.pre(event);
     }

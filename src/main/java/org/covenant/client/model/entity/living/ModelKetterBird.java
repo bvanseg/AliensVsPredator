@@ -1,4 +1,4 @@
-package org.alien.client.model.entity.living.paradise;
+package org.covenant.client.model.entity.living;
 // Made with Blockbench 4.7.1
 // Exported for Minecraft version 1.7 - 1.12
 // Paste this class into your mod and generate all required imports
@@ -6,7 +6,7 @@ package org.alien.client.model.entity.living.paradise;
 import com.asx.mdx.client.render.model.Model;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
-import org.alien.common.entity.living.paradise.EntityKetterBird;
+import org.covenant.common.entity.living.EntityKetterBird;
 
 public class ModelKetterBird extends Model<EntityKetterBird> {
 	private final ModelRenderer root;

@@ -1,12 +1,12 @@
-package org.alien.client.render.layer;
+package org.covenant.client.render.layer;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import org.alien.client.AlienResources;
-import org.alien.client.render.entity.living.paradise.RenderPaintedMink;
-import org.alien.common.entity.living.paradise.EntityPaintedMink;
+import org.covenant.client.render.entity.living.RenderPaintedMink;
+import org.covenant.client.CovenantResources;
+import org.covenant.common.entity.living.EntityPaintedMink;
 
 /**
  * @author Boston Vanseghi
@@ -20,7 +20,7 @@ public class LayerPaintedMinkEyes implements LayerRenderer<EntityPaintedMink> {
 
     @Override
     public void doRenderLayer(EntityPaintedMink entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        AlienResources.instance.models().PAINTED_MINK_EYES.bindTexture();
+        CovenantResources.Models.PAINTED_MINK_EYES.bindTexture();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
         GlStateManager.disableLighting();

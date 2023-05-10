@@ -9,11 +9,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import org.alien.client.AlienSounds;
-import org.alien.client.render.BiomeColorHandler;
+import org.covenant.client.render.BiomeColorHandler;
 import org.alien.common.*;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.potion.AlienPotions;
+import org.covenant.common.CovenantEntities;
 import org.covenant.common.CovenantItems;
+import org.covenant.common.CovenantTileEntities;
 import org.covenant.common.block.init.CovenantBlocks;
 import org.prometheus.common.PrometheusDimensions;
 import org.prometheus.common.PrometheusEntities;
@@ -52,11 +54,13 @@ public class Aliens implements IPreInitEvent, IInitEvent, IPostInitEvent {
 
         AlienEntities.instance.init(event);
         PrometheusEntities.instance.init(event);
+        CovenantEntities.instance.init(event);
 
         AlienEntitySpawns.instance.init(event);
         PrometheusEntitySpawns.instance.init(event);
 
         AlienTileEntities.instance.init(event);
+        CovenantTileEntities.instance.init(event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             BiomeColorHandler.instance.init(event);

@@ -9,8 +9,15 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.covenant.client.render.entity.living.RenderKetterBird;
+import org.covenant.client.render.entity.living.RenderPaintedMink;
+import org.covenant.client.render.entity.living.RenderStripedDevil;
+import org.covenant.common.entity.living.EntityKetterBird;
+import org.covenant.common.entity.living.EntityPaintedMink;
+import org.covenant.common.entity.living.EntityStripedDevil;
 import org.avp.AVP;
 import org.avp.client.render.item.RenderItemSkull;
+import org.avp.client.render.item.RenderItemSummoner;
 import org.avp.common.block.BlockSkull;
 import org.covenant.client.render.entity.RenderSporePod;
 import org.covenant.client.render.item.RenderItemGroundFern;
@@ -54,6 +61,9 @@ public class CovenantRenders implements IInitEvent, IPreInitEvent
 
     private void registerLivingEntityRenderers()
     {
+        Renderers.registerRenderer(EntityKetterBird.class, RenderKetterBird.class);
+        Renderers.registerRenderer(EntityPaintedMink.class, RenderPaintedMink.class);
+        Renderers.registerRenderer(EntityStripedDevil.class, RenderStripedDevil.class);
     }
 
     private void registerStandardEntityRenderers()
@@ -88,6 +98,11 @@ public class CovenantRenders implements IInitEvent, IPreInitEvent
     private void registerItemRenderers()
     {
         ItemModelRegistryUtil.registerSummonerModel(CovenantItems.SUMMONER_SPORE_POD, new RenderItemSporePod(), 0x0C1212, 0x222226);
+
+        /* Paradise Summoner Models */
+        ItemModelRegistryUtil.registerSummonerModel(CovenantItems.SUMMONER_KETTER_BIRD, new RenderItemSummoner(CovenantResources.Models.KETTER_BIRD).setScale(9F).setY(3F), 0x381B0C, 0x936951);
+        ItemModelRegistryUtil.registerSummonerModel(CovenantItems.SUMMONER_PAINTED_MINK, new RenderItemSummoner(CovenantResources.Models.PAINTED_MINK).setScale(9F).setY(2F), 0x484541, 0x56381E);
+        ItemModelRegistryUtil.registerSummonerModel(CovenantItems.SUMMONER_STRIPED_DEVIL, new RenderItemSummoner(CovenantResources.Models.STRIPED_DEVIL).setScale(9F).setY(2F), 0x2E2C2F, 0x534233);
     }
 
     private void registerTileEntitySpecialRenderers()

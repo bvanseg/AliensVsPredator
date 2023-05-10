@@ -1,4 +1,4 @@
-package org.alien.common.entity.living.paradise;
+package org.covenant.common.entity.living;
 
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -6,6 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
 import org.alien.common.AlienItems;
+import org.covenant.common.CovenantItems;
 
 /**
  * @author Boston Vanseghi
@@ -25,6 +26,6 @@ public class EntityStripedDevil extends EntityCreature {
 
     @Override
     public ItemStack getPickedResult(RayTraceResult target) {
-        return new ItemStack(AlienItems.SUMMONER_STRIPED_DEVIL);
+        return new ItemStack(CovenantItems.SUMMONER_STRIPED_DEVIL);
     }
 }

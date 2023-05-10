@@ -1,12 +1,12 @@
-package org.alien.client.render.entity.living.paradise;
+package org.covenant.client.render.entity.living;
 
 import com.asx.mdx.client.render.entity.RenderLivingWrapper;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import org.alien.client.AlienResources;
-import org.alien.client.model.entity.living.paradise.ModelPaintedMink;
-import org.alien.client.render.layer.LayerPaintedMinkEyes;
-import org.alien.common.entity.living.paradise.EntityPaintedMink;
+import org.covenant.client.model.entity.living.ModelPaintedMink;
+import org.covenant.client.render.layer.LayerPaintedMinkEyes;
+import org.covenant.client.CovenantResources;
+import org.covenant.common.entity.living.EntityPaintedMink;
 import org.avp.AVP;
 
 /**
@@ -21,7 +21,7 @@ public class RenderPaintedMink extends RenderLivingWrapper<EntityPaintedMink, Mo
     };
 
     public RenderPaintedMink(RenderManager m) {
-        super(m, AlienResources.instance.models().PAINTED_MINK);
+        super(m, CovenantResources.Models.PAINTED_MINK);
         this.addLayer(new LayerPaintedMinkEyes(this));
     }
 
