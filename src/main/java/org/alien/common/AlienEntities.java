@@ -10,10 +10,21 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.EntityAcidProjectile;
 import org.alien.common.entity.living.EntityAethon;
+import org.alien.common.entity.living.paradise.EntityKetterBird;
+import org.alien.common.entity.living.paradise.EntityPaintedMink;
+import org.alien.common.entity.living.paradise.EntityStripedDevil;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityDracoEgg;
+import org.alien.common.entity.living.EntitySporePod;
+import org.alien.common.entity.living.EntityYautjaMutant;
+import org.alien.common.entity.living.engineer.EntityEngineer;
+import org.alien.common.entity.living.engineer.EntitySpaceJockey;
+import org.alien.common.entity.living.species223ode.EntityDeacon;
+import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
+import org.alien.common.entity.living.species223ode.EntityTrilobite;
+import org.alien.common.entity.living.vardic.*;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.burster.*;
 import org.alien.common.entity.living.xenomorph.exotic.*;
-import org.alien.common.entity.living.xenomorph.ovamorph.EntityDracoEgg;
 import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorph;
 import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorphGiger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
@@ -68,6 +79,10 @@ public class AlienEntities implements IInitEvent
             registerLivingEntityEntry(EntityDracomorph.class, "Dracomorph");
             registerLivingEntityEntry(EntityMyceliomorph.class, "Myceliomorph");
             registerLivingEntityEntry(EntityPantheramorph.class, "Pantheramorph");
+
+            registerLivingEntityEntry(EntityKetterBird.class, "KetterBird");
+            registerLivingEntityEntry(EntityPaintedMink.class, "PaintedMink");
+            registerLivingEntityEntry(EntityStripedDevil.class, "StripedDevil");
         }
     }
 

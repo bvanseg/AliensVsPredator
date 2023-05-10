@@ -206,6 +206,10 @@ item.avp:summon.spacejockey.name=Space Jockey Summoner
 item.avp:summon.marine.name=Marine Summoner
 item.avp:summon.synthetic.combat.name=Combat Synthetic Summoner
 
+#Paradise Critters
+item.avp:summon.ketterbird.name=Ketter Bird Summoner
+item.avp:summon.paintedmink.name=Painted Mink Summoner
+item.avp:summon.stripeddevil.name=Striped Devil Summoner
 
 #ITEMS-TOOLS AND WEAPONS 2
 item.avp:motiontracker.name=F.E.M.S 5.547.60 Motion Tracker
@@ -508,6 +512,10 @@ entity.EntityFXAcid.name=Acid
 entity.EntityTurret.name=Turret
 entity.APC.name=APC
 
+#PARADISE-CRITTERS
+entity.KetterBird.name=Ketter Bird
+entity.PaintedMink.name=Painted Mink
+entity.StripedDevil.name=Striped Devil
 
 #TEXT-DEATH MESSAGES
 death.attack.bullet=%1$s was shot by %2$s.

@@ -7,6 +7,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.alien.common.entity.living.EntityAethon;
+import org.alien.common.entity.living.paradise.EntityKetterBird;
+import org.alien.common.entity.living.paradise.EntityPaintedMink;
+import org.alien.common.entity.living.paradise.EntityStripedDevil;
+import org.alien.common.entity.living.xenomorph.ovamorph.EntityDracoEgg;
+import org.alien.common.entity.living.EntityYautjaMutant;
+import org.alien.common.entity.living.engineer.EntityEngineer;
+import org.alien.common.entity.living.engineer.EntitySpaceJockey;
+import org.alien.common.entity.living.species223ode.EntityDeacon;
+import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
+import org.alien.common.entity.living.species223ode.EntityTrilobite;
+import org.alien.common.entity.living.vardic.*;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.burster.*;
 import org.alien.common.entity.living.xenomorph.exotic.*;
@@ -61,6 +72,10 @@ public class AlienItems implements IPreInitEvent {
     public static final Item SUMMONER_MYCELIOMORPH = new ItemEntitySummoner<>(EntityMyceliomorph.class, EntityMyceliomorph::new).setRegistryName("summon.myceliomorph");
     public static final Item SUMMONER_PANTHERAMORPH = new ItemEntitySummoner<>(EntityPantheramorph.class, EntityPantheramorph::new).setRegistryName("summon.pantheramorph");
 
+    public static final Item SUMMONER_KETTER_BIRD = new ItemEntitySummoner<>(EntityKetterBird.class, EntityKetterBird::new).setRegistryName("summon.ketterbird");
+    public static final Item SUMMONER_PAINTED_MINK = new ItemEntitySummoner<>(EntityPaintedMink.class, EntityPaintedMink::new).setRegistryName("summon.paintedmink");
+    public static final Item SUMMONER_STRIPED_DEVIL = new ItemEntitySummoner<>(EntityStripedDevil.class, EntityStripedDevil::new).setRegistryName("summon.stripeddevil");
+
     @Override
     public void pre(FMLPreInitializationEvent fmlPreInitializationEvent) {
         ItemRegistryUtil.registerItemWithModel(HELM_XENO);
@@ -98,6 +113,10 @@ public class AlienItems implements IPreInitEvent {
         ItemRegistryUtil.registerItem(SUMMONER_DRACOMORPH, true);
         ItemRegistryUtil.registerItem(SUMMONER_MYCELIOMORPH, true);
         ItemRegistryUtil.registerItem(SUMMONER_PANTHERAMORPH, true);
+
+        ItemRegistryUtil.registerItem(SUMMONER_KETTER_BIRD, true);
+        ItemRegistryUtil.registerItem(SUMMONER_PAINTED_MINK, true);
+        ItemRegistryUtil.registerItem(SUMMONER_STRIPED_DEVIL, true);
 
         /* Repairs */
         AVPArmorMaterials.CHITIN.setRepairItem(new ItemStack(AlienItems.ITEM_ROYAL_JELLY));
