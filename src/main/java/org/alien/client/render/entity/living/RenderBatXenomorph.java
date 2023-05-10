@@ -9,6 +9,6 @@ public class RenderBatXenomorph extends RenderXenomorph<EntityBatXeno, ModelBatX
 {
     public RenderBatXenomorph(RenderManager m)
     {
-        super(m, AlienResources.instance.models().BAT_XENO, 0.75F);
+        super(m, AlienResources.Models.BAT_XENO, 0.75F);
     }
 }

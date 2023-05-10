@@ -5,7 +5,7 @@ import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntitySkeletonHorse;
 import net.minecraft.entity.passive.EntityZombieHorse;
-import org.alien.common.entity.living.SpeciesEngineer;
+import org.prometheus.common.entity.living.SpeciesEngineer;
 import org.avp.common.entity.living.EntityMarine;
 import org.lib.common.predicate.EntitySelectorBase;
 import org.lib.common.predicate.Predicates;

@@ -5,8 +5,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.alien.common.tile.TileEntityHiveResin;
-import org.alien.common.tile.plant.TileEntityGroundFern;
-import org.alien.common.tile.plant.TileEntityTreeFern;
+import org.covenant.common.tile.plant.TileEntityGroundFern;
+import org.covenant.common.tile.plant.TileEntityTreeFern;
 import org.avp.AVP;
 
 public class AlienTileEntities implements IInitEvent {

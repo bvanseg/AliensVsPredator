@@ -12,7 +12,7 @@ public class RenderAethon extends RenderLivingWrapper<EntityAethon, ModelAethon>
 {
     public RenderAethon(RenderManager m)
     {
-        super(m, AlienResources.instance.models().AETHON);
+        super(m, AlienResources.Models.AETHON);
     }
 
     @Override

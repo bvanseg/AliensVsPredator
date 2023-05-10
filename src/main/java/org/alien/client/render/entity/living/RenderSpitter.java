@@ -11,7 +11,7 @@ public class RenderSpitter extends RenderLivingWrapper<EntitySpitter, ModelSpitt
 {
     public RenderSpitter(RenderManager m)
     {
-        super(m, AlienResources.instance.models().SPITTER);
+        super(m, AlienResources.Models.SPITTER);
 //        this.setRenderPassModel(this.getModel().getModel());
     }
 

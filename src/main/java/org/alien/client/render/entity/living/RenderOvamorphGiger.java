@@ -12,7 +12,7 @@ public class RenderOvamorphGiger extends RenderLivingWrapper<EntityOvamorphGiger
 {
     public RenderOvamorphGiger(RenderManager m)
     {
-        super(m, AlienResources.instance.models().OVAMORPH_GIGER);
+        super(m, AlienResources.Models.OVAMORPH_GIGER);
     }
 
     @Override

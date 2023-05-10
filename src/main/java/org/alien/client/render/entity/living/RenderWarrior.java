@@ -10,7 +10,7 @@ public class RenderWarrior extends RenderXenomorph<EntityWarrior, ModelWarrior>
 {
     public RenderWarrior(RenderManager m)
     {
-        super(m, AlienResources.instance.models().WARRIOR, 1F);
+        super(m, AlienResources.Models.WARRIOR, 1F);
     }
 
     @Override

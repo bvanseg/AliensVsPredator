@@ -17,8 +17,8 @@ public class RenderNauticomorph<N extends EntityNauticomorph> extends RenderLivi
 
     public RenderNauticomorph(RenderManager m)
     {
-        super(m, AlienResources.instance.models().NAUTICOMORPH_XENOMORPH);
-        this.addLayer(new LayerPhosphorescent<>(this, AlienResources.instance.models().NAUTICOMORPH_XENOMORPH_MASK));
+        super(m, AlienResources.Models.NAUTICOMORPH_XENOMORPH);
+        this.addLayer(new LayerPhosphorescent<>(this, AlienResources.Models.NAUTICOMORPH_XENOMORPH_MASK));
     }
 
     @Override

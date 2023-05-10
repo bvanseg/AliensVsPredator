@@ -12,7 +12,7 @@ public class RenderRunnerChestburster extends RenderLivingWrapper<EntityRunnerCh
 {
     public RenderRunnerChestburster(RenderManager m)
     {
-        super(m, AlienResources.instance.models().CHESTBUSTER_RUNNER);
+        super(m, AlienResources.Models.CHESTBUSTER_RUNNER);
     }
 
     @Override

@@ -5,6 +5,8 @@ import org.alien.common.block.init.AlienSkullBlocks;
 import org.avp.common.item.init.AVPItems;
 import org.lib.common.inventory.ItemDrop;
 import org.predator.common.block.init.PredatorBlocks;
+import org.prometheus.common.PrometheusItems;
+import org.prometheus.common.block.init.PrometheusSkullBlocks;
 import org.weapon.common.item.init.WeaponItems;
 
 public class AVPItemDrops
@@ -14,16 +16,16 @@ public class AVPItemDrops
     public static final ItemDrop ROYAL_JELLY = new ItemDrop.Builder(AlienItems.ITEM_ROYAL_JELLY).setMaximumDropAmount(4).build();
     public static final ItemDrop NBT_DRIVE = new ItemDrop.Builder(AVPItems.ITEM_FLASH_DRIVE).setDropWeight(50).build();
 
-    public static final ItemDrop PHIAL = new ItemDrop.Builder(AlienItems.ITEM_PHIAL).setDropWeight(50).build();
-    public static final ItemDrop PHIAL_EMPTY = new ItemDrop.Builder(AlienItems.ITEM_PHIAL_EMPTY).setDropWeight(50).build();
+    public static final ItemDrop PHIAL = new ItemDrop.Builder(PrometheusItems.ITEM_PHIAL).setDropWeight(50).build();
+    public static final ItemDrop PHIAL_EMPTY = new ItemDrop.Builder(PrometheusItems.ITEM_PHIAL_EMPTY).setDropWeight(50).build();
 
     public static final ItemDrop XENO_HELM = new ItemDrop.Builder(AlienItems.HELM_XENO).setDropWeight(5).build();
     public static final ItemDrop XENO_TORSO = new ItemDrop.Builder(AlienItems.PLATE_XENO).setDropWeight(5).build();
     public static final ItemDrop XENO_LEGS = new ItemDrop.Builder(AlienItems.LEGS_XENO).setDropWeight(5).build();
     public static final ItemDrop XENO_FEET = new ItemDrop.Builder(AlienItems.BOOTS_XENO).setDropWeight(5).build();
 
-    public static final ItemDrop SKULL_ENGINEER = new ItemDrop.Builder(AlienSkullBlocks.SKULL_ENGINEER).setDropWeight(1).build();
-    public static final ItemDrop SKULL_SPACEJOCKEY = new ItemDrop.Builder(AlienSkullBlocks.SKULL_JOCKEY).setDropWeight(1).build();
+    public static final ItemDrop SKULL_ENGINEER = new ItemDrop.Builder(PrometheusSkullBlocks.SKULL_ENGINEER).setDropWeight(1).build();
+    public static final ItemDrop SKULL_SPACEJOCKEY = new ItemDrop.Builder(PrometheusSkullBlocks.SKULL_JOCKEY).setDropWeight(1).build();
     public static final ItemDrop SKULL_XENO_DRONE = new ItemDrop.Builder(AlienSkullBlocks.SKULL_XENO).setDropWeight(1).build();
     public static final ItemDrop SKULL_XENO_WARRIOR = new ItemDrop.Builder(AlienSkullBlocks.SKULL_XENO_WARRIOR).setDropWeight(1).build();
     public static final ItemDrop SKULL_XENO_MATRIARCH = new ItemDrop.Builder(AlienSkullBlocks.SKULL_MATRIARCH).setDropWeight(100).build();

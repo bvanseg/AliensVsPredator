@@ -9,6 +9,6 @@ public class RenderPraetorian extends RenderXenomorph<EntityPraetorian, ModelPra
 {
     public RenderPraetorian(RenderManager m)
     {
-        super(m, AlienResources.instance.models().PRAETORIAN, 1.4F);
+        super(m, AlienResources.Models.PRAETORIAN, 1.4F);
     }
 }

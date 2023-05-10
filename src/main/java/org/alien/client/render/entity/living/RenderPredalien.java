@@ -11,7 +11,7 @@ public class RenderPredalien extends RenderLivingWrapper<EntityPredalien, ModelP
 {
     public RenderPredalien(RenderManager m)
     {
-        super(m, AlienResources.instance.models().PREDALIEN);
+        super(m, AlienResources.Models.PREDALIEN);
     }
 
     @Override

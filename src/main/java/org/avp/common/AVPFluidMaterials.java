@@ -1,7 +1,7 @@
 package org.avp.common;
 
 import net.minecraft.block.material.Material;
-import org.alien.common.block.material.MaterialBlackGoo;
+import org.prometheus.common.block.material.MaterialBlackGoo;
 import org.alien.common.block.material.MaterialMist;
 
 public class AVPFluidMaterials {

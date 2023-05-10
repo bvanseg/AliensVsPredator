@@ -10,14 +10,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.EntityAcidProjectile;
 import org.alien.common.entity.living.EntityAethon;
-import org.alien.common.entity.living.EntitySporePod;
-import org.alien.common.entity.living.EntityYautjaMutant;
-import org.alien.common.entity.living.engineer.EntityEngineer;
-import org.alien.common.entity.living.engineer.EntitySpaceJockey;
-import org.alien.common.entity.living.species223ode.EntityDeacon;
-import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
-import org.alien.common.entity.living.species223ode.EntityTrilobite;
-import org.alien.common.entity.living.vardic.*;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.burster.*;
 import org.alien.common.entity.living.xenomorph.exotic.*;
@@ -27,6 +19,7 @@ import org.alien.common.entity.living.xenomorph.ovamorph.EntityOvamorphGiger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.common.config.ModelConfig;
+import org.covenant.common.entity.EntitySporePod;
 import org.lib.common.registry.EntityRegistryUtil;
 
 import java.util.ArrayList;
@@ -60,27 +53,14 @@ public class AlienEntities implements IInitEvent
         registerLivingEntityEntry(EntityRoyalFacehugger.class, "RoyalFacehugger");
         registerLivingEntityEntry(EntityNauticomorph.class, "AquaAlien");
         registerLivingEntityEntry(EntityPredalien.class, "Predalien");
-        registerLivingEntityEntry(EntityDeacon.class, "Deacon");
-        registerLivingEntityEntry(EntityHammerpede.class, "Hammerpede");
-        registerLivingEntityEntry(EntityTrilobite.class, "Trilobite");
-        registerLivingEntityEntry(EntitySpaceJockey.class, "SpaceJockey");
-        registerLivingEntityEntry(EntityEngineer.class, "Engineer");
-        registerLivingEntityEntry(EntityDeaconShark.class, "DeaconShark");
-        registerLivingEntityEntry(EntityUltramorph.class, "Ultramorph");
-        registerLivingEntityEntry(EntityGooMutant.class, "GooMutant");
         registerLivingEntityEntry(EntityAethon.class, "Aethon");
-        registerLivingEntityEntry(EntityOctohugger.class, "Octohugger");
-        registerLivingEntityEntry(EntityBelugaburster.class, "Belugaburster");
-        registerLivingEntityEntry(EntityBelugamorph.class, "Belugamorph");
         registerLivingEntityEntry(EntityPredalienChestburster.class, "PredalienChestburster");
         registerLivingEntityEntry(EntityQueenChestburster.class, "QueenChestburster");
         registerLivingEntityEntry(EntityRunnerChestburster.class, "RunnerChestburster");
-        registerLivingEntityEntry(EntityDeaconAdult.class, "DeaconAdult");
         registerLivingEntityEntry(EntityOvamorphGiger.class, "OvamorphGiger");
 
         if (ModelConfig.getInstance().getGeneral().experimentalFeatures)
         {
-            registerLivingEntityEntry(EntityBabyhead.class, "Babyhead");
             registerLivingEntityEntry(EntityBatXeno.class, "BatXeno");
             registerLivingEntityEntry(EntityBoiler.class, "Boiler");
             registerLivingEntityEntry(EntityDracoburster.class, "Dracoburster");
@@ -88,9 +68,6 @@ public class AlienEntities implements IInitEvent
             registerLivingEntityEntry(EntityDracomorph.class, "Dracomorph");
             registerLivingEntityEntry(EntityMyceliomorph.class, "Myceliomorph");
             registerLivingEntityEntry(EntityPantheramorph.class, "Pantheramorph");
-            registerLivingEntityEntry(EntityUrsuidae.class, "Ursuidae");
-            registerLivingEntityEntry(EntityScelemur.class, "VardaMonkey");
-            registerLivingEntityEntry(EntityYautjaMutant.class, "YautjaMutant");
         }
     }
 

@@ -11,7 +11,7 @@ public class RenderDracomorph extends RenderLivingWrapper<EntityDracomorph, Mode
 {
     public RenderDracomorph(RenderManager m)
     {
-        super(m, AlienResources.instance.models().DRACOMORPH);
+        super(m, AlienResources.Models.DRACOMORPH);
     }
 
     @Override

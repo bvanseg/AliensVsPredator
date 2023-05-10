@@ -13,6 +13,13 @@ import org.alien.client.render.BiomeColorHandler;
 import org.alien.common.*;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.potion.AlienPotions;
+import org.covenant.common.CovenantItems;
+import org.covenant.common.block.init.CovenantBlocks;
+import org.prometheus.common.PrometheusDimensions;
+import org.prometheus.common.PrometheusEntities;
+import org.prometheus.common.PrometheusEntitySpawns;
+import org.prometheus.common.PrometheusItems;
+import org.prometheus.common.block.init.PrometheusBlocks;
 
 /**
  * @author Boston Vanseghi
@@ -25,7 +32,13 @@ public class Aliens implements IPreInitEvent, IInitEvent, IPostInitEvent {
     @Override
     public void pre(FMLPreInitializationEvent event) {
         AlienBlocks.instance.pre(event);
+        PrometheusBlocks.instance.pre(event);
+        CovenantBlocks.instance.pre(event);
+
         AlienItems.instance.pre(event);
+        PrometheusItems.instance.pre(event);
+        CovenantItems.instance.pre(event);
+
         AlienPotions.instance.pre(event);
         AlienSounds.instance.pre(event);
     }
@@ -33,10 +46,16 @@ public class Aliens implements IPreInitEvent, IInitEvent, IPostInitEvent {
     @Override
     public void init(FMLInitializationEvent event) {
         AlienDimensions.instance.init(event);
+        PrometheusDimensions.instance.init(event);
+
         WorldHandler.instance.init(event);
 
         AlienEntities.instance.init(event);
+        PrometheusEntities.instance.init(event);
+
         AlienEntitySpawns.instance.init(event);
+        PrometheusEntitySpawns.instance.init(event);
+
         AlienTileEntities.instance.init(event);
 
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {

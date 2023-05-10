@@ -13,7 +13,7 @@ public class RenderMyceliomorph extends RenderLivingWrapper<EntityMyceliomorph, 
 {
     public RenderMyceliomorph(RenderManager m)
     {
-        super(m, AlienResources.instance.models().MYCELIOMORPH);
+        super(m, AlienResources.Models.MYCELIOMORPH);
 //        this.setRenderPassModel(this.getModel().getModel());
     }
 
@@ -30,7 +30,7 @@ public class RenderMyceliomorph extends RenderLivingWrapper<EntityMyceliomorph, 
         }
         else
         {
-            AlienResources.instance.models().MYCELIOMORPH_MASK.getTexture().bind();
+            AlienResources.Models.MYCELIOMORPH_MASK.getTexture().bind();
             OpenGL.enable(GL11.GL_BLEND);
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
 

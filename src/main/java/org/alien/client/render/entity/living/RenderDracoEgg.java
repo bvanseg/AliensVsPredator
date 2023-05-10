@@ -11,7 +11,7 @@ public class RenderDracoEgg extends RenderLivingWrapper<EntityDracoEgg, ModelDra
 {
     public RenderDracoEgg(RenderManager m)
     {
-        super(m, AlienResources.instance.models().DRACO_OVAMORPH);
+        super(m, AlienResources.Models.DRACO_OVAMORPH);
     }
 
     @Override

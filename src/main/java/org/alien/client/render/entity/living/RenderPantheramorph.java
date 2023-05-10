@@ -9,6 +9,6 @@ public class RenderPantheramorph extends RenderXenomorph<EntityPantheramorph, Mo
 {
     public RenderPantheramorph(RenderManager m)
     {
-        super(m, AlienResources.instance.models().PANTHERAMORPH, 0.75F);
+        super(m, AlienResources.Models.PANTHERAMORPH, 0.75F);
     }
 }

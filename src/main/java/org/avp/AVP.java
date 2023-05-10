@@ -27,9 +27,11 @@ import org.avp.common.entity.MarineCreatureTypes;
 import org.avp.common.item.init.AVPItems;
 import org.avp.common.network.AvpDataSerializers;
 import org.avp.common.world.CapabilityHandler;
+import org.covenant.client.CovenantRenders;
 import org.predator.Predators;
 import org.predator.client.PredatorRenders;
 import org.predator.common.entity.PredatorCreatureTypes;
+import org.prometheus.client.PrometheusRenders;
 
 import java.time.LocalDate;
 
@@ -89,6 +91,8 @@ public class AVP implements IMod
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             Renders.instance.pre(event);
             AlienRenders.instance.pre(event);
+            PrometheusRenders.instance.pre(event);
+            CovenantRenders.instance.pre(event);
             PredatorRenders.instance.pre(event);
         }
     }
@@ -120,6 +124,8 @@ public class AVP implements IMod
         if (FMLCommonHandler.instance().getSide() == Side.CLIENT) {
             Renders.instance.init(event);
             AlienRenders.instance.init(event);
+            PrometheusRenders.instance.init(event);
+            CovenantRenders.instance.init(event);
             PredatorRenders.instance.init(event);
         }
     }

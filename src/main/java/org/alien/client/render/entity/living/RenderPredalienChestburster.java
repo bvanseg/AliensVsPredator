@@ -12,7 +12,7 @@ public class RenderPredalienChestburster extends RenderLivingWrapper<EntityPreda
 {
     public RenderPredalienChestburster(RenderManager m)
     {
-        super(m, AlienResources.instance.models().CHESTBUSTER_PREDALIEN);
+        super(m, AlienResources.Models.CHESTBUSTER_PREDALIEN);
     }
 
     @Override

@@ -10,7 +10,7 @@ public class RenderRunnerDrone extends RenderXenomorph<EntityRunnerDrone, ModelR
 {
     public RenderRunnerDrone(RenderManager m)
     {
-        super(m, AlienResources.instance.models().RUNNER_DRONE, 0.8F);
+        super(m, AlienResources.Models.RUNNER_DRONE, 0.8F);
     }
 
     @Override

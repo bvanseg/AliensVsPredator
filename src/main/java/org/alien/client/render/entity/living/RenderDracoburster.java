@@ -12,7 +12,7 @@ public class RenderDracoburster extends RenderLivingWrapper<EntityDracoburster, 
 {
     public RenderDracoburster(RenderManager m)
     {
-        super(m, AlienResources.instance.models().DRACOBURSTER);
+        super(m, AlienResources.Models.DRACOBURSTER);
     }
 
     @Override

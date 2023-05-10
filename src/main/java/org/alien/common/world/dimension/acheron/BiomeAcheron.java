@@ -7,7 +7,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.feature.WorldGenMinable;
-import org.alien.common.block.init.AlienVardaBlocks;
+import org.prometheus.common.block.init.PrometheusVardaBlocks;
 import org.alien.common.world.dimension.BiomeGenLV;
 import org.avp.AVP;
 
@@ -20,8 +20,8 @@ public class BiomeAcheron extends BiomeGenLV
     public BiomeAcheron(BiomeProperties properties)
     {
         super(properties);
-        this.topBlock = AlienVardaBlocks.UNIDIRT.getDefaultState();
-        this.fillerBlock = AlienVardaBlocks.UNISTONE.getDefaultState();
+        this.topBlock = PrometheusVardaBlocks.UNIDIRT.getDefaultState();
+        this.fillerBlock = PrometheusVardaBlocks.UNISTONE.getDefaultState();
     }
     
     @Override
@@ -55,7 +55,7 @@ public class BiomeAcheron extends BiomeGenLV
         {
         }
 
-        private static final WorldGenMinable WORLDGEN_ORE_UNIDIRT = new WorldGenMinable(AlienVardaBlocks.UNIDIRT.getDefaultState(), 32);
+        private static final WorldGenMinable WORLDGEN_ORE_UNIDIRT = new WorldGenMinable(PrometheusVardaBlocks.UNIDIRT.getDefaultState(), 32);
 
         @Override
         protected void generateOres(World world, Random random)

@@ -9,6 +9,6 @@ public class RenderFacehugger extends RenderFacehuggers<EntityFacehugger, ModelF
 {
     public RenderFacehugger(RenderManager m)
     {
-        super(m, AlienResources.instance.models().FACEHUGGER);
+        super(m, AlienResources.Models.FACEHUGGER);
     }
 }

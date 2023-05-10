@@ -21,7 +21,7 @@ public class BlockSkullMatriarch extends BlockSkull
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelQueenSkull m = AlienResources.instance.models().MATRIARCH_SKULL.getModel();
+        ModelQueenSkull m = AlienResources.Models.MATRIARCH_SKULL.getModel();
         return new ModelRenderer[] { m.head0 };
     }
 
@@ -36,7 +36,7 @@ public class BlockSkullMatriarch extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return AlienResources.instance.models().MATRIARCH_SKULL.getTexture();
+        return AlienResources.Models.MATRIARCH_SKULL.getTexture();
     }
     
     @Override

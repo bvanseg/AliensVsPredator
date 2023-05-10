@@ -15,7 +15,7 @@ public class BlockHeadGigerAlien extends BlockSkull
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelGigerAlienHead m = AlienResources.instance.models().GIGER_ALIEN_HEAD.getModel();
+        ModelGigerAlienHead m = AlienResources.Models.GIGER_ALIEN_HEAD.getModel();
         return new ModelRenderer[] { m.head };
     }
 
@@ -31,7 +31,7 @@ public class BlockHeadGigerAlien extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return AlienResources.instance.models().GIGER_ALIEN_HEAD.getTexture();
+        return AlienResources.Models.GIGER_ALIEN_HEAD.getTexture();
     }
     
     @Override

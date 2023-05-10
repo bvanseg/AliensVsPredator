@@ -6,7 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.alien.common.AlienDimensions;
-import org.alien.common.block.BlockBlackGoo;
 import org.alien.common.block.BlockHiveResin;
 import org.alien.common.block.BlockMist;
 import org.alien.common.block.BlockPortal;
@@ -34,7 +33,6 @@ public class AlienBlocks implements IPreInitEvent {
     /* Misc */
     public static final Block PORTAL_ACHERON = new BlockPortal(AlienDimensions.ACHERON).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("portal.acheron");
 
-    public static final Block BLACK_GOO = BlockRegistryUtil.createFluidBlock(BlockBlackGoo.fluid, BlockBlackGoo.class, "blackgoo");
     public static final Block MIST = BlockRegistryUtil.createFluidBlock(BlockMist.fluid, BlockMist.class, "mist");
 
 
@@ -42,9 +40,6 @@ public class AlienBlocks implements IPreInitEvent {
     public void pre(FMLPreInitializationEvent event) {
         this.registerBlocks();
 
-        AlienEngineerBlocks.instance.pre(event);
-        AlienVardaBlocks.instance.pre(event);
-        AlienParadiseBlocks.instance.pre(event);
         AlienSlabBlocks.instance.pre(event);
         AlienStairsBlocks.instance.pre(event);
         AlienFenceBlocks.instance.pre(event);
@@ -63,7 +58,6 @@ public class AlienBlocks implements IPreInitEvent {
 
         BlockRegistryUtil.registerStandardBlock(PORTAL_ACHERON);
 
-        BlockRegistryUtil.registerBlock(BLACK_GOO);
         BlockRegistryUtil.registerBlock(MIST);
     }
 }

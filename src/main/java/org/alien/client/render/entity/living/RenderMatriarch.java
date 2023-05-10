@@ -13,7 +13,7 @@ public class RenderMatriarch extends RenderLivingWrapper<EntityMatriarch, ModelM
 {
     public RenderMatriarch(RenderManager m)
     {
-        super(m, AlienResources.instance.models().MATRIARCH);
+        super(m, AlienResources.Models.MATRIARCH);
     }
 
     @Override

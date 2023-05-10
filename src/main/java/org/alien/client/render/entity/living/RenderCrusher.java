@@ -10,7 +10,7 @@ public class RenderCrusher extends RenderXenomorph<EntityCrusher, ModelCrusherQu
 {
     public RenderCrusher(RenderManager m)
     {
-        super(m, AlienResources.instance.models().CRUSHER_QUAD, 1.6F);
+        super(m, AlienResources.Models.CRUSHER_QUAD, 1.6F);
     }
 
     @Override

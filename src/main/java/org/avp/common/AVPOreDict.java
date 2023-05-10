@@ -3,7 +3,7 @@ package org.avp.common;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.oredict.OreDictionary;
-import org.alien.common.block.init.AlienVardaBlocks;
+import org.prometheus.common.block.init.PrometheusVardaBlocks;
 import org.apache.commons.lang3.StringUtils;
 import org.avp.AVP;
 import org.avp.common.block.init.AVPOreBlocks;
@@ -43,7 +43,7 @@ public class AVPOreDict
         registerOreDict("monazite", AVPOreBlocks.ORE_MONAZITE, "ore");
         registerOreDict("cobalt", AVPOreBlocks.ORE_COBALT, "ore");
 
-        registerOreDict("wood", AlienVardaBlocks.GIGER_LOG, "log");
+        registerOreDict("wood", PrometheusVardaBlocks.GIGER_LOG, "log");
     }
     
     public static void registerOreDict(String name, Item item, String... prefixes)

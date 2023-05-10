@@ -13,7 +13,7 @@ public class RenderOvamorph extends RenderLivingWrapper<EntityOvamorph, ModelOva
 {
     public RenderOvamorph(RenderManager m)
     {
-        super(m, AlienResources.instance.models().OVAMORPH);
+        super(m, AlienResources.Models.OVAMORPH);
     }
 
     @Override
@@ -26,6 +26,6 @@ public class RenderOvamorph extends RenderLivingWrapper<EntityOvamorph, ModelOva
     @Override
     protected ResourceLocation getEntityTexture(EntityOvamorph ovamorph)
     {
-        return ModelConfig.getInstance().isHalloweenEventEnabled() ? AlienResources.instance.models().OVAMORPH_JACKO.getTexture() :  this.model.getTexture();
+        return ModelConfig.getInstance().isHalloweenEventEnabled() ? AlienResources.Models.OVAMORPH_JACKO.getTexture() :  this.model.getTexture();
     }
 }

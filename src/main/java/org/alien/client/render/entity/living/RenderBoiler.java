@@ -13,7 +13,7 @@ public class RenderBoiler extends RenderLivingWrapper<EntityBoiler, ModelBoiler>
 {
     public RenderBoiler(RenderManager m)
     {
-        super(m, AlienResources.instance.models().BOILER);
+        super(m, AlienResources.Models.BOILER);
     }
 
     protected int setRenderPassModelBrightness(EntityBoiler entity, int brightness)
@@ -25,7 +25,7 @@ public class RenderBoiler extends RenderLivingWrapper<EntityBoiler, ModelBoiler>
         else
         {
             char light = 61680;
-            AlienResources.instance.models().BOILER_MASK.getTexture().bind();
+            AlienResources.Models.BOILER_MASK.getTexture().bind();
             OpenGL.enableBlend();
             OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE);
             GL11.glDepthMask(!entity.isInvisible());

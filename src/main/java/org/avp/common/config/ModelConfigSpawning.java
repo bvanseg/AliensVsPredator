@@ -7,6 +7,7 @@ import org.alien.common.AlienEntitySpawns;
 import org.avp.common.AVPEntitySpawns;
 import org.lib.common.FuncUtil;
 import org.predator.common.PredatorEntitySpawns;
+import org.prometheus.common.PrometheusEntitySpawns;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -48,7 +49,7 @@ public class ModelConfigSpawning {
             .filter(Objects::nonNull)
             .collect(Collectors.toSet());
     @ConfigValue.Collection(key = "spawns.varda.wildlife", requiresRestart = true)
-    public Set<String> spawnsVarda = new HashSet<>(AlienEntitySpawns.DEFAULT_VARDA_LIFE_SPAWNS).stream()
+    public Set<String> spawnsVarda = new HashSet<>(PrometheusEntitySpawns.DEFAULT_VARDA_LIFE_SPAWNS).stream()
             .map(biome -> FuncUtil.let(biome.getRegistryName(), ResourceLocation::toString))
             .filter(Objects::nonNull)
             .collect(Collectors.toSet());

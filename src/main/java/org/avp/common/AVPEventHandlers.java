@@ -10,7 +10,7 @@ import org.alien.client.render.FacehuggerRenderEvent;
 import org.alien.common.potion.PotionEffectEventHandler;
 import org.alien.common.world.ClientEntityImpregnationHandler;
 import org.alien.common.world.CommonEntityImpregnationHandler;
-import org.alien.common.world.TrilobiteImpregnationHandler;
+import org.prometheus.common.world.TrilobiteImpregnationHandler;
 import org.alien.common.world.dimension.acheron.SkyProviderAcheron;
 import org.avp.client.input.AVPInputEventHandler;
 import org.avp.client.render.*;

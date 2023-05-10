@@ -7,13 +7,13 @@ import net.minecraft.entity.monster.EntityGuardian;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.entity.passive.*;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.entity.living.SpeciesEngineer;
-import org.alien.common.entity.living.species223ode.EntityDeacon;
-import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
-import org.alien.common.entity.living.species223ode.EntityTrilobite;
-import org.alien.common.entity.living.vardic.EntityBelugaburster;
-import org.alien.common.entity.living.vardic.EntityBelugamorph;
-import org.alien.common.entity.living.vardic.EntityOctohugger;
+import org.prometheus.common.entity.living.SpeciesEngineer;
+import org.prometheus.common.entity.living.species223ode.EntityDeacon;
+import org.prometheus.common.entity.living.species223ode.EntityDeaconAdult;
+import org.prometheus.common.entity.living.species223ode.EntityTrilobite;
+import org.prometheus.common.entity.living.vardic.EntityBelugaburster;
+import org.prometheus.common.entity.living.vardic.EntityBelugamorph;
+import org.prometheus.common.entity.living.vardic.EntityOctohugger;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.burster.*;
 import org.alien.common.entity.living.xenomorph.exotic.*;
@@ -21,6 +21,7 @@ import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.alien.common.entity.living.xenomorph.parasite.EntityRoyalFacehugger;
 import org.avp.common.entity.living.EntityCombatSynthetic;
 import org.predator.common.entity.living.SpeciesYautja;
+import org.prometheus.common.entity.living.xenomorph.EntityUltramorph;
 
 /**
  * @author Boston Vanseghi

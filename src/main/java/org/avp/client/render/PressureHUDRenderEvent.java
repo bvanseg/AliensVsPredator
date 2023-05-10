@@ -30,7 +30,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.capability.Organism.Provider;
 import org.alien.common.world.capability.OrganismImpl;
-import org.alien.common.world.dimension.varda.WorldProviderVarda;
+import org.prometheus.common.world.dimension.varda.WorldProviderVarda;
 import org.avp.client.Resources;
 import org.avp.common.api.power.VoltageReceiver;
 import org.avp.common.entity.living.EntityMarine;

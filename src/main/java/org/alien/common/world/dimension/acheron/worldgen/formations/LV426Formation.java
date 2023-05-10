@@ -4,7 +4,7 @@ import com.asx.mdx.common.minecraft.Pos;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import org.alien.common.block.init.AlienBlocks;
-import org.alien.common.block.init.AlienVardaBlocks;
+import org.prometheus.common.block.init.PrometheusVardaBlocks;
 import org.alien.common.world.worldgen.TerrainGenVariant;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class LV426Formation extends TerrainGenVariant<LV426Formation>
     @Override
     public Block[] getValidLocations()
     {
-        return new Block[] { AlienVardaBlocks.UNIDIRT, AlienVardaBlocks.UNISTONE
+        return new Block[] { PrometheusVardaBlocks.UNIDIRT, PrometheusVardaBlocks.UNISTONE
         };
     }
 

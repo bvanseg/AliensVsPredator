@@ -13,7 +13,7 @@ public class RenderQueenChestburster extends RenderLivingWrapper<EntityQueenChes
 {
     public RenderQueenChestburster(RenderManager m)
     {
-        super(m, AlienResources.instance.models().CHESTBUSTER_QUEEN);
+        super(m, AlienResources.Models.CHESTBUSTER_QUEEN);
     }
 
     @Override

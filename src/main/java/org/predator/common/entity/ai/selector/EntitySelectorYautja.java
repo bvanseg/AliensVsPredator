@@ -4,7 +4,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
 import org.alien.common.entity.living.SpeciesAlien;
-import org.alien.common.entity.living.SpeciesEngineer;
+import org.prometheus.common.entity.living.SpeciesEngineer;
 import org.avp.common.entity.living.EntityMarine;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventorySnapshot;

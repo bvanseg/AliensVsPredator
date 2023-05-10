@@ -10,6 +10,7 @@ import org.avp.common.config.ModelConfig;
 import org.avp.common.item.init.AVPItems;
 import org.predator.common.PredatorItems;
 import org.predator.common.block.init.PredatorBlocks;
+import org.prometheus.common.PrometheusItems;
 import org.weapon.common.item.init.WeaponItems;
 
 public class AVPCreativeTabs implements IPreInitEvent {
@@ -81,7 +82,7 @@ public class AVPCreativeTabs implements IPreInitEvent {
             ENTITIES_WIP = new CreativeTabs("summoners_wip") {
                 @Override
                 public ItemStack createIcon() {
-                    return new ItemStack(AlienItems.SUMMONER_BABYHEAD);
+                    return new ItemStack(PrometheusItems.SUMMONER_BABYHEAD);
                 }
 
                 @Override

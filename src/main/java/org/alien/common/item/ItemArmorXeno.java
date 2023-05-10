@@ -36,9 +36,9 @@ public class ItemArmorXeno extends ItemArmor
     public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type)
     {
         if (slot == EntityEquipmentSlot.LEGS) {
-            return Draw.getPath(AlienResources.instance.XENO2);
+            return Draw.getPath(AlienResources.XENO2);
         }
-        return Draw.getPath(AlienResources.instance.XENO1);
+        return Draw.getPath(AlienResources.XENO1);
     }
 
     @Override

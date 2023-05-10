@@ -10,7 +10,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import org.alien.common.entity.living.Species223ODe;
+import org.prometheus.common.entity.living.Species223ODe;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.entity.living.xenomorph.parasite.EntityFacehugger;
 import org.avp.common.entity.EntityLiquidPool;

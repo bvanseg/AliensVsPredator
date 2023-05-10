@@ -31,6 +31,6 @@ public class ChestbursterOverlayEvent
         if (!ClientGame.instance.minecraft().player.isDead) return;
         if (organism.getEmbryo().getAge() < organism.getEmbryo().getGestationPeriod() - 80) return;
 
-        Draw.drawOverlay(AlienResources.instance.BLUR_CHESTBURSTER_EMERGE, 1F, 0F, 0F, 1F);
+        Draw.drawOverlay(AlienResources.BLUR_CHESTBURSTER_EMERGE, 1F, 0F, 0F, 1F);
     }
 }

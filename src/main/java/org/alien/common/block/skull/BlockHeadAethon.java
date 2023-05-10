@@ -15,7 +15,7 @@ public class BlockHeadAethon extends BlockSkull
     @Override
     public ModelRenderer[] getSkullModelRenderers()
     {
-        ModelAethonHead m = AlienResources.instance.models().HEAD_AETHON.getModel();
+        ModelAethonHead m = AlienResources.Models.HEAD_AETHON.getModel();
         return new ModelRenderer[] { m.head };
     }
 
@@ -30,7 +30,7 @@ public class BlockHeadAethon extends BlockSkull
     @Override
     public Texture getSkullTexture()
     {
-        return AlienResources.instance.models().HEAD_AETHON.getTexture();
+        return AlienResources.Models.HEAD_AETHON.getTexture();
     }
     
     @Override

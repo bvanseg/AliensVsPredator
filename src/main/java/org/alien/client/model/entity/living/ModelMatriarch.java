@@ -518,7 +518,7 @@ public class ModelMatriarch extends Model<EntityMatriarch>
                     OpenGL.blendClear();
                     OpenGL.disableCullFace();
                     OpenGL.blendFunc(GL11.GL_ONE, GL11.GL_ONE_MINUS_DST_COLOR);
-                    AlienResources.instance.models().MATRIARCH_MASK.getTexture().bind();
+                    AlienResources.Models.MATRIARCH_MASK.getTexture().bind();
                     draw(sack0);
                     OpenGL.enableCullFace();
                     OpenGL.blendClear();

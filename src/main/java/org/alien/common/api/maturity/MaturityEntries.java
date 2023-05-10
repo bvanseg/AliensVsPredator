@@ -2,10 +2,10 @@ package org.alien.common.api.maturity;
 
 import net.minecraft.entity.Entity;
 import org.alien.JellyConstants;
-import org.alien.common.entity.living.species223ode.EntityDeacon;
-import org.alien.common.entity.living.species223ode.EntityDeaconAdult;
-import org.alien.common.entity.living.vardic.EntityBelugaburster;
-import org.alien.common.entity.living.vardic.EntityBelugamorph;
+import org.prometheus.common.entity.living.species223ode.EntityDeacon;
+import org.prometheus.common.entity.living.species223ode.EntityDeaconAdult;
+import org.prometheus.common.entity.living.vardic.EntityBelugaburster;
+import org.prometheus.common.entity.living.vardic.EntityBelugamorph;
 import org.alien.common.entity.living.xenomorph.*;
 import org.alien.common.entity.living.xenomorph.burster.*;
 import org.alien.common.entity.living.xenomorph.exotic.EntityDracomorph;

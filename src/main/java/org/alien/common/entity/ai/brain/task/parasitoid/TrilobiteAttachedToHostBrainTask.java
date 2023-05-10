@@ -7,7 +7,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityLookHelper;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import org.alien.common.api.parasitoidic.Parasitoid;
-import org.alien.common.entity.living.species223ode.EntityTrilobite;
+import org.prometheus.common.entity.living.species223ode.EntityTrilobite;
 import org.lib.brain.flag.AbstractBrainFlag;
 import org.lib.brain.flag.BrainFlagState;
 import org.lib.brain.impl.AbstractEntityBrainTask;

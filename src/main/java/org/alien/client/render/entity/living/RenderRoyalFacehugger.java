@@ -11,7 +11,7 @@ public class RenderRoyalFacehugger extends RenderFacehuggers<EntityRoyalFacehugg
 {
     public RenderRoyalFacehugger(RenderManager m)
     {
-        super(m, AlienResources.instance.models().ROYALFACEHUGGER);
+        super(m, AlienResources.Models.ROYALFACEHUGGER);
     }
 
     @Override

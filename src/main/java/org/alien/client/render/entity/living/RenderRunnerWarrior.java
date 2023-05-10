@@ -9,7 +9,7 @@ public class RenderRunnerWarrior extends RenderXenomorph<EntityRunnerWarrior, Mo
 {
     public RenderRunnerWarrior(RenderManager m)
     {
-        super(m, AlienResources.instance.models().RUNNER_WARRIOR, 1F);
+        super(m, AlienResources.Models.RUNNER_WARRIOR, 1F);
     }
 
     @Override

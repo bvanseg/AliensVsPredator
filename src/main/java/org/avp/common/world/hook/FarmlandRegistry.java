@@ -8,7 +8,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.player.UseHoeEvent;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import org.alien.common.block.init.AlienVardaBlocks;
+import org.prometheus.common.block.init.PrometheusVardaBlocks;
 
 import java.util.ArrayList;
 
@@ -21,7 +21,7 @@ public class FarmlandRegistry
     {
         this.farmlandRegistry.add(Blocks.DIRT);
         this.farmlandRegistry.add(Blocks.GRASS);
-        this.farmlandRegistry.add(AlienVardaBlocks.UNIDIRT);
+        this.farmlandRegistry.add(PrometheusVardaBlocks.UNIDIRT);
     }
     
     @SubscribeEvent

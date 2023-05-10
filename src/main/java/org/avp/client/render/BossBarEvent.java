@@ -97,7 +97,7 @@ public class BossBarEvent
             OpenGL.enable(GL11.GL_BLEND);
             OpenGL.blendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
             OpenGL.color4i(0xFFFFFFFF);
-            AlienResources.instance.QUEEN_BOSS_BAR.bind();
+            AlienResources.QUEEN_BOSS_BAR.bind();
             posX = posX + (index * (tW));
             OpenGL.color4i(color);
             Draw.drawQuad(posX + (offset / 2), posY, (tW - offset) * health / 100, tH, 0, 0.15F, 0.85F, 0F, 0.5F);

@@ -25,8 +25,8 @@ public class RenderHiveResin extends TileEntitySpecialRenderer<TileEntityHiveRes
             {
                 OpenGL.translate(posX + 0.5, posY - 0.5, posZ + 0.5);
 
-                AlienResources.instance.models().HIVE_RESIN.bindTexture();
-                ModelHiveResin model = AlienResources.instance.models().HIVE_RESIN.getModel();
+                AlienResources.Models.HIVE_RESIN.bindTexture();
+                ModelHiveResin model = AlienResources.Models.HIVE_RESIN.getModel();
                 OpenGL.enableCullFace();
 
                 /** TOP **/

@@ -22,7 +22,7 @@ public class FacehuggerRenderEvent
         if (!Entities.isRiding(ClientGame.instance.minecraft().player, EntityFacehugger.class)) return;
 
         OpenGL.pushMatrix();
-        Draw.drawOverlay(AlienResources.instance.BLUR_FACEHUGGER);
+        Draw.drawOverlay(AlienResources.BLUR_FACEHUGGER);
         OpenGL.popMatrix();
     }
 }

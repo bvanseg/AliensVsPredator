@@ -15,7 +15,7 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import org.alien.common.block.init.AlienVardaBlocks;
+import org.prometheus.common.block.init.PrometheusVardaBlocks;
 
 import java.util.List;
 import java.util.Random;
@@ -235,7 +235,7 @@ public class ChunkProviderAcheron implements IChunkGenerator
                             {
                                 if ((lvt_45_1_ += d16) > 0.0D)
                                 {
-                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, AlienVardaBlocks.UNISTONE.getDefaultState());
+                                    primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, PrometheusVardaBlocks.UNISTONE.getDefaultState());
                                 }
                                 else if (i2 * 8 + j2 < 60)
                                 {
@@ -296,7 +296,7 @@ public class ChunkProviderAcheron implements IChunkGenerator
                                 if (var12 <= 0)
                                 {
                                     top = Blocks.AIR;
-                                    filler = AlienVardaBlocks.UNISTONE;
+                                    filler = PrometheusVardaBlocks.UNISTONE;
                                 }
                                 else if ((blockY >= var5 - 4) && (blockY <= var5 + 1))
                                 {
