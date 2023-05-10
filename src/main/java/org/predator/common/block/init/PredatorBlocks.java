@@ -4,9 +4,12 @@ import com.asx.mdx.common.mods.IPreInitEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import org.alien.common.AlienDimensions;
+import org.alien.common.block.BlockPortal;
 import org.avp.common.AVPCreativeTabs;
 import org.lib.common.block.BasicBlock;
 import org.lib.common.registry.BlockRegistryUtil;
+import org.predator.common.PredatorDimensions;
 import org.predator.common.block.BlockStasisMechanism;
 import org.predator.common.block.skull.*;
 
@@ -35,6 +38,8 @@ public class PredatorBlocks implements IPreInitEvent {
     public static final Block BIOMASK_BERSERKER = new BlockBiomaskBerserker().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("biomask.berserker");
     public static final Block BIOMASK_FALCONER = new BlockBiomaskFalconer().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("biomask.falconer");
     public static final Block BIOMASK_TRACKER = new BlockBiomaskTracker().setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("biomask.tracker");
+
+    public static final Block PORTAL_PRESERVE = new BlockPortal(PredatorDimensions.PRESERVE).setHardness(-1.0F).setLightLevel(2.0F).setCreativeTab(AVPCreativeTabs.MAIN).setRegistryName("portal.preserve");
 
     @Override
     public void pre(FMLPreInitializationEvent event) {
@@ -68,5 +73,7 @@ public class PredatorBlocks implements IPreInitEvent {
         BlockRegistryUtil.registerStandardBlock(BIOMASK_TRACKER);
 
         BlockRegistryUtil.registerStandardBlock(STASIS_MECHANISM);
+
+        BlockRegistryUtil.registerStandardBlock(PORTAL_PRESERVE);
     }
 }

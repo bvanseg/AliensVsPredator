@@ -12,6 +12,8 @@ public class ModelConfigDimensions {
     public Integer acheronDimId;
     @ConfigValue.Number(key = "paradise.dim.id", maxValue = Short.MAX_VALUE, requiresRestart = true)
     public Integer paradiseDimId;
+    @ConfigValue.Number(key = "preserve.dim.id", maxValue = Short.MAX_VALUE, requiresRestart = true)
+    public Integer preserveDimId;
 
     public ModelConfigDimensions() { /* Do Nothing */ }
 }
