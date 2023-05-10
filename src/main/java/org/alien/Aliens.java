@@ -13,6 +13,7 @@ import org.covenant.client.render.BiomeColorHandler;
 import org.alien.common.*;
 import org.alien.common.block.init.AlienBlocks;
 import org.alien.common.potion.AlienPotions;
+import org.covenant.common.CovenantDimensions;
 import org.covenant.common.CovenantEntities;
 import org.covenant.common.CovenantItems;
 import org.covenant.common.CovenantTileEntities;
@@ -49,6 +50,7 @@ public class Aliens implements IPreInitEvent, IInitEvent, IPostInitEvent {
     public void init(FMLInitializationEvent event) {
         AlienDimensions.instance.init(event);
         PrometheusDimensions.instance.init(event);
+        CovenantDimensions.instance.init(event);
 
         WorldHandler.instance.init(event);
 
