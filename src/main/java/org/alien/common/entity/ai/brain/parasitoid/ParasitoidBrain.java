@@ -47,7 +47,7 @@ public class ParasitoidBrain extends AlienBrain<EntityParasitoid> {
 
 	@Override
 	public void initJellyProductionTask() {
-		this.addTask(new ProduceJellyBrainTask<EntityParasitoid>(20, e -> e.isFertile() && e.getJellyLevel() <= 256));
+		this.addTask(new ProduceJellyBrainTask<EntityParasitoid>(20, e -> e.isFertile() && e.jellyLevel.get() <= 256));
 	}
 
 	@Override

@@ -71,7 +71,7 @@ public class XenomorphBrain extends AlienBrain<SpeciesXenomorph> {
 		this.addTask(new LeapAtTargetBrainTask(0.6F));
 		this.addTask(new WanderBrainTask(0.8D));
 		this.addTask(new FindItemBrainTask(e -> e.getItem().getItem() == AlienItems.ITEM_ROYAL_JELLY)
-				.onUseItem(e -> entity.setJellyLevel(entity.getJellyLevel() + e.getItem().getCount())));
+				.onUseItem(e -> entity.jellyLevel.add(e.getItem().getCount())));
 		this.addTask(new ShareJellyBrainTask());
 		this.addTask(new WatchClosestBrainTask(EntityLivingBase.class, 16F));
 

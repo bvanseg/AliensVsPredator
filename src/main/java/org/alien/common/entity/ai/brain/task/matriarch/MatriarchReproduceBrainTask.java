@@ -51,6 +51,6 @@ public class MatriarchReproduceBrainTask extends AbstractEntityBrainTask {
 		EntityOvamorph ovamorph = new EntityOvamorph(matriarchEntity.world);
 		ovamorph.setLocationAndAngles(ovamorphPosition.x, ovamorphPosition.y, ovamorphPosition.z, 0F, 0F);
 		matriarchEntity.world.spawnEntity(ovamorph);
-		matriarchEntity.setJellyLevel(matriarchEntity.getJellyLevel() - JellyConstants.EGG_LAY_COST);
+		matriarchEntity.jellyLevel.add(-JellyConstants.EGG_LAY_COST);
 	}
 }

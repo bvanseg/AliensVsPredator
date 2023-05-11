@@ -38,7 +38,7 @@ public class ShareJellyBrainTask extends AbstractEntityBrainTask {
 		SpeciesXenomorph xenomorph = (SpeciesXenomorph)entity;
 		HiveMember hiveMember = (HiveMember) entity;
 
-		return xenomorph.getJellyLevel() > 0 && hiveMember.getAlienHive() != null && xenomorph.getAttackTarget() == null;
+		return xenomorph.jellyLevel.get() > 0 && hiveMember.getAlienHive() != null && xenomorph.getAttackTarget() == null;
 	}
 	
     @Override
@@ -52,10 +52,10 @@ public class ShareJellyBrainTask extends AbstractEntityBrainTask {
 
 			if (queen.getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE || queen.isReproducing())
 			{
-				if (queen.getJellyLevel() < JellyConstants.QUEEN_SHARE_SATISFACTION_THRESHOLD * 2 && xenomorph.getJellyLevel() >= JellyConstants.DRONE_SHARE_THRESHOLD)
+				if (queen.jellyLevel.get() < JellyConstants.QUEEN_SHARE_SATISFACTION_THRESHOLD * 2 && xenomorph.jellyLevel.get() >= JellyConstants.DRONE_SHARE_THRESHOLD)
 				{
-					queen.setJellyLevel(queen.getJellyLevel() + xenomorph.getJellyLevel());
-					xenomorph.setJellyLevel(0);
+					queen.jellyLevel.add(xenomorph.jellyLevel.get());
+					xenomorph.jellyLevel.set(0);
 				}
 			}
 		}

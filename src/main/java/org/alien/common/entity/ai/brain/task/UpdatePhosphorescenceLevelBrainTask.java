@@ -51,7 +51,7 @@ public class UpdatePhosphorescenceLevelBrainTask extends AbstractEntityBrainTask
             }
         }
 
-        float currentLevel = entity.getPhosphorescenceLevel();
+        float currentLevel = entity.phosphorescenceLevel.get();
         float newLevel = currentLevel;
 
         if (currentLevel < targetLevel)
@@ -65,6 +65,6 @@ public class UpdatePhosphorescenceLevelBrainTask extends AbstractEntityBrainTask
 
         newLevel = MathHelper.clamp(newLevel, 0.1F, 1F);
 
-        entity.setPhosphorescenceLevel(newLevel);
+        entity.phosphorescenceLevel.set(newLevel);
     }
 }

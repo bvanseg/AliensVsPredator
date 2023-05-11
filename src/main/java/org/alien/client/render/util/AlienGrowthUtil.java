@@ -19,7 +19,7 @@ public class AlienGrowthUtil {
         MaturityEntry maturityEntry = MaturityEntries.getEntryFor(alien.getClass()).orElse(null);
         if (maturityEntry != null) {
             float jellyLevelPrev = alien.growthProgress;
-            alien.growthProgress = alien.getJellyLevel();
+            alien.growthProgress = alien.jellyLevel.get();
             alien.growthProgress = jellyLevelPrev + ((alien.growthProgress - jellyLevelPrev) * partialTicks * step);
             additionalScale = alien.growthProgress / (maturityEntry.getRequiredJellyLevel() * scaleReductionFactor);
         }

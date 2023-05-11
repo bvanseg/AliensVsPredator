@@ -14,9 +14,12 @@ import org.alien.common.AlienItems;
 import org.alien.common.entity.ai.brain.xenomorph.NauticomorphBrain;
 import org.alien.common.entity.ai.brain.xenomorph.XenomorphBrain;
 import org.alien.common.entity.living.SpeciesXenomorph;
+import org.lib.common.entity.DataHandle;
 
 public class EntityNauticomorph extends SpeciesXenomorph {
     private static final DataParameter<Float> PHOSPHORESCENCE_LEVEL = EntityDataManager.createKey(EntityNauticomorph.class, DataSerializers.FLOAT);
+
+    public final DataHandle<Float> phosphorescenceLevel = new DataHandle<>(this, PHOSPHORESCENCE_LEVEL);
 
     public EntityNauticomorph(World world) {
         super(world);
@@ -67,14 +70,6 @@ public class EntityNauticomorph extends SpeciesXenomorph {
     @Override
     public boolean canBreatheUnderwater() {
         return true;
-    }
-
-    public float getPhosphorescenceLevel() {
-        return this.getDataManager().get(PHOSPHORESCENCE_LEVEL);
-    }
-
-    public void setPhosphorescenceLevel(float level) {
-        this.getDataManager().set(PHOSPHORESCENCE_LEVEL, level);
     }
 
     @Override

@@ -26,6 +26,8 @@ import org.avp.common.AVPItemDropTables;
 import org.avp.common.AVPItemDrops;
 import org.avp.common.network.AvpDataSerializers;
 import org.lib.brain.Brainiac;
+import org.lib.common.entity.BooleanDataHandle;
+import org.lib.common.entity.EnumDataHandle;
 import org.lib.common.inventory.ItemDropContext;
 import org.predator.client.PredatorSounds;
 import org.predator.common.entity.PredatorCreatureTypes;
@@ -39,9 +41,12 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     private static final DataParameter<Boolean> DUCKING = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.BOOLEAN);
 
     public static final DataParameter<CloakState> CLOAK_STATE = EntityDataManager.createKey(SpeciesYautja.class, AvpDataSerializers.CLOAK_STATE);
-    public static final DataParameter<Integer> CLOAK_PROGRESS = EntityDataManager.createKey(SpeciesYautja.class, DataSerializers.VARINT);
 
-    public int cloakProgress;
+    public final BooleanDataHandle isWearingMask = new BooleanDataHandle(this, WEARING_MASK);
+    public final BooleanDataHandle isDucking = new BooleanDataHandle(this, DUCKING);
+    public final EnumDataHandle<CloakState> cloakState = new EnumDataHandle<>(this, CLOAK_STATE);
+
+    public int cloakRenderProgress;
 
     private YautjaBrain brain;
 
@@ -49,7 +54,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     {
         super(world);
         this.experienceValue = 250;
-        this.cloakProgress = YautjaCloakHelper.MIN_CLOAK;
+        this.cloakRenderProgress = YautjaCloakHelper.MIN_CLOAK;
         this.setSize(0.75F, 2.5F);
         this.jumpMovementFactor = 0.1F;
     }
@@ -130,9 +135,12 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
         if (this.world.getTotalWorldTime() % 10 == 0)
         {
             BlockPos aboveHead = this.getPosition().add(0, 3, 0);
-            this.setDucking(this.world.getBlockState(aboveHead).getBlock() != Blocks.AIR);
+
+            if (!this.world.isRemote) {
+                this.isDucking.set(this.world.getBlockState(aboveHead).getBlock() != Blocks.AIR);
+            }
             
-            if (this.isDucking())
+            if (this.isDucking.get())
             {
                 this.setSize(1.0F,  1.75F);
             }
@@ -148,7 +156,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     // This method allows us to cancel the hurt animation, but it looks as if it may be responsible for other things.
     @Override
     public void handleStatusUpdate(byte id) {
-        if (this.getCloakState() == CloakState.CLOAKED) return;
+        if (this.cloakState.get() == CloakState.CLOAKED) return;
         super.handleStatusUpdate(id);
     }
 
@@ -168,7 +176,7 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
             this.playSound(this.getFallSound(intensity), 1.0F, 1.0F);
             
             if (this.world.getTotalWorldTime() % 4 == 0)
-            this.playSound(this.getDeathSound(), 1.0F, 1.0F);
+                this.playSound(this.getDeathSound(), 1.0F, 1.0F);
             
             int x = MathHelper.floor(this.posX);
             int y = MathHelper.floor(this.posY - 0.20000000298023224D);
@@ -269,59 +277,24 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
     public void readEntityFromNBT(NBTTagCompound tag)
     {
         super.readEntityFromNBT(tag);
-        this.setWearingMask(tag.getBoolean(WEARING_MASK_NBT_KEY));
-        this.setCloakState(CloakState.getValuesByIdMap().get((int)tag.getByte(CLOAK_STATE_NBT_KEY)));
-        this.cloakProgress = tag.getInteger(CLOAK_PROGRESS_NBT_KEY);
+        this.isWearingMask.set(tag.getBoolean(WEARING_MASK_NBT_KEY));
+        this.cloakState.set(CloakState.getValuesByIdMap().get((int)tag.getByte(CLOAK_STATE_NBT_KEY)));
+        this.cloakRenderProgress = tag.getInteger(CLOAK_PROGRESS_NBT_KEY);
     }
 
     @Override
     public void writeEntityToNBT(NBTTagCompound tag)
     {
         super.writeEntityToNBT(tag);
-        tag.setBoolean(WEARING_MASK_NBT_KEY, this.isWearingMask());
-        tag.setByte(CLOAK_STATE_NBT_KEY, (byte)this.getCloakState().id);
-        tag.setInteger(CLOAK_PROGRESS_NBT_KEY, this.cloakProgress);
-    }
-
-    public boolean isWearingMask()
-    {
-        return this.getDataManager().get(WEARING_MASK);
-    }
-
-    public boolean isDucking()
-    {
-        return this.getDataManager().get(DUCKING);
-    }
-
-    public void setCloakState(CloakState cloakState) {
-    	if (this.world.isRemote) return;
-        this.getDataManager().set(CLOAK_STATE, cloakState);
-    }
-
-    public CloakState getCloakState() {
-    	return this.getDataManager().get(CLOAK_STATE);
-    }
-
-    public void setWearingMask(boolean wearingMask)
-    {
-        if (!this.world.isRemote)
-        {
-            this.getDataManager().set(WEARING_MASK, wearingMask);
-        }
-    }
-
-    public void setDucking(boolean ducking)
-    {
-        if (!this.world.isRemote)
-        {
-            this.getDataManager().set(DUCKING, ducking);
-        }
+        tag.setBoolean(WEARING_MASK_NBT_KEY, this.isWearingMask.get());
+        tag.setByte(CLOAK_STATE_NBT_KEY, (byte)this.cloakState.get().id);
+        tag.setInteger(CLOAK_PROGRESS_NBT_KEY, this.cloakRenderProgress);
     }
 
     @Override
     public boolean canParasiteAttach()
     {
-        return !this.isWearingMask();
+        return !this.isWearingMask.get();
     }
     
     @Override
@@ -332,6 +305,6 @@ public abstract class SpeciesYautja extends EntityMob implements Host, Brainiac<
 
     @Override
     protected float getSoundVolume() {
-        return 1.1F - (this.cloakProgress / (float)YautjaCloakHelper.MAX_CLOAK);
+        return 1.1F - (this.cloakRenderProgress / (float)YautjaCloakHelper.MAX_CLOAK);
     }
 }

@@ -18,7 +18,6 @@ public class YautjaCloakHelper {
 
     public static void entityInit(SpeciesYautja yautja) {
         yautja.getDataManager().register(SpeciesYautja.CLOAK_STATE, CloakState.DECLOAKED);
-        yautja.getDataManager().register(SpeciesYautja.CLOAK_PROGRESS, MIN_CLOAK);
     }
 
 
@@ -37,51 +36,51 @@ public class YautjaCloakHelper {
     }
 
     private static void updateCloakingProgress(SpeciesYautja yautja) {
-        switch (yautja.getCloakState()) {
+        switch (yautja.cloakState.get()) {
             case CLOAKED:
-                yautja.cloakProgress = MAX_CLOAK;
+                yautja.cloakRenderProgress = MAX_CLOAK;
                 break;
             case CLOAKING:
-                yautja.cloakProgress += CLOAK_PROGRESS_SPEED;
+                yautja.cloakRenderProgress += CLOAK_PROGRESS_SPEED;
                 break;
             case DECLOAKING_FORCED:
-                yautja.cloakProgress -= CLOAK_PROGRESS_SPEED;
+                yautja.cloakRenderProgress -= CLOAK_PROGRESS_SPEED;
                 break;
             case DECLOAKING_MANUAL:
-                yautja.cloakProgress -= CLOAK_PROGRESS_SPEED * 3;
+                yautja.cloakRenderProgress -= CLOAK_PROGRESS_SPEED * 3;
                 break;
             default:
-                yautja.cloakProgress = MIN_CLOAK;
+                yautja.cloakRenderProgress = MIN_CLOAK;
                 break;
         }
 
-        yautja.cloakProgress = MathHelper.clamp(yautja.cloakProgress, MIN_CLOAK, MAX_CLOAK);
+        yautja.cloakRenderProgress = MathHelper.clamp(yautja.cloakRenderProgress, MIN_CLOAK, MAX_CLOAK);
     }
 
     private static void handleCloak(SpeciesYautja yautja) {
-        if (yautja.cloakProgress < MAX_CLOAK) {
-            if (yautja.getCloakState() != CloakState.CLOAKING) {
+        if (yautja.cloakRenderProgress < MAX_CLOAK) {
+            if (yautja.cloakState.get() != CloakState.CLOAKING) {
                 PredatorSounds.YAUTJA_CLOAK.playSound(yautja, 0.6F, 1.0F);
             }
 
-            yautja.setCloakState(CloakState.CLOAKING);
-        } else if (yautja.cloakProgress == MAX_CLOAK) {
-            yautja.setCloakState(CloakState.CLOAKED);
+            yautja.cloakState.set(CloakState.CLOAKING);
+        } else if (yautja.cloakRenderProgress == MAX_CLOAK) {
+            yautja.cloakState.set(CloakState.CLOAKED);
         }
     }
 
     private static void handleDecloak(SpeciesYautja yautja) {
         CloakState decloakType = yautja.getAttackTarget() != null ? CloakState.DECLOAKING_MANUAL : CloakState.DECLOAKING_FORCED;
 
-        if (yautja.cloakProgress > MIN_CLOAK) {
-            if (yautja.getCloakState() != CloakState.DECLOAKING_FORCED && yautja.getCloakState() != CloakState.DECLOAKING_MANUAL) {
+        if (yautja.cloakRenderProgress > MIN_CLOAK) {
+            if (yautja.cloakState.get() != CloakState.DECLOAKING_FORCED && yautja.cloakState.get() != CloakState.DECLOAKING_MANUAL) {
                 PredatorSounds.YAUTJA_DECLOAK.playSound(yautja, 0.6F, 1.0F);
             }
 
-            yautja.setCloakState(decloakType);
+            yautja.cloakState.set(decloakType);
         }
-        else if (yautja.cloakProgress == MIN_CLOAK) {
-            yautja.setCloakState(CloakState.DECLOAKED);
+        else if (yautja.cloakRenderProgress == MIN_CLOAK) {
+            yautja.cloakState.set(CloakState.DECLOAKED);
         }
     }
 }

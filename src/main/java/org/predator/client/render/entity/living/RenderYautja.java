@@ -21,11 +21,11 @@ public class RenderYautja<T extends SpeciesYautja, MODEL extends Model> extends 
     
     @Override
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks) {
-        boolean isRenderableCloakState = entity.getCloakState() != CloakState.DECLOAKED;
+        boolean isRenderableCloakState = entity.cloakState.get() != CloakState.DECLOAKED;
 
         if (isRenderableCloakState) {
             GlStateManager.alphaFunc(516, 0.003921569F);
-            float transparency = 1F - (entity.cloakProgress / (float) YautjaCloakHelper.MAX_CLOAK) + 0.05F;
+            float transparency = 1F - (entity.cloakRenderProgress / (float) YautjaCloakHelper.MAX_CLOAK) + 0.05F;
             GlStateManager.color(1F, 1F, 1F, transparency);
             GlStateManager.enableNormalize();
             GlStateManager.enableBlend();

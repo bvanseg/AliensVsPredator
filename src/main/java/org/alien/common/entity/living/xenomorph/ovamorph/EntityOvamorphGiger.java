@@ -36,7 +36,7 @@ public class EntityOvamorphGiger extends EntityOvamorph
         super.onUpdate();
 
         // TODO: This first check may not be totally equivalent to the one that was last here.
-        if (this.getTimeLeftUntilOpen() <= 0 && this.world.isRemote)
+        if (this.timeLeftUntilOpen.get() <= 0 && this.world.isRemote)
         {
             if (this.getActiveAnimation() != HATCH_ANIMATION)
             {

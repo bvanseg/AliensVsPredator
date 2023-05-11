@@ -54,7 +54,7 @@ public class MatureBrainTask extends AbstractEntityBrainTask {
         return canHiveMemberMature &&
                 maturityEntry.getEntityClass() != null &&
                 maturityEntry.getRequiredJellyLevel() > 0 &&
-                alienEntity.getJellyLevel() >= maturityEntry.getRequiredJellyLevel();
+                alienEntity.jellyLevel.get() >= maturityEntry.getRequiredJellyLevel();
     }
 
     public void mature(SpeciesAlien alienEntity)
@@ -69,7 +69,7 @@ public class MatureBrainTask extends AbstractEntityBrainTask {
         alienEntity.world.spawnEntity(alien);
         alienEntity.writeAlienToNBT(tag);
         alien.readAlienFromNBT(tag);
-        alien.setJellyLevel(alienEntity.getJellyLevel() - maturityEntry.getRequiredJellyLevel());
+        alien.jellyLevel.add(-maturityEntry.getRequiredJellyLevel());
         // TODO: Create a shell of the original entity.
         alienEntity.setDead();
 

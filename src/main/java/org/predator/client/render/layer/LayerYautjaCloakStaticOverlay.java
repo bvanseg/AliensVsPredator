@@ -26,7 +26,7 @@ public class LayerYautjaCloakStaticOverlay implements LayerRenderer<SpeciesYautj
 
     @Override
     public void doRenderLayer(SpeciesYautja entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        if (entitylivingbaseIn.getCloakState() != CloakState.DECLOAKING_FORCED) return;
+        if (entitylivingbaseIn.cloakState.get() != CloakState.DECLOAKING_FORCED) return;
     	
     	this.yautjaRenderer.bindTexture(STATIC_TEXTURE);
         GlStateManager.matrixMode(5890);

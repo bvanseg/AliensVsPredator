@@ -29,7 +29,7 @@ public class UpdateOpenProgressBrainTask extends AbstractEntityBrainTask {
 			return false;
 
 		// Don't start opening until the time left until open is less than or equal to 0.
-		return ovamorph.getTimeLeftUntilOpen() <= 0;
+		return ovamorph.timeLeftUntilOpen.get() <= 0;
 	}
 	
     @Override
@@ -40,7 +40,7 @@ public class UpdateOpenProgressBrainTask extends AbstractEntityBrainTask {
 	@Override
 	protected void continueExecuting() {
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
-		int newHatchProgress = MathHelper.clamp(ovamorph.getOpenProgress() + 1, -EntityOvamorph.MAX_OPEN_PROGRESS, EntityOvamorph.MAX_OPEN_PROGRESS);
-		ovamorph.setOpenProgress(newHatchProgress);
+		int newHatchProgress = MathHelper.clamp(ovamorph.openProgress.get() + 1, -EntityOvamorph.MAX_OPEN_PROGRESS, EntityOvamorph.MAX_OPEN_PROGRESS);
+		ovamorph.openProgress.set((byte) newHatchProgress);
 	}
 }

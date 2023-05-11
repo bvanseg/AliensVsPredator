@@ -19,7 +19,7 @@ public class LayerMarineSkin implements LayerRenderer<EntityMarine> {
 
     @Override
     public void doRenderLayer(EntityMarine entityMarine, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        int skinTone = entityMarine.getSkinTone();
+        int skinTone = entityMarine.skinTone.get();
         int r = (skinTone >> 24) & 0xFF;
         int g = (skinTone >> 16) & 0xFF;
         int b = (skinTone >> 8) & 0xFF;

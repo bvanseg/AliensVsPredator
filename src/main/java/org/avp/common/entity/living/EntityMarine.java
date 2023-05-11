@@ -40,6 +40,10 @@ import org.lib.brain.impl.BrainMemoryKeys;
 import org.lib.common.EntityAccessor;
 import org.lib.common.FuncUtil;
 import org.lib.common.InventoryHolder;
+import org.lib.common.entity.BooleanDataHandle;
+import org.lib.common.entity.DataHandle;
+import org.lib.common.entity.EnumDataHandle;
+import org.lib.common.entity.IntegerDataHandle;
 import org.lib.common.inventory.CachedInventoryHandler;
 import org.lib.common.inventory.InventoryNBTUtil;
 import org.lib.common.inventory.InventorySnapshot;
@@ -61,6 +65,16 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     private static final DataParameter<String> NAME = EntityDataManager.createKey(EntityMarine.class, DataSerializers.STRING);
     private static final DataParameter<MarineDecorator.MarineRank> RANK = EntityDataManager.createKey(EntityMarine.class, AvpDataSerializers.MARINE_RANK);
     protected static final DataParameter<Optional<UUID>> SQUAD_LEADER_UNIQUE_ID = EntityDataManager.createKey(EntityMarine.class, DataSerializers.OPTIONAL_UNIQUE_ID);
+
+    public final BooleanDataHandle isGuarding = new BooleanDataHandle(this, GUARDING);
+    public final BooleanDataHandle isAiming = new BooleanDataHandle(this, AIMING);
+    public final IntegerDataHandle type = new IntegerDataHandle(this, TYPE);
+    public final IntegerDataHandle skinTone = new IntegerDataHandle(this, SKIN_TONE);
+    public final IntegerDataHandle camoColor = new IntegerDataHandle(this, CAMO_COLOR);
+    public final IntegerDataHandle eyeColor = new IntegerDataHandle(this, EYE_COLOR);
+    public final DataHandle<String> name = new DataHandle<>(this, NAME);
+    public final EnumDataHandle<MarineDecorator.MarineRank> rank = new EnumDataHandle<>(this, RANK);
+    public final DataHandle<Optional<UUID>> squadLeaderId = new DataHandle<>(this, SQUAD_LEADER_UNIQUE_ID);
 
     protected MarineBrain brain;
 
@@ -225,7 +239,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
             }
 
             // If the marine does not have a squad leader already, the interacting player is now the squad leader.
-            if (!this.isGuarding() && hand == EnumHand.MAIN_HAND) {
+            if (!this.isGuarding.get() && hand == EnumHand.MAIN_HAND) {
                 this.tryChangeSquadLeader(player);
             }
         }
@@ -234,20 +248,20 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     }
 
     private void toggleGuardMode(EntityPlayer player) {
-        boolean invertedFlag = !this.isGuarding();
+        boolean invertedFlag = !this.isGuarding.get();
 
         TextComponentString textString;
 
         if (invertedFlag) {
-            textString = new TextComponentString(String.format("%s is now standing guard.", this.getMarineName()));
+            textString = new TextComponentString(String.format("%s is now standing guard.", this.name.get()));
             textString.getStyle().setColor(TextFormatting.BLUE);
         } else {
-            textString = new TextComponentString(String.format("%s is now following you.", this.getMarineName()));
+            textString = new TextComponentString(String.format("%s is now following you.", this.name.get()));
             textString.getStyle().setColor(TextFormatting.GREEN);
         }
 
         player.sendMessage(textString);
-        this.setGuarding(invertedFlag);
+        this.isGuarding.set(invertedFlag);
     }
 
     private void acceptItemFromPlayer(EntityPlayer player, Item heldItem, InventorySnapshot playerInventorySnapshot) {
@@ -274,7 +288,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     }
 
     private boolean isSquadLeader(EntityLivingBase entity) {
-        return this.getSquadLeaderID().isPresent() && entity.getUniqueID().equals(this.getSquadLeaderID().get());
+        return this.squadLeaderId.get().isPresent() && entity.getUniqueID().equals(this.squadLeaderId.get().get());
     }
 
     private void tryChangeSquadLeader(EntityPlayer player) {
@@ -282,40 +296,40 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
 
         InventorySnapshot snapshot = CachedInventoryHandler.instance.getInventorySnapshotForPlayer(player);
 
-        if (!this.getSquadLeaderID().isPresent()) {
+        if (!this.squadLeaderId.get().isPresent()) {
             // Having a marine follow requires 1 diamond.
             if (player.getHeldItemMainhand().getItem() == Items.DIAMOND) {
-                this.setSquadLeaderUniqueID(Optional.of(player.getUniqueID()));
+                this.squadLeaderId.set(Optional.of(player.getUniqueID()));
 
                 if (!player.isCreative()) {
                     snapshot.consumeItem(Items.DIAMOND);
                 }
 
-                textString = new TextComponentString(String.format("%s is now following you (-1 Diamond).", this.getMarineName()));
+                textString = new TextComponentString(String.format("%s is now following you (-1 Diamond).", this.name.get()));
                 textString.getStyle().setColor(TextFormatting.GREEN);
             } else {
                 textString = new TextComponentString("You can't afford this marine (1 Diamond required in hand)!");
                 textString.getStyle().setColor(TextFormatting.RED);
             }
         } else {
-            UUID squadLeaderID = this.getSquadLeaderID().get();
+            UUID squadLeaderID = this.squadLeaderId.get().get();
             if (player.getUniqueID().equals(squadLeaderID)) {
                 // Releasing a marine requires a gold ingot.
                 if (player.getHeldItemMainhand().getItem() == Items.GOLD_INGOT) {
-                    this.setSquadLeaderUniqueID(Optional.absent());
+                    this.squadLeaderId.set(Optional.absent());
 
                     if (!player.isCreative()) {
                         snapshot.consumeItem(Items.GOLD_INGOT);
                     }
 
-                    textString = new TextComponentString(String.format("%s is no longer following you (-1 Gold Ingot).",this.getMarineName()));
+                    textString = new TextComponentString(String.format("%s is no longer following you (-1 Gold Ingot).",this.name.get()));
                     textString.getStyle().setColor(TextFormatting.YELLOW);
                 } else {
                     textString = new TextComponentString("You can't afford to release this marine (1 Gold Ingot required in hand)!");
                     textString.getStyle().setColor(TextFormatting.RED);
                 }
             } else {
-                textString = new TextComponentString(String.format("%s is already following another player!",this.getMarineName()));
+                textString = new TextComponentString(String.format("%s is already following another player!",this.name.get()));
                 textString.getStyle().setColor(TextFormatting.RED);
             }
         }
@@ -335,9 +349,9 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     }
 
     private void sendDeathMessageToSquadLeader() {
-        if (!this.getSquadLeaderID().isPresent()) return;
+        if (!this.squadLeaderId.get().isPresent()) return;
 
-        EntityPlayer squadLeader = this.world.getPlayerEntityByUUID(this.getSquadLeaderID().get());
+        EntityPlayer squadLeader = this.world.getPlayerEntityByUUID(this.squadLeaderId.get().get());
 
         if (squadLeader == null) return;
 
@@ -371,7 +385,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
 
     @Override
     public String getName() {
-        return this.getRank().getShorthandName() + " " + this.getMarineName();
+        return this.rank.get().getShorthandName() + " " + this.name.get();
     }
 
     // If this is set to true, the marine's death message will be once by default, and sent twice if they have a squad leader
@@ -387,51 +401,9 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         return true;
     }
 
-    public boolean isGuarding()
-    {
-        return this.getDataManager().get(GUARDING);
-    }
-
-    public void setGuarding(boolean isGuarding)
-    {
-        this.getDataManager().set(GUARDING, isGuarding);
-    }
-
-    public boolean isAiming()
-    {
-        return this.getDataManager().get(AIMING);
-    }
-
-    public int getSkinTone()
-    {
-        return this.dataManager.get(SKIN_TONE);
-    }
-
-    public int getEyeColor()
-    {
-        return this.dataManager.get(EYE_COLOR);
-    }
-
-    public int getCamoColor()
-    {
-        return this.dataManager.get(CAMO_COLOR);
-    }
-
-    public String getMarineName() {
-        return this.dataManager.get(NAME);
-    }
-
-    public MarineDecorator.MarineRank getRank() {
-        return this.dataManager.get(RANK);
-    }
-
-    private Optional<UUID> getSquadLeaderID() {
-        return this.getDataManager().get(SQUAD_LEADER_UNIQUE_ID);
-    }
-
     public Optional<EntityLivingBase> getSquadLeader() {
-        if (!this.getSquadLeaderID().isPresent()) return Optional.absent();
-        Optional<Entity> leader = Optional.fromJavaUtil(EntityAccessor.instance.getEntityByUUID(this.getSquadLeaderID().get()));
+        if (!this.squadLeaderId.get().isPresent()) return Optional.absent();
+        Optional<Entity> leader = Optional.fromJavaUtil(EntityAccessor.instance.getEntityByUUID(this.squadLeaderId.get().get()));
         if (!leader.isPresent() || !(leader.get() instanceof EntityLivingBase)) return Optional.absent();
         return Optional.fromNullable((EntityLivingBase) leader.get());
     }
@@ -448,10 +420,6 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
         this.loadedAmmunition = Math.max(0, loadedAmmunition);
     }
 
-    public void setSquadLeaderUniqueID(Optional<UUID> squadLeaderUniqueId) {
-        this.getDataManager().set(SQUAD_LEADER_UNIQUE_ID, squadLeaderUniqueId);
-    }
-
     @Override
     public void setSwingingArms(boolean swingingArms) { /* Do Nothing */ }
     
@@ -463,7 +431,7 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
 
     @Override
     protected boolean canDespawn() {
-        return !this.getSquadLeaderID().isPresent();
+        return !this.squadLeaderId.get().isPresent();
     }
 
     private static final String GUARDING_NBT_KEY = "Guarding";
@@ -487,17 +455,17 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     public void writeEntityToNBT(NBTTagCompound nbt)
     {
         super.writeEntityToNBT(nbt);
-        nbt.setBoolean(GUARDING_NBT_KEY, this.dataManager.get(GUARDING));
-        nbt.setInteger(WEAPON_TYPE_NBT_KEY, this.dataManager.get(TYPE));
-        nbt.setInteger(SKIN_TONE_NBT_KEY, this.getSkinTone());
-        nbt.setInteger(EYE_COLOR_NBT_KEY, this.getEyeColor());
-        nbt.setInteger(CAMO_COLOR_NBT_KEY, this.getCamoColor());
-        nbt.setString(NAME_NBT_KEY, this.getMarineName());
-        nbt.setInteger(RANK_NBT_KEY, this.getRank().ordinal());
+        nbt.setBoolean(GUARDING_NBT_KEY, this.isGuarding.get());
+        nbt.setInteger(WEAPON_TYPE_NBT_KEY, this.type.get());
+        nbt.setInteger(SKIN_TONE_NBT_KEY, this.skinTone.get());
+        nbt.setInteger(EYE_COLOR_NBT_KEY, this.eyeColor.get());
+        nbt.setInteger(CAMO_COLOR_NBT_KEY, this.camoColor.get());
+        nbt.setString(NAME_NBT_KEY, this.name.get());
+        nbt.setInteger(RANK_NBT_KEY, this.rank.get().ordinal());
         nbt.setInteger(LOADED_AMMUNITION_NBT_KEY, this.loadedAmmunition);
 
-        if (this.getSquadLeaderID().isPresent()) {
-            nbt.setUniqueId(SQUAD_LEADER_NBT_KEY, this.getSquadLeaderID().get());
+        if (this.squadLeaderId.get().isPresent()) {
+            nbt.setUniqueId(SQUAD_LEADER_NBT_KEY, this.squadLeaderId.get().get());
         }
 
         NBTTagCompound inventoryTag = InventoryNBTUtil.writeInventoryToNBT(INVENTORY_NBT_KEY, this.inventory);
@@ -514,19 +482,19 @@ public class EntityMarine extends EntityCreature implements IEntityAdditionalSpa
     public void readEntityFromNBT(NBTTagCompound nbt)
     {
         super.readEntityFromNBT(nbt);
-        this.dataManager.set(GUARDING, nbt.getBoolean(GUARDING_NBT_KEY));
-        this.dataManager.set(TYPE, nbt.getInteger(WEAPON_TYPE_NBT_KEY));
-        this.dataManager.set(SKIN_TONE, nbt.getInteger(SKIN_TONE_NBT_KEY));
-        this.dataManager.set(EYE_COLOR, nbt.getInteger(EYE_COLOR_NBT_KEY));
-        this.dataManager.set(CAMO_COLOR, nbt.getInteger(CAMO_COLOR_NBT_KEY));
-        this.dataManager.set(NAME, nbt.getString(NAME_NBT_KEY));
-        this.dataManager.set(RANK, MarineDecorator.MarineRank.values()[nbt.getInteger(RANK_NBT_KEY)]);
+        this.isGuarding.set(nbt.getBoolean(GUARDING_NBT_KEY));
+        this.type.set(nbt.getInteger(WEAPON_TYPE_NBT_KEY));
+        this.skinTone.set(nbt.getInteger(SKIN_TONE_NBT_KEY));
+        this.eyeColor.set(nbt.getInteger(EYE_COLOR_NBT_KEY));
+        this.camoColor.set(nbt.getInteger(CAMO_COLOR_NBT_KEY));
+        this.name.set(nbt.getString(NAME_NBT_KEY));
+        this.rank.set(MarineDecorator.MarineRank.values()[nbt.getInteger(RANK_NBT_KEY)]);
         this.loadedAmmunition = nbt.getInteger(LOADED_AMMUNITION_NBT_KEY);
 
         UUID squadLeaderUUID = nbt.getUniqueId(SQUAD_LEADER_NBT_KEY);
 
         if (squadLeaderUUID.getLeastSignificantBits() != 0 && squadLeaderUUID.getMostSignificantBits() != 0) {
-            this.setSquadLeaderUniqueID(Optional.of(squadLeaderUUID));
+            this.squadLeaderId.set(Optional.of(squadLeaderUUID));
         }
 
         NBTTagCompound inventoryTag = nbt.getCompoundTag(INVENTORY_NBT_KEY);

@@ -19,7 +19,7 @@ public class LayerMarineEyes implements LayerRenderer<EntityMarine> {
 
     @Override
     public void doRenderLayer(EntityMarine entityMarine, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        int eyeColor = entityMarine.getEyeColor();
+        int eyeColor = entityMarine.eyeColor.get();
         int r = (eyeColor >> 24) & 0xFF;
         int g = (eyeColor >> 16) & 0xFF;
         int b = (eyeColor >> 8) & 0xFF;

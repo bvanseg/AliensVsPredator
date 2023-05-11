@@ -59,7 +59,7 @@ public class GrowOvipositorBrainTask extends AbstractEntityBrainTask {
 		if (matriarchEntity.getOvipositorSize() < EntityMatriarch.OVIPOSITOR_THRESHOLD_SIZE)
 		{
 			matriarchEntity.setOvipositorSize(matriarchEntity.getOvipositorSize() + EntityMatriarch.OVIPOSITOR_PROGRESSIVE_GROWTH_SIZE);
-			matriarchEntity.setJellyLevel(matriarchEntity.getJellyLevel() - JellyConstants.OVIPOSITOR_GROWTH_COST);
+			matriarchEntity.jellyLevel.add(-JellyConstants.OVIPOSITOR_GROWTH_COST);
 		}
 
 		// While the queen is growing her ovipositor, we need her to look away from her egglaying position.

@@ -15,16 +15,16 @@ public class ChestbursterMatureBrainTask extends MatureBrainTask {
     public boolean isReadyToMature(SpeciesAlien alienEntity)
     {
         MaturityEntry maturityEntry = MaturityEntries.getEntryFor(alienEntity.getClass()).orElse(MaturityEntries.DEFAULT);
-        return alienEntity.ticksExisted >= maturityEntry.getMaturityTime() || alienEntity.getJellyLevel() >= maturityEntry.getRequiredJellyLevel();
+        return alienEntity.ticksExisted >= maturityEntry.getMaturityTime() || alienEntity.jellyLevel.get() >= maturityEntry.getRequiredJellyLevel();
     }
 
     @Override
     public void mature(SpeciesAlien alienEntity)
     {
         MaturityEntry maturityEntry = MaturityEntries.getEntryFor(alienEntity.getClass()).orElse(MaturityEntries.DEFAULT);
-        if (alienEntity.getJellyLevel() >= maturityEntry.getRequiredJellyLevel() && alienEntity.ticksExisted < maturityEntry.getMaturityTime())
+        if (alienEntity.jellyLevel.get() >= maturityEntry.getRequiredJellyLevel() && alienEntity.ticksExisted < maturityEntry.getMaturityTime())
         {
-            alienEntity.setJellyLevel(alienEntity.getJellyLevel() - maturityEntry.getRequiredJellyLevel());
+            alienEntity.jellyLevel.add(-maturityEntry.getRequiredJellyLevel());
         }
 
         SpeciesAlien matureState = (SpeciesAlien) Entities.constructEntity(alienEntity.world, ((EntityChestburster)alienEntity).getMatureState());

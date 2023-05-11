@@ -75,7 +75,7 @@ public class LayerHeldGun extends LayerHeldItem
                 GlStateManager.translate(0.0F, 0.2F, 0.0F);
             }
 
-            if (marine.isAiming())
+            if (marine.isAiming.get())
             {
                 renderer.getModel().getModel().leftArmPose = ArmPose.BOW_AND_ARROW;
             }

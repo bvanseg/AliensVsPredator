@@ -28,7 +28,7 @@ public class HatchBrainTask extends AbstractBrainTask<EntityBrainContext> {
 
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
 		// Egg must have a facehugger and must be fully open to hatch.
-		return ovamorph.containsFacehugger() && ovamorph.getOpenProgress() >= EntityOvamorph.MAX_OPEN_PROGRESS;
+		return ovamorph.containsFacehugger() && ovamorph.openProgress.get() >= EntityOvamorph.MAX_OPEN_PROGRESS;
 	}
 	
     @Override

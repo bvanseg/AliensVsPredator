@@ -66,7 +66,7 @@ public class ModelOvamorph extends Model<EntityOvamorph>
         if (ovamorph != null)
         {
             float progressPrev = ovamorph.renderOpenProgress;
-            ovamorph.renderOpenProgress = ovamorph.getOpenProgress();
+            ovamorph.renderOpenProgress = ovamorph.openProgress.get();
             ovamorph.renderOpenProgress = progressPrev + (ovamorph.renderOpenProgress - progressPrev) * ClientGame.instance.partialTicks();
 
             float openAngle = 37.5F;

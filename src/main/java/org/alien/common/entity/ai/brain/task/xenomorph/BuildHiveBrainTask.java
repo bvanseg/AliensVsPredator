@@ -67,7 +67,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 		if (droneEntity.getAlienHive() == null) return false;
 		if (droneEntity.world.getTotalWorldTime() % 10 != 0) return false;
 		if (droneEntity.getRNG().nextInt(3) != 0) return false;
-		if (droneEntity.getJellyLevel() < JellyConstants.RESIN_PLACE_COST) return false;
+		if (droneEntity.jellyLevel.get() < JellyConstants.RESIN_PLACE_COST) return false;
 
 		return true;
 	}
@@ -122,7 +122,7 @@ public class BuildHiveBrainTask extends AbstractEntityBrainTask {
 			entity.world.notifyBlockUpdate(this.targetPos, state, state, 3);
 			entity.getAlienHive().addResin(this.targetPos);
 
-			entity.setJellyLevel(entity.getJellyLevel() - JellyConstants.RESIN_PLACE_COST);
+			entity.jellyLevel.add(-JellyConstants.RESIN_PLACE_COST);
 			this.targetPos = null;
 		}
 	}

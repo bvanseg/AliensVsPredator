@@ -28,7 +28,7 @@ public class OvipositorHelper {
         int distance = 10;
 
         if (entity instanceof SpeciesAlien) {
-            float magicValue = MathHelper.clamp(((SpeciesAlien)entity).getJellyLevel() / ((float)AlienGrowthUtil.MATRIARCH_MAX_PSEUDO_JELLY_LEVEL * 2), 0F, 1F) / 1.75F;
+            float magicValue = MathHelper.clamp(((SpeciesAlien)entity).jellyLevel.get() / ((float)AlienGrowthUtil.MATRIARCH_MAX_PSEUDO_JELLY_LEVEL * 2), 0F, 1F) / 1.75F;
             distance += distance * magicValue;
         }
 
@@ -39,7 +39,7 @@ public class OvipositorHelper {
         int distance = 10;
 
         if (entity instanceof SpeciesAlien) {
-            float magicValue = MathHelper.clamp(((SpeciesAlien)entity).getJellyLevel() / ((float)AlienGrowthUtil.MATRIARCH_MAX_PSEUDO_JELLY_LEVEL * 2), 0F, 1F) / 1.75F;
+            float magicValue = MathHelper.clamp(((SpeciesAlien)entity).jellyLevel.get() / ((float)AlienGrowthUtil.MATRIARCH_MAX_PSEUDO_JELLY_LEVEL * 2), 0F, 1F) / 1.75F;
             distance += distance * magicValue;
         }
 

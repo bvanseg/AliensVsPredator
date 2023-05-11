@@ -25,7 +25,7 @@ public class LayerYautjaCloakStaticArc implements LayerRenderer<SpeciesYautja> {
 		float headPitch,
 		float scale
 	) {
-    	if (entitylivingbaseIn.getCloakState() != CloakState.DECLOAKING_FORCED) return;
+    	if (entitylivingbaseIn.cloakState.get() != CloakState.DECLOAKING_FORCED) return;
         this.spawnArc(entitylivingbaseIn);
     }
 

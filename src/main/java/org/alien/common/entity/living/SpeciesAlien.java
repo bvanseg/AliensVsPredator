@@ -15,20 +15,23 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
-import org.alien.common.api.parasitoidic.RoyalOrganism;
 import org.alien.common.entity.AlienCreatureTypes;
 import org.alien.common.entity.EntityAcidPool;
 import org.alien.common.entity.ai.brain.AlienBrain;
 import org.avp.common.AVPDamageSources;
 import org.lib.brain.Brainiac;
+import org.lib.common.entity.IntegerDataHandle;
 
 import java.util.UUID;
 
 /**
  * @author Ri5ux
  */
-public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, IAnimated, Brainiac<AlienBrain<? extends SpeciesAlien>> {
+public abstract class SpeciesAlien extends EntityMob implements IAnimated, Brainiac<AlienBrain<? extends SpeciesAlien>> {
     private static final DataParameter<Integer> JELLY_LEVEL = EntityDataManager.createKey(SpeciesAlien.class, DataSerializers.VARINT);
+
+    public final IntegerDataHandle jellyLevel = new IntegerDataHandle(this, JELLY_LEVEL);
+
     private UUID signature;
 
     /**
@@ -84,7 +87,7 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
 
     public void writeAlienToNBT(NBTTagCompound nbt) {
         nbt.setString("HiveSignature", signature != null ? this.signature.toString() : "");
-        nbt.setInteger("JellyLevel", this.getJellyLevel());
+        nbt.setInteger("JellyLevel", this.jellyLevel.get());
     }
 
     @Override
@@ -95,13 +98,13 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
 
     public void readAlienFromNBT(NBTTagCompound nbt) {
         this.signature = Worlds.uuidFromNBT(nbt, "HiveSignature");
-        this.setJellyLevel(nbt.getInteger("JellyLevel"));
+        this.jellyLevel.set(nbt.getInteger("JellyLevel"));
     }
 
     @Override
     public void onKillEntity(EntityLivingBase entity) {
         super.onKillEntity(entity);
-        this.setJellyLevel(this.getJellyLevel() + 25);
+        this.jellyLevel.add(25);
     }
 
     @Override
@@ -161,7 +164,7 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
         super.notifyDataManagerChange(key);
 
         if (key == JELLY_LEVEL && !this.growthInitialized) {
-            this.growthProgress = this.getJellyLevel();
+            this.growthProgress = this.jellyLevel.get();
             this.growthInitialized = true;
         }
     }
@@ -172,16 +175,6 @@ public abstract class SpeciesAlien extends EntityMob implements RoyalOrganism, I
             return false;
         }
         return super.startRiding(entityIn);
-    }
-
-    @Override
-    public int getJellyLevel() {
-        return this.getDataManager().get(JELLY_LEVEL);
-    }
-
-    @Override
-    public void setJellyLevel(int level) {
-        this.getDataManager().set(JELLY_LEVEL, level);
     }
 
     protected void negateFallDamage() {

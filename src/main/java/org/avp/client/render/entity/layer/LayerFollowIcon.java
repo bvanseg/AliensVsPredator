@@ -47,7 +47,7 @@ public class LayerFollowIcon implements LayerRenderer<EntityMarine> {
         }
         else
         {
-            if (entityMarine.isGuarding()) {
+            if (entityMarine.isGuarding.get()) {
                 contextStack = STANDARD_GUARD_ITEM_STACK;
             } else {
                 contextStack = STANDARD_FOLLOW_ITEM_STACK;

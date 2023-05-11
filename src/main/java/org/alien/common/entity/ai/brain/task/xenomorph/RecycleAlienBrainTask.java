@@ -80,7 +80,7 @@ public class RecycleAlienBrainTask<T extends SpeciesAlien> extends AbstractEntit
 
 		if (distance < 2)
 		{
-			entityDrone.setJellyLevel(entityDrone.getJellyLevel() + this.recycleTarget.getJellyLevel());
+			entityDrone.jellyLevel.add(this.recycleTarget.jellyLevel.get());
 			AlienSounds.FLESH_EAT.playSound(ctx.getEntity());
 			this.recycleTarget.setDead();
 			this.recycleTarget = null;

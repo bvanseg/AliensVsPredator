@@ -17,12 +17,18 @@ import org.alien.common.entity.ai.selector.EntitySelectorParasitoid;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.alien.common.world.hive.HiveMember;
 import org.avp.common.AVPItemDrops;
+import org.lib.common.entity.ByteDataHandle;
+import org.lib.common.entity.DataHandle;
+import org.lib.common.entity.IntegerDataHandle;
 import org.lib.common.inventory.ItemDropContext;
 
 public class EntityOvamorph extends SpeciesAlien implements HiveMember
 {
     private static final DataParameter<Integer> TIME_LEFT_UNTIL_OPEN = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.VARINT);
     private static final DataParameter<Byte> OPEN_PROGRESS = EntityDataManager.createKey(EntityOvamorph.class, DataSerializers.BYTE);
+
+    public final IntegerDataHandle timeLeftUntilOpen = new IntegerDataHandle(this, TIME_LEFT_UNTIL_OPEN);
+    public final ByteDataHandle openProgress = new ByteDataHandle(this, OPEN_PROGRESS);
 
     public static final int MAX_OPEN_PROGRESS = 42;
 
@@ -88,7 +94,7 @@ public class EntityOvamorph extends SpeciesAlien implements HiveMember
 
         this.containsFacehugger = nbt.getBoolean(CONTAINS_FACEHUGGER_NBT_KEY);
         this.timeSinceHatched = nbt.getInteger(TIME_HATCHED_NBT_KEY);
-        this.setOpenProgress(nbt.getInteger(OPEN_PROGRESS_NBT_KEY));
+        this.openProgress.set(nbt.getByte(OPEN_PROGRESS_NBT_KEY));
         this.hasBeenMoved = nbt.getBoolean(HAS_BEEN_MOVED_NBT_KEY);
         this.sendUpdates = true;
     }
@@ -99,7 +105,7 @@ public class EntityOvamorph extends SpeciesAlien implements HiveMember
         super.writeEntityToNBT(nbt);
 
         nbt.setBoolean(CONTAINS_FACEHUGGER_NBT_KEY, this.containsFacehugger);
-        nbt.setInteger(OPEN_PROGRESS_NBT_KEY, this.getOpenProgress());
+        nbt.setInteger(OPEN_PROGRESS_NBT_KEY, this.openProgress.get());
         nbt.setInteger(TIME_HATCHED_NBT_KEY, this.timeSinceHatched);
         nbt.setBoolean(HAS_BEEN_MOVED_NBT_KEY, this.hasBeenMoved);
     }
@@ -143,7 +149,7 @@ public class EntityOvamorph extends SpeciesAlien implements HiveMember
         super.notifyDataManagerChange(key);
 
         if (key == OPEN_PROGRESS && this.renderOpenProgress == -1) {
-            this.renderOpenProgress = this.getOpenProgress();
+            this.renderOpenProgress = this.openProgress.get();
         }
     }
 
@@ -152,7 +158,7 @@ public class EntityOvamorph extends SpeciesAlien implements HiveMember
     {
         super.collideWithEntity(entity);
         if (entity instanceof EntityLivingBase && EntitySelectorParasitoid.instance.test(entity))
-            this.setTimeLeftUntilOpen(0);
+            this.timeLeftUntilOpen.set(0);
     }
 
     @Override
@@ -161,26 +167,6 @@ public class EntityOvamorph extends SpeciesAlien implements HiveMember
         super.damageEntity(source, amount);
         ItemDropContext itemDropContext = new ItemDropContext(this);
         itemDropContext.dropWithAmount(AVPItemDrops.ROYAL_JELLY, 1);
-    }
-
-    public int getOpenProgress()
-    {
-        return this.getDataManager().get(OPEN_PROGRESS);
-    }
-
-    public void setOpenProgress(int progress)
-    {
-        this.getDataManager().set(OPEN_PROGRESS, (byte) progress);
-    }
-
-    public int getTimeLeftUntilOpen()
-    {
-        return this.getDataManager().get(TIME_LEFT_UNTIL_OPEN);
-    }
-
-    public void setTimeLeftUntilOpen(int hatchingTime)
-    {
-        this.getDataManager().set(TIME_LEFT_UNTIL_OPEN, hatchingTime);
     }
 
     public boolean containsFacehugger() {

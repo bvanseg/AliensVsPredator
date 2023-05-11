@@ -653,7 +653,7 @@ public class ModelYautja extends Model<SpeciesYautja>
         {
             SpeciesYautja y = (SpeciesYautja) base;
 
-            hideMaskRender(!y.isWearingMask());
+            hideMaskRender(!y.isWearingMask.get());
             
             if (Math.abs(base.motionY) > 0.1F)
             {

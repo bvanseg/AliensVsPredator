@@ -30,9 +30,9 @@ public class AVPDamageSources extends DamageSource
         super(source);
     }
 
-    public static DamageSource causeLaserMineDamage(Entity entityLaserMine, Entity entity)
+    public static DamageSource causeLaserMineDamage(Entity entityLaserMine)
     {
-        return (new EntityDamageSourceIndirect(LASER_MINE.getDamageType(), entityLaserMine, entity)).setProjectile().setExplosion();
+        return (new EntityDamageSource(LASER_MINE.getDamageType(), entityLaserMine)).setProjectile().setExplosion();
     }
 
     public static DamageSource causePlasmaCasterDamage(Entity sourceEntity)

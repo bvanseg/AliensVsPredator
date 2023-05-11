@@ -37,7 +37,7 @@ public class UpdateTimeUntilOpenBrainTask extends AbstractEntityBrainTask {
 		if (world.getBlockState(ovamorph.getPosition()).getMaterial() == AVPFluidMaterials.MIST)
 			return false;
 
-		if (ovamorph.getTimeLeftUntilOpen() <= 0)
+		if (ovamorph.timeLeftUntilOpen.get() <= 0)
 			return false;
 
 		return true;
@@ -47,6 +47,6 @@ public class UpdateTimeUntilOpenBrainTask extends AbstractEntityBrainTask {
 	protected void startExecuting() {
 		EntityOvamorph ovamorph = (EntityOvamorph) ctx.getEntity();
 		// Update time until the egg starts to open.
-		ovamorph.setTimeLeftUntilOpen(ovamorph.getTimeLeftUntilOpen() - (ovamorph.acceleratedHatching ? 20 : 1));
+		ovamorph.timeLeftUntilOpen.add(-(ovamorph.acceleratedHatching ? 20 : 1));
 	}
 }

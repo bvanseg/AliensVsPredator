@@ -20,6 +20,7 @@ import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import org.avp.common.AVPDamageSources;
 import org.lib.common.FuncUtil;
+import org.lib.common.entity.BooleanDataHandle;
 import org.predator.common.PredatorItems;
 
 import java.util.List;
@@ -30,6 +31,8 @@ public class EntityLaserMine extends Entity
     private static final DataParameter<Boolean> TRIPPED = EntityDataManager.createKey(EntityLaserMine.class, DataSerializers.BOOLEAN);
 
     private static final int TIME_TO_DETONATE_IN_TICKS = 10;
+
+    public final BooleanDataHandle isTripped = new BooleanDataHandle(this, TRIPPED);
     private UUID ownerUUID;
     public int direction;
     public BlockPos parentBlockPos;
@@ -98,10 +101,10 @@ public class EntityLaserMine extends Entity
     	if (!this.world.isRemote) {
         	if (this.canExplodeForEntity()) {
         		if (this.isTargetEntityVisible()) {
-            		this.setTripped(true);
+            		this.isTripped.set(true);
         		}
             	
-        		if (this.hasBeenTripped()) {
+        		if (this.isTripped.get()) {
         			if (this.isCharged()) {
         				this.explode(targetEntity);
         			} else {
@@ -186,14 +189,6 @@ public class EntityLaserMine extends Entity
 	private boolean isTargetEntityVisible() {
 		return this.targetDistance < this.blockDistance;
 	}
-	
-	private void setTripped(boolean value) {
-		this.dataManager.set(TRIPPED, value);
-	}
-
-	public boolean hasBeenTripped() {
-		return this.dataManager.get(TRIPPED);
-	}
     
     private final RayTraceResult scanForBlocks() {
     	int xOffset = this.getLaserMaxDepth() * this.getHorizontalFacing().getDirectionVec().getX();
@@ -223,7 +218,7 @@ public class EntityLaserMine extends Entity
     {
         Explosion explosion = new Explosion(world, this, this.posX, this.posY, this.posZ, 4F, false, false);
         explosion.doExplosionB(true);
-        entityHit.attackEntityFrom(AVPDamageSources.causeLaserMineDamage(this, entityHit), 15F);
+        entityHit.attackEntityFrom(AVPDamageSources.causeLaserMineDamage(this), 15F);
         entityHit.hurtResistantTime = 0;
         this.setDead();
     }

@@ -22,7 +22,7 @@ public class LayerPhosphorescent implements LayerRenderer<EntityNauticomorph> {
     }
 
     public void doRenderLayer(EntityNauticomorph entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        float phosphorescenceLevel = entitylivingbaseIn.getPhosphorescenceLevel();
+        float phosphorescenceLevel = entitylivingbaseIn.phosphorescenceLevel.get();
         boolean glowing = phosphorescenceLevel > 0.05F;
 
         if (glowing) {

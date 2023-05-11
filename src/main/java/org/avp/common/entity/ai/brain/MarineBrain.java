@@ -172,7 +172,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
             this.disableProfiles(WOLF_BEHAVIOR);
 
             // If the marine is not guarding (not stationary), allow the marine to follow the squad leader.
-            if (!this.getEntity().isGuarding()) {
+            if (!this.getEntity().isGuarding.get()) {
                 this.enableProfiles(LEADER_FOLLOW_BEHAVIOR);
             }
             // Otherwise, the marine should be stationary.
@@ -180,7 +180,7 @@ public class MarineBrain extends AbstractEntityBrain<EntityMarine> {
                 this.disableProfiles(LEADER_FOLLOW_BEHAVIOR);
             }
         } else {
-            this.getEntity().setGuarding(false);
+            this.getEntity().isGuarding.set(false);
             this.enableProfiles(WOLF_BEHAVIOR);
             this.disableProfiles(SQUAD_BEHAVIOR, LEADER_FOLLOW_BEHAVIOR);
         }

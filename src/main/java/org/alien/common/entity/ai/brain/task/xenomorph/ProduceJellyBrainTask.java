@@ -42,6 +42,6 @@ public class ProduceJellyBrainTask<T extends SpeciesAlien> extends AbstractEntit
 	@Override
 	protected void startExecuting() {
 		SpeciesAlien alien = (SpeciesAlien) ctx.getEntity();
-		alien.setJellyLevel(alien.getJellyLevel() + 1);
+		alien.jellyLevel.increment();
 	}
 }

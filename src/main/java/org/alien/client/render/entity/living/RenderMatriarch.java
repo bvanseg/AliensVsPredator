@@ -20,7 +20,7 @@ public class RenderMatriarch extends RenderLivingWrapper<EntityMatriarch, ModelM
     protected void preRenderCallback(EntityMatriarch matriarch, float partialTicks)
     {
         float jellyLevelPrev = matriarch.growthProgress;
-        matriarch.growthProgress = matriarch.getJellyLevel();
+        matriarch.growthProgress = matriarch.jellyLevel.get();
         matriarch.growthProgress = jellyLevelPrev + ((matriarch.growthProgress - jellyLevelPrev) * partialTicks * 0.005f);
 
         float additionalScale = MathHelper.clamp(matriarch.growthProgress / (AlienGrowthUtil.MATRIARCH_MAX_PSEUDO_JELLY_LEVEL * 2), 0F, 1F);
