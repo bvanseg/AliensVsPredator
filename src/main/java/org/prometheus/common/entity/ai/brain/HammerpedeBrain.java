@@ -1,6 +1,7 @@
 package org.prometheus.common.entity.ai.brain;
 
 import org.alien.common.entity.ai.brain.AlienBrain;
+import org.prometheus.common.entity.ai.brain.task.LurkInBlackGooBrainTask;
 import org.prometheus.common.entity.ai.selector.EntitySelectorHammerpede;
 import org.prometheus.common.entity.living.vardic.EntityHammerpede;
 import org.lib.brain.impl.sensor.EntityBrainSensor;
@@ -35,5 +36,8 @@ public class HammerpedeBrain extends AlienBrain<EntityHammerpede> {
 		this.addTask(new AttackOnCollideBrainTask(0.8D));
 		this.addTask(new HurtByTargetBrainTask());
 		this.addTask(new NearestAttackableTargetBrainTask());
+
+		// Hammerpede-specific tasks
+		this.addTask(new LurkInBlackGooBrainTask());
 	}
 }

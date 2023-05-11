@@ -1,7 +1,5 @@
 package org.prometheus.common.entity.living.vardic;
 
-import com.asx.mdx.common.minecraft.Pos;
-import com.asx.mdx.common.minecraft.block.Blocks;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
@@ -13,10 +11,7 @@ import net.minecraft.world.World;
 import org.alien.client.AlienSounds;
 import org.alien.common.entity.living.SpeciesAlien;
 import org.prometheus.common.PrometheusItems;
-import org.prometheus.common.block.init.PrometheusBlocks;
 import org.prometheus.common.entity.ai.brain.HammerpedeBrain;
-
-import java.util.List;
 
 public class EntityHammerpede extends SpeciesAlien
 {
@@ -59,25 +54,6 @@ public class EntityHammerpede extends SpeciesAlien
     {
         super.onUpdate();
         this.fallDistance = 0F;
-        this.lurkInBlackGoo();
-    }
-
-    public void lurkInBlackGoo()
-    {
-        if (this.getAttackTarget() != null)
-            return;
-        if (this.world.getTotalWorldTime() % 40 != 0 && this.rand.nextInt(4) != 0)
-            return;
-        if (this.world.getBlockState(this.getPosition()).getBlock() == PrometheusBlocks.BLACK_GOO)
-            return;
-
-        List<Pos> locations = Blocks.getCoordDataInRangeIncluding((int) this.posX, (int) this.posY, (int) this.posZ, 10, this.world, PrometheusBlocks.BLACK_GOO);
-
-        if (!locations.isEmpty())
-        {
-            Pos selectedCoord = locations.get(this.rand.nextInt(locations.size()));
-            this.getNavigator().tryMoveToXYZ(selectedCoord.x, selectedCoord.y, selectedCoord.z, this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue());
-        }
     }
 
     @Override
@@ -102,11 +78,6 @@ public class EntityHammerpede extends SpeciesAlien
     public boolean isOnLadder()
     {
         return this.collidedHorizontally;
-    }
-
-    public boolean isClimbing()
-    {
-        return this.isOnLadder() && this.motionY > 1.0099999997764826D;
     }
 
     @Override
