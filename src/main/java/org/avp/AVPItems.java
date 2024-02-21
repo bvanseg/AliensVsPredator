@@ -25,9 +25,13 @@ public final class AVPItems implements AVPRegistry {
     private static final RegistryObject<Item> AMMO_SMG = registerItem("ammo_smg");
     private static final RegistryObject<Item> AMMO_SNIPER = registerItem("ammo_sniper");
     public static final RegistryObject<Item> CPU = registerItem("cpu");
+    private static final RegistryObject<Item> DORITOS = registerItem("doritos");
+    private static final RegistryObject<Item> DORITOS_COOL_RANCH = registerItem("doritos_cool_ranch");
     private static final RegistryObject<Item> RAM = registerItem("ram");
+    private static final RegistryObject<Item> RAW_TENTACLE = registerItem("raw_tentacle");
     private static final RegistryObject<Item> ROYAL_JELLY = registerItem("royal_jelly");
     private static final RegistryObject<Item> SILICA = registerItem("silica");
+    private static final RegistryObject<Item> TRILO_BITE = registerItem("trilo_bite");
 
     private static RegistryObject<Item> registerItem(String name) {
         return ITEMS.register(name, () -> new Item(new Item.Properties().group(AVPItemGroups.ITEM_GROUP)));
