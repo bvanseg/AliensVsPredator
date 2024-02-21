@@ -23,9 +23,7 @@ public final class AVPItems implements AVPRegistry {
     private static final RegistryObject<Item> AMMO_PISTOL = registerItem("ammo_pistol");
     private static final RegistryObject<Item> AMMO_SMG = registerItem("ammo_smg");
     private static final RegistryObject<Item> AMMO_SNIPER = registerItem("ammo_sniper");
-    public static final RegistryObject<Item> CPU = registerItem("cpu");
-    private static final RegistryObject<Item> RAM = registerItem("ram");
-    private static final RegistryObject<Item> ROYAL_JELLY = registerItem("royal_jelly");
+    public static final RegistryObject<Item> ROYAL_JELLY = registerItem("royal_jelly");
     private static final RegistryObject<Item> SILICA = registerItem("silica");
 
     private static RegistryObject<Item> registerItem(String name) {

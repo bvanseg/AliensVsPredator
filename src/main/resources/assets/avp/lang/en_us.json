@@ -5,15 +5,27 @@
   "item.avp.ammo_smg": "SMG Ammo",
   "item.avp.ammo_sniper": "Sniper Ammo",
 
+  "item.avp.capacitor": "Capacitor",
   "item.avp.cpu": "CPU",
+  "item.avp.diode": "Diode",
   "item.avp.doritos": "Doritos",
   "item.avp.doritos_cool_ranch": "Doritos (Cool Ranch)",
+  "item.avp.integrated_circuit": "Integrated Circuit",
+  "item.avp.led": "LED",
+  "item.avp.led_display": "LED Display",
+  "item.avp.motherboard": "Motherboard",
+  "item.avp.power_supply": "Power Supply",
   "item.avp.ram": "RAM",
   "item.avp.raw_tentacle": "Raw Tentacle",
+  "item.avp.regulator": "Regulator",
+  "item.avp.resistor": "Resistor",
   "item.avp.royal_jelly": "Royal Jelly",
   "item.avp.silica": "Silica",
+  "item.avp.ssd": "Solid State Drive",
+  "item.avp.transistor": "Transistor",
   "item.avp.trilo_bite": "Trilo Bite",
 
+  "itemGroup.avp.electronics": "AVP Electronics",
   "itemGroup.avp.food": "AVP Food",
   "itemGroup.avp.items": "AVP Items"
 }
