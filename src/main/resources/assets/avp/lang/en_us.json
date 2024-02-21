@@ -1,0 +1,8 @@
+{
+  "item.avp.cpu": "CPU",
+  "item.avp.ram": "RAM",
+  "item.avp.royal_jelly": "Royal Jelly",
+  "item.avp.silica": "Silica",
+
+  "itemGroup.avp.items": "AVP Items"
+}

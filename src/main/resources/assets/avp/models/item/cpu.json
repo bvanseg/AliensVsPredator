@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "avp:items/carbon"
+    "layer0": "avp:item/cpu"
   }
 }
