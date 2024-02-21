@@ -5,6 +5,31 @@
   "item.avp.ammo_smg": "SMG Ammo",
   "item.avp.ammo_sniper": "Sniper Ammo",
 
+  "item.avp.armor_celtic_body": "Celtic Chestplate",
+  "item.avp.armor_celtic_boots": "Celtic Boots",
+  "item.avp.armor_celtic_helmet": "Celtic Helmet",
+  "item.avp.armor_celtic_leggings": "Celtic Leggings",
+
+  "item.avp.armor_mk50_body": "Mk50 Chestplate",
+  "item.avp.armor_mk50_boots": "Mk50 Boots",
+  "item.avp.armor_mk50_helmet": "Mk50 Helmet",
+  "item.avp.armor_mk50_leggings": "Mk50 Leggings",
+
+  "item.avp.armor_pressure_body": "Pressure Chestplate",
+  "item.avp.armor_pressure_boots": "Pressure Boots",
+  "item.avp.armor_pressure_helmet": "Pressure Helmet",
+  "item.avp.armor_pressure_leggings": "Pressure Leggings",
+
+  "item.avp.armor_tactical_body": "Tactical Chestplate",
+  "item.avp.armor_tactical_boots": "Tactical Boots",
+  "item.avp.armor_tactical_helmet": "Tactical Helmet",
+  "item.avp.armor_tactical_leggings": "Tactical Leggings",
+
+  "item.avp.armor_xeno_body": "Xeno Chestplate",
+  "item.avp.armor_xeno_boots": "Xeno Boots",
+  "item.avp.armor_xeno_helmet": "Xeno Helmet",
+  "item.avp.armor_xeno_leggings": "Xeno Leggings",
+
   "item.avp.capacitor": "Capacitor",
   "item.avp.cpu": "CPU",
   "item.avp.diode": "Diode",
@@ -25,6 +50,7 @@
   "item.avp.transistor": "Transistor",
   "item.avp.trilo_bite": "Trilo Bite",
 
+  "itemGroup.avp.armor": "AVP Armor",
   "itemGroup.avp.electronics": "AVP Electronics",
   "itemGroup.avp.food": "AVP Food",
   "itemGroup.avp.items": "AVP Items"

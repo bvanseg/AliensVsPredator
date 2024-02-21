@@ -7,6 +7,12 @@ import net.minecraft.item.ItemStack;
  * @author Boston Vanseghi
  */
 public class AVPItemGroups {
+    public static final ItemGroup ARMOR_ITEM_GROUP = new ItemGroup(AVPConstants.MOD_ID + ".armor") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(AVPArmorItems.CELTIC_HELMET.get());
+        }
+    };
     public static final ItemGroup ELECTRONICS_ITEM_GROUP = new ItemGroup(AVPConstants.MOD_ID + ".electronics") {
         @Override
         public ItemStack createIcon() {
