@@ -24,6 +24,7 @@ public class AVP {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        AVPFoodItems.getInstance().register();
         AVPItems.getInstance().register();
     }
 

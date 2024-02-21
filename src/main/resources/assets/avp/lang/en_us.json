@@ -6,9 +6,14 @@
   "item.avp.ammo_sniper": "Sniper Ammo",
 
   "item.avp.cpu": "CPU",
+  "item.avp.doritos": "Doritos",
+  "item.avp.doritos_cool_ranch": "Doritos (Cool Ranch)",
   "item.avp.ram": "RAM",
+  "item.avp.raw_tentacle": "Raw Tentacle",
   "item.avp.royal_jelly": "Royal Jelly",
   "item.avp.silica": "Silica",
+  "item.avp.trilo_bite": "Trilo Bite",
 
+  "itemGroup.avp.food": "AVP Food",
   "itemGroup.avp.items": "AVP Items"
 }
