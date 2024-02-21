@@ -1,22 +1,9 @@
-# Everything
-/*
+# Gradle
+.gradle
+build
 
-# Directories
-!/src
-!/gradle
+# Intellij IDEA
+.idea
 
-# files
-!/.gitignore
-!/.gitmodules
-!/CONTRIBUTING.MD
-!/LICENSE.txt
-!/README.md
-!/gradle.properties
-!/build.gradle
-!/gradlew
-!/gradlew.bat
-!/.travis.yml
-!/travisSetup.sh
-.DS_Store
-
-mdxlib_at.cfg
+# Minecraft
+run
