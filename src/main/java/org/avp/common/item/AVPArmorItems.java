@@ -1,10 +1,13 @@
-package org.avp;
+package org.avp.common.item;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.avp.AVPConstants;
+import org.avp.AVPItemGroups;
+import org.avp.AVPRegistry;
 
 /**
  * @author Boston Vanseghi

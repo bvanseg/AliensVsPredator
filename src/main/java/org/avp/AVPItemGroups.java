@@ -2,6 +2,10 @@ package org.avp;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import org.avp.common.item.AVPArmorItems;
+import org.avp.common.item.AVPElectronicItems;
+import org.avp.common.item.AVPFoodItems;
+import org.avp.common.item.AVPItems;
 
 /**
  * @author Boston Vanseghi
