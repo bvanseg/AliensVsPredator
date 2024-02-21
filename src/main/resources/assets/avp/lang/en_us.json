@@ -1,4 +1,10 @@
 {
+  "item.avp.ammo_ar": "AR Ammo",
+  "item.avp.ammo_flamethrower": "Flamethrower Ammo",
+  "item.avp.ammo_pistol": "Pistol Ammo",
+  "item.avp.ammo_smg": "SMG Ammo",
+  "item.avp.ammo_sniper": "Sniper Ammo",
+
   "item.avp.cpu": "CPU",
   "item.avp.ram": "RAM",
   "item.avp.royal_jelly": "Royal Jelly",
