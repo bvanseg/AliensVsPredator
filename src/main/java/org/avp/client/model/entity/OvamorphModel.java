@@ -1,4 +1,5 @@
-package org.avp.client.model.entity;// Made with Blockbench 4.9.4
+package org.avp.client.model.entity;
+// Made with Blockbench 4.9.4
 // Exported for Minecraft version 1.14 with MCP mappings
 // Paste this class into your mod and generate all required imports
 

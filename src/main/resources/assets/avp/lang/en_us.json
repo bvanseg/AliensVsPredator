@@ -52,6 +52,9 @@
   "block.avp.yautja_ship_support_pillar": "Ship Support Pillar (Yautja)",
   "block.avp.yautja_ship_wall_base": "Ship Wall (Base, Yautja)",
 
+  "entity.avp.belugaburster": "Belugaburster",
+  "entity.avp.ovamorph": "Ovamorph",
+
   "item.avp.ammo_ar": "AR Ammo",
   "item.avp.ammo_flamethrower": "Flamethrower Ammo",
   "item.avp.ammo_pistol": "Pistol Ammo",
@@ -99,6 +102,10 @@
   "item.avp.resistor": "Resistor",
   "item.avp.royal_jelly": "Royal Jelly",
   "item.avp.silica": "Silica",
+
+  "item.avp.spawn_egg_belugaburster": "Belugaburster Spawn Egg",
+  "item.avp.spawn_egg_ovamorph": "Ovamorph Spawn Egg",
+
   "item.avp.ssd": "Solid State Drive",
   "item.avp.transistor": "Transistor",
   "item.avp.trilo_bite": "Trilo Bite",

@@ -5,7 +5,6 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
-import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -26,6 +25,7 @@ public class AVPEntities implements AVPRegistry {
     private static final DeferredRegister<EntityType<?>> ENTITY_TYPES = new DeferredRegister<>(ForgeRegistries.ENTITIES, AVPConstants.MOD_ID);
     private static final DeferredRegister<Item> SPAWN_EGG_ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, AVPConstants.MOD_ID);
 
+    private static final EntityType<BelugabursterEntity> BELUGABURSTER = registerEntityType("belugaburster", EntityType.Builder.create(BelugabursterEntity::new, EntityClassification.MONSTER));
     private static final EntityType<OvamorphEntity> OVAMORPH = registerEntityType("ovamorph", EntityType.Builder.create(OvamorphEntity::new, EntityClassification.MONSTER));
 
     private static <T extends Entity> EntityType<T> registerEntityType(String name, EntityType.Builder<T> entityTypeBuilder) {
