@@ -1,4 +1,11 @@
 {
+  "block.avp.ore_bauxite": "Bauxite Ore",
+  "block.avp.ore_cobalt": "Cobalt Ore",
+  "block.avp.ore_copper": "Copper Ore",
+  "block.avp.ore_lithium": "Lithium Ore",
+  "block.avp.ore_monazite": "Monazite Ore",
+  "block.avp.ore_silica": "Silica Ore",
+
   "block.avp.temple_brick": "Temple Brick",
   "block.avp.temple_brick_single": "Temple Brick (Single)",
   "block.avp.temple_floor": "Temple Floor",
@@ -59,9 +66,9 @@
   "item.avp.weapon_ak_47": "AK-47",
   "item.avp.weapon_m4_carbine": "M4 Carbine",
   "item.avp.weapon_m41a_pulse_rifle": "M41A Pulse Rifle",
-  "item.avp.weapon_m41a_smart_gun": "M56 Smartgun",
-  "item.avp.weapon_pistol": "88 Mod 4 Combat Pistol",
-  "item.avp.weapon_sniper": "Sniper Rifle",
+  "item.avp.weapon_m56_smartgun": "M56 Smartgun",
+  "item.avp.weapon_88mod4_combat_pistol": "88 Mod 4 Combat Pistol",
+  "item.avp.weapon_sniper_rifle": "Sniper Rifle",
 
   "itemGroup.avp.armor": "AVP Armor",
   "itemGroup.avp.blocks": "AVP Blocks",
