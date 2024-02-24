@@ -12,6 +12,14 @@
   "block.avp.temple_tile": "Temple Tile",
   "block.avp.temple_wall_base": "Temple Wall (Base)",
 
+  "block.avp.yautja_ship_brick": "Small Plating (Yautja)",
+  "block.avp.yautja_ship_decor_1": "Ship Light (Yautja)",
+  "block.avp.yautja_ship_decor_2": "Ship Light Pillar (Yautja)",
+  "block.avp.yautja_ship_decor_3": "Heavy Plating (Yautja)",
+  "block.avp.yautja_ship_panel": "Ship Panel (Yautja)",
+  "block.avp.yautja_ship_support_pillar": "Ship Support Pillar (Yautja)",
+  "block.avp.yautja_ship_wall_base": "Ship Wall (Base, Yautja)",
+
   "item.avp.ammo_ar": "AR Ammo",
   "item.avp.ammo_flamethrower": "Flamethrower Ammo",
   "item.avp.ammo_pistol": "Pistol Ammo",
