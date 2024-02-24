@@ -27,6 +27,12 @@ public class AVPItemGroups {
             return new ItemStack(AVPElectronicItems.CPU.get());
         }
     };
+    public static final ItemGroup ENTITIES_ITEM_GROUP = new ItemGroup(AVPConstants.MOD_ID + ".entities") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(AVPElectronicItems.CPU.get());
+        }
+    };
     public static final ItemGroup FOOD_ITEM_GROUP = new ItemGroup(AVPConstants.MOD_ID + ".food") {
         @Override
         public ItemStack createIcon() {

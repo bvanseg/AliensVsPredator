@@ -1,12 +1,17 @@
 package org.avp;
 
 import net.minecraft.block.Blocks;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.avp.client.render.entity.OvamorphRenderer;
 import org.avp.common.block.*;
+import org.avp.common.entity.AVPEntities;
+import org.avp.common.entity.OvamorphEntity;
 import org.avp.common.item.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +23,10 @@ import org.slf4j.LoggerFactory;
 public class AVP {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(AVP.class);
+
+    public static ResourceLocation location(String location) {
+        return new ResourceLocation(AVPConstants.MOD_ID, location);
+    }
 
     public AVP() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -31,6 +40,8 @@ public class AVP {
         AVPPaddingBlocks.getInstance().register();
         AVPTempleBlocks.getInstance().register();
         AVPYautjaShipBlocks.getInstance().register();
+
+        AVPEntities.getInstance().register();
 
         AVPArmorItems.getInstance().register();
         AVPElectronicItems.getInstance().register();
@@ -48,5 +59,6 @@ public class AVP {
     private void clientSetup(FMLClientSetupEvent event) {
         // do something that can only be done on the client
         LOGGER.info("Got game settings {}", event.getMinecraftSupplier().get().gameSettings);
+        RenderingRegistry.registerEntityRenderingHandler(OvamorphEntity.class, OvamorphRenderer::new);
     }
 }
