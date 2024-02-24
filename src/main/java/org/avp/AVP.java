@@ -6,10 +6,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.avp.common.item.AVPArmorItems;
-import org.avp.common.item.AVPElectronicItems;
-import org.avp.common.item.AVPFoodItems;
-import org.avp.common.item.AVPItems;
+import org.avp.common.item.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -32,6 +29,7 @@ public class AVP {
         AVPElectronicItems.getInstance().register();
         AVPFoodItems.getInstance().register();
         AVPItems.getInstance().register();
+        AVPWeaponItems.getInstance().register();
     }
 
     private void setup(FMLCommonSetupEvent event) {

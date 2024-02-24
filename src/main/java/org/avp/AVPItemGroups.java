@@ -2,10 +2,7 @@ package org.avp;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import org.avp.common.item.AVPArmorItems;
-import org.avp.common.item.AVPElectronicItems;
-import org.avp.common.item.AVPFoodItems;
-import org.avp.common.item.AVPItems;
+import org.avp.common.item.*;
 
 /**
  * @author Boston Vanseghi
@@ -34,6 +31,12 @@ public class AVPItemGroups {
         @Override
         public ItemStack createIcon() {
             return new ItemStack(AVPItems.ROYAL_JELLY.get());
+        }
+    };
+    public static final ItemGroup WEAPON_ITEM_GROUP = new ItemGroup(AVPConstants.MOD_ID + ".weapons") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(AVPWeaponItems.WEAPON_M41A_PULSE_RIFLE.get());
         }
     };
 }

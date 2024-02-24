@@ -50,8 +50,16 @@
   "item.avp.transistor": "Transistor",
   "item.avp.trilo_bite": "Trilo Bite",
 
+  "item.avp.weapon_ak_47": "AK-47",
+  "item.avp.weapon_m4_carbine": "M4 Carbine",
+  "item.avp.weapon_m41a_pulse_rifle": "M41A Pulse Rifle",
+  "item.avp.weapon_m41a_smart_gun": "M56 Smartgun",
+  "item.avp.weapon_pistol": "88 Mod 4 Combat Pistol",
+  "item.avp.weapon_sniper": "Sniper Rifle",
+
   "itemGroup.avp.armor": "AVP Armor",
   "itemGroup.avp.electronics": "AVP Electronics",
   "itemGroup.avp.food": "AVP Food",
-  "itemGroup.avp.items": "AVP Items"
+  "itemGroup.avp.items": "AVP Items",
+  "itemGroup.avp.weapons": "AVP Weapons"
 }
