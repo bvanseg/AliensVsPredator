@@ -5,9 +5,7 @@ import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.util.ResourceLocation;
 import org.avp.AVP;
 import org.avp.client.model.entity.BelugabursterModel;
-import org.avp.client.model.entity.OvamorphModel;
 import org.avp.common.entity.BelugabursterEntity;
-import org.avp.common.entity.OvamorphEntity;
 
 public class BelugabursterRenderer extends LivingRenderer<BelugabursterEntity, BelugabursterModel> {
     public BelugabursterRenderer(EntityRendererManager entityRendererManager) {
