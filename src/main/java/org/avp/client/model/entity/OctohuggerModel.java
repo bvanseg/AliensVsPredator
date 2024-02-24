@@ -33,7 +33,7 @@ public class OctohuggerModel extends EntityModel<OctohuggerEntity> {
 		
 
 		gBody = new RendererModel(this);
-		gBody.setRotationPoint(0.0F, -0.225F, 0.0F);
+		gBody.setRotationPoint(0.0F, 16.275F, 0.0F);
 		root.addChild(gBody);
 		gBody.cubeList.add(new ModelBox(gBody, 0, 17, -1.5F, -2.275F, -1.5F, 3, 5, 3, 0.0F, false));
 		gBody.cubeList.add(new ModelBox(gBody, 0, 20, -1.5F, -1.225F, -1.5F, 3, 2, 3, 0.15F, false));
