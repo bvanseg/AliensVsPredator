@@ -27,6 +27,15 @@
   "block.avp.ore_monazite": "Monazite Ore",
   "block.avp.ore_silica": "Silica Ore",
 
+  "block.avp.padding_orange_panel": "Orange Padding Panel",
+  "block.avp.padding_orange_pipes": "Orange Padding Pipes",
+  "block.avp.padding_orange_square": "Orange Padding Square",
+  "block.avp.padding_orange_tiles": "Orange Padding Tiles",
+  "block.avp.padding_white_panel": "White Padding Panel",
+  "block.avp.padding_white_pipes": "White Padding Pipes",
+  "block.avp.padding_white_square": "White Padding Square",
+  "block.avp.padding_white_tiles": "White Padding Tiles",
+
   "block.avp.temple_brick": "Temple Brick",
   "block.avp.temple_brick_single": "Temple Brick (Single)",
   "block.avp.temple_floor": "Temple Floor",

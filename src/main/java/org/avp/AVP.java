@@ -6,10 +6,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import org.avp.common.block.AVPEngineerShipBlocks;
-import org.avp.common.block.AVPOreBlocks;
-import org.avp.common.block.AVPTempleBlocks;
-import org.avp.common.block.AVPYautjaShipBlocks;
+import org.avp.common.block.*;
 import org.avp.common.item.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +28,7 @@ public class AVP {
 
         AVPEngineerShipBlocks.getInstance().register();
         AVPOreBlocks.getInstance().register();
+        AVPPaddingBlocks.getInstance().register();
         AVPTempleBlocks.getInstance().register();
         AVPYautjaShipBlocks.getInstance().register();
 
