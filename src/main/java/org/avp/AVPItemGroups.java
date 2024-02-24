@@ -2,6 +2,7 @@ package org.avp;
 
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import org.avp.common.block.AVPTempleBlocks;
 import org.avp.common.item.*;
 
 /**
@@ -12,6 +13,12 @@ public class AVPItemGroups {
         @Override
         public ItemStack createIcon() {
             return new ItemStack(AVPArmorItems.CELTIC_HELMET.get());
+        }
+    };
+    public static final ItemGroup BLOCK_ITEM_GROUP = new ItemGroup(AVPConstants.MOD_ID + ".blocks") {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(AVPTempleBlocks.TEMPLE_BRICK.get());
         }
     };
     public static final ItemGroup ELECTRONICS_ITEM_GROUP = new ItemGroup(AVPConstants.MOD_ID + ".electronics") {
@@ -27,7 +34,7 @@ public class AVPItemGroups {
         }
     };
 
-    public static final ItemGroup ITEM_GROUP = new ItemGroup(AVPConstants.MOD_ID + ".items") {
+    public static final ItemGroup MISCELLANEOUS_ITEM_GROUP = new ItemGroup(AVPConstants.MOD_ID + ".items") {
         @Override
         public ItemStack createIcon() {
             return new ItemStack(AVPItems.ROYAL_JELLY.get());

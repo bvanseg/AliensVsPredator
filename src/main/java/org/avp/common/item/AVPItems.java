@@ -30,7 +30,7 @@ public final class AVPItems implements AVPRegistry {
     private static final RegistryObject<Item> SILICA = registerItem("silica");
 
     private static RegistryObject<Item> registerItem(String name) {
-        return ITEMS.register(name, () -> new Item(new Item.Properties().group(AVPItemGroups.ITEM_GROUP)));
+        return ITEMS.register(name, () -> new Item(new Item.Properties().group(AVPItemGroups.MISCELLANEOUS_ITEM_GROUP)));
     }
 
     @Override
