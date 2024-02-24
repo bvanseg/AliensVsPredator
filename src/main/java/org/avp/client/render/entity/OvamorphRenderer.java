@@ -1,5 +1,6 @@
 package org.avp.client.render.entity;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.util.ResourceLocation;
@@ -15,6 +16,12 @@ public class OvamorphRenderer extends LivingRenderer<OvamorphEntity, OvamorphMod
 
     public OvamorphRenderer(EntityRendererManager entityRendererManager) {
         super(entityRendererManager, new OvamorphModel(), 0F);
+    }
+
+    @Override
+    protected void preRenderCallback(OvamorphEntity ovamorphEntity, float partialTicks) {
+        super.preRenderCallback(ovamorphEntity, partialTicks);
+        GlStateManager.scalef(1.75f, 1.75f, 1.75f);
     }
 
     @Override
