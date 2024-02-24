@@ -29,6 +29,7 @@ public class AVPEntities implements AVPRegistry {
     private static final EntityType<BelugamorphEntity> BELUGAMORPH = registerEntityType("belugamorph", EntityType.Builder.create(BelugamorphEntity::new, EntityClassification.MONSTER));
     private static final EntityType<OctohuggerEntity> OCTOHUGGER = registerEntityType("octohugger", EntityType.Builder.create(OctohuggerEntity::new, EntityClassification.MONSTER));
     private static final EntityType<OvamorphEntity> OVAMORPH = registerEntityType("ovamorph", EntityType.Builder.create(OvamorphEntity::new, EntityClassification.MONSTER));
+    private static final EntityType<UltramorphEntity> ULTRAMORPH = registerEntityType("ultramorph", EntityType.Builder.create(UltramorphEntity::new, EntityClassification.MONSTER));
 
     private static <T extends Entity> EntityType<T> registerEntityType(String name, EntityType.Builder<T> entityTypeBuilder) {
         EntityType<T> entityType = entityTypeBuilder.build(AVPConstants.MOD_ID + ":" + name);
