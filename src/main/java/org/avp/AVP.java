@@ -1,7 +1,6 @@
 package org.avp;
 
 import net.minecraft.block.Blocks;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -21,10 +20,6 @@ import org.slf4j.LoggerFactory;
 public class AVP {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(AVP.class);
-
-    public static ResourceLocation location(String location) {
-        return new ResourceLocation(AVPConstants.MOD_ID, location);
-    }
 
     public AVP() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
