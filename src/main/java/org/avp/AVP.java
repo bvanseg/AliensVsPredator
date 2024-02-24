@@ -6,6 +6,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.avp.common.block.AVPEngineerShipBlocks;
 import org.avp.common.block.AVPOreBlocks;
 import org.avp.common.block.AVPTempleBlocks;
 import org.avp.common.block.AVPYautjaShipBlocks;
@@ -28,6 +29,7 @@ public class AVP {
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
+        AVPEngineerShipBlocks.getInstance().register();
         AVPOreBlocks.getInstance().register();
         AVPTempleBlocks.getInstance().register();
         AVPYautjaShipBlocks.getInstance().register();
