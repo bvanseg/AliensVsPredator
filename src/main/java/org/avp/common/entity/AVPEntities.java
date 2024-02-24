@@ -26,6 +26,7 @@ public class AVPEntities implements AVPRegistry {
     private static final DeferredRegister<Item> SPAWN_EGG_ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, AVPConstants.MOD_ID);
 
     private static final EntityType<BelugabursterEntity> BELUGABURSTER = registerEntityType("belugaburster", EntityType.Builder.create(BelugabursterEntity::new, EntityClassification.MONSTER));
+    private static final EntityType<BelugamorphEntity> BELUGAMORPH = registerEntityType("belugamorph", EntityType.Builder.create(BelugamorphEntity::new, EntityClassification.MONSTER));
     private static final EntityType<OvamorphEntity> OVAMORPH = registerEntityType("ovamorph", EntityType.Builder.create(OvamorphEntity::new, EntityClassification.MONSTER));
 
     private static <T extends Entity> EntityType<T> registerEntityType(String name, EntityType.Builder<T> entityTypeBuilder) {
