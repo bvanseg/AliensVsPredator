@@ -37,6 +37,8 @@
   "block.avp.padding_white_tiles": "White Padding Tiles",
 
   "block.avp.temple_brick": "Temple Brick",
+  "block.avp.temple_brick_chestburster": "Temple Brick (Chestburster)",
+  "block.avp.temple_brick_facehugger": "Temple Brick (Facehugger)",
   "block.avp.temple_brick_single": "Temple Brick (Single)",
   "block.avp.temple_floor": "Temple Floor",
   "block.avp.temple_tile": "Temple Tile",

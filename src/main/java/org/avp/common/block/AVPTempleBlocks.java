@@ -29,6 +29,8 @@ public class AVPTempleBlocks implements AVPRegistry {
     private static final Material TEMPLE_BRICK_MATERIAL = Material.ROCK;
     private static final Block.Properties TEMPLE_BRICK_PROPERTIES = Block.Properties.create(TEMPLE_BRICK_MATERIAL);
     public static final RegistryObject<Block> TEMPLE_BRICK = registerBlockWithItem("temple_brick", TEMPLE_BRICK_PROPERTIES);
+    public static final RegistryObject<Block> TEMPLE_BRICK_CHESTBURSTER = registerBlockWithItem("temple_brick_chestburster", TEMPLE_BRICK_PROPERTIES);
+    public static final RegistryObject<Block> TEMPLE_BRICK_FACEHUGGER = registerBlockWithItem("temple_brick_facehugger", TEMPLE_BRICK_PROPERTIES);
     private static final RegistryObject<Block> TEMPLE_BRICK_SINGLE = registerBlockWithItem("temple_brick_single", TEMPLE_BRICK_PROPERTIES);
     private static final RegistryObject<Block> TEMPLE_FLOOR = registerBlockWithItem("temple_floor", TEMPLE_BRICK_PROPERTIES);
     private static final RegistryObject<Block> TEMPLE_TILE = registerBlockWithItem("temple_tile", TEMPLE_BRICK_PROPERTIES);
