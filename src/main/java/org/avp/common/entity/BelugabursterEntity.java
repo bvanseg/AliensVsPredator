@@ -1,15 +1,15 @@
 package org.avp.common.entity;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.world.World;
 
 /**
  * @author Boston Vanseghi
  */
-public class BelugabursterEntity extends MobEntity {
-    protected BelugabursterEntity(EntityType<? extends MobEntity> entityType, World world) {
+public class BelugabursterEntity extends MonsterEntity {
+    protected BelugabursterEntity(EntityType<? extends MonsterEntity> entityType, World world) {
         super(entityType, world);
     }
 

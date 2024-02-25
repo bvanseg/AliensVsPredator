@@ -3,7 +3,6 @@ package org.avp.client.render.entity;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.util.ResourceLocation;
-import org.avp.AVP;
 import org.avp.AVPResources;
 import org.avp.client.model.entity.BelugabursterModel;
 import org.avp.common.entity.BelugabursterEntity;

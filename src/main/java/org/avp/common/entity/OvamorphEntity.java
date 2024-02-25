@@ -1,15 +1,15 @@
 package org.avp.common.entity;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.world.World;
 
 /**
  * @author Boston Vanseghi
  */
-public class OvamorphEntity extends MobEntity {
-    protected OvamorphEntity(EntityType<? extends MobEntity> entityType, World world) {
+public class OvamorphEntity extends MonsterEntity {
+    protected OvamorphEntity(EntityType<? extends MonsterEntity> entityType, World world) {
         super(entityType, world);
     }
 

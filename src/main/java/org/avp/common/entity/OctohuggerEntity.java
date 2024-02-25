@@ -1,15 +1,15 @@
 package org.avp.common.entity;
 
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.world.World;
 
 /**
  * @author Boston Vanseghi
  */
-public class OctohuggerEntity extends MobEntity {
-    protected OctohuggerEntity(EntityType<? extends MobEntity> entityType, World world) {
+public class OctohuggerEntity extends MonsterEntity {
+    protected OctohuggerEntity(EntityType<? extends MonsterEntity> entityType, World world) {
         super(entityType, world);
     }
 
