@@ -34,6 +34,7 @@ public class AVPEntities implements AVPRegistry {
     private static final RegistryObject<EntityType<DracomorphEntity>> DRACOMORPH = registerEntityType("dracomorph", EntityType.Builder.create(DracomorphEntity::new, EntityClassification.MONSTER).size(0.98F, 2.98F));
     private static final RegistryObject<EntityType<OctohuggerEntity>> OCTOHUGGER = registerEntityType("octohugger", EntityType.Builder.create(OctohuggerEntity::new, EntityClassification.MONSTER).size(0.5F, 0.5F));
     private static final RegistryObject<EntityType<OvamorphEntity>> OVAMORPH = registerEntityType("ovamorph", EntityType.Builder.create(OvamorphEntity::new, EntityClassification.MONSTER).size(0.98F, 0.98F));
+    private static final RegistryObject<EntityType<OvamorphDracoEntity>> OVAMORPH_DRACO = registerEntityType("ovamorph_draco", EntityType.Builder.create(OvamorphDracoEntity::new, EntityClassification.MONSTER).size(0.98F, 0.98F));
     private static final RegistryObject<EntityType<UltramorphEntity>> ULTRAMORPH = registerEntityType("ultramorph", EntityType.Builder.create(UltramorphEntity::new, EntityClassification.MONSTER).size(0.98F, 2.98F));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> registerEntityType(String name, EntityType.Builder<T> entityTypeBuilder) {
