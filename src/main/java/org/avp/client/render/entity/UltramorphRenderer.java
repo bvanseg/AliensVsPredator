@@ -1,13 +1,13 @@
 package org.avp.client.render.entity;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import org.avp.AVPResources;
 import org.avp.client.model.entity.UltramorphModel;
 import org.avp.common.entity.UltramorphEntity;
 
-public class UltramorphRenderer extends LivingRenderer<UltramorphEntity, UltramorphModel> {
+public class UltramorphRenderer extends MobRenderer<UltramorphEntity, UltramorphModel> {
 
     private static final ResourceLocation TEXTURE = AVPResources.entityTextureLocation("ultramorph");
 

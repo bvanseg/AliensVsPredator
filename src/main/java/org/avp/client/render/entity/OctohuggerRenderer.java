@@ -1,13 +1,13 @@
 package org.avp.client.render.entity;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
+import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.util.ResourceLocation;
 import org.avp.AVPResources;
 import org.avp.client.model.entity.OctohuggerModel;
 import org.avp.common.entity.OctohuggerEntity;
 
-public class OctohuggerRenderer extends LivingRenderer<OctohuggerEntity, OctohuggerModel> {
+public class OctohuggerRenderer extends MobRenderer<OctohuggerEntity, OctohuggerModel> {
 
     private static final ResourceLocation TEXTURE = AVPResources.entityTextureLocation("octohugger");
 
