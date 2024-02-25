@@ -6,12 +6,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.avp.client.render.entity.AVPEntityRenderers;
 import org.avp.common.block.*;
 import org.avp.common.entity.AVPEntities;
 import org.avp.common.item.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Boston Vanseghi
@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 @Mod(AVPConstants.MOD_ID)
 public class AVP {
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(AVP.class);
+    public static final Logger LOGGER = LogManager.getLogger(AVP.class);
 
     public AVP() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
