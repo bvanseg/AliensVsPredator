@@ -18,6 +18,7 @@ public class AVPEntityRenderers implements AVPRegistry {
     public void register() {
         RenderingRegistry.registerEntityRenderingHandler(BelugabursterEntity.class, BelugabursterRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BelugamorphEntity.class, BelugamorphRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(DracobursterEntity.class, DracobursterRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(OctohuggerEntity.class, OctohuggerRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(OvamorphEntity.class, OvamorphRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(UltramorphEntity.class, UltramorphRenderer::new);
