@@ -9,7 +9,7 @@ import org.avp.common.entity.TrilobiteBabyEntity;
 
 public class TrilobiteBabyRenderer extends MobRenderer<TrilobiteBabyEntity, TrilobiteBabyModel> {
 
-    private static final ResourceLocation TEXTURE = AVPResources.entityTextureLocation("trilobite");
+    private static final ResourceLocation TEXTURE = AVPResources.entityTextureLocation("trilobite_baby");
 
     public TrilobiteBabyRenderer(EntityRendererManager entityRendererManager) {
         super(entityRendererManager, new TrilobiteBabyModel(), 0F);
