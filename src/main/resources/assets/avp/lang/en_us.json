@@ -60,6 +60,7 @@
   "entity.avp.octohugger": "Octohugger",
   "entity.avp.ovamorph": "Ovamorph",
   "entity.avp.ovamorph_draco": "Ovamorph (Draco)",
+  "entity.avp.trilobite_baby": "Trilobite (Baby)",
   "entity.avp.ultramorph": "Ultramorph",
 
   "item.avp.ammo_ar": "AR Ammo",
@@ -118,6 +119,7 @@
   "item.avp.spawn_egg_octohugger": "Octohugger Spawn Egg",
   "item.avp.spawn_egg_ovamorph": "Ovamorph Spawn Egg",
   "item.avp.spawn_egg_ovamorph_draco": "Ovamorph (Draco) Spawn Egg",
+  "item.avp.spawn_egg_trilobite_baby": "Trilobite (Baby) Spawn Egg",
   "item.avp.spawn_egg_ultramorph": "Ultramorph Spawn Egg",
 
   "item.avp.ssd": "Solid State Drive",
