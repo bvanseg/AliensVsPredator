@@ -1,16 +1,12 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net/' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '6.+', changing: true
-    }
+plugins {
+    id("com.diffplug.spotless")
+    id("com.github.ben-manes.versions")
+    id("eclipse")
+    id("idea")
+    id("java-library")
+    id("net.minecraftforge.gradle")
+    id("maven-publish")
 }
-apply plugin: 'net.minecraftforge.gradle'
-// Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
-apply plugin: 'maven-publish'
 
 version = '0.0.0'
 group = 'org.avp' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
@@ -108,6 +104,30 @@ dependencies {
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
 
+}
+
+spotless {
+    java {
+        eclipse().configFile("eclipse-formatter.xml")
+        endWithNewline()
+        importOrder("", "java", group.toString(), "\\#")
+        indentWithSpaces(4)
+        removeUnusedImports()
+        trimTrailingWhitespace()
+    }
+}
+
+tasks.register("installGitHooks", Copy) {
+    from "$rootDir/githooks"
+    into "$rootDir/.git/hooks"
+
+    doLast {
+        project.logger.lifecycle("Successfully copied Git Hooks to .git folder!")
+    }
+}
+
+tasks.build {
+    dependsOn(":installGitHooks", "spotlessApply")
 }
 
 // Example for how to get properties into the manifest for reading by the runtime..

@@ -9,13 +9,13 @@ import net.minecraft.world.World;
  * @author Boston Vanseghi
  */
 public class DracomorphEntity extends MonsterEntity {
+
     protected DracomorphEntity(EntityType<? extends MonsterEntity> entityType, World world) {
         super(entityType, world);
     }
 
     @Override
-    protected void registerAttributes()
-    {
+    protected void registerAttributes() {
         super.registerAttributes();
         this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0d);
         this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(1.2d);

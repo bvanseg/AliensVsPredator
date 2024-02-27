@@ -15,5 +15,7 @@ public class AVPResources {
         return new ResourceLocation(AVPConstants.MOD_ID, String.format("textures/entity/%s.png", entityName));
     }
 
-    private AVPResources() { throw new UnsupportedOperationException(); }
+    private AVPResources() {
+        throw new UnsupportedOperationException();
+    }
 }

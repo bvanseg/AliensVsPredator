@@ -1,6 +1,7 @@
 package org.avp.client.render.entity;
 
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+
 import org.avp.AVPRegistry;
 import org.avp.common.entity.*;
 
@@ -8,6 +9,7 @@ import org.avp.common.entity.*;
  * @author Boston Vanseghi
  */
 public class AVPEntityRenderers implements AVPRegistry {
+
     private static final AVPEntityRenderers INSTANCE = new AVPEntityRenderers();
 
     public static AVPEntityRenderers getInstance() {
@@ -19,7 +21,10 @@ public class AVPEntityRenderers implements AVPRegistry {
         RenderingRegistry.registerEntityRenderingHandler(BelugabursterEntity.class, BelugabursterRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(BelugamorphEntity.class, BelugamorphRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(DeaconAdultEntity.class, DeaconAdultRenderer::new);
-        RenderingRegistry.registerEntityRenderingHandler(DeaconAdultEngineerEntity.class, DeaconAdultEngineerRenderer::new);
+        RenderingRegistry.registerEntityRenderingHandler(
+            DeaconAdultEngineerEntity.class,
+            DeaconAdultEngineerRenderer::new
+        );
         RenderingRegistry.registerEntityRenderingHandler(DracobursterEntity.class, DracobursterRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(DracomorphEntity.class, DracomorphRenderer::new);
         RenderingRegistry.registerEntityRenderingHandler(EngineerEntity.class, EngineerRenderer::new);
