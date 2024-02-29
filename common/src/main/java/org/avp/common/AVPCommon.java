@@ -1,5 +1,6 @@
 package org.avp.common;
 
+import org.avp.common.item.AVPArmorItems;
 import org.avp.common.item.AVPFoodItems;
 import org.avp.common.item.AVPItems;
 
@@ -9,7 +10,8 @@ import org.avp.common.item.AVPItems;
 public class AVPCommon {
 
     public static void init() {
-        AVPItems.getInstance().register();
+        AVPArmorItems.getInstance().register();
         AVPFoodItems.getInstance().register();
+        AVPItems.getInstance().register();
     }
 }
