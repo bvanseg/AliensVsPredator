@@ -1,6 +1,6 @@
-package org.avp.service;
+package org.avp.fabric.service;
 
-import org.avp.service.Platform;
+import org.avp.common.service.Platform;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricPlatform implements Platform {

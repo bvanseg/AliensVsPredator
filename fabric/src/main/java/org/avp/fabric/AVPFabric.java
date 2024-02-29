@@ -1,6 +1,8 @@
-package org.avp;
+package org.avp.fabric;
 
 import net.fabricmc.api.ModInitializer;
+import org.avp.common.AVPCommon;
+import org.avp.common.AVPConstants;
 
 public class AVPFabric implements ModInitializer {
     

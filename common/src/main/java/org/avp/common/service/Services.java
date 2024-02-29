@@ -1,12 +1,12 @@
-package org.avp.service;
+package org.avp.common.service;
 
-import org.avp.AVPConstants;
+import org.avp.common.AVPConstants;
 
 import java.util.ServiceLoader;
 
 public class Services {
 
-    public static final ItemRegistry<?> ITEM_REGISTRY = load(ItemRegistry.class);
+    public static final ItemRegistry ITEM_REGISTRY = load(ItemRegistry.class);
     public static final Platform PLATFORM = load(Platform.class);
 
     public static <T> T load(Class<T> clazz) {

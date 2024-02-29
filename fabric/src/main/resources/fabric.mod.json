@@ -16,7 +16,7 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "org.avp.AVP"
+            "org.avp.fabric.AVPFabric"
         ]
     },
     "mixins": [

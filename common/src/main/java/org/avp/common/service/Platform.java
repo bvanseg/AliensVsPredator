@@ -1,4 +1,4 @@
-package org.avp.service;
+package org.avp.common.service;
 
 public interface Platform {
 

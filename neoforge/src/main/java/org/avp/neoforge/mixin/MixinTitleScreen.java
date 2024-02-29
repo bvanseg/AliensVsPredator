@@ -1,6 +1,6 @@
-package org.avp.mixin;
+package org.avp.neoforge.mixin;
 
-import org.avp.AVPConstants;
+import org.avp.common.AVPConstants;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
