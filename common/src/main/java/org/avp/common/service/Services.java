@@ -6,6 +6,7 @@ import java.util.ServiceLoader;
 
 public class Services {
 
+    public static final BlockRegistry BLOCK_REGISTRY = load(BlockRegistry.class);
     public static final ItemRegistry ITEM_REGISTRY = load(ItemRegistry.class);
     public static final Platform PLATFORM = load(Platform.class);
 
