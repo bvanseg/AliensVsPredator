@@ -20,5 +20,6 @@ public class AVPItems implements AVPRegistry {
     @Override
     public void register() {
         Services.ITEM_REGISTRY.register("royal_jelly", () -> new Item(new Item.Properties()));
+        Services.ITEM_REGISTRY.register("silica", () -> new Item(new Item.Properties()));
     }
 }
