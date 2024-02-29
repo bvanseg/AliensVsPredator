@@ -1,9 +1,6 @@
 package org.avp.common;
 
-import org.avp.common.item.AVPArmorItems;
-import org.avp.common.item.AVPElectronicItems;
-import org.avp.common.item.AVPFoodItems;
-import org.avp.common.item.AVPItems;
+import org.avp.common.item.*;
 
 /**
  * @author Boston Vanseghi
@@ -15,5 +12,6 @@ public class AVPCommon {
         AVPElectronicItems.getInstance().register();
         AVPFoodItems.getInstance().register();
         AVPItems.getInstance().register();
+        AVPWeaponItems.getInstance().register();
     }
 }
