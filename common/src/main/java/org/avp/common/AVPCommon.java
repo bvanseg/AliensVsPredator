@@ -1,9 +1,6 @@
 package org.avp.common;
 
-import org.avp.common.block.AVPEngineerBlocks;
-import org.avp.common.block.AVPOreBlocks;
-import org.avp.common.block.AVPPaddingBlocks;
-import org.avp.common.block.AVPTempleBlocks;
+import org.avp.common.block.*;
 import org.avp.common.item.*;
 
 /**
@@ -22,5 +19,6 @@ public class AVPCommon {
         AVPOreBlocks.getInstance().register();
         AVPPaddingBlocks.getInstance().register();
         AVPTempleBlocks.getInstance().register();
+        AVPYautjaShipBlocks.getInstance().register();
     }
 }
