@@ -17,6 +17,9 @@
     "entrypoints": {
         "main": [
             "org.avp.fabric.AVPFabric"
+        ],
+        "client": [
+            "org.avp.fabric.client.AVPFabricClient"
         ]
     },
     "mixins": [

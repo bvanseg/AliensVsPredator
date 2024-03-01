@@ -4,6 +4,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.monster.Monster;
 import org.avp.common.entity.AVPEntityTypes;
 import org.avp.common.util.GameObject;
 
@@ -29,19 +30,19 @@ public class AVPEntityAttributes {
         return BINDINGS;
     }
 
-    public static final AttributeSupplier BELUGABURSTER = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier BELUGAMORPH = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier DEACON_ADULT = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier DEACON_ADULT_ENGINEER = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier DRACOBURSTER = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier DRACOMORPH = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier ENGINEER = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier OCTOHUGGER = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier OVAMORPH = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier OVAMORPH_DRACO = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier TRILOBITE = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier TRILOBITE_BABY = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
-    public static final AttributeSupplier ULTRAMORPH = AttributeSupplier.builder().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier BELUGABURSTER = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier BELUGAMORPH = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier DEACON_ADULT = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier DEACON_ADULT_ENGINEER = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier DRACOBURSTER = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier DRACOMORPH = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier ENGINEER = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier OCTOHUGGER = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier OVAMORPH = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier OVAMORPH_DRACO = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier TRILOBITE = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier TRILOBITE_BABY = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
+    public static final AttributeSupplier ULTRAMORPH = Monster.createMonsterAttributes().add(Attributes.MAX_HEALTH, 20).add(Attributes.MOVEMENT_SPEED, 1).add(Attributes.FOLLOW_RANGE, 1).build();
 
     private static <T extends Mob> void addBinding(GameObject<EntityType<T>> gameObject, AttributeSupplier attributeSupplier) {
         BINDINGS.add(new AbstractMap.SimpleEntry<>(gameObject, attributeSupplier));
