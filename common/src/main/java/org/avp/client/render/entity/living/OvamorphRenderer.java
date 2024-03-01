@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import org.avp.client.model.entity.living.OvamorphModel;
 import org.avp.common.AVPResources;
+import org.avp.common.TimeUtils;
 import org.avp.common.entity.living.Ovamorph;
 import org.jetbrains.annotations.NotNull;
 
@@ -15,6 +16,8 @@ import org.jetbrains.annotations.NotNull;
 public class OvamorphRenderer extends MobRenderer<Ovamorph, OvamorphModel> {
 
     private static final ResourceLocation TEXTURE = AVPResources.entityTextureLocation("ovamorph");
+
+    private static final ResourceLocation TEXTURE_HALLOWEEN = AVPResources.entityTextureLocation("ovamorph_halloween");
 
     public OvamorphRenderer(EntityRendererProvider.Context context) {
         super(context, new OvamorphModel(context.bakeLayer(OvamorphModel.LAYER_LOCATION)), 0.5f);
@@ -27,6 +30,6 @@ public class OvamorphRenderer extends MobRenderer<Ovamorph, OvamorphModel> {
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull Ovamorph entity) {
-        return TEXTURE;
+        return TimeUtils.isHalloween() ? TEXTURE_HALLOWEEN : TEXTURE;
     }
 }
