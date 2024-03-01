@@ -3,6 +3,7 @@ package org.avp.fabric;
 import net.fabricmc.api.ModInitializer;
 import org.avp.common.AVPCommon;
 import org.avp.common.AVPConstants;
+import org.avp.fabric.service.FabricEntityAttributeRegistry;
 
 public class AVPFabric implements ModInitializer {
     
@@ -16,5 +17,6 @@ public class AVPFabric implements ModInitializer {
         // Use Fabric to bootstrap the Common mod.
         AVPConstants.LOGGER.info("Hello Fabric world!");
         AVPCommon.init();
+        FabricEntityAttributeRegistry.getInstance().register();
     }
 }

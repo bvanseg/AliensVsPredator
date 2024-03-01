@@ -5,6 +5,8 @@ import net.neoforged.fml.common.Mod;
 import org.avp.common.AVPCommon;
 import org.avp.common.AVPConstants;
 import org.avp.neoforge.service.NeoForgeBlockRegistry;
+import org.avp.neoforge.service.NeoForgeEntityAttributeRegistry;
+import org.avp.neoforge.service.NeoForgeEntityRegistry;
 import org.avp.neoforge.service.NeoForgeItemRegistry;
 
 /**
@@ -17,5 +19,7 @@ public class AVPNeoForge {
         AVPCommon.init();
         NeoForgeItemRegistry.ITEMS.register(eventBus);
         NeoForgeBlockRegistry.BLOCKS.register(eventBus);
+        NeoForgeEntityRegistry.ENTITY_TYPES.register(eventBus);
+        eventBus.addListener(NeoForgeEntityAttributeRegistry.getInstance()::createEntityAttributes);
     }
 }
