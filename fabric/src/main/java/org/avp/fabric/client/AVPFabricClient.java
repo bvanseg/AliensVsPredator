@@ -3,9 +3,10 @@ package org.avp.fabric.client;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import org.avp.client.model.entity.living.OvamorphModel;
-import org.avp.client.render.entity.living.OvamorphRenderer;
-import org.avp.common.entity.AVPEntityTypes;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
+import org.avp.client.render.entity.AVPEntityRenderers;
 
 /**
  * @author Boston Vanseghi
@@ -13,8 +14,13 @@ import org.avp.common.entity.AVPEntityTypes;
 public class AVPFabricClient implements ClientModInitializer {
 
     @Override
+    @SuppressWarnings("unchecked")
     public void onInitializeClient() {
-        EntityRendererRegistry.register(AVPEntityTypes.OVAMORPH.get(), OvamorphRenderer::new);
-        EntityModelLayerRegistry.registerModelLayer(OvamorphModel.LAYER_LOCATION, OvamorphModel::createBodyLayer);
+        AVPEntityRenderers.getBindings().forEach(binding -> {
+            var entityType = (EntityType<Entity>) binding.entityTypeGameObject().get();
+            var provider = (EntityRendererProvider<Entity>) binding.entityRendererProvider();
+            EntityRendererRegistry.register(entityType, provider);
+            EntityModelLayerRegistry.registerModelLayer(binding.modelLayerLocation(), binding.layerDefinitionSupplier()::get);
+        });
     }
 }
