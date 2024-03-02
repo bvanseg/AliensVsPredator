@@ -1,5 +1,8 @@
 package org.avp.common.entity.living;
 
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -10,11 +13,26 @@ import net.minecraft.world.level.Level;
  * @author Boston Vanseghi
  */
 public class Engineer extends Monster {
+
+    private static final EntityDataAccessor<Integer> ENGINEER_TYPE = SynchedEntityData.defineId(Engineer.class, EntityDataSerializers.INT);
+    private static final EntityDataAccessor<Boolean> HAS_HELMET = SynchedEntityData.defineId(Engineer.class, EntityDataSerializers.BOOLEAN);
+
     public Engineer(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
     }
 
-    public static AttributeSupplier.Builder createAttributes() {
-        return Monster.createMonsterAttributes().add(Attributes.FOLLOW_RANGE, 35.0).add(Attributes.MOVEMENT_SPEED, 0.23000000417232513).add(Attributes.ATTACK_DAMAGE, 3.0).add(Attributes.ARMOR, 2.0).add(Attributes.SPAWN_REINFORCEMENTS_CHANCE);
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(ENGINEER_TYPE, this.random.nextInt(2));
+        this.entityData.define(HAS_HELMET, this.random.nextBoolean());
+    }
+
+    public boolean hasHelmet() {
+        return this.entityData.get(HAS_HELMET);
+    }
+
+    public int getSuitType() {
+        return this.entityData.get(ENGINEER_TYPE);
     }
 }
