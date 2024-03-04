@@ -2,12 +2,13 @@ package org.avp.neoforge.service;
 
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
+
 import org.avp.common.AVPConstants;
 import org.avp.common.service.BlockRegistry;
 import org.avp.common.util.GameObject;
 import org.avp.neoforge.util.ForgeGameObject;
-
-import java.util.function.Supplier;
 
 /**
  * @author Boston Vanseghi

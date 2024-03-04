@@ -4,11 +4,12 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+
+import java.util.function.Supplier;
+
 import org.avp.common.AVPResources;
 import org.avp.common.service.EntityRegistry;
 import org.avp.common.util.GameObject;
-
-import java.util.function.Supplier;
 
 /**
  * @author Boston Vanseghi
@@ -16,7 +17,10 @@ import java.util.function.Supplier;
 public class FabricEntityRegistry implements EntityRegistry {
 
     @Override
-    public <T extends Entity> GameObject<EntityType<T>> register(String registryName, Supplier<EntityType<T>> supplier) {
+    public <T extends Entity> GameObject<EntityType<T>> register(
+        String registryName,
+        Supplier<EntityType<T>> supplier
+    ) {
         var gameObject = new GameObject<>(supplier);
         var resourceLocation = AVPResources.location(registryName);
         var entityType = gameObject.get();

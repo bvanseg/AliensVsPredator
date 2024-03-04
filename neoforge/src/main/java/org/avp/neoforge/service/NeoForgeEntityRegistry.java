@@ -7,30 +7,43 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.common.DeferredSpawnEggItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.function.Supplier;
+
 import org.avp.common.AVPConstants;
 import org.avp.common.service.EntityRegistry;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 import org.avp.neoforge.util.NeoForgeEntityGameObject;
 
-import java.util.function.Supplier;
-
 /**
  * @author Boston Vanseghi
  */
 public class NeoForgeEntityRegistry implements EntityRegistry {
 
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE,  AVPConstants.MOD_ID);
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(
+        BuiltInRegistries.ENTITY_TYPE,
+        AVPConstants.MOD_ID
+    );
 
     @Override
-    public <T extends Entity> GameObject<EntityType<T>> register(String registryName, Supplier<EntityType<T>> supplier) {
+    public <T extends Entity> GameObject<EntityType<T>> register(
+        String registryName,
+        Supplier<EntityType<T>> supplier
+    ) {
         return new NeoForgeEntityGameObject<>(ENTITY_TYPES, registryName, supplier);
     }
 
     @Override
-    public <T extends Mob> GameObject<EntityType<T>> registerWithSpawnEgg(String registryName, Supplier<EntityType<T>> supplier) {
+    public <T extends Mob> GameObject<EntityType<T>> registerWithSpawnEgg(
+        String registryName,
+        Supplier<EntityType<T>> supplier
+    ) {
         var gameObject = register(registryName, supplier);
-        Services.ITEM_REGISTRY.register("spawn_egg_" + registryName, () -> new DeferredSpawnEggItem(gameObject::get, 0, 0, new Item.Properties()));
+        Services.ITEM_REGISTRY.register(
+            "spawn_egg_" + registryName,
+            () -> new DeferredSpawnEggItem(gameObject::get, 0, 0, new Item.Properties())
+        );
         return gameObject;
     }
 }

@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 public class GameObject<T> {
 
     private T object;
+
     private final Supplier<T> supplier;
 
     public GameObject(Supplier<T> supplier) {

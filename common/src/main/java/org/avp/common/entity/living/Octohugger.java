@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
  * @author Boston Vanseghi
  */
 public class Octohugger extends Monster {
+
     public Octohugger(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
     }

@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
  * @author Boston Vanseghi
  */
 public class Dracoburster extends Monster {
+
     public Dracoburster(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
     }

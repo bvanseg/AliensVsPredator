@@ -5,19 +5,27 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SpawnEggItem;
-import org.avp.common.util.GameObject;
 
 import java.util.function.Supplier;
+
+import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi
  */
 public interface EntityRegistry {
+
     <T extends Entity> GameObject<EntityType<T>> register(String registryName, Supplier<EntityType<T>> supplier);
 
-    default <T extends Mob> GameObject<EntityType<T>> registerWithSpawnEgg(String registryName, Supplier<EntityType<T>> supplier) {
+    default <T extends Mob> GameObject<EntityType<T>> registerWithSpawnEgg(
+        String registryName,
+        Supplier<EntityType<T>> supplier
+    ) {
         var gameObject = register(registryName, supplier);
-        Services.ITEM_REGISTRY.register("spawn_egg_" + registryName, () -> new SpawnEggItem(gameObject.get(), 0, 0, new Item.Properties()));
+        Services.ITEM_REGISTRY.register(
+            "spawn_egg_" + registryName,
+            () -> new SpawnEggItem(gameObject.get(), 0, 0, new Item.Properties())
+        );
         return gameObject;
     }
 }

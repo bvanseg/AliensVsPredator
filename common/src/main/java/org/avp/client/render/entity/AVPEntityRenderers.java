@@ -2,6 +2,10 @@ package org.avp.client.render.entity;
 
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.Mob;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.avp.client.model.entity.living.DracomorphModel;
 import org.avp.client.model.entity.living.EngineerModel;
 import org.avp.client.model.entity.living.OvamorphDracoModel;
@@ -13,9 +17,6 @@ import org.avp.client.render.entity.living.OvamorphRenderer;
 import org.avp.client.util.EntityModelLayerData;
 import org.avp.client.util.EntityRenderData;
 import org.avp.common.entity.AVPEntityTypes;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Boston Vanseghi
@@ -41,18 +42,42 @@ public class AVPEntityRenderers {
     }
 
     static {
-        addBinding(new EntityRenderData<>(AVPEntityTypes.DRACOMORPH, DracomorphRenderer::new, List.of(
-            new EntityModelLayerData(DracomorphModel.LAYER_LOCATION, DracomorphModel::createBodyLayer)
-        )));
-        addBinding(new EntityRenderData<>(AVPEntityTypes.ENGINEER, EngineerRenderer::new, List.of(
-            new EntityModelLayerData(EngineerModel.LAYER_LOCATION, EngineerModel::createBodyLayer),
-            new EntityModelLayerData(EngineerModel.ARMOR_LAYER_LOCATION, EngineerModel::createBodyLayer)
-        )));
-        addBinding(new EntityRenderData<>(AVPEntityTypes.OVAMORPH, OvamorphRenderer::new, List.of(
-            new EntityModelLayerData(OvamorphModel.LAYER_LOCATION, OvamorphModel::createBodyLayer)
-        )));
-        addBinding(new EntityRenderData<>(AVPEntityTypes.OVAMORPH_DRACO, OvamorphDracoRenderer::new, List.of(
-            new EntityModelLayerData(OvamorphDracoModel.LAYER_LOCATION, OvamorphDracoModel::createBodyLayer)
-        )));
+        addBinding(
+            new EntityRenderData<>(
+                AVPEntityTypes.DRACOMORPH,
+                DracomorphRenderer::new,
+                List.of(
+                    new EntityModelLayerData(DracomorphModel.LAYER_LOCATION, DracomorphModel::createBodyLayer)
+                )
+            )
+        );
+        addBinding(
+            new EntityRenderData<>(
+                AVPEntityTypes.ENGINEER,
+                EngineerRenderer::new,
+                List.of(
+                    new EntityModelLayerData(EngineerModel.LAYER_LOCATION, EngineerModel::createBodyLayer),
+                    new EntityModelLayerData(EngineerModel.ARMOR_LAYER_LOCATION, EngineerModel::createBodyLayer)
+                )
+            )
+        );
+        addBinding(
+            new EntityRenderData<>(
+                AVPEntityTypes.OVAMORPH,
+                OvamorphRenderer::new,
+                List.of(
+                    new EntityModelLayerData(OvamorphModel.LAYER_LOCATION, OvamorphModel::createBodyLayer)
+                )
+            )
+        );
+        addBinding(
+            new EntityRenderData<>(
+                AVPEntityTypes.OVAMORPH_DRACO,
+                OvamorphDracoRenderer::new,
+                List.of(
+                    new EntityModelLayerData(OvamorphDracoModel.LAYER_LOCATION, OvamorphDracoModel::createBodyLayer)
+                )
+            )
+        );
     }
 }

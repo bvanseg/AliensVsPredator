@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
  * @author Boston Vanseghi
  */
 public class Trilobite extends Monster {
+
     public Trilobite(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
     }

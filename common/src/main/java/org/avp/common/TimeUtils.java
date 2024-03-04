@@ -13,5 +13,7 @@ public class TimeUtils {
         return now.getMonth() == Month.OCTOBER && now.getDayOfMonth() == 31;
     }
 
-    private TimeUtils() { throw new UnsupportedOperationException(); }
+    private TimeUtils() {
+        throw new UnsupportedOperationException();
+    }
 }

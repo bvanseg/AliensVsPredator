@@ -7,6 +7,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+
 import org.avp.client.render.entity.AVPEntityRenderers;
 import org.avp.common.AVPConstants;
 
@@ -28,6 +29,13 @@ public class AVPNeoForgeClient {
 
     @SubscribeEvent
     public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        AVPEntityRenderers.getBindings().forEach(binding -> event.registerLayerDefinition(binding.modelLayerLocation(), binding.layerDefinitionSupplier()));
+        AVPEntityRenderers.getBindings().forEach(binding -> {
+            binding.entityModelLayerData().forEach(modelLayerData -> {
+                event.registerLayerDefinition(
+                    modelLayerData.modelLayerLocation(),
+                    modelLayerData.layerDefinitionSupplier()
+                );
+            });
+        });
     }
 }

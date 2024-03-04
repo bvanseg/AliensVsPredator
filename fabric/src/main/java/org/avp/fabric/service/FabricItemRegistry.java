@@ -3,11 +3,12 @@ package org.avp.fabric.service;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.Item;
+
+import java.util.function.Supplier;
+
 import org.avp.common.AVPResources;
 import org.avp.common.service.ItemRegistry;
 import org.avp.common.util.GameObject;
-
-import java.util.function.Supplier;
 
 /**
  * @author Boston Vanseghi

@@ -5,13 +5,13 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import org.avp.common.AVPResources;
-import org.avp.common.service.BlockRegistry;
-import org.avp.common.service.ItemRegistry;
-import org.avp.common.service.Services;
-import org.avp.common.util.GameObject;
 
 import java.util.function.Supplier;
+
+import org.avp.common.AVPResources;
+import org.avp.common.service.BlockRegistry;
+import org.avp.common.service.Services;
+import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi

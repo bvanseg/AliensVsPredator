@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
  * @author Boston Vanseghi
  */
 public class Ultramorph extends Monster {
+
     public Ultramorph(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
     }

@@ -1,6 +1,7 @@
 package org.avp.common.item;
 
 import net.minecraft.world.item.Item;
+
 import org.avp.common.registry.AVPRegistry;
 import org.avp.common.service.Services;
 
@@ -43,7 +44,5 @@ public class AVPArmorItems implements AVPRegistry {
         Services.ITEM_REGISTRY.register("armor_xeno_boots", () -> new Item(new Item.Properties()));
         Services.ITEM_REGISTRY.register("armor_xeno_helmet", () -> new Item(new Item.Properties()));
         Services.ITEM_REGISTRY.register("armor_xeno_leggings", () -> new Item(new Item.Properties()));
-
-
     }
 }

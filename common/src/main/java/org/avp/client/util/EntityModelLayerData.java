@@ -8,5 +8,4 @@ import java.util.function.Supplier;
 public record EntityModelLayerData(
     ModelLayerLocation modelLayerLocation,
     Supplier<LayerDefinition> layerDefinitionSupplier
-) {
-}
+) {}

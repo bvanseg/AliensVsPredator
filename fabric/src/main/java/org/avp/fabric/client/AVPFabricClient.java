@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+
 import org.avp.client.render.entity.AVPEntityRenderers;
 
 /**
@@ -22,7 +23,12 @@ public class AVPFabricClient implements ClientModInitializer {
             EntityRendererRegistry.register(entityType, provider);
 
             var layerDataList = binding.entityModelLayerData();
-            layerDataList.forEach(layerData -> EntityModelLayerRegistry.registerModelLayer(layerData.modelLayerLocation(), layerData.layerDefinitionSupplier()::get));
+            layerDataList.forEach(
+                layerData -> EntityModelLayerRegistry.registerModelLayer(
+                    layerData.modelLayerLocation(),
+                    layerData.layerDefinitionSupplier()::get
+                )
+            );
         });
     }
 }

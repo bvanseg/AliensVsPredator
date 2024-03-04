@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
  * @author Boston Vanseghi
  */
 public class DeaconAdultEngineer extends Monster {
+
     public DeaconAdultEngineer(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
     }

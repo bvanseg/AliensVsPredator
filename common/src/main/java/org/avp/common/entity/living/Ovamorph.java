@@ -8,6 +8,7 @@ import net.minecraft.world.level.Level;
  * @author Boston Vanseghi
  */
 public class Ovamorph extends Monster {
+
     public Ovamorph(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
     }

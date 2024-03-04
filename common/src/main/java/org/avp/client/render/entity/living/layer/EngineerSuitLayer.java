@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
+
 import org.avp.client.model.entity.living.EngineerModel;
 import org.avp.common.AVPResources;
 import org.avp.common.entity.living.Engineer;
@@ -14,8 +15,11 @@ import org.avp.common.entity.living.Engineer;
  * @author Boston Vanseghi
  */
 public class EngineerSuitLayer extends RenderLayer<Engineer, EngineerModel> {
+
     private static final ResourceLocation SUIT_TEXTURE = AVPResources.entityTextureLocation("engineer_suit");
+
     private static final ResourceLocation JOCKEY_TEXTURE = AVPResources.entityTextureLocation("engineer_jockey");
+
     private final EngineerModel model;
 
     public EngineerSuitLayer(RenderLayerParent<Engineer, EngineerModel> $$0, EntityModelSet $$1) {
@@ -24,7 +28,18 @@ public class EngineerSuitLayer extends RenderLayer<Engineer, EngineerModel> {
     }
 
     @Override
-    public void render(PoseStack poseStack, MultiBufferSource multiBufferSource, int i, Engineer engineer, float v, float v1, float v2, float v3, float v4, float v5) {
+    public void render(
+        PoseStack poseStack,
+        MultiBufferSource multiBufferSource,
+        int i,
+        Engineer engineer,
+        float v,
+        float v1,
+        float v2,
+        float v3,
+        float v4,
+        float v5
+    ) {
         if (engineer.isInvisible()) {
             return;
         }
@@ -34,8 +49,17 @@ public class EngineerSuitLayer extends RenderLayer<Engineer, EngineerModel> {
         if (engineer.getSuitType() == 0) {
             renderColoredCutoutModel(model, SUIT_TEXTURE, poseStack, multiBufferSource, i, engineer, 1.0F, 1.0F, 1.0F);
         } else {
-            renderColoredCutoutModel(model, JOCKEY_TEXTURE, poseStack, multiBufferSource, i, engineer, 1.0F, 1.0F, 1.0F);
+            renderColoredCutoutModel(
+                model,
+                JOCKEY_TEXTURE,
+                poseStack,
+                multiBufferSource,
+                i,
+                engineer,
+                1.0F,
+                1.0F,
+                1.0F
+            );
         }
-
     }
 }
