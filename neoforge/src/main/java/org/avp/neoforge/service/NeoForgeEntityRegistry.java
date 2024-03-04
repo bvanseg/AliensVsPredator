@@ -11,6 +11,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.function.Supplier;
 
 import org.avp.common.AVPConstants;
+import org.avp.common.item.AVPSpawnEggItems;
 import org.avp.common.service.EntityRegistry;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
@@ -40,10 +41,11 @@ public class NeoForgeEntityRegistry implements EntityRegistry {
         Supplier<EntityType<T>> supplier
     ) {
         var gameObject = register(registryName, supplier);
-        Services.ITEM_REGISTRY.register(
+        var spawnEggGameObject = Services.ITEM_REGISTRY.register(
             "spawn_egg_" + registryName,
             () -> new DeferredSpawnEggItem(gameObject::get, 0, 0, new Item.Properties())
         );
+        AVPSpawnEggItems.getInstance().ENTRIES.add(spawnEggGameObject);
         return gameObject;
     }
 }

@@ -2,13 +2,14 @@ package org.avp.common.item;
 
 import net.minecraft.world.item.Item;
 
+import org.avp.common.registry.AVPItemBindingRegistry;
 import org.avp.common.registry.AVPRegistry;
-import org.avp.common.service.Services;
+import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi
  */
-public class AVPItems implements AVPRegistry {
+public class AVPItems extends AVPItemBindingRegistry implements AVPRegistry {
 
     private static final AVPItems INSTANCE = new AVPItems();
 
@@ -16,23 +17,24 @@ public class AVPItems implements AVPRegistry {
         return INSTANCE;
     }
 
+    public final GameObject<Item> ROYAL_JELLY = registerEntry("royal_jelly", () -> new Item(new Item.Properties()));
+
     private AVPItems() {}
 
     @Override
     public void register() {
-        Services.ITEM_REGISTRY.register("carbon", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("cobalt", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("ingot_aluminum", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("ingot_lithium", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("laser_mine", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("nbt_drive", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("neodymium", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("neodymium_magnet", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("polycarbonate", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("raw_bauxite", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("royal_jelly", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("shuriken", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("silica", () -> new Item(new Item.Properties()));
-        Services.ITEM_REGISTRY.register("smart_disc", () -> new Item(new Item.Properties()));
+        registerEntry("carbon", () -> new Item(new Item.Properties()));
+        registerEntry("cobalt", () -> new Item(new Item.Properties()));
+        registerEntry("ingot_aluminum", () -> new Item(new Item.Properties()));
+        registerEntry("ingot_lithium", () -> new Item(new Item.Properties()));
+        registerEntry("laser_mine", () -> new Item(new Item.Properties()));
+        registerEntry("nbt_drive", () -> new Item(new Item.Properties()));
+        registerEntry("neodymium", () -> new Item(new Item.Properties()));
+        registerEntry("neodymium_magnet", () -> new Item(new Item.Properties()));
+        registerEntry("polycarbonate", () -> new Item(new Item.Properties()));
+        registerEntry("raw_bauxite", () -> new Item(new Item.Properties()));
+        registerEntry("shuriken", () -> new Item(new Item.Properties()));
+        registerEntry("silica", () -> new Item(new Item.Properties()));
+        registerEntry("smart_disc", () -> new Item(new Item.Properties()));
     }
 }

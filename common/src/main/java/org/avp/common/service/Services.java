@@ -8,6 +8,8 @@ public class Services {
 
     public static final BlockRegistry BLOCK_REGISTRY = load(BlockRegistry.class);
 
+    public static final CreativeModeTabRegistry CREATIVE_MODE_TAB_REGISTRY = load(CreativeModeTabRegistry.class);
+
     public static final EntityRegistry ENTITY_REGISTRY = load(EntityRegistry.class);
 
     public static final ItemRegistry ITEM_REGISTRY = load(ItemRegistry.class);

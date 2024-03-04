@@ -1,5 +1,7 @@
 package org.avp.neoforge.service;
 
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -7,6 +9,7 @@ import java.util.function.Supplier;
 
 import org.avp.common.AVPConstants;
 import org.avp.common.service.BlockRegistry;
+import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 import org.avp.neoforge.util.ForgeGameObject;
 
@@ -19,6 +22,8 @@ public class NeoForgeBlockRegistry implements BlockRegistry {
 
     @Override
     public GameObject<Block> register(String registryName, Supplier<Block> supplier) {
-        return new ForgeGameObject<>(BLOCKS, registryName, supplier);
+        var gameObject = new ForgeGameObject<>(BLOCKS, registryName, supplier);
+        Services.ITEM_REGISTRY.register(registryName, () -> new BlockItem(gameObject.get(), new Item.Properties()));
+        return gameObject;
     }
 }

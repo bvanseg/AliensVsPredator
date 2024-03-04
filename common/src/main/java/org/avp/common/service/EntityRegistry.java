@@ -8,6 +8,7 @@ import net.minecraft.world.item.SpawnEggItem;
 
 import java.util.function.Supplier;
 
+import org.avp.common.item.AVPSpawnEggItems;
 import org.avp.common.util.GameObject;
 
 /**
@@ -22,10 +23,11 @@ public interface EntityRegistry {
         Supplier<EntityType<T>> supplier
     ) {
         var gameObject = register(registryName, supplier);
-        Services.ITEM_REGISTRY.register(
+        var spawnEggGameObject = Services.ITEM_REGISTRY.register(
             "spawn_egg_" + registryName,
             () -> new SpawnEggItem(gameObject.get(), 0, 0, new Item.Properties())
         );
+        AVPSpawnEggItems.getInstance().ENTRIES.add(spawnEggGameObject);
         return gameObject;
     }
 }

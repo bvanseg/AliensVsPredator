@@ -1,6 +1,7 @@
 package org.avp.common;
 
 import org.avp.common.block.*;
+import org.avp.common.creative_tab.AVPCreativeModeTabs;
 import org.avp.common.entity.AVPEntityTypes;
 import org.avp.common.item.*;
 
@@ -23,5 +24,8 @@ public class AVPCommon {
         AVPYautjaShipBlocks.getInstance().register();
 
         AVPEntityTypes.getInstance().register();
+
+        // It's important to register creative mode tabs last, as entities generate spawn eggs automatically.
+        AVPCreativeModeTabs.getInstance().register();
     }
 }
