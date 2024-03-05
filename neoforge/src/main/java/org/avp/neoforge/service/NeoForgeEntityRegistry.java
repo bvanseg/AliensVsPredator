@@ -38,12 +38,14 @@ public class NeoForgeEntityRegistry implements EntityRegistry {
     @Override
     public <T extends Mob> GameObject<EntityType<T>> registerWithSpawnEgg(
         String registryName,
+        int backgroundColor,
+        int highlightColor,
         Supplier<EntityType<T>> supplier
     ) {
         var gameObject = register(registryName, supplier);
         var spawnEggGameObject = Services.ITEM_REGISTRY.register(
             "spawn_egg_" + registryName,
-            () -> new DeferredSpawnEggItem(gameObject::get, 0, 0, new Item.Properties())
+            () -> new DeferredSpawnEggItem(gameObject::get, backgroundColor, highlightColor, new Item.Properties())
         );
         AVPSpawnEggItems.getInstance().ENTRIES.add(spawnEggGameObject);
         return gameObject;
