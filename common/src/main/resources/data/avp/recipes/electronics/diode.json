@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "electronics",
+    "key": {
+        "A": {
+            "item": "minecraft:copper_ingot"
+        },
+        "B": {
+            "item": "avp:carbon"
+        },
+        "C": {
+            "item": "avp:silica"
+        }
+    },
+    "pattern": [
+        "A",
+        "B",
+        "C"
+    ],
+    "result": {
+        "item": "avp:diode",
+        "count": 8
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "category": "electronics",
+    "key": {
+        "A": {
+            "item": "minecraft:copper_ingot"
+        },
+        "B": {
+            "item": "avp:ingot_lithium"
+        }
+    },
+    "pattern": [
+        "A",
+        "B",
+        "A"
+    ],
+    "result": {
+        "item": "avp:capacitor",
+        "count": 8
+    }
+}
