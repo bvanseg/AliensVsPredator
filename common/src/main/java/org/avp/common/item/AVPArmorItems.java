@@ -26,6 +26,11 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
 
     @Override
     public void register() {
+        registerEntry("armor_aluminum_body", () -> new Item(new Item.Properties()));
+        registerEntry("armor_aluminum_boots", () -> new Item(new Item.Properties()));
+        registerEntry("armor_aluminum_helmet", () -> new Item(new Item.Properties()));
+        registerEntry("armor_aluminum_leggings", () -> new Item(new Item.Properties()));
+
         registerEntry("armor_celtic_body", () -> new Item(new Item.Properties()));
         registerEntry("armor_celtic_boots", () -> new Item(new Item.Properties()));
         registerEntry("armor_celtic_leggings", () -> new Item(new Item.Properties()));
