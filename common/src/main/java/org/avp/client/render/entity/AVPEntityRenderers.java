@@ -16,7 +16,10 @@ import org.avp.client.render.entity.living.OvamorphDracoRenderer;
 import org.avp.client.render.entity.living.OvamorphRenderer;
 import org.avp.client.util.EntityModelLayerData;
 import org.avp.client.util.EntityRenderData;
+import org.avp.common.entity.AVPBaseAlienEntityTypes;
+import org.avp.common.entity.AVPEngineerEntityTypes;
 import org.avp.common.entity.AVPEntityTypes;
+import org.avp.common.entity.AVPExoticAlienEntityTypes;
 
 /**
  * @author Boston Vanseghi
@@ -44,7 +47,7 @@ public class AVPEntityRenderers {
     static {
         addBinding(
             new EntityRenderData<>(
-                AVPEntityTypes.DRACOMORPH,
+                AVPExoticAlienEntityTypes.DRACOMORPH,
                 DracomorphRenderer::new,
                 List.of(
                     new EntityModelLayerData(DracomorphModel.LAYER_LOCATION, DracomorphModel::createBodyLayer)
@@ -53,7 +56,7 @@ public class AVPEntityRenderers {
         );
         addBinding(
             new EntityRenderData<>(
-                AVPEntityTypes.ENGINEER,
+                AVPEngineerEntityTypes.ENGINEER,
                 EngineerRenderer::new,
                 List.of(
                     new EntityModelLayerData(EngineerModel.LAYER_LOCATION, EngineerModel::createBodyLayer),
@@ -63,7 +66,7 @@ public class AVPEntityRenderers {
         );
         addBinding(
             new EntityRenderData<>(
-                AVPEntityTypes.OVAMORPH,
+                AVPBaseAlienEntityTypes.OVAMORPH,
                 OvamorphRenderer::new,
                 List.of(
                     new EntityModelLayerData(OvamorphModel.LAYER_LOCATION, OvamorphModel::createBodyLayer)
@@ -72,7 +75,7 @@ public class AVPEntityRenderers {
         );
         addBinding(
             new EntityRenderData<>(
-                AVPEntityTypes.OVAMORPH_DRACO,
+                AVPExoticAlienEntityTypes.OVAMORPH_DRACO,
                 OvamorphDracoRenderer::new,
                 List.of(
                     new EntityModelLayerData(OvamorphDracoModel.LAYER_LOCATION, OvamorphDracoModel::createBodyLayer)

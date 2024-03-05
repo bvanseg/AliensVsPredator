@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.avp.common.entity.AVPEntityTypes;
+import org.avp.common.entity.*;
 import org.avp.common.util.GameObject;
 
 /**
@@ -129,18 +129,27 @@ public class AVPEntityAttributes {
     }
 
     static {
+        // Unclassified
         addBinding(AVPEntityTypes.BELUGABURSTER, BELUGABURSTER);
         addBinding(AVPEntityTypes.BELUGAMORPH, BELUGAMORPH);
-        addBinding(AVPEntityTypes.DEACON_ADULT, DEACON_ADULT);
-        addBinding(AVPEntityTypes.DEACON_ADULT_ENGINEER, DEACON_ADULT_ENGINEER);
-        addBinding(AVPEntityTypes.DRACOBURSTER, DRACOBURSTER);
-        addBinding(AVPEntityTypes.DRACOMORPH, DRACOMORPH);
-        addBinding(AVPEntityTypes.ENGINEER, ENGINEER);
-        addBinding(AVPEntityTypes.OCTOHUGGER, OCTOHUGGER);
-        addBinding(AVPEntityTypes.OVAMORPH, OVAMORPH);
-        addBinding(AVPEntityTypes.OVAMORPH_DRACO, OVAMORPH_DRACO);
-        addBinding(AVPEntityTypes.TRILOBITE, TRILOBITE);
-        addBinding(AVPEntityTypes.TRILOBITE_BABY, TRILOBITE_BABY);
-        addBinding(AVPEntityTypes.ULTRAMORPH, ULTRAMORPH);
+
+        // Exotic
+        addBinding(AVPExoticAlienEntityTypes.DEACON_ADULT_ENGINEER, DEACON_ADULT_ENGINEER);
+        addBinding(AVPExoticAlienEntityTypes.DRACOBURSTER, DRACOBURSTER);
+        addBinding(AVPExoticAlienEntityTypes.DRACOMORPH, DRACOMORPH);
+        addBinding(AVPExoticAlienEntityTypes.OCTOHUGGER, OCTOHUGGER);
+        addBinding(AVPExoticAlienEntityTypes.OVAMORPH_DRACO, OVAMORPH_DRACO);
+        addBinding(AVPExoticAlienEntityTypes.ULTRAMORPH, ULTRAMORPH);
+
+        // Prometheus Engineers
+        addBinding(AVPEngineerEntityTypes.ENGINEER, ENGINEER);
+
+        // Prometheus Aliens
+        addBinding(AVPPrometheusAlienEntityTypes.DEACON_ADULT, DEACON_ADULT);
+        addBinding(AVPPrometheusAlienEntityTypes.TRILOBITE, TRILOBITE);
+        addBinding(AVPPrometheusAlienEntityTypes.TRILOBITE_BABY, TRILOBITE_BABY);
+
+        // Base Aliens
+        addBinding(AVPBaseAlienEntityTypes.OVAMORPH, OVAMORPH);
     }
 }

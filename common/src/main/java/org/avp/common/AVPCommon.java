@@ -2,7 +2,7 @@ package org.avp.common;
 
 import org.avp.common.block.*;
 import org.avp.common.creative_tab.AVPCreativeModeTabs;
-import org.avp.common.entity.AVPEntityTypes;
+import org.avp.common.entity.*;
 import org.avp.common.item.*;
 
 /**
@@ -24,7 +24,11 @@ public class AVPCommon {
         AVPTempleBlocks.getInstance().register();
         AVPYautjaShipBlocks.getInstance().register();
 
+        AVPBaseAlienEntityTypes.getInstance().register();
+        AVPEngineerEntityTypes.getInstance().register();
         AVPEntityTypes.getInstance().register();
+        AVPExoticAlienEntityTypes.getInstance().register();
+        AVPPrometheusAlienEntityTypes.getInstance().register();
 
         // It's important to register creative mode tabs last, as entities generate spawn eggs automatically.
         AVPCreativeModeTabs.getInstance().register();
