@@ -18,6 +18,7 @@ public class AVPCommon {
         AVPWeaponItems.getInstance().register();
 
         AVPEngineerBlocks.getInstance().register();
+        AVPIndustrialBlocks.getInstance().register();
         AVPOreBlocks.getInstance().register();
         AVPPaddingBlocks.getInstance().register();
         AVPTempleBlocks.getInstance().register();

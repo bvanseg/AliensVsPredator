@@ -68,6 +68,13 @@ public class AVPCreativeModeTabs implements AVPRegistry {
                             .toList()
                     );
                     output.acceptAll(
+                        AVPIndustrialBlocks.getInstance().ENTRIES.stream()
+                            .map(GameObject::get)
+                            .map(Block::asItem)
+                            .map(Item::getDefaultInstance)
+                            .toList()
+                    );
+                    output.acceptAll(
                         AVPOreBlocks.getInstance().ENTRIES.stream()
                             .map(GameObject::get)
                             .map(Block::asItem)
