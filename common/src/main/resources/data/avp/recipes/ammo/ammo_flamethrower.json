@@ -3,7 +3,7 @@
     "category": "ammo",
     "key": {
         "A": {
-            "item": "minecraft:slimeball"
+            "item": "minecraft:slime_ball"
         },
         "B": {
             "item": "avp:ingot_aluminum"
