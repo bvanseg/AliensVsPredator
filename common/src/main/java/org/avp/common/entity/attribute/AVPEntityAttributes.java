@@ -70,6 +70,12 @@ public class AVPEntityAttributes {
         .add(Attributes.MOVEMENT_SPEED, 0.6499999761581421D)
         .build();
 
+    public static final AttributeSupplier DRONE = createAvPAttributes()
+        .add(Attributes.ATTACK_DAMAGE, 7.0D)
+        .add(Attributes.MAX_HEALTH, 40.0D)
+        .add(Attributes.MOVEMENT_SPEED, 0.53D)
+        .build();
+
     public static final AttributeSupplier DRACOMORPH = createAvPAttributes()
         .add(Attributes.ATTACK_DAMAGE, 8.0D)
         .add(Attributes.KNOCKBACK_RESISTANCE, 0.75D)
@@ -83,6 +89,16 @@ public class AVPEntityAttributes {
         .add(Attributes.MAX_HEALTH, 160.0D)
         .add(Attributes.MOVEMENT_SPEED, 0.5199999761581421D)
         .build();
+
+    public static final AttributeSupplier FACEHUGGER = createAvPAttributes()
+        .add(Attributes.MAX_HEALTH, 5.0D)
+        .add(Attributes.MOVEMENT_SPEED, 0.55D)
+        .build();
+
+    public static final AttributeSupplier FACEHUGGER_ROYAL = createAvPAttributes()
+            .add(Attributes.MAX_HEALTH, 14.0D)
+            .add(Attributes.MOVEMENT_SPEED, 0.6D)
+            .build();
 
     public static final AttributeSupplier OCTOHUGGER = createAvPAttributes()
         .add(Attributes.ATTACK_DAMAGE, 0.50D)
@@ -150,6 +166,9 @@ public class AVPEntityAttributes {
         addBinding(AVPPrometheusAlienEntityTypes.TRILOBITE_BABY, TRILOBITE_BABY);
 
         // Base Aliens
+        addBinding(AVPBaseAlienEntityTypes.DRONE, DRONE);
+        addBinding(AVPBaseAlienEntityTypes.FACEHUGGER, FACEHUGGER);
+        addBinding(AVPBaseAlienEntityTypes.FACEHUGGER_ROYAL, FACEHUGGER_ROYAL);
         addBinding(AVPBaseAlienEntityTypes.OVAMORPH, OVAMORPH);
     }
 }

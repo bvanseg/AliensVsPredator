@@ -6,19 +6,12 @@ import net.minecraft.world.entity.Mob;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.avp.client.model.entity.living.DracomorphModel;
-import org.avp.client.model.entity.living.EngineerModel;
-import org.avp.client.model.entity.living.OvamorphDracoModel;
-import org.avp.client.model.entity.living.OvamorphModel;
-import org.avp.client.render.entity.living.DracomorphRenderer;
-import org.avp.client.render.entity.living.EngineerRenderer;
-import org.avp.client.render.entity.living.OvamorphDracoRenderer;
-import org.avp.client.render.entity.living.OvamorphRenderer;
+import org.avp.client.model.entity.living.*;
+import org.avp.client.render.entity.living.*;
 import org.avp.client.util.EntityModelLayerData;
 import org.avp.client.util.EntityRenderData;
 import org.avp.common.entity.AVPBaseAlienEntityTypes;
 import org.avp.common.entity.AVPEngineerEntityTypes;
-import org.avp.common.entity.AVPEntityTypes;
 import org.avp.common.entity.AVPExoticAlienEntityTypes;
 
 /**
@@ -56,11 +49,38 @@ public class AVPEntityRenderers {
         );
         addBinding(
             new EntityRenderData<>(
+                AVPBaseAlienEntityTypes.DRONE,
+                DroneRenderer::new,
+                List.of(
+                    new EntityModelLayerData(DroneModel.LAYER_LOCATION, DroneModel::createBodyLayer)
+                )
+            )
+        );
+        addBinding(
+            new EntityRenderData<>(
                 AVPEngineerEntityTypes.ENGINEER,
                 EngineerRenderer::new,
                 List.of(
                     new EntityModelLayerData(EngineerModel.LAYER_LOCATION, EngineerModel::createBodyLayer),
                     new EntityModelLayerData(EngineerModel.ARMOR_LAYER_LOCATION, EngineerModel::createBodyLayer)
+                )
+            )
+        );
+        addBinding(
+            new EntityRenderData<>(
+                AVPBaseAlienEntityTypes.FACEHUGGER,
+                FacehuggerRenderer::new,
+                List.of(
+                    new EntityModelLayerData(FacehuggerModel.LAYER_LOCATION, FacehuggerModel::createBodyLayer)
+                )
+            )
+        );
+        addBinding(
+            new EntityRenderData<>(
+                AVPBaseAlienEntityTypes.FACEHUGGER_ROYAL,
+                FacehuggerRoyalRenderer::new,
+                List.of(
+                    new EntityModelLayerData(FacehuggerRoyalModel.LAYER_LOCATION, FacehuggerRoyalModel::createBodyLayer)
                 )
             )
         );

@@ -1,11 +1,9 @@
 package org.avp.common.entity;
 
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.MobCategory;
 import org.avp.common.entity.living.*;
 import org.avp.common.registry.AVPRegistry;
-import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
 /**
@@ -18,6 +16,24 @@ public class AVPBaseAlienEntityTypes implements AVPRegistry {
     public static AVPBaseAlienEntityTypes getInstance() {
         return INSTANCE;
     }
+
+    public static final GameObject<EntityType<Drone>> DRONE = AVPEntityTypes.registerLiving(
+        "drone",
+        0x010202, 0xDFE2E4,
+        EntityType.Builder.of(Drone::new, MobCategory.MONSTER)
+    );
+
+    public static final GameObject<EntityType<Facehugger>> FACEHUGGER = AVPEntityTypes.registerLiving(
+        "facehugger",
+        0xE4D597, 0xA55863,
+        EntityType.Builder.of(Facehugger::new, MobCategory.MONSTER)
+    );
+
+    public static final GameObject<EntityType<FacehuggerRoyal>> FACEHUGGER_ROYAL = AVPEntityTypes.registerLiving(
+        "facehugger_royal",
+        0x81785E, 0x583A3A,
+        EntityType.Builder.of(FacehuggerRoyal::new, MobCategory.MONSTER)
+    );
 
     public static final GameObject<EntityType<Ovamorph>> OVAMORPH = AVPEntityTypes.registerLiving(
         "ovamorph",
