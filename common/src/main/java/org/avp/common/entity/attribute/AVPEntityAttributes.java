@@ -96,9 +96,9 @@ public class AVPEntityAttributes {
         .build();
 
     public static final AttributeSupplier FACEHUGGER_ROYAL = createAvPAttributes()
-            .add(Attributes.MAX_HEALTH, 14.0D)
-            .add(Attributes.MOVEMENT_SPEED, 0.6D)
-            .build();
+        .add(Attributes.MAX_HEALTH, 14.0D)
+        .add(Attributes.MOVEMENT_SPEED, 0.6D)
+        .build();
 
     public static final AttributeSupplier OCTOHUGGER = createAvPAttributes()
         .add(Attributes.ATTACK_DAMAGE, 0.50D)
@@ -118,6 +118,13 @@ public class AVPEntityAttributes {
         .add(Attributes.MOVEMENT_SPEED, 0.0D)
         .build();
 
+    public static final AttributeSupplier PRAETORIAN = createAvPAttributes()
+        .add(Attributes.ATTACK_DAMAGE, 12.0D)
+        .add(Attributes.KNOCKBACK_RESISTANCE, 1F)
+        .add(Attributes.MAX_HEALTH, 100.0D)
+        .add(Attributes.MOVEMENT_SPEED, 0.5D)
+        .build();
+
     public static final AttributeSupplier TRILOBITE = createAvPAttributes()
         .add(Attributes.ATTACK_DAMAGE, 4.0D)
         .add(Attributes.KNOCKBACK_RESISTANCE, 1F)
@@ -135,6 +142,12 @@ public class AVPEntityAttributes {
         .add(Attributes.ATTACK_DAMAGE, 5.5D)
         .add(Attributes.MAX_HEALTH, 230.0D)
         .add(Attributes.MOVEMENT_SPEED, 0.4700000238418579D)
+        .build();
+
+    public static final AttributeSupplier WARRIOR = createAvPAttributes()
+        .add(Attributes.ATTACK_DAMAGE, 9.0D)
+        .add(Attributes.MAX_HEALTH, 50.0D)
+        .add(Attributes.MOVEMENT_SPEED, 0.5D)
         .build();
 
     private static <T extends Mob> void addBinding(
@@ -170,5 +183,7 @@ public class AVPEntityAttributes {
         addBinding(AVPBaseAlienEntityTypes.FACEHUGGER, FACEHUGGER);
         addBinding(AVPBaseAlienEntityTypes.FACEHUGGER_ROYAL, FACEHUGGER_ROYAL);
         addBinding(AVPBaseAlienEntityTypes.OVAMORPH, OVAMORPH);
+        addBinding(AVPBaseAlienEntityTypes.PRAETORIAN, PRAETORIAN);
+        addBinding(AVPBaseAlienEntityTypes.WARRIOR, WARRIOR);
     }
 }

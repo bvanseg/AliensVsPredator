@@ -102,5 +102,23 @@ public class AVPEntityRenderers {
                 )
             )
         );
+        addBinding(
+            new EntityRenderData<>(
+                AVPBaseAlienEntityTypes.PRAETORIAN,
+                PraetorianRenderer::new,
+                List.of(
+                    new EntityModelLayerData(PraetorianModel.LAYER_LOCATION, PraetorianModel::createBodyLayer)
+                )
+            )
+        );
+        addBinding(
+            new EntityRenderData<>(
+                AVPBaseAlienEntityTypes.WARRIOR,
+                WarriorRenderer::new,
+                List.of(
+                    new EntityModelLayerData(WarriorModel.LAYER_LOCATION, WarriorModel::createBodyLayer)
+                )
+            )
+        );
     }
 }

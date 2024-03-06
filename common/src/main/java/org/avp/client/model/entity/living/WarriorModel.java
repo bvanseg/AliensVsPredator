@@ -12,14 +12,14 @@ import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 
 import org.avp.common.AVPResources;
-import org.avp.common.entity.living.Drone;
+import org.avp.common.entity.living.Warrior;
 
-public class DroneModel extends EntityModel<Drone> {
+public class WarriorModel extends EntityModel<Warrior> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(AVPResources.location("drone"), "main");
+	public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(AVPResources.location("warrior"), "main");
 	private final ModelPart root;
 
-	public DroneModel(ModelPart root) {
+	public WarriorModel(ModelPart root) {
 		this.root = root.getChild("root");
 	}
 
@@ -27,34 +27,46 @@ public class DroneModel extends EntityModel<Drone> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -0.8F, 0.0F, -0.3054F, 0.0F, 0.0F));
+		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, -1.7F, 0.0F, -0.3142F, 0.0F, 0.0F));
 
-		PartDefinition gBody = root.addOrReplaceChild("gBody", CubeListBuilder.create(), PartPose.offset(0.0F, -1.3328F, -3.044F));
+		PartDefinition gBody = root.addOrReplaceChild("gBody", CubeListBuilder.create(), PartPose.offset(0.0F, -0.3328F, -3.044F));
 
 		PartDefinition gUpperBody = gBody.addOrReplaceChild("gUpperBody", CubeListBuilder.create().texOffs(0, 46).addBox(-4.5F, -1.2861F, -10.2016F, 9.0F, 8.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.7812F, 0.2456F, 0.0F, 0.0F, 0.0F));
 
 		PartDefinition back1_r1 = gUpperBody.addOrReplaceChild("back1_r1", CubeListBuilder.create().texOffs(0, 65).addBox(0.0F, -36.5F, -13.0F, 0.0F, 8.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 29.2076F, -2.4969F, -0.192F, 0.0F, 0.0F));
 
-		PartDefinition backhorn2_r1 = gUpperBody.addOrReplaceChild("backhorn2_r1", CubeListBuilder.create().texOffs(9, 86).mirror().addBox(0.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.5F, -4.7861F, -7.2016F, 0.0F, 0.0F, 0.3927F));
-
 		PartDefinition backhorn3_r1 = gUpperBody.addOrReplaceChild("backhorn3_r1", CubeListBuilder.create().texOffs(9, 86).mirror().addBox(0.0F, -5.5F, 3.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(2.5F, -4.7861F, -7.2016F, -0.3927F, 0.0F, 0.3927F));
+
+		PartDefinition backhorn2_r1 = gUpperBody.addOrReplaceChild("backhorn2_r1", CubeListBuilder.create().texOffs(9, 86).mirror().addBox(0.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.1F)).mirror(false), PartPose.offsetAndRotation(2.5F, -4.7861F, -7.2016F, 0.0F, 0.0F, 0.3927F));
 
 		PartDefinition backhorn2_r2 = gUpperBody.addOrReplaceChild("backhorn2_r2", CubeListBuilder.create().texOffs(9, 86).addBox(-2.0F, -5.5F, 3.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.5F, -4.7861F, -7.2016F, -0.3927F, 0.0F, -0.3927F));
 
-		PartDefinition backhorn1_r1 = gUpperBody.addOrReplaceChild("backhorn1_r1", CubeListBuilder.create().texOffs(9, 86).addBox(-2.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.5F, -4.7861F, -7.2016F, 0.0F, 0.0F, -0.3927F));
+		PartDefinition backhorn1_r1 = gUpperBody.addOrReplaceChild("backhorn1_r1", CubeListBuilder.create().texOffs(9, 86).addBox(-2.0F, -4.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(-2.5F, -4.7861F, -7.2016F, 0.0F, 0.0F, -0.3927F));
 
 		PartDefinition gNeck = gUpperBody.addOrReplaceChild("gNeck", CubeListBuilder.create().texOffs(23, 86).addBox(-2.0F, -3.0F, -5.0F, 4.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.8094F, -8.6648F, 0.3927F, 0.0F, 0.0F));
 
 		PartDefinition gHead = gNeck.addOrReplaceChild("gHead", CubeListBuilder.create(), PartPose.offsetAndRotation(0.0F, 0.7488F, -4.6469F, -0.3927F, 0.0F, 0.0F));
+
+		PartDefinition head6_r1 = gHead.addOrReplaceChild("head6_r1", CubeListBuilder.create().texOffs(6, 98).addBox(-0.5F, -13.2562F, -3.4087F, 0.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.5F, -3.5601F, -4.0133F, -0.3054F, 0.0F, 0.0F));
+
+		PartDefinition head2_r1 = gHead.addOrReplaceChild("head2_r1", CubeListBuilder.create().texOffs(1, 98).addBox(0.0F, -5.0F, -2.5F, 0.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.5027F, -7.115F, -3.1329F, 0.0F, 3.1416F));
 
 		PartDefinition head5_r1 = gHead.addOrReplaceChild("head5_r1", CubeListBuilder.create().texOffs(28, 10).addBox(-2.5F, -12.3562F, -4.6087F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.5601F, -1.0133F, -0.3054F, 0.0F, 0.0F));
 
 		PartDefinition head1_r1 = gHead.addOrReplaceChild("head1_r1", CubeListBuilder.create().texOffs(0, 0).addBox(-2.5F, -3.6007F, -3.7184F, 5.0F, 10.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.5601F, -1.0133F, -0.0087F, 0.0F, 0.0F));
 
 		PartDefinition head7_r1 = gHead.addOrReplaceChild("head7_r1", CubeListBuilder.create().texOffs(34, 0).addBox(-2.5F, 3.9045F, -6.2874F, 3.0F, 3.0F, 5.0F, new CubeDeformation(0.02F))
-				.texOffs(53, 0).addBox(-0.5F, 3.9045F, -6.2874F, 3.0F, 3.0F, 5.0F, new CubeDeformation(0.02F)), PartPose.offsetAndRotation(0.0F, -3.5601F, -1.0133F, 0.48F, 0.0F, 0.0F));
+		.texOffs(53, 0).addBox(-0.5F, 3.9045F, -6.2874F, 3.0F, 3.0F, 5.0F, new CubeDeformation(0.02F)), PartPose.offsetAndRotation(0.0F, -3.5601F, -1.0133F, 0.48F, 0.0F, 0.0F));
 
-		PartDefinition head4_r1 = gHead.addOrReplaceChild("head4_r1", CubeListBuilder.create().texOffs(52, 20).addBox(-1.5F, 4.9963F, -7.7195F, 3.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.5601F, -1.0133F, 0.7243F, 0.0F, 0.0F));
+		PartDefinition head4_r1 = gHead.addOrReplaceChild("head4_r1", CubeListBuilder.create().texOffs(52, 20).addBox(-1.5F, 4.8963F, -7.7195F, 3.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.5601F, -1.0133F, 0.7243F, 0.0F, 0.0F));
+
+		PartDefinition gRightArm = gUpperBody.addOrReplaceChild("gRightArm", CubeListBuilder.create().texOffs(50, 29).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 13.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.5F, 3.2139F, -7.2016F, 0.3927F, 0.0F, 0.5236F));
+
+		PartDefinition gRightForearm = gRightArm.addOrReplaceChild("gRightForearm", CubeListBuilder.create().texOffs(98, 9).addBox(-1.0F, -1.0F, -10.5F, 2.0F, 2.0F, 11.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(0.0F, 11.5F, 0.0F, 0.3927F, 0.0F, 0.0F));
+
+		PartDefinition gRightHand = gRightForearm.addOrReplaceChild("gRightHand", CubeListBuilder.create().texOffs(72, 24).addBox(-0.75F, -0.5F, -3.05F, 2.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.25F, 0.0F, -10.45F, 0.0F, 0.0F, 0.0F));
+
+		PartDefinition rightarm4_r1 = gRightHand.addOrReplaceChild("rightarm4_r1", CubeListBuilder.create().texOffs(60, 38).addBox(-3.8F, 0.0F, -3.0F, 3.0F, 0.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.75F, 0.0F, -3.05F, 3.1416F, 0.0F, 0.0F));
 
 		PartDefinition gLeftArm = gUpperBody.addOrReplaceChild("gLeftArm", CubeListBuilder.create().texOffs(50, 29).mirror().addBox(-1.0F, -1.0F, -1.0F, 2.0F, 13.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(4.5F, 3.2139F, -7.2016F, 0.3927F, 0.0F, -0.5236F));
 
@@ -64,32 +76,8 @@ public class DroneModel extends EntityModel<Drone> {
 
 		PartDefinition leftarm5_r1 = gLeftHand.addOrReplaceChild("leftarm5_r1", CubeListBuilder.create().texOffs(60, 38).mirror().addBox(0.8F, 0.0F, -3.0F, 3.0F, 0.0F, 6.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.75F, 0.0F, -3.05F, 3.1416F, 0.0F, 0.0F));
 
-		PartDefinition gRightArm = gUpperBody.addOrReplaceChild("gRightArm", CubeListBuilder.create().texOffs(50, 29).addBox(-1.0F, -1.0F, -1.0F, 2.0F, 13.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-4.5F, 3.2139F, -7.2016F, 0.3927F, 0.0F, 0.5236F));
-
-		PartDefinition gRightForearm = gRightArm.addOrReplaceChild("gRightForearm", CubeListBuilder.create().texOffs(98, 9).addBox(-1.0F, -1.0F, -10.5F, 2.0F, 2.0F, 11.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(0.0F, 11.5F, 0.0F, 0.3927F, 0.0F, 0.0F));
-
-		PartDefinition gRightHand = gRightForearm.addOrReplaceChild("gRightHand", CubeListBuilder.create().texOffs(72, 24).addBox(-0.75F, -0.5F, -3.05F, 2.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.25F, 0.0F, -10.45F, 0.0F, 0.0F, 0.0F));
-
-		PartDefinition rightarm6_r1 = gRightHand.addOrReplaceChild("rightarm6_r1", CubeListBuilder.create().texOffs(60, 38).addBox(-3.8F, 0.0F, -3.0F, 3.0F, 0.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.75F, 0.0F, -3.05F, 3.1416F, 0.0F, 0.0F));
-
 		PartDefinition gLowerBody = gBody.addOrReplaceChild("gLowerBody", CubeListBuilder.create().texOffs(23, 65).addBox(0.0F, -5.9328F, 0.756F, 0.0F, 6.0F, 12.0F, new CubeDeformation(0.0F))
-				.texOffs(0, 27).addBox(-3.5F, -0.0672F, 0.044F, 7.0F, 6.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.0F, -0.25F, -0.3927F, 0.0F, 0.0F));
-
-		PartDefinition gRightLeg = gLowerBody.addOrReplaceChild("gRightLeg", CubeListBuilder.create().texOffs(40, 45).mirror().addBox(-2.0F, -2.0F, -2.5F, 4.0F, 14.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.0F, 3.4328F, 8.544F, 0.0F, 0.0F, 0.3927F));
-
-		PartDefinition gRightMiddleLeg = gRightLeg.addOrReplaceChild("gRightMiddleLeg", CubeListBuilder.create().texOffs(79, 49).mirror().addBox(-1.5F, -1.5F, 0.0F, 3.0F, 3.0F, 12.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 9.75F, 1.5F, 0.0F, 0.0F, 0.0F));
-
-		PartDefinition gRightLowerLeg = gRightMiddleLeg.addOrReplaceChild("gRightLowerLeg", CubeListBuilder.create().texOffs(113, 40).mirror().addBox(-1.0F, -0.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, -0.25F, 11.5F, 0.0F, 0.0F, 0.0F));
-
-		PartDefinition gRightFoot = gRightLowerLeg.addOrReplaceChild("gRightFoot", CubeListBuilder.create().texOffs(110, 24).mirror().addBox(-1.0F, 0.0F, -4.0F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.1F)).mirror(false), PartPose.offsetAndRotation(0.0F, 8.0F, 0.0F, 0.7854F, 0.3927F, 0.0F));
-
-		PartDefinition gLeftLeg = gLowerBody.addOrReplaceChild("gLeftLeg", CubeListBuilder.create().texOffs(40, 45).addBox(-2.0F, -2.0F, -2.5F, 4.0F, 14.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, 3.4328F, 8.544F, 0.0F, 0.0F, -0.3927F));
-
-		PartDefinition gLeftMiddleLeg = gLeftLeg.addOrReplaceChild("gLeftMiddleLeg", CubeListBuilder.create().texOffs(79, 49).addBox(-1.5F, -1.5F, 0.0F, 3.0F, 3.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 9.75F, 1.5F, 0.0F, 0.0F, 0.0F));
-
-		PartDefinition gLeftLowerLeg = gLeftMiddleLeg.addOrReplaceChild("gLeftLowerLeg", CubeListBuilder.create().texOffs(113, 40).addBox(-1.0F, -0.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.25F, 11.5F, 0.0F, 0.0F, 0.0F));
-
-		PartDefinition gLeftFoot = gLeftLowerLeg.addOrReplaceChild("gLeftFoot", CubeListBuilder.create().texOffs(110, 24).addBox(-1.0F, 0.0F, -4.0F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(0.0F, 8.0F, 0.0F, 0.7854F, -0.3927F, 0.0F));
+		.texOffs(0, 27).addBox(-3.5F, -0.0672F, 0.044F, 7.0F, 6.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.0F, -0.25F, -0.3927F, 0.0F, 0.0F));
 
 		PartDefinition gTail1 = gLowerBody.addOrReplaceChild("gTail1", CubeListBuilder.create().texOffs(57, 94).addBox(0.0F, -4.8F, 0.3F, 0.0F, 4.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 2.9328F, 11.744F, 0.3927F, 0.0F, 0.0F));
 
@@ -113,11 +101,27 @@ public class DroneModel extends EntityModel<Drone> {
 
 		PartDefinition gStabber = gTail5.addOrReplaceChild("gStabber", CubeListBuilder.create().texOffs(206, 67).addBox(-1.5F, 0.0F, 0.0F, 3.0F, 0.0F, 10.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.1F, 0.0F, 10.7F, 0.0F, -0.3927F, 0.0F));
 
-		return LayerDefinition.create(meshdefinition, 256, 256);
+		PartDefinition gLeftLeg = gLowerBody.addOrReplaceChild("gLeftLeg", CubeListBuilder.create().texOffs(40, 45).addBox(-2.0F, -2.0F, -2.5F, 4.0F, 14.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.0F, 3.4328F, 8.544F, 0.0F, 0.0F, -0.3927F));
+
+		PartDefinition gLeftMiddleLeg = gLeftLeg.addOrReplaceChild("gLeftMiddleLeg", CubeListBuilder.create().texOffs(79, 49).addBox(-1.5F, -1.5F, 0.0F, 3.0F, 3.0F, 12.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 9.75F, 1.5F, 0.0F, 0.0F, 0.0F));
+
+		PartDefinition gLeftLowerLeg = gLeftMiddleLeg.addOrReplaceChild("gLeftLowerLeg", CubeListBuilder.create().texOffs(113, 40).addBox(-1.0F, -0.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.25F, 11.5F, 0.0F, 0.0F, 0.0F));
+
+		PartDefinition gLeftFoot = gLeftLowerLeg.addOrReplaceChild("gLeftFoot", CubeListBuilder.create().texOffs(110, 24).addBox(-1.0F, 0.0F, -4.0F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(0.0F, 8.0F, 0.0F, 0.7854F, -0.3927F, 0.0F));
+
+		PartDefinition gRightLeg = gLowerBody.addOrReplaceChild("gRightLeg", CubeListBuilder.create().texOffs(40, 45).mirror().addBox(-2.0F, -2.0F, -2.5F, 4.0F, 14.0F, 5.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-2.0F, 3.4328F, 8.544F, 0.0F, 0.0F, 0.3927F));
+
+		PartDefinition gRightMiddleLeg = gRightLeg.addOrReplaceChild("gRightMiddleLeg", CubeListBuilder.create().texOffs(79, 49).mirror().addBox(-1.5F, -1.5F, 0.0F, 3.0F, 3.0F, 12.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 9.75F, 1.5F, 0.0F, 0.0F, 0.0F));
+
+		PartDefinition gRightLowerLeg = gRightMiddleLeg.addOrReplaceChild("gRightLowerLeg", CubeListBuilder.create().texOffs(113, 40).mirror().addBox(-1.0F, -0.5F, -1.0F, 2.0F, 9.0F, 2.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, -0.25F, 11.5F, 0.0F, 0.0F, 0.0F));
+
+		PartDefinition gRightFoot = gRightLowerLeg.addOrReplaceChild("gRightFoot", CubeListBuilder.create().texOffs(110, 24).mirror().addBox(-1.0F, 0.0F, -4.0F, 2.0F, 1.0F, 5.0F, new CubeDeformation(0.1F)).mirror(false), PartPose.offsetAndRotation(0.0F, 8.0F, 0.0F, 0.7854F, 0.3927F, 0.0F));
+
+		return LayerDefinition.create(meshdefinition, 256, 128);
 	}
 
 	@Override
-	public void setupAnim(Drone entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {}
+	public void setupAnim(Warrior entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {}
 
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {

@@ -41,6 +41,18 @@ public class AVPBaseAlienEntityTypes implements AVPRegistry {
         EntityType.Builder.of(Ovamorph::new, MobCategory.MONSTER)
     );
 
+    public static final GameObject<EntityType<Praetorian>> PRAETORIAN = AVPEntityTypes.registerLiving(
+        "praetorian",
+        0x010202, 0x363534,
+        EntityType.Builder.of(Praetorian::new, MobCategory.MONSTER)
+    );
+
+    public static final GameObject<EntityType<Warrior>> WARRIOR = AVPEntityTypes.registerLiving(
+        "warrior",
+        0x010202, 0x4A4E55,
+        EntityType.Builder.of(Warrior::new, MobCategory.MONSTER)
+    );
+
     @Override
     public void register() {}
 }

@@ -66,9 +66,11 @@
   "entity.avp.octohugger": "Octohugger",
   "entity.avp.ovamorph": "Ovamorph",
   "entity.avp.ovamorph_draco": "Ovamorph (Draco)",
+  "entity.avp.praetorian": "Praetorian",
   "entity.avp.trilobite": "Trilobite",
   "entity.avp.trilobite_baby": "Trilobite (Baby)",
   "entity.avp.ultramorph": "Ultramorph",
+  "entity.avp.warrior": "Warrior",
 
   "item.avp.ammo_ar": "AR Ammo",
   "item.avp.ammo_charge_pack": "Charge Pack",
@@ -153,9 +155,11 @@
   "item.avp.spawn_egg_octohugger": "Octohugger Spawn Egg",
   "item.avp.spawn_egg_ovamorph": "Ovamorph Spawn Egg",
   "item.avp.spawn_egg_ovamorph_draco": "Ovamorph (Draco) Spawn Egg",
+  "item.avp.spawn_egg_praetorian": "Praetorian Spawn Egg",
   "item.avp.spawn_egg_trilobite": "Trilobite Spawn Egg",
   "item.avp.spawn_egg_trilobite_baby": "Trilobite (Baby) Spawn Egg",
   "item.avp.spawn_egg_ultramorph": "Ultramorph Spawn Egg",
+  "item.avp.spawn_egg_warrior": "Warrior Spawn Egg",
 
   "item.avp.ssd": "Solid State Drive",
   "item.avp.transistor": "Transistor",
