@@ -27,14 +27,14 @@ public class FacehuggerModel extends EntityModel<Facehugger> {
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
+		PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, -0.6F, 0.0F));
 
 		PartDefinition spine_r1 = root.addOrReplaceChild("spine_r1", CubeListBuilder.create().texOffs(0, 4).addBox(-0.5F, -4.0F, -1.9F, 1.0F, 1.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 24.2976F, 1.1448F, 0.0873F, 0.0F, 0.0F));
 
 		PartDefinition bodyMain = root.addOrReplaceChild("bodyMain", CubeListBuilder.create().texOffs(0, 14).addBox(-2.0F, 0.7F, -1.1F, 3.0F, 1.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offset(0.5F, 20.0F, -1.0F));
 
 		PartDefinition spine3_r1 = bodyMain.addOrReplaceChild("spine3_r1", CubeListBuilder.create().texOffs(0, 10).addBox(-0.5F, -0.3F, 0.2F, 1.0F, 1.0F, 2.0F, new CubeDeformation(0.2F))
-		.texOffs(0, 10).addBox(-0.5F, -0.5F, -1.0F, 1.0F, 1.0F, 2.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(-0.5F, 0.8F, 3.7F, 0.0873F, 0.0F, 0.0F));
+				.texOffs(0, 10).addBox(-0.5F, -0.5F, -1.0F, 1.0F, 1.0F, 2.0F, new CubeDeformation(0.1F)), PartPose.offsetAndRotation(-0.5F, 0.8F, 3.7F, 0.0873F, 0.0F, 0.0F));
 
 		PartDefinition gTail1 = bodyMain.addOrReplaceChild("gTail1", CubeListBuilder.create().texOffs(28, 21).addBox(-0.5F, -0.5F, 0.0F, 1.0F, 1.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.5F, 0.7F, 6.0F));
 
@@ -101,7 +101,7 @@ public class FacehuggerModel extends EntityModel<Facehugger> {
 		PartDefinition gRightBackLeg = gRightBackLegBase.addOrReplaceChild("gRightBackLeg", CubeListBuilder.create().texOffs(38, 4).mirror().addBox(-0.5F, -0.5F, -2.9F, 1.0F, 1.0F, 3.0F, new CubeDeformation(-0.1F)).mirror(false), PartPose.offsetAndRotation(0.1F, 0.2F, -1.2F, -0.3927F, 0.0F, 0.0F));
 
 		PartDefinition gRightBackLowerLeg = gRightBackLeg.addOrReplaceChild("gRightBackLowerLeg", CubeListBuilder.create().texOffs(38, 9).mirror().addBox(-0.5F, -0.5F, -0.7F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(38, 15).mirror().addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
+				.texOffs(38, 15).mirror().addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
 
 		PartDefinition gRightMiddleBackLegBase = gRightLegs.addOrReplaceChild("gRightMiddleBackLegBase", CubeListBuilder.create(), PartPose.offsetAndRotation(-0.9F, -3.2F, 0.7F, 0.0F, 1.3526F, 0.0F));
 
@@ -110,7 +110,7 @@ public class FacehuggerModel extends EntityModel<Facehugger> {
 		PartDefinition gRightMiddleBackLeg = gRightMiddleBackLegBase.addOrReplaceChild("gRightMiddleBackLeg", CubeListBuilder.create().texOffs(38, 4).mirror().addBox(-0.5F, -0.5F, -2.9F, 1.0F, 1.0F, 3.0F, new CubeDeformation(-0.1F)).mirror(false), PartPose.offsetAndRotation(0.1F, 0.2F, -1.2F, -0.3927F, 0.0F, 0.0F));
 
 		PartDefinition gRightMiddleBackLowerLeg = gRightMiddleBackLeg.addOrReplaceChild("gRightMiddleBackLowerLeg", CubeListBuilder.create().texOffs(38, 9).mirror().addBox(-0.5F, -0.5F, -0.7F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(38, 15).mirror().addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
+				.texOffs(38, 15).mirror().addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
 
 		PartDefinition gRightMiddleFrontLegBase = gRightLegs.addOrReplaceChild("gRightMiddleFrontLegBase", CubeListBuilder.create(), PartPose.offsetAndRotation(-0.7F, -3.2F, -0.3F, 0.0F, 1.1345F, 0.0F));
 
@@ -119,7 +119,7 @@ public class FacehuggerModel extends EntityModel<Facehugger> {
 		PartDefinition gRightMiddleFrontLeg = gRightMiddleFrontLegBase.addOrReplaceChild("gRightMiddleFrontLeg", CubeListBuilder.create().texOffs(38, 4).mirror().addBox(-0.5F, -0.5F, -2.9F, 1.0F, 1.0F, 3.0F, new CubeDeformation(-0.1F)).mirror(false), PartPose.offsetAndRotation(0.1F, 0.2F, -1.2F, -0.3927F, 0.0F, 0.0F));
 
 		PartDefinition gRightMiddleFrontLowerLeg = gRightMiddleFrontLeg.addOrReplaceChild("gRightMiddleFrontLowerLeg", CubeListBuilder.create().texOffs(38, 9).mirror().addBox(-0.5F, -0.5F, -0.7F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(38, 15).mirror().addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
+				.texOffs(38, 15).mirror().addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
 
 		PartDefinition gRightFrontLegBase = gRightLegs.addOrReplaceChild("gRightFrontLegBase", CubeListBuilder.create(), PartPose.offsetAndRotation(-0.4F, -3.2F, -1.1F, 0.0F, 0.7854F, 0.0F));
 
@@ -128,7 +128,7 @@ public class FacehuggerModel extends EntityModel<Facehugger> {
 		PartDefinition gRightFrontLeg = gRightFrontLegBase.addOrReplaceChild("gRightFrontLeg", CubeListBuilder.create().texOffs(38, 4).mirror().addBox(-0.5F, -0.5F, -2.9F, 1.0F, 1.0F, 3.0F, new CubeDeformation(-0.1F)).mirror(false), PartPose.offsetAndRotation(0.1F, 0.2F, -1.2F, -0.3927F, 0.0F, 0.0F));
 
 		PartDefinition gRightFrontLowerLeg = gRightFrontLeg.addOrReplaceChild("gRightFrontLowerLeg", CubeListBuilder.create().texOffs(38, 9).mirror().addBox(-0.5F, -0.5F, -0.7F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false)
-		.texOffs(38, 15).mirror().addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
+				.texOffs(38, 15).mirror().addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
 
 		PartDefinition gLeftLegs = root.addOrReplaceChild("gLeftLegs", CubeListBuilder.create(), PartPose.offset(0.0F, 24.0F, 0.0F));
 
@@ -139,7 +139,7 @@ public class FacehuggerModel extends EntityModel<Facehugger> {
 		PartDefinition gLeftBackLeg = gLeftBackLegBase.addOrReplaceChild("gLeftBackLeg", CubeListBuilder.create().texOffs(38, 4).addBox(-0.5F, -0.5F, -2.9F, 1.0F, 1.0F, 3.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(-0.1F, 0.2F, -1.2F, -0.3927F, 0.0F, 0.0F));
 
 		PartDefinition gLeftBackLowerLeg = gLeftBackLeg.addOrReplaceChild("gLeftBackLowerLeg", CubeListBuilder.create().texOffs(38, 9).addBox(-0.5F, -0.5F, -0.7F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
-		.texOffs(38, 15).addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
+				.texOffs(38, 15).addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
 
 		PartDefinition gLeftMiddleBackLegBase = gLeftLegs.addOrReplaceChild("gLeftMiddleBackLegBase", CubeListBuilder.create(), PartPose.offsetAndRotation(0.9F, -3.2F, 0.7F, 0.0F, -1.3526F, 0.0F));
 
@@ -148,7 +148,7 @@ public class FacehuggerModel extends EntityModel<Facehugger> {
 		PartDefinition gLeftMiddleBackLeg = gLeftMiddleBackLegBase.addOrReplaceChild("gLeftMiddleBackLeg", CubeListBuilder.create().texOffs(38, 4).addBox(-0.5F, -0.5F, -2.9F, 1.0F, 1.0F, 3.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(-0.1F, 0.2F, -1.2F, -0.3927F, 0.0F, 0.0F));
 
 		PartDefinition gLeftMiddleBackLowerLeg = gLeftMiddleBackLeg.addOrReplaceChild("gLeftMiddleBackLowerLeg", CubeListBuilder.create().texOffs(38, 9).addBox(-0.5F, -0.5F, -0.7F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
-		.texOffs(38, 15).addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
+				.texOffs(38, 15).addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
 
 		PartDefinition gLeftMiddleFrontLegBase = gLeftLegs.addOrReplaceChild("gLeftMiddleFrontLegBase", CubeListBuilder.create(), PartPose.offsetAndRotation(0.7F, -3.2F, -0.3F, 0.0F, -1.1345F, 0.0F));
 
@@ -157,7 +157,7 @@ public class FacehuggerModel extends EntityModel<Facehugger> {
 		PartDefinition gLeftMiddleFrontLeg = gLeftMiddleFrontLegBase.addOrReplaceChild("gLeftMiddleFrontLeg", CubeListBuilder.create().texOffs(38, 4).addBox(-0.5F, -0.5F, -2.9F, 1.0F, 1.0F, 3.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(-0.1F, 0.2F, -1.2F, -0.3927F, 0.0F, 0.0F));
 
 		PartDefinition gLeftMiddleFrontLowerLeg = gLeftMiddleFrontLeg.addOrReplaceChild("gLeftMiddleFrontLowerLeg", CubeListBuilder.create().texOffs(38, 9).addBox(-0.5F, -0.5F, -0.7F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
-		.texOffs(38, 15).addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
+				.texOffs(38, 15).addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
 
 		PartDefinition gLeftFrontLegBase = gLeftLegs.addOrReplaceChild("gLeftFrontLegBase", CubeListBuilder.create(), PartPose.offsetAndRotation(0.4F, -3.2F, -1.1F, 0.0F, -0.7854F, 0.0F));
 
@@ -166,7 +166,7 @@ public class FacehuggerModel extends EntityModel<Facehugger> {
 		PartDefinition gLeftFrontLeg = gLeftFrontLegBase.addOrReplaceChild("gLeftFrontLeg", CubeListBuilder.create().texOffs(38, 4).addBox(-0.5F, -0.5F, -2.9F, 1.0F, 1.0F, 3.0F, new CubeDeformation(-0.1F)), PartPose.offsetAndRotation(-0.1F, 0.2F, -1.2F, -0.3927F, 0.0F, 0.0F));
 
 		PartDefinition gLeftFrontLowerLeg = gLeftFrontLeg.addOrReplaceChild("gLeftFrontLowerLeg", CubeListBuilder.create().texOffs(38, 9).addBox(-0.5F, -0.5F, -0.7F, 1.0F, 4.0F, 1.0F, new CubeDeformation(0.0F))
-		.texOffs(38, 15).addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
+				.texOffs(38, 15).addBox(-0.5F, 3.3F, -0.6F, 1.0F, 2.0F, 0.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.0F, -2.8F, 0.0F, 0.0F, 0.0F));
 
 		return LayerDefinition.create(meshdefinition, 64, 32);
 	}
