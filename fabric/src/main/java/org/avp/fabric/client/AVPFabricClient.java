@@ -6,8 +6,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
-
-import org.avp.client.render.entity.AVPEntityRenderers;
+import org.avp.client.render.entity.AVPEntityRenderRegistry;
 
 /**
  * @author Boston Vanseghi
@@ -17,7 +16,7 @@ public class AVPFabricClient implements ClientModInitializer {
     @Override
     @SuppressWarnings("unchecked")
     public void onInitializeClient() {
-        AVPEntityRenderers.getBindings().forEach(binding -> {
+        AVPEntityRenderRegistry.getBindings().forEach(binding -> {
             var entityType = (EntityType<Entity>) binding.entityTypeGameObject().get();
             var provider = (EntityRendererProvider<Entity>) binding.entityRendererProvider();
             EntityRendererRegistry.register(entityType, provider);

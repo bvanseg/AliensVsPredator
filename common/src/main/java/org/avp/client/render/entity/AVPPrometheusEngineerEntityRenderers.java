@@ -11,9 +11,9 @@ import java.util.List;
 /**
  * @author Boston Vanseghi
  */
-public class AVPEntityRenderers {
+public class AVPPrometheusEngineerEntityRenderers {
 
-    private AVPEntityRenderers() {}
+    private AVPPrometheusEngineerEntityRenderers() {}
 
     public static void addBindings() {
         AVPEntityRenderRegistry.addBinding(
