@@ -1,10 +1,10 @@
 package org.avp.client.render.entity;
 
-import org.avp.client.model.entity.living.EngineerModel;
-import org.avp.client.render.entity.living.EngineerRenderer;
+import org.avp.client.model.entity.living.BelugabursterModel;
+import org.avp.client.render.entity.living.BelugabursterRenderer;
 import org.avp.client.util.EntityModelLayerData;
 import org.avp.client.util.EntityRenderData;
-import org.avp.common.entity.AVPEngineerEntityTypes;
+import org.avp.common.entity.AVPEntityTypes;
 
 import java.util.List;
 
@@ -18,11 +18,10 @@ public class AVPEntityRenderers {
     public static void addBindings() {
         AVPEntityRenderRegistry.addBinding(
             new EntityRenderData<>(
-                AVPEngineerEntityTypes.ENGINEER,
-                EngineerRenderer::new,
+                AVPEntityTypes.BELUGABURSTER,
+                BelugabursterRenderer::new,
                 List.of(
-                    new EntityModelLayerData(EngineerModel.LAYER_LOCATION, EngineerModel::createBodyLayer),
-                    new EntityModelLayerData(EngineerModel.ARMOR_LAYER_LOCATION, EngineerModel::createBodyLayer)
+                    new EntityModelLayerData(BelugabursterModel.LAYER_LOCATION, BelugabursterModel::createBodyLayer)
                 )
             )
         );
