@@ -25,6 +25,7 @@ public class AVPEntityRenderRegistry {
         AVPBaseAlienEntityRenderers.addBindings();
         AVPEntityRenderers.addBindings();
         AVPExoticAlienEntityRenderers.addBindings();
+        AVPPrometheusAlienEntityRenderers.addBindings();
         AVPPrometheusEngineerEntityRenderers.addBindings();
     }
 
