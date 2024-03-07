@@ -1,7 +1,9 @@
 package org.avp.client.render.entity;
 
 import org.avp.client.model.entity.living.BelugabursterModel;
+import org.avp.client.model.entity.living.BelugamorphModel;
 import org.avp.client.render.entity.living.BelugabursterRenderer;
+import org.avp.client.render.entity.living.BelugamorphRenderer;
 import org.avp.client.util.EntityModelLayerData;
 import org.avp.client.util.EntityRenderData;
 import org.avp.common.entity.AVPEntityTypes;
@@ -22,6 +24,15 @@ public class AVPEntityRenderers {
                 BelugabursterRenderer::new,
                 List.of(
                     new EntityModelLayerData(BelugabursterModel.LAYER_LOCATION, BelugabursterModel::createBodyLayer)
+                )
+            )
+        );
+        AVPEntityRenderRegistry.addBinding(
+            new EntityRenderData<>(
+                AVPEntityTypes.BELUGAMORPH,
+                BelugamorphRenderer::new,
+                List.of(
+                    new EntityModelLayerData(BelugamorphModel.LAYER_LOCATION, BelugamorphModel::createBodyLayer)
                 )
             )
         );
