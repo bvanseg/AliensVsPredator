@@ -1,8 +1,7 @@
 package org.avp.fabric.service;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-
-import org.avp.common.entity.attribute.AVPEntityAttributes;
+import org.avp.common.entity.attribute.AVPEntityAttributesBindingRegistry;
 import org.avp.common.registry.AVPRegistry;
 
 /**
@@ -20,7 +19,7 @@ public class FabricEntityAttributeRegistry implements AVPRegistry {
 
     @Override
     public void register() {
-        AVPEntityAttributes.getBindings().forEach(binding -> {
+        AVPEntityAttributesBindingRegistry.getBindings().forEach(binding -> {
             var entityType = binding.getKey().get();
             var attributeSupplier = binding.getValue();
             FabricDefaultAttributeRegistry.register(entityType, attributeSupplier);
