@@ -131,6 +131,13 @@ public class AVPEntityAttributes {
         .add(Attributes.MOVEMENT_SPEED, 0.5D)
         .build();
 
+    public static final AttributeSupplier QUEEN = createAvPAttributes()
+        .add(Attributes.ATTACK_DAMAGE, 24.0D)
+        .add(Attributes.KNOCKBACK_RESISTANCE, 1F)
+        .add(Attributes.MAX_HEALTH, 300.0D)
+        .add(Attributes.MOVEMENT_SPEED, 0.600000238418579D)
+        .build();
+
     public static final AttributeSupplier TRILOBITE = createAvPAttributes()
         .add(Attributes.ATTACK_DAMAGE, 4.0D)
         .add(Attributes.KNOCKBACK_RESISTANCE, 1F)
@@ -191,6 +198,7 @@ public class AVPEntityAttributes {
         addBinding(AVPBaseAlienEntityTypes.FACEHUGGER_ROYAL, FACEHUGGER_ROYAL);
         addBinding(AVPBaseAlienEntityTypes.OVAMORPH, OVAMORPH);
         addBinding(AVPBaseAlienEntityTypes.PRAETORIAN, PRAETORIAN);
+        addBinding(AVPBaseAlienEntityTypes.QUEEN, QUEEN);
         addBinding(AVPBaseAlienEntityTypes.WARRIOR, WARRIOR);
     }
 }

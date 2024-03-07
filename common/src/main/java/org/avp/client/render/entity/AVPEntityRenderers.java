@@ -122,6 +122,15 @@ public class AVPEntityRenderers {
         );
         addBinding(
             new EntityRenderData<>(
+                AVPBaseAlienEntityTypes.QUEEN,
+                QueenRenderer::new,
+                List.of(
+                    new EntityModelLayerData(QueenModel.LAYER_LOCATION, QueenModel::createBodyLayer)
+                )
+            )
+        );
+        addBinding(
+            new EntityRenderData<>(
                 AVPBaseAlienEntityTypes.WARRIOR,
                 WarriorRenderer::new,
                 List.of(
