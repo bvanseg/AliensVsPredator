@@ -22,13 +22,15 @@ public class AVPEntityTypes implements AVPRegistry {
 
     public static final GameObject<EntityType<Belugaburster>> BELUGABURSTER = registerLiving(
         "belugaburster",
-        0xC2C1BD, 0x646857,
+        0xC2C1BD,
+        0x646857,
         EntityType.Builder.of(Belugaburster::new, MobCategory.MONSTER)
     );
 
     public static final GameObject<EntityType<Belugamorph>> BELUGAMORPH = registerLiving(
         "belugamorph",
-        0xBCC9C6, 0x646E65,
+        0xBCC9C6,
+        0x646E65,
         EntityType.Builder.of(Belugamorph::new, MobCategory.MONSTER)
     );
 
@@ -38,7 +40,12 @@ public class AVPEntityTypes implements AVPRegistry {
         int highlightColor,
         EntityType.Builder<T> builder
     ) {
-        return Services.ENTITY_REGISTRY.registerWithSpawnEgg(registryName, backgroundColor, highlightColor, () -> builder.build(registryName));
+        return Services.ENTITY_REGISTRY.registerWithSpawnEgg(
+            registryName,
+            backgroundColor,
+            highlightColor,
+            () -> builder.build(registryName)
+        );
     }
 
     @Override

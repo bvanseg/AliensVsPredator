@@ -18,7 +18,10 @@ public class AVPFoodItems extends AVPItemBindingRegistry implements AVPRegistry 
         return INSTANCE;
     }
 
-    public final GameObject<Item> DORITOS = registerFood("doritos", new FoodProperties.Builder().alwaysEat().nutrition(2).saturationMod(0.2F));
+    public final GameObject<Item> DORITOS = registerFood(
+        "doritos",
+        new FoodProperties.Builder().alwaysEat().nutrition(2).saturationMod(0.2F)
+    );
 
     private AVPFoodItems() {}
 
