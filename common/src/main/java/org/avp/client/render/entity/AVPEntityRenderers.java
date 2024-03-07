@@ -40,6 +40,15 @@ public class AVPEntityRenderers {
     static {
         addBinding(
             new EntityRenderData<>(
+                AVPBaseAlienEntityTypes.CHESTBURSTER,
+                ChestbursterRenderer::new,
+                List.of(
+                    new EntityModelLayerData(ChestbursterModel.LAYER_LOCATION, ChestbursterModel::createBodyLayer)
+                )
+            )
+        );
+        addBinding(
+            new EntityRenderData<>(
                 AVPExoticAlienEntityTypes.DRACOMORPH,
                 DracomorphRenderer::new,
                 List.of(

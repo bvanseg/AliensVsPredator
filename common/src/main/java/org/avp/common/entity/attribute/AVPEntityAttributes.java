@@ -52,6 +52,12 @@ public class AVPEntityAttributes {
         .add(Attributes.MOVEMENT_SPEED, 0.4700000238418579D)
         .build();
 
+    public static final AttributeSupplier CHESTBURSTER = createAvPAttributes()
+        .add(Attributes.ATTACK_DAMAGE, 0.5D)
+        .add(Attributes.MAX_HEALTH, 14.0D)
+        .add(Attributes.MOVEMENT_SPEED, 0.6499999761581421D)
+        .build();
+
     public static final AttributeSupplier DEACON_ADULT = createAvPAttributes()
         .add(Attributes.ATTACK_DAMAGE, 3D)
         .add(Attributes.MAX_HEALTH, 120.0D)
@@ -179,6 +185,7 @@ public class AVPEntityAttributes {
         addBinding(AVPPrometheusAlienEntityTypes.TRILOBITE_BABY, TRILOBITE_BABY);
 
         // Base Aliens
+        addBinding(AVPBaseAlienEntityTypes.CHESTBURSTER, CHESTBURSTER);
         addBinding(AVPBaseAlienEntityTypes.DRONE, DRONE);
         addBinding(AVPBaseAlienEntityTypes.FACEHUGGER, FACEHUGGER);
         addBinding(AVPBaseAlienEntityTypes.FACEHUGGER_ROYAL, FACEHUGGER_ROYAL);

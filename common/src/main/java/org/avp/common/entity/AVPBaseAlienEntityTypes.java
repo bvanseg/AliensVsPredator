@@ -17,6 +17,12 @@ public class AVPBaseAlienEntityTypes implements AVPRegistry {
         return INSTANCE;
     }
 
+    public static final GameObject<EntityType<Chestburster>> CHESTBURSTER = AVPEntityTypes.registerLiving(
+        "chestburster",
+        0xD8B877, 0xF7E2B4,
+        EntityType.Builder.of(Chestburster::new, MobCategory.MONSTER)
+    );
+
     public static final GameObject<EntityType<Drone>> DRONE = AVPEntityTypes.registerLiving(
         "drone",
         0x010202, 0xDFE2E4,

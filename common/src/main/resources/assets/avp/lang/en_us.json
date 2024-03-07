@@ -55,6 +55,7 @@
 
   "entity.avp.belugaburster": "Belugaburster",
   "entity.avp.belugamorph": "Belugamorph",
+  "entity.avp.chestburster": "Chestburster",
   "entity.avp.deacon_adult": "Deacon (Adult)",
   "entity.avp.deacon_adult_engineer": "Deacon (Adult, Engineer)",
   "entity.avp.dracoburster": "Dracoburster",
@@ -144,6 +145,7 @@
 
   "item.avp.spawn_egg_belugaburster": "Belugaburster Spawn Egg",
   "item.avp.spawn_egg_belugamorph": "Belugamorph Spawn Egg",
+  "item.avp.spawn_egg_chestburster": "Chestburster Spawn Egg",
   "item.avp.spawn_egg_deacon_adult": "Deacon (Adult) Spawn Egg",
   "item.avp.spawn_egg_deacon_adult_engineer": "Deacon (Adult, Engineer) Spawn Egg",
   "item.avp.spawn_egg_dracoburster": "Dracoburster Spawn Egg",
