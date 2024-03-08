@@ -31,6 +31,12 @@ public class AVPArmorMaterials {
         .setEnchantmentValue(6)
         .build();
 
+    public final ArmorMaterial PRESSURE = new AVPArmorMaterial.Builder("pressure", SoundEvents.ARMOR_EQUIP_CHAIN, () -> AVPItems.getInstance().INGOT_ALUMINUM.get())
+        .setProtectionValues(new int[] {2, 4, 3, 2})
+        .setDurabilityMultiplier(22)
+        .setEnchantmentValue(6)
+        .build();
+
     public static AVPArmorMaterials getInstance() {
         return INSTANCE;
     }
