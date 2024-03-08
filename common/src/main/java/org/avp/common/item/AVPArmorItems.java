@@ -20,10 +20,7 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
         return INSTANCE;
     }
 
-    public final GameObject<Item> CELTIC_HELMET = registerEntry(
-        "armor_celtic_helmet",
-        () -> new Item(new Item.Properties())
-    );
+    public GameObject<Item> CELTIC_HELMET;
 
     private AVPArmorItems() {}
 
@@ -35,9 +32,11 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
         registerEntry("armor_aluminum_helmet", () -> new ArmorItem(aluminumMaterial, ArmorItem.Type.HELMET, new Item.Properties()));
         registerEntry("armor_aluminum_leggings", () -> new ArmorItem(aluminumMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
-        registerEntry("armor_celtic_body", () -> new Item(new Item.Properties()));
-        registerEntry("armor_celtic_boots", () -> new Item(new Item.Properties()));
-        registerEntry("armor_celtic_leggings", () -> new Item(new Item.Properties()));
+        var celticMaterial = AVPArmorMaterials.getInstance().CELTIC;
+        registerEntry("armor_celtic_body", () -> new ArmorItem(celticMaterial, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+        registerEntry("armor_celtic_boots", () -> new ArmorItem(celticMaterial, ArmorItem.Type.BOOTS, new Item.Properties()));
+        CELTIC_HELMET = registerEntry("armor_celtic_helmet", () -> new ArmorItem(celticMaterial, ArmorItem.Type.HELMET, new Item.Properties()));
+        registerEntry("armor_celtic_leggings", () -> new ArmorItem(celticMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
         registerEntry("armor_mk50_body", () -> new Item(new Item.Properties()));
         registerEntry("armor_mk50_boots", () -> new Item(new Item.Properties()));
