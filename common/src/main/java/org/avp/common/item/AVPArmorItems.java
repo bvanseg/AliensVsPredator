@@ -1,7 +1,10 @@
 package org.avp.common.item;
 
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.Item;
 
+import org.avp.common.item.armor.material.AVPArmorMaterials;
 import org.avp.common.registry.AVPItemBindingRegistry;
 import org.avp.common.registry.AVPRegistry;
 import org.avp.common.util.GameObject;
@@ -26,10 +29,11 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
 
     @Override
     public void register() {
-        registerEntry("armor_aluminum_body", () -> new Item(new Item.Properties()));
-        registerEntry("armor_aluminum_boots", () -> new Item(new Item.Properties()));
-        registerEntry("armor_aluminum_helmet", () -> new Item(new Item.Properties()));
-        registerEntry("armor_aluminum_leggings", () -> new Item(new Item.Properties()));
+        var aluminumMaterial = AVPArmorMaterials.getInstance().ALUMINUM;
+        registerEntry("armor_aluminum_body", () -> new ArmorItem(aluminumMaterial, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+        registerEntry("armor_aluminum_boots", () -> new ArmorItem(aluminumMaterial, ArmorItem.Type.BOOTS, new Item.Properties()));
+        registerEntry("armor_aluminum_helmet", () -> new ArmorItem(aluminumMaterial, ArmorItem.Type.HELMET, new Item.Properties()));
+        registerEntry("armor_aluminum_leggings", () -> new ArmorItem(aluminumMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
         registerEntry("armor_celtic_body", () -> new Item(new Item.Properties()));
         registerEntry("armor_celtic_boots", () -> new Item(new Item.Properties()));

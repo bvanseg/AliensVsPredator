@@ -17,7 +17,8 @@ public class AVPItems extends AVPItemBindingRegistry implements AVPRegistry {
         return INSTANCE;
     }
 
-    public final GameObject<Item> ROYAL_JELLY = registerEntry("royal_jelly", () -> new Item(new Item.Properties()));
+    public GameObject<Item> INGOT_ALUMINUM;
+    public GameObject<Item> ROYAL_JELLY;
 
     private AVPItems() {}
 
@@ -25,7 +26,7 @@ public class AVPItems extends AVPItemBindingRegistry implements AVPRegistry {
     public void register() {
         registerEntry("carbon", () -> new Item(new Item.Properties()));
         registerEntry("cobalt", () -> new Item(new Item.Properties()));
-        registerEntry("ingot_aluminum", () -> new Item(new Item.Properties()));
+        INGOT_ALUMINUM = registerEntry("ingot_aluminum", () -> new Item(new Item.Properties()));
         registerEntry("ingot_lithium", () -> new Item(new Item.Properties()));
         registerEntry("laser_mine", () -> new Item(new Item.Properties()));
         registerEntry("nbt_drive", () -> new Item(new Item.Properties()));
@@ -33,6 +34,7 @@ public class AVPItems extends AVPItemBindingRegistry implements AVPRegistry {
         registerEntry("neodymium_magnet", () -> new Item(new Item.Properties()));
         registerEntry("polycarbonate", () -> new Item(new Item.Properties()));
         registerEntry("raw_bauxite", () -> new Item(new Item.Properties()));
+        ROYAL_JELLY = registerEntry("royal_jelly", () -> new Item(new Item.Properties()));
         registerEntry("shuriken", () -> new Item(new Item.Properties()));
         registerEntry("silica", () -> new Item(new Item.Properties()));
         registerEntry("smart_disc", () -> new Item(new Item.Properties()));
