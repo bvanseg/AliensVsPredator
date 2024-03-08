@@ -162,8 +162,22 @@ public class AVPCreativeModeTabs implements AVPRegistry {
         );
 
         registerCreativeModeTab(
-            "weapons",
+            "tools",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, 0)
+                .icon(AVPToolItems.getInstance().CELTIC_PICKAXE.get()::getDefaultInstance)
+                .displayItems(
+                        (itemDisplayParameters, output) -> output.acceptAll(
+                            AVPToolItems.getInstance().ENTRIES.stream()
+                                .map(GameObject::get)
+                                .map(Item::getDefaultInstance)
+                                .toList()
+                        )
+                    )
+        );
+
+        registerCreativeModeTab(
+            "weapons",
+            () -> CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, 1)
                 .icon(AVPWeaponItems.getInstance().AMMO_SMG.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(

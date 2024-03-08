@@ -166,6 +166,13 @@
   "item.avp.spawn_egg_warrior": "Warrior Spawn Egg",
 
   "item.avp.ssd": "Solid State Drive",
+
+  "item.avp.tool_celtic_axe": "Celtic Axe",
+  "item.avp.tool_celtic_hoe": "Celtic Hoe",
+  "item.avp.tool_celtic_pickaxe": "Celtic Pickaxe",
+  "item.avp.tool_celtic_shovel": "Celtic Shovel",
+  "item.avp.tool_celtic_sword": "Celtic Sword",
+
   "item.avp.transistor": "Transistor",
   "item.avp.trilo_bite": "Trilo Bite",
 
@@ -188,5 +195,6 @@
   "tab.avp.entities": "AVP Entities",
   "tab.avp.food": "AVP Food",
   "tab.avp.items": "AVP Items",
+  "tab.avp.tools": "AVP Tools",
   "tab.avp.weapons": "AVP Weapons"
 }
