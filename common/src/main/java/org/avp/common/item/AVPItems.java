@@ -19,6 +19,7 @@ public class AVPItems extends AVPItemBindingRegistry implements AVPRegistry {
 
     public GameObject<Item> INGOT_ALUMINUM;
     public GameObject<Item> ROYAL_JELLY;
+    public GameObject<Item> YAUTJA_ARTIFACT;
 
     private AVPItems() {}
 
@@ -38,5 +39,6 @@ public class AVPItems extends AVPItemBindingRegistry implements AVPRegistry {
         registerEntry("shuriken", () -> new Item(new Item.Properties()));
         registerEntry("silica", () -> new Item(new Item.Properties()));
         registerEntry("smart_disc", () -> new Item(new Item.Properties()));
+        YAUTJA_ARTIFACT = registerEntry("yautja_artifact", () -> new Item(new Item.Properties()));
     }
 }
