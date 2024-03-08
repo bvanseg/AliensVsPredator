@@ -2,6 +2,7 @@ package org.avp.common.item.armor.material;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Items;
 import org.avp.common.item.AVPItems;
 
 /**
@@ -22,6 +23,12 @@ public class AVPArmorMaterials {
         .setDurabilityMultiplier(34)
         .setEnchantmentValue(20)
         .setToughness(5.0F)
+        .build();
+
+    public final ArmorMaterial MK50 = new AVPArmorMaterial.Builder("mk50", SoundEvents.ARMOR_EQUIP_CHAIN, () -> Items.COPPER_INGOT)
+        .setProtectionValues(new int[] {2, 4, 3, 2})
+        .setDurabilityMultiplier(24)
+        .setEnchantmentValue(6)
         .build();
 
     public static AVPArmorMaterials getInstance() {

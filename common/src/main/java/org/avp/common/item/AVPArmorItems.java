@@ -38,10 +38,11 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
         CELTIC_HELMET = registerEntry("armor_celtic_helmet", () -> new ArmorItem(celticMaterial, ArmorItem.Type.HELMET, new Item.Properties()));
         registerEntry("armor_celtic_leggings", () -> new ArmorItem(celticMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
-        registerEntry("armor_mk50_body", () -> new Item(new Item.Properties()));
-        registerEntry("armor_mk50_boots", () -> new Item(new Item.Properties()));
-        registerEntry("armor_mk50_helmet", () -> new Item(new Item.Properties()));
-        registerEntry("armor_mk50_leggings", () -> new Item(new Item.Properties()));
+        var mk50Material = AVPArmorMaterials.getInstance().MK50;
+        registerEntry("armor_mk50_body", () -> new ArmorItem(mk50Material, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+        registerEntry("armor_mk50_boots", () -> new ArmorItem(mk50Material, ArmorItem.Type.BOOTS, new Item.Properties()));
+        registerEntry("armor_mk50_helmet", () -> new ArmorItem(mk50Material, ArmorItem.Type.HELMET, new Item.Properties()));
+        registerEntry("armor_mk50_leggings", () -> new ArmorItem(mk50Material, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
         registerEntry("armor_pressure_body", () -> new Item(new Item.Properties()));
         registerEntry("armor_pressure_boots", () -> new Item(new Item.Properties()));
