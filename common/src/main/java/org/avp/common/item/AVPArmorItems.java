@@ -56,9 +56,10 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
         registerEntry("armor_tactical_helmet", () -> new ArmorItem(tacticalMaterial, ArmorItem.Type.HELMET, new Item.Properties()));
         registerEntry("armor_tactical_leggings", () -> new ArmorItem(tacticalMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
-        registerEntry("armor_xeno_body", () -> new Item(new Item.Properties()));
-        registerEntry("armor_xeno_boots", () -> new Item(new Item.Properties()));
-        registerEntry("armor_xeno_helmet", () -> new Item(new Item.Properties()));
-        registerEntry("armor_xeno_leggings", () -> new Item(new Item.Properties()));
+        var xenomorphChitinMaterial = AVPArmorMaterials.getInstance().XENOMORPH_CHITIN;
+        registerEntry("armor_xenomorph_chitin_body", () -> new ArmorItem(xenomorphChitinMaterial, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+        registerEntry("armor_xenomorph_chitin_boots", () -> new ArmorItem(xenomorphChitinMaterial, ArmorItem.Type.BOOTS, new Item.Properties()));
+        registerEntry("armor_xenomorph_chitin_helmet", () -> new ArmorItem(xenomorphChitinMaterial, ArmorItem.Type.HELMET, new Item.Properties()));
+        registerEntry("armor_xenomorph_chitin_leggings", () -> new ArmorItem(xenomorphChitinMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     }
 }

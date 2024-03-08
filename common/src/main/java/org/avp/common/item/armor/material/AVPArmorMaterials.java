@@ -43,6 +43,12 @@ public class AVPArmorMaterials {
         .setEnchantmentValue(5)
         .build();
 
+    public final ArmorMaterial XENOMORPH_CHITIN = new AVPArmorMaterial.Builder("xenomorph_chitin", SoundEvents.HONEY_BLOCK_STEP, () -> AVPItems.getInstance().ROYAL_JELLY.get())
+        .setProtectionValues(new int[] {2, 7, 5, 3})
+        .setDurabilityMultiplier(30)
+        .setEnchantmentValue(7)
+        .build();
+
     public static AVPArmorMaterials getInstance() {
         return INSTANCE;
     }
