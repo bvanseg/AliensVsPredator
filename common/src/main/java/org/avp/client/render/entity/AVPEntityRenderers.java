@@ -1,5 +1,7 @@
 package org.avp.client.render.entity;
 
+import java.util.List;
+
 import org.avp.client.model.entity.living.BelugabursterModel;
 import org.avp.client.model.entity.living.BelugamorphModel;
 import org.avp.client.render.entity.living.BelugabursterRenderer;
@@ -7,8 +9,6 @@ import org.avp.client.render.entity.living.BelugamorphRenderer;
 import org.avp.client.util.EntityModelLayerData;
 import org.avp.client.util.EntityRenderData;
 import org.avp.common.entity.AVPEntityTypes;
-
-import java.util.List;
 
 /**
  * @author Boston Vanseghi

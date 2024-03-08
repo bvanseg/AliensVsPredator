@@ -2,12 +2,14 @@ package org.avp.common.entity.attribute;
 
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+
 import org.avp.common.entity.AVPEntityTypes;
 
 /**
  * @author Boston Vanseghi
  */
 public class AVPEntityAttributes {
+
     private static final AttributeSupplier BELUGABURSTER = AVPEntityAttributesBindingRegistry.builder()
         .add(Attributes.ATTACK_DAMAGE, 0.5D)
         .add(Attributes.MAX_HEALTH, 14.0D)

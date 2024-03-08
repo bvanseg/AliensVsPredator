@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+
 import org.avp.client.render.entity.AVPEntityRenderRegistry;
 
 /**

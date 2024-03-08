@@ -1,5 +1,7 @@
 package org.avp.client.render.entity;
 
+import java.util.List;
+
 import org.avp.client.model.entity.living.DracomorphModel;
 import org.avp.client.model.entity.living.OctohuggerModel;
 import org.avp.client.model.entity.living.OvamorphDracoModel;
@@ -11,8 +13,6 @@ import org.avp.client.render.entity.living.UltramorphRenderer;
 import org.avp.client.util.EntityModelLayerData;
 import org.avp.client.util.EntityRenderData;
 import org.avp.common.entity.AVPExoticAlienEntityTypes;
-
-import java.util.List;
 
 /**
  * @author Boston Vanseghi

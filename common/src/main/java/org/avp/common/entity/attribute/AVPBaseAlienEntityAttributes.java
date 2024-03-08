@@ -1,16 +1,9 @@
 package org.avp.common.entity.attribute;
 
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import org.avp.common.entity.*;
-import org.avp.common.util.GameObject;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import org.avp.common.entity.*;
 
 /**
  * @author Boston Vanseghi

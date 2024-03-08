@@ -7,6 +7,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+
 import org.avp.client.render.entity.AVPEntityRenderRegistry;
 import org.avp.common.AVPConstants;
 

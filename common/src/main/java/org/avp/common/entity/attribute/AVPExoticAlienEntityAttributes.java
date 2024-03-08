@@ -2,6 +2,7 @@ package org.avp.common.entity.attribute;
 
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+
 import org.avp.common.entity.AVPExoticAlienEntityTypes;
 
 /**
@@ -47,7 +48,10 @@ public class AVPExoticAlienEntityAttributes {
         .build();
 
     public static void addBindings() {
-        AVPEntityAttributesBindingRegistry.addBinding(AVPExoticAlienEntityTypes.DEACON_ADULT_ENGINEER, DEACON_ADULT_ENGINEER);
+        AVPEntityAttributesBindingRegistry.addBinding(
+            AVPExoticAlienEntityTypes.DEACON_ADULT_ENGINEER,
+            DEACON_ADULT_ENGINEER
+        );
         AVPEntityAttributesBindingRegistry.addBinding(AVPExoticAlienEntityTypes.DRACOBURSTER, DRACOBURSTER);
         AVPEntityAttributesBindingRegistry.addBinding(AVPExoticAlienEntityTypes.DRACOMORPH, DRACOMORPH);
         AVPEntityAttributesBindingRegistry.addBinding(AVPExoticAlienEntityTypes.OCTOHUGGER, OCTOHUGGER);

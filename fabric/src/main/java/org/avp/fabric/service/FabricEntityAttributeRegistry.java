@@ -1,6 +1,7 @@
 package org.avp.fabric.service;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
+
 import org.avp.common.entity.attribute.AVPEntityAttributesBindingRegistry;
 import org.avp.common.registry.AVPRegistry;
 
