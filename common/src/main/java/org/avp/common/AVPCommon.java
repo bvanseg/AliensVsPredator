@@ -4,6 +4,7 @@ import org.avp.common.block.*;
 import org.avp.common.creative_tab.AVPCreativeModeTabs;
 import org.avp.common.entity.*;
 import org.avp.common.item.*;
+import org.avp.common.sound.AVPSoundEvents;
 
 /**
  * @author Boston Vanseghi
@@ -32,5 +33,7 @@ public class AVPCommon {
 
         // It's important to register creative mode tabs last, as entities generate spawn eggs automatically.
         AVPCreativeModeTabs.getInstance().register();
+
+        AVPSoundEvents.getInstance().register();
     }
 }

@@ -176,6 +176,12 @@
   "item.avp.weapon_88mod4_combat_pistol": "88 Mod 4 Combat Pistol",
   "item.avp.weapon_sniper_rifle": "Sniper Rifle",
 
+  "subtitles.entity.xenomorph.attack": "Xenomorph attacks",
+  "subtitles.entity.xenomorph.ambient": "Xenomorph hisses",
+  "subtitles.entity.xenomorph.hurt": "Xenomorph hurt",
+  "subtitles.entity.xenomorph.death": "Xenomorph dies",
+  "subtitles.entity.xenomorph.eat": "Xenomorph devours",
+
   "tab.avp.armor": "AVP Armor",
   "tab.avp.blocks": "AVP Blocks",
   "tab.avp.electronics": "AVP Electronics",

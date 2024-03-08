@@ -4,6 +4,9 @@ import java.util.ServiceLoader;
 
 import org.avp.common.AVPConstants;
 
+/**
+ * @author Boston Vanseghi
+ */
 public class Services {
 
     public static final BlockRegistry BLOCK_REGISTRY = load(BlockRegistry.class);
@@ -13,6 +16,8 @@ public class Services {
     public static final EntityRegistry ENTITY_REGISTRY = load(EntityRegistry.class);
 
     public static final ItemRegistry ITEM_REGISTRY = load(ItemRegistry.class);
+
+    public static final SoundEventRegistry SOUND_EVENT_REGISTRY = load(SoundEventRegistry.class);
 
     public static final Platform PLATFORM = load(Platform.class);
 

@@ -1,0 +1,109 @@
+{
+  "entity.chestburster.death": {
+    "sounds": [
+      "avp:entity/chestburster/death/death"
+    ],
+    "subtitle": "subtitles.entity.chestburster.death"
+  },
+  "entity.chestburster.hurt": {
+    "sounds": [
+      "avp:entity/chestburster/hurt/hurt"
+    ],
+    "subtitle": "subtitles.entity.chestburster.hurt"
+  },
+  "entity.praetorian.ambient": {
+    "sounds": [
+      "avp:entity/praetorian/ambient/living0",
+      "avp:entity/praetorian/ambient/living1",
+      "avp:entity/praetorian/ambient/living2"
+    ],
+    "subtitle": "subtitles.entity.praetorian.ambient"
+  },
+  "entity.praetorian.death": {
+    "sounds": [
+      "avp:entity/praetorian/death/death0",
+      "avp:entity/praetorian/death/death1"
+    ],
+    "subtitle": "subtitles.entity.praetorian.death"
+  },
+  "entity.praetorian.hurt": {
+    "sounds": [
+      "avp:entity/praetorian/hurt/hurt0",
+      "avp:entity/praetorian/hurt/hurt1",
+      "avp:entity/praetorian/hurt/hurt2"
+    ],
+    "subtitle": "subtitles.entity.praetorian.hurt"
+  },
+  "entity.queen.ambient": {
+    "sounds": [
+      "avp:entity/queen/ambient/living0",
+      "avp:entity/queen/ambient/living1",
+      "avp:entity/queen/ambient/living2",
+      "avp:entity/queen/ambient/living3"
+    ],
+    "subtitle": "subtitles.entity.queen.ambient"
+  },
+  "entity.queen.ambient.loop": {
+    "sounds": [
+      "avp:entity/queen/ambient/loop/living-loop"
+    ],
+    "subtitle": "subtitles.entity.queen.ambient.loop"
+  },
+  "entity.queen.death": {
+    "sounds": [
+      "avp:entity/queen/hurt/hurt0",
+      "avp:entity/queen/hurt/hurt1",
+      "avp:entity/queen/hurt/hurt2",
+      "avp:entity/queen/hurt/hurt3"
+    ],
+    "subtitle": "subtitles.entity.queen.death"
+  },
+  "entity.queen.hurt": {
+    "sounds": [
+      "avp:entity/queen/hurt/hurt0",
+      "avp:entity/queen/hurt/hurt1",
+      "avp:entity/queen/hurt/hurt2",
+      "avp:entity/queen/hurt/hurt3"
+    ],
+    "subtitle": "subtitles.entity.queen.hurt"
+  },
+  "entity.entity.xenomorph.ambient": {
+    "sounds": [
+      "avp:entity/xenomorph/ambient/living0",
+      "avp:entity/xenomorph/ambient/living1",
+      "avp:entity/xenomorph/ambient/living2",
+      "avp:entity/xenomorph/ambient/living3"
+    ],
+    "subtitle": "subtitles.entity.xenomorph.ambient"
+  },
+  "entity.xenomorph.attack": {
+    "sounds": [
+      "avp:entity/xenomorph/attack/attack0",
+      "avp:entity/xenomorph/attack/attack1",
+      "avp:entity/xenomorph/attack/attack2",
+      "avp:entity/xenomorph/attack/attack3"
+    ],
+    "subtitle": "subtitles.entity.xenomorph.attack"
+  },
+  "entity.xenomorph.death": {
+    "sounds": [
+      "avp:entity/xenomorph/death/death0",
+      "avp:entity/xenomorph/death/death1"
+    ],
+    "subtitle": "subtitles.entity.xenomorph.death"
+  },
+  "entity.xenomorph.eat": {
+    "sounds": [
+      "avp:entity/xenomorph/eat/eat0",
+      "avp:entity/xenomorph/eat/eat1"
+    ],
+    "subtitle": "subtitles.entity.xenomorph.eat"
+  },
+  "entity.xenomorph.hurt": {
+    "sounds": [
+      "avp:entity/xenomorph/hurt/hurt0",
+      "avp:entity/xenomorph/hurt/hurt1"
+    ],
+    "subtitle": "subtitles.entity.xenomorph.hurt"
+  }
+}
