@@ -37,6 +37,12 @@ public class AVPArmorMaterials {
         .setEnchantmentValue(6)
         .build();
 
+    public final ArmorMaterial TACTICAL = new AVPArmorMaterial.Builder("tactical", SoundEvents.ARMOR_EQUIP_CHAIN, () -> AVPItems.getInstance().INGOT_ALUMINUM.get())
+        .setProtectionValues(new int[] {2, 6, 3, 2})
+        .setDurabilityMultiplier(26)
+        .setEnchantmentValue(5)
+        .build();
+
     public static AVPArmorMaterials getInstance() {
         return INSTANCE;
     }

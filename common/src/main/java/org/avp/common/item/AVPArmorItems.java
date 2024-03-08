@@ -50,10 +50,11 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
         registerEntry("armor_pressure_helmet", () -> new ArmorItem(pressureMaterial, ArmorItem.Type.HELMET, new Item.Properties()));
         registerEntry("armor_pressure_leggings", () -> new ArmorItem(pressureMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
-        registerEntry("armor_tactical_body", () -> new Item(new Item.Properties()));
-        registerEntry("armor_tactical_boots", () -> new Item(new Item.Properties()));
-        registerEntry("armor_tactical_helmet", () -> new Item(new Item.Properties()));
-        registerEntry("armor_tactical_leggings", () -> new Item(new Item.Properties()));
+        var tacticalMaterial = AVPArmorMaterials.getInstance().TACTICAL;
+        registerEntry("armor_tactical_body", () -> new ArmorItem(tacticalMaterial, ArmorItem.Type.CHESTPLATE, new Item.Properties()));
+        registerEntry("armor_tactical_boots", () -> new ArmorItem(tacticalMaterial, ArmorItem.Type.BOOTS, new Item.Properties()));
+        registerEntry("armor_tactical_helmet", () -> new ArmorItem(tacticalMaterial, ArmorItem.Type.HELMET, new Item.Properties()));
+        registerEntry("armor_tactical_leggings", () -> new ArmorItem(tacticalMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties()));
 
         registerEntry("armor_xeno_body", () -> new Item(new Item.Properties()));
         registerEntry("armor_xeno_boots", () -> new Item(new Item.Properties()));
