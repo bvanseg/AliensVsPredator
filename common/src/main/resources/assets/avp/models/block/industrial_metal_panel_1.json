@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "avp:block/industrial_metal_panel_1"
+  }
+}

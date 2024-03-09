@@ -22,7 +22,16 @@
   "block.avp.engineer_ship_wall_3": "Dark Hieroglyphics Plating (Engineer)",
   "block.avp.engineer_ship_wall_4": "Hieroglyphics Plating (Engineer)",
 
+  "block.avp.industrial_brick": "Industrial Brick",
+  "block.avp.industrial_floor_grill": "Industrial Floor Grill",
   "block.avp.industrial_glass": "Industrial Glass",
+  "block.avp.industrial_lamp": "Industrial Lamp",
+  "block.avp.industrial_metal_panel_0": "Industrial Metal Panel",
+  "block.avp.industrial_metal_panel_1": "Industrial Metal Panel",
+  "block.avp.industrial_metal_panel_2": "Industrial Metal Panel",
+  "block.avp.industrial_vent": "Industrial Vent",
+  "block.avp.industrial_wall": "Industrial Wall",
+  "block.avp.industrial_wall_hazard": "Industrial Wall (Hazard)",
 
   "block.avp.ore_bauxite": "Bauxite Ore",
   "block.avp.ore_cobalt": "Cobalt Ore",
