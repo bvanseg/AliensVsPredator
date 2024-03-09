@@ -19,7 +19,11 @@ public class AVPFabricWorldGenFeatures implements AVPRegistry {
     public void register() {
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, AVPOreFeatures.getInstance().BAUXITE_ORE_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.tag(BiomeTags.IS_JUNGLE), GenerationStep.Decoration.UNDERGROUND_ORES, AVPOreFeatures.getInstance().COBALT_ORE_PLACED_KEY);
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, AVPOreFeatures.getInstance().LITHIUM_ORE_PLACED_KEY);
+        BiomeModifications.addFeature(
+            ctx -> ctx.hasTag(BiomeTags.IS_OCEAN) || ctx.hasTag(BiomeTags.IS_RIVER) || ctx.hasTag(BiomeTags.IS_BEACH),
+            GenerationStep.Decoration.UNDERGROUND_ORES,
+            AVPOreFeatures.getInstance().LITHIUM_ORE_PLACED_KEY
+        );
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, AVPOreFeatures.getInstance().MONAZITE_ORE_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Decoration.UNDERGROUND_ORES, AVPOreFeatures.getInstance().SILICA_ORE_PLACED_KEY);
     }
