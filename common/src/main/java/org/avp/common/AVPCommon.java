@@ -5,6 +5,8 @@ import org.avp.common.creative_tab.AVPCreativeModeTabs;
 import org.avp.common.entity.*;
 import org.avp.common.item.*;
 import org.avp.common.sound.AVPSoundEvents;
+import org.avp.common.tag.AVPBlockTags;
+import org.avp.common.tag.AVPEntityTags;
 
 /**
  * @author Boston Vanseghi
@@ -12,6 +14,11 @@ import org.avp.common.sound.AVPSoundEvents;
 public class AVPCommon {
 
     public static void init() {
+        // Tags
+        AVPBlockTags.getInstance().register();
+        AVPEntityTags.getInstance().register();
+
+        // Items
         AVPArmorItems.getInstance().register();
         AVPElectronicItems.getInstance().register();
         AVPFoodItems.getInstance().register();
@@ -19,6 +26,7 @@ public class AVPCommon {
         AVPToolItems.getInstance().register();
         AVPWeaponItems.getInstance().register();
 
+        // Blocks
         AVPEngineerBlocks.getInstance().register();
         AVPIndustrialBlocks.getInstance().register();
         AVPOreBlocks.getInstance().register();
@@ -26,6 +34,7 @@ public class AVPCommon {
         AVPTempleBlocks.getInstance().register();
         AVPYautjaShipBlocks.getInstance().register();
 
+        // Entities
         AVPBaseAlienEntityTypes.getInstance().register();
         AVPEngineerEntityTypes.getInstance().register();
         AVPEntityTypes.getInstance().register();
@@ -35,6 +44,7 @@ public class AVPCommon {
         // It's important to register creative mode tabs last, as entities generate spawn eggs automatically.
         AVPCreativeModeTabs.getInstance().register();
 
+        // Sounds
         AVPSoundEvents.getInstance().register();
     }
 }

@@ -1,0 +1,38 @@
+{
+  "values": [
+    "#minecraft:undead",
+
+    "minecraft:allay",
+    "minecraft:axolotl",
+    "minecraft:bat",
+    "minecraft:bee",
+    "minecraft:blaze",
+    "minecraft:breeze",
+    "minecraft:cave_spider",
+    "minecraft:chicken",
+    "minecraft:cod",
+    "minecraft:elder_guardian",
+    "minecraft:enderman",
+    "minecraft:endermite",
+    "minecraft:frog",
+    "minecraft:ghast",
+    "minecraft:glow_squid",
+    "minecraft:guardian",
+    "minecraft:iron_golem",
+    "minecraft:magma_cube",
+    "minecraft:parrot",
+    "minecraft:pufferfish",
+    "minecraft:salmon",
+    "minecraft:shulker",
+    "minecraft:silverfish",
+    "minecraft:slime",
+    "minecraft:snow_golem",
+    "minecraft:spider",
+    "minecraft:squid",
+    "minecraft:strider",
+    "minecraft:tadpole",
+    "minecraft:tropical_fish",
+    "minecraft:vex",
+    "minecraft:warden"
+  ]
+}

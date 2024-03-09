@@ -1,0 +1,18 @@
+{
+  "values": [
+    "#avp:eggs",
+    "#avp:parasites",
+    "#avp:royal_aliens",
+
+    "avp:belugaburster",
+    "avp:belugamorph",
+    "avp:chestburster",
+    "avp:deacon_adult",
+    "avp:deacon_adult_engineer",
+    "avp:dracoburster",
+    "avp:dracomorph",
+    "avp:drone",
+    "avp:ultramorph",
+    "avp:warrior"
+  ]
+}
