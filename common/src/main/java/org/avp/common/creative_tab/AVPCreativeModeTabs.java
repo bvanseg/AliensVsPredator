@@ -61,6 +61,13 @@ public class AVPCreativeModeTabs implements AVPRegistry {
                 .icon(AVPTempleBlocks.getInstance().TEMPLE_BRICK.get().asItem()::getDefaultInstance)
                 .displayItems((itemDisplayParameters, output) -> {
                     output.acceptAll(
+                        AVPBlocks.getInstance().ENTRIES.stream()
+                            .map(GameObject::get)
+                            .map(Block::asItem)
+                            .map(Item::getDefaultInstance)
+                            .toList()
+                    );
+                    output.acceptAll(
                         AVPEngineerBlocks.getInstance().ENTRIES.stream()
                             .map(GameObject::get)
                             .map(Block::asItem)
