@@ -20,7 +20,7 @@ public class AVPOreFeatures implements AVPRegistry {
     public ResourceKey<PlacedFeature> BAUXITE_ORE_PLACED_KEY;
     public ResourceKey<PlacedFeature> COBALT_ORE_PLACED_KEY;
     public ResourceKey<PlacedFeature> LITHIUM_ORE_PLACED_KEY;
-    public ResourceKey<PlacedFeature> NEODYMIUM_ORE_PLACED_KEY;
+    public ResourceKey<PlacedFeature> MONAZITE_ORE_PLACED_KEY;
     public ResourceKey<PlacedFeature> SILICA_ORE_PLACED_KEY;
 
     @Override
@@ -28,7 +28,7 @@ public class AVPOreFeatures implements AVPRegistry {
         BAUXITE_ORE_PLACED_KEY = register("ore_bauxite");
         COBALT_ORE_PLACED_KEY = register("ore_cobalt");
         LITHIUM_ORE_PLACED_KEY = register("ore_lithium");
-        NEODYMIUM_ORE_PLACED_KEY = register("ore_neodymium");
+        MONAZITE_ORE_PLACED_KEY = register("ore_monazite");
         SILICA_ORE_PLACED_KEY = register("ore_silica");
     }
 
