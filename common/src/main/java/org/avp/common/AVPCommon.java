@@ -7,6 +7,7 @@ import org.avp.common.item.*;
 import org.avp.common.sound.AVPSoundEvents;
 import org.avp.common.tag.AVPBlockTags;
 import org.avp.common.tag.AVPEntityTags;
+import org.avp.common.worldgen.AVPWorldGenFeatures;
 
 /**
  * @author Boston Vanseghi
@@ -14,6 +15,9 @@ import org.avp.common.tag.AVPEntityTags;
 public class AVPCommon {
 
     public static void init() {
+        // World Gen resource keys
+        AVPWorldGenFeatures.getInstance().register();
+
         // Tags
         AVPBlockTags.getInstance().register();
         AVPEntityTags.getInstance().register();

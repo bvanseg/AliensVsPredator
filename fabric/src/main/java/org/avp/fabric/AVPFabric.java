@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 
 import org.avp.common.AVPCommon;
 import org.avp.common.AVPConstants;
+import org.avp.fabric.common.worldgen.AVPFabricWorldGenFeatures;
 import org.avp.fabric.service.FabricEntityAttributeRegistry;
 
 public class AVPFabric implements ModInitializer {
@@ -17,6 +18,7 @@ public class AVPFabric implements ModInitializer {
         // Use Fabric to bootstrap the Common mod.
         AVPConstants.LOGGER.info("Hello Fabric world!");
         AVPCommon.init();
+        AVPFabricWorldGenFeatures.getInstance().register();
         FabricEntityAttributeRegistry.getInstance().register();
     }
 }
