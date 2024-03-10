@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
+    "avp:aluminum_block",
+
     "avp:engineer_ship_brick",
     "avp:engineer_ship_brick_1",
     "avp:engineer_ship_brick_2",
