@@ -3,6 +3,7 @@ package org.avp.common.worldgen.feature;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+
 import org.avp.common.AVPResources;
 import org.avp.common.registry.AVPRegistry;
 
@@ -18,9 +19,13 @@ public class AVPOreFeatures implements AVPRegistry {
     }
 
     public ResourceKey<PlacedFeature> BAUXITE_ORE_PLACED_KEY;
+
     public ResourceKey<PlacedFeature> COBALT_ORE_PLACED_KEY;
+
     public ResourceKey<PlacedFeature> LITHIUM_ORE_PLACED_KEY;
+
     public ResourceKey<PlacedFeature> MONAZITE_ORE_PLACED_KEY;
+
     public ResourceKey<PlacedFeature> SILICA_ORE_PLACED_KEY;
 
     @Override

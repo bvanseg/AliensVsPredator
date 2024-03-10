@@ -27,18 +27,31 @@ public class AVPSoundEvents implements AVPRegistry {
     }
 
     public static GameObject<SoundEvent> ENTITY_CHESTBURSTER_DEATH;
+
     public static GameObject<SoundEvent> ENTITY_CHESTBURSTER_HURT;
+
     public static GameObject<SoundEvent> ENTITY_PRAETORIAN_AMBIENT;
+
     public static GameObject<SoundEvent> ENTITY_PRAETORIAN_DEATH;
+
     public static GameObject<SoundEvent> ENTITY_PRAETORIAN_HURT;
+
     public static GameObject<SoundEvent> ENTITY_QUEEN_AMBIENT;
+
     public static GameObject<SoundEvent> ENTITY_QUEEN_AMBIENT_LOOP;
+
     public static GameObject<SoundEvent> ENTITY_QUEEN_DEATH;
+
     public static GameObject<SoundEvent> ENTITY_QUEEN_HURT;
+
     public static GameObject<SoundEvent> ENTITY_XENOMORPH_AMBIENT;
+
     public static GameObject<SoundEvent> ENTITY_XENOMORPH_ATTACK;
+
     public static GameObject<SoundEvent> ENTITY_XENOMORPH_DEATH;
+
     public static GameObject<SoundEvent> ENTITY_XENOMORPH_EAT;
+
     public static GameObject<SoundEvent> ENTITY_XENOMORPH_HURT;
 
     private AVPSoundEvents() {}

@@ -2,6 +2,7 @@ package org.avp.common.block;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+
 import org.avp.common.registry.AVPBlockBindingRegistry;
 import org.avp.common.registry.AVPRegistry;
 

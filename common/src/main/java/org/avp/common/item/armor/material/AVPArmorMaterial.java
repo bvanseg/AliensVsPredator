@@ -22,18 +22,25 @@ public record AVPArmorMaterial(
     float toughness,
     float knockbackResistance
 ) implements ArmorMaterial {
-    private static final int[] BASE_DURABILITY = new int[] {13, 15, 16, 11};
 
+    private static final int[] BASE_DURABILITY = new int[] { 13, 15, 16, 11 };
 
     public static final class Builder {
 
         private final String registryName;
+
         private int durabilityMultiplier;
+
         private int[] protectionValues;
+
         private int enchantmentValue;
+
         private final SoundEvent equipSound;
+
         private final Supplier<ItemLike> repairIngredientSupplier;
+
         private float toughness;
+
         private float knockbackResistance;
 
         public Builder(String registryName, SoundEvent equipSound, Supplier<ItemLike> repairIngredientSupplier) {
@@ -68,7 +75,16 @@ public record AVPArmorMaterial(
         }
 
         public AVPArmorMaterial build() {
-            return new AVPArmorMaterial(registryName, durabilityMultiplier, protectionValues, enchantmentValue, equipSound, repairIngredientSupplier, toughness, knockbackResistance);
+            return new AVPArmorMaterial(
+                registryName,
+                durabilityMultiplier,
+                protectionValues,
+                enchantmentValue,
+                equipSound,
+                repairIngredientSupplier,
+                toughness,
+                knockbackResistance
+            );
         }
     }
 

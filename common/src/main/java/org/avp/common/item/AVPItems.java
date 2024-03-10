@@ -18,7 +18,9 @@ public class AVPItems extends AVPItemBindingRegistry implements AVPRegistry {
     }
 
     public GameObject<Item> INGOT_ALUMINUM;
+
     public GameObject<Item> ROYAL_JELLY;
+
     public GameObject<Item> YAUTJA_ARTIFACT;
 
     private AVPItems() {}
