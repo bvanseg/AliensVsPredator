@@ -31,6 +31,7 @@ public class AVPTempleBlocks extends AVPBlockBindingRegistry implements AVPRegis
         registerEntry("temple_brick_facehugger", () -> new Block(BlockBehaviour.Properties.of()));
         registerEntry("temple_brick_single", () -> new Block(BlockBehaviour.Properties.of()));
         registerEntry("temple_floor", () -> new Block(BlockBehaviour.Properties.of()));
+        registerEntry("temple_skulls", () -> new Block(BlockBehaviour.Properties.of()));
         registerEntry("temple_tile", () -> new Block(BlockBehaviour.Properties.of()));
         registerEntry("temple_wall_base", () -> new Block(BlockBehaviour.Properties.of()));
     }
