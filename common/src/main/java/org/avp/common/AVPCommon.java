@@ -36,6 +36,7 @@ public class AVPCommon {
         AVPIndustrialBlocks.getInstance().register();
         AVPOreBlocks.getInstance().register();
         AVPPaddingBlocks.getInstance().register();
+        AVPParadiseBlocks.getInstance().register();
         AVPTempleBlocks.getInstance().register();
         AVPYautjaShipBlocks.getInstance().register();
 

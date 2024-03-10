@@ -3,9 +3,12 @@ package org.avp.common.creative_tab;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.function.Supplier;
 
 import org.avp.common.AVPConstants;
@@ -26,17 +29,32 @@ public class AVPCreativeModeTabs implements AVPRegistry {
         return INSTANCE;
     }
 
-    private GameObject<CreativeModeTab> registerCreativeModeTab(
+    private void registerCreativeModeTab(
         String registryName,
         Supplier<CreativeModeTab.Builder> creativeModeTabBuilderSupplier
     ) {
         var name = String.format("tab.%s.%s", AVPConstants.MOD_ID, registryName);
-        return Services.CREATIVE_MODE_TAB_REGISTRY.register(
+        Services.CREATIVE_MODE_TAB_REGISTRY.register(
             name,
             () -> creativeModeTabBuilderSupplier.get()
                 .title(Component.translatable(name))
                 .build()
         );
+    }
+
+    private Collection<ItemStack> itemsToItemStacks(List<GameObject<Item>> gameObjectList) {
+        return gameObjectList.stream()
+            .map(GameObject::get)
+            .map(Item::getDefaultInstance)
+            .toList();
+    }
+
+    private Collection<ItemStack> blocksToItemStacks(List<GameObject<Block>> gameObjectList) {
+        return gameObjectList.stream()
+            .map(GameObject::get)
+            .map(Block::asItem)
+            .map(Item::getDefaultInstance)
+            .toList();
     }
 
     @Override
@@ -47,10 +65,7 @@ public class AVPCreativeModeTabs implements AVPRegistry {
                 .icon(AVPArmorItems.getInstance().CELTIC_HELMET.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        AVPArmorItems.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Item::getDefaultInstance)
-                            .toList()
+                        itemsToItemStacks(AVPArmorItems.getInstance().ENTRIES)
                     )
                 )
         );
@@ -60,55 +75,14 @@ public class AVPCreativeModeTabs implements AVPRegistry {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
                 .icon(AVPTempleBlocks.getInstance().TEMPLE_BRICK.get().asItem()::getDefaultInstance)
                 .displayItems((itemDisplayParameters, output) -> {
-                    output.acceptAll(
-                        AVPBlocks.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Block::asItem)
-                            .map(Item::getDefaultInstance)
-                            .toList()
-                    );
-                    output.acceptAll(
-                        AVPEngineerBlocks.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Block::asItem)
-                            .map(Item::getDefaultInstance)
-                            .toList()
-                    );
-                    output.acceptAll(
-                        AVPIndustrialBlocks.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Block::asItem)
-                            .map(Item::getDefaultInstance)
-                            .toList()
-                    );
-                    output.acceptAll(
-                        AVPOreBlocks.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Block::asItem)
-                            .map(Item::getDefaultInstance)
-                            .toList()
-                    );
-                    output.acceptAll(
-                        AVPPaddingBlocks.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Block::asItem)
-                            .map(Item::getDefaultInstance)
-                            .toList()
-                    );
-                    output.acceptAll(
-                        AVPTempleBlocks.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Block::asItem)
-                            .map(Item::getDefaultInstance)
-                            .toList()
-                    );
-                    output.acceptAll(
-                        AVPYautjaShipBlocks.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Block::asItem)
-                            .map(Item::getDefaultInstance)
-                            .toList()
-                    );
+                    output.acceptAll(blocksToItemStacks(AVPBlocks.getInstance().ENTRIES));
+                    output.acceptAll(blocksToItemStacks(AVPEngineerBlocks.getInstance().ENTRIES));
+                    output.acceptAll(blocksToItemStacks(AVPIndustrialBlocks.getInstance().ENTRIES));
+                    output.acceptAll(blocksToItemStacks(AVPOreBlocks.getInstance().ENTRIES));
+                    output.acceptAll(blocksToItemStacks(AVPPaddingBlocks.getInstance().ENTRIES));
+                    output.acceptAll(blocksToItemStacks(AVPParadiseBlocks.getInstance().ENTRIES));
+                    output.acceptAll(blocksToItemStacks(AVPTempleBlocks.getInstance().ENTRIES));
+                    output.acceptAll(blocksToItemStacks(AVPYautjaShipBlocks.getInstance().ENTRIES));
                 })
         );
 
@@ -118,10 +92,7 @@ public class AVPCreativeModeTabs implements AVPRegistry {
                 .icon(AVPFoodItems.getInstance().DORITOS.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        AVPFoodItems.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Item::getDefaultInstance)
-                            .toList()
+                        itemsToItemStacks(AVPFoodItems.getInstance().ENTRIES)
                     )
                 )
         );
@@ -132,10 +103,7 @@ public class AVPCreativeModeTabs implements AVPRegistry {
                 .icon(AVPElectronicItems.getInstance().CPU.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        AVPElectronicItems.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Item::getDefaultInstance)
-                            .toList()
+                        itemsToItemStacks(AVPElectronicItems.getInstance().ENTRIES)
                     )
                 )
         );
@@ -146,10 +114,7 @@ public class AVPCreativeModeTabs implements AVPRegistry {
                 .icon(Items.EGG::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        AVPSpawnEggItems.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Item::getDefaultInstance)
-                            .toList()
+                        itemsToItemStacks(AVPSpawnEggItems.getInstance().ENTRIES)
                     )
                 )
         );
@@ -160,10 +125,7 @@ public class AVPCreativeModeTabs implements AVPRegistry {
                 .icon(AVPItems.getInstance().ROYAL_JELLY.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        AVPItems.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Item::getDefaultInstance)
-                            .toList()
+                        itemsToItemStacks(AVPItems.getInstance().ENTRIES)
                     )
                 )
         );
@@ -173,13 +135,10 @@ public class AVPCreativeModeTabs implements AVPRegistry {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, 0)
                 .icon(AVPToolItems.getInstance().CELTIC_PICKAXE.get()::getDefaultInstance)
                 .displayItems(
-                        (itemDisplayParameters, output) -> output.acceptAll(
-                            AVPToolItems.getInstance().ENTRIES.stream()
-                                .map(GameObject::get)
-                                .map(Item::getDefaultInstance)
-                                .toList()
-                        )
+                    (itemDisplayParameters, output) -> output.acceptAll(
+                        itemsToItemStacks(AVPToolItems.getInstance().ENTRIES)
                     )
+                )
         );
 
         registerCreativeModeTab(
@@ -188,10 +147,7 @@ public class AVPCreativeModeTabs implements AVPRegistry {
                 .icon(AVPWeaponItems.getInstance().AMMO_SMG.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        AVPWeaponItems.getInstance().ENTRIES.stream()
-                            .map(GameObject::get)
-                            .map(Item::getDefaultInstance)
-                            .toList()
+                        itemsToItemStacks(AVPWeaponItems.getInstance().ENTRIES)
                     )
                 )
         );
