@@ -1,18 +1,12 @@
 package org.avp.client.render.entity;
 
-import java.util.List;
-
-import org.avp.client.model.entity.living.DracomorphModel;
-import org.avp.client.model.entity.living.OctohuggerModel;
-import org.avp.client.model.entity.living.OvamorphDracoModel;
-import org.avp.client.model.entity.living.UltramorphModel;
-import org.avp.client.render.entity.living.DracomorphRenderer;
-import org.avp.client.render.entity.living.OctohuggerRenderer;
-import org.avp.client.render.entity.living.OvamorphDracoRenderer;
-import org.avp.client.render.entity.living.UltramorphRenderer;
+import org.avp.client.model.entity.living.*;
+import org.avp.client.render.entity.living.*;
 import org.avp.client.util.EntityModelLayerData;
 import org.avp.client.util.EntityRenderData;
 import org.avp.common.entity.AVPExoticAlienEntityTypes;
+
+import java.util.List;
 
 /**
  * @author Boston Vanseghi
@@ -22,6 +16,15 @@ public class AVPExoticAlienEntityRenderers {
     private AVPExoticAlienEntityRenderers() {}
 
     public static void addBindings() {
+        AVPEntityRenderRegistry.addBinding(
+            new EntityRenderData<>(
+                AVPExoticAlienEntityTypes.DEACON_ADULT_ENGINEER,
+                DeaconAdultEngineerRenderer::new,
+                List.of(
+                    new EntityModelLayerData(DeaconAdultEngineerModel.LAYER_LOCATION, DeaconAdultEngineerModel::createBodyLayer)
+                )
+            )
+        );
         AVPEntityRenderRegistry.addBinding(
             new EntityRenderData<>(
                 AVPExoticAlienEntityTypes.DRACOMORPH,
