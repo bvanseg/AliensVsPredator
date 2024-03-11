@@ -43,5 +43,7 @@ public class AVPOreBlocks extends AVPBlockBindingRegistry implements AVPRegistry
         registerEntry("ore_lithium", () -> new Block(LITHIUM_PROPERTIES));
         registerEntry("ore_monazite", () -> new Block(MONAZITE_PROPERTIES));
         registerEntry("ore_silica", () -> new Block(SILICA_PROPERTIES));
+
+        registerEntry("raw_bauxite_block", () -> new Block(BAUXITE_PROPERTIES));
     }
 }
