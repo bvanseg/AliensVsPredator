@@ -1,6 +1,7 @@
 package org.avp.common.block;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import org.avp.common.registry.AVPBlockBindingRegistry;
@@ -17,10 +18,10 @@ public class AVPEngineerBlocks extends AVPBlockBindingRegistry implements AVPReg
         return INSTANCE;
     }
 
-    public static final BlockBehaviour.Properties ENGINEER_SHIP_PROPERTIES = BlockBehaviour.Properties.of().strength(100.0F, 1800.0F);
+    public static final BlockBehaviour.Properties ENGINEER_SHIP_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)
+        .strength(100.0F, 1800.0F);
 
     private AVPEngineerBlocks() {}
-
 
     @Override
     public void register() {

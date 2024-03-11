@@ -20,24 +20,19 @@ public class AVPOreBlocks extends AVPBlockBindingRegistry implements AVPRegistry
     }
 
     public final BlockBehaviour.Properties BAUXITE_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
-        .strength(3.2F, 2.6F)
-        .sound(SoundType.STONE);
+        .strength(3.2F, 2.6F);
 
     public final BlockBehaviour.Properties COBALT_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
-        .strength(50F, 20F)
-        .sound(SoundType.STONE);
+        .strength(50F, 20F);
 
     public final BlockBehaviour.Properties LITHIUM_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
-        .strength(4.2F, 5.4F)
-        .sound(SoundType.STONE);
+        .strength(4.2F, 5.4F);
 
     public final BlockBehaviour.Properties MONAZITE_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
-        .strength(45F, 15F)
-        .sound(SoundType.STONE);
+        .strength(45F, 15F);
 
     public final BlockBehaviour.Properties SILICA_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
-        .strength(2.2F, 1.4F)
-        .sound(SoundType.STONE);
+        .strength(2.2F, 1.4F);
 
     private AVPOreBlocks() {}
 

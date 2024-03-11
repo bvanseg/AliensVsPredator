@@ -1,6 +1,7 @@
 package org.avp.common.block;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import org.avp.common.registry.AVPBlockBindingRegistry;
@@ -17,19 +18,21 @@ public class AVPIndustrialBlocks extends AVPBlockBindingRegistry implements AVPR
         return INSTANCE;
     }
 
+    public static final BlockBehaviour.Properties INDUSTRIAL_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK);
+
     private AVPIndustrialBlocks() {}
 
     @Override
     public void register() {
-        registerEntry("industrial_brick", () -> new Block(BlockBehaviour.Properties.of()));
-        registerEntry("industrial_floor_grill", () -> new Block(BlockBehaviour.Properties.of()));
-        registerEntry("industrial_glass", () -> new Block(BlockBehaviour.Properties.of()));
-        registerEntry("industrial_lamp", () -> new Block(BlockBehaviour.Properties.of()));
-        registerEntry("industrial_metal_panel_0", () -> new Block(BlockBehaviour.Properties.of()));
-        registerEntry("industrial_metal_panel_1", () -> new Block(BlockBehaviour.Properties.of()));
-        registerEntry("industrial_metal_panel_2", () -> new Block(BlockBehaviour.Properties.of()));
-        registerEntry("industrial_vent", () -> new Block(BlockBehaviour.Properties.of()));
-        registerEntry("industrial_wall", () -> new Block(BlockBehaviour.Properties.of()));
-        registerEntry("industrial_wall_hazard", () -> new Block(BlockBehaviour.Properties.of()));
+        registerEntry("industrial_brick", () -> new Block(INDUSTRIAL_PROPERTIES));
+        registerEntry("industrial_floor_grill", () -> new Block(INDUSTRIAL_PROPERTIES));
+        registerEntry("industrial_glass", () -> new Block(INDUSTRIAL_PROPERTIES));
+        registerEntry("industrial_lamp", () -> new Block(INDUSTRIAL_PROPERTIES));
+        registerEntry("industrial_metal_panel_0", () -> new Block(INDUSTRIAL_PROPERTIES));
+        registerEntry("industrial_metal_panel_1", () -> new Block(INDUSTRIAL_PROPERTIES));
+        registerEntry("industrial_metal_panel_2", () -> new Block(INDUSTRIAL_PROPERTIES));
+        registerEntry("industrial_vent", () -> new Block(INDUSTRIAL_PROPERTIES));
+        registerEntry("industrial_wall", () -> new Block(INDUSTRIAL_PROPERTIES));
+        registerEntry("industrial_wall_hazard", () -> new Block(INDUSTRIAL_PROPERTIES));
     }
 }
