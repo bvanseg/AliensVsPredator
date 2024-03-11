@@ -2,8 +2,10 @@ package org.avp.client.render.entity;
 
 import java.util.List;
 
+import org.avp.client.model.entity.living.DeaconAdultModel;
 import org.avp.client.model.entity.living.TrilobiteBabyModel;
 import org.avp.client.model.entity.living.TrilobiteModel;
+import org.avp.client.render.entity.living.DeaconAdultRenderer;
 import org.avp.client.render.entity.living.TrilobiteBabyRenderer;
 import org.avp.client.render.entity.living.TrilobiteRenderer;
 import org.avp.client.util.EntityModelLayerData;
@@ -18,6 +20,15 @@ public class AVPPrometheusAlienEntityRenderers {
     private AVPPrometheusAlienEntityRenderers() {}
 
     public static void addBindings() {
+        AVPEntityRenderRegistry.addBinding(
+            new EntityRenderData<>(
+                AVPPrometheusAlienEntityTypes.DEACON_ADULT,
+                DeaconAdultRenderer::new,
+                List.of(
+                    new EntityModelLayerData(DeaconAdultModel.LAYER_LOCATION, DeaconAdultModel::createBodyLayer)
+                )
+            )
+        );
         AVPEntityRenderRegistry.addBinding(
             new EntityRenderData<>(
                 AVPPrometheusAlienEntityTypes.TRILOBITE,
