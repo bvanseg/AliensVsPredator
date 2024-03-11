@@ -21,8 +21,8 @@ public class AVPExoticAlienEntityTypes implements AVPRegistry {
     public static final GameObject<EntityType<DeaconAdultEngineer>> DEACON_ADULT_ENGINEER = AVPEntityTypes
         .registerLiving(
             "deacon_adult_engineer",
-            0,
-            0, // TODO:
+            0x8896A5,
+            0x495256,
             EntityType.Builder.of(DeaconAdultEngineer::new, MobCategory.MONSTER)
         );
 
