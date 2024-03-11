@@ -18,6 +18,13 @@ public class AVPPrometheusAlienEntityTypes implements AVPRegistry {
         return INSTANCE;
     }
 
+    public static final GameObject<EntityType<Deacon>> DEACON = AVPEntityTypes.registerLiving(
+        "deacon",
+        0x8896A5,
+        0x495256,
+        EntityType.Builder.of(Deacon::new, MobCategory.MONSTER)
+    );
+
     public static final GameObject<EntityType<DeaconAdult>> DEACON_ADULT = AVPEntityTypes.registerLiving(
         "deacon_adult",
         0x8896A5,

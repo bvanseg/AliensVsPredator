@@ -3,8 +3,8 @@ package org.avp.common.block;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-
 import net.minecraft.world.level.material.MapColor;
+
 import org.avp.common.registry.AVPBlockBindingRegistry;
 import org.avp.common.registry.AVPRegistry;
 
@@ -19,7 +19,9 @@ public class AVPYautjaShipBlocks extends AVPBlockBindingRegistry implements AVPR
         return INSTANCE;
     }
 
-    public static final BlockBehaviour.Properties YAUTJA_SHIP_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)
+    public static final BlockBehaviour.Properties YAUTJA_SHIP_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
+        Blocks.IRON_BLOCK
+    )
         .mapColor(MapColor.COLOR_RED)
         .strength(75.0F, 1500.0F);
 

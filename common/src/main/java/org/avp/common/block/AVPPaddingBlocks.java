@@ -18,8 +18,13 @@ public class AVPPaddingBlocks extends AVPBlockBindingRegistry implements AVPRegi
         return INSTANCE;
     }
 
-    public final BlockBehaviour.Properties ORANGE_PADDING_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.ORANGE_WOOL);
-    public final BlockBehaviour.Properties WHITE_PADDING_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL);
+    public final BlockBehaviour.Properties ORANGE_PADDING_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
+        Blocks.ORANGE_WOOL
+    );
+
+    public final BlockBehaviour.Properties WHITE_PADDING_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
+        Blocks.WHITE_WOOL
+    );
 
     private AVPPaddingBlocks() {}
 

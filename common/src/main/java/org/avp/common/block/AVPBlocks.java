@@ -18,7 +18,9 @@ public class AVPBlocks extends AVPBlockBindingRegistry implements AVPRegistry {
         return INSTANCE;
     }
 
-    public static final BlockBehaviour.Properties ALUMINUM_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK);
+    public static final BlockBehaviour.Properties ALUMINUM_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
+        Blocks.IRON_BLOCK
+    );
 
     private AVPBlocks() {}
 

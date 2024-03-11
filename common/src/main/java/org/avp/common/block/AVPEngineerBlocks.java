@@ -18,7 +18,9 @@ public class AVPEngineerBlocks extends AVPBlockBindingRegistry implements AVPReg
         return INSTANCE;
     }
 
-    public static final BlockBehaviour.Properties ENGINEER_SHIP_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK)
+    public static final BlockBehaviour.Properties ENGINEER_SHIP_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
+        Blocks.IRON_BLOCK
+    )
         .strength(100.0F, 1800.0F);
 
     private AVPEngineerBlocks() {}

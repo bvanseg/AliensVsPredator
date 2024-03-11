@@ -18,7 +18,9 @@ public class AVPIndustrialBlocks extends AVPBlockBindingRegistry implements AVPR
         return INSTANCE;
     }
 
-    public static final BlockBehaviour.Properties INDUSTRIAL_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.IRON_BLOCK);
+    public static final BlockBehaviour.Properties INDUSTRIAL_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
+        Blocks.IRON_BLOCK
+    );
 
     private AVPIndustrialBlocks() {}
 
