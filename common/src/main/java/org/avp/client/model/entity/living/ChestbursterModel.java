@@ -184,7 +184,7 @@ public class ChestbursterModel extends EntityModel<Chestburster> {
             CubeListBuilder.create()
                 .texOffs(0, 0)
                 .addBox(-2.0F, -7.8991F, -0.9222F, 4.0F, 8.0F, 3.0F, new CubeDeformation(0.0F))
-                .texOffs(-1, 11)
+                .texOffs(0, 12)
                 .addBox(-1.5F, -8.1118F, -0.6467F, 3.0F, 8.0F, 3.0F, new CubeDeformation(0.0F)),
             PartPose.offsetAndRotation(0.0F, -2.1858F, 0.2006F, 0.7854F, 0.0F, 0.0F)
         );
