@@ -7,13 +7,16 @@
     "avp:belugaburster",
     "avp:belugamorph",
     "avp:chestburster",
+    "avp:chestburster_runner",
     "avp:deacon",
     "avp:deacon_adult",
     "avp:deacon_adult_engineer",
     "avp:dracoburster",
     "avp:dracomorph",
     "avp:drone",
+    "avp:drone_runner",
     "avp:ultramorph",
-    "avp:warrior"
+    "avp:warrior",
+    "avp:warrior_runner"
   ]
 }

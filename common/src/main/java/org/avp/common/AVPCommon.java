@@ -46,6 +46,7 @@ public class AVPCommon {
         AVPEntityTypes.getInstance().register();
         AVPExoticAlienEntityTypes.getInstance().register();
         AVPPrometheusAlienEntityTypes.getInstance().register();
+        AVPRunnerAlienEntityTypes.getInstance().register();
 
         // It's important to register creative mode tabs last, as entities generate spawn eggs automatically.
         AVPCreativeModeTabs.getInstance().register();
