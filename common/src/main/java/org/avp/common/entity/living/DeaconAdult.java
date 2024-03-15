@@ -10,6 +10,7 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+
 import org.avp.common.tag.AVPEntityTags;
 
 /**
@@ -28,6 +29,14 @@ public class DeaconAdult extends Monster {
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
 
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0, true));
-        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, LivingEntity.class, true, (livingEntity) -> !livingEntity.getType().is(AVPEntityTags.getInstance().ALIENS)));
+        this.targetSelector.addGoal(
+            2,
+            new NearestAttackableTargetGoal<>(
+                this,
+                LivingEntity.class,
+                true,
+                (livingEntity) -> !livingEntity.getType().is(AVPEntityTags.getInstance().ALIENS)
+            )
+        );
     }
 }

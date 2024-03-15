@@ -2,6 +2,7 @@ package org.avp.common.entity.attribute;
 
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
+
 import org.avp.common.entity.AVPRunnerAlienEntityTypes;
 
 /**
@@ -35,7 +36,10 @@ public class AVPRunnerAlienEntityAttributes {
         .build();
 
     public static void addBindings() {
-        AVPEntityAttributesBindingRegistry.addBinding(AVPRunnerAlienEntityTypes.CHESTBURSTER_RUNNER, CHESTBURSTER_RUNNER);
+        AVPEntityAttributesBindingRegistry.addBinding(
+            AVPRunnerAlienEntityTypes.CHESTBURSTER_RUNNER,
+            CHESTBURSTER_RUNNER
+        );
         AVPEntityAttributesBindingRegistry.addBinding(AVPRunnerAlienEntityTypes.CRUSHER, CRUSHER);
         AVPEntityAttributesBindingRegistry.addBinding(AVPRunnerAlienEntityTypes.DRONE_RUNNER, DRONE_RUNNER);
         AVPEntityAttributesBindingRegistry.addBinding(AVPRunnerAlienEntityTypes.WARRIOR_RUNNER, WARRIOR_RUNNER);
