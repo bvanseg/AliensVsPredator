@@ -19,14 +19,23 @@ public class AVPParadiseBlocks extends AVPBlockBindingRegistry implements AVPReg
     }
 
     public static GameObject<Block> PARADISE_DIRT;
+
     public static GameObject<Block> PARADISE_DIRT_MOSSY;
+
     public static GameObject<Block> PARADISE_DIRT_PODZOL;
+
     public static GameObject<Block> PARADISE_GRASS;
+
     public static GameObject<Block> PARADISE_LEAVES_LARGE;
+
     public static GameObject<Block> PARADISE_LEAVES_MEDIUM;
+
     public static GameObject<Block> PARADISE_LEAVES_SMALL;
+
     public static GameObject<Block> PARADISE_LOG_LARGE;
+
     public static GameObject<Block> PARADISE_LOG_MEDIUM;
+
     public static GameObject<Block> PARADISE_LOG_SMALL;
 
     private AVPParadiseBlocks() {}
@@ -38,7 +47,10 @@ public class AVPParadiseBlocks extends AVPBlockBindingRegistry implements AVPReg
         PARADISE_DIRT_PODZOL = registerEntry("paradise_dirt_podzol", () -> new Block(BlockBehaviour.Properties.of()));
         PARADISE_GRASS = registerEntry("paradise_grass", () -> new Block(BlockBehaviour.Properties.of()));
         PARADISE_LEAVES_LARGE = registerEntry("paradise_leaves_large", () -> new Block(BlockBehaviour.Properties.of()));
-        PARADISE_LEAVES_MEDIUM = registerEntry("paradise_leaves_medium", () -> new Block(BlockBehaviour.Properties.of()));
+        PARADISE_LEAVES_MEDIUM = registerEntry(
+            "paradise_leaves_medium",
+            () -> new Block(BlockBehaviour.Properties.of())
+        );
         PARADISE_LEAVES_SMALL = registerEntry("paradise_leaves_small", () -> new Block(BlockBehaviour.Properties.of()));
         PARADISE_LOG_LARGE = registerEntry("paradise_log_large", () -> new Block(BlockBehaviour.Properties.of()));
         PARADISE_LOG_MEDIUM = registerEntry("paradise_log_medium", () -> new Block(BlockBehaviour.Properties.of()));

@@ -7,6 +7,7 @@ import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+
 import org.avp.common.data.loot_table.AbstractAVPEntityLootTableProvider;
 import org.avp.common.entity.AVPBaseAlienEntityTypes;
 import org.avp.common.item.AVPItems;
@@ -15,6 +16,7 @@ import org.avp.common.item.AVPItems;
  * @author Boston Vanseghi
  */
 public class AVPEntityLootTableProvider extends AbstractAVPEntityLootTableProvider {
+
     @Override
     public void generate() {
         add(

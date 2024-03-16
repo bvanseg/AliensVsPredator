@@ -28,12 +28,19 @@ public class AVPTempleBlocks extends AVPBlockBindingRegistry implements AVPRegis
         .strength(3.0F, 6.0F);
 
     public static GameObject<Block> TEMPLE_BRICK;
+
     public static GameObject<Block> TEMPLE_BRICK_CHESTBURSTER;
+
     public static GameObject<Block> TEMPLE_BRICK_FACEHUGGER;
+
     public static GameObject<Block> TEMPLE_BRICK_SINGLE;
+
     public static GameObject<Block> TEMPLE_FLOOR;
+
     public static GameObject<Block> TEMPLE_SKULLS;
+
     public static GameObject<Block> TEMPLE_TEMPLE_TILE;
+
     public static GameObject<Block> TEMPLE_WALL_BASE;
 
     private AVPTempleBlocks() {}
@@ -41,7 +48,10 @@ public class AVPTempleBlocks extends AVPBlockBindingRegistry implements AVPRegis
     @Override
     public void register() {
         TEMPLE_BRICK = registerEntry("temple_brick", () -> new Block(TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_BRICK_CHESTBURSTER = registerEntry("temple_brick_chestburster", () -> new Block(TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_BRICK_CHESTBURSTER = registerEntry(
+            "temple_brick_chestburster",
+            () -> new Block(TEMPLE_BRICK_PROPERTIES)
+        );
         TEMPLE_BRICK_FACEHUGGER = registerEntry("temple_brick_facehugger", () -> new Block(TEMPLE_BRICK_PROPERTIES));
         TEMPLE_BRICK_SINGLE = registerEntry("temple_brick_single", () -> new Block(TEMPLE_BRICK_PROPERTIES));
         TEMPLE_FLOOR = registerEntry("temple_floor", () -> new Block(TEMPLE_BRICK_PROPERTIES));

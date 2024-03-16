@@ -19,26 +19,34 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
         return INSTANCE;
     }
 
-    public GameObject<Item> CELTIC_HELMET;
+    public static GameObject<Item> ALUMINUM_BODY;
+
+    public static GameObject<Item> ALUMINUM_BOOTS;
+
+    public static GameObject<Item> ALUMINUM_HELMET;
+
+    public static GameObject<Item> ALUMINUM_LEGGINGS;
+
+    public static GameObject<Item> CELTIC_HELMET;
 
     private AVPArmorItems() {}
 
     @Override
     public void register() {
         var aluminumMaterial = AVPArmorMaterials.getInstance().ALUMINUM;
-        registerEntry(
+        ALUMINUM_BODY = registerEntry(
             "armor_aluminum_body",
             () -> new ArmorItem(aluminumMaterial, ArmorItem.Type.CHESTPLATE, new Item.Properties())
         );
-        registerEntry(
+        ALUMINUM_BOOTS = registerEntry(
             "armor_aluminum_boots",
             () -> new ArmorItem(aluminumMaterial, ArmorItem.Type.BOOTS, new Item.Properties())
         );
-        registerEntry(
+        ALUMINUM_HELMET = registerEntry(
             "armor_aluminum_helmet",
             () -> new ArmorItem(aluminumMaterial, ArmorItem.Type.HELMET, new Item.Properties())
         );
-        registerEntry(
+        ALUMINUM_LEGGINGS = registerEntry(
             "armor_aluminum_leggings",
             () -> new ArmorItem(aluminumMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties())
         );

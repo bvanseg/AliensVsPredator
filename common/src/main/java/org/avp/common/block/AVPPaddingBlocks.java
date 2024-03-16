@@ -28,12 +28,19 @@ public class AVPPaddingBlocks extends AVPBlockBindingRegistry implements AVPRegi
     );
 
     public static GameObject<Block> PADDING_ORANGE_PANEL;
+
     public static GameObject<Block> PADDING_ORANGE_PIPES;
+
     public static GameObject<Block> PADDING_ORANGE_SQUARE;
+
     public static GameObject<Block> PADDING_ORANGE_TILES;
+
     public static GameObject<Block> PADDING_WHITE_PANEL;
+
     public static GameObject<Block> PADDING_WHITE_PIPES;
+
     public static GameObject<Block> PADDING_WHITE_SQUARE;
+
     public static GameObject<Block> PADDING_WHITE_TILES;
 
     private AVPPaddingBlocks() {}

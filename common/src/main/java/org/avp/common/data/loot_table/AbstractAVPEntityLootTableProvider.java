@@ -15,6 +15,7 @@ import java.util.function.BiConsumer;
  * @author Boston Vanseghi
  */
 public abstract class AbstractAVPEntityLootTableProvider extends EntityLootSubProvider {
+
     private final Map<EntityType<?>, LootTable.Builder> map;
 
     protected AbstractAVPEntityLootTableProvider() {
@@ -25,7 +26,9 @@ public abstract class AbstractAVPEntityLootTableProvider extends EntityLootSubPr
     @Override
     public void generate(@NotNull BiConsumer<ResourceLocation, LootTable.Builder> biConsumer) {
         this.generate();
-        map.forEach((entityType, lootTableBuilder) -> biConsumer.accept(entityType.getDefaultLootTable(), lootTableBuilder));
+        map.forEach(
+            (entityType, lootTableBuilder) -> biConsumer.accept(entityType.getDefaultLootTable(), lootTableBuilder)
+        );
     }
 
     @Override

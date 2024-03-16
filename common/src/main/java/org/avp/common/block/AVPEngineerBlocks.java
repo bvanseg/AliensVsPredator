@@ -25,24 +25,43 @@ public class AVPEngineerBlocks extends AVPBlockBindingRegistry implements AVPReg
         .strength(100.0F, 1800.0F);
 
     public static GameObject<Block> ENGINEER_SHIP_BRICK;
+
     public static GameObject<Block> ENGINEER_SHIP_BRICK_1;
+
     public static GameObject<Block> ENGINEER_SHIP_BRICK_2;
+
     public static GameObject<Block> ENGINEER_SHIP_BRICK_3;
+
     public static GameObject<Block> ENGINEER_SHIP_COLUMN_1;
+
     public static GameObject<Block> ENGINEER_SHIP_COLUMN_2;
+
     public static GameObject<Block> ENGINEER_SHIP_FLOOR;
+
     public static GameObject<Block> ENGINEER_SHIP_GRAVEL;
+
     public static GameObject<Block> ENGINEER_SHIP_MATERIAL_0;
+
     public static GameObject<Block> ENGINEER_SHIP_MATERIAL_1;
+
     public static GameObject<Block> ENGINEER_SHIP_MATERIAL_2;
+
     public static GameObject<Block> ENGINEER_SHIP_ROCK;
+
     public static GameObject<Block> ENGINEER_SHIP_ROCK_1;
+
     public static GameObject<Block> ENGINEER_SHIP_ROCK_2;
+
     public static GameObject<Block> ENGINEER_SHIP_ROCK_3;
+
     public static GameObject<Block> ENGINEER_SHIP_WALL;
+
     public static GameObject<Block> ENGINEER_SHIP_WALL_1;
+
     public static GameObject<Block> ENGINEER_SHIP_WALL_2;
+
     public static GameObject<Block> ENGINEER_SHIP_WALL_3;
+
     public static GameObject<Block> ENGINEER_SHIP_WALL_4;
 
     private AVPEngineerBlocks() {}

@@ -18,19 +18,33 @@ public class AVPItems extends AVPItemBindingRegistry implements AVPRegistry {
     }
 
     public static GameObject<Item> CARBON;
+
     public static GameObject<Item> COBALT;
+
     public static GameObject<Item> INGOT_ALUMINUM;
+
     public static GameObject<Item> INGOT_LITHIUM;
+
     public static GameObject<Item> LASER_MINE;
+
     public static GameObject<Item> NBT_DRIVE;
+
     public static GameObject<Item> NEODYMIUM;
+
     public static GameObject<Item> NEODYMIUM_MAGNET;
+
     public static GameObject<Item> POLYCARBONATE;
+
     public static GameObject<Item> RAW_BAUXITE;
+
     public static GameObject<Item> ROYAL_JELLY;
+
     public static GameObject<Item> SHURIKEN;
+
     public static GameObject<Item> SILICA;
+
     public static GameObject<Item> SMART_DISC;
+
     public static GameObject<Item> YAUTJA_ARTIFACT;
 
     private AVPItems() {}

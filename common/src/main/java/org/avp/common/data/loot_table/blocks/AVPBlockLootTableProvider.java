@@ -12,6 +12,7 @@ import org.avp.common.data.loot_table.AbstractAVPBlockLootTableProvider;
 import org.avp.common.item.AVPItems;
 
 public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider {
+
     @Override
     public void generate() {
         dropSelf(AVPBlocks.ALUMINUM_BLOCK.get());

@@ -27,11 +27,17 @@ public class AVPYautjaShipBlocks extends AVPBlockBindingRegistry implements AVPR
         .strength(75.0F, 1500.0F);
 
     public static GameObject<Block> YAUTJA_SHIP_BRICK;
+
     public static GameObject<Block> YAUTJA_SHIP_DECOR_1;
+
     public static GameObject<Block> YAUTJA_SHIP_DECOR_2;
+
     public static GameObject<Block> YAUTJA_SHIP_DECOR_3;
+
     public static GameObject<Block> YAUTJA_SHIP_PANEL;
+
     public static GameObject<Block> YAUTJA_SHIP_SUPPORT_PILLAR;
+
     public static GameObject<Block> YAUTJA_SHIP_WALL_BASE;
 
     private AVPYautjaShipBlocks() {}
@@ -43,7 +49,10 @@ public class AVPYautjaShipBlocks extends AVPBlockBindingRegistry implements AVPR
         YAUTJA_SHIP_DECOR_2 = registerEntry("yautja_ship_decor_2", () -> new Block(YAUTJA_SHIP_PROPERTIES));
         YAUTJA_SHIP_DECOR_3 = registerEntry("yautja_ship_decor_3", () -> new Block(YAUTJA_SHIP_PROPERTIES));
         YAUTJA_SHIP_PANEL = registerEntry("yautja_ship_panel", () -> new Block(YAUTJA_SHIP_PROPERTIES));
-        YAUTJA_SHIP_SUPPORT_PILLAR = registerEntry("yautja_ship_support_pillar", () -> new Block(YAUTJA_SHIP_PROPERTIES));
+        YAUTJA_SHIP_SUPPORT_PILLAR = registerEntry(
+            "yautja_ship_support_pillar",
+            () -> new Block(YAUTJA_SHIP_PROPERTIES)
+        );
         YAUTJA_SHIP_WALL_BASE = registerEntry("yautja_ship_wall_base", () -> new Block(YAUTJA_SHIP_PROPERTIES));
     }
 }

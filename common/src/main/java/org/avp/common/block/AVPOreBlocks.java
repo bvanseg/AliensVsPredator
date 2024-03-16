@@ -35,10 +35,15 @@ public class AVPOreBlocks extends AVPBlockBindingRegistry implements AVPRegistry
         .strength(2.2F, 1.4F);
 
     public static GameObject<Block> ORE_BAUXITE;
+
     public static GameObject<Block> ORE_COBALT;
+
     public static GameObject<Block> ORE_LITHIUM;
+
     public static GameObject<Block> ORE_MONAZITE;
+
     public static GameObject<Block> ORE_SILICA;
+
     public static GameObject<Block> RAW_BAUXITE_BLOCK;
 
     private AVPOreBlocks() {}

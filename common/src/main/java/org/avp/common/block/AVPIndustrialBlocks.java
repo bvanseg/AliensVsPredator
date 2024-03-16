@@ -24,14 +24,23 @@ public class AVPIndustrialBlocks extends AVPBlockBindingRegistry implements AVPR
     );
 
     public static GameObject<Block> INDUSTRIAL_BRICK;
+
     public static GameObject<Block> INDUSTRIAL_FLOOR_GRILL;
+
     public static GameObject<Block> INDUSTRIAL_GLASS;
+
     public static GameObject<Block> INDUSTRIAL_LAMP;
+
     public static GameObject<Block> INDUSTRIAL_METAL_PANEL_0;
+
     public static GameObject<Block> INDUSTRIAL_METAL_PANEL_1;
+
     public static GameObject<Block> INDUSTRIAL_METAL_PANEL_2;
+
     public static GameObject<Block> INDUSTRIAL_VENT;
+
     public static GameObject<Block> INDUSTRIAL_WALL;
+
     public static GameObject<Block> INDUSTRIAL_WALL_HAZARD;
 
     private AVPIndustrialBlocks() {}
