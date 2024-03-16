@@ -1,4 +1,4 @@
-package org.avp.neoforge.service;
+package org.avp.neoforge.common.data;
 
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import org.avp.common.data.loot_table.AVPLootTableProvider;
@@ -6,11 +6,11 @@ import org.avp.common.data.loot_table.AVPLootTableProvider;
 /**
  * @author Boston Vanseghi
  */
-public class NeoForgeDataProviderRegistry {
+public class AVPNeoForgeData {
 
-    private static final NeoForgeDataProviderRegistry INSTANCE = new NeoForgeDataProviderRegistry();
+    private static final AVPNeoForgeData INSTANCE = new AVPNeoForgeData();
 
-    public static NeoForgeDataProviderRegistry getInstance() {
+    public static AVPNeoForgeData getInstance() {
         return INSTANCE;
     }
 
