@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import org.avp.common.registry.AVPBlockBindingRegistry;
 import org.avp.common.registry.AVPRegistry;
+import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi
@@ -22,10 +23,12 @@ public class AVPBlocks extends AVPBlockBindingRegistry implements AVPRegistry {
         Blocks.IRON_BLOCK
     );
 
+    public static GameObject<Block> ALUMINUM_BLOCK;
+
     private AVPBlocks() {}
 
     @Override
     public void register() {
-        registerEntry("aluminum_block", () -> new Block(ALUMINUM_PROPERTIES));
+        ALUMINUM_BLOCK = registerEntry("aluminum_block", () -> new Block(ALUMINUM_PROPERTIES));
     }
 }

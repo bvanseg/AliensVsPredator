@@ -21,5 +21,6 @@ public class AVPNeoForge {
         NeoForgeEntityRegistry.ENTITY_TYPES.register(eventBus);
         NeoForgeSoundEventRegistry.SOUND_EVENTS.register(eventBus);
         eventBus.addListener(NeoForgeEntityAttributeRegistry.getInstance()::createEntityAttributes);
+        eventBus.addListener(NeoForgeDataProviderRegistry.getInstance()::gatherDataEvent);
     }
 }

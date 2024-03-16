@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import org.avp.common.registry.AVPBlockBindingRegistry;
 import org.avp.common.registry.AVPRegistry;
+import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi
@@ -33,16 +34,23 @@ public class AVPOreBlocks extends AVPBlockBindingRegistry implements AVPRegistry
     public final BlockBehaviour.Properties SILICA_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
         .strength(2.2F, 1.4F);
 
+    public static GameObject<Block> ORE_BAUXITE;
+    public static GameObject<Block> ORE_COBALT;
+    public static GameObject<Block> ORE_LITHIUM;
+    public static GameObject<Block> ORE_MONAZITE;
+    public static GameObject<Block> ORE_SILICA;
+    public static GameObject<Block> RAW_BAUXITE_BLOCK;
+
     private AVPOreBlocks() {}
 
     @Override
     public void register() {
-        registerEntry("ore_bauxite", () -> new Block(BAUXITE_PROPERTIES));
-        registerEntry("ore_cobalt", () -> new Block(COBALT_PROPERTIES));
-        registerEntry("ore_lithium", () -> new Block(LITHIUM_PROPERTIES));
-        registerEntry("ore_monazite", () -> new Block(MONAZITE_PROPERTIES));
-        registerEntry("ore_silica", () -> new Block(SILICA_PROPERTIES));
+        ORE_BAUXITE = registerEntry("ore_bauxite", () -> new Block(BAUXITE_PROPERTIES));
+        ORE_COBALT = registerEntry("ore_cobalt", () -> new Block(COBALT_PROPERTIES));
+        ORE_LITHIUM = registerEntry("ore_lithium", () -> new Block(LITHIUM_PROPERTIES));
+        ORE_MONAZITE = registerEntry("ore_monazite", () -> new Block(MONAZITE_PROPERTIES));
+        ORE_SILICA = registerEntry("ore_silica", () -> new Block(SILICA_PROPERTIES));
 
-        registerEntry("raw_bauxite_block", () -> new Block(BAUXITE_PROPERTIES));
+        RAW_BAUXITE_BLOCK = registerEntry("raw_bauxite_block", () -> new Block(BAUXITE_PROPERTIES));
     }
 }
