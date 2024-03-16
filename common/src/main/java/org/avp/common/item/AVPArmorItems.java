@@ -20,14 +20,29 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
     }
 
     public static GameObject<Item> ALUMINUM_BODY;
-
     public static GameObject<Item> ALUMINUM_BOOTS;
-
     public static GameObject<Item> ALUMINUM_HELMET;
-
     public static GameObject<Item> ALUMINUM_LEGGINGS;
 
+    public static GameObject<Item> CELTIC_BODY;
+    public static GameObject<Item> CELTIC_BOOTS;
     public static GameObject<Item> CELTIC_HELMET;
+    public static GameObject<Item> CELTIC_LEGGINGS;
+
+    public static GameObject<Item> MK50_BODY;
+    public static GameObject<Item> MK50_BOOTS;
+    public static GameObject<Item> MK50_HELMET;
+    public static GameObject<Item> MK50_LEGGINGS;
+
+    public static GameObject<Item> PRESSURE_BODY;
+    public static GameObject<Item> PRESSURE_BOOTS;
+    public static GameObject<Item> PRESSURE_HELMET;
+    public static GameObject<Item> PRESSURE_LEGGINGS;
+
+    public static GameObject<Item> TACTICAL_BODY;
+    public static GameObject<Item> TACTICAL_BOOTS;
+    public static GameObject<Item> TACTICAL_HELMET;
+    public static GameObject<Item> TACTICAL_LEGGINGS;
 
     private AVPArmorItems() {}
 
@@ -52,11 +67,11 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
         );
 
         var celticMaterial = AVPArmorMaterials.getInstance().CELTIC;
-        registerEntry(
+        CELTIC_BODY = registerEntry(
             "armor_celtic_body",
             () -> new ArmorItem(celticMaterial, ArmorItem.Type.CHESTPLATE, new Item.Properties())
         );
-        registerEntry(
+        CELTIC_BOOTS = registerEntry(
             "armor_celtic_boots",
             () -> new ArmorItem(celticMaterial, ArmorItem.Type.BOOTS, new Item.Properties())
         );
@@ -64,61 +79,61 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
             "armor_celtic_helmet",
             () -> new ArmorItem(celticMaterial, ArmorItem.Type.HELMET, new Item.Properties())
         );
-        registerEntry(
+        CELTIC_LEGGINGS = registerEntry(
             "armor_celtic_leggings",
             () -> new ArmorItem(celticMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties())
         );
 
         var mk50Material = AVPArmorMaterials.getInstance().MK50;
-        registerEntry(
+        MK50_BODY = registerEntry(
             "armor_mk50_body",
             () -> new ArmorItem(mk50Material, ArmorItem.Type.CHESTPLATE, new Item.Properties())
         );
-        registerEntry(
+        MK50_BOOTS = registerEntry(
             "armor_mk50_boots",
             () -> new ArmorItem(mk50Material, ArmorItem.Type.BOOTS, new Item.Properties())
         );
-        registerEntry(
+        MK50_HELMET = registerEntry(
             "armor_mk50_helmet",
             () -> new ArmorItem(mk50Material, ArmorItem.Type.HELMET, new Item.Properties())
         );
-        registerEntry(
+        MK50_LEGGINGS = registerEntry(
             "armor_mk50_leggings",
             () -> new ArmorItem(mk50Material, ArmorItem.Type.LEGGINGS, new Item.Properties())
         );
 
         var pressureMaterial = AVPArmorMaterials.getInstance().PRESSURE;
-        registerEntry(
+        PRESSURE_BODY = registerEntry(
             "armor_pressure_body",
             () -> new ArmorItem(pressureMaterial, ArmorItem.Type.CHESTPLATE, new Item.Properties())
         );
-        registerEntry(
+        PRESSURE_BOOTS = registerEntry(
             "armor_pressure_boots",
             () -> new ArmorItem(pressureMaterial, ArmorItem.Type.BOOTS, new Item.Properties())
         );
-        registerEntry(
+        PRESSURE_HELMET = registerEntry(
             "armor_pressure_helmet",
             () -> new ArmorItem(pressureMaterial, ArmorItem.Type.HELMET, new Item.Properties())
         );
-        registerEntry(
+        PRESSURE_LEGGINGS = registerEntry(
             "armor_pressure_leggings",
             () -> new ArmorItem(pressureMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties())
         );
 
         var tacticalMaterial = AVPArmorMaterials.getInstance().TACTICAL;
-        registerEntry(
+        TACTICAL_BODY = registerEntry(
             "armor_tactical_body",
             () -> new ArmorItem(tacticalMaterial, ArmorItem.Type.CHESTPLATE, new Item.Properties())
         );
-        registerEntry(
+        TACTICAL_BOOTS = registerEntry(
             "armor_tactical_boots",
             () -> new ArmorItem(tacticalMaterial, ArmorItem.Type.BOOTS, new Item.Properties())
         );
-        registerEntry(
+        TACTICAL_HELMET = registerEntry(
             "armor_tactical_helmet",
             () -> new ArmorItem(tacticalMaterial, ArmorItem.Type.HELMET, new Item.Properties())
         );
-        registerEntry(
+        TACTICAL_LEGGINGS = registerEntry(
             "armor_tactical_leggings",
             () -> new ArmorItem(tacticalMaterial, ArmorItem.Type.LEGGINGS, new Item.Properties())
         );
