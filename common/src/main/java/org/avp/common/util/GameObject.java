@@ -1,9 +1,10 @@
 package org.avp.common.util;
 
 import net.minecraft.resources.ResourceLocation;
-import org.avp.common.AVPResources;
 
 import java.util.function.Supplier;
+
+import org.avp.common.AVPResources;
 
 /**
  * @author Boston Vanseghi

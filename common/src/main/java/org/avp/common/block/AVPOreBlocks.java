@@ -4,12 +4,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-import org.avp.common.service.Services;
-import org.avp.common.util.GameObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+
+import org.avp.common.service.Services;
+import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi
@@ -18,16 +18,22 @@ public class AVPOreBlocks {
 
     private static final List<GameObject<Block>> ENTRIES = new ArrayList<>();
 
-    public static final BlockBehaviour.Properties BAUXITE_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+    public static final BlockBehaviour.Properties BAUXITE_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
+        Blocks.STONE
+    )
         .strength(3.2F, 2.6F);
 
     public static final BlockBehaviour.Properties COBALT_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
         .strength(50F, 20F);
 
-    public static final BlockBehaviour.Properties LITHIUM_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+    public static final BlockBehaviour.Properties LITHIUM_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
+        Blocks.STONE
+    )
         .strength(4.2F, 5.4F);
 
-    public static final BlockBehaviour.Properties MONAZITE_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)
+    public static final BlockBehaviour.Properties MONAZITE_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
+        Blocks.STONE
+    )
         .strength(45F, 15F);
 
     public static final BlockBehaviour.Properties SILICA_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(Blocks.STONE)

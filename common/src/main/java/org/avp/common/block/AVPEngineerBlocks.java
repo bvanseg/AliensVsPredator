@@ -4,12 +4,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-import org.avp.common.service.Services;
-import org.avp.common.util.GameObject;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+
+import org.avp.common.service.Services;
+import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi
@@ -78,7 +78,6 @@ public class AVPEngineerBlocks {
     }
 
     private AVPEngineerBlocks() {}
-
 
     static {
         ENGINEER_SHIP_BRICK = register("engineer_ship_brick", () -> new Block(ENGINEER_SHIP_PROPERTIES));
