@@ -1,5 +1,7 @@
 package org.avp.common.data.loot_table.blocks;
 
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
 import org.avp.common.block.AVPBlocks;
 import org.avp.common.block.AVPEngineerBlocks;
 import org.avp.common.block.AVPIndustrialBlocks;
@@ -49,11 +51,12 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
         dropSelf(AVPIndustrialBlocks.INDUSTRIAL_WALL.get());
         dropSelf(AVPIndustrialBlocks.INDUSTRIAL_WALL_HAZARD.get());
 
-        dropOther(AVPOreBlocks.ORE_BAUXITE.get(), AVPItems.RAW_BAUXITE.get());
-        dropOther(AVPOreBlocks.ORE_COBALT.get(), AVPItems.COBALT.get());
-        dropSelf(AVPOreBlocks.ORE_LITHIUM.get()); // TODO:
-        dropOther(AVPOreBlocks.ORE_MONAZITE.get(), AVPItems.NEODYMIUM.get());
-        dropOther(AVPOreBlocks.ORE_SILICA.get(), AVPItems.SILICA.get());
+        add(AVPOreBlocks.ORE_BAUXITE.get(), block -> createOreDrop(block, AVPItems.RAW_BAUXITE.get()));
+        add(AVPOreBlocks.ORE_COBALT.get(), block -> createOreDrop(block, AVPItems.COBALT.get()));
+        // TODO:
+        dropSelf(AVPOreBlocks.ORE_LITHIUM.get());
+        add(AVPOreBlocks.ORE_MONAZITE.get(), block -> createOreDrop(block, AVPItems.NEODYMIUM.get()));
+        add(AVPOreBlocks.ORE_SILICA.get(), block -> createOreDrop(block, AVPItems.SILICA.get()));
         dropSelf(AVPOreBlocks.RAW_BAUXITE_BLOCK.get());
 
         dropSelf(AVPPaddingBlocks.PADDING_ORANGE_PANEL.get());
