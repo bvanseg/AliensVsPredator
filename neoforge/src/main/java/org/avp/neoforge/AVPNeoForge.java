@@ -15,7 +15,7 @@ import org.avp.neoforge.service.*;
 public class AVPNeoForge {
 
     public AVPNeoForge(IEventBus eventBus) {
-        eventBus.addListener(AVPNeoForgeData.getInstance()::gatherDataEvent);
+        eventBus.addListener(AVPNeoForgeData::gatherDataEvent);
 
         AVPCommon.init();
 

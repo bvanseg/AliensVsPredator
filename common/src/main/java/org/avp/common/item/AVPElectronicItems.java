@@ -17,23 +17,36 @@ public class AVPElectronicItems extends AVPItemBindingRegistry implements AVPReg
         return INSTANCE;
     }
 
-    public final GameObject<Item> CPU = registerEntry("cpu", () -> new Item(new Item.Properties()));
+    public static GameObject<Item> CAPACITOR;
+    public static GameObject<Item> CPU;
+    public static GameObject<Item> DIODE;
+    public static GameObject<Item> INTEGRATED_CIRCUIT;
+    public static GameObject<Item> LED;
+    public static GameObject<Item> LED_DISPLAY;
+    public static GameObject<Item> MOTHERBOARD;
+    public static GameObject<Item> POWER_SUPPLY;
+    public static GameObject<Item> RAM;
+    public static GameObject<Item> REGULATOR;
+    public static GameObject<Item> RESISTOR;
+    public static GameObject<Item> SSD;
+    public static GameObject<Item> TRANSISTOR;
 
     private AVPElectronicItems() {}
 
     @Override
     public void register() {
-        registerEntry("capacitor", () -> new Item(new Item.Properties()));
-        registerEntry("diode", () -> new Item(new Item.Properties()));
-        registerEntry("integrated_circuit", () -> new Item(new Item.Properties()));
-        registerEntry("led", () -> new Item(new Item.Properties()));
-        registerEntry("led_display", () -> new Item(new Item.Properties()));
-        registerEntry("motherboard", () -> new Item(new Item.Properties()));
-        registerEntry("power_supply", () -> new Item(new Item.Properties()));
-        registerEntry("ram", () -> new Item(new Item.Properties()));
-        registerEntry("regulator", () -> new Item(new Item.Properties()));
-        registerEntry("resistor", () -> new Item(new Item.Properties()));
-        registerEntry("ssd", () -> new Item(new Item.Properties()));
-        registerEntry("transistor", () -> new Item(new Item.Properties()));
+        CAPACITOR = registerEntry("capacitor", () -> new Item(new Item.Properties()));
+        CPU = registerEntry("cpu", () -> new Item(new Item.Properties()));
+        DIODE = registerEntry("diode", () -> new Item(new Item.Properties()));
+        INTEGRATED_CIRCUIT = registerEntry("integrated_circuit", () -> new Item(new Item.Properties()));
+        LED = registerEntry("led", () -> new Item(new Item.Properties()));
+        LED_DISPLAY = registerEntry("led_display", () -> new Item(new Item.Properties()));
+        MOTHERBOARD = registerEntry("motherboard", () -> new Item(new Item.Properties()));
+        POWER_SUPPLY = registerEntry("power_supply", () -> new Item(new Item.Properties()));
+        RAM = registerEntry("ram", () -> new Item(new Item.Properties()));
+        REGULATOR = registerEntry("regulator", () -> new Item(new Item.Properties()));
+        RESISTOR = registerEntry("resistor", () -> new Item(new Item.Properties()));
+        SSD = registerEntry("ssd", () -> new Item(new Item.Properties()));
+        TRANSISTOR = registerEntry("transistor", () -> new Item(new Item.Properties()));
     }
 }
