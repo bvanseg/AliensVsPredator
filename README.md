@@ -4,7 +4,9 @@
 [actions-shield]: https://github.com/bvanseg/ccake/actions/workflows/rust.yml/badge.svg
 [actions-yml]: https://github.com/bvanseg/ccake/actions/workflows/rust.yml
 
-[license]: https://img.shields.io/github/license/bvanseg/aliensvspredator
+[license-shield]: https://img.shields.io/badge/License-MIT-green.svg
+[license]: https://opensource.org/licenses/MIT
+
 [code-size]: https://img.shields.io/github/languages/code-size/bvanseg/aliensvspredator
 
 [java-lang]: https://www.java.com/
@@ -18,7 +20,7 @@
 
 AVP: Regenesis
 =============
-![GitHub][license]
+[![license-shield][]][license]
 [![java-shield][]][java-lang]
 ![GitHub code size in bytes][code-size]
 [![discord-shield][]][discord-invite]
