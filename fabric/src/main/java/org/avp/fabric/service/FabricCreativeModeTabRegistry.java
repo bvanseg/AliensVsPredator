@@ -17,7 +17,7 @@ public class FabricCreativeModeTabRegistry implements CreativeModeTabRegistry {
 
     @Override
     public GameObject<CreativeModeTab> register(String registryName, Supplier<CreativeModeTab> supplier) {
-        var gameObject = new GameObject<>(supplier);
+        var gameObject = new GameObject<>(registryName, supplier);
         var resourceLocation = AVPResources.location(registryName);
         var creativeModeTab = gameObject.get();
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, resourceLocation, creativeModeTab);

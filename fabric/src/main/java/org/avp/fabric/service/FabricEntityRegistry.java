@@ -21,7 +21,7 @@ public class FabricEntityRegistry implements EntityRegistry {
         String registryName,
         Supplier<EntityType<T>> supplier
     ) {
-        var gameObject = new GameObject<>(supplier);
+        var gameObject = new GameObject<>(registryName, supplier);
         var resourceLocation = AVPResources.location(registryName);
         var entityType = gameObject.get();
         Registry.register(BuiltInRegistries.ENTITY_TYPE, resourceLocation, entityType);

@@ -18,6 +18,6 @@ public class NeoForgeEntityGameObject<T extends Entity> extends GameObject<Entit
         String registryName,
         Supplier<EntityType<T>> supplier
     ) {
-        super(deferredRegister.register(registryName, supplier));
+        super(registryName, deferredRegister.register(registryName, supplier));
     }
 }

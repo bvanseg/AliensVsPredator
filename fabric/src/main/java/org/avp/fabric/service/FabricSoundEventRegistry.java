@@ -17,7 +17,7 @@ public class FabricSoundEventRegistry implements SoundEventRegistry {
 
     @Override
     public GameObject<SoundEvent> register(String registryName, Supplier<SoundEvent> supplier) {
-        var gameObject = new GameObject<>(supplier);
+        var gameObject = new GameObject<>(registryName, supplier);
         var resourceLocation = AVPResources.location(registryName);
         var soundEvent = gameObject.get();
         Registry.register(BuiltInRegistries.SOUND_EVENT, resourceLocation, soundEvent);

@@ -17,7 +17,7 @@ public class FabricItemRegistry implements ItemRegistry {
 
     @Override
     public GameObject<Item> register(String registryName, Supplier<Item> supplier) {
-        var gameObject = new GameObject<>(supplier);
+        var gameObject = new GameObject<>(registryName, supplier);
         var resourceLocation = AVPResources.location(registryName);
         var item = gameObject.get();
         Registry.register(BuiltInRegistries.ITEM, resourceLocation, item);

@@ -12,6 +12,6 @@ import org.avp.common.util.GameObject;
 public class ForgeGameObject<T> extends GameObject<T> {
 
     public ForgeGameObject(DeferredRegister<T> deferredRegister, String registryName, Supplier<T> supplier) {
-        super(deferredRegister.register(registryName, supplier));
+        super(registryName, deferredRegister.register(registryName, supplier));
     }
 }
