@@ -136,10 +136,10 @@ public final class AVPCreativeModeTabs {
         registerCreativeModeTab(
             "weapons",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, 1)
-                .icon(AVPWeaponItems.getInstance().AMMO_SMG.get()::getDefaultInstance)
+                .icon(AVPWeaponItems.AMMO_SMG.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        itemsToItemStacks(AVPWeaponItems.getInstance().ENTRIES)
+                        itemsToItemStacks(AVPWeaponItems.getEntries())
                     )
                 )
         );

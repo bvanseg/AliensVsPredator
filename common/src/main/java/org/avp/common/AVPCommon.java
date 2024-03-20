@@ -28,7 +28,7 @@ public class AVPCommon {
         AVPFoodItems.getInstance().register();
         AVPItems.getInstance().register();
         AVPToolItems.getInstance().register();
-        AVPWeaponItems.getInstance().register();
+        AVPWeaponItems.forceInitialization();
 
         // Blocks
         AVPBlocks.forceInitialization();

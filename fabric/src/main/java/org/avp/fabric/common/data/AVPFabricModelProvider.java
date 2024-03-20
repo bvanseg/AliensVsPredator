@@ -73,7 +73,7 @@ public class AVPFabricModelProvider extends FabricModelProvider {
         AVPToolItems.getInstance().ENTRIES.forEach(
             itemGameObject -> itemModelGenerator.generateFlatItem(itemGameObject.get(), ModelTemplates.FLAT_HANDHELD_ITEM)
         );
-        AVPWeaponItems.getInstance().ENTRIES.forEach(
+        AVPWeaponItems.getEntries().forEach(
             itemGameObject -> itemModelGenerator.generateFlatItem(itemGameObject.get(), ModelTemplates.FLAT_HANDHELD_ITEM)
         );
     }
