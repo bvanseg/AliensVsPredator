@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "avp:silica"
+          "name": "avp:paradise_log_large"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "avp:blocks/ore_silica"
+  "random_sequence": "avp:blocks/paradise_log_large"
 }
