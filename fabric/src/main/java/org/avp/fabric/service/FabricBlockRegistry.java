@@ -19,9 +19,8 @@ public class FabricBlockRegistry implements BlockRegistry {
     @Override
     public GameObject<Block> register(String registryName, Supplier<Block> supplier) {
         var gameObject = new GameObject<>(registryName, supplier);
-        var block = gameObject.get();
         AVPDeferredBlockRegistry.enqueue(gameObject);
-        Services.ITEM_REGISTRY.register(registryName, () -> new BlockItem(block, new Item.Properties()));
+        Services.ITEM_REGISTRY.register(registryName, () -> new BlockItem(gameObject.get(), new Item.Properties()));
         return gameObject;
     }
 }

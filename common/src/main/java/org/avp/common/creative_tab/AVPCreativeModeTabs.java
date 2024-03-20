@@ -57,7 +57,7 @@ public final class AVPCreativeModeTabs {
                 .icon(AVPArmorItems.CELTIC_HELMET.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        itemsToItemStacks(AVPArmorItems.getInstance().ENTRIES)
+                        itemsToItemStacks(AVPArmorItems.getEntries())
                     )
                 )
         );
@@ -84,7 +84,7 @@ public final class AVPCreativeModeTabs {
                 .icon(AVPFoodItems.DORITOS.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        itemsToItemStacks(AVPFoodItems.getInstance().ENTRIES)
+                        itemsToItemStacks(AVPFoodItems.getEntries())
                     )
                 )
         );
@@ -95,7 +95,7 @@ public final class AVPCreativeModeTabs {
                 .icon(AVPElectronicItems.CPU.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        itemsToItemStacks(AVPElectronicItems.getInstance().ENTRIES)
+                        itemsToItemStacks(AVPElectronicItems.getEntries())
                     )
                 )
         );
@@ -117,7 +117,7 @@ public final class AVPCreativeModeTabs {
                 .icon(AVPItems.ROYAL_JELLY.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        itemsToItemStacks(AVPItems.getInstance().ENTRIES)
+                        itemsToItemStacks(AVPItems.getEntries())
                     )
                 )
         );
@@ -125,10 +125,10 @@ public final class AVPCreativeModeTabs {
         registerCreativeModeTab(
             "tools",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.BOTTOM, 0)
-                .icon(AVPToolItems.getInstance().CELTIC_PICKAXE.get()::getDefaultInstance)
+                .icon(AVPToolItems.CELTIC_PICKAXE.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        itemsToItemStacks(AVPToolItems.getInstance().ENTRIES)
+                        itemsToItemStacks(AVPToolItems.getEntries())
                     )
                 )
         );

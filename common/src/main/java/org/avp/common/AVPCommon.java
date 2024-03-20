@@ -23,11 +23,11 @@ public class AVPCommon {
         AVPEntityTags.getInstance().register();
 
         // Items
-        AVPArmorItems.getInstance().register();
-        AVPElectronicItems.getInstance().register();
-        AVPFoodItems.getInstance().register();
-        AVPItems.getInstance().register();
-        AVPToolItems.getInstance().register();
+        AVPArmorItems.forceInitialization();
+        AVPElectronicItems.forceInitialization();
+        AVPFoodItems.forceInitialization();
+        AVPItems.forceInitialization();
+        AVPToolItems.forceInitialization();
         AVPWeaponItems.forceInitialization();
 
         // Blocks

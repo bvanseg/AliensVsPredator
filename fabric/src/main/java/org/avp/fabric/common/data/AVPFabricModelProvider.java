@@ -68,24 +68,29 @@ public class AVPFabricModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
-        AVPArmorItems.getInstance().ENTRIES.forEach(
-            itemGameObject -> itemModelGenerator.generateFlatItem(itemGameObject.get(), ModelTemplates.FLAT_ITEM)
-        );
-        AVPElectronicItems.getInstance().ENTRIES.forEach(
-            itemGameObject -> itemModelGenerator.generateFlatItem(itemGameObject.get(), ModelTemplates.FLAT_ITEM)
-        );
-        AVPFoodItems.getInstance().ENTRIES.forEach(
-            itemGameObject -> itemModelGenerator.generateFlatItem(itemGameObject.get(), ModelTemplates.FLAT_ITEM)
-        );
-        AVPItems.getInstance().ENTRIES.forEach(
-            itemGameObject -> itemModelGenerator.generateFlatItem(itemGameObject.get(), ModelTemplates.FLAT_ITEM)
-        );
-        AVPToolItems.getInstance().ENTRIES.forEach(
-            itemGameObject -> itemModelGenerator.generateFlatItem(
-                itemGameObject.get(),
-                ModelTemplates.FLAT_HANDHELD_ITEM
-            )
-        );
+        AVPArmorItems.getEntries()
+            .forEach(
+                itemGameObject -> itemModelGenerator.generateFlatItem(itemGameObject.get(), ModelTemplates.FLAT_ITEM)
+            );
+        AVPElectronicItems.getEntries()
+            .forEach(
+                itemGameObject -> itemModelGenerator.generateFlatItem(itemGameObject.get(), ModelTemplates.FLAT_ITEM)
+            );
+        AVPFoodItems.getEntries()
+            .forEach(
+                itemGameObject -> itemModelGenerator.generateFlatItem(itemGameObject.get(), ModelTemplates.FLAT_ITEM)
+            );
+        AVPItems.getEntries()
+            .forEach(
+                itemGameObject -> itemModelGenerator.generateFlatItem(itemGameObject.get(), ModelTemplates.FLAT_ITEM)
+            );
+        AVPToolItems.getEntries()
+            .forEach(
+                itemGameObject -> itemModelGenerator.generateFlatItem(
+                    itemGameObject.get(),
+                    ModelTemplates.FLAT_HANDHELD_ITEM
+                )
+            );
         AVPWeaponItems.getEntries()
             .forEach(
                 itemGameObject -> itemModelGenerator.generateFlatItem(

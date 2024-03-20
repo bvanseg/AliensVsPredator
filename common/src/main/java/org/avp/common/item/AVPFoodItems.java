@@ -3,38 +3,50 @@ package org.avp.common.item;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 
-import org.avp.common.registry.AVPItemBindingRegistry;
-import org.avp.common.registry.AVPRegistry;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Supplier;
+
+import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi
  */
-public class AVPFoodItems extends AVPItemBindingRegistry implements AVPRegistry {
+public class AVPFoodItems {
 
-    private static final AVPFoodItems INSTANCE = new AVPFoodItems();
+    private static final List<GameObject<Item>> ENTRIES = new ArrayList<>();
 
-    public static AVPFoodItems getInstance() {
-        return INSTANCE;
+    public static final GameObject<Item> DORITOS;
+
+    public static final GameObject<Item> DORITOS_COOL_RANCH;
+
+    public static final GameObject<Item> RAW_TENTACLE;
+
+    public static final GameObject<Item> TRILO_BITE;
+
+    public static void forceInitialization() {
+        // This method doesn't need to do anything
     }
 
-    public static GameObject<Item> DORITOS;
+    public static List<GameObject<Item>> getEntries() {
+        return ENTRIES;
+    }
 
-    public static GameObject<Item> DORITOS_COOL_RANCH;
+    private static GameObject<Item> register(String registryName, Supplier<Item> itemSupplier) {
+        var gameObject = Services.ITEM_REGISTRY.register(registryName, itemSupplier);
+        ENTRIES.add(gameObject);
+        return gameObject;
+    }
 
-    public static GameObject<Item> RAW_TENTACLE;
-
-    public static GameObject<Item> TRILO_BITE;
+    private static GameObject<Item> registerFood(String registryName, FoodProperties.Builder foodPropertiesBuilder) {
+        var foodProperties = foodPropertiesBuilder.build();
+        return register(registryName, () -> new Item(new Item.Properties().food(foodProperties)));
+    }
 
     private AVPFoodItems() {}
 
-    private GameObject<Item> registerFood(String registryName, FoodProperties.Builder foodPropertiesBuilder) {
-        var foodProperties = foodPropertiesBuilder.build();
-        return registerEntry(registryName, () -> new Item(new Item.Properties().food(foodProperties)));
-    }
-
-    @Override
-    public void register() {
+    static {
         DORITOS = registerFood(
             "doritos",
             new FoodProperties.Builder().alwaysEat().nutrition(2).saturationMod(0.2F)
