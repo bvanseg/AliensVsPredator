@@ -1,7 +1,5 @@
 package org.avp.common.data.loot_table.blocks;
 
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Blocks;
 import org.avp.common.block.AVPBlocks;
 import org.avp.common.block.AVPEngineerBlocks;
 import org.avp.common.block.AVPIndustrialBlocks;
@@ -19,6 +17,16 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
     public void generate() {
         dropSelf(AVPBlocks.ALUMINUM_BLOCK.get());
 
+        createEngineerBlockLootTables();
+        createIndustrialBlockLookTables();
+        createOreBlockLootTables();
+        createPaddingBlockLootTables();
+        createParadiseBlockLootTables();
+        createTempleBlockLootTables();
+        createYautjaBlockLootTables();
+    }
+
+    private void createEngineerBlockLootTables() {
         dropSelf(AVPEngineerBlocks.ENGINEER_SHIP_BRICK.get());
         dropSelf(AVPEngineerBlocks.ENGINEER_SHIP_BRICK_1.get());
         dropSelf(AVPEngineerBlocks.ENGINEER_SHIP_BRICK_2.get());
@@ -39,7 +47,9 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
         dropSelf(AVPEngineerBlocks.ENGINEER_SHIP_WALL_2.get());
         dropSelf(AVPEngineerBlocks.ENGINEER_SHIP_WALL_3.get());
         dropSelf(AVPEngineerBlocks.ENGINEER_SHIP_WALL_4.get());
+    }
 
+    private void createIndustrialBlockLookTables() {
         dropSelf(AVPIndustrialBlocks.INDUSTRIAL_BRICK.get());
         dropSelf(AVPIndustrialBlocks.INDUSTRIAL_FLOOR_GRILL.get());
         dropSelf(AVPIndustrialBlocks.INDUSTRIAL_GLASS.get());
@@ -50,7 +60,9 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
         dropSelf(AVPIndustrialBlocks.INDUSTRIAL_VENT.get());
         dropSelf(AVPIndustrialBlocks.INDUSTRIAL_WALL.get());
         dropSelf(AVPIndustrialBlocks.INDUSTRIAL_WALL_HAZARD.get());
+    }
 
+    private void createOreBlockLootTables() {
         add(AVPOreBlocks.ORE_BAUXITE.get(), block -> createOreDrop(block, AVPItems.RAW_BAUXITE.get()));
         add(AVPOreBlocks.ORE_COBALT.get(), block -> createOreDrop(block, AVPItems.COBALT.get()));
         // TODO:
@@ -58,7 +70,9 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
         add(AVPOreBlocks.ORE_MONAZITE.get(), block -> createOreDrop(block, AVPItems.NEODYMIUM.get()));
         add(AVPOreBlocks.ORE_SILICA.get(), block -> createOreDrop(block, AVPItems.SILICA.get()));
         dropSelf(AVPOreBlocks.RAW_BAUXITE_BLOCK.get());
+    }
 
+    private void createPaddingBlockLootTables() {
         dropSelf(AVPPaddingBlocks.PADDING_ORANGE_PANEL.get());
         dropSelf(AVPPaddingBlocks.PADDING_ORANGE_PIPES.get());
         dropSelf(AVPPaddingBlocks.PADDING_ORANGE_SQUARE.get());
@@ -67,7 +81,9 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
         dropSelf(AVPPaddingBlocks.PADDING_WHITE_PIPES.get());
         dropSelf(AVPPaddingBlocks.PADDING_WHITE_SQUARE.get());
         dropSelf(AVPPaddingBlocks.PADDING_WHITE_TILES.get());
+    }
 
+    private void createParadiseBlockLootTables() {
         dropSelf(AVPParadiseBlocks.PARADISE_DIRT.get());
         dropSelf(AVPParadiseBlocks.PARADISE_DIRT_MOSSY.get());
         dropSelf(AVPParadiseBlocks.PARADISE_DIRT_PODZOL.get());
@@ -78,7 +94,9 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
         dropSelf(AVPParadiseBlocks.PARADISE_LOG_LARGE.get());
         dropSelf(AVPParadiseBlocks.PARADISE_LOG_MEDIUM.get());
         dropSelf(AVPParadiseBlocks.PARADISE_LOG_SMALL.get());
+    }
 
+    private void createTempleBlockLootTables() {
         dropSelf(AVPTempleBlocks.TEMPLE_BRICK.get());
         dropSelf(AVPTempleBlocks.TEMPLE_BRICK_CHESTBURSTER.get());
         dropSelf(AVPTempleBlocks.TEMPLE_BRICK_FACEHUGGER.get());
@@ -87,7 +105,9 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
         dropSelf(AVPTempleBlocks.TEMPLE_SKULLS.get());
         dropSelf(AVPTempleBlocks.TEMPLE_TEMPLE_TILE.get());
         dropSelf(AVPTempleBlocks.TEMPLE_WALL_BASE.get());
+    }
 
+    private void createYautjaBlockLootTables() {
         dropSelf(AVPYautjaShipBlocks.YAUTJA_SHIP_BRICK.get());
         dropSelf(AVPYautjaShipBlocks.YAUTJA_SHIP_DECOR_1.get());
         dropSelf(AVPYautjaShipBlocks.YAUTJA_SHIP_DECOR_2.get());
