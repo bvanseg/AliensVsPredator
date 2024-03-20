@@ -3,12 +3,13 @@ package org.avp.fabric.service;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+
+import java.util.function.Supplier;
+
 import org.avp.common.service.BlockRegistry;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 import org.avp.fabric.common.registry.AVPDeferredBlockRegistry;
-
-import java.util.function.Supplier;
 
 /**
  * @author Boston Vanseghi

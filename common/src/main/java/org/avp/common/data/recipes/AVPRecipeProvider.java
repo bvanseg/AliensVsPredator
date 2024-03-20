@@ -22,6 +22,7 @@ public class AVPRecipeProvider extends RecipeProvider {
     @Override
     public void buildRecipes(@NotNull RecipeOutput recipeOutput) {
         AVPAluminumRecipes.addAluminumRecipes(recipeOutput);
+        AVPAmmoRecipes.addAmmoRecipes(recipeOutput);
         AVPArmorRecipes.addArmorRecipes(recipeOutput);
         AVPFoodRecipes.addFoodRecipes(recipeOutput);
         AVPElectronicRecipes.addElectronicRecipes(recipeOutput);

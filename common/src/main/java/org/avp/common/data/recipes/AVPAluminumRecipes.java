@@ -28,7 +28,13 @@ public final class AVPAluminumRecipes {
         );
 
         // Smelting
-        AVPRecipeHelper.oreSmelting(recipeOutput, RecipeCategory.MISC, AVPItems.RAW_BAUXITE, AVPOreBlocks.ORE_BAUXITE, AVPItems.INGOT_ALUMINUM);
+        AVPRecipeHelper.oreSmelting(
+            recipeOutput,
+            RecipeCategory.MISC,
+            AVPItems.RAW_BAUXITE,
+            AVPOreBlocks.ORE_BAUXITE,
+            AVPItems.INGOT_ALUMINUM
+        );
 
         // Decompressed items from blocks
         AVPRecipeHelper.decompressedItemRecipe(

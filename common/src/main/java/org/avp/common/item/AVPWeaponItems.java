@@ -1,12 +1,13 @@
 package org.avp.common.item;
 
 import net.minecraft.world.item.Item;
-import org.avp.common.service.Services;
-import org.avp.common.util.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+
+import org.avp.common.service.Services;
+import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi
@@ -16,18 +17,31 @@ public class AVPWeaponItems {
     private static final List<GameObject<Item>> ENTRIES = new ArrayList<>();
 
     public static final GameObject<Item> AMMO_AR;
+
     public static final GameObject<Item> AMMO_SMG;
+
     public static final GameObject<Item> AMMO_CHARGE_PACK;
+
     public static final GameObject<Item> AMMO_FLAMETHROWER;
+
     public static final GameObject<Item> AMMO_PISTOL;
+
     public static final GameObject<Item> AMMO_SNIPER;
+
     public static final GameObject<Item> GRENADE_INCENDIARY;
+
     public static final GameObject<Item> GRENADE_M40;
+
     public static final GameObject<Item> WEAPON_88MOD4_COMBAT_PISTOL;
+
     public static final GameObject<Item> WEAPON_AK_47;
+
     public static final GameObject<Item> WEAPON_M4_CARBINE;
+
     public static final GameObject<Item> WEAPON_M41A_PULSE_RIFLE;
+
     public static final GameObject<Item> WEAPON_M56_SMARTGUN;
+
     public static final GameObject<Item> WEAPON_SNIPER_RIFLE;
 
     public static void forceInitialization() {

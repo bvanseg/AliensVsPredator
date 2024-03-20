@@ -1,6 +1,7 @@
 package org.avp.neoforge.common.data;
 
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+
 import org.avp.common.data.loot_table.AVPLootTableProvider;
 import org.avp.common.data.recipes.AVPRecipeProvider;
 
