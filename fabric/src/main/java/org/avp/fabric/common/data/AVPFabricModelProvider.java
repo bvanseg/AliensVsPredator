@@ -8,6 +8,7 @@ import net.minecraft.data.models.model.ModelTemplates;
 import org.avp.common.block.AVPBlocks;
 import org.avp.common.block.AVPEngineerBlocks;
 import org.avp.common.block.AVPIndustrialBlocks;
+import org.avp.common.block.AVPOreBlocks;
 import org.avp.common.block.AVPPaddingBlocks;
 import org.avp.common.block.AVPParadiseBlocks;
 import org.avp.common.block.AVPTempleBlocks;
@@ -29,25 +30,28 @@ public class AVPFabricModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
-        AVPBlocks.getInstance().ENTRIES.forEach(
+        AVPBlocks.getEntries().forEach(
             blockGameObject -> blockStateModelGenerator.createTrivialCube(blockGameObject.get())
         );
-        AVPEngineerBlocks.getInstance().ENTRIES.forEach(
+        AVPEngineerBlocks.getEntries().forEach(
             blockGameObject -> blockStateModelGenerator.createTrivialCube(blockGameObject.get())
         );
-        AVPIndustrialBlocks.getInstance().ENTRIES.forEach(
+        AVPIndustrialBlocks.getEntries().forEach(
             blockGameObject -> blockStateModelGenerator.createTrivialCube(blockGameObject.get())
         );
-        AVPPaddingBlocks.getInstance().ENTRIES.forEach(
+        AVPOreBlocks.getEntries().forEach(
             blockGameObject -> blockStateModelGenerator.createTrivialCube(blockGameObject.get())
         );
-        AVPParadiseBlocks.getInstance().ENTRIES.forEach(
+        AVPPaddingBlocks.getEntries().forEach(
             blockGameObject -> blockStateModelGenerator.createTrivialCube(blockGameObject.get())
         );
-        AVPTempleBlocks.getInstance().ENTRIES.forEach(
+        AVPParadiseBlocks.getEntries().forEach(
             blockGameObject -> blockStateModelGenerator.createTrivialCube(blockGameObject.get())
         );
-        AVPYautjaShipBlocks.getInstance().ENTRIES.forEach(
+        AVPTempleBlocks.getEntries().forEach(
+            blockGameObject -> blockStateModelGenerator.createTrivialCube(blockGameObject.get())
+        );
+        AVPYautjaShipBlocks.getEntries().forEach(
             blockGameObject -> blockStateModelGenerator.createTrivialCube(blockGameObject.get())
         );
     }

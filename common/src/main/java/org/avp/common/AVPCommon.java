@@ -31,14 +31,14 @@ public class AVPCommon {
         AVPWeaponItems.getInstance().register();
 
         // Blocks
-        AVPBlocks.getInstance().register();
-        AVPEngineerBlocks.getInstance().register();
-        AVPIndustrialBlocks.getInstance().register();
-        AVPOreBlocks.getInstance().register();
-        AVPPaddingBlocks.getInstance().register();
-        AVPParadiseBlocks.getInstance().register();
-        AVPTempleBlocks.getInstance().register();
-        AVPYautjaShipBlocks.getInstance().register();
+        AVPBlocks.forceInitialization();
+        AVPEngineerBlocks.forceInitialization();
+        AVPIndustrialBlocks.forceInitialization();
+        AVPOreBlocks.forceInitialization();
+        AVPPaddingBlocks.forceInitialization();
+        AVPParadiseBlocks.forceInitialization();
+        AVPTempleBlocks.forceInitialization();
+        AVPYautjaShipBlocks.forceInitialization();
 
         // Entities
         AVPBaseAlienEntityTypes.getInstance().register();
@@ -49,9 +49,13 @@ public class AVPCommon {
         AVPRunnerAlienEntityTypes.getInstance().register();
 
         // It's important to register creative mode tabs last, as entities generate spawn eggs automatically.
-        AVPCreativeModeTabs.getInstance().register();
+        AVPCreativeModeTabs.register();
 
         // Sounds
         AVPSoundEvents.getInstance().register();
+    }
+
+    private AVPCommon() {
+        throw new UnsupportedOperationException();
     }
 }

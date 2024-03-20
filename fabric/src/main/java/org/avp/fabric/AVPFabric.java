@@ -3,6 +3,7 @@ package org.avp.fabric;
 import net.fabricmc.api.ModInitializer;
 
 import org.avp.common.AVPCommon;
+import org.avp.fabric.common.registry.AVPDeferredBlockRegistry;
 import org.avp.fabric.common.worldgen.AVPFabricWorldGenFeatures;
 import org.avp.fabric.service.FabricEntityAttributeRegistry;
 
@@ -15,6 +16,7 @@ public class AVPFabric implements ModInitializer {
     public void onInitialize() {
         // Use Fabric to bootstrap the Common mod.
         AVPCommon.init();
+        AVPDeferredBlockRegistry.registerAll();
         AVPFabricWorldGenFeatures.getInstance().register();
         FabricEntityAttributeRegistry.getInstance().register();
     }

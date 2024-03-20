@@ -14,22 +14,15 @@ import java.util.function.Supplier;
 import org.avp.common.AVPConstants;
 import org.avp.common.block.*;
 import org.avp.common.item.*;
-import org.avp.common.registry.AVPRegistry;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi
  */
-public class AVPCreativeModeTabs implements AVPRegistry {
+public final class AVPCreativeModeTabs {
 
-    private static final AVPCreativeModeTabs INSTANCE = new AVPCreativeModeTabs();
-
-    public static AVPCreativeModeTabs getInstance() {
-        return INSTANCE;
-    }
-
-    private void registerCreativeModeTab(
+    private static void registerCreativeModeTab(
         String registryName,
         Supplier<CreativeModeTab.Builder> creativeModeTabBuilderSupplier
     ) {
@@ -42,14 +35,14 @@ public class AVPCreativeModeTabs implements AVPRegistry {
         );
     }
 
-    private Collection<ItemStack> itemsToItemStacks(List<GameObject<Item>> gameObjectList) {
+    private static Collection<ItemStack> itemsToItemStacks(List<GameObject<Item>> gameObjectList) {
         return gameObjectList.stream()
             .map(GameObject::get)
             .map(Item::getDefaultInstance)
             .toList();
     }
 
-    private Collection<ItemStack> blocksToItemStacks(List<GameObject<Block>> gameObjectList) {
+    private static Collection<ItemStack> blocksToItemStacks(List<GameObject<Block>> gameObjectList) {
         return gameObjectList.stream()
             .map(GameObject::get)
             .map(Block::asItem)
@@ -57,12 +50,11 @@ public class AVPCreativeModeTabs implements AVPRegistry {
             .toList();
     }
 
-    @Override
-    public void register() {
+    public static void register() {
         registerCreativeModeTab(
             "armor",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 0)
-                .icon(AVPArmorItems.getInstance().CELTIC_HELMET.get()::getDefaultInstance)
+                .icon(AVPArmorItems.CELTIC_HELMET.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
                         itemsToItemStacks(AVPArmorItems.getInstance().ENTRIES)
@@ -73,23 +65,23 @@ public class AVPCreativeModeTabs implements AVPRegistry {
         registerCreativeModeTab(
             "blocks",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
-                .icon(AVPTempleBlocks.getInstance().TEMPLE_BRICK.get().asItem()::getDefaultInstance)
+                .icon(AVPTempleBlocks.TEMPLE_BRICK.get().asItem()::getDefaultInstance)
                 .displayItems((itemDisplayParameters, output) -> {
-                    output.acceptAll(blocksToItemStacks(AVPBlocks.getInstance().ENTRIES));
-                    output.acceptAll(blocksToItemStacks(AVPEngineerBlocks.getInstance().ENTRIES));
-                    output.acceptAll(blocksToItemStacks(AVPIndustrialBlocks.getInstance().ENTRIES));
-                    output.acceptAll(blocksToItemStacks(AVPOreBlocks.getInstance().ENTRIES));
-                    output.acceptAll(blocksToItemStacks(AVPPaddingBlocks.getInstance().ENTRIES));
-                    output.acceptAll(blocksToItemStacks(AVPParadiseBlocks.getInstance().ENTRIES));
-                    output.acceptAll(blocksToItemStacks(AVPTempleBlocks.getInstance().ENTRIES));
-                    output.acceptAll(blocksToItemStacks(AVPYautjaShipBlocks.getInstance().ENTRIES));
+                    output.acceptAll(blocksToItemStacks(AVPBlocks.getEntries()));
+                    output.acceptAll(blocksToItemStacks(AVPEngineerBlocks.getEntries()));
+                    output.acceptAll(blocksToItemStacks(AVPIndustrialBlocks.getEntries()));
+                    output.acceptAll(blocksToItemStacks(AVPOreBlocks.getEntries()));
+                    output.acceptAll(blocksToItemStacks(AVPPaddingBlocks.getEntries()));
+                    output.acceptAll(blocksToItemStacks(AVPParadiseBlocks.getEntries()));
+                    output.acceptAll(blocksToItemStacks(AVPTempleBlocks.getEntries()));
+                    output.acceptAll(blocksToItemStacks(AVPYautjaShipBlocks.getEntries()));
                 })
         );
 
         registerCreativeModeTab(
             "food",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 2)
-                .icon(AVPFoodItems.getInstance().DORITOS.get()::getDefaultInstance)
+                .icon(AVPFoodItems.DORITOS.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
                         itemsToItemStacks(AVPFoodItems.getInstance().ENTRIES)
@@ -100,7 +92,7 @@ public class AVPCreativeModeTabs implements AVPRegistry {
         registerCreativeModeTab(
             "electronics",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 3)
-                .icon(AVPElectronicItems.getInstance().CPU.get()::getDefaultInstance)
+                .icon(AVPElectronicItems.CPU.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
                         itemsToItemStacks(AVPElectronicItems.getInstance().ENTRIES)
@@ -122,7 +114,7 @@ public class AVPCreativeModeTabs implements AVPRegistry {
         registerCreativeModeTab(
             "items",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 5)
-                .icon(AVPItems.getInstance().ROYAL_JELLY.get()::getDefaultInstance)
+                .icon(AVPItems.ROYAL_JELLY.get()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
                         itemsToItemStacks(AVPItems.getInstance().ENTRIES)
@@ -151,5 +143,9 @@ public class AVPCreativeModeTabs implements AVPRegistry {
                     )
                 )
         );
+    }
+
+    private AVPCreativeModeTabs() {
+        throw new UnsupportedOperationException();
     }
 }
