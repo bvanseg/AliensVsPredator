@@ -26,6 +26,10 @@ runs
 # minecraft datagen
 **/generated/*
 
+# avp assets
+**/assets/avp/blockstates/*
+**/assets/avp/models/block*
+
 # avp data
 **/data/avp/growth/*
 **/data/avp/infections/*

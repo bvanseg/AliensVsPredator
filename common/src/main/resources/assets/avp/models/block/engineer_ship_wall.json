@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "avp:block/engineer_ship_wall"
-  }
-}
