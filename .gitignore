@@ -32,6 +32,7 @@ runs
 **/assets/avp/models/item*
 
 # avp data
+**/data/avp/advancements/*
 **/data/avp/growth/*
 **/data/avp/infections/*
 **/data/avp/loot_tables/*
