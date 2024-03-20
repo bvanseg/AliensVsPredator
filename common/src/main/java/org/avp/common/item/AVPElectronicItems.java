@@ -18,17 +18,29 @@ public class AVPElectronicItems extends AVPItemBindingRegistry implements AVPReg
     }
 
     public static GameObject<Item> CAPACITOR;
+
     public static GameObject<Item> CPU;
+
     public static GameObject<Item> DIODE;
+
     public static GameObject<Item> INTEGRATED_CIRCUIT;
+
     public static GameObject<Item> LED;
+
     public static GameObject<Item> LED_DISPLAY;
+
     public static GameObject<Item> MOTHERBOARD;
+
     public static GameObject<Item> POWER_SUPPLY;
+
     public static GameObject<Item> RAM;
+
     public static GameObject<Item> REGULATOR;
+
     public static GameObject<Item> RESISTOR;
+
     public static GameObject<Item> SSD;
+
     public static GameObject<Item> TRANSISTOR;
 
     private AVPElectronicItems() {}

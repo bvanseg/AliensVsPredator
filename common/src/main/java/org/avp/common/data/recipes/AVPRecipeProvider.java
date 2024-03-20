@@ -20,9 +20,9 @@ public class AVPRecipeProvider extends RecipeProvider {
     @Override
     public void buildRecipes(@NotNull RecipeOutput recipeOutput) {
         AVPArmorRecipes.addArmorRecipes(recipeOutput);
+        AVPFoodRecipes.addFoodRecipes(recipeOutput);
         AVPElectronicRecipes.addElectronicRecipes(recipeOutput);
     }
-
 
     public static @NotNull Criterion<InventoryChangeTrigger.TriggerInstance> has(@NotNull ItemLike itemLike) {
         return RecipeProvider.has(itemLike);

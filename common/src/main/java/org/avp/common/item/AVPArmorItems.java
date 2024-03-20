@@ -20,28 +20,43 @@ public class AVPArmorItems extends AVPItemBindingRegistry implements AVPRegistry
     }
 
     public static GameObject<Item> ALUMINUM_BODY;
+
     public static GameObject<Item> ALUMINUM_BOOTS;
+
     public static GameObject<Item> ALUMINUM_HELMET;
+
     public static GameObject<Item> ALUMINUM_LEGGINGS;
 
     public static GameObject<Item> CELTIC_BODY;
+
     public static GameObject<Item> CELTIC_BOOTS;
+
     public static GameObject<Item> CELTIC_HELMET;
+
     public static GameObject<Item> CELTIC_LEGGINGS;
 
     public static GameObject<Item> MK50_BODY;
+
     public static GameObject<Item> MK50_BOOTS;
+
     public static GameObject<Item> MK50_HELMET;
+
     public static GameObject<Item> MK50_LEGGINGS;
 
     public static GameObject<Item> PRESSURE_BODY;
+
     public static GameObject<Item> PRESSURE_BOOTS;
+
     public static GameObject<Item> PRESSURE_HELMET;
+
     public static GameObject<Item> PRESSURE_LEGGINGS;
 
     public static GameObject<Item> TACTICAL_BODY;
+
     public static GameObject<Item> TACTICAL_BOOTS;
+
     public static GameObject<Item> TACTICAL_HELMET;
+
     public static GameObject<Item> TACTICAL_LEGGINGS;
 
     private AVPArmorItems() {}

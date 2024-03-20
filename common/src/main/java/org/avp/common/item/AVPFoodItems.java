@@ -18,10 +18,13 @@ public class AVPFoodItems extends AVPItemBindingRegistry implements AVPRegistry 
         return INSTANCE;
     }
 
-    public final GameObject<Item> DORITOS = registerFood(
-        "doritos",
-        new FoodProperties.Builder().alwaysEat().nutrition(2).saturationMod(0.2F)
-    );
+    public static GameObject<Item> DORITOS;
+
+    public static GameObject<Item> DORITOS_COOL_RANCH;
+
+    public static GameObject<Item> RAW_TENTACLE;
+
+    public static GameObject<Item> TRILO_BITE;
 
     private AVPFoodItems() {}
 
@@ -32,12 +35,22 @@ public class AVPFoodItems extends AVPItemBindingRegistry implements AVPRegistry 
 
     @Override
     public void register() {
-        registerFood("doritos_cool_ranch", new FoodProperties.Builder().alwaysEat().nutrition(4).saturationMod(0.2F));
+        DORITOS = registerFood(
+            "doritos",
+            new FoodProperties.Builder().alwaysEat().nutrition(2).saturationMod(0.2F)
+        );
+        DORITOS_COOL_RANCH = registerFood(
+            "doritos_cool_ranch",
+            new FoodProperties.Builder().alwaysEat().nutrition(4).saturationMod(0.2F)
+        );
 
         // Slightly worse than raw beef.
-        registerFood("raw_tentacle", new FoodProperties.Builder().meat().nutrition(2).saturationMod(0.2F));
+        RAW_TENTACLE = registerFood(
+            "raw_tentacle",
+            new FoodProperties.Builder().meat().nutrition(2).saturationMod(0.2F)
+        );
 
         // Slightly worse than cooked beef.
-        registerFood("trilo_bite", new FoodProperties.Builder().meat().nutrition(7).saturationMod(0.7F));
+        TRILO_BITE = registerFood("trilo_bite", new FoodProperties.Builder().meat().nutrition(7).saturationMod(0.7F));
     }
 }
