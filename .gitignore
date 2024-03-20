@@ -29,6 +29,7 @@ runs
 # avp assets
 **/assets/avp/blockstates/*
 **/assets/avp/models/block*
+**/assets/avp/models/item*
 
 # avp data
 **/data/avp/growth/*
