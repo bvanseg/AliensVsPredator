@@ -71,10 +71,19 @@ public class AVPParadiseBlocks {
         );
         PARADISE_LEAVES_SMALL = register("paradise_leaves_small", () -> new Block(BlockBehaviour.Properties.of()));
         PARADISE_LOG_LARGE = register("paradise_log_large", () -> new Block(BlockBehaviour.Properties.of()));
-        PARADISE_LOG_LARGE_PLANKS = register("paradise_log_large_planks", () -> new Block(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_LARGE_PLANKS = register(
+            "paradise_log_large_planks",
+            () -> new Block(BlockBehaviour.Properties.of())
+        );
         PARADISE_LOG_MEDIUM = register("paradise_log_medium", () -> new Block(BlockBehaviour.Properties.of()));
-        PARADISE_LOG_MEDIUM_PLANKS = register("paradise_log_medium_planks", () -> new Block(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_MEDIUM_PLANKS = register(
+            "paradise_log_medium_planks",
+            () -> new Block(BlockBehaviour.Properties.of())
+        );
         PARADISE_LOG_SMALL = register("paradise_log_small", () -> new Block(BlockBehaviour.Properties.of()));
-        PARADISE_LOG_SMALL_PLANKS = register("paradise_log_small_planks", () -> new Block(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_SMALL_PLANKS = register(
+            "paradise_log_small_planks",
+            () -> new Block(BlockBehaviour.Properties.of())
+        );
     }
 }
