@@ -94,6 +94,9 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
         dropSelf(AVPParadiseBlocks.PARADISE_LOG_LARGE.get());
         dropSelf(AVPParadiseBlocks.PARADISE_LOG_MEDIUM.get());
         dropSelf(AVPParadiseBlocks.PARADISE_LOG_SMALL.get());
+        dropSelf(AVPParadiseBlocks.PARADISE_LOG_LARGE_PLANKS.get());
+        dropSelf(AVPParadiseBlocks.PARADISE_LOG_MEDIUM_PLANKS.get());
+        dropSelf(AVPParadiseBlocks.PARADISE_LOG_SMALL_PLANKS.get());
     }
 
     private void createTempleBlockLootTables() {
