@@ -2,6 +2,7 @@ package org.avp.common.util;
 
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 import org.avp.common.AVPResources;
@@ -31,5 +32,9 @@ public class GameObject<T> {
             object = supplier.get();
         }
         return object;
+    }
+
+    public Optional<T> getOptional() {
+        return Optional.ofNullable(get());
     }
 }
