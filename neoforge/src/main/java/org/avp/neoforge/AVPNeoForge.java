@@ -3,8 +3,10 @@ package org.avp.neoforge;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 
+import net.neoforged.neoforge.common.NeoForge;
 import org.avp.common.AVPCommon;
 import org.avp.common.AVPConstants;
+import org.avp.neoforge.common.command.AVPNeoForgeCommands;
 import org.avp.neoforge.common.data.AVPNeoForgeData;
 import org.avp.neoforge.service.*;
 
@@ -25,5 +27,7 @@ public class AVPNeoForge {
         NeoForgeEntityRegistry.ENTITY_TYPES.register(eventBus);
         NeoForgeSoundEventRegistry.SOUND_EVENTS.register(eventBus);
         eventBus.addListener(NeoForgeEntityAttributeRegistry.getInstance()::createEntityAttributes);
+
+        NeoForge.EVENT_BUS.addListener(AVPNeoForgeCommands::registerCommandsEvent);
     }
 }
