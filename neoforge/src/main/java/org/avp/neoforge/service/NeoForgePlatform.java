@@ -5,6 +5,8 @@ import net.neoforged.fml.loading.FMLLoader;
 
 import org.avp.common.service.Platform;
 
+import java.nio.file.Path;
+
 public class NeoForgePlatform implements Platform {
 
     @Override
@@ -20,5 +22,10 @@ public class NeoForgePlatform implements Platform {
     @Override
     public boolean isDevelopmentEnvironment() {
         return !FMLLoader.isProduction();
+    }
+
+    @Override
+    public Path getGameDirectory() {
+        return FMLLoader.getGamePath();
     }
 }

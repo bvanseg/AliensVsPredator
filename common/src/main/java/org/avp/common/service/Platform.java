@@ -1,5 +1,7 @@
 package org.avp.common.service;
 
+import java.nio.file.Path;
+
 public interface Platform {
 
     /**
@@ -32,4 +34,6 @@ public interface Platform {
     default String getEnvironmentName() {
         return isDevelopmentEnvironment() ? "development" : "production";
     }
+
+    Path getGameDirectory();
 }
