@@ -7,7 +7,6 @@ import net.neoforged.neoforge.common.NeoForge;
 import org.avp.common.AVPCommon;
 import org.avp.common.AVPConstants;
 import org.avp.neoforge.common.command.AVPNeoForgeCommands;
-import org.avp.neoforge.common.data.AVPNeoForgeData;
 import org.avp.neoforge.service.*;
 
 /**
@@ -17,8 +16,6 @@ import org.avp.neoforge.service.*;
 public class AVPNeoForge {
 
     public AVPNeoForge(IEventBus eventBus) {
-        eventBus.addListener(AVPNeoForgeData::gatherDataEvent);
-
         AVPCommon.init();
 
         NeoForgeCreativeModeTabRegistry.CREATIVE_MODE_TABS.register(eventBus);
