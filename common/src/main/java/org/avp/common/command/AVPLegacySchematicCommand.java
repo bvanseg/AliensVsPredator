@@ -6,25 +6,41 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
-
+import org.avp.common.legacy.schematic.LegacySchematic;
 import org.avp.common.legacy.schematic.LegacySchematics;
+import org.avp.common.util.GameObject;
+
+import java.util.List;
 
 /**
  * @author Boston Vanseghi
  */
 public class AVPLegacySchematicCommand {
 
+    private static final List<GameObject<LegacySchematic>> LEGACY_SCHEMATICS = List.of(
+        LegacySchematics.DERELICT_SCHEMATIC,
+        LegacySchematics.DERELICT_OLD_SCHEMATIC,
+        LegacySchematics.TEST_SCHEMATIC
+    );
+
     public static void register(CommandDispatcher<CommandSourceStack> commandDispatcher) {
-        commandDispatcher.register(
-            Commands.literal("schematic")
-                .then(
-                    Commands.literal("generate")
-                        .executes(AVPLegacySchematicCommand::execute)
-                )
-        );
+        var generate = Commands.literal("generate");
+
+        for (GameObject<LegacySchematic> legacySchematicGameObject: LEGACY_SCHEMATICS) {
+            var id = legacySchematicGameObject.getResourceLocation().getPath();
+            generate.then(
+                Commands.literal(id)
+                    .executes(ctx -> execute(legacySchematicGameObject, ctx))
+            );
+        }
+
+        commandDispatcher.register(Commands.literal("schematic").then(generate));
     }
 
-    private static int execute(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
+    private static int execute(
+        GameObject<LegacySchematic> legacySchematicGameObject,
+        CommandContext<CommandSourceStack> context
+    ) throws CommandSyntaxException {
         var commandSourceStack = context.getSource();
 
         if (!commandSourceStack.isPlayer()) {
@@ -36,7 +52,7 @@ public class AVPLegacySchematicCommand {
         var player = commandSourceStack.getPlayerOrException();
         var playerBlockPos = player.getOnPos();
         var serverLevel = commandSourceStack.getLevel();
-        var schematicOptional = LegacySchematics.DERELICT_SCHEMATIC.getOptional();
+        var schematicOptional = legacySchematicGameObject.getOptional();
 
         if (schematicOptional.isEmpty()) {
             context.getSource().sendFailure(Component.literal("Could not retrieve schematic file."));

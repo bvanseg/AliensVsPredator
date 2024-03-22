@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.Map;
 
 import org.avp.common.legacy.schematic.resolver.DerelictSchematicResolver;
+import org.avp.common.legacy.schematic.resolver.TestSchematicResolver;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
@@ -42,7 +43,7 @@ public final class LegacySchematics {
 
     public static final GameObject<LegacySchematic> TEST_SCHEMATIC = new GameObject<>(
         "test",
-        () -> LegacySchematicLoader.loadFromFile(TEST_PATH.toFile(), Map.of()).orElse(null)
+        () -> LegacySchematicLoader.loadFromFile(TEST_PATH.toFile(), TestSchematicResolver.RESOLVER_MAP).orElse(null)
     );
 
     private LegacySchematics() {
