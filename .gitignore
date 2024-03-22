@@ -31,9 +31,15 @@ runs
 **/assets/avp/models/block*
 **/assets/avp/models/item*
 
+# minecraft assets
+**/assets/minecraft/*
+
 # avp data
 **/data/avp/advancements/*
 **/data/avp/growth/*
 **/data/avp/infections/*
 **/data/avp/loot_tables/*
 **/data/avp/recipes/*
+
+# minecraft data
+**/data/minecraft/*
