@@ -1,6 +1,7 @@
 package org.avp.fabric.common.data;
 
 import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.data.models.model.TexturedModel;
 import net.minecraft.world.level.block.Block;
@@ -10,12 +11,21 @@ import org.avp.api.block.BlockData;
 import org.avp.api.block.factory.BlockFactories;
 import org.avp.api.block.factory.StairBlockFactory;
 import org.avp.common.block.AVPBlocks;
+import org.avp.common.item.AVPSpawnEggItems;
 import org.avp.common.util.GameObject;
 
 public class AVPFabricBlockModelProvider {
 
     public static void addBlockModels(BlockModelGenerators generator) {
         AVPBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
+
+        // Listen, I don't like this any more than you do. But Mojang also does this, so...
+        AVPSpawnEggItems.ENTRIES.forEach(
+            itemGameObject -> generator.delegateItemModel(
+                itemGameObject.get(),
+                ModelLocationUtils.decorateItemModelLocation("template_spawn_egg")
+            )
+        );
     }
 
     private static void computeBlockModels(BlockModelGenerators generator, Tuple<GameObject<Block>, BlockData> tuple) {

@@ -29,7 +29,7 @@ public interface EntityRegistry {
             "spawn_egg_" + registryName,
             () -> new SpawnEggItem(gameObject.get(), backgroundColor, highlightColor, new Item.Properties())
         );
-        AVPSpawnEggItems.getInstance().ENTRIES.add(spawnEggGameObject);
+        AVPSpawnEggItems.ENTRIES.add(spawnEggGameObject);
         return gameObject;
     }
 }

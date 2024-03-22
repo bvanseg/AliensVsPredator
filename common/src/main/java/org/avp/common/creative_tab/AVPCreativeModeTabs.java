@@ -98,7 +98,7 @@ public final class AVPCreativeModeTabs {
                 .icon(Items.EGG::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
-                        itemsToItemStacks(AVPSpawnEggItems.getInstance().ENTRIES)
+                        itemsToItemStacks(AVPSpawnEggItems.ENTRIES)
                     )
                 )
         );
