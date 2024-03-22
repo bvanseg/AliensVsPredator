@@ -12,6 +12,10 @@ import org.avp.common.AVPResources;
  */
 public class GameObject<T> {
 
+    public static <E> GameObject<E> empty() {
+        return new GameObject<>("null", () -> null);
+    }
+
     private T object;
 
     private final ResourceLocation resourceLocation;
