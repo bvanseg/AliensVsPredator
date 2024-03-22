@@ -19,6 +19,10 @@ public class BlockDataUtils {
         return BlockData.builder(properties).parent(parentGameObject).factory(BlockFactories.WALL).build();
     }
 
+    public static BlockData pillar(BlockBehaviour.Properties properties) {
+        return BlockData.builder(properties).factory(BlockFactories.ROTATED_PILLAR).build();
+    }
+
     private BlockDataUtils() {
         throw new UnsupportedOperationException();
     }

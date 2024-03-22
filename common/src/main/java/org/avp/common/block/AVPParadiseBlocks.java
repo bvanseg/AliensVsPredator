@@ -3,15 +3,10 @@ package org.avp.common.block;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
-
-import org.avp.api.Tuple;
 import org.avp.api.block.BlockData;
+import org.avp.api.block.BlockDataUtils;
 import org.avp.api.block.drop.BlockDrops;
 import org.avp.api.block.drop.key.BlockDropKeys;
-import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
 /**
@@ -65,17 +60,17 @@ public class AVPParadiseBlocks {
             BlockData.simple(BlockBehaviour.Properties.of())
         );
         PARADISE_LEAVES_SMALL = AVPBlocks.register("paradise_leaves_small", BlockData.simple(BlockBehaviour.Properties.of()));
-        PARADISE_LOG_LARGE = AVPBlocks.register("paradise_log_large", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_LARGE = AVPBlocks.register("paradise_log_large", BlockDataUtils.pillar(BlockBehaviour.Properties.of()));
         PARADISE_LOG_LARGE_PLANKS = AVPBlocks.register(
             "paradise_log_large_planks",
             BlockData.simple(BlockBehaviour.Properties.of())
         );
-        PARADISE_LOG_MEDIUM = AVPBlocks.register("paradise_log_medium", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_MEDIUM = AVPBlocks.register("paradise_log_medium", BlockDataUtils.pillar(BlockBehaviour.Properties.of()));
         PARADISE_LOG_MEDIUM_PLANKS = AVPBlocks.register(
             "paradise_log_medium_planks",
             BlockData.simple(BlockBehaviour.Properties.of())
         );
-        PARADISE_LOG_SMALL = AVPBlocks.register("paradise_log_small", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_SMALL = AVPBlocks.register("paradise_log_small", BlockDataUtils.pillar(BlockBehaviour.Properties.of()));
         PARADISE_LOG_SMALL_PLANKS = AVPBlocks.register(
             "paradise_log_small_planks",
             BlockData.simple(BlockBehaviour.Properties.of())

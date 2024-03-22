@@ -52,7 +52,13 @@ public class AVPFabricBlockModelProvider {
                 throw new IllegalStateException("Null parent block for wall block!");
             }
             createWallBlockModel(generator, parentGameObject.get(), blockGameObject.get());
+        } else if (factory == BlockFactories.ROTATED_PILLAR) {
+            createPillarBlockModel(generator, blockGameObject.get());
         }
+    }
+
+    private static void createPillarBlockModel(BlockModelGenerators generator, Block baseBlock) {
+        generator.createRotatedPillarWithHorizontalVariant(baseBlock, TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
     }
 
     private static void createSlabBlockModel(BlockModelGenerators generator, Block baseBlock, Block slabBlock) {

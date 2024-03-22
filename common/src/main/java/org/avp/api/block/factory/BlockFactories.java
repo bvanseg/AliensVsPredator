@@ -1,6 +1,7 @@
 package org.avp.api.block.factory;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.WallBlock;
 
@@ -17,6 +18,8 @@ public class BlockFactories {
     public static final Function<GameObject<Block>, BlockFactory> STAIRS = StairBlockFactory::new;
 
     public static final BlockFactory WALL = WallBlock::new;
+
+    public static final BlockFactory ROTATED_PILLAR = RotatedPillarBlock::new;
 
     private BlockFactories() {
         throw new UnsupportedOperationException();
