@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import org.avp.api.Tuple;
+import org.avp.api.block.BlockData;
+import org.avp.api.block.BlockDataUtils;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
@@ -17,7 +20,7 @@ import org.avp.common.util.GameObject;
  */
 public class AVPIndustrialBlocks {
 
-    private static final List<GameObject<Block>> ENTRIES = new ArrayList<>();
+    private static final List<Tuple<GameObject<Block>, BlockData>> ENTRIES = new ArrayList<>();
 
     public static final BlockBehaviour.Properties INDUSTRIAL_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
         Blocks.IRON_BLOCK
@@ -67,67 +70,56 @@ public class AVPIndustrialBlocks {
         // This method doesn't need to do anything
     }
 
-    public static List<GameObject<Block>> getEntries() {
+    public static List<Tuple<GameObject<Block>, BlockData>> getEntries() {
         return ENTRIES;
     }
 
-    private static GameObject<Block> register(String registryName, Supplier<Block> blockSupplier) {
-        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockSupplier);
-        ENTRIES.add(gameObject);
+    private static GameObject<Block> register(String registryName, BlockData blockData) {
+        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockData::create);
+        ENTRIES.add(new Tuple<>(gameObject, blockData));
         return gameObject;
-    }
-
-    private static GameObject<Block> registerStairs(
-        String registryName,
-        GameObject<Block> baseBlockGameObject,
-        BlockBehaviour.Properties properties
-    ) {
-        return register(registryName, () -> Services.BLOCK_REGISTRY.createStairBlock(baseBlockGameObject, properties));
     }
 
     private AVPIndustrialBlocks() {}
 
     static {
-        INDUSTRIAL_BRICK = register("industrial_brick", () -> new Block(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_BRICK_SLAB = register("industrial_brick_slab", () -> new SlabBlock(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_BRICK_STAIRS = registerStairs("industrial_brick_stairs", INDUSTRIAL_BRICK, INDUSTRIAL_PROPERTIES);
-        INDUSTRIAL_FLOOR_GRILL = register("industrial_floor_grill", () -> new Block(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_GLASS = register("industrial_glass", () -> new Block(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_LAMP = register("industrial_lamp", () -> new Block(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_METAL_PANEL_0 = register("industrial_metal_panel_0", () -> new Block(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_BRICK = register("industrial_brick", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_BRICK_SLAB = register("industrial_brick_slab", BlockDataUtils.slab(INDUSTRIAL_BRICK, INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_BRICK_STAIRS = register("industrial_brick_stairs", BlockDataUtils.stairs(INDUSTRIAL_BRICK, INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_FLOOR_GRILL = register("industrial_floor_grill", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_GLASS = register("industrial_glass", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_LAMP = register("industrial_lamp", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_METAL_PANEL_0 = register("industrial_metal_panel_0", BlockData.simple(INDUSTRIAL_PROPERTIES));
         INDUSTRIAL_METAL_PANEL_0_SLAB = register(
             "industrial_metal_panel_0_slab",
-            () -> new SlabBlock(INDUSTRIAL_PROPERTIES)
+            BlockDataUtils.slab(INDUSTRIAL_METAL_PANEL_0, INDUSTRIAL_PROPERTIES)
         );
-        INDUSTRIAL_METAL_PANEL_0_STAIRS = registerStairs(
+        INDUSTRIAL_METAL_PANEL_0_STAIRS = register(
             "industrial_metal_panel_0_stairs",
-            INDUSTRIAL_METAL_PANEL_0,
-            INDUSTRIAL_PROPERTIES
+            BlockDataUtils.stairs(INDUSTRIAL_METAL_PANEL_0, INDUSTRIAL_PROPERTIES)
         );
-        INDUSTRIAL_METAL_PANEL_1 = register("industrial_metal_panel_1", () -> new Block(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_METAL_PANEL_1 = register("industrial_metal_panel_1", BlockData.simple(INDUSTRIAL_PROPERTIES));
         INDUSTRIAL_METAL_PANEL_1_SLAB = register(
             "industrial_metal_panel_1_slab",
-            () -> new SlabBlock(INDUSTRIAL_PROPERTIES)
+            BlockDataUtils.slab(INDUSTRIAL_METAL_PANEL_1, INDUSTRIAL_PROPERTIES)
         );
-        INDUSTRIAL_METAL_PANEL_1_STAIRS = registerStairs(
+        INDUSTRIAL_METAL_PANEL_1_STAIRS = register(
             "industrial_metal_panel_1_stairs",
-            INDUSTRIAL_METAL_PANEL_1,
-            INDUSTRIAL_PROPERTIES
+            BlockDataUtils.stairs(INDUSTRIAL_METAL_PANEL_1, INDUSTRIAL_PROPERTIES)
         );
-        INDUSTRIAL_METAL_PANEL_2 = register("industrial_metal_panel_2", () -> new Block(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_METAL_PANEL_2 = register("industrial_metal_panel_2", BlockData.simple(INDUSTRIAL_PROPERTIES));
         INDUSTRIAL_METAL_PANEL_2_SLAB = register(
             "industrial_metal_panel_2_slab",
-            () -> new SlabBlock(INDUSTRIAL_PROPERTIES)
+            BlockDataUtils.slab(INDUSTRIAL_METAL_PANEL_2, INDUSTRIAL_PROPERTIES)
         );
-        INDUSTRIAL_METAL_PANEL_2_STAIRS = registerStairs(
+        INDUSTRIAL_METAL_PANEL_2_STAIRS = register(
             "industrial_metal_panel_2_stairs",
-            INDUSTRIAL_METAL_PANEL_2,
-            INDUSTRIAL_PROPERTIES
+            BlockDataUtils.stairs(INDUSTRIAL_METAL_PANEL_2, INDUSTRIAL_PROPERTIES)
         );
-        INDUSTRIAL_VENT = register("industrial_vent", () -> new Block(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_WALL = register("industrial_wall", () -> new Block(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_WALL_SLAB = register("industrial_wall_slab", () -> new SlabBlock(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_WALL_STAIRS = registerStairs("industrial_wall_stairs", INDUSTRIAL_WALL, INDUSTRIAL_PROPERTIES);
-        INDUSTRIAL_WALL_HAZARD = register("industrial_wall_hazard", () -> new Block(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_VENT = register("industrial_vent", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_WALL = register("industrial_wall", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_WALL_SLAB = register("industrial_wall_slab", BlockDataUtils.slab(INDUSTRIAL_WALL, INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_WALL_STAIRS = register("industrial_wall_stairs", BlockDataUtils.stairs(INDUSTRIAL_WALL, INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_WALL_HAZARD = register("industrial_wall_hazard", BlockData.simple(INDUSTRIAL_PROPERTIES));
     }
 }

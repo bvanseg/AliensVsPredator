@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import org.avp.api.Tuple;
+import org.avp.api.block.BlockData;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
@@ -16,7 +18,7 @@ import org.avp.common.util.GameObject;
  */
 public class AVPBlocks {
 
-    private static final List<GameObject<Block>> ENTRIES = new ArrayList<>();
+    private static final List<Tuple<GameObject<Block>, BlockData>> ENTRIES = new ArrayList<>();
 
     public static final BlockBehaviour.Properties ALUMINUM_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
         Blocks.IRON_BLOCK
@@ -28,19 +30,19 @@ public class AVPBlocks {
         // This method doesn't need to do anything
     }
 
-    public static List<GameObject<Block>> getEntries() {
+    public static List<Tuple<GameObject<Block>, BlockData>> getEntries() {
         return ENTRIES;
     }
 
-    private static GameObject<Block> register(String registryName, Supplier<Block> blockSupplier) {
-        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockSupplier);
-        ENTRIES.add(gameObject);
+    private static GameObject<Block> register(String registryName, BlockData blockData) {
+        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockData::create);
+        ENTRIES.add(new Tuple<>(gameObject, blockData));
         return gameObject;
     }
 
     private AVPBlocks() {}
 
     static {
-        ALUMINUM_BLOCK = register("aluminum_block", () -> new Block(ALUMINUM_PROPERTIES));
+        ALUMINUM_BLOCK = register("aluminum_block", BlockData.simple(ALUMINUM_PROPERTIES));
     }
 }

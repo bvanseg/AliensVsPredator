@@ -34,7 +34,7 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
     }
 
     private void createIndustrialBlockLookTables() {
-        AVPIndustrialBlocks.getEntries().forEach(blockGameObject -> dropSelf(blockGameObject.get()));
+        AVPIndustrialBlocks.getEntries().forEach(tuple -> dropSelf(tuple.first().get()));
     }
 
     private void createOreBlockLootTables() {
@@ -48,7 +48,7 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
     }
 
     private void createPaddingBlockLootTables() {
-        AVPPaddingBlocks.getEntries().forEach(blockGameObject -> dropSelf(blockGameObject.get()));
+        AVPPaddingBlocks.getEntries().forEach(blockGameObject -> dropSelf(blockGameObject.first().get()));
     }
 
     private void createParadiseBlockLootTables() {
@@ -88,6 +88,6 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
     }
 
     private void createYautjaBlockLootTables() {
-        AVPYautjaShipBlocks.getEntries().forEach(blockGameObject -> dropSelf(blockGameObject.get()));
+        AVPYautjaShipBlocks.getEntries().forEach(blockGameObject -> dropSelf(blockGameObject.first().get()));
     }
 }

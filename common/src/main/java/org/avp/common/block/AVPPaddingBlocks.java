@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import org.avp.api.Tuple;
+import org.avp.api.block.BlockData;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
@@ -16,7 +18,7 @@ import org.avp.common.util.GameObject;
  */
 public class AVPPaddingBlocks {
 
-    private static final List<GameObject<Block>> ENTRIES = new ArrayList<>();
+    private static final List<Tuple<GameObject<Block>, BlockData>> ENTRIES = new ArrayList<>();
 
     public static final BlockBehaviour.Properties ORANGE_PADDING_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
         Blocks.ORANGE_WOOL
@@ -46,27 +48,27 @@ public class AVPPaddingBlocks {
         // This method doesn't need to do anything
     }
 
-    public static List<GameObject<Block>> getEntries() {
+    public static List<Tuple<GameObject<Block>, BlockData>> getEntries() {
         return ENTRIES;
     }
 
-    private static GameObject<Block> register(String registryName, Supplier<Block> blockSupplier) {
-        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockSupplier);
-        ENTRIES.add(gameObject);
+    private static GameObject<Block> register(String registryName, BlockData blockData) {
+        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockData::create);
+        ENTRIES.add(new Tuple<>(gameObject, blockData));
         return gameObject;
     }
 
     private AVPPaddingBlocks() {}
 
     static {
-        PADDING_ORANGE_PANEL = register("padding_orange_panel", () -> new Block(ORANGE_PADDING_PROPERTIES));
-        PADDING_ORANGE_PIPES = register("padding_orange_pipes", () -> new Block(ORANGE_PADDING_PROPERTIES));
-        PADDING_ORANGE_SQUARE = register("padding_orange_square", () -> new Block(ORANGE_PADDING_PROPERTIES));
-        PADDING_ORANGE_TILES = register("padding_orange_tiles", () -> new Block(ORANGE_PADDING_PROPERTIES));
+        PADDING_ORANGE_PANEL = register("padding_orange_panel", BlockData.simple(ORANGE_PADDING_PROPERTIES));
+        PADDING_ORANGE_PIPES = register("padding_orange_pipes", BlockData.simple(ORANGE_PADDING_PROPERTIES));
+        PADDING_ORANGE_SQUARE = register("padding_orange_square", BlockData.simple(ORANGE_PADDING_PROPERTIES));
+        PADDING_ORANGE_TILES = register("padding_orange_tiles", BlockData.simple(ORANGE_PADDING_PROPERTIES));
 
-        PADDING_WHITE_PANEL = register("padding_white_panel", () -> new Block(WHITE_PADDING_PROPERTIES));
-        PADDING_WHITE_PIPES = register("padding_white_pipes", () -> new Block(WHITE_PADDING_PROPERTIES));
-        PADDING_WHITE_SQUARE = register("padding_white_square", () -> new Block(WHITE_PADDING_PROPERTIES));
-        PADDING_WHITE_TILES = register("padding_white_tiles", () -> new Block(WHITE_PADDING_PROPERTIES));
+        PADDING_WHITE_PANEL = register("padding_white_panel", BlockData.simple(WHITE_PADDING_PROPERTIES));
+        PADDING_WHITE_PIPES = register("padding_white_pipes", BlockData.simple(WHITE_PADDING_PROPERTIES));
+        PADDING_WHITE_SQUARE = register("padding_white_square", BlockData.simple(WHITE_PADDING_PROPERTIES));
+        PADDING_WHITE_TILES = register("padding_white_tiles", BlockData.simple(WHITE_PADDING_PROPERTIES));
     }
 }

@@ -68,18 +68,18 @@ public final class AVPCreativeModeTabs {
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
                 .icon(AVPTempleBlocks.TEMPLE_BRICK.get().asItem()::getDefaultInstance)
                 .displayItems((itemDisplayParameters, output) -> {
-                    output.acceptAll(blocksToItemStacks(AVPBlocks.getEntries()));
+                    output.acceptAll(blocksToItemStacks(AVPBlocks.getEntries().stream().map(Tuple::first).toList()));
                     output.acceptAll(
                         blocksToItemStacks(AVPEngineerBlocks.getEntries().stream().map(Tuple::first).toList())
                     );
-                    output.acceptAll(blocksToItemStacks(AVPIndustrialBlocks.getEntries()));
-                    output.acceptAll(blocksToItemStacks(AVPOreBlocks.getEntries()));
-                    output.acceptAll(blocksToItemStacks(AVPPaddingBlocks.getEntries()));
-                    output.acceptAll(blocksToItemStacks(AVPParadiseBlocks.getEntries()));
+                    output.acceptAll(blocksToItemStacks(AVPIndustrialBlocks.getEntries().stream().map(Tuple::first).toList()));
+                    output.acceptAll(blocksToItemStacks(AVPOreBlocks.getEntries().stream().map(Tuple::first).toList()));
+                    output.acceptAll(blocksToItemStacks(AVPPaddingBlocks.getEntries().stream().map(Tuple::first).toList()));
+                    output.acceptAll(blocksToItemStacks(AVPParadiseBlocks.getEntries().stream().map(Tuple::first).toList()));
                     output.acceptAll(
                         blocksToItemStacks(AVPTempleBlocks.getEntries().stream().map(Tuple::first).toList())
                     );
-                    output.acceptAll(blocksToItemStacks(AVPYautjaShipBlocks.getEntries()));
+                    output.acceptAll(blocksToItemStacks(AVPYautjaShipBlocks.getEntries().stream().map(Tuple::first).toList()));
                 })
         );
 

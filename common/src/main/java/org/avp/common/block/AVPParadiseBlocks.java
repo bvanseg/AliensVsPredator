@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
+import org.avp.api.Tuple;
+import org.avp.api.block.BlockData;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
@@ -15,7 +17,7 @@ import org.avp.common.util.GameObject;
  */
 public class AVPParadiseBlocks {
 
-    private static final List<GameObject<Block>> ENTRIES = new ArrayList<>();
+    private static final List<Tuple<GameObject<Block>, BlockData>> ENTRIES = new ArrayList<>();
 
     public static final GameObject<Block> PARADISE_DIRT;
 
@@ -47,43 +49,43 @@ public class AVPParadiseBlocks {
         // This method doesn't need to do anything
     }
 
-    public static List<GameObject<Block>> getEntries() {
+    public static List<Tuple<GameObject<Block>, BlockData>> getEntries() {
         return ENTRIES;
     }
 
-    private static GameObject<Block> register(String registryName, Supplier<Block> blockSupplier) {
-        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockSupplier);
-        ENTRIES.add(gameObject);
+    private static GameObject<Block> register(String registryName, BlockData blockData) {
+        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockData::create);
+        ENTRIES.add(new Tuple<>(gameObject, blockData));
         return gameObject;
     }
 
     private AVPParadiseBlocks() {}
 
     static {
-        PARADISE_DIRT = register("paradise_dirt", () -> new Block(BlockBehaviour.Properties.of()));
-        PARADISE_DIRT_MOSSY = register("paradise_dirt_mossy", () -> new Block(BlockBehaviour.Properties.of()));
-        PARADISE_DIRT_PODZOL = register("paradise_dirt_podzol", () -> new Block(BlockBehaviour.Properties.of()));
-        PARADISE_GRASS = register("paradise_grass", () -> new Block(BlockBehaviour.Properties.of()));
-        PARADISE_LEAVES_LARGE = register("paradise_leaves_large", () -> new Block(BlockBehaviour.Properties.of()));
+        PARADISE_DIRT = register("paradise_dirt", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_DIRT_MOSSY = register("paradise_dirt_mossy", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_DIRT_PODZOL = register("paradise_dirt_podzol", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_GRASS = register("paradise_grass", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_LEAVES_LARGE = register("paradise_leaves_large", BlockData.simple(BlockBehaviour.Properties.of()));
         PARADISE_LEAVES_MEDIUM = register(
             "paradise_leaves_medium",
-            () -> new Block(BlockBehaviour.Properties.of())
+            BlockData.simple(BlockBehaviour.Properties.of())
         );
-        PARADISE_LEAVES_SMALL = register("paradise_leaves_small", () -> new Block(BlockBehaviour.Properties.of()));
-        PARADISE_LOG_LARGE = register("paradise_log_large", () -> new Block(BlockBehaviour.Properties.of()));
+        PARADISE_LEAVES_SMALL = register("paradise_leaves_small", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_LARGE = register("paradise_log_large", BlockData.simple(BlockBehaviour.Properties.of()));
         PARADISE_LOG_LARGE_PLANKS = register(
             "paradise_log_large_planks",
-            () -> new Block(BlockBehaviour.Properties.of())
+            BlockData.simple(BlockBehaviour.Properties.of())
         );
-        PARADISE_LOG_MEDIUM = register("paradise_log_medium", () -> new Block(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_MEDIUM = register("paradise_log_medium", BlockData.simple(BlockBehaviour.Properties.of()));
         PARADISE_LOG_MEDIUM_PLANKS = register(
             "paradise_log_medium_planks",
-            () -> new Block(BlockBehaviour.Properties.of())
+            BlockData.simple(BlockBehaviour.Properties.of())
         );
-        PARADISE_LOG_SMALL = register("paradise_log_small", () -> new Block(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_SMALL = register("paradise_log_small", BlockData.simple(BlockBehaviour.Properties.of()));
         PARADISE_LOG_SMALL_PLANKS = register(
             "paradise_log_small_planks",
-            () -> new Block(BlockBehaviour.Properties.of())
+            BlockData.simple(BlockBehaviour.Properties.of())
         );
     }
 }

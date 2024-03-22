@@ -24,7 +24,7 @@ public class AVPFabricBlockModelProvider {
     public static void addBlockModels(BlockModelGenerators generator) {
         AVPBlocks.getEntries()
             .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.get())
+                blockGameObject -> generator.createTrivialCube(blockGameObject.first().get())
             );
 
         AVPEngineerBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
@@ -33,22 +33,22 @@ public class AVPFabricBlockModelProvider {
 
         AVPOreBlocks.getEntries()
             .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.get())
+                blockGameObject -> generator.createTrivialCube(blockGameObject.first().get())
             );
         AVPPaddingBlocks.getEntries()
             .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.get())
+                blockGameObject -> generator.createTrivialCube(blockGameObject.first().get())
             );
         AVPParadiseBlocks.getEntries()
             .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.get())
+                blockGameObject -> generator.createTrivialCube(blockGameObject.first().get())
             );
 
         AVPTempleBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
 
         AVPYautjaShipBlocks.getEntries()
             .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.get())
+                blockGameObject -> generator.createTrivialCube(blockGameObject.first().get())
             );
     }
 
