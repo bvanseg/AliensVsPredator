@@ -34,7 +34,7 @@ public class AVPBlocks {
         return ENTRIES;
     }
 
-    private static GameObject<Block> register(String registryName, BlockData blockData) {
+    protected static GameObject<Block> register(String registryName, BlockData blockData) {
         var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockData::create);
         ENTRIES.add(new Tuple<>(gameObject, blockData));
         return gameObject;

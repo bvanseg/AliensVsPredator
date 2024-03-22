@@ -18,8 +18,6 @@ import org.avp.common.util.GameObject;
  */
 public class AVPTempleBlocks {
 
-    private static final List<Tuple<GameObject<Block>, BlockData>> ENTRIES = new ArrayList<>();
-
     public static final BlockBehaviour.Properties TEMPLE_BRICK_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
         Blocks.STONE
     )
@@ -74,48 +72,38 @@ public class AVPTempleBlocks {
         // This method doesn't need to do anything
     }
 
-    public static List<Tuple<GameObject<Block>, BlockData>> getEntries() {
-        return ENTRIES;
-    }
-
-    private static GameObject<Block> register(String registryName, BlockData blockData) {
-        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockData::create);
-        ENTRIES.add(new Tuple<>(gameObject, blockData));
-        return gameObject;
-    }
-
     private AVPTempleBlocks() {}
 
     static {
-        TEMPLE_BRICK = register("temple_brick", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_BRICK_SLAB = register("temple_brick_slab", BlockDataUtils.slab(TEMPLE_BRICK, TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_BRICK_STAIRS = register("temple_brick_stairs",  BlockDataUtils.stairs(TEMPLE_BRICK, TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_BRICK_WALL = register("temple_brick_wall",  BlockDataUtils.wall(TEMPLE_BRICK, TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_BRICK = AVPBlocks.register("temple_brick", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_BRICK_SLAB = AVPBlocks.register("temple_brick_slab", BlockDataUtils.slab(TEMPLE_BRICK, TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_BRICK_STAIRS = AVPBlocks.register("temple_brick_stairs",  BlockDataUtils.stairs(TEMPLE_BRICK, TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_BRICK_WALL = AVPBlocks.register("temple_brick_wall",  BlockDataUtils.wall(TEMPLE_BRICK, TEMPLE_BRICK_PROPERTIES));
 
-        TEMPLE_BRICK_CHESTBURSTER = register("temple_brick_chestburster", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_BRICK_FACEHUGGER = register("temple_brick_facehugger", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_BRICK_CHESTBURSTER = AVPBlocks.register("temple_brick_chestburster", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_BRICK_FACEHUGGER = AVPBlocks.register("temple_brick_facehugger", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
 
-        TEMPLE_BRICK_SINGLE = register("temple_brick_single", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_BRICK_SINGLE_SLAB = register("temple_brick_single_slab", BlockDataUtils.slab(TEMPLE_BRICK_SINGLE, TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_BRICK_SINGLE_STAIRS = register(
+        TEMPLE_BRICK_SINGLE = AVPBlocks.register("temple_brick_single", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_BRICK_SINGLE_SLAB = AVPBlocks.register("temple_brick_single_slab", BlockDataUtils.slab(TEMPLE_BRICK_SINGLE, TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_BRICK_SINGLE_STAIRS = AVPBlocks.register(
             "temple_brick_single_stairs", BlockDataUtils.stairs(TEMPLE_BRICK_SINGLE, TEMPLE_BRICK_PROPERTIES)
         );
-        TEMPLE_BRICK_SINGLE_WALL = register(
+        TEMPLE_BRICK_SINGLE_WALL = AVPBlocks.register(
             "temple_brick_single_wall", BlockDataUtils.wall(TEMPLE_BRICK_SINGLE, TEMPLE_BRICK_PROPERTIES)
         );
 
-        TEMPLE_FLOOR = register("temple_floor", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_FLOOR_SLAB = register("temple_floor_slab", BlockDataUtils.slab(TEMPLE_FLOOR, TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_FLOOR_STAIRS = register("temple_floor_stairs", BlockDataUtils.stairs(TEMPLE_FLOOR, TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_FLOOR_WALL = register("temple_floor_wall", BlockDataUtils.wall(TEMPLE_FLOOR, TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_FLOOR = AVPBlocks.register("temple_floor", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_FLOOR_SLAB = AVPBlocks.register("temple_floor_slab", BlockDataUtils.slab(TEMPLE_FLOOR, TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_FLOOR_STAIRS = AVPBlocks.register("temple_floor_stairs", BlockDataUtils.stairs(TEMPLE_FLOOR, TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_FLOOR_WALL = AVPBlocks.register("temple_floor_wall", BlockDataUtils.wall(TEMPLE_FLOOR, TEMPLE_BRICK_PROPERTIES));
 
-        TEMPLE_SKULLS = register("temple_skulls", BlockData.simple(TEMPLE_SKULLS_PROPERTIES));
+        TEMPLE_SKULLS = AVPBlocks.register("temple_skulls", BlockData.simple(TEMPLE_SKULLS_PROPERTIES));
 
-        TEMPLE_TILE = register("temple_tile", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_TILE_SLAB = register("temple_tile_slab", BlockDataUtils.slab(TEMPLE_TILE, TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_TILE_STAIRS = register("temple_tile_stairs", BlockDataUtils.stairs(TEMPLE_TILE, TEMPLE_BRICK_PROPERTIES));
-        TEMPLE_TILE_WALL = register("temple_tile_wall", BlockDataUtils.wall(TEMPLE_TILE, TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_TILE = AVPBlocks.register("temple_tile", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_TILE_SLAB = AVPBlocks.register("temple_tile_slab", BlockDataUtils.slab(TEMPLE_TILE, TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_TILE_STAIRS = AVPBlocks.register("temple_tile_stairs", BlockDataUtils.stairs(TEMPLE_TILE, TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_TILE_WALL = AVPBlocks.register("temple_tile_wall", BlockDataUtils.wall(TEMPLE_TILE, TEMPLE_BRICK_PROPERTIES));
 
-        TEMPLE_WALL_BASE = register("temple_wall_base", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
+        TEMPLE_WALL_BASE = AVPBlocks.register("temple_wall_base", BlockData.simple(TEMPLE_BRICK_PROPERTIES));
     }
 }

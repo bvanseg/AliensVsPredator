@@ -18,8 +18,6 @@ import org.avp.common.util.GameObject;
  */
 public class AVPOreBlocks {
 
-    private static final List<Tuple<GameObject<Block>, BlockData>> ENTRIES = new ArrayList<>();
-
     public static final BlockBehaviour.Properties BAUXITE_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
         Blocks.STONE
     )
@@ -57,25 +55,15 @@ public class AVPOreBlocks {
         // This method doesn't need to do anything
     }
 
-    public static List<Tuple<GameObject<Block>, BlockData>> getEntries() {
-        return ENTRIES;
-    }
-
-    private static GameObject<Block> register(String registryName, BlockData blockData) {
-        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockData::create);
-        ENTRIES.add(new Tuple<>(gameObject, blockData));
-        return gameObject;
-    }
-
     private AVPOreBlocks() {}
 
     static {
-        ORE_BAUXITE = register("ore_bauxite", BlockData.simple(BAUXITE_PROPERTIES));
-        ORE_COBALT = register("ore_cobalt", BlockData.simple(COBALT_PROPERTIES));
-        ORE_LITHIUM = register("ore_lithium", BlockData.simple(LITHIUM_PROPERTIES));
-        ORE_MONAZITE = register("ore_monazite", BlockData.simple(MONAZITE_PROPERTIES));
-        ORE_SILICA = register("ore_silica", BlockData.simple(SILICA_PROPERTIES));
+        ORE_BAUXITE = AVPBlocks.register("ore_bauxite", BlockData.simple(BAUXITE_PROPERTIES));
+        ORE_COBALT = AVPBlocks.register("ore_cobalt", BlockData.simple(COBALT_PROPERTIES));
+        ORE_LITHIUM = AVPBlocks.register("ore_lithium", BlockData.simple(LITHIUM_PROPERTIES));
+        ORE_MONAZITE = AVPBlocks.register("ore_monazite", BlockData.simple(MONAZITE_PROPERTIES));
+        ORE_SILICA = AVPBlocks.register("ore_silica", BlockData.simple(SILICA_PROPERTIES));
 
-        RAW_BAUXITE_BLOCK = register("raw_bauxite_block", BlockData.simple(BAUXITE_PROPERTIES));
+        RAW_BAUXITE_BLOCK = AVPBlocks.register("raw_bauxite_block", BlockData.simple(BAUXITE_PROPERTIES));
     }
 }

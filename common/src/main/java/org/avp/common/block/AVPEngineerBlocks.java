@@ -17,8 +17,6 @@ import org.avp.common.util.GameObject;
  */
 public class AVPEngineerBlocks {
 
-    private static final List<Tuple<GameObject<Block>, BlockData>> ENTRIES = new ArrayList<>();
-
     public static final BlockBehaviour.Properties ENGINEER_SHIP_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
         Blocks.IRON_BLOCK
     )
@@ -68,39 +66,29 @@ public class AVPEngineerBlocks {
         // This method doesn't need to do anything
     }
 
-    public static List<Tuple<GameObject<Block>, BlockData>> getEntries() {
-        return ENTRIES;
-    }
-
-    private static GameObject<Block> register(String registryName, BlockData blockData) {
-        var gameObject = Services.BLOCK_REGISTRY.register(registryName, blockData::create);
-        ENTRIES.add(new Tuple<>(gameObject, blockData));
-        return gameObject;
-    }
-
     private AVPEngineerBlocks() {}
 
     static {
-        ENGINEER_SHIP_BRICK = register("engineer_ship_brick", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_BRICK_1 = register("engineer_ship_brick_1", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_BRICK_2 = register("engineer_ship_brick_2", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_BRICK_3 = register("engineer_ship_brick_3", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_COLUMN_1 = register("engineer_ship_column_1", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_COLUMN_2 = register("engineer_ship_column_2", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_FLOOR = register("engineer_ship_floor", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_GRAVEL = register("engineer_ship_gravel", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_MATERIAL_0 = register("engineer_ship_material_0", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_MATERIAL_1 = register("engineer_ship_material_1", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_MATERIAL_2 = register("engineer_ship_material_2", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_ROCK = register("engineer_ship_rock", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_ROCK_1 = register("engineer_ship_rock_1", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_ROCK_2 = register("engineer_ship_rock_2", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_ROCK_3 = register("engineer_ship_rock_3", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_WALL = register("engineer_ship_wall", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_WALL_1 = register("engineer_ship_wall_1", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_WALL_2 = register("engineer_ship_wall_2", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_WALL_3 = register("engineer_ship_wall_3", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
-        ENGINEER_SHIP_WALL_4 = register("engineer_ship_wall_4", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_BRICK = AVPBlocks.register("engineer_ship_brick", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_BRICK_1 = AVPBlocks.register("engineer_ship_brick_1", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_BRICK_2 = AVPBlocks.register("engineer_ship_brick_2", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_BRICK_3 = AVPBlocks.register("engineer_ship_brick_3", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_COLUMN_1 = AVPBlocks.register("engineer_ship_column_1", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_COLUMN_2 = AVPBlocks.register("engineer_ship_column_2", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_FLOOR = AVPBlocks.register("engineer_ship_floor", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_GRAVEL = AVPBlocks.register("engineer_ship_gravel", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_MATERIAL_0 = AVPBlocks.register("engineer_ship_material_0", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_MATERIAL_1 = AVPBlocks.register("engineer_ship_material_1", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_MATERIAL_2 = AVPBlocks.register("engineer_ship_material_2", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_ROCK = AVPBlocks.register("engineer_ship_rock", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_ROCK_1 = AVPBlocks.register("engineer_ship_rock_1", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_ROCK_2 = AVPBlocks.register("engineer_ship_rock_2", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_ROCK_3 = AVPBlocks.register("engineer_ship_rock_3", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_WALL = AVPBlocks.register("engineer_ship_wall", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_WALL_1 = AVPBlocks.register("engineer_ship_wall_1", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_WALL_2 = AVPBlocks.register("engineer_ship_wall_2", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_WALL_3 = AVPBlocks.register("engineer_ship_wall_3", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
+        ENGINEER_SHIP_WALL_4 = AVPBlocks.register("engineer_ship_wall_4", BlockData.simple(ENGINEER_SHIP_PROPERTIES));
     }
 
 }

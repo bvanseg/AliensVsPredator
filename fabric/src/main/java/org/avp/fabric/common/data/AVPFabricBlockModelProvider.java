@@ -10,26 +10,12 @@ import org.avp.api.block.BlockData;
 import org.avp.api.block.factory.BlockFactories;
 import org.avp.api.block.factory.StairBlockFactory;
 import org.avp.common.block.AVPBlocks;
-import org.avp.common.block.AVPEngineerBlocks;
-import org.avp.common.block.AVPIndustrialBlocks;
-import org.avp.common.block.AVPOreBlocks;
-import org.avp.common.block.AVPPaddingBlocks;
-import org.avp.common.block.AVPParadiseBlocks;
-import org.avp.common.block.AVPTempleBlocks;
-import org.avp.common.block.AVPYautjaShipBlocks;
 import org.avp.common.util.GameObject;
 
 public class AVPFabricBlockModelProvider {
 
     public static void addBlockModels(BlockModelGenerators generator) {
         AVPBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
-        AVPEngineerBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
-        AVPIndustrialBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
-        AVPOreBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
-        AVPPaddingBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
-        AVPParadiseBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
-        AVPTempleBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
-        AVPYautjaShipBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
     }
 
     private static void computeBlockModels(BlockModelGenerators generator, Tuple<GameObject<Block>, BlockData> tuple) {
