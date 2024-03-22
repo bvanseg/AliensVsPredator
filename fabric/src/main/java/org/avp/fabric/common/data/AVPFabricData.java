@@ -17,5 +17,8 @@ public class AVPFabricData implements DataGeneratorEntrypoint {
         pack.addProvider((fabricDataOutput, $) -> new AVPLootTableProvider(fabricDataOutput));
         pack.addProvider((fabricDataOutput, $) -> new AVPRecipeProvider(fabricDataOutput));
         pack.addProvider((fabricDataOutput, $) -> new AVPFabricModelProvider(fabricDataOutput));
+
+        // Tags
+        pack.addProvider(AVPBlockTagsProvider::new);
     }
 }

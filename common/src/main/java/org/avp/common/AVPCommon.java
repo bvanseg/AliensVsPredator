@@ -19,7 +19,7 @@ public class AVPCommon {
         AVPWorldGenFeatures.getInstance().register();
 
         // Tags
-        AVPBlockTags.getInstance().register();
+        AVPBlockTags.forceInitialization();
         AVPEntityTags.getInstance().register();
 
         // Items

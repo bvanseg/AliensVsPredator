@@ -10,22 +10,19 @@ import org.avp.common.registry.AVPRegistry;
 /**
  * @author Boston Vanseghi
  */
-public class AVPBlockTags implements AVPRegistry {
+public class AVPBlockTags {
 
-    private static final AVPBlockTags INSTANCE = new AVPBlockTags();
+    public static final TagKey<Block> ACID_RESISTANT;
 
-    public static AVPBlockTags getInstance() {
-        return INSTANCE;
+    public static void forceInitialization() {
+        // This method doesn't need to do anything
     }
 
     private static TagKey<Block> create(String registryName) {
         return TagKey.create(Registries.BLOCK, AVPResources.location(registryName));
     }
 
-    public TagKey<Block> ACID_RESISTANT;
-
-    @Override
-    public void register() {
+    static {
         ACID_RESISTANT = create("acid_resistant");
     }
 }
