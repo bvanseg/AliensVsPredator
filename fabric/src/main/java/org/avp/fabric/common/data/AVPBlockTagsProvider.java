@@ -6,7 +6,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
 import org.avp.api.block.factory.BlockFactories;
 import org.avp.api.block.factory.StairBlockFactory;
-import org.avp.common.block.AVPTempleBlocks;
+import org.avp.common.block.AVPBlocks;
 import org.avp.common.tag.AVPBlockTags;
 
 import java.util.concurrent.CompletableFuture;
@@ -23,7 +23,7 @@ public class AVPBlockTagsProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(AVPBlockTags.ACID_RESISTANT).addOptionalTag(BlockTags.FEATURES_CANNOT_REPLACE);
 
         // Slabs, Stairs, Walls
-        AVPTempleBlocks.getEntries().forEach(tuple -> {
+        AVPBlocks.getEntries().forEach(tuple -> {
             var factory = tuple.second().getFactory();
             var block = tuple.first().get();
 
