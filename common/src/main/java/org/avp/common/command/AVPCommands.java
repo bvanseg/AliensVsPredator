@@ -7,6 +7,7 @@ import net.minecraft.commands.CommandSourceStack;
  * @author Boston Vanseghi
  */
 public class AVPCommands {
+
     public static void registerAll(CommandDispatcher<CommandSourceStack> commandDispatcher) {
         AVPLegacySchematicCommand.register(commandDispatcher);
     }

@@ -86,7 +86,9 @@ public class LegacySchematicLoader {
 
             if (addBlocks.length >= (blockIds.length + 1) / 2) {
                 boolean lowerNybble = (i & 1) == 0;
-                blockID |= (short) (lowerNybble ? ((addBlocks[i >> 1] & 0x0F) << 8) : ((addBlocks[i >> 1] & 0xF0) << 4));
+                blockID |= (short) (lowerNybble
+                    ? ((addBlocks[i >> 1] & 0x0F) << 8)
+                    : ((addBlocks[i >> 1] & 0xF0) << 4));
             }
 
             blockIdData[i] = blockID;

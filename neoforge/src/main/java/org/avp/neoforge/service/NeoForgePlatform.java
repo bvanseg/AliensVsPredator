@@ -3,9 +3,9 @@ package org.avp.neoforge.service;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 
-import org.avp.common.service.Platform;
-
 import java.nio.file.Path;
+
+import org.avp.common.service.Platform;
 
 public class NeoForgePlatform implements Platform {
 

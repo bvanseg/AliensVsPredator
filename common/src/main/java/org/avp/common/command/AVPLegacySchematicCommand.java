@@ -6,6 +6,7 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+
 import org.avp.common.legacy.schematic.LegacySchematics;
 
 /**
@@ -22,7 +23,6 @@ public class AVPLegacySchematicCommand {
                 )
         );
     }
-
 
     private static int execute(CommandContext<CommandSourceStack> context) throws CommandSyntaxException {
         var commandSourceStack = context.getSource();

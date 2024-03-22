@@ -3,11 +3,11 @@ package org.avp.fabric.service;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.function.Supplier;
 
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.avp.common.service.BlockRegistry;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;

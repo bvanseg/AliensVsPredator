@@ -1,12 +1,12 @@
 package org.avp.common.legacy.schematic;
 
-import org.avp.common.legacy.schematic.resolver.DerelictSchematicResolver;
-import org.avp.common.service.Services;
-import org.avp.common.util.GameObject;
-
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
+
+import org.avp.common.legacy.schematic.resolver.DerelictSchematicResolver;
+import org.avp.common.service.Services;
+import org.avp.common.util.GameObject;
 
 /**
  * @author Boston Vanseghi
@@ -16,9 +16,10 @@ public final class LegacySchematics {
     private static final String SCHEMATICS_DIRECTORY = "schematics";
 
     private static final Path DERELICT_OLD_PATH;
-    private static final Path DERELICT_PATH;
-    private static final Path TEST_PATH;
 
+    private static final Path DERELICT_PATH;
+
+    private static final Path TEST_PATH;
 
     static {
         var gameDirPath = Services.PLATFORM.getGameDirectory();
@@ -35,7 +36,8 @@ public final class LegacySchematics {
 
     public static final GameObject<LegacySchematic> DERELICT_SCHEMATIC = new GameObject<>(
         "derelict",
-        () -> LegacySchematicLoader.loadFromFile(DERELICT_PATH.toFile(), DerelictSchematicResolver.RESOLVER_MAP).orElse(null)
+        () -> LegacySchematicLoader.loadFromFile(DERELICT_PATH.toFile(), DerelictSchematicResolver.RESOLVER_MAP)
+            .orElse(null)
     );
 
     public static final GameObject<LegacySchematic> TEST_SCHEMATIC = new GameObject<>(

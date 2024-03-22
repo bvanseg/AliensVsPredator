@@ -2,8 +2,8 @@ package org.avp.neoforge;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-
 import net.neoforged.neoforge.common.NeoForge;
+
 import org.avp.common.AVPCommon;
 import org.avp.common.AVPConstants;
 import org.avp.neoforge.common.command.AVPNeoForgeCommands;

@@ -2,6 +2,7 @@ package org.avp.fabric.common.data;
 
 import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.data.models.model.ModelTemplates;
+
 import org.avp.common.item.AVPArmorItems;
 import org.avp.common.item.AVPElectronicItems;
 import org.avp.common.item.AVPFoodItems;

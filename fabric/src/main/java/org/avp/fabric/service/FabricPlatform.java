@@ -2,9 +2,9 @@ package org.avp.fabric.service;
 
 import net.fabricmc.loader.api.FabricLoader;
 
-import org.avp.common.service.Platform;
-
 import java.nio.file.Path;
+
+import org.avp.common.service.Platform;
 
 public class FabricPlatform implements Platform {
 
