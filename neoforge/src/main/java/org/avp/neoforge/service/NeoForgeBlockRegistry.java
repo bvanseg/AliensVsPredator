@@ -3,6 +3,8 @@ package org.avp.neoforge.service;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -25,5 +27,10 @@ public class NeoForgeBlockRegistry implements BlockRegistry {
         var gameObject = new ForgeGameObject<>(BLOCKS, registryName, supplier);
         Services.ITEM_REGISTRY.register(registryName, () -> new BlockItem(gameObject.get(), new Item.Properties()));
         return gameObject;
+    }
+
+    @Override
+    public StairBlock createStairBlock(GameObject<Block> blockGameObject, BlockBehaviour.Properties properties) {
+        return new StairBlock(() -> blockGameObject.get().defaultBlockState(), properties);
     }
 }
