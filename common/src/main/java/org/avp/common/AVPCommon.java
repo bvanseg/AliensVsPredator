@@ -5,6 +5,7 @@ import org.avp.common.creative_tab.AVPCreativeModeTabs;
 import org.avp.common.entity.*;
 import org.avp.common.item.*;
 import org.avp.common.sound.AVPSoundEvents;
+import org.avp.common.tag.AVPBiomeTags;
 import org.avp.common.tag.AVPBlockTags;
 import org.avp.common.tag.AVPEntityTags;
 import org.avp.common.worldgen.AVPWorldGenFeatures;
@@ -19,6 +20,7 @@ public class AVPCommon {
         AVPWorldGenFeatures.getInstance().register();
 
         // Tags
+        AVPBiomeTags.forceInitialization();
         AVPBlockTags.forceInitialization();
         AVPEntityTags.forceInitialization();
 

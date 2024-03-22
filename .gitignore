@@ -28,8 +28,7 @@ runs
 
 # avp assets
 **/assets/avp/blockstates/*
-**/assets/avp/models/block*
-**/assets/avp/models/item*
+**/assets/avp/models/*
 
 # minecraft assets
 **/assets/minecraft/*
@@ -40,8 +39,7 @@ runs
 **/data/avp/infections/*
 **/data/avp/loot_tables/*
 **/data/avp/recipes/*
-**/data/avp/tags/blocks/*
-**/data/avp/tags/entity_types/*
+**/data/avp/tags/*
 
 # minecraft data
 **/data/minecraft/*
