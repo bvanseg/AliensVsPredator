@@ -4,6 +4,11 @@ import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.data.models.model.TexturedModel;
 import net.minecraft.world.level.block.Block;
+
+import org.avp.api.Tuple;
+import org.avp.api.block.BlockData;
+import org.avp.api.block.factory.BlockFactories;
+import org.avp.api.block.factory.StairBlockFactory;
 import org.avp.common.block.AVPBlocks;
 import org.avp.common.block.AVPEngineerBlocks;
 import org.avp.common.block.AVPIndustrialBlocks;
@@ -12,6 +17,7 @@ import org.avp.common.block.AVPPaddingBlocks;
 import org.avp.common.block.AVPParadiseBlocks;
 import org.avp.common.block.AVPTempleBlocks;
 import org.avp.common.block.AVPYautjaShipBlocks;
+import org.avp.common.util.GameObject;
 
 public class AVPFabricBlockModelProvider {
 
@@ -20,10 +26,8 @@ public class AVPFabricBlockModelProvider {
             .forEach(
                 blockGameObject -> generator.createTrivialCube(blockGameObject.get())
             );
-        AVPEngineerBlocks.getEntries()
-            .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.get())
-            );
+
+        AVPEngineerBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
 
         addIndustrialBlockModels(generator);
 
@@ -40,7 +44,7 @@ public class AVPFabricBlockModelProvider {
                 blockGameObject -> generator.createTrivialCube(blockGameObject.get())
             );
 
-        addTempleBlockModels(generator);
+        AVPTempleBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
 
         AVPYautjaShipBlocks.getEntries()
             .forEach(
@@ -48,82 +52,94 @@ public class AVPFabricBlockModelProvider {
             );
     }
 
+    private static void computeBlockModels(BlockModelGenerators generator, Tuple<GameObject<Block>, BlockData> tuple) {
+        var blockGameObject = tuple.first();
+        var blockData = tuple.second();
+        var parentGameObject = blockData.getParent();
+        var factory = blockData.getFactory();
+
+        // Generate the corresponding model depending on the type of factory used to create the block.
+        if (factory == BlockFactories.CUBE) {
+            generator.createTrivialCube(blockGameObject.get());
+        } else if (factory == BlockFactories.SLAB) {
+            if (parentGameObject == null) {
+                throw new IllegalStateException("Null parent block for slab block!");
+            }
+            createSlabBlockModel(generator, parentGameObject.get(), blockGameObject.get());
+        } else if (factory instanceof StairBlockFactory) {
+            if (parentGameObject == null) {
+                throw new IllegalStateException("Null parent block for stair block!");
+            }
+            createStairBlockModel(generator, parentGameObject.get(), blockGameObject.get());
+        } else if (factory == BlockFactories.WALL) {
+            if (parentGameObject == null) {
+                throw new IllegalStateException("Null parent block for wall block!");
+            }
+            createWallBlockModel(generator, parentGameObject.get(), blockGameObject.get());
+        }
+    }
+
     private static void addIndustrialBlockModels(BlockModelGenerators generator) {
         generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_BRICK.get());
         createSlabBlockModel(
-            generator, AVPIndustrialBlocks.INDUSTRIAL_BRICK.get(),  AVPIndustrialBlocks.INDUSTRIAL_BRICK_SLAB.get()
+            generator,
+            AVPIndustrialBlocks.INDUSTRIAL_BRICK.get(),
+            AVPIndustrialBlocks.INDUSTRIAL_BRICK_SLAB.get()
         );
         createStairBlockModel(
-            generator, AVPIndustrialBlocks.INDUSTRIAL_BRICK.get(),  AVPIndustrialBlocks.INDUSTRIAL_BRICK_STAIRS.get()
+            generator,
+            AVPIndustrialBlocks.INDUSTRIAL_BRICK.get(),
+            AVPIndustrialBlocks.INDUSTRIAL_BRICK_STAIRS.get()
         );
         generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_FLOOR_GRILL.get());
         generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_GLASS.get());
         generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_LAMP.get());
         generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0.get());
         createSlabBlockModel(
-            generator, AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0.get(),  AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0_SLAB.get()
+            generator,
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0.get(),
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0_SLAB.get()
         );
         createStairBlockModel(
-            generator, AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0.get(),  AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0_STAIRS.get()
+            generator,
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0.get(),
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0_STAIRS.get()
         );
         generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1.get());
         createSlabBlockModel(
-            generator, AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1.get(),  AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1_SLAB.get()
+            generator,
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1.get(),
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1_SLAB.get()
         );
         createStairBlockModel(
-            generator, AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1.get(),  AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1_STAIRS.get()
+            generator,
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1.get(),
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1_STAIRS.get()
         );
         generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2.get());
         createSlabBlockModel(
-            generator, AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2.get(),  AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2_SLAB.get()
+            generator,
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2.get(),
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2_SLAB.get()
         );
         createStairBlockModel(
-            generator, AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2.get(),  AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2_STAIRS.get()
+            generator,
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2.get(),
+            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2_STAIRS.get()
         );
         generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_VENT.get());
         generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_WALL.get());
         createSlabBlockModel(
-            generator, AVPIndustrialBlocks.INDUSTRIAL_WALL.get(),  AVPIndustrialBlocks.INDUSTRIAL_WALL_SLAB.get()
+            generator,
+            AVPIndustrialBlocks.INDUSTRIAL_WALL.get(),
+            AVPIndustrialBlocks.INDUSTRIAL_WALL_SLAB.get()
         );
         createStairBlockModel(
-            generator, AVPIndustrialBlocks.INDUSTRIAL_WALL.get(),  AVPIndustrialBlocks.INDUSTRIAL_WALL_STAIRS.get()
+            generator,
+            AVPIndustrialBlocks.INDUSTRIAL_WALL.get(),
+            AVPIndustrialBlocks.INDUSTRIAL_WALL_STAIRS.get()
         );
         generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_WALL_HAZARD.get());
-    }
-
-    private static void addTempleBlockModels(BlockModelGenerators generator) {
-        generator.createTrivialCube(AVPTempleBlocks.TEMPLE_BRICK.get());
-        createSlabBlockModel(
-            generator, AVPTempleBlocks.TEMPLE_BRICK.get(),  AVPTempleBlocks.TEMPLE_BRICK_SLAB.get()
-        );
-        createStairBlockModel(
-            generator, AVPTempleBlocks.TEMPLE_BRICK.get(),  AVPTempleBlocks.TEMPLE_BRICK_STAIRS.get()
-        );
-        generator.createTrivialCube(AVPTempleBlocks.TEMPLE_BRICK_CHESTBURSTER.get());
-        generator.createTrivialCube(AVPTempleBlocks.TEMPLE_BRICK_FACEHUGGER.get());
-        generator.createTrivialCube(AVPTempleBlocks.TEMPLE_BRICK_SINGLE.get());
-        createSlabBlockModel(
-            generator, AVPTempleBlocks.TEMPLE_BRICK_SINGLE.get(),  AVPTempleBlocks.TEMPLE_BRICK_SINGLE_SLAB.get()
-        );
-        createStairBlockModel(
-            generator, AVPTempleBlocks.TEMPLE_BRICK_SINGLE.get(),  AVPTempleBlocks.TEMPLE_BRICK_SINGLE_STAIRS.get()
-        );
-        generator.createTrivialCube(AVPTempleBlocks.TEMPLE_FLOOR.get());
-        createSlabBlockModel(
-            generator, AVPTempleBlocks.TEMPLE_FLOOR.get(),  AVPTempleBlocks.TEMPLE_FLOOR_SLAB.get()
-        );
-        createStairBlockModel(
-            generator, AVPTempleBlocks.TEMPLE_FLOOR.get(),  AVPTempleBlocks.TEMPLE_FLOOR_STAIRS.get()
-        );
-        generator.createTrivialCube(AVPTempleBlocks.TEMPLE_SKULLS.get());
-        generator.createTrivialCube(AVPTempleBlocks.TEMPLE_TILE.get());
-        createSlabBlockModel(
-            generator, AVPTempleBlocks.TEMPLE_TILE.get(),  AVPTempleBlocks.TEMPLE_TILE_SLAB.get()
-        );
-        createStairBlockModel(
-            generator, AVPTempleBlocks.TEMPLE_TILE.get(),  AVPTempleBlocks.TEMPLE_TILE_STAIRS.get()
-        );
-        generator.createTrivialCube(AVPTempleBlocks.TEMPLE_WALL_BASE.get());
     }
 
     private static void createSlabBlockModel(BlockModelGenerators generator, Block baseBlock, Block slabBlock) {
@@ -136,7 +152,12 @@ public class AVPFabricBlockModelProvider {
             ModelTemplates.CUBE.getDefaultModelLocation(baseBlock);
 
         generator.blockStateOutput.accept(
-            BlockModelGenerators.createSlab(slabBlock, bottomResourceLocation, topResourceLocation, doubleResourceLocation)
+            BlockModelGenerators.createSlab(
+                slabBlock,
+                bottomResourceLocation,
+                topResourceLocation,
+                doubleResourceLocation
+            )
         );
     }
 
@@ -150,7 +171,29 @@ public class AVPFabricBlockModelProvider {
             ModelTemplates.STAIRS_OUTER.create(stairBlock, textureMapping, generator.modelOutput);
 
         generator.blockStateOutput.accept(
-            BlockModelGenerators.createStairs(stairBlock, innerResourceLocation, straightResourceLocation, outerResourceLocation)
+            BlockModelGenerators.createStairs(
+                stairBlock,
+                innerResourceLocation,
+                straightResourceLocation,
+                outerResourceLocation
+            )
+        );
+    }
+
+    private static void createWallBlockModel(BlockModelGenerators generator, Block baseBlock, Block wallBlock) {
+        var textureMapping = TexturedModel.CUBE.get(baseBlock).getMapping();
+        var postResourceLocation =
+            ModelTemplates.WALL_POST.create(wallBlock, textureMapping, generator.modelOutput);
+        var lowResourceLocation =
+            ModelTemplates.WALL_LOW_SIDE.create(wallBlock, textureMapping, generator.modelOutput);
+        var tallResourceLocation =
+            ModelTemplates.WALL_TALL_SIDE.create(wallBlock, textureMapping, generator.modelOutput);
+        var inventoryResourceLocation =
+            ModelTemplates.WALL_INVENTORY.create(wallBlock, textureMapping, generator.modelOutput);
+
+        generator.delegateItemModel(wallBlock.asItem(), inventoryResourceLocation);
+        generator.blockStateOutput.accept(
+            BlockModelGenerators.createWall(wallBlock, postResourceLocation, lowResourceLocation, tallResourceLocation)
         );
     }
 

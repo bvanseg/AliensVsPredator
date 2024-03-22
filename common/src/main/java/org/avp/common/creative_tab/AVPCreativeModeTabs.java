@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.function.Supplier;
 
+import org.avp.api.Tuple;
 import org.avp.common.AVPConstants;
 import org.avp.common.block.*;
 import org.avp.common.item.*;
@@ -68,12 +69,16 @@ public final class AVPCreativeModeTabs {
                 .icon(AVPTempleBlocks.TEMPLE_BRICK.get().asItem()::getDefaultInstance)
                 .displayItems((itemDisplayParameters, output) -> {
                     output.acceptAll(blocksToItemStacks(AVPBlocks.getEntries()));
-                    output.acceptAll(blocksToItemStacks(AVPEngineerBlocks.getEntries()));
+                    output.acceptAll(
+                        blocksToItemStacks(AVPEngineerBlocks.getEntries().stream().map(Tuple::first).toList())
+                    );
                     output.acceptAll(blocksToItemStacks(AVPIndustrialBlocks.getEntries()));
                     output.acceptAll(blocksToItemStacks(AVPOreBlocks.getEntries()));
                     output.acceptAll(blocksToItemStacks(AVPPaddingBlocks.getEntries()));
                     output.acceptAll(blocksToItemStacks(AVPParadiseBlocks.getEntries()));
-                    output.acceptAll(blocksToItemStacks(AVPTempleBlocks.getEntries()));
+                    output.acceptAll(
+                        blocksToItemStacks(AVPTempleBlocks.getEntries().stream().map(Tuple::first).toList())
+                    );
                     output.acceptAll(blocksToItemStacks(AVPYautjaShipBlocks.getEntries()));
                 })
         );

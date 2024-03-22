@@ -2,6 +2,7 @@ package org.avp.common.data.loot_table.blocks;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+
 import org.avp.common.block.AVPBlocks;
 import org.avp.common.block.AVPEngineerBlocks;
 import org.avp.common.block.AVPIndustrialBlocks;
@@ -29,7 +30,7 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
     }
 
     private void createEngineerBlockLootTables() {
-        AVPEngineerBlocks.getEntries().forEach(blockGameObject -> dropSelf(blockGameObject.get()));
+        AVPEngineerBlocks.getEntries().forEach(tuple -> dropSelf(tuple.first().get()));
     }
 
     private void createIndustrialBlockLookTables() {
@@ -54,12 +55,24 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
         dropSelf(AVPParadiseBlocks.PARADISE_DIRT.get());
         dropSelf(AVPParadiseBlocks.PARADISE_DIRT_MOSSY.get());
         dropSelf(AVPParadiseBlocks.PARADISE_DIRT_PODZOL.get());
-        add(AVPParadiseBlocks.PARADISE_GRASS.get(), (Block block) -> this.createSingleItemTableWithSilkTouch(block, AVPParadiseBlocks.PARADISE_DIRT.get()));
+        add(
+            AVPParadiseBlocks.PARADISE_GRASS.get(),
+            (Block block) -> this.createSingleItemTableWithSilkTouch(block, AVPParadiseBlocks.PARADISE_DIRT.get())
+        );
 
         // TODO: Fix sapling drops for these.
-        add(AVPParadiseBlocks.PARADISE_LEAVES_LARGE.get(), (Block block) -> this.createLeavesDrops(block, Blocks.SPRUCE_SAPLING));
-        add(AVPParadiseBlocks.PARADISE_LEAVES_MEDIUM.get(), (Block block) -> this.createLeavesDrops(block, Blocks.SPRUCE_SAPLING));
-        add(AVPParadiseBlocks.PARADISE_LEAVES_SMALL.get(), (Block block) -> this.createLeavesDrops(block, Blocks.SPRUCE_SAPLING));
+        add(
+            AVPParadiseBlocks.PARADISE_LEAVES_LARGE.get(),
+            (Block block) -> this.createLeavesDrops(block, Blocks.SPRUCE_SAPLING)
+        );
+        add(
+            AVPParadiseBlocks.PARADISE_LEAVES_MEDIUM.get(),
+            (Block block) -> this.createLeavesDrops(block, Blocks.SPRUCE_SAPLING)
+        );
+        add(
+            AVPParadiseBlocks.PARADISE_LEAVES_SMALL.get(),
+            (Block block) -> this.createLeavesDrops(block, Blocks.SPRUCE_SAPLING)
+        );
 
         dropSelf(AVPParadiseBlocks.PARADISE_LOG_LARGE.get());
         dropSelf(AVPParadiseBlocks.PARADISE_LOG_MEDIUM.get());
@@ -71,7 +84,7 @@ public class AVPBlockLootTableProvider extends AbstractAVPBlockLootTableProvider
     }
 
     private void createTempleBlockLootTables() {
-        AVPTempleBlocks.getEntries().forEach(blockGameObject -> dropSelf(blockGameObject.get()));
+        AVPTempleBlocks.getEntries().forEach(tuple -> dropSelf(tuple.first().get()));
     }
 
     private void createYautjaBlockLootTables() {
