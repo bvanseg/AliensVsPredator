@@ -40,6 +40,8 @@ runs
 **/data/avp/infections/*
 **/data/avp/loot_tables/*
 **/data/avp/recipes/*
+**/data/avp/tags/blocks/*
+**/data/avp/tags/entity_types/*
 
 # minecraft data
 **/data/minecraft/*

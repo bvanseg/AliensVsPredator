@@ -20,5 +20,6 @@ public class AVPFabricData implements DataGeneratorEntrypoint {
 
         // Tags
         pack.addProvider(AVPBlockTagsProvider::new);
+        pack.addProvider(AVPEntityTagsProvider::new);
     }
 }

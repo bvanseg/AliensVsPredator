@@ -48,7 +48,7 @@ public class Engineer extends Monster {
                 this,
                 LivingEntity.class,
                 true,
-                (livingEntity) -> !livingEntity.getType().is(AVPEntityTags.getInstance().ENGINEERS)
+                livingEntity -> !livingEntity.getType().is(AVPEntityTags.ENGINEERS)
             )
         );
     }

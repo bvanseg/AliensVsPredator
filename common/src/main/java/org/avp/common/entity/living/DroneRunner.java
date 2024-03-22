@@ -47,7 +47,7 @@ public class DroneRunner extends Monster {
                 this,
                 LivingEntity.class,
                 true,
-                (livingEntity) -> !livingEntity.getType().is(AVPEntityTags.getInstance().ALIENS)
+                (livingEntity) -> !livingEntity.getType().is(AVPEntityTags.ALIENS)
             )
         );
     }

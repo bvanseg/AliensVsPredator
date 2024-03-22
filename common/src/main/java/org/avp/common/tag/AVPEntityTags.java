@@ -10,36 +10,33 @@ import org.avp.common.registry.AVPRegistry;
 /**
  * @author Boston Vanseghi
  */
-public class AVPEntityTags implements AVPRegistry {
+public class AVPEntityTags {
 
-    private static final AVPEntityTags INSTANCE = new AVPEntityTags();
+    public static final TagKey<EntityType<?>> ACID_BLEEDERS;
 
-    public static AVPEntityTags getInstance() {
-        return INSTANCE;
+    public static final TagKey<EntityType<?>> ALIENS;
+
+    public static final TagKey<EntityType<?>> EGGS;
+
+    public static final TagKey<EntityType<?>> ENGINEERS;
+
+    public static final TagKey<EntityType<?>> NON_HOSTS;
+
+    public static final TagKey<EntityType<?>> PARASITES;
+
+    public static final TagKey<EntityType<?>> PREDATORS;
+
+    public static final TagKey<EntityType<?>> ROYAL_ALIENS;
+
+    public static void forceInitialization() {
+        // This method doesn't need to do anything
     }
 
     private static TagKey<EntityType<?>> create(String registryName) {
         return TagKey.create(Registries.ENTITY_TYPE, AVPResources.location(registryName));
     }
 
-    public TagKey<EntityType<?>> ACID_BLEEDERS;
-
-    public TagKey<EntityType<?>> ALIENS;
-
-    public TagKey<EntityType<?>> EGGS;
-
-    public TagKey<EntityType<?>> ENGINEERS;
-
-    public TagKey<EntityType<?>> NON_HOSTS;
-
-    public TagKey<EntityType<?>> PARASITES;
-
-    public TagKey<EntityType<?>> PREDATORS;
-
-    public TagKey<EntityType<?>> ROYAL_ALIENS;
-
-    @Override
-    public void register() {
+    static {
         ACID_BLEEDERS = create("acid_bleeders");
         ALIENS = create("aliens");
         EGGS = create("eggs");

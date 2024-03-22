@@ -20,7 +20,7 @@ public class AVPCommon {
 
         // Tags
         AVPBlockTags.forceInitialization();
-        AVPEntityTags.getInstance().register();
+        AVPEntityTags.forceInitialization();
 
         // Items
         AVPArmorItems.forceInitialization();
