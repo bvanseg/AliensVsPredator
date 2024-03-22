@@ -9,6 +9,8 @@ import java.util.function.Supplier;
 
 import org.avp.api.Tuple;
 import org.avp.api.block.BlockData;
+import org.avp.api.block.drop.BlockDrops;
+import org.avp.api.block.drop.key.BlockDropKeys;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
@@ -53,7 +55,10 @@ public class AVPParadiseBlocks {
         PARADISE_DIRT = AVPBlocks.register("paradise_dirt", BlockData.simple(BlockBehaviour.Properties.of()));
         PARADISE_DIRT_MOSSY = AVPBlocks.register("paradise_dirt_mossy", BlockData.simple(BlockBehaviour.Properties.of()));
         PARADISE_DIRT_PODZOL = AVPBlocks.register("paradise_dirt_podzol", BlockData.simple(BlockBehaviour.Properties.of()));
-        PARADISE_GRASS = AVPBlocks.register("paradise_grass", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_GRASS = AVPBlocks.register(
+            "paradise_grass",
+            BlockData.builder(BlockBehaviour.Properties.of()).drop(BlockDrops.OTHER.apply(BlockDropKeys.OTHER, PARADISE_DIRT::get)).build()
+        );
         PARADISE_LEAVES_LARGE = AVPBlocks.register("paradise_leaves_large", BlockData.simple(BlockBehaviour.Properties.of()));
         PARADISE_LEAVES_MEDIUM = AVPBlocks.register(
             "paradise_leaves_medium",

@@ -3,6 +3,8 @@ package org.avp.api.block;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
+import org.avp.api.block.drop.BlockDrop;
+import org.avp.api.block.drop.BlockDrops;
 import org.avp.api.block.factory.BlockFactories;
 import org.avp.api.block.factory.BlockFactory;
 import org.avp.common.util.GameObject;
@@ -17,24 +19,27 @@ public class BlockData {
     }
 
     public static BlockData simple(BlockBehaviour.Properties properties) {
-        return new BlockData(GameObject.empty(), BlockFactories.CUBE, properties);
+        return new BlockData(GameObject.empty(), BlockFactories.CUBE, BlockDrops.SELF, properties);
     }
 
-    private Block block;
 
     private final GameObject<Block> parentBlockGameObject;
 
     private final BlockFactory blockFactory;
+
+    private final BlockDrop blockDrop;
 
     private final BlockBehaviour.Properties properties;
 
     private BlockData(
         GameObject<Block> parentBlockGameObject,
         BlockFactory blockFactory,
+        BlockDrop blockDrop,
         BlockBehaviour.Properties properties
     ) {
         this.parentBlockGameObject = parentBlockGameObject;
         this.blockFactory = blockFactory;
+        this.blockDrop = blockDrop;
         this.properties = properties;
     }
 
@@ -44,6 +49,10 @@ public class BlockData {
 
     public GameObject<Block> getParent() {
         return parentBlockGameObject;
+    }
+
+    public BlockDrop getDrop() {
+        return blockDrop;
     }
 
     public BlockFactory getFactory() {
@@ -56,11 +65,19 @@ public class BlockData {
 
         private BlockFactory blockFactory;
 
+        private BlockDrop blockDrop;
+
         private final BlockBehaviour.Properties properties;
 
         private Builder(BlockBehaviour.Properties properties) {
             blockFactory = BlockFactories.CUBE;
+            blockDrop = BlockDrops.SELF;
             this.properties = properties;
+        }
+
+        public Builder drop(BlockDrop blockDrop) {
+            this.blockDrop = blockDrop;
+            return this;
         }
 
         public Builder factory(BlockFactory blockFactory) {
@@ -74,7 +91,7 @@ public class BlockData {
         }
 
         public BlockData build() {
-            return new BlockData(parentGameObject, blockFactory, properties);
+            return new BlockData(parentGameObject, blockFactory, blockDrop, properties);
         }
     }
 }
