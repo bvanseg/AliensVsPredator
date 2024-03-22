@@ -22,34 +22,14 @@ import org.avp.common.util.GameObject;
 public class AVPFabricBlockModelProvider {
 
     public static void addBlockModels(BlockModelGenerators generator) {
-        AVPBlocks.getEntries()
-            .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.first().get())
-            );
-
+        AVPBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
         AVPEngineerBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
-
-        addIndustrialBlockModels(generator);
-
-        AVPOreBlocks.getEntries()
-            .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.first().get())
-            );
-        AVPPaddingBlocks.getEntries()
-            .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.first().get())
-            );
-        AVPParadiseBlocks.getEntries()
-            .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.first().get())
-            );
-
+        AVPIndustrialBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
+        AVPOreBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
+        AVPPaddingBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
+        AVPParadiseBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
         AVPTempleBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
-
-        AVPYautjaShipBlocks.getEntries()
-            .forEach(
-                blockGameObject -> generator.createTrivialCube(blockGameObject.first().get())
-            );
+        AVPYautjaShipBlocks.getEntries().forEach(tuple -> computeBlockModels(generator, tuple));
     }
 
     private static void computeBlockModels(BlockModelGenerators generator, Tuple<GameObject<Block>, BlockData> tuple) {
@@ -77,69 +57,6 @@ public class AVPFabricBlockModelProvider {
             }
             createWallBlockModel(generator, parentGameObject.get(), blockGameObject.get());
         }
-    }
-
-    private static void addIndustrialBlockModels(BlockModelGenerators generator) {
-        generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_BRICK.get());
-        createSlabBlockModel(
-            generator,
-            AVPIndustrialBlocks.INDUSTRIAL_BRICK.get(),
-            AVPIndustrialBlocks.INDUSTRIAL_BRICK_SLAB.get()
-        );
-        createStairBlockModel(
-            generator,
-            AVPIndustrialBlocks.INDUSTRIAL_BRICK.get(),
-            AVPIndustrialBlocks.INDUSTRIAL_BRICK_STAIRS.get()
-        );
-        generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_FLOOR_GRILL.get());
-        generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_GLASS.get());
-        generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_LAMP.get());
-        generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0.get());
-        createSlabBlockModel(
-            generator,
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0.get(),
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0_SLAB.get()
-        );
-        createStairBlockModel(
-            generator,
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0.get(),
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_0_STAIRS.get()
-        );
-        generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1.get());
-        createSlabBlockModel(
-            generator,
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1.get(),
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1_SLAB.get()
-        );
-        createStairBlockModel(
-            generator,
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1.get(),
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_1_STAIRS.get()
-        );
-        generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2.get());
-        createSlabBlockModel(
-            generator,
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2.get(),
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2_SLAB.get()
-        );
-        createStairBlockModel(
-            generator,
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2.get(),
-            AVPIndustrialBlocks.INDUSTRIAL_METAL_PANEL_2_STAIRS.get()
-        );
-        generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_VENT.get());
-        generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_WALL.get());
-        createSlabBlockModel(
-            generator,
-            AVPIndustrialBlocks.INDUSTRIAL_WALL.get(),
-            AVPIndustrialBlocks.INDUSTRIAL_WALL_SLAB.get()
-        );
-        createStairBlockModel(
-            generator,
-            AVPIndustrialBlocks.INDUSTRIAL_WALL.get(),
-            AVPIndustrialBlocks.INDUSTRIAL_WALL_STAIRS.get()
-        );
-        generator.createTrivialCube(AVPIndustrialBlocks.INDUSTRIAL_WALL_HAZARD.get());
     }
 
     private static void createSlabBlockModel(BlockModelGenerators generator, Block baseBlock, Block slabBlock) {
