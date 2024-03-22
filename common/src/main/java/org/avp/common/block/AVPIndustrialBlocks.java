@@ -108,6 +108,6 @@ public class AVPIndustrialBlocks {
         INDUSTRIAL_WALL = AVPBlocks.register("industrial_wall", BlockData.simple(INDUSTRIAL_PROPERTIES));
         INDUSTRIAL_WALL_SLAB = AVPBlocks.register("industrial_wall_slab", BlockDataUtils.slab(INDUSTRIAL_WALL, INDUSTRIAL_PROPERTIES));
         INDUSTRIAL_WALL_STAIRS = AVPBlocks.register("industrial_wall_stairs", BlockDataUtils.stairs(INDUSTRIAL_WALL, INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_WALL_HAZARD = AVPBlocks.register("industrial_wall_hazard", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_WALL_HAZARD = AVPBlocks.register("industrial_wall_hazard", BlockDataUtils.pillar(INDUSTRIAL_PROPERTIES));
     }
 }
