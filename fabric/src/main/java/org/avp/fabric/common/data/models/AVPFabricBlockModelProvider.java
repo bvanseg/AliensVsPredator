@@ -1,4 +1,4 @@
-package org.avp.fabric.common.data;
+package org.avp.fabric.common.data.models;
 
 import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.model.ModelLocationUtils;
