@@ -2,17 +2,10 @@ package org.avp.common.block;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
-
-import org.avp.api.Tuple;
 import org.avp.api.block.BlockData;
 import org.avp.api.block.BlockDataUtils;
-import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
 /**
@@ -22,6 +15,10 @@ public class AVPIndustrialBlocks {
 
     public static final BlockBehaviour.Properties INDUSTRIAL_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
         Blocks.IRON_BLOCK
+    );
+
+    public static final BlockBehaviour.Properties INDUSTRIAL_GLASS_PROPERTIES = BlockBehaviour.Properties.ofFullCopy(
+        Blocks.GLASS
     );
 
     public static final GameObject<Block> INDUSTRIAL_BRICK;
@@ -72,12 +69,24 @@ public class AVPIndustrialBlocks {
 
     static {
         INDUSTRIAL_BRICK = AVPBlocks.register("industrial_brick", BlockData.simple(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_BRICK_SLAB = AVPBlocks.register("industrial_brick_slab", BlockDataUtils.slab(INDUSTRIAL_BRICK, INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_BRICK_STAIRS = AVPBlocks.register("industrial_brick_stairs", BlockDataUtils.stairs(INDUSTRIAL_BRICK, INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_BRICK_SLAB = AVPBlocks.register(
+            "industrial_brick_slab",
+            BlockDataUtils.slab(INDUSTRIAL_BRICK, INDUSTRIAL_PROPERTIES)
+        );
+        INDUSTRIAL_BRICK_STAIRS = AVPBlocks.register(
+            "industrial_brick_stairs",
+            BlockDataUtils.stairs(INDUSTRIAL_BRICK, INDUSTRIAL_PROPERTIES)
+        );
         INDUSTRIAL_FLOOR_GRILL = AVPBlocks.register("industrial_floor_grill", BlockData.simple(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_GLASS = AVPBlocks.register("industrial_glass", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_GLASS = AVPBlocks.register(
+            "industrial_glass",
+            BlockDataUtils.transparent(INDUSTRIAL_GLASS_PROPERTIES)
+        );
         INDUSTRIAL_LAMP = AVPBlocks.register("industrial_lamp", BlockData.simple(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_METAL_PANEL_0 = AVPBlocks.register("industrial_metal_panel_0", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_METAL_PANEL_0 = AVPBlocks.register(
+            "industrial_metal_panel_0",
+            BlockData.simple(INDUSTRIAL_PROPERTIES)
+        );
         INDUSTRIAL_METAL_PANEL_0_SLAB = AVPBlocks.register(
             "industrial_metal_panel_0_slab",
             BlockDataUtils.slab(INDUSTRIAL_METAL_PANEL_0, INDUSTRIAL_PROPERTIES)
@@ -86,7 +95,10 @@ public class AVPIndustrialBlocks {
             "industrial_metal_panel_0_stairs",
             BlockDataUtils.stairs(INDUSTRIAL_METAL_PANEL_0, INDUSTRIAL_PROPERTIES)
         );
-        INDUSTRIAL_METAL_PANEL_1 = AVPBlocks.register("industrial_metal_panel_1", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_METAL_PANEL_1 = AVPBlocks.register(
+            "industrial_metal_panel_1",
+            BlockData.simple(INDUSTRIAL_PROPERTIES)
+        );
         INDUSTRIAL_METAL_PANEL_1_SLAB = AVPBlocks.register(
             "industrial_metal_panel_1_slab",
             BlockDataUtils.slab(INDUSTRIAL_METAL_PANEL_1, INDUSTRIAL_PROPERTIES)
@@ -95,7 +107,10 @@ public class AVPIndustrialBlocks {
             "industrial_metal_panel_1_stairs",
             BlockDataUtils.stairs(INDUSTRIAL_METAL_PANEL_1, INDUSTRIAL_PROPERTIES)
         );
-        INDUSTRIAL_METAL_PANEL_2 = AVPBlocks.register("industrial_metal_panel_2", BlockData.simple(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_METAL_PANEL_2 = AVPBlocks.register(
+            "industrial_metal_panel_2",
+            BlockData.simple(INDUSTRIAL_PROPERTIES)
+        );
         INDUSTRIAL_METAL_PANEL_2_SLAB = AVPBlocks.register(
             "industrial_metal_panel_2_slab",
             BlockDataUtils.slab(INDUSTRIAL_METAL_PANEL_2, INDUSTRIAL_PROPERTIES)
@@ -106,8 +121,17 @@ public class AVPIndustrialBlocks {
         );
         INDUSTRIAL_VENT = AVPBlocks.register("industrial_vent", BlockData.simple(INDUSTRIAL_PROPERTIES));
         INDUSTRIAL_WALL = AVPBlocks.register("industrial_wall", BlockData.simple(INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_WALL_SLAB = AVPBlocks.register("industrial_wall_slab", BlockDataUtils.slab(INDUSTRIAL_WALL, INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_WALL_STAIRS = AVPBlocks.register("industrial_wall_stairs", BlockDataUtils.stairs(INDUSTRIAL_WALL, INDUSTRIAL_PROPERTIES));
-        INDUSTRIAL_WALL_HAZARD = AVPBlocks.register("industrial_wall_hazard", BlockDataUtils.pillar(INDUSTRIAL_PROPERTIES));
+        INDUSTRIAL_WALL_SLAB = AVPBlocks.register(
+            "industrial_wall_slab",
+            BlockDataUtils.slab(INDUSTRIAL_WALL, INDUSTRIAL_PROPERTIES)
+        );
+        INDUSTRIAL_WALL_STAIRS = AVPBlocks.register(
+            "industrial_wall_stairs",
+            BlockDataUtils.stairs(INDUSTRIAL_WALL, INDUSTRIAL_PROPERTIES)
+        );
+        INDUSTRIAL_WALL_HAZARD = AVPBlocks.register(
+            "industrial_wall_hazard",
+            BlockDataUtils.pillar(INDUSTRIAL_PROPERTIES)
+        );
     }
 }

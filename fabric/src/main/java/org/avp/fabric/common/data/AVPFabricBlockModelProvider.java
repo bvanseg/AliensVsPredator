@@ -35,8 +35,10 @@ public class AVPFabricBlockModelProvider {
         var factory = blockData.getFactory();
 
         // Generate the corresponding model depending on the type of factory used to create the block.
-        if (factory == BlockFactories.CUBE) {
+        if (factory == BlockFactories.CUBE || factory == BlockFactories.TRANSPARENT) {
             generator.createTrivialCube(blockGameObject.get());
+        } else if (factory == BlockFactories.ROTATED_PILLAR) {
+            createPillarBlockModel(generator, blockGameObject.get());
         } else if (factory == BlockFactories.SLAB) {
             if (parentGameObject == null) {
                 throw new IllegalStateException("Null parent block for slab block!");
@@ -52,13 +54,15 @@ public class AVPFabricBlockModelProvider {
                 throw new IllegalStateException("Null parent block for wall block!");
             }
             createWallBlockModel(generator, parentGameObject.get(), blockGameObject.get());
-        } else if (factory == BlockFactories.ROTATED_PILLAR) {
-            createPillarBlockModel(generator, blockGameObject.get());
         }
     }
 
     private static void createPillarBlockModel(BlockModelGenerators generator, Block baseBlock) {
-        generator.createRotatedPillarWithHorizontalVariant(baseBlock, TexturedModel.COLUMN, TexturedModel.COLUMN_HORIZONTAL);
+        generator.createRotatedPillarWithHorizontalVariant(
+            baseBlock,
+            TexturedModel.COLUMN,
+            TexturedModel.COLUMN_HORIZONTAL
+        );
     }
 
     private static void createSlabBlockModel(BlockModelGenerators generator, Block baseBlock, Block slabBlock) {
