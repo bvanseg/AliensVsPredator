@@ -5,6 +5,9 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EntityType;
+
+import java.util.concurrent.CompletableFuture;
+
 import org.avp.common.entity.AVPBaseAlienEntityTypes;
 import org.avp.common.entity.AVPEngineerEntityTypes;
 import org.avp.common.entity.AVPEntityTypes;
@@ -13,9 +16,8 @@ import org.avp.common.entity.AVPPrometheusAlienEntityTypes;
 import org.avp.common.entity.AVPRunnerAlienEntityTypes;
 import org.avp.common.tag.AVPEntityTags;
 
-import java.util.concurrent.CompletableFuture;
-
 public class AVPEntityTagsProvider extends FabricTagProvider.EntityTypeTagProvider {
+
     public AVPEntityTagsProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }

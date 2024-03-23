@@ -48,29 +48,52 @@ public class AVPParadiseBlocks {
 
     static {
         PARADISE_DIRT = AVPBlocks.register("paradise_dirt", BlockData.simple(BlockBehaviour.Properties.of()));
-        PARADISE_DIRT_MOSSY = AVPBlocks.register("paradise_dirt_mossy", BlockData.simple(BlockBehaviour.Properties.of()));
-        PARADISE_DIRT_PODZOL = AVPBlocks.register("paradise_dirt_podzol", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_DIRT_MOSSY = AVPBlocks.register(
+            "paradise_dirt_mossy",
+            BlockData.simple(BlockBehaviour.Properties.of())
+        );
+        PARADISE_DIRT_PODZOL = AVPBlocks.register(
+            "paradise_dirt_podzol",
+            BlockData.simple(BlockBehaviour.Properties.of())
+        );
         PARADISE_GRASS = AVPBlocks.register(
             "paradise_grass",
-            BlockData.builder(BlockBehaviour.Properties.of()).drop(BlockDrops.OTHER.apply(BlockDropKeys.OTHER, PARADISE_DIRT::get)).build()
+            BlockData.builder(BlockBehaviour.Properties.of())
+                .drop(BlockDrops.OTHER.apply(BlockDropKeys.OTHER, PARADISE_DIRT::get))
+                .build()
         );
-        PARADISE_LEAVES_LARGE = AVPBlocks.register("paradise_leaves_large", BlockData.simple(BlockBehaviour.Properties.of()));
+        PARADISE_LEAVES_LARGE = AVPBlocks.register(
+            "paradise_leaves_large",
+            BlockData.simple(BlockBehaviour.Properties.of())
+        );
         PARADISE_LEAVES_MEDIUM = AVPBlocks.register(
             "paradise_leaves_medium",
             BlockData.simple(BlockBehaviour.Properties.of())
         );
-        PARADISE_LEAVES_SMALL = AVPBlocks.register("paradise_leaves_small", BlockData.simple(BlockBehaviour.Properties.of()));
-        PARADISE_LOG_LARGE = AVPBlocks.register("paradise_log_large", BlockDataUtils.pillar(BlockBehaviour.Properties.of()));
+        PARADISE_LEAVES_SMALL = AVPBlocks.register(
+            "paradise_leaves_small",
+            BlockData.simple(BlockBehaviour.Properties.of())
+        );
+        PARADISE_LOG_LARGE = AVPBlocks.register(
+            "paradise_log_large",
+            BlockDataUtils.pillar(BlockBehaviour.Properties.of())
+        );
         PARADISE_LOG_LARGE_PLANKS = AVPBlocks.register(
             "paradise_log_large_planks",
             BlockData.simple(BlockBehaviour.Properties.of())
         );
-        PARADISE_LOG_MEDIUM = AVPBlocks.register("paradise_log_medium", BlockDataUtils.pillar(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_MEDIUM = AVPBlocks.register(
+            "paradise_log_medium",
+            BlockDataUtils.pillar(BlockBehaviour.Properties.of())
+        );
         PARADISE_LOG_MEDIUM_PLANKS = AVPBlocks.register(
             "paradise_log_medium_planks",
             BlockData.simple(BlockBehaviour.Properties.of())
         );
-        PARADISE_LOG_SMALL = AVPBlocks.register("paradise_log_small", BlockDataUtils.pillar(BlockBehaviour.Properties.of()));
+        PARADISE_LOG_SMALL = AVPBlocks.register(
+            "paradise_log_small",
+            BlockDataUtils.pillar(BlockBehaviour.Properties.of())
+        );
         PARADISE_LOG_SMALL_PLANKS = AVPBlocks.register(
             "paradise_log_small_planks",
             BlockData.simple(BlockBehaviour.Properties.of())

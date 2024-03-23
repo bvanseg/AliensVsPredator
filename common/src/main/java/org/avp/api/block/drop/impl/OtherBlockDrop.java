@@ -1,10 +1,11 @@
 package org.avp.api.block.drop.impl;
 
 import net.minecraft.world.level.block.Block;
-import org.avp.api.block.drop.BlockDrop;
-import org.avp.api.block.drop.key.BlockDropKey;
 
 import java.util.function.Supplier;
+
+import org.avp.api.block.drop.BlockDrop;
+import org.avp.api.block.drop.key.BlockDropKey;
 
 public class OtherBlockDrop extends BlockDrop {
 

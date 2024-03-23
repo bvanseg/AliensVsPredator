@@ -6,11 +6,13 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
-import org.avp.common.tag.AVPBiomeTags;
 
 import java.util.concurrent.CompletableFuture;
 
+import org.avp.common.tag.AVPBiomeTags;
+
 public class AVPBiomeTagsProvider extends FabricTagProvider<Biome> {
+
     public AVPBiomeTagsProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, Registries.BIOME, registriesFuture);
     }

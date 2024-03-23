@@ -5,7 +5,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 
 import org.avp.common.AVPResources;
-import org.avp.common.registry.AVPRegistry;
 
 /**
  * @author Boston Vanseghi

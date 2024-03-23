@@ -4,16 +4,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Supplier;
-
-import org.avp.api.Tuple;
 import org.avp.api.block.BlockData;
 import org.avp.api.block.drop.BlockDropUtils;
-import org.avp.api.block.drop.BlockDrops;
 import org.avp.common.item.AVPItems;
-import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
 /**
@@ -65,16 +58,20 @@ public class AVPOreBlocks {
             "ore_bauxite",
             BlockData.builder(BAUXITE_PROPERTIES).drop(BlockDropUtils.ore(AVPItems.RAW_BAUXITE)).build()
         );
-        ORE_COBALT = AVPBlocks.register("ore_cobalt",
+        ORE_COBALT = AVPBlocks.register(
+            "ore_cobalt",
             BlockData.builder(COBALT_PROPERTIES).drop(BlockDropUtils.ore(AVPItems.COBALT)).build()
         );
-        ORE_LITHIUM = AVPBlocks.register("ore_lithium",
+        ORE_LITHIUM = AVPBlocks.register(
+            "ore_lithium",
             BlockData.builder(LITHIUM_PROPERTIES).drop(BlockDropUtils.ore(AVPItems.INGOT_LITHIUM)).build()
         );
-        ORE_MONAZITE = AVPBlocks.register("ore_monazite",
+        ORE_MONAZITE = AVPBlocks.register(
+            "ore_monazite",
             BlockData.builder(MONAZITE_PROPERTIES).drop(BlockDropUtils.ore(AVPItems.NEODYMIUM)).build()
         );
-        ORE_SILICA = AVPBlocks.register("ore_silica",
+        ORE_SILICA = AVPBlocks.register(
+            "ore_silica",
             BlockData.builder(SILICA_PROPERTIES).drop(BlockDropUtils.ore(AVPItems.SILICA)).build()
         );
 

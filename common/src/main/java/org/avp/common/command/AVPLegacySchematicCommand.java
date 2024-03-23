@@ -6,11 +6,12 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
+
+import java.util.List;
+
 import org.avp.common.legacy.schematic.LegacySchematic;
 import org.avp.common.legacy.schematic.LegacySchematics;
 import org.avp.common.util.GameObject;
-
-import java.util.List;
 
 /**
  * @author Boston Vanseghi
@@ -26,7 +27,7 @@ public class AVPLegacySchematicCommand {
     public static void register(CommandDispatcher<CommandSourceStack> commandDispatcher) {
         var generate = Commands.literal("generate");
 
-        for (GameObject<LegacySchematic> legacySchematicGameObject: LEGACY_SCHEMATICS) {
+        for (GameObject<LegacySchematic> legacySchematicGameObject : LEGACY_SCHEMATICS) {
             var id = legacySchematicGameObject.getResourceLocation().getPath();
             generate.then(
                 Commands.literal(id)

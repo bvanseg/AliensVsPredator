@@ -5,7 +5,6 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 
 import org.avp.common.AVPResources;
-import org.avp.common.registry.AVPRegistry;
 
 /**
  * @author Boston Vanseghi

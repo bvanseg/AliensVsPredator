@@ -6,7 +6,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
 
 import org.avp.api.Tuple;
 import org.avp.api.block.BlockData;

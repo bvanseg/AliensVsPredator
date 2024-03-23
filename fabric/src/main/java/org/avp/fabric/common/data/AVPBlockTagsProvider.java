@@ -4,14 +4,16 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.BlockTags;
+
+import java.util.concurrent.CompletableFuture;
+
 import org.avp.api.block.factory.BlockFactories;
 import org.avp.api.block.factory.StairBlockFactory;
 import org.avp.common.block.AVPBlocks;
 import org.avp.common.tag.AVPBlockTags;
 
-import java.util.concurrent.CompletableFuture;
-
 public class AVPBlockTagsProvider extends FabricTagProvider.BlockTagProvider {
+
     public AVPBlockTagsProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }

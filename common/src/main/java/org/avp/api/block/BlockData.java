@@ -22,7 +22,6 @@ public class BlockData {
         return new BlockData(GameObject.empty(), BlockFactories.CUBE, BlockDrops.SELF, properties);
     }
 
-
     private final GameObject<Block> parentBlockGameObject;
 
     private final BlockFactory blockFactory;
