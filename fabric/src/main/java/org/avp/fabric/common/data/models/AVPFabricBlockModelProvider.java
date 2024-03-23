@@ -1,6 +1,8 @@
 package org.avp.fabric.common.data.models;
 
 import net.minecraft.data.models.BlockModelGenerators;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
 import net.minecraft.data.models.model.ModelLocationUtils;
 import net.minecraft.data.models.model.ModelTemplates;
 import net.minecraft.data.models.model.TextureMapping;
@@ -51,8 +53,15 @@ public class AVPFabricBlockModelProvider {
                 throw new IllegalStateException("Null parent block for fence gate block!");
             }
             createFenceGateBlockModel(generator, parentGameObject.get(), blockGameObject.get());
-        }  else if (factory == BlockFactories.ROTATED_PILLAR) {
+        } else if (factory == BlockFactories.GRASS) {
+            if (parentGameObject == null) {
+                throw new IllegalStateException("Null parent block for grass block!");
+            }
+            createGrassLikeBlock(generator, parentGameObject.get(), blockGameObject.get());
+        } else if (factory == BlockFactories.ROTATED_PILLAR) {
             createPillarBlockModel(generator, blockGameObject.get());
+        } else if (factory == BlockFactories.ROTATED_VARIANT) {
+            createRotatedVariantBlock(generator, blockGameObject.get());
         } else if (factory == BlockFactories.SLAB) {
             if (parentGameObject == null) {
                 throw new IllegalStateException("Null parent block for slab block!");
@@ -114,6 +123,23 @@ public class AVPFabricBlockModelProvider {
         );
     }
 
+    private static void createGrassLikeBlock(BlockModelGenerators generator, Block dirtBlock, Block grassBlock) {
+        ResourceLocation resourceLocation = TextureMapping.getBlockTexture(dirtBlock);
+        TextureMapping textureMapping2 = new TextureMapping()
+            .put(TextureSlot.BOTTOM, resourceLocation)
+            .copyForced(TextureSlot.BOTTOM, TextureSlot.PARTICLE)
+            .put(TextureSlot.TOP, TextureMapping.getBlockTexture(grassBlock, "_top"))
+            .put(TextureSlot.SIDE, TextureMapping.getBlockTexture(grassBlock, "_snow"));
+        Variant variant = Variant.variant()
+            .with(
+                VariantProperties.MODEL,
+                ModelTemplates.CUBE_BOTTOM_TOP.createWithSuffix(
+                    grassBlock, "_snow", textureMapping2, generator.modelOutput
+                )
+            );
+        generator.createGrassLikeBlock(grassBlock, ModelLocationUtils.getModelLocation(grassBlock), variant);
+    }
+
     private static void createPillarBlockModel(BlockModelGenerators generator, Block baseBlock) {
         var logMapping = TextureMapping.logColumn(baseBlock);
         var columnResourceLocation = ModelTemplates.CUBE_COLUMN.create(baseBlock, logMapping, generator.modelOutput);
@@ -125,6 +151,11 @@ public class AVPFabricBlockModelProvider {
                 horizontalResourceLocation
             )
         );
+    }
+
+    private static void createRotatedVariantBlock(BlockModelGenerators generator, Block baseBlock) {
+        ResourceLocation resourceLocation = TexturedModel.CUBE.create(baseBlock, generator.modelOutput);
+        generator.blockStateOutput.accept(BlockModelGenerators.createRotatedVariant(baseBlock, resourceLocation));
     }
 
     private static void createSlabBlockModel(BlockModelGenerators generator, Block baseBlock, Block slabBlock) {

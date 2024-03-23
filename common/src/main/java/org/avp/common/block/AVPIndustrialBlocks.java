@@ -131,7 +131,7 @@ public class AVPIndustrialBlocks {
         );
         INDUSTRIAL_WALL_HAZARD = AVPBlocks.register(
             "industrial_wall_hazard",
-            BlockDataUtils.pillar(INDUSTRIAL_PROPERTIES)
+            BlockDataUtils.rotatedPillar(INDUSTRIAL_PROPERTIES)
         );
     }
 }
