@@ -34,17 +34,17 @@ public class DeaconAdultModel extends GeoModel<DeaconAdult> {
 
     @Override
     public void setCustomAnimations(DeaconAdult entity, long instanceId, AnimationState<DeaconAdult> animationState) {
-        BasicAnimationUtils.applyHeadRotations(this, animationState, "gNeck", -0.2F);
+        BasicAnimationUtils.applyHeadRotations(this, animationState, "neck", -0.3F);
         BasicAnimationUtils.applyLimbRotations(
             entity,
             this,
             animationState,
-            "gLeftArm",
-            "gRightArm",
-            "gLeftLeg",
-            "gRightLeg",
+            "gLeftShoulder",
+            "gRightShoulder",
+            "gLeftThigh",
+            "gRightThigh",
             -0.35F,
-            0F
+            0.35F
         );
     }
 }

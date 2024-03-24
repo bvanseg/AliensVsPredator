@@ -20,12 +20,7 @@ public class AVPExoticAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPExoticAlienEntityTypes.DEACON_ADULT_ENGINEER,
                 DeaconAdultEngineerRenderer::new,
-                List.of(
-                    new EntityModelLayerData(
-                        DeaconAdultEngineerModel.LAYER_LOCATION,
-                        DeaconAdultEngineerModel::createBodyLayer
-                    )
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
