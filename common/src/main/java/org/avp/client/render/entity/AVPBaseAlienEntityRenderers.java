@@ -70,9 +70,7 @@ public class AVPBaseAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPBaseAlienEntityTypes.QUEEN,
                 QueenRenderer::new,
-                List.of(
-                    new EntityModelLayerData(QueenModel.LAYER_LOCATION, QueenModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
