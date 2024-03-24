@@ -26,9 +26,7 @@ public class AVPPrometheusAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPPrometheusAlienEntityTypes.DEACON,
                 DeaconRenderer::new,
-                List.of(
-                    new EntityModelLayerData(DeaconModel.LAYER_LOCATION, DeaconModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
