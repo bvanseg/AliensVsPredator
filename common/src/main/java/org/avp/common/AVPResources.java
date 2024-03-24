@@ -11,6 +11,14 @@ public class AVPResources {
         return new ResourceLocation(AVPConstants.MOD_ID, location);
     }
 
+    public static ResourceLocation entityAnimationLocation(String entityName) {
+        return new ResourceLocation(AVPConstants.MOD_ID, String.format("animations/%s.animation.json", entityName));
+    }
+
+    public static ResourceLocation entityGeoLocation(String entityName) {
+        return new ResourceLocation(AVPConstants.MOD_ID, String.format("geo/entity/%s.geo.json", entityName));
+    }
+
     public static ResourceLocation entityTextureLocation(String entityName) {
         return new ResourceLocation(AVPConstants.MOD_ID, String.format("textures/entity/%s.png", entityName));
     }
