@@ -1,9 +1,0 @@
-{
-  "replace": false,
-  "values": [
-    "avp:ore_lithium",
-    "avp:ore_silica",
-
-    "avp:temple_skulls"
-  ]
-}
