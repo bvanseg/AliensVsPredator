@@ -77,9 +77,7 @@ public class AVPBaseAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPBaseAlienEntityTypes.WARRIOR,
                 WarriorRenderer::new,
-                List.of(
-                    new EntityModelLayerData(WarriorModel.LAYER_LOCATION, WarriorModel::createBodyLayer)
-                )
+                List.of()
             )
         );
     }
