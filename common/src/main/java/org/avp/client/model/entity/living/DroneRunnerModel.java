@@ -43,7 +43,7 @@ public class DroneRunnerModel extends GeoModel<DroneRunner> {
             "gRightArm",
             "gLeftLeg",
             "gRightLeg",
-            -0.35F,
+            -0.38F,
             0.35F
         );
     }

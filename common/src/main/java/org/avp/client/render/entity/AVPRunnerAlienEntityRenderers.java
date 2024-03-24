@@ -38,9 +38,7 @@ public class AVPRunnerAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPRunnerAlienEntityTypes.CRUSHER,
                 CrusherRenderer::new,
-                List.of(
-                    new EntityModelLayerData(CrusherModel.LAYER_LOCATION, CrusherModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(

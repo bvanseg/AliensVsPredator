@@ -43,7 +43,7 @@ public class WarriorRunnerModel extends GeoModel<WarriorRunner> {
             "gRightArm",
             "gLeftLeg",
             "gRightLeg",
-            -0.35F,
+            -0.38F,
             0.35F
         );
     }
