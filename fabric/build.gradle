@@ -59,10 +59,12 @@ tasks.withType(Javadoc).configureEach {
     source(project(":common").sourceSets.main.allJava)
 }
 tasks.named("sourcesJar", Jar) {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     from(project(":common").sourceSets.main.allSource)
 }
 
 processResources {
+    duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     from project(":common").sourceSets.main.resources
 }
 
