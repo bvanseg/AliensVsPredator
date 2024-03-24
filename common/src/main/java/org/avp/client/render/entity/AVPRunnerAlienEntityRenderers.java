@@ -47,9 +47,7 @@ public class AVPRunnerAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPRunnerAlienEntityTypes.DRONE_RUNNER,
                 DroneRunnerRenderer::new,
-                List.of(
-                    new EntityModelLayerData(DroneRunnerModel.LAYER_LOCATION, DroneRunnerModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
