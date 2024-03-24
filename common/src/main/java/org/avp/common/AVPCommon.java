@@ -1,5 +1,6 @@
 package org.avp.common;
 
+import mod.azure.azurelib.common.internal.common.AzureLib;
 import org.avp.common.block.*;
 import org.avp.common.creative_tab.AVPCreativeModeTabs;
 import org.avp.common.entity.*;
@@ -16,6 +17,9 @@ import org.avp.common.worldgen.AVPWorldGenFeatures;
 public class AVPCommon {
 
     public static void init() {
+        // Initialize AzureLib.
+        AzureLib.initialize();
+
         // World Gen resource keys
         AVPWorldGenFeatures.getInstance().register();
 

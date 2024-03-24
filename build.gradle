@@ -48,6 +48,7 @@ subprojects {
 
     repositories {
         mavenCentral()
+        maven { url 'https://libs.azuredoom.com:4443/mods' }
         maven {
             name = 'Sponge / Mixin'
             url = 'https://repo.spongepowered.org/repository/maven-public/'
@@ -56,6 +57,10 @@ subprojects {
             name = 'BlameJared Maven (JEI / CraftTweaker / Bookshelf)'
             url = 'https://maven.blamejared.com'
         }
+    }
+
+    dependencies {
+        implementation "mod.azure.azurelib:azurelib-neo-${minecraft_version}:${azurelib_version}"
     }
 
     tasks.withType(JavaCompile).configureEach {

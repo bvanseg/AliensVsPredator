@@ -1,5 +1,6 @@
 package org.avp.fabric;
 
+import mod.azure.azurelib.common.internal.common.AzureLib;
 import net.fabricmc.api.ModInitializer;
 
 import org.avp.common.AVPCommon;
