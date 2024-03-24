@@ -54,9 +54,7 @@ public class AVPBaseAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPBaseAlienEntityTypes.OVAMORPH,
                 OvamorphRenderer::new,
-                List.of(
-                    new EntityModelLayerData(OvamorphModel.LAYER_LOCATION, OvamorphModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(

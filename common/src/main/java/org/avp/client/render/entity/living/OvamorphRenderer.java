@@ -1,36 +1,37 @@
 package org.avp.client.render.entity.living;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import mod.azure.azurelib.common.api.client.renderer.GeoEntityRenderer;
+import mod.azure.azurelib.common.internal.common.cache.object.BakedGeoModel;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
-
 import org.avp.client.model.entity.living.OvamorphModel;
 import org.avp.common.AVPResources;
 import org.avp.common.TimeUtils;
 import org.avp.common.entity.living.Ovamorph;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @author Boston Vanseghi
  */
-public class OvamorphRenderer extends MobRenderer<Ovamorph, OvamorphModel> {
-
-    private static final ResourceLocation TEXTURE = AVPResources.entityTextureLocation("ovamorph");
+public class OvamorphRenderer extends GeoEntityRenderer<Ovamorph> {
 
     private static final ResourceLocation TEXTURE_HALLOWEEN = AVPResources.entityTextureLocation("ovamorph_halloween");
 
     public OvamorphRenderer(EntityRendererProvider.Context context) {
-        super(context, new OvamorphModel(context.bakeLayer(OvamorphModel.LAYER_LOCATION)), 0.5f);
+        super(context, new OvamorphModel());
     }
 
     @Override
-    protected void scale(@NotNull Ovamorph entity, @NotNull PoseStack poseStack, float partialTicks) {
+    public void preRender(PoseStack poseStack, Ovamorph animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
         poseStack.scale(1.75F, 1.75F, 1.75F);
     }
 
     @Override
     public @NotNull ResourceLocation getTextureLocation(@NotNull Ovamorph entity) {
-        return TimeUtils.isHalloween() ? TEXTURE_HALLOWEEN : TEXTURE;
+        return TimeUtils.isHalloween() ? TEXTURE_HALLOWEEN : super.getTextureLocation(entity);
     }
 }
