@@ -29,9 +29,7 @@ public class AVPBaseAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPBaseAlienEntityTypes.DRONE,
                 DroneRenderer::new,
-                List.of(
-                    new EntityModelLayerData(DroneModel.LAYER_LOCATION, DroneModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
