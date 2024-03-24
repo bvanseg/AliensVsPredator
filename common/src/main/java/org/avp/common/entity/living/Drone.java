@@ -75,12 +75,12 @@ public class Drone extends Monster implements GeoEntity {
     }
 
     @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return cache;
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        // TODO:
     }
 
     @Override
-    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
-        // TODO:
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 }
