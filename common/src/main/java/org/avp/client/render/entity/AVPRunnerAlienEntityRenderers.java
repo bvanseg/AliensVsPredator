@@ -54,9 +54,7 @@ public class AVPRunnerAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPRunnerAlienEntityTypes.WARRIOR_RUNNER,
                 WarriorRunnerRenderer::new,
-                List.of(
-                    new EntityModelLayerData(WarriorRunnerModel.LAYER_LOCATION, WarriorRunnerModel::createBodyLayer)
-                )
+                List.of()
             )
         );
     }
