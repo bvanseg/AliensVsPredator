@@ -6,10 +6,10 @@ import net.minecraft.world.level.block.GrassBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.state.properties.WoodType;
 
 import java.util.function.Function;
 
-import net.minecraft.world.level.block.state.properties.WoodType;
 import org.avp.api.block.TransparentBlock;
 import org.avp.common.util.GameObject;
 

@@ -66,7 +66,7 @@ public final class AVPCreativeModeTabs {
         registerCreativeModeTab(
             "blocks",
             () -> CreativeModeTab.builder(CreativeModeTab.Row.TOP, 1)
-                .icon(AVPTempleBlocks.TEMPLE_BRICK.get().asItem()::getDefaultInstance)
+                .icon(AVPTempleBlocks.BRICK.get().asItem()::getDefaultInstance)
                 .displayItems(
                     (itemDisplayParameters, output) -> output.acceptAll(
                         blocksToItemStacks(AVPBlocks.getEntries().stream().map(Tuple::first).toList())

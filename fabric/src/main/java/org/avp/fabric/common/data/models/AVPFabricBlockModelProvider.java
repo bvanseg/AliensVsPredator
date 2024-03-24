@@ -134,7 +134,10 @@ public class AVPFabricBlockModelProvider {
             .with(
                 VariantProperties.MODEL,
                 ModelTemplates.CUBE_BOTTOM_TOP.createWithSuffix(
-                    grassBlock, "_snow", textureMapping2, generator.modelOutput
+                    grassBlock,
+                    "_snow",
+                    textureMapping2,
+                    generator.modelOutput
                 )
             );
         generator.createGrassLikeBlock(grassBlock, ModelLocationUtils.getModelLocation(grassBlock), variant);

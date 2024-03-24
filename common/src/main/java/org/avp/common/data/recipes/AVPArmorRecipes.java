@@ -54,7 +54,7 @@ public final class AVPArmorRecipes {
     private static void addMK50ArmorRecipes(RecipeOutput recipeOutput) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, AVPArmorItems.MK50_BODY.get())
             .define('A', Items.COPPER_INGOT)
-            .define('B', AVPIndustrialBlocks.INDUSTRIAL_GLASS.get())
+            .define('B', AVPIndustrialBlocks.GLASS.get())
             .pattern("B B")
             .pattern("ABA")
             .pattern("BAB")
@@ -62,14 +62,14 @@ public final class AVPArmorRecipes {
             .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, AVPArmorItems.MK50_BOOTS.get())
             .define('A', Items.COPPER_INGOT)
-            .define('B', AVPIndustrialBlocks.INDUSTRIAL_GLASS.get())
+            .define('B', AVPIndustrialBlocks.GLASS.get())
             .pattern("B B")
             .pattern("A A")
             .unlockedBy("has_copper", AVPRecipeProvider.has(Items.COPPER_INGOT))
             .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, AVPArmorItems.MK50_HELMET.get())
             .define('A', Items.COPPER_INGOT)
-            .define('B', AVPIndustrialBlocks.INDUSTRIAL_GLASS.get())
+            .define('B', AVPIndustrialBlocks.GLASS.get())
             .define('C', AVPItems.CARBON.get())
             .define('D', AVPItems.SILICA.get())
             .pattern("AAA")
@@ -79,7 +79,7 @@ public final class AVPArmorRecipes {
             .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, AVPArmorItems.MK50_LEGGINGS.get())
             .define('A', Items.COPPER_INGOT)
-            .define('B', AVPIndustrialBlocks.INDUSTRIAL_GLASS.get())
+            .define('B', AVPIndustrialBlocks.GLASS.get())
             .pattern("BAB")
             .pattern("B B")
             .pattern("A A")
@@ -90,7 +90,7 @@ public final class AVPArmorRecipes {
     private static void addPressureArmorRecipes(RecipeOutput recipeOutput) {
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, AVPArmorItems.PRESSURE_BODY.get())
             .define('A', AVPItems.INGOT_ALUMINUM.get())
-            .define('B', AVPIndustrialBlocks.INDUSTRIAL_GLASS.get())
+            .define('B', AVPIndustrialBlocks.GLASS.get())
             .pattern("B B")
             .pattern("ABA")
             .pattern("BAB")
@@ -98,14 +98,14 @@ public final class AVPArmorRecipes {
             .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, AVPArmorItems.PRESSURE_BOOTS.get())
             .define('A', AVPItems.INGOT_ALUMINUM.get())
-            .define('B', AVPIndustrialBlocks.INDUSTRIAL_GLASS.get())
+            .define('B', AVPIndustrialBlocks.GLASS.get())
             .pattern("B B")
             .pattern("A A")
             .unlockedBy("has_aluminum", AVPRecipeProvider.has(AVPItems.INGOT_ALUMINUM.get()))
             .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, AVPArmorItems.PRESSURE_HELMET.get())
             .define('A', AVPItems.INGOT_ALUMINUM.get())
-            .define('B', AVPIndustrialBlocks.INDUSTRIAL_GLASS.get())
+            .define('B', AVPIndustrialBlocks.GLASS.get())
             .define('C', AVPItems.CARBON.get())
             .define('D', AVPItems.SILICA.get())
             .pattern("AAA")
@@ -115,7 +115,7 @@ public final class AVPArmorRecipes {
             .save(recipeOutput);
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, AVPArmorItems.PRESSURE_LEGGINGS.get())
             .define('A', AVPItems.INGOT_ALUMINUM.get())
-            .define('B', AVPIndustrialBlocks.INDUSTRIAL_GLASS.get())
+            .define('B', AVPIndustrialBlocks.GLASS.get())
             .pattern("BAB")
             .pattern("B B")
             .pattern("A A")

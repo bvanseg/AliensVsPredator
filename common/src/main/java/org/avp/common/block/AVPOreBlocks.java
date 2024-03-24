@@ -1,8 +1,13 @@
 package org.avp.common.block;
 
+import net.minecraft.tags.BlockTags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+
+import java.util.List;
+import java.util.function.BiFunction;
 
 import org.avp.api.block.BlockData;
 import org.avp.api.block.drop.BlockDropUtils;
@@ -51,30 +56,31 @@ public class AVPOreBlocks {
         // This method doesn't need to do anything
     }
 
+    private static GameObject<Block> register(String name, BlockData.Builder builder) {
+        return AVPBlocks.register("ore_" + name, builder);
+    }
+
     private AVPOreBlocks() {}
 
     static {
-        ORE_BAUXITE = AVPBlocks.register(
-            "ore_bauxite",
-            BlockData.builder(BAUXITE_PROPERTIES).drop(BlockDropUtils.ore(AVPItems.RAW_BAUXITE)).build()
-        );
-        ORE_COBALT = AVPBlocks.register(
-            "ore_cobalt",
-            BlockData.builder(COBALT_PROPERTIES).drop(BlockDropUtils.ore(AVPItems.COBALT)).build()
-        );
-        ORE_LITHIUM = AVPBlocks.register(
-            "ore_lithium",
-            BlockData.builder(LITHIUM_PROPERTIES).drop(BlockDropUtils.ore(AVPItems.INGOT_LITHIUM)).build()
-        );
-        ORE_MONAZITE = AVPBlocks.register(
-            "ore_monazite",
-            BlockData.builder(MONAZITE_PROPERTIES).drop(BlockDropUtils.ore(AVPItems.NEODYMIUM)).build()
-        );
-        ORE_SILICA = AVPBlocks.register(
-            "ore_silica",
-            BlockData.builder(SILICA_PROPERTIES).drop(BlockDropUtils.ore(AVPItems.SILICA)).build()
-        );
+        var stoneTier = List.of(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_STONE_TOOL);
+        var diamondTier = List.of(BlockTags.MINEABLE_WITH_PICKAXE, BlockTags.NEEDS_DIAMOND_TOOL);
 
-        RAW_BAUXITE_BLOCK = AVPBlocks.register("raw_bauxite_block", BlockData.simple(BAUXITE_PROPERTIES));
+        BiFunction<BlockBehaviour.Properties, GameObject<Item>, BlockData.Builder> oreProps = (properties, item) -> BlockData.builder(
+            properties
+        ).drop(BlockDropUtils.ore(item));
+
+        ORE_BAUXITE = register("bauxite", oreProps.apply(BAUXITE_PROPERTIES, AVPItems.RAW_BAUXITE).tags(stoneTier));
+        ORE_COBALT = register("cobalt", oreProps.apply(COBALT_PROPERTIES, AVPItems.COBALT).tags(diamondTier));
+
+        // TODO: Needs wood tool
+        ORE_LITHIUM = register("lithium", oreProps.apply(LITHIUM_PROPERTIES, AVPItems.INGOT_LITHIUM));
+        ORE_MONAZITE = register("monazite", oreProps.apply(MONAZITE_PROPERTIES, AVPItems.NEODYMIUM).tags(diamondTier));
+
+        // TODO: Needs wood tool
+        ORE_SILICA = register("silica", oreProps.apply(SILICA_PROPERTIES, AVPItems.SILICA));
+
+        // NOTE: DO NOT USE AVPOreBlocks#register HERE.
+        RAW_BAUXITE_BLOCK = AVPBlocks.register("raw_bauxite_block", BlockData.simple(BAUXITE_PROPERTIES).tags(stoneTier));
     }
 }
