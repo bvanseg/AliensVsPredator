@@ -63,9 +63,7 @@ public class AVPBaseAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPBaseAlienEntityTypes.PRAETORIAN,
                 PraetorianRenderer::new,
-                List.of(
-                    new EntityModelLayerData(PraetorianModel.LAYER_LOCATION, PraetorianModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
