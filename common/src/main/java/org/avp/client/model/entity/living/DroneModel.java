@@ -39,6 +39,6 @@ public class DroneModel extends GeoModel<Drone> {
     @Override
     public void setCustomAnimations(Drone entity, long instanceId, AnimationState<Drone> animationState) {
         BasicAnimationUtils.applyHeadRotations(this, animationState, "gNeck");
-        BasicAnimationUtils.applyLimbRotations(entity, this, "gLeftArm", "gRightArm", "gLeftLeg", "gRightLeg");
+        BasicAnimationUtils.applyLimbRotations(entity, this, animationState, "gLeftArm", "gRightArm", "gLeftLeg", "gRightLeg");
     }
 }

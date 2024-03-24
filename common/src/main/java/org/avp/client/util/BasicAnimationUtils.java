@@ -23,6 +23,7 @@ public class BasicAnimationUtils {
     public static void applyLimbRotations(
         LivingEntity entity,
         GeoModel<? extends GeoAnimatable> geoModel,
+        AnimationState<? extends GeoAnimatable> animationState,
         String leftArmName,
         String rightArmName,
         String leftLegName,
@@ -30,7 +31,8 @@ public class BasicAnimationUtils {
     ) {
         var constant = 0.6662F;
         var walkAnimation = entity.walkAnimation;
-        var walkPosition = walkAnimation.position();
+        var partialTicks = animationState.getPartialTick();
+        var walkPosition = walkAnimation.position(partialTicks);
         var walkSpeed = walkAnimation.speed();
         var animationProcessor = geoModel.getAnimationProcessor();
 
