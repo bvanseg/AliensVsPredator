@@ -34,9 +34,7 @@ public class AVPExoticAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPExoticAlienEntityTypes.DRACOMORPH,
                 DracomorphRenderer::new,
-                List.of(
-                    new EntityModelLayerData(DracomorphModel.LAYER_LOCATION, DracomorphModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
