@@ -59,9 +59,7 @@ public class AVPExoticAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPExoticAlienEntityTypes.ULTRAMORPH,
                 UltramorphRenderer::new,
-                List.of(
-                    new EntityModelLayerData(UltramorphModel.LAYER_LOCATION, UltramorphModel::createBodyLayer)
-                )
+                List.of()
             )
         );
     }
