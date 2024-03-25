@@ -1,5 +1,9 @@
 package org.avp.common.entity.living;
 
+import mod.azure.azurelib.common.api.common.animatable.GeoEntity;
+import mod.azure.azurelib.common.internal.common.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.common.internal.common.core.animation.AnimatableManager;
+import mod.azure.azurelib.common.internal.common.util.AzureLibUtil;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
@@ -17,7 +21,9 @@ import org.avp.common.sound.AVPSoundEvents;
 /**
  * @author Boston Vanseghi
  */
-public class Chestburster extends Monster {
+public class Chestburster extends Monster implements GeoEntity {
+
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public Chestburster(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
@@ -40,5 +46,15 @@ public class Chestburster extends Monster {
     @Override
     protected SoundEvent getHurtSound(@NotNull DamageSource damageSource) {
         return AVPSoundEvents.ENTITY_CHESTBURSTER_HURT.get();
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        // TODO:
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 }

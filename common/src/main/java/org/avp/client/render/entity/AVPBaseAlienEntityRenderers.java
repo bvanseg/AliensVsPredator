@@ -20,9 +20,7 @@ public class AVPBaseAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPBaseAlienEntityTypes.CHESTBURSTER,
                 ChestbursterRenderer::new,
-                List.of(
-                    new EntityModelLayerData(ChestbursterModel.LAYER_LOCATION, ChestbursterModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
