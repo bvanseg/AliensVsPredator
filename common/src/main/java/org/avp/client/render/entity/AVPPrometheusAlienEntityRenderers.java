@@ -40,9 +40,7 @@ public class AVPPrometheusAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPPrometheusAlienEntityTypes.TRILOBITE,
                 TrilobiteRenderer::new,
-                List.of(
-                    new EntityModelLayerData(TrilobiteModel.LAYER_LOCATION, TrilobiteModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
