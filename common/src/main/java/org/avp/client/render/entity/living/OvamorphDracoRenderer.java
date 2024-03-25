@@ -1,33 +1,26 @@
 package org.avp.client.render.entity.living;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import mod.azure.azurelib.common.api.client.renderer.GeoEntityRenderer;
+import mod.azure.azurelib.common.internal.common.cache.object.BakedGeoModel;
+import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.resources.ResourceLocation;
-import org.jetbrains.annotations.NotNull;
-
 import org.avp.client.model.entity.living.OvamorphDracoModel;
-import org.avp.common.AVPResources;
 import org.avp.common.entity.living.OvamorphDraco;
 
 /**
  * @author Boston Vanseghi
  */
-public class OvamorphDracoRenderer extends MobRenderer<OvamorphDraco, OvamorphDracoModel> {
-
-    private static final ResourceLocation TEXTURE = AVPResources.entityTextureLocation("ovamorph_draco");
+public class OvamorphDracoRenderer extends GeoEntityRenderer<OvamorphDraco> {
 
     public OvamorphDracoRenderer(EntityRendererProvider.Context context) {
-        super(context, new OvamorphDracoModel(context.bakeLayer(OvamorphDracoModel.LAYER_LOCATION)), 0.5f);
+        super(context, new OvamorphDracoModel());
     }
 
     @Override
-    protected void scale(@NotNull OvamorphDraco entity, @NotNull PoseStack poseStack, float partialTicks) {
+    public void preRender(PoseStack poseStack, OvamorphDraco animatable, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
+        super.preRender(poseStack, animatable, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
         poseStack.scale(1.75F, 1.75F, 1.75F);
-    }
-
-    @Override
-    public @NotNull ResourceLocation getTextureLocation(@NotNull OvamorphDraco entity) {
-        return TEXTURE;
     }
 }
