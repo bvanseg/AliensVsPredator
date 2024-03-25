@@ -41,9 +41,7 @@ public class AVPBaseAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPBaseAlienEntityTypes.FACEHUGGER_ROYAL,
                 FacehuggerRoyalRenderer::new,
-                List.of(
-                    new EntityModelLayerData(FacehuggerRoyalModel.LAYER_LOCATION, FacehuggerRoyalModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
