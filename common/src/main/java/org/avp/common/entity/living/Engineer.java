@@ -1,5 +1,9 @@
 package org.avp.common.entity.living;
 
+import mod.azure.azurelib.common.api.common.animatable.GeoEntity;
+import mod.azure.azurelib.common.internal.common.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.common.internal.common.core.animation.AnimatableManager;
+import mod.azure.azurelib.common.internal.common.util.AzureLibUtil;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -19,7 +23,9 @@ import org.avp.common.tag.AVPEntityTags;
 /**
  * @author Boston Vanseghi
  */
-public class Engineer extends Monster {
+public class Engineer extends Monster implements GeoEntity {
+
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     private static final EntityDataAccessor<Integer> ENGINEER_TYPE = SynchedEntityData.defineId(
         Engineer.class,
@@ -66,5 +72,15 @@ public class Engineer extends Monster {
 
     public int getSuitType() {
         return this.entityData.get(ENGINEER_TYPE);
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        // TODO:
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 }

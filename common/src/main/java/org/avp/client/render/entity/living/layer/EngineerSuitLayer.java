@@ -1,12 +1,13 @@
 package org.avp.client.render.entity.living.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.model.geom.EntityModelSet;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import mod.azure.azurelib.common.api.client.renderer.layer.GeoRenderLayer;
+import mod.azure.azurelib.common.internal.client.renderer.GeoRenderer;
+import mod.azure.azurelib.common.internal.common.cache.object.BakedGeoModel;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.entity.RenderLayerParent;
-import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-
 import org.avp.client.model.entity.living.EngineerModel;
 import org.avp.common.AVPResources;
 import org.avp.common.entity.living.Engineer;
@@ -14,7 +15,7 @@ import org.avp.common.entity.living.Engineer;
 /**
  * @author Boston Vanseghi
  */
-public class EngineerSuitLayer extends RenderLayer<Engineer, EngineerModel> {
+public class EngineerSuitLayer extends GeoRenderLayer<Engineer> {
 
     private static final ResourceLocation SUIT_TEXTURE = AVPResources.entityTextureLocation("engineer_suit");
 
@@ -22,44 +23,46 @@ public class EngineerSuitLayer extends RenderLayer<Engineer, EngineerModel> {
 
     private final EngineerModel model;
 
-    public EngineerSuitLayer(RenderLayerParent<Engineer, EngineerModel> $$0, EntityModelSet $$1) {
-        super($$0);
-        this.model = new EngineerModel($$1.bakeLayer(EngineerModel.ARMOR_LAYER_LOCATION));
+    public EngineerSuitLayer(GeoRenderer<Engineer> entityRendererIn) {
+        super(entityRendererIn);
+        this.model = new EngineerModel();
     }
 
     @Override
     public void render(
         PoseStack poseStack,
-        MultiBufferSource multiBufferSource,
-        int i,
-        Engineer engineer,
-        float v,
-        float v1,
-        float v2,
-        float v3,
-        float v4,
-        float v5
+        Engineer entity,
+        BakedGeoModel bakedModel,
+        RenderType renderType,
+        MultiBufferSource bufferSource,
+        VertexConsumer buffer,
+        float partialTick,
+        int packedLight,
+        int packedOverlay
     ) {
-        if (engineer.isInvisible()) {
+        if (entity.isInvisible()) {
             return;
         }
 
-        model.showHelmet(engineer.hasHelmet());
+        model.showHelmet(entity.hasHelmet());
 
-        if (engineer.getSuitType() == 0) {
-            renderColoredCutoutModel(model, SUIT_TEXTURE, poseStack, multiBufferSource, i, engineer, 1.0F, 1.0F, 1.0F);
-        } else {
-            renderColoredCutoutModel(
-                model,
-                JOCKEY_TEXTURE,
-                poseStack,
-                multiBufferSource,
-                i,
-                engineer,
-                1.0F,
-                1.0F,
-                1.0F
-            );
+        // TODO: Figure how equivalent code with a bedrock model
+        if (entity.getSuitType() == 0) {
+//            renderColoredCutoutModel(model, SUIT_TEXTURE, poseStack, multiBufferSource, i, engineer, 1.0F, 1.0F, 1.0F);
+//        } else {
+//            renderColoredCutoutModel(
+//                model,
+//                JOCKEY_TEXTURE,
+//                poseStack,
+//                multiBufferSource,
+//                i,
+//                engineer,
+//                1.0F,
+//                1.0F,
+//                1.0F
+//            );
         }
+
+        super.render(poseStack, entity, bakedModel, renderType, bufferSource, buffer, partialTick, packedLight, packedOverlay);
     }
 }
