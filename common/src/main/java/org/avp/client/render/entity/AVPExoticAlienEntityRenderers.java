@@ -41,9 +41,7 @@ public class AVPExoticAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPExoticAlienEntityTypes.OCTOHUGGER,
                 OctohuggerRenderer::new,
-                List.of(
-                    new EntityModelLayerData(OctohuggerModel.LAYER_LOCATION, OctohuggerModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
