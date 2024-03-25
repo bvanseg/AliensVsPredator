@@ -46,24 +46,23 @@ public class EngineerSuitLayer extends GeoRenderLayer<Engineer> {
         }
 
         model.showHelmet(entity.hasHelmet());
+        var suitRenderType = RenderType.entityCutout(entity.getSuitType() == 0 ? SUIT_TEXTURE : JOCKEY_TEXTURE);
 
-        // TODO: Figure how equivalent code with a bedrock model
-        if (entity.getSuitType() == 0) {
-            // renderColoredCutoutModel(model, SUIT_TEXTURE, poseStack, multiBufferSource, i, engineer, 1.0F, 1.0F,
-            // 1.0F);
-            // } else {
-            // renderColoredCutoutModel(
-            // model,
-            // JOCKEY_TEXTURE,
-            // poseStack,
-            // multiBufferSource,
-            // i,
-            // engineer,
-            // 1.0F,
-            // 1.0F,
-            // 1.0F
-            // );
-        }
+        renderer.reRender(
+            getDefaultBakedModel(entity),
+            poseStack,
+            bufferSource,
+            entity,
+            suitRenderType,
+            buffer,
+            partialTick,
+            packedLight,
+            packedOverlay,
+            1F,
+            1F,
+            1F,
+            1F
+        );
 
         super.render(poseStack, entity, bakedModel, renderType, bufferSource, buffer, partialTick, packedLight, packedOverlay);
     }
