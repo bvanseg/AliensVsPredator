@@ -16,47 +16,11 @@ public class AVPExoticAlienEntityRenderers {
     private AVPExoticAlienEntityRenderers() {}
 
     public static void addBindings() {
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPExoticAlienEntityTypes.DEACON_ADULT_ENGINEER,
-                DeaconAdultEngineerRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPExoticAlienEntityTypes.DRACOBURSTER,
-                DracobursterRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPExoticAlienEntityTypes.DRACOMORPH,
-                DracomorphRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPExoticAlienEntityTypes.OCTOHUGGER,
-                OctohuggerRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPExoticAlienEntityTypes.OVAMORPH_DRACO,
-                OvamorphDracoRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPExoticAlienEntityTypes.ULTRAMORPH,
-                UltramorphRenderer::new,
-                List.of()
-            )
-        );
+        AVPEntityRenderRegistry.addBinding(AVPExoticAlienEntityTypes.DEACON_ADULT_ENGINEER, DeaconAdultEngineerRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPExoticAlienEntityTypes.DRACOBURSTER, DracobursterRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPExoticAlienEntityTypes.DRACOMORPH, DracomorphRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPExoticAlienEntityTypes.OCTOHUGGER, OctohuggerRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPExoticAlienEntityTypes.OVAMORPH_DRACO, OvamorphDracoRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPExoticAlienEntityTypes.ULTRAMORPH, UltramorphRenderer::new);
     }
 }

@@ -10,6 +10,5 @@ import org.avp.common.util.GameObject;
 
 public record EntityRenderData<T extends Entity>(
     GameObject<EntityType<T>> entityTypeGameObject,
-    EntityRendererProvider<T> entityRendererProvider,
-    List<EntityModelLayerData> entityModelLayerData
+    EntityRendererProvider<T> entityRendererProvider
 ) {}

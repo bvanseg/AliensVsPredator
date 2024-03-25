@@ -25,14 +25,6 @@ public class AVPFabricClient implements ClientModInitializer {
             var entityType = (EntityType<Entity>) binding.entityTypeGameObject().get();
             var provider = (EntityRendererProvider<Entity>) binding.entityRendererProvider();
             EntityRendererRegistry.register(entityType, provider);
-
-            var layerDataList = binding.entityModelLayerData();
-            layerDataList.forEach(
-                layerData -> EntityModelLayerRegistry.registerModelLayer(
-                    layerData.modelLayerLocation(),
-                    layerData.layerDefinitionSupplier()::get
-                )
-            );
         });
 
         AVPBlocks.getEntries().forEach(tuple -> {

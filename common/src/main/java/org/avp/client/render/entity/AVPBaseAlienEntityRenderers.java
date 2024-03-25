@@ -1,11 +1,13 @@
 package org.avp.client.render.entity;
 
-import java.util.List;
-
-import org.avp.client.model.entity.living.*;
-import org.avp.client.render.entity.living.*;
-import org.avp.client.util.EntityModelLayerData;
-import org.avp.client.util.EntityRenderData;
+import org.avp.client.render.entity.living.ChestbursterRenderer;
+import org.avp.client.render.entity.living.DroneRenderer;
+import org.avp.client.render.entity.living.FacehuggerRenderer;
+import org.avp.client.render.entity.living.FacehuggerRoyalRenderer;
+import org.avp.client.render.entity.living.OvamorphRenderer;
+import org.avp.client.render.entity.living.PraetorianRenderer;
+import org.avp.client.render.entity.living.QueenRenderer;
+import org.avp.client.render.entity.living.WarriorRenderer;
 import org.avp.common.entity.AVPBaseAlienEntityTypes;
 
 /**
@@ -16,61 +18,13 @@ public class AVPBaseAlienEntityRenderers {
     private AVPBaseAlienEntityRenderers() {}
 
     public static void addBindings() {
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPBaseAlienEntityTypes.CHESTBURSTER,
-                ChestbursterRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPBaseAlienEntityTypes.DRONE,
-                DroneRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPBaseAlienEntityTypes.FACEHUGGER,
-                FacehuggerRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPBaseAlienEntityTypes.FACEHUGGER_ROYAL,
-                FacehuggerRoyalRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPBaseAlienEntityTypes.OVAMORPH,
-                OvamorphRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPBaseAlienEntityTypes.PRAETORIAN,
-                PraetorianRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPBaseAlienEntityTypes.QUEEN,
-                QueenRenderer::new,
-                List.of()
-            )
-        );
-        AVPEntityRenderRegistry.addBinding(
-            new EntityRenderData<>(
-                AVPBaseAlienEntityTypes.WARRIOR,
-                WarriorRenderer::new,
-                List.of()
-            )
-        );
+        AVPEntityRenderRegistry.addBinding(AVPBaseAlienEntityTypes.CHESTBURSTER, ChestbursterRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPBaseAlienEntityTypes.DRONE, DroneRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPBaseAlienEntityTypes.FACEHUGGER, FacehuggerRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPBaseAlienEntityTypes.FACEHUGGER_ROYAL, FacehuggerRoyalRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPBaseAlienEntityTypes.OVAMORPH, OvamorphRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPBaseAlienEntityTypes.PRAETORIAN, PraetorianRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPBaseAlienEntityTypes.QUEEN, QueenRenderer::new);
+        AVPEntityRenderRegistry.addBinding(AVPBaseAlienEntityTypes.WARRIOR, WarriorRenderer::new);
     }
 }

@@ -43,16 +43,4 @@ public class AVPNeoForgeClient {
             event.registerEntityRenderer(entityType, provider);
         });
     }
-
-    @SubscribeEvent
-    public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-        AVPEntityRenderRegistry.getBindings().forEach(binding -> {
-            binding.entityModelLayerData().forEach(modelLayerData -> {
-                event.registerLayerDefinition(
-                    modelLayerData.modelLayerLocation(),
-                    modelLayerData.layerDefinitionSupplier()
-                );
-            });
-        });
-    }
 }
