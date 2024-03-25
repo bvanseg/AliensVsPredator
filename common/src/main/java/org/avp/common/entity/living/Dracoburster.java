@@ -1,5 +1,9 @@
 package org.avp.common.entity.living;
 
+import mod.azure.azurelib.common.api.common.animatable.GeoEntity;
+import mod.azure.azurelib.common.internal.common.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.common.internal.common.core.animation.AnimatableManager;
+import mod.azure.azurelib.common.internal.common.util.AzureLibUtil;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.ai.goal.AvoidEntityGoal;
 import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
@@ -12,7 +16,9 @@ import net.minecraft.world.level.Level;
 /**
  * @author Boston Vanseghi
  */
-public class Dracoburster extends Monster {
+public class Dracoburster extends Monster implements GeoEntity {
+
+    private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     public Dracoburster(EntityType<? extends Monster> entityType, Level level) {
         super(entityType, level);
@@ -25,5 +31,15 @@ public class Dracoburster extends Monster {
         this.goalSelector.addGoal(7, new WaterAvoidingRandomStrollGoal(this, 1.0));
 
         this.goalSelector.addGoal(3, new AvoidEntityGoal<>(this, Player.class, 6.0F, 1.0, 1.2));
+    }
+
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        // TODO:
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return cache;
     }
 }

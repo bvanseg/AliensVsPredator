@@ -27,9 +27,7 @@ public class AVPExoticAlienEntityRenderers {
             new EntityRenderData<>(
                 AVPExoticAlienEntityTypes.DRACOBURSTER,
                 DracobursterRenderer::new,
-                List.of(
-                    new EntityModelLayerData(DracobursterModel.LAYER_LOCATION, DracobursterModel::createBodyLayer)
-                )
+                List.of()
             )
         );
         AVPEntityRenderRegistry.addBinding(
