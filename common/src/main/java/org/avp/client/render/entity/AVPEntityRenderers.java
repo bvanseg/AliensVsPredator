@@ -31,9 +31,7 @@ public class AVPEntityRenderers {
             new EntityRenderData<>(
                 AVPEntityTypes.BELUGAMORPH,
                 BelugamorphRenderer::new,
-                List.of(
-                    new EntityModelLayerData(BelugamorphModel.LAYER_LOCATION, BelugamorphModel::createBodyLayer)
-                )
+                List.of()
             )
         );
     }
