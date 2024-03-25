@@ -8,6 +8,7 @@ import mod.azure.azurelib.common.internal.common.cache.object.BakedGeoModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
+
 import org.avp.client.model.entity.living.EngineerModel;
 import org.avp.common.AVPResources;
 import org.avp.common.entity.living.Engineer;
@@ -48,19 +49,20 @@ public class EngineerSuitLayer extends GeoRenderLayer<Engineer> {
 
         // TODO: Figure how equivalent code with a bedrock model
         if (entity.getSuitType() == 0) {
-//            renderColoredCutoutModel(model, SUIT_TEXTURE, poseStack, multiBufferSource, i, engineer, 1.0F, 1.0F, 1.0F);
-//        } else {
-//            renderColoredCutoutModel(
-//                model,
-//                JOCKEY_TEXTURE,
-//                poseStack,
-//                multiBufferSource,
-//                i,
-//                engineer,
-//                1.0F,
-//                1.0F,
-//                1.0F
-//            );
+            // renderColoredCutoutModel(model, SUIT_TEXTURE, poseStack, multiBufferSource, i, engineer, 1.0F, 1.0F,
+            // 1.0F);
+            // } else {
+            // renderColoredCutoutModel(
+            // model,
+            // JOCKEY_TEXTURE,
+            // poseStack,
+            // multiBufferSource,
+            // i,
+            // engineer,
+            // 1.0F,
+            // 1.0F,
+            // 1.0F
+            // );
         }
 
         super.render(poseStack, entity, bakedModel, renderType, bufferSource, buffer, partialTick, packedLight, packedOverlay);

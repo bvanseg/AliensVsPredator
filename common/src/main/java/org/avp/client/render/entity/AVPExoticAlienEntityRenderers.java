@@ -1,11 +1,7 @@
 package org.avp.client.render.entity;
 
-import java.util.List;
-
 import org.avp.client.model.entity.living.*;
 import org.avp.client.render.entity.living.*;
-import org.avp.client.util.EntityModelLayerData;
-import org.avp.client.util.EntityRenderData;
 import org.avp.common.entity.AVPExoticAlienEntityTypes;
 
 /**

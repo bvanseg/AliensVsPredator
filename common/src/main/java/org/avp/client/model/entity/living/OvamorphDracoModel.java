@@ -3,6 +3,7 @@ package org.avp.client.model.entity.living;
 import mod.azure.azurelib.common.api.client.model.GeoModel;
 import mod.azure.azurelib.common.internal.common.core.animation.AnimationState;
 import net.minecraft.resources.ResourceLocation;
+
 import org.avp.common.AVPResources;
 import org.avp.common.entity.living.OvamorphDraco;
 
@@ -32,6 +33,5 @@ public class OvamorphDracoModel extends GeoModel<OvamorphDraco> {
     }
 
     @Override
-    public void setCustomAnimations(OvamorphDraco entity, long instanceId, AnimationState<OvamorphDraco> animationState) {
-    }
+    public void setCustomAnimations(OvamorphDraco entity, long instanceId, AnimationState<OvamorphDraco> animationState) {}
 }

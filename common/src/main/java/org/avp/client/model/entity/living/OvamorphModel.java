@@ -2,6 +2,7 @@ package org.avp.client.model.entity.living;
 
 import mod.azure.azurelib.common.api.client.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
+
 import org.avp.common.AVPResources;
 import org.avp.common.entity.living.Ovamorph;
 
@@ -30,4 +31,3 @@ public class OvamorphModel extends GeoModel<Ovamorph> {
         return ANIMATION_LOCATION;
     }
 }
-

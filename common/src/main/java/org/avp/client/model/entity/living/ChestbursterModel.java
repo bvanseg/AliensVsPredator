@@ -1,19 +1,11 @@
 package org.avp.client.model.entity.living;
 
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import mod.azure.azurelib.common.api.client.model.GeoModel;
 import mod.azure.azurelib.common.internal.common.core.animation.AnimationState;
-import net.minecraft.client.model.EntityModel;
-import net.minecraft.client.model.geom.ModelLayerLocation;
-import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-
 import net.minecraft.resources.ResourceLocation;
-import org.avp.client.util.BasicAnimationUtils;
+
 import org.avp.common.AVPResources;
-import org.avp.common.entity.living.Belugamorph;
 import org.avp.common.entity.living.Chestburster;
 
 public class ChestbursterModel extends GeoModel<Chestburster> {
