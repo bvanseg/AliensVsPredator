@@ -10,13 +10,7 @@ import org.avp.common.util.GameObject;
 /**
  * @author Boston Vanseghi
  */
-public class AVPSoundEvents implements AVPRegistry {
-
-    private static final AVPSoundEvents INSTANCE = new AVPSoundEvents();
-
-    public static AVPSoundEvents getInstance() {
-        return INSTANCE;
-    }
+public class AVPSoundEvents {
 
     private static GameObject<SoundEvent> register(String registryName) {
         var resourceLocation = AVPResources.location(registryName);
@@ -26,38 +20,41 @@ public class AVPSoundEvents implements AVPRegistry {
         );
     }
 
-    public static GameObject<SoundEvent> ENTITY_CHESTBURSTER_DEATH;
+    public static final GameObject<SoundEvent> ENTITY_CHESTBURSTER_DEATH;
 
-    public static GameObject<SoundEvent> ENTITY_CHESTBURSTER_HURT;
+    public static final GameObject<SoundEvent> ENTITY_CHESTBURSTER_HURT;
 
-    public static GameObject<SoundEvent> ENTITY_PRAETORIAN_AMBIENT;
+    public static final GameObject<SoundEvent> ENTITY_PRAETORIAN_AMBIENT;
 
-    public static GameObject<SoundEvent> ENTITY_PRAETORIAN_DEATH;
+    public static final GameObject<SoundEvent> ENTITY_PRAETORIAN_DEATH;
 
-    public static GameObject<SoundEvent> ENTITY_PRAETORIAN_HURT;
+    public static final GameObject<SoundEvent> ENTITY_PRAETORIAN_HURT;
 
-    public static GameObject<SoundEvent> ENTITY_QUEEN_AMBIENT;
+    public static final GameObject<SoundEvent> ENTITY_QUEEN_AMBIENT;
 
-    public static GameObject<SoundEvent> ENTITY_QUEEN_AMBIENT_LOOP;
+    public static final GameObject<SoundEvent> ENTITY_QUEEN_AMBIENT_LOOP;
 
-    public static GameObject<SoundEvent> ENTITY_QUEEN_DEATH;
+    public static final GameObject<SoundEvent> ENTITY_QUEEN_DEATH;
 
-    public static GameObject<SoundEvent> ENTITY_QUEEN_HURT;
+    public static final GameObject<SoundEvent> ENTITY_QUEEN_HURT;
 
-    public static GameObject<SoundEvent> ENTITY_XENOMORPH_AMBIENT;
+    public static final GameObject<SoundEvent> ENTITY_XENOMORPH_AMBIENT;
 
-    public static GameObject<SoundEvent> ENTITY_XENOMORPH_ATTACK;
+    public static final GameObject<SoundEvent> ENTITY_XENOMORPH_ATTACK;
 
-    public static GameObject<SoundEvent> ENTITY_XENOMORPH_DEATH;
+    public static final GameObject<SoundEvent> ENTITY_XENOMORPH_DEATH;
 
-    public static GameObject<SoundEvent> ENTITY_XENOMORPH_EAT;
+    public static final GameObject<SoundEvent> ENTITY_XENOMORPH_EAT;
 
-    public static GameObject<SoundEvent> ENTITY_XENOMORPH_HURT;
+    public static final GameObject<SoundEvent> ENTITY_XENOMORPH_HURT;
+
+    public static void forceInitialization() {
+        // This method doesn't need to do anything
+    }
 
     private AVPSoundEvents() {}
 
-    @Override
-    public void register() {
+    static {
         ENTITY_CHESTBURSTER_DEATH = register("entity.chestburster.death");
         ENTITY_CHESTBURSTER_HURT = register("entity.chestburster.hurt");
 
