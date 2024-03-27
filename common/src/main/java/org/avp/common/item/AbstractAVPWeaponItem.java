@@ -6,10 +6,18 @@ import mod.azure.azurelib.common.internal.common.core.animatable.instance.Animat
 import mod.azure.azurelib.common.internal.common.core.animation.AnimatableManager;
 import mod.azure.azurelib.common.internal.common.util.AzureLibUtil;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import org.avp.api.item.weapon.WeaponItemData;
 
 public abstract class AbstractAVPWeaponItem extends Item implements GeoItem {
 
@@ -17,8 +25,27 @@ public abstract class AbstractAVPWeaponItem extends Item implements GeoItem {
 
     private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
 
-    protected AbstractAVPWeaponItem(Properties properties) {
+    private final WeaponItemData weaponItemData;
+
+    protected AbstractAVPWeaponItem(Properties properties, WeaponItemData weaponItemData) {
         super(properties);
+        this.weaponItemData = weaponItemData;
+    }
+
+    protected abstract BlockEntityWithoutLevelRenderer createRenderer();
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand interactionHand) {
+        var fireRateInTicks = this.getWeaponItemData().getFireRateInTicks();
+        var fireSound = this.getWeaponItemData().getFireSound().get();
+
+        if (!level.isClientSide) {
+            player.getCooldowns().addCooldown(this, fireRateInTicks);
+        }
+
+        level.playSound(player, player.blockPosition(), fireSound, SoundSource.PLAYERS);
+
+        return super.use(level, player, interactionHand);
     }
 
     @Override
@@ -39,6 +66,10 @@ public abstract class AbstractAVPWeaponItem extends Item implements GeoItem {
         });
     }
 
+    public WeaponItemData getWeaponItemData() {
+        return weaponItemData;
+    }
+
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return cache;
@@ -48,6 +79,4 @@ public abstract class AbstractAVPWeaponItem extends Item implements GeoItem {
     public Supplier<Object> getRenderProvider() {
         return renderProvider;
     }
-
-    protected abstract BlockEntityWithoutLevelRenderer createRenderer();
 }
