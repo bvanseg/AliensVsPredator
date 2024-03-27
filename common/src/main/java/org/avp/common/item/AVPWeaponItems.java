@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 import org.avp.common.item.impl.AK47Item;
+import org.avp.common.item.impl.FlamethrowerSevastopolItem;
 import org.avp.common.item.impl.M41APulseRifleItem;
 import org.avp.common.item.impl.SniperRifleItem;
 import org.avp.common.service.Services;
@@ -38,6 +39,8 @@ public class AVPWeaponItems {
     public static final GameObject<Item> WEAPON_88MOD4_COMBAT_PISTOL;
 
     public static final GameObject<Item> WEAPON_AK_47;
+
+    public static final GameObject<Item> WEAPON_FLAMETHROWER_SEVASTOPOL;
 
     public static final GameObject<Item> WEAPON_M4_CARBINE;
 
@@ -76,6 +79,7 @@ public class AVPWeaponItems {
 
         WEAPON_88MOD4_COMBAT_PISTOL = register("weapon_88mod4_combat_pistol", () -> new Item(new Item.Properties()));
         WEAPON_AK_47 = register("weapon_ak_47", () -> new AK47Item(new Item.Properties()));
+        WEAPON_FLAMETHROWER_SEVASTOPOL = register("weapon_flamethrower_sevastopol", () -> new FlamethrowerSevastopolItem(new Item.Properties()));
         WEAPON_M4_CARBINE = register("weapon_m4_carbine", () -> new Item(new Item.Properties()));
         WEAPON_M41A_PULSE_RIFLE = register("weapon_m41a_pulse_rifle", () -> new M41APulseRifleItem(new Item.Properties()));
         WEAPON_M56_SMARTGUN = register("weapon_m56_smartgun", () -> new Item(new Item.Properties()));
