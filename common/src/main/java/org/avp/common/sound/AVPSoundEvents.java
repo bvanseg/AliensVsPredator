@@ -3,7 +3,6 @@ package org.avp.common.sound;
 import net.minecraft.sounds.SoundEvent;
 
 import org.avp.common.AVPResources;
-import org.avp.common.registry.AVPRegistry;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
@@ -48,6 +47,22 @@ public class AVPSoundEvents {
 
     public static final GameObject<SoundEvent> ENTITY_XENOMORPH_HURT;
 
+    public static final GameObject<SoundEvent> ITEM_WEAPON_AK_47_SHOOT;
+
+    public static final GameObject<SoundEvent> ITEM_WEAPON_FLAMETHROWER_SHOOT;
+
+    public static final GameObject<SoundEvent> ITEM_WEAPON_GENERIC_RELOAD;
+
+    public static final GameObject<SoundEvent> ITEM_WEAPON_GENERIC_SHOOT;
+
+    public static final GameObject<SoundEvent> ITEM_WEAPON_GENERIC_SHOOT_FAIL;
+
+    public static final GameObject<SoundEvent> ITEM_WEAPON_PULSE_RIFLE_SHOOT;
+
+    public static final GameObject<SoundEvent> ITEM_WEAPON_SHOTGUN_SHOOT;
+
+    public static final GameObject<SoundEvent> ITEM_WEAPON_SNIPER_RIFLE_SHOOT;
+
     public static void forceInitialization() {
         // This method doesn't need to do anything
     }
@@ -72,5 +87,19 @@ public class AVPSoundEvents {
         ENTITY_XENOMORPH_DEATH = register("entity.xenomorph.death");
         ENTITY_XENOMORPH_EAT = register("entity.xenomorph.eat");
         ENTITY_XENOMORPH_HURT = register("entity.xenomorph.hurt");
+
+        ITEM_WEAPON_AK_47_SHOOT = register("item.weapon.ak_47.shoot");
+
+        ITEM_WEAPON_FLAMETHROWER_SHOOT = register("item.weapon.flamethrower.shoot");
+
+        ITEM_WEAPON_GENERIC_RELOAD = register("item.weapon.generic.reload");
+        ITEM_WEAPON_GENERIC_SHOOT = register("item.weapon.generic.shoot");
+        ITEM_WEAPON_GENERIC_SHOOT_FAIL = register("item.weapon.generic.shoot.fail");
+
+        ITEM_WEAPON_PULSE_RIFLE_SHOOT = register("item.weapon.pulse_rifle.shoot");
+
+        ITEM_WEAPON_SHOTGUN_SHOOT = register("item.weapon.shotgun.shoot");
+
+        ITEM_WEAPON_SNIPER_RIFLE_SHOOT = register("item.weapon.sniper_rifle.shoot");
     }
 }
