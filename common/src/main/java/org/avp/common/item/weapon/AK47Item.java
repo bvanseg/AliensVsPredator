@@ -1,4 +1,4 @@
-package org.avp.common.item.impl;
+package org.avp.common.item.weapon;
 
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 

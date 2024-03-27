@@ -4,7 +4,7 @@ import mod.azure.azurelib.common.api.client.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 
 import org.avp.common.AVPResources;
-import org.avp.common.item.impl.AK47Item;
+import org.avp.common.item.weapon.AK47Item;
 
 public class AK47Model extends GeoModel<AK47Item> {
 

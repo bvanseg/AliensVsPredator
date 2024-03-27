@@ -4,7 +4,7 @@ import mod.azure.azurelib.common.api.client.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 
 import org.avp.common.AVPResources;
-import org.avp.common.item.impl.M41APulseRifleItem;
+import org.avp.common.item.weapon.M41APulseRifleItem;
 
 public class M41APulseRifleModel extends GeoModel<M41APulseRifleItem> {
 

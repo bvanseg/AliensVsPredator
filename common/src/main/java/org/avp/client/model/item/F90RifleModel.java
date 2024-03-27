@@ -4,7 +4,7 @@ import mod.azure.azurelib.common.api.client.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 
 import org.avp.common.AVPResources;
-import org.avp.common.item.impl.F90RifleItem;
+import org.avp.common.item.weapon.F90RifleItem;
 
 public class F90RifleModel extends GeoModel<F90RifleItem> {
 

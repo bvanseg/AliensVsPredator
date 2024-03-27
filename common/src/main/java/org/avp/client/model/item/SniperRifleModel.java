@@ -4,7 +4,7 @@ import mod.azure.azurelib.common.api.client.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 
 import org.avp.common.AVPResources;
-import org.avp.common.item.impl.SniperRifleItem;
+import org.avp.common.item.weapon.SniperRifleItem;
 
 public class SniperRifleModel extends GeoModel<SniperRifleItem> {
 

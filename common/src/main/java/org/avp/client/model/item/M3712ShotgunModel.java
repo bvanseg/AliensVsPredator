@@ -4,7 +4,7 @@ import mod.azure.azurelib.common.api.client.model.GeoModel;
 import net.minecraft.resources.ResourceLocation;
 
 import org.avp.common.AVPResources;
-import org.avp.common.item.impl.M3712ShotgunItem;
+import org.avp.common.item.weapon.M3712ShotgunItem;
 
 public class M3712ShotgunModel extends GeoModel<M3712ShotgunItem> {
 
