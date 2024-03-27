@@ -3,6 +3,7 @@ package org.avp.common.item;
 import mod.azure.azurelib.common.api.common.animatable.GeoItem;
 import mod.azure.azurelib.common.internal.client.RenderProvider;
 import mod.azure.azurelib.common.internal.common.core.animatable.instance.AnimatableInstanceCache;
+import mod.azure.azurelib.common.internal.common.core.animation.AnimatableManager;
 import mod.azure.azurelib.common.internal.common.util.AzureLibUtil;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.item.Item;
@@ -21,8 +22,14 @@ public abstract class AVPWeaponItem extends Item implements GeoItem {
     }
 
     @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar controllers) {
+        // Do nothing
+    }
+
+    @Override
     public void createRenderer(Consumer<Object> consumer) {
         consumer.accept(new RenderProvider() {
+
             private final BlockEntityWithoutLevelRenderer renderer = AVPWeaponItem.this.createRenderer();
 
             @Override
