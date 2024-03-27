@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 import org.avp.common.item.impl.AK47Item;
 import org.avp.common.item.impl.M41APulseRifleItem;
+import org.avp.common.item.impl.SniperRifleItem;
 import org.avp.common.service.Services;
 import org.avp.common.util.GameObject;
 
@@ -78,6 +79,6 @@ public class AVPWeaponItems {
         WEAPON_M4_CARBINE = register("weapon_m4_carbine", () -> new Item(new Item.Properties()));
         WEAPON_M41A_PULSE_RIFLE = register("weapon_m41a_pulse_rifle", () -> new M41APulseRifleItem(new Item.Properties()));
         WEAPON_M56_SMARTGUN = register("weapon_m56_smartgun", () -> new Item(new Item.Properties()));
-        WEAPON_SNIPER_RIFLE = register("weapon_sniper_rifle", () -> new Item(new Item.Properties()));
+        WEAPON_SNIPER_RIFLE = register("weapon_sniper_rifle", () -> new SniperRifleItem(new Item.Properties()));
     }
 }
