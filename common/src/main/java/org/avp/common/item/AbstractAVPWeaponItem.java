@@ -11,13 +11,13 @@ import net.minecraft.world.item.Item;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public abstract class AVPWeaponItem extends Item implements GeoItem {
+public abstract class AbstractAVPWeaponItem extends Item implements GeoItem {
 
     private final AnimatableInstanceCache cache = AzureLibUtil.createInstanceCache(this);
 
     private final Supplier<Object> renderProvider = GeoItem.makeRenderer(this);
 
-    protected AVPWeaponItem(Properties properties) {
+    protected AbstractAVPWeaponItem(Properties properties) {
         super(properties);
     }
 
@@ -30,7 +30,7 @@ public abstract class AVPWeaponItem extends Item implements GeoItem {
     public void createRenderer(Consumer<Object> consumer) {
         consumer.accept(new RenderProvider() {
 
-            private final BlockEntityWithoutLevelRenderer renderer = AVPWeaponItem.this.createRenderer();
+            private final BlockEntityWithoutLevelRenderer renderer = AbstractAVPWeaponItem.this.createRenderer();
 
             @Override
             public BlockEntityWithoutLevelRenderer getCustomRenderer() {
