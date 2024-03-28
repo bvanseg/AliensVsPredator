@@ -45,7 +45,7 @@ public class AVPWeaponItemData {
         4F * 2,
         10,
         99,
-        0.5F,
+        1F,
         20 * 3,
         AVPSoundEvents.ITEM_WEAPON_GENERIC_SHOOT_FAIL,
         AVPSoundEvents.ITEM_WEAPON_PULSE_RIFLE_SHOOT,
