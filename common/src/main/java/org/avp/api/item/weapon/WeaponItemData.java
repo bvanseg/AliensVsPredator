@@ -5,6 +5,9 @@ import org.jetbrains.annotations.NotNull;
 
 import org.avp.common.util.GameObject;
 
+import java.util.List;
+import java.util.Objects;
+
 /**
  * @author Boston Vanseghi
  */
@@ -14,48 +17,52 @@ public class WeaponItemData {
 
     private final WeaponDamageType weaponDamageType;
 
-    private final FireMode fireMode;
+    private final List<FireMode> fireModes;
 
     private final float damage;
 
-    private final int fireRateInTicks;
+    private final float knockback;
 
     private final int maxAmmunition;
-
-    private final float recoil;
 
     private final int reloadTimeInTicks;
 
     private final GameObject<SoundEvent> fireFailSound;
-
-    private final GameObject<SoundEvent> fireSound;
 
     private final GameObject<SoundEvent> reloadSound;
 
     public WeaponItemData(
         float accuracy,
         @NotNull WeaponDamageType weaponDamageType,
-        @NotNull FireMode fireMode,
+        @NotNull List<FireMode> fireModes,
         float damage,
-        int fireRateInTicks,
+        float knockback,
         int maxAmmunition,
-        float recoil,
         int reloadTimeInTicks,
         @NotNull GameObject<SoundEvent> fireFailSound,
-        @NotNull GameObject<SoundEvent> fireSound,
         @NotNull GameObject<SoundEvent> reloadSound
     ) {
-        this.accuracy = accuracy;
+        if (fireModes.isEmpty()) {
+            throw new IllegalStateException("Weapons must have at least 1 fire mode!");
+        }
+
+        this.accuracy = Math.max(accuracy, 0);
         this.weaponDamageType = weaponDamageType;
-        this.fireMode = fireMode;
-        this.damage = damage;
-        this.fireRateInTicks = fireRateInTicks;
-        this.maxAmmunition = maxAmmunition;
-        this.recoil = recoil;
-        this.reloadTimeInTicks = reloadTimeInTicks;
+        this.fireModes = fireModes;
+        this.damage = Math.max(damage, 0);
+        this.knockback = Math.max(knockback, 0);
+        this.maxAmmunition = Math.max(maxAmmunition, 0);
+        this.reloadTimeInTicks = Math.max(reloadTimeInTicks, 0);
         this.fireFailSound = fireFailSound;
-        this.fireSound = fireSound;
         this.reloadSound = reloadSound;
+    }
+
+    public FireMode getFireMode(String identifier) {
+        return this.getFireModes()
+            .stream()
+            .filter(mode -> Objects.equals(mode.identifier(), identifier))
+            .findFirst()
+            .orElse(this.getFireModes().get(0));
     }
 
     public float getAccuracy() {
@@ -66,24 +73,20 @@ public class WeaponItemData {
         return weaponDamageType;
     }
 
-    public FireMode getFireMode() {
-        return fireMode;
+    public List<FireMode> getFireModes() {
+        return fireModes;
     }
 
     public float getDamage() {
         return damage;
     }
 
-    public int getFireRateInTicks() {
-        return fireRateInTicks;
+    public float getKnockback() {
+        return knockback;
     }
 
     public int getMaxAmmunition() {
         return maxAmmunition;
-    }
-
-    public float getRecoil() {
-        return recoil;
     }
 
     public int getReloadTimeInTicks() {
@@ -92,10 +95,6 @@ public class WeaponItemData {
 
     public GameObject<SoundEvent> getFireFailSound() {
         return fireFailSound;
-    }
-
-    public GameObject<SoundEvent> getFireSound() {
-        return fireSound;
     }
 
     public GameObject<SoundEvent> getReloadSound() {

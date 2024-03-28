@@ -14,6 +14,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.ProjectileUtil;
 import net.minecraft.world.item.Item;
@@ -23,6 +24,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.EntityHitResult;
+import org.avp.api.item.weapon.FireMode;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -66,6 +68,12 @@ public abstract class AbstractAVPWeaponItem extends Item implements GeoItem {
         var itemStack = player.getItemInHand(interactionHand);
         var tag = itemStack.getOrCreateTag();
         var ammunition = tag.getInt(AMMUNITION_KEY);
+        var fireModeIdentifier = tag.getString("FireMode");
+        var fireMode = this.getWeaponItemData().getFireMode(fireModeIdentifier);
+
+        if (fireModeIdentifier.isEmpty()) {
+            tag.putString("FireMode", fireMode.identifier());
+        }
 
         if (level.isClientSide) {
             ((MixinMinecraftAccessor) Minecraft.getInstance()).setRightClickDelay(0);
@@ -76,12 +84,12 @@ public abstract class AbstractAVPWeaponItem extends Item implements GeoItem {
                 reload(level, player, itemStack);
                 return super.use(level, player, interactionHand);
             } else {
-                fire(level, player, tag);
+                fire(level, player, tag, fireMode);
             }
         }
 
         if (level.isClientSide) {
-            var recoil = this.getWeaponItemData().getRecoil();
+            var recoil = fireMode.recoil();
             player.attackAnim = recoil;
             player.oAttackAnim = recoil;
         }
@@ -89,34 +97,43 @@ public abstract class AbstractAVPWeaponItem extends Item implements GeoItem {
         return super.use(level, player, interactionHand);
     }
 
-    private void fire(@NotNull Level level, @NotNull Player player, CompoundTag tag) {
-        var fireRateInTicks = this.getWeaponItemData().getFireRateInTicks();
-        tag.putInt(AMMUNITION_KEY, tag.getInt(AMMUNITION_KEY) - 1);
+    private void fire(@NotNull Level level, @NotNull Player player, CompoundTag tag, FireMode fireMode) {
+        var fireRateInTicks = fireMode.fireRateInTicks();
+        tag.putInt(AMMUNITION_KEY, tag.getInt(AMMUNITION_KEY) - fireMode.consumedAmmunition());
 
         if (fireRateInTicks > 0) {
             player.getCooldowns().addCooldown(this, fireRateInTicks);
         }
 
-        var fireSound = this.getWeaponItemData().getFireSound().get();
+        var fireSound = fireMode.fireSound().get();
         level.playSound(null, player.blockPosition(), fireSound, SoundSource.PLAYERS);
 
         var hitResult = ProjectileUtil.getHitResultOnViewVector(player, entity -> true, 128.0D);
 
         switch (hitResult.getType()) {
-            case BLOCK -> damageBlock(level, (BlockHitResult) hitResult);
-            case ENTITY -> damageEntity(level, (EntityHitResult) hitResult);
+            case BLOCK -> damageBlock(level, (BlockHitResult) hitResult, fireMode);
+            case ENTITY -> damageEntity(level, player, (EntityHitResult) hitResult, fireMode);
         }
     }
 
-    private void damageEntity(@NotNull Level level, EntityHitResult hitResult) {
-        var damage = this.getWeaponItemData().getDamage();
+    private void damageEntity(@NotNull Level level, Player player, EntityHitResult hitResult, FireMode fireMode) {
+        var damage = this.getWeaponItemData().getDamage() * fireMode.consumedAmmunition();
         var entity = hitResult.getEntity();
 
         entity.invulnerableTime = 0;
         entity.hurt(level.damageSources().generic(), damage);
+
+        // Apply knockback to living entities
+        if (entity instanceof LivingEntity livingEntity) {
+            livingEntity.knockback(
+                this.getWeaponItemData().getKnockback() * fireMode.consumedAmmunition(),
+                Mth.sin(player.getYRot() * Mth.DEG_TO_RAD),
+                -Mth.cos(player.getYRot() * Mth.DEG_TO_RAD)
+            );
+        }
     }
 
-    private void damageBlock(@NotNull Level level, BlockHitResult hitResult) {
+    private void damageBlock(@NotNull Level level, BlockHitResult hitResult, FireMode fireMode) {
         var blockPos = hitResult.getBlockPos();
         var blockState = level.getBlockState(blockPos);
         var block = blockState.getBlock();
@@ -127,8 +144,9 @@ public abstract class AbstractAVPWeaponItem extends Item implements GeoItem {
         level.playSound(null, blockPos, ricochetSfx.get(), SoundSource.BLOCKS);
 
         BLOCK_BREAK_PROGRESS_MAP.compute(blockPos, (key, value) -> {
-            var _value = value == null ? 0 : value;
-            var newValue = _value + (this.getWeaponItemData().getDamage() / (2F + block.defaultDestroyTime() / 2F));
+            var cachedValue = value == null ? 0 : value;
+            var damage = this.getWeaponItemData().getDamage() * fireMode.consumedAmmunition();
+            var newValue = cachedValue + (damage / (2F + block.defaultDestroyTime() / 2F));
             var progress = (int) Mth.clamp(newValue, 0F, 9F);
             level.destroyBlockProgress(Objects.hash(blockPos), blockPos, progress);
 
@@ -140,7 +158,10 @@ public abstract class AbstractAVPWeaponItem extends Item implements GeoItem {
         });
 
         // FIXME: Use packet to emit particles, otherwise will crash server.
-        Minecraft.getInstance().particleEngine.crack(blockPos, hitResult.getDirection());
+        // TODO: Scale with weapon bullet count + damage
+        for (int i = 0; i < 16; i++) {
+            Minecraft.getInstance().particleEngine.crack(blockPos, hitResult.getDirection());
+        }
     }
 
     private static GameObject<SoundEvent> getRicochetSound(SoundType soundType) {
