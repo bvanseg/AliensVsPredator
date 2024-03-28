@@ -51,6 +51,14 @@ public class AVPSoundEvents {
 
     public static final GameObject<SoundEvent> ITEM_WEAPON_FLAMETHROWER_SHOOT;
 
+    public static final GameObject<SoundEvent> ITEM_WEAPON_FX_RICOCHET_DIRT;
+
+    public static final GameObject<SoundEvent> ITEM_WEAPON_FX_RICOCHET_GENERIC;
+
+    public static final GameObject<SoundEvent> ITEM_WEAPON_FX_RICOCHET_GLASS;
+
+    public static final GameObject<SoundEvent> ITEM_WEAPON_FX_RICOCHET_METAL;
+
     public static final GameObject<SoundEvent> ITEM_WEAPON_GENERIC_RELOAD;
 
     public static final GameObject<SoundEvent> ITEM_WEAPON_GENERIC_SHOOT;
@@ -91,6 +99,11 @@ public class AVPSoundEvents {
         ITEM_WEAPON_AK_47_SHOOT = register("item.weapon.ak_47.shoot");
 
         ITEM_WEAPON_FLAMETHROWER_SHOOT = register("item.weapon.flamethrower.shoot");
+
+        ITEM_WEAPON_FX_RICOCHET_DIRT = register("item.weapon.fx.ricochet.dirt");
+        ITEM_WEAPON_FX_RICOCHET_GENERIC = register("item.weapon.fx.ricochet.generic");
+        ITEM_WEAPON_FX_RICOCHET_GLASS = register("item.weapon.fx.ricochet.glass");
+        ITEM_WEAPON_FX_RICOCHET_METAL = register("item.weapon.fx.ricochet.metal");
 
         ITEM_WEAPON_GENERIC_RELOAD = register("item.weapon.generic.reload");
         ITEM_WEAPON_GENERIC_SHOOT = register("item.weapon.generic.shoot");
