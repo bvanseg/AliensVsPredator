@@ -59,7 +59,7 @@ public class AVPCommon {
         AVPCreativeModeTabs.register();
 
         // Sounds
-        AVPSoundEvents.getInstance().register();
+        AVPSoundEvents.forceInitialization();
     }
 
     private AVPCommon() {
